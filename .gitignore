@@ -1,0 +1,3 @@
+qgis-data/*
+!qgis-data/.gitkeep
+.~lock.*

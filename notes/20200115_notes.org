@@ -1,0 +1,44 @@
+* Jan 13, 2020 Meeting
+- Use Trello if possible.
+- Try to meet w/ George Roth next week (lead dev of qAntarctica).
+- Some goals
+  - Data that spans disiplines
+    - Compare datasets of other Greenland data portals.
+    - QAntarctica has focus on physical sciences.
+- Three categories of data
+  - Data that can be downloaded as a package that sits on user's computer and used offline. Included in everyone's download.
+  - Disipline specific.
+    - Data more specific to a particular area.
+    - Could be disipline-specific extensions or at dataset level
+  - Online data sources that require internet access. E.g., WMS layers.
+    - e.g., itslive website has example of accessing data from qgis w/o having to download the data.
+- Initial work phase
+  - Explore qantarctica. 
+  - Figure out what the workflow will be, along with documentation. Want to be able to allow others to follow the same procedures to put their own data into qgreenland.
+- Do have some $ for develpment of qgis if it becomes necessary (we could fund a qgis dev).
+- Collaborators
+  - See project proposal
+  - ISAAISK
+- Website
+  - Should be live later this month
+  - Community/potential user survey
+    - What kind of data do they want?
+    - What do people expect?
+  - Should have as much of the info in Greenlandic. QGIS itself has documentation in many lanugages, want to support development of Greenlandic docs as well.
+- Datasets that we should add
+  - Twila has a list of possible datasets. May not all make the cut.
+  - Do not yet have a spatial boundary for qgis. We will want to include some ocean-related data. Should think about what our boundaries are.
+  - How do we represent and/or present timeseries data?
+- Hope to have v1.0 by late October. Want to be ready for AGU.
+- 9:30 standups.
+* Notes on quantarctica
+- Scale bar and credits are "Decorations".
+- A txt file with the same name as the layer name is the layer description. (tooltip hover)
+- sea ice conc layer
+  - an aux.xml file alongside  the .tif file gives layer statistics and the color interpretation.
+- Only a couple of layers have .qlr files.
+  - ./Quantarctica3/Geology/GEOMAP/ATA_GeoMAP_sources_poly.qlr
+  - ./Quantarctica3/Glaciology/SAMBA Surface mass balance measurements/SAMBA_surface_mass_balance_measurements.qlr
+- Where does Quantarctica_ColourRamp.xml come from / used for?
+- QLR files: https://docs.qgis.org/3.4/en/docs/user_manual/appendices/appendices.html?highlight=qlr#qlr-the-qgis-layer-definition-file
+
