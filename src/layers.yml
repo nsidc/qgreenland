@@ -10,7 +10,11 @@ coastline:
     url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
   layer_group: 'basemap'
   # TODO implement the pipeline.
+  # Each step could return its output path, in which case the next step would open it, or
+  # return an object (geodataframe) that gets passed in to the next step as argument.
   steps:
+    - download:
     - unzip:
     - reproject:
     - subset:
+    - zip:
