@@ -10,8 +10,8 @@ import requests
 import yaml
 
 
-CONFIG_FILE = 'layers.yml'
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
+CONFIG_FILE = os.path.join(THIS_DIR, 'layers.yml')
 LAYER_BASE_DIR = os.path.abspath(os.path.join(THIS_DIR, '../qgis-data/qgreenland/'))
 REQUEST_TIMEOUT = 3
 
