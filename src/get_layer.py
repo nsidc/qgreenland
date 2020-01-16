@@ -5,6 +5,7 @@ import tempfile
 import zipfile
 
 from shapely.geometry import Polygon
+import earthpy.clip as ec
 import geopandas
 import requests
 import yaml
@@ -41,7 +42,9 @@ def reproject_shapefile(shp_dir, layer_config):
     reprojected_shpfile = os.path.join(out_subdir, f"{layer_config['short_name']}.shp")
     gdf.to_file(reprojected_shpfile, driver='ESRI Shapefile')
 
-    return out_subdir
+    # NOTE: Could return GDF instead of writing and opening again in later function
+    # How would we make that work with the "steps" configuration
+    return reprojected_shpfile
 
 
 def unzip(zipped_file):
@@ -49,7 +52,11 @@ def unzip(zipped_file):
         zfile.extractall(path=os.path.dirname(zipped_file))
 
 
-def subset(input_gdf):
+def subset(shapefile, layer_config):
+    input_gdf = geopandas.read_file(shapefile)
+    out_subdir = os.path.abspath(os.path.join(os.path.abspath(shapefile), '..', 'subset'))
+    subset_shapefile = os.path.join(out_subdir, f"{layer_config['short_name']}.shp")
+
     # l, d, r, u
     bounds = {'xmin': -3850000.000, 'ymin': -5350000.0,
               'xmax': 3750000.0, 'ymax': 5850000.000}
@@ -62,9 +69,15 @@ def subset(input_gdf):
         (bounds['xmin'], bounds['ymax']),
     ]
 
-    gs = geopandas.GeoSeries([Polygon(points)])
+    bb_poly = geopandas.GeoSeries([Polygon(points)])
+    bb = geopandas.GeoDataFrame({'geometry': bb_poly})
+    gdf = ec.clip_shp(input_gdf, bb)
+    gdf = gdf[~gdf.is_empty]
 
-    geopandas.overlay(input_gdf, gs, how='intersection')
+    os.mkdir(out_subdir)
+    gdf.to_file(subset_shapefile)
+
+    return subset_shapefile
 
 
 def get_layer_data(layer_config):
@@ -77,21 +90,26 @@ def get_layer_data(layer_config):
         with open(temp_file, 'wb') as f:
             f.write(response.content)
 
+            # UNZIP
             unzip(temp_file)
             os.remove(temp_file)
 
-            reprojected_dir = reproject_shapefile(tdir, layer_config)
+            # REPROJECT
+            reprojected_shapefile = reproject_shapefile(tdir, layer_config)
 
             layer_group_dir = os.path.join(LAYER_BASE_DIR, layer_config['layer_group'])
             os.makedirs(layer_group_dir, exist_ok=True)
 
+            # SUBSET
+            subset_shapefile = subset(reprojected_shapefile, layer_config)
+
+            # MOVE TO FINAL LOCATION
             # Remove the output dir if it already exists (overwrite).
             output_dir = os.path.join(layer_group_dir, layer_config['short_name'])
             if os.path.isdir(output_dir):
                 shutil.rmtree(output_dir)
 
-            shutil.move(reprojected_dir, output_dir)
-
+            shutil.move(os.path.dirname(subset_shapefile), output_dir)
 
 if __name__ == '__main__':
     if not os.path.isdir(LAYER_BASE_DIR):
