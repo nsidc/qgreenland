@@ -41,4 +41,21 @@
   - ./Quantarctica3/Glaciology/SAMBA Surface mass balance measurements/SAMBA_surface_mass_balance_measurements.qlr
 - Where does Quantarctica_ColourRamp.xml come from / used for?
 - QLR files: https://docs.qgis.org/3.4/en/docs/user_manual/appendices/appendices.html?highlight=qlr#qlr-the-qgis-layer-definition-file
+* Data pipeline notes
+** Reprojection of data to common projection (Polar stereo north?)
+- gdalwarp
+** Resampling (downsampling) basemaps
+- gdalwarp
+** Conversion to data format readable by QGIS
+- GeoTiff mentioned in Data Management Plan, but might make sense to explore other options as well.
+- gdal_translate
+** Subsetting to spatial extent of qgreenland (yet to be determined).
+** Styling?
+- Use internal colormaps / styles where available? GeoTiffs may have embedded colormaps.
+- Many style decisions will probably take place in the context of qgis itself.
+- Some data could probably have generic styles applied as part of data ingest
+  - Coastlines
+  - Place names
+  - DEMs
+  - Contour lines
 
