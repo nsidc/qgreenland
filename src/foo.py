@@ -4,8 +4,7 @@ import shutil
 import tempfile
 import zipfile
 
-from fiona import crs
-from osgeo import ogr
+from shapely.geometry import Polygon
 import geopandas
 import requests
 import yaml
@@ -48,6 +47,24 @@ def reproject_shapefile(shp_dir, layer_config):
 def unzip(zipped_file):
     with zipfile.ZipFile(zipped_file) as zfile:
         zfile.extractall(path=os.path.dirname(zipped_file))
+
+
+def subset(input_gdf):
+    # l, d, r, u
+    bounds = {'xmin': -3850000.000, 'ymin': -5350000.0,
+              'xmax': 3750000.0, 'ymax': 5850000.000}
+
+    points = [
+        (bounds['xmin'], bounds['ymax']),
+        (bounds['xmax'], bounds['ymax']),
+        (bounds['xmax'], bounds['ymin']),
+        (bounds['xmin'], bounds['ymin']),
+        (bounds['xmin'], bounds['ymax']),
+    ]
+
+    gs = geopandas.GeoSeries([Polygon(points)])
+
+    geopandas.overlay(input_gdf, gs, how='intersection')
 
 
 def get_layer_data(layer_config):
