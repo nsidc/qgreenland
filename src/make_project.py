@@ -3,8 +3,11 @@ Developed from examples: https://docs.qgis.org/testing/en/docs/pyqgis_developer_
 """
 import os
 
-from qgis.core import QgsApplication, QgsProject, QgsVectorLayer
+from qgis.core import (QgsApplication, QgsProject,
+                       QgsVectorLayer, QgsCoordinateReferenceSystem)
 
+
+PROJECT_CRS = 'EPSG:3411'
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 LAYER_BASE_DIR = os.path.abspath(os.path.join(THIS_DIR, '../qgis-data/qgreenland/'))
@@ -26,6 +29,8 @@ project = QgsProject.instance()
 
 # Create a new project
 project.write('TEST_PROJECT.qgs')
+# write the project coordinate ref system.
+project.setCrs(QgsCoordinateReferenceSystem(PROJECT_CRS))
 
 # TODO get path from layer config.
 coastline_path = os.path.join(LAYER_BASE_DIR, 'basemap/ne_coastlines/ne_coastlines.shp')
