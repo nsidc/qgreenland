@@ -7,6 +7,8 @@ from qgis.core import (QgsApplication, QgsProject,
                        QgsVectorLayer, QgsCoordinateReferenceSystem,
                        QgsReferencedRectangle, QgsRectangle)
 
+import qgis.core as qgc
+
 
 PROJECT_CRS = 'EPSG:3411'
 
@@ -66,7 +68,14 @@ map_layer = QgsVectorLayer(coastline_path,
                            'Coastlines',  # layer name as it shows up in TOC
                            'ogr')  # name of the data provider (memory, postgresql)
 
-project.addMapLayer(map_layer)
+# Create 'basemap' Layer Group.
+basemap_group = project.layerTreeRoot().addGroup('basemap')
+basemap_group.addLayer(map_layer)
+
+# TODO is this necessary? Without adding the map layer to the project (which
+# automatically adds it to the root layer unless `addToLegend` is `False`), the
+# layer added to the basemap does not render.
+project.addMapLayer(map_layer, addToLegend=False)
 
 project.write()
 
