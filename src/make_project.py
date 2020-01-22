@@ -4,7 +4,8 @@ Developed from examples: https://docs.qgis.org/testing/en/docs/pyqgis_developer_
 import os
 
 from qgis.core import (QgsApplication, QgsProject,
-                       QgsVectorLayer, QgsCoordinateReferenceSystem)
+                       QgsVectorLayer, QgsCoordinateReferenceSystem,
+                       QgsReferencedRectangle, QgsRectangle)
 
 
 PROJECT_CRS = 'EPSG:3411'
@@ -42,7 +43,18 @@ project.write(PROJECT_PATH)
 # An existing project can be opened w/ the `load` method
 
 # write the project coordinate ref system.
-project.setCrs(QgsCoordinateReferenceSystem(PROJECT_CRS))
+project_crs = QgsCoordinateReferenceSystem(PROJECT_CRS)
+project.setCrs(project_crs)
+
+# Set the default extent. Eventually we may want to pull the extent directly
+# from the configured 'map frame' layer.
+view = project.viewSettings()
+extent = QgsReferencedRectangle(QgsRectangle(-3850000.000,
+                                             -5350000.0,
+                                             3750000.0,
+                                             5850000.000),
+                                project_crs)
+view.setDefaultViewExtent(extent)
 
 # construct a relative path to the coastline layer.
 # TODO: do we need to worry about differences in path structure between linux
