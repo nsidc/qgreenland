@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  luigi:
+    image: nsidc/luigi:dev
+    build: .
+    container_name: luigi
+    volumes:
+      - ./conf:/etc/luigi:ro
+      - ./state:/luigi/state:rw
+      - ./data:/luigi/data:rw
+      - ../src:/luigi/tasks:ro
+    ports:
+      - 80:8082
