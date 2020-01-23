@@ -7,7 +7,11 @@ import zipfile
 
 import luigi
 
-from util import fetch_shapefile_zip, make_qgs, reproject_shapefile, subset_shapefile
+from constants import __version__
+from util import (fetch_shapefile_zip,
+                  make_qgs,
+                  reproject_shapefile,
+                  subset_shapefile)
 
 # TODO: Figure out a way to use layers.yml or get rid of it
 
@@ -151,7 +155,8 @@ class ZipQGreenland(luigi.Task):
         return CreateProjectFile()
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_ROOT_DIR}/QGreenland.zip')
+        fn = f'{DATA_ROOT_DIR}/QGreenland_v{__version__}.zip'
+        return luigi.LocalTarget(fn)
 
     def run(self):
         tmp_name = f'{DATA_ROOT_DIR}/final_archive'
