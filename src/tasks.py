@@ -8,6 +8,8 @@ import luigi
 
 from util import fetch_shapefile_zip, make_qgs, reproject_shapefile, subset_shapefile
 
+# TODO: Figure out a way to use layers.yml or get rid of it
+
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 LAYER_BASE_DIR = os.path.abspath(os.path.join(THIS_DIR, '../qgis-data/qgreenland/'))
 COASTLINE_URL = 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
