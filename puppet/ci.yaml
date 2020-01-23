@@ -1,0 +1,38 @@
+# Puppet CI Resources
+
+classes:
+  - nsidc_jenkins
+  - nsidc_nfs
+
+# NFS Mounts
+nsidc_nfs::sharemounts:
+  /share/sw/packages:
+    project: sw
+    share: packages
+
+
+# Jenkins Jobs.
+nsidc_jenkins::jobs:
+  "%{hiera('project')}_1_CI_1_Checkout":
+    git:
+      repo: "%{hiera('gitrepo')}"
+      poll_scm: true
+    parameters:
+      - type: string
+        name: ref
+        description: git ref (branch, tag, commit SHA) to checkout
+        default: master
+    workspace: /var/lib/jenkins/workspaces/%{hiera('project')}/integration
+    description: clone the project into the integration workspace
+    command: git checkout $ref
+    trigger_job: "%{hiera('project')}_1_CI_2_Provision"
+    trigger_threshold: SUCCESS
+
+  "%{hiera('project')}_1_CI_2_Provision":
+    workspace: /var/lib/jenkins/workspaces/%{hiera('project')}/integration
+    description: provision the integration machine (or create and provision)
+    command: |
+      rm -rf .vagrant-integration;
+      (vagrant nsidc hijack --env=integration || true)
+      vagrant nsidc up --env=integration --provision
+    trigger_threshold: SUCCESS
