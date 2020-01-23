@@ -1,3 +1,5 @@
+* Merge functionality of qgis and luigi in to one container and conda env:
+  * Run qgis with `docker exec luigi qgis ...`? How to forward X?
 * Puppetry
   * Mount: `/share/appdata/qgreenland` (See: https://nsidc.org/jira/browse/SAS-13855)
 
