@@ -1,12 +1,17 @@
 import os
 import pathlib
+import shutil
 import stat
 import tempfile
 import zipfile
 
 import luigi
 
-from util import fetch_shapefile_zip, make_qgs, reproject_shapefile, subset_shapefile
+from constants import __version__
+from util import (fetch_shapefile_zip,
+                  make_qgs,
+                  reproject_shapefile,
+                  subset_shapefile)
 
 # TODO: Figure out a way to use layers.yml or get rid of it
 
@@ -15,6 +20,7 @@ LAYER_BASE_DIR = os.path.abspath(os.path.join(THIS_DIR, '../qgis-data/qgreenland
 COASTLINE_URL = 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
 
 DATA_ROOT_DIR = '/luigi/data'
+TMP_DIR = DATA_ROOT_DIR
 DATA_WIP_DIR = f'{DATA_ROOT_DIR}/wip'
 DATA_FINAL_DIR = f'{DATA_ROOT_DIR}/qgreenland'
 
@@ -113,7 +119,7 @@ class Coastlines(luigi.Task):
             processed_shapefile_path = infile.read()
 
         processed_shapefile_dir = os.path.dirname(processed_shapefile_path)
-        temp_shapefile_dir = tempfile.mkdtemp(dir='/luigi/data')
+        temp_shapefile_dir = tempfile.mkdtemp(dir=TMP_DIR)
 
         # Move and rename each file to temporary location
         for f in os.listdir(processed_shapefile_dir):
@@ -122,9 +128,11 @@ class Coastlines(luigi.Task):
             new_fp = os.path.join(temp_shapefile_dir, f'coastlines.{ext}')
             os.rename(old_fp, new_fp)
 
-        # Move renamed files to final location for atomicity
-        # rename_dont_move(temp_shapefile_dir, self.output().path)
-        os.chmod(temp_shapefile_dir, stat.S_IRGRP | stat.S_IXGRP | stat.S_IROTH | stat.S_IXOTH)
+        # Move temporary files to final location for atomicity
+        os.chmod(temp_shapefile_dir,
+                 stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR |
+                 stat.S_IRGRP | stat.S_IXGRP |
+                 stat.S_IROTH | stat.S_IXOTH)
         os.makedirs(pathlib.Path(self.output().path).parent)
         os.rename(temp_shapefile_dir, self.output().path)
 
@@ -144,5 +152,13 @@ class CreateProjectFile(luigi.Task):
 class ZipQGreenland(luigi.Task):
     """ Zip entire QGreenland package for distribution. """
     def requires(self):
-        # return CreateProjectFile()
-        pass
+        return CreateProjectFile()
+
+    def output(self):
+        fn = f'{DATA_ROOT_DIR}/QGreenland_v{__version__}.zip'
+        return luigi.LocalTarget(fn)
+
+    def run(self):
+        tmp_name = f'{DATA_ROOT_DIR}/final_archive'
+        shutil.make_archive(tmp_name, 'zip', DATA_ROOT_DIR, 'qgreenland')
+        os.rename(f'{tmp_name}.zip', self.output().path)
