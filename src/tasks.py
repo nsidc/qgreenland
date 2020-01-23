@@ -124,9 +124,11 @@ class Coastlines(luigi.Task):
             new_fp = os.path.join(temp_shapefile_dir, f'coastlines.{ext}')
             os.rename(old_fp, new_fp)
 
-        # Move renamed files to final location for atomicity
-        # rename_dont_move(temp_shapefile_dir, self.output().path)
-        os.chmod(temp_shapefile_dir, stat.S_IRGRP | stat.S_IXGRP | stat.S_IROTH | stat.S_IXOTH)
+        # Move temporary files to final location for atomicity
+        os.chmod(temp_shapefile_dir,
+                 stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR |
+                 stat.S_IRGRP | stat.S_IXGRP |
+                 stat.S_IROTH | stat.S_IXOTH)
         os.makedirs(pathlib.Path(self.output().path).parent)
         os.rename(temp_shapefile_dir, self.output().path)
 
