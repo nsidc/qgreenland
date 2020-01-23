@@ -10,3 +10,4 @@ dependencies:
   - geopandas=0.6.2
   - earthpy=0.8.0
   - luigi=2.8.11
+  - rasterio=1.1.2
