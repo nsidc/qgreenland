@@ -51,15 +51,17 @@ def subset_shapefile(shapefile):
 def make_qgs(path):
     """Creates a QGIS project file with the correct stuff in it.
 
-    path: the desired path to .qgs project file, e.g. /luigi/data/qgreenland/qgreenland.qgs
+    path: the desired path to .qgs project file, e.g.:
+          /luigi/data/qgreenland/qgreenland.qgs
 
     Developed from examples:
+
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
 
     # The qgreenland .qgs project file will live at the root of the qgreenland
     # package distributed to end users.
-    ROOT_PATH = os.path.basedir(path)
+    ROOT_PATH = os.path.dirname(path)
     # TODO: Reconsider normpath
     PROJECT_PATH = os.path.normpath(os.path.join(path))
 
