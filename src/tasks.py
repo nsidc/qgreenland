@@ -1,5 +1,6 @@
 import os
 import pathlib
+import shutil
 import stat
 import tempfile
 import zipfile
@@ -15,6 +16,7 @@ LAYER_BASE_DIR = os.path.abspath(os.path.join(THIS_DIR, '../qgis-data/qgreenland
 COASTLINE_URL = 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
 
 DATA_ROOT_DIR = '/luigi/data'
+TMP_DIR = DATA_ROOT_DIR
 DATA_WIP_DIR = f'{DATA_ROOT_DIR}/wip'
 DATA_FINAL_DIR = f'{DATA_ROOT_DIR}/qgreenland'
 
@@ -113,7 +115,7 @@ class Coastlines(luigi.Task):
             processed_shapefile_path = infile.read()
 
         processed_shapefile_dir = os.path.dirname(processed_shapefile_path)
-        temp_shapefile_dir = tempfile.mkdtemp(dir='/luigi/data')
+        temp_shapefile_dir = tempfile.mkdtemp(dir=TMP_DIR)
 
         # Move and rename each file to temporary location
         for f in os.listdir(processed_shapefile_dir):
@@ -144,5 +146,12 @@ class CreateProjectFile(luigi.Task):
 class ZipQGreenland(luigi.Task):
     """ Zip entire QGreenland package for distribution. """
     def requires(self):
-        # return CreateProjectFile()
-        pass
+        return CreateProjectFile()
+
+    def output(self):
+        return luigi.LocalTarget(f'{DATA_ROOT_DIR}/QGreenland.zip')
+
+    def run(self):
+        tmp_name = f'{DATA_ROOT_DIR}/final_archive'
+        shutil.make_archive(tmp_name, 'zip', DATA_ROOT_DIR, 'qgreenland')
+        os.rename(f'{tmp_name}.zip', self.output().path)
