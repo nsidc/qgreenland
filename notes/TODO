@@ -9,6 +9,13 @@
 * Puppetry
   * Mount: `/share/appdata/qgreenland` (See: https://nsidc.org/jira/browse/SAS-13855)
 
+* Code quality checks:
+  * Lint:
+    * flake8-bugbear
+    * flake8-debugger
+    * flake8-string-format
+    * flake8-comprehensions
+
 * Automated code quality checks:
   * Lint
   * Test

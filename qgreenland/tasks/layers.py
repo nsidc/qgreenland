@@ -16,6 +16,7 @@ from qgreenland.util import load_layer_config
 
 class Coastlines(luigi.Task):
     """Move to final location."""
+
     # TODO: Consider creating a mixin or something for reading yaml config to
     # DRY out the code for layer classes
     # e.g. use a class attribute to automatically load config:

@@ -66,7 +66,7 @@ def subset_shapefile(shapefile):
 
 
 def make_qgs(path):
-    """Creates a QGIS project file with the correct stuff in it.
+    """Create a QGIS project file with the correct stuff in it.
 
     path: the desired path to .qgs project file, e.g.:
           /luigi/data/qgreenland/qgreenland.qgs
@@ -75,7 +75,6 @@ def make_qgs(path):
 
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
-
     # The qgreenland .qgs project file will live at the root of the qgreenland
     # package distributed to end users.
     ROOT_PATH = os.path.dirname(path)
@@ -111,9 +110,9 @@ def make_qgs(path):
 
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     map_layer = qgc.QgsVectorLayer(
-            coastline_path,
-            'Coastlines',  # layer name as it shows up in TOC
-            'ogr'  # name of the data provider (memory, postgresql)
+        coastline_path,
+        'Coastlines',  # layer name as it shows up in TOC
+        'ogr'  # name of the data provider (memory, postgresql)
     )
 
     # Create 'basemap' Layer Group.

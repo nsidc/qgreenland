@@ -10,7 +10,8 @@ from qgreenland.util import make_qgs
 
 
 class CreateProjectFile(luigi.Task):
-    """ Create .qgz/.qgs project file. """
+    """Create .qgz/.qgs project file."""
+
     def requires(self):
         return [Coastlines(), ]
 
@@ -22,7 +23,8 @@ class CreateProjectFile(luigi.Task):
 
 
 class ZipQGreenland(luigi.Task):
-    """ Zip entire QGreenland package for distribution. """
+    """Zip entire QGreenland package for distribution."""
+
     def requires(self):
         return CreateProjectFile()
 

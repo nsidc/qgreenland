@@ -22,7 +22,10 @@ class UnzipShapefile(luigi.Task):
         return luigi.LocalTarget(f'{DATA_WIP_DIR}/unzipped_shp_filepath.txt')
 
     def run(self):
-        """ Cribbed from https://gist.github.com/miku/2270c2f0d2d11ad1d838 """
+        """Cribbed from.
+
+        https://gist.github.com/miku/2270c2f0d2d11ad1d838
+        """
         zf = zipfile.ZipFile(self.input().path)
         unzip_dir = f'{DATA_WIP_DIR}/unzip'
 
