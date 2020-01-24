@@ -2,5 +2,5 @@ from invoke import task
 
 
 @task
-def flake8(ctx):
+def lint(ctx):
     ctx.run('flake8 .')
