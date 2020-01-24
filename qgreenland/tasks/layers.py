@@ -22,7 +22,6 @@ class Coastlines(luigi.Task):
     #   layername = 'coastlines'
     cfg = load_layer_config('coastlines')
 
-
     def requires(self):
         return SubsetShapefile(self.cfg)
 

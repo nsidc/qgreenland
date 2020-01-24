@@ -12,8 +12,10 @@ class FetchData(luigi.Task):
     def output(self):
         # luigi.format.Nop is required to write binary file.
         # https://github.com/spotify/luigi/issues/1647
+
+        # TODO: Stop assuming the extension. Could be zip, hdf, etc.
         fn = self.layer_cfg['short_name']
-        return luigi.LocalTarget(f'{DATA_WIP_DIR}/ne_coastlines.zip',
+        return luigi.LocalTarget(f'{DATA_WIP_DIR}/{fn}.zip',
                                  format=luigi.format.Nop)
 
     def run(self):

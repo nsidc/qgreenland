@@ -12,7 +12,7 @@ from qgreenland.tasks.layers import Coastlines
 class CreateProjectFile(luigi.Task):
     """ Create .qgz/.qgs project file. """
     def requires(self):
-        return [Coastlines(),]
+        return [Coastlines(), ]
 
     def output(self):
         return luigi.LocalTarget(f'{DATA_FINAL_DIR}/qgreenland.qgs')

@@ -1,4 +1,3 @@
-import glob
 import os
 
 from shapely.geometry import Polygon
@@ -59,10 +58,12 @@ def subset_shapefile(shapefile):
     # UserWarning: GeoSeries.notna() previously returned False for both missing
     # (None) and empty geometries. Now, it only returns False for missing
     # values. Since the calling GeoSeries contains empty geometries, the result
-    # has changed compared to previous versions of GeoPandas.
-    # Given a GeoSeries 's', you can use '~s.is_empty & s.notna()' to get back the old behaviour.
+    # has changed compared to previous versions of GeoPandas.  Given a
+    # GeoSeries 's', you can use '~s.is_empty & s.notna()' to get back the old
+    # behaviour.
 
     return gdf[~gdf.is_empty]
+
 
 def make_qgs(path):
     """Creates a QGIS project file with the correct stuff in it.
@@ -109,9 +110,11 @@ def make_qgs(path):
     coastline_path = os.path.relpath(LAYER_PATH, start=os.path.dirname(PROJECT_PATH))
 
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
-    map_layer = qgc.QgsVectorLayer(coastline_path,
-                                   'Coastlines',  # layer name as it shows up in TOC
-                                   'ogr')  # name of the data provider (memory, postgresql)
+    map_layer = qgc.QgsVectorLayer(
+            coastline_path,
+            'Coastlines',  # layer name as it shows up in TOC
+            'ogr'  # name of the data provider (memory, postgresql)
+    )
 
     # Create 'basemap' Layer Group.
     basemap_group = project.layerTreeRoot().addGroup('basemap')
