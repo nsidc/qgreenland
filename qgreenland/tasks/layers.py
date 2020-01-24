@@ -10,6 +10,7 @@ import tempfile
 import luigi
 
 from qgreenland.constants import DATA_FINAL_DIR, TMP_DIR
+from qgreenland.tasks.raster import SubsetRaster
 from qgreenland.tasks.shapefile import SubsetShapefile
 from qgreenland.util import load_layer_config
 
@@ -66,7 +67,22 @@ class ArcticDEM(luigi.Task):
     def output(self):
         parent_dir = self.cfg['layer_group']
         layer_dir = self.cfg['short_name']
+
+        # TODO should the target be a directory?
         return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{layer_dir}/')
 
     def run(self):
-        pass
+        # TODO DRY this out
+        temp_dem_dir = tempfile.mkdtemp(dir=TMP_DIR)
+        os.chmod(temp_dem_dir,
+                 stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR |
+                 stat.S_IRGRP | stat.S_IXGRP |
+                 stat.S_IROTH | stat.S_IXOTH)
+
+        _, ext = os.path.splitext(os.path.basename(self.input().path))
+        new_fp = os.path.join(temp_dem_dir, f"{self.cfg['short_name']}.{ext}")
+
+        os.rename(self.input().path, new_fp)
+
+        os.makedirs(pathlib.Path(self.output().path).parent, exist_ok=True)
+        os.rename(temp_dem_dir, self.output().path)
