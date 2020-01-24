@@ -1,3 +1,6 @@
 [flake8]
 max-line-length = 90
-# import_order_style = pycharm
+
+# flake8-import-order
+application_import_names = qgreenland
+import_order_style = pycharm

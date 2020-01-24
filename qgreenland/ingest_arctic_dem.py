@@ -1,13 +1,13 @@
 import os
 
 import gdal
-from earthpy import spatial as eps
 import geopandas
-from shapely.geometry import Polygon
 import rasterio as rio
+from earthpy import spatial as eps
+from shapely.geometry import Polygon
 
-import util
-from tasks import DATA_WIP_DIR
+import qgreenland.util as util
+from qgreenland.tasks import DATA_WIP_DIR
 
 data_path = os.path.join(DATA_WIP_DIR, 'arctic_dem.tif')
 

@@ -13,3 +13,5 @@ dependencies:
   - rasterio=1.1.2
   - invoke=1.4.0
   - flake8=3.7.9
+  - flake8-import-order=0.18.1
+  - flake8-quotes=2.1.1

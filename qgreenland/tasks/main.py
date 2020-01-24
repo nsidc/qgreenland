@@ -4,9 +4,9 @@ import shutil
 import luigi
 
 from qgreenland import __version__
-from qgreenland.constants import DATA_ROOT_DIR, DATA_FINAL_DIR
-from qgreenland.util import make_qgs
+from qgreenland.constants import DATA_FINAL_DIR, DATA_ROOT_DIR
 from qgreenland.tasks.layers import Coastlines
+from qgreenland.util import make_qgs
 
 
 class CreateProjectFile(luigi.Task):

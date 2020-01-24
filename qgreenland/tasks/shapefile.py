@@ -4,8 +4,8 @@ import zipfile
 import luigi
 
 from qgreenland.constants import DATA_WIP_DIR
-from qgreenland.util import reproject_shapefile, subset_shapefile
 from qgreenland.tasks.common import FetchData
+from qgreenland.util import reproject_shapefile, subset_shapefile
 
 
 # TODO: Is there any task history? e.g. can we look at the final output target

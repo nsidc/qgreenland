@@ -10,8 +10,8 @@ import tempfile
 import luigi
 
 from qgreenland.constants import DATA_FINAL_DIR, TMP_DIR
-from qgreenland.util import load_layer_config
 from qgreenland.tasks.shapefile import SubsetShapefile
+from qgreenland.util import load_layer_config
 
 
 class Coastlines(luigi.Task):

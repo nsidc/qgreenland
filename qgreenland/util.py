@@ -1,11 +1,11 @@
 import os
 
-from shapely.geometry import Polygon
 import earthpy.clip as ec
 import geopandas
-import requests
 import qgis.core as qgc
+import requests
 import yaml
+from shapely.geometry import Polygon
 
 # TODO: Move stuff to constants
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
