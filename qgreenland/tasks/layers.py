@@ -14,20 +14,23 @@ from qgreenland.tasks.shapefile import SubsetShapefile
 from qgreenland.util import load_layer_config
 
 
+# TODO: Consider creating a mixin or something for reading yaml config to
+# DRY out the code for layer classes
+# e.g. use a class attribute to automatically load config:
+#   layername = 'coastlines'
 class Coastlines(luigi.Task):
     """Move to final location."""
 
-    # TODO: Consider creating a mixin or something for reading yaml config to
-    # DRY out the code for layer classes
-    # e.g. use a class attribute to automatically load config:
-    #   layername = 'coastlines'
     cfg = load_layer_config('coastlines')
 
     def requires(self):
         return SubsetShapefile(self.cfg)
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/basemaps/coastlines/')
+        # TODO: DRY
+        parent_dir = self.cfg['layer_group']
+        layer_dir = self.cfg['short_name']
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{layer_dir}/')
 
     def run(self):
         # TODO: Look at fs.rename_dont_move and do that
@@ -51,3 +54,19 @@ class Coastlines(luigi.Task):
                  stat.S_IROTH | stat.S_IXOTH)
         os.makedirs(pathlib.Path(self.output().path).parent)
         os.rename(temp_shapefile_dir, self.output().path)
+
+
+class ArcticDEM(luigi.Task):
+   """Finalize (TBD)."""
+   cfg = load_layer_config('arctic_dem')
+
+   def requires(self):
+       return SubsetRaster(self.cfg)
+
+   def output(self):
+       parent_dir = self.cfg['layer_group']
+       layer_dir = self.cfg['short_name']
+       return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{layer_dir}/')
+
+   def run(self):
+       pass
