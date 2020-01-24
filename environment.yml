@@ -11,3 +11,5 @@ dependencies:
   - earthpy=0.8.0
   - luigi=2.8.11
   - rasterio=1.1.2
+  - invoke=1.4.0
+  - flake8=3.7.9
