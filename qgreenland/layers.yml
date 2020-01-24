@@ -1,0 +1,37 @@
+coastlines:
+  source:
+    url: 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
+  name: 'Natural Earth Coastlines'
+  short_name: 'ne_coastlines'
+  description: 'Natural Earth Coastlines (Public Domain)'
+  abstract: null
+  citation:
+    text: 'Made with Natural Earth'
+    url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+  layer_group: 'basemap'
+  # TODO implement the pipeline.
+  # Each step could return its output path, in which case the next step would open it, or
+  # return an object (geodataframe) that gets passed in to the next step as argument.
+  steps:
+    - download:
+    - unzip:
+    - reproject:
+    - subset:
+    - zip:
+
+arctic_dem:
+  source:
+    url: 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/500m/arcticdem_mosaic_500m_v3.0.tif'
+  name: 'Arctic DEM (500m mosaic)'
+  short_name: 'arctic_dem'
+  description: 'ArcticDEM is an NGA-NSF public-private initiative to automatically produce a high-resolution, high quality, digital surface model (DSM) of the Arctic using optical stereo imagery, high-performance computing, and open source photogrammetry software.'
+  abstract: null
+  citation:
+    text: 'Data provided by the Polar Geospatial Center. Porter, Claire; Morin, Paul; Howat, Ian; Noh, Myoung-Jon; Bates, Brian; Peterman, Kenneth; Keesey, Scott; Schlenk, Matthew; Gardiner, Judith; Tomko, Karen; Willis, Michael; Kelleher, Cole; Cloutier, Michael; Husby, Eric; Foga, Steven; Nakamura, Hitomi; Platson, Melisa; Wethington, Michael, Jr.; Williamson, Cathleen; Bauer, Gregory; Enos, Jeremy; Arnold, Galen; Kramer, William; Becker, Peter; Doshi, Abhijit; D’Souza, Cristelle; Cummens, Pat; Laurier, Fabien; Bojesen, Mikkel, 2018, “ArcticDEM”, https://doi.org/10.7910/DVN/OHHUKH, Harvard Dataverse, V1, 2020-01-23'
+    url: 'https://www.pgc.umn.edu/data/arcticdem/'
+  layer_group: 'basemap'
+  steps:
+    - download:
+    - reproject:
+    - subset:
+    - zip:
