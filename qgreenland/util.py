@@ -6,7 +6,9 @@ import earthpy.clip as ec
 import geopandas
 import requests
 import qgis.core as qgc
+import yaml
 
+# TODO: Move stuff to constants
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 REQUEST_TIMEOUT = 3
 # NOTE: The order of this dictionary is important for passing to qgc.QgsRectangle
@@ -21,7 +23,21 @@ BBOX_POLYGON = [
 PROJECT_CRS = 'EPSG:3411'
 
 
-def fetch_shapefile_zip(url):
+def load_layer_config(layername):
+    LAYERS_CONFIG = os.path.join(THIS_DIR, 'layers.yml')
+    with open(LAYERS_CONFIG, 'r') as f:
+        config = yaml.safe_load(f)
+
+    # TODO: Add error handling
+    try:
+        return config[layername]
+    except KeyError:
+        raise NotImplementedError(
+            f"Configuration for layer '{layername}' not found."
+        )
+
+
+def fetch_file(url):
     return requests.get(url, timeout=REQUEST_TIMEOUT)
 
 

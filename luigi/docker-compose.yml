@@ -10,6 +10,6 @@ services:
       - ./conf:/etc/luigi:ro
       - ./state:/luigi/state:rw
       - ./data:/luigi/data:rw
-      - ../src:/luigi/tasks:ro
+      - ../qgreenland:/luigi/tasks/qgreenland:ro
     ports:
       - 80:8082

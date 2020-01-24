@@ -1,1 +1,1 @@
-docker-compose exec luigi luigi --module tasks ZipQGreenland
+docker-compose exec luigi luigi --module qgreenland.tasks.main ZipQGreenland
