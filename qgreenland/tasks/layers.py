@@ -57,16 +57,16 @@ class Coastlines(luigi.Task):
 
 
 class ArcticDEM(luigi.Task):
-   """Finalize (TBD)."""
-   cfg = load_layer_config('arctic_dem')
+    """Finalize (TBD)."""
+    cfg = load_layer_config('arctic_dem')
 
-   def requires(self):
-       return SubsetRaster(self.cfg)
+    def requires(self):
+        return SubsetRaster(self.cfg)
 
-   def output(self):
-       parent_dir = self.cfg['layer_group']
-       layer_dir = self.cfg['short_name']
-       return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{layer_dir}/')
+    def output(self):
+        parent_dir = self.cfg['layer_group']
+        layer_dir = self.cfg['short_name']
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{layer_dir}/')
 
-   def run(self):
-       pass
+    def run(self):
+        pass
