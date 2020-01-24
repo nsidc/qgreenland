@@ -1,5 +1,11 @@
+* Make FetchData task generic (url as parameter):
+  * Consider having the top-level task for each project read YAML and pass dict
+    up to every parent task, so every task would take a single dict param and
+    extract what that task needs.
+
 * Merge functionality of qgis and luigi in to one container and conda env:
   * Run qgis with `docker exec luigi qgis ...`? How to forward X?
+
 * Puppetry
   * Mount: `/share/appdata/qgreenland` (See: https://nsidc.org/jira/browse/SAS-13855)
 
