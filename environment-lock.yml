@@ -34,6 +34,7 @@ dependencies:
   - expat=2.2.5=he1b5a44_1004
   - fiona=1.8.13=py38h900e953_0
   - flake8=3.7.9=py38_0
+  - flake8-docstrings=1.5.0=py_0
   - flake8-import-order=0.18.1=py_0
   - flake8-quotes=2.1.1=py_0
   - fontconfig=2.13.1=h86ecdb6_1001
@@ -135,6 +136,7 @@ dependencies:
   - pthread-stubs=0.4=h14c3975_1001
   - pycodestyle=2.5.0=py_0
   - pycparser=2.19=py38_1
+  - pydocstyle=5.0.2=py_0
   - pyflakes=2.1.1=py_0
   - pygments=2.5.2=py_0
   - pyopenssl=19.1.0=py38_0
@@ -169,6 +171,7 @@ dependencies:
   - shapely=1.6.4=py38h5d51c17_1007
   - sip=4.19.20=py38he1b5a44_0
   - six=1.14.0=py38_0
+  - snowballstemmer=2.0.0=py_0
   - snuggs=1.4.7=py_0
   - sqlite=3.30.1=hcee41ef_0
   - tbb=2018.0.5=h2d50403_0
