@@ -58,7 +58,6 @@ class Coastlines(luigi.Task):
 
 
 class ArcticDEM(luigi.Task):
-    """Finalize (TBD)."""
     cfg = load_layer_config('arctic_dem')
 
     def requires(self):

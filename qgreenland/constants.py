@@ -2,6 +2,7 @@ import os
 
 DATA_ROOT_DIR = '/luigi/data'
 
+DATA_DOWNLOAD_DIR = f'{DATA_ROOT_DIR}/download'
 DATA_WIP_DIR = f'{DATA_ROOT_DIR}/wip'
 DATA_FINAL_DIR = f'{DATA_ROOT_DIR}/qgreenland'
 TMP_DIR = DATA_ROOT_DIR

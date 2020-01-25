@@ -14,13 +14,17 @@ from qgreenland.util import PROJECT_CRS, BBOX_POLYGON
 class ReprojectRaster(luigi.Task):
     layer_cfg = luigi.Parameter()
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        short_name = self.layer_cfg['short_name']
+        # TODO may not always be .tif
+        self.outfile = f'{DATA_WIP_DIR}/{short_name}/reprojected.tif'
+
     def requires(self):
         return FetchData(self.layer_cfg)
 
     def output(self):
-        # TODO may not always be .tif
-        return luigi.LocalTarget(f"{DATA_WIP_DIR}/"
-                                 "{self.layer_cfg['short_name']}_reprojected.tif")
+        return luigi.LocalTarget(self.outfile)
 
     def run(self):
         gdal.Warp(self.output().path, self.input().path,
@@ -30,14 +34,18 @@ class ReprojectRaster(luigi.Task):
 
 class SubsetRaster(luigi.Task):
     layer_cfg = luigi.Parameter()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        short_name = self.layer_cfg['short_name']
+        # TODO may not always be .tif
+        self.outfile = f'{DATA_WIP_DIR}/{short_name}/subset.tif'
+
 
     def requires(self):
         return ReprojectRaster(self.layer_cfg)
 
     def output(self):
-        # TODO may not always be .tif
-        return luigi.LocalTarget(f"{DATA_WIP_DIR}/"
-                                 "{self.layer_cfg['short_name']}_subset.tif")
+        return luigi.LocalTarget(self.outfile)
 
     def run(self):
         with rio.open(self.input().path, 'r') as ds:

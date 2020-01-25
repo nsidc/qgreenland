@@ -15,11 +15,19 @@ from qgreenland.util import reproject_shapefile, subset_shapefile
 class UnzipShapefile(luigi.Task):
     layer_cfg = luigi.Parameter()
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        short_name = self.layer_cfg['short_name']
+        # TODO: RENAME files to final location instead of writing paths to file
+        # TODO: Definitely write a context manager for the above!!!
+        self.outfile = f'{DATA_WIP_DIR}/{short_name}/unzipped_filepath.txt'
+        self.tmpdir = f'{DATA_WIP_DIR}/{short_name}/unzip'
+
     def requires(self):
         return FetchData(self.layer_cfg)
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_WIP_DIR}/unzipped_shp_filepath.txt')
+        return luigi.LocalTarget(self.outfile)
 
     def run(self):
         """Cribbed from.
@@ -27,59 +35,68 @@ class UnzipShapefile(luigi.Task):
         https://gist.github.com/miku/2270c2f0d2d11ad1d838
         """
         zf = zipfile.ZipFile(self.input().path)
-        unzip_dir = f'{DATA_WIP_DIR}/unzip'
 
         for fn in zf.namelist():
             if fn.endswith('shp'):
                 shp = fn
-            zf.extract(fn, unzip_dir)
+            zf.extract(fn, self.tmpdir)
         zf.close()
 
         with self.output().open('w') as outfile:
-            outfile.write(os.path.abspath(os.path.join(unzip_dir, shp)))
+            outfile.write(os.path.abspath(os.path.join(self.tmpdir, shp)))
 
 
 class ReprojectShapefile(luigi.Task):
     layer_cfg = luigi.Parameter()
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        short_name = self.layer_cfg['short_name']
+        self.outfile = f'{DATA_WIP_DIR}/{short_name}/reprojected_filepath.txt'
+        self.tmpfile = os.path.join(f'{DATA_WIP_DIR}/{short_name}/reproject',
+                                    'shapefile.shp')
+
     def requires(self):
         return UnzipShapefile(self.layer_cfg)
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_WIP_DIR}/reprojected_shp_filepath.txt')
+        return luigi.LocalTarget(self.outfile)
 
     def run(self):
-        reprojected_fp = os.path.join(f'{DATA_WIP_DIR}/reproject', 'shapefile.shp')
-
         with self.input().open('r') as infile:
             shapefile_path = infile.read()
 
         gdf = reproject_shapefile(shapefile_path)
-        os.makedirs(os.path.dirname(reprojected_fp))
-        gdf.to_file(reprojected_fp, driver='ESRI Shapefile')
+        os.makedirs(os.path.dirname(self.tmpfile))
+        gdf.to_file(self.tmpfile, driver='ESRI Shapefile')
 
         with self.output().open('w') as outfile:
-            outfile.write(reprojected_fp)
+            outfile.write(self.tmpfile)
 
 
 class SubsetShapefile(luigi.Task):
     layer_cfg = luigi.Parameter()
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        short_name = self.layer_cfg['short_name']
+        self.outfile = f'{DATA_WIP_DIR}/{short_name}/subset_filepath.txt'
+        self.tmpfile = os.path.join(f'{DATA_WIP_DIR}/{short_name}/subset',
+                                    'subset.shp')
+
     def requires(self):
         return ReprojectShapefile(self.layer_cfg)
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_WIP_DIR}/subset_shp_filepath.txt')
+        return luigi.LocalTarget(self.outfile)
 
     def run(self):
-        subset_fp = os.path.join(f'{DATA_WIP_DIR}/subset', 'subset.shp')
-
         with self.input().open('r') as infile:
             reprojected_path = infile.read()
 
         gdf = subset_shapefile(reprojected_path)
-        os.makedirs(os.path.dirname(subset_fp))
-        gdf.to_file(subset_fp, driver='ESRI Shapefile')
+        os.makedirs(os.path.dirname(self.tmpfile))
+        gdf.to_file(self.tmpfile, driver='ESRI Shapefile')
 
         with self.output().open('w') as outfile:
-            outfile.write(subset_fp)
+            outfile.write(self.tmpfile)
