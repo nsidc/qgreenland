@@ -8,9 +8,8 @@ import requests
 import yaml
 from shapely.geometry import Polygon
 
-from qgreenland.constants import (DATA_DOWNLOAD_DIR,
+from qgreenland.constants import (DATA_DIR,
                                   DATA_FINAL_DIR,
-                                  DATA_WIP_DIR,
                                   TaskType)
 
 # TODO: Split this file into many modules:
@@ -44,20 +43,16 @@ class LayerConfigMixin(luigi.Task):
 
     @property
     def outdir(self):
-        try:
-            if self.task_type is TaskType.WIP:
-                outdir = f'{DATA_WIP_DIR}/{self.short_name}'
-            elif self.task_type is TaskType.FETCH:
-                outdir = f'{DATA_DOWNLOAD_DIR}/{self.short_name}'
-            elif self.task_type is TaskType.FINAL:
-                outdir = (f"{DATA_FINAL_DIR}/{self.layer_cfg['layer_group']}/"
-                          f'{self.short_name}')
-            else:
-                raise RuntimeError()
-        except Exception as e:
+        if self.task_type not in TaskType:
             msg = (f"This class defines self.task_type as '{self.task_type}'. "
                    f'Must be one of: {list(TaskType)}.')
-            raise e(msg)
+            raise RuntimeError(msg)
+
+        if self.task_type is TaskType.FINAL:
+            outdir = (f"{DATA_FINAL_DIR}/{self.layer_cfg['layer_group']}/"
+                      f'{self.short_name}')
+        else:
+            outdir = f'{DATA_DIR}/{self.task_type.value}/{self.short_name}'
 
         os.makedirs(outdir, exist_ok=True)
         return outdir
