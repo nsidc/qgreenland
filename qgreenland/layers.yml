@@ -21,8 +21,8 @@ coastlines:
 
 arctic_dem:
   source:
-    url: 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/500m/arcticdem_mosaic_500m_v3.0.tif'
-  name: 'Arctic DEM (500m mosaic)'
+    url: 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif'
+  name: 'Arctic DEM (1km mosaic)'
   short_name: 'arctic_dem'
   description: 'ArcticDEM is an NGA-NSF public-private initiative to automatically produce a high-resolution, high quality, digital surface model (DSM) of the Arctic using optical stereo imagery, high-performance computing, and open source photogrammetry software.'
   abstract: null
