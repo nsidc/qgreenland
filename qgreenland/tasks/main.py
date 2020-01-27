@@ -4,7 +4,7 @@ import shutil
 import luigi
 
 from qgreenland import __version__
-from qgreenland.constants import DATA_FINAL_DIR, DATA_ROOT_DIR
+from qgreenland.constants import DATA_DIR, DATA_FINAL_DIR
 from qgreenland.tasks.layers import ArcticDEM, Coastlines
 from qgreenland.util import make_qgs
 
@@ -29,10 +29,10 @@ class ZipQGreenland(luigi.Task):
         return CreateProjectFile()
 
     def output(self):
-        fn = f'{DATA_ROOT_DIR}/QGreenland_v{__version__}.zip'
+        fn = f'{DATA_DIR}/QGreenland_v{__version__}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):
-        tmp_name = f'{DATA_ROOT_DIR}/final_archive'
-        shutil.make_archive(tmp_name, 'zip', DATA_ROOT_DIR, 'qgreenland')
+        tmp_name = f'{DATA_DIR}/final_archive'
+        shutil.make_archive(tmp_name, 'zip', DATA_DIR, 'qgreenland')
         os.rename(f'{tmp_name}.zip', self.output().path)
