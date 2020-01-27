@@ -58,10 +58,13 @@ class LayerConfigMixin(luigi.Task):
         return outdir
 
 
-def load_layer_config(layername):
+def load_layer_config(layername=None):
     LAYERS_CONFIG = os.path.join(THIS_DIR, 'layers.yml')
     with open(LAYERS_CONFIG, 'r') as f:
         config = yaml.safe_load(f)
+
+    if not layername:
+        return config
 
     # TODO: Add error handling
     try:
@@ -101,7 +104,7 @@ def subset_shapefile(shapefile):
     return gdf[~gdf.is_empty]
 
 
-def make_qgs(path):
+def make_qgs(layers_cfg, path):
     """Create a QGIS project file with the correct stuff in it.
 
     path: the desired path to .qgs project file, e.g.:
@@ -116,10 +119,6 @@ def make_qgs(path):
     ROOT_PATH = os.path.dirname(path)
     # TODO: Reconsider normpath
     PROJECT_PATH = os.path.normpath(os.path.join(path))
-
-    # TODO get this from config.
-    LAYER_PATHS = [os.path.join(ROOT_PATH, 'basemaps/coastlines/coastlines.shp')]
-    LAYER_PATH = LAYER_PATHS[0]
 
     # Write your code here to load some layers, use processing algorithms, etc.
     project = qgc.QgsProject.instance()
@@ -139,26 +138,37 @@ def make_qgs(path):
                                         project_crs)
     view.setDefaultViewExtent(extent)
 
-    # construct a relative path to the coastline layer.
-    # TODO: do we need to worry about differences in path structure between linux
-    # and windows?
-    coastline_path = os.path.relpath(LAYER_PATH, start=os.path.dirname(PROJECT_PATH))
-
-    # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
-    map_layer = qgc.QgsVectorLayer(
-        coastline_path,
-        'Coastlines',  # layer name as it shows up in TOC
-        'ogr'  # name of the data provider (memory, postgresql)
-    )
-
-    # Create 'basemap' Layer Group.
     basemap_group = project.layerTreeRoot().addGroup('basemap')
-    basemap_group.addLayer(map_layer)
 
-    # TODO is this necessary? Without adding the map layer to the project (which
-    # automatically adds it to the root layer unless `addToLegend` is `False`), the
-    # layer added to the basemap does not render.
-    project.addMapLayer(map_layer, addToLegend=False)
+    groups = {
+        'basemaps': basemap_group,
+        'TBD': None,
+    }
+
+    for layer_name, layer_cfg in layers_cfg.items():
+        layer_path = os.path.join(ROOT_PATH,
+                                  layer_cfg['layer_group'],
+                                  layer_name,
+                                  f"{layer_name}.{layer_cfg['file_type']}")
+        # construct a relative path to the coastline layer.
+        # TODO: do we need to worry about differences in path structure between linux
+        # and windows?
+        layer_relpath = os.path.relpath(layer_path, start=os.path.dirname(PROJECT_PATH))
+
+        # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
+        map_layer = qgc.QgsVectorLayer(
+            layer_relpath,
+            layer_name.capitalize(),  # layer name as it shows up in TOC
+            'ogr'  # name of the data provider (memory, postgresql)
+        )
+
+        group = groups[layer_cfg['layer_group']]
+        group.addLayer(map_layer)
+
+        # TODO is this necessary? Without adding the map layer to the project (which
+        # automatically adds it to the root layer unless `addToLegend` is `False`), the
+        # layer added to the basemap does not render.
+        project.addMapLayer(map_layer, addToLegend=False)
 
     # TODO: is it normal to write multiple times?
     project.write()

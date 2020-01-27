@@ -22,7 +22,8 @@ from qgreenland.util import load_layer_config
 class Coastlines(luigi.Task):
     """Move to final location."""
 
-    cfg = load_layer_config('coastlines')
+    layer_name = 'coastlines'
+    cfg = load_layer_config(layer_name)
 
     def requires(self):
         return SubsetShapefile(self.cfg)
@@ -30,8 +31,7 @@ class Coastlines(luigi.Task):
     def output(self):
         # TODO: DRY
         parent_dir = self.cfg['layer_group']
-        layer_dir = self.cfg['short_name']
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{layer_dir}/')
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}/')
 
     def run(self):
         # TODO: Look at fs.rename_dont_move and do that
@@ -60,17 +60,17 @@ class Coastlines(luigi.Task):
 
 
 class ArcticDEM(luigi.Task):
-    cfg = load_layer_config('arctic_dem')
+    layer_name = 'arctic_dem'
+    cfg = load_layer_config(layer_name)
 
     def requires(self):
         return SubsetRaster(self.cfg)
 
     def output(self):
         parent_dir = self.cfg['layer_group']
-        layer_dir = self.cfg['short_name']
 
         # TODO should the target be a directory?
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{layer_dir}/')
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}/')
 
     def run(self):
         # TODO DRY this out
@@ -80,8 +80,10 @@ class ArcticDEM(luigi.Task):
                  stat.S_IRGRP | stat.S_IXGRP |
                  stat.S_IROTH | stat.S_IXOTH)
 
-        _, ext = os.path.splitext(os.path.basename(self.input().path))
-        new_fp = os.path.join(temp_dem_dir, f"{self.cfg['short_name']}.{ext}")
+        new_fp = os.path.join(
+            temp_dem_dir,
+            f"{self.cfg['short_name']}.{self.cfg['file_type']}"
+        )
 
         os.rename(self.input().path, new_fp)
 

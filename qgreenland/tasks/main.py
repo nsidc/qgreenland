@@ -6,7 +6,7 @@ import luigi
 from qgreenland import __version__
 from qgreenland.constants import DATA_DIR, DATA_FINAL_DIR
 from qgreenland.tasks.layers import ArcticDEM, Coastlines
-from qgreenland.util import make_qgs
+from qgreenland.util import load_layer_config, make_qgs
 
 
 class CreateProjectFile(luigi.Task):
@@ -19,7 +19,10 @@ class CreateProjectFile(luigi.Task):
         return luigi.LocalTarget(f'{DATA_FINAL_DIR}/qgreenland.qgs')
 
     def run(self):
-        make_qgs(self.output().path)
+        layers_cfg = load_layer_config()
+        make_qgs(layers_cfg, self.output().path)
+        # Write to temp and rename
+        # CONTEXT MANAGER
 
 
 class ZipQGreenland(luigi.Task):
