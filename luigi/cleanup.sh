@@ -1,1 +1,1 @@
-sudo rm -rf data/*
+sudo rm -rf data/{wip,qgreenland,QGreenland*}

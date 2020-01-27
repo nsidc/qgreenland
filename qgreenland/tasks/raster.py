@@ -1,30 +1,27 @@
-import luigi
+import os
 
-from osgeo import gdal
-import rasterio as rio
 import geopandas
+import luigi
+import rasterio as rio
 from earthpy import spatial as eps
+from osgeo import gdal
 from shapely.geometry import Polygon
 
-from qgreenland.constants import DATA_WIP_DIR
+from qgreenland.constants import TaskType
 from qgreenland.tasks.common import FetchData
-from qgreenland.util import PROJECT_CRS, BBOX_POLYGON
+from qgreenland.util import BBOX_POLYGON, LayerConfigMixin, PROJECT_CRS
 
 
-class ReprojectRaster(luigi.Task):
-    layer_cfg = luigi.Parameter()
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        short_name = self.layer_cfg['short_name']
-        # TODO may not always be .tif
-        self.outfile = f'{DATA_WIP_DIR}/{short_name}/reprojected.tif'
+class ReprojectRaster(LayerConfigMixin, luigi.Task):
+    task_type = TaskType.WIP
 
     def requires(self):
         return FetchData(self.layer_cfg)
 
     def output(self):
-        return luigi.LocalTarget(self.outfile)
+        # TODO: may not always be .tif
+        of = os.path.join(self.outdir, 'reprojected.tif')
+        return luigi.LocalTarget(of)
 
     def run(self):
         gdal.Warp(self.output().path, self.input().path,
@@ -32,20 +29,16 @@ class ReprojectRaster(luigi.Task):
                   resampleAlg='bilinear')
 
 
-class SubsetRaster(luigi.Task):
-    layer_cfg = luigi.Parameter()
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        short_name = self.layer_cfg['short_name']
-        # TODO may not always be .tif
-        self.outfile = f'{DATA_WIP_DIR}/{short_name}/subset.tif'
-
+class SubsetRaster(LayerConfigMixin, luigi.Task):
+    task_type = TaskType.WIP
 
     def requires(self):
         return ReprojectRaster(self.layer_cfg)
 
     def output(self):
-        return luigi.LocalTarget(self.outfile)
+        # TODO: may not always be .tif
+        of = os.path.join(self.outdir, 'subset.tif')
+        return luigi.LocalTarget(of)
 
     def run(self):
         with rio.open(self.input().path, 'r') as ds:

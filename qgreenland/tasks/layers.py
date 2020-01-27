@@ -53,7 +53,9 @@ class Coastlines(luigi.Task):
                  stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR |
                  stat.S_IRGRP | stat.S_IXGRP |
                  stat.S_IROTH | stat.S_IXOTH)
-        os.makedirs(pathlib.Path(self.output().path).parent)
+
+        # TODO: Can this makedirs call be removed? Mixin may already do it.
+        os.makedirs(pathlib.Path(self.output().path).parent, exist_ok=True)
         os.rename(temp_shapefile_dir, self.output().path)
 
 
@@ -83,5 +85,6 @@ class ArcticDEM(luigi.Task):
 
         os.rename(self.input().path, new_fp)
 
+        # TODO: Can this makedirs call be removed? Mixin may already do it.
         os.makedirs(pathlib.Path(self.output().path).parent, exist_ok=True)
         os.rename(temp_dem_dir, self.output().path)
