@@ -1,3 +1,5 @@
+* Extract VM config to its own project
+
 * Merge functionality of qgis and luigi in to one container and conda env:
   * Run qgis with `docker exec luigi qgis ...`? How to forward X?
   * Modify Luigi Docker image's luigid.sh to use non-base env
