@@ -24,3 +24,10 @@
   * Test
 
 * Bumpversion integration
+
+
+# Long Term
+
+* Metadata
+  * Provenance
+  * Citation
