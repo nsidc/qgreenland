@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Run flake8 linting
           command: |
-            conda env create
+            conda env create --quiet
             source activate qgreenland && inv test.lint
 
 workflows:
