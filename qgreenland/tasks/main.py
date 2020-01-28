@@ -6,7 +6,8 @@ import luigi
 from qgreenland import __version__
 from qgreenland.constants import DATA_DIR, DATA_FINAL_DIR
 from qgreenland.tasks.layers import ArcticDEM, Coastlines
-from qgreenland.util import load_layer_config, make_qgs, tempdir_renamed_to
+from qgreenland.util.file import load_layer_config, tempdir_renamed_to
+from qgreenland.util.misc import make_qgs
 
 
 class CreateProjectFile(luigi.Task):

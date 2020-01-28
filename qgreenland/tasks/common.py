@@ -4,7 +4,8 @@ import os
 import luigi
 
 from qgreenland.constants import TaskType
-from qgreenland.util import LayerConfigMixin, fetch_file
+from qgreenland.util.luigi import LayerConfigMixin
+from qgreenland.util.misc import fetch_file
 
 
 class FetchData(LayerConfigMixin, luigi.Task):

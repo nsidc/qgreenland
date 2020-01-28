@@ -9,9 +9,18 @@ DATA_FINAL_DIR = f'/luigi/data/{PROJECT}'
 # renaming. Make it a subdir?
 TMP_DIR = DATA_DIR
 
-# TODO: Figure out a way to use layers.yml or get rid of it
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
-# LAYER_BASE_DIR = os.path.abspath(os.path.join(THIS_DIR, '../qgis-data/qgreenland/'))
+REQUEST_TIMEOUT = 3
+# NOTE: The order of this dictionary is important for passing to qgc.QgsRectangle
+BBOX = {'xmin': -3850000.000, 'ymin': -5350000.0, 'xmax': 3750000.0, 'ymax': 5850000.000}
+BBOX_POLYGON = [
+    (BBOX['xmin'], BBOX['ymax']),
+    (BBOX['xmax'], BBOX['ymax']),
+    (BBOX['xmax'], BBOX['ymin']),
+    (BBOX['xmin'], BBOX['ymin']),
+    (BBOX['xmin'], BBOX['ymax']),
+]
+PROJECT_CRS = 'EPSG:3411'
 
 
 class TaskType(Enum):

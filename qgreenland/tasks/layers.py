@@ -9,9 +9,9 @@ import luigi
 from qgreenland.constants import DATA_FINAL_DIR
 from qgreenland.tasks.raster import SubsetRaster
 from qgreenland.tasks.shapefile import SubsetShapefile
-from qgreenland.util import (find_shapefile_in_dir,
-                             load_layer_config,
-                             tempdir_renamed_to)
+from qgreenland.util.file import (find_shapefile_in_dir,
+                                  load_layer_config,
+                                  tempdir_renamed_to)
 
 
 # TODO: Consider creating a mixin or something for reading yaml config to

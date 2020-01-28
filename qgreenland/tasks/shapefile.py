@@ -5,11 +5,9 @@ import luigi
 
 from qgreenland.constants import TaskType
 from qgreenland.tasks.common import FetchData
-from qgreenland.util import (LayerConfigMixin,
-                             find_shapefile_in_dir,
-                             reproject_shapefile,
-                             subset_shapefile,
-                             tempdir_renamed_to)
+from qgreenland.util.file import find_shapefile_in_dir, tempdir_renamed_to
+from qgreenland.util.luigi import LayerConfigMixin
+from qgreenland.util.shapefile import reproject_shapefile, subset_shapefile
 
 
 # TODO: Is there any task history? e.g. can we look at the final output target

@@ -7,9 +7,9 @@ from earthpy import spatial as eps
 from osgeo import gdal
 from shapely.geometry import Polygon
 
-from qgreenland.constants import TaskType
+from qgreenland.constants import BBOX_POLYGON, PROJECT_CRS, TaskType
 from qgreenland.tasks.common import FetchData
-from qgreenland.util import BBOX_POLYGON, LayerConfigMixin, PROJECT_CRS
+from qgreenland.util.luigi import LayerConfigMixin
 
 
 class ReprojectRaster(LayerConfigMixin, luigi.Task):
