@@ -4,6 +4,9 @@ from enum import Enum
 PROJECT = 'qgreenland'
 DATA_DIR = '/luigi/data'
 DATA_FINAL_DIR = f'/luigi/data/{PROJECT}'
+
+# TMP_DIR is the same as DATA_DIR because os.rename doesn't allow cross-mount
+# renaming. Make it a subdir?
 TMP_DIR = DATA_DIR
 
 # TODO: Figure out a way to use layers.yml or get rid of it

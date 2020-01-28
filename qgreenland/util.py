@@ -1,4 +1,8 @@
 import os
+import pathlib
+import stat
+import tempfile
+from contextlib import contextmanager
 
 import earthpy.clip as ec
 import geopandas
@@ -10,6 +14,7 @@ from shapely.geometry import Polygon
 
 from qgreenland.constants import (DATA_DIR,
                                   DATA_FINAL_DIR,
+                                  TMP_DIR,
                                   TaskType)
 
 # TODO: Split this file into many modules:
@@ -56,6 +61,21 @@ class LayerConfigMixin(luigi.Task):
 
         os.makedirs(outdir, exist_ok=True)
         return outdir
+
+
+@contextmanager
+def tempdir_renamed_to(target):
+    """Write to a temporary directory, after which it will be renamed to `target`."""
+    d = tempfile.mkdtemp(dir=TMP_DIR)
+    try:
+        yield d
+    finally:
+        os.chmod(d,
+                 stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR |
+                 stat.S_IRGRP | stat.S_IXGRP |
+                 stat.S_IROTH | stat.S_IXOTH)
+        os.makedirs(pathlib.Path(target).parent, exist_ok=True)
+        os.rename(d, target)
 
 
 def load_layer_config(layername=None):
