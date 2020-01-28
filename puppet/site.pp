@@ -1,9 +1,14 @@
 # Load modules and classes
 lookup('classes', {merge => unique}).include
 
+exec {'install unzip':
+  command   => '/usr/bin/apt-get install unzip',
+  logoutput => true,
+}
+
 exec {'install docker':
   command   => '/vagrant/puppet/scripts/install-docker.sh',
-  logoutput =>  true,
+  logoutput => true,
 }
 
 # Mount 100GiB NFS storage
