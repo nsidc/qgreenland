@@ -13,3 +13,6 @@
 # end vagrant-nsidc
 
 luigi/data
+qgis-data/QGreenland*
+qgis-data/qgreenland
+qgis-data/Quantarctica*
