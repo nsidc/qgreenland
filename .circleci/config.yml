@@ -7,9 +7,9 @@ setup: &setup
 
 jobs:
   lint:
-		<<: *setup
-		steps:
-			- checkout
+    <<: *setup
+    steps:
+      - checkout
       - run:
           name: Run flake8 linting
           command: |
