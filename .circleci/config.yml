@@ -1,0 +1,27 @@
+version: 2
+
+setup: &setup
+  docker:
+    - image: continuumio/miniconda:4.3.27
+  working_directory: ~/qgreenland
+
+jobs:
+  lint:
+		<<: *setup
+		steps:
+			- checkout
+      - run:
+          name: Run flake8 linting
+          command: |
+            conda env create
+            source activate qgreenland && inv test.lint
+
+workflows:
+  version: 2
+
+  test:
+    jobs:
+      - lint:
+          filters:
+            tags:
+              only: /^.*$/
