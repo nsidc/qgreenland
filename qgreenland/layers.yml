@@ -4,6 +4,7 @@ coastlines:
   name: 'Natural Earth Coastlines'
   short_name: 'ne_coastlines'
   file_type: 'shp'
+  data_type: 'vector'
   description: 'Natural Earth Coastlines (Public Domain)'
   abstract: null
   citation:
@@ -26,6 +27,7 @@ arctic_dem:
   name: 'Arctic DEM (1km mosaic)'
   short_name: 'arctic_dem'
   file_type: 'tif'
+  data_type: 'raster'
   description: 'ArcticDEM is an NGA-NSF public-private initiative to automatically produce a high-resolution, high quality, digital surface model (DSM) of the Arctic using optical stereo imagery, high-performance computing, and open source photogrammetry software.'
   abstract: null
   citation:

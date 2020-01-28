@@ -144,6 +144,13 @@ def make_qgs(layers_cfg, path):
         'basemaps': basemap_group,
         'TBD': None,
     }
+    # TODO: Parameterize, e.g. below
+    #       But then how would we get the ProviderType/ProviderLib?
+    #       Just more mapping. But where do we put it? Wrapper class?
+    # layer_constructors = {
+    #     'raster': qgc.QgsRasterLayer,
+    #     'vector': qgc.QgsVectorLayer,
+    # }
 
     for layer_name, layer_cfg in layers_cfg.items():
         layer_path = os.path.join(ROOT_PATH,
@@ -156,11 +163,18 @@ def make_qgs(layers_cfg, path):
         layer_relpath = os.path.relpath(layer_path, start=os.path.dirname(PROJECT_PATH))
 
         # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
-        map_layer = qgc.QgsVectorLayer(
-            layer_relpath,
-            layer_name.capitalize(),  # layer name as it shows up in TOC
-            'ogr'  # name of the data provider (memory, postgresql)
-        )
+        if layer_cfg['data_type'] == 'vector':
+            map_layer = qgc.QgsVectorLayer(
+                layer_relpath,
+                layer_cfg['name'],  # layer name as it shows up in TOC
+                'ogr'  # name of the data provider (memory, postgresql)
+            )
+        elif layer_cfg['data_type'] == 'raster':
+            map_layer = qgc.QgsRasterLayer(
+                layer_relpath,
+                layer_cfg['name'],
+                'gdal'
+            )
 
         map_layer.setCrs(project_crs)
 
