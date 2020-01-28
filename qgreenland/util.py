@@ -162,6 +162,8 @@ def make_qgs(layers_cfg, path):
             'ogr'  # name of the data provider (memory, postgresql)
         )
 
+        map_layer.setCrs(project_crs)
+
         group = groups[layer_cfg['layer_group']]
         group.addLayer(map_layer)
 
