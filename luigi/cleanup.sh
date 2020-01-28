@@ -1,1 +1,2 @@
-sudo rm -rf data/{wip,qgreenland,QGreenland*,tmp*}
+DATA_DIR=/share/appdata/qgreenland/QGreenland
+sudo rm -rf ${DATA_DIR}/{wip,qgreenland,QGreenland*,tmp*}
