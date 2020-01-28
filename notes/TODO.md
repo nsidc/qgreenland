@@ -25,6 +25,10 @@
 
 * Bumpversion integration
 
+* Build a dockerhub image (public!)
+  * Update CircleCI jobs to use the docker image instead of building a conda
+    environment every time :rage:
+
 
 # Long Term
 
