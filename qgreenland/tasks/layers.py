@@ -9,8 +9,8 @@ import luigi
 from qgreenland.constants import DATA_FINAL_DIR
 from qgreenland.tasks.raster import SubsetRaster
 from qgreenland.tasks.shapefile import SubsetShapefile
-from qgreenland.util import (load_layer_config,
-                             find_shapefile_in_dir,
+from qgreenland.util import (find_shapefile_in_dir,
+                             load_layer_config,
                              tempdir_renamed_to)
 
 
