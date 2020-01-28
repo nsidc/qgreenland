@@ -99,6 +99,15 @@ def fetch_file(url):
     return requests.get(url, timeout=REQUEST_TIMEOUT)
 
 
+def find_shapefile_in_dir(path):
+    files = os.listdir(path)
+    try:
+        f = [x for x in files if x.endswith('.shp')][0]
+        return os.path.abspath(os.path.join(path, f))
+    except Exception:
+        raise RuntimeError(f'No shapefile found in: {files}')
+
+
 def reproject_shapefile(shapefile):
     gdf = geopandas.read_file(shapefile)
     gdf = gdf.to_crs(epsg=3411)

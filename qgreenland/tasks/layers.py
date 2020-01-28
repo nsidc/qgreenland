@@ -9,7 +9,9 @@ import luigi
 from qgreenland.constants import DATA_FINAL_DIR
 from qgreenland.tasks.raster import SubsetRaster
 from qgreenland.tasks.shapefile import SubsetShapefile
-from qgreenland.util import load_layer_config, tempdir_renamed_to
+from qgreenland.util import (load_layer_config,
+                             find_shapefile_in_dir,
+                             tempdir_renamed_to)
 
 
 # TODO: Consider creating a mixin or something for reading yaml config to
@@ -27,15 +29,12 @@ class Coastlines(luigi.Task):
 
     def output(self):
         # TODO: DRY
-        parent_dir = self.cfg['layer_group']
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}/')
+        subdir = f"{self.cfg['layer_group']}/{self.layer_name}"
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{subdir}/')
 
     def run(self):
-        # TODO: Look at fs.rename_dont_move and do that
-        with self.input().open('r') as infile:
-            processed_shapefile_path = infile.read()
-
-        processed_shapefile_dir = os.path.dirname(processed_shapefile_path)
+        shapefile = find_shapefile_in_dir(self.input().path)
+        processed_shapefile_dir = os.path.dirname(shapefile)
 
         with tempdir_renamed_to(self.output().path) as tempdir:
             for f in os.listdir(processed_shapefile_dir):
