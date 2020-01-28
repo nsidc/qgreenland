@@ -2,7 +2,7 @@
 lookup('classes', {merge => unique}).include
 
 exec {'install docker':
-  command   => "/vagrant/puppet/scripts/install-docker.sh",
+  command   => '/vagrant/puppet/scripts/install-docker.sh',
   logoutput =>  true,
 }
 
@@ -10,5 +10,16 @@ exec {'install docker':
 nsidc_nfs::sharemount { '/share/appdata/qgreenland':
   options => 'rw',
   project => 'appdata',
-  share   => "qgreenland",
+  share   => 'qgreenland',
+}
+
+exec {'start luigi':
+  command   => '/usr/local/bin/docker-compose up -d',
+  cwd       => '/vagrant/luigi',
+  timeout   => 600,
+  logoutput => true,
+  require   => [
+    Exec['install docker'],
+    Nsidc_nfs::Sharemount['/share/appdata/qgreenland'],
+  ],
 }
