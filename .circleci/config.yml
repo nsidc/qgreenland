@@ -15,7 +15,8 @@ jobs:
           command: |
             conda env create --quiet -f environment-lock.yml
             conda init bash
-            /bin/bash -lc "conda activate qgreenland && inv test.lint"
+            /bin/bash --login -c "conda activate qgreenland && inv test.lint"
+            echo "Linting passed."
 
 workflows:
   version: 2
