@@ -1,5 +1,5 @@
 ---
-project: default
+project: qgreenland
 gitrepo: git@bitbucket.org:nsidc/default.git
 vsphere:
   template:
