@@ -6,7 +6,7 @@ import luigi
 from qgreenland import __version__
 from qgreenland.constants import DATA_DIR, DATA_FINAL_DIR
 from qgreenland.tasks.layers import ArcticDEM, Coastlines
-from qgreenland.util import load_layer_config, make_qgs
+from qgreenland.util import load_layer_config, make_qgs, tempdir_renamed_to
 
 
 class CreateProjectFile(luigi.Task):
@@ -16,13 +16,17 @@ class CreateProjectFile(luigi.Task):
         return [ArcticDEM(), Coastlines()]
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/qgreenland.qgs')
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}')
 
     def run(self):
         layers_cfg = load_layer_config()
-        make_qgs(layers_cfg, self.output().path)
-        # Write to temp and rename
-        # CONTEXT MANAGER
+
+        # make_qgs outputs multiple files, not just one .qgs file. Similar to
+        # writing shapefiles, except this time we want to put them inside a
+        # pre-existing directory.
+        with tempdir_renamed_to(self.output().path, act_on_contents=True) as d:
+            make_qgs(layers_cfg,
+                     os.path.join(d, 'qgreenland.qgs'))
 
 
 class ZipQGreenland(luigi.Task):

@@ -64,8 +64,14 @@ class LayerConfigMixin(luigi.Task):
 
 
 @contextmanager
-def tempdir_renamed_to(target):
-    """Write to a temporary directory, after which it will be renamed to `target`."""
+def tempdir_renamed_to(target, act_on_contents=False):
+    """Write to a temporary directory.
+
+    target: After writing rename to this dir.
+    act_on_contents: Rename contents of tempdir inside of target dir instead of
+                     renaming the directory itself. Useful for when you want to
+                     write arbitrary files to a pre-existing directory.
+    """
     d = tempfile.mkdtemp(dir=TMP_DIR)
     try:
         yield d
@@ -74,8 +80,15 @@ def tempdir_renamed_to(target):
                  stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR |
                  stat.S_IRGRP | stat.S_IXGRP |
                  stat.S_IROTH | stat.S_IXOTH)
-        os.makedirs(pathlib.Path(target).parent, exist_ok=True)
-        os.rename(d, target)
+
+        if act_on_contents:
+            os.makedirs(pathlib.Path(target), exist_ok=True)
+            for f in os.listdir(d):
+                os.rename(os.path.join(d, f),
+                          os.path.join(target, f))
+        else:
+            os.makedirs(pathlib.Path(target).parent, exist_ok=True)
+            os.rename(d, target)
 
 
 def load_layer_config(layername=None):
