@@ -9,3 +9,7 @@ mod "nsidc/nsidc_nfs",
 mod "nsidc/nsidc_jenkins",
   :git => "git@bitbucket.org:/nsidc/puppet-nsidc-jenkins.git",
   :ref => 'latest'
+
+mod "nsidc/nsidc_miniconda",
+  :git => "git@bitbucket.org:/nsidc/puppet-nsidc-miniconda.git",
+  :ref => "v7.0.0"

@@ -11,7 +11,7 @@ exec {'install docker':
   logoutput => true,
 }
 
-# Mount 100GiB NFS storage
+# 100GiB network storage
 nsidc_nfs::sharemount { '/share/appdata/qgreenland':
   options => 'rw',
   project => 'appdata',
@@ -28,3 +28,13 @@ exec {'start luigi':
     Nsidc_nfs::Sharemount['/share/appdata/qgreenland'],
   ],
 }
+
+if $::environment == 'dev' {
+	exec {'create conda env':
+    command => '/opt/miniconda/bin/conda env create',
+    cwd     => '/vagrant',
+    user    => vagrant,
+    require => Nsidc_miniconda::Install['/opt/miniconda'],
+  }
+}
+
