@@ -8,7 +8,7 @@ file {'qgreenland.sh':
 }
 
 exec {'install utils':
-  command   => '/usr/bin/apt-get install unzip x11-xserver-utils libgl1-mesa-glx',
+  command   => '/usr/bin/apt-get install -y unzip x11-xserver-utils libgl1-mesa-glx',
   logoutput => true,
 }
 
