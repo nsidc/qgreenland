@@ -7,8 +7,8 @@ file {'qgreenland.sh':
   source => '/vagrant/puppet/files/qgreenland.sh',
 }
 
-exec {'install unzip':
-  command   => '/usr/bin/apt-get install unzip',
+exec {'install utils':
+  command   => '/usr/bin/apt-get install unzip x11-xserver-utils libgl1-mesa-glx',
   logoutput => true,
 }
 
