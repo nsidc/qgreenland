@@ -1,6 +1,12 @@
 # Load modules and classes
 lookup('classes', {merge => unique}).include
 
+file {'qgreenland.sh':
+  ensure => file,
+  path   => '/etc/profile.d/qgreenland.sh',
+  source => '/vagrant/puppet/files/qgreenland.sh',
+}
+
 exec {'install unzip':
   command   => '/usr/bin/apt-get install unzip',
   logoutput => true,
