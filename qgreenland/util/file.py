@@ -58,6 +58,7 @@ def tempdir_renamed_to(target, act_on_contents=False):
             for f in os.listdir(d):
                 os.rename(os.path.join(d, f),
                           os.path.join(target, f))
+            os.rmdir(d)
         else:
             os.makedirs(pathlib.Path(target).parent, exist_ok=True)
             os.rename(d, target)
