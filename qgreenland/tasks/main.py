@@ -4,7 +4,7 @@ import shutil
 import luigi
 
 from qgreenland import __version__
-from qgreenland.constants import DATA_RELEASE_DIR, DATA_FINAL_DIR, TMP_DIR
+from qgreenland.constants import DATA_FINAL_DIR, DATA_RELEASE_DIR, TMP_DIR
 from qgreenland.tasks.layers import ArcticDEM, Coastlines
 from qgreenland.util.file import load_layer_config, tempdir_renamed_to
 from qgreenland.util.misc import make_qgs
