@@ -17,7 +17,7 @@ class CreateProjectFile(luigi.Task):
         return [ArcticDEM(), Coastlines()]
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}')
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/qgreenland.qgs')
 
     def run(self):
         layers_cfg = load_layer_config()
