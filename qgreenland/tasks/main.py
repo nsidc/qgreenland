@@ -5,7 +5,7 @@ import luigi
 
 from qgreenland import __version__
 from qgreenland.constants import DATA_FINAL_DIR, DATA_RELEASE_DIR, TMP_DIR
-from qgreenland.tasks.layers import ArcticDEM, Coastlines
+from qgreenland.tasks.layers import ArcticDEM, BedMachine, Coastlines
 from qgreenland.util.file import load_layer_config, tempdir_renamed_to
 from qgreenland.util.misc import make_qgs
 
@@ -14,7 +14,7 @@ class CreateProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
-        return [ArcticDEM(), Coastlines()]
+        return ArcticDEM(), BedMachine(), Coastlines()
 
     def output(self):
         return luigi.LocalTarget(f'{DATA_FINAL_DIR}/qgreenland.qgs')

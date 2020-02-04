@@ -7,6 +7,7 @@ import os
 import luigi
 
 from qgreenland.constants import DATA_FINAL_DIR
+from qgreenland.tasks.common import FetchData
 from qgreenland.tasks.raster import SubsetRaster
 from qgreenland.tasks.shapefile import SubsetShapefile
 from qgreenland.util.file import (find_shapefile_in_dir,
@@ -14,23 +15,26 @@ from qgreenland.util.file import (find_shapefile_in_dir,
                                   tempdir_renamed_to)
 
 
+class LayerTaskMixin(luigi.Task):
+
+    def output(self):
+        # TODO: DRY
+        parent_dir = self.cfg['layer_group']
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}')
+
+
 # TODO: Consider creating a mixin or something for reading yaml config to
 # DRY out the code for layer classes
 # e.g. use a class attribute to automatically load config:
 #   layername = 'coastlines'
-class Coastlines(luigi.Task):
-    """Move to final location."""
+class Coastlines(LayerTaskMixin, luigi.Task):
+    """Rename files to their final location."""
 
     layer_name = 'coastlines'
     cfg = load_layer_config(layer_name)
 
     def requires(self):
         return SubsetShapefile(self.cfg)
-
-    def output(self):
-        # TODO: DRY
-        subdir = f"{self.cfg['layer_group']}/{self.layer_name}"
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{subdir}/')
 
     def run(self):
         shapefile = find_shapefile_in_dir(self.input().path)
@@ -47,7 +51,7 @@ class Coastlines(luigi.Task):
                 os.rename(old_fp, new_fp)
 
 
-class ArcticDEM(luigi.Task):
+class ArcticDEM(LayerTaskMixin, luigi.Task):
     """Rename files to their final location."""
 
     layer_name = 'arctic_dem'
@@ -55,12 +59,6 @@ class ArcticDEM(luigi.Task):
 
     def requires(self):
         return SubsetRaster(self.cfg)
-
-    def output(self):
-        parent_dir = self.cfg['layer_group']
-
-        # TODO should the target be a directory?
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}/')
 
     def run(self):
         with tempdir_renamed_to(self.output().path) as tempdir:
@@ -70,3 +68,19 @@ class ArcticDEM(luigi.Task):
             )
 
             os.rename(self.input().path, new_fp)
+
+
+class BedMachine(LayerTaskMixin, luigi.Task):
+    """Dataproduct IDBMG4.
+
+    https://nsidc.org/data/IDBMG4
+    """
+
+    layer_name = 'bedmachine'
+    cfg = load_layer_config(layer_name)
+
+    def requires(self):
+        return FetchData(self.cfg)
+
+    def run(self):
+        return

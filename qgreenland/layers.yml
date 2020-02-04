@@ -21,6 +21,7 @@ coastlines:
     - subset:
     - zip:
 
+
 arctic_dem:
   source:
     url: 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif'
@@ -39,3 +40,15 @@ arctic_dem:
     - reproject:
     - subset:
     - zip:
+
+
+bedmachine:
+  source:
+    cmr:
+      short_name: 'IDBMG4'
+      version: 3
+  name: 'IceBridge BedMachine Greenland, Version 3'
+  short_name: 'bedmachine'
+  file_type: 'nc'
+  data_type: 'raster'
+  layer_group: 'basemaps'

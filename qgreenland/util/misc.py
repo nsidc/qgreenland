@@ -1,13 +1,16 @@
 import os
 
 import qgis.core as qgc
-import requests
 
 from qgreenland.constants import BBOX, PROJECT_CRS, REQUEST_TIMEOUT
+from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
 def fetch_file(url):
-    return requests.get(url, timeout=REQUEST_TIMEOUT)
+    # TODO: Share the session across requests somehow?
+    s = create_earthdata_authenticated_session(hosts=[url])
+
+    return s.get(url, timeout=REQUEST_TIMEOUT)
 
 
 def make_qgs(layers_cfg, path):
