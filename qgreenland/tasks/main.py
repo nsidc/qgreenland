@@ -25,9 +25,9 @@ class CreateProjectFile(luigi.Task):
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
-        with tempdir_renamed_to(self.output().path, act_on_contents=True) as d:
+        with tempdir_renamed_to(os.path.dirname(self.output().path), act_on_contents=True) as d:
             make_qgs(layers_cfg,
-                     os.path.join(d, 'qgreenland.qgs'))
+                     self.output().path)
 
 
 class ZipQGreenland(luigi.Task):
