@@ -70,6 +70,9 @@ def make_qgs(layers_cfg, path):
                                   layer_name,
                                   f"{layer_name}.{layer_cfg['file_type']}")
 
+        if not os.path.isfile(layer_path):
+            raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
+
         # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
         if layer_cfg['data_type'] == 'vector':
             map_layer = qgc.QgsVectorLayer(
