@@ -87,11 +87,7 @@ def make_qgs(layers_cfg, path):
                 layer_cfg['name'],
                 'gdal'
             )
-            # TODO: Helper function that checks if file exists --
-            # If you pass a path to nothing, it will silently fail
-            # Also, check the return value of .loadNamedStyle.
-            foo = map_layer.loadNamedStyle(f'{PACKAGE_DIR}/styles/arctic_dem.qml')
-            breakpoint()
+            load_qml_style(map_layer, f'{PACKAGE_DIR}/styles/arctic_dem.qml')
 
         map_layer.setCrs(project_crs)
 
@@ -105,3 +101,14 @@ def make_qgs(layers_cfg, path):
 
     # TODO: is it normal to write multiple times?
     project.write()
+
+
+def load_qml_style(map_layer, style_path):
+    # If you pass a path to nothing, it will silently fail
+    if not os.path.isfile(style_path):
+        raise RuntimeError(f"Style '{style_path}' not found.")
+
+    msg, status = map_layer.loadNamedStyle(f'{PACKAGE_DIR}/styles/arctic_dem.qml')
+
+    if not status:
+        raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
