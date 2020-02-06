@@ -87,7 +87,9 @@ def make_qgs(layers_cfg, path):
                 layer_cfg['name'],
                 'gdal'
             )
-            load_qml_style(map_layer, f'{PACKAGE_DIR}/styles/arctic_dem.qml')
+
+        if 'style' in layer_cfg:
+            load_qml_style(map_layer, layer_cfg['style'])
 
         map_layer.setCrs(project_crs)
 
@@ -103,12 +105,13 @@ def make_qgs(layers_cfg, path):
     project.write()
 
 
-def load_qml_style(map_layer, style_path):
+def load_qml_style(map_layer, style_name):
+    style_path = os.path.join(PACKAGE_DIR, 'styles', style_name + '.qml')
     # If you pass a path to nothing, it will silently fail
     if not os.path.isfile(style_path):
         raise RuntimeError(f"Style '{style_path}' not found.")
 
-    msg, status = map_layer.loadNamedStyle(f'{PACKAGE_DIR}/styles/arctic_dem.qml')
+    msg, status = map_layer.loadNamedStyle(style_path)
 
     if not status:
         raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
