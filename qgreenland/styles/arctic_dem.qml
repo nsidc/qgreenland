@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis minScale="1e+08" version="3.10.1-A Coruña" hasScaleBasedVisibilityFlag="0" maxScale="0" styleCategories="AllStyleCategories">
+<qgis hasScaleBasedVisibilityFlag="0" version="3.10.1-A Coruña" styleCategories="AllStyleCategories" minScale="1e+08" maxScale="0">
   <flags>
     <Identifiable>1</Identifiable>
     <Removable>1</Removable>
@@ -12,7 +12,7 @@
     <property value="Value" key="identify/format"/>
   </customproperties>
   <pipe>
-    <rasterrenderer zfactor="40" multidirection="0" azimuth="315" alphaBand="-1" angle="45" band="1" type="hillshade" opacity="1">
+    <rasterrenderer azimuth="315" zfactor="40" multidirection="0" type="hillshade" opacity="1" angle="45" alphaBand="-1" band="1">
       <rasterTransparency/>
       <minMaxOrigin>
         <limits>None</limits>
@@ -23,9 +23,9 @@
         <stdDevFactor>2</stdDevFactor>
       </minMaxOrigin>
     </rasterrenderer>
-    <brightnesscontrast contrast="0" brightness="0"/>
-    <huesaturation grayscaleMode="0" colorizeStrength="100" colorizeOn="0" saturation="0" colorizeBlue="128" colorizeGreen="128" colorizeRed="255"/>
-    <rasterresampler maxOversampling="2"/>
+    <brightnesscontrast brightness="0" contrast="0"/>
+    <huesaturation colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" colorizeGreen="128" saturation="0" colorizeStrength="100"/>
+    <rasterresampler zoomedOutResampler="bilinear" maxOversampling="2" zoomedInResampler="bilinear"/>
   </pipe>
   <blendMode>0</blendMode>
 </qgis>
