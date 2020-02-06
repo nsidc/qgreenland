@@ -59,25 +59,30 @@ def make_qgs(layers_cfg, path):
     # }
 
     for layer_name, layer_cfg in layers_cfg.items():
+        # Give the absolute path to the layer. We think project.addMapLayer()
+        # automatically generates the correct relative paths. Using a relative
+        # path causes statistics (nodata value, min/max) to not be generated,
+        # resulting in rendering a gray rectangle.
+        # TODO: do we need to worry about differences in path structure between linux
+        # and windows?
         layer_path = os.path.join(ROOT_PATH,
                                   layer_cfg['layer_group'],
                                   layer_name,
                                   f"{layer_name}.{layer_cfg['file_type']}")
-        # construct a relative path to the coastline layer.
-        # TODO: do we need to worry about differences in path structure between linux
-        # and windows?
-        layer_relpath = os.path.relpath(layer_path, start=os.path.dirname(PROJECT_PATH))
+
+        if not os.path.isfile(layer_path):
+            raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
 
         # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
         if layer_cfg['data_type'] == 'vector':
             map_layer = qgc.QgsVectorLayer(
-                layer_relpath,
+                layer_path,
                 layer_cfg['name'],  # layer name as it shows up in TOC
                 'ogr'  # name of the data provider (memory, postgresql)
             )
         elif layer_cfg['data_type'] == 'raster':
             map_layer = qgc.QgsRasterLayer(
-                layer_relpath,
+                layer_path,
                 layer_cfg['name'],
                 'gdal'
             )
