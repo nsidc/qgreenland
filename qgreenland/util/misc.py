@@ -3,6 +3,7 @@ import os
 import qgis.core as qgc
 import requests
 
+from qgreenland import PACKAGE_DIR
 from qgreenland.constants import BBOX, PROJECT_CRS, REQUEST_TIMEOUT
 
 
@@ -86,6 +87,11 @@ def make_qgs(layers_cfg, path):
                 layer_cfg['name'],
                 'gdal'
             )
+            # TODO: Helper function that checks if file exists --
+            # If you pass a path to nothing, it will silently fail
+            # Also, check the return value of .loadNamedStyle.
+            foo = map_layer.loadNamedStyle(f'{PACKAGE_DIR}/styles/arctic_dem.qml')
+            breakpoint()
 
         map_layer.setCrs(project_crs)
 
