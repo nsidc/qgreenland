@@ -1,3 +1,7 @@
+# v0.3.0 (2020-02-06)
+
+* Added hillshade style to Arctic DEM layer.
+
 # v0.2.0 (2020-02-05)
 
 * Arctic DEM

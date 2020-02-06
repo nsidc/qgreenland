@@ -3,6 +3,7 @@ import os
 import qgis.core as qgc
 import requests
 
+from qgreenland import PACKAGE_DIR
 from qgreenland.constants import BBOX, PROJECT_CRS, REQUEST_TIMEOUT
 
 
@@ -87,6 +88,9 @@ def make_qgs(layers_cfg, path):
                 'gdal'
             )
 
+        if 'style' in layer_cfg:
+            load_qml_style(map_layer, layer_cfg['style'])
+
         map_layer.setCrs(project_crs)
 
         group = groups[layer_cfg['layer_group']]
@@ -99,3 +103,15 @@ def make_qgs(layers_cfg, path):
 
     # TODO: is it normal to write multiple times?
     project.write()
+
+
+def load_qml_style(map_layer, style_name):
+    style_path = os.path.join(PACKAGE_DIR, 'styles', style_name + '.qml')
+    # If you pass a path to nothing, it will silently fail
+    if not os.path.isfile(style_path):
+        raise RuntimeError(f"Style '{style_path}' not found.")
+
+    msg, status = map_layer.loadNamedStyle(style_path)
+
+    if not status:
+        raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
