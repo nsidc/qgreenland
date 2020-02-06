@@ -2,6 +2,7 @@ import os
 
 import qgis.core as qgc
 
+from qgreenland import PACKAGE_DIR
 from qgreenland.constants import BBOX, PROJECT_CRS, REQUEST_TIMEOUT
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
@@ -62,28 +63,36 @@ def make_qgs(layers_cfg, path):
     # }
 
     for layer_name, layer_cfg in layers_cfg.items():
+        # Give the absolute path to the layer. We think project.addMapLayer()
+        # automatically generates the correct relative paths. Using a relative
+        # path causes statistics (nodata value, min/max) to not be generated,
+        # resulting in rendering a gray rectangle.
+        # TODO: do we need to worry about differences in path structure between linux
+        # and windows?
         layer_path = os.path.join(ROOT_PATH,
                                   layer_cfg['layer_group'],
                                   layer_name,
                                   f"{layer_name}.{layer_cfg['file_type']}")
-        # construct a relative path to the coastline layer.
-        # TODO: do we need to worry about differences in path structure between linux
-        # and windows?
-        layer_relpath = os.path.relpath(layer_path, start=os.path.dirname(PROJECT_PATH))
+
+        if not os.path.isfile(layer_path):
+            raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
 
         # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
         if layer_cfg['data_type'] == 'vector':
             map_layer = qgc.QgsVectorLayer(
-                layer_relpath,
+                layer_path,
                 layer_cfg['name'],  # layer name as it shows up in TOC
                 'ogr'  # name of the data provider (memory, postgresql)
             )
         elif layer_cfg['data_type'] == 'raster':
             map_layer = qgc.QgsRasterLayer(
-                layer_relpath,
+                layer_path,
                 layer_cfg['name'],
                 'gdal'
             )
+
+        if 'style' in layer_cfg:
+            load_qml_style(map_layer, layer_cfg['style'])
 
         map_layer.setCrs(project_crs)
 
@@ -97,3 +106,15 @@ def make_qgs(layers_cfg, path):
 
     # TODO: is it normal to write multiple times?
     project.write()
+
+
+def load_qml_style(map_layer, style_name):
+    style_path = os.path.join(PACKAGE_DIR, 'styles', style_name + '.qml')
+    # If you pass a path to nothing, it will silently fail
+    if not os.path.isfile(style_path):
+        raise RuntimeError(f"Style '{style_path}' not found.")
+
+    msg, status = map_layer.loadNamedStyle(style_path)
+
+    if not status:
+        raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")

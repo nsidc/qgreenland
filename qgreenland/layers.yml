@@ -11,15 +11,6 @@ coastlines:
     text: 'Made with Natural Earth'
     url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
   layer_group: 'basemaps'
-  # TODO implement the pipeline.
-  # Each step could return its output path, in which case the next step would open it, or
-  # return an object (geodataframe) that gets passed in to the next step as argument.
-  steps:
-    - download:
-    - unzip:
-    - reproject:
-    - subset:
-    - zip:
 
 
 arctic_dem:
@@ -35,11 +26,7 @@ arctic_dem:
     text: 'Data provided by the Polar Geospatial Center. Porter, Claire; Morin, Paul; Howat, Ian; Noh, Myoung-Jon; Bates, Brian; Peterman, Kenneth; Keesey, Scott; Schlenk, Matthew; Gardiner, Judith; Tomko, Karen; Willis, Michael; Kelleher, Cole; Cloutier, Michael; Husby, Eric; Foga, Steven; Nakamura, Hitomi; Platson, Melisa; Wethington, Michael, Jr.; Williamson, Cathleen; Bauer, Gregory; Enos, Jeremy; Arnold, Galen; Kramer, William; Becker, Peter; Doshi, Abhijit; D’Souza, Cristelle; Cummens, Pat; Laurier, Fabien; Bojesen, Mikkel, 2018, “ArcticDEM”, https://doi.org/10.7910/DVN/OHHUKH, Harvard Dataverse, V1, 2020-01-23'
     url: 'https://www.pgc.umn.edu/data/arcticdem/'
   layer_group: 'basemaps'
-  steps:
-    - download:
-    - reproject:
-    - subset:
-    - zip:
+  style: 'arctic_dem'
 
 
 bedmachine:
