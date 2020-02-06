@@ -17,7 +17,7 @@ class UnzipShapefile(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
 
     def requires(self):
-        return FetchData(self.layer_cfg)
+        return FetchData(self.layer_cfg['source'], self.layer_cfg['short_name'])
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/unzip/')

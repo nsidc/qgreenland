@@ -7,7 +7,7 @@ import os
 import luigi
 
 from qgreenland.constants import DATA_FINAL_DIR
-from qgreenland.tasks.common import FetchData
+from qgreenland.tasks.common import ExtractNcDataset
 from qgreenland.tasks.raster import SubsetRaster
 from qgreenland.tasks.shapefile import SubsetShapefile
 from qgreenland.util.file import (find_shapefile_in_dir,
@@ -18,7 +18,6 @@ from qgreenland.util.file import (find_shapefile_in_dir,
 class LayerTaskMixin(luigi.Task):
 
     def output(self):
-        # TODO: DRY
         parent_dir = self.cfg['layer_group']
         return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}')
 
@@ -61,6 +60,7 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
         return SubsetRaster(self.cfg)
 
     def run(self):
+        # TODO: Do we really need the tempdir context manager for this single-file rename?
         with tempdir_renamed_to(self.output().path) as tempdir:
             new_fp = os.path.join(
                 tempdir,
@@ -70,17 +70,29 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
             os.rename(self.input().path, new_fp)
 
 
-class BedMachine(LayerTaskMixin, luigi.Task):
+class BedMachineDataset(LayerTaskMixin, luigi.Task):
     """Dataproduct IDBMG4.
 
     https://nsidc.org/data/IDBMG4
     """
 
-    layer_name = 'bedmachine'
-    cfg = load_layer_config(layer_name)
+    dataset_name = luigi.Parameter()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.layer_name = f'bedmachine_{self.dataset_name}'
+        self.cfg = load_layer_config(self.layer_name)
 
     def requires(self):
-        return FetchData(self.cfg)
+        return ExtractNcDataset(self.cfg, self.dataset_name)
 
     def run(self):
-        return
+        # TODO: Do we really need the tempdir context manager for this single-file rename?
+        with tempdir_renamed_to(self.output().path) as tempdir:
+            new_fp = os.path.join(
+                tempdir,
+                f"{self.layer_name}.{self.cfg['file_type']}"
+            )
+
+            os.rename(self.input().path, new_fp)

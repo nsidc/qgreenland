@@ -2,33 +2,59 @@
 import os
 
 import luigi
+from osgeo import gdal
 
-from qgreenland.constants import TaskType
+from qgreenland.constants import DATA_DIR, TaskType
 from qgreenland.util.cmr import granules_from_cmr
 from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.misc import fetch_file
 
 
-class FetchData(LayerConfigMixin, luigi.Task):
-    task_type = TaskType.FETCH
+# TODO: Figure out a way to avoid fetching the same data multiple times without
+# such an annoying parameter signature.
+class FetchData(luigi.Task):
+    source_cfg = luigi.DictParameter()
+    output_name = luigi.Parameter()
 
     def output(self):
-        # luigi.format.Nop is required to write binary file.
-        # https://github.com/spotify/luigi/issues/1647
-        of = os.path.join(self.outdir, f'{self.short_name}.data')
-        return luigi.LocalTarget(of, format=luigi.format.Nop)
+        return luigi.LocalTarget(
+            os.path.join(DATA_DIR,
+                         'fetch',
+                         self.output_name,
+                         f'{self.output_name}.data'),
+            format=luigi.format.Nop
+        )
 
     def run(self):
-        layer_source = self.layer_cfg['source']
-        if 'cmr' in layer_source:
+        if 'cmr' in self.source_cfg:
             granules = granules_from_cmr(
-                layer_source['cmr']['short_name'],
-                layer_source['cmr']['version']
+                self.source_cfg['cmr']['short_name'],
+                self.source_cfg['cmr']['version']
             )
             url = granules[0]['Online Access URLs']
-        elif 'url' in layer_source:
-            url = self.layer_cfg['source']['url']
+        elif 'url' in self.source_cfg:
+            url = self.source_cfg['url']
 
         resp = fetch_file(url)
         with self.output().open('wb') as outfile:
             outfile.write(resp.content)
+
+
+class ExtractNcDataset(LayerConfigMixin, luigi.Task):
+    """Extracts dataset `dataset_name` from input .nc file."""
+
+    task_type = TaskType.WIP
+    dataset_name = luigi.Parameter()
+
+    def requires(self):
+        output_name = self.layer_cfg['source'].get('name', self.layer_cfg['short_name'])
+        return FetchData(self.layer_cfg['source'], output_name)
+
+    def output(self):
+        # GDAL translate will automatically determine file type from the extension.
+        ext = self.layer_cfg['file_type']
+        return luigi.LocalTarget(os.path.join(self.outdir, f'{self.dataset_name}.{ext}'))
+
+    def run(self):
+        gdal.Translate(self.output().path,
+                       f'NETCDF:{self.input().path}:{self.dataset_name}')

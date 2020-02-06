@@ -5,7 +5,7 @@ import luigi
 
 from qgreenland import __version__
 from qgreenland.constants import DATA_FINAL_DIR, DATA_RELEASE_DIR, TMP_DIR
-from qgreenland.tasks.layers import ArcticDEM, BedMachine, Coastlines
+from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
 from qgreenland.util.file import load_layer_config
 from qgreenland.util.misc import make_qgs
 
@@ -14,7 +14,12 @@ class CreateProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
-        return ArcticDEM(), BedMachine(), Coastlines()
+        """All layers (not sources) that will be added to the project."""
+        yield ArcticDEM()
+        yield BedMachineDataset('surface')
+        yield BedMachineDataset('thickness')
+        yield BedMachineDataset('bed')
+        yield Coastlines()
 
     def output(self):
         return luigi.LocalTarget(f'{TMP_DIR}/READY_TO_ZIP')

@@ -16,7 +16,7 @@ class ReprojectRaster(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
 
     def requires(self):
-        return FetchData(self.layer_cfg)
+        return FetchData(self.layer_cfg['source'], self.layer_cfg['short_name'])
 
     def output(self):
         # TODO: may not always be .tif
