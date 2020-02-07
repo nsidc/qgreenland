@@ -1,4 +1,4 @@
-# v0.4.0 (Unreleased)
+# v0.4.0 (2020-02-07)
 
 * New layer: IceBridge BedMachine
 
