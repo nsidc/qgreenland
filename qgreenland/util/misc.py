@@ -91,8 +91,9 @@ def make_qgs(layers_cfg, path):
                 'gdal'
             )
 
-        if style:= layer_cfg.get('style'):
-            load_qml_style(map_layer, style)
+        # TODO: COO COO CACHOO
+        if layer_cfg.get('style'):
+            load_qml_style(map_layer, layer_cfg.get('style'))
 
         map_layer.setCrs(project_crs)
 

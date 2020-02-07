@@ -4,7 +4,6 @@ import zipfile
 import luigi
 
 from qgreenland.constants import TaskType
-from qgreenland.tasks.common import FetchData
 from qgreenland.util.file import find_shapefile_in_dir, tempdir_renamed_to
 from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.shapefile import reproject_shapefile, subset_shapefile
@@ -15,9 +14,10 @@ from qgreenland.util.shapefile import reproject_shapefile, subset_shapefile
 
 class UnzipShapefile(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
+    requires_task = luigi.Parameter()
 
     def requires(self):
-        return FetchData(self.layer_cfg['source'], self.layer_cfg['short_name'])
+        return self.requires_task
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/unzip/')
@@ -33,9 +33,10 @@ class UnzipShapefile(LayerConfigMixin, luigi.Task):
 
 class ReprojectShapefile(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
+    requires_task = luigi.Parameter()
 
     def requires(self):
-        return UnzipShapefile(self.layer_cfg)
+        return self.requires_task
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/reproject/')
@@ -51,9 +52,10 @@ class ReprojectShapefile(LayerConfigMixin, luigi.Task):
 
 class SubsetShapefile(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
+    requires_task = luigi.Parameter()
 
     def requires(self):
-        return ReprojectShapefile(self.layer_cfg)
+        return self.requires_task
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/subset/')

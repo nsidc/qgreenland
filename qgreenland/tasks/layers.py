@@ -7,9 +7,11 @@ import os
 import luigi
 
 from qgreenland.constants import DATA_FINAL_DIR
-from qgreenland.tasks.common import ExtractNcDataset
-from qgreenland.tasks.raster import SubsetRaster
-from qgreenland.tasks.shapefile import SubsetShapefile
+from qgreenland.tasks.common import ExtractNcDataset, FetchData
+from qgreenland.tasks.raster import ReprojectRaster, SubsetRaster
+from qgreenland.tasks.shapefile import (ReprojectShapefile,
+                                        SubsetShapefile,
+                                        UnzipShapefile)
 from qgreenland.util.file import (find_shapefile_in_dir,
                                   load_layer_config,
                                   tempdir_renamed_to)
@@ -33,7 +35,22 @@ class Coastlines(LayerTaskMixin, luigi.Task):
     cfg = load_layer_config(layer_name)
 
     def requires(self):
-        return SubsetShapefile(self.cfg)
+        fetch_data = FetchData(
+            source_cfg=self.cfg['source'],
+            output_name=self.cfg['short_name']
+        )  # ->
+        unzip_shapefile = UnzipShapefile(
+            requires_task=fetch_data,
+            layer_cfg=self.cfg
+        )  # ->
+        reproject_shapefile = ReprojectShapefile(
+            requires_task=unzip_shapefile,
+            layer_cfg=self.cfg
+        )  # ->
+        return SubsetShapefile(
+            requires_task=reproject_shapefile,
+            layer_cfg=self.cfg
+        )
 
     def run(self):
         shapefile = find_shapefile_in_dir(self.input().path)
@@ -57,7 +74,18 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
     cfg = load_layer_config(layer_name)
 
     def requires(self):
-        return SubsetRaster(self.cfg)
+        fetch_data = FetchData(
+            source_cfg=self.cfg['source'],
+            output_name=self.cfg['short_name']
+        )  # ->
+        reproject_raster = ReprojectRaster(
+            requires_task=fetch_data,
+            layer_cfg=self.cfg
+        )  # ->
+        return SubsetRaster(
+            requires_task=reproject_raster,
+            layer_cfg=self.cfg
+        )
 
     def run(self):
         # TODO: Do we really need the tempdir context manager for this single-file rename?
@@ -85,7 +113,17 @@ class BedMachineDataset(LayerTaskMixin, luigi.Task):
         self.cfg = load_layer_config(self.layer_name)
 
     def requires(self):
-        return ExtractNcDataset(self.cfg, self.dataset_name)
+        output_name = self.cfg['source'].get('name', self.cfg['short_name'])
+
+        fetch_data = FetchData(
+            source_cfg=self.cfg['source'],
+            output_name=output_name
+        )  # ->
+        return ExtractNcDataset(
+            requires_task=fetch_data,
+            layer_cfg=self.cfg,
+            dataset_name=self.dataset_name
+        )
 
     def run(self):
         # TODO: Do we really need the tempdir context manager for this single-file rename?

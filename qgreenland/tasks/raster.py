@@ -8,15 +8,15 @@ from osgeo import gdal
 from shapely.geometry import Polygon
 
 from qgreenland.constants import BBOX_POLYGON, PROJECT_CRS, TaskType
-from qgreenland.tasks.common import FetchData
 from qgreenland.util.luigi import LayerConfigMixin
 
 
 class ReprojectRaster(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
+    requires_task = luigi.Parameter()
 
     def requires(self):
-        return FetchData(self.layer_cfg['source'], self.layer_cfg['short_name'])
+        return self.requires_task
 
     def output(self):
         # TODO: may not always be .tif
@@ -31,9 +31,10 @@ class ReprojectRaster(LayerConfigMixin, luigi.Task):
 
 class SubsetRaster(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
+    requires_task = luigi.Parameter()
 
     def requires(self):
-        return ReprojectRaster(self.layer_cfg)
+        return self.requires_task
 
     def output(self):
         # TODO: may not always be .tif

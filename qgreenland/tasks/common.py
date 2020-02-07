@@ -45,10 +45,10 @@ class ExtractNcDataset(LayerConfigMixin, luigi.Task):
 
     task_type = TaskType.WIP
     dataset_name = luigi.Parameter()
+    requires_task = luigi.Parameter()
 
     def requires(self):
-        output_name = self.layer_cfg['source'].get('name', self.layer_cfg['short_name'])
-        return FetchData(self.layer_cfg['source'], output_name)
+        return self.requires_task
 
     def output(self):
         # GDAL translate will automatically determine file type from the extension.
