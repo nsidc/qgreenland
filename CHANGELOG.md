@@ -1,3 +1,8 @@
+# v0.5.0 (2020-02-07)
+
+* Add config option for gdal warp arguments
+  * Downsample BedMachine to 1km
+
 # v0.4.0 (2020-02-07)
 
 * New layer: IceBridge BedMachine
