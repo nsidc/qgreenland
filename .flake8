@@ -5,6 +5,6 @@ max-line-length = 90
 application_import_names = qgreenland
 import_order_style = pycharm
 
-# Ignore errors requiring docstrings on everything
-# Ignore errors requiring blank line after binary operators
+# D1: Ignore errors requiring docstrings on everything
+# W504: Ignore errors requiring blank line after binary operators
 ignore = D1,W504
