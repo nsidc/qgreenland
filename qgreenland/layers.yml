@@ -46,6 +46,9 @@ bedmachine_bed: &bedmachine
   data_type: 'raster'
   layer_group: 'basemaps'
   style: 'bedmachine_bed'
+  warp_kwargs:
+    xRes: 1000
+    yRes: 1000
 
 
 bedmachine_surface:

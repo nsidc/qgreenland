@@ -25,9 +25,14 @@ class ReprojectRaster(LayerConfigMixin, luigi.Task):
 
     def run(self):
         with self.output().temporary_path() as tmp_path:
-            gdal.Warp(tmp_path, self.input().path,
-                      dstSRS=PROJECT_CRS,
-                      resampleAlg='bilinear')
+            warp_kwargs = {
+                'resampleAlg': 'bilinear'
+            }
+            if 'warp_kwargs' in self.layer_cfg:
+                warp_kwargs.update(self.layer_cfg['warp_kwargs'])
+
+            gdal.Warp(tmp_path, self.input().path, dstSRS=PROJECT_CRS,
+                      **warp_kwargs)
 
 
 class SubsetRaster(LayerConfigMixin, luigi.Task):
