@@ -4,7 +4,7 @@ import zipfile
 import luigi
 
 from qgreenland.constants import TaskType
-from qgreenland.util.file import find_shapefile_in_dir, tempdir_renamed_to
+from qgreenland.util.file import find_shapefile_in_dir, temporary_path_dir
 from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.shapefile import reproject_shapefile, subset_shapefile
 
@@ -23,11 +23,11 @@ class UnzipShapefile(LayerConfigMixin, luigi.Task):
         return luigi.LocalTarget(f'{self.outdir}/unzip/')
 
     def run(self):
-        with tempdir_renamed_to(self.output().path) as tmpdir:
+        with temporary_path_dir(self.output()) as temp_path:
             zf = zipfile.ZipFile(self.input().path)
 
             for fn in zf.namelist():
-                zf.extract(fn, tmpdir)
+                zf.extract(fn, temp_path)
             zf.close()
 
 
@@ -45,8 +45,8 @@ class ReprojectShapefile(LayerConfigMixin, luigi.Task):
         shapefile = find_shapefile_in_dir(self.input().path)
 
         gdf = reproject_shapefile(shapefile)
-        with tempdir_renamed_to(self.output().path) as tmpdir:
-            fn = os.path.join(tmpdir, 'shapefile.shp')
+        with temporary_path_dir(self.output()) as temp_path:
+            fn = os.path.join(temp_path, 'shapefile.shp')
             gdf.to_file(fn, driver='ESRI Shapefile')
 
 
@@ -64,6 +64,6 @@ class SubsetShapefile(LayerConfigMixin, luigi.Task):
         shapefile = find_shapefile_in_dir(self.input().path)
 
         gdf = subset_shapefile(shapefile)
-        with tempdir_renamed_to(self.output().path) as tmpdir:
-            fn = os.path.join(tmpdir, 'shapefile.shp')
+        with temporary_path_dir(self.output()) as temp_path:
+            fn = os.path.join(temp_path, 'shapefile.shp')
             gdf.to_file(fn, driver='ESRI Shapefile')

@@ -14,7 +14,7 @@ from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         UnzipShapefile)
 from qgreenland.util.file import (find_shapefile_in_dir,
                                   load_layer_config,
-                                  tempdir_renamed_to)
+                                  temporary_path_dir)
 
 
 class LayerTaskMixin(luigi.Task):
@@ -56,12 +56,12 @@ class Coastlines(LayerTaskMixin, luigi.Task):
         shapefile = find_shapefile_in_dir(self.input().path)
         processed_shapefile_dir = os.path.dirname(shapefile)
 
-        with tempdir_renamed_to(self.output().path) as tempdir:
+        with temporary_path_dir(self.output()) as temp_path:
             for f in os.listdir(processed_shapefile_dir):
                 _, ext = f.split('.')
                 old_fp = os.path.join(processed_shapefile_dir, f)
                 new_fp = os.path.join(
-                    tempdir,
+                    temp_path,
                     f'{self.layer_name}.{ext}')
 
                 os.rename(old_fp, new_fp)
@@ -88,10 +88,9 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
         )
 
     def run(self):
-        # TODO: Do we really need the tempdir context manager for this single-file rename?
-        with tempdir_renamed_to(self.output().path) as tempdir:
+        with temporary_path_dir(self.output()) as temp_path:
             new_fp = os.path.join(
-                tempdir,
+                temp_path,
                 f"{self.layer_name}.{self.cfg['file_type']}"
             )
 
@@ -130,10 +129,9 @@ class BedMachineDataset(LayerTaskMixin, luigi.Task):
         )
 
     def run(self):
-        # TODO: Do we really need the tempdir context manager for this single-file rename?
-        with tempdir_renamed_to(self.output().path) as tempdir:
+        with temporary_path_dir(self.output()) as temp_path:
             new_fp = os.path.join(
-                tempdir,
+                temp_path,
                 f"{self.layer_name}.{self.cfg['file_type']}"
             )
 
