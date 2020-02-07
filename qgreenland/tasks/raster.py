@@ -21,11 +21,11 @@ class ReprojectRaster(LayerConfigMixin, luigi.Task):
     def output(self):
         fn = os.path.basename(self.input().path)
         of = os.path.join(self.outdir, 'reproject', fn)
-        return luigi.LocalTarget(of, format=luigi.format.Nop)
+        return luigi.LocalTarget(of)
 
     def run(self):
-        with self.output().open('wb') as f:
-            gdal.Warp(f.tmp_path, self.input().path,
+        with self.output().temporary_path() as tmp_path:
+            gdal.Warp(tmp_path, self.input().path,
                       dstSRS=PROJECT_CRS,
                       resampleAlg='bilinear')
 
@@ -40,13 +40,13 @@ class SubsetRaster(LayerConfigMixin, luigi.Task):
     def output(self):
         fn = os.path.basename(self.input().path)
         of = os.path.join(self.outdir, 'subset', fn)
-        return luigi.LocalTarget(of, format=luigi.format.Nop)
+        return luigi.LocalTarget(of)
 
     def run(self):
         with rio.open(self.input().path, 'r') as ds:
             bb_poly = geopandas.GeoSeries([Polygon(BBOX_POLYGON)])
             img_out, meta_out = eps.crop_image(ds, bb_poly)
 
-        with self.output().open('wb') as f:
-            with rio.open(f.tmp_path, 'w', **meta_out) as c_ds:
+        with self.output().temporary_path() as tmp_path:
+            with rio.open(tmp_path, 'w', **meta_out) as c_ds:
                 c_ds.write(img_out)
