@@ -11,5 +11,8 @@ services:
       - ./state:/luigi/state:rw
       - ./data:/luigi/data:rw
       - ../qgreenland:/luigi/tasks/qgreenland:ro
+    environment:
+      - EARTHDATA_USERNAME
+      - EARTHDATA_PASSWORD
     ports:
       - 80:8082

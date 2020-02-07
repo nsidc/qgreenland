@@ -1,3 +1,8 @@
+# TODO: Consider removing short_name key and just use the layer key
+# TODO: Consider renaming file_type to "output_file_type" or something --
+# currently this is used when adding layers to the project file, so we should
+# consider this as output_file_type and use a new key for source file type.
+
 coastlines:
   source:
     url: 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
@@ -11,6 +16,7 @@ coastlines:
     text: 'Made with Natural Earth'
     url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
   layer_group: 'basemaps'
+
 
 arctic_dem:
   source:
@@ -26,3 +32,31 @@ arctic_dem:
     url: 'https://www.pgc.umn.edu/data/arcticdem/'
   layer_group: 'basemaps'
   style: 'arctic_dem'
+
+
+bedmachine_bed: &bedmachine
+  source:
+    name: 'bedmachine'
+    cmr:
+      short_name: 'IDBMG4'
+      version: 3
+  name: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
+  short_name: 'bedmachine_bed'
+  file_type: 'tif'
+  data_type: 'raster'
+  layer_group: 'basemaps'
+  style: 'bedmachine_bed'
+
+
+bedmachine_surface:
+  <<: *bedmachine
+  name: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
+  short_name: 'bedmachine_surface'
+  style: null
+
+
+bedmachine_thickness:
+  <<: *bedmachine
+  name: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
+  short_name: 'bedmachine_thickness'
+  style: null
