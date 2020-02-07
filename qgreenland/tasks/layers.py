@@ -119,10 +119,14 @@ class BedMachineDataset(LayerTaskMixin, luigi.Task):
             source_cfg=self.cfg['source'],
             output_name=output_name
         )  # ->
-        return ExtractNcDataset(
+        extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,
             layer_cfg=self.cfg,
             dataset_name=self.dataset_name
+        )  # ->
+        return ReprojectRaster(
+            requires_task=extract_nc_dataset,
+            layer_cfg=self.cfg,
         )
 
     def run(self):

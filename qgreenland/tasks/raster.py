@@ -19,14 +19,15 @@ class ReprojectRaster(LayerConfigMixin, luigi.Task):
         return self.requires_task
 
     def output(self):
-        # TODO: may not always be .tif
-        of = os.path.join(self.outdir, 'reprojected.tif')
-        return luigi.LocalTarget(of)
+        fn = os.path.basename(self.input().path)
+        of = os.path.join(self.outdir, 'reproject', fn)
+        return luigi.LocalTarget(of, format=luigi.format.Nop)
 
     def run(self):
-        gdal.Warp(self.output().path, self.input().path,
-                  dstSRS=PROJECT_CRS,
-                  resampleAlg='bilinear')
+        with self.output().open('wb') as f:
+            gdal.Warp(f.tmp_path, self.input().path,
+                      dstSRS=PROJECT_CRS,
+                      resampleAlg='bilinear')
 
 
 class SubsetRaster(LayerConfigMixin, luigi.Task):
@@ -37,14 +38,15 @@ class SubsetRaster(LayerConfigMixin, luigi.Task):
         return self.requires_task
 
     def output(self):
-        # TODO: may not always be .tif
-        of = os.path.join(self.outdir, 'subset.tif')
-        return luigi.LocalTarget(of)
+        fn = os.path.basename(self.input().path)
+        of = os.path.join(self.outdir, 'subset', fn)
+        return luigi.LocalTarget(of, format=luigi.format.Nop)
 
     def run(self):
         with rio.open(self.input().path, 'r') as ds:
             bb_poly = geopandas.GeoSeries([Polygon(BBOX_POLYGON)])
             img_out, meta_out = eps.crop_image(ds, bb_poly)
 
-        with rio.open(self.output().path, 'w', **meta_out) as c_ds:
-            c_ds.write(img_out)
+        with self.output().open('wb') as f:
+            with rio.open(f.tmp_path, 'w', **meta_out) as c_ds:
+                c_ds.write(img_out)

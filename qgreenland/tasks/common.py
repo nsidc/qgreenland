@@ -53,8 +53,13 @@ class ExtractNcDataset(LayerConfigMixin, luigi.Task):
     def output(self):
         # GDAL translate will automatically determine file type from the extension.
         ext = self.layer_cfg['file_type']
-        return luigi.LocalTarget(os.path.join(self.outdir, f'{self.dataset_name}.{ext}'))
+        return luigi.LocalTarget(
+            os.path.join(self.outdir, 'extract', f'{self.dataset_name}.{ext}')
+        )
 
     def run(self):
-        gdal.Translate(self.output().path,
-                       f'NETCDF:{self.input().path}:{self.dataset_name}')
+        with self.output().open('w') as f:
+            gdal.Translate(
+                f.buffer.name,
+                f'NETCDF:{self.input().path}:{self.dataset_name}'
+            )
