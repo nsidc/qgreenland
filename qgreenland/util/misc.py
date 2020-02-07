@@ -91,6 +91,8 @@ def make_qgs(layers_cfg, path):
                 'gdal'
             )
 
+        map_layer.setAbstract(build_abstract(layer_cfg))
+
         # TODO: COO COO CACHOO
         if layer_cfg.get('style'):
             load_qml_style(map_layer, layer_cfg.get('style'))
@@ -119,3 +121,24 @@ def load_qml_style(map_layer, style_name):
 
     if not status:
         raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
+
+
+def build_abstract(layer_cfg):
+    abstract = ''
+    if layer_cfg.get('description'):
+        abstract += layer_cfg['description'] + '\n\n'
+
+    if layer_cfg.get('abstract'):
+        abstract += 'Abstract:\n'
+        abstract += layer_cfg['abstract'] + '\n\n'
+
+    if layer_cfg.get('citation'):
+        if layer_cfg['citation'].get('text'):
+            abstract += 'Citation:\n'
+            abstract += layer_cfg['citation']['text'] + '\n\n'
+
+        if layer_cfg['citation'].get('url'):
+            abstract += 'Citation URL:\n'
+            abstract += layer_cfg['citation']['url']
+
+    return abstract

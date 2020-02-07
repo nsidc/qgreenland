@@ -1,3 +1,9 @@
+# v0.6.0 (2020-02-07)
+
+* Add citations to each layer as tooltips. We're currently not sure how to
+  populate the actual "Abstract" field in the metadata tab in QGIS using
+  pyqgis.
+
 # v0.5.0 (2020-02-07)
 
 * Add config option for gdal warp arguments

@@ -44,6 +44,10 @@ bedmachine_bed: &bedmachine
   short_name: 'bedmachine_bed'
   file_type: 'tif'
   data_type: 'raster'
+  description: 'This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.'
+  citation:
+    text: 'Morlighem, M. et al. 2017, updated 2018. IceBridge BedMachine Greenland, Version 3. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/2CIX82HUV88Y. 2020/02/07.'
+    url: 'https://doi.org/10.5067/2CIX82HUV88Y'
   layer_group: 'basemaps'
   style: 'bedmachine_bed'
   warp_kwargs:
