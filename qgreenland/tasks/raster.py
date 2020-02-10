@@ -16,6 +16,9 @@ class BuildRasterOverviews(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
     requires_task = luigi.Parameter()
 
+    default_overview_levels = (2, 4, 8, 16)
+    default_resampling_method = 'average'
+
     def requires(self):
         return self.requires_task
 
@@ -25,13 +28,27 @@ class BuildRasterOverviews(LayerConfigMixin, luigi.Task):
         return luigi.LocalTarget(of)
 
     def run(self):
+        overviews_args = self.layer_cfg.get('overviews_kwargs', {})
+
+        overview_levels = overviews_args.get('overview_levels',
+                                             self.default_overview_levels)
+        resampling_str = overviews_args.get('resampling_method',
+                                            self.default_resampling_method)
+
+        try:
+            resampling_method = rio.enums.Resampling[resampling_str]
+        except KeyError:
+            raise RuntimeError(
+                f"'{resampling_str}' is not a valid resampling method."
+            )
+
         with self.output().temporary_path() as tmp_path:
             # Copy the existing file into place. Currently, this task creates
             # 'internal overviews', which changes the file itself.
             shutil.copy2(self.input().path, tmp_path)
+
             with rio.open(tmp_path, 'r+') as ds:
-                ds.build_overviews([2, 4, 8, 16],
-                                   rio.enums.Resampling.average)
+                ds.build_overviews(overview_levels, resampling_method)
 
 
 class ReprojectRaster(LayerConfigMixin, luigi.Task):
