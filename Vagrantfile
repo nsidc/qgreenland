@@ -5,6 +5,13 @@ require 'vagrant-nsidc/plugin'
 environment = VagrantPlugins::NSIDC::Plugin.environment
 
 Vagrant.configure(2) do |config|
+  memory_gb = ['staging', 'production'].include?(environment) ? 8 : 4
+
+  config.vm.provider :vsphere do |vsphere|
+    vsphere.memory_mb = 1024 * memory_gb
+    vsphere.cpu_count = 2
+  end
+
   config.vm.provision :shell do |s|
     s.name = 'apt-get update'
     s.inline = 'apt-get update'
