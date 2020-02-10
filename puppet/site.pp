@@ -1,10 +1,10 @@
 # Load modules and classes
 lookup('classes', {merge => unique}).include
 
-file {'qgreenland.sh':
-  ensure => file,
-  path   => '/etc/profile.d/qgreenland.sh',
-  source => '/vagrant/puppet/files/qgreenland.sh',
+file {'envvars.sh':
+  ensure  => file,
+  content => vault_template('/vagrant/puppet/templates/qgreenland.erb'),
+  path    => '/etc/profile.d/envvars.sh'
 }
 
 exec {'install utils':
@@ -37,10 +37,13 @@ exec {'start luigi':
 
 if $::environment == 'dev' {
 	exec {'create conda env':
-    command => '/opt/miniconda/bin/conda env create',
+    command => "/bin/bash -lc '/opt/miniconda/bin/conda env create'",
     cwd     => '/vagrant',
     timeout => 600,
     user    => vagrant,
-    require => Nsidc_miniconda::Install['/opt/miniconda'],
+    require => [
+      File['envvars.sh'],
+      Nsidc_miniconda::Install['/opt/miniconda'],
+    ],
   }
 }

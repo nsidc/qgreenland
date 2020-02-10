@@ -1,0 +1,4 @@
+# The generic user is used for fetching data or submitting orders. The app user
+# is used for fetching EDL profiles of authorized users.
+export EARTHDATA_USERNAME='<%= vault_get('vault.apps.int.nsidc.org', 'nsidc/apps/qgreenland', 'earthdata_username') %>'
+export EARTHDATA_PASSWORD='<%= vault_get('vault.apps.int.nsidc.org', 'nsidc/apps/qgreenland', 'earthdata_password') %>'
