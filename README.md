@@ -81,7 +81,7 @@ you can run individual layer pipelines, e.g.:
 ```
 docker-compose exec luigi \
   luigi --module qgreenland.tasks.layers \
-  BedMachineDataset --dataset-name bed
+  BedMachineDataset --dataset-name=bed
 ```
 
 See the [Luigi documentation](https://luigi.readthedocs.io/en/stable/running_luigi.html)
