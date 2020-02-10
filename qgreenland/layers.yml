@@ -1,3 +1,8 @@
+# TODO: Consider removing short_name key and just use the layer key
+# TODO: Consider renaming file_type to "output_file_type" or something --
+# currently this is used when adding layers to the project file, so we should
+# consider this as output_file_type and use a new key for source file type.
+
 coastlines:
   source:
     url: 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
@@ -11,15 +16,7 @@ coastlines:
     text: 'Made with Natural Earth'
     url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
   layer_group: 'basemaps'
-  # TODO implement the pipeline.
-  # Each step could return its output path, in which case the next step would open it, or
-  # return an object (geodataframe) that gets passed in to the next step as argument.
-  steps:
-    - download:
-    - unzip:
-    - reproject:
-    - subset:
-    - zip:
+
 
 arctic_dem:
   source:
@@ -34,8 +31,39 @@ arctic_dem:
     text: 'Data provided by the Polar Geospatial Center. Porter, Claire; Morin, Paul; Howat, Ian; Noh, Myoung-Jon; Bates, Brian; Peterman, Kenneth; Keesey, Scott; Schlenk, Matthew; Gardiner, Judith; Tomko, Karen; Willis, Michael; Kelleher, Cole; Cloutier, Michael; Husby, Eric; Foga, Steven; Nakamura, Hitomi; Platson, Melisa; Wethington, Michael, Jr.; Williamson, Cathleen; Bauer, Gregory; Enos, Jeremy; Arnold, Galen; Kramer, William; Becker, Peter; Doshi, Abhijit; D’Souza, Cristelle; Cummens, Pat; Laurier, Fabien; Bojesen, Mikkel, 2018, “ArcticDEM”, https://doi.org/10.7910/DVN/OHHUKH, Harvard Dataverse, V1, 2020-01-23'
     url: 'https://www.pgc.umn.edu/data/arcticdem/'
   layer_group: 'basemaps'
-  steps:
-    - download:
-    - reproject:
-    - subset:
-    - zip:
+  style: 'arctic_dem'
+
+
+bedmachine_bed: &bedmachine
+  source:
+    name: 'bedmachine'
+    cmr:
+      short_name: 'IDBMG4'
+      version: 3
+  name: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
+  short_name: 'bedmachine_bed'
+  file_type: 'tif'
+  data_type: 'raster'
+  description: 'This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.'
+  citation:
+    text: 'Morlighem, M. et al. 2017, updated 2018. IceBridge BedMachine Greenland, Version 3. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/2CIX82HUV88Y. 2020/02/07.'
+    url: 'https://doi.org/10.5067/2CIX82HUV88Y'
+  layer_group: 'basemaps'
+  style: 'bedmachine_bed'
+  warp_kwargs:
+    xRes: 1000
+    yRes: 1000
+
+
+bedmachine_surface:
+  <<: *bedmachine
+  name: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
+  short_name: 'bedmachine_surface'
+  style: null
+
+
+bedmachine_thickness:
+  <<: *bedmachine
+  name: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
+  short_name: 'bedmachine_thickness'
+  style: null

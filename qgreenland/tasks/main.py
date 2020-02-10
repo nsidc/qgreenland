@@ -5,8 +5,8 @@ import luigi
 
 from qgreenland import __version__
 from qgreenland.constants import DATA_FINAL_DIR, DATA_RELEASE_DIR, TMP_DIR
-from qgreenland.tasks.layers import ArcticDEM, Coastlines
-from qgreenland.util.file import load_layer_config, tempdir_renamed_to
+from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
+from qgreenland.util.file import load_layer_config
 from qgreenland.util.misc import make_qgs
 
 
@@ -14,10 +14,15 @@ class CreateProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
-        return [ArcticDEM(), Coastlines()]
+        """All layers (not sources) that will be added to the project."""
+        yield ArcticDEM()
+        yield BedMachineDataset('surface')
+        yield BedMachineDataset('thickness')
+        yield BedMachineDataset('bed')
+        yield Coastlines()
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}')
+        return luigi.LocalTarget(f'{TMP_DIR}/READY_TO_ZIP')
 
     def run(self):
         layers_cfg = load_layer_config()
@@ -25,9 +30,11 @@ class CreateProjectFile(luigi.Task):
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
-        with tempdir_renamed_to(self.output().path, act_on_contents=True) as d:
-            make_qgs(layers_cfg,
-                     os.path.join(d, 'qgreenland.qgs'))
+        make_qgs(layers_cfg,
+                 os.path.join(DATA_FINAL_DIR, 'qgreenland.qgs'))
+
+        with self.output().open('w'):
+            pass
 
 
 class ZipQGreenland(luigi.Task):
@@ -37,13 +44,14 @@ class ZipQGreenland(luigi.Task):
         return CreateProjectFile()
 
     def output(self):
+        os.makedirs(DATA_RELEASE_DIR, exist_ok=True)
         fn = f'{DATA_RELEASE_DIR}/QGreenland_v{__version__}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):
-        os.makedirs(DATA_RELEASE_DIR, exist_ok=True)
-
         tmp_name = f'{TMP_DIR}/final_archive'
         shutil.make_archive(tmp_name, 'zip', TMP_DIR, 'qgreenland')
 
         os.rename(f'{tmp_name}.zip', self.output().path)
+
+        os.remove(self.input().path)

@@ -12,6 +12,8 @@ TMP_DIR = DATA_DIR
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 REQUEST_TIMEOUT = 3
+
+# Project configuration
 # NOTE: The order of this dictionary is important for passing to qgc.QgsRectangle
 BBOX = {'xmin': -3850000.000, 'ymin': -5350000.0, 'xmax': 3750000.0, 'ymax': 5850000.000}
 BBOX_POLYGON = [
@@ -22,6 +24,9 @@ BBOX_POLYGON = [
     (BBOX['xmin'], BBOX['ymax']),
 ]
 PROJECT_CRS = 'EPSG:3411'
+
+# URS stuff
+URS_COOKIE = 'urs_user_already_logged'
 
 
 class TaskType(Enum):

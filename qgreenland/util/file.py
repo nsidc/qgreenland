@@ -1,12 +1,9 @@
 import os
-import pathlib
-import stat
-import tempfile
 from contextlib import contextmanager
 
 import yaml
 
-from qgreenland.constants import THIS_DIR, TMP_DIR
+from qgreenland.constants import THIS_DIR
 
 
 def load_layer_config(layername=None):
@@ -36,28 +33,11 @@ def find_shapefile_in_dir(path):
 
 
 @contextmanager
-def tempdir_renamed_to(target, act_on_contents=False):
-    """Write to a temporary directory.
-
-    target: After writing rename to this dir.
-    act_on_contents: Rename contents of tempdir inside of target dir instead of
-                     renaming the directory itself. Useful for when you want to
-                     write arbitrary files to a pre-existing directory.
-    """
-    d = tempfile.mkdtemp(dir=TMP_DIR)
-    try:
-        yield d
-    finally:
-        os.chmod(d,
-                 stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR |
-                 stat.S_IRGRP | stat.S_IXGRP |
-                 stat.S_IROTH | stat.S_IXOTH)
-
-        if act_on_contents:
-            os.makedirs(pathlib.Path(target), exist_ok=True)
-            for f in os.listdir(d):
-                os.rename(os.path.join(d, f),
-                          os.path.join(target, f))
-        else:
-            os.makedirs(pathlib.Path(target).parent, exist_ok=True)
-            os.rename(d, target)
+def temporary_path_dir(target):
+    with target.temporary_path() as p:
+        try:
+            os.makedirs(p, exist_ok=True)
+            yield p
+        finally:
+            pass
+    return

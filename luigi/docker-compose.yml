@@ -11,6 +11,9 @@ services:
       - ./state:/luigi/state:rw
       - /share/appdata/qgreenland/QGreenland:/luigi/data:rw
       - ../qgreenland:/luigi/tasks/qgreenland:ro
+    environment:
+      - EARTHDATA_USERNAME
+      - EARTHDATA_PASSWORD
     ports:
       - 8082:8082
     restart: on-failure

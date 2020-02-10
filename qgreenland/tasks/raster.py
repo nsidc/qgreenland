@@ -8,36 +8,43 @@ from osgeo import gdal
 from shapely.geometry import Polygon
 
 from qgreenland.constants import BBOX_POLYGON, PROJECT_CRS, TaskType
-from qgreenland.tasks.common import FetchData
 from qgreenland.util.luigi import LayerConfigMixin
 
 
 class ReprojectRaster(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
+    requires_task = luigi.Parameter()
 
     def requires(self):
-        return FetchData(self.layer_cfg)
+        return self.requires_task
 
     def output(self):
-        # TODO: may not always be .tif
-        of = os.path.join(self.outdir, 'reprojected.tif')
+        fn = os.path.basename(self.input().path)
+        of = os.path.join(self.outdir, 'reproject', fn)
         return luigi.LocalTarget(of)
 
     def run(self):
-        gdal.Warp(self.output().path, self.input().path,
-                  dstSRS=PROJECT_CRS,
-                  resampleAlg='bilinear')
+        with self.output().temporary_path() as tmp_path:
+            warp_kwargs = {
+                'resampleAlg': 'bilinear'
+            }
+            if 'warp_kwargs' in self.layer_cfg:
+                warp_kwargs.update(self.layer_cfg['warp_kwargs'])
+
+            gdal.Warp(tmp_path, self.input().path, dstSRS=PROJECT_CRS,
+                      **warp_kwargs)
 
 
 class SubsetRaster(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
+    requires_task = luigi.Parameter()
 
     def requires(self):
-        return ReprojectRaster(self.layer_cfg)
+        return self.requires_task
 
     def output(self):
-        # TODO: may not always be .tif
-        of = os.path.join(self.outdir, 'subset.tif')
+        fn = os.path.basename(self.input().path)
+        of = os.path.join(self.outdir, 'subset', fn)
         return luigi.LocalTarget(of)
 
     def run(self):
@@ -45,5 +52,6 @@ class SubsetRaster(LayerConfigMixin, luigi.Task):
             bb_poly = geopandas.GeoSeries([Polygon(BBOX_POLYGON)])
             img_out, meta_out = eps.crop_image(ds, bb_poly)
 
-        with rio.open(self.output().path, 'w', **meta_out) as c_ds:
-            c_ds.write(img_out)
+        with self.output().temporary_path() as tmp_path:
+            with rio.open(tmp_path, 'w', **meta_out) as c_ds:
+                c_ds.write(img_out)

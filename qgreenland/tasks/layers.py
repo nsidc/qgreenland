@@ -7,65 +7,131 @@ import os
 import luigi
 
 from qgreenland.constants import DATA_FINAL_DIR
-from qgreenland.tasks.raster import SubsetRaster
-from qgreenland.tasks.shapefile import SubsetShapefile
+from qgreenland.tasks.common import ExtractNcDataset, FetchData
+from qgreenland.tasks.raster import ReprojectRaster, SubsetRaster
+from qgreenland.tasks.shapefile import (ReprojectShapefile,
+                                        SubsetShapefile,
+                                        UnzipShapefile)
 from qgreenland.util.file import (find_shapefile_in_dir,
                                   load_layer_config,
-                                  tempdir_renamed_to)
+                                  temporary_path_dir)
+
+
+class LayerTaskMixin(luigi.Task):
+
+    def output(self):
+        parent_dir = self.cfg['layer_group']
+        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}')
 
 
 # TODO: Consider creating a mixin or something for reading yaml config to
 # DRY out the code for layer classes
 # e.g. use a class attribute to automatically load config:
 #   layername = 'coastlines'
-class Coastlines(luigi.Task):
-    """Move to final location."""
+class Coastlines(LayerTaskMixin, luigi.Task):
+    """Rename files to their final location."""
 
     layer_name = 'coastlines'
     cfg = load_layer_config(layer_name)
 
     def requires(self):
-        return SubsetShapefile(self.cfg)
-
-    def output(self):
-        # TODO: DRY
-        subdir = f"{self.cfg['layer_group']}/{self.layer_name}"
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{subdir}/')
+        fetch_data = FetchData(
+            source_cfg=self.cfg['source'],
+            output_name=self.cfg['short_name']
+        )  # ->
+        unzip_shapefile = UnzipShapefile(
+            requires_task=fetch_data,
+            layer_cfg=self.cfg
+        )  # ->
+        reproject_shapefile = ReprojectShapefile(
+            requires_task=unzip_shapefile,
+            layer_cfg=self.cfg
+        )  # ->
+        return SubsetShapefile(
+            requires_task=reproject_shapefile,
+            layer_cfg=self.cfg
+        )
 
     def run(self):
         shapefile = find_shapefile_in_dir(self.input().path)
         processed_shapefile_dir = os.path.dirname(shapefile)
 
-        with tempdir_renamed_to(self.output().path) as tempdir:
+        with temporary_path_dir(self.output()) as temp_path:
             for f in os.listdir(processed_shapefile_dir):
                 _, ext = f.split('.')
                 old_fp = os.path.join(processed_shapefile_dir, f)
                 new_fp = os.path.join(
-                    tempdir,
+                    temp_path,
                     f'{self.layer_name}.{ext}')
 
                 os.rename(old_fp, new_fp)
 
 
-class ArcticDEM(luigi.Task):
+class ArcticDEM(LayerTaskMixin, luigi.Task):
     """Rename files to their final location."""
 
     layer_name = 'arctic_dem'
     cfg = load_layer_config(layer_name)
 
     def requires(self):
-        return SubsetRaster(self.cfg)
-
-    def output(self):
-        parent_dir = self.cfg['layer_group']
-
-        # TODO should the target be a directory?
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}/')
+        fetch_data = FetchData(
+            source_cfg=self.cfg['source'],
+            output_name=self.cfg['short_name']
+        )  # ->
+        reproject_raster = ReprojectRaster(
+            requires_task=fetch_data,
+            layer_cfg=self.cfg
+        )  # ->
+        return SubsetRaster(
+            requires_task=reproject_raster,
+            layer_cfg=self.cfg
+        )
 
     def run(self):
-        with tempdir_renamed_to(self.output().path) as tempdir:
+        with temporary_path_dir(self.output()) as temp_path:
             new_fp = os.path.join(
-                tempdir,
+                temp_path,
+                f"{self.layer_name}.{self.cfg['file_type']}"
+            )
+
+            os.rename(self.input().path, new_fp)
+
+
+class BedMachineDataset(LayerTaskMixin, luigi.Task):
+    """Dataproduct IDBMG4.
+
+    https://nsidc.org/data/IDBMG4
+    """
+
+    dataset_name = luigi.Parameter()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.layer_name = f'bedmachine_{self.dataset_name}'
+        self.cfg = load_layer_config(self.layer_name)
+
+    def requires(self):
+        output_name = self.cfg['source'].get('name', self.cfg['short_name'])
+
+        fetch_data = FetchData(
+            source_cfg=self.cfg['source'],
+            output_name=output_name
+        )  # ->
+        extract_nc_dataset = ExtractNcDataset(
+            requires_task=fetch_data,
+            layer_cfg=self.cfg,
+            dataset_name=self.dataset_name
+        )  # ->
+        return ReprojectRaster(
+            requires_task=extract_nc_dataset,
+            layer_cfg=self.cfg,
+        )
+
+    def run(self):
+        with temporary_path_dir(self.output()) as temp_path:
+            new_fp = os.path.join(
+                temp_path,
                 f"{self.layer_name}.{self.cfg['file_type']}"
             )
 

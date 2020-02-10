@@ -1,7 +1,26 @@
-# v0.2.0 (Unreleased)
+# v0.6.0 (2020-02-07)
 
-* Arctic DEM
+* Add citations to each layer as tooltips. We're currently not sure how to
+  populate the actual "Abstract" field in the metadata tab in QGIS using
+  pyqgis.
+
+# v0.5.0 (2020-02-07)
+
+* Add config option for gdal warp arguments
+  * Downsample BedMachine to 1km
+
+# v0.4.0 (2020-02-07)
+
+* New layer: IceBridge BedMachine
+
+# v0.3.0 (2020-02-06)
+
+* Added hillshade style to Arctic DEM layer.
+
+# v0.2.0 (2020-02-05)
+
+* New layer: Arctic DEM
 
 # v0.1.0 (2020-01-23)
 
-* Coastlines
+* New layer: Coastlines
