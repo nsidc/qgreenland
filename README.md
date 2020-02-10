@@ -86,3 +86,35 @@ docker-compose exec luigi \
 
 See the [Luigi documentation](https://luigi.readthedocs.io/en/stable/running_luigi.html)
 for more information on running Luigi from the CLI.
+
+
+### Testing VM outputs with QGIS
+
+There are a couple options here, but each have their tradeoffs.
+
+
+#### SSHFS
+
+Currently, I think this is the best option for developers on Linux or possibly
+Mac (does this work on Mac?)
+
+TODO:
+
+```
+Example command
+```
+
+
+#### X11 Forwarding
+
+My attempts at X11 Forwarding so far haven't been very fruitful. My best
+attempt yielded a QGIS GUI with everything rendered _except_ text.
+
+If you can get X11 Forwarding to work, please updating puppetry and README for
+everyone else's edification!
+
+
+#### Samba?
+
+This will be a bit more work to set up but we could try running Samba in a
+docker image.
