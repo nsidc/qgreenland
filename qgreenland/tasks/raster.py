@@ -1,4 +1,5 @@
 import os
+import shutil
 
 import geopandas
 import luigi
@@ -9,6 +10,28 @@ from shapely.geometry import Polygon
 
 from qgreenland.constants import BBOX_POLYGON, PROJECT_CRS, TaskType
 from qgreenland.util.luigi import LayerConfigMixin
+
+
+class BuildRasterOverviews(LayerConfigMixin, luigi.Task):
+    task_type = TaskType.WIP
+    requires_task = luigi.Parameter()
+
+    def requires(self):
+        return self.requires_task
+
+    def output(self):
+        fn = os.path.basename(self.input().path)
+        of = os.path.join(self.outdir, 'overviews', fn)
+        return luigi.LocalTarget(of)
+
+    def run(self):
+        with self.output().temporary_path() as tmp_path:
+            # Copy the existing file into place. Currently, this task creates
+            # 'internal overviews', which changes the file itself.
+            shutil.copy2(self.input().path, tmp_path)
+            with rio.open(tmp_path, 'r+') as ds:
+                ds.build_overviews([2, 4, 8, 16],
+                                   rio.enums.Resampling.average)
 
 
 class ReprojectRaster(LayerConfigMixin, luigi.Task):

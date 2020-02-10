@@ -8,7 +8,7 @@ import luigi
 
 from qgreenland.constants import DATA_FINAL_DIR
 from qgreenland.tasks.common import ExtractNcDataset, FetchData
-from qgreenland.tasks.raster import ReprojectRaster, SubsetRaster
+from qgreenland.tasks.raster import BuildRasterOverviews, ReprojectRaster, SubsetRaster
 from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
                                         UnzipShapefile)
@@ -82,8 +82,12 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
             requires_task=fetch_data,
             layer_cfg=self.cfg
         )  # ->
-        return SubsetRaster(
+        subset_raster = SubsetRaster(
             requires_task=reproject_raster,
+            layer_cfg=self.cfg
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=subset_raster,
             layer_cfg=self.cfg
         )
 
