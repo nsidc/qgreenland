@@ -25,25 +25,23 @@ nsidc_nfs::sharemount { '/share/appdata/qgreenland':
 }
 
 exec {'start luigi':
-  command   => '/usr/local/bin/docker-compose up -d',
+  command   => "/bin/bash -lc '/usr/local/bin/docker-compose up -d'",
   cwd       => '/vagrant/luigi',
   timeout   => 600,
   logoutput => true,
   require   => [
     Exec['install docker'],
+    File['envvars.sh'],
     Nsidc_nfs::Sharemount['/share/appdata/qgreenland'],
   ],
 }
 
 if $::environment == 'dev' {
 	exec {'create conda env':
-    command => "/bin/bash -lc '/opt/miniconda/bin/conda env create'",
+    command => '/opt/miniconda/bin/conda env create',
     cwd     => '/vagrant',
     timeout => 600,
     user    => vagrant,
-    require => [
-      File['envvars.sh'],
-      Nsidc_miniconda::Install['/opt/miniconda'],
-    ],
+    require => Nsidc_miniconda::Install['/opt/miniconda'],
   }
 }
