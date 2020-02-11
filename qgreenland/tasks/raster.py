@@ -16,9 +16,6 @@ class BuildRasterOverviews(LayerConfigMixin, luigi.Task):
     task_type = TaskType.WIP
     requires_task = luigi.Parameter()
 
-    default_overview_levels = (2, 4, 8, 16)
-    default_resampling_method = 'average'
-
     def requires(self):
         return self.requires_task
 
@@ -28,12 +25,17 @@ class BuildRasterOverviews(LayerConfigMixin, luigi.Task):
         return luigi.LocalTarget(of)
 
     def run(self):
-        overviews_args = self.layer_cfg.get('overviews_kwargs', {})
+        overviews_kwargs = {
+            'overview_levels': (2, 4, 8, 16),
+            'resampling_method': 'average'
+        }
 
-        overview_levels = overviews_args.get('overview_levels',
-                                             self.default_overview_levels)
-        resampling_str = overviews_args.get('resampling_method',
-                                            self.default_resampling_method)
+        overviews_kwargs.update(
+            self.layer_cfg.get('overviews_kwargs', {})
+        )
+
+        overview_levels = overviews_kwargs['overview_levels']
+        resampling_str = overviews_kwargs['resampling_method']
 
         try:
             resampling_method = rio.enums.Resampling[resampling_str]
