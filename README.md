@@ -96,12 +96,13 @@ There are a couple options here, but each have their tradeoffs.
 #### SSHFS
 
 Currently, I think this is the best option for developers on Linux or possibly
-Mac (does this work on Mac?)
+Mac (does this work on Mac?).
 
-TODO:
 
 ```
-Example command
+sudo sshfs -F ~/.ssh/config -o IdentityFile=~/.ssh/id_rsa_vagrant_vsphere \
+  -o allow_other -o ro \
+  vagrant@<vm>:/share/appdata/qgreenland /share/appdata/qgreenland/
 ```
 
 
