@@ -111,8 +111,8 @@ sudo sshfs -F ~/.ssh/config -o IdentityFile=~/.ssh/id_rsa_vagrant_vsphere \
 My attempts at X11 Forwarding so far haven't been very fruitful. My best
 attempt yielded a QGIS GUI with everything rendered _except_ text.
 
-If you can get X11 Forwarding to work, please updating puppetry and README for
-everyone else's edification!
+If you can get X11 Forwarding to work, please update the puppetry and README
+for everyone else's edification!
 
 
 #### Samba?
