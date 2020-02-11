@@ -1,0 +1,6 @@
+---
+project: qgreenland
+gitrepo: git@bitbucket.org:nsidc/default.git
+vsphere:
+  template:
+    default: xenial64-nsidc-puppet4

@@ -3,8 +3,8 @@ from enum import Enum
 
 PROJECT = 'qgreenland'
 DATA_DIR = '/luigi/data'
-DATA_FINAL_DIR = f'/{DATA_DIR}/{PROJECT}'
-DATA_RELEASE_DIR = f'/{DATA_DIR}/release'
+DATA_FINAL_DIR = f'{DATA_DIR}/{PROJECT}'
+DATA_RELEASE_DIR = f'{DATA_DIR}/release'
 
 # TMP_DIR is the same as DATA_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?

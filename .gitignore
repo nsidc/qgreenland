@@ -1,3 +1,17 @@
+# begin vagrant-nsidc
+#
+# the following entries were added by the vagrant-nsidc plugin when you ran
+# `vagrant nsidc init`
+
+.vagrant*/
+
+/puppet/.librarian/
+/puppet/.tmp/
+/puppet/Puppetfile.lock
+/puppet/modules/
+
+# end vagrant-nsidc
+
 luigi/data
 qgis-data/QGreenland*
 qgis-data/qgreenland
