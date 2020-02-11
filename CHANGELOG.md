@@ -1,7 +1,10 @@
-# v0.7.0 (2020-02-10)
+# v0.7.0 (2020-02-11)
 
 * Add task to generate overviews for raster layers.
   * Generate overviews for Arctic DEM layer.
+
+* Add VM configuration and update README on how to use VM to run tasks and serve
+  data.
 
 # v0.6.0 (2020-02-07)
 

@@ -1,0 +1,13 @@
+version: 5
+
+# Puppet Hiera Data
+defaults:
+  datadir: .
+  data_hash: yaml_data
+
+hierarchy:
+  - name: hierarchy
+    paths:
+      - "/vagrant/puppet/%{environment}.yaml"
+      - /vagrant/puppet/common.yaml
+      - /vagrant/vagrant-nsidc.yaml
