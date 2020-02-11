@@ -32,6 +32,9 @@ arctic_dem:
     url: 'https://www.pgc.umn.edu/data/arcticdem/'
   layer_group: 'basemaps'
   style: 'arctic_dem'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
 
 
 bedmachine_bed: &bedmachine
