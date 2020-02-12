@@ -139,14 +139,14 @@ You can contribute style changes without editing any Python code using the
 following process:
 
 * Download (or build) and open the most recent version of the project in QGIS.
-* In the "Layers" menu, double click on the layer you wish to edit.
-* Open the "symbology" tab.
+* In the 'Layers' menu, double click on the layer you wish to edit.
+* Open the 'symbology' tab.
 * Make your desired style changes.
-* In the lower-left corner, click the "Style" dropdown.
+* In the lower-left corner, click the 'Style' dropdown.
 
 ![Style dropdown](docs/images/style_dropdown.png)
 
-* In this menu, select "Save Style..."
+* In this menu, select 'Save Style...'
 
 ![Save style](docs/images/save_style.png)
 
@@ -156,7 +156,7 @@ following process:
 * Edit the `qgreenland/layers.yml` file and find the layer(s) you wish to apply
   this style to. Populate the `style` key for each layer with the name of the
   `.qml` file you saved in the previous step, excluding the extension. For
-  example, if you saved `foo.qml`, then populate `style: "foo"`.
+  example, if you saved `foo.qml`, then populate `style: 'foo'`.
 
 ![Style in YAML](docs/images/style_in_yaml.png)
 
@@ -166,7 +166,7 @@ following process:
 THIS IS CURRENTLY NOT IMPLEMENTED.
 
 The process will likely be the same as contributing styles, except using the
-"Metadata" tab in the layer properties, and operating on `.qmd` files.
+'Metadata' tab in the layer properties, and operating on `.qmd` files.
 
 
 ### Contributing new layers
