@@ -1,3 +1,8 @@
+# v0.8.0
+
+* Pre-compute statistics for raster layers so that QGIS can render those layers
+  with the correct min/max values.
+
 # v0.7.0 (2020-02-11)
 
 * Add task to generate overviews for raster layers.
