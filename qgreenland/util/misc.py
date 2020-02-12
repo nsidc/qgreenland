@@ -1,6 +1,7 @@
 import os
 
 import qgis.core as qgc
+from osgeo import gdal
 
 from qgreenland import PACKAGE_DIR
 from qgreenland.constants import BBOX, PROJECT_CRS, REQUEST_TIMEOUT
@@ -12,6 +13,31 @@ def fetch_file(url):
     s = create_earthdata_authenticated_session(hosts=[url])
 
     return s.get(url, timeout=REQUEST_TIMEOUT)
+
+
+def create_raster_map_layer(layer_path, layer_cfg):
+    # Generate statistics for the raster layer. This creates an `aux.xml` file
+    # alongside the .tif file that includes statistics (min/max/std) that qgis
+    # can read.
+    # Note that generating this file before creating the map layer allows the
+    # layer's statistics to be correctly initialized.
+    gdal.Info(layer_path, stats=True)
+
+    map_layer = qgc.QgsRasterLayer(
+        layer_path,
+        layer_cfg['name'],
+        'gdal'
+    )
+
+    # Set the min/max render accuracy to 'Exact'. Usually qgis estimates
+    # statistics for e.g., generating the default colormap.
+    mmo = map_layer.renderer().minMaxOrigin()
+    # 0 == 'Exact'
+    # map_layer.renderer().minMaxOrigin().statAccuracyString(0)
+    mmo.setStatAccuracy(0)
+    map_layer.renderer().setMinMaxOrigin(mmo)
+
+    return map_layer
 
 
 def make_qgs(layers_cfg, path):
@@ -85,11 +111,7 @@ def make_qgs(layers_cfg, path):
                 'ogr'  # name of the data provider (memory, postgresql)
             )
         elif layer_cfg['data_type'] == 'raster':
-            map_layer = qgc.QgsRasterLayer(
-                layer_path,
-                layer_cfg['name'],
-                'gdal'
-            )
+            map_layer = create_raster_map_layer(layer_path, layer_cfg)
 
         map_layer.setAbstract(build_abstract(layer_cfg))
 
