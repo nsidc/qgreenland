@@ -143,9 +143,6 @@ following process:
 * Open the 'symbology' tab.
 * Make your desired style changes.
 * In the lower-left corner, click the 'Style' dropdown.
-
-![Style dropdown](docs/images/style_dropdown.png)
-
 * In this menu, select 'Save Style...'
 
 ![Save style](docs/images/save_style.png)
