@@ -5,7 +5,7 @@ import luigi
 from osgeo import gdal
 
 from qgreenland.constants import DATA_DIR, TaskType
-from qgreenland.util.cmr import granules_from_cmr
+from qgreenland.util.cmr import CmrGranules
 from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.misc import fetch_file
 
@@ -27,11 +27,12 @@ class FetchData(luigi.Task):
 
     def run(self):
         if 'cmr' in self.source_cfg:
-            granules = granules_from_cmr(
+            granules = CmrGranules(
                 self.source_cfg['cmr']['short_name'],
                 self.source_cfg['cmr']['version']
             )
-            url = granules[0]['Online Access URLs']
+            urls = [g.url for g in granules]
+            url = urls[0]
         elif 'url' in self.source_cfg:
             url = self.source_cfg['url']
 
