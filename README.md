@@ -8,20 +8,20 @@ This project uses a `luigi` pipeline to generate the QGreenland package.
 As of `v0.6.0`:
 
 * Build layers:
-  * Coastlines
-    * Fetch
-    * Unzip
-    * Reproject (EPSG:3411)
-    * Subset (QGreenland project extent)
-  * Arctic DEM
-    * Fetch
-    * Reproject (EPSG:3411)
-    * Subset (QGreenland project extent)
-  * IceBridge BedMachine
-    * Fetch
-    * For each dataset (bed, thickness, surface):
-      * Extract dataset
-      * Reproject (EPSG:3411) and resample (1km)
+    * Coastlines
+        * Fetch
+        * Unzip
+        * Reproject (EPSG:3411)
+        * Subset (QGreenland project extent)
+    * Arctic DEM
+        * Fetch
+        * Reproject (EPSG:3411)
+        * Subset (QGreenland project extent)
+    * IceBridge BedMachine
+        * Fetch
+        * For each dataset (bed, thickness, surface):
+            * Extract dataset
+            * Reproject (EPSG:3411) and resample (1km)
 * Generate .qgs project file including all layers.
 * Create zip file with version in filename, e.g. `QGreenland_v0.6.0.zip`.
 
