@@ -1,4 +1,4 @@
-# v0.8.0
+# v0.8.0 (2020-02-12)
 
 * Pre-compute statistics for raster layers so that QGIS can render those layers
   with the correct min/max values.
