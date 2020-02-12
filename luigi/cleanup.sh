@@ -1,2 +1,2 @@
-DATA_DIR=/share/appdata/qgreenland/QGreenland
-sudo rm -rf ${DATA_DIR}/{wip,qgreenland,release,tmp*,READY_TO_ZIP}
+docker-compose exec luigi python -c \
+  'from qgreenland.util.file import cleanup_output_dirs; cleanup_output_dirs()'
