@@ -12,8 +12,8 @@ from qgreenland.tasks.raster import BuildRasterOverviews, ReprojectRaster, Subse
 from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
                                         UnzipShapefile)
-from qgreenland.util.file import (find_shapefile_in_dir,
-                                  load_layer_config,
+from qgreenland.util.shapefile import find_shapefile_in_dir
+from qgreenland.util.file import (load_layer_config,
                                   temporary_path_dir)
 
 

@@ -4,9 +4,11 @@ import zipfile
 import luigi
 
 from qgreenland.constants import TaskType
-from qgreenland.util.file import find_shapefile_in_dir, temporary_path_dir
+from qgreenland.util.file import temporary_path_dir
 from qgreenland.util.luigi import LayerConfigMixin
-from qgreenland.util.shapefile import reproject_shapefile, subset_shapefile
+from qgreenland.util.shapefile import (find_shapefile_in_dir,
+                                       reproject_shapefile,
+                                       subset_shapefile)
 
 
 # TODO: Is there any task history? e.g. can we look at the final output target
