@@ -13,7 +13,7 @@ from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
                                         UnzipShapefile)
 from qgreenland.util.shapefile import find_shapefile_in_dir
-from qgreenland.util.file import (load_layer_config,
+from qgreenland.util.misc import (load_layer_config,
                                   temporary_path_dir)
 
 

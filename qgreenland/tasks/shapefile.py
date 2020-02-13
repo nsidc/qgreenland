@@ -4,7 +4,7 @@ import zipfile
 import luigi
 
 from qgreenland.constants import TaskType
-from qgreenland.util.file import temporary_path_dir
+from qgreenland.util.misc import temporary_path_dir
 from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.shapefile import (find_shapefile_in_dir,
                                        reproject_shapefile,

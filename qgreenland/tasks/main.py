@@ -9,7 +9,7 @@ from qgreenland.constants import (DATA_FINAL_DIR,
                                   TMP_DIR,
                                   ZIP_TRIGGERFILE)
 from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
-from qgreenland.util.file import load_layer_config
+from qgreenland.util.misc import load_layer_config
 from qgreenland.util.qgis import make_qgs
 
 
