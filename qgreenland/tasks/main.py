@@ -10,7 +10,7 @@ from qgreenland.constants import (DATA_FINAL_DIR,
                                   ZIP_TRIGGERFILE)
 from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
 from qgreenland.util.file import load_layer_config
-from qgreenland.util.misc import make_qgs
+from qgreenland.util.qgis import make_qgs
 
 
 class CreateProjectFile(luigi.Task):
