@@ -7,7 +7,8 @@ import yaml
 from qgreenland.constants import (DATA_DIR,
                                   DATA_RELEASE_DIR,
                                   THIS_DIR,
-                                  TaskType)
+                                  TaskType,
+                                  ZIP_TRIGGERFILE)
 
 
 @contextmanager
@@ -41,9 +42,8 @@ def cleanup_output_dirs(delete_fetch_dir=False):
          if x.startswith('tmp')]
     )
 
-    zip_triggerfile = os.path.join(DATA_DIR, 'READY_TO_ZIP')
-    if os.path.isfile(zip_triggerfile):
-        os.remove(zip_triggerfile)
+    if os.path.isfile(ZIP_TRIGGERFILE):
+        os.remove(ZIP_TRIGGERFILE)
 
     for d in dirs_to_delete:
         if os.path.isdir(d):
