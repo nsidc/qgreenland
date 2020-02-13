@@ -1,3 +1,5 @@
+import os
+
 import earthpy.clip as ec
 import geopandas
 from shapely.geometry import Polygon
@@ -28,3 +30,12 @@ def subset_shapefile(shapefile):
     # behaviour.
 
     return gdf[~gdf.is_empty]
+
+
+def find_shapefile_in_dir(path):
+    files = os.listdir(path)
+    try:
+        f = [x for x in files if x.endswith('.shp')][0]
+        return os.path.abspath(os.path.join(path, f))
+    except Exception:
+        raise RuntimeError(f'No shapefile found in: {files}')
