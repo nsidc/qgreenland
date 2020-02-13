@@ -6,6 +6,10 @@ DATA_DIR = '/luigi/data'
 DATA_FINAL_DIR = f'{DATA_DIR}/{PROJECT}'
 DATA_RELEASE_DIR = f'{DATA_DIR}/release'
 
+# Output target file of the task just before the ZipQGreenland task.
+# Presence indicates the project is ready to be zipped for release.
+ZIP_TRIGGERFILE = os.path.join(DATA_DIR, 'READY_TO_ZIP')
+
 # TMP_DIR is the same as DATA_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?
 TMP_DIR = DATA_DIR
