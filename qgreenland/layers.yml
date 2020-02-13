@@ -39,7 +39,7 @@ arctic_dem:
 
 bedmachine_bed: &bedmachine
   source:
-    name: 'bedmachine'
+    name: 'bedmachine'  # Do we need this?
     cmr:
       short_name: 'IDBMG4'
       version: 3
@@ -70,3 +70,19 @@ bedmachine_thickness:
   name: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
   short_name: 'bedmachine_thickness'
   style: null
+
+
+glacier_terminus:
+  source:
+    cmr:
+      short_name: 'NSIDC-0642'
+      version: 1
+  name: 'MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics'
+  short_name: 'glacier_terminus'
+  file_type: 'shp'
+  data_type: 'vector'
+  description: 'This data set, part of the NASA Making Earth System Data Records for Use in Research Environments (MEaSUREs) program, provides Greenland outlet glacier terminus positions created from MEaSUREs Synthetic Aperture Radar (SAR) mosaics and Landsat 8 OLI imagery.'
+  citation:
+    text: 'Joughin, I., T. Moon, J. Joughin, and T. Black. 2015, 2017. MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics, Version 1. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/DC0MLBOCL3EL. 2020/02/12.'
+    url: 'https://doi.org/10.5067/DC0MLBOCL3EL'
+  layer_group: 'science_data'

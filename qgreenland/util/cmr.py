@@ -1,6 +1,5 @@
 import csv
 import datetime
-import urllib
 from collections import namedtuple
 
 import requests

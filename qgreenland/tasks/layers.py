@@ -104,6 +104,9 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
 class BedMachineDataset(LayerTaskMixin, luigi.Task):
     """Dataproduct IDBMG4.
 
+    This is a NetCDF dataproduct with many distinct datasets representing
+    distinct measurements.
+
     https://nsidc.org/data/IDBMG4
     """
 
@@ -130,6 +133,31 @@ class BedMachineDataset(LayerTaskMixin, luigi.Task):
         return ReprojectRaster(
             requires_task=extract_nc_dataset,
             layer_cfg=self.cfg,
+        )
+
+    def run(self):
+        with temporary_path_dir(self.output()) as temp_path:
+            new_fp = os.path.join(
+                temp_path,
+                f"{self.layer_name}.{self.cfg['file_type']}"
+            )
+
+            os.rename(self.input().path, new_fp)
+
+
+class GlacierTerminus(LayerTaskMixin, luigi.Task):
+    """Dataproduct NSIDC-0642.
+
+    https://nsidc.org/data/NSIDC-0642
+    """
+
+    layer_name = 'glacier_terminus'
+    cfg = load_layer_config(layer_name)
+
+    def requires(self):
+        return FetchData(
+            source_cfg=self.cfg['source'],
+            output_name=self.cfg['short_name']
         )
 
     def run(self):
