@@ -7,7 +7,7 @@ import os
 import luigi
 
 from qgreenland.constants import DATA_FINAL_DIR
-from qgreenland.tasks.common import ExtractNcDataset, FetchData
+from qgreenland.tasks.common import ExtractNcDataset, FetchDataFile, FetchDataFiles
 from qgreenland.tasks.raster import BuildRasterOverviews, ReprojectRaster, SubsetRaster
 from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
@@ -35,7 +35,7 @@ class Coastlines(LayerTaskMixin, luigi.Task):
     cfg = load_layer_config(layer_name)
 
     def requires(self):
-        fetch_data = FetchData(
+        fetch_data = FetchDataFile(
             source_cfg=self.cfg['source'],
             output_name=self.cfg['short_name']
         )  # ->
@@ -74,7 +74,7 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
     cfg = load_layer_config(layer_name)
 
     def requires(self):
-        fetch_data = FetchData(
+        fetch_data = FetchDataFile(
             source_cfg=self.cfg['source'],
             output_name=self.cfg['short_name']
         )  # ->
@@ -121,7 +121,7 @@ class BedMachineDataset(LayerTaskMixin, luigi.Task):
     def requires(self):
         output_name = self.cfg['source'].get('name', self.cfg['short_name'])
 
-        fetch_data = FetchData(
+        fetch_data = FetchDataFile(
             source_cfg=self.cfg['source'],
             output_name=output_name
         )  # ->
@@ -155,7 +155,7 @@ class GlacierTerminus(LayerTaskMixin, luigi.Task):
     cfg = load_layer_config(layer_name)
 
     def requires(self):
-        return FetchData(
+        return FetchDataFiles(
             source_cfg=self.cfg['source'],
             output_name=self.cfg['short_name']
         )
