@@ -55,6 +55,8 @@ stack:
 
 ### Starting the stack on a VM
 
+TODO: Should this be moved in to the VM README?
+
 ```
 vagrant nsidc up --env=dev
 ```
