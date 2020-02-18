@@ -4,6 +4,8 @@ from collections import namedtuple
 
 import requests
 
+from qgreenland.constants import REQUEST_TIMEOUT
+
 CMR_CLIENT_ID_HEADER = {'Client-Id': 'nsidc-qgreenland'}
 CMR_BASE_URL = 'https://cmr.earthdata.nasa.gov'
 CMR_GRANULES_URL = f'{CMR_BASE_URL}/search/granules.csv'
@@ -66,7 +68,9 @@ class CmrGranules():
     def _next_granules_from_cmr(self):
         headers = CMR_CLIENT_ID_HEADER.copy()
         headers['CMR-Scroll-Id'] = self.scroll_id
-        response = self.http_session.get(CMR_GRANULES_URL, headers=headers)
+        response = self.http_session.get(CMR_GRANULES_URL,
+                                         headers=headers,
+                                         timeout=REQUEST_TIMEOUT)
 
         if not response.ok:
             self.http_session.close()
@@ -84,7 +88,9 @@ class CmrGranules():
         url = (f'{CMR_GRANULES_SCROLL_URL}'
                f'&short_name={self.dataproduct_id}'
                f'&{self._version_query_string}')
-        response = self.http_session.get(url, headers=CMR_CLIENT_ID_HEADER)
+        response = self.http_session.get(url,
+                                         headers=CMR_CLIENT_ID_HEADER,
+                                         timeout=REQUEST_TIMEOUT)
 
         if not response.ok:
             self.http_session.close()
