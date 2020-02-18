@@ -3,7 +3,7 @@ import shutil
 
 import luigi
 
-from qgreenland import __version__
+from qgreenland import PACKAGE_DIR, __version__
 from qgreenland.constants import (DATA_FINAL_DIR,
                                   DATA_RELEASE_DIR,
                                   TMP_DIR,
@@ -11,6 +11,18 @@ from qgreenland.constants import (DATA_FINAL_DIR,
 from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
 from qgreenland.util.misc import load_layer_config
 from qgreenland.util.qgis import make_qgs
+
+
+class QGreenlandLogoFile(luigi.Task):
+    """Copy logo file in to the correct location for building the project."""
+
+    def output(self):
+        return luigi.LocalTarget(os.path.join(DATA_FINAL_DIR, 'qgreenland.png'))
+
+    def run(self):
+        logo = os.path.join(PACKAGE_DIR, 'assets', 'images', 'qgreenland.png')
+        with self.output().temporary_path() as temp_path:
+            shutil.copy(logo, temp_path)
 
 
 class CreateProjectFile(luigi.Task):
@@ -23,6 +35,7 @@ class CreateProjectFile(luigi.Task):
         yield BedMachineDataset('thickness')
         yield BedMachineDataset('bed')
         yield Coastlines()
+        yield QGreenlandLogoFile()
 
     def output(self):
         return luigi.LocalTarget(ZIP_TRIGGERFILE)

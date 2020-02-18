@@ -1,9 +1,9 @@
 import os
 
-from osgeo import gdal
 import qgis.core as qgc
+from osgeo import gdal
 
-from qgreenland import PACKAGE_DIR
+from qgreenland import PACKAGE_DIR, __version__
 from qgreenland.constants import BBOX, PROJECT_CRS
 
 
@@ -90,7 +90,7 @@ def make_qgs(layers_cfg, path):
         layer_path = os.path.join(ROOT_PATH,
                                   layer_cfg['layer_group'],
                                   layer_name,
-                                  f"{layer_name}.{layer_cfg['file_type']}")
+                                  f'{layer_name}.{layer_cfg["file_type"]}')
 
         if not os.path.isfile(layer_path):
             raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
@@ -121,8 +121,30 @@ def make_qgs(layers_cfg, path):
         # layer added to the basemap does not render.
         project.addMapLayer(map_layer, addToLegend=False)
 
+    _add_decorations(project)
+
     # TODO: is it normal to write multiple times?
     project.write()
+
+
+def _add_decorations(project):
+    # Add CopyrightLabel:
+    project.writeEntry('CopyrightLabel', '/Enabled', True)
+    # project.writeEntry('CopyrightLabel', '/FontName', 'Sans Serif')
+    # NOTE: Does the copyright symbol work this way or should we use HTML codes?
+    copyright_label = f'QGreenland v{__version__} © NSIDC 2020'
+    project.writeEntry('CopyrightLabel', '/Label', copyright_label)
+    project.writeEntry('CopyrightLabel', '/Placement', 0)
+    project.writeEntry('CopyrightLabel', '/MarginH', 0)
+    project.writeEntry('CopyrightLabel', '/MarginV', 0)
+
+    # Add Image (QGreenland logo):
+    project.writeEntry('Image', '/Enabled', True)
+    project.writeEntry('Image', '/Placement', 0)
+    project.writeEntry('Image', '/MarginH', 4)
+    project.writeEntry('Image', '/MarginV', 8)
+    project.writeEntry('Image', '/Size', 24)
+    project.writeEntry('Image', '/ImagePath', 'qgreenland.png')
 
 
 def load_qml_style(map_layer, style_name):

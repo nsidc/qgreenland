@@ -1,3 +1,7 @@
+# v0.9.0 (2020-02-18)
+
+* Add QGreenland logo and copyright text as QGIS decorations at bottom-left.
+
 # v0.8.0 (2020-02-12)
 
 * Pre-compute statistics for raster layers so that QGIS can render those layers
