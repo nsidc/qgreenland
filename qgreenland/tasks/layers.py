@@ -12,9 +12,9 @@ from qgreenland.tasks.raster import BuildRasterOverviews, ReprojectRaster, Subse
 from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
                                         UnzipShapefile)
-from qgreenland.util.shapefile import find_shapefile_in_dir
 from qgreenland.util.misc import (load_layer_config,
                                   temporary_path_dir)
+from qgreenland.util.shapefile import find_shapefile_in_dir
 
 
 class LayerTaskMixin(luigi.Task):
