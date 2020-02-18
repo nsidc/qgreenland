@@ -13,11 +13,12 @@ from qgreenland.constants import (DATA_DIR,
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
-def fetch_file(url):
+def fetch_file(url, *, session=None):
     # TODO: Share the session across requests somehow?
-    s = create_earthdata_authenticated_session(hosts=[url])
+    if not session:
+        session = create_earthdata_authenticated_session(hosts=[url])
 
-    return s.get(url, timeout=REQUEST_TIMEOUT)
+    return session.get(url, timeout=REQUEST_TIMEOUT)
 
 
 @contextmanager

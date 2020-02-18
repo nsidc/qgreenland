@@ -6,6 +6,7 @@ from osgeo import gdal
 
 from qgreenland.constants import DATA_DIR, TaskType
 from qgreenland.util.cmr import CmrGranules
+from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.misc import fetch_file, temporary_path_dir
 
@@ -13,6 +14,7 @@ from qgreenland.util.misc import fetch_file, temporary_path_dir
 class FetchDataFiles(luigi.Task):
     source_cfg = luigi.DictParameter()
     output_name = luigi.Parameter()
+    session = None
 
     def output(self):
         return luigi.LocalTarget(f'{DATA_DIR}/fetch/{self.output_name}')
@@ -31,11 +33,14 @@ class FetchDataFiles(luigi.Task):
             for granule in granules:
                 urls = granule.url.split(',')
                 for url in urls:
+                    if not self.session:
+                        self.session = make_session(hosts=[url])
+
                     d = os.path.join(temp_path, granule.start_time.date().isoformat())
                     fn = os.path.basename(url)
                     fp = os.path.join(d, fn)
                     os.makedirs(d, exist_ok=True)
-                    resp = fetch_file(url)
+                    resp = fetch_file(url, session=self.session)
                     with open(fp, 'wb') as f:
                         f.write(resp.content)
 

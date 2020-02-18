@@ -161,6 +161,8 @@ class GlacierTerminus(LayerTaskMixin, luigi.Task):
         )
 
     def run(self):
+        pass
+        """
         with temporary_path_dir(self.output()) as temp_path:
             new_fp = os.path.join(
                 temp_path,
@@ -168,3 +170,4 @@ class GlacierTerminus(LayerTaskMixin, luigi.Task):
             )
 
             os.rename(self.input().path, new_fp)
+        """
