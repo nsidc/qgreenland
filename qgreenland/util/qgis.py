@@ -1,7 +1,7 @@
 import os
 
-from osgeo import gdal
 import qgis.core as qgc
+from osgeo import gdal
 
 from qgreenland import PACKAGE_DIR
 from qgreenland.constants import BBOX, PROJECT_CRS
