@@ -1,3 +1,9 @@
+# v0.10.0 (unreleased)
+
+- Move nginx config, Dockerfile & docker-compose.yml to top level.
+- Install dependencies from environment-lock.yml
+- Move `run_task.sh` and `cleanup.sh` to `scripts/` dir.
+
 # v0.9.0 (2020-02-18)
 
 * Add QGreenland logo and copyright text as QGIS decorations at bottom-left.
