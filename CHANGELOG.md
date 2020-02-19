@@ -4,6 +4,8 @@
 - Install dependencies from environment-lock.yml
 - Move `run_task.sh` and `cleanup.sh` to `scripts/` dir.
 - README updates.
+- Make default layer visbility configurable. Turn off visibility for all but the
+  'bed' bedmachine layers.
 
 # v0.9.0 (2020-02-18)
 
