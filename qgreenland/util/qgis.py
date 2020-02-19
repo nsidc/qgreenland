@@ -114,7 +114,8 @@ def make_qgs(layers_cfg, path):
         map_layer.setCrs(project_crs)
 
         group = groups[layer_cfg['layer_group']]
-        group.addLayer(map_layer)
+        group_layer = group.addLayer(map_layer)
+        group_layer.setItemVisibilityChecked(layer_cfg.get('layer_visible', True))
 
         # TODO is this necessary? Without adding the map layer to the project (which
         # automatically adds it to the root layer unless `addToLegend` is `False`), the
