@@ -3,6 +3,7 @@
 - Move nginx config, Dockerfile & docker-compose.yml to top level.
 - Install dependencies from environment-lock.yml
 - Move `run_task.sh` and `cleanup.sh` to `scripts/` dir.
+- README updates.
 
 # v0.9.0 (2020-02-18)
 
