@@ -1,4 +1,4 @@
-# Greenland-spike
+# QGreenland
 
 This project uses a `luigi` pipeline to generate the QGreenland package.
 
