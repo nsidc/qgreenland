@@ -1,9 +1,14 @@
-# v0.10.0 (unreleased)
+# v0.10.0 (2020-02-20)
 
 - Move nginx config, Dockerfile & docker-compose.yml to top level.
 - Install dependencies from environment-lock.yml
 - Move `run_task.sh` and `cleanup.sh` to `scripts/` dir.
 - README updates.
+- Make layer and layer group visbility configurable. 
+- Make layer group expand/collapse state configurable.
+  - HACK: If the first layer in the legend is in a collapsed layer group, QGIS
+    will automatically expand the layer group. Set coastlines layer to be first
+    in the legend to avoid this.
 
 # v0.9.0 (2020-02-18)
 

@@ -9,7 +9,6 @@ from qgreenland.constants import (DATA_FINAL_DIR,
                                   TMP_DIR,
                                   ZIP_TRIGGERFILE)
 from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
-from qgreenland.util.misc import load_layer_config
 from qgreenland.util.qgis import make_qgs
 
 
@@ -41,13 +40,10 @@ class CreateProjectFile(luigi.Task):
         return luigi.LocalTarget(ZIP_TRIGGERFILE)
 
     def run(self):
-        layers_cfg = load_layer_config()
-
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
-        make_qgs(layers_cfg,
-                 os.path.join(DATA_FINAL_DIR, 'qgreenland.qgs'))
+        make_qgs(os.path.join(DATA_FINAL_DIR, 'qgreenland.qgs'))
 
         with self.output().open('w'):
             pass
