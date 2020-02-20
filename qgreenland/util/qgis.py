@@ -66,6 +66,7 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     return map_layer
 
 
+# TODO: dry out these funcs!
 def _set_group_visibility(group, layer_group_list, group_config):
     # Layer group config is a path of layer groups separated by '/'
     layer_tree_path = '/'.join(layer_group_list)
@@ -73,6 +74,15 @@ def _set_group_visibility(group, layer_group_list, group_config):
     # Group is visible by default.
     group_visible = group_config.get(layer_tree_path, {}).get('visible', True)
     group.setItemVisibilityChecked(group_visible)
+
+
+def _set_group_expanded(group, layer_group_list, group_config):
+    # Layer group config is a path of layer groups separated by '/'
+    layer_tree_path = '/'.join(layer_group_list)
+
+    # Group is visible by default.
+    group_expanded = group_config.get(layer_tree_path, {}).get('expanded', True)
+    group.setExpanded(group_expanded)
 
 
 def make_qgs(layers_cfg, path):
@@ -133,8 +143,8 @@ def make_qgs(layers_cfg, path):
                 else:
                     group = group.findGroup(group_name)
 
-            # Set the group visibility
             _set_group_visibility(group, layer_group_list, group_config)
+            _set_group_expanded(group, layer_group_list, group_config)
 
         layer_cfg = layers_cfg[layer_name]
         map_layer = get_map_layer(layer_name,
