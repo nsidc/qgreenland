@@ -12,7 +12,7 @@
 
 # end vagrant-nsidc
 
-luigi/data
+luigi
 qgis-data/QGreenland*
 qgis-data/qgreenland
 qgis-data/Quantarctica*
