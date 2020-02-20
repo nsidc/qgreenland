@@ -5,7 +5,7 @@ from osgeo import gdal
 
 from qgreenland import PACKAGE_DIR, __version__
 from qgreenland.constants import BBOX, PROJECT_CRS
-from qgreenland.util.misc import get_layer_path
+from qgreenland.util.misc import get_layer_path, load_group_config
 
 
 def create_raster_map_layer(layer_path, layer_cfg):
@@ -66,6 +66,15 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     return map_layer
 
 
+def _set_group_visibility(group, layer_group_list, group_config):
+    # Layer group config is a path of layer groups separated by '/'
+    layer_tree_path = '/'.join(layer_group_list)
+
+    # Group is visible by default.
+    group_visible = group_config.get(layer_tree_path, {}).get('visible', True)
+    group.setItemVisibilityChecked(group_visible)
+
+
 def make_qgs(layers_cfg, path):
     """Create a QGIS project file with the correct stuff in it.
 
@@ -101,6 +110,8 @@ def make_qgs(layers_cfg, path):
                                         project_crs)
     view.setDefaultViewExtent(extent)
 
+    group_config = load_group_config()
+
     for layer_name, layer_cfg in layers_cfg.items():
         # Get the list of layer groups
         # A list with elements represent a layer group path. For example, a list
@@ -118,10 +129,12 @@ def make_qgs(layers_cfg, path):
             for group_name in layer_group_list:
                 # Get or create the group.
                 if group.findGroup(group_name) is None:
-                    # TODO: set group vis
                     group = group.addGroup(group_name)
                 else:
                     group = group.findGroup(group_name)
+
+            # Set the group visibility
+            _set_group_visibility(group, layer_group_list, group_config)
 
         layer_cfg = layers_cfg[layer_name]
         map_layer = get_map_layer(layer_name,
@@ -139,8 +152,6 @@ def make_qgs(layers_cfg, path):
         # TODO: necessary for root group?
         project.addMapLayer(map_layer, addToLegend=False)
 
-        # The layer_groups.yml file gives information on layer group visibility.
-        # TODO: is there a better way^
     _add_decorations(project)
 
     # TODO: is it normal to write multiple times?

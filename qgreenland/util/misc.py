@@ -77,6 +77,15 @@ def load_layer_config(layername=None):
         )
 
 
+def load_group_config():
+    GROUPS_CONFIG = os.path.join(THIS_DIR, 'layer_groups.yml')
+
+    with open(GROUPS_CONFIG, 'r') as f:
+        config = yaml.safe_load(f)
+
+    return config
+
+
 def get_layer_path(layer_name, layer_cfg):
     layer_group_config = layer_cfg.get('layer_group', {})
     layer_group_list = layer_group_config.get('location', [])

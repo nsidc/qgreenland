@@ -1,0 +1,5 @@
+basemaps:
+  visible: True
+
+basemaps/bedmachine:
+  visible: False
