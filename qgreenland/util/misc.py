@@ -5,6 +5,7 @@ from contextlib import contextmanager
 import yaml
 
 from qgreenland.constants import (DATA_DIR,
+                                  DATA_FINAL_DIR,
                                   DATA_RELEASE_DIR,
                                   REQUEST_TIMEOUT,
                                   THIS_DIR,
@@ -74,3 +75,13 @@ def load_layer_config(layername=None):
         raise NotImplementedError(
             f"Configuration for layer '{layername}' not found."
         )
+
+
+def get_layer_path(layer_name, layer_cfg):
+    layer_group_config = layer_cfg.get('layer_group', {})
+    layer_group_list = layer_group_config.get('location', [])
+
+    return os.path.join(DATA_FINAL_DIR,
+                        *layer_group_list,
+                        layer_name,
+                        f'{layer_name}.{layer_cfg["file_type"]}')

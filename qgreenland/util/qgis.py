@@ -5,6 +5,7 @@ from osgeo import gdal
 
 from qgreenland import PACKAGE_DIR, __version__
 from qgreenland.constants import BBOX, PROJECT_CRS
+from qgreenland.util.misc import get_layer_path
 
 
 def create_raster_map_layer(layer_path, layer_cfg):
@@ -32,6 +33,39 @@ def create_raster_map_layer(layer_path, layer_cfg):
     return map_layer
 
 
+def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
+    # Give the absolute path to the layer. We think project.addMapLayer()
+    # automatically generates the correct relative paths. Using a relative
+    # path causes statistics (nodata value, min/max) to not be generated,
+    # resulting in rendering a gray rectangle.
+    # TODO: do we need to worry about differences in path structure between linux
+    # and windows?
+    layer_path = get_layer_path(layer_name, layer_cfg)
+
+    if not os.path.isfile(layer_path):
+        raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
+
+    # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
+    if layer_cfg['data_type'] == 'vector':
+        map_layer = qgc.QgsVectorLayer(
+            layer_path,
+            layer_cfg['name'],  # layer name as it shows up in TOC
+            'ogr'  # name of the data provider (memory, postgresql)
+        )
+    elif layer_cfg['data_type'] == 'raster':
+        map_layer = create_raster_map_layer(layer_path, layer_cfg)
+
+    map_layer.setAbstract(build_abstract(layer_cfg))
+
+    # TODO: COO COO CACHOO
+    if layer_cfg.get('style'):
+        load_qml_style(map_layer, layer_cfg.get('style'))
+
+    map_layer.setCrs(project_crs)
+
+    return map_layer
+
+
 def make_qgs(layers_cfg, path):
     """Create a QGIS project file with the correct stuff in it.
 
@@ -45,6 +79,7 @@ def make_qgs(layers_cfg, path):
     # The qgreenland .qgs project file will live at the root of the qgreenland
     # package distributed to end users.
     ROOT_PATH = os.path.dirname(path)
+
     # TODO: Reconsider normpath
     PROJECT_PATH = os.path.normpath(os.path.join(path))
 
@@ -66,62 +101,46 @@ def make_qgs(layers_cfg, path):
                                         project_crs)
     view.setDefaultViewExtent(extent)
 
-    basemap_group = project.layerTreeRoot().addGroup('basemap')
-
-    groups = {
-        'basemaps': basemap_group,
-        'TBD': None,
-    }
-    # TODO: Parameterize, e.g. below
-    #       But then how would we get the ProviderType/ProviderLib?
-    #       Just more mapping. But where do we put it? Wrapper class?
-    # layer_constructors = {
-    #     'raster': qgc.QgsRasterLayer,
-    #     'vector': qgc.QgsVectorLayer,
-    # }
-
     for layer_name, layer_cfg in layers_cfg.items():
-        # Give the absolute path to the layer. We think project.addMapLayer()
-        # automatically generates the correct relative paths. Using a relative
-        # path causes statistics (nodata value, min/max) to not be generated,
-        # resulting in rendering a gray rectangle.
-        # TODO: do we need to worry about differences in path structure between linux
-        # and windows?
-        layer_path = os.path.join(ROOT_PATH,
-                                  layer_cfg['layer_group'],
-                                  layer_name,
-                                  f'{layer_name}.{layer_cfg["file_type"]}')
+        # Get the list of layer groups
+        # A list with elements represent a layer group path. For example, a list
+        # ['basemaps', 'bedmachine'] means that this layer should be under the
+        # 'bedmachine' layer group, which is itself within the 'basemaps' layer
+        # group.
+        layer_group_config = layer_cfg.get('layer_group', {})
+        layer_group_list = layer_group_config.get('location', [])
 
-        if not os.path.isfile(layer_path):
-            raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
+        # An empty list indicates that the layer should be placed in the root of
+        # the TOC.
+        group = project.layerTreeRoot()
 
-        # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
-        if layer_cfg['data_type'] == 'vector':
-            map_layer = qgc.QgsVectorLayer(
-                layer_path,
-                layer_cfg['name'],  # layer name as it shows up in TOC
-                'ogr'  # name of the data provider (memory, postgresql)
-            )
-        elif layer_cfg['data_type'] == 'raster':
-            map_layer = create_raster_map_layer(layer_path, layer_cfg)
+        if layer_group_list:
+            for group_name in layer_group_list:
+                # Get or create the group.
+                if group.findGroup(group_name) is None:
+                    # TODO: set group vis
+                    group = group.addGroup(group_name)
+                else:
+                    group = group.findGroup(group_name)
 
-        map_layer.setAbstract(build_abstract(layer_cfg))
+        layer_cfg = layers_cfg[layer_name]
+        map_layer = get_map_layer(layer_name,
+                                  layer_cfg,
+                                  project_crs,
+                                  ROOT_PATH)
 
-        # TODO: COO COO CACHOO
-        if layer_cfg.get('style'):
-            load_qml_style(map_layer, layer_cfg.get('style'))
-
-        map_layer.setCrs(project_crs)
-
-        group = groups[layer_cfg['layer_group']]
+        # Set group layer visibility
         group_layer = group.addLayer(map_layer)
-        group_layer.setItemVisibilityChecked(layer_cfg.get('layer_visible', True))
+        group_layer.setItemVisibilityChecked(
+            # Make the layer visible by default.
+            layer_group_config.get('visible', True)
+        )
 
-        # TODO is this necessary? Without adding the map layer to the project (which
-        # automatically adds it to the root layer unless `addToLegend` is `False`), the
-        # layer added to the basemap does not render.
+        # TODO: necessary for root group?
         project.addMapLayer(map_layer, addToLegend=False)
 
+        # The layer_groups.yml file gives information on layer group visibility.
+        # TODO: is there a better way^
     _add_decorations(project)
 
     # TODO: is it normal to write multiple times?

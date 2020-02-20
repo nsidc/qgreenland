@@ -6,13 +6,13 @@ import os
 
 import luigi
 
-from qgreenland.constants import DATA_FINAL_DIR
 from qgreenland.tasks.common import ExtractNcDataset, FetchData
 from qgreenland.tasks.raster import BuildRasterOverviews, ReprojectRaster, SubsetRaster
 from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
                                         UnzipShapefile)
 from qgreenland.util.misc import (load_layer_config,
+                                  get_layer_path,
                                   temporary_path_dir)
 from qgreenland.util.shapefile import find_shapefile_in_dir
 
@@ -20,8 +20,12 @@ from qgreenland.util.shapefile import find_shapefile_in_dir
 class LayerTaskMixin(luigi.Task):
 
     def output(self):
-        parent_dir = self.cfg['layer_group']
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}')
+        return luigi.LocalTarget(
+            os.path.dirname(
+                get_layer_path(self.layer_name,
+                               self.cfg)
+            )
+        )
 
 
 # TODO: Consider creating a mixin or something for reading yaml config to
