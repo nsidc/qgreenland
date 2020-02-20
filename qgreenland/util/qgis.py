@@ -89,7 +89,7 @@ def _set_groups_options(project):
 
 
 def _make_layer_groups(project):
-    """Reads the layer group config yaml and adds those groups to `project`."""
+    """Read the layer group config yaml and add those groups to `project`."""
     groups_config = load_group_config()
 
     for group_path, options in groups_config.items():
@@ -103,7 +103,7 @@ def _make_layer_groups(project):
 
 
 def _get_group(project, group_path):
-    """Looks up layer group in `project` by `group_path`."""
+    """Look up layer group in `project` by `group_path`."""
     group = project.layerTreeRoot()
 
     # If the group path is an empty string, return the root layer group.
