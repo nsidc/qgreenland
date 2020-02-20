@@ -15,9 +15,9 @@ coastlines:
   citation:
     text: 'Made with Natural Earth'
     url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
-  layer_group:
-    location: []
-    visible: True
+  visible: True
+  path: 'basemaps'
+
 
 arctic_dem:
   source:
@@ -35,9 +35,8 @@ arctic_dem:
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
-  layer_group:
-    location: ['basemaps']
-    visible: True
+  visible: True
+  path: 'basemaps'
 
 
 bedmachine_bed: &bedmachine
@@ -58,9 +57,8 @@ bedmachine_bed: &bedmachine
   warp_kwargs:
     xRes: 1000
     yRes: 1000
-  layer_group:
-    location: ['basemaps', 'bedmachine']
-    visible: True
+  visible: True
+  path: 'basemaps/bedmachine'
 
 
 bedmachine_surface:
@@ -68,9 +66,7 @@ bedmachine_surface:
   name: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
   short_name: 'bedmachine_surface'
   style: null
-  layer_group:
-    location: ['basemaps', 'bedmachine']
-    visible: False
+  visible: False
 
 
 bedmachine_thickness:
@@ -78,6 +74,4 @@ bedmachine_thickness:
   name: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
   short_name: 'bedmachine_thickness'
   style: null
-  layer_group:
-    location: ['basemaps', 'bedmachine']
-    visible: False
+  visible: False

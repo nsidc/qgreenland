@@ -86,9 +86,8 @@ def load_group_config():
     return config
 
 
-def get_layer_path(layer_name, layer_cfg):
-    layer_group_config = layer_cfg.get('layer_group', {})
-    layer_group_list = layer_group_config.get('location', [])
+def get_layer_fs_path(layer_name, layer_cfg):
+    layer_group_list = layer_cfg.get('path', '').split('/')
 
     return os.path.join(DATA_FINAL_DIR,
                         *layer_group_list,

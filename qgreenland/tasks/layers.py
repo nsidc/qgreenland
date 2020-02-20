@@ -12,7 +12,7 @@ from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
                                         UnzipShapefile)
 from qgreenland.util.misc import (load_layer_config,
-                                  get_layer_path,
+                                  get_layer_fs_path,
                                   temporary_path_dir)
 from qgreenland.util.shapefile import find_shapefile_in_dir
 
@@ -22,8 +22,8 @@ class LayerTaskMixin(luigi.Task):
     def output(self):
         return luigi.LocalTarget(
             os.path.dirname(
-                get_layer_path(self.layer_name,
-                               self.cfg)
+                get_layer_fs_path(self.layer_name,
+                                  self.cfg)
             )
         )
 

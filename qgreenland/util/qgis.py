@@ -5,7 +5,7 @@ from osgeo import gdal
 
 from qgreenland import PACKAGE_DIR, __version__
 from qgreenland.constants import BBOX, PROJECT_CRS
-from qgreenland.util.misc import get_layer_path, load_group_config
+from qgreenland.util.misc import get_layer_fs_path, load_group_config, load_layer_config
 
 
 def create_raster_map_layer(layer_path, layer_cfg):
@@ -40,7 +40,7 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     # resulting in rendering a gray rectangle.
     # TODO: do we need to worry about differences in path structure between linux
     # and windows?
-    layer_path = get_layer_path(layer_name, layer_cfg)
+    layer_path = get_layer_fs_path(layer_name, layer_cfg)
 
     if not os.path.isfile(layer_path):
         raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
@@ -66,26 +66,87 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     return map_layer
 
 
-# TODO: dry out these funcs!
-def _set_group_visibility(group, layer_group_list, group_config):
-    # Layer group config is a path of layer groups separated by '/'
-    layer_tree_path = '/'.join(layer_group_list)
+def _set_groups_options(project):
+    groups_config = load_group_config()
 
-    # Group is visible by default.
-    group_visible = group_config.get(layer_tree_path, {}).get('visible', True)
-    group.setItemVisibilityChecked(group_visible)
+    def _set_group_visibility(group, group_opts):
+        # Layer group config is a path of layer groups separated by '/'
+        # Group is visible by default.
+        group_visible = group_opts.get('visible', True)
+        group.setItemVisibilityChecked(group_visible)
+
+    def _set_group_expanded(group, group_opts):
+        # Layer group config is a path of layer groups separated by '/'
+        # Group is visible by default.
+        group_expanded = group_opts.get('expanded', True)
+        group.setExpanded(group_expanded)
+
+    for group_path, options in groups_config.items():
+        group = _get_group(project, group_path)
+
+        _set_group_visibility(group, options)
+        _set_group_expanded(group, options)
 
 
-def _set_group_expanded(group, layer_group_list, group_config):
-    # Layer group config is a path of layer groups separated by '/'
-    layer_tree_path = '/'.join(layer_group_list)
+def _make_layer_groups(project):
+    """Reads the layer group config yaml and adds those groups to `project`."""
+    groups_config = load_group_config()
 
-    # Group is visible by default.
-    group_expanded = group_config.get(layer_tree_path, {}).get('expanded', True)
-    group.setExpanded(group_expanded)
+    for group_path, options in groups_config.items():
+        group = project.layerTreeRoot()
+        for group_name in group_path.split('/'):
+            # Get or create the group.
+            if group.findGroup(group_name) is None:
+                group = group.addGroup(group_name)
+            else:
+                group = group.findGroup(group_name)
 
 
-def make_qgs(layers_cfg, path):
+def _get_group(project, group_path):
+    """Looks up layer group in `project` by `group_path`."""
+    group = project.layerTreeRoot()
+
+    # If the group path is an empty string, return the root layer group.
+    if not group_path:
+        return group
+
+    group_names = group_path.split('/')
+
+    for idx, group_name in enumerate(group_names):
+        # TODO: COO COO CACHOO
+        if group.findGroup(group_name) is None:
+            parent_path = '/'.join(group_names[:idx])
+            raise KeyError(f"Group '{group_name}' under "
+                           f"parent '{parent_path}' not found.")
+
+        group = group.findGroup(group_name)
+
+    return group
+
+
+def _add_layers(project):
+    layers_cfg = load_layer_config()
+    for layer_name, layer_cfg in layers_cfg.items():
+        layer_cfg = layers_cfg[layer_name]
+        map_layer = get_map_layer(layer_name,
+                                  layer_cfg,
+                                  project.crs(),
+                                  project.absolutePath())
+
+        layer_path = layer_cfg.get('path', '')
+        group = _get_group(project, layer_path)
+        # Set layer visibility
+        group_layer = group.addLayer(map_layer)
+        group_layer.setItemVisibilityChecked(
+            # Make the layer visible by default.
+            layer_cfg.get('visible', True)
+        )
+
+        # TODO: necessary for root group?
+        project.addMapLayer(map_layer, addToLegend=False)
+
+
+def make_qgs(path):
     """Create a QGIS project file with the correct stuff in it.
 
     path: the desired path to .qgs project file, e.g.:
@@ -95,21 +156,11 @@ def make_qgs(layers_cfg, path):
 
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
-    # The qgreenland .qgs project file will live at the root of the qgreenland
-    # package distributed to end users.
-    ROOT_PATH = os.path.dirname(path)
-
-    # TODO: Reconsider normpath
-    PROJECT_PATH = os.path.normpath(os.path.join(path))
-
-    # Write your code here to load some layers, use processing algorithms, etc.
     project = qgc.QgsProject.instance()
 
     # Create a new project; initializes basic structure
-    project.write(PROJECT_PATH)
-    # An existing project can be opened w/ the `load` method
+    project.write(path)
 
-    # write the project coordinate ref system.
     project_crs = qgc.QgsCoordinateReferenceSystem(PROJECT_CRS)
     project.setCrs(project_crs)
 
@@ -120,52 +171,39 @@ def make_qgs(layers_cfg, path):
                                         project_crs)
     view.setDefaultViewExtent(extent)
 
-    group_config = load_group_config()
+    _make_layer_groups(project)
 
-    for layer_name, layer_cfg in layers_cfg.items():
-        # Get the list of layer groups
-        # A list with elements represent a layer group path. For example, a list
-        # ['basemaps', 'bedmachine'] means that this layer should be under the
-        # 'bedmachine' layer group, which is itself within the 'basemaps' layer
-        # group.
-        layer_group_config = layer_cfg.get('layer_group', {})
-        layer_group_list = layer_group_config.get('location', [])
-
-        # An empty list indicates that the layer should be placed in the root of
-        # the TOC.
-        group = project.layerTreeRoot()
-
-        if layer_group_list:
-            for group_name in layer_group_list:
-                # Get or create the group.
-                if group.findGroup(group_name) is None:
-                    group = group.addGroup(group_name)
-                else:
-                    group = group.findGroup(group_name)
-
-            _set_group_visibility(group, layer_group_list, group_config)
-            _set_group_expanded(group, layer_group_list, group_config)
-
-        layer_cfg = layers_cfg[layer_name]
-        map_layer = get_map_layer(layer_name,
-                                  layer_cfg,
-                                  project_crs,
-                                  ROOT_PATH)
-
-        # Set group layer visibility
-        group_layer = group.addLayer(map_layer)
-        group_layer.setItemVisibilityChecked(
-            # Make the layer visible by default.
-            layer_group_config.get('visible', True)
-        )
-
-        # TODO: necessary for root group?
-        project.addMapLayer(map_layer, addToLegend=False)
+    _add_layers(project)
 
     _add_decorations(project)
 
+    # Set group options after adding the layers. Adding layers to a layer group
+    # mutates the layer group state (e.g., if the group is collapsed and a layer
+    # is added to it, it causes the group to be expanded.
+    # TODO: is this really true?
+    _set_groups_options(project)
+
+    _fix_layer_order(project)
+
     # TODO: is it normal to write multiple times?
     project.write()
+
+
+def _fix_layer_order(project):
+    """HACK. QGIS automatically selects and expands the first layer in the legend.
+
+    Force the coastlines layer to be first in the basemaps group so that the
+    first group state is correct (when this was written, bedmachine incorrectly
+    shows up as 'expanded' in the legend).
+    """
+    basemaps_group = _get_group(project, 'basemaps')
+    layers = basemaps_group.findLayers()
+    for layer in layers:
+        if 'coastlines' in layer.name().lower():
+            cloned_layer = layer.clone()
+            basemaps_group.removeChildNode(layer)
+            basemaps_group.insertChildNode(0, cloned_layer)
+            break
 
 
 def _add_decorations(project):
