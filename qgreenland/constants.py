@@ -9,7 +9,10 @@ ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
 DATA_DIR = '/luigi/data'
 WIP_DIR = f'{DATA_DIR}/luigi-wip'
-DATA_RELEASE_DIR = f'{DATA_DIR}/release/{__version__}'
+if 'dev' in __version__:
+    DATA_RELEASE_DIR = f'{DATA_DIR}/release/dev/{__version__}'
+else:
+    DATA_RELEASE_DIR = f'{DATA_DIR}/release/{__version__}'
 
 # Output target file of the task just before the ZipQGreenland task.
 # Presence indicates the project is ready to be zipped for release.
