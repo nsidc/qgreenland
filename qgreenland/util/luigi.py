@@ -2,7 +2,7 @@ import os
 
 import luigi
 
-from qgreenland.constants import DATA_DIR, DATA_FINAL_DIR, TaskType
+from qgreenland.constants import TaskType
 
 
 class LayerConfigMixin(luigi.Task):
@@ -21,10 +21,10 @@ class LayerConfigMixin(luigi.Task):
             raise RuntimeError(msg)
 
         if self.task_type is TaskType.FINAL:
-            outdir = (f"{DATA_FINAL_DIR}/{self.layer_cfg['layer_group']}/"
+            outdir = (f"{TaskType.FINAL.value}/{self.layer_cfg['layer_group']}/"
                       f'{self.short_name}')
         else:
-            outdir = f'{DATA_DIR}/{self.task_type.value}/{self.short_name}'
+            outdir = f'{self.task_type.value}/{self.short_name}'
 
         os.makedirs(outdir, exist_ok=True)
         return outdir
