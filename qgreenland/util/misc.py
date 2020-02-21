@@ -1,5 +1,6 @@
 import os
 import shutil
+import time
 from contextlib import contextmanager
 
 import yaml
@@ -31,8 +32,23 @@ def temporary_path_dir(target):
     return
 
 
-def _rmtree(directory):
+def _rmtree(directory, *, retries=3):
+    """A more robust version of rmtree.
+
+    Retries in case of intermittent issues, e.g. with network storage.
+    """
     if os.path.isdir(directory):
+        for i in range(retries):
+            try:
+                shutil.rmtree(directory)
+                return
+            except OSError as e:
+                print(f'WARNING: shutil.rmtee failed for path: {directory}')
+                print(f'Exception: {e}')
+                print(f'Retrying in {i} seconds...')
+                time.sleep(i)
+
+        # Allow caller to receive exceptions raised on the final try
         shutil.rmtree(directory)
 
 
