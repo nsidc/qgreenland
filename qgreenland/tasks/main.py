@@ -4,9 +4,9 @@ import shutil
 import luigi
 
 from qgreenland import PACKAGE_DIR, __version__
-from qgreenland.constants import (DATA_FINAL_DIR,
-                                  DATA_RELEASE_DIR,
+from qgreenland.constants import (DATA_RELEASE_DIR,
                                   TMP_DIR,
+                                  TaskType,
                                   ZIP_TRIGGERFILE)
 from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
 from qgreenland.util.qgis import make_qgs
@@ -16,7 +16,9 @@ class QGreenlandLogoFile(luigi.Task):
     """Copy logo file in to the correct location for building the project."""
 
     def output(self):
-        return luigi.LocalTarget(os.path.join(DATA_FINAL_DIR, 'qgreenland.png'))
+        return luigi.LocalTarget(
+            os.path.join(TaskType.FINAL.value, 'qgreenland.png')
+        )
 
     def run(self):
         logo = os.path.join(PACKAGE_DIR, 'assets', 'images', 'qgreenland.png')
@@ -43,7 +45,7 @@ class CreateProjectFile(luigi.Task):
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
-        make_qgs(os.path.join(DATA_FINAL_DIR, 'qgreenland.qgs'))
+        make_qgs(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
 
         with self.output().open('w'):
             pass
@@ -57,7 +59,7 @@ class ZipQGreenland(luigi.Task):
 
     def output(self):
         os.makedirs(DATA_RELEASE_DIR, exist_ok=True)
-        fn = f'{DATA_RELEASE_DIR}/QGreenland_v{__version__}.zip'
+        fn = f'{DATA_RELEASE_DIR}/QGreenland_{__version__}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):

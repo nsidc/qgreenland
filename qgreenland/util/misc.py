@@ -5,7 +5,6 @@ from contextlib import contextmanager
 import yaml
 
 from qgreenland.constants import (DATA_DIR,
-                                  DATA_FINAL_DIR,
                                   DATA_RELEASE_DIR,
                                   REQUEST_TIMEOUT,
                                   THIS_DIR,
@@ -42,7 +41,7 @@ def cleanup_output_dirs(delete_fetch_dir=False):
     for task_type in TaskType:
         if task_type != TaskType.FETCH or delete_fetch_dir:
             dirs_to_delete.append(
-                os.path.join(DATA_DIR, task_type.value)
+                os.path.join(task_type.value)
             )
 
     dirs_to_delete.append(DATA_RELEASE_DIR)
@@ -89,7 +88,7 @@ def load_group_config():
 def get_layer_fs_path(layer_name, layer_cfg):
     layer_group_list = layer_cfg.get('path', '').split('/')
 
-    return os.path.join(DATA_FINAL_DIR,
+    return os.path.join(TaskType.FINAL.value,
                         *layer_group_list,
                         layer_name,
                         f'{layer_name}.{layer_cfg["file_type"]}')

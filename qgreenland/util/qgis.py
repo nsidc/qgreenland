@@ -211,7 +211,7 @@ def _add_decorations(project):
     project.writeEntry('CopyrightLabel', '/Enabled', True)
     # project.writeEntry('CopyrightLabel', '/FontName', 'Sans Serif')
     # NOTE: Does the copyright symbol work this way or should we use HTML codes?
-    copyright_label = f'QGreenland v{__version__} © NSIDC 2020'
+    copyright_label = f'QGreenland {__version__} © NSIDC 2020'
     project.writeEntry('CopyrightLabel', '/Label', copyright_label)
     project.writeEntry('CopyrightLabel', '/Placement', 0)
     project.writeEntry('CopyrightLabel', '/MarginH', 0)
