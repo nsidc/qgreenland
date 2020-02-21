@@ -32,6 +32,11 @@ def temporary_path_dir(target):
     return
 
 
+def cleanup_intermediate_dirs(delete_fetch_dir=False):
+    shutil.rmtree(WIP_DIR)
+
+
+
 def cleanup_output_dirs(delete_fetch_dir=False):
     """Delete output dirs.
 

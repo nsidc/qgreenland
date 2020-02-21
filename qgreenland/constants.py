@@ -2,6 +2,9 @@ import os
 from enum import Enum
 
 PROJECT = 'qgreenland'
+
+ENVIRONMENT = os.environ.get(ENVIRONMENT, 'dev')
+
 DATA_DIR = '/luigi/data'
 DATA_FINAL_DIR = f'{DATA_DIR}/{PROJECT}'
 DATA_RELEASE_DIR = f'{DATA_DIR}/release'

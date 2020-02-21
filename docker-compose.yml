@@ -12,6 +12,7 @@ services:
       - /share/appdata/qgreenland/QGreenland:/luigi/data:rw
       - ./qgreenland:/luigi/tasks/qgreenland:ro
     environment:
+      - ENVIRONMENT
       - EARTHDATA_USERNAME
       - EARTHDATA_PASSWORD
     ports:

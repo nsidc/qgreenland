@@ -4,7 +4,8 @@ import shutil
 import luigi
 
 from qgreenland import PACKAGE_DIR, __version__
-from qgreenland.constants import (DATA_FINAL_DIR,
+from qgreenland.constants import (ENVIRONMENT,
+                                  DATA_FINAL_DIR,
                                   DATA_RELEASE_DIR,
                                   TMP_DIR,
                                   ZIP_TRIGGERFILE)
@@ -67,3 +68,6 @@ class ZipQGreenland(luigi.Task):
         os.rename(f'{tmp_name}.zip', self.output().path)
 
         os.remove(self.input().path)
+
+        if ENVIRONMENT != 'dev':
+
