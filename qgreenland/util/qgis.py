@@ -184,6 +184,10 @@ def make_qgs(path):
     # TODO: is it normal to write multiple times?
     project.write()
 
+    # Release all file locks! If we don't do this, we won't be able to clean up
+    # layer source files after zipping the project.
+    project.clear()
+
 
 def _fix_layer_order(project):
     """HACK. QGIS automatically selects and expands the first layer in the legend.
