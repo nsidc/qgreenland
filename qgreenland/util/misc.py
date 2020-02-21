@@ -4,8 +4,7 @@ from contextlib import contextmanager
 
 import yaml
 
-from qgreenland.constants import (DATA_DIR,
-                                  DATA_RELEASE_DIR,
+from qgreenland.constants import (DATA_RELEASE_DIR,
                                   REQUEST_TIMEOUT,
                                   THIS_DIR,
                                   TaskType,
@@ -32,36 +31,39 @@ def temporary_path_dir(target):
     return
 
 
+def _rmtree(directory):
+    if os.path.isdir(directory):
+        shutil.rmtree(directory)
+
+
 def cleanup_intermediate_dirs(delete_fetch_dir=False):
-    shutil.rmtree(WIP_DIR)
-
-
-def cleanup_output_dirs(delete_fetch_dir=False):
-    """Delete output dirs.
-
-    $DATA_DIR/{wip,qgreenland,release,tmp*,READY_TO_ZIP}
-    """
-    dirs_to_delete = []
-
-    for task_type in TaskType:
-        if task_type != TaskType.FETCH or delete_fetch_dir:
-            dirs_to_delete.append(
-                os.path.join(task_type.value)
-            )
-
-    dirs_to_delete.append(DATA_RELEASE_DIR)
-    dirs_to_delete.extend(
-        [os.path.join(DATA_DIR, x)
-         for x in os.listdir(DATA_DIR)
-         if x.startswith('tmp')]
-    )
+    """Delete all intermediate data, except maybe 'fetch' dir."""
+    if delete_fetch_dir:
+        _rmtree(WIP_DIR)
+        return
 
     if os.path.isfile(ZIP_TRIGGERFILE):
         os.remove(ZIP_TRIGGERFILE)
 
-    for d in dirs_to_delete:
-        if os.path.isdir(d):
-            shutil.rmtree(d)
+    for task_type in TaskType:
+        if task_type != TaskType.FETCH:
+            _rmtree(task_type.value)
+
+    if os.path.isdir(WIP_DIR):
+        for x in os.listdir(WIP_DIR):
+            if x.startswith('tmp'):
+                _rmtree(x)
+
+
+def cleanup_output_dirs(delete_fetch_dir=False):
+    """Delete all output dirs (intermediate and release).
+
+    Defaults to leaving only the 'fetch' dir in place.
+    """
+    cleanup_intermediate_dirs(delete_fetch_dir=delete_fetch_dir)
+    if os.path.isdir(DATA_RELEASE_DIR):
+        for directory in os.listdir(DATA_RELEASE_DIR):
+            _rmtree(directory)
 
 
 def load_layer_config(layername=None):
