@@ -33,7 +33,7 @@ def temporary_path_dir(target):
 
 
 def _rmtree(directory, *, retries=3):
-    """A more robust version of rmtree.
+    """Add robustness to shutil.rmtree.
 
     Retries in case of intermittent issues, e.g. with network storage.
     """
