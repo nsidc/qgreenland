@@ -5,10 +5,12 @@ import luigi
 
 from qgreenland import PACKAGE_DIR, __version__
 from qgreenland.constants import (DATA_RELEASE_DIR,
+                                  ENVIRONMENT,
                                   TMP_DIR,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
 from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
+from qgreenland.util.misc import cleanup_intermediate_dirs
 from qgreenland.util.qgis import make_qgs
 
 
@@ -69,3 +71,6 @@ class ZipQGreenland(luigi.Task):
         os.rename(f'{tmp_name}.zip', self.output().path)
 
         os.remove(self.input().path)
+
+        if ENVIRONMENT != 'dev':
+            cleanup_intermediate_dirs(delete_fetch_dir=True)
