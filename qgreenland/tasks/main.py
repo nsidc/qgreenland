@@ -3,8 +3,9 @@ import shutil
 
 import luigi
 
-from qgreenland import PACKAGE_DIR, __version__
-from qgreenland.constants import (DATA_RELEASE_DIR,
+from qgreenland import __version__
+from qgreenland.constants import (ASSETS_DIR,
+                                  DATA_RELEASE_DIR,
                                   TMP_DIR,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
@@ -21,7 +22,7 @@ class QGreenlandLogoFile(luigi.Task):
         )
 
     def run(self):
-        logo = os.path.join(PACKAGE_DIR, 'assets', 'images', 'qgreenland.png')
+        logo = os.path.join(ASSETS_DIR, 'images', 'qgreenland.png')
         with self.output().temporary_path() as temp_path:
             shutil.copy(logo, temp_path)
 

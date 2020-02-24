@@ -1,21 +1,22 @@
 import os
 from enum import Enum
 
-from qgreenland import __version__
+from qgreenland import PACKAGE_DIR, __version__
 
 PROJECT = 'qgreenland'
 
 DATA_DIR = '/luigi/data'
 WIP_DIR = f'{DATA_DIR}/luigi-wip'
 DATA_RELEASE_DIR = f'{DATA_DIR}/release/{__version__}'
-
-# Output target file of the task just before the ZipQGreenland task.
-# Presence indicates the project is ready to be zipped for release.
-ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
+ASSETS_DIR = f'{PACKAGE_DIR}/assets/'
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?
 TMP_DIR = WIP_DIR
+
+# Output target file of the task just before the ZipQGreenland task.
+# Presence indicates the project is ready to be zipped for release.
+ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 REQUEST_TIMEOUT = 3
