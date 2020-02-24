@@ -123,7 +123,7 @@ def _set_groups_options(project):
 
 
 def _make_layer_groups(project):
-    """Read the layer group config yaml and add those groups to `project`."""
+    """Read the layer group config and add those groups to `project`."""
     groups_config = load_group_config()
 
     for group_path, options in groups_config.items():

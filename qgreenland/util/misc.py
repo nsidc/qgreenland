@@ -2,11 +2,12 @@ import os
 import shutil
 from contextlib import contextmanager
 
-import yaml
+import yamale
 
-from qgreenland.constants import (DATA_DIR,
+from qgreenland.constants import (CONFIG_DIR,
+                                  CONFIG_SCHEMA_DIR,
+                                  DATA_DIR,
                                   DATA_RELEASE_DIR,
-                                  PACKAGE_DIR,
                                   REQUEST_TIMEOUT,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
@@ -59,10 +60,33 @@ def cleanup_output_dirs(delete_fetch_dir=False):
             shutil.rmtree(d)
 
 
+def _load_config(config_filename):
+    """Validate config file against schema with Yamale.
+
+    It is expected that the given config filename in CONFIG_DIR has a schema of
+    matching name in CONFIG_SCHEMA_DIR.
+
+    Yamale can read in directories of config files, so it returns a list of
+    (data, fp) tuples. We always read single files, so we return just the data
+    from result[0][0].
+    """
+    config_fp = os.path.join(CONFIG_DIR, config_filename)
+    schema_fp = os.path.join(CONFIG_SCHEMA_DIR, config_filename)
+
+    if not os.path.isfile(config_fp):
+        return NotImplementedError(
+            'Loading is supported for only one config file at a time.'
+        )
+
+    schema = yamale.make_schema(schema_fp)
+    config = yamale.make_data(config_fp)
+    yamale.validate(schema, config)
+
+    return config[0][0]
+
+
 def load_layer_config(layername=None):
-    LAYERS_CONFIG = os.path.join(PACKAGE_DIR, 'layers.yml')
-    with open(LAYERS_CONFIG, 'r') as f:
-        config = yaml.safe_load(f)
+    config = _load_config('layers.yml')
 
     if not layername:
         return config
@@ -77,10 +101,7 @@ def load_layer_config(layername=None):
 
 
 def load_group_config():
-    GROUPS_CONFIG = os.path.join(PACKAGE_DIR, 'layer_groups.yml')
-
-    with open(GROUPS_CONFIG, 'r') as f:
-        config = yaml.safe_load(f)
+    config = _load_config('layer_groups.yml')
 
     return config
 
