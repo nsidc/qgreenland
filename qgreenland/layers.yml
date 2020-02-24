@@ -50,7 +50,7 @@ bedmachine_bed: &bedmachine
   short_name: 'bedmachine_bed'
   file_type: 'tif'
   data_type: 'raster'
-  metadata:
+  metadata: &bedmachine_metadata
     title: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
     abstract:
       text: 'This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.'
@@ -68,6 +68,7 @@ bedmachine_bed: &bedmachine
 bedmachine_surface:
   <<: *bedmachine
   metadata:
+    <<: *bedmachine_metadata
     title: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
   short_name: 'bedmachine_surface'
   style: null
@@ -77,6 +78,7 @@ bedmachine_surface:
 bedmachine_thickness:
   <<: *bedmachine
   metadata:
+    <<: *bedmachine_metadata
     title: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
   short_name: 'bedmachine_thickness'
   style: null
