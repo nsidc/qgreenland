@@ -55,8 +55,15 @@ def _add_layer_metadata(map_layer, layer_cfg):
 
     # Render the qmd template.
     qmd_template = Template(qmd_template_str)
-    rendered_qmd = qmd_template.render(abstract=abstract,
-                                       title=layer_cfg['metadata']['title'])
+    layer_extent = map_layer.extent()
+    rendered_qmd = qmd_template.render(
+        abstract=abstract,
+        title=layer_cfg['metadata']['title'],
+        minx=layer_extent.xMinimum(),
+        miny=layer_extent.yMinimum(),
+        maxx=layer_extent.xMaximum(),
+        maxy=layer_extent.yMaximum()
+    )
 
     # Write the rendered tempalte to a temporary file
     # location. `map_layer.loadNamedMetadata` expects a string URI corresponding
@@ -211,16 +218,16 @@ def make_qgs(path):
 
     _add_decorations(project)
 
-    # Set group options after adding the layers. Adding layers to a layer group
-    # mutates the layer group state (e.g., if the group is collapsed and a layer
-    # is added to it, it causes the group to be expanded.
-    # TODO: is this really true?
     _set_groups_options(project)
 
     _fix_layer_order(project)
 
     # TODO: is it normal to write multiple times?
     project.write()
+
+    # Release all file locks! If we don't do this, we won't be able to clean up
+    # layer source files after zipping the project.
+    project.clear()
 
 
 def _fix_layer_order(project):

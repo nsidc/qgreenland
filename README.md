@@ -113,10 +113,44 @@ following process:
 
 ### Contributing metadata
 
-THIS IS CURRENTLY NOT IMPLEMENTED.
+Metadata for a layer can be set in the `qgreenland/layers.yml` configuration
+file, under the `metadata` key for the layer in question. For example, metadata
+for the `coastlines` layer may look like the following:
 
-The process will likely be the same as contributing styles, except using the
-'Metadata' tab in the layer properties, and operating on `.qmd` files.
+```
+coastlines:
+  metadata:
+    title: 'Natural Earth Coastlines'
+    abstract:
+      text:  'Natural Earth Coastlines (Public Domain)'
+      citation:
+        text: 'Made with Natural Earth'
+        url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+```
+
+The metadata section defines the values that get used to create the on-hover
+popup text that is shown when a user hovers their cursor over a layer in the
+table of contents in QGIS. Additionally, these values are used to set the fields
+in the metadata section of the layer's properties` popup.
+
+The final abstract text shown in QGIS is a combination of the values under the
+`abstract` key. In the above example, the abstract text would become:
+
+```
+Natural Earth Coastlines (Public Domain)
+
+Citation:
+Made with Natural Earth
+
+Citation URL:
+https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md
+```
+
+Note:
+
+It is possible to export metadata from the QGIS GUI to an xml-formatted `.qmd`
+file. If collaborators wish to define metadata through the QGIS GUI, support for
+ingesting `.qmd` files may be implemented in the future.
 
 
 ### Contributing new layers
@@ -126,3 +160,15 @@ Luigi tasks to build your final QGreenland layer following the example of other
 layers.
 
 TODO: Flesh this out more.
+
+
+## Releasing
+
+Currently there is no automated release process. The manual process is:
+
+* When developing, increment minor version and add `dev` postfix to version in
+  `__init__.py`; e.g.: `v0.11.0dev`. Changelog entries should have a date of
+  "Unreleased" at this point.
+* When releasing e.g. `v0.11.0`, remove the postfix, populate the release date
+  in the changelog, merge to master if necessary, and finally tag the master
+  branch commit with e.g. `v0.11.0`.
