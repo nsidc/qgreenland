@@ -1,3 +1,8 @@
+# v0.12.0 (unreleased)
+
+- Populate metadata fields in layer properties popup with metadata configured in
+  layers.yml
+
 # v0.11.0 (2020-02-21)
 
 - Configure the app so that when it runs in production it runs reproducibly by

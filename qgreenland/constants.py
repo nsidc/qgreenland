@@ -5,10 +5,15 @@ from qgreenland import __version__
 
 PROJECT = 'qgreenland'
 
+
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
+PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 DATA_DIR = '/luigi/data'
 WIP_DIR = f'{DATA_DIR}/luigi-wip'
+DATA_RELEASE_DIR = f'{DATA_DIR}/release/{__version__}'
+ASSETS_DIR = f'{PACKAGE_DIR}/assets'
+
 if 'dev' in __version__:
     DATA_RELEASE_DIR = f'{DATA_DIR}/release/dev/{__version__}'
 else:
@@ -22,7 +27,10 @@ ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
 # renaming. Make it a subdir?
 TMP_DIR = WIP_DIR
 
-THIS_DIR = os.path.dirname(os.path.realpath(__file__))
+# Output target file of the task just before the ZipQGreenland task.
+# Presence indicates the project is ready to be zipped for release.
+ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
+
 REQUEST_TIMEOUT = 3
 
 # Project configuration

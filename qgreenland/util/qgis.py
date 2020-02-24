@@ -1,10 +1,12 @@
 import os
+import tempfile
 
 import qgis.core as qgc
+from jinja2 import Template
 from osgeo import gdal
 
-from qgreenland import PACKAGE_DIR, __version__
-from qgreenland.constants import BBOX, PROJECT_CRS
+from qgreenland import __version__
+from qgreenland.constants import ASSETS_DIR, BBOX, PROJECT_CRS
 from qgreenland.util.misc import get_layer_fs_path, load_group_config, load_layer_config
 
 
@@ -18,7 +20,7 @@ def create_raster_map_layer(layer_path, layer_cfg):
 
     map_layer = qgc.QgsRasterLayer(
         layer_path,
-        layer_cfg['name'],
+        layer_cfg['metadata']['title'],
         'gdal'
     )
 
@@ -31,6 +33,45 @@ def create_raster_map_layer(layer_path, layer_cfg):
     map_layer.renderer().setMinMaxOrigin(mmo)
 
     return map_layer
+
+
+def _add_layer_metadata(map_layer, layer_cfg):
+    """Add layer metadata.
+
+    Renders a jinja template to a temporary file location as a valid QGIS qmd
+    metadata file. This metadata then gets associated with the `map_layer` using
+    its `loadNamedMetadata` method. This metadata gets written to the project
+    file when the layer is added to the `project`.
+    """
+    # Load/render the template.
+    template_path = os.path.join(ASSETS_DIR, 'templates', 'metadata.jinja')
+    with open(template_path, 'r') as f:
+        qmd_template_str = ' '.join(f.readlines())
+
+    abstract = build_abstract(layer_cfg)
+
+    # Set the layer's on-hover popup text.
+    map_layer.setAbstract(abstract)
+
+    # Render the qmd template.
+    qmd_template = Template(qmd_template_str)
+    layer_extent = map_layer.extent()
+    rendered_qmd = qmd_template.render(
+        abstract=abstract,
+        title=layer_cfg['metadata']['title'],
+        minx=layer_extent.xMinimum(),
+        miny=layer_extent.yMinimum(),
+        maxx=layer_extent.xMaximum(),
+        maxy=layer_extent.yMaximum()
+    )
+
+    # Write the rendered tempalte to a temporary file
+    # location. `map_layer.loadNamedMetadata` expects a string URI corresponding
+    # to a file on disk.
+    with tempfile.NamedTemporaryFile('w') as temp_file:
+        temp_file.write(rendered_qmd)
+        temp_file.flush()
+        map_layer.loadNamedMetadata(temp_file.name)
 
 
 def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
@@ -49,13 +90,13 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     if layer_cfg['data_type'] == 'vector':
         map_layer = qgc.QgsVectorLayer(
             layer_path,
-            layer_cfg['name'],  # layer name as it shows up in TOC
+            layer_cfg['metadata']['title'],  # layer name as it shows up in TOC
             'ogr'  # name of the data provider (memory, postgresql)
         )
     elif layer_cfg['data_type'] == 'raster':
         map_layer = create_raster_map_layer(layer_path, layer_cfg)
 
-    map_layer.setAbstract(build_abstract(layer_cfg))
+    _add_layer_metadata(map_layer, layer_cfg)
 
     # TODO: COO COO CACHOO
     if layer_cfg.get('style'):
@@ -227,7 +268,7 @@ def _add_decorations(project):
 
 
 def load_qml_style(map_layer, style_name):
-    style_path = os.path.join(PACKAGE_DIR, 'styles', style_name + '.qml')
+    style_path = os.path.join(ASSETS_DIR, 'styles', style_name + '.qml')
     # If you pass a path to nothing, it will silently fail
     if not os.path.isfile(style_path):
         raise RuntimeError(f"Style '{style_path}' not found.")
@@ -240,20 +281,23 @@ def load_qml_style(map_layer, style_name):
 
 def build_abstract(layer_cfg):
     abstract = ''
-    if layer_cfg.get('description'):
-        abstract += layer_cfg['description'] + '\n\n'
+    # TODO: COO COO CACHOO
+    if layer_cfg['metadata'].get('abstract'):
+        abstract_cfg = layer_cfg['metadata'].get('abstract')
+        abstract += abstract_cfg['text'] + '\n\n'
 
-    if layer_cfg.get('abstract'):
-        abstract += 'Abstract:\n'
-        abstract += layer_cfg['abstract'] + '\n\n'
+        # TODO: COO COO CACHOO
+        if abstract_cfg.get('citation'):
+            citation_cfg = abstract_cfg.get('citation')
 
-    if layer_cfg.get('citation'):
-        if layer_cfg['citation'].get('text'):
-            abstract += 'Citation:\n'
-            abstract += layer_cfg['citation']['text'] + '\n\n'
+            # TODO: COO COO CACHOO
+            if citation_cfg.get('text'):
+                abstract += 'Citation:\n'
+                abstract += citation_cfg['text'] + '\n\n'
 
-        if layer_cfg['citation'].get('url'):
-            abstract += 'Citation URL:\n'
-            abstract += layer_cfg['citation']['url']
+            # TODO: COO COO CACHOO
+            if citation_cfg.get('url'):
+                abstract += 'Citation URL:\n'
+                abstract += citation_cfg['url']
 
     return abstract

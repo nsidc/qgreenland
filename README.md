@@ -100,7 +100,7 @@ following process:
 
 ![Save style](docs/images/save_style.png)
 
-* Save the style to `qgreenland/styles/<name>.qml` directory of this
+* Save the style to `qgreenland/assets/styles/<name>.qml` directory of this
   repository. Keep in mind that styles can be shared between layers, so give
   the style a generic name instead of a layer-specific name where possible.
 * Edit the `qgreenland/layers.yml` file and find the layer(s) you wish to apply
@@ -113,10 +113,44 @@ following process:
 
 ### Contributing metadata
 
-THIS IS CURRENTLY NOT IMPLEMENTED.
+Metadata for a layer can be set in the `qgreenland/layers.yml` configuration
+file, under the `metadata` key for the layer in question. For example, metadata
+for the `coastlines` layer may look like the following:
 
-The process will likely be the same as contributing styles, except using the
-'Metadata' tab in the layer properties, and operating on `.qmd` files.
+```
+coastlines:
+  metadata:
+    title: 'Natural Earth Coastlines'
+    abstract:
+      text:  'Natural Earth Coastlines (Public Domain)'
+      citation:
+        text: 'Made with Natural Earth'
+        url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+```
+
+The metadata section defines the values that get used to create the on-hover
+popup text that is shown when a user hovers their cursor over a layer in the
+table of contents in QGIS. Additionally, these values are used to set the fields
+in the metadata section of the layer's properties` popup.
+
+The final abstract text shown in QGIS is a combination of the values under the
+`abstract` key. In the above example, the abstract text would become:
+
+```
+Natural Earth Coastlines (Public Domain)
+
+Citation:
+Made with Natural Earth
+
+Citation URL:
+https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md
+```
+
+Note:
+
+It is possible to export metadata from the QGIS GUI to an xml-formatted `.qmd`
+file. If collaborators wish to define metadata through the QGIS GUI, support for
+ingesting `.qmd` files may be implemented in the future.
 
 
 ### Contributing new layers
