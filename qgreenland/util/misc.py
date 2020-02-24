@@ -4,9 +4,9 @@ from contextlib import contextmanager
 
 import yaml
 
-from qgreenland import PACKAGE_DIR
 from qgreenland.constants import (DATA_DIR,
                                   DATA_RELEASE_DIR,
+                                  PACKAGE_DIR,
                                   REQUEST_TIMEOUT,
                                   TaskType,
                                   ZIP_TRIGGERFILE)

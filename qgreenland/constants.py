@@ -1,10 +1,11 @@
 import os
 from enum import Enum
 
-from qgreenland import PACKAGE_DIR, __version__
+from qgreenland import __version__
 
 PROJECT = 'qgreenland'
 
+PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 DATA_DIR = '/luigi/data'
 WIP_DIR = f'{DATA_DIR}/luigi-wip'
 DATA_RELEASE_DIR = f'{DATA_DIR}/release/{__version__}'
