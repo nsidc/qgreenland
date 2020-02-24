@@ -1,3 +1,8 @@
+# v0.11.0 (unreleased)
+
+- Populate metadata fields in layer properties popup with metadata configured in
+  layers.yml
+
 # v0.10.0 (2020-02-20)
 
 - Move nginx config, Dockerfile & docker-compose.yml to top level.
