@@ -18,7 +18,7 @@ def create_raster_map_layer(layer_path, layer_cfg):
 
     map_layer = qgc.QgsRasterLayer(
         layer_path,
-        layer_cfg['metadata']['name'],
+        layer_cfg['metadata']['title'],
         'gdal'
     )
 
@@ -49,7 +49,7 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     if layer_cfg['data_type'] == 'vector':
         map_layer = qgc.QgsVectorLayer(
             layer_path,
-            layer_cfg['metadata']['name'],  # layer name as it shows up in TOC
+            layer_cfg['metadata']['title'],  # layer name as it shows up in TOC
             'ogr'  # name of the data provider (memory, postgresql)
         )
     elif layer_cfg['data_type'] == 'raster':

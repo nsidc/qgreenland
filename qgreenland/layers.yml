@@ -10,7 +10,7 @@ coastlines:
   file_type: 'shp'
   data_type: 'vector'
   metadata:
-    name: 'Natural Earth Coastlines'
+    title: 'Natural Earth Coastlines'
     abstract:
       text:  'Natural Earth Coastlines (Public Domain)'
       citation:
@@ -27,7 +27,7 @@ arctic_dem:
   file_type: 'tif'
   data_type: 'raster'
   metadata:
-    name: 'Arctic DEM (1km mosaic)'
+    title: 'Arctic DEM (1km mosaic)'
     abstract:
       text: 'ArcticDEM is an NGA-NSF public-private initiative to automatically produce a high-resolution, high quality, digital surface model (DSM) of the Arctic using optical stereo imagery, high-performance computing, and open source photogrammetry software.'
       citation:
@@ -51,7 +51,7 @@ bedmachine_bed: &bedmachine
   file_type: 'tif'
   data_type: 'raster'
   metadata:
-    name: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
+    title: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
     abstract:
       text: 'This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.'
       citation:
@@ -68,7 +68,7 @@ bedmachine_bed: &bedmachine
 bedmachine_surface:
   <<: *bedmachine
   metadata:
-    name: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
+    title: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
   short_name: 'bedmachine_surface'
   style: null
   visible: False
@@ -77,7 +77,7 @@ bedmachine_surface:
 bedmachine_thickness:
   <<: *bedmachine
   metadata:
-    name: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
+    title: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
   short_name: 'bedmachine_thickness'
   style: null
   visible: False
