@@ -5,7 +5,7 @@ import qgis.core as qgc
 from jinja2 import Template
 from osgeo import gdal
 
-from qgreenland import PACKAGE_DIR, __version__
+from qgreenland import __version__
 from qgreenland.constants import ASSETS_DIR, BBOX, PROJECT_CRS
 from qgreenland.util.misc import get_layer_fs_path, load_group_config, load_layer_config
 
@@ -261,7 +261,7 @@ def _add_decorations(project):
 
 
 def load_qml_style(map_layer, style_name):
-    style_path = os.path.join(PACKAGE_DIR, 'styles', style_name + '.qml')
+    style_path = os.path.join(ASSETS_DIR, 'styles', style_name + '.qml')
     # If you pass a path to nothing, it will silently fail
     if not os.path.isfile(style_path):
         raise RuntimeError(f"Style '{style_path}' not found.")
