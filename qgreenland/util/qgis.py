@@ -50,6 +50,10 @@ def _add_layer_metadata(map_layer, layer_cfg):
 
     abstract = build_abstract(layer_cfg)
 
+    # Set the layer's on-hover popup text.
+    map_layer.setAbstract(abstract)
+
+    # Render the qmd template.
     qmd_template = Template(qmd_template_str)
     rendered_qmd = qmd_template.render(abstract=abstract,
                                        title=layer_cfg['metadata']['title'])
@@ -85,7 +89,6 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     elif layer_cfg['data_type'] == 'raster':
         map_layer = create_raster_map_layer(layer_path, layer_cfg)
 
-    map_layer.setAbstract(build_abstract(layer_cfg))
     _add_layer_metadata(map_layer, layer_cfg)
 
     # TODO: COO COO CACHOO
