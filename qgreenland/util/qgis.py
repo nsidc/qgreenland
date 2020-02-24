@@ -18,7 +18,7 @@ def create_raster_map_layer(layer_path, layer_cfg):
 
     map_layer = qgc.QgsRasterLayer(
         layer_path,
-        layer_cfg['name'],
+        layer_cfg['metadata']['name'],
         'gdal'
     )
 
@@ -49,7 +49,7 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     if layer_cfg['data_type'] == 'vector':
         map_layer = qgc.QgsVectorLayer(
             layer_path,
-            layer_cfg['name'],  # layer name as it shows up in TOC
+            layer_cfg['metadata']['name'],  # layer name as it shows up in TOC
             'ogr'  # name of the data provider (memory, postgresql)
         )
     elif layer_cfg['data_type'] == 'raster':
@@ -241,8 +241,8 @@ def load_qml_style(map_layer, style_name):
 def build_abstract(layer_cfg):
     abstract = ''
     # TODO: COO COO CACHOO
-    if layer_cfg.get('abstract'):
-        abstract_cfg = layer_cfg.get('abstract')
+    if layer_cfg['metadata'].get('abstract'):
+        abstract_cfg = layer_cfg['metadata'].get('abstract')
         abstract += abstract_cfg['text'] + '\n\n'
 
         # TODO: COO COO CACHOO
