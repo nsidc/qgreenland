@@ -160,3 +160,15 @@ Luigi tasks to build your final QGreenland layer following the example of other
 layers.
 
 TODO: Flesh this out more.
+
+
+## Releasing
+
+Currently there is no automated release process. The manual process is:
+
+* When developing, increment minor version and add `dev` postfix to version in
+  `__init__.py`; e.g.: `v0.11.0dev`. Changelog entries should have a date of
+  "Unreleased" at this point.
+* When releasing e.g. `v0.11.0`, remove the postfix, populate the release date
+  in the changelog, merge to master if necessary, and finally tag the master
+  branch commit with e.g. `v0.11.0`.

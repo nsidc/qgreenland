@@ -1,7 +1,12 @@
-# v0.11.0 (unreleased)
+# v0.12.0 (unreleased)
 
 - Populate metadata fields in layer properties popup with metadata configured in
   layers.yml
+
+# v0.11.0 (2020-02-21)
+
+- Configure the app so that when it runs in production it runs reproducibly by
+  cleaning up its intermediate files aggressively.
 
 # v0.10.0 (2020-02-20)
 
@@ -9,7 +14,7 @@
 - Install dependencies from environment-lock.yml
 - Move `run_task.sh` and `cleanup.sh` to `scripts/` dir.
 - README updates.
-- Make layer and layer group visbility configurable. 
+- Make layer and layer group visbility configurable.
 - Make layer group expand/collapse state configurable.
   - HACK: If the first layer in the legend is in a collapsed layer group, QGIS
     will automatically expand the layer group. Set coastlines layer to be first

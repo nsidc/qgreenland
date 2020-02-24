@@ -218,16 +218,16 @@ def make_qgs(path):
 
     _add_decorations(project)
 
-    # Set group options after adding the layers. Adding layers to a layer group
-    # mutates the layer group state (e.g., if the group is collapsed and a layer
-    # is added to it, it causes the group to be expanded.
-    # TODO: is this really true?
     _set_groups_options(project)
 
     _fix_layer_order(project)
 
     # TODO: is it normal to write multiple times?
     project.write()
+
+    # Release all file locks! If we don't do this, we won't be able to clean up
+    # layer source files after zipping the project.
+    project.clear()
 
 
 def _fix_layer_order(project):
