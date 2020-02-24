@@ -4,10 +4,10 @@ from contextlib import contextmanager
 
 import yaml
 
+from qgreenland import PACKAGE_DIR
 from qgreenland.constants import (DATA_DIR,
                                   DATA_RELEASE_DIR,
                                   REQUEST_TIMEOUT,
-                                  THIS_DIR,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
 from qgreenland.util.edl import create_earthdata_authenticated_session
@@ -60,7 +60,7 @@ def cleanup_output_dirs(delete_fetch_dir=False):
 
 
 def load_layer_config(layername=None):
-    LAYERS_CONFIG = os.path.join(THIS_DIR, 'layers.yml')
+    LAYERS_CONFIG = os.path.join(PACKAGE_DIR, 'layers.yml')
     with open(LAYERS_CONFIG, 'r') as f:
         config = yaml.safe_load(f)
 
@@ -77,7 +77,7 @@ def load_layer_config(layername=None):
 
 
 def load_group_config():
-    GROUPS_CONFIG = os.path.join(THIS_DIR, 'layer_groups.yml')
+    GROUPS_CONFIG = os.path.join(PACKAGE_DIR, 'layer_groups.yml')
 
     with open(GROUPS_CONFIG, 'r') as f:
         config = yaml.safe_load(f)

@@ -18,7 +18,6 @@ TMP_DIR = WIP_DIR
 # Presence indicates the project is ready to be zipped for release.
 ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
 
-THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 REQUEST_TIMEOUT = 3
 
 # Project configuration
