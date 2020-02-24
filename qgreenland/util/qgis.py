@@ -240,20 +240,23 @@ def load_qml_style(map_layer, style_name):
 
 def build_abstract(layer_cfg):
     abstract = ''
-    if layer_cfg.get('description'):
-        abstract += layer_cfg['description'] + '\n\n'
-
+    # TODO: COO COO CACHOO
     if layer_cfg.get('abstract'):
-        abstract += 'Abstract:\n'
-        abstract += layer_cfg['abstract'] + '\n\n'
+        abstract_cfg = layer_cfg.get('abstract')
+        abstract += abstract_cfg['text'] + '\n\n'
 
-    if layer_cfg.get('citation'):
-        if layer_cfg['citation'].get('text'):
-            abstract += 'Citation:\n'
-            abstract += layer_cfg['citation']['text'] + '\n\n'
+        # TODO: COO COO CACHOO
+        if abstract_cfg.get('citation'):
+            citation_cfg = abstract_cfg.get('citation')
 
-        if layer_cfg['citation'].get('url'):
-            abstract += 'Citation URL:\n'
-            abstract += layer_cfg['citation']['url']
+            # TODO: COO COO CACHOO
+            if citation_cfg.get('text'):
+                abstract += 'Citation:\n'
+                abstract += citation_cfg['text'] + '\n\n'
+
+            # TODO: COO COO CACHOO
+            if citation_cfg.get('url'):
+                abstract += 'Citation URL:\n'
+                abstract += citation_cfg['url']
 
     return abstract
