@@ -100,7 +100,7 @@ following process:
 
 ![Save style](docs/images/save_style.png)
 
-* Save the style to `qgreenland/styles/<name>.qml` directory of this
+* Save the style to `qgreenland/assets/styles/<name>.qml` directory of this
   repository. Keep in mind that styles can be shared between layers, so give
   the style a generic name instead of a layer-specific name where possible.
 * Edit the `qgreenland/layers.yml` file and find the layer(s) you wish to apply
