@@ -56,12 +56,14 @@ def _add_layer_metadata(map_layer, layer_cfg):
     # Render the qmd template.
     qmd_template = Template(qmd_template_str)
     layer_extent = map_layer.extent()
-    rendered_qmd = qmd_template.render(abstract=abstract,
-                                       title=layer_cfg['metadata']['title'],
-                                       minx=layer_extent.xMinimum(),
-                                       miny=layer_extent.yMinimum(),
-                                       maxx=layer_extent.xMaximum(),
-                                       maxy=layer_extent.yMaximum())
+    rendered_qmd = qmd_template.render(
+        abstract=abstract,
+        title=layer_cfg['metadata']['title'],
+        minx=layer_extent.xMinimum(),
+        miny=layer_extent.yMinimum(),
+        maxx=layer_extent.xMaximum(),
+        maxy=layer_extent.yMaximum()
+    )
 
     # Write the rendered tempalte to a temporary file
     # location. `map_layer.loadNamedMetadata` expects a string URI corresponding
