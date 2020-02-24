@@ -1,10 +1,12 @@
 import os
+import tempfile
 
 import qgis.core as qgc
+from jinja2 import Template
 from osgeo import gdal
 
 from qgreenland import PACKAGE_DIR, __version__
-from qgreenland.constants import BBOX, PROJECT_CRS
+from qgreenland.constants import ASSETS_DIR, BBOX, PROJECT_CRS
 from qgreenland.util.misc import get_layer_fs_path, load_group_config, load_layer_config
 
 
@@ -33,6 +35,34 @@ def create_raster_map_layer(layer_path, layer_cfg):
     return map_layer
 
 
+def _add_layer_metadata(map_layer, layer_cfg):
+    """Add layer metadata.
+
+    Renders a jinja template to a temporary file location as a valid QGIS qmd
+    metadata file. This metadata then gets associated with the `map_layer` using
+    its `loadNamedMetadata` method. This metadata gets written to the project
+    file when the layer is added to the `project`.
+    """
+    # Load/render the template.
+    template_path = os.path.join(ASSETS_DIR, 'templates', 'metadata.jinja')
+    with open(template_path, 'r') as f:
+        qmd_template_str = ' '.join(f.readlines())
+
+    abstract = build_abstract(layer_cfg)
+
+    qmd_template = Template(qmd_template_str)
+    rendered_qmd = qmd_template.render(abstract=abstract,
+                                       title=layer_cfg['metadata']['title'])
+
+    # Write the rendered tempalte to a temporary file
+    # location. `map_layer.loadNamedMetadata` expects a string URI corresponding
+    # to a file on disk.
+    with tempfile.NamedTemporaryFile('w') as temp_file:
+        temp_file.write(rendered_qmd)
+        temp_file.flush()
+        map_layer.loadNamedMetadata(temp_file.name)
+
+
 def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     # Give the absolute path to the layer. We think project.addMapLayer()
     # automatically generates the correct relative paths. Using a relative
@@ -56,6 +86,7 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
         map_layer = create_raster_map_layer(layer_path, layer_cfg)
 
     map_layer.setAbstract(build_abstract(layer_cfg))
+    _add_layer_metadata(map_layer, layer_cfg)
 
     # TODO: COO COO CACHOO
     if layer_cfg.get('style'):
