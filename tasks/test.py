@@ -29,7 +29,13 @@ def validate(ctx, verbose=False):
     print('Configuration is valid.')
 
 
-@task(pre=[validate, lint], default=True)
+@task
+def unit(ctx):
+    ctx.run('pytest qgreenland/test')
+    print('Unit tests passed.')
+
+
+@task(pre=[validate, lint, unit], default=True)
 def all(ctx):
     """Run all tasks."""
     pass
