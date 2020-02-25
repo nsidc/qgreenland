@@ -166,9 +166,21 @@ TODO: Flesh this out more.
 
 Currently there is no automated release process. The manual process is:
 
-* When developing, increment minor version and add `dev` postfix to version in
-  `__init__.py`; e.g.: `v0.11.0dev`. Changelog entries should have a date of
-  "Unreleased" at this point.
-* When releasing e.g. `v0.11.0`, remove the postfix, populate the release date
-  in the changelog, merge to master if necessary, and finally tag the master
-  branch commit with e.g. `v0.11.0`.
+When developing, increment the proper version part (`major`, `minor`, `dev`) with the `version.bump {part}` invoke task. For example, to bump the minor version:
+
+```
+invoke version.bump minor
+```
+
+This will automatically add the `dev` tag to the end of the version string if
+one does not already exist. For example, if bumping the minor version from
+`v1.1.1`, the version will become `v1.2.1dev`.
+
+To release, invoke the `version.bump` tag with the `release` part:
+
+```
+invoke version.bump release
+```
+
+This will remove the `dev` part from the version. For example, using the
+`release` part on `v1.2.1dev` will change the version to `v1.2.1`.

@@ -17,3 +17,4 @@ dependencies:
   - flake8-import-order=0.18.1
   - flake8-quotes=2.1.1
   - yamale=2.0.1
+  - bumpversion=0.5.3

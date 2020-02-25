@@ -9,11 +9,12 @@ dependencies:
   - atk=2.32.0=haf93ef1_0
   - attrs=19.3.0=py_0
   - boost-cpp=1.70.0=h8e57a91_2
+  - bumpversion=0.5.3=py_1001
   - bzip2=1.0.8=h516909a_2
-  - ca-certificates=2019.11.28=hecc5488_0
+  - ca-certificates=2020.1.1=0
   - cairo=1.16.0=hfb77d84_1002
   - certifi=2019.11.28=py38_0
-  - cffi=1.13.2=py38h8022711_0
+  - cffi=1.14.0=py38h2e261b9_0
   - cfitsio=3.470=hb60a0a2_2
   - chardet=3.0.4=py38_1003
   - click=7.0=py_0
@@ -26,7 +27,7 @@ dependencies:
   - cycler=0.10.0=py_2
   - cytoolz=0.10.1=py38h516909a_0
   - dask-core=2.11.0=py_0
-  - dbus=1.13.6=he372182_0
+  - dbus=1.13.12=h746ee38_0
   - decorator=4.4.1=py_0
   - earthpy=0.8.0=py_0
   - entrypoints=0.3=py38_1000
@@ -49,7 +50,7 @@ dependencies:
   - geotiff=1.5.1=hbd99317_7
   - gettext=0.19.8.1=hc5be6a0_1002
   - giflib=5.1.7=h516909a_1
-  - glib=2.58.3=py38h6f030ca_1002
+  - glib=2.63.1=h5a9c865_0
   - gobject-introspection=1.58.2=py38h5503ade_1002
   - graphite2=1.3.13=hf484d3e_1000
   - gsl=2.5=h294904e_1
@@ -76,7 +77,7 @@ dependencies:
   - libclang=9.0.1=default_hde54327_0
   - libcurl=7.68.0=hda55be3_0
   - libdap4=3.20.4=hd3bb157_0
-  - libedit=3.1.20170329=hf8c457e_1001
+  - libedit=3.1.20181209=hc058e9b_0
   - libffi=3.2.1=he1b5a44_1006
   - libgcc-ng=9.2.0=h24d8f2e_2
   - libgdal=3.0.2=h30a29e3_5
@@ -108,9 +109,9 @@ dependencies:
   - matplotlib=3.1.3=py38_0
   - matplotlib-base=3.1.3=py38h250f245_0
   - mccabe=0.6.1=py_1
-  - mock=3.0.5=py38_0
+  - mock=4.0.1=py_0
   - munch=2.5.0=py_0
-  - ncurses=6.1=hf484d3e_1002
+  - ncurses=6.2=he6710b0_0
   - networkx=2.4=py_0
   - nose2=0.9.2=py_0
   - nspr=4.25=he1b5a44_0
@@ -161,7 +162,7 @@ dependencies:
   - qwt=6.1.4=h73816c6_1005
   - qwtpolar=1.1.1=h73816c6_7
   - rasterio=1.1.2=py38h900e953_0
-  - readline=8.0=hf8c457e_0
+  - readline=8.0=h7b6447c_0
   - requests=2.22.0=py38_1
   - retrying=1.3.3=py_2
   - rtree=0.9.4=py38h7b0cdae_0
@@ -173,7 +174,7 @@ dependencies:
   - six=1.14.0=py38_0
   - snowballstemmer=2.0.0=py_0
   - snuggs=1.4.7=py_0
-  - sqlite=3.30.1=hcee41ef_0
+  - sqlite=3.31.1=h7b6447c_0
   - tbb=2018.0.5=h2d50403_0
   - tiledb=1.7.0=hcde45ca_2
   - tk=8.6.10=hed695b0_0
@@ -181,7 +182,7 @@ dependencies:
   - toolz=0.10.0=py_0
   - tornado=5.1.1=py38h516909a_0
   - tzcode=2019a=h516909a_1002
-  - urllib3=1.25.7=py38_0
+  - urllib3=1.25.8=py38_0
   - wheel=0.34.2=py_1
   - xerces-c=3.2.2=h8412b87_1004
   - xorg-inputproto=2.3.2=h14c3975_1002
