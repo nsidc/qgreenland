@@ -4,7 +4,7 @@ import time
 from contextlib import contextmanager
 
 from qgreenland.constants import (CONFIG,
-                                  DATA_RELEASE_DIR,
+                                  RELEASES_DIR,
                                   REQUEST_TIMEOUT,
                                   TaskType,
                                   WIP_DIR,
@@ -72,12 +72,14 @@ def cleanup_intermediate_dirs(delete_fetch_dir=False):
 def cleanup_output_dirs(delete_fetch_dir=False):
     """Delete all output dirs (intermediate and release).
 
-    Defaults to leaving only the 'fetch' dir in place.
+    WARNING: Should only be called ad-hoc (e.g. cleanup.sh), because this will
+    blow away all releases. Defaults to leaving only the 'fetch' dir in place.
     """
     cleanup_intermediate_dirs(delete_fetch_dir=delete_fetch_dir)
-    if os.path.isdir(DATA_RELEASE_DIR):
-        for directory in os.listdir(DATA_RELEASE_DIR):
-            _rmtree(directory)
+
+    if os.path.isdir(RELEASES_DIR):
+        for directory in os.listdir(RELEASES_DIR):
+            _rmtree(os.path.join(RELEASES_DIR, directory))
 
 
 def get_layer_config(layername=None):
