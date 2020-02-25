@@ -12,15 +12,16 @@ ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
 PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 DATA_DIR = '/luigi/data'
+RELEASES_DIR = f'{DATA_DIR}/release'
 WIP_DIR = f'{DATA_DIR}/luigi-wip'
 ASSETS_DIR = f'{PACKAGE_DIR}/assets'
 CONFIG_DIR = f'{PACKAGE_DIR}/config'
 CONFIG_SCHEMA_DIR = f'{CONFIG_DIR}/schema'
 
 if 'dev' in __version__:
-    DATA_RELEASE_DIR = f'{DATA_DIR}/release/dev/{__version__}'
+    RELEASE_DIR = f'{RELEASES_DIR}/dev/{__version__}'
 else:
-    DATA_RELEASE_DIR = f'{DATA_DIR}/release/{__version__}'
+    RELEASE_DIR = f'{RELEASES_DIR}/{__version__}'
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?
