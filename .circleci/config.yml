@@ -11,12 +11,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run flake8 linting
+          name: 'Run all tests (lint, config validation, etc.)'
           command: |
             conda env create --quiet -f environment-lock.yml
             conda init bash
-            /bin/bash --login -c "conda activate qgreenland && inv test.lint"
-            echo "Linting passed."
+            /bin/bash --login -c "conda activate qgreenland && inv test"
 
 workflows:
   version: 2

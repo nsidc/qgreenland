@@ -3,10 +3,8 @@ import shutil
 import time
 from contextlib import contextmanager
 
-import yaml
-
-from qgreenland.constants import (DATA_RELEASE_DIR,
-                                  PACKAGE_DIR,
+from qgreenland.constants import (CONFIG,
+                                  RELEASES_DIR,
                                   REQUEST_TIMEOUT,
                                   TaskType,
                                   WIP_DIR,
@@ -74,38 +72,28 @@ def cleanup_intermediate_dirs(delete_fetch_dir=False):
 def cleanup_output_dirs(delete_fetch_dir=False):
     """Delete all output dirs (intermediate and release).
 
-    Defaults to leaving only the 'fetch' dir in place.
+    WARNING: Should only be called ad-hoc (e.g. cleanup.sh), because this will
+    blow away all releases. Defaults to leaving only the 'fetch' dir in place.
     """
     cleanup_intermediate_dirs(delete_fetch_dir=delete_fetch_dir)
-    if os.path.isdir(DATA_RELEASE_DIR):
-        for directory in os.listdir(DATA_RELEASE_DIR):
-            _rmtree(directory)
+
+    if os.path.isdir(RELEASES_DIR):
+        for directory in os.listdir(RELEASES_DIR):
+            _rmtree(os.path.join(RELEASES_DIR, directory))
 
 
-def load_layer_config(layername=None):
-    LAYERS_CONFIG = os.path.join(PACKAGE_DIR, 'layers.yml')
-    with open(LAYERS_CONFIG, 'r') as f:
-        config = yaml.safe_load(f)
+def get_layer_config(layername=None):
+    config = CONFIG['layers']
 
     if not layername:
         return config
 
-    # TODO: Add error handling
     try:
         return config[layername]
     except KeyError:
         raise NotImplementedError(
             f"Configuration for layer '{layername}' not found."
         )
-
-
-def load_group_config():
-    GROUPS_CONFIG = os.path.join(PACKAGE_DIR, 'layer_groups.yml')
-
-    with open(GROUPS_CONFIG, 'r') as f:
-        config = yaml.safe_load(f)
-
-    return config
 
 
 def get_layer_fs_path(layer_name, layer_cfg):
