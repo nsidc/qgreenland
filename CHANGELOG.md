@@ -1,6 +1,9 @@
-# v0.13.0 (Unreleased)
+# v0.13.0 (2020-02-25)
 
 - Bugfix: Missing constant definitions
+- Configure layer and group order based on the position of layers in the
+  `layers.yml` config. Groups get created as they are required when adding map
+  layers.
 
 # v0.12.0 (2020-02-24)
 
