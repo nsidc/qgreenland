@@ -123,28 +123,14 @@ def _set_groups_options(project):
         group.setExpanded(group_expanded)
 
     for group_path, options in groups_config.items():
-        group = _get_group(project, group_path)
+        group = _get_or_create_group(project, group_path)
 
         _set_group_visibility(group, options)
         _set_group_expanded(group, options)
 
 
-def _make_layer_groups(project):
-    """Read the layer group config and add those groups to `project`."""
-    groups_config = CONFIG['layer_groups']
-
-    for group_path, options in groups_config.items():
-        group = project.layerTreeRoot()
-        for group_name in group_path.split('/'):
-            # Get or create the group.
-            if group.findGroup(group_name) is None:
-                group = group.addGroup(group_name)
-            else:
-                group = group.findGroup(group_name)
-
-
-def _get_group(project, group_path):
-    """Look up layer group in `project` by `group_path`."""
+def _get_or_create_group(project, group_path):
+    """Get or create the layer group in `project` by `group_path`."""
     group = project.layerTreeRoot()
 
     # If the group path is an empty string, return the root layer group.
@@ -156,11 +142,10 @@ def _get_group(project, group_path):
     for idx, group_name in enumerate(group_names):
         # TODO: COO COO CACHOO
         if group.findGroup(group_name) is None:
-            parent_path = '/'.join(group_names[:idx])
-            raise KeyError(f"Group '{group_name}' under "
-                           f"parent '{parent_path}' not found.")
-
-        group = group.findGroup(group_name)
+            # Create the group.
+            group = group.addGroup(group_name)
+        else:
+            group = group.findGroup(group_name)
 
     return group
 
@@ -175,7 +160,7 @@ def _add_layers(project):
                                   project.absolutePath())
 
         layer_path = layer_cfg.get('path', '')
-        group = _get_group(project, layer_path)
+        group = _get_or_create_group(project, layer_path)
         # Set layer visibility
         group_layer = group.addLayer(map_layer)
         group_layer.setItemVisibilityChecked(
@@ -185,6 +170,12 @@ def _add_layers(project):
 
         # TODO: necessary for root group?
         project.addMapLayer(map_layer, addToLegend=False)
+
+
+def _add_empty_groups(project):
+    groups_config = CONFIG['layer_groups']
+    for group_path, group_config in groups_config.items():
+        _get_or_create_group(project, group_path)
 
 
 def make_qgs(path):
@@ -212,15 +203,13 @@ def make_qgs(path):
                                         project_crs)
     view.setDefaultViewExtent(extent)
 
-    _make_layer_groups(project)
-
     _add_layers(project)
 
     _add_decorations(project)
 
     _set_groups_options(project)
 
-    _fix_layer_order(project)
+    _add_empty_groups(project)
 
     # TODO: is it normal to write multiple times?
     project.write()
@@ -228,23 +217,6 @@ def make_qgs(path):
     # Release all file locks! If we don't do this, we won't be able to clean up
     # layer source files after zipping the project.
     project.clear()
-
-
-def _fix_layer_order(project):
-    """HACK. QGIS automatically selects and expands the first layer in the legend.
-
-    Force the coastlines layer to be first in the basemaps group so that the
-    first group state is correct (when this was written, bedmachine incorrectly
-    shows up as 'expanded' in the legend).
-    """
-    basemaps_group = _get_group(project, 'basemaps')
-    layers = basemaps_group.findLayers()
-    for layer in layers:
-        if 'coastlines' in layer.name().lower():
-            cloned_layer = layer.clone()
-            basemaps_group.removeChildNode(layer)
-            basemaps_group.insertChildNode(0, cloned_layer)
-            break
 
 
 def _add_decorations(project):

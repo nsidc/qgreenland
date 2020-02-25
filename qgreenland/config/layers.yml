@@ -12,7 +12,7 @@ coastlines:
         text: 'Made with Natural Earth'
         url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
   visible: True
-  path: 'basemaps'
+  path: 'Basemaps'
 
 
 arctic_dem:
@@ -33,7 +33,7 @@ arctic_dem:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
   visible: True
-  path: 'basemaps'
+  path: 'Basemaps'
 
 
 bedmachine_bed: &bedmachine
@@ -57,7 +57,7 @@ bedmachine_bed: &bedmachine
     xRes: 1000
     yRes: 1000
   visible: True
-  path: 'basemaps/bedmachine'
+  path: 'Basemaps/Bedmachine'
 
 
 bedmachine_surface:
