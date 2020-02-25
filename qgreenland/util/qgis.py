@@ -130,7 +130,7 @@ def _set_groups_options(project):
 
 
 def _get_or_create_group(project, group_path):
-    """"Get or create the layer group in `project` by `group_path`."""
+    """Get or create the layer group in `project` by `group_path`."""
     group = project.layerTreeRoot()
 
     # If the group path is an empty string, return the root layer group.
