@@ -151,6 +151,7 @@ dependencies:
   - pyqt=5.12.3=py38hcca6a23_1
   - pysocks=1.7.1=py38_0
   - pytest=5.3.5=py38_1
+  - pytest-cov=2.8.1=py_0
   - python=3.8.1=h357f687_2
   - python-daemon=2.1.2=py38_0
   - python-dateutil=2.8.1=py_0
