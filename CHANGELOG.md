@@ -2,6 +2,7 @@
 
 - Populate metadata fields in layer properties popup with metadata configured in
   layers.yml
+- Add `bumpversion` support to project as an invoke task.
 
 # v0.11.0 (2020-02-21)
 
