@@ -1,3 +1,7 @@
+# v0.13.0 (Unreleased)
+
+- Bugfix: Missing constant definitions
+
 # v0.12.0 (2020-02-24)
 
 - Populate metadata fields in layer properties popup with metadata configured in
