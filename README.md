@@ -174,7 +174,7 @@ invoke version.bump minor
 
 This will automatically add the `dev` tag to the end of the version string if
 one does not already exist. For example, if bumping the minor version from
-`v1.1.1`, the version will becom e`v1.2.1dev`.
+`v1.1.1`, the version will become `v1.2.1dev`.
 
 To release, invoke the `version.bump` tag with the `release` part:
 
