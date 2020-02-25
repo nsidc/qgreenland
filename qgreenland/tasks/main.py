@@ -5,8 +5,8 @@ import luigi
 
 from qgreenland import __version__
 from qgreenland.constants import (ASSETS_DIR,
-                                  DATA_RELEASE_DIR,
                                   ENVIRONMENT,
+                                  RELEASE_DIR,
                                   TMP_DIR,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
@@ -61,8 +61,8 @@ class ZipQGreenland(luigi.Task):
         return CreateProjectFile()
 
     def output(self):
-        os.makedirs(DATA_RELEASE_DIR, exist_ok=True)
-        fn = f'{DATA_RELEASE_DIR}/QGreenland_{__version__}.zip'
+        os.makedirs(RELEASE_DIR, exist_ok=True)
+        fn = f'{RELEASE_DIR}/QGreenland_{__version__}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):

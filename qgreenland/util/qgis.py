@@ -6,8 +6,8 @@ from jinja2 import Template
 from osgeo import gdal
 
 from qgreenland import __version__
-from qgreenland.constants import ASSETS_DIR, BBOX, PROJECT_CRS
-from qgreenland.util.misc import get_layer_fs_path, load_group_config, load_layer_config
+from qgreenland.constants import ASSETS_DIR, BBOX, CONFIG, PROJECT_CRS
+from qgreenland.util.misc import get_layer_fs_path
 
 
 def create_raster_map_layer(layer_path, layer_cfg):
@@ -108,7 +108,7 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
 
 
 def _set_groups_options(project):
-    groups_config = load_group_config()
+    groups_config = CONFIG['layer_groups']
 
     def _set_group_visibility(group, group_opts):
         # Layer group config is a path of layer groups separated by '/'
@@ -130,8 +130,8 @@ def _set_groups_options(project):
 
 
 def _make_layer_groups(project):
-    """Read the layer group config yaml and add those groups to `project`."""
-    groups_config = load_group_config()
+    """Read the layer group config and add those groups to `project`."""
+    groups_config = CONFIG['layer_groups']
 
     for group_path, options in groups_config.items():
         group = project.layerTreeRoot()
@@ -166,7 +166,7 @@ def _get_group(project, group_path):
 
 
 def _add_layers(project):
-    layers_cfg = load_layer_config()
+    layers_cfg = CONFIG['layers']
     for layer_name, layer_cfg in layers_cfg.items():
         layer_cfg = layers_cfg[layer_name]
         map_layer = get_map_layer(layer_name,

@@ -3,11 +3,16 @@ import os
 import luigi
 
 from qgreenland.constants import TaskType
+from qgreenland.util.misc import get_layer_config
 
 
 class LayerConfigMixin(luigi.Task):
-    layer_cfg = luigi.DictParameter()
+    layer_name = luigi.Parameter()
     task_type = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.layer_cfg = get_layer_config(self.layer_name)
 
     @property
     def short_name(self):
