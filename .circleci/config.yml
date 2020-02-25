@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run flake8 linting
+          name: 'Run all tests (lint, config validation, etc.)'
           command: |
             conda env create --quiet -f environment-lock.yml
             conda init bash
