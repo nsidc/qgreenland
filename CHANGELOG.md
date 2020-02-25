@@ -1,4 +1,4 @@
-# v0.12.0 (unreleased)
+# v0.12.0 (2020-02-24)
 
 - Populate metadata fields in layer properties popup with metadata configured in
   layers.yml
