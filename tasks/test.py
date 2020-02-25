@@ -6,7 +6,7 @@ from invoke import task
 @task
 def lint(ctx):
     """Run flake8 linting."""
-    ctx.run('flake8 .')
+    ctx.run('flake8 .', pty=True)
     print('Linting passed.')
 
 
@@ -31,7 +31,7 @@ def validate(ctx, verbose=False):
 
 @task
 def unit(ctx):
-    ctx.run('pytest qgreenland/test')
+    ctx.run('pytest qgreenland/test', pty=True)
     print('Unit tests passed.')
 
 
