@@ -172,6 +172,12 @@ def _add_layers(project):
         project.addMapLayer(map_layer, addToLegend=False)
 
 
+def _add_empty_groups(project):
+    groups_config = CONFIG['layer_groups']
+    for group_path, group_config in groups_config.items():
+        _get_or_create_group(project, group_path)
+
+
 def make_qgs(path):
     """Create a QGIS project file with the correct stuff in it.
 
@@ -202,6 +208,8 @@ def make_qgs(path):
     _add_decorations(project)
 
     _set_groups_options(project)
+
+    _add_empty_groups(project)
 
     # TODO: is it normal to write multiple times?
     project.write()
