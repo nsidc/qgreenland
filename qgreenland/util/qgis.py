@@ -203,31 +203,12 @@ def make_qgs(path):
 
     _set_groups_options(project)
 
-    _fix_layer_order(project)
-
     # TODO: is it normal to write multiple times?
     project.write()
 
     # Release all file locks! If we don't do this, we won't be able to clean up
     # layer source files after zipping the project.
     project.clear()
-
-
-def _fix_layer_order(project):
-    """HACK. QGIS automatically selects and expands the first layer in the legend.
-
-    Force the coastlines layer to be first in the basemaps group so that the
-    first group state is correct (when this was written, bedmachine incorrectly
-    shows up as 'expanded' in the legend).
-    """
-    basemaps_group = _get_or_create_group(project, 'basemaps')
-    layers = basemaps_group.findLayers()
-    for layer in layers:
-        if 'coastlines' in layer.name().lower():
-            cloned_layer = layer.clone()
-            basemaps_group.removeChildNode(layer)
-            basemaps_group.insertChildNode(0, cloned_layer)
-            break
 
 
 def _add_decorations(project):
