@@ -31,7 +31,7 @@ def validate(ctx, verbose=False):
 
 @task
 def unit(ctx):
-    ctx.run('pytest qgreenland/test', pty=True)
+    ctx.run('pytest qgreenland/test --cov', pty=True)
     print('Unit tests passed.')
 
 

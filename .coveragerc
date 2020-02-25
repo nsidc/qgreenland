@@ -1,0 +1,5 @@
+[report]
+fail_under = 25
+
+[tool:pytest]
+addopts = --cov=qgreenland
