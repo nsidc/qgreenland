@@ -2,11 +2,13 @@ from pprint import pprint
 
 from invoke import task
 
+from .util import print_and_run
+
 
 @task
 def lint(ctx):
     """Run flake8 linting."""
-    ctx.run('flake8 .', pty=True)
+    print_and_run('flake8 .', pty=True)
     print('Linting passed.')
 
 
@@ -22,16 +24,16 @@ def validate(ctx, verbose=False):
 
     if verbose:
         print('Layers:')
-        pprint(f"{CONFIG['layers']}")
+        pprint(CONFIG['layers'])
         print('Layer Groups:')
-        pprint(f"{CONFIG['layer_groups']}")
+        pprint(CONFIG['layer_groups'])
 
     print('Configuration is valid.')
 
 
 @task
 def unit(ctx):
-    ctx.run('pytest qgreenland/test --cov', pty=True)
+    print_and_run('pytest qgreenland/test', pty=True)
     print('Unit tests passed.')
 
 
