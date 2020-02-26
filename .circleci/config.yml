@@ -6,7 +6,7 @@ setup: &setup
   working_directory: ~/qgreenland
 
 jobs:
-  lint:
+  test:
     <<: *setup
     steps:
       - checkout
@@ -23,7 +23,7 @@ workflows:
 
   test:
     jobs:
-      - lint:
+      - test:
           filters:
             tags:
               only: /^.*$/
