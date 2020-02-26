@@ -5,44 +5,38 @@ import luigi
 from osgeo import gdal
 
 from qgreenland.constants import TaskType
-from qgreenland.util.cmr import CmrGranules
+from qgreenland.util.cmr import CmrGranule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.misc import fetch_file, temporary_path_dir
 
 
 class FetchDataFiles(luigi.Task):
-    source_cfg = luigi.DictParameter()
+    granule = luigi.Parameter()
     output_name = luigi.Parameter()
     session = None
 
     def output(self):
-        return luigi.LocalTarget(f'{TaskType.FETCH.value}/{self.output_name}')
+        return luigi.LocalTarget(
+            os.path.join(
+                TaskType.FETCH.value,
+                self.output_name,
+                self.granule.start_time.date().isoformat()
+            )
+        )
 
     def run(self):
-        if 'cmr' in self.source_cfg:
-            granules = CmrGranules(
-                self.source_cfg['cmr']['short_name'],
-                self.source_cfg['cmr']['version']
-            )
-        elif 'urls' in self.source_cfg:
-            urls = self.source_cfg['urls']
-            raise NotImplementedError('Need some analog to "granules" here.')
-
         with temporary_path_dir(self.output()) as temp_path:
-            for granule in granules:
-                urls = granule.url.split(',')
-                for url in urls:
-                    if not self.session:
-                        self.session = make_session(hosts=[url])
+            for url in self.granule.urls:
+                if not self.session:
+                    self.session = make_session(hosts=[url])
 
-                    d = os.path.join(temp_path, granule.start_time.date().isoformat())
-                    fn = os.path.basename(url)
-                    fp = os.path.join(d, fn)
-                    os.makedirs(d, exist_ok=True)
-                    resp = fetch_file(url, session=self.session)
-                    with open(fp, 'wb') as f:
-                        f.write(resp.content)
+                fn = os.path.basename(url)
+                fp = os.path.join(temp_path, fn)
+                os.makedirs(temp_path, exist_ok=True)
+                resp = fetch_file(url, session=self.session)
+                with open(fp, 'wb') as f:
+                    f.write(resp.content)
 
 
 class FetchDataFile(luigi.Task):

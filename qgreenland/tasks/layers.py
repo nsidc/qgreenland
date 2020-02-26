@@ -15,6 +15,7 @@ from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.misc import (get_layer_config,
                                   get_layer_fs_path,
                                   temporary_path_dir)
+from qgreenland.util.cmr import CmrGranule
 from qgreenland.util.shapefile import find_shapefile_in_dir
 
 
@@ -160,10 +161,19 @@ class GlacierTerminus(LayerConfigMixin, luigi.Task):
     cfg = get_layer_config(layer_name)
 
     def requires(self):
-        return FetchDataFiles(
-            source_cfg=self.cfg['source'],
-            output_name=self.cfg['short_name']
-        )
+        chains = []
+        for source_cfg in self.cfg['source']:
+            granule = CmrGranule(source_cfg['granule_ur'])
+            breakpoint()
+
+        for granule in self.granules:
+            breakpoint()
+            chains.append(FetchDataFiles(
+                granule=granule,
+                output_name=self.cfg['short_name']
+            ))
+
+        return chains
 
     def run(self):
         pass
