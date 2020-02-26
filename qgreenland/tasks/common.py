@@ -4,7 +4,7 @@ import os
 import luigi
 from osgeo import gdal
 
-from qgreenland.constants import DATA_DIR, TaskType
+from qgreenland.constants import TaskType
 from qgreenland.util.cmr import CmrGranules
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.luigi import LayerConfigMixin
@@ -17,7 +17,7 @@ class FetchDataFiles(luigi.Task):
     session = None
 
     def output(self):
-        return luigi.LocalTarget(f'{DATA_DIR}/fetch/{self.output_name}')
+        return luigi.LocalTarget(f'{TaskType.FETCH.value}/{self.output_name}')
 
     def run(self):
         if 'cmr' in self.source_cfg:
@@ -51,8 +51,7 @@ class FetchDataFile(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(
-            os.path.join(DATA_DIR,
-                         'fetch',
+            os.path.join(TaskType.FETCH.value,
                          self.output_name,
                          f'{self.output_name}.data'),
             format=luigi.format.Nop

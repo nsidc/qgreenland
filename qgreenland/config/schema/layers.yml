@@ -1,0 +1,39 @@
+map(include('layer'))
+
+---
+# TODO: Consider removing short_name key and just use the layer key
+# TODO: Consider renaming file_type to "output_file_type" or something --
+# currently this is used when adding layers to the project file, so we should
+# consider this as output_file_type and use a new key for source file type.
+layer:
+  source: any(include('cmr_source'), include('url_source'))
+  short_name: str()
+  # TODO: Path is an overloaded name. qgis_gui_path? qgis_layer_parent_node? :shrug:
+  path: str()
+  metadata:
+    title: str()
+    abstract:
+      text: str()
+      citation:
+        text: str()
+        url: str()
+  style: str(required=False)
+  file_type: str()
+  data_type: str()
+  overviews_kwargs: include('overviews_kwargs', required=False)
+  visible: bool()
+
+---
+cmr_source:
+  cmr:
+    short_name: str()
+    version: int()
+
+---
+url_source:
+  url: str()
+
+---
+overviews_kwargs:
+  overview_levels: list(int())
+  resampling_method: str()

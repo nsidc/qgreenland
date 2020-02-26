@@ -1,0 +1,6 @@
+map(include('layer_group'))
+
+---
+layer_group:
+  visible: bool()
+  expanded: bool()

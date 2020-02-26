@@ -1,0 +1,84 @@
+Basemaps:
+  visible: True
+  expanded: True
+
+Basemaps/Bedmachine:
+  visible: False
+  expanded: False
+
+Glaciology:
+  visible: False
+  expanded: False
+
+Geophysics:
+  visible: False
+  expanded: False
+
+Geology & natural resources:
+  visible: False
+  expanded: False
+
+# TODO paleontology better term ?
+Paleo-data:
+  visible: False
+  expanded: False
+
+Sea ice:
+  visible: False
+  expanded: False
+
+Atmosphere:
+  visible: False
+  expanded: False
+
+Oceanography:
+  visible: False
+  expanded: False
+
+Ecology:
+  visible: False
+  expanded: False
+
+Biology:
+  visible: False
+  expanded: False
+
+Hydrology:
+  visible: False
+  expanded: False
+
+Built environment:
+  visible: False
+  expanded: False
+
+Human health:
+  visible: False
+  expanded: False
+
+Political science:
+  visible: False
+  expanded: False
+
+Fisheries:
+  visible: False
+  expanded: False
+
+Birds:
+  visible: False
+  expanded: False
+
+Mammals:
+  visible: False
+  expanded: False
+
+Anthropology:
+  visible: False
+  expanded: False
+
+Future predictions:
+  visible: False
+  expanded: False
+
+Early explorations:
+  visible: False
+  expanded: False

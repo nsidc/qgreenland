@@ -1,14 +1,13 @@
 import os
 import shutil
+import time
 from contextlib import contextmanager
 
-import yaml
-
-from qgreenland.constants import (DATA_DIR,
-                                  DATA_RELEASE_DIR,
+from qgreenland.constants import (CONFIG,
+                                  RELEASES_DIR,
                                   REQUEST_TIMEOUT,
-                                  THIS_DIR,
                                   TaskType,
+                                  WIP_DIR,
                                   ZIP_TRIGGERFILE)
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
@@ -32,46 +31,76 @@ def temporary_path_dir(target):
     return
 
 
-def cleanup_output_dirs(delete_fetch_dir=False):
-    """Delete output dirs.
+def _rmtree(directory, *, retries=3):
+    """Add robustness to shutil.rmtree.
 
-    $DATA_DIR/{wip,qgreenland,release,tmp*,READY_TO_ZIP}
+    Retries in case of intermittent issues, e.g. with network storage.
     """
-    dirs_to_delete = []
+    if os.path.isdir(directory):
+        for i in range(retries):
+            try:
+                shutil.rmtree(directory)
+                return
+            except OSError as e:
+                print(f'WARNING: shutil.rmtee failed for path: {directory}')
+                print(f'Exception: {e}')
+                print(f'Retrying in {i} seconds...')
+                time.sleep(i)
 
-    for task_type in TaskType:
-        if task_type != TaskType.FETCH or delete_fetch_dir:
-            dirs_to_delete.append(
-                os.path.join(DATA_DIR, task_type.value)
-            )
+        # Allow caller to receive exceptions raised on the final try
+        shutil.rmtree(directory)
 
-    dirs_to_delete.append(DATA_RELEASE_DIR)
-    dirs_to_delete.extend(
-        [os.path.join(DATA_DIR, x)
-         for x in os.listdir(DATA_DIR)
-         if x.startswith('tmp')]
-    )
+
+def cleanup_intermediate_dirs(delete_fetch_dir=False):
+    """Delete all intermediate data, except maybe 'fetch' dir."""
+    if delete_fetch_dir:
+        _rmtree(WIP_DIR)
+        return
 
     if os.path.isfile(ZIP_TRIGGERFILE):
         os.remove(ZIP_TRIGGERFILE)
 
-    for d in dirs_to_delete:
-        if os.path.isdir(d):
-            shutil.rmtree(d)
+    for task_type in TaskType:
+        if task_type != TaskType.FETCH:
+            _rmtree(task_type.value)
+
+    if os.path.isdir(WIP_DIR):
+        for x in os.listdir(WIP_DIR):
+            if x.startswith('tmp'):
+                _rmtree(x)
 
 
-def load_layer_config(layername=None):
-    LAYERS_CONFIG = os.path.join(THIS_DIR, 'layers.yml')
-    with open(LAYERS_CONFIG, 'r') as f:
-        config = yaml.safe_load(f)
+def cleanup_output_dirs(delete_fetch_dir=False):
+    """Delete all output dirs (intermediate and release).
+
+    WARNING: Should only be called ad-hoc (e.g. cleanup.sh), because this will
+    blow away all releases. Defaults to leaving only the 'fetch' dir in place.
+    """
+    cleanup_intermediate_dirs(delete_fetch_dir=delete_fetch_dir)
+
+    if os.path.isdir(RELEASES_DIR):
+        for directory in os.listdir(RELEASES_DIR):
+            _rmtree(os.path.join(RELEASES_DIR, directory))
+
+
+def get_layer_config(layername=None):
+    config = CONFIG['layers']
 
     if not layername:
         return config
 
-    # TODO: Add error handling
     try:
         return config[layername]
     except KeyError:
         raise NotImplementedError(
             f"Configuration for layer '{layername}' not found."
         )
+
+
+def get_layer_fs_path(layer_name, layer_cfg):
+    layer_group_list = layer_cfg.get('path', '').split('/')
+
+    return os.path.join(TaskType.FINAL.value,
+                        *layer_group_list,
+                        layer_name,
+                        f'{layer_name}.{layer_cfg["file_type"]}')

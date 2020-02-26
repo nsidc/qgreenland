@@ -1,3 +1,37 @@
+# v0.13.0 (2020-02-25)
+
+- Bugfix: Missing constant definitions
+- Configure layer and group order based on the position of layers in the
+  `layers.yml` config. Groups get created as they are required when adding map
+  layers.
+
+# v0.12.0 (2020-02-24)
+
+- Populate metadata fields in layer properties popup with metadata configured in
+  layers.yml
+- Add `bumpversion` support to project as an invoke task.
+
+# v0.11.0 (2020-02-21)
+
+- Configure the app so that when it runs in production it runs reproducibly by
+  cleaning up its intermediate files aggressively.
+
+# v0.10.0 (2020-02-20)
+
+- Move nginx config, Dockerfile & docker-compose.yml to top level.
+- Install dependencies from environment-lock.yml
+- Move `run_task.sh` and `cleanup.sh` to `scripts/` dir.
+- README updates.
+- Make layer and layer group visbility configurable.
+- Make layer group expand/collapse state configurable.
+  - HACK: If the first layer in the legend is in a collapsed layer group, QGIS
+    will automatically expand the layer group. Set coastlines layer to be first
+    in the legend to avoid this.
+
+# v0.9.0 (2020-02-18)
+
+* Add QGreenland logo and copyright text as QGIS decorations at bottom-left.
+
 # v0.8.0 (2020-02-12)
 
 * Pre-compute statistics for raster layers so that QGIS can render those layers

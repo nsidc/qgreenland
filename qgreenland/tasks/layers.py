@@ -6,33 +6,41 @@ import os
 
 import luigi
 
-from qgreenland.constants import DATA_FINAL_DIR
 from qgreenland.tasks.common import ExtractNcDataset, FetchDataFile, FetchDataFiles
 from qgreenland.tasks.raster import BuildRasterOverviews, ReprojectRaster, SubsetRaster
 from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
                                         UnzipShapefile)
-from qgreenland.util.misc import (load_layer_config,
+from qgreenland.util.luigi import LayerConfigMixin
+from qgreenland.util.misc import (get_layer_config,
+                                  get_layer_fs_path,
                                   temporary_path_dir)
 from qgreenland.util.shapefile import find_shapefile_in_dir
 
 
-class LayerTaskMixin(luigi.Task):
+class LayerTask(luigi.Task):
 
     def output(self):
-        parent_dir = self.cfg['layer_group']
-        return luigi.LocalTarget(f'{DATA_FINAL_DIR}/{parent_dir}/{self.layer_name}')
+        return luigi.LocalTarget(
+            os.path.dirname(
+                get_layer_fs_path(self.layer_name,
+                                  self.cfg)
+            )
+        )
+
+    @property
+    def cfg(self):
+        return get_layer_config(self.layer_name)
 
 
 # TODO: Consider creating a mixin or something for reading yaml config to
 # DRY out the code for layer classes
 # e.g. use a class attribute to automatically load config:
 #   layername = 'coastlines'
-class Coastlines(LayerTaskMixin, luigi.Task):
+class Coastlines(LayerTask):
     """Rename files to their final location."""
 
     layer_name = 'coastlines'
-    cfg = load_layer_config(layer_name)
 
     def requires(self):
         fetch_data = FetchDataFile(
@@ -41,15 +49,15 @@ class Coastlines(LayerTaskMixin, luigi.Task):
         )  # ->
         unzip_shapefile = UnzipShapefile(
             requires_task=fetch_data,
-            layer_cfg=self.cfg
+            layer_name=self.layer_name
         )  # ->
         reproject_shapefile = ReprojectShapefile(
             requires_task=unzip_shapefile,
-            layer_cfg=self.cfg
+            layer_name=self.layer_name
         )  # ->
         return SubsetShapefile(
             requires_task=reproject_shapefile,
-            layer_cfg=self.cfg
+            layer_name=self.layer_name
         )
 
     def run(self):
@@ -67,11 +75,10 @@ class Coastlines(LayerTaskMixin, luigi.Task):
                 os.rename(old_fp, new_fp)
 
 
-class ArcticDEM(LayerTaskMixin, luigi.Task):
+class ArcticDEM(LayerTask):
     """Rename files to their final location."""
 
     layer_name = 'arctic_dem'
-    cfg = load_layer_config(layer_name)
 
     def requires(self):
         fetch_data = FetchDataFile(
@@ -80,15 +87,15 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
         )  # ->
         reproject_raster = ReprojectRaster(
             requires_task=fetch_data,
-            layer_cfg=self.cfg
+            layer_name=self.layer_name
         )  # ->
         subset_raster = SubsetRaster(
             requires_task=reproject_raster,
-            layer_cfg=self.cfg
+            layer_name=self.layer_name
         )  # ->
         return BuildRasterOverviews(
             requires_task=subset_raster,
-            layer_cfg=self.cfg
+            layer_name=self.layer_name
         )
 
     def run(self):
@@ -101,7 +108,7 @@ class ArcticDEM(LayerTaskMixin, luigi.Task):
             os.rename(self.input().path, new_fp)
 
 
-class BedMachineDataset(LayerTaskMixin, luigi.Task):
+class BedMachineDataset(LayerTask):
     """Dataproduct IDBMG4.
 
     This is a NetCDF dataproduct with many distinct datasets representing
@@ -114,9 +121,7 @@ class BedMachineDataset(LayerTaskMixin, luigi.Task):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         self.layer_name = f'bedmachine_{self.dataset_name}'
-        self.cfg = load_layer_config(self.layer_name)
 
     def requires(self):
         output_name = self.cfg['source'].get('name', self.cfg['short_name'])
@@ -127,12 +132,12 @@ class BedMachineDataset(LayerTaskMixin, luigi.Task):
         )  # ->
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,
-            layer_cfg=self.cfg,
+            layer_name=self.layer_name,
             dataset_name=self.dataset_name
         )  # ->
         return ReprojectRaster(
             requires_task=extract_nc_dataset,
-            layer_cfg=self.cfg,
+            layer_name=self.layer_name
         )
 
     def run(self):
@@ -145,14 +150,14 @@ class BedMachineDataset(LayerTaskMixin, luigi.Task):
             os.rename(self.input().path, new_fp)
 
 
-class GlacierTerminus(LayerTaskMixin, luigi.Task):
+class GlacierTerminus(LayerConfigMixin, luigi.Task):
     """Dataproduct NSIDC-0642.
 
     https://nsidc.org/data/NSIDC-0642
     """
 
     layer_name = 'glacier_terminus'
-    cfg = load_layer_config(layer_name)
+    cfg = get_layer_config(layer_name)
 
     def requires(self):
         return FetchDataFiles(

@@ -1,0 +1,44 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="3.10.1-A Coruña">
+  <identifier></identifier>
+  <parentidentifier></parentidentifier>
+  <language></language>
+  <type></type>
+  <title>{{ title }}</title>
+  <abstract>{% if abstract %}{{ abstract }}{% endif %}</abstract>
+  <contact>
+    <name></name>
+    <organization></organization>
+    <position></position>
+    <voice></voice>
+    <fax></fax>
+    <email></email>
+    <role></role>
+  </contact>
+  <links/>
+  <history></history>
+  <fees></fees>
+  <rights></rights>
+  <encoding></encoding>
+  <crs>
+    <spatialrefsys>
+      <proj4>+proj=stere +lat_0=90 +lat_ts=70 +lon_0=-45 +x_0=0 +y_0=0 +a=6378273 +b=6356889.449 +units=m +no_defs</proj4>
+      <srsid>1369</srsid>
+      <srid>3411</srid>
+      <authid>EPSG:3411</authid>
+      <description>NSIDC Sea Ice Polar Stereographic North</description>
+      <projectionacronym>stere</projectionacronym>
+      <ellipsoidacronym></ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </crs>
+  <extent>
+    <spatial minx="{{ minx }}" miny="{{ miny }}" maxx="{{ maxx }}"  maxy="{{ maxy }}" dimensions="2" crs="EPSG:3411" maxz="0" minz="0"/>
+    <temporal>
+      <period>
+        <start></start>
+        <end></end>
+      </period>
+    </temporal>
+  </extent>
+</qgis>
