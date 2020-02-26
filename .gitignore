@@ -2,3 +2,4 @@ luigi
 qgis-data/QGreenland*
 qgis-data/qgreenland
 qgis-data/Quantarctica*
+.coverage
