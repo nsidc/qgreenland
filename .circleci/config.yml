@@ -11,9 +11,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: 'Apt install libgl1-mesa-glx'
+          command: |
+            # Install libgl1-mesa-glx. Import errors occur otherwise.
+            # See: https://app.circleci.com/jobs/github/nsidc/qgreenland/72/parallel-runs/0/steps/0-102
+            apt-get update && apt-get install -y libgl1-mesa-glx
+      - run:
           name: 'Run all tests (lint, config validation, etc.)'
           command: |
-            apt-get update && apt-get install -y libgl1-mesa-glx
             conda env create --quiet -f environment-lock.yml
             conda init bash
             /bin/bash --login -c "conda activate qgreenland && inv test"
