@@ -16,7 +16,7 @@ CMR_GRANULES_SCROLL_URL = (
     'sort_key[]=%2Bstart_date&online_only=true'
 )
 
-Granule = namedtuple('Granule', ['url', 'start_time'])
+Granule = namedtuple('Granule', ['urls', 'start_time'])
 
 
 class CmrGranules():
@@ -146,7 +146,7 @@ class CmrGranules():
             msg = 'CMR response contains a granule without Online Access URLs: {}'
             raise RuntimeError(msg.format(granule))
 
-        return Granule(url=url, start_time=start_time)
+        return Granule(urls=url.split(','), start_time=start_time)
 
     @property
     def _version_query_string(self):
