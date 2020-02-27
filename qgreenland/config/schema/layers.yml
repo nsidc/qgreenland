@@ -6,7 +6,7 @@ map(include('layer'))
 # currently this is used when adding layers to the project file, so we should
 # consider this as output_file_type and use a new key for source file type.
 layer:
-  source: any(include('cmr_source'), include('url_source'))
+  source: include('source')
   short_name: str()
   # TODO: Path is an overloaded name. qgis_gui_path? qgis_layer_parent_node? :shrug:
   path: str()
@@ -24,14 +24,14 @@ layer:
   visible: bool()
 
 ---
-cmr_source:
-  cmr:
-    short_name: str()
-    version: int()
+source:
+  # TODO: Make the below two fields mutually-exclusive. Does Yamale support this?
+  granule_ur: str(required=False)
+  urls: str(required=False)
 
----
-url_source:
-  url: str()
+  subdir_path: str()
+  base_filename: str()
+  name: str(required=False)
 
 ---
 overviews_kwargs:
