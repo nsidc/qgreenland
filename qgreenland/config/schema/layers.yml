@@ -9,7 +9,7 @@ map(include('layer'))
 # The layer's key is called its "layer_id", used for unique identification, e.g. config, filenames.
 # The "name" property is for short, descriptive text, e.g. the layer name in QGIS.
 layer:
-  source: include('source')
+  sources: list(include('sources'))
   short_name: str()
   # The fully-qualified QGIS group the layer should be placed in, e.g.
   # 'Group/Subgroup/Subsubgroup'
@@ -26,8 +26,8 @@ layer:
   visible: bool()
 
 ---
-source:
-  # TODO: Make the below two fields mutually-exclusive. Does Yamale support this?
+sources:
+  # TODO: Make the granule_ur, urls mutually-exclusive. Does Yamale support this?
   # A granule corresponds to n >= 1 files
   granule_ur: str(required=False)
   # If a granule_ur isn't provided, provide a list of files instead

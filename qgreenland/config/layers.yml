@@ -1,6 +1,6 @@
 coastlines:
-  source:
-    url: 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
+  sources:
+    - urls: ['https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip']
   short_name: 'ne_coastlines'
   file_type: 'shp'
   data_type: 'vector'
@@ -16,8 +16,8 @@ coastlines:
 
 
 arctic_dem:
-  source:
-    url: 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif'
+  sources:
+    - urls: ['http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif']
   short_name: 'arctic_dem'
   file_type: 'tif'
   data_type: 'raster'
@@ -37,11 +37,8 @@ arctic_dem:
 
 
 bedmachine_bed: &bedmachine
-  source:
-    name: 'bedmachine'
-    cmr:
-      short_name: 'IDBMG4'
-      version: 3
+  sources:
+    - granule_ur: 'SC:IDBMG4.003:160281892'
   short_name: 'bedmachine_bed'
   file_type: 'tif'
   data_type: 'raster'
@@ -81,12 +78,12 @@ bedmachine_thickness:
 
 
 glacier_terminus:
-  source:
+  sources:
     - granule_ur: 'SC:NSIDC-0642.001:125860173'
-      subdir_path: 2013
+      subdir_path: '2013'
       base_filename: termini_2013_NSIDC
     - granule_ur: 'SC:NSIDC-0642.001:125860175'
-      subdir_path: 2016
+      subdir_path: '2016'
       base_filename: termini_2016_NSIDC
   metadata:
     title: 'MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics'
