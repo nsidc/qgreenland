@@ -84,7 +84,7 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     layer_path = get_layer_fs_path(layer_name, layer_cfg)
 
     if not os.path.isfile(layer_path):
-        raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
+        raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
 
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     if layer_cfg['data_type'] == 'vector':
@@ -159,8 +159,8 @@ def _add_layers(project):
                                   project.crs(),
                                   project.absolutePath())
 
-        layer_path = layer_cfg.get('path', '')
-        group = _get_or_create_group(project, layer_path)
+        group_path = layer_cfg.get('group_path', '')
+        group = _get_or_create_group(project, group_path)
         # Set layer visibility
         group_layer = group.addLayer(map_layer)
         group_layer.setItemVisibilityChecked(
