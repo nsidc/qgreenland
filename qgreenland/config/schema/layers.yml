@@ -14,20 +14,13 @@ layer:
   # The fully-qualified QGIS group the layer should be placed in, e.g.
   # 'Group/Subgroup/Subsubgroup'
   group_path: str()
-  metadata:
-    title: str()
-    abstract:
-      text: str()
-      citation:
-        text: str()
-        url: str()
+  metadata: include('metadata')
   # The name of a style (represented as .qml file in `assets/styles`). Should
-  # NOT include .qml extension
+  # NOT include .qml file extension
   style: str(required=False)
   # The file extension, e.g. '.shp'
   file_type: str()
   data_type: enum('vector', 'raster')
-  # Keyword arguments to rasterio `dataset.build_overviews()` method
   overviews_kwargs: include('overviews_kwargs', required=False)
   # Is this layer initially "checked" as visible in QGIS?
   visible: bool()
@@ -35,14 +28,31 @@ layer:
 ---
 source:
   # TODO: Make the below two fields mutually-exclusive. Does Yamale support this?
+  # A granule corresponds to n >= 1 files
   granule_ur: str(required=False)
-  urls: str(required=False)
+  # If a granule_ur isn't provided, provide a list of files instead
+  urls: list(str(), required=False)
 
+  # Where should this granule go?
   subdir_path: str(required=False)
+
+  # Override default filename? By default, the filename from the URL is used
   base_filename: str(required=False)
+
+  # For instance caching?
   name: str(required=False)
 
 ---
 overviews_kwargs:
+  # Keyword arguments to rasterio `dataset.build_overviews()` method
   overview_levels: list(int())
   resampling_method: str()
+
+---
+metadata:
+  title: str()
+  abstract:
+    text: str()
+    citation:
+      text: str()
+      url: str()
