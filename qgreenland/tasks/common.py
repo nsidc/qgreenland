@@ -18,13 +18,11 @@ class FetchCmrGranule(luigi.Task):
     session = None
 
     def output(self):
-        return luigi.LocalTarget(
-            os.path.join(
-                TaskType.FETCH.value,
-                self.output_name,
-                self.source_cfg['subdir_path']
-            )
-        )
+        path = [TaskType.FETCH.value, self.output_name]
+        if 'subdir_path' in self.source_cfg:
+            path.append(self.source_cfg['subdir_path'])
+
+        return luigi.LocalTarget(os.path.join(*path))
 
     def run(self):
         granule = get_cmr_granule(granule_ur=self.source_cfg['granule_ur'])
