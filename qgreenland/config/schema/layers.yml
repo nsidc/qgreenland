@@ -1,6 +1,20 @@
 map(include('layer'))
 
 ---
+# TODO: These aren't really "Layers" from the QGIS perspective anymore. How
+# else should we name this config file? Consider: "datasets.yml", e.g.:
+#   glacier_terminus:
+#     source:
+#       provider: cmr
+#       granules:
+#         -
+#         -
+#   coastlines:
+#     source:
+#       provider: http
+#       urls:
+#         -
+#         -
 # TODO: Consider removing short_name key and just use the layer key
 # TODO: Consider renaming file_type to "output_file_type" or something --
 # currently this is used when adding layers to the project file, so we should
