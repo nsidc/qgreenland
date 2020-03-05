@@ -1,5 +1,6 @@
 import csv
 import datetime
+import pprint
 from collections import namedtuple
 
 import requests
@@ -19,12 +20,19 @@ CMR_GRANULES_SCROLL_URL = (
 Granule = namedtuple('Granule', ['urls', 'start_time'])
 
 
+def _clean_granules_csv(granules):
+    """Filter out blank lines."""
+    return [g for g in granules if g]
+
+
+def _csv_granules_to_dict(resp_text):
+    granules_csv = _clean_granules_csv(resp_text.split('\n'))
+
+    return csv.DictReader(granules_csv)
+
+
 def get_cmr_granule(*, granule_ur):
     """Queries CMR for a granule by Granule UR, returns a `Granule`."""
-
-    def _clean_granules_csv(granules):
-        """Filter out blank lines."""
-        return [g for g in granules if g]
 
     def _normalize_granule(granule):
         """Create a standardized object from a row extracted from the CMR CSV.
@@ -47,15 +55,6 @@ def get_cmr_granule(*, granule_ur):
 
         return Granule(urls=tuple(url.split(',')), start_time=start_time)
 
-    def _extract_granule(resp_text):
-        granules_csv = _clean_granules_csv(resp_text.split('\n'))
-
-        # We expect a header and just a single data row.
-        assert len(granules_csv) == 2
-        granule = next(csv.DictReader(granules_csv))
-
-        return _normalize_granule(granule)
-
     url = (f'{CMR_GRANULES_SCROLL_URL}'
            f'&granule_ur[]={granule_ur}')
     response = requests.get(url,
@@ -65,4 +64,39 @@ def get_cmr_granule(*, granule_ur):
     if not response.ok:
         raise RuntimeError('Error from CMR: {}'.format(response.text))
 
-    return _extract_granule(response.text)
+    granules = _csv_granules_to_dict(response.text)
+
+    if len(granules) > 1:
+        raise RuntimeError('Expecting only one granule')
+
+    return _normalize_granule(next(granules))
+
+
+def search_cmr_granules(*, short_name, version):
+    """Only supports one page of results, limited to 2000 granules."""
+
+    def _version_query_string(version):
+        max_pad_length = 3
+        versions_needed = (max_pad_length - len(str(version))) + 1
+        versions = [version.zfill(n+1) for n in range(versions_needed)]
+        return ''.join([f'&version={v}' for v in versions])
+
+    url = (f'{CMR_GRANULES_SCROLL_URL}'
+           f'&short_name={short_name}'
+           f'{_version_query_string(version)}')
+
+    response = requests.get(url,
+                            headers=CMR_CLIENT_ID_HEADER,
+                            timeout=REQUEST_TIMEOUT)
+
+    if not response.ok:
+        raise RuntimeError('Error from CMR: {}'.format(response.text))
+
+    return list(_csv_granules_to_dict(response.text))
+
+
+def pretty_search_cmr_granules(**kwargs):
+    try:
+        pprint.pprint(search_cmr_granules(**kwargs))
+    except BrokenPipeError:
+        pass
