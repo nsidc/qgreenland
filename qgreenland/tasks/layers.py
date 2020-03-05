@@ -11,7 +11,6 @@ from qgreenland.tasks.raster import BuildRasterOverviews, ReprojectRaster, Subse
 from qgreenland.tasks.shapefile import (ReprojectShapefile,
                                         SubsetShapefile,
                                         UnzipShapefile)
-from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.misc import (get_layer_config,
                                   get_layer_fs_path,
                                   temporary_path_dir)
@@ -44,7 +43,8 @@ class Coastlines(LayerTask):
 
     def requires(self):
         fetch_data = FetchDataFile(
-            source_cfg=self.cfg['source'],
+            # TODO: Make this in to a for loop over `sources`
+            source_cfg=self.cfg['sources'][0],
             output_name=self.cfg['short_name']
         )  # ->
         unzip_shapefile = UnzipShapefile(
@@ -82,7 +82,7 @@ class ArcticDEM(LayerTask):
 
     def requires(self):
         fetch_data = FetchDataFile(
-            source_cfg=self.cfg['source'],
+            source_cfg=self.cfg['sources'][0],
             output_name=self.cfg['short_name']
         )  # ->
         reproject_raster = ReprojectRaster(
@@ -124,11 +124,12 @@ class BedMachineDataset(LayerTask):
         self.layer_name = f'bedmachine_{self.dataset_name}'
 
     def requires(self):
-        output_name = self.cfg['source'].get('name', self.cfg['short_name'])
+        source = self.cfg['sources'][0]
+        output_name = source.get('name', self.cfg['short_name'])
 
-        fetch_data = FetchDataFile(
-            source_cfg=self.cfg['source'],
-            output_name=output_name
+        fetch_data = FetchCmrGranule(
+            source_cfg=source,
+            output_name='bedmachine'
         )  # ->
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,
@@ -150,31 +151,24 @@ class BedMachineDataset(LayerTask):
             os.rename(self.input().path, new_fp)
 
 
-class GlacierTerminus(LayerConfigMixin, luigi.Task):
+class GlacierTerminus(LayerTask):
     """Dataproduct NSIDC-0642.
 
     https://nsidc.org/data/NSIDC-0642
     """
 
     layer_name = 'glacier_terminus'
-    cfg = get_layer_config(layer_name)
 
     def requires(self):
         for source in self.cfg['sources']:
             fetch_data = FetchCmrGranule(source_cfg=source,
                                          output_name=self.cfg['short_name'])
-            breakpoint()
 
             yield fetch_data
 
     def run(self):
-        pass
-        """
         with temporary_path_dir(self.output()) as temp_path:
-            new_fp = os.path.join(
-                temp_path,
-                f"{self.layer_name}.{self.cfg['file_type']}"
-            )
-
-            os.rename(self.input().path, new_fp)
-        """
+            for inp in self.input():
+                # Move directories containing granules
+                new_fp = os.path.join(temp_path, os.path.basename(inp.path))
+                os.rename(inp.path, new_fp)

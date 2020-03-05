@@ -1,1 +1,1 @@
-docker-compose exec luigi luigi --module qgreenland.tasks.layers GlacierTerminus
+docker-compose exec luigi luigi --module qgreenland.tasks.main ZipQGreenland

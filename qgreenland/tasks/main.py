@@ -10,7 +10,10 @@ from qgreenland.constants import (ASSETS_DIR,
                                   TMP_DIR,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
-from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
+from qgreenland.tasks.layers import (ArcticDEM,
+                                     BedMachineDataset,
+                                     Coastlines,
+                                     GlacierTerminus)
 from qgreenland.util.misc import cleanup_intermediate_dirs
 from qgreenland.util.qgis import make_qgs
 
@@ -34,11 +37,16 @@ class CreateProjectFile(luigi.Task):
 
     def requires(self):
         """All layers (not sources) that will be added to the project."""
+        # How to make this task only act on the layers listed here? Currently
+        # iterates over the entire configuration file, so if you want to reduce
+        # the stuff being run you have to edit many files, yuck. Even better,
+        # make the config file drive the required layers here.
         yield ArcticDEM()
         yield BedMachineDataset('surface')
         yield BedMachineDataset('thickness')
         yield BedMachineDataset('bed')
         yield Coastlines()
+        yield GlacierTerminus()
         yield QGreenlandLogoFile()
 
     def output(self):
