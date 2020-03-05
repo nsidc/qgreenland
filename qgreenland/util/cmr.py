@@ -25,10 +25,10 @@ def _clean_granules_csv(granules):
     return [g for g in granules if g]
 
 
-def _csv_granules_to_dict(resp_text):
+def _csv_granules_to_dicts(resp_text):
     granules_csv = _clean_granules_csv(resp_text.split('\n'))
 
-    return csv.DictReader(granules_csv)
+    return list(csv.DictReader(granules_csv))
 
 
 def get_cmr_granule(*, granule_ur):
@@ -64,12 +64,12 @@ def get_cmr_granule(*, granule_ur):
     if not response.ok:
         raise RuntimeError('Error from CMR: {}'.format(response.text))
 
-    granules = _csv_granules_to_dict(response.text)
+    granules = _csv_granules_to_dicts(response.text)
 
     if len(granules) > 1:
         raise RuntimeError('Expecting only one granule')
 
-    return _normalize_granule(next(granules))
+    return _normalize_granule(granules[0])
 
 
 def search_cmr_granules(*, short_name, version):
@@ -92,7 +92,7 @@ def search_cmr_granules(*, short_name, version):
     if not response.ok:
         raise RuntimeError('Error from CMR: {}'.format(response.text))
 
-    return list(_csv_granules_to_dict(response.text))
+    return _csv_granules_to_dicts(response.text)
 
 
 def pretty_search_cmr_granules(**kwargs):
