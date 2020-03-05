@@ -5,15 +5,16 @@ import luigi
 from osgeo import gdal
 
 from qgreenland.constants import TaskType
-from qgreenland.util.cmr import CmrGranule
+from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.luigi import LayerConfigMixin
 from qgreenland.util.misc import fetch_file, temporary_path_dir
 
 
-class FetchDataFiles(luigi.Task):
-    granule = luigi.Parameter()
+class FetchCmrGranule(luigi.Task):
+    source_cfg = luigi.DictParameter()
     output_name = luigi.Parameter()
+
     session = None
 
     def output(self):
@@ -21,11 +22,13 @@ class FetchDataFiles(luigi.Task):
             os.path.join(
                 TaskType.FETCH.value,
                 self.output_name,
-                self.granule.start_time.date().isoformat()
+                self.source_cfg['subdir_path']
             )
         )
 
     def run(self):
+        granule = get_cmr_granule(granule_ur=self.source_cfg['granule_ur'])
+
         with temporary_path_dir(self.output()) as temp_path:
             for url in self.granule.urls:
                 if not self.session:
@@ -33,7 +36,7 @@ class FetchDataFiles(luigi.Task):
 
                 fn = os.path.basename(url)
                 fp = os.path.join(temp_path, fn)
-                os.makedirs(temp_path, exist_ok=True)
+
                 resp = fetch_file(url, session=self.session)
                 with open(fp, 'wb') as f:
                     f.write(resp.content)

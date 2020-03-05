@@ -36,8 +36,8 @@ sources:
   # Where should this granule go?
   subdir_path: str(required=False)
 
-  # Override default filename? By default, the filename from the URL is used
-  base_filename: str(required=False)
+  # TODO: Override default filename? By default, the filename from the URL is used
+  # base_filename: str(required=False)
 
   # For instance caching?
   name: str(required=False)

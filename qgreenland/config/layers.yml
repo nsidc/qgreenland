@@ -81,10 +81,8 @@ glacier_terminus:
   sources:
     - granule_ur: 'SC:NSIDC-0642.001:125860173'
       subdir_path: '2013'
-      base_filename: termini_2013_NSIDC
     - granule_ur: 'SC:NSIDC-0642.001:125860175'
       subdir_path: '2016'
-      base_filename: termini_2016_NSIDC
   metadata:
     title: 'MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics'
     abstract:
