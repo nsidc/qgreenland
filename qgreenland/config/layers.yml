@@ -79,10 +79,26 @@ bedmachine_thickness:
 
 glacier_terminus:
   sources:
+    - granule_ur: 'SC:NSIDC-0642.001:125854253'
+      subdir_path: 'Glacier IDs'
+    - granule_ur: 'SC:NSIDC-0642.001:125860172'
+      subdir_path: '2000_2001'
+    - granule_ur: 'SC:NSIDC-0642.001:125860185'
+      subdir_path: '2005_2006'
+    - granule_ur: 'SC:NSIDC-0642.001:125860176'
+      subdir_path: '2006_2007'
+    - granule_ur: 'SC:NSIDC-0642.001:125860183'
+      subdir_path: '2007_2008'
+    - granule_ur: 'SC:NSIDC-0642.001:125860171'
+      subdir_path: '2008_2009'
     - granule_ur: 'SC:NSIDC-0642.001:125860173'
-      subdir_path: '2013'
+      subdir_path: '2012_2013'
+    - granule_ur: 'SC:NSIDC-0642.001:125860177'
+      subdir_path: '2014_2015'
     - granule_ur: 'SC:NSIDC-0642.001:125860175'
-      subdir_path: '2016'
+      subdir_path: '2015_2016'
+    - granule_ur: 'SC:NSIDC-0642.001:125860184'
+      subdir_path: '2016_2017'
   metadata:
     title: 'MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics'
     abstract:
