@@ -30,7 +30,7 @@ class FetchCmrGranule(luigi.Task):
         granule = get_cmr_granule(granule_ur=self.source_cfg['granule_ur'])
 
         with temporary_path_dir(self.output()) as temp_path:
-            for url in self.granule.urls:
+            for url in granule.urls:
                 if not self.session:
                     self.session = make_session(hosts=[url])
 
