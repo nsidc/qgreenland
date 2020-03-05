@@ -1,4 +1,5 @@
 """common.py: Tasks that could apply to any type of dataproduct."""
+import glob
 import os
 
 import luigi
@@ -86,7 +87,12 @@ class ExtractNcDataset(LayerConfigMixin, luigi.Task):
 
     def run(self):
         with self.output().open('w') as f:
+            nc_files = glob.glob(os.path.join(self.input().path, '*.nc'))
+            if len(nc_files) > 1:
+                raise NotImplementedError('Handling of >1 .nc file not implemented')
+
+            input_file = nc_files[0]
             gdal.Translate(
                 f.buffer.name,
-                f'NETCDF:{self.input().path}:{self.dataset_name}'
+                f'NETCDF:{input_file}:{self.dataset_name}'
             )
