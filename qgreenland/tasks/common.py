@@ -56,14 +56,13 @@ class FetchDataFile(luigi.Task):
 
     def run(self):
         if 'cmr' in self.source_cfg:
-            granules = CmrGranules(
-                self.source_cfg['cmr']['short_name'],
-                self.source_cfg['cmr']['version']
-            )
-            urls = [g.url for g in granules]
-            url = urls[0]
-        elif 'url' in self.source_cfg:
-            url = self.source_cfg['url']
+            raise RuntimeError('Use a FetchCmrGranule task!')
+
+        if len(self.source_cfg['urls']) > 1:
+            raise NotImplementedError('No Task implemented for handling >1 source url')
+
+        # TODO: We can more-or-less reuse this code, but iterate over "urls".
+        url = self.source_cfg['urls'][0]
 
         resp = fetch_file(url)
         with self.output().open('wb') as outfile:
