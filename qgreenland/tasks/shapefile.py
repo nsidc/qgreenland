@@ -41,9 +41,17 @@ class ReprojectShapefile(LayerConfigMixin, luigi.Task):
         return self.requires_task
 
     def output(self):
+        # NOTE: Currently self.outdir is:
+        # '/luigi/data/luigi-wip/wip/glacier_terminus'
+        # Do we want to write to:
+        # '/luigi/data/luigi-wip/wip/glacier_terminus/2006_2007/reproject'
+        # ? If so, do we generate this based on the input path? Or based on the config?
+        # Start with using the input path, then think about updating the config.
+        # Can we put that logic in the LayerConfigMixin?
         return luigi.LocalTarget(f'{self.outdir}/reproject/')
 
     def run(self):
+        breakpoint()
         shapefile = find_shapefile_in_dir(self.input().path)
 
         gdf = reproject_shapefile(shapefile)

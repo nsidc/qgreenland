@@ -163,8 +163,10 @@ class GlacierTerminus(LayerTask):
         for source in self.cfg['sources']:
             fetch_data = FetchCmrGranule(source_cfg=source,
                                          output_name=self.cfg['short_name'])
-
-            yield fetch_data
+            yield ReprojectShapefile(
+                requires_task=fetch_data,
+                layer_name=self.layer_name
+            )
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
