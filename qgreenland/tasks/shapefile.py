@@ -51,7 +51,6 @@ class ReprojectShapefile(LayerConfigMixin, luigi.Task):
         return luigi.LocalTarget(f'{self.outdir}/reproject/')
 
     def run(self):
-        breakpoint()
         shapefile = find_shapefile_in_dir(self.input().path)
 
         gdf = reproject_shapefile(shapefile)
