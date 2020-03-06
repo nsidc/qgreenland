@@ -1,0 +1,70 @@
+- id: coastlines
+  sources:
+    - id: only
+      access_method: http
+      urls:
+        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
+  metadata:
+    abstract:
+      text:  'Natural Earth Coastlines (Public Domain)'
+    citation:
+      text: 'Made with Natural Earth'
+      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+
+
+- id: arctic_dem
+  sources:
+    - id: only
+      access_method: http
+      urls:
+        - 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif'
+  metadata:
+    abstract:
+      text: 'ArcticDEM is an NGA-NSF public-private initiative to automatically produce a high-resolution, high quality, digital surface model (DSM) of the Arctic using optical stereo imagery, high-performance computing, and open source photogrammetry software.'
+    citation:
+      text: 'Data provided by the Polar Geospatial Center. Porter, Claire; Morin, Paul; Howat, Ian; Noh, Myoung-Jon; Bates, Brian; Peterman, Kenneth; Keesey, Scott; Schlenk, Matthew; Gardiner, Judith; Tomko, Karen; Willis, Michael; Kelleher, Cole; Cloutier, Michael; Husby, Eric; Foga, Steven; Nakamura, Hitomi; Platson, Melisa; Wethington, Michael, Jr.; Williamson, Cathleen; Bauer, Gregory; Enos, Jeremy; Arnold, Galen; Kramer, William; Becker, Peter; Doshi, Abhijit; D’Souza, Cristelle; Cummens, Pat; Laurier, Fabien; Bojesen, Mikkel, 2018, “ArcticDEM”, https://doi.org/10.7910/DVN/OHHUKH, Harvard Dataverse, V1, 2020-01-23'
+      url: 'https://www.pgc.umn.edu/data/arcticdem/'
+
+
+- id: bedmachine
+  sources:
+    - id: only
+      access_method: cmr
+      granule_ur: 'SC:IDBMG4.003:160281892'
+  metadata:
+    abstract:
+      text: 'This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.'
+    citation:
+      text: 'Morlighem, M. et al. 2017, updated 2018. IceBridge BedMachine Greenland, Version 3. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/2CIX82HUV88Y. 2020/02/07.'
+      url: 'https://doi.org/10.5067/2CIX82HUV88Y'
+
+
+- id: glacier_terminus
+  access_method: cmr
+  sources:
+    - id: glacier_ids
+      granule_ur: 'SC:NSIDC-0642.001:125854253'
+    - id: 2000_2001
+      granule_ur: 'SC:NSIDC-0642.001:125860172'
+    - id: 2005_2006
+      granule_ur: 'SC:NSIDC-0642.001:125860185'
+    - id: 2006_2007
+      granule_ur: 'SC:NSIDC-0642.001:125860176'
+    - id: 2007_2008
+      granule_ur: 'SC:NSIDC-0642.001:125860183'
+    - id: 2008_2009
+      granule_ur: 'SC:NSIDC-0642.001:125860171'
+    - id: 2012_2013
+      granule_ur: 'SC:NSIDC-0642.001:125860173'
+    - id: 2014_2015
+      granule_ur: 'SC:NSIDC-0642.001:125860177'
+    - id: 2015_2016
+      granule_ur: 'SC:NSIDC-0642.001:125860175'
+    - id: 2016_2017
+      granule_ur: 'SC:NSIDC-0642.001:125860184'
+  metadata:
+    abstract:
+      text: 'This data set, part of the NASA Making Earth System Data Records for Use in Research Environments (MEaSUREs) program, provides Greenland outlet glacier terminus positions created from MEaSUREs Synthetic Aperture Radar (SAR) mosaics and Landsat 8 OLI imagery.'
+    citation:
+      text: 'Joughin, I., T. Moon, J. Joughin, and T. Black. 2015, 2017. MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics, Version 1. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/DC0MLBOCL3EL. 2020/02/12.'
+      url: 'https://doi.org/10.5067/DC0MLBOCL3EL'
