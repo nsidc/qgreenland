@@ -13,8 +13,8 @@ services:
       - ./qgreenland:/luigi/tasks/qgreenland:ro
     environment:
       - ENVIRONMENT
-      - EARTHDATA_USERNAME=qgreenland
-      - EARTHDATA_PASSWORD=o.X56sY_
+      - EARTHDATA_USERNAME
+      - EARTHDATA_PASSWORD
       # Set `export PYTHONBREAKPOINT=ipdb.set_trace` to use `ipdb` by default
       # instead of `pdb`.
       - PYTHONBREAKPOINT
