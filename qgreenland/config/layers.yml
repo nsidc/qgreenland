@@ -74,7 +74,7 @@
   data_source: glacier_terminus.2007_2008
 
 - <<: *glacier_terminus
-  id: glacier_terminus_2012_2013
+  id: glacier_terminus_2008_2009
   data_source: glacier_terminus.2012_2013
 
 - <<: *glacier_terminus
