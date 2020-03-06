@@ -178,7 +178,7 @@ def _add_empty_groups(project):
         _get_or_create_group(project, group_path)
 
 
-def make_qgs(path):
+def make_qgis_project_file(path):
     """Create a QGIS project file with the correct stuff in it.
 
     path: the desired path to .qgs project file, e.g.:

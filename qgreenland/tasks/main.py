@@ -15,7 +15,7 @@ from qgreenland.tasks.layers import (ArcticDEM,
                                      Coastlines,
                                      GlacierTerminus)
 from qgreenland.util.misc import cleanup_intermediate_dirs
-from qgreenland.util.qgis import make_qgs
+from qgreenland.util.qgis import make_qgis_project_file
 
 
 class QGreenlandLogoFile(luigi.Task):
@@ -56,7 +56,7 @@ class CreateProjectFile(luigi.Task):
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
-        make_qgs(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
+        make_qgis_project_file(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
 
         with self.output().open('w'):
             pass
