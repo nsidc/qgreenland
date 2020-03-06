@@ -69,7 +69,7 @@ def _load_config(config_filename):
 
     schema = yamale.make_schema(schema_fp)
     config = yamale.make_data(config_fp)
-    yamale.validate(schema, config)
+    yamale.validate(schema, config, strict=True)
 
     return config[0][0]
 
