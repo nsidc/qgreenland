@@ -1,72 +1,32 @@
-map(include('layer'))
+list(include('layer'))
 
 ---
-# TODO: These aren't really "Layers" from the QGIS perspective anymore. How
-# else should we name this config file? Consider: "datasets.yml", e.g.:
-#   glacier_terminus:
-#     source:
-#       provider: cmr
-#       granules:
-#         -
-#         -
-#   coastlines:
-#     source:
-#       provider: http
-#       urls:
-#         -
-#         -
-# TODO: Consider removing short_name key and just use the layer key
 # TODO: Consider renaming file_type to "output_file_type" or something --
 # currently this is used when adding layers to the project file, so we should
 # consider this as output_file_type and use a new key for source file type.
 
-# The layer's key is called its "layer_id", used for unique identification, e.g. config, filenames.
-# The "name" property is for short, descriptive text, e.g. the layer name in QGIS.
 layer:
-  sources: list(include('sources'))
-  short_name: str()
-  # The fully-qualified QGIS group the layer should be placed in, e.g.
-  # 'Group/Subgroup/Subsubgroup'
-  group_path: str()
-  metadata: include('metadata')
-  # The name of a style (represented as .qml file in `assets/styles`). Should
-  # NOT include .qml file extension
-  style: str(required=False)
+  # Used for unique identification, e.g. config, filenames.
+  id: str()
+  # Reference to a data source in datasets.yml (`{dataset_id}.{source_id}`)
+  data_source: str()
   # The file extension, e.g. '.shp'
   file_type: str()
   data_type: enum('vector', 'raster')
+  # Short descriptive text, e.g. the layer name in QGIS.
+  title: str()
+  # The fully-qualified QGIS group the layer should be placed in, e.g.
+  # 'Group/Subgroup/Subsubgroup'
+  group_path: str()
+  # The name of a style (represented as .qml file in `assets/styles`). Should
+  # NOT include .qml file extension
+  style: str(required=False)
   overviews_kwargs: include('overviews_kwargs', required=False)
   # Is this layer initially "checked" as visible in QGIS?
   visible: bool()
-
----
-sources:
-  # TODO: Make the granule_ur, urls mutually-exclusive. Does Yamale support this?
-  # A granule corresponds to n >= 1 files
-  granule_ur: str(required=False)
-  # If a granule_ur isn't provided, provide a list of files instead
-  urls: list(str(), required=False)
-
-  # Where should this granule go?
-  subdir_path: str(required=False)
-
-  # TODO: Override default filename? By default, the filename from the URL is used
-  # base_filename: str(required=False)
-
-  # For instance caching?
-  name: str(required=False)
 
 ---
 overviews_kwargs:
   # Keyword arguments to rasterio `dataset.build_overviews()` method
   overview_levels: list(int())
   resampling_method: str()
-
----
-metadata:
-  title: str()
-  abstract:
-    text: str()
-    citation:
-      text: str()
-      url: str()

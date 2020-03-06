@@ -1,7 +1,7 @@
 - id: coastlines
+  access_method: http
   sources:
     - id: only
-      access_method: http
       urls:
         - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
   metadata:
@@ -13,9 +13,9 @@
 
 
 - id: arctic_dem
+  access_method: http
   sources:
     - id: only
-      access_method: http
       urls:
         - 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif'
   metadata:
@@ -27,9 +27,9 @@
 
 
 - id: bedmachine
+  access_method: cmr
   sources:
     - id: only
-      access_method: cmr
       granule_ur: 'SC:IDBMG4.003:160281892'
   metadata:
     abstract:
@@ -44,23 +44,23 @@
   sources:
     - id: glacier_ids
       granule_ur: 'SC:NSIDC-0642.001:125854253'
-    - id: 2000_2001
+    - id: '2000_2001'
       granule_ur: 'SC:NSIDC-0642.001:125860172'
-    - id: 2005_2006
+    - id: '2005_2006'
       granule_ur: 'SC:NSIDC-0642.001:125860185'
-    - id: 2006_2007
+    - id: '2006_2007'
       granule_ur: 'SC:NSIDC-0642.001:125860176'
-    - id: 2007_2008
+    - id: '2007_2008'
       granule_ur: 'SC:NSIDC-0642.001:125860183'
-    - id: 2008_2009
+    - id: '2008_2009'
       granule_ur: 'SC:NSIDC-0642.001:125860171'
-    - id: 2012_2013
+    - id: '2012_2013'
       granule_ur: 'SC:NSIDC-0642.001:125860173'
-    - id: 2014_2015
+    - id: '2014_2015'
       granule_ur: 'SC:NSIDC-0642.001:125860177'
-    - id: 2015_2016
+    - id: '2015_2016'
       granule_ur: 'SC:NSIDC-0642.001:125860175'
-    - id: 2016_2017
+    - id: '2016_2017'
       granule_ur: 'SC:NSIDC-0642.001:125860184'
   metadata:
     abstract:

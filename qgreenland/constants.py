@@ -76,7 +76,8 @@ def _load_config(config_filename):
 
 CONFIG = {
     'layers': _load_config('layers.yml'),
-    'layer_groups': _load_config('layer_groups.yml')
+    'layer_groups': _load_config('layer_groups.yml'),
+    'datasets': _load_config('datasets.yml')
 }
 
 
