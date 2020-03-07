@@ -22,14 +22,15 @@ class LayerTask(luigi.Task):
     def output(self):
         return luigi.LocalTarget(
             os.path.dirname(
-                get_layer_fs_path(self.layer_name,
+                get_layer_fs_path(self.layer_id,
                                   self.cfg)
             )
         )
 
     @property
     def cfg(self):
-        return get_layer_config(self.layer_name)
+        breakpoint()
+        return get_layer_config(self.layer_id)
 
 
 # TODO: Consider creating a mixin or something for reading yaml config to
@@ -39,7 +40,7 @@ class LayerTask(luigi.Task):
 class Coastlines(LayerTask):
     """Rename files to their final location."""
 
-    layer_name = 'coastlines'
+    layer_id = 'coastlines'
 
     def requires(self):
         fetch_data = FetchDataFile(
@@ -49,15 +50,15 @@ class Coastlines(LayerTask):
         )  # ->
         unzip_shapefile = UnzipShapefile(
             requires_task=fetch_data,
-            layer_name=self.layer_name
+            layer_id=self.layer_id
         )  # ->
         reproject_shapefile = ReprojectShapefile(
             requires_task=unzip_shapefile,
-            layer_name=self.layer_name
+            layer_id=self.layer_id
         )  # ->
         return SubsetShapefile(
             requires_task=reproject_shapefile,
-            layer_name=self.layer_name
+            layer_id=self.layer_id
         )
 
     def run(self):
@@ -70,7 +71,7 @@ class Coastlines(LayerTask):
                 old_fp = os.path.join(processed_shapefile_dir, f)
                 new_fp = os.path.join(
                     temp_path,
-                    f'{self.layer_name}.{ext}')
+                    f'{self.layer_id}.{ext}')
 
                 os.rename(old_fp, new_fp)
 
@@ -78,7 +79,7 @@ class Coastlines(LayerTask):
 class ArcticDEM(LayerTask):
     """Rename files to their final location."""
 
-    layer_name = 'arctic_dem'
+    layer_id = 'arctic_dem'
 
     def requires(self):
         fetch_data = FetchDataFile(
@@ -87,22 +88,22 @@ class ArcticDEM(LayerTask):
         )  # ->
         reproject_raster = ReprojectRaster(
             requires_task=fetch_data,
-            layer_name=self.layer_name
+            layer_id=self.layer_id
         )  # ->
         subset_raster = SubsetRaster(
             requires_task=reproject_raster,
-            layer_name=self.layer_name
+            layer_id=self.layer_id
         )  # ->
         return BuildRasterOverviews(
             requires_task=subset_raster,
-            layer_name=self.layer_name
+            layer_id=self.layer_id
         )
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
             new_fp = os.path.join(
                 temp_path,
-                f"{self.layer_name}.{self.cfg['file_type']}"
+                f"{self.layer_id}.{self.cfg['file_type']}"
             )
 
             os.rename(self.input().path, new_fp)
@@ -121,7 +122,7 @@ class BedMachineDataset(LayerTask):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.layer_name = f'bedmachine_{self.dataset_name}'
+        self.layer_id = f'bedmachine_{self.dataset_name}'
 
     def requires(self):
         source = self.cfg['sources'][0]
@@ -133,19 +134,19 @@ class BedMachineDataset(LayerTask):
         )  # ->
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,
-            layer_name=self.layer_name,
+            layer_id=self.layer_id,
             dataset_name=self.dataset_name
         )  # ->
         return ReprojectRaster(
             requires_task=extract_nc_dataset,
-            layer_name=self.layer_name
+            layer_id=self.layer_id
         )
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
             new_fp = os.path.join(
                 temp_path,
-                f"{self.layer_name}.{self.cfg['file_type']}"
+                f"{self.layer_id}.{self.cfg['file_type']}"
             )
 
             os.rename(self.input().path, new_fp)
@@ -157,7 +158,7 @@ class GlacierTerminus(LayerTask):
     https://nsidc.org/data/NSIDC-0642
     """
 
-    layer_name = 'glacier_terminus'
+    layer_id = 'glacier_terminus'
 
     def requires(self):
         for source in self.cfg['sources']:
@@ -165,7 +166,7 @@ class GlacierTerminus(LayerTask):
                                          output_name=self.cfg['short_name'])
             yield ReprojectShapefile(
                 requires_task=fetch_data,
-                layer_name=self.layer_name
+                layer_id=self.layer_id
             )
 
     def run(self):
