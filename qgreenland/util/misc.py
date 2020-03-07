@@ -1,3 +1,4 @@
+import copy
 import os
 import shutil
 import time
@@ -83,17 +84,38 @@ def cleanup_output_dirs(delete_fetch_dir=False):
             _rmtree(os.path.join(RELEASES_DIR, directory))
 
 
-def get_layer_config(layername=None):
-    config = CONFIG['layers']
+def _find_in_list_by_id(haystack, needle):
+    matches = [d for d in haystack if d['id'] == needle]
+    if len(matches) > 1:
+        raise LookupError(f'Found multiple matches in list with same id: {needle}')
 
-    if not layername:
-        return config
+    if len(matches) != 1:
+        raise LookupError(f'Found no matches in list with id: {needle}')
+
+    return copy.deepcopy(matches[0])
+
+
+def get_layer_config(layer_id=None):
+    layers_config = CONFIG['layers']
+    datasets_config = CONFIG['datasets']
+
+    for layer_config in layers_config:
+        dataset_id, source_id = layer_config['data_source'].split('.')
+        dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
+        layer_config['source'] = _find_in_list_by_id(dataset_config['sources'], source_id)
+        layer_config['dataset'] = dataset_config
+        del layer_config['dataset']['sources']
+
+    breakpoint()
+
+    if not layer_id:
+        return layers_config
 
     try:
-        return config[layername]
-    except KeyError:
+        return _find_in_list_by_id(layers_config, layer_id)
+    except LookupError:
         raise NotImplementedError(
-            f"Configuration for layer '{layername}' not found."
+            f"Configuration for layer '{layer_id}' not found."
         )
 
 
