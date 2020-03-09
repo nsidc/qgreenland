@@ -26,7 +26,7 @@
   id: bedmachine_bed
   data_source: bedmachine.only
   ingest_task: bedmachine
-  ingest_task_params: ['bed']
+  ingest_task_kwargs: {'extract_dataset': 'bed'}
   file_type: 'tif'
   data_type: 'raster'
   title: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
@@ -40,7 +40,7 @@
 
 - <<: *bedmachine
   id: bedmachine_surface
-  ingest_task_params: ['surface']
+  ingest_task_kwargs: {'extract_dataset': 'surface'}
   title: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
   style: null
   visible: False
@@ -48,7 +48,7 @@
 
 - <<: *bedmachine
   id: bedmachine_thickness
-  ingest_task_params: ['thickness']
+  ingest_task_kwargs: {'extract_dataset': 'thickness'}
   title: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
   style: null
   visible: False

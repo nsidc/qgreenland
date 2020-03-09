@@ -12,13 +12,10 @@ from qgreenland.util.shapefile import find_shapefile_in_dir
 class Coastlines(LayerPipeline):
     """Rename files to their final location."""
 
-    layer_id = 'coastlines'
-
     def requires(self):
         fetch_data = FetchDataFile(
-            # TODO: Make this in to a for loop over `sources`
-            source_cfg=self.cfg['sources'][0],
-            output_name=self.cfg['short_name']
+            source_cfg=self.cfg['source'],
+            output_name=self.cfg['id']
         )  # ->
         unzip_shapefile = UnzipShapefile(
             requires_task=fetch_data,

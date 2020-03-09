@@ -12,16 +12,13 @@ class GlacierTerminus(LayerPipeline):
     https://nsidc.org/data/NSIDC-0642
     """
 
-    layer_id = 'glacier_terminus'
-
     def requires(self):
-        for source in self.cfg['sources']:
-            fetch_data = FetchCmrGranule(source_cfg=source,
-                                         output_name=self.cfg['short_name'])
-            yield ReprojectShapefile(
-                requires_task=fetch_data,
-                layer_id=self.layer_id
-            )
+        fetch_data = FetchCmrGranule(source_cfg=self.cfg['source'],
+                                     output_name=self.cfg['id'])
+        yield ReprojectShapefile(
+            requires_task=fetch_data,
+            layer_id=self.layer_id
+        )
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:

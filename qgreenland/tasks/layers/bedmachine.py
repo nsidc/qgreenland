@@ -17,14 +17,14 @@ class BedMachineDataset(LayerPipeline):
     https://nsidc.org/data/IDBMG4
     """
 
-    dataset_name = luigi.Parameter()
+    extract_dataset = luigi.Parameter()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.layer_id = f'bedmachine_{self.dataset_name}'
+        self.layer_id = f'bedmachine_{self.extract_dataset}'
 
     def requires(self):
-        source = self.cfg['sources'][0]
+        source = self.cfg['source']
 
         fetch_data = FetchCmrGranule(
             source_cfg=source,
@@ -33,7 +33,7 @@ class BedMachineDataset(LayerPipeline):
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,
             layer_id=self.layer_id,
-            dataset_name=self.dataset_name
+            dataset_name=self.extract_dataset
         )  # ->
         return ReprojectRaster(
             requires_task=extract_nc_dataset,

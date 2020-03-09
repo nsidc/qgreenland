@@ -11,12 +11,10 @@ from qgreenland.util.misc import temporary_path_dir
 class ArcticDEM(LayerPipeline):
     """Rename files to their final location."""
 
-    layer_id = 'arctic_dem'
-
     def requires(self):
         fetch_data = FetchDataFile(
-            source_cfg=self.cfg['sources'][0],
-            output_name=self.cfg['short_name']
+            source_cfg=self.cfg['source'],
+            output_name=self.cfg['id']
         )  # ->
         reproject_raster = ReprojectRaster(
             requires_task=fetch_data,

@@ -10,13 +10,9 @@ from qgreenland.constants import (ASSETS_DIR,
                                   TMP_DIR,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
-from qgreenland.tasks.layers.arctic_dem import ArcticDEM
-from qgreenland.tasks.layers.bedmachine import BedMachineDataset
-from qgreenland.tasks.layers.coastlines import Coastlines
-from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
-from qgreenland.util.misc import (cleanup_intermediate_dirs,
-                                  get_layer_config)
+from qgreenland.util.misc import cleanup_intermediate_dirs
 from qgreenland.util.qgis import make_qgis_project_file
+from qgreenland.util.task import generate_layer_tasks
 
 
 class QGreenlandLogoFile(luigi.Task):
@@ -42,17 +38,10 @@ class CreateProjectFile(luigi.Task):
         # iterates over the entire configuration file, so if you want to reduce
         # the stuff being run you have to edit many files, yuck. Even better,
         # make the config file drive the required layers here.
-        cfg = get_layer_config()
-        breakpoint()
-        print(cfg)
+        tasks = generate_layer_tasks()
 
-        yield ArcticDEM()
-        yield BedMachineDataset('surface')
-        yield BedMachineDataset('thickness')
-        yield BedMachineDataset('bed')
-        yield Coastlines()
-        yield GlacierTerminus()
-        yield QGreenlandLogoFile()
+        for task in tasks:
+            yield task()
 
     def output(self):
         return luigi.LocalTarget(ZIP_TRIGGERFILE)

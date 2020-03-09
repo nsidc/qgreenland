@@ -21,8 +21,8 @@ class LayerConfigMixin(luigi.Task):
         return get_layer_config(self.layer_id)
 
     @property
-    def short_name(self):
-        return self.layer_cfg['short_name']
+    def id(self):
+        return self.layer_cfg['id']
 
     @property
     def outdir(self):
@@ -33,9 +33,9 @@ class LayerConfigMixin(luigi.Task):
 
         if self.task_type is TaskType.FINAL:
             outdir = (f"{TaskType.FINAL.value}/{self.layer_cfg['layer_group']}/"
-                      f'{self.short_name}')
+                      f'{self.id}')
         else:
-            outdir = f'{self.task_type.value}/{self.short_name}'
+            outdir = f'{self.task_type.value}/{self.id}'
 
         os.makedirs(outdir, exist_ok=True)
         return outdir
@@ -47,6 +47,12 @@ class LayerPipeline(luigi.Task):
     Also standardizes output directory for top-level layer tasks.
     """
 
+    layer_id = luigi.Parameter()
+
+    @property
+    def cfg(self):
+        return get_layer_config(self.layer_id)
+
     def output(self):
         return luigi.LocalTarget(
             os.path.dirname(
@@ -54,7 +60,3 @@ class LayerPipeline(luigi.Task):
                                   self.cfg)
             )
         )
-
-    @property
-    def cfg(self):
-        return get_layer_config(self.layer_id)

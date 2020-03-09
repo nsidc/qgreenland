@@ -10,7 +10,6 @@ from qgreenland.constants import (CONFIG,
                                   TaskType,
                                   WIP_DIR,
                                   ZIP_TRIGGERFILE)
-from qgreenland.tasks.layers import INGEST_TASKS
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
@@ -97,19 +96,26 @@ def _find_in_list_by_id(haystack, needle):
 
 
 def get_layer_config(layer_id=None):
+    # This import is in a function body because circular import.
+    # TODO: Straighten out this spaghetti
+    from qgreenland.tasks.layers import INGEST_TASKS
+
     layers_config = CONFIG['layers']
     datasets_config = CONFIG['datasets']
 
     for layer_config in layers_config:
         # Populate related dataset configuration
-        dataset_id, source_id = layer_config['data_source'].split('.')
-        dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
-        layer_config['source'] = _find_in_list_by_id(dataset_config['sources'], source_id)
-        layer_config['dataset'] = dataset_config
-        del layer_config['dataset']['sources']
+        if 'dataset' not in layer_config:
+            dataset_id, source_id = layer_config['data_source'].split('.')
+            dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
+            layer_config['dataset'] = dataset_config
 
-        # Populate ingest_task
-        layer_config['ingest_task'] = INGEST_TASKS[layer_config['ingest_task']]
+            layer_config['source'] = _find_in_list_by_id(dataset_config['sources'], source_id)
+            del layer_config['dataset']['sources']
+
+        # Populate ingest_task with the real function
+        if type(layer_config['ingest_task']) is str:
+            layer_config['ingest_task'] = INGEST_TASKS[layer_config['ingest_task']]
 
 
     if not layer_id:
