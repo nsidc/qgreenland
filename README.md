@@ -1,6 +1,8 @@
 # QGreenland
 
-This project uses a `luigi` pipeline to generate the QGreenland package.
+This project uses a `luigi` pipeline to generate the QGreenland package. This
+project is currently in early development stages, so expect rapid change.
+Nothing is written in stone!
 
 
 ## Pipeline
