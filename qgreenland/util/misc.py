@@ -106,8 +106,6 @@ def get_layer_config(layer_id=None):
         layer_config['dataset'] = dataset_config
         del layer_config['dataset']['sources']
 
-    breakpoint()
-
     if not layer_id:
         return layers_config
 

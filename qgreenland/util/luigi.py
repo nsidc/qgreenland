@@ -3,16 +3,23 @@ import os
 import luigi
 
 from qgreenland.constants import TaskType
-from qgreenland.util.misc import get_layer_config
+from qgreenland.util.misc import get_layer_config, get_layer_fs_path
 
 
 class LayerConfigMixin(luigi.Task):
+    """Allow tasks to receive layer_name as parameter and get the correct config.
+
+    Used for all tasks that require a layer config. This way, we only have to
+    pass a string instead of a whole config object as a parameter.
+    """
+
+    # TODO: Change to layer_id
     layer_name = luigi.Parameter()
     task_type = None
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.layer_cfg = get_layer_config(self.layer_name)
+    @property
+    def layer_cfg(self):
+        return get_layer_config(self.layer_name)
 
     @property
     def short_name(self):
@@ -33,3 +40,22 @@ class LayerConfigMixin(luigi.Task):
 
         os.makedirs(outdir, exist_ok=True)
         return outdir
+
+
+class LayerTask(luigi.Task):
+    """Allow top-level layer tasks to lookup config from class attr layer_id.
+
+    Also standardizes output directory for top-level layer tasks.
+    """
+
+    def output(self):
+        return luigi.LocalTarget(
+            os.path.dirname(
+                get_layer_fs_path(self.layer_id,
+                                  self.cfg)
+            )
+        )
+
+    @property
+    def cfg(self):
+        return get_layer_config(self.layer_id)
