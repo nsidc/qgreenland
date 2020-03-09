@@ -10,6 +10,7 @@ from qgreenland.constants import (CONFIG,
                                   TaskType,
                                   WIP_DIR,
                                   ZIP_TRIGGERFILE)
+from qgreenland.tasks.layers import INGEST_TASKS
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
@@ -100,11 +101,16 @@ def get_layer_config(layer_id=None):
     datasets_config = CONFIG['datasets']
 
     for layer_config in layers_config:
+        # Populate related dataset configuration
         dataset_id, source_id = layer_config['data_source'].split('.')
         dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
         layer_config['source'] = _find_in_list_by_id(dataset_config['sources'], source_id)
         layer_config['dataset'] = dataset_config
         del layer_config['dataset']['sources']
+
+        # Populate ingest_task
+        layer_config['ingest_task'] = INGEST_TASKS[layer_config['ingest_task']]
+
 
     if not layer_id:
         return layers_config

@@ -10,6 +10,9 @@ layer:
   id: str()
   # Reference to a data source in datasets.yml (`{dataset_id}.{source_id}`)
   data_source: str()
+  # The index of a task enumerated in qgreenland.tasks.layers.ingest_tasks
+  ingest_task: enum('arctic_dem', 'bedmachine', 'coastlines', 'glacier_terminus')
+  ingest_task_params: list(required=False)
   # The file extension, e.g. '.shp'
   file_type: str()
   data_type: enum('vector', 'raster')

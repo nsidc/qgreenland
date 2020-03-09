@@ -1,5 +1,6 @@
 - id: coastlines
   data_source: coastlines.only
+  ingest_task: coastlines
   file_type: 'shp'
   data_type: 'vector'
   title: 'Natural Earth Coastlines'
@@ -9,6 +10,7 @@
 
 - id: arctic_dem
   data_source: arctic_dem.only
+  ingest_task: arctic_dem
   file_type: 'tif'
   data_type: 'raster'
   title: 'Arctic DEM (1km mosaic)'
@@ -23,6 +25,8 @@
 - &bedmachine
   id: bedmachine_bed
   data_source: bedmachine.only
+  ingest_task: bedmachine
+  ingest_task_params: ['bed']
   file_type: 'tif'
   data_type: 'raster'
   title: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
@@ -36,6 +40,7 @@
 
 - <<: *bedmachine
   id: bedmachine_surface
+  ingest_task_params: ['surface']
   title: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
   style: null
   visible: False
@@ -43,6 +48,7 @@
 
 - <<: *bedmachine
   id: bedmachine_thickness
+  ingest_task_params: ['thickness']
   title: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
   style: null
   visible: False
@@ -51,6 +57,7 @@
 - &glacier_terminus
   id: glacier_terminus_glacier_ids
   data_source: glacier_terminus.glacier_ids
+  ingest_task: glacier_terminus
   title: 'MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics'
   file_type: 'shp'
   data_type: 'vector'
