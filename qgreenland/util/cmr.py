@@ -32,7 +32,7 @@ def _csv_granules_to_dicts(resp_text):
 
 
 def get_cmr_granule(*, granule_ur):
-    """Queries CMR for a granule by Granule UR, returns a `Granule`."""
+    """Query CMR for a granule by Granule UR, return a `Granule`."""
 
     def _normalize_granule(granule):
         """Create a standardized object from a row extracted from the CMR CSV.
@@ -78,7 +78,7 @@ def search_cmr_granules(*, short_name, version):
     def _version_query_string(version):
         max_pad_length = 3
         versions_needed = (max_pad_length - len(str(version))) + 1
-        versions = [version.zfill(n+1) for n in range(versions_needed)]
+        versions = [version.zfill(n + 1) for n in range(versions_needed)]
         return ''.join([f'&version={v}' for v in versions])
 
     url = (f'{CMR_GRANULES_SCROLL_URL}'
