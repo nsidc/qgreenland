@@ -4,11 +4,11 @@ import luigi
 
 from qgreenland.tasks.common.common import ExtractNcDataset, FetchCmrGranule
 from qgreenland.tasks.common.raster import ReprojectRaster
-from qgreenland.util.luigi import LayerTask
+from qgreenland.util.luigi import LayerPipeline
 from qgreenland.util.misc import temporary_path_dir
 
 
-class BedMachineDataset(LayerTask):
+class BedMachineDataset(LayerPipeline):
     """Dataproduct IDBMG4.
 
     This is a NetCDF dataproduct with many distinct datasets representing

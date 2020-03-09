@@ -4,11 +4,11 @@ from qgreenland.tasks.common.common import FetchDataFile
 from qgreenland.tasks.common.raster import (BuildRasterOverviews,
                                             ReprojectRaster,
                                             SubsetRaster)
-from qgreenland.util.luigi import LayerTask
+from qgreenland.util.luigi import LayerPipeline
 from qgreenland.util.misc import temporary_path_dir
 
 
-class ArcticDEM(LayerTask):
+class ArcticDEM(LayerPipeline):
     """Rename files to their final location."""
 
     layer_id = 'arctic_dem'

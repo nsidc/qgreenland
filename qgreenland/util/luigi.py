@@ -41,7 +41,7 @@ class LayerConfigMixin(luigi.Task):
         return outdir
 
 
-class LayerTask(luigi.Task):
+class LayerPipeline(luigi.Task):
     """Allow top-level layer tasks to lookup config from class attr layer_id.
 
     Also standardizes output directory for top-level layer tasks.

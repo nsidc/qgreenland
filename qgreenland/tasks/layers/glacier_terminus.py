@@ -2,11 +2,11 @@ import os
 
 from qgreenland.tasks.common.common import FetchCmrGranule
 from qgreenland.tasks.common.shapefile import ReprojectShapefile
-from qgreenland.util.luigi import LayerTask
+from qgreenland.util.luigi import LayerPipeline
 from qgreenland.util.misc import temporary_path_dir
 
 
-class GlacierTerminus(LayerTask):
+class GlacierTerminus(LayerPipeline):
     """Dataproduct NSIDC-0642.
 
     https://nsidc.org/data/NSIDC-0642

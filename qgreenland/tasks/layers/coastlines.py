@@ -4,12 +4,12 @@ from qgreenland.tasks.common.common import FetchDataFile
 from qgreenland.tasks.common.shapefile import (ReprojectShapefile,
                                                SubsetShapefile,
                                                UnzipShapefile)
-from qgreenland.util.luigi import LayerTask
+from qgreenland.util.luigi import LayerPipeline
 from qgreenland.util.misc import temporary_path_dir
 from qgreenland.util.shapefile import find_shapefile_in_dir
 
 
-class Coastlines(LayerTask):
+class Coastlines(LayerPipeline):
     """Rename files to their final location."""
 
     layer_id = 'coastlines'
