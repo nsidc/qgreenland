@@ -1,6 +1,7 @@
 from functools import partial
 
-from qgreenland.util.misc import get_layer_config
+from qgreenland.constants import CONFIG
+from qgreenland.tasks.layers import INGEST_TASKS
 
 
 def generate_layer_tasks():
@@ -9,11 +10,10 @@ def generate_layer_tasks():
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
-    layer_cfg = get_layer_config()
     tasks = []
 
-    for cfg in layer_cfg:
-        task = cfg['ingest_task']
+    for cfg in CONFIG['layers'].values():
+        task = INGEST_TASKS[cfg['ingest_task']]
         kwargs = {'layer_id': cfg['id']}
         kwargs.update(cfg.get('ingest_task_kwargs', {}))
 

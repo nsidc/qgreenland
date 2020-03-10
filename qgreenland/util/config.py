@@ -1,14 +1,15 @@
+"""Provide helper functions for generating configuration.
+
+ONLY the constants module should import this module.
+"""
+
+import copy
 import os
 
 import yamale
 
-from qgreenland.constants import PACKAGE_DIR
 
-CONFIG_DIR = f'{PACKAGE_DIR}/config'
-CONFIG_SCHEMA_DIR = f'{CONFIG_DIR}/schema'
-
-
-def _load_config(config_filename):
+def _load_config(config_filename, *, config_dir, schema_dir):
     """Validate config file against schema with Yamale.
 
     It is expected that the given config filename in CONFIG_DIR has a schema of
@@ -18,8 +19,8 @@ def _load_config(config_filename):
     (data, fp) tuples. We always read single files, so we return just the data
     from result[0][0].
     """
-    config_fp = os.path.join(CONFIG_DIR, config_filename)
-    schema_fp = os.path.join(CONFIG_SCHEMA_DIR, config_filename)
+    config_fp = os.path.join(config_dir, config_filename)
+    schema_fp = os.path.join(schema_dir, config_filename)
 
     if not os.path.isfile(config_fp):
         return NotImplementedError(
@@ -33,8 +34,8 @@ def _load_config(config_filename):
     return config[0][0]
 
 
-def dereference_config(cfg):
-    """Takes a full configuration object, replaces references with the referent.
+def _dereference_config(cfg):
+    """Take a full configuration object, replace references with the referent.
 
     - Datasets
     - Sources
@@ -50,10 +51,6 @@ def dereference_config(cfg):
 
         return copy.deepcopy(matches[0])
 
-    # This import is in a function body because circular import.
-    # TODO: Straighten out this spaghetti
-    from qgreenland.tasks.layers import INGEST_TASKS
-
     layers_config = cfg['layers']
     datasets_config = cfg['datasets']
 
@@ -64,35 +61,34 @@ def dereference_config(cfg):
             dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
             layer_config['dataset'] = dataset_config
 
-            layer_config['source'] = _find_in_list_by_id(dataset_config['sources'], source_id)
+            layer_config['source'] = _find_in_list_by_id(dataset_config['sources'],
+                                                         source_id)
             del layer_config['dataset']['sources']
 
-        # Populate ingest_task with the real function
-        if type(layer_config['ingest_task']) is str:
-            layer_config['ingest_task'] = INGEST_TASKS[layer_config['ingest_task']]
+        # TODO: Populate related layer group configuration? Instead of
+        # accessing CONFIG['layers']['layer_id'], allow direct access by
+        # CONFIG['layer_id']
 
-    return layers_config
+    # Turn layers config in to a dict keyed by id
+    cfg['layers'] = {x['id']: x for x in cfg['layers']}
 
-
-def get_layer_config(layer_id=None):
-    """Get the full layer config or a single layer's config after dereferencing."""
-    layers_config = dereference_config()
-
-    if not layer_id:
-        return layers_config
-
-    try:
-        return _find_in_list_by_id(layers_config, layer_id)
-    except LookupError:
-        raise NotImplementedError(
-            f"Configuration for layer '{layer_id}' not found."
-        )
+    return cfg
 
 
-CONFIG = {
-    'layers': _load_config('layers.yml'),
-    'layer_groups': _load_config('layer_groups.yml'),
-    'datasets': _load_config('datasets.yml')
-}
+def make_config(*, config_dir, schema_dir):
+    # TODO: Avoid all this argument drilling without import cycles... this
+    # shouldn't be so hard!
+    # TODO: Consider namedtuple or something?
+    cfg = {
+        'layers': _load_config('layers.yml',
+                               config_dir=config_dir,
+                               schema_dir=schema_dir),
+        'layer_groups': _load_config('layer_groups.yml',
+                                     config_dir=config_dir,
+                                     schema_dir=schema_dir),
+        'datasets': _load_config('datasets.yml',
+                                 config_dir=config_dir,
+                                 schema_dir=schema_dir)
+    }
 
-CONFIG = dereference_config(CONFIG)
+    return _dereference_config(cfg)

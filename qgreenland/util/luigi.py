@@ -2,8 +2,7 @@ import os
 
 import luigi
 
-from qgreenland.constants import TaskType
-from qgreenland.util.config import get_layer_config
+from qgreenland.constants import CONFIG, TaskType
 from qgreenland.util.misc import get_layer_fs_path
 
 
@@ -19,7 +18,7 @@ class LayerConfigMixin(luigi.Task):
 
     @property
     def layer_cfg(self):
-        return get_layer_config(self.layer_id)
+        return CONFIG['layers'][self.layer_id]
 
     @property
     def id(self):
@@ -52,12 +51,9 @@ class LayerPipeline(luigi.Task):
 
     @property
     def cfg(self):
-        return get_layer_config(self.layer_id)
+        return CONFIG['layers'][self.layer_id]
 
     def output(self):
         return luigi.LocalTarget(
-            os.path.dirname(
-                get_layer_fs_path(self.layer_id,
-                                  self.cfg)
-            )
+            os.path.dirname(get_layer_fs_path(self.cfg))
         )

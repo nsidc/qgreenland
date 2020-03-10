@@ -1,4 +1,3 @@
-import copy
 import os
 import shutil
 import time
@@ -9,7 +8,6 @@ from qgreenland.constants import (RELEASES_DIR,
                                   TaskType,
                                   WIP_DIR,
                                   ZIP_TRIGGERFILE)
-from qgreenland.util.config import CONFIG
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
@@ -84,11 +82,11 @@ def cleanup_output_dirs(delete_fetch_dir=False):
             _rmtree(os.path.join(RELEASES_DIR, directory))
 
 
-
-def get_layer_fs_path(layer_name, layer_cfg):
-    layer_group_list = layer_cfg.get('path', '').split('/')
+def get_layer_fs_path(layer_cfg):
+    layer_id = layer_cfg['id']
+    layer_group_list = layer_cfg.get('group_path', '').split('/')
 
     return os.path.join(TaskType.FINAL.value,
                         *layer_group_list,
-                        layer_name,
-                        f'{layer_name}.{layer_cfg["file_type"]}')
+                        layer_id,
+                        f'{layer_id}.{layer_cfg["file_type"]}')

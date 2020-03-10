@@ -18,8 +18,8 @@ def test_get_layer_config_one():
 
 
 def test_layer_fs_path():
-    layer_name = 'coastlines'
     mock_layer_cfg = {
+        'id': 'coastlines',
         'group_path': 'group/subgroup',
         'file_type': 'shp'
     }
@@ -32,6 +32,6 @@ def test_layer_fs_path():
         'coastlines.shp'
     )
 
-    actual = misc.get_layer_fs_path(layer_name, mock_layer_cfg)
+    actual = misc.get_layer_fs_path(mock_layer_cfg)
 
     assert expected == actual
