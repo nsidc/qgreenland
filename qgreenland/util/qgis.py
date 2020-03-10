@@ -21,7 +21,7 @@ def create_raster_map_layer(layer_path, layer_cfg):
 
     map_layer = qgc.QgsRasterLayer(
         layer_path,
-        layer_cfg['metadata']['title'],
+        layer_cfg['title'],
         'gdal'
     )
 
@@ -59,7 +59,7 @@ def _add_layer_metadata(map_layer, layer_cfg):
     layer_extent = map_layer.extent()
     rendered_qmd = qmd_template.render(
         abstract=abstract,
-        title=layer_cfg['metadata']['title'],
+        title=layer_cfg['title'],
         minx=layer_extent.xMinimum(),
         miny=layer_extent.yMinimum(),
         maxx=layer_extent.xMaximum(),
@@ -254,15 +254,19 @@ def load_qml_style(map_layer, style_name):
 
 
 def build_abstract(layer_cfg):
+    metadata = layer_cfg['dataset']['metadata']
     abstract = ''
     # TODO: COO COO CACHOO
-    if layer_cfg['metadata'].get('abstract'):
-        abstract_cfg = layer_cfg['metadata'].get('abstract')
-        abstract += abstract_cfg['text'] + '\n\n'
+    if metadata.get('abstract'):
+        title_text = metadata['title']
+        abstract += title_text + '\n\n'
+
+        abstract_text = metadata.get('abstract')
+        abstract += abstract_text + '\n\n'
 
         # TODO: COO COO CACHOO
-        if abstract_cfg.get('citation'):
-            citation_cfg = abstract_cfg.get('citation')
+        if metadata.get('citation'):
+            citation_cfg = metadata.get('citation')
 
             # TODO: COO COO CACHOO
             if citation_cfg.get('text'):

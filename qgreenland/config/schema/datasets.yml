@@ -24,9 +24,8 @@ source:
 
 ---
 metadata:
-  # TODO: add a title to the dataset metadata?
-  abstract:
-    text: str()
+  title: str()
+  abstract: str()
   citation:
     text: str()
     url: str()
