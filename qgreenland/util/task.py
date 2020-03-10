@@ -17,6 +17,8 @@ def generate_layer_tasks():
         kwargs = {'layer_id': cfg['id']}
         kwargs.update(cfg.get('ingest_task_kwargs', {}))
 
+        # TODO: Do we need the partial at all, or can we instantiate the
+        # classes here?
         tasks.append(partial(task, **kwargs))
 
     return tasks

@@ -4,12 +4,12 @@ import shutil
 import time
 from contextlib import contextmanager
 
-from qgreenland.constants import (CONFIG,
-                                  RELEASES_DIR,
+from qgreenland.constants import (RELEASES_DIR,
                                   REQUEST_TIMEOUT,
                                   TaskType,
                                   WIP_DIR,
                                   ZIP_TRIGGERFILE)
+from qgreenland.util.config import CONFIG
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
@@ -83,50 +83,6 @@ def cleanup_output_dirs(delete_fetch_dir=False):
         for directory in os.listdir(RELEASES_DIR):
             _rmtree(os.path.join(RELEASES_DIR, directory))
 
-
-def _find_in_list_by_id(haystack, needle):
-    matches = [d for d in haystack if d['id'] == needle]
-    if len(matches) > 1:
-        raise LookupError(f'Found multiple matches in list with same id: {needle}')
-
-    if len(matches) != 1:
-        raise LookupError(f'Found no matches in list with id: {needle}')
-
-    return copy.deepcopy(matches[0])
-
-
-def get_layer_config(layer_id=None):
-    # This import is in a function body because circular import.
-    # TODO: Straighten out this spaghetti
-    from qgreenland.tasks.layers import INGEST_TASKS
-
-    layers_config = CONFIG['layers']
-    datasets_config = CONFIG['datasets']
-
-    for layer_config in layers_config:
-        # Populate related dataset configuration
-        if 'dataset' not in layer_config:
-            dataset_id, source_id = layer_config['data_source'].split('.')
-            dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
-            layer_config['dataset'] = dataset_config
-
-            layer_config['source'] = _find_in_list_by_id(dataset_config['sources'], source_id)
-            del layer_config['dataset']['sources']
-
-        # Populate ingest_task with the real function
-        if type(layer_config['ingest_task']) is str:
-            layer_config['ingest_task'] = INGEST_TASKS[layer_config['ingest_task']]
-
-
-    if not layer_id:
-        return layers_config
-
-    try:
-        return _find_in_list_by_id(layers_config, layer_id)
-    except LookupError:
-        raise NotImplementedError(
-            f"Configuration for layer '{layer_id}' not found."
-        )
 
 
 def get_layer_fs_path(layer_name, layer_cfg):

@@ -6,7 +6,8 @@ from jinja2 import Template
 from osgeo import gdal
 
 from qgreenland import __version__
-from qgreenland.constants import ASSETS_DIR, BBOX, CONFIG, PROJECT_CRS
+from qgreenland.constants import ASSETS_DIR, BBOX, PROJECT_CRS
+from qgreenland.util.config import CONFIG
 from qgreenland.util.misc import get_layer_fs_path
 
 
@@ -152,6 +153,7 @@ def _get_or_create_group(project, group_path):
 
 def _add_layers(project):
     layers_cfg = CONFIG['layers']
+    breakpoint()
     for layer_name, layer_cfg in layers_cfg.items():
         layer_cfg = layers_cfg[layer_name]
         map_layer = get_map_layer(layer_name,

@@ -3,7 +3,8 @@ import os
 import luigi
 
 from qgreenland.constants import TaskType
-from qgreenland.util.misc import get_layer_config, get_layer_fs_path
+from qgreenland.util.config import get_layer_config
+from qgreenland.util.misc import get_layer_fs_path
 
 
 class LayerConfigMixin(luigi.Task):

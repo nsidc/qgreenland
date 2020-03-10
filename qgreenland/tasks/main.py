@@ -47,6 +47,7 @@ class CreateProjectFile(luigi.Task):
         return luigi.LocalTarget(ZIP_TRIGGERFILE)
 
     def run(self):
+        breakpoint()
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
