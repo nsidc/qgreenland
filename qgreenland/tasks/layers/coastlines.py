@@ -1,6 +1,6 @@
 import os
 
-from qgreenland.tasks.common.common import FetchDataFile
+from qgreenland.tasks.common.fetch import FetchDataFile
 from qgreenland.tasks.common.shapefile import (ReprojectShapefile,
                                                SubsetShapefile,
                                                UnzipShapefile)

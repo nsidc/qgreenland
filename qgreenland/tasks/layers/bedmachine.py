@@ -2,7 +2,8 @@ import os
 
 import luigi
 
-from qgreenland.tasks.common.common import ExtractNcDataset, FetchCmrGranule
+from qgreenland.tasks.common.fetch import FetchCmrGranule
+from qgreenland.tasks.common.misc import ExtractNcDataset
 from qgreenland.tasks.common.raster import ReprojectRaster
 from qgreenland.util.luigi import LayerPipeline
 from qgreenland.util.misc import temporary_path_dir

@@ -1,6 +1,6 @@
 import os
 
-from qgreenland.tasks.common.common import FetchCmrGranule
+from qgreenland.tasks.common.fetch import FetchCmrGranule
 from qgreenland.tasks.common.shapefile import ReprojectShapefile
 from qgreenland.util.luigi import LayerPipeline
 from qgreenland.util.misc import temporary_path_dir
