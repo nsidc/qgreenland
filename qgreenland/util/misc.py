@@ -82,11 +82,19 @@ def cleanup_output_dirs(delete_fetch_dir=False):
             _rmtree(os.path.join(RELEASES_DIR, directory))
 
 
-def get_layer_fs_path(layer_cfg):
-    layer_id = layer_cfg['id']
-    layer_group_list = layer_cfg.get('group_path', '').split('/')
+def get_layer_fn(layer_cfg):
+    return f"{layer_cfg['id']}.{layer_cfg['file_type']}"
 
+
+def get_layer_dir(layer_cfg):
+    layer_group_list = layer_cfg.get('group_path', '').split('/')
     return os.path.join(TaskType.FINAL.value,
                         *layer_group_list,
-                        layer_id,
-                        f'{layer_id}.{layer_cfg["file_type"]}')
+                        layer_cfg['id'])
+
+
+def get_layer_fs_path(layer_cfg):
+    d = get_layer_dir(layer_cfg)
+    f = get_layer_fn(layer_cfg)
+
+    return os.path.join(d, f)

@@ -3,9 +3,10 @@ import os
 import luigi
 
 from qgreenland.constants import CONFIG, TaskType
-from qgreenland.util.misc import get_layer_fs_path
+from qgreenland.util.misc import get_layer_dir, get_layer_fn, get_layer_fs_path
 
 
+# TODO: Rename to LayerTask
 class LayerConfigMixin(luigi.Task):
     """Allow tasks to receive layer_id as parameter and get the correct config.
 
@@ -25,7 +26,13 @@ class LayerConfigMixin(luigi.Task):
         return self.layer_cfg['id']
 
     @property
+    def filename(self):
+        return get_layer_fn(self.layer_cfg)
+
+    @property
     def outdir(self):
+        # We could possibly DRY this out by adding a task_type param to
+        # get_layer_fs_path
         if self.task_type not in TaskType:
             msg = (f"This class defines self.task_type as '{self.task_type}'. "
                    f'Must be one of: {list(TaskType)}.')
@@ -39,6 +46,9 @@ class LayerConfigMixin(luigi.Task):
 
         os.makedirs(outdir, exist_ok=True)
         return outdir
+
+    # TODO: Standardize the output method of layer tasks
+    # def output(self):
 
 
 class LayerPipeline(luigi.Task):
@@ -54,6 +64,4 @@ class LayerPipeline(luigi.Task):
         return CONFIG['layers'][self.layer_id]
 
     def output(self):
-        return luigi.LocalTarget(
-            os.path.dirname(get_layer_fs_path(self.cfg))
-        )
+        return luigi.LocalTarget(get_layer_dir(self.cfg))

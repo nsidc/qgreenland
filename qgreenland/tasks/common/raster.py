@@ -20,8 +20,7 @@ class BuildRasterOverviews(LayerConfigMixin, luigi.Task):
         return self.requires_task
 
     def output(self):
-        fn = os.path.basename(self.input().path)
-        of = os.path.join(self.outdir, 'overviews', fn)
+        of = os.path.join(self.outdir, 'overviews', self.filename)
         return luigi.LocalTarget(of)
 
     def run(self):
@@ -61,8 +60,7 @@ class ReprojectRaster(LayerConfigMixin, luigi.Task):
         return self.requires_task
 
     def output(self):
-        fn = os.path.basename(self.input().path)
-        of = os.path.join(self.outdir, 'reproject', fn)
+        of = os.path.join(self.outdir, 'reproject', self.filename)
         return luigi.LocalTarget(of)
 
     def run(self):
@@ -85,8 +83,7 @@ class SubsetRaster(LayerConfigMixin, luigi.Task):
         return self.requires_task
 
     def output(self):
-        fn = os.path.basename(self.input().path)
-        of = os.path.join(self.outdir, 'subset', fn)
+        of = os.path.join(self.outdir, 'subset', self.filename)
         return luigi.LocalTarget(of)
 
     def run(self):

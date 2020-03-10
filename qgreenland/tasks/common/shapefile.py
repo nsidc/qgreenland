@@ -45,7 +45,7 @@ class ReprojectShapefile(LayerConfigMixin, luigi.Task):
         out_dir = os.path.join(
             self.outdir,
             'reproject',
-            os.path.basename(self.input().path)
+            self.id
         )
         return luigi.LocalTarget(out_dir)
 
@@ -54,7 +54,7 @@ class ReprojectShapefile(LayerConfigMixin, luigi.Task):
 
         gdf = reproject_shapefile(shapefile)
         with temporary_path_dir(self.output()) as temp_path:
-            fn = os.path.join(temp_path, os.path.basename(shapefile))
+            fn = os.path.join(temp_path, self.filename)
             gdf.to_file(fn, driver='ESRI Shapefile')
 
 
@@ -73,5 +73,5 @@ class SubsetShapefile(LayerConfigMixin, luigi.Task):
 
         gdf = subset_shapefile(shapefile)
         with temporary_path_dir(self.output()) as temp_path:
-            fn = os.path.join(temp_path, 'shapefile.shp')
+            fn = os.path.join(temp_path, self.filename)
             gdf.to_file(fn, driver='ESRI Shapefile')
