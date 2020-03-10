@@ -35,7 +35,7 @@
     xRes: 1000
     yRes: 1000
   visible: True
-  group_path: 'Basemaps/Bedmachine'
+  group_path: 'Basemaps/bedmachine'
 
 
 - <<: *bedmachine
@@ -61,7 +61,7 @@
   title: 'MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics'
   file_type: 'shp'
   data_type: 'vector'
-  group_path: 'Glaciology'
+  group_path: 'Glaciology/glacier_terminus'
   visible: True
 
 - <<: *glacier_terminus
