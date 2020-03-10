@@ -6,8 +6,7 @@ from jinja2 import Template
 from osgeo import gdal
 
 from qgreenland import __version__
-from qgreenland.constants import ASSETS_DIR, BBOX, PROJECT_CRS
-from qgreenland.util.config import CONFIG
+from qgreenland.constants import ASSETS_DIR, BBOX, CONFIG, PROJECT_CRS
 from qgreenland.util.misc import get_layer_fs_path
 
 
@@ -75,14 +74,15 @@ def _add_layer_metadata(map_layer, layer_cfg):
         map_layer.loadNamedMetadata(temp_file.name)
 
 
-def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
+def get_map_layer(layer_cfg, project_crs, root_path):
     # Give the absolute path to the layer. We think project.addMapLayer()
     # automatically generates the correct relative paths. Using a relative
     # path causes statistics (nodata value, min/max) to not be generated,
     # resulting in rendering a gray rectangle.
     # TODO: do we need to worry about differences in path structure between linux
     # and windows?
-    layer_path = get_layer_fs_path(layer_name, layer_cfg)
+    layer_id = layer_cfg['id']
+    layer_path = get_layer_fs_path(layer_cfg)
 
     if not os.path.isfile(layer_path):
         raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
@@ -91,8 +91,8 @@ def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
     if layer_cfg['data_type'] == 'vector':
         map_layer = qgc.QgsVectorLayer(
             layer_path,
-            layer_cfg['metadata']['title'],  # layer name as it shows up in TOC
-            'ogr'  # name of the data provider (memory, postgresql)
+            layer_cfg['title'],  # layer name as it shows up in QGIS TOC
+            'ogr'  # name of the data provider (e.g. memory, postgresql)
         )
     elif layer_cfg['data_type'] == 'raster':
         map_layer = create_raster_map_layer(layer_path, layer_cfg)
@@ -153,11 +153,9 @@ def _get_or_create_group(project, group_path):
 
 def _add_layers(project):
     layers_cfg = CONFIG['layers']
-    breakpoint()
-    for layer_name, layer_cfg in layers_cfg.items():
-        layer_cfg = layers_cfg[layer_name]
-        map_layer = get_map_layer(layer_name,
-                                  layer_cfg,
+
+    for layer_cfg in layers_cfg.values():
+        map_layer = get_map_layer(layer_cfg,
                                   project.crs(),
                                   project.absolutePath())
 
