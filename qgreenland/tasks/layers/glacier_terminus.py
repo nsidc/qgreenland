@@ -23,6 +23,4 @@ class GlacierTerminus(LayerPipeline):
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
             for inp in self.input():
-                # Move directories containing granules
-                new_fp = os.path.join(temp_path, os.path.basename(inp.path))
-                os.rename(inp.path, new_fp)
+                os.rename(inp.path, temp_path)
