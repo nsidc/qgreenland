@@ -1,3 +1,8 @@
+# v0.15.0 (unreleased)
+
+- Preserve final wip layer task output. Previously moved this output to the
+  final location.
+
 # v0.14.0 (2020-03-10)
 
 - New layer: Glacier Terminus (nsidc-0642)
