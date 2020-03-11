@@ -50,8 +50,8 @@ def get_cmr_granule(*, granule_ur):
         )
 
         if not url:
-            msg = 'CMR response contains a granule without Online Access URLs: {}'
-            raise RuntimeError(msg.format(granule))
+            msg = 'CMR response contains a granule without Online Access URLs:'
+            raise RuntimeError(f'{msg}: {granule}')
 
         return Granule(urls=tuple(url.split(',')), start_time=start_time)
 
@@ -62,7 +62,7 @@ def get_cmr_granule(*, granule_ur):
                             timeout=REQUEST_TIMEOUT)
 
     if not response.ok:
-        raise RuntimeError('Error from CMR: {}'.format(response.text))
+        raise RuntimeError(f'Error from CMR: {response.text}')
 
     granules = _csv_granules_to_dicts(response.text)
 
@@ -90,7 +90,7 @@ def search_cmr_granules(*, short_name, version):
                             timeout=REQUEST_TIMEOUT)
 
     if not response.ok:
-        raise RuntimeError('Error from CMR: {}'.format(response.text))
+        raise RuntimeError(f'Error from CMR: {response.text}')
 
     return _csv_granules_to_dicts(response.text)
 
