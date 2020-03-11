@@ -3,12 +3,14 @@ from pprint import pprint
 from invoke import task
 
 from .util import print_and_run
+from qgreenland.constants import PACKAGE_DIR
 
 
 @task
 def lint(ctx):
     """Run flake8 linting."""
-    print_and_run('flake8 .', pty=True)
+    print_and_run(f'flake8 {PACKAGE_DIR}', pty=True)
+    print_and_run(f'vulture {PACKAGE_DIR} --min-confidence 100', pty=True)
     print('Linting passed.')
 
 
@@ -27,6 +29,8 @@ def validate(ctx, verbose=False):
         pprint(CONFIG['layers'])
         print('Layer Groups:')
         pprint(CONFIG['layer_groups'])
+        print('Datasets:')
+        pprint(CONFIG['datasets'])
 
     print('Configuration is valid.')
 

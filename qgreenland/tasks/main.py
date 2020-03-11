@@ -10,9 +10,19 @@ from qgreenland.constants import (ASSETS_DIR,
                                   TMP_DIR,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
-from qgreenland.tasks.layers import ArcticDEM, BedMachineDataset, Coastlines
 from qgreenland.util.misc import cleanup_intermediate_dirs
-from qgreenland.util.qgis import make_qgs
+from qgreenland.util.qgis import make_qgis_project_file
+from qgreenland.util.task import generate_layer_tasks
+
+
+class IngestAllLayers(luigi.WrapperTask):
+    def requires(self):
+        """All layers (not sources) that will be added to the project."""
+        # To disable layer(s), edit layers.yml
+        tasks = generate_layer_tasks()
+
+        for task in tasks:
+            yield task
 
 
 class QGreenlandLogoFile(luigi.Task):
@@ -29,17 +39,12 @@ class QGreenlandLogoFile(luigi.Task):
             shutil.copy(logo, temp_path)
 
 
-class CreateProjectFile(luigi.Task):
+class CreateQgisProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
-        """All layers (not sources) that will be added to the project."""
-        yield ArcticDEM()
-        yield BedMachineDataset('surface')
-        yield BedMachineDataset('thickness')
-        yield BedMachineDataset('bed')
-        yield Coastlines()
         yield QGreenlandLogoFile()
+        yield IngestAllLayers()
 
     def output(self):
         return luigi.LocalTarget(ZIP_TRIGGERFILE)
@@ -48,7 +53,7 @@ class CreateProjectFile(luigi.Task):
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
-        make_qgs(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
+        make_qgis_project_file(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
 
         with self.output().open('w'):
             pass
@@ -58,7 +63,7 @@ class ZipQGreenland(luigi.Task):
     """Zip entire QGreenland package for distribution."""
 
     def requires(self):
-        return CreateProjectFile()
+        return CreateQgisProjectFile()
 
     def output(self):
         os.makedirs(RELEASE_DIR, exist_ok=True)

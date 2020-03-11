@@ -1,0 +1,31 @@
+list(include('dataset'))
+---
+
+dataset:
+  id: str()
+  access_method: str()
+  sources: list(include('source'))
+  metadata: include('metadata')
+
+---
+source:
+  # Unique ID used for generating paths and uniquely identifiying a source
+  # within a dataset.
+  id: str()
+  # TODO: Make the granule_ur, urls mutually-exclusive. Does Yamale support this?
+  # A granule corresponds to n >= 1 files
+  granule_ur: str(required=False)
+  # If a granule_ur isn't provided, provide a list of files instead
+  urls: list(str(), required=False)
+
+  # TODO: Override default filename? By default, the filename from the URL is used
+  # base_filename: str(required=False)
+
+
+---
+metadata:
+  title: str()
+  abstract: str()
+  citation:
+    text: str()
+    url: str()

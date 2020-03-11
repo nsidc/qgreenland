@@ -1,80 +1,127 @@
-coastlines:
-  source:
-    url: 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
-  short_name: 'ne_coastlines'
+################
+# Science Data #
+################
+
+- &glacier_terminus
+  id: glacier_terminus_glacier_ids
+  data_source: glacier_terminus.glacier_ids
+  ingest_task: glacier_terminus
+  title: 'Glacier IDs'
   file_type: 'shp'
   data_type: 'vector'
-  metadata:
-    title: 'Natural Earth Coastlines'
-    abstract:
-      text:  'Natural Earth Coastlines (Public Domain)'
-      citation:
-        text: 'Made with Natural Earth'
-        url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+  group_path: 'Glaciology/Glacier Terminus'
   visible: True
-  path: 'Basemaps'
 
 
-arctic_dem:
-  source:
-    url: 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif'
-  short_name: 'arctic_dem'
+- <<: *glacier_terminus
+  id: glacier_terminus_2000_2001
+  data_source: glacier_terminus.2000_2001
+  title: 'Glacier Termini 2000 to 2001'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2005_2006
+  data_source: glacier_terminus.2005_2006
+  title: 'Glacier Termini 2005 to 2006'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2006_2007
+  data_source: glacier_terminus.2006_2007
+  title: 'Glacier Termini 2006 to 2007'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2007_2008
+  data_source: glacier_terminus.2007_2008
+  title: 'Glacier Termini 2007 to 2008'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2008_2009
+  data_source: glacier_terminus.2008_2009
+  title: 'Glacier Termini 2008 to 2009'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2012_2013
+  data_source: glacier_terminus.2012_2013
+  title: 'Glacier Termini 2012 to 2013'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2014_2015
+  data_source: glacier_terminus.2014_2015
+  title: 'Glacier Termini 2014 to 2015'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2015_2016
+  data_source: glacier_terminus.2015_2016
+  title: 'Glacier Termini 2015 to 2016'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2016_2017
+  data_source: glacier_terminus.2016_2017
+  title: 'Glacier Termini 2016 to 2017'
+
+
+- &bedmachine
+  id: bedmachine_bed
+  data_source: bedmachine.only
+  ingest_task: bedmachine
+  ingest_task_kwargs: {'extract_dataset': 'bed'}
   file_type: 'tif'
   data_type: 'raster'
-  metadata:
-    title: 'Arctic DEM (1km mosaic)'
-    abstract:
-      text: 'ArcticDEM is an NGA-NSF public-private initiative to automatically produce a high-resolution, high quality, digital surface model (DSM) of the Arctic using optical stereo imagery, high-performance computing, and open source photogrammetry software.'
-      citation:
-        text: 'Data provided by the Polar Geospatial Center. Porter, Claire; Morin, Paul; Howat, Ian; Noh, Myoung-Jon; Bates, Brian; Peterman, Kenneth; Keesey, Scott; Schlenk, Matthew; Gardiner, Judith; Tomko, Karen; Willis, Michael; Kelleher, Cole; Cloutier, Michael; Husby, Eric; Foga, Steven; Nakamura, Hitomi; Platson, Melisa; Wethington, Michael, Jr.; Williamson, Cathleen; Bauer, Gregory; Enos, Jeremy; Arnold, Galen; Kramer, William; Becker, Peter; Doshi, Abhijit; D’Souza, Cristelle; Cummens, Pat; Laurier, Fabien; Bojesen, Mikkel, 2018, “ArcticDEM”, https://doi.org/10.7910/DVN/OHHUKH, Harvard Dataverse, V1, 2020-01-23'
-        url: 'https://www.pgc.umn.edu/data/arcticdem/'
-  style: 'arctic_dem'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  visible: True
-  path: 'Basemaps'
-
-
-bedmachine_bed: &bedmachine
-  source:
-    name: 'bedmachine'
-    cmr:
-      short_name: 'IDBMG4'
-      version: 3
-  short_name: 'bedmachine_bed'
-  file_type: 'tif'
-  data_type: 'raster'
-  metadata: &bedmachine_metadata
-    title: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
-    abstract:
-      text: 'This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.'
-      citation:
-        text: 'Morlighem, M. et al. 2017, updated 2018. IceBridge BedMachine Greenland, Version 3. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/2CIX82HUV88Y. 2020/02/07.'
-        url: 'https://doi.org/10.5067/2CIX82HUV88Y'
+  title: 'Bedrock Elevation'
   style: 'bedmachine_bed'
   warp_kwargs:
     xRes: 1000
     yRes: 1000
   visible: True
-  path: 'Basemaps/Bedmachine'
+  group_path: 'Geophysics/IceBridge BedMachine'
 
 
-bedmachine_surface:
-  <<: *bedmachine
-  metadata:
-    <<: *bedmachine_metadata
-    title: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
-  short_name: 'bedmachine_surface'
+- <<: *bedmachine
+  id: bedmachine_surface
+  ingest_task_kwargs: {'extract_dataset': 'surface'}
+  title: 'Surface Elevation'
   style: null
   visible: False
 
 
-bedmachine_thickness:
-  <<: *bedmachine
-  metadata:
-    <<: *bedmachine_metadata
-    title: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
-  short_name: 'bedmachine_thickness'
+- <<: *bedmachine
+  id: bedmachine_thickness
+  ingest_task_kwargs: {'extract_dataset': 'thickness'}
+  title: 'Ice Thickness'
   style: null
   visible: False
+
+
+############
+# BASEMAPS #
+############
+
+- id: coastlines
+  data_source: coastlines.only
+  ingest_task: coastlines
+  file_type: 'shp'
+  data_type: 'vector'
+  title: 'Natural Earth Coastlines'
+  visible: True
+  group_path: 'Basemaps'
+
+
+- id: arctic_dem
+  data_source: arctic_dem.only
+  ingest_task: arctic_dem
+  file_type: 'tif'
+  data_type: 'raster'
+  title: 'Arctic DEM (1km mosaic)'
+  style: 'arctic_dem'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  visible: True
+  group_path: 'Basemaps'

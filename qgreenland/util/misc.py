@@ -3,8 +3,7 @@ import shutil
 import time
 from contextlib import contextmanager
 
-from qgreenland.constants import (CONFIG,
-                                  RELEASES_DIR,
+from qgreenland.constants import (RELEASES_DIR,
                                   REQUEST_TIMEOUT,
                                   TaskType,
                                   WIP_DIR,
@@ -12,11 +11,12 @@ from qgreenland.constants import (CONFIG,
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
-def fetch_file(url):
+def fetch_file(url, *, session=None):
     # TODO: Share the session across requests somehow?
-    s = create_earthdata_authenticated_session(hosts=[url])
+    if not session:
+        session = create_earthdata_authenticated_session(hosts=[url])
 
-    return s.get(url, timeout=REQUEST_TIMEOUT)
+    return session.get(url, timeout=REQUEST_TIMEOUT)
 
 
 @contextmanager
@@ -82,24 +82,19 @@ def cleanup_output_dirs(delete_fetch_dir=False):
             _rmtree(os.path.join(RELEASES_DIR, directory))
 
 
-def get_layer_config(layername=None):
-    config = CONFIG['layers']
-
-    if not layername:
-        return config
-
-    try:
-        return config[layername]
-    except KeyError:
-        raise NotImplementedError(
-            f"Configuration for layer '{layername}' not found."
-        )
+def get_layer_fn(layer_cfg):
+    return f"{layer_cfg['id']}.{layer_cfg['file_type']}"
 
 
-def get_layer_fs_path(layer_name, layer_cfg):
-    layer_group_list = layer_cfg.get('path', '').split('/')
-
+def get_layer_dir(layer_cfg):
+    layer_group_list = layer_cfg.get('group_path', '').split('/')
     return os.path.join(TaskType.FINAL.value,
                         *layer_group_list,
-                        layer_name,
-                        f'{layer_name}.{layer_cfg["file_type"]}')
+                        layer_cfg['id'])
+
+
+def get_layer_fs_path(layer_cfg):
+    d = get_layer_dir(layer_cfg)
+    f = get_layer_fn(layer_cfg)
+
+    return os.path.join(d, f)

@@ -15,7 +15,6 @@ services:
       - ENVIRONMENT
       - EARTHDATA_USERNAME
       - EARTHDATA_PASSWORD
-
       # Set `export PYTHONBREAKPOINT=ipdb.set_trace` to use `ipdb` by default
       # instead of `pdb`.
       - PYTHONBREAKPOINT

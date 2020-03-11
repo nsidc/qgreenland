@@ -2,5 +2,9 @@ map(include('layer_group'))
 
 ---
 layer_group:
+  # Is this layer group initially "checked" as visible in QGIS?
   visible: bool()
+  # Is this layer group initially expanded in QGIS?
+  # NOTE: Whatever layer group(s) the top-most (first) layer is in will be
+  # automatically expanded by QGIS on project load.
   expanded: bool()

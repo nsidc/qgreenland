@@ -1,39 +1,42 @@
-map(include('layer'))
+list(include('layer'))
 
 ---
-# TODO: Consider removing short_name key and just use the layer key
 # TODO: Consider renaming file_type to "output_file_type" or something --
 # currently this is used when adding layers to the project file, so we should
 # consider this as output_file_type and use a new key for source file type.
+
 layer:
-  source: any(include('cmr_source'), include('url_source'))
-  short_name: str()
-  # TODO: Path is an overloaded name. qgis_gui_path? qgis_layer_parent_node? :shrug:
-  path: str()
-  metadata:
-    title: str()
-    abstract:
-      text: str()
-      citation:
-        text: str()
-        url: str()
-  style: str(required=False)
+  # Used for unique identification, e.g. config, filenames.
+  id: str()
+  # Reference to a data source in datasets.yml (`{dataset_id}.{source_id}`)
+  data_source: str()
+  # The index of a task enumerated in qgreenland.tasks.layers.ingest_tasks
+  ingest_task: enum('arctic_dem', 'bedmachine', 'coastlines', 'glacier_terminus')
+  ingest_task_kwargs: map(required=False)
+  # The file extension, e.g. '.shp'
   file_type: str()
-  data_type: str()
+  data_type: enum('vector', 'raster')
+  # Short descriptive text, e.g. the layer name in QGIS.
+  title: str()
+  # The fully-qualified QGIS group the layer should be placed in, e.g.
+  # 'Group/Subgroup/Subsubgroup'
+  group_path: str()
+  # The name of a style (represented as .qml file in `assets/styles`). Should
+  # NOT include .qml file extension
+  style: str(required=False)
   overviews_kwargs: include('overviews_kwargs', required=False)
+  warp_kwargs: include('warp_kwargs', required=False)
+  # Is this layer initially "checked" as visible in QGIS?
   visible: bool()
 
 ---
-cmr_source:
-  cmr:
-    short_name: str()
-    version: int()
-
----
-url_source:
-  url: str()
-
----
 overviews_kwargs:
+  # Keyword arguments to rasterio `dataset.build_overviews()` method
   overview_levels: list(int())
   resampling_method: str()
+
+---
+warp_kwargs:
+  # Keyword arguments to gdal.Warp method
+  xRes: int()
+  yRes: int()

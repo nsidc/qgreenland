@@ -20,7 +20,7 @@ def create_raster_map_layer(layer_path, layer_cfg):
 
     map_layer = qgc.QgsRasterLayer(
         layer_path,
-        layer_cfg['metadata']['title'],
+        layer_cfg['title'],
         'gdal'
     )
 
@@ -58,7 +58,7 @@ def _add_layer_metadata(map_layer, layer_cfg):
     layer_extent = map_layer.extent()
     rendered_qmd = qmd_template.render(
         abstract=abstract,
-        title=layer_cfg['metadata']['title'],
+        title=layer_cfg['title'],
         minx=layer_extent.xMinimum(),
         miny=layer_extent.yMinimum(),
         maxx=layer_extent.xMaximum(),
@@ -74,24 +74,24 @@ def _add_layer_metadata(map_layer, layer_cfg):
         map_layer.loadNamedMetadata(temp_file.name)
 
 
-def get_map_layer(layer_name, layer_cfg, project_crs, root_path):
+def get_map_layer(layer_cfg, project_crs):
     # Give the absolute path to the layer. We think project.addMapLayer()
     # automatically generates the correct relative paths. Using a relative
     # path causes statistics (nodata value, min/max) to not be generated,
     # resulting in rendering a gray rectangle.
     # TODO: do we need to worry about differences in path structure between linux
     # and windows?
-    layer_path = get_layer_fs_path(layer_name, layer_cfg)
+    layer_path = get_layer_fs_path(layer_cfg)
 
     if not os.path.isfile(layer_path):
-        raise RuntimeError(f"Layer path '{layer_path}' does not exist.")
+        raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
 
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     if layer_cfg['data_type'] == 'vector':
         map_layer = qgc.QgsVectorLayer(
             layer_path,
-            layer_cfg['metadata']['title'],  # layer name as it shows up in TOC
-            'ogr'  # name of the data provider (memory, postgresql)
+            layer_cfg['title'],  # layer name as it shows up in QGIS TOC
+            'ogr'  # name of the data provider (e.g. memory, postgresql)
         )
     elif layer_cfg['data_type'] == 'raster':
         map_layer = create_raster_map_layer(layer_path, layer_cfg)
@@ -139,7 +139,7 @@ def _get_or_create_group(project, group_path):
 
     group_names = group_path.split('/')
 
-    for idx, group_name in enumerate(group_names):
+    for group_name in group_names:
         # TODO: COO COO CACHOO
         if group.findGroup(group_name) is None:
             # Create the group.
@@ -152,15 +152,13 @@ def _get_or_create_group(project, group_path):
 
 def _add_layers(project):
     layers_cfg = CONFIG['layers']
-    for layer_name, layer_cfg in layers_cfg.items():
-        layer_cfg = layers_cfg[layer_name]
-        map_layer = get_map_layer(layer_name,
-                                  layer_cfg,
-                                  project.crs(),
-                                  project.absolutePath())
 
-        layer_path = layer_cfg.get('path', '')
-        group = _get_or_create_group(project, layer_path)
+    for layer_cfg in layers_cfg.values():
+        map_layer = get_map_layer(layer_cfg,
+                                  project.crs())
+
+        group_path = layer_cfg.get('group_path', '')
+        group = _get_or_create_group(project, group_path)
         # Set layer visibility
         group_layer = group.addLayer(map_layer)
         group_layer.setItemVisibilityChecked(
@@ -174,11 +172,11 @@ def _add_layers(project):
 
 def _add_empty_groups(project):
     groups_config = CONFIG['layer_groups']
-    for group_path, group_config in groups_config.items():
+    for group_path in groups_config.keys():
         _get_or_create_group(project, group_path)
 
 
-def make_qgs(path):
+def make_qgis_project_file(path):
     """Create a QGIS project file with the correct stuff in it.
 
     path: the desired path to .qgs project file, e.g.:
@@ -252,15 +250,19 @@ def load_qml_style(map_layer, style_name):
 
 
 def build_abstract(layer_cfg):
+    metadata = layer_cfg['dataset']['metadata']
     abstract = ''
     # TODO: COO COO CACHOO
-    if layer_cfg['metadata'].get('abstract'):
-        abstract_cfg = layer_cfg['metadata'].get('abstract')
-        abstract += abstract_cfg['text'] + '\n\n'
+    if metadata.get('abstract'):
+        title_text = metadata['title']
+        abstract += title_text + '\n\n'
+
+        abstract_text = metadata.get('abstract')
+        abstract += abstract_text + '\n\n'
 
         # TODO: COO COO CACHOO
-        if abstract_cfg.get('citation'):
-            citation_cfg = abstract_cfg.get('citation')
+        if metadata.get('citation'):
+            citation_cfg = metadata.get('citation')
 
             # TODO: COO COO CACHOO
             if citation_cfg.get('text'):
