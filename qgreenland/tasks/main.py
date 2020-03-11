@@ -22,7 +22,7 @@ class IngestAllLayers(luigi.WrapperTask):
         tasks = generate_layer_tasks()
 
         for task in tasks:
-            yield task()
+            yield task
 
 
 class QGreenlandLogoFile(luigi.Task):

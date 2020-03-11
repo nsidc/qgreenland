@@ -1,5 +1,3 @@
-from functools import partial
-
 from qgreenland.constants import CONFIG
 from qgreenland.tasks.layers import INGEST_TASKS
 
@@ -19,6 +17,6 @@ def generate_layer_tasks():
 
         # TODO: Do we need the partial at all, or can we instantiate the
         # classes here?
-        tasks.append(partial(task, **kwargs))
+        tasks.append(task(**kwargs))
 
     return tasks
