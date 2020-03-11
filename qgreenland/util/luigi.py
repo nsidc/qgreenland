@@ -6,8 +6,7 @@ from qgreenland.constants import CONFIG, TaskType
 from qgreenland.util.misc import get_layer_dir, get_layer_fn
 
 
-# TODO: Rename to LayerTask
-class LayerConfigMixin(luigi.Task):
+class LayerTask(luigi.Task):
     """Allow tasks to receive layer_id as parameter and get the correct config.
 
     Used for all tasks that require a layer config. This way, we only have to

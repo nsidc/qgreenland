@@ -6,10 +6,10 @@ import luigi
 from osgeo import gdal
 
 from qgreenland.constants import TaskType
-from qgreenland.util.luigi import LayerConfigMixin
+from qgreenland.util.luigi import LayerTask
 
 
-class ExtractNcDataset(LayerConfigMixin, luigi.Task):
+class ExtractNcDataset(LayerTask):
     """Extracts dataset `dataset_name` from input .nc file."""
 
     task_type = TaskType.WIP

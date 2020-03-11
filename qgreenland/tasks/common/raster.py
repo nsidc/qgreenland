@@ -9,10 +9,10 @@ from osgeo import gdal
 from shapely.geometry import Polygon
 
 from qgreenland.constants import BBOX_POLYGON, PROJECT_CRS, TaskType
-from qgreenland.util.luigi import LayerConfigMixin
+from qgreenland.util.luigi import LayerTask
 
 
-class BuildRasterOverviews(LayerConfigMixin, luigi.Task):
+class BuildRasterOverviews(LayerTask):
     task_type = TaskType.WIP
     requires_task = luigi.Parameter()
 
@@ -52,7 +52,7 @@ class BuildRasterOverviews(LayerConfigMixin, luigi.Task):
                 ds.build_overviews(overview_levels, resampling_method)
 
 
-class ReprojectRaster(LayerConfigMixin, luigi.Task):
+class ReprojectRaster(LayerTask):
     task_type = TaskType.WIP
     requires_task = luigi.Parameter()
 
@@ -75,7 +75,7 @@ class ReprojectRaster(LayerConfigMixin, luigi.Task):
                       **warp_kwargs)
 
 
-class SubsetRaster(LayerConfigMixin, luigi.Task):
+class SubsetRaster(LayerTask):
     task_type = TaskType.WIP
     requires_task = luigi.Parameter()
 
