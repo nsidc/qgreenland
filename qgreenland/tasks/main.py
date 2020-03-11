@@ -18,10 +18,7 @@ from qgreenland.util.task import generate_layer_tasks
 class IngestAllLayers(luigi.WrapperTask):
     def requires(self):
         """All layers (not sources) that will be added to the project."""
-        # How to make this task only act on the layers listed here? Currently
-        # iterates over the entire configuration file, so if you want to reduce
-        # the stuff being run you have to edit many files, yuck. Even better,
-        # make the config file drive the required layers here.
+        # To disable layer(s), edit layers.yml
         tasks = generate_layer_tasks()
 
         for task in tasks:
