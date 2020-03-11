@@ -74,7 +74,7 @@ def _add_layer_metadata(map_layer, layer_cfg):
         map_layer.loadNamedMetadata(temp_file.name)
 
 
-def get_map_layer(layer_cfg, project_crs, root_path):
+def get_map_layer(layer_cfg, project_crs):
     # Give the absolute path to the layer. We think project.addMapLayer()
     # automatically generates the correct relative paths. Using a relative
     # path causes statistics (nodata value, min/max) to not be generated,
@@ -155,8 +155,7 @@ def _add_layers(project):
 
     for layer_cfg in layers_cfg.values():
         map_layer = get_map_layer(layer_cfg,
-                                  project.crs(),
-                                  project.absolutePath())
+                                  project.crs())
 
         group_path = layer_cfg.get('group_path', '')
         group = _get_or_create_group(project, group_path)

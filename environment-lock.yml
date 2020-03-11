@@ -207,6 +207,7 @@ dependencies:
   - traitlets=4.3.3=py38_0
   - tzcode=2019a=h516909a_1002
   - urllib3=1.25.7=py38_0
+  - vulture=1.0=py_0
   - wcwidth=0.1.8=py_0
   - wheel=0.34.2=py_1
   - xerces-c=3.2.2=h8412b87_1004
