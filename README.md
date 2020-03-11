@@ -5,6 +5,30 @@ project is currently in early development stages, so expect rapid change.
 Nothing is written in stone!
 
 
+## Configuration
+
+There are 3 configuration files; `layers.yml` is the important one. It references
+the others.
+
+
+### Layers
+
+Each element represents a QGIS layer.
+
+
+### Layer groups
+
+Each element represents a QGIS layer group. Keep in mind that the first layer's
+group will always be automatically selected and expanded.
+
+
+### Datasets
+
+A dataset isn't necessarily a dataproduct, but it might be. A dataset is any
+collection of data representing some measurement, hosted anywhere. Current
+access methods include `cmr` (by `granule_ur`s) and `http` (by `url`s).
+
+
 ## Pipeline
 
 As of `v0.6.0`:
@@ -168,7 +192,9 @@ TODO: Flesh this out more.
 
 Currently there is no automated release process. The manual process is:
 
-When developing, increment the proper version part (`major`, `minor`, `dev`) with the `version.bump {part}` invoke task. For example, to bump the minor version:
+When developing, increment the proper version part (`major`, `minor`, `dev`)
+with the `version.bump {part}` invoke task. For example, to bump the minor
+version:
 
 ```
 invoke version.bump minor
