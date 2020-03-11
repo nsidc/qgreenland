@@ -1,3 +1,15 @@
+# v0.14.0 (2020-03-10)
+
+- New layer: Glacier Terminus (nsidc-0642)
+- Refactor all configuration files
+  - Configure datasets independently of layers
+  - Allow specification of ingest task and kwargs in layer configuration
+- Support CMR access by `granule_id` instead of `short_name` and `version`
+- Re-order layers so basemaps are below the science data
+- Support layer titles in config
+- Adjust group names
+- Name files after the `layer_id`
+
 # v0.13.0 (2020-02-25)
 
 - Bugfix: Missing constant definitions
