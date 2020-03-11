@@ -1,7 +1,0 @@
-* FIGURE OUT HOW TO NAME FILES
-
-* Make project file generation work
-* Fix circular import
-* Make layer tasks generic business logic pipelines (and maybe rename them?)
-  - FUTURE: Generate pipeline(s) from config
-* Update configuration validation to include all config files (datasets.yml)
