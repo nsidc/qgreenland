@@ -1,3 +1,108 @@
+################
+# Science Data #
+################
+
+- &glacier_terminus
+  id: glacier_terminus_glacier_ids
+  data_source: glacier_terminus.glacier_ids
+  ingest_task: glacier_terminus
+  title: 'Glacier IDs'
+  file_type: 'shp'
+  data_type: 'vector'
+  group_path: 'Glaciology/Glacier Terminus'
+  visible: True
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2000_2001
+  data_source: glacier_terminus.2000_2001
+  title: 'Glacier Termini 2000 to 2001'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2005_2006
+  data_source: glacier_terminus.2005_2006
+  title: 'Glacier Termini 2005 to 2006'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2006_2007
+  data_source: glacier_terminus.2006_2007
+  title: 'Glacier Termini 2006 to 2007'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2007_2008
+  data_source: glacier_terminus.2007_2008
+  title: 'Glacier Termini 2007 to 2008'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2008_2009
+  data_source: glacier_terminus.2008_2009
+  title: 'Glacier Termini 2008 to 2009'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2012_2013
+  data_source: glacier_terminus.2012_2013
+  title: 'Glacier Termini 2012 to 2013'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2014_2015
+  data_source: glacier_terminus.2014_2015
+  title: 'Glacier Termini 2014 to 2015'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2015_2016
+  data_source: glacier_terminus.2015_2016
+  title: 'Glacier Termini 2015 to 2016'
+
+
+- <<: *glacier_terminus
+  id: glacier_terminus_2016_2017
+  data_source: glacier_terminus.2016_2017
+  title: 'Glacier Termini 2016 to 2017'
+
+
+- &bedmachine
+  id: bedmachine_bed
+  data_source: bedmachine.only
+  ingest_task: bedmachine
+  ingest_task_kwargs: {'extract_dataset': 'bed'}
+  file_type: 'tif'
+  data_type: 'raster'
+  title: 'Bedrock Elevation'
+  style: 'bedmachine_bed'
+  warp_kwargs:
+    xRes: 1000
+    yRes: 1000
+  visible: True
+  group_path: 'Geophysics/IceBridge BedMachine'
+
+
+- <<: *bedmachine
+  id: bedmachine_surface
+  ingest_task_kwargs: {'extract_dataset': 'surface'}
+  title: 'Surface Elevation'
+  style: null
+  visible: False
+
+
+- <<: *bedmachine
+  id: bedmachine_thickness
+  ingest_task_kwargs: {'extract_dataset': 'thickness'}
+  title: 'Ice Thickness'
+  style: null
+  visible: False
+
+
+############
+# BASEMAPS #
+############
+
 - id: coastlines
   data_source: coastlines.only
   ingest_task: coastlines
@@ -20,82 +125,3 @@
     resampling_method: average
   visible: True
   group_path: 'Basemaps'
-
-
-- &bedmachine
-  id: bedmachine_bed
-  data_source: bedmachine.only
-  ingest_task: bedmachine
-  ingest_task_kwargs: {'extract_dataset': 'bed'}
-  file_type: 'tif'
-  data_type: 'raster'
-  title: 'IceBridge BedMachine Greenland, Version 3 Bedrock Elevation'
-  style: 'bedmachine_bed'
-  warp_kwargs:
-    xRes: 1000
-    yRes: 1000
-  visible: True
-  group_path: 'Basemaps/bedmachine'
-
-
-- <<: *bedmachine
-  id: bedmachine_surface
-  ingest_task_kwargs: {'extract_dataset': 'surface'}
-  title: 'IceBridge BedMachine Greenland, Version 3 Surface Elevation'
-  style: null
-  visible: False
-
-
-- <<: *bedmachine
-  id: bedmachine_thickness
-  ingest_task_kwargs: {'extract_dataset': 'thickness'}
-  title: 'IceBridge BedMachine Greenland, Version 3 Ice Thickness'
-  style: null
-  visible: False
-
-
-- &glacier_terminus
-  id: glacier_terminus_glacier_ids
-  data_source: glacier_terminus.glacier_ids
-  ingest_task: glacier_terminus
-  title: 'MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics'
-  file_type: 'shp'
-  data_type: 'vector'
-  group_path: 'Glaciology/glacier_terminus'
-  visible: True
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2000_2001
-  data_source: glacier_terminus.2000_2001
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2005_2006
-  data_source: glacier_terminus.2005_2006
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2006_2007
-  data_source: glacier_terminus.2006_2007
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2007_2008
-  data_source: glacier_terminus.2007_2008
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2008_2009
-  data_source: glacier_terminus.2008_2009
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2012_2013
-  data_source: glacier_terminus.2012_2013
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2014_2015
-  data_source: glacier_terminus.2014_2015
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2015_2016
-  data_source: glacier_terminus.2015_2016
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2016_2017
-  data_source: glacier_terminus.2016_2017

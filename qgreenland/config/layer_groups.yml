@@ -2,15 +2,19 @@ Basemaps:
   visible: True
   expanded: True
 
-Basemaps/Bedmachine:
-  visible: False
-  expanded: False
-
 Glaciology:
-  visible: False
+  visible: True
+  expanded: True
+
+Glaciology/Glacier Terminus:
+  visible: True
   expanded: False
 
 Geophysics:
+  visible: False
+  expanded: True
+
+Geophysics/IceBridge BedMachine:
   visible: False
   expanded: False
 
@@ -18,11 +22,12 @@ Geology & natural resources:
   visible: False
   expanded: False
 
-# TODO paleontology better term ?
+# TODO paleontology better term?
 Paleo-data:
   visible: False
   expanded: False
 
+# TODO: Cryosphere better term?
 Sea ice:
   visible: False
   expanded: False
