@@ -39,6 +39,19 @@
       url: 'https://doi.org/10.5067/2CIX82HUV88Y'
 
 
+- id: velocity_mosaic
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/velocity_mosaic/landsat/v00.0/static/GRE_G0120_0000.nc'
+  metadata:
+    title: 'Velocity Mosaic'
+    abstract: 'This data is a velocity mosaic.'
+    citation:
+      text: 'citation text'
+      url: 'citation url'
+
 - id: glacier_terminus
   access_method: cmr
   sources:

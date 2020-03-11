@@ -125,3 +125,17 @@
     resampling_method: average
   visible: True
   group_path: 'Basemaps'
+
+
+- id: velocity_mosaic
+  data_source: velocity_mosaic.only
+  ingest_task: velocity_mosaic
+  ingest_task_kwargs: {'extract_dataset': 'vv'}
+  file_type: 'tif'
+  data_type: 'raster'
+  title: 'Velocity Mosiac'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  visible: True
+  group_path: 'Basemaps'
