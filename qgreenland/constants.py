@@ -6,7 +6,6 @@ from qgreenland.util.config import make_config
 
 PROJECT = 'qgreenland'
 
-
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
 PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
