@@ -130,7 +130,7 @@
 - id: velocity_mosaic
   data_source: velocity_mosaic.only
   ingest_task: velocity_mosaic
-  ingest_task_kwargs: {'extract_dataset': 'vv'}
+  ingest_task_kwargs: {'extract_dataset': 'v'}
   file_type: 'tif'
   data_type: 'raster'
   title: 'Velocity Mosiac'
