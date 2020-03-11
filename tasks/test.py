@@ -27,6 +27,8 @@ def validate(ctx, verbose=False):
         pprint(CONFIG['layers'])
         print('Layer Groups:')
         pprint(CONFIG['layer_groups'])
+        print('Datasets:')
+        pprint(CONFIG['datasets'])
 
     print('Configuration is valid.')
 
