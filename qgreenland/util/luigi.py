@@ -14,8 +14,12 @@ class LayerTask(luigi.Task):
     pass a string instead of a whole config object as a parameter.
     """
 
+    requires_task = luigi.Parameter()
     layer_id = luigi.Parameter()
     task_type = None
+
+    def requires(self):
+        return self.requires_task
 
     @property
     def layer_cfg(self):

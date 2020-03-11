@@ -14,10 +14,6 @@ class ExtractNcDataset(LayerTask):
 
     task_type = TaskType.WIP
     dataset_name = luigi.Parameter()
-    requires_task = luigi.Parameter()
-
-    def requires(self):
-        return self.requires_task
 
     def output(self):
         # GDAL translate will automatically determine file type from the extension.

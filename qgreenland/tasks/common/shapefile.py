@@ -16,10 +16,6 @@ from qgreenland.util.shapefile import (find_shapefile_in_dir,
 
 class UnzipShapefile(LayerTask):
     task_type = TaskType.WIP
-    requires_task = luigi.Parameter()
-
-    def requires(self):
-        return self.requires_task
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/unzip/')
@@ -35,10 +31,6 @@ class UnzipShapefile(LayerTask):
 
 class ReprojectShapefile(LayerTask):
     task_type = TaskType.WIP
-    requires_task = luigi.Parameter()
-
-    def requires(self):
-        return self.requires_task
 
     def output(self):
         # TODO: DRY this out. Place responsibility in LayerTask.
@@ -60,10 +52,6 @@ class ReprojectShapefile(LayerTask):
 
 class SubsetShapefile(LayerTask):
     task_type = TaskType.WIP
-    requires_task = luigi.Parameter()
-
-    def requires(self):
-        return self.requires_task
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/subset/')

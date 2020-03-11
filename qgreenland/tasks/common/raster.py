@@ -14,10 +14,6 @@ from qgreenland.util.luigi import LayerTask
 
 class BuildRasterOverviews(LayerTask):
     task_type = TaskType.WIP
-    requires_task = luigi.Parameter()
-
-    def requires(self):
-        return self.requires_task
 
     def output(self):
         of = os.path.join(self.outdir, 'overviews', self.filename)
@@ -54,11 +50,6 @@ class BuildRasterOverviews(LayerTask):
 
 class ReprojectRaster(LayerTask):
     task_type = TaskType.WIP
-    requires_task = luigi.Parameter()
-
-    def requires(self):
-        return self.requires_task
-
     def output(self):
         of = os.path.join(self.outdir, 'reproject', self.filename)
         return luigi.LocalTarget(of)
@@ -77,10 +68,6 @@ class ReprojectRaster(LayerTask):
 
 class SubsetRaster(LayerTask):
     task_type = TaskType.WIP
-    requires_task = luigi.Parameter()
-
-    def requires(self):
-        return self.requires_task
 
     def output(self):
         of = os.path.join(self.outdir, 'subset', self.filename)
