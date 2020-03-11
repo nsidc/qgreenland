@@ -4,6 +4,8 @@
 - Refactor all configuration files
   - Configure datasets independently of layers
   - Allow specification of ingest task and kwargs in layer configuration
+- Automatically generate layer tasks from config -- commenting the config now
+  disables pipelines
 - Support CMR access by `granule_id` instead of `short_name` and `version`
 - Re-order layers so basemaps are below the science data
 - Support layer titles in config
