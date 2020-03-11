@@ -50,6 +50,7 @@ class BuildRasterOverviews(LayerTask):
 
 class ReprojectRaster(LayerTask):
     task_type = TaskType.WIP
+
     def output(self):
         of = os.path.join(self.outdir, 'reproject', self.filename)
         return luigi.LocalTarget(of)
