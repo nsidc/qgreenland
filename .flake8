@@ -1,5 +1,6 @@
 [flake8]
 max-line-length = 90
+max-complexity = 8
 
 # flake8-import-order
 application_import_names = qgreenland
