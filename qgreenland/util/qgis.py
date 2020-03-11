@@ -81,7 +81,6 @@ def get_map_layer(layer_cfg, project_crs, root_path):
     # resulting in rendering a gray rectangle.
     # TODO: do we need to worry about differences in path structure between linux
     # and windows?
-    layer_id = layer_cfg['id']
     layer_path = get_layer_fs_path(layer_cfg)
 
     if not os.path.isfile(layer_path):
@@ -140,7 +139,7 @@ def _get_or_create_group(project, group_path):
 
     group_names = group_path.split('/')
 
-    for idx, group_name in enumerate(group_names):
+    for group_name in group_names:
         # TODO: COO COO CACHOO
         if group.findGroup(group_name) is None:
             # Create the group.
@@ -174,7 +173,7 @@ def _add_layers(project):
 
 def _add_empty_groups(project):
     groups_config = CONFIG['layer_groups']
-    for group_path, group_config in groups_config.items():
+    for group_path in groups_config.keys():
         _get_or_create_group(project, group_path)
 
 

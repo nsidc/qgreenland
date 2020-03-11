@@ -3,7 +3,7 @@ import os
 import luigi
 
 from qgreenland.constants import CONFIG, TaskType
-from qgreenland.util.misc import get_layer_dir, get_layer_fn, get_layer_fs_path
+from qgreenland.util.misc import get_layer_dir, get_layer_fn
 
 
 # TODO: Rename to LayerTask
