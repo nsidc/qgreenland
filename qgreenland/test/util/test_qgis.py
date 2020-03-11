@@ -5,6 +5,20 @@ import qgis.core as qgc
 from qgreenland.constants import PACKAGE_DIR
 from qgreenland.util import qgis
 
+mock_layer_cfg = {
+    'title': 'Example Raster',
+    'dataset': {
+        'metadata': {
+            'title': 'Example Dataset',
+            'abstract': 'Example abstract',
+            'citation': {
+                'text': 'NSIDC 2020',
+                'url': 'https://nsidc.org'
+            }
+        }
+    }
+}
+
 
 def test_create_raster_map_layer():
     mock_raster_path = os.path.join(
@@ -13,10 +27,6 @@ def test_create_raster_map_layer():
         'data',
         'example.tif'
     )
-
-    mock_layer_cfg = {
-        'title': 'Example Raster'
-    }
 
     result = qgis.create_raster_map_layer(mock_raster_path, mock_layer_cfg)
 
@@ -43,20 +53,6 @@ def test__add_layer_metadata():
         'example.tif'
     )
 
-    mock_layer_cfg = {
-        'title': 'A very pretty layer',
-        'dataset': {
-            'metadata': {
-                'title': 'Example Dataset',
-                'abstract': 'Example abstract',
-                'citation': {
-                    'text': 'NSIDC 2020',
-                    'url': 'https://nsidc.org'
-                }
-            }
-        }
-    }
-
     mock_raster_layer = qgis.create_raster_map_layer(mock_raster_path, mock_layer_cfg)
 
     qgis._add_layer_metadata(mock_raster_layer, mock_layer_cfg)
@@ -75,3 +71,18 @@ def test__add_layer_metadata():
     meta_extent = mock_raster_layer.metadata().extent().spatialExtents()[0]
     # The `expected_extent` is a QgsRectangle.
     assert expected_extent == meta_extent.bounds.toRectangle()
+
+
+def test_build_abstract():
+    actual = qgis.build_abstract(mock_layer_cfg)
+    expected = """Example Dataset
+
+Example abstract
+
+Citation:
+NSIDC 2020
+
+Citation URL:
+https://nsidc.org"""
+
+    assert actual == expected
