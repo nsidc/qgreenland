@@ -1,9 +1,10 @@
 import os
+import shutil
 
 import luigi
 
 from qgreenland.constants import CONFIG, TaskType
-from qgreenland.util.misc import get_layer_dir, get_layer_fn
+from qgreenland.util.misc import get_layer_dir, get_layer_fn, temporary_path_dir
 
 
 class LayerTask(luigi.Task):
@@ -64,3 +65,12 @@ class LayerPipeline(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(get_layer_dir(self.cfg))
+
+    def run(self):
+        if os.path.isdir(self.input().path):
+            source_path = self.input().path
+        else:
+            source_path = os.path.dirname(self.input().path)
+
+        with temporary_path_dir(self.output()) as temp_path:
+            shutil.copytree(source_path, temp_path, dirs_exist_ok=True)

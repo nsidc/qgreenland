@@ -1,9 +1,6 @@
-import os
-
 from qgreenland.tasks.common.fetch import FetchCmrGranule
 from qgreenland.tasks.common.shapefile import ReprojectShapefile
 from qgreenland.util.luigi import LayerPipeline
-from qgreenland.util.misc import temporary_path_dir
 
 
 class GlacierTerminus(LayerPipeline):
@@ -15,12 +12,7 @@ class GlacierTerminus(LayerPipeline):
     def requires(self):
         fetch_data = FetchCmrGranule(source_cfg=self.cfg['source'],
                                      output_name=self.cfg['id'])
-        yield ReprojectShapefile(
+        return ReprojectShapefile(
             requires_task=fetch_data,
             layer_id=self.layer_id
         )
-
-    def run(self):
-        with temporary_path_dir(self.output()) as temp_path:
-            for inp in self.input():
-                os.rename(inp.path, temp_path)
