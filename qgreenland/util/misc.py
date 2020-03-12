@@ -19,6 +19,33 @@ def fetch_file(url, *, session=None):
     return session.get(url, timeout=REQUEST_TIMEOUT)
 
 
+def find_in_dir_by_ext(path, *, ext):
+    """Find all files in a directory with matching extension.
+
+    Expects an extension with the dot included, e.g. `ext=".shp"`.
+    """
+    files = os.listdir(path)
+    matches = [x for x in files if os.path.splitext(x)[1] == ext]
+    return [os.path.abspath(os.path.join(path, f)) for f in matches]
+
+
+def find_single_file_by_ext(path, *, ext):
+    """This module always expects to find a single file when searching by ext.
+
+    TODO: Extract this to a util module when needed elsewhere.
+    """
+    files = find_in_dir_by_ext(path, ext=ext)
+    if len(files) > 1:
+        raise NotImplementedError(
+            "We're not ready to handle multiple '{ext}' files in one task yet!"
+        )
+
+    try:
+        return files[0]
+    except IndexError:
+        raise RuntimeError(f"No files with extension '{ext}' found at '{path}'")
+
+
 @contextmanager
 def temporary_path_dir(target):
     with target.temporary_path() as p:
@@ -83,7 +110,8 @@ def cleanup_output_dirs(delete_fetch_dir=False):
 
 
 def get_layer_fn(layer_cfg):
-    return f"{layer_cfg['id']}.{layer_cfg['file_type']}"
+    # NOTE: "file_type" includes a leading period
+    return f"{layer_cfg['id']}{layer_cfg['file_type']}"
 
 
 def get_layer_dir(layer_cfg):

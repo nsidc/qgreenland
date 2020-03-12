@@ -7,7 +7,7 @@
   data_source: glacier_terminus.glacier_ids
   ingest_task: glacier_terminus
   title: 'Glacier IDs'
-  file_type: 'shp'
+  file_type: '.shp'
   data_type: 'vector'
   group_path: 'Glaciology/Glacier Terminus'
   visible: True
@@ -67,12 +67,31 @@
   title: 'Glacier Termini 2016 to 2017'
 
 
+- id: velocity_mosaic
+  data_source: velocity_mosaic.only
+  ingest_task: velocity_mosaic
+  ingest_task_kwargs: {'extract_dataset': 'v'}
+  file_type: '.tif'
+  data_type: 'raster'
+  title: 'Ice Sheet Velocity'
+  style: 'ice_sheet_velocity'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  warp_kwargs:
+    xRes: 500
+    yRes: 500
+  visible: True
+  # TODO: Does this count as glaciology?
+  group_path: 'Cryosphere/Ice Sheet Velocity'
+
+
 - &bedmachine
   id: bedmachine_bed
   data_source: bedmachine.only
   ingest_task: bedmachine
   ingest_task_kwargs: {'extract_dataset': 'bed'}
-  file_type: 'tif'
+  file_type: '.tif'
   data_type: 'raster'
   title: 'Bedrock Elevation'
   style: 'bedmachine_bed'
@@ -106,7 +125,7 @@
 - id: coastlines
   data_source: coastlines.only
   ingest_task: coastlines
-  file_type: 'shp'
+  file_type: '.shp'
   data_type: 'vector'
   title: 'Natural Earth Coastlines'
   visible: True
@@ -116,24 +135,10 @@
 - id: arctic_dem
   data_source: arctic_dem.only
   ingest_task: arctic_dem
-  file_type: 'tif'
+  file_type: '.tif'
   data_type: 'raster'
   title: 'Arctic DEM (1km mosaic)'
   style: 'arctic_dem'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  visible: True
-  group_path: 'Basemaps'
-
-
-- id: velocity_mosaic
-  data_source: velocity_mosaic.only
-  ingest_task: velocity_mosaic
-  ingest_task_kwargs: {'extract_dataset': 'v'}
-  file_type: 'tif'
-  data_type: 'raster'
-  title: 'Velocity Mosiac'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average

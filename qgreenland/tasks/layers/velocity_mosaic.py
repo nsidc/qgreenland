@@ -1,6 +1,6 @@
 import luigi
 
-from qgreenland.tasks.common.fetch import FetchDataFile
+from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset
 from qgreenland.tasks.common.raster import ReprojectRaster
 from qgreenland.util.luigi import LayerPipeline
@@ -18,9 +18,9 @@ class VelocityMosaic(LayerPipeline):
     def requires(self):
         source = self.cfg['source']
 
-        fetch_data = FetchDataFile(
+        fetch_data = FetchDataFiles(
             source_cfg=source,
-            output_name='bedmachine'
+            output_name='velocity_mosaic'
         )  # ->
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,

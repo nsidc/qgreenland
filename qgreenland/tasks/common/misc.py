@@ -7,6 +7,7 @@ from osgeo import gdal
 
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
+from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 
 
 class ExtractNcDataset(LayerTask):
@@ -17,19 +18,18 @@ class ExtractNcDataset(LayerTask):
 
     def output(self):
         # GDAL translate will automatically determine file type from the extension.
-        ext = self.layer_cfg['file_type']
         return luigi.LocalTarget(
-            os.path.join(self.outdir, 'extract', f'{self.dataset_name}.{ext}')
+            os.path.join(self.outdir, 'extract')
         )
 
     def run(self):
-        with self.output().open('w') as f:
-            nc_files = glob.glob(os.path.join(self.input().path, '*.nc'))
-            if len(nc_files) > 1:
-                raise NotImplementedError('Handling of >1 .nc file not implemented')
+        with temporary_path_dir(self.output()) as temp_dir:
+            input_fp = find_single_file_by_ext(self.input().path, ext='.nc')
 
-            input_file = nc_files[0]
+            output_filename = f"{self.dataset_name}{self.layer_cfg['file_type']}"
+            output_fp = os.path.join(temp_dir, output_filename)
+
             gdal.Translate(
-                f.buffer.name,
-                f'NETCDF:{input_file}:{self.dataset_name}'
+                output_fp,
+                f'NETCDF:{input_fp}:{self.dataset_name}'
             )

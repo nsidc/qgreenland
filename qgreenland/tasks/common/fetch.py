@@ -37,15 +37,14 @@ class FetchCmrGranule(luigi.Task):
                     f.write(resp.content)
 
 
-class FetchDataFile(luigi.Task):
+class FetchDataFiles(luigi.Task):
     source_cfg = luigi.DictParameter()
     output_name = luigi.Parameter()
 
     def output(self):
         return luigi.LocalTarget(
             os.path.join(TaskType.FETCH.value,
-                         self.output_name,
-                         f'{self.output_name}.data'),
+                         self.output_name),
             format=luigi.format.Nop
         )
 
@@ -53,12 +52,12 @@ class FetchDataFile(luigi.Task):
         if 'cmr' in self.source_cfg:
             raise RuntimeError('Use a FetchCmrGranule task!')
 
-        if len(self.source_cfg['urls']) > 1:
-            raise NotImplementedError('No Task implemented for handling >1 source url')
+        with temporary_path_dir(self.output()) as temp_path:
+            for url in self.source_cfg['urls']:
+                resp = fetch_file(url)
 
-        # TODO: We can more-or-less reuse this code, but iterate over "urls".
-        url = self.source_cfg['urls'][0]
+                fn = resp.url[resp.url.rfind("/")+1:]
+                fp = os.path.join(temp_path, fn)
 
-        resp = fetch_file(url)
-        with self.output().open('wb') as outfile:
-            outfile.write(resp.content)
+                with open(fp, 'wb') as f:
+                    f.write(resp.content)
