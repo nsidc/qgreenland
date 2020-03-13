@@ -7,7 +7,7 @@ from qgreenland.util.luigi import LayerPipeline
 
 
 class VelocityMosaic(LayerPipeline):
-    """Dataset VelocityMosaic
+    """Dataset VelocityMosaic.
 
     This is a NetCDF dataproduct with many distinct datasets representing
     distinct measurements.

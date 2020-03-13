@@ -1,5 +1,4 @@
 """common.py: Tasks that could apply to any type of dataproduct."""
-import glob
 import os
 
 import luigi

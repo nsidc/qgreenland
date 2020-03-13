@@ -56,7 +56,8 @@ class FetchDataFiles(luigi.Task):
             for url in self.source_cfg['urls']:
                 resp = fetch_file(url)
 
-                fn = resp.url[resp.url.rfind("/")+1:]
+                url_slash_index = resp.url.rfind('/')
+                fn = resp.url[url_slash_index + 1:]
                 fp = os.path.join(temp_path, fn)
 
                 with open(fp, 'wb') as f:

@@ -1,5 +1,3 @@
-import os
-
 import earthpy.clip as ec
 import geopandas
 from shapely.geometry import Polygon

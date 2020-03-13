@@ -30,9 +30,9 @@ def find_in_dir_by_ext(path, *, ext):
 
 
 def find_single_file_by_ext(path, *, ext):
-    """This module always expects to find a single file when searching by ext.
+    """Return a single file with matching extension.
 
-    TODO: Extract this to a util module when needed elsewhere.
+    Fails for any number of results except 1.
     """
     files = find_in_dir_by_ext(path, ext=ext)
     if len(files) > 1:
