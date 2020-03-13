@@ -1,33 +1,26 @@
 import luigi
 
-from qgreenland.tasks.common.fetch import FetchCmrGranule
+from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset
 from qgreenland.tasks.common.raster import ReprojectRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
-class BedMachineDataset(LayerPipeline):
-    """Dataproduct IDBMG4.
+class VelocityMosaic(LayerPipeline):
+    """Dataset VelocityMosaic.
 
     This is a NetCDF dataproduct with many distinct datasets representing
     distinct measurements.
-
-    https://nsidc.org/data/IDBMG4
     """
 
     extract_dataset = luigi.Parameter()
 
-    # TODO remove.
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.layer_id = f'bedmachine_{self.extract_dataset}'
-
     def requires(self):
         source = self.cfg['source']
 
-        fetch_data = FetchCmrGranule(
+        fetch_data = FetchDataFiles(
             source_cfg=source,
-            output_name='bedmachine'
+            output_name='velocity_mosaic'
         )  # ->
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,

@@ -39,6 +39,19 @@
       url: 'https://doi.org/10.5067/2CIX82HUV88Y'
 
 
+- id: velocity_mosaic
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/velocity_mosaic/landsat/v00.0/static/GRE_G0120_0000.nc'
+  metadata:
+    title: 'Regional Glacier and Ice Sheet Surface Velocities'
+    abstract: 'The Inter-mission Time Series of Land Ice Velocity and Elevation (ITS_LIVE) project facilitates ice sheet, ice shelf and glacier research by providing a globally comprehensive and temporally dense multi-sensor record of land ice velocity and elevation with low latency.'
+    citation:
+      text: 'Velocity data generated using auto-RIFT (Gardner et al., 2018) and provided by the NASA MEaSUREs ITS_LIVE project (Gardner et al., 2019).'
+      url: 'https://its-live.jpl.nasa.gov/#documentation'
+
 - id: glacier_terminus
   access_method: cmr
   sources:

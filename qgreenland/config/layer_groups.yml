@@ -27,8 +27,8 @@ Paleo-data:
   visible: False
   expanded: False
 
-# TODO: Cryosphere better term?
-Sea ice:
+# TODO: Should "glaciology" and "sea ice" be subgroups to Cryosphere?
+Cryosphere:
   visible: False
   expanded: False
 

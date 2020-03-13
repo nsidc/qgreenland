@@ -8,7 +8,7 @@ def test_layer_fs_path():
     mock_layer_cfg = {
         'id': 'coastlines',
         'group_path': 'group/subgroup',
-        'file_type': 'shp'
+        'file_type': '.shp'
     }
 
     expected = os.path.join(
