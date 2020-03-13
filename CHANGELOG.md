@@ -1,5 +1,6 @@
-# v0.15.0 (unreleased)
+# v0.15.0 (2020-03-12)
 
+- New layer: Ice Sheet Velocity (500m)
 - Preserve final wip layer task output. Previously moved this output to the
   final location.
 
