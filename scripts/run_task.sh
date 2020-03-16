@@ -5,5 +5,6 @@
 #        raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
 #        RuntimeError: Layer located at '/luigi/data/luigi-wip/qgreenland/Geophysics/IceBridge BedMachine/bedmachine_bed/bedmachine_bed.tif' does not exist.
 
+# NOTE: Workers must be set to 1 for python debug breakpoints to be usable
 docker-compose exec luigi luigi --workers=1 \
   --module qgreenland.tasks.main ZipQGreenland
