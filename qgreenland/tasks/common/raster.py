@@ -8,9 +8,10 @@ from earthpy import spatial as eps
 from osgeo import gdal
 from shapely.geometry import Polygon
 
-from qgreenland.constants import BBOX_POLYGON, PROJECT_CRS, TaskType
+from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT, TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
+from qgreenland.util.shapefile import bbox_dict_to_polygon
 
 
 class BuildRasterOverviews(LayerTask):
@@ -87,7 +88,8 @@ class SubsetRaster(LayerTask):
                                         ext=self.layer_cfg['file_type'])
 
         with rio.open(ifile, 'r') as ds:
-            bb_poly = geopandas.GeoSeries([Polygon(BBOX_POLYGON)])
+            polygon = bbox_dict_to_polygon(PROJECT_EXTENT)
+            bb_poly = geopandas.GeoSeries([polygon])
             img_out, meta_out = eps.crop_image(ds, bb_poly)
 
         with temporary_path_dir(self.output()) as tmp_dir:

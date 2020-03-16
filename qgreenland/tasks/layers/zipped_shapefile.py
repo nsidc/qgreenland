@@ -5,7 +5,7 @@ from qgreenland.tasks.common.shapefile import (ReprojectShapefile,
 from qgreenland.util.luigi import LayerPipeline
 
 
-class Coastlines(LayerPipeline):
+class ZippedShapefile(LayerPipeline):
     """Rename files to their final location."""
 
     def requires(self):
