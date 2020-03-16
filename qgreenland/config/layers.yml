@@ -135,7 +135,8 @@
     ymin: -322934.6
     xmax: 1103185.9
     ymax: -3599419.2
-  visible: True
+  # TODO: Enable a style with labels for placenames, make visible again
+  visible: False
   group_path: 'Basemaps'
 
 - id: coastlines
