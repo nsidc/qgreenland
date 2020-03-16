@@ -6,7 +6,6 @@ import luigi
 import rasterio as rio
 from earthpy import spatial as eps
 from osgeo import gdal
-from shapely.geometry import Polygon
 
 from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT, TaskType
 from qgreenland.util.luigi import LayerTask
