@@ -33,15 +33,13 @@ ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
 REQUEST_TIMEOUT = 3
 
 # Project configuration
-# NOTE: The order of this dictionary is important for passing to qgc.QgsRectangle
-BBOX = {'xmin': -3850000.000, 'ymin': -5350000.0, 'xmax': 3750000.0, 'ymax': 5850000.000}
-BBOX_POLYGON = [
-    (BBOX['xmin'], BBOX['ymax']),
-    (BBOX['xmax'], BBOX['ymax']),
-    (BBOX['xmax'], BBOX['ymin']),
-    (BBOX['xmin'], BBOX['ymin']),
-    (BBOX['xmin'], BBOX['ymax']),
-]
+# NOTE: The order of this dictionary is important for passing to
+# qgc.QgsRectangle
+PROJECT_EXTENT = {'xmin': -3850000.000,
+                  'ymin': -5350000.0,
+                  'xmax': 3750000.0,
+                  'ymax': 5850000.000}
+
 PROJECT_CRS = 'EPSG:3411'
 
 # URS stuff

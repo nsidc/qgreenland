@@ -2,7 +2,17 @@ import earthpy.clip as ec
 import geopandas
 from shapely.geometry import Polygon
 
-from qgreenland.constants import BBOX_POLYGON
+from qgreenland.constants import PROJECT_EXTENT
+
+
+def bbox_dict_to_polygon(d):
+    return Polygon([
+        (d['xmin'], d['ymax']),
+        (d['xmax'], d['ymax']),
+        (d['xmax'], d['ymin']),
+        (d['xmin'], d['ymin']),
+        (d['xmin'], d['ymax']),
+    ])
 
 
 def reproject_shapefile(shapefile):
@@ -12,12 +22,16 @@ def reproject_shapefile(shapefile):
     return gdf
 
 
-def subset_shapefile(shapefile):
-    input_gdf = geopandas.read_file(shapefile)
+def subset_shapefile(shapefile, *, layer_cfg):
+    if layer_cfg and 'subset_kwargs' in layer_cfg:
+        bb = layer_cfg['subset_kwargs']
+    else:
+        bb = PROJECT_EXTENT
+    bb_polygon = geopandas.GeoSeries([bbox_dict_to_polygon(bb)])
 
-    bb_poly = geopandas.GeoSeries([Polygon(BBOX_POLYGON)])
-    bb = geopandas.GeoDataFrame({'geometry': bb_poly})
-    gdf = ec.clip_shp(input_gdf, bb)
+    bb_gdf = geopandas.GeoDataFrame({'geometry': bb_polygon})
+    input_gdf = geopandas.read_file(shapefile)
+    gdf = ec.clip_shp(input_gdf, bb_gdf)
 
     # /opt/conda/lib/python3.8/site-packages/geopandas/geoseries.py:330:
     # UserWarning: GeoSeries.notna() previously returned False for both missing

@@ -122,12 +122,29 @@
 # BASEMAPS #
 ############
 
-- id: coastlines
-  data_source: coastlines.only
-  ingest_task: coastlines
+
+- id: populated_places
+  data_source: populated_places.only
+  ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  title: 'Natural Earth Coastlines'
+  title: 'Populated Places'
+  # style: 'populated_places'
+  subset_kwargs:
+    xmin: -796814.1
+    ymin: -322934.6
+    xmax: 1103185.9
+    ymax: -3599419.2
+  # TODO: Enable a style with labels for placenames, make visible again
+  visible: False
+  group_path: 'Basemaps'
+
+- id: coastlines
+  data_source: coastlines.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  title: 'Coastlines'
   visible: True
   group_path: 'Basemaps'
 
