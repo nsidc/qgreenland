@@ -1,7 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.raster import (BuildRasterOverviews,
-                                            ReprojectRaster,
+from qgreenland.tasks.common.raster import (ReprojectRaster,
                                             SubsetRaster)
 from qgreenland.util.luigi import LayerPipeline
 
@@ -26,9 +25,3 @@ class BackgroundImage(LayerPipeline):
             requires_task=reproject_raster,
             layer_id=self.layer_id
         )
-        """
-        return BuildRasterOverviews(
-            requires_task=subset_raster,
-            layer_id=self.layer_id
-        )
-        """
