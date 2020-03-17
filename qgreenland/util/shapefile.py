@@ -15,8 +15,15 @@ def bbox_dict_to_polygon(d):
     ])
 
 
-def reproject_shapefile(shapefile):
-    gdf = geopandas.read_file(shapefile)
+def reproject_shapefile(shapefile_path):
+    gdf = geopandas.read_file(shapefile_path)
+
+    # Some datasets (Natural Earth Ocean shape) come with invalid data (e.g.
+    # intersections). The buffer operation cleans those up, but at a
+    # significant processing time cost.
+    if not gdf.is_valid.all():
+        gdf = gdf.buffer(0)
+
     gdf = gdf.to_crs(epsg=3411)
 
     return gdf

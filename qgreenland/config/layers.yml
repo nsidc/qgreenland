@@ -150,6 +150,26 @@
   group_path: 'Basemaps'
 
 
+- id: land
+  data_source: land_shape.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  title: 'Land'
+  visible: True
+  group_path: 'Basemaps'
+
+
+- id: ocean
+  data_source: ocean_shape.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  title: 'Ocean'
+  visible: True
+  group_path: 'Basemaps'
+
+
 - id: arctic_dem
   data_source: arctic_dem.only
   ingest_task: arctic_dem
