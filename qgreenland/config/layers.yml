@@ -139,6 +139,7 @@
   visible: False
   group_path: 'Basemaps'
 
+
 - id: coastlines
   data_source: coastlines.only
   ingest_task: zipped_shapefile
@@ -159,5 +160,24 @@
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
+  visible: False
+  group_path: 'Basemaps'
+
+
+- id: background
+  data_source: background.only
+  ingest_task: background_image
+  file_type: '.tif'
+  data_type: 'raster'
+  title: 'Background'
+  # NOTE: Without passing warp_kwargs, we get a black image.
+  # TODO: Which of these args are necessary to avoid that?
+  warp_kwargs:
+    xRes: 1000
+    yRes: 1000
+    # Attempt to avoid pole hole and nodata line where east and west edges of
+    # the original image meet after polar wrapping. TODO: This doesn't actually
+    # get rid of the line.
+    options: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
   visible: True
   group_path: 'Basemaps'

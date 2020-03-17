@@ -1,11 +1,12 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.shapefile import (ReprojectShapefile,
-                                               SubsetShapefile)
+from qgreenland.tasks.common.raster import (BuildRasterOverviews,
+                                            ReprojectRaster,
+                                            SubsetRaster)
 from qgreenland.util.luigi import LayerPipeline
 
 
-class ZippedShapefile(LayerPipeline):
+class BackgroundImage(LayerPipeline):
     """Rename files to their final location."""
 
     def requires(self):
@@ -17,11 +18,17 @@ class ZippedShapefile(LayerPipeline):
             requires_task=fetch_data,
             layer_id=self.layer_id
         )  # ->
-        reproject_shapefile = ReprojectShapefile(
+        reproject_raster = ReprojectRaster(
             requires_task=unzip,
             layer_id=self.layer_id
         )  # ->
-        return SubsetShapefile(
-            requires_task=reproject_shapefile,
+        return SubsetRaster(
+            requires_task=reproject_raster,
             layer_id=self.layer_id
         )
+        """
+        return BuildRasterOverviews(
+            requires_task=subset_raster,
+            layer_id=self.layer_id
+        )
+        """

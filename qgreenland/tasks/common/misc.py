@@ -1,5 +1,6 @@
 """common.py: Tasks that could apply to any type of dataproduct."""
 import os
+import zipfile
 
 import luigi
 from osgeo import gdal
@@ -7,6 +8,22 @@ from osgeo import gdal
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
+
+
+class Unzip(LayerTask):
+    task_type = TaskType.WIP
+
+    def output(self):
+        return luigi.LocalTarget(f'{self.outdir}/unzip/')
+
+    def run(self):
+        zf_path = find_single_file_by_ext(self.input().path, ext='.zip')
+        zf = zipfile.ZipFile(zf_path)
+
+        with temporary_path_dir(self.output()) as temp_path:
+            for fn in zf.namelist():
+                zf.extract(fn, temp_path)
+            zf.close()
 
 
 class ExtractNcDataset(LayerTask):

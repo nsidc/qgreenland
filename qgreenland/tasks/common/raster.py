@@ -63,7 +63,8 @@ class ReprojectRaster(LayerTask):
 
     def run(self):
         warp_kwargs = {
-            'resampleAlg': 'bilinear'
+            'resampleAlg': 'bilinear',
+            'outputBounds': list(PROJECT_EXTENT.values())
         }
         if 'warp_kwargs' in self.layer_cfg:
             warp_kwargs.update(self.layer_cfg['warp_kwargs'])

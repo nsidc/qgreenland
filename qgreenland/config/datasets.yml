@@ -1,3 +1,17 @@
+- id: background
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/raster/NE2_LR_LC_SR_W.zip'
+  metadata:
+    title: 'Natural Earth II with Shaded Relief and Water (10m)'
+    abstract: 'Natural Earth II (Public Domain)'
+    citation:
+      text: 'Made with Natural Earth'
+      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+
+
 - id: populated_places
   access_method: http
   sources:
