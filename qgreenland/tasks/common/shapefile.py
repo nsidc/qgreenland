@@ -23,6 +23,9 @@ class ReprojectShapefile(LayerTask):
     def run(self):
         shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
         gdf = reproject_shapefile(shapefile)
+
+        # TODO: Dissolve polygon boundaries if required by config file
+
         with temporary_path_dir(self.output()) as temp_path:
             fn = os.path.join(temp_path, self.filename)
             gdf.to_file(fn, driver='ESRI Shapefile')
@@ -36,8 +39,6 @@ class SubsetShapefile(LayerTask):
 
     def run(self):
         shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
-        gdf = subset_shapefile(shapefile, layer_cfg=self.layer_cfg)
-
         with temporary_path_dir(self.output()) as temp_path:
             fn = os.path.join(temp_path, self.filename)
-            gdf.to_file(fn, driver='ESRI Shapefile')
+            subset_shapefile(shapefile, layer_cfg=self.layer_cfg, outfile=fn)

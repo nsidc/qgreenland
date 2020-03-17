@@ -150,22 +150,15 @@
   group_path: 'Basemaps'
 
 
+# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
+# holes for small islands which are not present on the land layer, and that was
+# gross so we removed the ocean layer.
 - id: land
   data_source: land_shape.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
   title: 'Land'
-  visible: True
-  group_path: 'Basemaps'
-
-
-- id: ocean
-  data_source: ocean_shape.only
-  ingest_task: zipped_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-  title: 'Ocean'
   visible: True
   group_path: 'Basemaps'
 
