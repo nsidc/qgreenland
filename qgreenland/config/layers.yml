@@ -146,7 +146,7 @@
   file_type: '.shp'
   data_type: 'vector'
   title: 'Coastlines'
-  visible: True
+  visible: False
   group_path: 'Basemaps'
 
 
