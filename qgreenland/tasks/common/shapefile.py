@@ -22,7 +22,7 @@ class ReprojectShapefile(LayerTask):
 
     def run(self):
         shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
-        gdf = reproject_shapefile(shapefile)
+        gdf = reproject_shapefile(shapefile, layer_cfg=self.layer_cfg)
 
         # TODO: Dissolve polygon boundaries if required by config file
 

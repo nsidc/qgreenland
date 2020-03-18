@@ -126,6 +126,7 @@
   title: 'Hydrologic Sub-Basins'
   visible: False
   group_path: 'Hydrology'
+  override_source_projection: 'ESRI:102018'
 
 
 ############
