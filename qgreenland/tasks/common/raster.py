@@ -62,6 +62,11 @@ class ReprojectRaster(LayerTask):
         return luigi.LocalTarget(os.path.join(self.outdir, 'reproject'))
 
     def run(self):
+        if 'override_source_projection' in self.layer_cfg:
+            raise NotImplementedError(
+                'override_source_projection not implemented for raster layers.'
+            )
+
         warp_kwargs = {
             'resampleAlg': 'bilinear',
             'outputBounds': list(PROJECT_EXTENT.values())
