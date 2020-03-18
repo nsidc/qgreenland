@@ -1,7 +1,7 @@
 FROM axiom/docker-luigi:2.8.11
 
-# This is required for qgis to work
-RUN apt-get update && apt-get install -y libgl1-mesa-glx
+# libgl1 is required for qgis to work. `unrar` is required for layer pipelines.
+RUN apt-get update && apt-get install -y libgl1-mesa-glx unrar
 
 # TODO install to `qgreenland` specific environment. Activate in Dockerfile if
 # possible.
