@@ -192,6 +192,6 @@
     # Attempt to avoid pole hole and nodata line where east and west edges of
     # the original image meet after polar wrapping. TODO: This doesn't actually
     # get rid of the line.
-    options: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
+    warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
   visible: True
   group_path: 'Basemaps'

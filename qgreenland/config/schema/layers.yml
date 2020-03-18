@@ -42,7 +42,7 @@ warp_kwargs:
   # Keyword arguments to gdal.Warp method
   xRes: int(required=False)
   yRes: int(required=False)
-  options: list(str(), required=False)
+  warpOptions: list(str(), required=False)
 
 ---
 subset_kwargs:
