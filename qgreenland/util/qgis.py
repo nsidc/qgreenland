@@ -51,14 +51,14 @@ def _add_layer_metadata(map_layer, layer_cfg):
     with open(template_path, 'r') as f:
         qmd_template_str = ' '.join(f.readlines())
 
-    abstract = build_abstract(layer_cfg)
-
-    # Set the layer's on-hover popup text.
-    map_layer.setAbstract(abstract)
+    # Set the layer's tooltip
+    tooltip = build_dataset_description(layer_cfg)
+    map_layer.setAbstract(tooltip)
 
     # Render the qmd template.
-    qmd_template = Template(qmd_template_str)
+    abstract = build_abstract(layer_cfg)
     layer_extent = map_layer.extent()
+    qmd_template = Template(qmd_template_str)
     rendered_qmd = qmd_template.render(
         abstract=abstract,
         title=layer_cfg['title'],
@@ -254,29 +254,37 @@ def load_qml_style(map_layer, style_name):
         raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
 
 
-def build_abstract(layer_cfg):
+def build_dataset_description(layer_cfg):
     metadata = layer_cfg['dataset']['metadata']
-    abstract = ''
+
+    description = metadata['title']
     # TODO: COO COO CACHOO
     if metadata.get('abstract'):
-        title_text = metadata['title']
-        abstract += title_text + '\n\n'
+        description += '\n\n'
+        description += metadata.get('abstract')
 
-        abstract_text = metadata.get('abstract')
-        abstract += abstract_text + '\n\n'
+    return description
+
+
+def build_abstract(layer_cfg):
+    abstract = build_dataset_description(layer_cfg)
+
+    if abstract:
+        abstract += '\n\n'
+
+    metadata = layer_cfg['dataset']['metadata']
+    # TODO: COO COO CACHOO
+    if metadata.get('citation'):
+        citation_cfg = metadata.get('citation')
 
         # TODO: COO COO CACHOO
-        if metadata.get('citation'):
-            citation_cfg = metadata.get('citation')
+        if citation_cfg.get('text'):
+            abstract += 'Citation:\n'
+            abstract += citation_cfg['text'] + '\n\n'
 
-            # TODO: COO COO CACHOO
-            if citation_cfg.get('text'):
-                abstract += 'Citation:\n'
-                abstract += citation_cfg['text'] + '\n\n'
-
-            # TODO: COO COO CACHOO
-            if citation_cfg.get('url'):
-                abstract += 'Citation URL:\n'
-                abstract += citation_cfg['url']
+        # TODO: COO COO CACHOO
+        if citation_cfg.get('url'):
+            abstract += 'Citation URL:\n'
+            abstract += citation_cfg['url']
 
     return abstract
