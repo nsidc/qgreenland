@@ -1,7 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unrar
-from qgreenland.tasks.common.shapefile import (ReprojectShapefile,
-                                               SubsetShapefile)
+from qgreenland.tasks.common.shapefile import ReprojectShapefile
 from qgreenland.util.luigi import LayerPipeline
 
 
