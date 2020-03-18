@@ -13,9 +13,10 @@ def create_earthdata_authenticated_session(s=None, *, hosts):
         resp = s.get(host, allow_redirects=False)
 
         redirected = resp.status_code == 302
-        to_urs = 'urs.earthdata.nasa.gov' in resp.headers['Location']
+        redirected_to_urs = \
+            redirected and 'urs.earthdata.nasa.gov' in resp.headers['Location']
 
-        if not (redirected and to_urs):
+        if not (redirected_to_urs):
             print(f'Host {host} did not redirect to URS -- continuing without auth.')
             return s
 
