@@ -1,3 +1,7 @@
+# v0.18.0 (2020-03-18)
+
+- Simplify layer tooltips to only a dataset description.
+
 # v0.17.0 (2020-03-18)
 
 - New layer: Background image (Natural Earth II 10m).
