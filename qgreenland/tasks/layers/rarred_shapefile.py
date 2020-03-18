@@ -18,7 +18,7 @@ class RarredShapefile(LayerPipeline):
             layer_id=self.layer_id
         )  # ->
         reproject_shapefile = ReprojectShapefile(
-            requires_task=unzip,
+            requires_task=unrar,
             layer_id=self.layer_id
         )  # ->
         # TODO: We don't always need/want to subset, so parameterize this
