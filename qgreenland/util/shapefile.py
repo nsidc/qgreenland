@@ -24,10 +24,6 @@ def reproject_shapefile(shapefile_path, *, layer_cfg):
     # intersections). The buffer operation cleans those up, but at a
     # significant processing time cost.
 
-    # if not gdf.is_valid.all():
-    #     # gdf = gdf.buffer(0)
-    #     raise NotImplementedError('Reprojection of invalid geometries not supported.')
-
     if 'override_source_projection' in layer_cfg:
         gdf.crs = layer_cfg['override_source_projection']
 
