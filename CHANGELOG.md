@@ -1,4 +1,4 @@
-# v0.17.0 (2020-03-17)
+# v0.17.0 (2020-03-18)
 
 - New layer: Background image (Natural Earth II 10m).
 - New layer: Land shapefile (Natural Earth Land 10m).
