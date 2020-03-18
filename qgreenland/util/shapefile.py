@@ -16,15 +16,16 @@ def bbox_dict_to_polygon(d):
     ])
 
 
-def reproject_shapefile(shapefile_path):
+def reproject_shapefile(shapefile_path, *, layer_cfg):
     """Reprojects a shapefile and returns the result."""
     gdf = geopandas.read_file(shapefile_path)
 
     # Some datasets (Natural Earth Ocean shape) come with invalid data (e.g.
     # intersections). The buffer operation cleans those up, but at a
     # significant processing time cost.
-    if not gdf.is_valid.all():
-        gdf = gdf.buffer(0)
+
+    if 'override_source_projection' in layer_cfg:
+        gdf.crs = layer_cfg['override_source_projection']
 
     gdf = gdf.to_crs(epsg=3411)
 

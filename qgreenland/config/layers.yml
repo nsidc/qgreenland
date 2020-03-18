@@ -118,6 +118,17 @@
   visible: False
 
 
+- id: hydrologic_subbasins
+  data_source: hydrologic_subbasins.only
+  ingest_task: rarred_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  title: 'Hydrologic Sub-Basins'
+  visible: False
+  group_path: 'Hydrology'
+  override_source_projection: 'ESRI:102018'
+
+
 ############
 # BASEMAPS #
 ############

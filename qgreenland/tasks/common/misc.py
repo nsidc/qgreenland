@@ -3,6 +3,7 @@ import os
 import zipfile
 
 import luigi
+import rarfile
 from osgeo import gdal
 
 from qgreenland.constants import TaskType
@@ -10,12 +11,23 @@ from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 
 
-class Unzip(LayerTask):
+class Decompress(LayerTask):
     task_type = TaskType.WIP
 
     def output(self):
-        return luigi.LocalTarget(f'{self.outdir}/unzip/')
+        return luigi.LocalTarget(f'{self.outdir}/decompress/')
 
+
+class Unrar(Decompress):
+    def run(self):
+        rar_path = find_single_file_by_ext(self.input().path, ext='.rar')
+        rar = rarfile.RarFile(rar_path)
+
+        with temporary_path_dir(self.output()) as temp_path:
+            rar.extractall(path=temp_path)
+
+
+class Unzip(Decompress):
     def run(self):
         zf_path = find_single_file_by_ext(self.input().path, ext='.zip')
         zf = zipfile.ZipFile(zf_path)

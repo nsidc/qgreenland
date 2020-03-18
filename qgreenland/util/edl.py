@@ -10,13 +10,17 @@ def create_earthdata_authenticated_session(s=None, *, hosts):
         s = requests.session()
 
     for host in hosts:
-        resp = s.get(host)
+        resp = s.get(host, allow_redirects=False)
 
-        if not (resp.status_code == 401 and 'urs.earthdata.nasa.gov' in resp.url):
+        redirected = resp.status_code == 302
+        redirected_to_urs = \
+            redirected and 'urs.earthdata.nasa.gov' in resp.headers['Location']
+
+        if not (redirected_to_urs):
             print(f'Host {host} did not redirect to URS -- continuing without auth.')
             return s
 
-        auth_resp = s.get(resp.url, auth=_get_earthdata_creds())
+        auth_resp = s.get(resp.headers['Location'], auth=_get_earthdata_creds())
         if not (auth_resp.ok and s.cookies.get(URS_COOKIE) == 'yes'):
             msg = f'Authentication with Earthdata Login failed with:\n{auth_resp.text}'
             raise RuntimeError(msg)

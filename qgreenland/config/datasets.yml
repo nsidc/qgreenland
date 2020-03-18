@@ -54,8 +54,9 @@
       url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
 
 
-# TODO: This data is read as invalid by geopandas. Replace with something valid
-# to avoid spending compute time fixing the data. Submit bug report to NE?
+# TODO: This data is read as invalid by geopandas. Workaround with
+# `gdf.buffer(0)` or replace with a different dataset with valid geometries to
+# avoid spending compute time fixing the data. Submit bug report to NE?
 # - id: ocean_shape
 #   access_method: http
 #   sources:
@@ -139,3 +140,16 @@
     citation:
       text: 'Joughin, I., T. Moon, J. Joughin, and T. Black. 2015, 2017. MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics, Version 1. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/DC0MLBOCL3EL. 2020/02/12.'
       url: 'https://doi.org/10.5067/DC0MLBOCL3EL'
+
+- id: hydrologic_subbasins
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/parca/nsidc-0371-hydrologic-sub-basins/Greenland_Hydrologic_Sub_Basins.rar'
+  metadata:
+    title: 'Hydrologic Sub-basins of Greenland, Version 1'
+    abstract: "The Hydrologic Sub-basins of Greenland data set contains Geographic Information System (GIS) polygon shapefiles that include 293 hydrologic sub-basins of the Greenland Ice Sheet, as created by Lewis and Smith (2009). Five km Digital Elevation Models (DEMs) of ice-surface and bedrock topography (Bamber et al. 2001) were used to estimate the hydraulic potentiometric surface for Greenland, which accounts for the effects of ice overburden pressure, such as hydrostatic pressure, surface topography, and underlying bedrock topography (Paterson 1994). Using the 5 km potentiometric grid, a modeled basin network for Greenland's ice sheet was created using the hydrological tools within ESRI ArcGIS (ArcInfo 9.2). Although the GIS initially generated more than 293 basins, basins less than 100 km2 in size, as well as basins located completely outside of the ice sheet extent, were removed from the data set."
+    citation:
+      text: ' Sarah Lewis 2009. Hydrologic Sub-basins of Greenland, Version 1. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.5067/DT9T7DPD7HBI. [2020/03/18].'
+      url: 'https://doi.org/10.5067/DT9T7DPD7HBI'

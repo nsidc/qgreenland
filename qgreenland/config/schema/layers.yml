@@ -30,6 +30,10 @@ layer:
   warp_kwargs: include('warp_kwargs', required=False)
   # Is this layer initially "checked" as visible in QGIS?
   visible: bool()
+  # Sometimes, the source data may not come with projection metadata, or the
+  # metadta may be wrong. Override the layer projection with this key. E.g.,
+  # `EPSG:3321`.
+  override_source_projection: str(required=False)
 
 ---
 overviews_kwargs:

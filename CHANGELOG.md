@@ -1,6 +1,9 @@
 # v0.18.0 (2020-03-18)
 
 - Simplify layer tooltips to only a dataset description.
+- New layer: Hydrologic Sub-Basins
+- New layer config key: `override_source_projection`
+- New layer task: Unrar
 
 # v0.17.0 (2020-03-18)
 
