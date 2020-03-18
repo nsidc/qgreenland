@@ -159,6 +159,7 @@
   file_type: '.shp'
   data_type: 'vector'
   title: 'Land'
+  style: 'land'
   visible: True
   group_path: 'Basemaps'
 
