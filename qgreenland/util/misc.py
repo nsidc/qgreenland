@@ -1,3 +1,4 @@
+import glob
 import os
 import shutil
 import time
@@ -24,8 +25,9 @@ def find_in_dir_by_ext(path, *, ext):
 
     Expects an extension with the dot included, e.g. `ext=".shp"`.
     """
-    files = os.listdir(path)
-    matches = [x for x in files if os.path.splitext(x)[1] == ext]
+    matches = glob.glob(os.path.join(path, '**', f'*{ext}'),
+                        recursive=True)
+
     return [os.path.abspath(os.path.join(path, f)) for f in matches]
 
 

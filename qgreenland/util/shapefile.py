@@ -1,4 +1,5 @@
-import earthpy.clip as ec
+import subprocess
+
 import geopandas
 from shapely.geometry import Polygon
 
@@ -15,30 +16,40 @@ def bbox_dict_to_polygon(d):
     ])
 
 
-def reproject_shapefile(shapefile):
-    gdf = geopandas.read_file(shapefile)
+def reproject_shapefile(shapefile_path):
+    """Reprojects a shapefile and returns the result."""
+    gdf = geopandas.read_file(shapefile_path)
+
+    # Some datasets (Natural Earth Ocean shape) come with invalid data (e.g.
+    # intersections). The buffer operation cleans those up, but at a
+    # significant processing time cost.
+    if not gdf.is_valid.all():
+        gdf = gdf.buffer(0)
+
     gdf = gdf.to_crs(epsg=3411)
 
     return gdf
 
 
-def subset_shapefile(shapefile, *, layer_cfg):
+def subset_shapefile(shapefile, *, layer_cfg, outfile):
+    """Subsets a shapefile and writes the output."""
+    # NOTE: This function originally used earthpy.clip.clip_shp, but this was
+    # retuning an empty dataframe for certain multipolygons (e.g. NE Ocean).
+    # Also, using earthpy.clip.clip_shp would unexpectedly remove some
+    # polygons, e.g. NE Land's North America polygon.
+
     if layer_cfg and 'subset_kwargs' in layer_cfg:
         bb = layer_cfg['subset_kwargs']
     else:
         bb = PROJECT_EXTENT
-    bb_polygon = geopandas.GeoSeries([bbox_dict_to_polygon(bb)])
 
-    bb_gdf = geopandas.GeoDataFrame({'geometry': bb_polygon})
-    input_gdf = geopandas.read_file(shapefile)
-    gdf = ec.clip_shp(input_gdf, bb_gdf)
+    clipsrc_arg = '-clipsrc "{xmin}" "{ymin}" "{xmax}" "{ymax}" '.format(**bb)  # noqa
+    cmd = f'. activate base && ogr2ogr {clipsrc_arg} {outfile} {shapefile}'
 
-    # /opt/conda/lib/python3.8/site-packages/geopandas/geoseries.py:330:
-    # UserWarning: GeoSeries.notna() previously returned False for both missing
-    # (None) and empty geometries. Now, it only returns False for missing
-    # values. Since the calling GeoSeries contains empty geometries, the result
-    # has changed compared to previous versions of GeoPandas.  Given a
-    # GeoSeries 's', you can use '~s.is_empty & s.notna()' to get back the old
-    # behaviour.
+    result = subprocess.run(cmd,
+                            shell=True,
+                            executable='/bin/bash',
+                            capture_output=True)
 
-    return gdf[~gdf.is_empty]
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr)

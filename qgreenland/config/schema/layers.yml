@@ -40,8 +40,9 @@ overviews_kwargs:
 ---
 warp_kwargs:
   # Keyword arguments to gdal.Warp method
-  xRes: int()
-  yRes: int()
+  xRes: int(required=False)
+  yRes: int(required=False)
+  warpOptions: list(str(), required=False)
 
 ---
 subset_kwargs:

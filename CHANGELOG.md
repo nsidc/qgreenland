@@ -1,8 +1,12 @@
+# v0.17.0 (2020-03-18)
+
+- New layer: Background image (Natural Earth II 10m).
+- New layer: Land shapefile (Natural Earth Land 10m).
+
 # v0.16.0 (2020-03-16)
 
 - New layer: Placenames (Natural Earth Populated Places). Temporarily disabled
   until we can figure out labels.
-
 
 # v0.15.0 (2020-03-12)
 
