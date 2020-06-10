@@ -33,6 +33,11 @@ class FetchCmrGranule(luigi.Task):
                 fp = os.path.join(temp_path, fn)
 
                 resp = fetch_file(url, session=self.session)
+                if resp.status_code != 200:
+                    msg = (f"Received '{resp.status_code}' from {resp.request.url}."
+                           f'Content: {resp.text}')
+                    raise RuntimeError(msg)
+
                 with open(fp, 'wb') as f:
                     f.write(resp.content)
 
@@ -55,6 +60,10 @@ class FetchDataFiles(luigi.Task):
         with temporary_path_dir(self.output()) as temp_path:
             for url in self.source_cfg['urls']:
                 resp = fetch_file(url)
+                if resp.status_code != 200:
+                    msg = (f"Received '{resp.status_code}' from {resp.request.url}."
+                           f'Content: {resp.text}')
+                    raise RuntimeError(msg)
 
                 url_slash_index = resp.url.rfind('/')
                 fn = resp.url[url_slash_index + 1:]
