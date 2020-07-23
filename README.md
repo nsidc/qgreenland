@@ -137,6 +137,31 @@ following process:
 ![Style in YAML](docs/images/style_in_yaml.png)
 
 
+#### Style Guidelines
+
+##### Adopted
+
+* For scalar raster data, perceptually-uniform color maps.
+
+##### Under consideration / Aspirational
+
+* Use scale-dependent visiblity for layers like place names so that e.g.,
+  populated places only appear when the user zooms in to a certain scale.
+
+* Use attribute-based categorized styling over the use of separate layers to
+  represent sub-categories of a single dataset. For example, glacier terminus
+  data is available for several time periods and separated by shapefiles into
+  separate QGIS layers. These could be combined into a single shapefile and
+  'separated' in the table of contents by the 'YEAR' attribute using
+  attribute-based categorization. Users can toggle these categories on and off
+  from the table of contents.
+
+* Some way to make the legend for colormapped data more compact while preserving
+  color map accuracy. For example, the ice velocity data legend currently
+  displays 30+ values and colors. We would prefer the legend displayed as a
+  gradient of 0-500 without any intermediate values if possible.
+
+
 ### Contributing metadata
 
 Metadata for a layer can be set in the `qgreenland/layers.yml` configuration
