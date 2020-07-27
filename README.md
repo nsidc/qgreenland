@@ -105,17 +105,11 @@ for more information on running Luigi from the CLI.
 
 ## Contributing
 
-You can contribute to this project even if you're uncomfortable with coding or
-GitHub! Your input is valuable. Please open an issue to provide feedback,
-request features, datasets, style, or metadata changes. Alternately, you can
-contact our team at qgreenland.info@gmail.com.
-
-You can contribute code to this project if you don't have write access by
+You can contribute to this project even if you don't have write access by
 forking, making your change, making all tests pass, then opening a Pull
 Request.
 
-Changes to layer styles and some metadata can be done without editing Python
-code following instructions below.
+Changes to layer styles can be done without editing Python code.
 
 
 ### Contributing styles
@@ -141,31 +135,6 @@ following process:
   example, if you saved `foo.qml`, then populate `style: 'foo'`.
 
 ![Style in YAML](docs/images/style_in_yaml.png)
-
-
-#### Style Guidelines
-
-##### Adopted
-
-* For scalar raster data, perceptually-uniform color maps.
-
-##### Under consideration / Aspirational
-
-* Use scale-dependent visiblity for layers like place names so that e.g.,
-  populated places only appear when the user zooms in to a certain scale.
-
-* Use attribute-based categorized styling over the use of separate layers to
-  represent sub-categories of a single dataset. For example, glacier terminus
-  data is available for several time periods and separated by shapefiles into
-  separate QGIS layers. These could be combined into a single shapefile and
-  'separated' in the table of contents by the 'YEAR' attribute using
-  attribute-based categorization. Users can toggle these categories on and off
-  from the table of contents.
-
-* Some way to make the legend for colormapped data more compact while preserving
-  color map accuracy. For example, the ice velocity data legend currently
-  displays 30+ values and colors. We would prefer the legend displayed as a
-  gradient of 0-500 without any intermediate values if possible.
 
 
 ### Contributing metadata
@@ -243,3 +212,15 @@ invoke version.bump release
 
 This will remove the `dev` part from the version. For example, using the
 `release` part on `v1.2.1dev` will change the version to `v1.2.1`.
+
+
+# Troubleshooting
+
+## QGIS won't start on OSX Catalina
+
+QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of this app needs to update it to work with this version of macOS. Contact the developer for more information.`, then, in your OSX menus, try:
+
+- "Security and Privacy"
+- "Allow apps downloaded from..."
+- "App Store and identified developers"
+- Locate QGIS here and select "Open anyway"
