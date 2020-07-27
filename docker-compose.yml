@@ -2,6 +2,8 @@ version: '3'
 
 services:
 
+  # Luigi runs as a service and must have jobs submitted to it
+  # (`scripts/run_task.sh`)
   luigi:
     image: nsidc/luigi:dev
     build: .
@@ -26,6 +28,7 @@ services:
         max-file: "5"
     restart: on-failure
 
+  # QGreenland package hosting
   webserver:
     image: nginx
     volumes:
