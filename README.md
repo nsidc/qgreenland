@@ -105,11 +105,17 @@ for more information on running Luigi from the CLI.
 
 ## Contributing
 
-You can contribute to this project even if you don't have write access by
+You can contribute to this project even if you're uncomfortable with coding or
+GitHub! Your input is valuable. Please open an issue to provide feedback,
+request features, datasets, style, or metadata changes. Alternately, you can
+contact our team at qgreenland.info@gmail.com.
+
+You can contribute code to this project if you don't have write access by
 forking, making your change, making all tests pass, then opening a Pull
 Request.
 
-Changes to layer styles can be done without editing Python code.
+Changes to layer styles and some metadata can be done without editing Python
+code following instructions below.
 
 
 ### Contributing styles
