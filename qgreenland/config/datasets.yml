@@ -153,3 +153,16 @@
     citation:
       text: ' Sarah Lewis 2009. Hydrologic Sub-basins of Greenland, Version 1. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.5067/DT9T7DPD7HBI. [2020/03/18].'
       url: 'https://doi.org/10.5067/DT9T7DPD7HBI'
+
+
+- id: avhrr_biomass_2010
+  access_method: cmr
+  sources:
+    - id: only
+      granule_ur: 'Arctic_Vegetation_Maps.aga_circumpolar_avhrr_biomass_2010.tif'
+  metadata:
+    title: 'Circumpolar Arctic Vegetation, Geobotanical, Physiographic Maps, 1982-2003'
+    abstract: 'This data set provides the spatial distributions of vegetation types, geobotanical characteristics, and physiographic features for the circumpolar Arctic tundra biome for the period 1982-2003. Specific attributes include dominant vegetation, bioclimate subzones, floristic subprovinces, landscape types, lake coverage, Arctic treeline, elevation, and substrate chemistry data. Vegetation indices, trends, and biomass estimate products for the circumpolar Arctic through 2010 are also provided.'
+    citation:
+      text: 'Walker, D.A., and M.K. Raynolds. 2018. Circumpolar Arctic Vegetation, Geobotanical, Physiographic Maps, 1982-2003. ORNL DAAC, Oak Ridge, Tennessee, USA. https://doi.org/10.3334/ORNLDAAC/1323'
+      url: 'https://doi.org/10.3334/ORNLDAAC/1323'
