@@ -22,7 +22,9 @@ class FetchCmrGranule(luigi.Task):
         return luigi.LocalTarget(os.path.join(*path))
 
     def run(self):
-        granule = get_cmr_granule(granule_ur=self.source_cfg['granule_ur'])
+        granule = get_cmr_granule(
+            granule_ur=self.source_cfg['granule_ur'],
+            collection_concept_id=self.source_cfg['collection_concept_id'])
 
         with temporary_path_dir(self.output()) as temp_path:
             for url in granule.urls:

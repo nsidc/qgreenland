@@ -2,7 +2,8 @@
 
 This project uses a `luigi` pipeline to generate the QGreenland package. This
 project is currently in early development stages, so expect rapid change.
-Nothing is written in stone!
+Nothing is written in stone! Releases can be found at
+https://qgreenland.org/explore!
 
 
 ## Configuration
@@ -101,6 +102,11 @@ docker-compose exec luigi \
 
 See the [Luigi documentation](https://luigi.readthedocs.io/en/stable/running_luigi.html)
 for more information on running Luigi from the CLI.
+
+
+#### Debugging a Luigi pipeline
+
+Simply put `breakpoint()` anywhere in the pipeline code, then use `scripts/run_task.sh` (ensure worker count is `1`).
 
 
 ## Contributing

@@ -13,7 +13,7 @@ CMR_GRANULES_URL = f'{CMR_BASE_URL}/search/granules.csv'
 
 CMR_GRANULES_SCROLL_URL = (
     CMR_GRANULES_URL +
-    '?provider=NSIDC_ECS&scroll=true&page_size=2000&'
+    '?scroll=true&page_size=2000&'
     'sort_key[]=%2Bstart_date&online_only=true'
 )
 
@@ -31,7 +31,7 @@ def _csv_granules_to_dicts(resp_text):
     return list(csv.DictReader(granules_csv))
 
 
-def get_cmr_granule(*, granule_ur):
+def get_cmr_granule(*, granule_ur, collection_concept_id):
     """Query CMR for a granule by Granule UR, return a `Granule`."""
 
     def _normalize_granule(granule):
@@ -56,6 +56,7 @@ def get_cmr_granule(*, granule_ur):
         return Granule(urls=tuple(url.split(',')), start_time=start_time)
 
     url = (f'{CMR_GRANULES_SCROLL_URL}'
+           f'&collection_concept_id[]={collection_concept_id}'
            f'&granule_ur[]={granule_ur}')
     response = requests.get(url,
                             headers=CMR_CLIENT_ID_HEADER,

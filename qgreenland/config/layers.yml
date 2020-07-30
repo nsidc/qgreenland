@@ -4,9 +4,9 @@
 
 - &glacier_terminus
   id: glacier_terminus_glacier_ids
+  title: 'Glacier IDs'
   data_source: glacier_terminus.glacier_ids
   ingest_task: glacier_terminus
-  title: 'Glacier IDs'
   file_type: '.shp'
   data_type: 'vector'
   group_path: 'Glaciology/Glacier Terminus'
@@ -15,65 +15,65 @@
 
 - <<: *glacier_terminus
   id: glacier_terminus_2000_2001
-  data_source: glacier_terminus.2000_2001
   title: 'Glacier Termini 2000 to 2001'
+  data_source: glacier_terminus.2000_2001
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2005_2006
-  data_source: glacier_terminus.2005_2006
   title: 'Glacier Termini 2005 to 2006'
+  data_source: glacier_terminus.2005_2006
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2006_2007
-  data_source: glacier_terminus.2006_2007
   title: 'Glacier Termini 2006 to 2007'
+  data_source: glacier_terminus.2006_2007
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2007_2008
-  data_source: glacier_terminus.2007_2008
   title: 'Glacier Termini 2007 to 2008'
+  data_source: glacier_terminus.2007_2008
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2008_2009
-  data_source: glacier_terminus.2008_2009
   title: 'Glacier Termini 2008 to 2009'
+  data_source: glacier_terminus.2008_2009
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2012_2013
-  data_source: glacier_terminus.2012_2013
   title: 'Glacier Termini 2012 to 2013'
+  data_source: glacier_terminus.2012_2013
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2014_2015
-  data_source: glacier_terminus.2014_2015
   title: 'Glacier Termini 2014 to 2015'
+  data_source: glacier_terminus.2014_2015
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2015_2016
-  data_source: glacier_terminus.2015_2016
   title: 'Glacier Termini 2015 to 2016'
+  data_source: glacier_terminus.2015_2016
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2016_2017
-  data_source: glacier_terminus.2016_2017
   title: 'Glacier Termini 2016 to 2017'
+  data_source: glacier_terminus.2016_2017
 
 
 - id: velocity_mosaic
+  title: 'Ice Sheet Velocity'
   data_source: velocity_mosaic.only
   ingest_task: velocity_mosaic
   ingest_task_kwargs: {'extract_dataset': 'v'}
   file_type: '.tif'
   data_type: 'raster'
-  title: 'Ice Sheet Velocity'
   style: 'ice_sheet_velocity'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
@@ -88,12 +88,12 @@
 
 - &bedmachine
   id: bedmachine_bed
+  title: 'Bedrock Elevation'
   data_source: bedmachine.only
   ingest_task: bedmachine
   ingest_task_kwargs: {'extract_dataset': 'bed'}
   file_type: '.tif'
   data_type: 'raster'
-  title: 'Bedrock Elevation'
   style: 'bedmachine_bed'
   warp_kwargs:
     xRes: 1000
@@ -104,29 +104,40 @@
 
 - <<: *bedmachine
   id: bedmachine_surface
-  ingest_task_kwargs: {'extract_dataset': 'surface'}
   title: 'Surface Elevation'
+  ingest_task_kwargs: {'extract_dataset': 'surface'}
   style: null
   visible: False
 
 
 - <<: *bedmachine
   id: bedmachine_thickness
-  ingest_task_kwargs: {'extract_dataset': 'thickness'}
   title: 'Ice Thickness'
+  ingest_task_kwargs: {'extract_dataset': 'thickness'}
   style: null
   visible: False
 
 
 - id: hydrologic_subbasins
+  title: 'Hydrologic Sub-Basins'
   data_source: hydrologic_subbasins.only
   ingest_task: rarred_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  title: 'Hydrologic Sub-Basins'
   visible: False
   group_path: 'Hydrology'
   override_source_projection: 'ESRI:102018'
+
+
+- id: vegetation_biomass_2010
+  title: 'Vegetation Biomass 2010'
+  data_source: arctic_vegetation_biomass_2010.only
+  ingest_task: arctic_vegetation
+  file_type: '.tif'
+  data_type: 'raster'
+  visible: True
+  group_path: 'Biology'
+  style: 'arctic_vegetation_biomass'
 
 
 ############
@@ -135,11 +146,11 @@
 
 
 - id: populated_places
+  title: 'Populated Places'
   data_source: populated_places.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  title: 'Populated Places'
   # style: 'populated_places'
   subset_kwargs:
     xmin: -796814.1
@@ -152,11 +163,11 @@
 
 
 - id: coastlines
+  title: 'Coastlines'
   data_source: coastlines.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  title: 'Coastlines'
   visible: False
   group_path: 'Basemaps'
 
@@ -165,22 +176,22 @@
 # holes for small islands which are not present on the land layer, and that was
 # gross so we removed the ocean layer.
 - id: land
+  title: 'Land'
   data_source: land_shape.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  title: 'Land'
   style: 'land'
   visible: True
   group_path: 'Basemaps'
 
 
 - id: arctic_dem
+  title: 'Arctic DEM (1km mosaic)'
   data_source: arctic_dem.only
   ingest_task: arctic_dem
   file_type: '.tif'
   data_type: 'raster'
-  title: 'Arctic DEM (1km mosaic)'
   style: 'arctic_dem'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
@@ -190,11 +201,11 @@
 
 
 - id: background
+  title: 'Background'
   data_source: background.only
   ingest_task: background_image
   file_type: '.tif'
   data_type: 'raster'
-  title: 'Background'
   # NOTE: Without passing warp_kwargs, we get a black image.
   # TODO: Which of these args are necessary to avoid that?
   warp_kwargs:

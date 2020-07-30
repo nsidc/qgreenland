@@ -90,6 +90,7 @@
   sources:
     - id: only
       granule_ur: 'SC:IDBMG4.003:160281892'
+      collection_concept_id: 'C1584255847-NSIDC_ECS'
   metadata:
     title: 'IceBridge BedMachine Greenland, Version 3'
     abstract: 'This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.'
@@ -116,24 +117,34 @@
   sources:
     - id: glacier_ids
       granule_ur: 'SC:NSIDC-0642.001:125854253'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2000_2001'
       granule_ur: 'SC:NSIDC-0642.001:125860172'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2005_2006'
       granule_ur: 'SC:NSIDC-0642.001:125860185'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2006_2007'
       granule_ur: 'SC:NSIDC-0642.001:125860176'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2007_2008'
       granule_ur: 'SC:NSIDC-0642.001:125860183'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2008_2009'
       granule_ur: 'SC:NSIDC-0642.001:125860171'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2012_2013'
       granule_ur: 'SC:NSIDC-0642.001:125860173'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2014_2015'
       granule_ur: 'SC:NSIDC-0642.001:125860177'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2015_2016'
       granule_ur: 'SC:NSIDC-0642.001:125860175'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
     - id: '2016_2017'
       granule_ur: 'SC:NSIDC-0642.001:125860184'
+      collection_concept_id: 'C1413880084-NSIDC_ECS'
   metadata:
     title: 'MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics, Version 1'
     abstract: 'This data set, part of the NASA Making Earth System Data Records for Use in Research Environments (MEaSUREs) program, provides Greenland outlet glacier terminus positions created from MEaSUREs Synthetic Aperture Radar (SAR) mosaics and Landsat 8 OLI imagery.'
@@ -153,3 +164,17 @@
     citation:
       text: ' Sarah Lewis 2009. Hydrologic Sub-basins of Greenland, Version 1. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.5067/DT9T7DPD7HBI. [2020/03/18].'
       url: 'https://doi.org/10.5067/DT9T7DPD7HBI'
+
+
+- id: arctic_vegetation_biomass_2010
+  access_method: cmr
+  sources:
+    - id: only
+      granule_ur: 'Arctic_Vegetation_Maps.aga_circumpolar_avhrr_biomass_2010.tif'
+      collection_concept_id: 'C1581605757-ORNL_DAAC'
+  metadata:
+    title: 'Circumpolar Arctic Vegetation, Geobotanical, Physiographic Maps, 1982-2003'
+    abstract: 'This data set provides the spatial distributions of vegetation types, geobotanical characteristics, and physiographic features for the circumpolar Arctic tundra biome for the period 1982-2003. Specific attributes include dominant vegetation, bioclimate subzones, floristic subprovinces, landscape types, lake coverage, Arctic treeline, elevation, and substrate chemistry data. Vegetation indices, trends, and biomass estimate products for the circumpolar Arctic through 2010 are also provided.'
+    citation:
+      text: 'Walker, D.A., and M.K. Raynolds. 2018. Circumpolar Arctic Vegetation, Geobotanical, Physiographic Maps, 1982-2003. ORNL DAAC, Oak Ridge, Tennessee, USA. https://doi.org/10.3334/ORNLDAAC/1323'
+      url: 'https://doi.org/10.3334/ORNLDAAC/1323'
