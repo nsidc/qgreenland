@@ -15,11 +15,7 @@ class Decompress(LayerTask):
     task_type = TaskType.WIP
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        if 'decompress_kwargs' in self.layer_cfg:
-            self.decompress_kwargs = self.layer_cfg['decompress_kwargs']
-        else:
-            self.decompress_kwargs = {}
+        self.decompress_kwargs = self.layer_cfg.get('decompress_kwargs', {})
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/decompress/')
