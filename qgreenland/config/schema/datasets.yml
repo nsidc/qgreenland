@@ -12,10 +12,15 @@ source:
   # Unique ID used for generating paths and uniquely identifiying a source
   # within a dataset.
   id: str()
+
   # TODO: Make the granule_ur, urls mutually-exclusive. Does Yamale support this?
+
   # A granule corresponds to n >= 1 files
   granule_ur: str(required=False)
-  # If a granule_ur isn't provided, provide a list of files instead
+  collection_concept_id: str(required=False)
+
+  # If a granule_ur and collection_concept_id isn't provided, provide a
+  # list of files instead
   urls: list(str(), required=False)
 
   # TODO: Override default filename? By default, the filename from the URL is used
