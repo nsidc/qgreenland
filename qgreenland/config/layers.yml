@@ -100,6 +100,17 @@
   group_path: 'Cryosphere/Ice Thickness Change'
 
 
+- id: permaice
+  title: 'Permafrost polygons derived from 1:10,000,000 paper map'
+  data_source: permaice_shp.only
+  ingest_task: permaice
+  file_type: '.shp'
+  data_type: 'vector'
+  # style: 'ice_thickness_change'
+  visible: False
+  group_path: 'Cryosphere/Permafrost'
+
+
 - &bedmachine
   id: bedmachine_bed
   title: 'Bedrock Elevation'
