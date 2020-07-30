@@ -1,3 +1,7 @@
+# v0.19.0 (2020-07-30)
+
+- Add ORNL "Circumpolar Arctic Vegetation Biomass layer
+
 # v0.18.0 (2020-03-18)
 
 - Simplify layer tooltips to only a dataset description.
