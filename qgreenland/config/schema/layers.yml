@@ -25,6 +25,7 @@ layer:
   # The name of a style (represented as .qml file in `assets/styles`). Should
   # NOT include .qml file extension
   style: str(required=False)
+  decompress_kwargs: include('decompress_kwargs', required=False)
   subset_kwargs: include('subset_kwargs', required=False)
   overviews_kwargs: include('overviews_kwargs', required=False)
   warp_kwargs: include('warp_kwargs', required=False)
@@ -34,6 +35,11 @@ layer:
   # metadta may be wrong. Override the layer projection with this key. E.g.,
   # `EPSG:3321`.
   override_source_projection: str(required=False)
+
+---
+decompress_kwargs:
+  # Explicit files to extract from the zip/rar
+  extract_file: str()
 
 ---
 overviews_kwargs:

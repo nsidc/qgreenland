@@ -13,6 +13,13 @@ from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 
 class Decompress(LayerTask):
     task_type = TaskType.WIP
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if 'decompress_kwargs' in self.layer_cfg:
+            self.decompress_kwargs = self.layer_cfg['decompress_kwargs']
+        else:
+            self.decompress_kwargs = {}
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/decompress/')
@@ -21,10 +28,16 @@ class Decompress(LayerTask):
 class Unrar(Decompress):
     def run(self):
         rar_path = find_single_file_by_ext(self.input().path, ext='.rar')
-        rar = rarfile.RarFile(rar_path)
+        rf = rarfile.RarFile(rar_path)
 
         with temporary_path_dir(self.output()) as temp_path:
-            rar.extractall(path=temp_path)
+            if 'extract_file' in self.decompress_kwargs:
+                rf.extract(decompress_kwargs['extract_file'],
+                           path=temp_path)
+            else:
+                rf.extractall(path=temp_path)
+
+            rf.close()
 
 
 class Unzip(Decompress):
@@ -33,8 +46,14 @@ class Unzip(Decompress):
         zf = zipfile.ZipFile(zf_path)
 
         with temporary_path_dir(self.output()) as temp_path:
-            for fn in zf.namelist():
-                zf.extract(fn, temp_path)
+            if 'extract_file' in self.decompress_kwargs:
+                zf.extract(self.decompress_kwargs['extract_file'],
+                           path=temp_path)
+            else:
+                # zf.extractall instead???
+                for fn in zf.namelist():
+                    zf.extract(fn, temp_path)
+
             zf.close()
 
 
