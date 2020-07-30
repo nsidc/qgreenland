@@ -162,7 +162,7 @@
     title: 'Hydrologic Sub-basins of Greenland, Version 1'
     abstract: "The Hydrologic Sub-basins of Greenland data set contains Geographic Information System (GIS) polygon shapefiles that include 293 hydrologic sub-basins of the Greenland Ice Sheet, as created by Lewis and Smith (2009). Five km Digital Elevation Models (DEMs) of ice-surface and bedrock topography (Bamber et al. 2001) were used to estimate the hydraulic potentiometric surface for Greenland, which accounts for the effects of ice overburden pressure, such as hydrostatic pressure, surface topography, and underlying bedrock topography (Paterson 1994). Using the 5 km potentiometric grid, a modeled basin network for Greenland's ice sheet was created using the hydrological tools within ESRI ArcGIS (ArcInfo 9.2). Although the GIS initially generated more than 293 basins, basins less than 100 km2 in size, as well as basins located completely outside of the ice sheet extent, were removed from the data set."
     citation:
-      text: ' Sarah Lewis 2009. Hydrologic Sub-basins of Greenland, Version 1. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.5067/DT9T7DPD7HBI. [2020/03/18].'
+      text: 'Sarah Lewis 2009. Hydrologic Sub-basins of Greenland, Version 1. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.5067/DT9T7DPD7HBI. [2020/03/18].'
       url: 'https://doi.org/10.5067/DT9T7DPD7HBI'
 
 
@@ -178,3 +178,17 @@
     citation:
       text: 'Walker, D.A., and M.K. Raynolds. 2018. Circumpolar Arctic Vegetation, Geobotanical, Physiographic Maps, 1982-2003. ORNL DAAC, Oak Ridge, Tennessee, USA. https://doi.org/10.3334/ORNLDAAC/1323'
       url: 'https://doi.org/10.3334/ORNLDAAC/1323'
+
+
+- id: icesheet_height_and_thickness_change
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://digital.lib.washington.edu/researchworks/bitstream/handle/1773/45388/ICESat1_ICESat2_mass_change.zip'
+  metadata:
+    title: 'Ice-sheet height and thickness changes from ICESat to ICESat-2'
+    abstract: "These data represent ice-column thickness-change-rate estimates based on data from NASA's ICESat and ICESat-2 satellites. These data aided the first estimates of ice-sheet mass change from these two missions, spanning the 16 years from 2003 to 2019, taking advantage of the high vertical and horizontal resolution of the two satellites' laser altimeters."
+    citation:
+      text: 'Smith, Ben; Fricker, Helen; Gardner, Alex; Medley, Brooke; Nilsson, Johan; Paolo, Fernando; Holschuh, Nicholas; Adusumilli, Susheel; Brunt, Kelly; Csatho, Bea; Harbeck, Kaitlin; Markus, Thorsten; Neumann, Thomas; Siegfried, Matthew; Zwally, H. Jay; NASA grant numbers: NNX15AE15G, NNX15AC80G, NNX16AM01G, NNX17AI03G. NASA Cryospheric Sciences and MEaSUREs programs. http://hdl.handle.net/1773/45388. 2020.'
+      url: 'http://hdl.handle.net/1773/45388'

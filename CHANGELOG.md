@@ -1,6 +1,8 @@
 # v0.19.0 (2020-07-30)
 
-- Add ORNL "Circumpolar Arctic Vegetation Biomass layer
+- Add ORNL "Circumpolar Arctic Vegetation Biomass layer and style
+- Add University of Washington 'Ice-sheet height and thickness changes from
+  ICESat to ICESat-2' layer and style
 
 # v0.18.0 (2020-03-18)
 
