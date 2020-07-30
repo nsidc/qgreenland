@@ -129,6 +129,17 @@
   override_source_projection: 'ESRI:102018'
 
 
+- id: vegetation_biomass_2010
+  title: 'Vegetation Biomass 2010'
+  data_source: arctic_vegetation_biomass_2010.only
+  ingest_task: arctic_vegetation
+  file_type: '.tif'
+  data_type: 'raster'
+  visible: True
+  group_path: 'Biology'
+  style: 'arctic_vegetation_biomass'
+
+
 ############
 # BASEMAPS #
 ############
@@ -206,12 +217,3 @@
     warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
   visible: True
   group_path: 'Basemaps'
-
-- id: vegetation_biomass_2010
-  title: 'Vegetation Biomass 2010'
-  data_source: arctic_vegetation_biomass_2010.only
-  ingest_task: arctic_vegetation
-  file_type: '.tif'
-  data_type: 'raster'
-  visible: True
-  group_path: 'Biology'
