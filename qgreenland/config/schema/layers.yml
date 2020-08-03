@@ -53,6 +53,8 @@ warp_kwargs:
   xRes: int(required=False)
   yRes: int(required=False)
   warpOptions: list(str(), required=False)
+  resampleAlg: str(required=False)
+  srcSRS: str(required=False)
 
 ---
 subset_kwargs:
