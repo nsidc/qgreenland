@@ -2,7 +2,8 @@ import glob
 import os
 import shutil
 import time
-from contextlib import contextmanager
+import urllib.request as request
+from contextlib import closing, contextmanager
 
 from qgreenland.constants import (RELEASES_DIR,
                                   REQUEST_TIMEOUT,
@@ -12,12 +13,33 @@ from qgreenland.constants import (RELEASES_DIR,
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
-def fetch_file(url, *, session=None):
-    # TODO: Share the session across requests somehow?
-    if not session:
-        session = create_earthdata_authenticated_session(hosts=[url])
+def fetch_and_write_file(url, *, output_dir, session=None):
+    url_slash_index = url.rfind('/')
+    fn = url[url_slash_index + 1:]
+    fp = os.path.join(output_dir, fn)
 
-    return session.get(url, timeout=REQUEST_TIMEOUT)
+    if url.startswith('ftp://'):
+        # TODO support earthdata login
+        # TODO: do we need `closing`?
+        # Stolen from:
+        # https://stackoverflow.com/questions/11768214/python-download-a-file-from-an-ftp-server
+        with closing(request.urlopen(url)) as r:
+            with open(fp, 'wb') as f:
+                shutil.copyfileobj(r, f)
+    else:
+        # TODO: Share the session across requests somehow?
+        if not session:
+            session = create_earthdata_authenticated_session(hosts=[url])
+
+        resp = session.get(url, timeout=REQUEST_TIMEOUT)
+
+        if resp.status_code != 200:
+            msg = (f"Received '{resp.status_code}' from {resp.request.url}."
+                   f'Content: {resp.text}')
+            raise RuntimeError(msg)
+
+        with open(fp, 'wb') as f:
+            f.write(resp.content)
 
 
 def find_in_dir_by_ext(path, *, ext):

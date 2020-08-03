@@ -100,6 +100,22 @@
   group_path: 'Cryosphere/Ice Thickness Change'
 
 
+- id: permaice
+  title: 'Permafrost '
+  data_source: permaice_nhipa.only
+  ingest_task: permaice
+  file_type: '.tif'
+  data_type: 'raster'
+  style: 'permaice'
+  visible: False
+  group_path: 'Cryosphere/Permafrost'
+  warp_kwargs:
+    xRes: 12500
+    yRes: 12500
+    resampleAlg: 'near'
+    srcSRS: '+proj=laea +a=6371228.000 +b=6371228.000 +lon_0=0 +lat_0=90 +x_0=0 +y_0=0'
+
+
 - &bedmachine
   id: bedmachine_bed
   title: 'Bedrock Elevation'

@@ -57,6 +57,7 @@ class BuildRasterOverviews(LayerTask):
 
 class ReprojectRaster(LayerTask):
     task_type = TaskType.WIP
+    input_ext_override = luigi.Parameter(default=None)
 
     def output(self):
         return luigi.LocalTarget(os.path.join(self.outdir, 'reproject'))
@@ -69,13 +70,15 @@ class ReprojectRaster(LayerTask):
 
         warp_kwargs = {
             'resampleAlg': 'bilinear',
+            # TODO: does this replace the need for `SubsetRaster`?
             'outputBounds': list(PROJECT_EXTENT.values())
         }
         if 'warp_kwargs' in self.layer_cfg:
             warp_kwargs.update(self.layer_cfg['warp_kwargs'])
 
+        file_ext = self.input_ext_override or self.layer_cfg['file_type']
         ifile = find_single_file_by_ext(self.input().path,
-                                        ext=self.layer_cfg['file_type'])
+                                        ext=file_ext)
 
         with temporary_path_dir(self.output()) as tmp_dir:
             tmp_path = os.path.join(tmp_dir, self.filename)

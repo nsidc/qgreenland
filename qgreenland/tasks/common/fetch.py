@@ -5,7 +5,7 @@ import luigi
 from qgreenland.constants import TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
-from qgreenland.util.misc import fetch_file, temporary_path_dir
+from qgreenland.util.misc import fetch_and_write_file, temporary_path_dir
 
 
 class FetchCmrGranule(luigi.Task):
@@ -31,17 +31,7 @@ class FetchCmrGranule(luigi.Task):
                 if not self.session:
                     self.session = make_session(hosts=[url])
 
-                fn = os.path.basename(url)
-                fp = os.path.join(temp_path, fn)
-
-                resp = fetch_file(url, session=self.session)
-                if resp.status_code != 200:
-                    msg = (f"Received '{resp.status_code}' from {resp.request.url}."
-                           f'Content: {resp.text}')
-                    raise RuntimeError(msg)
-
-                with open(fp, 'wb') as f:
-                    f.write(resp.content)
+                fetch_and_write_file(url, output_dir=temp_path, session=self.session)
 
 
 class FetchDataFiles(luigi.Task):
@@ -61,15 +51,4 @@ class FetchDataFiles(luigi.Task):
 
         with temporary_path_dir(self.output()) as temp_path:
             for url in self.source_cfg['urls']:
-                resp = fetch_file(url)
-                if resp.status_code != 200:
-                    msg = (f"Received '{resp.status_code}' from {resp.request.url}."
-                           f'Content: {resp.text}')
-                    raise RuntimeError(msg)
-
-                url_slash_index = resp.url.rfind('/')
-                fn = resp.url[url_slash_index + 1:]
-                fp = os.path.join(temp_path, fn)
-
-                with open(fp, 'wb') as f:
-                    f.write(resp.content)
+                fetch_and_write_file(url, output_dir=temp_path)
