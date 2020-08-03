@@ -1,7 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.raster import (ReprojectRaster,
-                                            SubsetRaster)
+from qgreenland.tasks.common.raster import (ReprojectRaster)
 from qgreenland.util.luigi import LayerPipeline
 
 

@@ -4,10 +4,11 @@ from qgreenland.util.luigi import LayerPipeline
 
 
 class Permaice(LayerPipeline):
-    """Dataproduct GGD318
+    """Dataproduct GGD318.
 
     https://nsidc.org/data/GGD318/versions/2
     """
+
     def requires(self):
         fetch_data = FetchDataFiles(
             source_cfg=self.cfg['source'],

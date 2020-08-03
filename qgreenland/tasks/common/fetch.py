@@ -31,10 +31,7 @@ class FetchCmrGranule(luigi.Task):
                 if not self.session:
                     self.session = make_session(hosts=[url])
 
-                fn = os.path.basename(url)
-                fp = os.path.join(temp_path, fn)
-
-                fetch_and_write_file(url, session=self.session)
+                fetch_and_write_file(url, output_dir=temp_path, session=self.session)
 
 
 class FetchDataFiles(luigi.Task):

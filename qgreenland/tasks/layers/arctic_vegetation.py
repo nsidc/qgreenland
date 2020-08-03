@@ -1,5 +1,3 @@
-import luigi
-
 from qgreenland.tasks.common.fetch import FetchCmrGranule
 from qgreenland.tasks.common.raster import ReprojectRaster
 from qgreenland.util.luigi import LayerPipeline
