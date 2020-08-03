@@ -101,7 +101,7 @@
 
 
 - id: permaice
-  title: 'Permafrost '
+  title: 'Permafrost and Ground-Ice Conditions'
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
