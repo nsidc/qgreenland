@@ -1,3 +1,8 @@
+# v0.20.0 (2020-08-01)
+
+- Add 12.5km Circum-Arctic Map of Permafrost and Ground-Ice Conditions, Version
+  2 (https://nsidc.org/data/GGD318/versions/2) layer.
+
 # v0.19.0 (2020-07-30)
 
 - Add ORNL "Circumpolar Arctic Vegetation Biomass layer and style
