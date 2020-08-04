@@ -1,6 +1,10 @@
 # v0.21.0 (Unreleased)
 
 - Switch to `EPSG:3413` projection: Uses WGS-84 ellipsoid.
+- Enable all groups by default
+  - This way, everything is one click away -- enabling layers, hiding layers,
+    hiding groups. If we want a layer to start invisible, we set that layer to
+    invisible, not the group.
 
 # v0.20.0 (2020-08-01)
 

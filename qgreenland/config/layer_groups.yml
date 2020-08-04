@@ -11,79 +11,79 @@ Glaciology/Glacier Terminus:
   expanded: False
 
 Geophysics:
-  visible: False
+  visible: True
   expanded: True
 
 Geophysics/IceBridge BedMachine:
-  visible: False
+  visible: True
   expanded: False
 
 Geology & natural resources:
-  visible: False
+  visible: True
   expanded: False
 
 # TODO paleontology better term?
 Paleo-data:
-  visible: False
+  visible: True
   expanded: False
 
 # TODO: Should "glaciology" and "sea ice" be subgroups to Cryosphere?
 Cryosphere:
-  visible: False
+  visible: True
   expanded: False
 
 Atmosphere:
-  visible: False
+  visible: True
   expanded: False
 
 Oceanography:
-  visible: False
+  visible: True
   expanded: False
 
 Ecology:
-  visible: False
+  visible: True
   expanded: False
 
 Biology:
-  visible: False
+  visible: True
   expanded: False
 
 Hydrology:
-  visible: False
+  visible: True
   expanded: False
 
 Built environment:
-  visible: False
+  visible: True
   expanded: False
 
 Human health:
-  visible: False
+  visible: True
   expanded: False
 
 Political science:
-  visible: False
+  visible: True
   expanded: False
 
 Fisheries:
-  visible: False
+  visible: True
   expanded: False
 
 Birds:
-  visible: False
+  visible: True
   expanded: False
 
 Mammals:
-  visible: False
+  visible: True
   expanded: False
 
 Anthropology:
-  visible: False
+  visible: True
   expanded: False
 
 Future predictions:
-  visible: False
+  visible: True
   expanded: False
 
 Early explorations:
-  visible: False
+  visible: True
   expanded: False
