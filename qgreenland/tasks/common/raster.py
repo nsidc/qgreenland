@@ -1,16 +1,21 @@
+import logging
 import os
 import shutil
 
 import geopandas
 import luigi
+import pyproj
 import rasterio as rio
 from earthpy import spatial as eps
 from osgeo import gdal
+from osgeo.gdalconst import GA_ReadOnly
 
 from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT, TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 from qgreenland.util.shapefile import bbox_dict_to_polygon
+
+logger = logging.getLogger('luigi-interface')
 
 
 class BuildRasterOverviews(LayerTask):
@@ -64,6 +69,7 @@ class ReprojectRaster(LayerTask):
 
     def run(self):
         if 'override_source_projection' in self.layer_cfg:
+            # But we can still pass in warp_kwargs to set source projection...
             raise NotImplementedError(
                 'override_source_projection not implemented for raster layers.'
             )
@@ -82,6 +88,38 @@ class ReprojectRaster(LayerTask):
 
         with temporary_path_dir(self.output()) as tmp_dir:
             tmp_path = os.path.join(tmp_dir, self.filename)
+
+            logger.info(f"Reprojecting {self.layer_cfg['id']}...")
+
+            try:
+                tmp_ds = gdal.Open(ifile, GA_ReadOnly)
+                proj_str = tmp_ds.GetProjection()
+                if not proj_str:
+                    raise Exception('GDAL failed to detect any projection.')
+                # Attempt to do better than the WKT from gdal...
+                try:
+                    proj = pyproj.crs.CRS.from_wkt(proj_str)
+                    proj_str = proj.to_string()
+                except Exception:
+                    pass
+
+                # This is how you close a gdal dataset...
+                del tmp_ds
+
+                logger.info(f'Detected source projection: {proj_str}')
+            except Exception as e:
+                logger.info(f'Failed to detect source projection: {e}')
+
+            if 'srcSRS' in warp_kwargs:
+                logger.info('Overriding the source projection with: '
+                            f"{warp_kwargs['srcSRS']}")
+            elif not proj_str:
+                raise RuntimeError('Not enough information to reproject. '
+                                   'No projection automatically detected and '
+                                   'none explicitly provided.')
+
+            logger.debug(f'Reprojecting with arguments: {warp_kwargs}')
+            logger.info(f'Target projection: {PROJECT_CRS}')
             gdal.Warp(tmp_path, ifile, dstSRS=PROJECT_CRS, **warp_kwargs)
 
 
