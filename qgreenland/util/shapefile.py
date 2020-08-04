@@ -27,7 +27,7 @@ def reproject_shapefile(shapefile_path, *, layer_cfg):
     logger.info(f"Reprojecting {layer_cfg['id']}...")
     try:
         proj_str = pyproj.crs.CRS.from_dict(gdf.crs).to_string()
-        logger.info(f"Detected source projection: {proj_str}")
+        logger.info(f'Detected source projection: {proj_str}')
     except Exception as e:
         logger.info(f'Failed to detect source projection: {e}')
 
