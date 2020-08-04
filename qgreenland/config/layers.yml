@@ -1,5 +1,5 @@
 ################
-# Science Data #
+#  Glaciology #
 ################
 
 - &glacier_terminus
@@ -66,6 +66,9 @@
   title: 'Glacier Termini 2016 to 2017'
   data_source: glacier_terminus.2016_2017
 
+################
+#  Cryosphere #
+################
 
 - id: velocity_mosaic
   title: 'Ice Sheet Velocity'
@@ -115,6 +118,9 @@
     resampleAlg: 'near'
     srcSRS: '+proj=laea +a=6371228.000 +b=6371228.000 +lon_0=0 +lat_0=90 +x_0=0 +y_0=0'
 
+################
+#  Geophysics #
+################
 
 - &bedmachine
   id: bedmachine_bed
@@ -148,6 +154,10 @@
   visible: False
 
 
+#############
+# Hydrology #
+#############
+
 - id: hydrologic_subbasins
   title: 'Hydrologic Sub-Basins'
   data_source: hydrologic_subbasins.only
@@ -158,6 +168,9 @@
   group_path: 'Hydrology'
   override_source_projection: 'ESRI:102018'
 
+#############
+# Biology #
+#############
 
 - id: vegetation_biomass_2010
   title: 'Vegetation Biomass 2010'
@@ -168,6 +181,23 @@
   visible: True
   group_path: 'Biology'
   style: 'arctic_vegetation_biomass'
+
+
+###############################
+# Geology & natural resources #
+###############################
+
+
+- id: soil_types
+  title: 'Soil Characteristics'
+  data_source: soil_types.only
+  ingest_task: gzipped_shapefile_parts
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Geology & natural resources'
+  override_source_projection: '+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0'
+  style: 'soil_types'
 
 
 ############
