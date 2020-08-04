@@ -9,7 +9,9 @@ from osgeo import gdal
 
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
-from qgreenland.util.misc import  find_in_dir_by_ext, find_single_file_by_ext, temporary_path_dir
+from qgreenland.util.misc import (find_in_dir_by_ext,
+                                  find_single_file_by_ext,
+                                  temporary_path_dir)
 
 
 class Decompress(LayerTask):
