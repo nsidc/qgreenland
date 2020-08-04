@@ -1,3 +1,7 @@
+# v0.21.0 (Unreleased)
+
+- Switch to `EPSG:3413` projection: Uses WGS-84 ellipsoid.
+
 # v0.20.0 (2020-08-01)
 
 - Add 12.5km Circum-Arctic Map of Permafrost and Ground-Ice Conditions, Version
