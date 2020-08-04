@@ -54,6 +54,8 @@ warp_kwargs:
   yRes: int(required=False)
   warpOptions: list(str(), required=False)
   resampleAlg: str(required=False)
+  # TODO: Pick _one_ interface for supplying/overriding source projections for
+  #       rasters and vectors
   srcSRS: str(required=False)
 
 ---

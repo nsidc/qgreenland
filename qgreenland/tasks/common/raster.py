@@ -5,11 +5,11 @@ import geopandas
 import luigi
 import rasterio as rio
 from earthpy import spatial as eps
-from osgeo import gdal
 
-from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT, TaskType
+from qgreenland.constants import PROJECT_EXTENT, TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
+from qgreenland.util.raster import reproject_raster
 from qgreenland.util.shapefile import bbox_dict_to_polygon
 
 
@@ -64,6 +64,7 @@ class ReprojectRaster(LayerTask):
 
     def run(self):
         if 'override_source_projection' in self.layer_cfg:
+            # But we can still pass in warp_kwargs to set source projection...
             raise NotImplementedError(
                 'override_source_projection not implemented for raster layers.'
             )
@@ -77,12 +78,13 @@ class ReprojectRaster(LayerTask):
             warp_kwargs.update(self.layer_cfg['warp_kwargs'])
 
         file_ext = self.input_ext_override or self.layer_cfg['file_type']
-        ifile = find_single_file_by_ext(self.input().path,
-                                        ext=file_ext)
+        inp_path = find_single_file_by_ext(self.input().path, ext=file_ext)
 
         with temporary_path_dir(self.output()) as tmp_dir:
-            tmp_path = os.path.join(tmp_dir, self.filename)
-            gdal.Warp(tmp_path, ifile, dstSRS=PROJECT_CRS, **warp_kwargs)
+            out_path = os.path.join(tmp_dir, self.filename)
+            reproject_raster(inp_path, out_path,
+                             layer_cfg=self.layer_cfg,
+                             warp_kwargs=warp_kwargs)
 
 
 class SubsetRaster(LayerTask):

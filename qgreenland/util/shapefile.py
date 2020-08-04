@@ -1,9 +1,13 @@
+import logging
 import subprocess
 
 import geopandas
+import pyproj
 from shapely.geometry import Polygon
 
 from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT
+
+logger = logging.getLogger('luigi-interface')
 
 
 def bbox_dict_to_polygon(d):
@@ -20,13 +24,23 @@ def reproject_shapefile(shapefile_path, *, layer_cfg):
     """Reprojects a shapefile and returns the result."""
     gdf = geopandas.read_file(shapefile_path)
 
+    logger.info(f"Reprojecting {layer_cfg['id']}...")
+    try:
+        proj_str = pyproj.crs.CRS.from_dict(gdf.crs).to_string()
+        logger.info(f'Detected source projection: {proj_str}')
+    except Exception as e:
+        logger.info(f'Failed to detect source projection: {e}')
+
     # Some datasets (Natural Earth Ocean shape) come with invalid data (e.g.
     # intersections). The buffer operation cleans those up, but at a
     # significant processing time cost.
 
     if 'override_source_projection' in layer_cfg:
+        logger.info('Using source projection from config: '
+                    f"{layer_cfg['override_source_projection']}")
         gdf.crs = layer_cfg['override_source_projection']
 
+    logger.info(f'Target projection: {PROJECT_CRS}')
     gdf = gdf.to_crs(PROJECT_CRS)
 
     return gdf
