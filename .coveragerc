@@ -5,4 +5,4 @@ branch = True
 fail_under = 46
 show_missing = True
 skip_covered = True
-sort = miss
+sort = Miss
