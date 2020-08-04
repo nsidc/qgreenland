@@ -3,7 +3,7 @@ import subprocess
 import geopandas
 from shapely.geometry import Polygon
 
-from qgreenland.constants import PROJECT_EXTENT
+from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT
 
 
 def bbox_dict_to_polygon(d):
@@ -27,7 +27,7 @@ def reproject_shapefile(shapefile_path, *, layer_cfg):
     if 'override_source_projection' in layer_cfg:
         gdf.crs = layer_cfg['override_source_projection']
 
-    gdf = gdf.to_crs(epsg=3411)
+    gdf = gdf.to_crs(PROJECT_CRS)
 
     return gdf
 
