@@ -1,4 +1,5 @@
 """common.py: Tasks that could apply to any type of dataproduct."""
+import gzip
 import os
 import zipfile
 
@@ -8,7 +9,7 @@ from osgeo import gdal
 
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
-from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
+from qgreenland.util.misc import  find_in_dir_by_ext, find_single_file_by_ext, temporary_path_dir
 
 
 class Decompress(LayerTask):
@@ -20,6 +21,18 @@ class Decompress(LayerTask):
 
     def output(self):
         return luigi.LocalTarget(f'{self.outdir}/decompress/')
+
+
+class UngzipMany(Decompress):
+    def run(self):
+        gzip_paths = find_in_dir_by_ext(self.input().path, ext='.gz')
+        with temporary_path_dir(self.output()) as temp_path:
+            for gzip_path in gzip_paths:
+                with gzip.open(gzip_path, 'rb') as gf:
+                    decompress_filename = os.path.basename(gzip_path).replace('.gz', '')
+                    decompress_filepath = os.path.join(temp_path, decompress_filename)
+                    with open(decompress_filepath, 'wb') as f:
+                        f.write(gf.read())
 
 
 class Unrar(Decompress):

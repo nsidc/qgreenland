@@ -207,3 +207,19 @@
     citation:
       text: 'Brown, J., O. Ferrians, J. A. Heginbottom, and E. Melnikov. 2002. Circum-Arctic Map of Permafrost and Ground-Ice Conditions, Version 2. [Indicate subset used]. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/. 2020-07-30'
       url: 'https://nsidc.org/data/GGD318/versions/2'
+
+
+- id: soil_types
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.dbf.gz'
+        - 'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.shp.gz'
+        - 'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.shx.gz'
+  metadata:
+    title: 'Northern Circumpolar Soils Map, Version 1'
+    abstract: 'This data set consists of a circumpolar map of dominant soil characteristics, with a scale of 1:10,000,000, covering the United States, Canada, Greenland, Iceland, northern Europe, Russia, Mongolia, and Kazakhstan. The map was created using the Northern and Mid Latitude Soil Database. The map is in ESRI Shapefile format, consisting of 11 regional areas.. Polygons have attributes that give the percentage polygon area that is a given soil type. The map shows the dominant soil of the spatial polygon unless the polygon is over 90 percent rock or ice. It also shows the proportion of polygon encompassed by the dominant soil or nonsoil. Soils include turbels, orthels, histels, histosols, mollisols, vertisols, aridisols, andisols, entisols, spodosols, inceptisols (and hapludolls), alfisols (cryalf and udalf), natric great groups, aqu-suborders, glaciers, and rocklands. Data are available via ftp.'
+    citation:
+      text: 'Tarnocai, C., J. Kimble, D. Swanson, S. Goryachkin, Y. M. Naumov, V. Stolbovoi, B. Jakobsen, G. Broll, L. Montanarella, A. Arnoldussen, O. Arnalds, and M. Yli-Halla. 2002. Northern Circumpolar Soils Map, Version 1. [Indicate subset used]. Ottawa, Canada. Research Branch, Agriculture and Agri-Food Canada. doi: https://doi.org/. 2020-08-04.'
+      url: 'https://nsidc.org/data/GGD602/versions/1'

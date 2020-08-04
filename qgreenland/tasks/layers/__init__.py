@@ -3,6 +3,7 @@ from qgreenland.tasks.layers.arctic_vegetation import ArcticVegetation
 from qgreenland.tasks.layers.background_image import BackgroundImage
 from qgreenland.tasks.layers.bedmachine import BedMachineDataset
 from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
+from qgreenland.tasks.layers.gzipped_shapefile_parts import GzippedShapefileParts
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
 from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_shapefile import RarredShapefile
@@ -15,9 +16,10 @@ INGEST_TASKS = {
     'background_image': BackgroundImage,
     'bedmachine': BedMachineDataset,
     'glacier_terminus': GlacierTerminus,
+    'gzipped_shapefile_parts': GzippedShapefileParts,
     'ice_thickness_change': IceThicknessChange,
     'permaice': Permaice,
     'rarred_shapefile': RarredShapefile,
     'velocity_mosaic': VelocityMosaic,
-    'zipped_shapefile': ZippedShapefile
+    'zipped_shapefile': ZippedShapefile,
 }
