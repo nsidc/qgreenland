@@ -1,7 +1,8 @@
-# v0.23.0 (unreleased)
+# v0.23.0 (2020-08-05)
 
 - Layers now have layer-specific description at the beginning of the tooltip,
   with additional dataset-level information following.
+- Add BedMachine Error layer
 
 # v0.22.0 (2020-08-05)
 
