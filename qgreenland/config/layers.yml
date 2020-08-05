@@ -256,7 +256,7 @@
   file_type: '.shp'
   data_type: 'vector'
   style: 'land'
-  visible: True
+  visible: False 
   group_path: 'Basemaps'
 
 

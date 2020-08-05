@@ -1,6 +1,8 @@
 # v0.22.0 (Unreleased)
 
 - Add raster layer resolutions in parens after layer title
+- Set "Land" layer to invisible so the background layer shows by default
+- Move "Arctic DEM" layer above "Land" layer
 
 # v0.21.0 (2020-08-04)
 
