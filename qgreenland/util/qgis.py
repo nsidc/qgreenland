@@ -52,11 +52,11 @@ def _add_layer_metadata(map_layer, layer_cfg):
         qmd_template_str = ' '.join(f.readlines())
 
     # Set the layer's tooltip
-    tooltip = build_dataset_description(layer_cfg)
+    tooltip = build_layer_description(layer_cfg)
     map_layer.setAbstract(tooltip)
 
     # Render the qmd template.
-    abstract = build_abstract(layer_cfg)
+    abstract = build_layer_abstract(layer_cfg)
     layer_extent = map_layer.extent()
     qmd_template = Template(qmd_template_str)
     rendered_qmd = qmd_template.render(
@@ -254,7 +254,7 @@ def load_qml_style(map_layer, style_name):
         raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
 
 
-def build_dataset_description(layer_cfg):
+def build_layer_description(layer_cfg):
     description = ''
 
     # TODO: COO COO CACHOO
@@ -273,16 +273,16 @@ def build_dataset_description(layer_cfg):
     return description
 
 
-def build_abstract(layer_cfg):
-    abstract = build_dataset_description(layer_cfg)
+def build_layer_abstract(layer_cfg):
+    abstract = build_layer_description(layer_cfg)
 
     if abstract:
         abstract += '\n\n'
 
-    metadata = layer_cfg['dataset']['metadata']
+    dataset_metadata = layer_cfg['dataset']['metadata']
     # TODO: COO COO CACHOO
-    if metadata.get('citation'):
-        citation_cfg = metadata.get('citation')
+    if dataset_metadata.get('citation'):
+        citation_cfg = dataset_metadata.get('citation')
 
         # TODO: COO COO CACHOO
         if citation_cfg.get('text'):
