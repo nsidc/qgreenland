@@ -17,8 +17,10 @@ layer:
   # The file extension, e.g. '.shp'
   file_type: str()
   data_type: enum('vector', 'raster')
-  # Short descriptive text, e.g. the layer name in QGIS.
+  # The layer name in QGIS.
   title: str()
+  # descriptive text
+  description: str(required=False)
   # The fully-qualified QGIS group the layer should be placed in, e.g.
   # 'Group/Subgroup/Subsubgroup'
   group_path: str()

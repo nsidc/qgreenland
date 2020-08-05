@@ -255,13 +255,20 @@ def load_qml_style(map_layer, style_name):
 
 
 def build_dataset_description(layer_cfg):
-    metadata = layer_cfg['dataset']['metadata']
+    description = ''
 
-    description = metadata['title']
     # TODO: COO COO CACHOO
-    if metadata.get('abstract'):
+    if layer_cfg.get('description'):
+        description += layer_cfg.get('description')
+        description += '\n\n=== Original Data Source ===\n'
+
+    dataset_metadata = layer_cfg['dataset']['metadata']
+    description += dataset_metadata['title']
+        
+    # TODO: COO COO CACHOO
+    if dataset_metadata.get('abstract'):
         description += '\n\n'
-        description += metadata.get('abstract')
+        description += dataset_metadata.get('abstract')
 
     return description
 
