@@ -31,11 +31,11 @@
             <prop k="rampType" v="gradient"/>
             <prop k="stops" v="0.25;161,218,180,255:0.5;65,182,196,255:0.75;44,127,184,255"/>
           </colorramp>
-          <item value="-5474" label="-5474" alpha="255" color="#ffffcc"/>
-          <item value="-3259" label="-3259" alpha="255" color="#a1dab4"/>
-          <item value="-1044" label="-1044" alpha="255" color="#41b6c4"/>
-          <item value="1171" label="1171" alpha="255" color="#2c7fb8"/>
-          <item value="3386" label="3386" alpha="255" color="#253494"/>
+          <item value="-5474" label="-5474 m" alpha="255" color="#ffffcc"/>
+          <item value="-3259" label="-3259 m" alpha="255" color="#a1dab4"/>
+          <item value="-1044" label="-1044 m" alpha="255" color="#41b6c4"/>
+          <item value="1171" label="1171 m" alpha="255" color="#2c7fb8"/>
+          <item value="3386" label="3386 m" alpha="255" color="#253494"/>
         </colorrampshader>
       </rastershader>
     </rasterrenderer>
