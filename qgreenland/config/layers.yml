@@ -232,20 +232,6 @@
   group_path: 'Basemaps'
 
 
-# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
-# holes for small islands which are not present on the land layer, and that was
-# gross so we removed the ocean layer.
-- id: land
-  title: 'Land'
-  data_source: land_shape.only
-  ingest_task: zipped_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-  style: 'land'
-  visible: True
-  group_path: 'Basemaps'
-
-
 - id: arctic_dem
   title: 'Arctic DEM (1km)'
   data_source: arctic_dem.only
@@ -257,6 +243,20 @@
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
   visible: False
+  group_path: 'Basemaps'
+
+
+# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
+# holes for small islands which are not present on the land layer, and that was
+# gross so we removed the ocean layer.
+- id: land
+  title: 'Land'
+  data_source: land_shape.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  style: 'land'
+  visible: True
   group_path: 'Basemaps'
 
 
