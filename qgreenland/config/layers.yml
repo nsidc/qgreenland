@@ -160,6 +160,14 @@
   visible: False
 
 
+- <<: *bedmachine
+  id: bedmachine_errbed
+  title: 'Bedrock Elevation/Ice Thickness Error (1km)'
+  ingest_task_kwargs: {'extract_dataset': 'errbed'}
+  style: null
+  visible: False
+
+
 #############
 # Hydrology #
 #############

@@ -58,7 +58,8 @@ def test__add_layer_metadata():
     qgis._add_layer_metadata(mock_raster_layer, mock_layer_cfg)
 
     # The abstract gets set with the value returned by `qgis.build_abstract`.
-    assert mock_raster_layer.metadata().abstract() == qgis.build_layer_abstract(mock_layer_cfg)
+    assert mock_raster_layer.metadata().abstract() == \
+        qgis.build_layer_abstract(mock_layer_cfg)
 
     actual_title = mock_raster_layer.metadata().title()
     expected_title = mock_layer_cfg['title']
