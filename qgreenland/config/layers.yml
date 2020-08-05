@@ -71,7 +71,7 @@
 ################
 
 - id: velocity_mosaic
-  title: 'Ice Sheet Velocity'
+  title: 'Ice Sheet Velocity (500m)'
   data_source: velocity_mosaic.only
   ingest_task: velocity_mosaic
   ingest_task_kwargs: {'extract_dataset': 'v'}
@@ -86,11 +86,11 @@
     yRes: 500
   visible: True
   # TODO: Does this count as glaciology?
-  group_path: 'Cryosphere/Ice Sheet Velocity (500m)'
+  group_path: 'Cryosphere/Ice Sheet Velocity'
 
 
 - id: ice_thickness_change
-  title: 'Ice sheet height and thickness changes from ICESat to ICESat-2'
+  title: 'Ice sheet height and thickness change 2003-2019 (5km)'
   data_source: icesheet_height_and_thickness_change.only
   ingest_task: ice_thickness_change
   file_type: '.tif'
@@ -100,18 +100,18 @@
     extract_file: 'ICESat1_ICESat2_mass_change/gris.tif'
   visible: True
   # TODO: Does this count as glaciology?
-  group_path: 'Cryosphere/Ice Thickness Change (5km)'
+  group_path: 'Cryosphere/Ice Thickness Change'
 
 
 - id: permaice
-  title: 'Permafrost and Ground-Ice Conditions'
+  title: 'Permafrost and Ground-Ice (12.5km)'
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
   data_type: 'raster'
   style: 'permaice'
   visible: False
-  group_path: 'Cryosphere/Permafrost (12.5km)'
+  group_path: 'Cryosphere/Permafrost'
   warp_kwargs:
     xRes: 12500
     yRes: 12500
@@ -124,7 +124,7 @@
 
 - &bedmachine
   id: bedmachine_bed
-  title: 'Bedrock Elevation'
+  title: 'Bedrock Elevation (1km)'
   data_source: bedmachine.only
   ingest_task: bedmachine
   ingest_task_kwargs: {'extract_dataset': 'bed'}
@@ -135,12 +135,12 @@
     xRes: 1000
     yRes: 1000
   visible: True
-  group_path: 'Geophysics/IceBridge BedMachine (1km)'
+  group_path: 'Geophysics/IceBridge BedMachine'
 
 
 - <<: *bedmachine
   id: bedmachine_surface
-  title: 'Surface Elevation'
+  title: 'Surface Elevation (1km)'
   ingest_task_kwargs: {'extract_dataset': 'surface'}
   style: null
   visible: False
@@ -148,7 +148,7 @@
 
 - <<: *bedmachine
   id: bedmachine_thickness
-  title: 'Ice Thickness'
+  title: 'Ice Thickness (1km)'
   ingest_task_kwargs: {'extract_dataset': 'thickness'}
   style: null
   visible: False
@@ -159,7 +159,7 @@
 #############
 
 - id: hydrologic_subbasins
-  title: 'Hydrologic Sub-Basins ()'
+  title: 'Hydrologic Sub-Basins'
   data_source: hydrologic_subbasins.only
   ingest_task: rarred_shapefile
   file_type: '.shp'
@@ -173,7 +173,7 @@
 #############
 
 - id: vegetation_biomass_2010
-  title: 'Vegetation Biomass 2010i (1km)'
+  title: 'Vegetation Biomass 2010 (1km)'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
@@ -247,7 +247,7 @@
 
 
 - id: arctic_dem
-  title: 'Arctic DEM (1km mosaic)'
+  title: 'Arctic DEM (1km)'
   data_source: arctic_dem.only
   ingest_task: arctic_dem
   file_type: '.tif'
@@ -261,7 +261,7 @@
 
 
 - id: background
-  title: 'Background'
+  title: 'Background (1km)'
   data_source: background.only
   ingest_task: background_image
   file_type: '.tif'
