@@ -12,7 +12,6 @@
   group_path: 'Glaciology/Glacier Terminus Positions'
   visible: True
 
-
 - <<: *glacier_terminus
   id: glacier_terminus_2000_2001
   title: 'Glacier Termini 2000 to 2001'
@@ -72,6 +71,7 @@
 
 - id: velocity_mosaic
   title: 'Ice Sheet Velocity (500m)'
+  description: 'Magnitude of velocity in meters per year.'
   data_source: velocity_mosaic.only
   ingest_task: velocity_mosaic
   ingest_task_kwargs: {'extract_dataset': 'v'}
@@ -90,7 +90,9 @@
 
 
 - id: ice_thickness_change
-  title: 'Ice sheet height and thickness change 2003-2019 (5km)'
+  title: 'Ice Sheet Mass Change 2003-2019 (5km)'
+  # TODO: better description.
+  description: 'Mass-change in meters of ice-equivalent per year.'
   data_source: icesheet_height_and_thickness_change.only
   ingest_task: ice_thickness_change
   file_type: '.tif'
@@ -105,6 +107,7 @@
 
 - id: permaice
   title: 'Permafrost and Ground-Ice (12.5km)'
+  description: 'Soil characteristics categorized by permafrost extent, ground ice content, overburden thickness, and exposed bedrock.'
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
@@ -125,6 +128,7 @@
 - &bedmachine
   id: bedmachine_bed
   title: 'Bedrock Elevation (1km)'
+  description: 'Bedrock elevation in meters.'
   data_source: bedmachine.only
   ingest_task: bedmachine
   ingest_task_kwargs: {'extract_dataset': 'bed'}
@@ -141,6 +145,7 @@
 - <<: *bedmachine
   id: bedmachine_surface
   title: 'Surface Elevation (1km)'
+  description: 'Surface elevation in meters.'
   ingest_task_kwargs: {'extract_dataset': 'surface'}
   style: null
   visible: False
@@ -149,6 +154,7 @@
 - <<: *bedmachine
   id: bedmachine_thickness
   title: 'Ice Thickness (1km)'
+  description: 'Ice thickness in meters.'
   ingest_task_kwargs: {'extract_dataset': 'thickness'}
   style: null
   visible: False
@@ -160,6 +166,7 @@
 
 - id: hydrologic_subbasins
   title: 'Hydrologic Sub-Basins'
+  description: 'Polygons of ice sheet hydrologic sub-basins with area in square kilometers.'
   data_source: hydrologic_subbasins.only
   ingest_task: rarred_shapefile
   file_type: '.shp'
@@ -174,6 +181,7 @@
 
 - id: vegetation_biomass_2010
   title: 'Vegetation Biomass 2010 (1km)'
+  description: 'Estimated above ground plant biomass for the tundra biome in kilograms per square meter. Based on trans-Arctic field data and AVHRR NDVI.'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
@@ -190,6 +198,7 @@
 
 - id: soil_types
   title: 'Soil Characteristics'
+  description: 'Polygons representing dominant soil characteristics with percentage polygon area for each soil type. Data coverage limited to Greenland.'
   data_source: soil_types.only
   ingest_task: gzipped_shapefile_parts
   file_type: '.shp'
@@ -234,6 +243,7 @@
 
 - id: arctic_dem
   title: 'Arctic DEM (1km)'
+  description: 'Surface elevation in meters.'
   data_source: arctic_dem.only
   ingest_task: arctic_dem
   file_type: '.tif'

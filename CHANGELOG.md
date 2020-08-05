@@ -1,3 +1,8 @@
+# v0.23.0 (unreleased)
+
+- Layers now have layer-specific description at the beginning of the tooltip,
+  with additional dataset-level information following.
+
 # v0.22.0 (2020-08-05)
 
 - Add raster layer resolutions in parens after layer title
