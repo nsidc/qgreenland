@@ -264,7 +264,7 @@ def build_layer_description(layer_cfg):
 
     dataset_metadata = layer_cfg['dataset']['metadata']
     description += dataset_metadata['title']
-        
+
     # TODO: COO COO CACHOO
     if dataset_metadata.get('abstract'):
         description += '\n\n'
