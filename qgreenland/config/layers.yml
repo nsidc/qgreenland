@@ -9,7 +9,7 @@
   ingest_task: glacier_terminus
   file_type: '.shp'
   data_type: 'vector'
-  group_path: 'Glaciology/Glacier Terminus'
+  group_path: 'Glaciology/Glacier Terminus Positions'
   visible: True
 
 
@@ -86,11 +86,11 @@
     yRes: 500
   visible: True
   # TODO: Does this count as glaciology?
-  group_path: 'Cryosphere/Ice Sheet Velocity'
+  group_path: 'Cryosphere/Ice Sheet Velocity (500m)'
 
 
 - id: ice_thickness_change
-  title: 'Ice sheet height and thinkness changes from ICESat to ICESat-2'
+  title: 'Ice sheet height and thickness changes from ICESat to ICESat-2'
   data_source: icesheet_height_and_thickness_change.only
   ingest_task: ice_thickness_change
   file_type: '.tif'
@@ -100,7 +100,7 @@
     extract_file: 'ICESat1_ICESat2_mass_change/gris.tif'
   visible: True
   # TODO: Does this count as glaciology?
-  group_path: 'Cryosphere/Ice Thickness Change'
+  group_path: 'Cryosphere/Ice Thickness Change (5km)'
 
 
 - id: permaice
@@ -111,7 +111,7 @@
   data_type: 'raster'
   style: 'permaice'
   visible: False
-  group_path: 'Cryosphere/Permafrost'
+  group_path: 'Cryosphere/Permafrost (12.5km)'
   warp_kwargs:
     xRes: 12500
     yRes: 12500
@@ -135,7 +135,7 @@
     xRes: 1000
     yRes: 1000
   visible: True
-  group_path: 'Geophysics/IceBridge BedMachine'
+  group_path: 'Geophysics/IceBridge BedMachine (1km)'
 
 
 - <<: *bedmachine
@@ -159,7 +159,7 @@
 #############
 
 - id: hydrologic_subbasins
-  title: 'Hydrologic Sub-Basins'
+  title: 'Hydrologic Sub-Basins ()'
   data_source: hydrologic_subbasins.only
   ingest_task: rarred_shapefile
   file_type: '.shp'
@@ -173,7 +173,7 @@
 #############
 
 - id: vegetation_biomass_2010
-  title: 'Vegetation Biomass 2010'
+  title: 'Vegetation Biomass 2010i (1km)'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
