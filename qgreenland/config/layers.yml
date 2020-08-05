@@ -9,7 +9,7 @@
   ingest_task: glacier_terminus
   file_type: '.shp'
   data_type: 'vector'
-  group_path: 'Glaciology/Glacier Terminus'
+  group_path: 'Glaciology/Glacier Terminus Positions'
   visible: True
 
 
@@ -71,7 +71,7 @@
 ################
 
 - id: velocity_mosaic
-  title: 'Ice Sheet Velocity'
+  title: 'Ice Sheet Velocity (500m)'
   data_source: velocity_mosaic.only
   ingest_task: velocity_mosaic
   ingest_task_kwargs: {'extract_dataset': 'v'}
@@ -90,7 +90,7 @@
 
 
 - id: ice_thickness_change
-  title: 'Ice sheet height and thinkness changes from ICESat to ICESat-2'
+  title: 'Ice sheet height and thickness change 2003-2019 (5km)'
   data_source: icesheet_height_and_thickness_change.only
   ingest_task: ice_thickness_change
   file_type: '.tif'
@@ -104,7 +104,7 @@
 
 
 - id: permaice
-  title: 'Permafrost and Ground-Ice Conditions'
+  title: 'Permafrost and Ground-Ice (12.5km)'
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
@@ -124,7 +124,7 @@
 
 - &bedmachine
   id: bedmachine_bed
-  title: 'Bedrock Elevation'
+  title: 'Bedrock Elevation (1km)'
   data_source: bedmachine.only
   ingest_task: bedmachine
   ingest_task_kwargs: {'extract_dataset': 'bed'}
@@ -140,7 +140,7 @@
 
 - <<: *bedmachine
   id: bedmachine_surface
-  title: 'Surface Elevation'
+  title: 'Surface Elevation (1km)'
   ingest_task_kwargs: {'extract_dataset': 'surface'}
   style: null
   visible: False
@@ -148,7 +148,7 @@
 
 - <<: *bedmachine
   id: bedmachine_thickness
-  title: 'Ice Thickness'
+  title: 'Ice Thickness (1km)'
   ingest_task_kwargs: {'extract_dataset': 'thickness'}
   style: null
   visible: False
@@ -173,7 +173,7 @@
 #############
 
 - id: vegetation_biomass_2010
-  title: 'Vegetation Biomass 2010'
+  title: 'Vegetation Biomass 2010 (1km)'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
@@ -232,22 +232,8 @@
   group_path: 'Basemaps'
 
 
-# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
-# holes for small islands which are not present on the land layer, and that was
-# gross so we removed the ocean layer.
-- id: land
-  title: 'Land'
-  data_source: land_shape.only
-  ingest_task: zipped_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-  style: 'land'
-  visible: True
-  group_path: 'Basemaps'
-
-
 - id: arctic_dem
-  title: 'Arctic DEM (1km mosaic)'
+  title: 'Arctic DEM (1km)'
   data_source: arctic_dem.only
   ingest_task: arctic_dem
   file_type: '.tif'
@@ -260,8 +246,22 @@
   group_path: 'Basemaps'
 
 
+# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
+# holes for small islands which are not present on the land layer, and that was
+# gross so we removed the ocean layer.
+- id: land
+  title: 'Land'
+  data_source: land_shape.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  style: 'land'
+  visible: False 
+  group_path: 'Basemaps'
+
+
 - id: background
-  title: 'Background'
+  title: 'Background (1km)'
   data_source: background.only
   ingest_task: background_image
   file_type: '.tif'
