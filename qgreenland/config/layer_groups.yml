@@ -1,89 +1,173 @@
-Basemaps:
-  visible: True
-  expanded: True
-
-Glaciology:
-  visible: True
-  expanded: True
-
-Glaciology/Glacier Terminus:
-  visible: True
+Miscellaneous:
+  visible: False
   expanded: False
 
-Geophysics:
-  visible: True
-  expanded: True
-
-Geophysics/IceBridge BedMachine:
-  visible: True
+Miscellaneous/Place names:
+  visible: False
   expanded: False
 
-Geology & natural resources:
-  visible: True
+Miscellaneous/Arctic circle:
+  visible: False
   expanded: False
 
-# TODO paleontology better term?
-Paleo-data:
-  visible: True
+Miscellaneous/UTM zones:
+  visible: False
   expanded: False
 
-# TODO: Should "glaciology" and "sea ice" be subgroups to Cryosphere?
-Cryosphere:
-  visible: True
+Miscellaneous/Latitude lines:
+  visible: False
   expanded: False
+
+Miscellaneous/Longitude lines:
+  visible: False
+  expanded: False
+
 
 Atmosphere:
-  visible: True
+  visible: False
   expanded: False
 
-Oceanography:
-  visible: True
+Atmosphere/RACMO model output:
+  visible: False
   expanded: False
 
-Ecology:
-  visible: True
+Atmosphere/ERA5 Re-analysis:
+  visible: False
   expanded: False
+
 
 Biology:
   visible: True
   expanded: False
 
-Hydrology:
-  visible: True
+Biology/Fish:
+  visible: False
   expanded: False
+
+Biology/Birds:
+  visible: False
+  expanded: False
+
+Biology/Mammals:
+  visible: False
+  expanded: False
+
+Biology/Vegetation:
+  visible: False 
+  expanded: True 
+
 
 Built environment:
   visible: True
   expanded: False
 
+
+Environmental management:
+  visible: False
+  expanded: False
+
+Environmental management/Marine protected zones:
+  visible: False
+  expanded: False
+
+Environmental management/Exclusive economic zones:
+  visible: False
+  expanded: False
+
+
+Frozen ground:
+  visible: True
+  expanded: True
+
+
+Future projections:
+  visible: False
+  expanded: False
+
+
+Glaciology:
+  visible: True
+  expanded: True
+
+Glaciology/Glacier terminus positions 2000-2017:
+  visible: True
+  expanded: False
+
+Glaciology/Ice sheet velocity:
+  visible: True
+  expanded: False
+
+Glaciology/Ice thickness change:
+  visible: True
+  expanded: False
+
+
+Geology & natural resources:
+  visible: True
+  expanded: True
+
+
+Geophysics:
+  visible: False
+  expanded: False
+
+
+Human activity:
+  visible: False
+  expanded: False
+
+Human activity/Arctic shipping:
+  visible: False
+  expanded: False
+
+Human activity/Research stations:
+  visible: False
+  expanded: False
+
+Human activity/Historic expedition routes and stations:
+  visible: False
+  expanded: False
+
+
 Human health:
-  visible: True
+  visible: False
   expanded: False
 
-Political science:
+
+Hydrology:
   visible: True
+  expanded: True
+
+
+Oceanography:
+  visible: False 
   expanded: False
 
-Fisheries:
-  visible: True
+
+Sea ice:
+  visible: False
   expanded: False
 
-Birds:
-  visible: True
+
+Social Science:
+  visible: False
   expanded: False
 
-Mammals:
+
+Terrain models:
   visible: True
+  expanded: True
+
+Terrain models/BedMachine:
+  visible: False
   expanded: False
 
-Anthropology:
-  visible: True
+
+Satellite imagery:
+  visible: False
   expanded: False
 
-Future predictions:
-  visible: True
-  expanded: False
 
-Early explorations:
+Basemaps:
   visible: True
-  expanded: False
+  expanded: True

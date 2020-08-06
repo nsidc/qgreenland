@@ -1,6 +1,64 @@
-################
-#  Glaciology #
-################
+###########
+# Biology #
+###########
+
+- id: vegetation_biomass_2010
+  title: 'Vegetation Biomass 2010 (1km)'
+  description: 'Estimated above ground plant biomass for the tundra biome in kilograms per square meter. Based on trans-Arctic field data and AVHRR NDVI.'
+  data_source: arctic_vegetation_biomass_2010.only
+  ingest_task: arctic_vegetation
+  file_type: '.tif'
+  data_type: 'raster'
+  visible: False
+  group_path: 'Biology/Vegetation'
+  style: 'arctic_vegetation_biomass'
+
+
+#####################
+# Built environment #
+#####################
+
+- id: populated_places
+  title: 'Populated Places'
+  data_source: populated_places.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  # style: 'populated_places'
+  subset_kwargs:
+    xmin: -796814.1
+    ymin: -322934.6
+    xmax: 1103185.9
+    ymax: -3599419.2
+  # TODO: Enable a style with labels for placenames, make visible again
+  visible: False
+  group_path: 'Built environment'
+
+
+#################
+# Frozen ground #
+#################
+
+- id: permaice
+  title: 'Permafrost and Ground-Ice (12.5km)'
+  description: 'Soil characteristics categorized by permafrost extent, ground ice content, overburden thickness, and exposed bedrock.'
+  data_source: permaice_nhipa.only
+  ingest_task: permaice
+  file_type: '.tif'
+  data_type: 'raster'
+  style: 'permaice'
+  visible: False
+  group_path: 'Frozen ground'
+  warp_kwargs:
+    xRes: 12500
+    yRes: 12500
+    resampleAlg: 'near'
+    srcSRS: '+proj=laea +a=6371228.000 +b=6371228.000 +lon_0=0 +lat_0=90 +x_0=0 +y_0=0'
+
+
+##############
+# Glaciology #
+##############
 
 - &glacier_terminus
   id: glacier_terminus_glacier_ids
@@ -9,65 +67,71 @@
   ingest_task: glacier_terminus
   file_type: '.shp'
   data_type: 'vector'
-  group_path: 'Glaciology/Glacier Terminus Positions'
-  visible: True
+  group_path: 'Glaciology/Glacier terminus positions 2000-2017'
+  visible: False
 
 - <<: *glacier_terminus
   id: glacier_terminus_2000_2001
   title: 'Glacier Termini 2000 to 2001'
   data_source: glacier_terminus.2000_2001
+  visible: True
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2005_2006
   title: 'Glacier Termini 2005 to 2006'
   data_source: glacier_terminus.2005_2006
+  visible: True
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2006_2007
   title: 'Glacier Termini 2006 to 2007'
   data_source: glacier_terminus.2006_2007
+  visible: True
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2007_2008
   title: 'Glacier Termini 2007 to 2008'
   data_source: glacier_terminus.2007_2008
+  visible: True
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2008_2009
   title: 'Glacier Termini 2008 to 2009'
   data_source: glacier_terminus.2008_2009
+  visible: True
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2012_2013
   title: 'Glacier Termini 2012 to 2013'
   data_source: glacier_terminus.2012_2013
+  visible: True
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2014_2015
   title: 'Glacier Termini 2014 to 2015'
   data_source: glacier_terminus.2014_2015
+  visible: True
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2015_2016
   title: 'Glacier Termini 2015 to 2016'
   data_source: glacier_terminus.2015_2016
+  visible: True
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2016_2017
   title: 'Glacier Termini 2016 to 2017'
   data_source: glacier_terminus.2016_2017
+  visible: True
 
-################
-#  Cryosphere #
-################
 
 - id: velocity_mosaic
   title: 'Ice Sheet Velocity (500m)'
@@ -85,8 +149,7 @@
     xRes: 500
     yRes: 500
   visible: True
-  # TODO: Does this count as glaciology?
-  group_path: 'Cryosphere/Ice Sheet Velocity'
+  group_path: 'Glaciology/Ice sheet velocity'
 
 
 - id: ice_thickness_change
@@ -100,30 +163,47 @@
   style: 'ice_thickness_change'
   decompress_kwargs:
     extract_file: 'ICESat1_ICESat2_mass_change/gris.tif'
-  visible: True
-  # TODO: Does this count as glaciology?
-  group_path: 'Cryosphere/Ice Thickness Change'
-
-
-- id: permaice
-  title: 'Permafrost and Ground-Ice (12.5km)'
-  description: 'Soil characteristics categorized by permafrost extent, ground ice content, overburden thickness, and exposed bedrock.'
-  data_source: permaice_nhipa.only
-  ingest_task: permaice
-  file_type: '.tif'
-  data_type: 'raster'
-  style: 'permaice'
   visible: False
-  group_path: 'Cryosphere/Permafrost'
-  warp_kwargs:
-    xRes: 12500
-    yRes: 12500
-    resampleAlg: 'near'
-    srcSRS: '+proj=laea +a=6371228.000 +b=6371228.000 +lon_0=0 +lat_0=90 +x_0=0 +y_0=0'
+  # TODO: Does this count as glaciology?
+  group_path: 'Glaciology/Ice thickness change'
 
-################
-#  Geophysics #
-################
+
+###############################
+# Geology & natural resources #
+###############################
+
+
+- id: soil_types
+  title: 'Soil Characteristics'
+  description: 'Polygons representing dominant soil characteristics with percentage polygon area for each soil type. Data coverage limited to Greenland.'
+  data_source: soil_types.only
+  ingest_task: gzipped_shapefile_parts
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Geology & natural resources'
+  override_source_projection: '+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0'
+  style: 'soil_types'
+
+
+#############
+# Hydrology #
+#############
+
+- id: hydrologic_subbasins
+  title: 'Hydrologic Sub-Basins'
+  description: 'Polygons of ice sheet hydrologic sub-basins with area in square kilometers.'
+  data_source: hydrologic_subbasins.only
+  ingest_task: rarred_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Hydrology'
+  override_source_projection: 'ESRI:102018'
+
+##################
+# Terrain models #
+##################
 
 - &bedmachine
   id: bedmachine_bed
@@ -139,7 +219,7 @@
     xRes: 1000
     yRes: 1000
   visible: True
-  group_path: 'Geophysics/IceBridge BedMachine'
+  group_path: 'Terrain models/BedMachine'
 
 
 - <<: *bedmachine
@@ -168,87 +248,6 @@
   visible: False
 
 
-#############
-# Hydrology #
-#############
-
-- id: hydrologic_subbasins
-  title: 'Hydrologic Sub-Basins'
-  description: 'Polygons of ice sheet hydrologic sub-basins with area in square kilometers.'
-  data_source: hydrologic_subbasins.only
-  ingest_task: rarred_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-  visible: False
-  group_path: 'Hydrology'
-  override_source_projection: 'ESRI:102018'
-
-#############
-# Biology #
-#############
-
-- id: vegetation_biomass_2010
-  title: 'Vegetation Biomass 2010 (1km)'
-  description: 'Estimated above ground plant biomass for the tundra biome in kilograms per square meter. Based on trans-Arctic field data and AVHRR NDVI.'
-  data_source: arctic_vegetation_biomass_2010.only
-  ingest_task: arctic_vegetation
-  file_type: '.tif'
-  data_type: 'raster'
-  visible: True
-  group_path: 'Biology'
-  style: 'arctic_vegetation_biomass'
-
-
-###############################
-# Geology & natural resources #
-###############################
-
-
-- id: soil_types
-  title: 'Soil Characteristics'
-  description: 'Polygons representing dominant soil characteristics with percentage polygon area for each soil type. Data coverage limited to Greenland.'
-  data_source: soil_types.only
-  ingest_task: gzipped_shapefile_parts
-  file_type: '.shp'
-  data_type: 'vector'
-  visible: False
-  group_path: 'Geology & natural resources'
-  override_source_projection: '+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0'
-  style: 'soil_types'
-
-
-############
-# BASEMAPS #
-############
-
-
-- id: populated_places
-  title: 'Populated Places'
-  data_source: populated_places.only
-  ingest_task: zipped_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-  # style: 'populated_places'
-  subset_kwargs:
-    xmin: -796814.1
-    ymin: -322934.6
-    xmax: 1103185.9
-    ymax: -3599419.2
-  # TODO: Enable a style with labels for placenames, make visible again
-  visible: False
-  group_path: 'Basemaps'
-
-
-- id: coastlines
-  title: 'Coastlines'
-  data_source: coastlines.only
-  ingest_task: zipped_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-  visible: False
-  group_path: 'Basemaps'
-
-
 - id: arctic_dem
   title: 'Arctic DEM (1km)'
   description: 'Surface elevation in meters.'
@@ -260,6 +259,21 @@
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
+  visible: False
+  group_path: 'Terrain models'
+
+
+############
+# BASEMAPS #
+############
+
+
+- id: coastlines
+  title: 'Coastlines'
+  data_source: coastlines.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
   visible: False
   group_path: 'Basemaps'
 

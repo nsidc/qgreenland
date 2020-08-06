@@ -1,3 +1,7 @@
+# v0.24.0 (Unreleased)
+
+- Re-organize, rename layers and layer groups to spec provided by Twila
+
 # v0.23.0 (2020-08-05)
 
 - Layers now have layer-specific description at the beginning of the tooltip,
