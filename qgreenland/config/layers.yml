@@ -201,6 +201,88 @@
   group_path: 'Hydrology'
   override_source_projection: 'ESRI:102018'
 
+
+##################
+# Sea ice #
+##################
+
+- &seaice_median_extent
+  id: seaice_median_extent_01
+  title: 'January Median Sea Ice Extent'
+  description: 'Median extent from the period 1981 through 2010.'
+  data_source: seaice_index.median_extent_line_01
+  ingest_task: 'zipped_shapefile'
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Sea ice/Median ice extent'
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_02
+  title: 'Febuary Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_02
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_03
+  title: 'March Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_03
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_04
+  title: 'April Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_04
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_05
+  title: 'May Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_05
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_06
+  title: 'June Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_06
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_07
+  title: 'July Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_07
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_08
+  title: 'August Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_08
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_09
+  title: 'September Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_09
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_10
+  title: 'October Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_10
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_11
+  title: 'November Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_11
+
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_12
+  title: 'December Median Sea Ice Extent'
+  data_source: seaice_index.median_extent_line_12
+
+
 ##################
 # Terrain models #
 ##################

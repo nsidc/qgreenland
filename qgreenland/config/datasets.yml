@@ -221,5 +221,54 @@
     title: 'Northern Circumpolar Soils Map, Version 1'
     abstract: 'This data set consists of a circumpolar map of dominant soil characteristics, with a scale of 1:10,000,000, covering the United States, Canada, Greenland, Iceland, northern Europe, Russia, Mongolia, and Kazakhstan. The map was created using the Northern and Mid Latitude Soil Database. The map is in ESRI Shapefile format, consisting of 11 regional areas.. Polygons have attributes that give the percentage polygon area that is a given soil type. The map shows the dominant soil of the spatial polygon unless the polygon is over 90 percent rock or ice. It also shows the proportion of polygon encompassed by the dominant soil or nonsoil. Soils include turbels, orthels, histels, histosols, mollisols, vertisols, aridisols, andisols, entisols, spodosols, inceptisols (and hapludolls), alfisols (cryalf and udalf), natric great groups, aqu-suborders, glaciers, and rocklands. Data are available via ftp.'
     citation:
-      text: 'Tarnocai, C., J. Kimble, D. Swanson, S. Goryachkin, Y. M. Naumov, V. Stolbovoi, B. Jakobsen, G. Broll, L. Montanarella, A. Arnoldussen, O. Arnalds, and M. Yli-Halla. 2002. Northern Circumpolar Soils Map, Version 1. [Indicate subset used]. Ottawa, Canada. Research Branch, Agriculture and Agri-Food Canada. doi: https://doi.org/. 2020-08-04.'
+      text: 'Tarnocai, C., J. Kimble, D. Swanson, S. Goryachkin, Y. M. Naumov, V. Stolbovoi, B. Jakobsen, G. Broll, L. Montanarella, A. Arnoldussen, O. Arnalds, and M. Yli-Halla. 2002. Northern Circumpolar Soils Map, Version 1. Greenland. Ottawa, Canada. Research Branch, Agriculture and Agri-Food Canada. doi: https://doi.org/. 2020-08-04.'
       url: 'https://nsidc.org/data/GGD602/versions/1'
+
+
+- id: seaice_index
+  access_method: http
+  sources:
+    - id: median_extent_line_01
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_01_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_02
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_02_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_03
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_03_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_04
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_04_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_05
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_05_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_06
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_06_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_07
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_07_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_08
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_08_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_09
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_09_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_10
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_10_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_11
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_11_1981-2010_polyline_v3.0.zip'
+    - id: median_extent_line_12
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_12_1981-2010_polyline_v3.0.zip'
+  metadata:
+    title: 'Sea Ice Index, Version 3'
+    abstract: 'The Sea Ice Index provides a quick look at Arctic- and Antarctic-wide changes in sea ice. It is a source for consistent, up-to-date sea ice extent and concentration images, in PNG format, and data values, in GeoTIFF and ASCII text files, from November 1978 to the present. Sea Ice Index images also depict trends and anomalies in ice cover calculated using a 30-year reference period of 1981 through 2010.
+
+The images and data are produced in a consistent way that makes the Index time-series appropriate for use when looking at long-term trends in sea ice cover. Both monthly and daily products are available. However, monthly products are better to use for long-term trend analysis because errors in the daily product tend to be averaged out in the monthly product and because day-to-day variations are often the result of short-term weather.'
+    citation:
+      text: 'Fetterer, F., K. Knowles, W. N. Meier, M. Savoie, and A. K. Windnagel. 2017, updated daily. Sea Ice Index, Version 3. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.7265/N5K072F8. 2020-08-06.'
+      url: 'https://nsidc.org/data/g02135'
