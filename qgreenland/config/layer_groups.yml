@@ -148,6 +148,10 @@ Sea ice:
   visible: False
   expanded: False
 
+Sea ice/Median ice extent:
+  visible: False
+  expanded: False
+
 Sea ice/NSIDC Concentration (25 km):
   visible: False
   expanded: True
@@ -157,10 +161,6 @@ Sea ice/NSIDC Concentration (25 km)/September (min extent):
   expanded: False
 
 Sea ice/NSIDC Concentration (25 km)/Feb|March (max extent):
-  visible: False
-  expanded: False
-
-Sea ice/Median ice extent:
   visible: False
   expanded: False
 
