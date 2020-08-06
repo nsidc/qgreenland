@@ -1,11 +1,11 @@
-# v0.24.0 (unreleased)
+# v0.25.0 (2020-08-06)
 
 - Replace `ArcticDEM` layer task with generic `Raster` task.
+- Rename `ReprojectRaster` -> `WarpRaster`.
 - Add Sea Ice Index layers:
   - Median extent line layers.
-  - Sea ice min extent monthly concentrations
-  - Sea ice max extent monthly concentrations
-
+  - Sea ice min extent monthly concentrations.
+  - Sea ice max extent monthly concentrations.
 
 # v0.24.0 (2020-08-06)
 
