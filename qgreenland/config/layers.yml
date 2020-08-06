@@ -128,7 +128,7 @@
 - &bedmachine
   id: bedmachine_bed
   title: 'Bedrock Elevation (1km)'
-  description: 'Bedrock elevation in meters.'
+  description: 'Bedrock elevation in meters. Source is mass conservation (Mathieu Morlighem).'
   data_source: bedmachine.only
   ingest_task: bedmachine
   ingest_task_kwargs: {'extract_dataset': 'bed'}
@@ -145,7 +145,7 @@
 - <<: *bedmachine
   id: bedmachine_surface
   title: 'Surface Elevation (1km)'
-  description: 'Surface elevation in meters.'
+  description: 'Surface elevation in meters. Source is gimpdem v2.1 (http://bprc.osu.edu/GDG/gimpdem.php)'
   ingest_task_kwargs: {'extract_dataset': 'surface'}
   style: null
   visible: False
@@ -154,7 +154,7 @@
 - <<: *bedmachine
   id: bedmachine_thickness
   title: 'Ice Thickness (1km)'
-  description: 'Ice thickness in meters.'
+  description: 'Ice thickness in meters. Source is Mass conservation (Mathieu Morlighem)'
   ingest_task_kwargs: {'extract_dataset': 'thickness'}
   style: null
   visible: False
