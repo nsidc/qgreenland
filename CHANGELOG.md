@@ -1,6 +1,11 @@
 # v0.24.0 (unreleased)
 
-- Add Sea Ice Index median extent line layers.
+- Replace `ArcticDEM` layer task with generic `Raster` task.
+- Add Sea Ice Index layers:
+  - Median extent line layers.
+  - Sea ice min extent monthly concentrations
+  - Sea ice max extent monthly concentrations
+
 
 # v0.24.0 (2020-08-06)
 
