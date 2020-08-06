@@ -1,6 +1,7 @@
 # v0.24.0 (Unreleased)
 
 - Re-organize, rename layers and layer groups to spec provided by Twila
+- Add BedMachine "sources" from NetCDF datasets to layer descriptions
 
 # v0.23.0 (2020-08-05)
 
