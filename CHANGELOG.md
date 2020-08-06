@@ -1,3 +1,7 @@
+# v0.24.0 (unreleased)
+
+- Add Sea Ice Index median extent line layers.
+
 # v0.24.0 (2020-08-06)
 
 - Re-organize, rename layers and layer groups to spec provided by Twila
