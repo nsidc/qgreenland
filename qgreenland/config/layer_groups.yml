@@ -145,8 +145,8 @@ Oceanography:
 
 
 Sea ice:
-  visible: False
-  expanded: False
+  visible: True
+  expanded: True
 
 Sea ice/Median ice extent:
   visible: False
