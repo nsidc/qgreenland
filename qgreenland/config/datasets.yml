@@ -264,6 +264,40 @@
     - id: median_extent_line_12
       urls:
         - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_12_1981-2010_polyline_v3.0.zip'
+
+    - id: minimum_concentration_2009
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_200909_concentration_v3.0.tif'
+    - id: minimum_concentration_2010
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201009_concentration_v3.0.tif'
+    - id: minimum_concentration_2011
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201109_concentration_v3.0.tif'
+    - id: minimum_concentration_2012
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201209_concentration_v3.0.tif'
+    - id: minimum_concentration_2013
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201309_concentration_v3.0.tif'
+    - id: minimum_concentration_2014
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201409_concentration_v3.0.tif'
+    - id: minimum_concentration_2015
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201509_concentration_v3.0.tif'
+    - id: minimum_concentration_2016
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201609_concentration_v3.0.tif'
+    - id: minimum_concentration_2017
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201709_concentration_v3.0.tif'
+    - id: minimum_concentration_2018
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201809_concentration_v3.0.tif'
+    - id: minimum_concentration_2019
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201909_concentration_v3.0.tif'
   metadata:
     title: 'Sea Ice Index, Version 3'
     abstract: 'The Sea Ice Index provides a quick look at Arctic- and Antarctic-wide changes in sea ice. It is a source for consistent, up-to-date sea ice extent and concentration images, in PNG format, and data values, in GeoTIFF and ASCII text files, from November 1978 to the present. Sea Ice Index images also depict trends and anomalies in ice cover calculated using a 30-year reference period of 1981 through 2010.

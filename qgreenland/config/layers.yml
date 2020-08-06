@@ -283,6 +283,79 @@
   data_source: seaice_index.median_extent_line_12
 
 
+- &seaice_minimum_concentration
+  id: minimum_concentration_2009
+  title: 'NSIDC Sea Ice Concentration September 2009'
+  description: 'Concentration of sea ice as a 10x scaled percentage (e.g., 999 = 99.9%). Values under 150 (15%) are considered to be open water.'
+  data_source: seaice_index.minimum_concentration_2009
+  style: 'sea_ice_concentration'
+  ingest_task: 'raster'
+  file_type: '.tif'
+  data_type: 'raster'
+  visible: False
+  group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2010
+  title: 'NSIDC Sea Ice Concentration September 2010'
+  data_source: seaice_index.minimum_concentration_2010
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2011
+  title: 'NSIDC Sea Ice Concentration September 2011'
+  data_source: seaice_index.minimum_concentration_2011
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2012
+  title: 'NSIDC Sea Ice Concentration September 2012'
+  data_source: seaice_index.minimum_concentration_2012
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2013
+  title: 'NSIDC Sea Ice Concentration September 2013'
+  data_source: seaice_index.minimum_concentration_2013
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2014
+  title: 'NSIDC Sea Ice Concentration September 2014'
+  data_source: seaice_index.minimum_concentration_2014
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2015
+  title: 'NSIDC Sea Ice Concentration September 2015'
+  data_source: seaice_index.minimum_concentration_2015
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2016
+  title: 'NSIDC Sea Ice Concentration September 2016'
+  data_source: seaice_index.minimum_concentration_2016
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2017
+  title: 'NSIDC Sea Ice Concentration September 2017'
+  data_source: seaice_index.minimum_concentration_2017
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2018
+  title: 'NSIDC Sea Ice Concentration September 2018'
+  data_source: seaice_index.minimum_concentration_2018
+
+
+- <<: *seaice_minimum_concentration
+  id: minimum_concentration_2019
+  title: 'NSIDC Sea Ice Concentration September 2019'
+  data_source: seaice_index.minimum_concentration_2019
+
+
 ##################
 # Terrain models #
 ##################
