@@ -169,6 +169,11 @@ def _add_layers(project):
             layer_cfg.get('visible', True)
         )
 
+        # All layers start collapsed. When expanded (the default), they show the
+        # entire colormap. This takes up a large amount of space in the table of
+        # contents.
+        group_layer.setExpanded(False)
+
         # TODO: necessary for root group?
         project.addMapLayer(map_layer, addToLegend=False)
 
