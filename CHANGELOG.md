@@ -1,7 +1,10 @@
-# v0.24.0 (Unreleased)
+# v0.24.0 (2020-08-06)
 
 - Re-organize, rename layers and layer groups to spec provided by Twila
 - Add BedMachine "sources" from NetCDF datasets to layer descriptions
+- Layers are collapsed by default. Previously, layers would be expanded to show
+  their entire color maps by default. This took up a significant amount of
+  screen space in the table of contents.
 
 # v0.23.0 (2020-08-05)
 
