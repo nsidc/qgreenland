@@ -1,7 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.raster import (ReprojectRaster,
-                                            SubsetRaster)
+from qgreenland.tasks.common.raster import ReprojectRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -17,11 +16,7 @@ class BackgroundImage(LayerPipeline):
             requires_task=fetch_data,
             layer_id=self.layer_id
         )  # ->
-        reproject_raster = ReprojectRaster(
+        return ReprojectRaster(
             requires_task=unzip,
-            layer_id=self.layer_id
-        )  # ->
-        return SubsetRaster(
-            requires_task=reproject_raster,
             layer_id=self.layer_id
         )

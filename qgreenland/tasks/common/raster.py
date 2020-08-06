@@ -71,7 +71,6 @@ class ReprojectRaster(LayerTask):
 
         warp_kwargs = {
             'resampleAlg': 'bilinear',
-            # TODO: does this replace the need for `SubsetRaster`?
             'outputBounds': list(PROJECT_EXTENT.values())
         }
         if 'warp_kwargs' in self.layer_cfg:
@@ -85,24 +84,3 @@ class ReprojectRaster(LayerTask):
             reproject_raster(inp_path, out_path,
                              layer_cfg=self.layer_cfg,
                              warp_kwargs=warp_kwargs)
-
-
-class SubsetRaster(LayerTask):
-    task_type = TaskType.WIP
-
-    def output(self):
-        return luigi.LocalTarget(os.path.join(self.outdir, 'subset'))
-
-    def run(self):
-        ifile = find_single_file_by_ext(self.input().path,
-                                        ext=self.layer_cfg['file_type'])
-
-        with rio.open(ifile, 'r') as ds:
-            polygon = bbox_dict_to_polygon(PROJECT_EXTENT)
-            bb_poly = geopandas.GeoSeries([polygon])
-            img_out, meta_out = eps.crop_image(ds, bb_poly)
-
-        with temporary_path_dir(self.output()) as tmp_dir:
-            tmp_path = os.path.join(tmp_dir, self.filename)
-            with rio.open(tmp_path, 'w', **meta_out) as c_ds:
-                c_ds.write(img_out)
