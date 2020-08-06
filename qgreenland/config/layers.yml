@@ -334,7 +334,7 @@
   title: 'Arctic DEM (1km)'
   description: 'Surface elevation in meters.'
   data_source: arctic_dem.only
-  ingest_task: arctic_dem
+  ingest_task: 'raster'
   file_type: '.tif'
   data_type: 'raster'
   style: 'arctic_dem'
