@@ -3,21 +3,10 @@ import subprocess
 
 import geopandas
 import pyproj
-from shapely.geometry import Polygon
 
 from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT
 
 logger = logging.getLogger('luigi-interface')
-
-
-def bbox_dict_to_polygon(d):
-    return Polygon([
-        (d['xmin'], d['ymax']),
-        (d['xmax'], d['ymax']),
-        (d['xmax'], d['ymin']),
-        (d['xmin'], d['ymin']),
-        (d['xmin'], d['ymax']),
-    ])
 
 
 def reproject_shapefile(shapefile_path, *, layer_cfg):

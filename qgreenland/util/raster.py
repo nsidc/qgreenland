@@ -36,7 +36,7 @@ def _get_raster_srs(fp):
         return None
 
 
-def reproject_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
+def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
     logger.info(f"Reprojecting {layer_cfg['id']}...")
 
     if not warp_kwargs:

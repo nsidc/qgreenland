@@ -1,16 +1,13 @@
 import os
 import shutil
 
-import geopandas
 import luigi
 import rasterio as rio
-from earthpy import spatial as eps
 
 from qgreenland.constants import PROJECT_EXTENT, TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
-from qgreenland.util.raster import reproject_raster
-from qgreenland.util.shapefile import bbox_dict_to_polygon
+from qgreenland.util.raster import warp_raster
 
 
 class BuildRasterOverviews(LayerTask):
@@ -55,7 +52,7 @@ class BuildRasterOverviews(LayerTask):
                 ds.build_overviews(overview_levels, resampling_method)
 
 
-class ReprojectRaster(LayerTask):
+class WarpRaster(LayerTask):
     task_type = TaskType.WIP
     input_ext_override = luigi.Parameter(default=None)
 
@@ -81,6 +78,6 @@ class ReprojectRaster(LayerTask):
 
         with temporary_path_dir(self.output()) as tmp_dir:
             out_path = os.path.join(tmp_dir, self.filename)
-            reproject_raster(inp_path, out_path,
-                             layer_cfg=self.layer_cfg,
-                             warp_kwargs=warp_kwargs)
+            warp_raster(inp_path, out_path,
+                        layer_cfg=self.layer_cfg,
+                        warp_kwargs=warp_kwargs)

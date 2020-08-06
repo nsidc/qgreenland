@@ -1,5 +1,5 @@
 from qgreenland.tasks.common.fetch import FetchCmrGranule
-from qgreenland.tasks.common.raster import ReprojectRaster
+from qgreenland.tasks.common.raster import WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -11,7 +11,7 @@ class ArcticVegetation(LayerPipeline):
             source_cfg=source,
             output_name='arctic_vegetation'
         )  # ->
-        return ReprojectRaster(
+        return WarpRaster(
             requires_task=fetch_data,
             layer_id=self.layer_id
         )

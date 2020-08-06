@@ -1,6 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.raster import ReprojectRaster
+from qgreenland.tasks.common.raster import WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -16,7 +16,7 @@ class BackgroundImage(LayerPipeline):
             requires_task=fetch_data,
             layer_id=self.layer_id
         )  # ->
-        return ReprojectRaster(
+        return WarpRaster(
             requires_task=unzip,
             layer_id=self.layer_id
         )

@@ -2,7 +2,7 @@ import luigi
 
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset
-from qgreenland.tasks.common.raster import ReprojectRaster
+from qgreenland.tasks.common.raster import WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -27,7 +27,7 @@ class VelocityMosaic(LayerPipeline):
             layer_id=self.layer_id,
             dataset_name=self.extract_dataset
         )  # ->
-        return ReprojectRaster(
+        return WarpRaster(
             requires_task=extract_nc_dataset,
             layer_id=self.layer_id
         )
