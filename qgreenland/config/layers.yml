@@ -206,6 +206,7 @@
 # Sea ice #
 ##################
 
+# sea ice median extent polylines:
 - &seaice_median_extent
   id: seaice_median_extent_01
   title: 'January Median Sea Ice Extent'
@@ -296,6 +297,7 @@
   group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
 
 
+# sea ice min extent monthly concentration:
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2010
   title: 'NSIDC Sea Ice Concentration September 2010'
@@ -354,6 +356,79 @@
   id: minimum_concentration_2019
   title: 'NSIDC Sea Ice Concentration September 2019'
   data_source: seaice_index.minimum_concentration_2019
+
+# sea ice max extent monthly concentrations:
+- &seaice_maximum_concentration
+  id: maximum_concentration_2009
+  title: 'NSIDC Sea Ice Concentration March 2009'
+  description: 'Concentration of sea ice as a 10x scaled percentage (e.g., 999 = 99.9%). Values under 150 (15%) are considered to be open water.'
+  data_source: seaice_index.maximum_concentration_2009
+  style: 'sea_ice_concentration'
+  ingest_task: 'raster'
+  file_type: '.tif'
+  data_type: 'raster'
+  visible: False
+  group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb|March (max extent)'
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2010
+  title: 'NSIDC Sea Ice Concentration March 2010'
+  data_source: seaice_index.maximum_concentration_2010
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2011
+  title: 'NSIDC Sea Ice Concentration March 2011'
+  data_source: seaice_index.maximum_concentration_2011
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2012
+  title: 'NSIDC Sea Ice Concentration March 2012'
+  data_source: seaice_index.maximum_concentration_2012
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2013
+  title: 'NSIDC Sea Ice Concentration March 2013'
+  data_source: seaice_index.maximum_concentration_2013
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2014
+  title: 'NSIDC Sea Ice Concentration March 2014'
+  data_source: seaice_index.maximum_concentration_2014
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2015
+  title: 'NSIDC Sea Ice Concentration February 2015'
+  data_source: seaice_index.maximum_concentration_2015
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2016
+  title: 'NSIDC Sea Ice Concentration March 2016'
+  data_source: seaice_index.maximum_concentration_2016
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2017
+  title: 'NSIDC Sea Ice Concentration March 2017'
+  data_source: seaice_index.maximum_concentration_2017
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2018
+  title: 'NSIDC Sea Ice Concentration March 2018'
+  data_source: seaice_index.maximum_concentration_2018
+
+
+- <<: *seaice_maximum_concentration
+  id: maximum_concentration_2019
+  title: 'NSIDC Sea Ice Concentration March 2019'
+  data_source: seaice_index.maximum_concentration_2019
 
 
 ##################
