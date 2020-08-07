@@ -342,3 +342,18 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'Fetterer, F., K. Knowles, W. N. Meier, M. Savoie, and A. K. Windnagel. 2017, updated daily. Sea Ice Index, Version 3. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.7265/N5K072F8. 2020-08-06.'
       url: 'https://nsidc.org/data/g02135'
+
+
+- id: utm_zones
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://sandbox.idre.ucla.edu/mapshare/data/world/data/utmzone.zip'
+  metadata:
+    title: 'World UTM Zones'
+    abstract: 'World UTM Zones represents the Universal Transverse Mercator (UTM) zones of the world. The polygons represent the Universal Transverse Mercator (UTM) zones, which, lie between 84 degrees North and 80 degrees South latitude. With few exceptions, they divide the world into sixty zones, each of which is six degrees of longitude wide. The zones are numbered from 1 through 60 eastward from 180 degrees West longitude. The zone characters designate eight degrees of latitude high rows extending north and south from the equator with the exception of the northern-most row which is 12 degrees high.'
+    # Is this citation good enough? Find another source?
+    citation:
+      text: 'ESRI Data & Maps. 2015.'
+      url: 'https://apps.gis.ucla.edu/geodata/dataset/world_utm_zones'
