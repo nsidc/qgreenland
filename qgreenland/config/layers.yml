@@ -1,3 +1,18 @@
+#################
+# Miscellaneous #
+#################
+
+- id: utm_zones
+  title: Universal Transverse Mercator (UTM) Zones
+  data_source: utm_zones.only
+  ingest_task: utm_zones
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous'
+  style: 'transparent_shape'
+
+
 ###########
 # Biology #
 ###########

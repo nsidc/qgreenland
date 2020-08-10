@@ -1,16 +1,12 @@
 Miscellaneous:
   visible: False
-  expanded: False
+  expanded: True
 
 Miscellaneous/Place names:
   visible: False
   expanded: False
 
 Miscellaneous/Arctic circle:
-  visible: False
-  expanded: False
-
-Miscellaneous/UTM zones:
   visible: False
   expanded: False
 

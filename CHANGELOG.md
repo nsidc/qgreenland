@@ -1,3 +1,7 @@
+# v0.26.0 (Unreleased)
+
+- New Miscellaneous layer: Universal Transverse Mercatur (UTM) Zones
+
 # v0.25.0 (2020-08-06)
 
 - Replace `ArcticDEM` layer task with generic `Raster` task.

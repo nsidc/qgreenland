@@ -7,6 +7,7 @@ from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
 from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_shapefile import RarredShapefile
 from qgreenland.tasks.layers.raster import Raster
+from qgreenland.tasks.layers.utm_zones import UtmZones
 from qgreenland.tasks.layers.velocity_mosaic import VelocityMosaic
 from qgreenland.tasks.layers.zipped_shapefile import ZippedShapefile
 
@@ -20,6 +21,7 @@ INGEST_TASKS = {
     'permaice': Permaice,
     'rarred_shapefile': RarredShapefile,
     'raster': Raster,
+    'utm_zones': UtmZones,
     'velocity_mosaic': VelocityMosaic,
     'zipped_shapefile': ZippedShapefile,
 }
