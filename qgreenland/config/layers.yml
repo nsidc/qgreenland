@@ -15,6 +15,7 @@
 
 - id: arctic_circle
   title: Arctic Circle (66° 34' North)
+  description: "The Arctic Circle is an imaginary line that circles the globe at approximately 66° 34' N and marks the latitude above which the sun does not set on the summer solstice, and does not rise on the winter solstice."
   data_source: arctic_circle.only
   ingest_task: local_shapefile
   file_type: '.shp'
