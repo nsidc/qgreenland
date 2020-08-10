@@ -5,11 +5,11 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [-180, 66.567], [-90, 66.567], [0, 66.567], [90, 66.567], [180, 66.567]
+          [-180, 66.566667], [-90, 66.566667], [0, 66.566667], [90, 66.566667], [180, 66.566667]
         ]
       },
       "properties": {
-        "Name": "Arctic Circle (66.567 degrees North)",
+        "Name": "Arctic Circle (66.56667 degrees North)",
       }
     }
   ]

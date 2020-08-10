@@ -14,7 +14,7 @@
 
 
 - id: arctic_circle
-  title: Arctic Circle (66.567 degrees North)
+  title: Arctic Circle (66° 34' North)
   data_source: arctic_circle.only
   ingest_task: local_shapefile
   file_type: '.shp'
