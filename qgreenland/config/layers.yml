@@ -21,8 +21,11 @@
   data_type: 'vector'
   visible: False
   group_path: 'Miscellaneous'
-  ogr2ogr_args_str: "-s_srs 'EPSG:4326' -t_srs 'EPSG:4326' -segmentize 1"
-  ogr2ogr_input_filename: 'arctic_circle.geojson'
+  ogr2ogr_kwargs:
+    input_filename: 'arctic_circle.geojson'
+    s_srs: 'EPSG:4326'
+    t_srs: 'EPSG:4326'
+    segmentize: 1
 
 
 ###########

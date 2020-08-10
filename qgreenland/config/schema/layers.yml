@@ -38,9 +38,14 @@ layer:
   # `EPSG:3321`.
   override_source_projection: str(required=False)
 
-  # ogr2ogr args
-  ogr2ogr_args_str: str(required=False)
-  ogr2ogr_input_filename: str(required=False)
+  ogr2ogr_kwargs: include('ogr2ogr_kwargs', required=False)
+
+ogr2ogr_kwargs:
+  # https://gdal.org/programs/ogr2ogr.html
+  input_filename: str(required=True)
+  s_srs: str(required=False)
+  t_srs: str(required=False)
+  segmentize: int(required=False)
 
 ---
 decompress_kwargs:

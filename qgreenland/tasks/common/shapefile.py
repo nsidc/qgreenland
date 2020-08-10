@@ -78,15 +78,21 @@ class Ogr2OgrShapefile(LayerTask):
         return luigi.LocalTarget(f'{self.outdir}/transform/')
 
     def run(self):
-        # TODO: fail if expected ogr2ogr args are not present
-        input_filename = self.layer_cfg['ogr2ogr_input_filename']
+        if (ogr2ogr_kwargs := self.layer_cfg.get('ogr2ogr_kwargs')) is None:
+            raise RuntimeError('`Ogr2OgrShapefile` task requires `ogr2ogr_kwargs` in the layer config.')
+            
+        input_filename = ogr2ogr_kwargs.pop('input_filename')
         infile = os.path.join(self.input().path, input_filename)
 
-        shp_name = f'{os.path.splitext(input_filename)[0]}.shp'
+        cmd_args_list = []
+        for k, v in ogr2ogr_kwargs.items():
+            cmd_args_list.append(f'-{k} {v}')
+
+        cmd_args_str = ' '.join(cmd_args_list)
 
         with temporary_path_dir(self.output()) as temp_path:
-            outfile = os.path.join(temp_path, shp_name)
-            cmd = f". activate base && ogr2ogr {self.layer_cfg['ogr2ogr_args_str']} {outfile} {infile}"
+            outfile = os.path.join(temp_path, f'{os.path.splitext(input_filename)[0]}.shp')
+            cmd = f". activate base && ogr2ogr {cmd_args_str} {outfile} {infile}"
 
             result = subprocess.run(cmd,
                                     shell=True,
