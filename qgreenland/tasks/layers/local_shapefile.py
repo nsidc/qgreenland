@@ -5,7 +5,7 @@ from qgreenland.tasks.common.shapefile import (ReprojectShapefile,
 from qgreenland.util.luigi import LayerPipeline
 
 
-class ArcticCircle(LayerPipeline):
+class LocalShapefile(LayerPipeline):
 
     def requires(self):
         fetch_data = FetchLocalDataFiles(
