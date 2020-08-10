@@ -4,10 +4,11 @@ import subprocess
 
 import luigi
 
-from qgreenland.constants import TaskType
+from qgreenland.constants import TaskType, PROJECT_CRS, PROJECT_EXTENT
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 from qgreenland.util.shapefile import (filter_shapefile,
+                                       ogr2ogr,
                                        reproject_shapefile,
                                        subset_shapefile)
 
@@ -79,31 +80,26 @@ class Ogr2OgrShapefile(LayerTask):
         return luigi.LocalTarget(f'{self.outdir}/transform/')
 
     def run(self):
-        if (ogr2ogr_kwargs := self.layer_cfg.get('ogr2ogr_kwargs')) is None:
-            raise RuntimeError(
-                '`Ogr2OgrShapefile` task requires `ogr2ogr_kwargs` in the layer config.'
-            )
+        input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
 
-        input_filename = ogr2ogr_kwargs.pop('input_filename')
-        infile = os.path.join(self.input().path, input_filename)
+        ogr2ogr_kwargs = {
+            'clipsrc': '"{xmin}" "{ymin}" "{xmax}" "{ymax}"'.format(**PROJECT_EXTENT),
+            't_srs': PROJECT_CRS
+        }
+        ogr2ogr_kwargs.update(input_ogr2ogr_kwargs)
 
-        cmd_args_list = []
-        for k, v in ogr2ogr_kwargs.items():
-            cmd_args_list.append(f'-{k} {v}')
-
-        cmd_args_str = ' '.join(cmd_args_list)
+        if 'input_filename' in ogr2ogr_kwargs:
+            input_filename = ogr2ogr_kwargs.pop('input_filename')
+        else:
+            shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
+            input_filename = shapefile
 
         with temporary_path_dir(self.output()) as temp_path:
+            infile = os.path.join(self.input().path, input_filename)
+
             outfile = os.path.join(
                 temp_path,
                 f'{os.path.splitext(input_filename)[0]}.shp'
             )
-            cmd = f'. activate base && ogr2ogr {cmd_args_str} {outfile} {infile}'
 
-            result = subprocess.run(cmd,
-                                    shell=True,
-                                    executable='/bin/bash',
-                                    capture_output=True)
-
-        if result.returncode != 0:
-            raise RuntimeError(result.stderr)
+            ogr2ogr(infile, outfile, **ogr2ogr_kwargs)

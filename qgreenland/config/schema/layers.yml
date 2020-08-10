@@ -42,7 +42,7 @@ layer:
 
 ogr2ogr_kwargs:
   # https://gdal.org/programs/ogr2ogr.html
-  input_filename: str(required=True)
+  input_filename: str(required=False)
   s_srs: str(required=False)
   t_srs: str(required=False)
   segmentize: int(required=False)
