@@ -1,5 +1,6 @@
 import os
 import tempfile
+from xml.sax.saxutils import escape
 
 import qgis.core as qgc
 from jinja2 import Template
@@ -275,7 +276,7 @@ def build_layer_description(layer_cfg):
         description += '\n\n'
         description += dataset_metadata.get('abstract')
 
-    return description
+    return escape(description)
 
 
 def build_layer_abstract(layer_cfg):
@@ -299,4 +300,4 @@ def build_layer_abstract(layer_cfg):
             abstract += 'Citation URL:\n'
             abstract += citation_cfg['url']
 
-    return abstract
+    return escape(abstract)
