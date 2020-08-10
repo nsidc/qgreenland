@@ -1,3 +1,8 @@
+# v0.26.0 (Unreleased)
+
+- New Miscellaneous layer: Universal Transverse Mercatur (UTM) Zones
+- Fix abstract for Permafrost/Ground Ice Conditions layer
+
 # v0.25.0 (2020-08-06)
 
 - Replace `ArcticDEM` layer task with generic `Raster` task.

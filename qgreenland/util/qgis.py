@@ -1,5 +1,6 @@
 import os
 import tempfile
+from xml.sax.saxutils import escape
 
 import qgis.core as qgc
 from jinja2 import Template
@@ -101,9 +102,8 @@ def get_map_layer(layer_cfg, project_crs):
 
     _add_layer_metadata(map_layer, layer_cfg)
 
-    # TODO: COO COO CACHOO
-    if layer_cfg.get('style'):
-        load_qml_style(map_layer, layer_cfg.get('style'))
+    if style := layer_cfg.get('style'):
+        load_qml_style(map_layer, style)
 
     map_layer.setCrs(project_crs)
 
@@ -143,7 +143,6 @@ def _get_or_create_group(project, group_path):
     group_names = group_path.split('/')
 
     for group_name in group_names:
-        # TODO: COO COO CACHOO
         if group.findGroup(group_name) is None:
             # Create the group.
             group = group.addGroup(group_name)
@@ -262,20 +261,18 @@ def load_qml_style(map_layer, style_name):
 def build_layer_description(layer_cfg):
     description = ''
 
-    # TODO: COO COO CACHOO
-    if layer_cfg.get('description'):
-        description += layer_cfg.get('description')
+    if cfg_description := layer_cfg.get('description'):
+        description += cfg_description
         description += '\n\n=== Original Data Source ===\n'
 
     dataset_metadata = layer_cfg['dataset']['metadata']
     description += dataset_metadata['title']
 
-    # TODO: COO COO CACHOO
-    if dataset_metadata.get('abstract'):
+    if abstract := dataset_metadata.get('abstract'):
         description += '\n\n'
-        description += dataset_metadata.get('abstract')
+        description += abstract
 
-    return description
+    return escape(description)
 
 
 def build_layer_abstract(layer_cfg):
@@ -285,18 +282,13 @@ def build_layer_abstract(layer_cfg):
         abstract += '\n\n'
 
     dataset_metadata = layer_cfg['dataset']['metadata']
-    # TODO: COO COO CACHOO
-    if dataset_metadata.get('citation'):
-        citation_cfg = dataset_metadata.get('citation')
-
-        # TODO: COO COO CACHOO
-        if citation_cfg.get('text'):
+    if citation_cfg := dataset_metadata.get('citation'):
+        if citation_text := citation_cfg.get('text'):
             abstract += 'Citation:\n'
-            abstract += citation_cfg['text'] + '\n\n'
+            abstract += citation_text + '\n\n'
 
-        # TODO: COO COO CACHOO
-        if citation_cfg.get('url'):
+        if citation_url := citation_cfg.get('url'):
             abstract += 'Citation URL:\n'
-            abstract += citation_cfg['url']
+            abstract += citation_url
 
-    return abstract
+    return escape(abstract)
