@@ -9,6 +9,13 @@ from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT
 logger = logging.getLogger('luigi-interface')
 
 
+def filter_shapefile(shapefile_path, *, filter_func):
+    gdf = geopandas.read_file(shapefile_path)
+
+    gdf = gdf.loc[filter_func]
+    return gdf
+
+
 def reproject_shapefile(shapefile_path, *, layer_cfg):
     """Reprojects a shapefile and returns the result."""
     gdf = geopandas.read_file(shapefile_path)
