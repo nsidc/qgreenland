@@ -1,0 +1,16 @@
+{"type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-180, 66.567], [-90, 66.567], [0, 66.567], [90, 66.567], [180, 66.567]
+        ]
+      },
+      "properties": {
+        "Name": "Arctic Circle (66.567 degrees North)",
+      }
+    }
+  ]
+}
