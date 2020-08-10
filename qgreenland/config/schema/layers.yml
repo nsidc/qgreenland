@@ -38,6 +38,10 @@ layer:
   # `EPSG:3321`.
   override_source_projection: str(required=False)
 
+  # ogr2ogr args
+  ogr2ogr_args_str: str(required=False)
+  ogr2ogr_input_filename: str(required=False)
+
 ---
 decompress_kwargs:
   # Explicit files to extract from the zip/rar

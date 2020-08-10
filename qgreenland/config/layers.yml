@@ -13,6 +13,18 @@
   style: 'transparent_shape'
 
 
+- id: arctic_circle
+  title: Arctic Circle (66.567 degrees North)
+  data_source: arctic_circle.only
+  ingest_task: arctic_circle
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous'
+  ogr2ogr_args_str: "-s_srs 'EPSG:4326' -t_srs 'EPSG:4326' -segmentize 1"
+  ogr2ogr_input_filename: 'arctic_circle.geojson'
+
+
 ###########
 # Biology #
 ###########

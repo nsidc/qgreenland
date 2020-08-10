@@ -1,5 +1,6 @@
 import logging
 import os
+import subprocess
 
 import luigi
 
@@ -67,3 +68,30 @@ class FilterShapefileFeatures(LayerTask):
         with temporary_path_dir(self.output()) as temp_path:
             fn = os.path.join(temp_path, self.filename)
             gdf.to_file(fn, driver='ESRI Shapefile')
+
+
+class Ogr2OgrShapefile(LayerTask):
+    """Acts on vector data that can be read by `ogr2ogr`"""
+    task_type = TaskType.WIP
+
+    def output(self):
+        return luigi.LocalTarget(f'{self.outdir}/transform/')
+
+    def run(self):
+        # TODO: fail if expected ogr2ogr args are not present
+        input_filename = self.layer_cfg['ogr2ogr_input_filename']
+        infile = os.path.join(self.input().path, input_filename)
+
+        shp_name = f'{os.path.splitext(input_filename)[0]}.shp'
+
+        with temporary_path_dir(self.output()) as temp_path:
+            outfile = os.path.join(temp_path, shp_name)
+            cmd = f". activate base && ogr2ogr {self.layer_cfg['ogr2ogr_args_str']} {outfile} {infile}"
+
+            result = subprocess.run(cmd,
+                                    shell=True,
+                                    executable='/bin/bash',
+                                    capture_output=True)
+
+        if result.returncode != 0:
+            raise RuntimeError(result.stderr)

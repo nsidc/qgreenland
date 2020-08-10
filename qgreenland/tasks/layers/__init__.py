@@ -10,6 +10,7 @@ from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.utm_zones import UtmZones
 from qgreenland.tasks.layers.velocity_mosaic import VelocityMosaic
 from qgreenland.tasks.layers.zipped_shapefile import ZippedShapefile
+from qgreenland.tasks.layers.arctic_circle import ArcticCircle
 
 INGEST_TASKS = {
     'arctic_vegetation': ArcticVegetation,
@@ -24,4 +25,5 @@ INGEST_TASKS = {
     'utm_zones': UtmZones,
     'velocity_mosaic': VelocityMosaic,
     'zipped_shapefile': ZippedShapefile,
+    'arctic_circle': ArcticCircle,
 }
