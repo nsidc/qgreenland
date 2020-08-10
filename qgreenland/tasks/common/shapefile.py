@@ -71,7 +71,8 @@ class FilterShapefileFeatures(LayerTask):
 
 
 class Ogr2OgrShapefile(LayerTask):
-    """Acts on vector data that can be read by `ogr2ogr`"""
+    """Acts on vector data that can be read by `ogr2ogr`."""
+
     task_type = TaskType.WIP
 
     def output(self):
@@ -79,8 +80,10 @@ class Ogr2OgrShapefile(LayerTask):
 
     def run(self):
         if (ogr2ogr_kwargs := self.layer_cfg.get('ogr2ogr_kwargs')) is None:
-            raise RuntimeError('`Ogr2OgrShapefile` task requires `ogr2ogr_kwargs` in the layer config.')
-            
+            raise RuntimeError(
+                '`Ogr2OgrShapefile` task requires `ogr2ogr_kwargs` in the layer config.'
+            )
+
         input_filename = ogr2ogr_kwargs.pop('input_filename')
         infile = os.path.join(self.input().path, input_filename)
 
@@ -91,8 +94,11 @@ class Ogr2OgrShapefile(LayerTask):
         cmd_args_str = ' '.join(cmd_args_list)
 
         with temporary_path_dir(self.output()) as temp_path:
-            outfile = os.path.join(temp_path, f'{os.path.splitext(input_filename)[0]}.shp')
-            cmd = f". activate base && ogr2ogr {cmd_args_str} {outfile} {infile}"
+            outfile = os.path.join(
+                temp_path,
+                f'{os.path.splitext(input_filename)[0]}.shp'
+            )
+            cmd = f'. activate base && ogr2ogr {cmd_args_str} {outfile} {infile}'
 
             result = subprocess.run(cmd,
                                     shell=True,
