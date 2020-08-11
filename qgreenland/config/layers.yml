@@ -28,6 +28,96 @@
     segmentize: 1
 
 
+- id: lat_1_deg
+  title: Latitude lines (1 degree)
+  description: "Lines of latitude in 1-degree resolution."
+  data_source: latlon.lat_1_deg
+  ingest_task: local_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous/Latitude lines'
+  ogr2ogr_kwargs:
+    input_filename: 'latitude_1_degree.geojson'
+    s_srs: 'EPSG:4326'
+    segmentize: 1
+
+
+- id: lat_10_deg
+  title: Latitude lines (10 degree)
+  description: "Lines of latitude in 10-degree resolution."
+  data_source: latlon.lat_10_deg
+  ingest_task: local_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous/Latitude lines'
+  ogr2ogr_kwargs:
+    input_filename: 'latitude_10_degree.geojson'
+    s_srs: 'EPSG:4326'
+    segmentize: 1
+
+
+- id: lat_15_deg
+  title: Latitude lines (15 degree)
+  description: "Lines of latitude in 15-degree resolution."
+  data_source: latlon.lat_15_deg
+  ingest_task: local_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous/Latitude lines'
+  ogr2ogr_kwargs:
+    input_filename: 'latitude_15_degree.geojson'
+    s_srs: 'EPSG:4326'
+    segmentize: 1
+
+
+- id: lon_10_deg
+  title: Longitude lines (10 degree)
+  description: "Lines of longitude in 10-degree resolution."
+  data_source: latlon.lon_10_deg
+  ingest_task: local_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous/Longitude lines'
+  ogr2ogr_kwargs:
+    input_filename: 'longitude_10_degree.geojson'
+    s_srs: 'EPSG:4326'
+    segmentize: 1
+
+
+- id: lon_15_deg
+  title: Longitude lines (15 degree)
+  description: "Lines of longitude in 15-degree resolution."
+  data_source: latlon.lon_15_deg
+  ingest_task: local_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous/Longitude lines'
+  ogr2ogr_kwargs:
+    input_filename: 'longitude_15_degree.geojson'
+    s_srs: 'EPSG:4326'
+    segmentize: 1
+
+
+- id: lon_1_deg
+  title: Longitude lines (1 degree)
+  description: "Lines of longitude in 1-degree resolution."
+  data_source: latlon.lon_1_deg
+  ingest_task: local_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous/Longitude lines'
+  ogr2ogr_kwargs:
+    input_filename: 'longitude_1_degree.geojson'
+    s_srs: 'EPSG:4326'
+    segmentize: 1
+
+
 ###########
 # Biology #
 ###########
