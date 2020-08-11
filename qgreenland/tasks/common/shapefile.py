@@ -1,10 +1,9 @@
 import logging
 import os
-import subprocess
 
 import luigi
 
-from qgreenland.constants import TaskType, PROJECT_CRS, PROJECT_EXTENT
+from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT, TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 from qgreenland.util.shapefile import filter_shapefile, ogr2ogr
@@ -43,11 +42,13 @@ class Ogr2OgrShapefile(LayerTask):
     def run(self):
         input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
 
+        clipdst = ('"{xmin}" "{ymin}" '
+                   '"{xmax}" "{ymax}"').format(**PROJECT_EXTENT)  # noqa: FS002
         ogr2ogr_kwargs = {
             't_srs': PROJECT_CRS,
             # As opposed to `clipsrc`, `clipdst` uses the destination SRS
             # (`t_srs`) to clip the input after reprojection.
-            'clipdst': '"{xmin}" "{ymin}" "{xmax}" "{ymax}"'.format(**PROJECT_EXTENT),
+            'clipdst': clipdst,
         }
         ogr2ogr_kwargs.update(input_ogr2ogr_kwargs)
 

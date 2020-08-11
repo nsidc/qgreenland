@@ -2,9 +2,7 @@ import logging
 import subprocess
 
 import geopandas
-import pyproj
 
-from qgreenland.constants import PROJECT_CRS, PROJECT_EXTENT
 
 logger = logging.getLogger('luigi-interface')
 
