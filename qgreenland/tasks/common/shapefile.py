@@ -44,8 +44,10 @@ class Ogr2OgrShapefile(LayerTask):
         input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
 
         ogr2ogr_kwargs = {
-            'clipsrc': '"{xmin}" "{ymin}" "{xmax}" "{ymax}"'.format(**PROJECT_EXTENT),
-            't_srs': PROJECT_CRS
+            't_srs': PROJECT_CRS,
+            # As opposed to `clipsrc`, `clipdst` uses the destination SRS
+            # (`t_srs`) to clip the input after reprojection.
+            'clipdst': '"{xmin}" "{ymin}" "{xmax}" "{ymax}"'.format(**PROJECT_EXTENT),
         }
         ogr2ogr_kwargs.update(input_ogr2ogr_kwargs)
 
