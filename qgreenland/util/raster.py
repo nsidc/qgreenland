@@ -55,6 +55,6 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
                            'No projection automatically detected and '
                            'none explicitly provided.')
 
-    logger.debug(f'Reprojecting with arguments: {warp_kwargs}')
+    logger.debug(f'Warping with arguments: {warp_kwargs}')
     logger.info(f'Target projection: {PROJECT_CRS}')
     gdal.Warp(out_path, inp_path, dstSRS=PROJECT_CRS, **warp_kwargs)

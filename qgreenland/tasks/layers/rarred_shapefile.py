@@ -1,6 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unrar
-from qgreenland.tasks.common.shapefile import ReprojectShapefile
+from qgreenland.tasks.common.shapefile import Ogr2OgrShapefile
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -16,7 +16,7 @@ class RarredShapefile(LayerPipeline):
             requires_task=fetch_data,
             layer_id=self.layer_id
         )  # ->
-        return ReprojectShapefile(
+        return Ogr2OgrShapefile(
             requires_task=unrar,
             layer_id=self.layer_id
         )

@@ -1,7 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.shapefile import (ReprojectShapefile,
-                                               SubsetShapefile)
+from qgreenland.tasks.common.shapefile import Ogr2OgrShapefile
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -17,11 +16,7 @@ class ZippedShapefile(LayerPipeline):
             requires_task=fetch_data,
             layer_id=self.layer_id
         )  # ->
-        reproject_shapefile = ReprojectShapefile(
+        return Ogr2OgrShapefile(
             requires_task=unzip,
-            layer_id=self.layer_id
-        )  # ->
-        return SubsetShapefile(
-            requires_task=reproject_shapefile,
             layer_id=self.layer_id
         )

@@ -4,6 +4,7 @@ from qgreenland.tasks.layers.bedmachine import BedMachineDataset
 from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
 from qgreenland.tasks.layers.gzipped_shapefile_parts import GzippedShapefileParts
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
+from qgreenland.tasks.layers.local_shapefile import LocalShapefile
 from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_shapefile import RarredShapefile
 from qgreenland.tasks.layers.raster import Raster
@@ -18,6 +19,7 @@ INGEST_TASKS = {
     'glacier_terminus': GlacierTerminus,
     'gzipped_shapefile_parts': GzippedShapefileParts,
     'ice_thickness_change': IceThicknessChange,
+    'local_shapefile': LocalShapefile,
     'permaice': Permaice,
     'rarred_shapefile': RarredShapefile,
     'raster': Raster,
