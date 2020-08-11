@@ -212,7 +212,8 @@
   data_type: 'vector'
   visible: False
   group_path: 'Geology & natural resources'
-  override_source_projection: '+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0'
+  ogr2ogr_kwargs:
+    s_srs: '"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0"'
   style: 'soil_types'
 
 
@@ -229,7 +230,8 @@
   data_type: 'vector'
   visible: False
   group_path: 'Hydrology'
-  override_source_projection: 'ESRI:102018'
+  ogr2ogr_kwargs:
+    s_srs: 'ESRI:102018'
 
 
 ##################
@@ -548,7 +550,7 @@
   file_type: '.shp'
   data_type: 'vector'
   style: 'land'
-  visible: False 
+  visible: False
   group_path: 'Basemaps'
 
 

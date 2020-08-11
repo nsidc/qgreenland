@@ -1,5 +1,5 @@
 from qgreenland.tasks.common.fetch import FetchCmrGranule
-from qgreenland.tasks.common.shapefile import ReprojectShapefile
+from qgreenland.tasks.common.shapefile import Ogr2OgrShapefile
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -12,7 +12,7 @@ class GlacierTerminus(LayerPipeline):
     def requires(self):
         fetch_data = FetchCmrGranule(source_cfg=self.cfg['source'],
                                      output_name=self.cfg['id'])
-        return ReprojectShapefile(
+        return Ogr2OgrShapefile(
             requires_task=fetch_data,
             layer_id=self.layer_id
         )

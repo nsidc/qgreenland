@@ -1,7 +1,5 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
-from qgreenland.tasks.common.shapefile import (Ogr2OgrShapefile,
-                                               ReprojectShapefile,
-                                               SubsetShapefile)
+from qgreenland.tasks.common.shapefile import Ogr2OgrShapefile
 from qgreenland.util.luigi import LayerPipeline
 
 

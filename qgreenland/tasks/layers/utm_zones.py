@@ -3,8 +3,7 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
 from qgreenland.tasks.common.shapefile import (FilterShapefileFeatures,
-                                               ReprojectShapefile,
-                                               SubsetShapefile)
+                                               Ogr2OgrShapefile)
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -28,11 +27,7 @@ class UtmZones(LayerPipeline):
             # other way?
             filter_func=lambda df: df['ZONE'] != 0,
         )  # ->
-        reproject_shapefile = ReprojectShapefile(
+        return Ogr2OgrShapefile(
             requires_task=filter_shapefile,
-            layer_id=self.layer_id
-        )  # ->
-        return SubsetShapefile(
-            requires_task=reproject_shapefile,
             layer_id=self.layer_id
         )
