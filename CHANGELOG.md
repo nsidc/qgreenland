@@ -1,4 +1,4 @@
-# v0.26.0 (Unreleased)
+# v0.26.0 (2020-08-12)
 
 - New Miscellaneous layer: Universal Transverse Mercatur (UTM) Zones
 - New Miscellaneous layer: Arctic Circle
@@ -7,6 +7,11 @@
 - Add scale dependent rendering for glacier IDs and populated places.
 - Bugfix: fix UTF encoding errors.
 - Renamed 'Ice Sheet Mass Change' layer to 'Ice Column Thickness'
+- QGIS project load speedup: remove internal colormap from sea ice concentration
+  layers. Use .qml file to style these layers.
+- Unscale sea ice concentration layers to percentages. Source GeoTiff files for
+  sea ice concentration layers scaled values by 10 so that an internal color map
+  could be used (GeoTiff files require integer-based lookup tables for color maps).
 
 # v0.25.0 (2020-08-06)
 

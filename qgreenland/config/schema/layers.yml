@@ -39,6 +39,12 @@ layer:
 
   ogr2ogr_kwargs: include('ogr2ogr_kwargs', required=False)
 
+  gdal_calc_kwargs: include('gdal_calc_kwargs', required=False)
+
+---
+  gdal_calc_kwargs:
+    calc: str(required=True)
+
 ---
 ogr2ogr_kwargs:
   # https://gdal.org/programs/ogr2ogr.html

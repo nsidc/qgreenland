@@ -513,14 +513,16 @@
 - &seaice_minimum_concentration
   id: minimum_concentration_2009
   title: 'NSIDC Sea Ice Concentration September 2009'
-  description: 'Concentration of sea ice as a 10x scaled percentage (e.g., 999 = 99.9%). Values under 150 (15%) are considered to be open water.'
+  description: 'Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under 15% are considered to be open water.'
   data_source: seaice_index.minimum_concentration_2009
   style: 'sea_ice_concentration'
-  ingest_task: 'raster'
+  ingest_task: 'raster_calc'
   file_type: '.tif'
   data_type: 'raster'
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
+  gdal_calc_kwargs:
+    calc: "'A / 10.0'"
 
 
 # sea ice min extent monthly concentration:
@@ -587,14 +589,16 @@
 - &seaice_maximum_concentration
   id: maximum_concentration_2009
   title: 'NSIDC Sea Ice Concentration March 2009'
-  description: 'Concentration of sea ice as a 10x scaled percentage (e.g., 999 = 99.9%). Values under 150 (15%) are considered to be open water.'
+  description: 'Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under 15% are considered to be open water.'
   data_source: seaice_index.maximum_concentration_2009
   style: 'sea_ice_concentration'
-  ingest_task: 'raster'
+  ingest_task: 'raster_calc'
   file_type: '.tif'
   data_type: 'raster'
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb|March (max extent)'
+  gdal_calc_kwargs:
+    calc: "'A / 10.0'"
 
 
 - <<: *seaice_maximum_concentration

@@ -1,4 +1,5 @@
 import logging
+import subprocess
 
 import pyproj
 from osgeo import gdal
@@ -58,3 +59,24 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
     logger.debug(f'Warping with arguments: {warp_kwargs}')
     logger.info(f'Target projection: {PROJECT_CRS}')
     gdal.Warp(out_path, inp_path, dstSRS=PROJECT_CRS, **warp_kwargs)
+
+
+def gdal_calc_raster(in_filepath, out_filepath, *, layer_cfg, gdal_calc_kwargs):
+    cmd_args_list = []
+    for k, v in gdal_calc_kwargs.items():
+        cmd_args_list.append(f'--{k}={v}')
+
+    cmd_args_str = ' '.join(cmd_args_list)
+
+    cmd = (f'. activate base && gdal_calc.py {cmd_args_str}'
+           f' -A {in_filepath} --outfile={out_filepath}')
+    logger.debug(f'Executing gdal_calc command: {cmd}')
+
+    # TODO: util func for running external cmd.
+    result = subprocess.run(cmd,
+                            shell=True,
+                            executable='/bin/bash',
+                            capture_output=True)
+
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr)
