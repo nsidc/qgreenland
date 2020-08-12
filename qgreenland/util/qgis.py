@@ -195,7 +195,8 @@ def make_qgis_project_file(path):
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
     # The qgis prefix path is two directories above the qgis executable.
-    # See https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
+    # See:
+    # https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     qgis_path = subprocess.run(
         ['which', 'qgis'],
         stdout=subprocess.PIPE
