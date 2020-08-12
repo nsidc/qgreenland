@@ -7,6 +7,8 @@
 - Add scale dependent rendering for glacier IDs and populated places.
 - Bugfix: fix UTF encoding errors.
 - Renamed 'Ice Sheet Mass Change' layer to 'Ice Column Thickness'
+- QGIS project load speedup: remove internal colormap from sea ice concentration
+  layers. Use .qml file to style these layers.
 
 # v0.25.0 (2020-08-06)
 
