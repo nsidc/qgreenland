@@ -235,7 +235,7 @@
   ogr2ogr_kwargs:
     clipdst: '-796814.1 -322934.6 1103185.9 -3599419.2'
   # TODO: Enable a style with labels for placenames, make visible again
-  visible: False
+  visible: True
   group_path: 'Built environment'
 
 
@@ -264,22 +264,25 @@
 # Glaciology #
 ##############
 
-- &glacier_terminus
-  id: glacier_terminus_glacier_ids
+- id: glacier_terminus_glacier_ids
   title: 'Glacier IDs'
   data_source: glacier_terminus.glacier_ids
   ingest_task: glacier_terminus
   file_type: '.shp'
   data_type: 'vector'
   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
+  style: 'glacier_ids'
   visible: False
 
-- <<: *glacier_terminus
+- &glacier_terminus
   id: glacier_terminus_2000_2001
   title: 'Glacier Termini 2000 to 2001'
   data_source: glacier_terminus.2000_2001
+  ingest_task: glacier_terminus
+  file_type: '.shp'
+  data_type: 'vector'
+  group_path: 'Glaciology/Glacier terminus positions 2000-2017'
   visible: True
-
 
 - <<: *glacier_terminus
   id: glacier_terminus_2005_2006
