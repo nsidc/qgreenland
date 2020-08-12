@@ -45,6 +45,8 @@ class Ogr2OgrShapefile(LayerTask):
         clipdst = ('"{xmin}" "{ymin}" '
                    '"{xmax}" "{ymax}"').format(**PROJECT_EXTENT)  # noqa: FS002
         ogr2ogr_kwargs = {
+            # Output an UTF-8 encoded shapefile instead of default ISO-8859-1
+            'lco': 'ENCODING=UTF-8',
             't_srs': PROJECT_CRS,
             # As opposed to `clipsrc`, `clipdst` uses the destination SRS
             # (`t_srs`) to clip the input after reprojection.
