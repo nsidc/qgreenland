@@ -282,7 +282,7 @@
   file_type: '.shp'
   data_type: 'vector'
   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
-  visible: True
+  visible: False
 
 - <<: *glacier_terminus
   id: glacier_terminus_2005_2006
@@ -355,7 +355,7 @@
   warp_kwargs:
     xRes: 500
     yRes: 500
-  visible: True
+  visible: False
   group_path: 'Glaciology/Ice sheet velocity'
 
 
