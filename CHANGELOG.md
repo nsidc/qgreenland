@@ -1,4 +1,4 @@
-# v0.26.0 (Unreleased)
+# v0.26.0 (2020-08-12)
 
 - New Miscellaneous layer: Universal Transverse Mercatur (UTM) Zones
 - New Miscellaneous layer: Arctic Circle
