@@ -231,12 +231,7 @@
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  # style: 'populated_places'
-  subset_kwargs:
-    xmin: -796814.1
-    ymin: -322934.6
-    xmax: 1103185.9
-    ymax: -3599419.2
+  style: 'populated_places'
   # TODO: Enable a style with labels for placenames, make visible again
   visible: False
   group_path: 'Built environment'
