@@ -377,9 +377,9 @@
 
 
 - id: ice_thickness_change
-  title: 'Ice Sheet Mass Change 2003-2019 (5km)'
+  title: 'Ice Column Thickness 2003-2019 (5km)'
   # TODO: better description.
-  description: 'Mass-change in meters of ice-equivalent per year.'
+  description: 'Ice column thickness change in meters per year.'
   data_source: icesheet_height_and_thickness_change.only
   ingest_task: ice_thickness_change
   file_type: '.tif'

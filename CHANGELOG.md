@@ -2,6 +2,7 @@
 
 - New Miscellaneous layer: Universal Transverse Mercatur (UTM) Zones
 - New Miscellaneous layer: Arctic Circle
+- New Miscellaneous layers: Latitude and Longitude lines.
 - Fix abstract for Permafrost/Ground Ice Conditions layer
 
 # v0.25.0 (2020-08-06)
