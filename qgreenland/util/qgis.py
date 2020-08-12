@@ -194,16 +194,20 @@ def make_qgis_project_file(path):
 
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
-    # Boilerplate QGIS initialization code;
-    # - Suppresses "Application path not intialized" errors
-    # - Enables Qt support for fonts used in layer styles (labels)
+    # The qgis prefix path is two directories above the qgis executable.
+    # See https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     qgis_path = subprocess.run(
         ['which', 'qgis'],
         stdout=subprocess.PIPE
     ).stdout.decode('utf-8').strip('\n')
+    qgis_prefix_path = os.path.abspath(os.path.join(qgis_path, '..', '..'))
+
+    # Boilerplate QGIS initialization code;
+    # - Suppresses "Application path not intialized" errors
+    # - Enables Qt support for fonts used in layer styles (labels)
     qgs = qgc.QgsApplication([], False)
     qgs.initQgis()
-    qgc.QgsApplication.setPrefixPath(qgis_path, True)
+    qgc.QgsApplication.setPrefixPath(qgis_prefix_path, True)
 
     # Create a new project; initializes basic structure
     project = qgc.QgsProject.instance()
