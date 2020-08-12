@@ -7,7 +7,7 @@ import rasterio as rio
 from qgreenland.constants import PROJECT_EXTENT, TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
-from qgreenland.util.raster import warp_raster
+from qgreenland.util.raster import gdal_calc_raster, warp_raster
 
 
 class BuildRasterOverviews(LayerTask):
@@ -81,3 +81,22 @@ class WarpRaster(LayerTask):
             warp_raster(inp_path, out_path,
                         layer_cfg=self.layer_cfg,
                         warp_kwargs=warp_kwargs)
+
+
+class GdalCalcRaster(LayerTask):
+
+    task_type = TaskType.WIP
+    input_ext_override = luigi.Parameter(default=None)
+
+    def output(self):
+        return luigi.LocalTarget(os.path.join(self.outdir, 'calc'))
+
+    def run(self):
+        with temporary_path_dir(self.output()) as tmp_dir:
+            out_path = os.path.join(tmp_dir, self.filename)
+            inp_path = find_single_file_by_ext(self.input().path,
+                                               ext=self.layer_cfg['file_type'])
+            gdal_calc_kwargs = self.layer_cfg['gdal_calc_kwargs']
+            gdal_calc_raster(inp_path, out_path,
+                             layer_cfg=self.layer_cfg,
+                             gdal_calc_kwargs=gdal_calc_kwargs)

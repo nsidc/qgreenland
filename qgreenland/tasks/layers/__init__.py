@@ -8,6 +8,7 @@ from qgreenland.tasks.layers.local_shapefile import LocalShapefile
 from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_shapefile import RarredShapefile
 from qgreenland.tasks.layers.raster import Raster
+from qgreenland.tasks.layers.raster_calc import RasterCalc
 from qgreenland.tasks.layers.utm_zones import UtmZones
 from qgreenland.tasks.layers.velocity_mosaic import VelocityMosaic
 from qgreenland.tasks.layers.zipped_shapefile import ZippedShapefile
@@ -23,6 +24,7 @@ INGEST_TASKS = {
     'permaice': Permaice,
     'rarred_shapefile': RarredShapefile,
     'raster': Raster,
+    'raster_calc': RasterCalc,
     'utm_zones': UtmZones,
     'velocity_mosaic': VelocityMosaic,
     'zipped_shapefile': ZippedShapefile,
