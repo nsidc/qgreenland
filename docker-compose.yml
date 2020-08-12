@@ -20,6 +20,8 @@ services:
       # Set `export PYTHONBREAKPOINT=ipdb.set_trace` to use `ipdb` by default
       # instead of `pdb`.
       - PYTHONBREAKPOINT
+      # Needed to properly initialize QGIS Python library without a display
+      - QT_QPA_PLATFORM=minimal
     ports:
       - 8082:8082
     logging:

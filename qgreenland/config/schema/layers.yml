@@ -28,7 +28,6 @@ layer:
   # NOT include .qml file extension
   style: str(required=False)
   decompress_kwargs: include('decompress_kwargs', required=False)
-  subset_kwargs: include('subset_kwargs', required=False)
   overviews_kwargs: include('overviews_kwargs', required=False)
   warp_kwargs: include('warp_kwargs', required=False)
   # Is this layer initially "checked" as visible in QGIS?
@@ -44,6 +43,7 @@ layer:
 ogr2ogr_kwargs:
   # https://gdal.org/programs/ogr2ogr.html
   input_filename: str(required=False)
+  clipdst: str(required=False)
   s_srs: str(required=False)
   t_srs: str(required=False)
   segmentize: int(required=False)
@@ -69,12 +69,3 @@ warp_kwargs:
   # TODO: Pick _one_ interface for supplying/overriding source projections for
   #       rasters and vectors
   srcSRS: str(required=False)
-
----
-subset_kwargs:
-  # A bounding box dictionary. NOTE: The order of this dictionary is important
-  # for passing to qgc.QgsRectangle
-  xmin: num()
-  ymin: num()
-  xmax: num()
-  ymax: num()
