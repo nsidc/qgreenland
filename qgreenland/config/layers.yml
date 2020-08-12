@@ -28,7 +28,7 @@
     segmentize: 1
 
 
-- &latlon
+- &lat_lines
   id: lat_0_25_deg
   title: Latitude lines (0.25 degree)
   description: "Lines of latitude in 0.25-degree resolution."
@@ -38,12 +38,13 @@
   data_type: 'vector'
   visible: False
   group_path: 'Miscellaneous/Latitude lines'
+  style: 'labeled_shape'
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_25_degree.geojson'
     s_srs: 'EPSG:4326'
     segmentize: 1
 
-- <<: *latlon
+- <<: *lat_lines
   id: lat_0_5_deg
   title: Latitude lines (0.5 degree)
   description: "Lines of latitude in 0.5-degree resolution."
@@ -51,7 +52,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_5_degree.geojson'
 
-- <<: *latlon
+- <<: *lat_lines
   id: lat_1_deg
   title: Latitude lines (1 degree)
   description: "Lines of latitude in 1-degree resolution."
@@ -59,7 +60,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_1_degree.geojson'
 
-- <<: *latlon
+- <<: *lat_lines
   id: lat_2_deg
   title: Latitude lines (2 degree)
   description: "Lines of latitude in 2-degree resolution."
@@ -67,7 +68,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_2_degree.geojson'
 
-- <<: *latlon
+- <<: *lat_lines
   id: lat_5_deg
   title: Latitude lines (5 degree)
   description: "Lines of latitude in 5-degree resolution."
@@ -75,7 +76,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_5_degree.geojson'
 
-- <<: *latlon
+- <<: *lat_lines
   id: lat_10_deg
   title: Latitude lines (10 degree)
   description: "Lines of latitude in 10-degree resolution."
@@ -83,7 +84,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_10_degree.geojson'
 
-- <<: *latlon
+- <<: *lat_lines
   id: lat_15_deg
   title: Latitude lines (15 degree)
   description: "Lines of latitude in 15-degree resolution."
@@ -91,7 +92,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_15_degree.geojson'
 
-- <<: *latlon
+- <<: *lat_lines
   id: lat_20_deg
   title: Latitude lines (20 degree)
   description: "Lines of latitude in 20-degree resolution."
@@ -99,7 +100,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_20_degree.geojson'
 
-- <<: *latlon
+- <<: *lat_lines
   id: lat_30_deg
   title: Latitude lines (30 degree)
   description: "Lines of latitude in 30-degree resolution."
@@ -107,15 +108,23 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_30_degree.geojson'
 
-- <<: *latlon
+- &lon_lines
   id: lon_0_5_deg
   title: Longitude lines (0.5 degree)
   description: "Lines of longitude in 0.5-degree resolution."
   data_source: latlon.lon_0_5_deg
+  ingest_task: local_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Miscellaneous/Longitude lines'
+  style: 'labeled_shape'
   ogr2ogr_kwargs:
     input_filename: 'longitudes_0_5_degree.geojson'
+    s_srs: 'EPSG:4326'
+    segmentize: 1
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_1_deg
   title: Longitude lines (1 degree)
   description: "Lines of longitude in 1-degree resolution."
@@ -123,7 +132,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_1_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_2_deg
   title: Longitude lines (2 degree)
   description: "Lines of longitude in 2-degree resolution."
@@ -131,7 +140,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_2_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_3_deg
   title: Longitude lines (3 degree)
   description: "Lines of longitude in 3-degree resolution."
@@ -139,7 +148,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_3_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_5_deg
   title: Longitude lines (5 degree)
   description: "Lines of longitude in 5-degree resolution."
@@ -147,7 +156,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_5_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_10_deg
   title: Longitude lines (10 degree)
   description: "Lines of longitude in 10-degree resolution."
@@ -155,7 +164,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_10_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_15_deg
   title: Longitude lines (15 degree)
   description: "Lines of longitude in 15-degree resolution."
@@ -163,7 +172,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_15_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_20_deg
   title: Longitude lines (20 degree)
   description: "Lines of longitude in 20-degree resolution."
@@ -171,7 +180,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_20_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_30_deg
   title: Longitude lines (30 degree)
   description: "Lines of longitude in 30-degree resolution."
@@ -179,7 +188,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_30_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_45_deg
   title: Longitude lines (45 degree)
   description: "Lines of longitude in 45-degree resolution."
@@ -187,7 +196,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_45_degree.geojson'
 
-- <<: *latlon
+- <<: *lon_lines
   id: lon_90_deg
   title: Longitude lines (90 degree)
   description: "Lines of longitude in 90-degree resolution."
