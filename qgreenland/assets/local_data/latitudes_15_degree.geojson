@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"features": [
+{ "type": "Feature", "properties": { "wgs84Degrees": "0° 0' 0\" N", "wgs84Decimal": 0.0, "label": "0° 0' N" }, "geometry": { "type": "LineString", "coordinates": [ [ -180.0, 0.0 ], [ 180.0, 0.0 ] ] } },
+{ "type": "Feature", "properties": { "wgs84Degrees": "15° 0' 0\" N", "wgs84Decimal": 15.0, "label": "15° 0' N" }, "geometry": { "type": "LineString", "coordinates": [ [ -180.0, 15.0 ], [ 180.0, 15.0 ] ] } },
+{ "type": "Feature", "properties": { "wgs84Degrees": "30° 0' 0\" N", "wgs84Decimal": 30.0, "label": "30° 0' N" }, "geometry": { "type": "LineString", "coordinates": [ [ -180.0, 30.0 ], [ 180.0, 30.0 ] ] } },
+{ "type": "Feature", "properties": { "wgs84Degrees": "45° 0' 0\" N", "wgs84Decimal": 45.0, "label": "45° 0' N" }, "geometry": { "type": "LineString", "coordinates": [ [ -180.0, 45.0 ], [ 180.0, 45.0 ] ] } },
+{ "type": "Feature", "properties": { "wgs84Degrees": "60° 0' 0\" N", "wgs84Decimal": 60.0, "label": "60° 0' N" }, "geometry": { "type": "LineString", "coordinates": [ [ -180.0, 60.0 ], [ 180.0, 60.0 ] ] } },
+{ "type": "Feature", "properties": { "wgs84Degrees": "75° 0' 0\" N", "wgs84Decimal": 75.0, "label": "75° 0' N" }, "geometry": { "type": "LineString", "coordinates": [ [ -180.0, 75.0 ], [ 180.0, 75.0 ] ] } }
+]
+}
