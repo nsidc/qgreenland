@@ -444,7 +444,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: ''
 
 
-- id: bathemetric_chart
+- id: bathymetric_chart
   access_method: http
   sources:
     - id: only

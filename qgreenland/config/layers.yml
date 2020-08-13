@@ -744,13 +744,13 @@
 # Oceanography #
 ################
 
-- id: bathemetric_chart
+- id: bathymetric_chart
   title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'
   description: >-
       Bedrock elevation in meters. Elevations can be assumed to be relative to
       Mean Sea Level. However, in some shallow water areas, the grids include
       data from sources having a vertical datum other than mean sea level.
-  data_source: bathemetric_chart.only
+  data_source: bathymetric_chart.only
   ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'z'}
   file_type: '.tif'
