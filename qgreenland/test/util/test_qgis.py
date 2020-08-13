@@ -1,3 +1,4 @@
+import copy
 import os
 
 import qgis.core as qgc
@@ -77,6 +78,26 @@ def test__add_layer_metadata():
 def test_build_abstract():
     actual = qgis.build_layer_abstract(mock_layer_cfg)
     expected = """Example Dataset
+
+Example abstract
+
+Citation:
+NSIDC 2020
+
+Citation URL:
+https://nsidc.org"""
+
+    assert actual == expected
+
+
+def test_build_abstract_with_description():
+    mock_cfg = copy.deepcopy(mock_layer_cfg)
+    mock_cfg['description'] = 'Example layer description'
+    actual = qgis.build_layer_abstract(mock_cfg)
+    expected = """Example layer description
+
+=== Original Data Source ===
+Example Dataset
 
 Example abstract
 
