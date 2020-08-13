@@ -132,8 +132,8 @@ Hydrology:
 
 
 Oceanography:
-  visible: False 
-  expanded: False
+  visible: True
+  expanded: True
 
 
 Sea ice:
