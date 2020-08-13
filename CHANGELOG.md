@@ -1,3 +1,7 @@
+# v0.27.0 (unreleased)
+
+- Bugfix: layers not requiring earthdata login are no longer downloaded twice.
+
 # v0.26.0 (2020-08-12)
 
 - New Miscellaneous layer: Universal Transverse Mercatur (UTM) Zones
