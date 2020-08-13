@@ -15,7 +15,10 @@
 
 - id: arctic_circle
   title: Arctic Circle (66° 34' North)
-  description: "The Arctic Circle is an imaginary line that circles the globe at approximately 66° 34' N and marks the latitude above which the sun does not set on the summer solstice, and does not rise on the winter solstice."
+  description: >-
+      The Arctic Circle is an imaginary line that circles the globe at
+      approximately 66° 34' N and marks the latitude above which the sun does
+      not set on the summer solstice, and does not rise on the winter solstice.
   data_source: arctic_circle.only
   ingest_task: local_shapefile
   file_type: '.shp'
@@ -236,7 +239,9 @@
 
 - id: vegetation_biomass_2010
   title: 'Vegetation Biomass 2010 (1km)'
-  description: 'Estimated above ground plant biomass for the tundra biome in kilograms per square meter. Based on trans-Arctic field data and AVHRR NDVI.'
+  description: >-
+    Estimated above ground plant biomass for the tundra biome in kilograms per
+    square meter. Based on trans-Arctic field data and AVHRR NDVI.
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
@@ -270,7 +275,9 @@
 
 - id: permaice
   title: 'Permafrost and Ground-Ice (12.5km)'
-  description: 'Soil characteristics categorized by permafrost extent, ground ice content, overburden thickness, and exposed bedrock.'
+  description: >-
+      Soil characteristics categorized by permafrost extent, ground ice content,
+      overburden thickness, and exposed bedrock.
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
@@ -289,72 +296,72 @@
 # Glaciology #
 ##############
 
-- id: glacier_terminus_glacier_ids
-  title: 'Glacier IDs'
-  data_source: glacier_terminus.glacier_ids
-  ingest_task: glacier_terminus
-  file_type: '.shp'
-  data_type: 'vector'
-  group_path: 'Glaciology/Glacier terminus positions 2000-2017'
-  style: 'glacier_ids'
-  visible: False
-
-- &glacier_terminus
-  id: glacier_terminus_2000_2001
-  title: 'Glacier Termini 2000 to 2001'
-  data_source: glacier_terminus.2000_2001
-  ingest_task: glacier_terminus
-  file_type: '.shp'
-  data_type: 'vector'
-  group_path: 'Glaciology/Glacier terminus positions 2000-2017'
-  visible: False
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2005_2006
-  title: 'Glacier Termini 2005 to 2006'
-  data_source: glacier_terminus.2005_2006
-
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2006_2007
-  title: 'Glacier Termini 2006 to 2007'
-  data_source: glacier_terminus.2006_2007
-
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2007_2008
-  title: 'Glacier Termini 2007 to 2008'
-  data_source: glacier_terminus.2007_2008
-
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2008_2009
-  title: 'Glacier Termini 2008 to 2009'
-  data_source: glacier_terminus.2008_2009
-
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2012_2013
-  title: 'Glacier Termini 2012 to 2013'
-  data_source: glacier_terminus.2012_2013
-
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2014_2015
-  title: 'Glacier Termini 2014 to 2015'
-  data_source: glacier_terminus.2014_2015
-
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2015_2016
-  title: 'Glacier Termini 2015 to 2016'
-  data_source: glacier_terminus.2015_2016
-
-
-- <<: *glacier_terminus
-  id: glacier_terminus_2016_2017
-  title: 'Glacier Termini 2016 to 2017'
-  data_source: glacier_terminus.2016_2017
+# - id: glacier_terminus_glacier_ids
+#   title: 'Glacier IDs'
+#   data_source: glacier_terminus.glacier_ids
+#   ingest_task: glacier_terminus
+#   file_type: '.shp'
+#   data_type: 'vector'
+#   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
+#   style: 'glacier_ids'
+#   visible: False
+# 
+# - &glacier_terminus
+#   id: glacier_terminus_2000_2001
+#   title: 'Glacier Termini 2000 to 2001'
+#   data_source: glacier_terminus.2000_2001
+#   ingest_task: glacier_terminus
+#   file_type: '.shp'
+#   data_type: 'vector'
+#   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
+#   visible: False
+# 
+# - <<: *glacier_terminus
+#   id: glacier_terminus_2005_2006
+#   title: 'Glacier Termini 2005 to 2006'
+#   data_source: glacier_terminus.2005_2006
+# 
+# 
+# - <<: *glacier_terminus
+#   id: glacier_terminus_2006_2007
+#   title: 'Glacier Termini 2006 to 2007'
+#   data_source: glacier_terminus.2006_2007
+# 
+# 
+# - <<: *glacier_terminus
+#   id: glacier_terminus_2007_2008
+#   title: 'Glacier Termini 2007 to 2008'
+#   data_source: glacier_terminus.2007_2008
+# 
+# 
+# - <<: *glacier_terminus
+#   id: glacier_terminus_2008_2009
+#   title: 'Glacier Termini 2008 to 2009'
+#   data_source: glacier_terminus.2008_2009
+# 
+# 
+# - <<: *glacier_terminus
+#   id: glacier_terminus_2012_2013
+#   title: 'Glacier Termini 2012 to 2013'
+#   data_source: glacier_terminus.2012_2013
+# 
+# 
+# - <<: *glacier_terminus
+#   id: glacier_terminus_2014_2015
+#   title: 'Glacier Termini 2014 to 2015'
+#   data_source: glacier_terminus.2014_2015
+# 
+# 
+# - <<: *glacier_terminus
+#   id: glacier_terminus_2015_2016
+#   title: 'Glacier Termini 2015 to 2016'
+#   data_source: glacier_terminus.2015_2016
+# 
+# 
+# - <<: *glacier_terminus
+#   id: glacier_terminus_2016_2017
+#   title: 'Glacier Termini 2016 to 2017'
+#   data_source: glacier_terminus.2016_2017
 
 
 - id: velocity_mosaic
@@ -399,7 +406,9 @@
 
 - id: soil_types
   title: 'Soil Characteristics'
-  description: 'Polygons representing dominant soil characteristics with percentage polygon area for each soil type. Data coverage limited to Greenland.'
+  description: >-
+      Polygons representing dominant soil characteristics with percentage
+      polygon area for each soil type. Data coverage limited to Greenland.
   data_source: soil_types.only
   ingest_task: gzipped_shapefile_parts
   file_type: '.shp'
@@ -417,7 +426,9 @@
 
 - id: hydrologic_subbasins
   title: 'Hydrologic Sub-Basins'
-  description: 'Polygons of ice sheet hydrologic sub-basins with area in square kilometers.'
+  description: >-
+      Polygons of ice sheet hydrologic sub-basins with area in square
+      kilometers.
   data_source: hydrologic_subbasins.only
   ingest_task: rarred_shapefile
   file_type: '.shp'
@@ -513,7 +524,9 @@
 - &seaice_minimum_concentration
   id: minimum_concentration_2009
   title: 'NSIDC Sea Ice Concentration September 2009'
-  description: 'Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under 15% are considered to be open water.'
+  description: >-
+      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values
+      under 15% are considered to be open water.
   data_source: seaice_index.minimum_concentration_2009
   style: 'sea_ice_concentration'
   ingest_task: 'raster_calc'
@@ -589,7 +602,9 @@
 - &seaice_maximum_concentration
   id: maximum_concentration_2009
   title: 'NSIDC Sea Ice Concentration March 2009'
-  description: 'Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under 15% are considered to be open water.'
+  description: >-
+     Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
+     15% are considered to be open water.
   data_source: seaice_index.maximum_concentration_2009
   style: 'sea_ice_concentration'
   ingest_task: 'raster_calc'
@@ -685,7 +700,9 @@
 - <<: *bedmachine
   id: bedmachine_surface
   title: 'Surface Elevation (1km)'
-  description: 'Surface elevation in meters. Source is gimpdem v2.1 (http://bprc.osu.edu/GDG/gimpdem.php)'
+  description: >-
+      Surface elevation in meters. Source is gimpdem v2.1
+      (http://bprc.osu.edu/GDG/gimpdem.php)
   ingest_task_kwargs: {'extract_dataset': 'surface'}
   style: null
   visible: False
@@ -729,7 +746,10 @@
 
 - id: bathemetric_chart
   title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'
-  description: 'Bathymetric Chart of the Arctic Ocean (IBCAO). The vertical datum can assumed to be Mean Sea Level.'
+  description: >-
+      Bedrock elevation in meters. Elevations can be assumed to be relative to
+      Mean Sea Level. However, in some shallow water areas, the grids include
+      data from sources having a vertical datum other than mean sea level.
   data_source: bathemetric_chart.only
   ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'z'}
