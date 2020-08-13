@@ -94,6 +94,6 @@ class ExtractNcDataset(LayerTask):
 
             from_dataset_path = f'NETCDF:{input_fp}:{self.dataset_name}'
             logger.debug(
-                'Using gdal.Translate to convert from {from_dataset_path} to {output_fp}'
+                f'Using gdal.Translate to convert from {from_dataset_path} to {output_fp}'
             )
             gdal.Translate(output_fp, from_dataset_path)
