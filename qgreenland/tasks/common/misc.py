@@ -1,5 +1,6 @@
 """common.py: Tasks that could apply to any type of dataproduct."""
 import gzip
+import logging
 import os
 import zipfile
 
@@ -12,6 +13,9 @@ from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import (find_in_dir_by_ext,
                                   find_single_file_by_ext,
                                   temporary_path_dir)
+
+
+logger = logging.getLogger('luigi-interface')
 
 
 class Decompress(LayerTask):
@@ -88,7 +92,8 @@ class ExtractNcDataset(LayerTask):
             output_filename = f"{self.dataset_name}{self.layer_cfg['file_type']}"
             output_fp = os.path.join(temp_dir, output_filename)
 
-            gdal.Translate(
-                output_fp,
-                f'NETCDF:{input_fp}:{self.dataset_name}'
+            from_dataset_path = f'NETCDF:{input_fp}:{self.dataset_name}'
+            logger.debug(
+                'Using gdal.Translate to convert from {from_dataset_path} to {output_fp}'
             )
+            gdal.Translate(output_fp, from_dataset_path)

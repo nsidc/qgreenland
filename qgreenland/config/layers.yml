@@ -361,7 +361,7 @@
   title: 'Ice Sheet Velocity (500m)'
   description: 'Magnitude of velocity in meters per year.'
   data_source: velocity_mosaic.only
-  ingest_task: velocity_mosaic
+  ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'v'}
   file_type: '.tif'
   data_type: 'raster'
@@ -723,10 +723,31 @@
   group_path: 'Terrain models'
 
 
+################
+# Oceanography #
+################
+
+- id: bathemetric_chart
+  title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'
+  description: 'Bathymetric Chart of the Arctic Ocean (IBCAO). The vertical datum can assumed to be Mean Sea Level.'
+  data_source: bathemetric_chart.only
+  ingest_task: netcdf_raster
+  ingest_task_kwargs: {'extract_dataset': 'z'}
+  file_type: '.tif'
+  data_type: 'raster'
+  style: 'ibcao_bathymetry'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  warp_kwargs:
+    srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
+    dstNodata: -9999
+  visible: False
+  group_path: 'Oceanography'
+
 ############
 # BASEMAPS #
 ############
-
 
 - id: coastlines
   title: 'Coastlines'
