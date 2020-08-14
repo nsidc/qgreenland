@@ -456,3 +456,24 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'GEBCO Compilation Group (2020) GEBCO 2020 Grid (doi:10.5285/a29c5465-b138-234d-e053-6c86abc040b9)'
       url: 'https://www.gebco.net/data_and_products/gridded_bathymetry_data/arctic_ocean/'
+
+
+- id: undersea_features
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.ngdc.noaa.gov/gazetteer/feature/export?aoi=POLYGON%28%28-162.82882+39.14360%2C+120.79574+45.17504%2C+-1.80233+31.69553%2C+-68.42289+32.69612%2C+-162.82882+39.14360%29%29&name=&featureType=&proposerId=&discovererId=&meeting=&status=&format=shapefile'
+  metadata:
+    title: 'IHO-IOC GEBCO Gazetteer of Undersea Feature Names'
+    abstract: >-
+        The GEBCO Sub-Committee on Undersea Feature Names (SCUFN) maintains and
+        makes available a digital gazetteer of the names, generic feature type
+        and geographic position of features on the seafloor. The gazetteer is
+        available to view and download (http://www.ngdc.noaa.gov/gazetteer/) via a web map application, hosted by the
+        International Hydrographic Organization Data Centre for Digital
+        Bathymetry (IHO DCDB) co-located with the US National Centers for
+        Environmental Information (NCEI).
+    citation:
+      text: 'IHO-IOC GEBCO Gazetteer of Undersea Feature Names, www.gebco.net'
+      url: 'https://www.gebco.net/data_and_products/undersea_feature_names/'

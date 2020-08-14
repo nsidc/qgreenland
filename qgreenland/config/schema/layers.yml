@@ -57,7 +57,7 @@ ogr2ogr_kwargs:
 ---
 decompress_kwargs:
   # Explicit files to extract from the zip/rar
-  extract_file: str()
+  extract_files: list(str())
 
 ---
 overviews_kwargs:

@@ -62,9 +62,9 @@ class Unzip(Decompress):
         zf = zipfile.ZipFile(zf_path)
 
         with temporary_path_dir(self.output()) as temp_path:
-            if 'extract_file' in self.decompress_kwargs:
-                zf.extract(self.decompress_kwargs['extract_file'],
-                           path=temp_path)
+            if 'extract_files' in self.decompress_kwargs:
+                for extract_file in self.decompress_kwargs['extract_files']:
+                    zf.extract(extract_file, path=temp_path)
             else:
                 # zf.extractall instead???
                 for fn in zf.namelist():

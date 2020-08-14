@@ -14,24 +14,33 @@ from qgreenland.constants import (RELEASES_DIR,
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 
+def _filename_from_url(url):
+    url_slash_index = url.rfind('/')
+    fn = url[url_slash_index + 1:]
+
+    return fn
+
+
+def _ftp_fetch_and_write(url, output_dir):
+    # TODO support earthdata login
+    fn = _filename_from_url(url)
+    fp = os.path.join(output_dir, fn)
+
+    # Stolen from:
+    # https://stackoverflow.com/questions/11768214/python-download-a-file-from-an-ftp-server
+    # TODO: do we need `closing`?
+    with closing(request.urlopen(url)) as r:
+        with open(fp, 'wb') as f:
+            shutil.copyfileobj(r, f)
+
+
 def fetch_and_write_file(url, *, output_dir, session=None):
     """Attempt to download and write file from url.
 
     Assumes filename from URL or content-disposition header.
     """
-    url_slash_index = url.rfind('/')
-    fn = url[url_slash_index + 1:]
-
     if url.startswith('ftp://'):
-        # TODO support earthdata login
-        # TODO: do we need `closing`?
-        # Stolen from:
-        # https://stackoverflow.com/questions/11768214/python-download-a-file-from-an-ftp-server
-        fp = os.path.join(output_dir, fn)
-
-        with closing(request.urlopen(url)) as r:
-            with open(fp, 'wb') as f:
-                shutil.copyfileobj(r, f)
+        _ftp_fetch_and_write(url, output_dir)
     else:
         # TODO: Share the session across requests somehow?
         if not session:
@@ -39,13 +48,11 @@ def fetch_and_write_file(url, *, output_dir, session=None):
 
         resp = session.get(url, timeout=REQUEST_TIMEOUT)
 
-        # If the filename is not a part of the URL, attempt to extract it from
-        # the `content-disposition` header.
-        if not fn:
-            try:
-                disposition = resp.headers['content-disposition']
-                fn = re.findall('filename=(.+)', disposition)[0]
-            except Exception as e:
+        # Try to extract the filename from the `content-disposition` header
+        if disposition := resp.headers.get('content-disposition'):
+            fn = re.findall('filename=(.+)', disposition)[0]
+        else:
+            if not (fn := _filename_from_url(url)):
                 raise RuntimeError(f'Failed to retrieve output filename from {url}: {e}')
 
         fp = os.path.join(output_dir, fn)

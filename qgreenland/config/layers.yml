@@ -393,7 +393,8 @@
   data_type: 'raster'
   style: 'ice_thickness_change'
   decompress_kwargs:
-    extract_file: 'ICESat1_ICESat2_mass_change/gris.tif'
+    extract_files:
+      - 'ICESat1_ICESat2_mass_change/gris.tif'
   visible: False
   # TODO: Does this count as glaciology?
   group_path: 'Glaciology/Ice thickness change'
@@ -743,6 +744,53 @@
 ################
 # Oceanography #
 ################
+
+- &undersea_features
+  id: undersea_features_point
+  title: 'IHO-ICO GEBCO Features (point)'
+  description: >-
+      Undersea feature names curated by the General Bathymetric Chart of the
+      Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
+  data_source: undersea_features.only
+  ingest_task: zipped_shapefile
+  # TODO: ingest_kwargs vs decompress_kwargs
+  decompress_kwargs:
+  # TODO: regex(s) instad of file list?
+    extract_files:
+      - 'features/features-point.dbf'
+      - 'features/features-point.prj'
+      - 'features/features-point.shp'
+      - 'features/features-point.shx'
+  file_type: '.shp'
+  data_type: 'vector'
+  # TODO: style
+  # style: 'labeld_shape'
+  visible: False
+  group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
+
+  # Note: source zipfile for undersea features data has multipoint shapefile
+  # that only contains data outside of the project extent.
+
+- <<: *undersea_features
+  id: undersea_features_multilinestring
+  title: 'IHO-ICO GEBCO Features (multiline)'
+  decompress_kwargs:
+    extract_files:
+      - 'features/features-multilinestring.dbf'
+      - 'features/features-multilinestring.prj'
+      - 'features/features-multilinestring.shp'
+      - 'features/features-multilinestring.shx'
+
+- <<: *undersea_features
+  id: undersea_features_multipolygon
+  title: 'IHO-ICO GEBCO Features (multipolygon)'
+  decompress_kwargs:
+    extract_files:
+      - 'features/features-multipolygon.dbf'
+      - 'features/features-multipolygon.prj'
+      - 'features/features-multipolygon.shp'
+      - 'features/features-multipolygon.shx'
+
 
 - id: bathymetric_chart
   title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'

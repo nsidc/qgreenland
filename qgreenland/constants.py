@@ -30,7 +30,7 @@ TMP_DIR = WIP_DIR
 # Presence indicates the project is ready to be zipped for release.
 ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
 
-REQUEST_TIMEOUT = 3
+REQUEST_TIMEOUT = 20
 
 # Project configuration
 # NOTE: The order of this dictionary is important for passing to
