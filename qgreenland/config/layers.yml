@@ -41,7 +41,7 @@
   data_type: 'vector'
   visible: False
   group_path: 'Miscellaneous/Latitude lines'
-  style: 'labeled_shape'
+  style: 'labeled_line'
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_25_degree.geojson'
     s_srs: 'EPSG:4326'
@@ -137,7 +137,7 @@
   data_type: 'vector'
   visible: False
   group_path: 'Miscellaneous/Longitude lines'
-  style: 'labeled_shape'
+  style: 'labeled_line'
   ogr2ogr_kwargs:
     input_filename: 'longitudes_0_5_degree.geojson'
     s_srs: 'EPSG:4326'
@@ -748,6 +748,7 @@
 - &undersea_features
   id: undersea_features_point
   title: 'IHO-ICO GEBCO Features (point)'
+  style: 'labeled_point'
   description: >-
       Undersea feature names curated by the General Bathymetric Chart of the
       Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
@@ -763,10 +764,10 @@
       - 'features/features-point.shx'
   file_type: '.shp'
   data_type: 'vector'
-  # TODO: style
-  # style: 'labeld_shape'
   visible: False
   group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-point\"'"
 
   # Note: source zipfile for undersea features data has multipoint shapefile
   # that only contains data outside of the project extent.
@@ -774,22 +775,28 @@
 - <<: *undersea_features
   id: undersea_features_multilinestring
   title: 'IHO-ICO GEBCO Features (multiline)'
+  style: 'labeled_line'
   decompress_kwargs:
     extract_files:
       - 'features/features-multilinestring.dbf'
       - 'features/features-multilinestring.prj'
       - 'features/features-multilinestring.shp'
       - 'features/features-multilinestring.shx'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-multilinestring\"'"
 
 - <<: *undersea_features
   id: undersea_features_multipolygon
   title: 'IHO-ICO GEBCO Features (multipolygon)'
+  style: 'labeled_polygon'
   decompress_kwargs:
     extract_files:
       - 'features/features-multipolygon.dbf'
       - 'features/features-multipolygon.prj'
       - 'features/features-multipolygon.shp'
       - 'features/features-multipolygon.shx'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-multipolygon\"'"
 
 
 - id: bathymetric_chart

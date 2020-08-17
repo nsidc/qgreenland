@@ -53,6 +53,7 @@ ogr2ogr_kwargs:
   s_srs: str(required=False)
   t_srs: str(required=False)
   segmentize: int(required=False)
+  sql: str(required=False)
 
 ---
 decompress_kwargs:
