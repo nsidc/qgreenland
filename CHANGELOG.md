@@ -1,8 +1,9 @@
-# v0.27.0 (unreleased)
+# v0.27.0 (2020-08-17)
 
 - Bugfix: layers not requiring earthdata login are no longer downloaded twice.
 - Add LZW compression to all raster layers.
 - New Oceanography layer: International Bathymetric Chart of the Arctic Ocean
+- New Oceanography layer: IHO-IOC GEBCO Gazetteer of Undersea Feature Names
 
 # v0.26.0 (2020-08-12)
 
