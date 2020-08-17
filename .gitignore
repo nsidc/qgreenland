@@ -5,3 +5,4 @@ qgis-data/Quantarctica*
 .coverage
 __pycache__
 .env
+logs/
