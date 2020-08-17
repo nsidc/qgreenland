@@ -35,8 +35,9 @@ services:
     image: nginx
     volumes:
       - /share/appdata/qgreenland/release/:/usr/share/nginx/html/:ro
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./nginx/.htpasswd:/etc/nginx/.htpasswd:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./logs:/logs
     ports:
       - 80:80
     logging:
