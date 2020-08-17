@@ -53,11 +53,12 @@ ogr2ogr_kwargs:
   s_srs: str(required=False)
   t_srs: str(required=False)
   segmentize: int(required=False)
+  sql: str(required=False)
 
 ---
 decompress_kwargs:
   # Explicit files to extract from the zip/rar
-  extract_file: str()
+  extract_files: list(str())
 
 ---
 overviews_kwargs:
