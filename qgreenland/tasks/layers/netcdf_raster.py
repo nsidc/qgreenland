@@ -6,7 +6,7 @@ from qgreenland.tasks.common.raster import WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
-class VelocityMosaic(LayerPipeline):
+class NetCdfRaster(LayerPipeline):
     """Dataset VelocityMosaic.
 
     This is a NetCDF dataproduct with many distinct datasets representing
@@ -20,7 +20,7 @@ class VelocityMosaic(LayerPipeline):
 
         fetch_data = FetchDataFiles(
             source_cfg=source,
-            output_name='velocity_mosaic'
+            output_name=self.cfg['id']
         )  # ->
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,

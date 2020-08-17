@@ -15,7 +15,10 @@
 
 - id: arctic_circle
   title: Arctic Circle (66° 34' North)
-  description: "The Arctic Circle is an imaginary line that circles the globe at approximately 66° 34' N and marks the latitude above which the sun does not set on the summer solstice, and does not rise on the winter solstice."
+  description: >-
+      The Arctic Circle is an imaginary line that circles the globe at
+      approximately 66° 34' N and marks the latitude above which the sun does
+      not set on the summer solstice, and does not rise on the winter solstice.
   data_source: arctic_circle.only
   ingest_task: local_shapefile
   file_type: '.shp'
@@ -236,7 +239,9 @@
 
 - id: vegetation_biomass_2010
   title: 'Vegetation Biomass 2010 (1km)'
-  description: 'Estimated above ground plant biomass for the tundra biome in kilograms per square meter. Based on trans-Arctic field data and AVHRR NDVI.'
+  description: >-
+    Estimated above ground plant biomass for the tundra biome in kilograms per
+    square meter. Based on trans-Arctic field data and AVHRR NDVI.
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
@@ -270,7 +275,9 @@
 
 - id: permaice
   title: 'Permafrost and Ground-Ice (12.5km)'
-  description: 'Soil characteristics categorized by permafrost extent, ground ice content, overburden thickness, and exposed bedrock.'
+  description: >-
+      Soil characteristics categorized by permafrost extent, ground ice content,
+      overburden thickness, and exposed bedrock.
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
@@ -361,7 +368,7 @@
   title: 'Ice Sheet Velocity (500m)'
   description: 'Magnitude of velocity in meters per year.'
   data_source: velocity_mosaic.only
-  ingest_task: velocity_mosaic
+  ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'v'}
   file_type: '.tif'
   data_type: 'raster'
@@ -399,7 +406,9 @@
 
 - id: soil_types
   title: 'Soil Characteristics'
-  description: 'Polygons representing dominant soil characteristics with percentage polygon area for each soil type. Data coverage limited to Greenland.'
+  description: >-
+      Polygons representing dominant soil characteristics with percentage
+      polygon area for each soil type. Data coverage limited to Greenland.
   data_source: soil_types.only
   ingest_task: gzipped_shapefile_parts
   file_type: '.shp'
@@ -417,7 +426,9 @@
 
 - id: hydrologic_subbasins
   title: 'Hydrologic Sub-Basins'
-  description: 'Polygons of ice sheet hydrologic sub-basins with area in square kilometers.'
+  description: >-
+      Polygons of ice sheet hydrologic sub-basins with area in square
+      kilometers.
   data_source: hydrologic_subbasins.only
   ingest_task: rarred_shapefile
   file_type: '.shp'
@@ -513,7 +524,9 @@
 - &seaice_minimum_concentration
   id: minimum_concentration_2009
   title: 'NSIDC Sea Ice Concentration September 2009'
-  description: 'Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under 15% are considered to be open water.'
+  description: >-
+      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values
+      under 15% are considered to be open water.
   data_source: seaice_index.minimum_concentration_2009
   style: 'sea_ice_concentration'
   ingest_task: 'raster_calc'
@@ -589,7 +602,9 @@
 - &seaice_maximum_concentration
   id: maximum_concentration_2009
   title: 'NSIDC Sea Ice Concentration March 2009'
-  description: 'Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under 15% are considered to be open water.'
+  description: >-
+     Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
+     15% are considered to be open water.
   data_source: seaice_index.maximum_concentration_2009
   style: 'sea_ice_concentration'
   ingest_task: 'raster_calc'
@@ -685,7 +700,9 @@
 - <<: *bedmachine
   id: bedmachine_surface
   title: 'Surface Elevation (1km)'
-  description: 'Surface elevation in meters. Source is gimpdem v2.1 (http://bprc.osu.edu/GDG/gimpdem.php)'
+  description: >-
+      Surface elevation in meters. Source is gimpdem v2.1
+      (http://bprc.osu.edu/GDG/gimpdem.php)
   ingest_task_kwargs: {'extract_dataset': 'surface'}
   style: null
   visible: False
@@ -723,10 +740,35 @@
   group_path: 'Terrain models'
 
 
+################
+# Oceanography #
+################
+
+- id: bathymetric_chart
+  title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'
+  description: >-
+      Bedrock elevation in meters. Elevations can be assumed to be relative to
+      Mean Sea Level. However, in some shallow water areas, the grids include
+      data from sources having a vertical datum other than mean sea level.
+  data_source: bathymetric_chart.only
+  ingest_task: netcdf_raster
+  ingest_task_kwargs: {'extract_dataset': 'z'}
+  file_type: '.tif'
+  data_type: 'raster'
+  style: 'ibcao_bathymetry'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  warp_kwargs:
+    srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
+    dstNodata: -9999
+  visible: False
+  group_path: 'Oceanography'
+
+
 ############
 # BASEMAPS #
 ############
-
 
 - id: coastlines
   title: 'Coastlines'

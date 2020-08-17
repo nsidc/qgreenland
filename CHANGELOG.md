@@ -2,6 +2,7 @@
 
 - Bugfix: layers not requiring earthdata login are no longer downloaded twice.
 - Add LZW compression to all raster layers.
+- New Oceanography layer: International Bathymetric Chart of the Arctic Ocean
 
 # v0.26.0 (2020-08-12)
 

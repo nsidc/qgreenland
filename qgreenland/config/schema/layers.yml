@@ -75,3 +75,4 @@ warp_kwargs:
   # TODO: Pick _one_ interface for supplying/overriding source projections for
   #       rasters and vectors
   srcSRS: str(required=False)
+  dstNodata: num(required=False)

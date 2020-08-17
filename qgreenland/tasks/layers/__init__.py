@@ -5,12 +5,12 @@ from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
 from qgreenland.tasks.layers.gzipped_shapefile_parts import GzippedShapefileParts
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
 from qgreenland.tasks.layers.local_shapefile import LocalShapefile
+from qgreenland.tasks.layers.netcdf_raster import NetCdfRaster
 from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_shapefile import RarredShapefile
 from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.raster_calc import RasterCalc
 from qgreenland.tasks.layers.utm_zones import UtmZones
-from qgreenland.tasks.layers.velocity_mosaic import VelocityMosaic
 from qgreenland.tasks.layers.zipped_shapefile import ZippedShapefile
 
 INGEST_TASKS = {
@@ -21,11 +21,11 @@ INGEST_TASKS = {
     'gzipped_shapefile_parts': GzippedShapefileParts,
     'ice_thickness_change': IceThicknessChange,
     'local_shapefile': LocalShapefile,
+    'netcdf_raster': NetCdfRaster,
     'permaice': Permaice,
     'rarred_shapefile': RarredShapefile,
     'raster': Raster,
     'raster_calc': RasterCalc,
     'utm_zones': UtmZones,
-    'velocity_mosaic': VelocityMosaic,
     'zipped_shapefile': ZippedShapefile,
 }
