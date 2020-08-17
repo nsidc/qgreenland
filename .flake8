@@ -7,5 +7,5 @@ application_import_names = qgreenland
 import_order_style = pycharm
 
 # D1: Ignore errors requiring docstrings on everything
-# W504: Ignore errors requiring blank line after binary operators
-ignore = D1,W504
+# W503: Line breaks should occur after the binary operator to keep all variable names aligned.
+ignore = D1,W503

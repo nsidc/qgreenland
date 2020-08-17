@@ -49,7 +49,10 @@ def fetch_and_write_file(url, *, output_dir, session=None):
         resp = session.get(url, timeout=REQUEST_TIMEOUT)
 
         # Try to extract the filename from the `content-disposition` header
-        if disposition := resp.headers.get('content-disposition'):
+        if (
+            (disposition := resp.headers.get('content-disposition'))
+            and 'filename' in disposition
+        ):
             fn = re.findall('filename=(.+)', disposition)[0]
         else:
             if not (fn := _filename_from_url(url)):

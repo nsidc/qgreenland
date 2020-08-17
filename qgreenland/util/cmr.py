@@ -12,9 +12,9 @@ CMR_BASE_URL = 'https://cmr.earthdata.nasa.gov'
 CMR_GRANULES_URL = f'{CMR_BASE_URL}/search/granules.csv'
 
 CMR_GRANULES_SCROLL_URL = (
-    CMR_GRANULES_URL +
-    '?scroll=true&page_size=2000&'
-    'sort_key[]=%2Bstart_date&online_only=true'
+    CMR_GRANULES_URL
+    + '?scroll=true&page_size=2000&'
+    + 'sort_key[]=%2Bstart_date&online_only=true'
 )
 
 Granule = namedtuple('Granule', ['urls', 'start_time'])
