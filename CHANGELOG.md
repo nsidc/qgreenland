@@ -1,3 +1,18 @@
+# v0.28.0 (unreleased)
+
+- Use `DEFLATE` compression for raster layers instead of `LZW`. `DEFLATE`
+  results in a good compromise between the QGreenland zip file size and the
+  unziped package size. As of this release:
+    - without compression:
+      - Unzipped size: 3.7G
+      - Zipped size: 631M
+    - with `LZW` compression:
+      - Unzipped size: 867M
+      - Zipped size: 784M
+    - with `DEFLATE` compression:
+      - Unzipped size: 653M
+      - Zipped size: 640M
+
 # v0.27.0 (2020-08-17)
 
 - Bugfix: layers not requiring earthdata login are no longer downloaded twice.

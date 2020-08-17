@@ -69,7 +69,7 @@ class WarpRaster(LayerTask):
         warp_kwargs = {
             'resampleAlg': 'bilinear',
             'outputBounds': list(PROJECT_EXTENT.values()),
-            'creationOptions': ['COMPRESS=LZW']
+            'creationOptions': ['COMPRESS=DEFLATE']
         }
         if 'warp_kwargs' in self.layer_cfg:
             warp_kwargs.update(self.layer_cfg['warp_kwargs'])
