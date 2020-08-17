@@ -1,7 +1,12 @@
+#!/usr/bin/env python
+
 import os
+import re
 import sys
 from datetime import datetime
 from pprint import pprint
+
+from humanize import naturalsize
 
 try:
     REPO_ROOT = os.path.abspath(
@@ -12,6 +17,11 @@ except Exception as e:
 
 LOGS_DIR = os.path.join(REPO_ROOT, 'logs')
 LOGS_FILE = os.path.join(LOGS_DIR, 'zip_access.log')
+
+
+def unusable_filename(fn):
+    """TODO: Switch to logging.debug to hide spam."""
+    print(f'WARNING: Unusable filename: {fn}')
 
 
 class Parser:
@@ -39,7 +49,17 @@ class Parser:
         if status_code != 200:
             return
 
-        qgr_version = filename.rstrip('.zip').lstrip('QGreenland_')
+        if 'QGreenland' not in filename:
+            unusable_filename(filename)
+            return
+
+        matcher = re.compile('QGreenland_(v.+).zip')
+        try:
+            qgr_version = matcher.match(filename).groups()[0]
+        except AttributeError as e:
+            unusable_filename(filename)
+            return
+
         if qgr_version in self.state:
             self.state[qgr_version]['downloads'] += 1
             self.state[qgr_version]['bytes'] += num_bytes
@@ -51,10 +71,14 @@ class Parser:
     def report(self):
         """Print a human-readable report.
 
-        TODO: Print e.g. '452MB' instead of '452235211' for bytes.
         TODO: Consider printing in a nicer format than pprint(dict)
         """
-        pprint(self.state)
+
+        for key, val in self.state.items():
+            print()
+            print(f'== {key} ==')
+            print(f"  Download count: {val['downloads']}")
+            print(f"  Total size: {naturalsize(val['bytes'])}")
 
 
 if __name__ == '__main__':
