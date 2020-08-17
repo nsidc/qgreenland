@@ -53,7 +53,7 @@ def fetch_and_write_file(url, *, output_dir, session=None):
             fn = re.findall('filename=(.+)', disposition)[0]
         else:
             if not (fn := _filename_from_url(url)):
-                raise RuntimeError(f'Failed to retrieve output filename from {url}: {e}')
+                raise RuntimeError(f'Failed to retrieve output filename from {url}')
 
         fp = os.path.join(output_dir, fn)
 
