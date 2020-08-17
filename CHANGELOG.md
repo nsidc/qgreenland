@@ -1,5 +1,6 @@
 # v0.28.0 (unreleased)
 
+- You no longer require a password to download QGreenland!
 - Use `DEFLATE` compression for raster layers instead of `LZW`. `DEFLATE`
   results in a good compromise between the QGreenland zip file size and the
   unziped package size. As of this release:
