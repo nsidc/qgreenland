@@ -12,7 +12,9 @@ from qgreenland.constants import CONFIG
 
 if __name__ == '__main__':
     report = [{
-        'Group': layer['group_path'], 
+        'Group': layer['group_path'].split('/', 1)[0], 
+        'Subgroup': (layer['group_path'].split('/', 1)[1]
+                     if '/' in layer['group_path'] else ''),
         'Layer Title': layer['title'], 
         'Layer Description': layer.get('description', ''),
         'Vector or Raster': layer['data_type'],
