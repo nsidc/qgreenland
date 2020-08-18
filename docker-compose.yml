@@ -37,7 +37,7 @@ services:
       - /share/appdata/qgreenland/release/:/usr/share/nginx/html/:ro
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./logs:/logs
+      - /share/logs/qgreenland:/logs
     ports:
       - 80:80
     logging:

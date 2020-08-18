@@ -1,0 +1,10 @@
+services:
+
+  # Luigi runs as a service and must have jobs submitted to it
+  # (`scripts/run_task.sh`)
+  webserver:
+    volumes:
+      - /share/appdata/qgreenland/release/:/usr/share/nginx/html/:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./logs:/logs
