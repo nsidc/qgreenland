@@ -26,7 +26,4 @@ if __name__ == '__main__':
         dict_writer = csv.DictWriter(ofile, report[0].keys())
         dict_writer.writeheader()
         dict_writer.writerows(report)
-
-    print('Done.')
-
-
+        print(f'Exported: {os.path.abspath(ofile.name)}')
