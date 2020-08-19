@@ -1,4 +1,4 @@
-# v0.28.0 (unreleased)
+# v0.28.0 (2020-08-19)
 
 - You no longer require a password to download QGreenland!
 - Use `DEFLATE` compression for raster layers instead of `LZW`. `DEFLATE`
@@ -13,6 +13,8 @@
     - with `DEFLATE` compression:
       - Unzipped size: 653M
       - Zipped size: 640M
+- Add layer config CSV export utility script
+- Add log analysis script: Download and byte count by QGreenland version
 
 # v0.27.0 (2020-08-17)
 
