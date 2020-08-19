@@ -380,7 +380,7 @@
     xRes: 500
     yRes: 500
   visible: False
-  group_path: 'Glaciology/Ice sheet velocity'
+  group_path: 'Glaciology/Ice sheet speed'
 
 
 - id: ice_thickness_change
