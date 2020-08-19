@@ -436,22 +436,24 @@
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shp.xml'
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shx'
 
-- id: tectonic_plates
-  title: 'Tectonic plates'
-  data_source: tectonic_plates.only
-  ingest_task: zipped_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-  visible: False
-  group_path: 'Geology & natural resources'
-  decompress_kwargs:
-    extract_files:
-      - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.dbf'
-      - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.prj'
-      - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.sbn'
-      - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shp'
-      - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shp.xml'
-      - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shx'
+# TODO: this layer results in missing features due to reprojection issues. Try
+# to come back to this later.
+# - id: tectonic_plates
+#   title: 'Tectonic plates'
+#   data_source: tectonic_plates.only
+#   ingest_task: zipped_shapefile
+#   file_type: '.shp'
+#   data_type: 'vector'
+#   visible: False
+#   group_path: 'Geology & natural resources'
+#   decompress_kwargs:
+#     extract_files:
+#       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.dbf'
+#       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.prj'
+#       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.sbn'
+#       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shp'
+#       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shp.xml'
+#       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shx'
 
 
 #############
