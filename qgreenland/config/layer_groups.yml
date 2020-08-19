@@ -85,9 +85,9 @@ Glaciology/Glacier terminus positions 2000-2017:
   visible: True
   expanded: False
 
-Glaciology/Ice sheet velocity:
+Glaciology/Ice sheet speed:
   visible: True
-  expanded: False
+  expanded: True
 
 Glaciology/Ice thickness change:
   visible: True
