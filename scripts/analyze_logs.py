@@ -15,8 +15,32 @@ try:
 except Exception as e:
     raise RuntimeError(f'Failed to find script path: {e}')
 
-LOGS_DIR = os.path.join(REPO_ROOT, 'logs')
-LOGS_FILE = os.path.join(LOGS_DIR, 'zip_access.log')
+
+def logs_file_path(cmdl_args):
+    """Return the logs file path.
+
+    If the user passed a path as positional argument, use that. Otherwise, if
+    the NFS location is available, use it. Otherwise, use the local location.
+    """
+    EXPECTED_FN = 'zip_access.log'
+    LOCAL_LOGS_DIR = os.path.join(REPO_ROOT, 'logs')
+    LOCAL_LOGS_FILE = os.path.join(LOCAL_LOGS_DIR, EXPECTED_FN)
+    NFS_LOGS_FILE = os.path.join('/share/logs/qgreenland', EXPECTED_FN)
+
+    if os.path.isfile(LOCAL_LOGS_FILE):
+        LOGS_FILE = LOCAL_LOGS_FILE
+
+    if os.path.isfile(NFS_LOGS_FILE):
+        LOGS_FILE = NFS_LOGS_FILE
+
+    if len(cmdl_args) > 1:
+        LOGS_FILE = cmdl_args[1]
+
+    if not os.path.isfile(LOGS_FILE):
+        print(f"Log file '{LOGS_FILE}' does not exist.")
+        sys.exit(1)
+
+    return LOGS_FILE
 
 
 def unusable_filename(fn):
@@ -82,10 +106,11 @@ class Parser:
 
 
 if __name__ == '__main__':
+    logs_fp = logs_file_path(sys.argv)
     parser = Parser()
 
-    with open(LOGS_FILE, 'r') as logs_file:
-        print(f'Parsing log file: {LOGS_FILE}...')
+    with open(logs_fp, 'r') as logs_file:
+        print(f'Parsing log file: {logs_fp}...')
         lines = logs_file.readlines()
 
         if len(lines) == 0:
