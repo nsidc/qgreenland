@@ -11,7 +11,7 @@ class GlacierTerminus(LayerPipeline):
 
     def requires(self):
         fetch_data = FetchCmrGranule(source_cfg=self.cfg['source'],
-                                     output_name=self.cfg['id'])
+                                     dataset_cfg=self.cfg['dataset'])
         return Ogr2OgrShapefile(
             requires_task=fetch_data,
             layer_id=self.layer_id

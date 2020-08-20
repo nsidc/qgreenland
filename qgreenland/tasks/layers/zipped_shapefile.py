@@ -9,8 +9,8 @@ class ZippedShapefile(LayerPipeline):
 
     def requires(self):
         fetch_data = FetchDataFiles(
+            dataset_cfg=self.cfg['dataset'],
             source_cfg=self.cfg['source'],
-            output_name=self.cfg['id']
         )  # ->
         unzip = Unzip(
             requires_task=fetch_data,

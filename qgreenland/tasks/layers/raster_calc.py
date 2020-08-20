@@ -9,7 +9,7 @@ class RasterCalc(LayerPipeline):
     def requires(self):
         fetch_data = FetchDataFiles(
             source_cfg=self.cfg['source'],
-            output_name=self.cfg['id']
+            dataset_cfg=self.cfg['dataset']
         )  # ->
         gdal_calc = GdalCalcRaster(
             requires_task=fetch_data,
