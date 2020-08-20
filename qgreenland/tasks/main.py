@@ -79,4 +79,4 @@ class ZipQGreenland(luigi.Task):
         os.remove(self.input().path)
 
         if ENVIRONMENT != 'dev':
-            cleanup_intermediate_dirs(delete_fetch_dir=True)
+            cleanup_intermediate_dirs(delete_fetch_dir=False)
