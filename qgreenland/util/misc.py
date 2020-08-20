@@ -3,7 +3,7 @@ import os
 import re
 import shutil
 import time
-import urllib.request as request
+import urllib.request
 from contextlib import closing, contextmanager
 
 from qgreenland.constants import (RELEASES_DIR,
@@ -29,7 +29,7 @@ def _ftp_fetch_and_write(url, output_dir):
     # Stolen from:
     # https://stackoverflow.com/questions/11768214/python-download-a-file-from-an-ftp-server
     # TODO: do we need `closing`?
-    with closing(request.urlopen(url)) as r:
+    with closing(urllib.request.urlopen(url)) as r:
         with open(fp, 'wb') as f:
             shutil.copyfileobj(r, f)
 
