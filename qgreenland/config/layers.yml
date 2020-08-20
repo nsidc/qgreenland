@@ -404,6 +404,20 @@
 # Geology & natural resources #
 ###############################
 
+- id: earthquakes
+  title: 'USGS Earthquakes (M>2.5, 1900-2020)'
+  description: >-
+    Location and magnitude of earthquakes.
+  data_source: earthquakes.only
+  ingest_task: 'online_vector'
+  file_type: '.geojson'  # ?
+  data_type: 'vector'
+  visible: True
+  group_path: 'Geology & natural resources'
+  ogr2ogr_kwargs:
+    input_filename: 'query.geojson'
+  style: 'earthquakes'
+
 - id: soil_types
   title: 'Soil Characteristics'
   description: >-

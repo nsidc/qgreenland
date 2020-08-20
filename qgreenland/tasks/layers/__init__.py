@@ -6,6 +6,7 @@ from qgreenland.tasks.layers.gzipped_shapefile_parts import GzippedShapefilePart
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
 from qgreenland.tasks.layers.local_shapefile import LocalShapefile
 from qgreenland.tasks.layers.netcdf_raster import NetCdfRaster
+from qgreenland.tasks.layers.online_vector import OnlineVector
 from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_shapefile import RarredShapefile
 from qgreenland.tasks.layers.raster import Raster
@@ -22,6 +23,7 @@ INGEST_TASKS = {
     'ice_thickness_change': IceThicknessChange,
     'local_shapefile': LocalShapefile,
     'netcdf_raster': NetCdfRaster,
+    'online_vector': OnlineVector,
     'permaice': Permaice,
     'rarred_shapefile': RarredShapefile,
     'raster': Raster,
