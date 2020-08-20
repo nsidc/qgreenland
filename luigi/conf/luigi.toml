@@ -1,0 +1,3 @@
+[core]
+log_level = 'INFO'
+# logging_conf_file = '/etc/luigi/logging.conf'

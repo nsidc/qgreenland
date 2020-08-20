@@ -14,6 +14,7 @@ services:
       - /share/appdata/qgreenland:/luigi/data:rw
       - ./qgreenland:/luigi/tasks/qgreenland:ro
     environment:
+      - LUIGI_CONFIG_PARSER=toml
       - ENVIRONMENT
       - EARTHDATA_USERNAME
       - EARTHDATA_PASSWORD
