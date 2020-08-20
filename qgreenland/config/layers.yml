@@ -732,7 +732,6 @@
   visible: True
   group_path: 'Terrain models/BedMachine'
 
-
 - <<: *bedmachine
   id: bedmachine_surface
   title: 'Surface Elevation (1km)'
@@ -743,7 +742,6 @@
   style: null
   visible: False
 
-
 - <<: *bedmachine
   id: bedmachine_thickness
   title: 'Ice Thickness (1km)'
@@ -751,7 +749,6 @@
   ingest_task_kwargs: {'extract_dataset': 'thickness'}
   style: null
   visible: False
-
 
 - <<: *bedmachine
   id: bedmachine_errbed
