@@ -828,6 +828,8 @@
       - 'features/features-multipolygon.shp'
       - 'features/features-multipolygon.shx'
   ogr2ogr_kwargs:
+    # Prevent polygon from being turned in to a linestring during clip operation
+    nlt: 'POLYGON'
     sql: "'SELECT *, name as label from \"features-multipolygon\"'"
 
 

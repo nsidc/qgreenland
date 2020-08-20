@@ -12,7 +12,7 @@ class Permaice(LayerPipeline):
     def requires(self):
         fetch_data = FetchDataFiles(
             source_cfg=self.cfg['source'],
-            output_name=self.cfg['id']
+            dataset_cfg=self.cfg['dataset'],
         )  # ->
         return WarpRaster(
             requires_task=fetch_data,
