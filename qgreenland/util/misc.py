@@ -18,6 +18,9 @@ def _filename_from_url(url):
     url_slash_index = url.rfind('/')
     fn = url[url_slash_index + 1:]
 
+    if '?' in fn:
+        fn = fn.split('?', 1)[0]
+
     return fn
 
 
