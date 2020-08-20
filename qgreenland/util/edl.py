@@ -31,8 +31,10 @@ def create_earthdata_authenticated_session(s=None, *, hosts):
             return s
 
         auth_resp = s.get(headers['location'],
-                          allow_redirects=False,  # Don't actually fetch data!
+                          # Don't download data!
+                          stream=True,
                           auth=_get_earthdata_creds())
+        resp.close()
         if not (auth_resp.ok and s.cookies.get(URS_COOKIE) == 'yes'):
             msg = f'Authentication with Earthdata Login failed with:\n{auth_resp.text}'
             raise RuntimeError(msg)
