@@ -746,7 +746,6 @@
   visible: True
   group_path: 'Terrain models/BedMachine'
 
-
 - <<: *bedmachine
   id: bedmachine_surface
   title: 'Surface Elevation (1km)'
@@ -757,7 +756,6 @@
   style: null
   visible: False
 
-
 - <<: *bedmachine
   id: bedmachine_thickness
   title: 'Ice Thickness (1km)'
@@ -765,7 +763,6 @@
   ingest_task_kwargs: {'extract_dataset': 'thickness'}
   style: null
   visible: False
-
 
 - <<: *bedmachine
   id: bedmachine_errbed
@@ -845,6 +842,8 @@
       - 'features/features-multipolygon.shp'
       - 'features/features-multipolygon.shx'
   ogr2ogr_kwargs:
+    # Prevent polygon from being turned in to a linestring during clip operation
+    nlt: 'POLYGON'
     sql: "'SELECT *, name as label from \"features-multipolygon\"'"
 
 

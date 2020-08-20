@@ -23,11 +23,9 @@ class BedMachineDataset(LayerPipeline):
         self.layer_id = f'bedmachine_{self.extract_dataset}'
 
     def requires(self):
-        source = self.cfg['source']
-
         fetch_data = FetchCmrGranule(
-            source_cfg=source,
-            output_name='bedmachine'
+            dataset_cfg=self.cfg['dataset'],
+            source_cfg=self.cfg['source'],
         )  # ->
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,

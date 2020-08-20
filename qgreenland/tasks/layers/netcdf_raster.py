@@ -20,7 +20,7 @@ class NetCdfRaster(LayerPipeline):
 
         fetch_data = FetchDataFiles(
             source_cfg=source,
-            output_name=self.cfg['id']
+            dataset_cfg=self.cfg['dataset']
         )  # ->
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,

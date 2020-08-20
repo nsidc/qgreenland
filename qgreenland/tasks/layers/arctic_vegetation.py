@@ -5,11 +5,9 @@ from qgreenland.util.luigi import LayerPipeline
 
 class ArcticVegetation(LayerPipeline):
     def requires(self):
-        source = self.cfg['source']
-
         fetch_data = FetchCmrGranule(
-            source_cfg=source,
-            output_name='arctic_vegetation'
+            dataset_cfg=self.cfg['dataset'],
+            source_cfg=self.cfg['source'],
         )  # ->
         return WarpRaster(
             requires_task=fetch_data,

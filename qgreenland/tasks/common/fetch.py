@@ -9,10 +9,16 @@ from qgreenland.util.edl import create_earthdata_authenticated_session as make_s
 from qgreenland.util.misc import fetch_and_write_file, temporary_path_dir
 
 
-class FetchCmrGranule(luigi.Task):
+class FetchTask(luigi.Task):
+    dataset_cfg = luigi.DictParameter()
     source_cfg = luigi.DictParameter()
-    output_name = luigi.Parameter()
 
+    @property
+    def output_name(self):
+        return f"{self.dataset_cfg['id']}.{self.source_cfg['id']}"
+
+
+class FetchCmrGranule(FetchTask):
     session = None
 
     def output(self):
@@ -35,10 +41,7 @@ class FetchCmrGranule(luigi.Task):
                 fetch_and_write_file(url, output_dir=temp_path, session=self.session)
 
 
-class FetchDataFiles(luigi.Task):
-    source_cfg = luigi.DictParameter()
-    output_name = luigi.Parameter()
-
+class FetchDataFiles(FetchTask):
     def output(self):
         return luigi.LocalTarget(
             os.path.join(TaskType.FETCH.value,
@@ -55,10 +58,7 @@ class FetchDataFiles(luigi.Task):
                 fetch_and_write_file(url, output_dir=temp_path)
 
 
-class FetchLocalDataFiles(luigi.Task):
-    source_cfg = luigi.DictParameter()
-    output_name = luigi.Parameter()
-
+class FetchLocalDataFiles(FetchTask):
     def output(self):
         return luigi.LocalTarget(
             os.path.join(TaskType.FETCH.value,
