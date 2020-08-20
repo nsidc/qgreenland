@@ -8,8 +8,8 @@ class OnlineVector(LayerPipeline):
 
     def requires(self):
         fetch_data = FetchDataFiles(
+            dataset_cfg=self.cfg['dataset'],
             source_cfg=self.cfg['source'],
-            output_name=self.cfg['id']
         )  # ->
         return Ogr2OgrShapefile(
             requires_task=fetch_data,
