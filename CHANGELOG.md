@@ -1,3 +1,7 @@
+# v0.29.0 (unreleased)
+
+- Add new Geology & natural resrouces layer: plate tectonic boundaries.
+
 # v0.28.0 (2020-08-19)
 
 - You no longer require a password to download QGreenland!
