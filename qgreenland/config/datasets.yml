@@ -489,6 +489,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     title: 'World tectonic plates and boundaries'
     # TODO: should we just copy most of the github repo README into the abstract like quantarctica does?
     abstract: >-
+        TBD!
         This is a conversion of the dataset originally published in the paper
         _An updated digital model of plate boundaries_ by Peter Bird
         (Geochemistry Geophysics Geosystems, 4(3), 1027,
@@ -504,5 +505,19 @@ The images and data are produced in a consistent way that makes the Index time-s
         documentation and the scientific article.
     citation:
       # TODO Is this citation correct?
-      text: 'Hugo Ahlenius, Nordpil and Peter Bird'
+      text: 'TBD! Hugo Ahlenius, Nordpil and Peter Bird'
       url: 'https://github.com/fraxen/tectonicplates'
+
+- id: earthquakes
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1900-01-01%2000:00:00&endtime=2020-08-20%2023:59:59&maxlatitude=90&minlatitude=51.179&maxlongitude=17.578&minlongitude=-103.359&minmagnitude=2.5&orderby=time'
+  metadata:
+    title: 'TBD'
+    abstract: >-
+      TBD
+    citation:
+      text: 'TBD'
+      url: 'TBD'

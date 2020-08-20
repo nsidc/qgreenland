@@ -404,6 +404,20 @@
 # Geology & natural resources #
 ###############################
 
+- id: earthquakes
+  title: 'USGS Earthquakes'
+  description: >-
+    Location and magnitude of earthquakes. TBD...
+  data_source: earthquakes.only
+  ingest_task: 'online_vector'
+  file_type: '.geojson'  # ?
+  data_type: 'vector'
+  visible: True
+  group_path: 'Geology & natural resources'
+  # ogr2ogr_kwargs:
+  #   s_srs: 'TBD'
+  # style: 'earthquakes'
+
 - id: soil_types
   title: 'Soil Characteristics'
   description: >-
