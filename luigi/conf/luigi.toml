@@ -1,3 +1,5 @@
 [core]
-log_level = 'INFO'
+# Debug messages include "remaining job count"...
+# TODO: Find a way to reduce luigi spam but keep those messages.
+log_level = 'DEBUG'
 # logging_conf_file = '/etc/luigi/logging.conf'
