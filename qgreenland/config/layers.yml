@@ -493,7 +493,7 @@
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_02
-  title: 'Febuary Median Sea Ice Extent'
+  title: 'February Median Sea Ice Extent'
   data_source: seaice_index.median_extent_line_02
 
 

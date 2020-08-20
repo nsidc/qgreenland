@@ -13,6 +13,7 @@ dependencies:
   - flake8-import-order=0.18.1
   - flake8-quotes=2.1.1
   - geopandas=0.6.2
+  - humanize=2.6.0
   - invoke=1.4.0
   - ipython
   - ipdb
