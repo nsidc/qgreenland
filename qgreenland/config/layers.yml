@@ -37,7 +37,7 @@
   description: "Lines of latitude in 0.25-degree resolution."
   visible: False
   group_path: 'Miscellaneous/Latitude lines'
-  style: 'labeled_line'
+  style: 'latlon'
   data_source: latlon.lat_0_25_deg
   ingest_task: local_shapefile
   file_type: '.shp'
@@ -133,7 +133,7 @@
   description: "Lines of longitude in 0.5-degree resolution."
   visible: False
   group_path: 'Miscellaneous/Longitude lines'
-  style: 'labeled_line'
+  style: 'latlon'
   data_source: latlon.lon_0_5_deg
   ingest_task: local_shapefile
   file_type: '.shp'
@@ -414,7 +414,7 @@
   visible: True
   group_path: 'Geology & natural resources'
   style: 'earthquakes'
-  extent: 'background'
+  extent: 'data'
   data_source: earthquakes.only
   ingest_task: 'online_vector'
   file_type: '.geojson'  # ?
