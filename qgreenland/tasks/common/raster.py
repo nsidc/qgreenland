@@ -4,7 +4,7 @@ import shutil
 import luigi
 import rasterio as rio
 
-from qgreenland.constants import PROJECT_EXTENT, TaskType
+from qgreenland.constants import CONFIG, TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 from qgreenland.util.raster import gdal_calc_raster, warp_raster
@@ -66,9 +66,11 @@ class WarpRaster(LayerTask):
                 'override_source_projection not implemented for raster layers.'
             )
 
+        extent_str = self.layer_cfg.get('extent', 'background')
+        extent = CONFIG['project']['extents'][extent_str]
         warp_kwargs = {
             'resampleAlg': 'bilinear',
-            'outputBounds': list(PROJECT_EXTENT.values()),
+            'outputBounds': list(extent.values()),
             'creationOptions': ['COMPRESS=DEFLATE']
         }
         if 'warp_kwargs' in self.layer_cfg:

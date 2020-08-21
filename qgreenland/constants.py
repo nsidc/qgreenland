@@ -32,16 +32,6 @@ ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
 
 REQUEST_TIMEOUT = 20
 
-# Project configuration
-# NOTE: The order of this dictionary is important for passing to
-# qgc.QgsRectangle
-PROJECT_EXTENT = {'xmin': -3850000.000,
-                  'ymin': -5350000.0,
-                  'xmax': 3750000.0,
-                  'ymax': 5850000.000}
-
-PROJECT_CRS = 'EPSG:3413'
-
 # URS stuff
 URS_COOKIE = 'urs_user_already_logged'
 

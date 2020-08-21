@@ -8,10 +8,7 @@ from jinja2 import Template
 from osgeo import gdal
 
 from qgreenland import __version__
-from qgreenland.constants import (ASSETS_DIR,
-                                  CONFIG,
-                                  PROJECT_CRS,
-                                  PROJECT_EXTENT)
+from qgreenland.constants import ASSETS_DIR, CONFIG
 from qgreenland.util.misc import get_layer_fs_path
 
 
@@ -214,14 +211,15 @@ def make_qgis_project_file(path):
     project = qgc.QgsProject.instance()
     project.write(path)
 
-    project_crs = qgc.QgsCoordinateReferenceSystem(PROJECT_CRS)
+    project_crs = qgc.QgsCoordinateReferenceSystem(CONFIG['project']['crs'])
     project.setCrs(project_crs)
 
     # Set the default extent. Eventually we may want to pull the extent directly
     # from the configured 'map frame' layer.
     view = project.viewSettings()
+    background_extent = CONFIG['project']['extents']['background']
     extent = qgc.QgsReferencedRectangle(
-        qgc.QgsRectangle(*PROJECT_EXTENT.values()),
+        qgc.QgsRectangle(*background_extent.values()),
         project_crs
     )
     view.setDefaultViewExtent(extent)

@@ -1,0 +1,12 @@
+crs: str(required=True)
+extents:
+  background:
+    xmin: num(required=True)
+    ymin: num(required=True)
+    xmax: num(required=True)
+    ymax: num(required=True)
+  data:
+    xmin: num(required=True)
+    ymin: num(required=True)
+    xmax: num(required=True)
+    ymax: num(required=True)

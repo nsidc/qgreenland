@@ -23,7 +23,7 @@ def _load_config(config_filename, *, config_dir, schema_dir):
     schema_fp = os.path.join(schema_dir, config_filename)
 
     if not os.path.isfile(config_fp):
-        return NotImplementedError(
+        raise NotImplementedError(
             'Loading is supported for only one config file at a time.'
         )
 
@@ -66,8 +66,12 @@ def _dereference_config(cfg):
             del layer_config['dataset']['sources']
 
         # TODO: Populate related layer group configuration? Instead of
-        # accessing CONFIG['layers']['layer_id'], allow direct access by
-        # CONFIG['layer_id']
+        # accessing CONFIG['layers'][layer_id], allow direct access by
+        # CONFIG[layer_id]
+
+        # TODO: Populate layer_config['extent'] with referenced value in project
+        # config.
+        # breakpoint()
 
     # Turn layers config in to a dict keyed by id
     cfg['layers'] = {x['id']: x for x in cfg['layers']}
@@ -80,6 +84,9 @@ def make_config(*, config_dir, schema_dir):
     # shouldn't be so hard!
     # TODO: Consider namedtuple or something?
     cfg = {
+        'project': _load_config('project.yml',
+                                config_dir=config_dir,
+                                schema_dir=schema_dir),
         'layers': _load_config('layers.yml',
                                config_dir=config_dir,
                                schema_dir=schema_dir),
