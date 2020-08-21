@@ -9,6 +9,7 @@ PROJECT = 'qgreenland'
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
 PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
+INPUT_DIR = '/input'
 DATA_DIR = '/luigi/data'
 RELEASES_DIR = f'{DATA_DIR}/release'
 WIP_DIR = f'{DATA_DIR}/luigi-wip'
@@ -41,7 +42,7 @@ class TaskType(Enum):
 
     # For downloading data. By keeping this in its own directory, we can
     # selectively avoid cleaning it up.
-    FETCH = os.path.join(WIP_DIR, 'fetch')
+    FETCH = INPUT_DIR
 
     # For still-processing data in temporary directory structure.
     WIP = os.path.join(WIP_DIR, 'wip')
