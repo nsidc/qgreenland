@@ -1,4 +1,4 @@
-# v0.30.0 (Unreleased)
+# v0.30.0 (2020-08-21)
 
 - Add `project.yml` configuration for project CRS, extents.
   - The "data" extent is focused on Greenland, while the "background" extent
