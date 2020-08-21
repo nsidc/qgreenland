@@ -3,7 +3,8 @@
 - Add `project.yml` configuration for project CRS, extents.
   - The "data" extent is focused on Greenland, while the "background" extent
     provides context.
-- Reduce USGS Earthquakes extent to "data" extent. 
+  - Limit extent of most layers to "data" extent.
+  - Change Project default extent to "data" extent.
 - Add specialized "latlon" style.
 
 # v0.29.0 (2020-08-20)
