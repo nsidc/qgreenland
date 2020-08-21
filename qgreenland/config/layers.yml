@@ -4,13 +4,14 @@
 
 - id: utm_zones
   title: Universal Transverse Mercator (UTM) Zones
+  visible: False
+  group_path: 'Miscellaneous'
+  style: 'transparent_shape'
+  extent: 'data'
   data_source: utm_zones.only
   ingest_task: utm_zones
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Miscellaneous'
-  style: 'transparent_shape'
 
 
 - id: arctic_circle
@@ -19,12 +20,12 @@
       The Arctic Circle is an imaginary line that circles the globe at
       approximately 66° 34' N and marks the latitude above which the sun does
       not set on the summer solstice, and does not rise on the winter solstice.
+  visible: False
+  group_path: 'Miscellaneous'
   data_source: arctic_circle.only
   ingest_task: local_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Miscellaneous'
   ogr2ogr_kwargs:
     input_filename: 'arctic_circle.geojson'
     s_srs: 'EPSG:4326'
@@ -35,13 +36,13 @@
   id: lat_0_25_deg
   title: Latitude lines (0.25 degree)
   description: "Lines of latitude in 0.25-degree resolution."
+  visible: False
+  group_path: 'Miscellaneous/Latitude lines'
+  style: 'latlon'
   data_source: latlon.lat_0_25_deg
   ingest_task: local_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Miscellaneous/Latitude lines'
-  style: 'labeled_line'
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_25_degree.geojson'
     s_srs: 'EPSG:4326'
@@ -131,13 +132,13 @@
   id: lon_0_5_deg
   title: Longitude lines (0.5 degree)
   description: "Lines of longitude in 0.5-degree resolution."
+  visible: False
+  group_path: 'Miscellaneous/Longitude lines'
+  style: 'latlon'
   data_source: latlon.lon_0_5_deg
   ingest_task: local_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Miscellaneous/Longitude lines'
-  style: 'labeled_line'
   ogr2ogr_kwargs:
     input_filename: 'longitudes_0_5_degree.geojson'
     s_srs: 'EPSG:4326'
@@ -242,13 +243,14 @@
   description: >-
     Estimated above ground plant biomass for the tundra biome in kilograms per
     square meter. Based on trans-Arctic field data and AVHRR NDVI.
+  visible: False
+  group_path: 'Biology/Vegetation'
+  style: 'arctic_vegetation_biomass'
+  extent: 'data'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
   data_type: 'raster'
-  visible: False
-  group_path: 'Biology/Vegetation'
-  style: 'arctic_vegetation_biomass'
 
 
 #####################
@@ -258,15 +260,13 @@
 - id: populated_places
   title: 'Populated Places'
   data_source: populated_places.only
+  visible: True
+  group_path: 'Built environment'
+  style: 'populated_places'
+  extent: 'data'
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  style: 'populated_places'
-  ogr2ogr_kwargs:
-    clipdst: '-796814.1 -322934.6 1103185.9 -3599419.2'
-  # TODO: Enable a style with labels for placenames, make visible again
-  visible: True
-  group_path: 'Built environment'
 
 
 #################
@@ -278,13 +278,14 @@
   description: >-
       Soil characteristics categorized by permafrost extent, ground ice content,
       overburden thickness, and exposed bedrock.
+  visible: False
+  group_path: 'Frozen ground'
+  style: 'permaice'
+  extent: 'data'
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
   data_type: 'raster'
-  style: 'permaice'
-  visible: False
-  group_path: 'Frozen ground'
   warp_kwargs:
     xRes: 12500
     yRes: 12500
@@ -298,23 +299,25 @@
 
 - id: glacier_terminus_glacier_ids
   title: 'Glacier IDs'
+  visible: False
+  group_path: 'Glaciology/Glacier terminus positions 2000-2017'
+  style: 'glacier_ids'
+  extent: 'data'
   data_source: glacier_terminus.glacier_ids
   ingest_task: glacier_terminus
   file_type: '.shp'
   data_type: 'vector'
-  group_path: 'Glaciology/Glacier terminus positions 2000-2017'
-  style: 'glacier_ids'
-  visible: False
 
 - &glacier_terminus
   id: glacier_terminus_2000_2001
   title: 'Glacier Termini 2000 to 2001'
+  visible: False
+  group_path: 'Glaciology/Glacier terminus positions 2000-2017'
+  extent: 'data'
   data_source: glacier_terminus.2000_2001
   ingest_task: glacier_terminus
   file_type: '.shp'
   data_type: 'vector'
-  group_path: 'Glaciology/Glacier terminus positions 2000-2017'
-  visible: False
 
 - <<: *glacier_terminus
   id: glacier_terminus_2005_2006
@@ -367,37 +370,38 @@
 - id: velocity_mosaic
   title: 'Ice Sheet Velocity (500m)'
   description: 'Magnitude of velocity in meters per year.'
+  visible: False
+  group_path: 'Glaciology/Ice sheet velocity'
+  style: 'ice_sheet_velocity'
+  extent: 'data'
   data_source: velocity_mosaic.only
   ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'v'}
   file_type: '.tif'
   data_type: 'raster'
-  style: 'ice_sheet_velocity'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
   warp_kwargs:
     xRes: 500
     yRes: 500
-  visible: False
-  group_path: 'Glaciology/Ice sheet velocity'
 
 
 - id: ice_thickness_change
   title: 'Ice Column Thickness 2003-2019 (5km)'
   # TODO: better description.
   description: 'Ice column thickness change in meters per year.'
+  visible: False
+  group_path: 'Glaciology/Ice thickness change'
+  style: 'ice_thickness_change'
+  extent: 'data'
   data_source: icesheet_height_and_thickness_change.only
   ingest_task: ice_thickness_change
   file_type: '.tif'
   data_type: 'raster'
-  style: 'ice_thickness_change'
   decompress_kwargs:
     extract_files:
       - 'ICESat1_ICESat2_mass_change/gris.tif'
-  visible: False
-  # TODO: Does this count as glaciology?
-  group_path: 'Glaciology/Ice thickness change'
 
 
 ###############################
@@ -408,39 +412,42 @@
   title: 'USGS Earthquakes (M>2.5, 1900-2020)'
   description: >-
     Location and magnitude of earthquakes.
+  visible: False
+  group_path: 'Geology & natural resources'
+  style: 'earthquakes'
+  extent: 'data'
   data_source: earthquakes.only
   ingest_task: 'online_vector'
   file_type: '.geojson'  # ?
   data_type: 'vector'
-  visible: True
-  group_path: 'Geology & natural resources'
   ogr2ogr_kwargs:
     input_filename: 'query.geojson'
-  style: 'earthquakes'
 
 - id: soil_types
   title: 'Soil Characteristics'
   description: >-
       Polygons representing dominant soil characteristics with percentage
       polygon area for each soil type. Data coverage limited to Greenland.
+  visible: False
+  group_path: 'Geology & natural resources'
+  style: 'soil_types'
+  extent: 'data'
   data_source: soil_types.only
   ingest_task: gzipped_shapefile_parts
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Geology & natural resources'
   ogr2ogr_kwargs:
     s_srs: '"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0"'
-  style: 'soil_types'
 
 - id: tectonic_plate_boundaries
   title: 'Tectonic plate boundaries'
+  visible: False
+  group_path: 'Geology & natural resources'
+  extent: 'background'
   data_source: tectonic_plates.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Geology & natural resources'
   decompress_kwargs:
     extract_files:
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.dbf'
@@ -454,12 +461,13 @@
 # to come back to this later.
 # - id: tectonic_plates
 #   title: 'Tectonic plates'
+#   visible: False
+#   group_path: 'Geology & natural resources'
+#   extent: 'background'
 #   data_source: tectonic_plates.only
 #   ingest_task: zipped_shapefile
 #   file_type: '.shp'
 #   data_type: 'vector'
-#   visible: False
-#   group_path: 'Geology & natural resources'
 #   decompress_kwargs:
 #     extract_files:
 #       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.dbf'
@@ -479,12 +487,13 @@
   description: >-
       Polygons of ice sheet hydrologic sub-basins with area in square
       kilometers.
+  visible: False
+  group_path: 'Hydrology'
+  extent: 'data'
   data_source: hydrologic_subbasins.only
   ingest_task: rarred_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Hydrology'
   ogr2ogr_kwargs:
     s_srs: 'ESRI:102018'
 
@@ -498,12 +507,13 @@
   id: seaice_median_extent_01
   title: 'January Median Sea Ice Extent'
   description: 'Median extent from the period 1981 through 2010.'
+  visible: False
+  group_path: 'Sea ice/Median ice extent'
+  extent: 'data'
   data_source: seaice_index.median_extent_line_01
   ingest_task: 'zipped_shapefile'
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Sea ice/Median ice extent'
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_02
@@ -577,13 +587,14 @@
   description: >-
       Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values
       under 15% are considered to be open water.
-  data_source: seaice_index.minimum_concentration_2009
+  visible: False
+  group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
+  extent: 'data'
+  data_source: seaice_index.minimum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
   data_type: 'raster'
-  visible: False
-  group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
 
@@ -655,13 +666,14 @@
   description: >-
      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
      15% are considered to be open water.
-  data_source: seaice_index.maximum_concentration_2009
+  visible: False
+  group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb|March (max extent)'
   style: 'sea_ice_concentration'
+  extent: 'data'
+  data_source: seaice_index.maximum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
   data_type: 'raster'
-  visible: False
-  group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb|March (max extent)'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
 
@@ -734,17 +746,18 @@
   id: bedmachine_bed
   title: 'Bedrock Elevation (1km)'
   description: 'Bedrock elevation in meters. Source is mass conservation (Mathieu Morlighem).'
+  visible: True
+  group_path: 'Terrain models/BedMachine'
+  style: 'bedmachine_bed'
+  extent: 'data'
   data_source: bedmachine.only
   ingest_task: bedmachine
   ingest_task_kwargs: {'extract_dataset': 'bed'}
   file_type: '.tif'
   data_type: 'raster'
-  style: 'bedmachine_bed'
   warp_kwargs:
     xRes: 1000
     yRes: 1000
-  visible: True
-  group_path: 'Terrain models/BedMachine'
 
 - <<: *bedmachine
   id: bedmachine_surface
@@ -752,39 +765,40 @@
   description: >-
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
-  ingest_task_kwargs: {'extract_dataset': 'surface'}
-  style: null
   visible: False
+  style: null
+  ingest_task_kwargs: {'extract_dataset': 'surface'}
 
 - <<: *bedmachine
   id: bedmachine_thickness
   title: 'Ice Thickness (1km)'
   description: 'Ice thickness in meters. Source is Mass conservation (Mathieu Morlighem)'
-  ingest_task_kwargs: {'extract_dataset': 'thickness'}
-  style: null
   visible: False
+  style: null
+  ingest_task_kwargs: {'extract_dataset': 'thickness'}
 
 - <<: *bedmachine
   id: bedmachine_errbed
   title: 'Bedrock Elevation/Ice Thickness Error (1km)'
-  ingest_task_kwargs: {'extract_dataset': 'errbed'}
-  style: null
   visible: False
+  style: null
+  ingest_task_kwargs: {'extract_dataset': 'errbed'}
 
 
 - id: arctic_dem
   title: 'Arctic DEM (1km)'
   description: 'Surface elevation in meters.'
+  visible: False
+  group_path: 'Terrain models'
+  style: 'arctic_dem'
+  extent: 'data'
   data_source: arctic_dem.only
   ingest_task: 'raster'
   file_type: '.tif'
   data_type: 'raster'
-  style: 'arctic_dem'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
-  visible: False
-  group_path: 'Terrain models'
 
 
 ################
@@ -794,10 +808,13 @@
 - &undersea_features
   id: undersea_features_point
   title: 'IHO-ICO GEBCO Features (point)'
-  style: 'labeled_point'
   description: >-
       Undersea feature names curated by the General Bathymetric Chart of the
       Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
+  visible: False
+  group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
+  style: 'labeled_point'
+  extent: 'data'
   data_source: undersea_features.only
   ingest_task: zipped_shapefile
   # TODO: ingest_kwargs vs decompress_kwargs
@@ -810,8 +827,6 @@
       - 'features/features-point.shx'
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
   ogr2ogr_kwargs:
     sql: "'SELECT *, name as label from \"features-point\"'"
 
@@ -853,20 +868,21 @@
       Bedrock elevation in meters. Elevations can be assumed to be relative to
       Mean Sea Level. However, in some shallow water areas, the grids include
       data from sources having a vertical datum other than mean sea level.
+  visible: False
+  group_path: 'Oceanography'
+  style: 'ibcao_bathymetry'
+  extent: 'data'
   data_source: bathymetric_chart.only
   ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'z'}
   file_type: '.tif'
   data_type: 'raster'
-  style: 'ibcao_bathymetry'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
   warp_kwargs:
     srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
     dstNodata: -9999
-  visible: False
-  group_path: 'Oceanography'
 
 
 ############
@@ -875,30 +891,20 @@
 
 - id: coastlines
   title: 'Coastlines'
+  visible: False
+  group_path: 'Basemaps'
+  extent: 'background'
   data_source: coastlines.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Basemaps'
-
-
-# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
-# holes for small islands which are not present on the land layer, and that was
-# gross so we removed the ocean layer.
-- id: land
-  title: 'Land'
-  data_source: land_shape.only
-  ingest_task: zipped_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-  style: 'land'
-  visible: False
-  group_path: 'Basemaps'
 
 
 - id: background
   title: 'Background (1km)'
+  visible: True
+  group_path: 'Basemaps'
+  extent: 'data'
   data_source: background.only
   ingest_task: background_image
   file_type: '.tif'
@@ -912,5 +918,18 @@
     # the original image meet after polar wrapping. TODO: This doesn't actually
     # get rid of the line.
     warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
+
+
+# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
+# holes for small islands which are not present on the land layer, and that was
+# gross so we removed the ocean layer.
+- id: land
+  title: 'Land'
   visible: True
   group_path: 'Basemaps'
+  style: 'land'
+  extent: 'background'
+  data_source: land_shape.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'

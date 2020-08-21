@@ -1,4 +1,13 @@
-# v0.29.0 (unreleased)
+# v0.30.0 (Unreleased)
+
+- Add `project.yml` configuration for project CRS, extents.
+  - The "data" extent is focused on Greenland, while the "background" extent
+    provides context.
+  - Limit extent of most layers to "data" extent.
+  - Change Project default extent to "data" extent.
+- Add specialized "latlon" style.
+
+# v0.29.0 (2020-08-20)
 
 - Add new Geology & natural resrouces layer: Earthquakes.
 - Add new Geology & natural resrouces layer: plate tectonic boundaries.

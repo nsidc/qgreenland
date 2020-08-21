@@ -513,6 +513,9 @@ The images and data are produced in a consistent way that makes the Index time-s
   sources:
     - id: only
       urls:
+        # Currently this API is limited to 20,000 results at a time, so we
+        # can't reasonably select data for the entire background extent without
+        # more code changes.
         - 'https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1900-01-01%2000:00:00&endtime=2020-08-20%2023:59:59&maxlatitude=90&minlatitude=51.179&maxlongitude=17.578&minlongitude=-103.359&minmagnitude=2.5&orderby=time'
   metadata:
     title: 'USGS Earthquakes 1990-2020'
