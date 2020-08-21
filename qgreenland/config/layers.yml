@@ -7,6 +7,7 @@
   visible: False
   group_path: 'Miscellaneous'
   style: 'transparent_shape'
+  extent: 'data'
   data_source: utm_zones.only
   ingest_task: utm_zones
   file_type: '.shp'
@@ -411,7 +412,7 @@
   title: 'USGS Earthquakes (M>2.5, 1900-2020)'
   description: >-
     Location and magnitude of earthquakes.
-  visible: True
+  visible: False
   group_path: 'Geology & natural resources'
   style: 'earthquakes'
   extent: 'data'
@@ -508,7 +509,7 @@
   description: 'Median extent from the period 1981 through 2010.'
   visible: False
   group_path: 'Sea ice/Median ice extent'
-  extent: 'background'
+  extent: 'data'
   data_source: seaice_index.median_extent_line_01
   ingest_task: 'zipped_shapefile'
   file_type: '.shp'
@@ -589,7 +590,7 @@
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
-  extent: 'background'
+  extent: 'data'
   data_source: seaice_index.minimum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
@@ -668,7 +669,7 @@
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb|March (max extent)'
   style: 'sea_ice_concentration'
-  extent: 'background'
+  extent: 'data'
   data_source: seaice_index.maximum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
@@ -813,7 +814,7 @@
   visible: False
   group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
   style: 'labeled_point'
-  extent: 'background'
+  extent: 'data'
   data_source: undersea_features.only
   ingest_task: zipped_shapefile
   # TODO: ingest_kwargs vs decompress_kwargs
@@ -870,7 +871,7 @@
   visible: False
   group_path: 'Oceanography'
   style: 'ibcao_bathymetry'
-  extent: 'background'  # Change?
+  extent: 'data'
   data_source: bathymetric_chart.only
   ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'z'}
@@ -899,26 +900,11 @@
   data_type: 'vector'
 
 
-# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
-# holes for small islands which are not present on the land layer, and that was
-# gross so we removed the ocean layer.
-- id: land
-  title: 'Land'
-  visible: False
-  group_path: 'Basemaps'
-  style: 'land'
-  extent: 'background'
-  data_source: land_shape.only
-  ingest_task: zipped_shapefile
-  file_type: '.shp'
-  data_type: 'vector'
-
-
 - id: background
   title: 'Background (1km)'
   visible: True
   group_path: 'Basemaps'
-  extent: 'background'
+  extent: 'data'
   data_source: background.only
   ingest_task: background_image
   file_type: '.tif'
@@ -932,3 +918,18 @@
     # the original image meet after polar wrapping. TODO: This doesn't actually
     # get rid of the line.
     warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
+
+
+# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
+# holes for small islands which are not present on the land layer, and that was
+# gross so we removed the ocean layer.
+- id: land
+  title: 'Land'
+  visible: True
+  group_path: 'Basemaps'
+  style: 'land'
+  extent: 'background'
+  data_source: land_shape.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
