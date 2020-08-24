@@ -5,7 +5,7 @@ import pyproj
 from osgeo import gdal
 from osgeo.gdalconst import GA_ReadOnly
 
-from qgreenland.constants import PROJECT_CRS
+from qgreenland.constants import CONFIG
 
 logger = logging.getLogger('luigi-interface')
 
@@ -56,9 +56,10 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
                            'No projection automatically detected and '
                            'none explicitly provided.')
 
+    project_crs = CONFIG['project']['crs']
     logger.debug(f'Warping with arguments: {warp_kwargs}')
-    logger.info(f'Target projection: {PROJECT_CRS}')
-    gdal.Warp(out_path, inp_path, dstSRS=PROJECT_CRS, **warp_kwargs)
+    logger.info(f'Target projection: {project_crs}')
+    gdal.Warp(out_path, inp_path, dstSRS=project_crs, **warp_kwargs)
 
 
 def gdal_calc_raster(in_filepath, out_filepath, *, layer_cfg, gdal_calc_kwargs):

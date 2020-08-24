@@ -9,6 +9,7 @@ PROJECT = 'qgreenland'
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
 PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
+INPUT_DIR = '/input'
 DATA_DIR = '/luigi/data'
 RELEASES_DIR = f'{DATA_DIR}/release'
 WIP_DIR = f'{DATA_DIR}/luigi-wip'
@@ -32,16 +33,6 @@ ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
 
 REQUEST_TIMEOUT = 20
 
-# Project configuration
-# NOTE: The order of this dictionary is important for passing to
-# qgc.QgsRectangle
-PROJECT_EXTENT = {'xmin': -3850000.000,
-                  'ymin': -5350000.0,
-                  'xmax': 3750000.0,
-                  'ymax': 5850000.000}
-
-PROJECT_CRS = 'EPSG:3413'
-
 # URS stuff
 URS_COOKIE = 'urs_user_already_logged'
 
@@ -51,7 +42,7 @@ class TaskType(Enum):
 
     # For downloading data. By keeping this in its own directory, we can
     # selectively avoid cleaning it up.
-    FETCH = os.path.join(WIP_DIR, 'fetch')
+    FETCH = INPUT_DIR
 
     # For still-processing data in temporary directory structure.
     WIP = os.path.join(WIP_DIR, 'wip')

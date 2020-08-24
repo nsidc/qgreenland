@@ -1,7 +1,6 @@
 services:
 
-  # Luigi runs as a service and must have jobs submitted to it
-  # (`scripts/run_task.sh`)
+  # Use a local log directory
   webserver:
     volumes:
       - /share/appdata/qgreenland/release/:/usr/share/nginx/html/:ro
