@@ -152,7 +152,7 @@
       text: 'Joughin, I., T. Moon, J. Joughin, and T. Black. 2015, 2017. MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics, Version 1. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/DC0MLBOCL3EL. 2020/02/12.'
       url: 'https://doi.org/10.5067/DC0MLBOCL3EL'
 
-- id: steams_outlets_basins
+- id: streams_outlets_basins
   access_method: http
   sources:
     - id: ice_basins
