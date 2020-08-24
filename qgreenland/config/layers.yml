@@ -487,49 +487,73 @@
   title: 'Ice Basins'
   description: >-
       TODO
-  data_source: steams_outlets_basins.ice_basins
+  data_source: streams_outlets_basins.ice_basins
   ingest_task: online_vector
   file_type: '.shp'
   data_type: 'vector'
   visible: False
   group_path: 'Hydrology'
-  # ogr2ogr_kwargs:
-  #   input_filename: 'query.geojson'
+  ogr2ogr_kwargs:
+    input_filename: 'basins.gpkg'
+    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: land_basins
   title: 'Land Basins'
-  data_source: steams_outlets_basins.land_basins
+  data_source: streams_outlets_basins.land_basins
+  ogr2ogr_kwargs:
+    input_filename: 'basins.gpkg'
+    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: ice_basins_filled
   title: 'Ice Basins Filled'
-  data_source: steams_outlets_basins.ice_basins_filled
+  data_source: streams_outlets_basins.ice_basins_filled
+  ogr2ogr_kwargs:
+    input_filename: 'basins_filled.gpkg'
+    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: land_basins_filled
   title: 'Land Basins Filled'
-  data_source: steams_outlets_basins.land_basins_filled
+  data_source: streams_outlets_basins.land_basins_filled
+  ogr2ogr_kwargs:
+    input_filename: 'basins_filled.gpkg'
+    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: ice_outlets
   title: 'Ice Outlets'
-  data_source: steams_outlets_basins.ice_outlets
+  data_source: streams_outlets_basins.ice_outlets
+  ogr2ogr_kwargs:
+    input_filename: 'outlets.gpkg'
+    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: land_outlets
   title: 'Land Outlets'
-  data_source: steams_outlets_basins.land_outlets
+  data_source: streams_outlets_basins.land_outlets
+  ogr2ogr_kwargs:
+    input_filename: 'outlets.gpkg'
+    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: ice_streams
   title: 'Ice Streams'
-  data_source: steams_outlets_basins.ice_streams
+  data_source: streams_outlets_basins.ice_streams
+  ogr2ogr_kwargs:
+    input_filename: 'streams.gpkg'
+    makevalid: ''
+    sql: "'SELECT * from streams WHERE GeometryType(geom) = \"LINESTRING\" AND ST_NPoints(geom) > 1'"
 
 - <<: *streams_outlets_basins
-  id: ice_streams
+  id: land_streams
   title: 'Land Streams'
-  data_source: steams_outlets_basins.land_streams
+  data_source: streams_outlets_basins.land_streams
+  ogr2ogr_kwargs:
+    input_filename: 'streams.gpkg'
+    makevalid: ''
+    sql: "'SELECT * from streams WHERE GeometryType(geom) = \"LINESTRING\" AND ST_NPoints(geom) > 1'"
 
 
 ##################

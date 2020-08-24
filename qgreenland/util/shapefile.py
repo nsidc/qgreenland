@@ -21,7 +21,7 @@ def ogr2ogr(in_filepath, out_filepath, **ogr2ogr_kwargs):
 
     cmd_args_str = ' '.join(cmd_args_list)
 
-    cmd = (f'. activate base && ogr2ogr {cmd_args_str}'
+    cmd = (f'. activate gdal && ogr2ogr {cmd_args_str}'
            f' {out_filepath} {in_filepath}')
     logger.debug(f'Executing ogr2ogr command: {cmd}')
     result = subprocess.run(cmd,

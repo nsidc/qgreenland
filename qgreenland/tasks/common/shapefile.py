@@ -42,15 +42,12 @@ class Ogr2OgrShapefile(LayerTask):
     def run(self):
         input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
 
-        # Extract the extent from the config, defaulting to 'background'.
-        layer_extent_str = self.layer_cfg.get('extent', 'background')
-        extent = CONFIG['project']['extents'][layer_extent_str]
         clipdst = ('"{xmin}" "{ymin}" '
-                   '"{xmax}" "{ymax}"').format(**extent)  # noqa: FS002
+                   '"{xmax}" "{ymax}"').format(**PROJECT_EXTENT)  # noqa: FS002
         ogr2ogr_kwargs = {
             # Output an UTF-8 encoded shapefile instead of default ISO-8859-1
             'lco': 'ENCODING=UTF-8',
-            't_srs': CONFIG['project']['crs'],
+            't_srs': PROJECT_CRS,
             # As opposed to `clipsrc`, `clipdst` uses the destination SRS
             # (`t_srs`) to clip the input after reprojection.
             'clipdst': clipdst,
@@ -67,7 +64,24 @@ class Ogr2OgrShapefile(LayerTask):
             input_filename = shapefile
 
         with temporary_path_dir(self.output()) as temp_path:
-            infile = os.path.join(self.input().path, input_filename)
+            if 'makevalid' in ogr2ogr_kwargs:
+                # TODO probably need to cleanup this output? Put it in another dir?
+                ogr2ogr_kwargs.pop('makevalid')
+                infile = os.path.join(self.input().path, input_filename)
+                valid_outfile = os.path.join(
+                    temp_path,
+                    'valid.shp'
+                )
+                valid_kwargs = {'makevalid': ''}
+                if 'sql' in ogr2ogr_kwargs:
+                    valid_kwargs['sql'] = ogr2ogr_kwargs.pop('sql')
+
+                ogr2ogr(infile, valid_outfile, **valid_kwargs)
+
+                infile = valid_outfile
+            else:
+                infile = os.path.join(self.input().path, input_filename)
+
             outfile = os.path.join(
                 temp_path,
                 self.filename
