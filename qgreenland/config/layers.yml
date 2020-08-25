@@ -495,7 +495,6 @@
   group_path: 'Hydrology'
   ogr2ogr_kwargs:
     input_filename: 'basins.gpkg'
-    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: land_basins
@@ -503,7 +502,6 @@
   data_source: streams_outlets_basins.land_basins
   ogr2ogr_kwargs:
     input_filename: 'basins.gpkg'
-    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: ice_basins_filled
@@ -511,7 +509,6 @@
   data_source: streams_outlets_basins.ice_basins_filled
   ogr2ogr_kwargs:
     input_filename: 'basins_filled.gpkg'
-    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: land_basins_filled
@@ -519,7 +516,6 @@
   data_source: streams_outlets_basins.land_basins_filled
   ogr2ogr_kwargs:
     input_filename: 'basins_filled.gpkg'
-    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: ice_outlets
@@ -527,7 +523,6 @@
   data_source: streams_outlets_basins.ice_outlets
   ogr2ogr_kwargs:
     input_filename: 'outlets.gpkg'
-    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: land_outlets
@@ -535,7 +530,6 @@
   data_source: streams_outlets_basins.land_outlets
   ogr2ogr_kwargs:
     input_filename: 'outlets.gpkg'
-    makevalid: ''
 
 - <<: *streams_outlets_basins
   id: ice_streams
@@ -543,7 +537,6 @@
   data_source: streams_outlets_basins.ice_streams
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
-    makevalid: ''
     sql: "'SELECT * from streams WHERE GeometryType(geom) = \"LINESTRING\" AND ST_NPoints(geom) > 1'"
 
 - <<: *streams_outlets_basins
@@ -552,7 +545,6 @@
   data_source: streams_outlets_basins.land_streams
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
-    makevalid: ''
     sql: "'SELECT * from streams WHERE GeometryType(geom) = \"LINESTRING\" AND ST_NPoints(geom) > 1'"
 
 

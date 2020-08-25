@@ -67,27 +67,24 @@ class Ogr2OgrShapefile(LayerTask):
             input_filename = shapefile
 
         with temporary_path_dir(self.output()) as temp_path:
-            if 'makevalid' in ogr2ogr_kwargs:
-                # TODO probably need to cleanup this output? Put it in another dir?
-                ogr2ogr_kwargs.pop('makevalid')
-                infile = os.path.join(self.input().path, input_filename)
-                valid_outfile = os.path.join(
-                    temp_path,
-                    'valid.shp'
-                )
-                valid_kwargs = {'makevalid': ''}
-                if 'sql' in ogr2ogr_kwargs:
-                    valid_kwargs['sql'] = ogr2ogr_kwargs.pop('sql')
+            # Before doing the requested transformation, make the vector data
+            # valid. We have to do the SQL step here because this command will
+            # change the internal table name of the output shapefile.
+            infile = os.path.join(self.input().path, input_filename)
+            # TODO probably need to cleanup this output? Put it in another dir?
+            valid_outfile = os.path.join(
+                temp_path,
+                'valid.shp'
+            )
+            valid_kwargs = {'makevalid': ''}
+            if 'sql' in ogr2ogr_kwargs:
+                valid_kwargs['sql'] = ogr2ogr_kwargs.pop('sql')
+            ogr2ogr(infile, valid_outfile, **valid_kwargs)
+            infile = valid_outfile
 
-                ogr2ogr(infile, valid_outfile, **valid_kwargs)
-
-                infile = valid_outfile
-            else:
-                infile = os.path.join(self.input().path, input_filename)
-
+            # Do the requested transformation
             outfile = os.path.join(
                 temp_path,
                 self.filename
             )
-
             ogr2ogr(infile, outfile, **ogr2ogr_kwargs)
