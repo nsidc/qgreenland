@@ -44,7 +44,7 @@ class Ogr2OgrShapefile(LayerTask):
 
         # Extract the extent from the config, defaulting to 'background'.
         layer_extent_str = self.layer_cfg.get('extent', 'background')
-        extent = CONFIG['project']['extents'][layer_extent_str] 
+        extent = CONFIG['project']['extents'][layer_extent_str]
         clipdst = ('"{xmin}" "{ymin}" '
                    '"{xmax}" "{ymax}"').format(**extent)  # noqa: FS002
         ogr2ogr_kwargs = {
