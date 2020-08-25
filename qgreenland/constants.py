@@ -2,7 +2,6 @@ import os
 from enum import Enum
 
 from qgreenland import __version__
-from qgreenland.util.config import make_config
 
 PROJECT = 'qgreenland'
 
@@ -11,17 +10,17 @@ ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 INPUT_DIR = '/input'
 DATA_DIR = '/luigi/data'
-RELEASES_DIR = f'{DATA_DIR}/release'
-WIP_DIR = f'{DATA_DIR}/luigi-wip'
-ASSETS_DIR = f'{PACKAGE_DIR}/assets'
+RELEASES_DIR = os.path.join(DATA_DIR, 'release')
+WIP_DIR = os.path.join(DATA_DIR, 'luigi-wip')
+ASSETS_DIR = os.path.join(PACKAGE_DIR, 'assets')
+LOCALDATA_DIR = os.path.join(ASSETS_DIR, 'local_data')
 if 'dev' in __version__:
-    RELEASE_DIR = f'{RELEASES_DIR}/dev/{__version__}'
+    RELEASE_DIR = os.path.join(RELEASES_DIR, 'dev', __version__)
 else:
-    RELEASE_DIR = f'{RELEASES_DIR}/{__version__}'
+    RELEASE_DIR = os.path.join(RELEASES_DIR, __version__)
 
-CONFIG_DIR = f'{PACKAGE_DIR}/config'
-CONFIG_SCHEMA_DIR = f'{CONFIG_DIR}/schema'
-CONFIG = make_config(config_dir=CONFIG_DIR, schema_dir=CONFIG_SCHEMA_DIR)
+CONFIG_DIR = os.path.join(PACKAGE_DIR, 'config')
+CONFIG_SCHEMA_DIR = os.path.join(CONFIG_DIR, 'schema')
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?

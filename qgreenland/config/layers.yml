@@ -7,7 +7,7 @@
   visible: False
   group_path: 'Miscellaneous'
   style: 'transparent_shape'
-  extent: 'data'
+  boundary: 'data'
   data_source: utm_zones.only
   ingest_task: utm_zones
   file_type: '.shp'
@@ -246,7 +246,7 @@
   visible: False
   group_path: 'Biology/Vegetation'
   style: 'arctic_vegetation_biomass'
-  extent: 'data'
+  boundary: 'data'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
@@ -263,7 +263,7 @@
   visible: True
   group_path: 'Built environment'
   style: 'populated_places'
-  extent: 'data'
+  boundary: 'data'
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
@@ -281,7 +281,7 @@
   visible: False
   group_path: 'Frozen ground'
   style: 'permaice'
-  extent: 'data'
+  boundary: 'data'
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
@@ -302,7 +302,7 @@
   visible: False
   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
   style: 'glacier_ids'
-  extent: 'data'
+  boundary: 'data'
   data_source: glacier_terminus.glacier_ids
   ingest_task: glacier_terminus
   file_type: '.shp'
@@ -313,7 +313,7 @@
   title: 'Glacier Termini 2000 to 2001'
   visible: False
   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
-  extent: 'data'
+  boundary: 'data'
   data_source: glacier_terminus.2000_2001
   ingest_task: glacier_terminus
   file_type: '.shp'
@@ -373,7 +373,7 @@
   visible: False
   group_path: 'Glaciology/Ice sheet velocity'
   style: 'ice_sheet_velocity'
-  extent: 'data'
+  boundary: 'data'
   data_source: velocity_mosaic.only
   ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'v'}
@@ -394,7 +394,7 @@
   visible: False
   group_path: 'Glaciology/Ice thickness change'
   style: 'ice_thickness_change'
-  extent: 'data'
+  boundary: 'data'
   data_source: icesheet_height_and_thickness_change.only
   ingest_task: ice_thickness_change
   file_type: '.tif'
@@ -415,7 +415,7 @@
   visible: False
   group_path: 'Geology & natural resources'
   style: 'earthquakes'
-  extent: 'data'
+  boundary: 'data'
   data_source: earthquakes.only
   ingest_task: 'online_vector'
   file_type: '.geojson'  # ?
@@ -431,7 +431,7 @@
   visible: False
   group_path: 'Geology & natural resources'
   style: 'soil_types'
-  extent: 'data'
+  boundary: 'data'
   data_source: soil_types.only
   ingest_task: gzipped_shapefile_parts
   file_type: '.shp'
@@ -443,7 +443,7 @@
   title: 'Tectonic plate boundaries'
   visible: False
   group_path: 'Geology & natural resources'
-  extent: 'background'
+  boundary: 'background'
   data_source: tectonic_plates.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
@@ -463,7 +463,7 @@
 #   title: 'Tectonic plates'
 #   visible: False
 #   group_path: 'Geology & natural resources'
-#   extent: 'background'
+#   boundary: 'background'
 #   data_source: tectonic_plates.only
 #   ingest_task: zipped_shapefile
 #   file_type: '.shp'
@@ -567,7 +567,7 @@
   description: 'Median extent from the period 1981 through 2010.'
   visible: False
   group_path: 'Sea ice/Median ice extent'
-  extent: 'data'
+  boundary: 'data'
   data_source: seaice_index.median_extent_line_01
   ingest_task: 'zipped_shapefile'
   file_type: '.shp'
@@ -648,7 +648,7 @@
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
-  extent: 'data'
+  boundary: 'data'
   data_source: seaice_index.minimum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
@@ -727,7 +727,7 @@
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb|March (max extent)'
   style: 'sea_ice_concentration'
-  extent: 'data'
+  boundary: 'data'
   data_source: seaice_index.maximum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
@@ -807,7 +807,7 @@
   visible: True
   group_path: 'Terrain models/BedMachine'
   style: 'bedmachine_bed'
-  extent: 'data'
+  boundary: 'data'
   data_source: bedmachine.only
   ingest_task: bedmachine
   ingest_task_kwargs: {'extract_dataset': 'bed'}
@@ -849,7 +849,7 @@
   visible: False
   group_path: 'Terrain models'
   style: 'arctic_dem'
-  extent: 'data'
+  boundary: 'data'
   data_source: arctic_dem.only
   ingest_task: 'raster'
   file_type: '.tif'
@@ -872,7 +872,7 @@
   visible: False
   group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
   style: 'labeled_point'
-  extent: 'data'
+  boundary: 'data'
   data_source: undersea_features.only
   ingest_task: zipped_shapefile
   # TODO: ingest_kwargs vs decompress_kwargs
@@ -929,7 +929,7 @@
   visible: False
   group_path: 'Oceanography'
   style: 'ibcao_bathymetry'
-  extent: 'data'
+  boundary: 'data'
   data_source: bathymetric_chart.only
   ingest_task: netcdf_raster
   ingest_task_kwargs: {'extract_dataset': 'z'}
@@ -951,7 +951,7 @@
   title: 'Coastlines'
   visible: False
   group_path: 'Basemaps'
-  extent: 'background'
+  boundary: 'background'
   data_source: coastlines.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
@@ -962,7 +962,7 @@
   title: 'Background (1km)'
   visible: True
   group_path: 'Basemaps'
-  extent: 'data'
+  boundary: 'data'
   data_source: background.only
   ingest_task: background_image
   file_type: '.tif'
@@ -986,7 +986,7 @@
   visible: True
   group_path: 'Basemaps'
   style: 'land'
-  extent: 'background'
+  boundary: 'background'
   data_source: land_shape.only
   ingest_task: zipped_shapefile
   file_type: '.shp'

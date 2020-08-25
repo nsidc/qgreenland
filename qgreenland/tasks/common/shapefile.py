@@ -3,7 +3,8 @@ import os
 
 import luigi
 
-from qgreenland.constants import CONFIG, TaskType
+from qgreenland.config import CONFIG
+from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 from qgreenland.util.shapefile import filter_shapefile, ogr2ogr
@@ -42,15 +43,14 @@ class Ogr2OgrShapefile(LayerTask):
     def run(self):
         input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
 
-        clipdst = ('"{xmin}" "{ymin}" '
-                   '"{xmax}" "{ymax}"').format(**PROJECT_EXTENT)  # noqa: FS002
+        boundary = self.layer_cfg['boundary']
         ogr2ogr_kwargs = {
             # Output an UTF-8 encoded shapefile instead of default ISO-8859-1
             'lco': 'ENCODING=UTF-8',
-            't_srs': PROJECT_CRS,
+            't_srs': CONFIG['project']['crs'],
             # As opposed to `clipsrc`, `clipdst` uses the destination SRS
             # (`t_srs`) to clip the input after reprojection.
-            'clipdst': clipdst,
+            'clipdst': boundary[0].geometry.wkt,
         }
         ogr2ogr_kwargs.update(input_ogr2ogr_kwargs)
 

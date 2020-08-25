@@ -5,7 +5,7 @@ import pyproj
 from osgeo import gdal
 from osgeo.gdalconst import GA_ReadOnly
 
-from qgreenland.constants import CONFIG
+from qgreenland.config import CONFIG
 
 logger = logging.getLogger('luigi-interface')
 

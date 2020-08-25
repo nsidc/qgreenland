@@ -1,0 +1,39 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name", "properties": {"name": "urn:ogc:def:crs:EPSG:3413"}
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "label": "QGreenland Background Extent"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [[
+                    [
+                        -3850000.000,
+                        5850000.000
+                    ],
+                    [
+                        3750000.000,
+                        5850000.000
+                    ],
+                    [
+                        3750000.000,
+                        -5350000.000
+                    ],
+                    [
+                        -3850000.000,
+                        -5350000.000
+                    ],
+                    [
+                        -3850000.000,
+                        5850000.000
+                    ]
+                ]]
+            }
+        }
+    ]
+}

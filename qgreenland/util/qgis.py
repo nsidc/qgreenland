@@ -8,7 +8,8 @@ from jinja2 import Template
 from osgeo import gdal
 
 from qgreenland import __version__
-from qgreenland.constants import ASSETS_DIR, CONFIG
+from qgreenland.config import CONFIG
+from qgreenland.constants import ASSETS_DIR
 from qgreenland.util.misc import get_layer_fs_path
 
 
