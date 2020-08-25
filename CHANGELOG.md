@@ -4,6 +4,7 @@
 - Remove Hydrology layer: Hydrologic sub-basins.
 - Remove "|" symbol from layer titles.
 - Update USGS Earthquakes symbology.
+- Update IBCAO Bathymetry symbology (use cmocean "deep" colormap)
 
 # v0.30.0 (2020-08-21)
 
