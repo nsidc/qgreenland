@@ -1,3 +1,8 @@
+# v0.31.0 (2020-08-25)
+
+- Add new Hydrology layer: PROMICE land/ice basins/outlets/streams layers
+- Remove Hydrology layer: Hydrologic sub-basins
+
 # v0.30.0 (2020-08-21)
 
 - Add `project.yml` configuration for project CRS, extents.
