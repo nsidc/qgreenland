@@ -1,0 +1,6 @@
+name: gdal
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - gdal=3.1.2
