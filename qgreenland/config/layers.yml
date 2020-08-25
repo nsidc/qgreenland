@@ -23,7 +23,7 @@
   visible: False
   group_path: 'Miscellaneous'
   data_source: arctic_circle.only
-  ingest_task: local_shapefile
+  ingest_task: local_vector
   file_type: '.shp'
   data_type: 'vector'
   ogr2ogr_kwargs:
@@ -40,7 +40,7 @@
   group_path: 'Miscellaneous/Latitude lines'
   style: 'latlon'
   data_source: latlon.lat_0_25_deg
-  ingest_task: local_shapefile
+  ingest_task: local_vector
   file_type: '.shp'
   data_type: 'vector'
   ogr2ogr_kwargs:
@@ -136,7 +136,7 @@
   group_path: 'Miscellaneous/Longitude lines'
   style: 'latlon'
   data_source: latlon.lon_0_5_deg
-  ingest_task: local_shapefile
+  ingest_task: local_vector
   file_type: '.shp'
   data_type: 'vector'
   ogr2ogr_kwargs:
@@ -264,7 +264,7 @@
   group_path: 'Built environment'
   style: 'populated_places'
   extent: 'data'
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
 
@@ -433,7 +433,7 @@
   style: 'soil_types'
   extent: 'data'
   data_source: soil_types.only
-  ingest_task: gzipped_shapefile_parts
+  ingest_task: gzipped_vector_parts
   file_type: '.shp'
   data_type: 'vector'
   ogr2ogr_kwargs:
@@ -445,7 +445,7 @@
   group_path: 'Geology & natural resources'
   extent: 'background'
   data_source: tectonic_plates.only
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
   decompress_kwargs:
@@ -465,7 +465,7 @@
 #   group_path: 'Geology & natural resources'
 #   extent: 'background'
 #   data_source: tectonic_plates.only
-#   ingest_task: zipped_shapefile
+#   ingest_task: zipped_vector
 #   file_type: '.shp'
 #   data_type: 'vector'
 #   decompress_kwargs:
@@ -561,7 +561,7 @@
   group_path: 'Sea ice/Median ice extent'
   extent: 'data'
   data_source: seaice_index.median_extent_line_01
-  ingest_task: 'zipped_shapefile'
+  ingest_task: 'zipped_vector'
   file_type: '.shp'
   data_type: 'vector'
 
@@ -855,6 +855,9 @@
 # Oceanography #
 ################
 
+# Note: source zipfile for undersea features data has multipoint shapefile
+# that only contains data outside of the project extent, so we didn't include
+# it.
 - &undersea_features
   id: undersea_features_point
   title: 'IHO-ICO GEBCO Features (point)'
@@ -866,7 +869,7 @@
   style: 'labeled_point'
   extent: 'data'
   data_source: undersea_features.only
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   # TODO: ingest_kwargs vs decompress_kwargs
   decompress_kwargs:
   # TODO: regex(s) instad of file list?
@@ -879,9 +882,6 @@
   data_type: 'vector'
   ogr2ogr_kwargs:
     sql: "'SELECT *, name as label from \"features-point\"'"
-
-  # Note: source zipfile for undersea features data has multipoint shapefile
-  # that only contains data outside of the project extent.
 
 - <<: *undersea_features
   id: undersea_features_multilinestring
@@ -945,7 +945,7 @@
   group_path: 'Basemaps'
   extent: 'background'
   data_source: coastlines.only
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
 
@@ -980,6 +980,6 @@
   style: 'land'
   extent: 'background'
   data_source: land_shape.only
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'

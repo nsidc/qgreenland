@@ -7,8 +7,8 @@ import geopandas
 logger = logging.getLogger('luigi-interface')
 
 
-def filter_shapefile(shapefile_path, *, filter_func):
-    gdf = geopandas.read_file(shapefile_path)
+def filter_vector(vector_path, *, filter_func):
+    gdf = geopandas.read_file(vector_path)
 
     gdf = gdf.loc[filter_func]
     return gdf
