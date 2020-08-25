@@ -8,6 +8,10 @@ RUN apt-get update && apt-get install -y libgl1-mesa-glx unrar
 COPY environment-lock.yml .
 RUN conda env update -f environment-lock.yml -n base
 
+# Create a dedicated env for shelling out to gdal
+COPY environment.gdal.yml .
+RUN conda env create -f environment.gdal.yml
+
 # Use this method to install to non-root? Need to edit luigid.sh...
 # COPY environment.yml .
 # RUN conda env create
