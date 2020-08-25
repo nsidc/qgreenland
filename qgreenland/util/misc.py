@@ -56,7 +56,8 @@ def fetch_and_write_file(url, *, output_dir, session=None):
             (disposition := resp.headers.get('content-disposition'))
             and 'filename' in disposition
         ):
-            fn = re.findall('filename=(.+)', disposition)[0]
+            # Sometimes the filename is quoted, sometimes it's not.
+            fn = re.findall('filename=(.+)', disposition)[0].strip('"')
         else:
             if not (fn := _filename_from_url(url)):
                 raise RuntimeError(f'Failed to retrieve output filename from {url}')
