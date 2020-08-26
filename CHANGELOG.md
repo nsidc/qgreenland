@@ -5,6 +5,7 @@
   - `balance` for ice column thickness change
   - `deep` for bathymetry
 - Use colormap from Editorial Board member for vegetation biomass
+- New "Environmental Management/Protected Zones" layer: Arctic Protected Areas (CAFF 2017)
 
 # v0.31.0 (2020-08-25)
 
