@@ -1,4 +1,4 @@
-# v0.32.0 (Unreleased)
+# v0.32.0 (2020-08-26)
 
 - Use cmocean colormaps:
   - `ice` for sea ice concentration
