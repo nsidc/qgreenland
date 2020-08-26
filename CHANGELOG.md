@@ -1,8 +1,23 @@
+# v0.32.0 (2020-08-26)
+
+- Use cmocean colormaps:
+  - `ice` for sea ice concentration
+  - `balance` for ice column thickness change
+  - `deep` for bathymetry
+- Use colormap from Editorial Board member for vegetation biomass
+- New "Environmental Management/Protected Zones" layer: Arctic Protected Areas (CAFF 2017)
+- New "Biology/Birds" layer: Thickbilled Murre Colonies (CAFF Arctic Biodiversity Trends 2010)
+- New "Biology/Birds" layer: Common Murre Colonies (CAFF Arctic Biodiversity Trends 2010)
+- New "Biology/Mammal" layer: Wild Reindeer Populations (CAFF Arctic Biodiversity Trends 2010)
+- New "Biology/Fish" layer:  Arctic Char Populations (CAFF)
+
 # v0.31.0 (2020-08-25)
 
-- Add new Hydrology layer: PROMICE land/ice basins/outlets/streams layers
-- Remove Hydrology layer: Hydrologic sub-basins
-- Remove "|" symbol from layer titles
+- Add new Hydrology layer: PROMICE land/ice basins, outlets, streams layers.
+- Remove Hydrology layer: Hydrologic sub-basins.
+- Remove "|" symbol from layer titles.
+- Update USGS Earthquakes symbology.
+- Update IBCAO Bathymetry symbology (use cmocean "deep" colormap).
 
 # v0.30.0 (2020-08-21)
 

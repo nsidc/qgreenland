@@ -1,6 +1,6 @@
+import cgi
 import glob
 import os
-import re
 import shutil
 import time
 import urllib.request
@@ -57,7 +57,7 @@ def fetch_and_write_file(url, *, output_dir, session=None):
             and 'filename' in disposition
         ):
             # Sometimes the filename is quoted, sometimes it's not.
-            fn = re.findall('filename=(.+)', disposition)[0].strip('"')
+            fn = cgi.parse_header(disposition)[1]['filename']
         else:
             if not (fn := _filename_from_url(url)):
                 raise RuntimeError(f'Failed to retrieve output filename from {url}')
@@ -92,7 +92,7 @@ def find_single_file_by_ext(path, *, ext):
     files = find_in_dir_by_ext(path, ext=ext)
     if len(files) > 1:
         raise NotImplementedError(
-            "We're not ready to handle multiple '{ext}' files in one task yet!"
+            f"We're not ready to handle multiple '{ext}' files in one task yet!"
         )
 
     try:
