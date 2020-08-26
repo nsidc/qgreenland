@@ -595,3 +595,24 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'Arctic Biodiversity Trends 2010 – Selected indicators of change. CAFF International Secretariat, Akureyri, Iceland.May 2010.'
       url: 'https://abds.is/index.php/publications/species/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north'
+
+
+- id: caff_rangifer
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://geo.abds.is/geonetwork/srv/api/records/4eaa2ba0-430d-4219-b5ef-30587a6afa19/attachments/Caribou_herds_2014.zip'
+  metadata:
+    title: 'The distribution and observed trends of wild Rangifer populations throughout the circumpolar Arctic'
+    abstract: >-
+        Distribution and observed trends of wild Rangifer populations throughout the
+        circumpolar Arctic (from The Circum Arctic Rangifer Monitoring and Assessment
+        Network, CARMA). Note: Wild boreal forest reindeer have not been mapped by CARMA
+        and thus are not represented here.
+
+        Published in the Arctic Biodiversity Trends 2010 - Selected indicators
+        of change, INDICATOR #02 - released in 2010
+    citation:
+      text: 'Arctic Biodiversity Trends 2010 – Selected indicators of change. CAFF International Secretariat, Akureyri, Iceland.May 2010.'
+      url: 'http://geo.abds.is/geonetwork/srv/api/records/4eaa2ba0-430d-4219-b5ef-30587a6afa19'

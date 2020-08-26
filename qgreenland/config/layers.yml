@@ -286,6 +286,17 @@
       - 'Distribution_Common_Murre_Colonies.shp'
       - 'Distribution_Common_Murre_Colonies.shx'
 
+- id: caff_rangifer
+  title: 'Wild Reindeer Populations'
+  description: 'Polygons indicating the distribution of Rangifer (Reindeer) populations.'
+  data_source: caff_rangifer.only
+  visible: True
+  group_path: 'Biology/Mammals'
+  extent: 'data'
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+
 #####################
 # Built environment #
 #####################
