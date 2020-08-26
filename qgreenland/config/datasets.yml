@@ -616,3 +616,21 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'Arctic Biodiversity Trends 2010 – Selected indicators of change. CAFF International Secretariat, Akureyri, Iceland.May 2010.'
       url: 'http://geo.abds.is/geonetwork/srv/api/records/4eaa2ba0-430d-4219-b5ef-30587a6afa19'
+
+
+- id: caff_char
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://geo.abds.is/geonetwork/srv/api/records/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce/attachments/Arctic_Char_2010.zip'
+  metadata:
+    title: ''
+    abstract: >-
+        Circumpolar distribution of Arctic Char species complex Salvelinus
+        alpinus, and related species.  Arctic Biodiversity Assessment, Chapter
+        6: Fishes:
+        http://www.caff.is/assessment-series/10-arctic-biodiversity-assessment/211-arctic-biodiversity-assessment-2013-chapter-6-fishes
+    citation:
+      text: 'Conservation of Arctic Flora and Fauna (CAFF www.caff.is) working group of the Arctic Council'
+      url: 'http://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce'

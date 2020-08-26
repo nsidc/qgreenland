@@ -297,6 +297,18 @@
   file_type: '.shp'
   data_type: 'vector'
 
+- id: caff_char
+  title: 'Arctic Char Populations'
+  description: 'Polygons indicating the distribution of Arctic Char populations.'
+  data_source: caff_char.only
+  style: 'semitransparent_polygon'
+  visible: True
+  group_path: 'Biology/Fish'
+  extent: 'data'
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+
 #####################
 # Built environment #
 #####################
