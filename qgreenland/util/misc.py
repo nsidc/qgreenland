@@ -1,7 +1,6 @@
 import cgi
 import glob
 import os
-import re
 import shutil
 import time
 import urllib.request
