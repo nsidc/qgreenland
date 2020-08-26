@@ -1,3 +1,11 @@
+# v0.32.0 (Unreleased)
+
+- Use cmocean colormaps:
+  - `ice` for sea ice concentration
+  - `balance` for ice column thickness change
+  - `deep` for bathymetry
+- Use colormap from Editorial Board member for vegetation biomass
+
 # v0.31.0 (2020-08-25)
 
 - Add new Hydrology layer: PROMICE land/ice basins, outlets, streams layers.
