@@ -269,6 +269,21 @@
   data_type: 'vector'
 
 
+############################
+# Environmental management #
+############################
+
+- id: caff_protected_areas
+  title: 'Arctic Protected Areas (CAFF 2017)'
+  visible: True
+  group_path: 'Environmental management/Protected zones'
+  extent: 'data'
+  data_source: caff_protected_areas.only
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+
+
 #################
 # Frozen ground #
 #################
@@ -546,6 +561,90 @@
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
     sql: "'SELECT * from streams WHERE GeometryType(geom) = \"LINESTRING\" AND ST_NPoints(geom) > 1'"
+
+
+################
+# Oceanography #
+################
+
+- &undersea_features
+  id: undersea_features_point
+  title: 'IHO-ICO GEBCO Features (point)'
+  description: >-
+      Undersea feature names curated by the General Bathymetric Chart of the
+      Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
+  visible: False
+  group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
+  style: 'labeled_point'
+  extent: 'data'
+  data_source: undersea_features.only
+  ingest_task: zipped_shapefile
+  # TODO: ingest_kwargs vs decompress_kwargs
+  decompress_kwargs:
+  # TODO: regex(s) instad of file list?
+    extract_files:
+      - 'features/features-point.dbf'
+      - 'features/features-point.prj'
+      - 'features/features-point.shp'
+      - 'features/features-point.shx'
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-point\"'"
+
+  # Note: source zipfile for undersea features data has multipoint shapefile
+  # that only contains data outside of the project extent.
+
+- <<: *undersea_features
+  id: undersea_features_multilinestring
+  title: 'IHO-ICO GEBCO Features (multiline)'
+  style: 'labeled_line'
+  decompress_kwargs:
+    extract_files:
+      - 'features/features-multilinestring.dbf'
+      - 'features/features-multilinestring.prj'
+      - 'features/features-multilinestring.shp'
+      - 'features/features-multilinestring.shx'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-multilinestring\"'"
+
+- <<: *undersea_features
+  id: undersea_features_multipolygon
+  title: 'IHO-ICO GEBCO Features (multipolygon)'
+  style: 'labeled_polygon'
+  decompress_kwargs:
+    extract_files:
+      - 'features/features-multipolygon.dbf'
+      - 'features/features-multipolygon.prj'
+      - 'features/features-multipolygon.shp'
+      - 'features/features-multipolygon.shx'
+  ogr2ogr_kwargs:
+    # Prevent polygon from being turned in to a linestring during clip operation
+    nlt: 'POLYGON'
+    sql: "'SELECT *, name as label from \"features-multipolygon\"'"
+
+
+- id: bathymetric_chart
+  title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'
+  description: >-
+      Bedrock elevation in meters. Elevations can be assumed to be relative to
+      Mean Sea Level. However, in some shallow water areas, the grids include
+      data from sources having a vertical datum other than mean sea level.
+  visible: False
+  group_path: 'Oceanography'
+  style: 'ibcao_bathymetry'
+  extent: 'data'
+  data_source: bathymetric_chart.only
+  ingest_task: netcdf_raster
+  ingest_task_kwargs: {'extract_dataset': 'z'}
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  warp_kwargs:
+    srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
+    dstNodata: -9999
 
 
 ##################
@@ -849,90 +948,6 @@
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
-
-
-################
-# Oceanography #
-################
-
-- &undersea_features
-  id: undersea_features_point
-  title: 'IHO-ICO GEBCO Features (point)'
-  description: >-
-      Undersea feature names curated by the General Bathymetric Chart of the
-      Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
-  visible: False
-  group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
-  style: 'labeled_point'
-  extent: 'data'
-  data_source: undersea_features.only
-  ingest_task: zipped_shapefile
-  # TODO: ingest_kwargs vs decompress_kwargs
-  decompress_kwargs:
-  # TODO: regex(s) instad of file list?
-    extract_files:
-      - 'features/features-point.dbf'
-      - 'features/features-point.prj'
-      - 'features/features-point.shp'
-      - 'features/features-point.shx'
-  file_type: '.shp'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    sql: "'SELECT *, name as label from \"features-point\"'"
-
-  # Note: source zipfile for undersea features data has multipoint shapefile
-  # that only contains data outside of the project extent.
-
-- <<: *undersea_features
-  id: undersea_features_multilinestring
-  title: 'IHO-ICO GEBCO Features (multiline)'
-  style: 'labeled_line'
-  decompress_kwargs:
-    extract_files:
-      - 'features/features-multilinestring.dbf'
-      - 'features/features-multilinestring.prj'
-      - 'features/features-multilinestring.shp'
-      - 'features/features-multilinestring.shx'
-  ogr2ogr_kwargs:
-    sql: "'SELECT *, name as label from \"features-multilinestring\"'"
-
-- <<: *undersea_features
-  id: undersea_features_multipolygon
-  title: 'IHO-ICO GEBCO Features (multipolygon)'
-  style: 'labeled_polygon'
-  decompress_kwargs:
-    extract_files:
-      - 'features/features-multipolygon.dbf'
-      - 'features/features-multipolygon.prj'
-      - 'features/features-multipolygon.shp'
-      - 'features/features-multipolygon.shx'
-  ogr2ogr_kwargs:
-    # Prevent polygon from being turned in to a linestring during clip operation
-    nlt: 'POLYGON'
-    sql: "'SELECT *, name as label from \"features-multipolygon\"'"
-
-
-- id: bathymetric_chart
-  title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'
-  description: >-
-      Bedrock elevation in meters. Elevations can be assumed to be relative to
-      Mean Sea Level. However, in some shallow water areas, the grids include
-      data from sources having a vertical datum other than mean sea level.
-  visible: False
-  group_path: 'Oceanography'
-  style: 'ibcao_bathymetry'
-  extent: 'data'
-  data_source: bathymetric_chart.only
-  ingest_task: netcdf_raster
-  ingest_task_kwargs: {'extract_dataset': 'z'}
-  file_type: '.tif'
-  data_type: 'raster'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  warp_kwargs:
-    srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
-    dstNodata: -9999
 
 
 ############
