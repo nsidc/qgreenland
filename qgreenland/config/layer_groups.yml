@@ -1,6 +1,8 @@
 Miscellaneous:
   visible: False
-  expanded: True
+  # The first group will be automatically expanded by QGIS, but we don't want
+  # that:(
+  expanded: False
 
 Miscellaneous/Place names:
   visible: False
@@ -29,7 +31,7 @@ Atmosphere/ERA5 Re-analysis:
 
 
 Biology:
-  visible: True
+  visible: False 
   expanded: False
 
 Biology/Fish:
@@ -68,8 +70,8 @@ Environmental management/Exclusive economic zones:
 
 
 Frozen ground:
-  visible: True
-  expanded: True
+  visible: False
+  expanded: False
 
 
 Future projections:
@@ -78,25 +80,27 @@ Future projections:
 
 
 Glaciology:
-  visible: True
-  expanded: True
+  visible: False
+  expanded: False
 
 Glaciology/Glacier terminus positions 2000-2017:
-  visible: True
+  visible: False
   expanded: False
 
+# TODO: Do we need this group? Why would we want >1 layer in this group?
 Glaciology/Ice sheet velocity:
-  visible: True
+  visible: False
   expanded: False
 
+# TODO: Do we need this group? Why would we want >1 layer in this group?
 Glaciology/Ice thickness change:
-  visible: True
+  visible: False
   expanded: False
 
 
 Geology & natural resources:
-  visible: True
-  expanded: True
+  visible: False
+  expanded: False
 
 
 Geophysics:
@@ -127,18 +131,22 @@ Human health:
 
 
 Hydrology:
-  visible: True
-  expanded: True
+  visible: False
+  expanded: False
 
 
 Oceanography:
-  visible: True
-  expanded: True
+  visible: False
+  expanded: False
+
+Oceanography/IHO-ICO GEBCO Undersea feature names:
+  visible: False
+  expanded: False
 
 
 Sea ice:
-  visible: True
-  expanded: True
+  visible: False
+  expanded: False
 
 Sea ice/Median ice extent:
   visible: False
@@ -152,7 +160,7 @@ Sea ice/NSIDC Concentration (25 km)/September (min extent):
   visible: False
   expanded: False
 
-Sea ice/NSIDC Concentration (25 km)/Feb|March (max extent):
+Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent):
   visible: False
   expanded: False
 
@@ -163,8 +171,8 @@ Social Science:
 
 
 Terrain models:
-  visible: True
-  expanded: True
+  visible: False
+  expanded: False
 
 Terrain models/BedMachine:
   visible: False
@@ -178,4 +186,4 @@ Satellite imagery:
 
 Basemaps:
   visible: True
-  expanded: True
+  expanded: False
