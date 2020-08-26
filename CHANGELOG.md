@@ -6,6 +6,8 @@
   - `deep` for bathymetry
 - Use colormap from Editorial Board member for vegetation biomass
 - New "Environmental Management/Protected Zones" layer: Arctic Protected Areas (CAFF 2017)
+- New "Biology/Birds" layer: Thickbilled Murre Colonies (CAFF Arctic Biodiversity Trends 2010)
+- New "Biology/Birds" layer: Common Murre Colonies (CAFF Arctic Biodiversity Trends 2010)
 
 # v0.31.0 (2020-08-25)
 
