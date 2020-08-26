@@ -92,7 +92,7 @@ def find_single_file_by_ext(path, *, ext):
     files = find_in_dir_by_ext(path, ext=ext)
     if len(files) > 1:
         raise NotImplementedError(
-            "We're not ready to handle multiple '{ext}' files in one task yet!"
+            f"We're not ready to handle multiple '{ext}' files in one task yet!"
         )
 
     try:
