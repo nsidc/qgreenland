@@ -547,3 +547,90 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'TBD: USGS. Initial access: 2020-08-20.'
       url: 'TBD: https://earthquake.usgs.gov/earthquakes/search/'
+
+
+- id: caff_protected_areas
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://geo.abds.is/geonetwork/srv/api/records/2e56ee1f-50a9-4983-88f4-edaa8588950d/attachments/CAFF_Protected_Areas_20_01_2017.zip'
+  metadata:
+    title: 'Arctic Protected Areas - 2017'
+    abstract: >-
+        The Conservation of Arctic Flora and Fauna (CAFF) and Protection of the
+        Arctic Marine Environments (PAME) working groups of the Arctic Council
+        developed this indicator report. It provides an overview of the status
+        and trends of protected areas in the Arctic. The data used represents
+        the results of the 2016 update to the Protected Areas Database submitted
+        by each of the Arctic Council member states (Annex 1). This report uses
+        the International Union for the Conservation of Nature (IUCN) definition
+        for protected areas (see Box 1) which includes a wide range of
+        Management Categories – from strict nature reserve to protection with
+        sustainable use. Consequently, the level of protection and governance of
+        these areas varies throughout the circumpolar region and its countries.
+    citation:
+      text: 'Conservation of Arctic Flora and Fauna (CAFF www.caff.is) working group of the Arctic Council'
+      url: 'http://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/2e56ee1f-50a9-4983-88f4-edaa8588950d'
+
+
+- id: caff_murre_colonies
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://abds.is/index.php/publications/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north/download'
+  metadata:
+    title: 'The distribution of thick-billed and common murre colonies in the North.'
+    abstract: >-
+        Murres are among the most abundant seabirds in the Northern Hemisphere with a
+        population in excess of ten million adults. No obvious global trend has been
+        identified but the majority of regional populations have shown declines over the
+        past three decades. While they are currently abundant, climate change is
+        projected to pose problems to murres in the future, especially for the more
+        northern species, the thick-billed murre, which is strongly associated with sea
+        ice. Other threats include fisheries interactions, over-exploitation,
+        contaminants, and oil spills, the latter becoming more important if climate
+        change expands shipping and hydrocarbon development in the Arctic.
+    citation:
+      text: 'Arctic Biodiversity Trends 2010 – Selected indicators of change. CAFF International Secretariat, Akureyri, Iceland.May 2010.'
+      url: 'https://abds.is/index.php/publications/species/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north'
+
+
+- id: caff_rangifer
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://geo.abds.is/geonetwork/srv/api/records/4eaa2ba0-430d-4219-b5ef-30587a6afa19/attachments/Caribou_herds_2014.zip'
+  metadata:
+    title: 'The distribution and observed trends of wild Rangifer populations throughout the circumpolar Arctic'
+    abstract: >-
+        Distribution and observed trends of wild Rangifer populations throughout the
+        circumpolar Arctic (from The Circum Arctic Rangifer Monitoring and Assessment
+        Network, CARMA). Note: Wild boreal forest reindeer have not been mapped by CARMA
+        and thus are not represented here.
+
+        Published in the Arctic Biodiversity Trends 2010 - Selected indicators
+        of change, INDICATOR #02 - released in 2010
+    citation:
+      text: 'Arctic Biodiversity Trends 2010 – Selected indicators of change. CAFF International Secretariat, Akureyri, Iceland.May 2010.'
+      url: 'http://geo.abds.is/geonetwork/srv/api/records/4eaa2ba0-430d-4219-b5ef-30587a6afa19'
+
+
+- id: caff_char
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://geo.abds.is/geonetwork/srv/api/records/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce/attachments/Arctic_Char_2010.zip'
+  metadata:
+    title: ''
+    abstract: >-
+        Circumpolar distribution of Arctic Char species complex Salvelinus
+        alpinus, and related species.  Arctic Biodiversity Assessment, Chapter
+        6: Fishes:
+        http://www.caff.is/assessment-series/10-arctic-biodiversity-assessment/211-arctic-biodiversity-assessment-2013-chapter-6-fishes
+    citation:
+      text: 'Conservation of Arctic Flora and Fauna (CAFF www.caff.is) working group of the Arctic Council'
+      url: 'http://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce'
