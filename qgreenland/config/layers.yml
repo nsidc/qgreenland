@@ -252,6 +252,39 @@
   file_type: '.tif'
   data_type: 'raster'
 
+- id: caff_thickbilled_murre_colonies
+  title: 'Thickbilled Murre Colonies'
+  data_source: caff_murre_colonies.only
+  visible: True
+  group_path: 'Biology/Birds'
+  extent: 'data'
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'Distribution_Thickbilled_Murre_Colonies.dbf'
+      - 'Distribution_Thickbilled_Murre_Colonies.prj'
+      - 'Distribution_Thickbilled_Murre_Colonies.qpj'
+      - 'Distribution_Thickbilled_Murre_Colonies.shp'
+      - 'Distribution_Thickbilled_Murre_Colonies.shx'
+
+- id: caff_common_murre_colonies
+  title: 'Common Murre Colonies'
+  data_source: caff_murre_colonies.only
+  visible: True
+  group_path: 'Biology/Birds'
+  extent: 'data'
+  ingest_task: zipped_shapefile
+  file_type: '.shp'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'Distribution_Common_Murre_Colonies.dbf'
+      - 'Distribution_Common_Murre_Colonies.prj'
+      - 'Distribution_Common_Murre_Colonies.qpj'
+      - 'Distribution_Common_Murre_Colonies.shp'
+      - 'Distribution_Common_Murre_Colonies.shx'
 
 #####################
 # Built environment #
