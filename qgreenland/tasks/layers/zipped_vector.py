@@ -1,10 +1,10 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.shapefile import Ogr2OgrShapefile
+from qgreenland.tasks.common.vector import Ogr2OgrVector
 from qgreenland.util.luigi import LayerPipeline
 
 
-class ZippedShapefile(LayerPipeline):
+class ZippedVector(LayerPipeline):
     """Rename files to their final location."""
 
     def requires(self):
@@ -16,7 +16,7 @@ class ZippedShapefile(LayerPipeline):
             requires_task=fetch_data,
             layer_id=self.layer_id
         )  # ->
-        return Ogr2OgrShapefile(
+        return Ogr2OgrVector(
             requires_task=unzip,
             layer_id=self.layer_id
         )

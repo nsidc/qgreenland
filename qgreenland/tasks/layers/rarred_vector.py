@@ -1,10 +1,10 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unrar
-from qgreenland.tasks.common.shapefile import Ogr2OgrShapefile
+from qgreenland.tasks.common.vector import Ogr2OgrVector
 from qgreenland.util.luigi import LayerPipeline
 
 
-class RarredShapefile(LayerPipeline):
+class RarredVector(LayerPipeline):
     """Rename files to their final location."""
 
     def requires(self):
@@ -16,7 +16,7 @@ class RarredShapefile(LayerPipeline):
             requires_task=fetch_data,
             layer_id=self.layer_id
         )  # ->
-        return Ogr2OgrShapefile(
+        return Ogr2OgrVector(
             requires_task=unrar,
             layer_id=self.layer_id
         )

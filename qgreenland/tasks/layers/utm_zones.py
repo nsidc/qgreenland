@@ -2,8 +2,8 @@
 
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.shapefile import (FilterShapefileFeatures,
-                                               Ogr2OgrShapefile)
+from qgreenland.tasks.common.vector import (FilterShapefileFeatures,
+                                            Ogr2OgrVector)
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -27,7 +27,7 @@ class UtmZones(LayerPipeline):
             # other way?
             filter_func=lambda df: df['ZONE'] != 0,
         )  # ->
-        return Ogr2OgrShapefile(
+        return Ogr2OgrVector(
             requires_task=filter_shapefile,
             layer_id=self.layer_id
         )
