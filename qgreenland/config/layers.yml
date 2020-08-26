@@ -277,11 +277,14 @@
   title: 'Arctic Protected Areas (CAFF 2017)'
   visible: True
   group_path: 'Environmental management/Protected zones'
+  style: 'labeled_polygon'
   extent: 'data'
   data_source: caff_protected_areas.only
   ingest_task: zipped_shapefile
   file_type: '.shp'
   data_type: 'vector'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, NAME as label from CAFF_Protected_Areas_20_01_2017'"
 
 
 #################
