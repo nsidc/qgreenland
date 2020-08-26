@@ -1,3 +1,4 @@
+import cgi
 import glob
 import os
 import re
@@ -57,7 +58,7 @@ def fetch_and_write_file(url, *, output_dir, session=None):
             and 'filename' in disposition
         ):
             # Sometimes the filename is quoted, sometimes it's not.
-            fn = re.findall('filename=(.+)', disposition)[0].strip('"')
+            fn = cgi.parse_header(disposition)[1]['filename']
         else:
             if not (fn := _filename_from_url(url)):
                 raise RuntimeError(f'Failed to retrieve output filename from {url}')
