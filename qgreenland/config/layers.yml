@@ -245,7 +245,7 @@
     square meter. Based on trans-Arctic field data and AVHRR NDVI.
   visible: False
   group_path: 'Biology/Vegetation'
-  style: 'arctic_vegetation_biomass'
+  style: 'vegetation'
   extent: 'data'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
