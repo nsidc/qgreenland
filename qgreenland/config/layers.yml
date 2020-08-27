@@ -1043,13 +1043,25 @@
 # Satellite imagery #
 #####################
 
-- id: image_mosaic
+- id: image_mosaic_2019
   title: 'Greenland Image Mosaic 2019 (Online Only)'
   description: 'TBD'
   visible: False
   group_path: 'Satellite imagery'
+  style: 'transparent_rgb'
   extent: 'data'
-  data_source: image_mosaic.only
+  data_source: image_mosaic.2019
+  ingest_task: None
+  file_type: '.tif'
+  data_type: 'raster'
+
+- id: image_mosaic_2015
+  title: 'Greenland Image Mosaic 2015 (Online Only)'
+  description: 'TBD'
+  visible: False
+  group_path: 'Satellite imagery'
+  extent: 'data'
+  data_source: image_mosaic.2015
   ingest_task: None
   file_type: '.tif'
   data_type: 'raster'

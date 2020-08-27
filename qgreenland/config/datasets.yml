@@ -686,9 +686,12 @@ The images and data are produced in a consistent way that makes the Index time-s
 - id: image_mosaic
   access_method: gdal_remote
   sources:
-    - id: only
+    - id: '2019'
       urls:
         - '/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
+    - id: '2015'
+      urls:
+        - '/vsicurl/http://its-live-data.jpl.nasa.gov.s3-us-west-2.amazonaws.com/rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt'
   metadata:
     title: 'TBD'
     abstract: >-
