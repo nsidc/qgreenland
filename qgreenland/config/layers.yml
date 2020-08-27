@@ -258,7 +258,7 @@
   visible: True
   group_path: 'Biology/Birds'
   extent: 'data'
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
   decompress_kwargs:
@@ -275,7 +275,7 @@
   visible: True
   group_path: 'Biology/Birds'
   extent: 'data'
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
   decompress_kwargs:
@@ -293,7 +293,7 @@
   visible: True
   group_path: 'Biology/Mammals'
   extent: 'data'
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
 
@@ -305,7 +305,7 @@
   visible: True
   group_path: 'Biology/Fish'
   extent: 'data'
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
 
@@ -336,7 +336,7 @@
   style: 'labeled_polygon'
   extent: 'data'
   data_source: caff_protected_areas.only
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
   ogr2ogr_kwargs:
@@ -551,6 +551,21 @@
 #       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shp.xml'
 #       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shx'
 
+##################
+# Human activity #
+##################
+
+- id: gem_research_stations
+  title: 'GEM research stations'
+  description: >-
+    Location and description of Greenland Ecosystem Monitoring research stations.
+  data_source: gem_research_stations.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  visible: False
+  group_path: 'Human activity/Research stations'
+
 
 #############
 # Hydrology #
@@ -637,7 +652,7 @@
   style: 'labeled_point'
   extent: 'data'
   data_source: undersea_features.only
-  ingest_task: zipped_shapefile
+  ingest_task: zipped_vector
   # TODO: ingest_kwargs vs decompress_kwargs
   decompress_kwargs:
   # TODO: regex(s) instad of file list?
