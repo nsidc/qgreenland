@@ -1,3 +1,7 @@
+# v0.33.0 (Unreleased)
+
+- Start all layer groups as unchecked where possible, and collapsed.
+
 # v0.32.0 (2020-08-26)
 
 - Use cmocean colormaps:
