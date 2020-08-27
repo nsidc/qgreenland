@@ -1,6 +1,7 @@
 import cgi
 import glob
 import os
+import re
 import shutil
 import time
 import urllib.request
@@ -57,7 +58,16 @@ def fetch_and_write_file(url, *, output_dir, session=None):
             and 'filename' in disposition
         ):
             # Sometimes the filename is quoted, sometimes it's not.
-            fn = cgi.parse_header(disposition)[1]['filename']
+            parsed = cgi.parse_header(disposition)
+            # Handle case where disposition itself (usually "attachment") isn't
+            # present (geothermal heat flux :bell:).
+            if 'filename' in parsed[0]:
+                fn = re.match(
+                    'filename="?(.*)"?',
+                    parsed[0]
+                ).groups()[0].strip('\'"')
+            else:
+                fn = parsed[1]['filename']
         else:
             if not (fn := _filename_from_url(url)):
                 raise RuntimeError(f'Failed to retrieve output filename from {url}')

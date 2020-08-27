@@ -1,10 +1,13 @@
-# v0.33.0 (Unreleased)
+# v0.34.0 (unreleased)
+- New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019 
+
+# v0.33.0 (2020-08-27)
 
 - Start all layer groups as unchecked where possible, and collapsed.
 - New "Human activity" layer: GEM research stations
 - New "Human activity/Research stations" layer: Seismograph Stations
 - New "Background" layer: Ocean shapefile
-- New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019 
+- New "Geophysics" layer: Geothermal Heat Flux
 
 # v0.32.0 (2020-08-26)
 
