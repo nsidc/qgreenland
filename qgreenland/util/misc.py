@@ -179,7 +179,9 @@ def get_layer_dir(layer_cfg):
 def get_layer_path(layer_cfg):
     if layer_cfg['dataset']['access_method'] == 'gdal_remote':
         if (urls_count := len(layer_cfg['source']['urls'])) != 1:
-            raise RuntimeError(f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}.")
+            raise RuntimeError(
+                f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}."
+            )
 
         return f"{layer_cfg['source']['urls'][0]}"
 
