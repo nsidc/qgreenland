@@ -4,6 +4,7 @@
 - New "Human activity" layer: GEM research stations
 - New "Human activity/Research stations" layer: Seismograph Stations
 - New "Background" layer: Ocean shapefile
+- New "Geophysics" layer: Geothermal Heat Flux
 
 # v0.32.0 (2020-08-26)
 
