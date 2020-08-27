@@ -176,8 +176,19 @@ def get_layer_dir(layer_cfg):
                         layer_cfg['id'])
 
 
-def get_layer_fs_path(layer_cfg):
+def get_layer_path(layer_cfg):
+    if layer_cfg['dataset']['access_method'] == 'gdal_remote':
+        if (urls_count := len(layer_cfg['source']['urls'])) != 1:
+            raise RuntimeError(f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}.")
+
+        return f"{layer_cfg['source']['urls'][0]}"
+
     d = get_layer_dir(layer_cfg)
     f = get_layer_fn(layer_cfg)
 
-    return os.path.join(d, f)
+    layer_path = os.path.join(d, f)
+
+    if not os.path.isfile(layer_path):
+        raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
+
+    return layer_path

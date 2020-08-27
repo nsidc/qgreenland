@@ -1039,6 +1039,22 @@
     resampling_method: average
 
 
+#####################
+# Satellite imagery #
+#####################
+
+- id: image_mosaic
+  title: 'Greenland Image Mosaic 2019 (Online Only)'
+  description: 'TBD'
+  visible: False
+  group_path: 'Satellite imagery'
+  extent: 'data'
+  data_source: image_mosaic.only
+  ingest_task: None
+  file_type: '.tif'
+  data_type: 'raster'
+
+
 ############
 # BASEMAPS #
 ############

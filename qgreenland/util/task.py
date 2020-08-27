@@ -11,6 +11,11 @@ def generate_layer_tasks():
     tasks = []
 
     for cfg in CONFIG['layers'].values():
+        # `gdal_remote` layers are accessed by QGIS from a remote location, so
+        # no processing is required.
+        if cfg['dataset']['access_method'] == 'gdal_remote':
+            continue
+
         task = INGEST_TASKS[cfg['ingest_task']]
         kwargs = {'layer_id': cfg['id']}
         kwargs.update(cfg.get('ingest_task_kwargs', {}))

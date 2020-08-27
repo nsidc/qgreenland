@@ -4,7 +4,8 @@ from qgreenland.constants import TaskType
 from qgreenland.util import misc
 
 
-def test_layer_fs_path():
+# TODO: make a test for gdal remote.
+def test_layer_path():
     mock_layer_cfg = {
         'id': 'coastlines',
         'group_path': 'group/subgroup',
@@ -19,6 +20,6 @@ def test_layer_fs_path():
         'coastlines.shp'
     )
 
-    actual = misc.get_layer_fs_path(mock_layer_cfg)
+    actual = misc.get_layer_path(mock_layer_cfg)
 
     assert expected == actual

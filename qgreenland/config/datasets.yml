@@ -681,3 +681,18 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'International Seismological Centre (2020), International Seismograph Station Registry (IR), https://doi.org/10.31905/EL3FQQ40'
       url: 'http://www.isc.ac.uk/registries/'
+
+
+- id: image_mosaic
+  access_method: gdal_remote
+  sources:
+    - id: only
+      urls:
+        - '/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
+  metadata:
+    title: 'TBD'
+    abstract: >-
+        TBD
+    citation:
+      text: 'TBD'
+      url: 'TBD'
