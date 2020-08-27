@@ -464,7 +464,9 @@
 - id: ice_thickness_change
   title: 'Ice Column Thickness 2003-2019 (5km)'
   # TODO: better description.
-  description: 'Ice column thickness change in meters per year.'
+  description: >-
+    Ice-column thickness-change-rate estimates in meters per year based on data
+    from NASA's ICESat and ICESat-2 satellites.
   visible: False
   group_path: 'Glaciology/Ice thickness change'
   style: 'ice_thickness_change'
