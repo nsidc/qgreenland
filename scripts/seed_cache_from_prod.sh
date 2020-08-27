@@ -10,6 +10,6 @@ if [ ! -w ${LOCAL_CACHE_DIR} ]; then
     exit 1
 fi
 
-rsync -a --progress \
+rsync -a --progress --verbose \
     -e "ssh -i ${HOME}/.ssh/id_rsa_vagrant_vsphere" \
     vagrant@${PROD_HOSTNAME}:${PROD_CACHE_DIR} ${LOCAL_CACHE_DIR}
