@@ -551,6 +551,29 @@
 #       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shp.xml'
 #       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.shx'
 
+##############
+# Geophysics #
+##############
+
+- id: geothermal_heat_flux
+  title: 'Geothermal Heat Flux'
+  description: >-
+    Geothermal heat flux interpolated from ice core measurements in megawatts
+    per square meter.
+  visible: False
+  group_path: 'Geophysics'
+  style: 'geothermal_heat_flux'
+  data_source: geothermal_heat_flux.only
+  ingest_task: zipped_netcdf
+  ingest_task_kwargs: {'extract_dataset': 'GHF'}
+  decompress_kwargs:
+    extract_files:
+      - 'ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc'
+  file_type: '.tif'
+  data_type: 'raster'
+  extent: 'data'
+
+
 ##################
 # Human activity #
 ##################
@@ -558,25 +581,27 @@
 - id: gem_research_stations
   title: 'GEM research stations'
   description: >-
-    Location and description of Greenland Ecosystem Monitoring research stations.
+    Location and description of Greenland Ecosystem Monitoring research
+    stations.
+  visible: False
+  group_path: 'Human activity/Research stations'
   data_source: gem_research_stations.only
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  group_path: 'Human activity/Research stations'
+  extent: 'data'
 
 - id: seismograph_stations
   title: 'Seismograph Stations'
   description: >-
     Location and details of Greenland seismograph stations.
+  visible: False
+  # TODO: is this where this layer should live?
+  group_path: 'Human activity/Research stations'
   data_source: seismograph_stations.only
   ingest_task: online_vector
   file_type: '.shp'
   data_type: 'vector'
-  visible: False
-  # TODO: is this where this layer should live?
-  group_path: 'Human activity/Research stations'
   extent: 'data'
   ogr2ogr_kwargs:
     input_filename: 'stations.kmz'
