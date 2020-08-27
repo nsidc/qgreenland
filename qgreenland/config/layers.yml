@@ -954,7 +954,7 @@
   id: bedmachine_bed
   title: 'Bedrock Elevation (1km)'
   description: 'Bedrock elevation in meters. Source is mass conservation (Mathieu Morlighem).'
-  visible: True
+  visible: False
   group_path: 'Terrain models/BedMachine'
   style: 'bedmachine_bed'
   extent: 'data'
