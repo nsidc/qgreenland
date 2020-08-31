@@ -9,6 +9,7 @@ from qgreenland.util import qgis
 mock_layer_cfg = {
     'title': 'Example Raster',
     'dataset': {
+        'access_method': 'http',
         'metadata': {
             'title': 'Example Dataset',
             'abstract': 'Example abstract',

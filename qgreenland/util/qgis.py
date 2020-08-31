@@ -9,10 +9,21 @@ from osgeo import gdal
 
 from qgreenland import __version__
 from qgreenland.constants import ASSETS_DIR, CONFIG
-from qgreenland.util.misc import get_layer_fs_path
+from qgreenland.util.misc import get_layer_path
+
+
+def _get_raster_layer(layer_path, layer_cfg):
+    return qgc.QgsRasterLayer(
+        layer_path,
+        layer_cfg['title'],
+        'gdal'
+    )
 
 
 def create_raster_map_layer(layer_path, layer_cfg):
+    if layer_cfg['dataset']['access_method'] == 'gdal_remote':
+        return _get_raster_layer(layer_path, layer_cfg)
+
     # Generate statistics for the raster layer. This creates an `aux.xml` file
     # alongside the .tif file that includes statistics (min/max/std) that qgis
     # can read.
@@ -20,11 +31,7 @@ def create_raster_map_layer(layer_path, layer_cfg):
     # layer's statistics to be correctly initialized.
     gdal.Info(layer_path, stats=True)
 
-    map_layer = qgc.QgsRasterLayer(
-        layer_path,
-        layer_cfg['title'],
-        'gdal'
-    )
+    map_layer = _get_raster_layer(layer_path, layer_cfg)
 
     # Set the min/max render accuracy to 'Exact'. Usually qgis estimates
     # statistics for e.g., generating the default colormap.
@@ -83,10 +90,7 @@ def get_map_layer(layer_cfg, project_crs):
     # resulting in rendering a gray rectangle.
     # TODO: do we need to worry about differences in path structure between linux
     # and windows?
-    layer_path = get_layer_fs_path(layer_cfg)
-
-    if not os.path.isfile(layer_path):
-        raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
+    layer_path = get_layer_path(layer_cfg)
 
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     if layer_cfg['data_type'] == 'vector':

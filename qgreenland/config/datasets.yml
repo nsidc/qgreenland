@@ -696,6 +696,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       text: 'International Seismological Centre (2020), International Seismograph Station Registry (IR), https://doi.org/10.31905/EL3FQQ40'
       url: 'http://www.isc.ac.uk/registries/'
 
+
 - id: geothermal_heat_flux
   access_method: http
   sources:
@@ -723,3 +724,40 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'Polar Data Journal, 3, 22-36. https://doi.org/10.20575/00000006'
       url: 'https://doi.org/10.20575/00000006'
+
+
+- id: image_mosaic
+  access_method: gdal_remote
+  sources:
+    - id: '2019'
+      urls:
+        - '/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
+    - id: '2015'
+      urls:
+        - '/vsicurl/http://its-live-data.jpl.nasa.gov.s3-us-west-2.amazonaws.com/rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt'
+  metadata:
+    title: 'Sentinel-2 Imagery Mosaics'
+    abstract: >-
+        Each summer, surface melting of the margin of the Greenland Ice Sheet
+        exposes a distinctive visible stratigraphy that is related to past
+        variability in subaerial dust deposition across the accumulation zone
+        and subsequent ice flow toward the margin. Here we map this surface
+        stratigraphy along the northern margin of the ice sheet using mosaicked
+        Sentinel-2 multispectral satellite imagery from the end of the 2019 melt
+        season and finer-resolution WorldView-2/3 imagery for smaller regions of
+        interest. We trace three distinct transitions in apparent dust
+        concentration and the top of a darker basal layer. The three dust
+        transitions have been identified previously as representing
+        late-Pleistocene climatic transitions, allowing us to develop a coarse
+        margin chronostratigraphy for northern Greenland. Substantial folding of
+        late-Pleistocene stratigraphy is observed but uncommon. The oldest
+        conformal surface-exposed ice in northern Greenland is likely located
+        adjacent to Warming Land and may be up to ~55 thousand years old. Basal
+        ice is commonly exposed hundreds of metres from the ice margin and may
+        indicate a widespread frozen basal thermal state. We conclude that the
+        ice margin across northern Greenland offers multiple opportunities to
+        recover paleoclimatically distinct ice relative to previously studied
+        regions in southwestern Greenland.
+    citation:
+      text: 'MacGregor JA, Fahnestock MA, Colgan WT, Larsen NK, Kjeldsen KK, Welker JM (2020). The age of surface-exposed ice along the northern margin of the Greenland Ice Sheet. Journal of Glaciology 66(258), 667–684. https://doi.org/10.1017/jog.2020.62'
+      url: 'https://doi.org/10.1017/jog.2020.62'

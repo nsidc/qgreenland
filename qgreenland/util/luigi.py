@@ -36,7 +36,7 @@ class LayerTask(luigi.Task):
     @property
     def outdir(self):
         # We could possibly DRY this out by adding a task_type param to
-        # get_layer_fs_path
+        # get_layer_path
         if self.task_type not in TaskType:
             msg = (f"This class defines self.task_type as '{self.task_type}'. "
                    f'Must be one of: {list(TaskType)}.')

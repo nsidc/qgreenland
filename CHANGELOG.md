@@ -1,3 +1,6 @@
+# v0.34.0 (unreleased)
+- New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019 
+
 # v0.33.0 (2020-08-27)
 
 - Start all layer groups as unchecked where possible, and collapsed.
