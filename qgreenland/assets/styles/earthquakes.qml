@@ -2,13 +2,13 @@
 <qgis styleCategories="Symbology|Labeling" labelsEnabled="1" version="3.10.7-A Coruña">
   <renderer-v2 graduatedMethod="GraduatedColor" enableorderby="0" type="graduatedSymbol" attr="mag" symbollevels="0" forceraster="0">
     <ranges>
-      <range lower="2.000000000000000" render="true" label=" 2.0" upper="3.000000000000000" symbol="0"/>
-      <range lower="3.000000000000000" render="true" label=" 3.0" upper="4.000000000000000" symbol="1"/>
-      <range lower="4.000000000000000" render="true" label=" 4.0" upper="5.000000000000000" symbol="2"/>
-      <range lower="5.000000000000000" render="true" label=" 5.0" upper="6.000000000000000" symbol="3"/>
-      <range lower="6.000000000000000" render="true" label=" 6.0" upper="7.000000000000000" symbol="4"/>
-      <range lower="7.000000000000000" render="true" label=" 7.0" upper="8.000000000000000" symbol="5"/>
-      <range lower="8.000000000000000" render="true" label=" 8.0" upper="9.000000000000000" symbol="6"/>
+      <range lower="2.000000000000000" render="true" label=" 2.0 M" upper="3.000000000000000" symbol="0"/>
+      <range lower="3.000000000000000" render="true" label=" 3.0 M" upper="4.000000000000000" symbol="1"/>
+      <range lower="4.000000000000000" render="true" label=" 4.0 M" upper="5.000000000000000" symbol="2"/>
+      <range lower="5.000000000000000" render="true" label=" 5.0 M" upper="6.000000000000000" symbol="3"/>
+      <range lower="6.000000000000000" render="true" label=" 6.0 M" upper="7.000000000000000" symbol="4"/>
+      <range lower="7.000000000000000" render="true" label=" 7.0 M" upper="8.000000000000000" symbol="5"/>
+      <range lower="8.000000000000000" render="true" label=" 8.0 M" upper="9.000000000000000" symbol="6"/>
     </ranges>
     <symbols>
       <symbol clip_to_extent="1" alpha="1" type="marker" name="0" force_rhr="0">

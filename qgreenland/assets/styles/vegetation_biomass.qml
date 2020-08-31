@@ -31,16 +31,16 @@
             <prop k="rampType" v="gradient"/>
             <prop k="stops" v="0.13;229,245,224,255:0.26;199,233,192,255:0.39;161,217,155,255:0.52;116,196,118,255:0.65;65,171,93,255:0.78;35,139,69,255:0.9;0,109,44,255"/>
           </colorramp>
-          <item color="#f7fcf5" alpha="255" label="&lt;= 0.10" value="0.1"/>
-          <item color="#e8f6e3" alpha="255" label="0.10 - 0.20" value="0.2"/>
-          <item color="#d0edca" alpha="255" label="0.20 - 0.30" value="0.3"/>
-          <item color="#b2e0ab" alpha="255" label="0.30 - 0.40" value="0.4"/>
-          <item color="#8ed18c" alpha="255" label="0.40 - 0.50" value="0.5"/>
-          <item color="#66bd6f" alpha="255" label="0.50 - 0.60" value="0.6"/>
-          <item color="#3da75a" alpha="255" label="0.60 - 0.70" value="0.7"/>
-          <item color="#238c45" alpha="255" label="0.70 - 0.80" value="0.8"/>
-          <item color="#03702e" alpha="255" label="0.80 - 0.90" value="0.9"/>
-          <item color="#00441b" alpha="255" label="> 0.90" value="inf"/>
+          <item color="#f7fcf5" alpha="255" label="&lt;= 0.10 kg/m2" value="0.1"/>
+          <item color="#e8f6e3" alpha="255" label="0.10 - 0.20 kg/m2" value="0.2"/>
+          <item color="#d0edca" alpha="255" label="0.20 - 0.30 kg/m2" value="0.3"/>
+          <item color="#b2e0ab" alpha="255" label="0.30 - 0.40 kg/m2" value="0.4"/>
+          <item color="#8ed18c" alpha="255" label="0.40 - 0.50 kg/m2" value="0.5"/>
+          <item color="#66bd6f" alpha="255" label="0.50 - 0.60 kg/m2" value="0.6"/>
+          <item color="#3da75a" alpha="255" label="0.60 - 0.70 kg/m2" value="0.7"/>
+          <item color="#238c45" alpha="255" label="0.70 - 0.80 kg/m2" value="0.8"/>
+          <item color="#03702e" alpha="255" label="0.80 - 0.90 kg/m2" value="0.9"/>
+          <item color="#00441b" alpha="255" label="> 0.90 kg/m2" value="inf"/>
         </colorrampshader>
       </rastershader>
     </rasterrenderer>
