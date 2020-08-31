@@ -43,7 +43,7 @@
           <item alpha="255" value="110.981192955604" label="102.98346886268 - 110.981192955604 MW/m2" color="#5dc962"/>
           <item alpha="255" value="118.978917048528" label="110.981192955604 - 118.978917048528 MW/m2" color="#8fd744"/>
           <item alpha="255" value="126.976641141451" label="118.978917048528 - 126.976641141451 MW/m2" color="#c7e120"/>
-          <item alpha="255" value="inf" label="> 126.976641141451" color="#fde725"/>
+          <item alpha="255" value="inf" label="> 126.976641141451 MW/m2" color="#fde725"/>
         </colorrampshader>
       </rastershader>
     </rasterrenderer>
