@@ -1072,7 +1072,7 @@
 
 - id: image_mosaic_2019
   title: 'Greenland Image Mosaic 2019 (Online Only)'
-  description: 'TBD'
+  description: 'Sentinel-2 multispectral satellite imagery from 2019.'
   visible: False
   group_path: 'Satellite imagery'
   style: 'transparent_rgb'
@@ -1084,7 +1084,7 @@
 
 - id: image_mosaic_2015
   title: 'Greenland Image Mosaic 2015 (Online Only)'
-  description: 'TBD'
+  description: 'Sentinel-2 multispectral satellite imagery from 2015.'
   visible: False
   group_path: 'Satellite imagery'
   extent: 'data'
