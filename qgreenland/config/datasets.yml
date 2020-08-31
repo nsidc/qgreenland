@@ -809,3 +809,20 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'Made with Natural Earth'
       url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+
+
+- id: ne_states_provinces
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip'
+  metadata:
+    title: 'Admin 1 – States, Provinces'
+    abstract: >-
+        Internal, first-order administrative boundaries and polygons for all but
+        a few tiny countries. Includes name attributes (including diacritical
+        marks), name variants, and some statistical codes (FIPS, ISO, HASC).
+    citation:
+      text: 'Made with Natural Earth'
+      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'

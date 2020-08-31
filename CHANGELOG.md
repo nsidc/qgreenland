@@ -4,6 +4,7 @@
   geothermal heat flux, earthquakes, vegetation biomass, IBCAO bathymetry)
 - New "Glaciology" layer: Ice Cores
 - New "Basemap" layer: countries
+- New "Basemap" layer: administrative divisions
 
 # v0.33.0 (2020-08-27)
 
