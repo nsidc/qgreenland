@@ -3,6 +3,7 @@
 - Add units suffix to layer styles where appropriate (sea ice concentration,
   geothermal heat flux, earthquakes, vegetation biomass, IBCAO bathymetry)
 - New "Glaciology" layer: Ice Cores
+- New "Basemap" layer: countries
 
 # v0.33.0 (2020-08-27)
 

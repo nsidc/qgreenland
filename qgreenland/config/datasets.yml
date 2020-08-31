@@ -782,3 +782,30 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'TBD'
       url: 'https://cmr.earthdata.nasa.gov/search/concepts/C1214567770-NOAA_NCEI'
+
+
+- id: ne_countries
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip'
+  metadata:
+    title: 'Admin 0 – Countries'
+    abstract: >-
+        Countries distinguish between metropolitan (homeland) and independent
+        and semi-independent portions of sovereign states. If you want to see
+        the dependent overseas regions broken out (like in ISO codes, see France
+        for example), use map units instead.
+
+        Each country is coded with a world region that roughly follows the
+        United Nations setup.
+
+        Countries are coded with standard ISO and FIPS codes. French INSEE codes
+        are also included.
+
+        Includes some thematic data from the United Nations (1), U.S. Central
+        Intelligence Agency, and elsewhere.
+    citation:
+      text: 'Made with Natural Earth'
+      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'

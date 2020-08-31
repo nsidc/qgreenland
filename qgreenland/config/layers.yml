@@ -1124,6 +1124,18 @@
   data_type: 'vector'
 
 
+- id: ne_countries
+  title: 'Countries'
+  visible: False
+  group_path: 'Basemaps'
+  style: 'countries'
+  extent: 'background'
+  data_source: ne_countries.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
+
 - id: background
   title: 'Background (1km)'
   visible: True
