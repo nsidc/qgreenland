@@ -6,6 +6,7 @@
 - New "Basemap" layer: countries
 - New "Basemap" layer: administrative divisions
 - New "Miscellaneous" layer: timezones
+- Updated style for "Permafrost and Ground-Ice (12.5km)" layer
 
 # v0.33.0 (2020-08-27)
 
