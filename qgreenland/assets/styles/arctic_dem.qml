@@ -1,18 +1,18 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis hasScaleBasedVisibilityFlag="0" version="3.10.1-A Coruña" styleCategories="AllStyleCategories" minScale="1e+08" maxScale="0">
+<qgis hasScaleBasedVisibilityFlag="0" minScale="1e+08" version="3.10.7-A Coruña" styleCategories="AllStyleCategories" maxScale="0">
   <flags>
     <Identifiable>1</Identifiable>
     <Removable>1</Removable>
     <Searchable>1</Searchable>
   </flags>
   <customproperties>
-    <property value="false" key="WMSBackgroundLayer"/>
-    <property value="false" key="WMSPublishDataSourceUrl"/>
-    <property value="0" key="embeddedWidgets/count"/>
-    <property value="Value" key="identify/format"/>
+    <property key="WMSBackgroundLayer" value="false"/>
+    <property key="WMSPublishDataSourceUrl" value="false"/>
+    <property key="embeddedWidgets/count" value="0"/>
+    <property key="identify/format" value="Value"/>
   </customproperties>
   <pipe>
-    <rasterrenderer azimuth="315" zfactor="40" multidirection="0" type="hillshade" opacity="1" angle="45" alphaBand="-1" band="1">
+    <rasterrenderer angle="45" opacity="1" zfactor="5" multidirection="0" band="1" azimuth="315" alphaBand="-1" type="hillshade">
       <rasterTransparency/>
       <minMaxOrigin>
         <limits>None</limits>
@@ -24,8 +24,8 @@
       </minMaxOrigin>
     </rasterrenderer>
     <brightnesscontrast brightness="0" contrast="0"/>
-    <huesaturation colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" colorizeGreen="128" saturation="0" colorizeStrength="100"/>
-    <rasterresampler zoomedOutResampler="bilinear" maxOversampling="2" zoomedInResampler="bilinear"/>
+    <huesaturation colorizeStrength="100" saturation="0" grayscaleMode="0" colorizeBlue="128" colorizeRed="255" colorizeGreen="128" colorizeOn="0"/>
+    <rasterresampler zoomedInResampler="bilinear" maxOversampling="2" zoomedOutResampler="bilinear"/>
   </pipe>
   <blendMode>0</blendMode>
 </qgis>
