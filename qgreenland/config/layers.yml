@@ -441,6 +441,21 @@
   data_source: glacier_terminus.2016_2017
 
 
+- id: ice_cores
+  title: 'Ice Cores'
+  visible: False
+  group_path: 'Glaciology'
+  style: 'labeled_point'
+  extent: 'data'
+  data_source: ice_cores.only
+  ingest_task: online_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'paleo_icecore.kmz'
+    sql: "'SELECT *, Name as label from \"Ice Core\"'"
+
+
 - id: velocity_mosaic
   title: 'Ice Sheet Velocity (500m)'
   description: 'Magnitude of velocity in meters per year.'

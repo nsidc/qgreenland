@@ -2,6 +2,7 @@
 - New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019 
 - Add units suffix to layer styles where appropriate (sea ice concentration,
   geothermal heat flux, earthquakes, vegetation biomass, IBCAO bathymetry)
+- New "Glaciology" layer: Ice Cores
 
 # v0.33.0 (2020-08-27)
 

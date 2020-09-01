@@ -761,3 +761,24 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'MacGregor JA, Fahnestock MA, Colgan WT, Larsen NK, Kjeldsen KK, Welker JM (2020). The age of surface-exposed ice along the northern margin of the Greenland Ice Sheet. Journal of Glaciology 66(258), 667–684. https://doi.org/10.1017/jog.2020.62'
       url: 'https://doi.org/10.1017/jog.2020.62'
+
+
+- id: ice_cores
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz'
+  metadata:
+    title: 'Ice Cores'
+    abstract: >-
+        Records of past temperature, precipitation, atmospheric trace gases, and
+        other aspects of climate and environment derived from ice cores drilled
+        on glaciers and ice caps around the world. Parameter keywords describe
+        what was measured in this data set. Additional summary information can
+        be found in the abstracts of papers listed in the data set
+        citations. For details please see:
+        http://www.ncdc.noaa.gov/paleo/icecore.html
+    citation:
+      text: 'TBD'
+      url: 'https://cmr.earthdata.nasa.gov/search/concepts/C1214567770-NOAA_NCEI'
