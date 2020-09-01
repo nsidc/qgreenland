@@ -782,3 +782,73 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'TBD'
       url: 'https://cmr.earthdata.nasa.gov/search/concepts/C1214567770-NOAA_NCEI'
+
+
+- id: ne_countries
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip'
+  metadata:
+    title: 'Admin 0 – Countries'
+    abstract: >-
+        Countries distinguish between metropolitan (homeland) and independent
+        and semi-independent portions of sovereign states. If you want to see
+        the dependent overseas regions broken out (like in ISO codes, see France
+        for example), use map units instead.
+
+        Each country is coded with a world region that roughly follows the
+        United Nations setup.
+
+        Countries are coded with standard ISO and FIPS codes. French INSEE codes
+        are also included.
+
+        Includes some thematic data from the United Nations (1), U.S. Central
+        Intelligence Agency, and elsewhere.
+    citation:
+      text: 'Made with Natural Earth'
+      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+
+
+- id: ne_states_provinces
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip'
+  metadata:
+    title: 'Admin 1 – States, Provinces'
+    abstract: >-
+        Internal, first-order administrative boundaries and polygons for all but
+        a few tiny countries. Includes name attributes (including diacritical
+        marks), name variants, and some statistical codes (FIPS, ISO, HASC).
+    citation:
+      text: 'Made with Natural Earth'
+      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+
+
+- id: ne_timezones
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_time_zones.zip'
+  metadata:
+    title: 'Timezones'
+    abstract: >-
+        Time zones primarily derive from the Central Intelligence Agency map
+        of Time Zones, downloaded from the World Factbook website May
+        2012. Boundaries were adjusted to fit the Natural Earth line work at
+        a scale of 1:10 million and to follow twelve nautical mile
+        territorial sea boundary lines when running along coasts. Additional
+        research was performed based on recent news to update several areas
+        including the international dateline and time zone adjustments for
+        Samoa and Tokelau and the discarding of daylight savings time in
+        Russia.
+
+        Data attributes include time offset from Coordinated Universal Time (UTC,
+        aka “zulu” time) and map color codes for a 6-up and 8-up styling.
+    citation:
+      text: 'Made with Natural Earth'
+      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'

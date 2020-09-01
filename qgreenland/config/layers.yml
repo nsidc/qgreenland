@@ -234,6 +234,20 @@
     s_srs: 'EPSG:4326'
 
 
+- id: timezones
+  title: 'Timezones'
+  data_source: ne_timezones.only
+  visible: False
+  group_path: 'Miscellaneous'
+  style: 'transparent_shape'
+  extent: 'background'
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+
+
 ###########
 # Biology #
 ###########
@@ -1119,6 +1133,30 @@
   group_path: 'Basemaps'
   extent: 'background'
   data_source: coastlines.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
+
+- id: ne_states_provinces
+  title: 'Administrative Divisions'
+  visible: False
+  group_path: 'Basemaps'
+  style: 'administrative_divisions'
+  extent: 'data'
+  data_source: ne_states_provinces.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
+
+- id: ne_countries
+  title: 'Countries'
+  visible: False
+  group_path: 'Basemaps'
+  style: 'countries'
+  extent: 'background'
+  data_source: ne_countries.only
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
