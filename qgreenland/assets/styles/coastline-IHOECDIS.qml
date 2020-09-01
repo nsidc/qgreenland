@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.12.3-București" simplifyMaxScale="1" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" minScale="0" labelsEnabled="0" simplifyAlgorithm="0" styleCategories="AllStyleCategories" readOnly="0" maxScale="0" hasScaleBasedVisibilityFlag="0">
+<qgis version="3.12.3-București" simplifyMaxScale="1" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" minScale="100000000" labelsEnabled="0" simplifyAlgorithm="0" styleCategories="AllStyleCategories" readOnly="0" maxScale="0" hasScaleBasedVisibilityFlag="0">
   <flags>
     <Identifiable>1</Identifiable>
     <Removable>1</Removable>
@@ -7,19 +7,24 @@
   </flags>
   <renderer-v2 enableorderby="0" type="singleSymbol" forceraster="0" symbollevels="0">
     <symbols>
-      <symbol alpha="1" clip_to_extent="1" type="fill" name="0" force_rhr="0">
-        <layer pass="0" class="SimpleFill" enabled="1" locked="0">
-          <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-          <prop k="color" v="235,226,200,255"/>
+      <symbol alpha="1" clip_to_extent="1" type="line" name="0" force_rhr="0">
+        <layer pass="0" class="SimpleLine" enabled="1" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="offset" v="0,0"/>
+          <prop k="line_color" v="76,91,99,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="0.2"/>
+          <prop k="line_width_unit" v="MM"/>
+          <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
           <prop k="offset_unit" v="MM"/>
-          <prop k="outline_color" v="255,255,255,255"/>
-          <prop k="outline_style" v="no"/>
-          <prop k="outline_width" v="0.2"/>
-          <prop k="outline_width_unit" v="MM"/>
-          <prop k="style" v="solid"/>
+          <prop k="ring_filter" v="0"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
           <data_defined_properties>
             <Option type="Map">
               <Option type="QString" name="name" value=""/>
@@ -42,7 +47,7 @@
   <featureBlendMode>0</featureBlendMode>
   <layerOpacity>1</layerOpacity>
   <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
-    <DiagramCategory height="15" diagramOrientation="Up" sizeScale="3x:0,0,0,0,0,0" labelPlacementMethod="XHeight" backgroundColor="#ffffff" penColor="#000000" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" lineSizeType="MM" minScaleDenominator="0" penAlpha="255" direction="0" minimumSize="0" showAxis="1" rotationOffset="270" spacingUnit="MM" barWidth="5" penWidth="0" scaleDependency="Area" scaleBasedVisibility="0" width="15" sizeType="MM" backgroundAlpha="255" lineSizeScale="3x:0,0,0,0,0,0" opacity="1" maxScaleDenominator="0" spacing="5">
+    <DiagramCategory height="15" diagramOrientation="Up" sizeScale="3x:0,0,0,0,0,0" labelPlacementMethod="XHeight" backgroundColor="#ffffff" penColor="#000000" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" lineSizeType="MM" minScaleDenominator="0" penAlpha="255" direction="0" minimumSize="0" showAxis="1" rotationOffset="270" spacingUnit="MM" barWidth="5" penWidth="0" scaleDependency="Area" scaleBasedVisibility="0" width="15" sizeType="MM" backgroundAlpha="255" lineSizeScale="3x:0,0,0,0,0,0" opacity="1" maxScaleDenominator="1e+08" spacing="5">
       <fontProperties style="" description="MS Shell Dlg 2,7.875,-1,5,50,0,0,0,0,0"/>
       <attribute color="#000000" label="" field=""/>
       <axisSymbol>
@@ -76,7 +81,7 @@
       </axisSymbol>
     </DiagramCategory>
   </SingleCategoryDiagramRenderer>
-  <DiagramLayerSettings priority="0" linePlacementFlags="18" zIndex="0" obstacle="0" dist="0" placement="1" showAll="1">
+  <DiagramLayerSettings priority="0" linePlacementFlags="18" zIndex="0" obstacle="0" dist="0" placement="2" showAll="1">
     <properties>
       <Option type="Map">
         <Option type="QString" name="name" value=""/>
@@ -87,13 +92,7 @@
   </DiagramLayerSettings>
   <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
     <activeChecks/>
-    <checkConfiguration type="Map">
-      <Option type="Map" name="QgsGeometryGapCheck">
-        <Option type="double" name="allowedGapsBuffer" value="0"/>
-        <Option type="bool" name="allowedGapsEnabled" value="false"/>
-        <Option type="QString" name="allowedGapsLayer" value=""/>
-      </Option>
-    </checkConfiguration>
+    <checkConfiguration/>
   </geometryOptions>
   <referencedLayers/>
   <referencingLayers/>
@@ -106,7 +105,7 @@
       </editWidget>
     </field>
     <field name="scalerank">
-      <editWidget type="Range">
+      <editWidget type="TextEdit">
         <config>
           <Option/>
         </config>
@@ -195,5 +194,5 @@ def my_form_open(dialog, layer, feature):
   <widgets/>
   <previewExpression>featurecla</previewExpression>
   <mapTip></mapTip>
-  <layerGeometryType>2</layerGeometryType>
+  <layerGeometryType>1</layerGeometryType>
 </qgis>

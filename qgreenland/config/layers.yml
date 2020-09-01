@@ -1131,6 +1131,7 @@
   title: 'Coastlines'
   visible: False
   group_path: 'Basemaps'
+  style: 'coastline-IHOECDIS'
   extent: 'background'
   data_source: coastlines.only
   ingest_task: zipped_vector
