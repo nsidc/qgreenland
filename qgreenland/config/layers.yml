@@ -1040,16 +1040,17 @@
 ##################
 
 - &bedmachine
-  id: bedmachine_bed
-  title: 'Bedrock Elevation (1km)'
-  description: 'Bedrock elevation in meters. Source is mass conservation (Mathieu Morlighem).'
-  visible: False
+  id: bedmachine_thickness
+  title: 'Ice Thickness (500m)'
+  description: >-
+    Ice thickness in meters. Source is Mass conservation (Mathieu Morlighem)
   group_path: 'Terrain models/BedMachine'
-  style: 'bedmachine_bed'
+  visible: False
+  style: 'bedmachine_thickness'
   extent: 'data'
   data_source: bedmachine.only
   ingest_task: bedmachine
-  ingest_task_kwargs: {'extract_dataset': 'bed'}
+  ingest_task_kwargs: {'extract_dataset': 'thickness'}
   file_type: '.tif'
   data_type: 'raster'
   warp_kwargs:
@@ -1058,27 +1059,28 @@
 
 - <<: *bedmachine
   id: bedmachine_surface
-  title: 'Surface Elevation (1km)'
+  title: 'Surface Elevation (500m)'
   description: >-
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
-  visible: False
-  style: null
+  style: 'bedmachine_surface'
   ingest_task_kwargs: {'extract_dataset': 'surface'}
 
 - <<: *bedmachine
-  id: bedmachine_thickness
-  title: 'Ice Thickness (1km)'
-  description: 'Ice thickness in meters. Source is Mass conservation (Mathieu Morlighem)'
-  visible: False
-  style: null
-  ingest_task_kwargs: {'extract_dataset': 'thickness'}
+  id: bedmachine_bed
+  title: 'Bedrock Elevation (500m)'
+  description: >-
+    Bedrock elevation in meters. Source is mass conservation (Mathieu
+    Morlighem).
+  style: 'bedmachine_bed'
+  ingest_task_kwargs: {'extract_dataset': 'bed'}
 
 - <<: *bedmachine
   id: bedmachine_errbed
-  title: 'Bedrock Elevation/Ice Thickness Error (1km)'
-  visible: False
-  style: null
+  title: 'Bedrock Elevation/Ice Thickness Error (500m)'
+  description: >-
+    TBD
+  style: 'bedmachine_errbed'
   ingest_task_kwargs: {'extract_dataset': 'errbed'}
 
 
