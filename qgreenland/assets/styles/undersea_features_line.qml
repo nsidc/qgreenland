@@ -10,6 +10,31 @@
           <prop v="MM" k="customdash_unit"/>
           <prop v="0" k="draw_inside_polygon"/>
           <prop v="bevel" k="joinstyle"/>
+          <prop v="35,35,35,255" k="line_color"/>
+          <prop v="solid" k="line_style"/>
+          <prop v="0.8" k="line_width"/>
+          <prop v="MM" k="line_width_unit"/>
+          <prop v="0" k="offset"/>
+          <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+          <prop v="MM" k="offset_unit"/>
+          <prop v="0" k="ring_filter"/>
+          <prop v="0" k="use_custom_dash"/>
+          <prop v="3x:0,0,0,0,0,0" k="width_map_unit_scale"/>
+          <data_defined_properties>
+            <Option type="Map">
+              <Option value="" type="QString" name="name"/>
+              <Option name="properties"/>
+              <Option value="collection" type="QString" name="type"/>
+            </Option>
+          </data_defined_properties>
+        </layer>
+        <layer locked="0" class="SimpleLine" pass="0" enabled="1">
+          <prop v="square" k="capstyle"/>
+          <prop v="5;2" k="customdash"/>
+          <prop v="3x:0,0,0,0,0,0" k="customdash_map_unit_scale"/>
+          <prop v="MM" k="customdash_unit"/>
+          <prop v="0" k="draw_inside_polygon"/>
+          <prop v="bevel" k="joinstyle"/>
           <prop v="111,168,207,255" k="line_color"/>
           <prop v="solid" k="line_style"/>
           <prop v="0.66" k="line_width"/>
