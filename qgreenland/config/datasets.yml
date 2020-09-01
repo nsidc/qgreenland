@@ -486,7 +486,7 @@ The images and data are produced in a consistent way that makes the Index time-s
   sources:
     - id: only
       urls:
-        - 'https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_400m/cfnetcdf/'
+        - 'https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_400m_ice/cfnetcdf/'
   metadata:
     title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'
     abstract: 'The goal of the IBCAO initiative is to develop a digital data base that contains all available bathymetric data north of 64° North, for use by mapmakers, researchers, institutions, and others whose work requires a detailed and accurate knowledge of the depth and the shape of the Arctic seabed.'
