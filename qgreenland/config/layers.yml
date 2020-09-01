@@ -790,6 +790,8 @@
   warp_kwargs:
     srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
     dstNodata: -9999
+    xRes: 500
+    yRes: 500
 
 
 ##################
@@ -1050,8 +1052,8 @@
   file_type: '.tif'
   data_type: 'raster'
   warp_kwargs:
-    xRes: 1000
-    yRes: 1000
+    xRes: 500
+    yRes: 500
 
 - <<: *bedmachine
   id: bedmachine_surface

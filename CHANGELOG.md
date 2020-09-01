@@ -1,4 +1,5 @@
 # v0.34.0 (unreleased)
+
 - New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019 
 - Add units suffix to layer styles where appropriate (sea ice concentration,
   geothermal heat flux, earthquakes, vegetation biomass, IBCAO bathymetry)
@@ -7,6 +8,7 @@
 - New "Basemap" layer: administrative divisions
 - New "Miscellaneous" layer: timezones
 - Updated style for "Permafrost and Ground-Ice (12.5km)" layer
+- Resample BedMachine and IBCAO layers to 500m
 
 # v0.33.0 (2020-08-27)
 
