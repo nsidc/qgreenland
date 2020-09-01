@@ -9,6 +9,11 @@
 - New "Miscellaneous" layer: timezones
 - Updated style for "Permafrost and Ground-Ice (12.5km)" layer
 - Resample BedMachine and IBCAO layers to 500m
+- Update ocean-related styles:
+    - Undersea Feature Names are colored blue rgb(111, 167, 207)
+    - Desaturate the ocean background layer color.
+    - Add black outline to undersea feature polygons and lines.
+- Change Arctic DEM hillshade scale factor from 40 to 5.
 
 # v0.33.0 (2020-08-27)
 
