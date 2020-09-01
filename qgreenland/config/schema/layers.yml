@@ -58,6 +58,9 @@ ogr2ogr_kwargs:
   segmentize: int(required=False)
   sql: str(required=False)
   makevalid: str(required=False)
+  # TODO: this really isn't an `ogr2ogr` arg, its an envvar. Sometimes (natural
+  # earth timezones) this is required to allow reprojection of some shapes.
+  OGR_ENABLE_PARTIAL_REPROJECTION: bool(required=False)
 
 ---
 decompress_kwargs:

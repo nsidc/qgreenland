@@ -5,6 +5,7 @@
 - New "Glaciology" layer: Ice Cores
 - New "Basemap" layer: countries
 - New "Basemap" layer: administrative divisions
+- New "Miscellaneous" layer: timezones
 
 # v0.33.0 (2020-08-27)
 
