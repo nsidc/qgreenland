@@ -9,6 +9,9 @@
 - New "Miscellaneous" layer: timezones
 - Updated style for "Permafrost and Ground-Ice (12.5km)" layer
 - Resample BedMachine and IBCAO layers to 500m
+- Re-order and style BedMachine to allow stacking display
+  - Use cmocean "topo" and "ice" colormaps.
+  - Make "0" values transparent for thickness and surface elevation
 
 # v0.33.0 (2020-08-27)
 
