@@ -720,7 +720,7 @@
       Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
   visible: False
   group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
-  style: 'labeled_point'
+  style: 'undersea_features_point'
   extent: 'data'
   data_source: undersea_features.only
   ingest_task: zipped_vector
@@ -743,7 +743,7 @@
 - <<: *undersea_features
   id: undersea_features_multilinestring
   title: 'IHO-ICO GEBCO Features (multiline)'
-  style: 'labeled_line'
+  style: 'undersea_features_line'
   decompress_kwargs:
     extract_files:
       - 'features/features-multilinestring.dbf'
@@ -756,7 +756,7 @@
 - <<: *undersea_features
   id: undersea_features_multipolygon
   title: 'IHO-ICO GEBCO Features (multipolygon)'
-  style: 'labeled_polygon'
+  style: 'undersea_features_polygon'
   decompress_kwargs:
     extract_files:
       - 'features/features-multipolygon.dbf'
