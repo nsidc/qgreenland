@@ -77,7 +77,6 @@ class ExtractNcDataset(LayerTask):
     """Extracts dataset `dataset_name` from input .nc file."""
 
     task_type = TaskType.WIP
-    dataset_name = luigi.Parameter()
 
     def output(self):
         # GDAL translate will automatically determine file type from the extension.
@@ -89,11 +88,14 @@ class ExtractNcDataset(LayerTask):
         with temporary_path_dir(self.output()) as temp_dir:
             input_fp = find_single_file_by_ext(self.input().path, ext='.nc')
 
-            output_filename = f"{self.dataset_name}{self.layer_cfg['file_type']}"
+            dataset_name = self.layer_cfg['translate_kwargs'].pop('extract_dataset')
+
+            output_filename = f"{dataset_name}{self.layer_cfg['file_type']}"
             output_fp = os.path.join(temp_dir, output_filename)
 
-            from_dataset_path = f'NETCDF:{input_fp}:{self.dataset_name}'
+            from_dataset_path = f'NETCDF:{input_fp}:{dataset_name}'
             logger.debug(
                 f'Using gdal.Translate to convert from {from_dataset_path} to {output_fp}'
             )
-            gdal.Translate(output_fp, from_dataset_path)
+
+            gdal.Translate(output_fp, from_dataset_path, **self.layer_cfg['translate_kwargs'])

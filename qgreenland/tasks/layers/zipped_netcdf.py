@@ -9,8 +9,6 @@ from qgreenland.util.luigi import LayerPipeline
 class ZippedNetCdf(LayerPipeline):
     """Rename files to their final location."""
 
-    extract_dataset = luigi.Parameter()
-
     def requires(self):
         fetch_data = FetchDataFiles(
             dataset_cfg=self.cfg['dataset'],
@@ -23,7 +21,6 @@ class ZippedNetCdf(LayerPipeline):
         extract_nc_dataset = ExtractNcDataset(
             requires_task=unzip,
             layer_id=self.layer_id,
-            dataset_name=self.extract_dataset
         )  # ->
         warp_raster = WarpRaster(
             requires_task=extract_nc_dataset,

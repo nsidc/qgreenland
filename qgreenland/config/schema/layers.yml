@@ -42,10 +42,16 @@ layer:
   warp_kwargs: include('warp_kwargs', required=False)
   ogr2ogr_kwargs: include('ogr2ogr_kwargs', required=False)
   gdal_calc_kwargs: include('gdal_calc_kwargs', required=False)
+  translate_kwargs: include('translate_kwargs', required=False)
 
 ---
-  gdal_calc_kwargs:
-    calc: str(required=True)
+translate_kwargs:
+  extract_dataset: str(required=True)
+  bandList: list(int(), required=False)
+
+---
+gdal_calc_kwargs:
+  calc: str(required=True)
 
 ---
 ogr2ogr_kwargs:

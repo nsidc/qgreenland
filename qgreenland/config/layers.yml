@@ -479,9 +479,10 @@
   extent: 'data'
   data_source: velocity_mosaic.only
   ingest_task: netcdf_raster
-  ingest_task_kwargs: {'extract_dataset': 'v'}
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'v'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
@@ -596,10 +597,11 @@
   style: 'geothermal_heat_flux'
   data_source: geothermal_heat_flux.only
   ingest_task: zipped_netcdf
-  ingest_task_kwargs: {'extract_dataset': 'GHF'}
   decompress_kwargs:
     extract_files:
       - 'ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc'
+  translate_kwargs:
+    extract_dataset: 'GHF'
   file_type: '.tif'
   data_type: 'raster'
   extent: 'data'
@@ -769,6 +771,28 @@
     sql: "'SELECT *, name as label from \"features-multipolygon\"'"
 
 
+- id: woa_winter_temperature_2018
+  title: 'Temperature (Surface, Winter)'
+  description: >-
+      TBD
+  visible: False
+  group_path: 'Oceanography'
+  extent: 'data'
+  data_source: woa_temperatures_2018.seasonal_winter
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [1]
+  warp_kwargs:
+    xRes: 25000
+    yRes: 25000
+
+
 - id: bathymetric_chart
   title: 'IBCAO Bathymetric Chart of the Arctic Ocean (500m)'
   description: >-
@@ -782,9 +806,10 @@
   extent: 'data'
   data_source: bathymetric_chart.only
   ingest_task: netcdf_raster
-  ingest_task_kwargs: {'extract_dataset': 'z'}
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'z'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
@@ -1050,9 +1075,10 @@
   extent: 'data'
   data_source: bedmachine.only
   ingest_task: bedmachine
-  ingest_task_kwargs: {'extract_dataset': 'thickness'}
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'thickness'
   warp_kwargs:
     xRes: 500
     yRes: 500
@@ -1064,7 +1090,8 @@
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
   style: 'bedmachine_surface'
-  ingest_task_kwargs: {'extract_dataset': 'surface'}
+  translate_kwargs:
+    extract_dataset: 'surface'
 
 - <<: *bedmachine
   id: bedmachine_bed
@@ -1073,7 +1100,8 @@
     Bedrock elevation in meters. Source is mass conservation (Mathieu
     Morlighem).
   style: 'bedmachine_bed'
-  ingest_task_kwargs: {'extract_dataset': 'bed'}
+  translate_kwargs:
+    extract_dataset: 'bed'
 
 - <<: *bedmachine
   id: bedmachine_errbed
@@ -1081,7 +1109,8 @@
   description: >-
     TBD
   style: 'bedmachine_errbed'
-  ingest_task_kwargs: {'extract_dataset': 'errbed'}
+  translate_kwargs:
+    extract_dataset: 'errbed'
 
 
 - id: arctic_dem

@@ -17,9 +17,6 @@ def generate_layer_tasks():
             continue
 
         task = INGEST_TASKS[cfg['ingest_task']]
-        kwargs = {'layer_id': cfg['id']}
-        kwargs.update(cfg.get('ingest_task_kwargs', {}))
-
-        tasks.append(task(**kwargs))
+        tasks.append(task(layer_id=cfg['id']))
 
     return tasks
