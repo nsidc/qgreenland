@@ -17,6 +17,8 @@
     - Desaturate the ocean background layer color.
     - Add black outline to undersea feature polygons and lines.
 - Change Arctic DEM hillshade scale factor from 40 to 5.
+- Update UTM Zones with Quantarctica-inspired style including labeling and
+  semi-transparency.
 
 # v0.33.0 (2020-08-27)
 

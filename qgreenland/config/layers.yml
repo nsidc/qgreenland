@@ -6,7 +6,7 @@
   title: Universal Transverse Mercator (UTM) Zones
   visible: False
   group_path: 'Miscellaneous'
-  style: 'transparent_shape'
+  style: 'utm_zones'
   extent: 'data'
   data_source: utm_zones.only
   ingest_task: utm_zones
