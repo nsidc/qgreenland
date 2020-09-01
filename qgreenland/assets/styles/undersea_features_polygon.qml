@@ -34,7 +34,7 @@
               <prop v="bevel" k="joinstyle"/>
               <prop v="111,168,207,255" k="line_color"/>
               <prop v="solid" k="line_style"/>
-              <prop v="0.3" k="line_width"/>
+              <prop v="0.2" k="line_width"/>
               <prop v="MM" k="line_width_unit"/>
               <prop v="0" k="offset"/>
               <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
@@ -61,7 +61,7 @@
           <prop v="bevel" k="joinstyle"/>
           <prop v="111,168,207,255" k="line_color"/>
           <prop v="solid" k="line_style"/>
-          <prop v="0.46" k="line_width"/>
+          <prop v="0.3" k="line_width"/>
           <prop v="MM" k="line_width_unit"/>
           <prop v="0" k="offset"/>
           <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
