@@ -5,7 +5,7 @@
 - New "Basemap" layer: countries
 - New "Basemap" layer: administrative divisions
 - New "Miscellaneous" layer: timezones
-- New "Oceanography" layer: World Ocean Atlas (WOA) 2018
+- New "Oceanography" layers: World Ocean Atlas (WOA) 2018 temperatures
 - Add units suffix to layer styles where appropriate (sea ice concentration,
   geothermal heat flux, earthquakes, vegetation biomass, IBCAO bathymetry)
 - Updated style for "Permafrost and Ground-Ice (12.5km)" layer
