@@ -28,6 +28,7 @@ class IngestAllLayers(luigi.WrapperTask):
             yield task
 
 
+# TODO: QGreenland{LogoFile, ReadMe, Contributing} are duplicates. DRY/generalize!
 class QGreenlandLogoFile(luigi.Task):
     """Copy logo file in to the correct location for building the project."""
 
@@ -67,6 +68,19 @@ class QGreenlandReadMe(luigi.Task):
             shutil.copy(readme, temp_path)
 
 
+class QGreenlandContributing(luigi.Task):
+
+    def output(self):
+        return luigi.LocalTarget(
+            os.path.join(TaskType.FINAL.value, 'CONTRIBUTING.txt')
+        )
+
+    def run(self):
+        readme = os.path.join(PROJECT_DIR, 'CONTRIBUTING.md')
+        with self.output().temporary_path() as temp_path:
+            shutil.copy(readme, temp_path)
+
+
 class CreateQgisProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
@@ -74,6 +88,7 @@ class CreateQgisProjectFile(luigi.Task):
         yield QGreenlandLogoFile()
         yield LayerManifest()
         yield QGreenlandReadMe()
+        yield QGreenlandContributing()
         yield IngestAllLayers()
 
     def output(self):
