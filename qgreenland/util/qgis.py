@@ -1,3 +1,4 @@
+import logging
 import os
 import subprocess
 import tempfile
@@ -10,6 +11,8 @@ from osgeo import gdal
 from qgreenland import __version__
 from qgreenland.constants import ASSETS_DIR, CONFIG
 from qgreenland.util.misc import get_layer_path
+
+logger = logging.getLogger('luigi-interface')
 
 
 def _get_raster_layer(layer_path, layer_cfg):
@@ -113,6 +116,7 @@ def get_map_layer(layer_cfg, project_crs):
 
 
 def _set_groups_options(project):
+    logger.debug('Configuring layer groups...')
     groups_config = CONFIG['layer_groups']
 
     def _set_group_visibility(group, group_opts):
@@ -132,6 +136,8 @@ def _set_groups_options(project):
 
         _set_group_visibility(group, options)
         _set_group_expanded(group, options)
+
+    logger.debug('Done configuring layer groups.')
 
 
 def _get_or_create_group(project, group_path):
@@ -155,9 +161,11 @@ def _get_or_create_group(project, group_path):
 
 
 def _add_layers(project):
+    logger.debug('Adding layers...')
     layers_cfg = CONFIG['layers']
 
     for layer_cfg in layers_cfg.values():
+        logger.debug(f"Adding {layer_cfg['id']}...")
         map_layer = get_map_layer(layer_cfg,
                                   project.crs())
 
@@ -178,11 +186,17 @@ def _add_layers(project):
         # TODO: necessary for root group?
         project.addMapLayer(map_layer, addToLegend=False)
 
+    logger.debug('Done adding layers.')
+
 
 def _add_empty_groups(project):
+    logger.debug('Adding empty groups...')
+
     groups_config = CONFIG['layer_groups']
     for group_path in groups_config.keys():
         _get_or_create_group(project, group_path)
+
+    logger.debug('Done adding empty groups.')
 
 
 def make_qgis_project_file(path):
@@ -245,6 +259,7 @@ def make_qgis_project_file(path):
 
 
 def _add_decorations(project):
+    logger.debug('Adding decorations...')
     # Add CopyrightLabel:
     project.writeEntry('CopyrightLabel', '/Enabled', True)
     # project.writeEntry('CopyrightLabel', '/FontName', 'Sans Serif')
@@ -262,6 +277,8 @@ def _add_decorations(project):
     project.writeEntry('Image', '/MarginV', 8)
     project.writeEntry('Image', '/Size', 24)
     project.writeEntry('Image', '/ImagePath', 'qgreenland.png')
+
+    logger.debug('Done adding decorations.')
 
 
 def load_qml_style(map_layer, style_name):
