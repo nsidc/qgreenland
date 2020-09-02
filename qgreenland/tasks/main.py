@@ -5,11 +5,14 @@ import luigi
 
 from qgreenland import __version__
 from qgreenland.constants import (ASSETS_DIR,
+                                  CONFIG,
                                   ENVIRONMENT,
+                                  PROJECT_DIR,
                                   RELEASE_DIR,
                                   TMP_DIR,
                                   TaskType,
                                   ZIP_TRIGGERFILE)
+from qgreenland.util.config import export_config
 from qgreenland.util.misc import cleanup_intermediate_dirs
 from qgreenland.util.qgis import make_qgis_project_file
 from qgreenland.util.task import generate_layer_tasks
@@ -39,11 +42,38 @@ class QGreenlandLogoFile(luigi.Task):
             shutil.copy(logo, temp_path)
 
 
+class LayerManifest(luigi.Task):
+
+    def output(self):
+        return luigi.LocalTarget(
+            os.path.join(TaskType.FINAL.value, 'manifest.csv')
+        )
+
+    def run(self):
+        with self.output().temporary_path() as temp_path:
+            export_config(CONFIG, output_path=temp_path)
+
+
+class QGreenlandReadMe(luigi.Task):
+
+    def output(self):
+        return luigi.LocalTarget(
+            os.path.join(TaskType.FINAL.value, 'README.txt')
+        )
+
+    def run(self):
+        readme = os.path.join(PROJECT_DIR, 'README.md')
+        with self.output().temporary_path() as temp_path:
+            shutil.copy(readme, temp_path)
+
+
 class CreateQgisProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
         yield QGreenlandLogoFile()
+        yield LayerManifest()
+        yield QGreenlandReadMe()
         yield IngestAllLayers()
 
     def output(self):
@@ -55,6 +85,7 @@ class CreateQgisProjectFile(luigi.Task):
         # pre-existing directory.
         make_qgis_project_file(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
 
+        # Create trigger file and don't write anything
         with self.output().open('w'):
             pass
 
