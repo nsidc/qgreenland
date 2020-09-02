@@ -479,9 +479,10 @@
   extent: 'data'
   data_source: velocity_mosaic.only
   ingest_task: netcdf_raster
-  ingest_task_kwargs: {'extract_dataset': 'v'}
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'v'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
@@ -596,10 +597,11 @@
   style: 'geothermal_heat_flux'
   data_source: geothermal_heat_flux.only
   ingest_task: zipped_netcdf
-  ingest_task_kwargs: {'extract_dataset': 'GHF'}
   decompress_kwargs:
     extract_files:
       - 'ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc'
+  translate_kwargs:
+    extract_dataset: 'GHF'
   file_type: '.tif'
   data_type: 'raster'
   extent: 'data'
@@ -768,6 +770,104 @@
     nlt: 'POLYGON'
     sql: "'SELECT *, name as label from \"features-multipolygon\"'"
 
+- &woa2018
+  id: woa2018_0m_temperature_winter
+  title: 'Temperature (Surface, Winter)'
+  description: >-
+    Seawater temperature at surface depth in °C.
+  visible: False
+  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  style: 'seawater_temperature'
+  extent: 'data'
+  data_source: woa2018_temperature.seasonal_winter
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [1]
+  warp_kwargs:
+    xRes: 25000
+    yRes: 25000
+
+- <<: *woa2018
+  id: woa2018_0m_temperature_summer
+  title: 'Temperature (Surface, Summer)'
+  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [1]
+
+- <<: *woa2018
+  id: woa2018_50m_temperature_winter
+  title: 'Temperature (50m, Winter)'
+  description: >-
+    Seawater temperature at 50m depth in °C.
+  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [11]
+
+- <<: *woa2018
+  id: woa2018_50m_temperature_summer
+  title: 'Temperature (50m, Summer)'
+  description: >-
+    Seawater temperature at 50m depth in °C.
+  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [11]
+
+- <<: *woa2018
+  id: woa2018_200m_temperature_winter
+  title: 'Temperature (200m, Winter)'
+  description: >-
+    Seawater temperature at 200m depth in °C.
+  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [25]
+
+- <<: *woa2018
+  id: woa2018_200m_temperature_summer
+  title: 'Temperature (200m, Summer)'
+  description: >-
+    Seawater temperature at 200m depth in °C.
+  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [25]
+
+- <<: *woa2018
+  id: woa2018_500m_temperature_winter
+  title: 'Temperature (500m, Winter)'
+  description: >-
+    Seawater temperature at 500m depth in °C.
+  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [37]
+
+- <<: *woa2018
+  id: woa2018_500m_temperature_summer
+  title: 'Temperature (500m, Summer)'
+  description: >-
+    Seawater temperature at 500m depth in °C.
+  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [37]
+
 
 - id: bathymetric_chart
   title: 'IBCAO Bathymetric Chart of the Arctic Ocean (500m)'
@@ -782,9 +882,10 @@
   extent: 'data'
   data_source: bathymetric_chart.only
   ingest_task: netcdf_raster
-  ingest_task_kwargs: {'extract_dataset': 'z'}
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'z'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
@@ -1050,9 +1151,10 @@
   extent: 'data'
   data_source: bedmachine.only
   ingest_task: bedmachine
-  ingest_task_kwargs: {'extract_dataset': 'thickness'}
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'thickness'
   warp_kwargs:
     xRes: 500
     yRes: 500
@@ -1064,7 +1166,8 @@
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
   style: 'bedmachine_surface'
-  ingest_task_kwargs: {'extract_dataset': 'surface'}
+  translate_kwargs:
+    extract_dataset: 'surface'
 
 - <<: *bedmachine
   id: bedmachine_bed
@@ -1073,7 +1176,8 @@
     Bedrock elevation in meters. Source is mass conservation (Mathieu
     Morlighem).
   style: 'bedmachine_bed'
-  ingest_task_kwargs: {'extract_dataset': 'bed'}
+  translate_kwargs:
+    extract_dataset: 'bed'
 
 - <<: *bedmachine
   id: bedmachine_errbed
@@ -1081,7 +1185,8 @@
   description: >-
     TBD
   style: 'bedmachine_errbed'
-  ingest_task_kwargs: {'extract_dataset': 'errbed'}
+  translate_kwargs:
+    extract_dataset: 'errbed'
 
 
 - id: arctic_dem

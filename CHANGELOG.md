@@ -1,12 +1,13 @@
-# v0.34.0 (unreleased)
+# v0.34.0 (2020-09-01)
 
 - New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019 
-- Add units suffix to layer styles where appropriate (sea ice concentration,
-  geothermal heat flux, earthquakes, vegetation biomass, IBCAO bathymetry)
 - New "Glaciology" layer: Ice Cores
 - New "Basemap" layer: countries
 - New "Basemap" layer: administrative divisions
 - New "Miscellaneous" layer: timezones
+- New "Oceanography" layers: World Ocean Atlas (WOA) 2018 temperatures
+- Add units suffix to layer styles where appropriate (sea ice concentration,
+  geothermal heat flux, earthquakes, vegetation biomass, IBCAO bathymetry)
 - Updated style for "Permafrost and Ground-Ice (12.5km)" layer
 - Resample BedMachine and IBCAO layers to 500m
 - Re-order and style BedMachine to allow stacking display

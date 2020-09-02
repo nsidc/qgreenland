@@ -1,5 +1,3 @@
-import luigi
-
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset
 from qgreenland.tasks.common.raster import WarpRaster
@@ -13,8 +11,6 @@ class NetCdfRaster(LayerPipeline):
     distinct measurements.
     """
 
-    extract_dataset = luigi.Parameter()
-
     def requires(self):
         source = self.cfg['source']
 
@@ -25,7 +21,6 @@ class NetCdfRaster(LayerPipeline):
         extract_nc_dataset = ExtractNcDataset(
             requires_task=fetch_data,
             layer_id=self.layer_id,
-            dataset_name=self.extract_dataset
         )  # ->
         return WarpRaster(
             requires_task=extract_nc_dataset,
