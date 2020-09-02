@@ -774,7 +774,7 @@
   id: woa2018_0m_temperature_winter
   title: 'Temperature (Surface, Winter)'
   description: >-
-      TBD
+    Seawater temperature at surface depth in °C.
   visible: False
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   style: 'seawater_temperature'
@@ -796,8 +796,6 @@
 - <<: *woa2018
   id: woa2018_0m_temperature_summer
   title: 'Temperature (Surface, Summer)'
-  description: >-
-      TBD
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
@@ -808,7 +806,7 @@
   id: woa2018_50m_temperature_winter
   title: 'Temperature (50m, Winter)'
   description: >-
-      TBD
+    Seawater temperature at 50m depth in °C.
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
@@ -819,7 +817,7 @@
   id: woa2018_50m_temperature_summer
   title: 'Temperature (50m, Summer)'
   description: >-
-      TBD
+    Seawater temperature at 50m depth in °C.
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
@@ -830,7 +828,7 @@
   id: woa2018_200m_temperature_winter
   title: 'Temperature (200m, Winter)'
   description: >-
-      TBD
+    Seawater temperature at 200m depth in °C.
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
@@ -841,7 +839,7 @@
   id: woa2018_200m_temperature_summer
   title: 'Temperature (200m, Summer)'
   description: >-
-      TBD
+    Seawater temperature at 200m depth in °C.
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
@@ -852,7 +850,7 @@
   id: woa2018_500m_temperature_winter
   title: 'Temperature (500m, Winter)'
   description: >-
-      TBD
+    Seawater temperature at 500m depth in °C.
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
@@ -863,7 +861,7 @@
   id: woa2018_500m_temperature_summer
   title: 'Temperature (500m, Summer)'
   description: >-
-      TBD
+    Seawater temperature at 500m depth in °C.
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
