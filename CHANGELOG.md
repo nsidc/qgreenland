@@ -1,6 +1,6 @@
 # v0.34.0 (2020-09-01)
 
-- New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019 
+- New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019
 - New "Glaciology" layer: Ice Cores
 - New "Basemap" layer: countries
 - New "Basemap" layer: administrative divisions
