@@ -98,4 +98,8 @@ class ExtractNcDataset(LayerTask):
                 f'Using gdal.Translate to convert from {from_dataset_path} to {output_fp}'
             )
 
-            gdal.Translate(output_fp, from_dataset_path, **self.layer_cfg['translate_kwargs'])
+            gdal.Translate(
+                output_fp,
+                from_dataset_path,
+                **self.layer_cfg['translate_kwargs']
+            )

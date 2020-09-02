@@ -1,5 +1,3 @@
-import luigi
-
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset, Unzip
 from qgreenland.tasks.common.raster import BuildRasterOverviews, WarpRaster
