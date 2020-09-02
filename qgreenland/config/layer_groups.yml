@@ -143,6 +143,10 @@ Oceanography/IHO-ICO GEBCO Undersea feature names:
   visible: False
   expanded: False
 
+Oceanography/World Ocean Atlas (WOA) 2018:
+  visible: False
+  expanded: False
+
 
 Sea ice:
   visible: False

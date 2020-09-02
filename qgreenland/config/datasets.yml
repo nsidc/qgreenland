@@ -854,7 +854,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
 
 
-- id: woa_temperatures_2018
+- id: woa2018_temperature
   access_method: http
   sources:
     - id: seasonal_winter
