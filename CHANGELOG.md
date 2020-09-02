@@ -1,7 +1,8 @@
-# v0.35.0 (Unreleased)
+# v0.35.0 (2020-09-02)
 
 - New files in root of repo:
   - README.txt: A copy of the QGreenland root README
+  - CONTRIBUTING.txt: A copy of QGreenland CONTRIBUTING.md
   - manifest.csv: A comma-separated values table of layers and attributes
 
 # v0.34.0 (2020-09-01)
