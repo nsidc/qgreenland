@@ -21,7 +21,7 @@ We recommend using QGIS 3.10.x, as it is the Long Term Support version as of
 this writing. You can find downloads and instructions
 [here](https://qgis.org/en/site/forusers/download.html).
 
-After installing QGIS, [download QGreenland](www.qgreenland.org/explore) and
+After installing QGIS, [download QGreenland](http://www.qgreenland.org/explore) and
 unzip it with your unzip tool of choice if you haven not already done so.
 Finally, open the `qgreenland.qgs` file contained inside with QGIS.
 
