@@ -4,6 +4,7 @@ ONLY the constants module should import this module.
 """
 
 import copy
+import csv
 import os
 
 import yamale
@@ -99,3 +100,24 @@ def make_config(*, config_dir, schema_dir):
     }
 
     return _dereference_config(cfg)
+
+
+def export_config(cfg, output_path='./layers.csv'):
+    report = [{
+        'Group': layer['group_path'].split('/', 1)[0],
+        'Subgroup': (layer['group_path'].split('/', 1)[1]
+                     if '/' in layer['group_path'] else ''),
+        'Layer Title': layer['title'],
+        'Layer Description': layer.get('description', ''),
+        'Vector or Raster': layer['data_type'],
+        'Data Source Title': layer['dataset']['metadata']['title'],
+        'Data Source Abstract': layer['dataset']['metadata']['abstract'],
+        'Data Source Citation': layer['dataset']['metadata']['citation']['text'],
+        'Data Source Citation URL': layer['dataset']['metadata']['citation']['url'],
+    } for _, layer in cfg['layers'].items()]
+
+    with open(output_path, 'w') as ofile:
+        dict_writer = csv.DictWriter(ofile, report[0].keys())
+        dict_writer.writeheader()
+        dict_writer.writerows(report)
+        print(f'Exported: {os.path.abspath(ofile.name)}')
