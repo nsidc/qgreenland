@@ -9,6 +9,7 @@ PROJECT = 'qgreenland'
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
 PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
+PROJECT_DIR = os.path.abspath(os.path.join(PACKAGE_DIR, os.pardir))
 INPUT_DIR = '/input'
 DATA_DIR = '/luigi/data'
 RELEASES_DIR = f'{DATA_DIR}/release'
