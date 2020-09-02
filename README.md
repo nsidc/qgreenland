@@ -34,6 +34,7 @@ the package root:
 
 * `qgreenland.pdf` (COMING SOON): Detailed user-guide.
 * `README.txt`: The README file you are currently reading.
+* `CHANGELOG.txt`: A summary of changes for each new QGreenland version.
 * `CONTRIBUTING.txt`: Instructions to users looking for help contributing to
   this project.
 * `manifest.csv`: Comma-separated values representing the configuration of

@@ -28,67 +28,54 @@ class IngestAllLayers(luigi.WrapperTask):
             yield task
 
 
-# TODO: QGreenland{LogoFile, ReadMe, Contributing} are duplicates. DRY/generalize!
-class QGreenlandLogoFile(luigi.Task):
-    """Copy logo file in to the correct location for building the project."""
+class AncillaryFile(luigi.Task):
+    """Copy an ancillary file in to the final QGreenland package."""
+
+    # Absolute path
+    src_filepath = luigi.Parameter()
+    # Relative to the root of QGreenland
+    dest_relative_filepath = luigi.Parameter()
 
     def output(self):
         return luigi.LocalTarget(
-            os.path.join(TaskType.FINAL.value, 'qgreenland.png')
+            os.path.join(TaskType.FINAL.value, self.dest_relative_filepath)
         )
 
     def run(self):
-        logo = os.path.join(ASSETS_DIR, 'images', 'qgreenland.png')
         with self.output().temporary_path() as temp_path:
-            shutil.copy(logo, temp_path)
+            shutil.copy(self.src_filepath, temp_path)
 
 
-class LayerManifest(luigi.Task):
-
-    def output(self):
-        return luigi.LocalTarget(
-            os.path.join(TaskType.FINAL.value, 'manifest.csv')
-        )
+class LayerManifest(AncillaryFile):
+    src_filepath = None
+    dest_relative_filepath = 'manifest.csv'
 
     def run(self):
         with self.output().temporary_path() as temp_path:
             export_config(CONFIG, output_path=temp_path)
 
 
-class QGreenlandReadMe(luigi.Task):
-
-    def output(self):
-        return luigi.LocalTarget(
-            os.path.join(TaskType.FINAL.value, 'README.txt')
-        )
-
-    def run(self):
-        readme = os.path.join(PROJECT_DIR, 'README.md')
-        with self.output().temporary_path() as temp_path:
-            shutil.copy(readme, temp_path)
-
-
-class QGreenlandContributing(luigi.Task):
-
-    def output(self):
-        return luigi.LocalTarget(
-            os.path.join(TaskType.FINAL.value, 'CONTRIBUTING.txt')
-        )
-
-    def run(self):
-        readme = os.path.join(PROJECT_DIR, 'CONTRIBUTING.md')
-        with self.output().temporary_path() as temp_path:
-            shutil.copy(readme, temp_path)
-
-
 class CreateQgisProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
-        yield QGreenlandLogoFile()
         yield LayerManifest()
-        yield QGreenlandReadMe()
-        yield QGreenlandContributing()
+        yield AncillaryFile(
+            src_filepath=os.path.join(ASSETS_DIR, 'images', 'qgreenland.png'),
+            dest_relative_filepath='qgreenland.png'
+        )
+        yield AncillaryFile(
+            src_filepath=os.path.join(PROJECT_DIR, 'README.md'),
+            dest_relative_filepath='README.txt'
+        )
+        yield AncillaryFile(
+            src_filepath=os.path.join(PROJECT_DIR, 'CONTRIBUTING.md'),
+            dest_relative_filepath='CONTRIBUTING.txt'
+        )
+        yield AncillaryFile(
+            src_filepath=os.path.join(PROJECT_DIR, 'CHANGELOG.md'),
+            dest_relative_filepath='CHANGELOG.txt'
+        )
         yield IngestAllLayers()
 
     def output(self):
