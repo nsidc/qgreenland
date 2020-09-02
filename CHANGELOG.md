@@ -1,4 +1,4 @@
-# v0.34.0 (unreleased)
+# v0.34.0 (2020-09-01)
 
 - New online-only "Satellite" layers: Greenland Image Mosaic for 2015 and 2019 
 - New "Glaciology" layer: Ice Cores
