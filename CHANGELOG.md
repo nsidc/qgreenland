@@ -2,6 +2,7 @@
 
 - New files in root of repo:
   - README.txt: A copy of the QGreenland root README
+  - CHANGELOG.txt: A copy of this file!
   - CONTRIBUTING.txt: A copy of QGreenland CONTRIBUTING.md
   - manifest.csv: A comma-separated values table of layers and attributes
 
