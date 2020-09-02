@@ -1221,6 +1221,8 @@
   file_type: '.tif'
   data_type: 'raster'
 
+# NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
+# an hour or more. Remove it?
 - id: image_mosaic_2015
   title: 'Greenland Image Mosaic 2015 (Online Only)'
   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
