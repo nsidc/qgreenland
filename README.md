@@ -66,4 +66,4 @@ contributing styles you have developed within QGIS. Our goal is to make it as
 easy as possible for any user of QGreenland to contribute to the project, so
 please do not be deterred from sharing your ideas.
 
-**If all else fails, please email us at <MAILTO:qgreenland.info@gmail.com>!**
+**If all else fails, please [email us](qgreenland.info@gmail.com)!**
