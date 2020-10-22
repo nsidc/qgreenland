@@ -11,7 +11,7 @@ logger = logging.getLogger('luigi-interface')
 def cleanup_valid_shapefile(path):
     for ext in ['shp', 'shx', 'prj', 'dbf']:
         try:
-            os.remove(os.path.join(path, f'valid.{ext}')) 
+            os.remove(os.path.join(path, f'valid.{ext}'))
         except FileNotFoundError:
             pass
 
