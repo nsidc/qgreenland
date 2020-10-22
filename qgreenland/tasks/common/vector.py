@@ -6,7 +6,9 @@ import luigi
 from qgreenland.constants import CONFIG, TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
-from qgreenland.util.vector import filter_vector, ogr2ogr
+from qgreenland.util.vector import (cleanup_valid_shapefile,
+                                    filter_vector,
+                                    ogr2ogr)
 
 logger = logging.getLogger('luigi-interface')
 
@@ -92,3 +94,6 @@ class Ogr2OgrVector(LayerTask):
                 self.filename
             )
             ogr2ogr(infile, outfile, **ogr2ogr_kwargs)
+
+            # TODO: Make valid without writing to disk?
+            cleanup_valid_shapefile(temp_path)

@@ -1,10 +1,19 @@
 import logging
+import os
 import subprocess
 
 import geopandas
 
 
 logger = logging.getLogger('luigi-interface')
+
+
+def cleanup_valid_shapefile(path):
+    for ext in ['shp', 'shx', 'prj', 'dbf']:
+        try:
+            os.remove(os.path.join(path, f'valid.{ext}')) 
+        except FileNotFoundError:
+            pass
 
 
 def filter_vector(vector_path, *, filter_func):
