@@ -1,3 +1,7 @@
+# v0.36.0 (Unreleased)
+
+- Fix: Remove extraneous `valid.shp` shapefiles from final package.
+
 # v0.35.0 (2020-09-02)
 
 - New files in root of repo:
