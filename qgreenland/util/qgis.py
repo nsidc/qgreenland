@@ -61,7 +61,7 @@ def _add_layer_metadata(map_layer, layer_cfg):
         qmd_template_str = ' '.join(f.readlines())
 
     # Set the layer's tooltip
-    tooltip = build_layer_description(layer_cfg)
+    tooltip = build_layer_tooltip(layer_cfg)
     map_layer.setAbstract(tooltip)
 
     # Render the qmd template.
@@ -293,6 +293,15 @@ def load_qml_style(map_layer, style_name):
         raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
 
 
+def build_layer_tooltip(layer_cfg):
+    tt = build_layer_description(layer_cfg)
+    tt += (
+        '\n\n'
+        'Open Layer Properties and select the Metadata tab for more.'
+    )
+    return tt
+
+
 def build_layer_description(layer_cfg):
     description = ''
 
@@ -306,11 +315,6 @@ def build_layer_description(layer_cfg):
     if abstract := dataset_metadata.get('abstract'):
         description += '\n\n'
         description += abstract
-
-    description += (
-        '\n\n'
-        'Open Layer Properties and select the Metadata tab for more.'
-    )
 
     return escape(description)
 
