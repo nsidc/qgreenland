@@ -82,6 +82,8 @@ def test_build_abstract():
 
 Example abstract
 
+Open Layer Properties and select the Metadata tab for more.
+
 Citation:
 NSIDC 2020
 
