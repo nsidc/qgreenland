@@ -307,6 +307,11 @@ def build_layer_description(layer_cfg):
         description += '\n\n'
         description += abstract
 
+    description += (
+        '\n\n'
+        'Open Layer Properties and select the Metadata tab for more.'
+    )
+
     return escape(description)
 
 
