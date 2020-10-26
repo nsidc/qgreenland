@@ -1,11 +1,14 @@
 import csv
 import datetime
+import logging
 import pprint
 from collections import namedtuple
 
 import requests
 
 from qgreenland.constants import REQUEST_TIMEOUT
+
+logger = logging.getLogger('luigi-interface')
 
 CMR_CLIENT_ID_HEADER = {'Client-Id': 'nsidc-qgreenland'}
 CMR_BASE_URL = 'https://cmr.earthdata.nasa.gov'
