@@ -1205,15 +1205,15 @@
     resampling_method: average
 
 
-#####################
-# Satellite imagery #
-#####################
+######################
+# ONLINE-ONLY layers #
+######################
 
 - id: image_mosaic_2019
   title: 'Greenland Image Mosaic 2019 (Online Only)'
   description: 'Sentinel-2 multispectral satellite imagery from 2019.'
   visible: False
-  group_path: 'Satellite imagery'
+  group_path: 'Internet-required data'
   style: 'transparent_rgb'
   extent: 'data'
   data_source: image_mosaic.2019
@@ -1227,7 +1227,7 @@
   title: 'Greenland Image Mosaic 2015 (Online Only)'
   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
   visible: False
-  group_path: 'Satellite imagery'
+  group_path: 'Internet-required data'
   extent: 'data'
   data_source: image_mosaic.2015
   ingest_task: None
