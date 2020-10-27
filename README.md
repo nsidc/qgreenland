@@ -39,6 +39,7 @@ the package root:
 * `CHANGELOG.txt`: A summary of changes for each new QGreenland version.
 * `CONTRIBUTING.txt`: Instructions to users looking for help contributing to
   this project.
+* `STYLE.txt`: Guidelines and standards for QGreenland styling.
 * `manifest.csv`: Comma-separated values representing the configuration of
   layers in QGreenland.
 
