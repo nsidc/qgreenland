@@ -330,13 +330,67 @@
 - id: populated_places
   title: 'Populated Places'
   data_source: populated_places.only
-  visible: True
+  visible: False
   group_path: 'Built environment'
   style: 'populated_places'
   extent: 'data'
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
+
+- &hdx_hotosm
+  id: populated_places_alt
+  title: 'Populated Places (alt)'
+  data_source: hdx_hotosm.populated_places
+  visible: True
+  group_path: 'Built environment'
+  # style: 'populated_places'
+  extent: 'data'
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
+- <<: *hdx_hotosm
+  id: health_facilities
+  title: 'Health Facilities'
+  data_source: hdx_hotosm.health_facilities
+  style: health_facility_point
+- <<: *hdx_hotosm
+  id: airports
+  title: 'Airports'
+  data_source: hdx_hotosm.airports
+  style: airport_point
+- <<: *hdx_hotosm
+  id: seaports 
+  title: 'Seaports'
+  data_source: hdx_hotosm.seaports
+  style: seaport_point
+- <<: *hdx_hotosm
+  id: waterways 
+  title: 'Waterways'
+  data_source: hdx_hotosm.waterways
+- <<: *hdx_hotosm
+  id: financial_services
+  title: 'Financial Services'
+  data_source: hdx_hotosm.financial_services
+  style: financial_facility_point
+- <<: *hdx_hotosm
+  id: education_facilities
+  title: 'Education Facilities'
+  data_source: hdx_hotosm.education_facilities
+  style: education_facility_point
+- <<: *hdx_hotosm
+  id: points_of_interest
+  title: 'Points of Interest'
+  data_source: hdx_hotosm.points_of_interest
+- <<: *hdx_hotosm
+  id: roads
+  title: 'Roads'
+  data_source: hdx_hotosm.roads
+- <<: *hdx_hotosm
+  id: buildings
+  title: 'Buildings'
+  data_source: hdx_hotosm.buildings
 
 
 ############################
