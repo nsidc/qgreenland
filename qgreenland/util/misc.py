@@ -14,6 +14,8 @@ from qgreenland.constants import (RELEASES_DIR,
                                   ZIP_TRIGGERFILE)
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
+CHUNK_SIZE = 8 * 1024
+
 
 def _filename_from_url(url):
     url_slash_index = url.rfind('/')
@@ -30,12 +32,14 @@ def _ftp_fetch_and_write(url, output_dir):
     fn = _filename_from_url(url)
     fp = os.path.join(output_dir, fn)
 
-    # Stolen from:
-    # https://stackoverflow.com/questions/11768214/python-download-a-file-from-an-ftp-server
     # TODO: do we need `closing`?
     with closing(urllib.request.urlopen(url)) as r:
         with open(fp, 'wb') as f:
-            shutil.copyfileobj(r, f)
+            while True:
+                chunk = r.read(CHUNK_SIZE)
+                if not chunk:
+                    break
+                f.write(chunk)
 
 
 def fetch_and_write_file(url, *, output_dir, session=None):
@@ -50,37 +54,43 @@ def fetch_and_write_file(url, *, output_dir, session=None):
         if not session:
             session = create_earthdata_authenticated_session(hosts=[url])
 
-        resp = session.get(url, timeout=REQUEST_TIMEOUT)
+        with session.get(url, timeout=REQUEST_TIMEOUT, stream=True) as resp:
 
-        # Try to extract the filename from the `content-disposition` header
-        if (
-            (disposition := resp.headers.get('content-disposition'))
-            and 'filename' in disposition
-        ):
-            # Sometimes the filename is quoted, sometimes it's not.
-            parsed = cgi.parse_header(disposition)
-            # Handle case where disposition itself (usually "attachment") isn't
-            # present (geothermal heat flux :bell:).
-            if 'filename' in parsed[0]:
-                fn = re.match(
-                    'filename="?(.*)"?',
-                    parsed[0]
-                ).groups()[0].strip('\'"')
+            # Try to extract the filename from the `content-disposition` header
+            if (
+                (disposition := resp.headers.get('content-disposition'))
+                and 'filename' in disposition
+            ):
+                # Sometimes the filename is quoted, sometimes it's not.
+                parsed = cgi.parse_header(disposition)
+                # Handle case where disposition itself (usually "attachment")
+                # isn't present (geothermal heat flux :bell:).
+                if 'filename' in parsed[0]:
+                    fn = re.match(
+                        'filename="?(.*)"?',
+                        parsed[0]
+                    ).groups()[0].strip('\'"')
+                else:
+                    fn = parsed[1]['filename']
             else:
-                fn = parsed[1]['filename']
-        else:
-            if not (fn := _filename_from_url(url)):
-                raise RuntimeError(f'Failed to retrieve output filename from {url}')
+                if not (fn := _filename_from_url(url)):
+                    raise RuntimeError(
+                        f'Failed to retrieve output filename from {url}'
+                    )
 
-        fp = os.path.join(output_dir, fn)
+            fp = os.path.join(output_dir, fn)
 
-        if resp.status_code != 200:
-            msg = (f"Received '{resp.status_code}' from {resp.request.url}."
-                   f'Content: {resp.text}')
-            raise RuntimeError(msg)
+            if resp.status_code != 200:
+                raise RuntimeError(
+                    f"Received '{resp.status_code}' from {resp.request.url}."
+                    f'Content: {resp.text}'
+                )
 
-        with open(fp, 'wb') as f:
-            f.write(resp.content)
+            with open(fp, 'wb') as f:
+                for chunk in resp.iter_content(chunk_size=CHUNK_SIZE):
+                    f.write(chunk)
+
+        return fp
 
 
 def find_in_dir_by_ext(path, *, ext):
