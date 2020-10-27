@@ -183,7 +183,7 @@ Terrain models/BedMachine:
   expanded: False
 
 
-Satellite imagery:
+Internet-required data:
   visible: False
   expanded: False
 
