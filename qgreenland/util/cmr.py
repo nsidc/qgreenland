@@ -1,11 +1,14 @@
 import csv
 import datetime
+import logging
 import pprint
 from collections import namedtuple
 
 import requests
 
 from qgreenland.constants import REQUEST_TIMEOUT
+
+logger = logging.getLogger('luigi-interface')
 
 CMR_CLIENT_ID_HEADER = {'Client-Id': 'nsidc-qgreenland'}
 CMR_BASE_URL = 'https://cmr.earthdata.nasa.gov'
@@ -43,11 +46,22 @@ def get_cmr_granule(*, granule_ur, collection_concept_id):
         NOTE: The "Online Access URLs" field can have >1 entry for
         some collections. Currently none of them are implemented.
         """
+        # In September 2020 or so, CMR changed the date format. Just in case of
+        # rollback... support both.
+        old_time_fmt = '%Y-%m-%dT%H:%M:%SZ'
+        new_time_fmt = '%Y-%m-%dT%H:%M:%S.%fZ'
         url = granule['Online Access URLs']
-        start_time = datetime.datetime.strptime(
-            granule['Start Time'],
-            '%Y-%m-%dT%H:%M:%SZ'
-        )
+        try:
+            start_time = datetime.datetime.strptime(
+                granule['Start Time'],
+                new_time_fmt
+            )
+        except ValueError as e:
+            logger.info(f'Error with date parsing: {e}. Trying old format...')
+            start_time = datetime.datetime.strptime(
+                granule['Start Time'],
+                old_time_fmt
+            )
 
         if not url:
             msg = 'CMR response contains a granule without Online Access URLs:'
