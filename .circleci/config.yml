@@ -24,6 +24,7 @@ jobs:
             /bin/bash --login -c "conda activate qgreenland && inv test"
 
   trigger_build:
+    <<: *setup
     steps:
       - run:
           name: 'Trigger Jenkins to build production package'
