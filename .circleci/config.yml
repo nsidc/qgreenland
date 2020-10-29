@@ -39,19 +39,19 @@ jobs:
 workflows:
   version: 2
 
-  # Run tests on every commit and tag that is pushed. After that, only run
-  # build if this workflow was triggered by a tag, not a commit.
+  # For commits on any branch, only run tests.
+  # For tags vX.Y.Z*, run tests then trigger a Jenkins build.
   test_and_sometimes_trigger_build:
     jobs:
       - test:
           filters:
             tags:
-              only: /^.*$/
+              only: /^v\d+\.\d+\.\d+.*$/
       - trigger_build:
           requires:
             - test 
           filters:
             tags:
-              only: /^.*$/
+              only: /^v\d+\.\d+\.\d+.*$/
             branches:
               ignore: /.*/
