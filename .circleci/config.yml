@@ -23,12 +23,34 @@ jobs:
             conda init bash
             /bin/bash --login -c "conda activate qgreenland && inv test"
 
+  trigger_build:
+    steps:
+      - run:
+          name: 'Trigger Jenkins to build production package'
+          command: |
+            JENKINS_URL="http://ci.qgreenland.apps.nsidc.org"
+            REF="${CIRCLE_TAG}"
+            JOB_NAME="qgreenland_C3_Production_Build_QGreenland_Package"
+
+            REQ_URL="${JENKINS_URL}/job/${JOB_NAME}/buildWithParameters?ref=${REF}&delay=5sec"
+            curl "$REQ_URL"
+
 workflows:
   version: 2
 
-  test:
+  # Run tests on every commit and tag that is pushed. After that, only run
+  # build if this workflow was triggered by a tag, not a commit.
+  test_and_sometimes_trigger_build:
     jobs:
       - test:
           filters:
             tags:
               only: /^.*$/
+      - trigger_build:
+          requires:
+            - test 
+          filters:
+            tags:
+              only: /^.*$/
+            branches:
+              ignore: /.*/
