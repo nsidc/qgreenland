@@ -10,7 +10,7 @@ from osgeo import gdal
 
 from qgreenland.constants import ASSETS_DIR, CONFIG
 from qgreenland.util.misc import get_layer_path
-from qgreenland.util.version import get_version
+from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
 
@@ -263,7 +263,7 @@ def _add_decorations(project):
     project.writeEntry('CopyrightLabel', '/Enabled', True)
     # project.writeEntry('CopyrightLabel', '/FontName', 'Sans Serif')
     # NOTE: Does the copyright symbol work this way or should we use HTML codes?
-    copyright_label = f'QGreenland {get_version()} © NSIDC 2020'
+    copyright_label = f'QGreenland {get_build_version()} © NSIDC 2020'
     project.writeEntry('CopyrightLabel', '/Label', copyright_label)
     project.writeEntry('CopyrightLabel', '/Placement', 0)
     project.writeEntry('CopyrightLabel', '/MarginH', 0)

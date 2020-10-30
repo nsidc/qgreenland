@@ -16,7 +16,7 @@ from qgreenland.util.config import export_config
 from qgreenland.util.misc import cleanup_intermediate_dirs
 from qgreenland.util.qgis import make_qgis_project_file
 from qgreenland.util.task import generate_layer_tasks
-from qgreenland.util.version import get_version
+from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
 
@@ -107,7 +107,7 @@ class ZipQGreenland(luigi.Task):
 
     def output(self):
         os.makedirs(RELEASE_DIR, exist_ok=True)
-        fn = f'{RELEASE_DIR}/QGreenland_{get_version()}.zip'
+        fn = f'{RELEASE_DIR}/QGreenland_{get_build_version()}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):

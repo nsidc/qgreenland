@@ -2,7 +2,7 @@ import os
 from enum import Enum
 
 from qgreenland.util.config import make_config
-from qgreenland.util.version import get_version, version_is_release
+from qgreenland.util.version import get_build_version, version_is_full_release
 
 PROJECT = 'qgreenland'
 
@@ -15,9 +15,10 @@ DATA_DIR = '/luigi/data'
 RELEASES_DIR = f'{DATA_DIR}/release'
 WIP_DIR = f'{DATA_DIR}/luigi-wip'
 ASSETS_DIR = f'{PACKAGE_DIR}/assets'
+
 # TODO: Extract to function in another module to remove constants dependency on
-# get_version, version_is_release
-if version_is_release(version := get_version()):
+# get_build_version, version_is_full_release
+if version_is_full_release(version := get_build_version()):
     RELEASE_DIR = f'{RELEASES_DIR}/{version}'
 else:
     RELEASE_DIR = f'{RELEASES_DIR}/dev/{version}'
