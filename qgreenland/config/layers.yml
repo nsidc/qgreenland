@@ -444,7 +444,7 @@
   description: 'Likely basal frozen/thawed state of the Greenland Ice Sheet.'
   visible: False
   group_path: 'Glaciology'
-  # style: TODO
+  style: basal_thermal_state
   extent: 'data'
   data_source: likely_basal_thermal_state.only
   ingest_task: basal_thermal_state
