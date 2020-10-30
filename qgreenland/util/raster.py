@@ -69,7 +69,7 @@ def gdal_calc_raster(in_filepath, out_filepath, *, layer_cfg, gdal_calc_kwargs):
 
     cmd_args_str = ' '.join(cmd_args_list)
 
-    cmd = (f'. activate base && gdal_calc.py {cmd_args_str}'
+    cmd = (f'. activate gdal && gdal_calc.py {cmd_args_str}'
            f' -A {in_filepath} --outfile={out_filepath}')
     logger.debug(f'Executing gdal_calc command: {cmd}')
 
