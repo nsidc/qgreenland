@@ -11,11 +11,11 @@ RUN apt-get install -y libgl1-mesa-glx \
 # TODO install to `qgreenland` specific environment. Activate in Dockerfile if
 # possible.
 COPY environment-lock.yml .
-RUN conda env update -f environment-lock.yml -n base
+RUN conda env update --file environment-lock.yml --name base
 
 # Create a dedicated env for shelling out to gdal
 COPY environment.gdal.yml .
-RUN conda env create -f environment.gdal.yml
+RUN conda env create --file environment.gdal.yml
 
 # Use this method to install to non-root? Need to edit luigid.sh...
 # COPY environment.yml .
