@@ -16,10 +16,6 @@ class BasalThermalState(LayerPipeline):
             source_cfg=source,
             dataset_cfg=self.cfg['dataset']
         )  # ->
-        # extract_nc_dataset = ExtractNcDataset(
-        #     requires_task=fetch_data,
-        #     layer_id=self.layer_id,
-        # )  # ->
         mdim_translate = GdalMDimTranslate(
             requires_task=fetch_data,
             input_ext_override='nc',
