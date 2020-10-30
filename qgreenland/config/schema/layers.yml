@@ -43,6 +43,18 @@ layer:
   ogr2ogr_kwargs: include('ogr2ogr_kwargs', required=False)
   gdal_calc_kwargs: include('gdal_calc_kwargs', required=False)
   translate_kwargs: include('translate_kwargs', required=False)
+  gdal_mdim_translate_kwargs: include('gdal_mdim_translate_kwargs', required=False)
+  gdal_edit_kwargs: include('gdal_edit_kwargs', required=False)
+
+
+---
+gdal_edit_kwargs:
+  a_ullr: str(required=False)
+  a_srs: str(required=False)
+
+---
+gdal_mdim_translate_kwargs:
+  array: str(required=False)
 
 ---
 translate_kwargs:

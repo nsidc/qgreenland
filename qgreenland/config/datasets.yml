@@ -929,3 +929,28 @@ The images and data are produced in a consistent way that makes the Index time-s
         map data which revolutionises disaster management, reduces risks, and
         contributes to achievement of the Sustainable Development Goals.
       url: 'https://www.hotosm.org/'
+
+
+- id: likely_basal_thermal_state
+  access_method: cmr
+  sources:
+    - id: only
+      granule_ur: 'SC:RDBTS4.001:114194114'
+      collection_concept_id: 'C1397417110-NSIDC_ECS'
+  metadata:
+    title: 'Likely Basal Thermal State of the Greenland Ice Sheet'
+    abstract: >-
+        The Likely Basal Thermal State of the Greenland Ice Sheet (GrIS) product
+        contains key datasets that show how the likely basal thermal state was
+        inferred from existing airborne and satellite datasets and recent
+        methods, and provides a synthesis mask of the likely basal thermal state
+        over the Greenland Ice Sheet (MacGregor et al. 2016).
+    citation:
+      text: >-
+        MacGregor, J. A., M. Fahnestock, G. Catania, J. Paden, P. Gogineni,
+        M. Morlighem, W. Colgan, S. M. Nowicki, G. Clow, A. Aschwanden,
+        S. F. Price, and H. Seroussi. 2017. Likely Basal Thermal State of the
+        Greenland Ice Sheet, Version 1. Boulder, Colorado USA. NASA National
+        Snow and Ice Data Center Distributed Active Archive Center. doi:
+        https://doi.org/10.5067/R4MWDWWUWQF9.
+      url: 'https://nsidc.org/data/rdbts4/versions/1'

@@ -81,3 +81,51 @@ def gdal_calc_raster(in_filepath, out_filepath, *, layer_cfg, gdal_calc_kwargs):
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
+
+
+def gdal_mdim_translate_raster(in_filepath, out_filepath, *,
+                               layer_cfg, gdal_mdim_translate_kwargs):
+    cmd_args_list = []
+    for k, v in gdal_mdim_translate_kwargs.items():
+        cmd_args_list.append(f'-{k} {v}')
+
+    cmd_args_str = ' '.join(cmd_args_list)
+
+    cmd = (f'. activate gdal && gdalmdimtranslate {cmd_args_str}'
+           f' {in_filepath} {out_filepath}')
+    logger.debug(f'Executing gdalmdimtranslate command: {cmd}')
+
+    # TODO: util func for running external cmd.
+    result = subprocess.run(cmd,
+                            shell=True,
+                            executable='/bin/bash',
+                            capture_output=True)
+
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr)
+
+
+def gdal_edit_raster(in_filepath, *,
+                     layer_cfg, gdal_edit_kwargs):
+    """Overwrite in_filepath with edited metadata."""
+    cmd_args_list = []
+    for k, v in gdal_edit_kwargs.items():
+        cmd_args_list.append(f'-{k} {v}')
+
+    cmd_args_str = ' '.join(cmd_args_list)
+
+    cmd = (
+        f'. activate gdal && gdal_edit.py'
+        f' {cmd_args_str}'
+        f' {in_filepath}'
+    )
+    logger.debug(f'Executing gdal_edit.py command: {cmd}')
+
+    # TODO: util func for running external cmd.
+    result = subprocess.run(cmd,
+                            shell=True,
+                            executable='/bin/bash',
+                            capture_output=True)
+
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr)
