@@ -4,10 +4,9 @@ from qgreenland.util.luigi import LayerPipeline
 
 
 class BasalThermalState(LayerPipeline):
-    """Dataset VelocityMosaic.
+    """Dataset BasalThermalState.
 
-    This is a NetCDF dataproduct with many distinct datasets representing
-    distinct measurements.
+    https://nsidc.org/data/rdbts4/versions/1
     """
 
     def requires(self):
