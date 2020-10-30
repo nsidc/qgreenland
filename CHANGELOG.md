@@ -1,6 +1,7 @@
 # v0.36.0 (Unreleased)
 
 - Fix: Remove extraneous `valid.shp` shapefiles from final package.
+- Fix: "geothermal heat flux" layer units (MW/m2 -> mW/m2)
 
 # v0.35.0 (2020-09-02)
 

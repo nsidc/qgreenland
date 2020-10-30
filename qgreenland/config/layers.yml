@@ -644,7 +644,7 @@
 - id: geothermal_heat_flux
   title: 'Geothermal Heat Flux'
   description: >-
-    Geothermal heat flux interpolated from ice core measurements in megawatts
+    Geothermal heat flux interpolated from ice core measurements in miliwatts
     per square meter.
   visible: False
   group_path: 'Geophysics'
