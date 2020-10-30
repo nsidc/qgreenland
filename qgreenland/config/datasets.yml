@@ -931,7 +931,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://www.hotosm.org/'
 
 
-- id: likely_basal_thermal_state
+- id: basal_thermal_state
   access_method: cmr
   sources:
     - id: only
