@@ -1,0 +1,2 @@
+class QgrVersionError(Exception):
+    pass

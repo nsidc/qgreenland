@@ -1,9 +1,9 @@
+import logging
 import os
 import shutil
 
 import luigi
 
-from qgreenland import __version__
 from qgreenland.constants import (ASSETS_DIR,
                                   CONFIG,
                                   ENVIRONMENT,
@@ -16,6 +16,9 @@ from qgreenland.util.config import export_config
 from qgreenland.util.misc import cleanup_intermediate_dirs
 from qgreenland.util.qgis import make_qgis_project_file
 from qgreenland.util.task import generate_layer_tasks
+from qgreenland.util.version import get_build_version
+
+logger = logging.getLogger('luigi-interface')
 
 
 class IngestAllLayers(luigi.WrapperTask):
@@ -104,10 +107,12 @@ class ZipQGreenland(luigi.Task):
 
     def output(self):
         os.makedirs(RELEASE_DIR, exist_ok=True)
-        fn = f'{RELEASE_DIR}/QGreenland_{__version__}.zip'
+        fn = f'{RELEASE_DIR}/QGreenland_{get_build_version()}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):
+        logger.info(f'Creating QGreenland package: {self.output().path} ...')
+
         tmp_name = f'{TMP_DIR}/final_archive'
         shutil.make_archive(tmp_name, 'zip', TMP_DIR, 'qgreenland')
 
@@ -117,3 +122,15 @@ class ZipQGreenland(luigi.Task):
 
         if ENVIRONMENT != 'dev':
             cleanup_intermediate_dirs(delete_fetch_dir=False)
+
+        # Mathias Nordvig advised the following Greenlandic words:
+        """
+        For "hooray," the direct Greenlandic translation is simply "horaa!" If
+        you want to express that you are shouting "hooray" in the sense of
+        celebrating, you can say "horaartorpoq!" A grand celebratory
+        expression is a threefold hooray in both Danish and Kalaallisut:
+        "Pingasoriarluni horaarutiginninneq!" For "success," you would want to
+        say: "Iluatsitsilluarneq!"
+        """
+        logger.info('Pingasoriarluni horaarutiginninneq!'
+                    f' Created QGreenland package: {self.output().path}')

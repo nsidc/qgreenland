@@ -9,9 +9,9 @@
 # will not work. In other situations, we will want the ability to attach to a
 # debugger prompt.
 if [ -t 1 ]; then
-    tty_arg="-T"
-else
     tty_arg=""
+else
+    tty_arg="-T"
 fi
 
 # NOTE: Workers must be set to 1 for python debug breakpoints to be usable

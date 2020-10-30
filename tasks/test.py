@@ -6,7 +6,7 @@ from .util import print_and_run
 from qgreenland.constants import PACKAGE_DIR
 
 
-@task
+@task(aliases=['flake8'])
 def lint(ctx):
     """Run flake8 linting."""
     print_and_run(f'flake8 {PACKAGE_DIR}', pty=True)
