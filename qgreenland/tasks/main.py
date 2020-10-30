@@ -123,4 +123,14 @@ class ZipQGreenland(luigi.Task):
         if ENVIRONMENT != 'dev':
             cleanup_intermediate_dirs(delete_fetch_dir=False)
 
-        logger.info(f'Hooray! Created QGreenland package: {self.output().path}')
+        # Mathias Nordvig advised the following Greenlandic words:
+        """
+        For "hooray," the direct Greenlandic translation is simply "horaa!" If
+        you want to express that you are shouting "hooray" in the sense of
+        celebrating, you can say "horaartorpoq!" A grand celebratory
+        expression is a threefold hooray in both Danish and Kalaallisut:
+        "Pingasoriarluni horaarutiginninneq!" For "success," you would want to
+        say: "Iluatsitsilluarneq!"
+        """
+        logger.info('Pingasoriarluni horaarutiginninneq!'
+                    f' Created QGreenland package: {self.output().path}')
