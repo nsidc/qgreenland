@@ -50,7 +50,7 @@ class FetchDataFiles(FetchTask):
         )
 
     def run(self):
-        if 'cmr' in self.source_cfg:
+        if self.dataset_cfg['access_method'] == 'cmr':
             raise RuntimeError('Use a FetchCmrGranule task!')
 
         with temporary_path_dir(self.output()) as temp_path:

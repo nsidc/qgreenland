@@ -1,5 +1,6 @@
 from qgreenland.tasks.layers.arctic_vegetation import ArcticVegetation
 from qgreenland.tasks.layers.background_image import BackgroundImage
+from qgreenland.tasks.layers.basal_thermal_state import BasalThermalState
 from qgreenland.tasks.layers.bedmachine import BedMachineDataset
 from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
 from qgreenland.tasks.layers.gzipped_vector_parts import GzippedVectorParts
@@ -18,6 +19,7 @@ from qgreenland.tasks.layers.zipped_vector import ZippedVector
 INGEST_TASKS = {
     'arctic_vegetation': ArcticVegetation,
     'background_image': BackgroundImage,
+    'basal_thermal_state': BasalThermalState,
     'bedmachine': BedMachineDataset,
     'glacier_terminus': GlacierTerminus,
     'gzipped_vector_parts': GzippedVectorParts,
