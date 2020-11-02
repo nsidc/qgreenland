@@ -70,12 +70,9 @@ class WarpRaster(LayerTask):
                 'override_source_projection not implemented for raster layers.'
             )
 
-        boundary_name = self.layer_cfg.get('boundary', 'background')
-        boundary = CONFIG['project']['boundaries'][boundary_name]
-
         warp_kwargs = {
             'resampleAlg': 'bilinear',
-            'cutlineLayer': boundary,
+            'cutlineLayer': self.layer_cfg['boundary_fp'],
             'cropToCutline': True,
             'creationOptions': ['COMPRESS=DEFLATE']
         }

@@ -10,6 +10,7 @@ import os
 import geopandas
 import yamale
 
+import qgreenland.exceptions as exc
 from qgreenland.constants import LOCALDATA_DIR
 
 
@@ -59,14 +60,27 @@ def _dereference_config(cfg):
     datasets_config = cfg['datasets']
     project_config = cfg['project']
 
+    # Replace project boundary value (filename) with an object containing both
+    # full filepath and data object
     for boundary_name, boundary_fn in project_config['boundaries'].items():
-        fn = os.path.join(LOCALDATA_DIR, boundary_fn)
-        gdf = geopandas.read_file(fn)
+        fp = os.path.join(LOCALDATA_DIR, boundary_fn)
+        gdf = geopandas.read_file(fp)
         if (feature_count := len(gdf)) != 1:
-            raise RuntimeError(f'Configured boundary {boundary_name} contains '
-                               'the wrong number of features. Expected 1, got '
-                               f'{feature_count}.')
-        project_config['boundaries'][boundary_name] = gdf
+            raise QgrInvalidConfigError(
+                f'Configured boundary {boundary_name} contains the wrong'
+                f' number of features. Expected 1, got {feature_count}.'
+            )
+
+        if gdf.crs['init'].lower() != cfg['project']['crs'].lower():
+            raise exc.QgrInvalidConfigError(
+                f"Expected CRS of boundary file {fp} ({gdf.crs['init']}) to"
+                f' match project CRS ({crs}).'
+            )
+
+        project_config['boundaries'][boundary_name] = {
+            'fp': fp,
+            'gdf': gdf,
+        }
 
     for layer_config in layers_config:
         # Populate related dataset configuration
@@ -81,7 +95,9 @@ def _dereference_config(cfg):
 
         # Always default to the background extent
         boundary_name = layer_config.get('boundary', 'background')
-        layer_config['boundary'] = project_config['boundaries'][boundary_name]
+        boundary = project_config['boundaries'][boundary_name]
+        layer_config['boundary'] = boundary['gdf']
+        layer_config['boundary_fp'] = boundary['fp']
 
     # Turn layers config in to a dict keyed by id
     cfg['layers'] = {x['id']: x for x in cfg['layers']}

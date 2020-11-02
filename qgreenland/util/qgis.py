@@ -4,6 +4,7 @@ import subprocess
 import tempfile
 from xml.sax.saxutils import escape
 
+import fiona
 import qgis.core as qgc
 from jinja2 import Template
 from osgeo import gdal
@@ -14,6 +15,9 @@ from qgreenland.util.misc import get_layer_path
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
+
+# TODO: Figure out which functions should start with underscore and apply
+# consistently
 
 
 def _get_raster_layer(layer_path, layer_cfg):
@@ -236,12 +240,9 @@ def make_qgis_project_file(path):
     # from the configured 'map frame' layer.
     view = project.viewSettings()
 
-    project_extent_boundary_filename = CONFIG['project']['boundaries']['data']
-    project_extent = boundary_to_extent(project_extent_boundary_filename)
-    project_rectangle = qgc.QgsReferencedRectangle(
-        qgc.QgsRectangle(*project_extent.values()),
-        project_crs
-    )
+    project_extent_boundary = CONFIG['project']['boundaries']['data']['gdf']
+    project_rectangle = _boundary_to_rectangle(project_extent_boundary,
+                                               crs=project_crs)
     view.setDefaultViewExtent(project_rectangle)
 
     _add_layers(project)
@@ -338,3 +339,13 @@ def build_layer_abstract(layer_cfg):
             abstract += citation_url
 
     return escape(abstract)
+
+
+def _boundary_to_rectangle(boundary, *, crs):
+    """Convert a `boundary` GeoDataFrame to a qgc.QgsReferencedRectangle."""
+    return qgc.QgsReferencedRectangle(
+        qgc.QgsRectangle(
+            *boundary.total_bounds
+        ),
+        crs
+    )

@@ -48,20 +48,15 @@ class Ogr2OgrVector(LayerTask):
 
     def run(self):
         input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
+        boundary_fp = self.layer_cfg['boundary_fp']
 
-        # Extract the extent from the config, defaulting to 'background'.
-        layer_boundary_name = self.layer_cfg.get('boundary', 'background')
-        extent = CONFIG['project']['boundaries'][layer_boundary_name]
-        # TODO: WRONG BELOW
-        clipdst = ('"{xmin}" "{ymin}" '
-                   '"{xmax}" "{ymax}"').format(**extent)  # noqa: FS002
         ogr2ogr_kwargs = {
             # Output an UTF-8 encoded shapefile instead of default ISO-8859-1
             'lco': 'ENCODING=UTF-8',
             't_srs': CONFIG['project']['crs'],
             # As opposed to `clipsrc`, `clipdst` uses the destination SRS
             # (`t_srs`) to clip the input after reprojection.
-            'clipdst': clipdst,
+            'clipdst': boundary_fp,
         }
         ogr2ogr_kwargs.update(input_ogr2ogr_kwargs)
 
