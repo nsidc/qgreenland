@@ -1,4 +1,4 @@
-from qgreenland.constants import CONFIG
+from qgreenland.config import CONFIG
 from qgreenland.tasks.layers import INGEST_TASKS
 
 

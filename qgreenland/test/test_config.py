@@ -1,4 +1,4 @@
-from qgreenland.constants import CONFIG
+from qgreenland.config import CONFIG
 
 
 def test_get_layer_config_all():

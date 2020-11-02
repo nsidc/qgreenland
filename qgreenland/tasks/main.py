@@ -4,8 +4,8 @@ import shutil
 
 import luigi
 
+from qgreenland.config import CONFIG
 from qgreenland.constants import (ASSETS_DIR,
-                                  CONFIG,
                                   ENVIRONMENT,
                                   PROJECT_DIR,
                                   RELEASE_DIR,
