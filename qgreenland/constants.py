@@ -1,7 +1,6 @@
 import os
 from enum import Enum
 
-from qgreenland.util.config import make_config
 from qgreenland.util.version import get_build_version, version_is_full_release
 
 PROJECT = 'qgreenland'
@@ -26,7 +25,6 @@ else:
 
 CONFIG_DIR = os.path.join(PACKAGE_DIR, 'config')
 CONFIG_SCHEMA_DIR = os.path.join(CONFIG_DIR, 'schema')
-CONFIG = make_config(config_dir=CONFIG_DIR, schema_dir=CONFIG_SCHEMA_DIR)
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?

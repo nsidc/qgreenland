@@ -22,7 +22,7 @@ def validate(ctx, verbose=False):
     this happens when assigning the CONFIG constant. Any validation errors will
     be raised from the import statement.
     """
-    from qgreenland.constants import CONFIG
+    from qgreenland.config import CONFIG
 
     if verbose:
         print('Layers:')
