@@ -3,3 +3,13 @@
 # TODO: Find a way to reduce luigi spam but keep those messages.
 log_level = 'DEBUG'
 # logging_conf_file = '/etc/luigi/logging.conf'
+
+# Luigi returns 0 in all cases by default:
+#     https://luigi.readthedocs.io/en/stable/configuration.html#retcode
+[retcode]
+already_running=10
+missing_data=20
+not_run=25
+task_failed=30
+scheduling_error=35
+unhandled_exception=40
