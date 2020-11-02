@@ -3,7 +3,8 @@ import os
 
 import luigi
 
-from qgreenland.constants import CONFIG, TaskType
+from qgreenland.config import CONFIG
+from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 from qgreenland.util.vector import (cleanup_valid_shapefile,

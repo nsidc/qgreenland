@@ -3,7 +3,8 @@ import shutil
 
 import luigi
 
-from qgreenland.constants import CONFIG, TaskType
+from qgreenland.config import CONFIG
+from qgreenland.constants import TaskType
 from qgreenland.util.misc import get_layer_dir, get_layer_fn, temporary_path_dir
 
 
