@@ -24,7 +24,6 @@ else:
 
 CONFIG_DIR = f'{PACKAGE_DIR}/config'
 CONFIG_SCHEMA_DIR = f'{CONFIG_DIR}/schema'
-CONFIG = make_config(config_dir=CONFIG_DIR, schema_dir=CONFIG_SCHEMA_DIR)
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?
