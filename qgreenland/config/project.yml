@@ -2,16 +2,6 @@
 # All layers will be reprojected to this CRS.
 crs: 'EPSG:3413'
 
-# Note: Please maintain key order xmin,ymin,xmax,ymax
-extents:
-  # The same extent as Sea Ice Index
-  background:
-    xmin: -3850000.000
-    ymin: -5350000.000
-    xmax: 3750000.000
-    ymax: 5850000.000
-  data:
-    xmin: -998012.000
-    ymin: -3611178.000
-    xmax: 1228670.000
-    ymax: -329624.000
+boundaries:
+  background: 'latitude_shape_45_degree.geojson'
+  data: 'greenland_with_blubber.geojson'
