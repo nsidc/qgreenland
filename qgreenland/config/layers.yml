@@ -29,7 +29,7 @@
   ogr2ogr_kwargs:
     input_filename: 'arctic_circle.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 
 - &lat_lines
@@ -46,7 +46,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_25_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - <<: *lat_lines
   id: lat_0_5_deg
@@ -56,7 +56,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_5_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - <<: *lat_lines
   id: lat_1_deg
@@ -66,7 +66,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_1_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - <<: *lat_lines
   id: lat_2_deg
@@ -76,7 +76,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_2_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - <<: *lat_lines
   id: lat_5_deg
@@ -86,7 +86,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_5_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - <<: *lat_lines
   id: lat_10_deg
@@ -96,7 +96,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_10_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - <<: *lat_lines
   id: lat_15_deg
@@ -106,7 +106,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_15_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - <<: *lat_lines
   id: lat_20_deg
@@ -116,7 +116,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_20_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - <<: *lat_lines
   id: lat_30_deg
@@ -126,7 +126,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_30_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 1
+    segmentize: 100
 
 - &lon_lines
   id: lon_0_5_deg
@@ -142,6 +142,8 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_0_5_degree.geojson'
     s_srs: 'EPSG:4326'
+    # The value "1000" resulted in straned points after subset, so we went smaller.
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_1_deg
@@ -151,6 +153,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_1_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_2_deg
@@ -160,6 +163,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_2_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_3_deg
@@ -169,6 +173,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_3_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_5_deg
@@ -178,6 +183,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_5_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_10_deg
@@ -187,6 +193,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_10_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_15_deg
@@ -196,6 +203,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_15_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_20_deg
@@ -205,6 +213,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_20_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_30_deg
@@ -214,6 +223,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_30_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_45_deg
@@ -223,6 +233,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_45_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 - <<: *lon_lines
   id: lon_90_deg
@@ -232,6 +243,7 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_90_degree.geojson'
     s_srs: 'EPSG:4326'
+    segmentize: 100
 
 
 - id: timezones
