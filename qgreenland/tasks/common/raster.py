@@ -71,7 +71,7 @@ class WarpRaster(LayerTask):
 
         warp_kwargs = {
             'resampleAlg': 'bilinear',
-            'cutlineLayer': self.layer_cfg['boundary_fp'],
+            'cutlineDSName': self.layer_cfg['boundary_fp'],
             'cropToCutline': True,
             'creationOptions': ['COMPRESS=DEFLATE']
         }
