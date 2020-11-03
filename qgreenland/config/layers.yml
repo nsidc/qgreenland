@@ -964,7 +964,7 @@
   visible: False
   group_path: 'Oceanography'
   style: 'ibcao_bathymetry'
-  boundary: 'data'
+  boundary: 'background'
   data_source: bathymetric_chart.only
   ingest_task: netcdf_raster
   file_type: '.tif'
