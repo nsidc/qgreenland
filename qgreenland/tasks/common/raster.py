@@ -4,7 +4,6 @@ import shutil
 import luigi
 import rasterio as rio
 
-from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir

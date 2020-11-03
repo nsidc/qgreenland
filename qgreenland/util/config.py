@@ -39,49 +39,54 @@ def _load_config(config_filename, *, config_dir, schema_dir):
     return config[0][0]
 
 
-def _dereference_config(cfg):
-    """Take a full configuration object, replace references with the referent.
+def _find_in_list_by_id(haystack, needle):
+    matches = [d for d in haystack if d['id'] == needle]
+    if len(matches) > 1:
+        raise LookupError(f'Found multiple matches in list with same id: {needle}')
 
-    - Datasets
-    - Sources
-    - Ingest Tasks
+    if len(matches) != 1:
+        raise LookupError(f'Found no matches in list with id: {needle}')
+
+    return copy.deepcopy(matches[0])
+
+
+def _deref_boundaries(cfg):
+    """Dereference project boundaries, modifying `cfg`.
+
+    Replace project boundary value (filename) with an object containing
+    useful information about the boundary file.
     """
-    def _find_in_list_by_id(haystack, needle):
-        matches = [d for d in haystack if d['id'] == needle]
-        if len(matches) > 1:
-            raise LookupError(f'Found multiple matches in list with same id: {needle}')
-
-        if len(matches) != 1:
-            raise LookupError(f'Found no matches in list with id: {needle}')
-
-        return copy.deepcopy(matches[0])
-
-    layers_config = cfg['layers']
-    datasets_config = cfg['datasets']
-    project_config = cfg['project']
-
-    # Replace project boundary value (filename) with an object containing both
-    # full filepath and data object
-    for boundary_name, boundary_fn in project_config['boundaries'].items():
+    boundaries_config = cfg['project']['boundaries']
+    for boundary_name, boundary_fn in boundaries_config.items():
         fp = os.path.join(LOCALDATA_DIR, boundary_fn)
         gdf = geopandas.read_file(fp)
         if (feature_count := len(gdf)) != 1:
-            raise QgrInvalidConfigError(
+            raise exc.QgrInvalidConfigError(
                 f'Configured boundary {boundary_name} contains the wrong'
                 f' number of features. Expected 1, got {feature_count}.'
             )
 
-        if gdf.crs['init'].lower() != cfg['project']['crs'].lower():
+        if (boundary_crs := gdf.crs['init'].lower()) \
+           != (project_crs := cfg['project']['crs'].lower()):
             raise exc.QgrInvalidConfigError(
-                f"Expected CRS of boundary file {fp} ({gdf.crs['init']}) to"
-                f' match project CRS ({crs}).'
+                f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
+                f' match project CRS ({project_crs}).'
             )
 
-        project_config['boundaries'][boundary_name] = {
+        boundaries_config[boundary_name] = {
             'fp': fp,
+            # TODO: Rename to more generic name
+            # TODO: Replace gdf with a fiona object?
             'gdf': gdf,
+            'bbox': gdf.total_bounds,
         }
 
+
+def _deref_layers(cfg):
+    """Dereferences layers in `cfg`, modifying `cfg`."""
+    layers_config = cfg['layers']
+    datasets_config = cfg['datasets']
+    project_config = cfg['project']
     for layer_config in layers_config:
         # Populate related dataset configuration
         if 'dataset' not in layer_config:
@@ -98,6 +103,17 @@ def _dereference_config(cfg):
         boundary = project_config['boundaries'][boundary_name]
         layer_config['boundary'] = boundary['gdf']
         layer_config['boundary_fp'] = boundary['fp']
+
+
+def _dereference_config(cfg):
+    """Take a full configuration object, replace references with the referent.
+
+    - Datasets
+    - Sources
+    - Ingest Tasks
+    """
+    _deref_boundaries(cfg)
+    _deref_layers(cfg)
 
     # Turn layers config in to a dict keyed by id
     cfg['layers'] = {x['id']: x for x in cfg['layers']}

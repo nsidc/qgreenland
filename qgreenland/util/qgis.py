@@ -4,7 +4,6 @@ import subprocess
 import tempfile
 from xml.sax.saxutils import escape
 
-import fiona
 import qgis.core as qgc
 from jinja2 import Template
 from osgeo import gdal
@@ -240,9 +239,12 @@ def make_qgis_project_file(path):
     # from the configured 'map frame' layer.
     view = project.viewSettings()
 
-    project_extent_boundary = CONFIG['project']['boundaries']['data']['gdf']
-    project_rectangle = _boundary_to_rectangle(project_extent_boundary,
-                                               crs=project_crs)
+    project_rectangle = qgc.QgsReferencedRectangle(
+        qgc.QgsRectangle(
+            *CONFIG['project']['boundaries']['data']['bbox']
+        ),
+        project_crs
+    )
     view.setDefaultViewExtent(project_rectangle)
 
     _add_layers(project)
@@ -343,9 +345,3 @@ def build_layer_abstract(layer_cfg):
 
 def _boundary_to_rectangle(boundary, *, crs):
     """Convert a `boundary` GeoDataFrame to a qgc.QgsReferencedRectangle."""
-    return qgc.QgsReferencedRectangle(
-        qgc.QgsRectangle(
-            *boundary.total_bounds
-        ),
-        crs
-    )
