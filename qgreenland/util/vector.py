@@ -16,7 +16,7 @@ def cleanup_valid_shapefile(path):
             pass
 
 
-def filter_vector(vector_path, *, filter_func):
+def filter_vector_features(vector_path, *, filter_func):
     gdf = geopandas.read_file(vector_path)
 
     gdf = gdf.loc[filter_func]

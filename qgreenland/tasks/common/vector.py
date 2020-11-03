@@ -8,7 +8,7 @@ from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
 from qgreenland.util.vector import (cleanup_valid_shapefile,
-                                    filter_vector,
+                                    filter_vector_features,
                                     ogr2ogr)
 
 logger = logging.getLogger('luigi-interface')
@@ -28,7 +28,7 @@ class FilterShapefileFeatures(LayerTask):
     def run(self):
         logger.info(f"Filtering {self.layer_cfg['id']}...")
         shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
-        gdf = filter_vector(
+        gdf = filter_vector_features(
             shapefile,
             filter_func=self.filter_func
         )
