@@ -1374,6 +1374,7 @@
   warp_kwargs:
     xRes: 1000
     yRes: 1000
+    dstNodata: 0
     # Attempt to avoid pole hole and nodata line where east and west edges of
     # the original image meet after polar wrapping. TODO: This doesn't actually
     # get rid of the line.
