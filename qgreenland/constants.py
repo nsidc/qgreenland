@@ -11,19 +11,20 @@ PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 PROJECT_DIR = os.path.abspath(os.path.join(PACKAGE_DIR, os.pardir))
 INPUT_DIR = '/input'
 DATA_DIR = '/luigi/data'
-RELEASES_DIR = f'{DATA_DIR}/release'
-WIP_DIR = f'{DATA_DIR}/luigi-wip'
-ASSETS_DIR = f'{PACKAGE_DIR}/assets'
+RELEASES_DIR = os.path.join(DATA_DIR, 'release')
+WIP_DIR = os.path.join(DATA_DIR, 'luigi-wip')
+ASSETS_DIR = os.path.join(PACKAGE_DIR, 'assets')
+LOCALDATA_DIR = os.path.join(ASSETS_DIR, 'local_data')
 
 # TODO: Extract to function in another module to remove constants dependency on
 # get_build_version, version_is_full_release
 if version_is_full_release(version := get_build_version()):
-    RELEASE_DIR = f'{RELEASES_DIR}/{version}'
+    RELEASE_DIR = os.path.join(RELEASES_DIR, version)
 else:
-    RELEASE_DIR = f'{RELEASES_DIR}/dev/{version}'
+    RELEASE_DIR = os.path.join(RELEASES_DIR, 'dev', version)
 
-CONFIG_DIR = f'{PACKAGE_DIR}/config'
-CONFIG_SCHEMA_DIR = f'{CONFIG_DIR}/schema'
+CONFIG_DIR = os.path.join(PACKAGE_DIR, 'config')
+CONFIG_SCHEMA_DIR = os.path.join(CONFIG_DIR, 'schema')
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?
