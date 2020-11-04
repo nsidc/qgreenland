@@ -70,8 +70,8 @@ class WarpRaster(LayerTask):
                 'override_source_projection not implemented for raster layers.'
             )
 
-        extent_str = self.layer_cfg.get('extent', 'background')
-        extent = CONFIG['project']['extents'][extent_str]
+        boundary_name = self.layer_cfg.get('boundary', 'background')
+        boundary = CONFIG['project']['boundaries'][boundary_name]
 
         # TODO: we should probably do an intersection between the dataset bounds
         # and the extent bounds to determine the correct values to pass to
@@ -80,7 +80,7 @@ class WarpRaster(LayerTask):
         # zeros
         warp_kwargs = {
             'resampleAlg': 'bilinear',
-            'outputBounds': list(extent.values()),
+            'outputBounds': list(boundary.values()),
             'creationOptions': ['COMPRESS=DEFLATE']
         }
         if 'warp_kwargs' in self.layer_cfg:

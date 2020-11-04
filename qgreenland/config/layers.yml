@@ -7,7 +7,7 @@
   visible: False
   group_path: 'Miscellaneous'
   style: 'utm_zones'
-  extent: 'data'
+  boundary: 'data'
   data_source: utm_zones.only
   ingest_task: utm_zones
   file_type: '.shp'
@@ -240,7 +240,7 @@
   visible: False
   group_path: 'Miscellaneous'
   style: 'transparent_shape'
-  extent: 'background'
+  boundary: 'background'
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
@@ -260,7 +260,7 @@
   visible: False
   group_path: 'Biology/Vegetation'
   style: 'vegetation_biomass'
-  extent: 'data'
+  boundary: 'data'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
@@ -271,7 +271,7 @@
   data_source: caff_murre_colonies.only
   visible: True
   group_path: 'Biology/Birds'
-  extent: 'data'
+  boundary: 'data'
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
@@ -288,7 +288,7 @@
   data_source: caff_murre_colonies.only
   visible: True
   group_path: 'Biology/Birds'
-  extent: 'data'
+  boundary: 'data'
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
@@ -306,7 +306,7 @@
   data_source: caff_rangifer.only
   visible: True
   group_path: 'Biology/Mammals'
-  extent: 'data'
+  boundary: 'data'
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
@@ -318,7 +318,7 @@
   style: 'semitransparent_polygon'
   visible: True
   group_path: 'Biology/Fish'
-  extent: 'data'
+  boundary: 'data'
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
@@ -333,7 +333,7 @@
   visible: False
   group_path: 'Built environment'
   style: 'populated_places'
-  extent: 'data'
+  boundary: 'data'
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
@@ -345,7 +345,7 @@
   visible: True
   group_path: 'Built environment'
   # style: 'populated_places'
-  extent: 'data'
+  boundary: 'data'
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
@@ -402,7 +402,7 @@
   visible: True
   group_path: 'Environmental management/Protected zones'
   style: 'protected_area_polygon'
-  extent: 'data'
+  boundary: 'data'
   data_source: caff_protected_areas.only
   ingest_task: zipped_vector
   file_type: '.shp'
@@ -423,7 +423,7 @@
   visible: False
   group_path: 'Frozen ground'
   style: 'permaice'
-  extent: 'data'
+  boundary: 'data'
   data_source: permaice_nhipa.only
   ingest_task: permaice
   file_type: '.tif'
@@ -445,7 +445,7 @@
   visible: False
   group_path: 'Glaciology'
   style: basal_thermal_state
-  extent: 'data'
+  boundary: 'data'
   data_source: basal_thermal_state.only
   ingest_task: basal_thermal_state
   file_type: '.tif'
@@ -463,7 +463,7 @@
   visible: False
   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
   style: 'glacier_ids'
-  extent: 'data'
+  boundary: 'data'
   data_source: glacier_terminus.glacier_ids
   ingest_task: glacier_terminus
   file_type: '.shp'
@@ -474,7 +474,7 @@
   title: 'Glacier Termini 2000 to 2001'
   visible: False
   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
-  extent: 'data'
+  boundary: 'data'
   data_source: glacier_terminus.2000_2001
   ingest_task: glacier_terminus
   file_type: '.shp'
@@ -533,7 +533,7 @@
   visible: False
   group_path: 'Glaciology'
   style: 'labeled_point'
-  extent: 'data'
+  boundary: 'data'
   data_source: ice_cores.only
   ingest_task: online_vector
   file_type: '.shp'
@@ -549,7 +549,7 @@
   visible: False
   group_path: 'Glaciology/Ice sheet velocity'
   style: 'ice_sheet_velocity'
-  extent: 'data'
+  boundary: 'data'
   data_source: velocity_mosaic.only
   ingest_task: netcdf_raster
   file_type: '.tif'
@@ -573,7 +573,7 @@
   visible: False
   group_path: 'Glaciology/Ice thickness change'
   style: 'ice_thickness_change'
-  extent: 'data'
+  boundary: 'data'
   data_source: icesheet_height_and_thickness_change.only
   ingest_task: ice_thickness_change
   file_type: '.tif'
@@ -594,7 +594,7 @@
   visible: False
   group_path: 'Geology & natural resources'
   style: 'earthquakes'
-  extent: 'data'
+  boundary: 'data'
   data_source: earthquakes.only
   ingest_task: 'online_vector'
   file_type: '.geojson'  # ?
@@ -610,7 +610,7 @@
   visible: False
   group_path: 'Geology & natural resources'
   style: 'soil_types'
-  extent: 'data'
+  boundary: 'data'
   data_source: soil_types.only
   ingest_task: gzipped_vector_parts
   file_type: '.shp'
@@ -622,7 +622,7 @@
   title: 'Tectonic plate boundaries'
   visible: False
   group_path: 'Geology & natural resources'
-  extent: 'background'
+  boundary: 'background'
   data_source: tectonic_plates.only
   ingest_task: zipped_vector
   file_type: '.shp'
@@ -642,7 +642,7 @@
 #   title: 'Tectonic plates'
 #   visible: False
 #   group_path: 'Geology & natural resources'
-#   extent: 'background'
+#   boundary: 'background'
 #   data_source: tectonic_plates.only
 #   ingest_task: zipped_vector
 #   file_type: '.shp'
@@ -677,7 +677,7 @@
     extract_dataset: 'GHF'
   file_type: '.tif'
   data_type: 'raster'
-  extent: 'data'
+  boundary: 'data'
 
 
 ##################
@@ -695,7 +695,7 @@
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
-  extent: 'data'
+  boundary: 'data'
 
 - id: seismograph_stations
   title: 'Seismograph Stations'
@@ -708,7 +708,7 @@
   ingest_task: online_vector
   file_type: '.shp'
   data_type: 'vector'
-  extent: 'data'
+  boundary: 'data'
   ogr2ogr_kwargs:
     input_filename: 'stations.kmz'
 
@@ -796,7 +796,7 @@
   visible: False
   group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
   style: 'undersea_features_point'
-  extent: 'data'
+  boundary: 'data'
   data_source: undersea_features.only
   ingest_task: zipped_vector
   # TODO: ingest_kwargs vs decompress_kwargs
@@ -851,7 +851,7 @@
   visible: False
   group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
   style: 'seawater_temperature'
-  extent: 'data'
+  boundary: 'data'
   data_source: woa2018_temperature.seasonal_winter
   ingest_task: netcdf_raster
   file_type: '.tif'
@@ -952,7 +952,7 @@
   visible: False
   group_path: 'Oceanography'
   style: 'ibcao_bathymetry'
-  extent: 'data'
+  boundary: 'data'
   data_source: bathymetric_chart.only
   ingest_task: netcdf_raster
   file_type: '.tif'
@@ -980,7 +980,7 @@
   description: 'Median extent from the period 1981 through 2010.'
   visible: False
   group_path: 'Sea ice/Median ice extent'
-  extent: 'data'
+  boundary: 'data'
   data_source: seaice_index.median_extent_line_01
   ingest_task: 'zipped_vector'
   file_type: '.shp'
@@ -1061,7 +1061,7 @@
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
-  extent: 'data'
+  boundary: 'data'
   data_source: seaice_index.minimum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
@@ -1140,7 +1140,7 @@
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent)'
   style: 'sea_ice_concentration'
-  extent: 'data'
+  boundary: 'data'
   data_source: seaice_index.maximum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
@@ -1221,7 +1221,7 @@
   group_path: 'Terrain models/BedMachine'
   visible: False
   style: 'bedmachine_thickness'
-  extent: 'data'
+  boundary: 'data'
   data_source: bedmachine.only
   ingest_task: bedmachine
   file_type: '.tif'
@@ -1268,7 +1268,7 @@
   visible: False
   group_path: 'Terrain models'
   style: 'arctic_dem'
-  extent: 'data'
+  boundary: 'data'
   data_source: arctic_dem.only
   ingest_task: 'raster'
   file_type: '.tif'
@@ -1288,24 +1288,24 @@
   visible: False
   group_path: 'Internet-required data'
   style: 'transparent_rgb'
-  extent: 'data'
+  boundary: 'data'
   data_source: image_mosaic.2019
   ingest_task: None
   file_type: '.tif'
   data_type: 'raster'
 
 # NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
-# an hour or more. Remove it?
-- id: image_mosaic_2015
-  title: 'Greenland Image Mosaic 2015 (Online Only)'
-  description: 'Sentinel-2 multispectral satellite imagery from 2015.'
-  visible: False
-  group_path: 'Internet-required data'
-  extent: 'data'
-  data_source: image_mosaic.2015
-  ingest_task: None
-  file_type: '.tif'
-  data_type: 'raster'
+# an hour or more on `qgc.QgsRasterLayer` call. Remove it?
+# - id: image_mosaic_2015
+#   title: 'Greenland Image Mosaic 2015 (Online Only)'
+#   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
+#   visible: False
+#   group_path: 'Internet-required data'
+#   boundary: 'data'
+#   data_source: image_mosaic.2015
+#   ingest_task: None
+#   file_type: '.tif'
+#   data_type: 'raster'
 
 
 ############
@@ -1317,7 +1317,7 @@
   visible: False
   group_path: 'Basemaps'
   style: 'coastline-IHOECDIS'
-  extent: 'background'
+  boundary: 'background'
   data_source: coastlines.only
   ingest_task: zipped_vector
   file_type: '.shp'
@@ -1329,7 +1329,7 @@
   visible: False
   group_path: 'Basemaps'
   style: 'administrative_divisions'
-  extent: 'data'
+  boundary: 'data'
   data_source: ne_states_provinces.only
   ingest_task: zipped_vector
   file_type: '.shp'
@@ -1341,7 +1341,7 @@
   visible: False
   group_path: 'Basemaps'
   style: 'countries'
-  extent: 'background'
+  boundary: 'background'
   data_source: ne_countries.only
   ingest_task: zipped_vector
   file_type: '.shp'
@@ -1352,7 +1352,7 @@
   title: 'Background (1km)'
   visible: True
   group_path: 'Basemaps'
-  extent: 'data'
+  boundary: 'data'
   data_source: background.only
   ingest_task: background_image
   file_type: '.tif'
@@ -1376,7 +1376,7 @@
   visible: True
   group_path: 'Basemaps'
   style: 'land'
-  extent: 'background'
+  boundary: 'background'
   data_source: land_shape.only
   ingest_task: zipped_vector
   file_type: '.shp'
@@ -1388,7 +1388,7 @@
   visible: True
   group_path: 'Basemaps'
   style: 'ocean'
-  extent: 'background'
+  boundary: 'background'
   data_source: ocean_shape.only
   ingest_task: zipped_vector
   file_type: '.shp'

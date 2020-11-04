@@ -1,5 +1,5 @@
 crs: str(required=True)
-extents:
+boundaries:
   background:
     xmin: num(required=True)
     ymin: num(required=True)

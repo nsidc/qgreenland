@@ -3,7 +3,7 @@
 crs: 'EPSG:3413'
 
 # Note: Please maintain key order xmin,ymin,xmax,ymax
-extents:
+boundaries:
   # The same extent as Sea Ice Index
   background:
     xmin: -3850000.000

@@ -70,8 +70,8 @@ def _dereference_config(cfg):
         # accessing CONFIG['layers'][layer_id], allow direct access by
         # CONFIG[layer_id]
 
-        # TODO: Populate layer_config['extent'] with referenced value in project
-        # config.
+        # TODO: Populate layer_config['boundary'] with referenced value in
+        # project config.
         # breakpoint()
 
     # Turn layers config in to a dict keyed by id

@@ -50,10 +50,10 @@ class Ogr2OgrVector(LayerTask):
         input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
 
         # Extract the extent from the config, defaulting to 'background'.
-        layer_extent_str = self.layer_cfg.get('extent', 'background')
-        extent = CONFIG['project']['extents'][layer_extent_str]
+        boundary_name = self.layer_cfg.get('boundary', 'background')
+        boundary = CONFIG['project']['boundaries'][boundary_name]
         clipdst = ('"{xmin}" "{ymin}" '
-                   '"{xmax}" "{ymax}"').format(**extent)  # noqa: FS002
+                   '"{xmax}" "{ymax}"').format(**boundary)  # noqa: FS002
         ogr2ogr_kwargs = {
             # Output an UTF-8 encoded shapefile instead of default ISO-8859-1
             'lco': 'ENCODING=UTF-8',
