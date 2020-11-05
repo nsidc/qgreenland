@@ -5,6 +5,7 @@ ONLY the constants module should import this module.
 
 import copy
 import csv
+import functools
 import os
 
 import fiona
@@ -130,6 +131,7 @@ def _dereference_config(cfg):
     return cfg
 
 
+@functools.lru_cache(maxsize=None)
 def make_config(*, config_dir, schema_dir):
     # TODO: Avoid all this argument drilling without import cycles... this
     # shouldn't be so hard!
