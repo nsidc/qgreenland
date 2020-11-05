@@ -12,8 +12,8 @@ dependencies:
   - flake8-docstrings=1.5.0
   - flake8-import-order=0.18.1
   - flake8-quotes=2.1.1
+    fiona=1.8.17
   - gdal=3.0.4
-  - geopandas=0.6.2
   - humanize=2.6.0
   - invoke=1.4.0
   - ipython
@@ -23,7 +23,7 @@ dependencies:
   - pytest=5.3.5
   - pytest-cov=2.8.1
   - pyyaml=5.3
-  - qgis=3.10.7
+  - qgis=3.10.10
   - rasterio=1.1.2
   - requests=2.22.0
   - vulture=1.0

@@ -14,30 +14,6 @@ from qgreenland.util.vector import (cleanup_valid_shapefile,
 logger = logging.getLogger('luigi-interface')
 
 
-# TODO: Make more generic -- filter vector features, don't assume .shp
-# TODO: Use Ogr2OgrVector to filter with sql instead of lambda?
-class FilterShapefileFeatures(LayerTask):
-    """Expects a shapefile as input and writes a shapefile out."""
-
-    task_type = TaskType.WIP
-    filter_func = luigi.Parameter()
-
-    def output(self):
-        return luigi.LocalTarget(f'{self.outdir}/filter/')
-
-    def run(self):
-        logger.info(f"Filtering {self.layer_cfg['id']}...")
-        shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
-        gdf = filter_vector_features(
-            shapefile,
-            filter_func=self.filter_func
-        )
-
-        with temporary_path_dir(self.output()) as temp_path:
-            fn = os.path.join(temp_path, self.filename)
-            gdf.to_file(fn, driver='ESRI Shapefile')
-
-
 class Ogr2OgrVector(LayerTask):
     """Acts on vector data that can be read by `ogr2ogr`."""
 
