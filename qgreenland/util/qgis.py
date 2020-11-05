@@ -235,12 +235,19 @@ def make_qgis_project_file(path):
     # Set the default extent. Eventually we may want to pull the extent directly
     # from the configured 'map frame' layer.
     view = project.viewSettings()
-    background_extent = CONFIG['project']['boundaries']['data']
-    extent = qgc.QgsReferencedRectangle(
-        qgc.QgsRectangle(*background_extent.values()),
+
+    # project_extent_boundary_filename = CONFIG['project']['boundaries']['data']
+    project_extent = {
+        'xmin': -998012.000,
+        'ymin': -3611178.000,
+        'xmax': 1228670.000,
+        'ymax': -329624.000
+    }
+    project_rectangle = qgc.QgsReferencedRectangle(
+        qgc.QgsRectangle(*project_extent.values()),
         project_crs
     )
-    view.setDefaultViewExtent(extent)
+    view.setDefaultViewExtent(project_rectangle)
 
     _add_layers(project)
 
