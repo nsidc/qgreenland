@@ -5,14 +5,13 @@ channels:
 dependencies:
   - python=3.8*
   - bumpversion=0.5.3
-  - earthpy=0.8.0
   - flake8=3.8.3
   - flake8-bugbear=20.1.4
   - flake8-comprehensions=3.2.2
   - flake8-docstrings=1.5.0
   - flake8-import-order=0.18.1
   - flake8-quotes=2.1.1
-    fiona=1.8.17
+  - fiona=1.8.13
   - gdal=3.0.4
   - humanize=2.6.0
   - invoke=1.4.0
