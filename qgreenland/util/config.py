@@ -11,9 +11,9 @@ import os
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 # Importing qgis before fiona is absolutely necessary to avoid segmentation
 # faults. They have been occurring in unit tests. We still have no clue why.
-import qgis.core as qgc  # noqa
+import qgis.core as qgc  # noqa: F401
+import fiona  # noqa: I100
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
-import fiona
 import yamale
 
 import qgreenland.exceptions as exc
