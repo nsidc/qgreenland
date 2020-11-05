@@ -1,12 +1,4 @@
 crs: str(required=True)
 boundaries:
-  background:
-    xmin: num(required=True)
-    ymin: num(required=True)
-    xmax: num(required=True)
-    ymax: num(required=True)
-  data:
-    xmin: num(required=True)
-    ymin: num(required=True)
-    xmax: num(required=True)
-    ymax: num(required=True)
+  background: str(required=True)
+  data: str(required=True)

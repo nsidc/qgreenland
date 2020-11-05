@@ -52,6 +52,7 @@ class Ogr2OgrVector(LayerTask):
         # Extract the extent from the config, defaulting to 'background'.
         boundary_name = self.layer_cfg.get('boundary', 'background')
         boundary = CONFIG['project']['boundaries'][boundary_name]
+        # TODO: WRONG BELOW
         clipdst = ('"{xmin}" "{ymin}" '
                    '"{xmax}" "{ymax}"').format(**boundary)  # noqa: FS002
         ogr2ogr_kwargs = {

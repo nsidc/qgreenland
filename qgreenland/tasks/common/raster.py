@@ -73,14 +73,10 @@ class WarpRaster(LayerTask):
         boundary_name = self.layer_cfg.get('boundary', 'background')
         boundary = CONFIG['project']['boundaries'][boundary_name]
 
-        # TODO: we should probably do an intersection between the dataset bounds
-        # and the extent bounds to determine the correct values to pass to
-        # 'outputBounds'. If the dataset is SMALLER than the outputBounds, gdal
-        # will create a BIGGER dataset than the input, and fill it with e.g.,
-        # zeros
         warp_kwargs = {
             'resampleAlg': 'bilinear',
-            'outputBounds': list(boundary.values()),
+            'cutlineDSName': boundary,
+            'cropToCutline': True,
             'creationOptions': ['COMPRESS=DEFLATE']
         }
         if 'warp_kwargs' in self.layer_cfg:
