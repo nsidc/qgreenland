@@ -5,9 +5,15 @@ ONLY the constants module should import this module.
 
 import copy
 import csv
+import functools
 import os
 
-import geopandas
+# HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
+# Importing qgis before fiona is absolutely necessary to avoid segmentation
+# faults. They have been occurring in unit tests. We still have no clue why.
+import qgis.core as qgc  # noqa: F401
+import fiona  # noqa: I100
+# HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 import yamale
 
 import qgreenland.exceptions as exc
@@ -59,14 +65,18 @@ def _deref_boundaries(cfg):
     boundaries_config = cfg['project']['boundaries']
     for boundary_name, boundary_fn in boundaries_config.items():
         fp = os.path.join(LOCALDATA_DIR, boundary_fn)
-        gdf = geopandas.read_file(fp)
-        if (feature_count := len(gdf)) != 1:
+        with fiona.open(fp) as ifile:
+            features = list(ifile)
+            meta = ifile.meta
+            bbox = ifile.bounds
+
+        if (feature_count := len(features)) != 1:
             raise exc.QgrInvalidConfigError(
                 f'Configured boundary {boundary_name} contains the wrong'
                 f' number of features. Expected 1, got {feature_count}.'
             )
 
-        if (boundary_crs := gdf.crs['init'].lower()) \
+        if (boundary_crs := meta['crs']['init'].lower()) \
            != (project_crs := cfg['project']['crs'].lower()):
             raise exc.QgrInvalidConfigError(
                 f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
@@ -77,13 +87,16 @@ def _deref_boundaries(cfg):
             'fp': fp,
             # TODO: Rename to more generic name
             # TODO: Replace gdf with a fiona object?
-            'gdf': gdf,
-            'bbox': gdf.total_bounds,
+            'features': features,
+            'bbox': bbox,
         }
 
 
 def _deref_layers(cfg):
-    """Dereferences layers in `cfg`, modifying `cfg`."""
+    """Dereferences layers in `cfg`, modifying `cfg`.
+
+    Expects boundaries to already be dereferenced.
+    """
     layers_config = cfg['layers']
     datasets_config = cfg['datasets']
     project_config = cfg['project']
@@ -100,9 +113,8 @@ def _deref_layers(cfg):
 
         # Always default to the background extent
         boundary_name = layer_config.get('boundary', 'background')
-        boundary = project_config['boundaries'][boundary_name]
-        layer_config['boundary'] = boundary['gdf']
-        layer_config['boundary_fp'] = boundary['fp']
+
+        layer_config['boundary'] = project_config['boundaries'][boundary_name]
 
 
 def _dereference_config(cfg):
@@ -121,6 +133,7 @@ def _dereference_config(cfg):
     return cfg
 
 
+@functools.lru_cache(maxsize=None)
 def make_config(*, config_dir, schema_dir):
     # TODO: Avoid all this argument drilling without import cycles... this
     # shouldn't be so hard!

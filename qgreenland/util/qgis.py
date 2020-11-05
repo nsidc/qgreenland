@@ -341,7 +341,3 @@ def build_layer_abstract(layer_cfg):
             abstract += citation_url
 
     return escape(abstract)
-
-
-def _boundary_to_rectangle(boundary, *, crs):
-    """Convert a `boundary` GeoDataFrame to a qgc.QgsReferencedRectangle."""
