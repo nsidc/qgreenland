@@ -7,9 +7,7 @@ from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
-from qgreenland.util.vector import (cleanup_valid_shapefile,
-                                    filter_vector_features,
-                                    ogr2ogr)
+from qgreenland.util.vector import cleanup_valid_shapefile, ogr2ogr
 
 logger = logging.getLogger('luigi-interface')
 
@@ -24,7 +22,7 @@ class Ogr2OgrVector(LayerTask):
 
     def run(self):
         input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
-        boundary_fp = self.layer_cfg['boundary_fp']
+        boundary_fp = self.layer_cfg['boundary']['fp']
 
         ogr2ogr_kwargs = {
             # Output an UTF-8 encoded shapefile instead of default ISO-8859-1

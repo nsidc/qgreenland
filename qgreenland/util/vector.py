@@ -2,9 +2,6 @@ import logging
 import os
 import subprocess
 
-import geopandas
-
-
 logger = logging.getLogger('luigi-interface')
 
 
@@ -14,13 +11,6 @@ def cleanup_valid_shapefile(path):
             os.remove(os.path.join(path, f'valid.{ext}'))
         except FileNotFoundError:
             pass
-
-
-def filter_vector_features(vector_path, *, filter_func):
-    gdf = geopandas.read_file(vector_path)
-
-    gdf = gdf.loc[filter_func]
-    return gdf
 
 
 def ogr2ogr(in_filepath, out_filepath, **ogr2ogr_kwargs):

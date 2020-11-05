@@ -7,7 +7,7 @@ import copy
 import csv
 import os
 
-import geopandas
+import fiona
 import yamale
 
 import qgreenland.exceptions as exc
@@ -59,14 +59,21 @@ def _deref_boundaries(cfg):
     boundaries_config = cfg['project']['boundaries']
     for boundary_name, boundary_fn in boundaries_config.items():
         fp = os.path.join(LOCALDATA_DIR, boundary_fn)
-        gdf = geopandas.read_file(fp)
-        if (feature_count := len(gdf)) != 1:
+        with fiona.open(fp) as ifile:
+            features = list(ifile)
+            meta = ifile.meta
+            bbox = ifile.bounds
+        # features = [1]
+        # meta = {'crs': {'init': 'epsg:3413'}}
+        # bbox = [1,2,3,4]
+
+        if (feature_count := len(features)) != 1:
             raise exc.QgrInvalidConfigError(
                 f'Configured boundary {boundary_name} contains the wrong'
                 f' number of features. Expected 1, got {feature_count}.'
             )
 
-        if (boundary_crs := gdf.crs['init'].lower()) \
+        if (boundary_crs := meta['crs']['init'].lower()) \
            != (project_crs := cfg['project']['crs'].lower()):
             raise exc.QgrInvalidConfigError(
                 f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
@@ -77,13 +84,16 @@ def _deref_boundaries(cfg):
             'fp': fp,
             # TODO: Rename to more generic name
             # TODO: Replace gdf with a fiona object?
-            'gdf': gdf,
-            'bbox': gdf.total_bounds,
+            'features': features,
+            'bbox': bbox,
         }
 
 
 def _deref_layers(cfg):
-    """Dereferences layers in `cfg`, modifying `cfg`."""
+    """Dereferences layers in `cfg`, modifying `cfg`.
+
+    Expects boundaries to already be dereferenced.
+    """
     layers_config = cfg['layers']
     datasets_config = cfg['datasets']
     project_config = cfg['project']
@@ -100,9 +110,8 @@ def _deref_layers(cfg):
 
         # Always default to the background extent
         boundary_name = layer_config.get('boundary', 'background')
-        boundary = project_config['boundaries'][boundary_name]
-        layer_config['boundary'] = boundary['gdf']
-        layer_config['boundary_fp'] = boundary['fp']
+
+        layer_config['boundary'] = project_config['boundaries'][boundary_name]
 
 
 def _dereference_config(cfg):
