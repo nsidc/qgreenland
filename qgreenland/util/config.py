@@ -8,6 +8,11 @@ import csv
 import functools
 import os
 
+# HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
+# Importing qgis before fiona is absolutely necessary to avoid segmentation
+# faults. They have been occurring in unit tests. We still have no clue why.
+import qgis.core as qgc  # noqa
+# HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 import fiona
 import yamale
 
@@ -64,9 +69,6 @@ def _deref_boundaries(cfg):
             features = list(ifile)
             meta = ifile.meta
             bbox = ifile.bounds
-        # features = [1]
-        # meta = {'crs': {'init': 'epsg:3413'}}
-        # bbox = [1,2,3,4]
 
         if (feature_count := len(features)) != 1:
             raise exc.QgrInvalidConfigError(
