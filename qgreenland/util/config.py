@@ -7,7 +7,7 @@ import copy
 import csv
 import os
 
-# import geopandas
+import geopandas
 import yamale
 
 from qgreenland.constants import LOCALDATA_DIR
@@ -61,8 +61,7 @@ def _dereference_config(cfg):
 
     for boundary_name, boundary_fn in project_config['boundaries'].items():
         fn = os.path.join(LOCALDATA_DIR, boundary_fn)
-        # gdf = geopandas.read_file(fn)
-        gdf = ['foo']
+        gdf = geopandas.read_file(fn)
         if (feature_count := len(gdf)) != 1:
             raise RuntimeError(f'Configured boundary {boundary_name} contains '
                                'the wrong number of features. Expected 1, got '
