@@ -1,9 +1,21 @@
+import inspect
+import os
+import sys
 from pprint import pprint
 
 from invoke import task
 
 from .util import print_and_run
-from qgreenland.constants import PACKAGE_DIR
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(
+    os.path.join(
+        inspect.getfile(inspect.currentframe()),
+        os.pardir
+    )
+))
+sys.path.append(PROJECT_DIR)
+
+from qgreenland.constants import PACKAGE_DIR, TEST_DIR
 
 
 @task(aliases=['flake8'])
@@ -37,7 +49,7 @@ def validate(ctx, verbose=False):
 
 @task
 def unit(ctx):
-    print_and_run('pytest qgreenland/test', pty=True)
+    print_and_run(f'cd {PROJECT_DIR} && pytest {TEST_DIR}', pty=True)
     print('Unit tests passed.')
 
 
