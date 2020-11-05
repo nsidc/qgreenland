@@ -7,7 +7,10 @@ import copy
 import csv
 import os
 
+# import geopandas
 import yamale
+
+from qgreenland.constants import LOCALDATA_DIR
 
 
 def _load_config(config_filename, *, config_dir, schema_dir):
@@ -54,6 +57,17 @@ def _dereference_config(cfg):
 
     layers_config = cfg['layers']
     datasets_config = cfg['datasets']
+    project_config = cfg['project']
+
+    for boundary_name, boundary_fn in project_config['boundaries'].items():
+        fn = os.path.join(LOCALDATA_DIR, boundary_fn)
+        # gdf = geopandas.read_file(fn)
+        gdf = ['foo']
+        if (feature_count := len(gdf)) != 1:
+            raise RuntimeError(f'Configured boundary {boundary_name} contains '
+                               'the wrong number of features. Expected 1, got '
+                               f'{feature_count}.')
+        project_config['boundaries'][boundary_name] = gdf
 
     for layer_config in layers_config:
         # Populate related dataset configuration
@@ -66,13 +80,9 @@ def _dereference_config(cfg):
                                                          source_id)
             del layer_config['dataset']['sources']
 
-        # TODO: Populate related layer group configuration? Instead of
-        # accessing CONFIG['layers'][layer_id], allow direct access by
-        # CONFIG[layer_id]
-
-        # TODO: Populate layer_config['boundary'] with referenced value in
-        # project config.
-        # breakpoint()
+        # Always default to the background extent
+        boundary_name = layer_config.get('boundary', 'background')
+        layer_config['boundary'] = project_config['boundaries'][boundary_name]
 
     # Turn layers config in to a dict keyed by id
     cfg['layers'] = {x['id']: x for x in cfg['layers']}
