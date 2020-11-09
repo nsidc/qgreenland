@@ -85,8 +85,6 @@ def _deref_boundaries(cfg):
 
         boundaries_config[boundary_name] = {
             'fp': fp,
-            # TODO: Rename to more generic name
-            # TODO: Replace gdf with a fiona object?
             'features': features,
             'bbox': bbox,
         }
