@@ -4,4 +4,4 @@ crs: 'EPSG:3413'
 
 boundaries:
   background: 'latitude_shape_45_degrees.geojson'
-  data: 'greenland_with_blubber.geojson'
+  data: 'greenland_rectangle.geojson'
