@@ -1312,16 +1312,16 @@
 
 # NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
 # an hour or more on `qgc.QgsRasterLayer` call. Remove it?
-# - id: image_mosaic_2015
-#   title: 'Greenland Image Mosaic 2015 (Online Only)'
-#   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
-#   visible: False
-#   group_path: 'Internet-required data'
-#   boundary: 'data'
-#   data_source: image_mosaic.2015
-#   ingest_task: None
-#   file_type: '.tif'
-#   data_type: 'raster'
+- id: image_mosaic_2015
+  title: 'Greenland Image Mosaic 2015 (Online Only)'
+  description: 'Sentinel-2 multispectral satellite imagery from 2015.'
+  visible: False
+  group_path: 'Internet-required data'
+  boundary: 'data'
+  data_source: image_mosaic.2015
+  ingest_task: None
+  file_type: '.tif'
+  data_type: 'raster'
 
 
 ############
