@@ -31,7 +31,7 @@
   ogr2ogr_kwargs:
     input_filename: 'arctic_circle.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 
 - &lat_lines
