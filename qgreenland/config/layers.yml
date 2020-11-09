@@ -48,7 +48,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_25_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - <<: *lat_lines
   id: lat_0_5_deg
@@ -58,7 +58,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_5_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - <<: *lat_lines
   id: lat_1_deg
@@ -68,7 +68,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_1_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - <<: *lat_lines
   id: lat_2_deg
@@ -78,7 +78,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_2_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - <<: *lat_lines
   id: lat_5_deg
@@ -88,7 +88,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_5_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - <<: *lat_lines
   id: lat_10_deg
@@ -98,7 +98,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_10_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - <<: *lat_lines
   id: lat_15_deg
@@ -108,7 +108,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_15_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - <<: *lat_lines
   id: lat_20_deg
@@ -118,7 +118,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_20_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - <<: *lat_lines
   id: lat_30_deg
@@ -128,7 +128,7 @@
   ogr2ogr_kwargs:
     input_filename: 'latitudes_30_degree.geojson'
     s_srs: 'EPSG:4326'
-    segmentize: 100
+    segmentize: 1
 
 - &lon_lines
   id: lon_0_5_deg
@@ -144,7 +144,9 @@
   ogr2ogr_kwargs:
     input_filename: 'longitudes_0_5_degree.geojson'
     s_srs: 'EPSG:4326'
-    # The value "1000" resulted in straned points after subset, so we went smaller.
+    # The value "1000" resulted in straned points after subset, so we went
+    # smaller. We think this is becuase the unit we segmentize is in the source
+    # srs (degrees), not the dest srs (meters).
     segmentize: 100
 
 - <<: *lon_lines
