@@ -11,4 +11,4 @@ def test_get_layer_config_all():
 def test_get_layer_config_one():
     # If the layer does not exist, an exception will be raised and pytest will
     # appropriately fail.
-    CONFIG['layers']['coastlines']
+    assert CONFIG['layers']['coastlines']

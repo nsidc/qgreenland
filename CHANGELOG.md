@@ -3,6 +3,8 @@
 - Fix: Remove extraneous `valid.shp` shapefiles from final package.
 - Fix: "geothermal heat flux" layer units (MW/m2 -> mW/m2)
 - New "Glaciology" layer: Likely Basal Thermal State
+- Support for non-rectangular boundaries. Use circular (latitude bounded)
+  background boundary.
 
 # v0.35.0 (2020-09-02)
 

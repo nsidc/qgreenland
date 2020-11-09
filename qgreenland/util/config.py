@@ -5,9 +5,19 @@ ONLY the constants module should import this module.
 
 import copy
 import csv
+import functools
 import os
 
+# HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
+# Importing qgis before fiona is absolutely necessary to avoid segmentation
+# faults. They have been occurring in unit tests. We still have no clue why.
+import qgis.core as qgc  # noqa: F401
+import fiona  # noqa: I100
+# HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 import yamale
+
+import qgreenland.exceptions as exc
+from qgreenland.constants import LOCALDATA_DIR
 
 
 def _load_config(config_filename, *, config_dir, schema_dir):
@@ -35,26 +45,59 @@ def _load_config(config_filename, *, config_dir, schema_dir):
     return config[0][0]
 
 
-def _dereference_config(cfg):
-    """Take a full configuration object, replace references with the referent.
+def _find_in_list_by_id(haystack, needle):
+    matches = [d for d in haystack if d['id'] == needle]
+    if len(matches) > 1:
+        raise LookupError(f'Found multiple matches in list with same id: {needle}')
 
-    - Datasets
-    - Sources
-    - Ingest Tasks
+    if len(matches) != 1:
+        raise LookupError(f'Found no matches in list with id: {needle}')
+
+    return copy.deepcopy(matches[0])
+
+
+def _deref_boundaries(cfg):
+    """Dereference project boundaries, modifying `cfg`.
+
+    Replace project boundary value (filename) with an object containing
+    useful information about the boundary file.
     """
-    def _find_in_list_by_id(haystack, needle):
-        matches = [d for d in haystack if d['id'] == needle]
-        if len(matches) > 1:
-            raise LookupError(f'Found multiple matches in list with same id: {needle}')
+    boundaries_config = cfg['project']['boundaries']
+    for boundary_name, boundary_fn in boundaries_config.items():
+        fp = os.path.join(LOCALDATA_DIR, boundary_fn)
+        with fiona.open(fp) as ifile:
+            features = list(ifile)
+            meta = ifile.meta
+            bbox = ifile.bounds
 
-        if len(matches) != 1:
-            raise LookupError(f'Found no matches in list with id: {needle}')
+        if (feature_count := len(features)) != 1:
+            raise exc.QgrInvalidConfigError(
+                f'Configured boundary {boundary_name} contains the wrong'
+                f' number of features. Expected 1, got {feature_count}.'
+            )
 
-        return copy.deepcopy(matches[0])
+        if (boundary_crs := meta['crs']['init'].lower()) \
+           != (project_crs := cfg['project']['crs'].lower()):
+            raise exc.QgrInvalidConfigError(
+                f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
+                f' match project CRS ({project_crs}).'
+            )
 
+        boundaries_config[boundary_name] = {
+            'fp': fp,
+            'features': features,
+            'bbox': bbox,
+        }
+
+
+def _deref_layers(cfg):
+    """Dereferences layers in `cfg`, modifying `cfg`.
+
+    Expects boundaries to already be dereferenced.
+    """
     layers_config = cfg['layers']
     datasets_config = cfg['datasets']
-
+    project_config = cfg['project']
     for layer_config in layers_config:
         # Populate related dataset configuration
         if 'dataset' not in layer_config:
@@ -66,13 +109,21 @@ def _dereference_config(cfg):
                                                          source_id)
             del layer_config['dataset']['sources']
 
-        # TODO: Populate related layer group configuration? Instead of
-        # accessing CONFIG['layers'][layer_id], allow direct access by
-        # CONFIG[layer_id]
+        # Always default to the background extent
+        boundary_name = layer_config.get('boundary', 'background')
 
-        # TODO: Populate layer_config['extent'] with referenced value in project
-        # config.
-        # breakpoint()
+        layer_config['boundary'] = project_config['boundaries'][boundary_name]
+
+
+def _dereference_config(cfg):
+    """Take a full configuration object, replace references with the referent.
+
+    - Datasets
+    - Sources
+    - Ingest Tasks
+    """
+    _deref_boundaries(cfg)
+    _deref_layers(cfg)
 
     # Turn layers config in to a dict keyed by id
     cfg['layers'] = {x['id']: x for x in cfg['layers']}
@@ -80,6 +131,7 @@ def _dereference_config(cfg):
     return cfg
 
 
+@functools.lru_cache(maxsize=None)
 def make_config(*, config_dir, schema_dir):
     # TODO: Avoid all this argument drilling without import cycles... this
     # shouldn't be so hard!

@@ -1,0 +1,39 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name", "properties": {"name": "urn:ogc:def:crs:EPSG:3413"}
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "label": "QGreenland Data Extent"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [[
+                    [
+                        -998012.000,
+                        -329624.000
+                    ],
+                    [
+                        1228670.000,
+                        -329624.000
+                    ],
+                    [
+                        1228670.000,
+                        -3611178.000
+                    ],
+                    [
+                        -998012.000,
+                        -3611178.000
+                    ],
+                    [
+                        -998012.000,
+                        -329624.000
+                    ]
+                ]]
+            }
+        }
+    ]
+}

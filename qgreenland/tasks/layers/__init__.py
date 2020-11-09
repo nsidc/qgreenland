@@ -12,7 +12,6 @@ from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_vector import RarredVector
 from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.raster_calc import RasterCalc
-from qgreenland.tasks.layers.utm_zones import UtmZones
 from qgreenland.tasks.layers.zipped_netcdf import ZippedNetCdf
 from qgreenland.tasks.layers.zipped_vector import ZippedVector
 
@@ -31,7 +30,6 @@ INGEST_TASKS = {
     'rarred_vector': RarredVector,
     'raster': Raster,
     'raster_calc': RasterCalc,
-    'utm_zones': UtmZones,
     'zipped_netcdf': ZippedNetCdf,
     'zipped_vector': ZippedVector,
 }

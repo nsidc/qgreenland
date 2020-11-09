@@ -7,35 +7,9 @@ from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
-from qgreenland.util.vector import (cleanup_valid_shapefile,
-                                    filter_vector,
-                                    ogr2ogr)
+from qgreenland.util.vector import cleanup_valid_shapefile, ogr2ogr
 
 logger = logging.getLogger('luigi-interface')
-
-
-# TODO: Make more generic -- filter vector features, don't assume .shp
-# TODO: Use Ogr2OgrVector to filter with sql instead of lambda?
-class FilterShapefileFeatures(LayerTask):
-    """Expects a shapefile as input and writes a shapefile out."""
-
-    task_type = TaskType.WIP
-    filter_func = luigi.Parameter()
-
-    def output(self):
-        return luigi.LocalTarget(f'{self.outdir}/filter/')
-
-    def run(self):
-        logger.info(f"Filtering {self.layer_cfg['id']}...")
-        shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
-        gdf = filter_vector(
-            shapefile,
-            filter_func=self.filter_func
-        )
-
-        with temporary_path_dir(self.output()) as temp_path:
-            fn = os.path.join(temp_path, self.filename)
-            gdf.to_file(fn, driver='ESRI Shapefile')
 
 
 class Ogr2OgrVector(LayerTask):
@@ -48,19 +22,15 @@ class Ogr2OgrVector(LayerTask):
 
     def run(self):
         input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
+        boundary_fp = self.layer_cfg['boundary']['fp']
 
-        # Extract the extent from the config, defaulting to 'background'.
-        layer_extent_str = self.layer_cfg.get('extent', 'background')
-        extent = CONFIG['project']['extents'][layer_extent_str]
-        clipdst = ('"{xmin}" "{ymin}" '
-                   '"{xmax}" "{ymax}"').format(**extent)  # noqa: FS002
         ogr2ogr_kwargs = {
             # Output an UTF-8 encoded shapefile instead of default ISO-8859-1
             'lco': 'ENCODING=UTF-8',
             't_srs': CONFIG['project']['crs'],
             # As opposed to `clipsrc`, `clipdst` uses the destination SRS
             # (`t_srs`) to clip the input after reprojection.
-            'clipdst': clipdst,
+            'clipdst': boundary_fp,
         }
         ogr2ogr_kwargs.update(input_ogr2ogr_kwargs)
 

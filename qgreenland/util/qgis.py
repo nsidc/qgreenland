@@ -15,6 +15,9 @@ from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
 
+# TODO: Figure out which functions should start with underscore and apply
+# consistently
+
 
 def _get_raster_layer(layer_path, layer_cfg):
     return qgc.QgsRasterLayer(
@@ -235,12 +238,14 @@ def make_qgis_project_file(path):
     # Set the default extent. Eventually we may want to pull the extent directly
     # from the configured 'map frame' layer.
     view = project.viewSettings()
-    background_extent = CONFIG['project']['extents']['data']
-    extent = qgc.QgsReferencedRectangle(
-        qgc.QgsRectangle(*background_extent.values()),
+
+    project_rectangle = qgc.QgsReferencedRectangle(
+        qgc.QgsRectangle(
+            *CONFIG['project']['boundaries']['data']['bbox']
+        ),
         project_crs
     )
-    view.setDefaultViewExtent(extent)
+    view.setDefaultViewExtent(project_rectangle)
 
     _add_layers(project)
 

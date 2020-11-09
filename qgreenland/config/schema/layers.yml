@@ -21,7 +21,7 @@ layer:
   # The name of a style (represented as .qml file in `assets/styles`). Should
   # NOT include .qml file extension
   style: str(required=False)
-  extent: enum('background', 'data', required=False)
+  boundary: enum('background', 'data', required=False)
 
   # Reference to a data source in datasets.yml (`{dataset_id}.{source_id}`)
   data_source: str()
@@ -66,6 +66,8 @@ gdal_calc_kwargs:
   calc: str(required=True)
 
 ---
+# TODO: These kwargs are passed to CLI. Consider expressing as list instead of
+# map?
 ogr2ogr_kwargs:
   # https://gdal.org/programs/ogr2ogr.html
   input_filename: str(required=False)
@@ -76,8 +78,10 @@ ogr2ogr_kwargs:
   segmentize: int(required=False)
   sql: str(required=False)
   makevalid: str(required=False)
+  where: str(required=False)
   # TODO: this really isn't an `ogr2ogr` arg, its an envvar. Sometimes (natural
   # earth timezones) this is required to allow reprojection of some shapes.
+  # Move to `ogr2ogr_env`?
   OGR_ENABLE_PARTIAL_REPROJECTION: bool(required=False)
 
 ---

@@ -4,7 +4,6 @@ import shutil
 import luigi
 import rasterio as rio
 
-from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
@@ -70,17 +69,10 @@ class WarpRaster(LayerTask):
                 'override_source_projection not implemented for raster layers.'
             )
 
-        extent_str = self.layer_cfg.get('extent', 'background')
-        extent = CONFIG['project']['extents'][extent_str]
-
-        # TODO: we should probably do an intersection between the dataset bounds
-        # and the extent bounds to determine the correct values to pass to
-        # 'outputBounds'. If the dataset is SMALLER than the outputBounds, gdal
-        # will create a BIGGER dataset than the input, and fill it with e.g.,
-        # zeros
         warp_kwargs = {
             'resampleAlg': 'bilinear',
-            'outputBounds': list(extent.values()),
+            'cutlineDSName': self.layer_cfg['boundary']['fp'],
+            'cropToCutline': True,
             'creationOptions': ['COMPRESS=DEFLATE']
         }
         if 'warp_kwargs' in self.layer_cfg:

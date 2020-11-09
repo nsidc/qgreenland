@@ -43,10 +43,12 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
     if not warp_kwargs:
         warp_kwargs = {}
 
+    warp_kwargs['dstSRS'] = CONFIG['project']['crs']
+
     srs_str = _get_raster_srs(inp_path)
     logger.info(f'Detected projection: {srs_str}')
 
-    # Override with configured SRS, if present
+    # Override with configured srcSRS, if present
     if 'srcSRS' in warp_kwargs:
         logger.info('Overriding the source projection with: '
                     f"{warp_kwargs['srcSRS']}")
@@ -56,10 +58,9 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
                            'No projection automatically detected and '
                            'none explicitly provided.')
 
-    project_crs = CONFIG['project']['crs']
-    logger.debug(f'Warping with arguments: {warp_kwargs}')
-    logger.info(f'Target projection: {project_crs}')
-    gdal.Warp(out_path, inp_path, dstSRS=project_crs, **warp_kwargs)
+    logger.debug(f'Warping {inp_path} -> {out_path}'
+                 f' with arguments: {warp_kwargs}')
+    gdal.Warp(out_path, inp_path, **warp_kwargs)
 
 
 def gdal_calc_raster(in_filepath, out_filepath, *, layer_cfg, gdal_calc_kwargs):
