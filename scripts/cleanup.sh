@@ -1,1 +1,1 @@
-docker-compose exec luigi ./qgreenland/util/cleanup.py $@
+docker-compose exec luigi ./tasks/qgreenland/qgreenland/util/cleanup.py $@
