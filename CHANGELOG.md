@@ -1,3 +1,7 @@
+# v0.37.0 (unreleased)
+
+- Update GEM research stations symbology to label stations with their names.
+
 # v0.36.0 (2020-11-09)
 
 - Fix: Remove extraneous `valid.shp` shapefiles from final package.
