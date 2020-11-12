@@ -123,6 +123,11 @@ def find_single_file_by_ext(path, *, ext):
 
 @contextmanager
 def temporary_path_dir(target):
+    """Standardizes Luigi task file output behavior.
+
+    target: a Luigi.FileSystemTarget
+            https://luigi.readthedocs.io/en/stable/api/luigi.target.html#luigi.target.FileSystemTarget.temporary_path
+    """
     with target.temporary_path() as p:
         try:
             os.makedirs(p, exist_ok=True)
