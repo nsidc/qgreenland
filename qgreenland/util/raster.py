@@ -1,5 +1,7 @@
 import logging
+import os
 import subprocess
+import tempfile
 
 import pyproj
 from osgeo import gdal
@@ -38,6 +40,11 @@ def _get_raster_srs(fp):
 
 
 def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
+    """Use gdal.Warp to modify raster data file.
+
+    TODO: Switch to gdal command-line
+    TODO: Figure out a way to warp in one step, stop using _gdalwarp_cut_hack()
+    """
     logger.info(f"Reprojecting {layer_cfg['id']}...")
 
     if not warp_kwargs:
@@ -58,8 +65,59 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
                            'No projection automatically detected and '
                            'none explicitly provided.')
 
-    logger.debug(f'Warping {inp_path} -> {out_path}'
-                 f' with arguments: {warp_kwargs}')
+    # gdal.Warp(out_path, inp_path, **warp_kwargs)
+    _gdalwarp_cut_hack(
+        out_path, inp_path,
+        layer_cfg=layer_cfg, warp_kwargs=warp_kwargs
+    )
+
+
+def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs):
+    """Hack for an issue with some gdal cutlines.
+
+    <mailing list link here>
+
+    Warp and set extent. In order for cut to behave correctly, we have to set
+    the target extent (-te in CLI) before doing the cut; if we don't do this,
+    gdalwarp returns errors in certain cases:
+
+     Processing NE2_LR_LC_SR_W.tif [1/1] : 0
+     Warning 1: Self-intersection at or near point 16155.00500979846
+     2024.9999689849035
+     ERROR 1: Cutline polygon is invalid.
+
+    We believe this only occurs when the cutline crosses over a "projection
+    boundary"; e.g. +/- 180° in WGS84 to polarstereo reprojection. The error
+    message above was produced while attempting to reproject NE2 raster to
+    polarstereo and cut it along 40° latitude in one operation. We have no
+    idea why setting target extent in a separate operation fixes this. Setting
+    target extent in the same operation _does not_ fix this.
+
+    TODO: Figure out a way to stop doing this in two steps!!!
+    """
+    # These kwargs are only for step2. 'creationOptions' is extracted so we
+    # don't, e.g. compress twice.
+    step2_keys = ['cutlineDSName', 'cropToCutline', 'creationOptions']
+
+    # Step 1 needs to subset for this to work (outputBounds == `-te`).
+    step1_kwargs = {k: v for k, v in warp_kwargs.items() if k not in step2_keys}
+    step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
+
+    # Step 2 actually does the shape-based cut as a separate step, to avoid
+    # errors.
+    step2_kwargs = {k: v for k, v in warp_kwargs.items() if k in step2_keys}
+
+    with tempfile.TemporaryDirectory() as td:
+        step1_tempfn = f'tempfile{os.path.splitext(out_path)[1]}'
+        step1_tempfp = os.path.join(td, step1_tempfn)
+
+        _gdalwarp(step1_tempfp, inp_path, **step1_kwargs)
+        _gdalwarp(out_path, step1_tempfp, **step2_kwargs)
+
+
+def _gdalwarp(out_path, inp_path, **warp_kwargs):
+    logger.debug(f'Warping {inp_path} -> {out_path} with arguments:'
+                 f' {warp_kwargs}')
     gdal.Warp(out_path, inp_path, **warp_kwargs)
 
 

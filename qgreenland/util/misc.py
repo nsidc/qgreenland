@@ -123,6 +123,10 @@ def find_single_file_by_ext(path, *, ext):
 
 @contextmanager
 def temporary_path_dir(target):
+    """TODO: Populate me.
+
+    What's a target?
+    """
     with target.temporary_path() as p:
         try:
             os.makedirs(p, exist_ok=True)
