@@ -123,9 +123,10 @@ def find_single_file_by_ext(path, *, ext):
 
 @contextmanager
 def temporary_path_dir(target):
-    """TODO: Populate me.
+    """Standardizes Luigi task file output behavior.
 
-    What's a target?
+    target: a Luigi.FileSystemTarget
+            https://luigi.readthedocs.io/en/stable/api/luigi.target.html#luigi.target.FileSystemTarget.temporary_path
     """
     with target.temporary_path() as p:
         try:
