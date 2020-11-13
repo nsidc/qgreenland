@@ -125,8 +125,13 @@ def _dereference_config(cfg):
     _deref_boundaries(cfg)
     _deref_layers(cfg)
 
-    # Turn layers config in to a dict keyed by id
-    cfg['layers'] = {x['id']: x for x in cfg['layers']}
+    # Turn layers config in to a dict keyed by id TODO: we should ensure that
+    # all objects in the CONFIG are immutable. We need to do a deepcopy here
+    # because the use of YAML anchors(`&`)/references(`*`) in the config yml
+    # files result in config objects that are copied by reference, not by
+    # value. So, if we try to e.g., `pop` an element from a list in the config,
+    # it will affect all other pieces of config that reference that data.
+    cfg['layers'] = {x['id']: copy.deepcopy(x) for x in cfg['layers']}
 
     return cfg
 
