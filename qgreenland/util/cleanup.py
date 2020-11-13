@@ -35,12 +35,8 @@ def _rmtree(directory, *, retries=3):
         shutil.rmtree(directory)
 
 
-def cleanup_intermediate_dirs(delete_fetch_dir=False):
+def cleanup_intermediate_dirs():
     """Delete all intermediate data, except maybe 'fetch' dir."""
-    if delete_fetch_dir:
-        _rmtree(WIP_DIR)
-        return
-
     if os.path.isfile(ZIP_TRIGGERFILE):
         os.remove(ZIP_TRIGGERFILE)
 
@@ -193,6 +189,10 @@ def cleanup_cli(**kwargs):  # noqa: C901
             f'rm -rf {TaskType.FINAL.value}/*',
             dry_run=kwargs['dry_run']
         )
+        # The triggerfile tells Luigi tasks to zip the compiled data. Can't do
+        # that if we just deleted it!
+        if os.path.isfile(ZIP_TRIGGERFILE):
+            print_and_run(f'rm {ZIP_TRIGGERFILE}')
 
     if kwargs['delete_all_releases']:
         print_and_run(
