@@ -1294,6 +1294,43 @@
     resampling_method: average
 
 
+
+
+######################
+# Future Projections #
+######################
+
+# TODO: better id, title, description for these layers
+- &rcp
+  id: rcp_26
+  title: 'RCP 26 scenario'
+  description: 'Fraction of a grid cell covered by ice (grounded or floating)'
+  visible: False
+  group_path: 'Future projections'
+  # style: 'TODO'
+  boundary: 'data'
+  data_source: future_icesheet_coverage.rcp_26
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'sftgif'
+    noData: 0
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+
+- <<: *rcp
+  id: rcp_45
+  title: 'RCP 45 scenario'
+  data_source: future_icesheet_coverage.rcp_45
+
+- <<: *rcp
+  id: rcp_85
+  title: 'RCP 85 scenario'
+  data_source: future_icesheet_coverage.rcp_85
+
+
 ######################
 # ONLINE-ONLY layers #
 ######################
