@@ -1307,10 +1307,12 @@
 - &future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_26
   title: 'Future (year 3007) ice sheet coverage - RCP 2.6 scenario (1.8km)'
-  description: 'Fraction of a grid cell covered by ice (grounded or floating) in the year 3007'
+  description: >-
+      Fraction of a grid cell covered by ice (grounded or floating) in the year
+      3007. Values less than or equal to 16% are masked.
   visible: False
   group_path: 'Future projections'
-  # style: 'TODO'
+  style: 'future_ice_sheet_coverage'
   boundary: 'data'
   data_source: future_icesheet_coverage.rcp_26
   ingest_task: netcdf_raster
