@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import os
 import shutil
+import subprocess
 import time
 
 import click
 
 from qgreenland.constants import (INPUT_DIR,
                                   RELEASES_DIR,
-                                  REQUEST_TIMEOUT,
                                   TaskType,
                                   WIP_DIR,
                                   ZIP_TRIGGERFILE)
@@ -54,7 +54,7 @@ def cleanup_intermediate_dirs(delete_fetch_dir=False):
                 _rmtree(x)
 
 
-def _validate_boolean_choice(ctx, param, value):
+def _validate_boolean_choice(_ctx, _param, value):
     if value == 'True':
         return True
     if value == 'False':
@@ -92,7 +92,21 @@ def _validate_ambiguous_command(kwargs):
     return kwargs
 
 
-@click.command(context_settings=dict(help_option_names=['-h', '--help']))
+def print_and_run(cmd, *, dry_run):
+    print(cmd)
+    if not dry_run:
+        subprocess.run(
+            cmd,
+            shell=True,
+            check=True,
+            executable='/bin/bash'  # /bin/sh doesn't support brace expansion
+        )
+
+
+@click.command(context_settings={'help_option_names': ['-h', '--help']})
+@click.option('dry_run', '--dry-run', '-d',
+              help="Print commands, but don't actually delete anything.",
+              is_flag=True)
 @click.option('delete_inputs_by_pattern', '--delete-inputs-by-pattern', '-i',
               help=(
                   'Use LAYER_ID_PATTERN to delete input-cached layers by glob'
@@ -133,32 +147,58 @@ def _validate_ambiguous_command(kwargs):
               default='False', show_default=True)
 @click.argument('layer_id_pattern',
                 required=False, default=None)
-def cleanup_cli(**kwargs):
-    """Cleans up input, WIP, and/or output data created by QGreenland.
+# NOTE: Complexity check (C901) is disabled because this function is just a big
+#       set of switches by design!
+def cleanup_cli(**kwargs):  # noqa: C901
+    """Clean up input, WIP, and/or output data created by QGreenland.
+
+    LAYER_ID_PATTERN supports shell globbing (*) and brace expansion to select
+    layers to cleanup by id.
 
     By default, clean up the compiled (but not zipped) datapackage and, if
-    LAYER_ID_PATTERN glob pattern is provided, any matching WIP layers.
+    LAYER_ID_PATTERN is provided, any matching WIP layers.
     """
     _validate_ambiguous_command(kwargs)
 
+    if kwargs['dry_run']:
+        print('WARNING: In DRY RUN mode. Nothing will be deleted.')
+        print()
+
     if kwargs['layer_id_pattern']:
-        pass
+        if kwargs['delete_wips_by_pattern']:
+            print_and_run(
+                f'rm -rf {TaskType.WIP.value}/{kwargs["layer_id_pattern"]}',
+                dry_run=kwargs['dry_run']
+            )
+        if kwargs['delete_inputs_by_pattern']:
+            print_and_run(
+                f'rm -rf {INPUT_DIR}/{kwargs["layer_id_pattern"]}',
+                dry_run=kwargs['dry_run']
+            )
+
+    if kwargs['delete_all_input']:
+        print_and_run(
+            f'rm -rf {INPUT_DIR}/*',
+            dry_run=kwargs['dry_run']
+        )
 
     if kwargs['delete_all_wip']:
-        # cleanup_intermediate_dirs(delete_fetch_dir=kwargs['delete_all_input'])
-        print(
-            'cleanup_intermediate_dirs(delete_fetch_dir='
-            f'{kwargs["delete_all_input"]})'
+        print_and_run(
+            f'rm -rf {TaskType.WIP.value}/*',
+            dry_run=kwargs['dry_run']
         )
 
     if kwargs['delete_compiled']:
-        return
+        print_and_run(
+            f'rm -rf {TaskType.FINAL.value}/*',
+            dry_run=kwargs['dry_run']
+        )
 
     if kwargs['delete_all_releases']:
-        return
-
-    if kwargs['...']:
-        return
+        print_and_run(
+            f'rm -rf {RELEASES_DIR}/*',
+            dry_run=kwargs['dry_run']
+        )
 
 
 if __name__ == '__main__':
