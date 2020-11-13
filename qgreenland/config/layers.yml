@@ -1305,8 +1305,8 @@
 
 # TODO: better id, title, description for these layers
 - &rcp
-  id: rcp_26
-  title: 'RCP 26 scenario'
+  id: future_ice_sheet_coverage_rcp_26
+  title: 'Future ice sheet coverage - RCP 26 scenario (1.8km)'
   description: 'Fraction of a grid cell covered by ice (grounded or floating)'
   visible: False
   group_path: 'Future projections'
@@ -1324,13 +1324,13 @@
     resampling_method: average
 
 - <<: *rcp
-  id: rcp_45
-  title: 'RCP 45 scenario'
+  id: future_ice_sheet_coverage_rcp_45
+  title: 'Future ice sheet coverage - RCP 45 scenario (1.8km)'
   data_source: future_icesheet_coverage.rcp_45
 
 - <<: *rcp
-  id: rcp_85
-  title: 'RCP 85 scenario'
+  id: future_ice_sheet_coverage_rcp_85
+  title: 'Future ice sheet coverage - RCP 85 scenario (1.8km)'
   data_source: future_icesheet_coverage.rcp_85
 
 
