@@ -60,6 +60,7 @@ gdal_mdim_translate_kwargs:
 translate_kwargs:
   extract_dataset: str(required=True)
   bandList: list(int(), required=False)
+  noData: int(required=False)
 
 ---
 gdal_calc_kwargs:

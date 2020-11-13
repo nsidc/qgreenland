@@ -3,6 +3,8 @@
 - Update GEM research stations symbology to label stations with their names.
 - Increase circular background to 40 degrees latitude
 - Increase resolution of background layer to 500m
+- New 'Future projections' layers: Future (year 3007) Ice Sheet Coverage under
+  RCP 2.6, 4.5, 8.5.
 
 # v0.36.0 (2020-11-09)
 
