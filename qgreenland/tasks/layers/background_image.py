@@ -4,6 +4,7 @@ from qgreenland.tasks.common.raster import WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
+# TODO: Rename -> ZippedRaster?
 class BackgroundImage(LayerPipeline):
     """Rename files to their final location."""
 

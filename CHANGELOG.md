@@ -1,6 +1,7 @@
 # v0.37.0 (unreleased)
 
 - Update GEM research stations symbology to label stations with their names.
+- Increase circular background to 40 degrees latitude
 
 # v0.36.0 (2020-11-09)
 
