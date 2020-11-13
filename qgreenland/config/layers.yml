@@ -707,11 +707,14 @@
     stations.
   visible: False
   group_path: 'Human activity/Research stations'
+  style: 'labeled_point'
   data_source: gem_research_stations.only
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
   boundary: 'data'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, StationNam as label from \"GEMStations\"'"
 
 - id: seismograph_stations
   title: 'Seismograph Stations'
@@ -1402,19 +1405,23 @@
 
 
 - id: background
-  title: 'Background (1km)'
+  title: 'Background (500m)'
   visible: True
   group_path: 'Basemaps'
-  boundary: 'data'
-  data_source: background.only
+  boundary: 'background'
+  data_source: background_hd.only
   ingest_task: background_image
   file_type: '.tif'
   data_type: 'raster'
   # NOTE: Without passing warp_kwargs, we get a black image.
   # TODO: Which of these args are necessary to avoid that?
   warp_kwargs:
-    xRes: 1000
-    yRes: 1000
+    # We measured the size of the pixels in the input datasource (WGS84) at the
+    # North and South ends of Greenland and found a range of roughly 250m to
+    # 900m. 500m is somewhere in the middle, so some of greenland will be
+    # downsampled, and some will be oversampled.
+    xRes: 500
+    yRes: 500
     dstNodata: 0
     # Attempt to avoid pole hole and nodata line where east and west edges of
     # the original image meet after polar wrapping. TODO: This doesn't actually
