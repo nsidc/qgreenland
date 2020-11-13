@@ -707,11 +707,14 @@
     stations.
   visible: False
   group_path: 'Human activity/Research stations'
+  style: 'labeled_point'
   data_source: gem_research_stations.only
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
   boundary: 'data'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, StationNam as label from \"GEMStations\"'"
 
 - id: seismograph_stations
   title: 'Seismograph Stations'
