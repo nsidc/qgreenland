@@ -22,6 +22,7 @@ class LayerTask(luigi.Task):
     def requires(self):
         return self.requires_task
 
+    # TODO: return a deepcopy of these properties.
     @property
     def layer_cfg(self):
         return CONFIG['layers'][self.layer_id]
