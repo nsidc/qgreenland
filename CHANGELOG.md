@@ -1,7 +1,8 @@
-# v0.37.0 (unreleased)
+# v0.37.0 (Unreleased)
 
 - Update GEM research stations symbology to label stations with their names.
 - Increase circular background to 40 degrees latitude
+- Increase resolution of background layer to 500m
 
 # v0.36.0 (2020-11-09)
 
