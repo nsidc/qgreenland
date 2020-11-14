@@ -2,6 +2,7 @@ from qgreenland.tasks.common.fetch import FetchOgrRemoteData
 from qgreenland.tasks.common.vector import Ogr2OgrVector
 from qgreenland.util.luigi import LayerPipeline
 
+
 class OgrRemoteVector(LayerPipeline):
     def requires(self):
         fetch_data = FetchOgrRemoteData(

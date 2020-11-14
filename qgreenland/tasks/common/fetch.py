@@ -93,5 +93,4 @@ class FetchOgrRemoteData(FetchTask):
                     'oo': 'FEATURE_SERVER_PAGING=YES',
                 }
 
-                breakpoint()
                 ogr2ogr(f'"{url}"', ofile, **ogr2ogr_kwargs)
