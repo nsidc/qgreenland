@@ -5,8 +5,6 @@ from qgreenland.util.luigi import LayerPipeline
 
 
 class ZippedVector(LayerPipeline):
-    """Rename files to their final location."""
-
     def requires(self):
         fetch_data = FetchDataFiles(
             dataset_cfg=self.cfg['dataset'],
