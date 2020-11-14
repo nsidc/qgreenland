@@ -973,6 +973,23 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://nsidc.org/data/rdbts4/versions/1'
 
 
+# TODO: Split this up for citation purposes
+- id: ogr_remote
+  access_method: ogr_remote_vector
+  sources:
+    - id: populated_places_eva
+      # TODO: urls? feature_urls? What url params should we expect the users to
+      # provide? Just root of featureserver? 'featureserver_url'?
+      urls:
+        - 'https://services5.arcgis.com/wbN76kmEQ2ue8VQm/arcgis/rest/services/Nunat_Aqqi/FeatureServer/0/query/?f=json&where=OBJECTID<>null&outFields=*&orderByFields=OBJECTID+ASC'
+  metadata:
+    title: 'PLACEHOLDER'
+    abstract: 'PLACEHOLDER'
+    citation:
+      text: 'PLACEHOLDER'
+      url: 'http://example.com/PLACEHOLDER'
+
+
 - id: future_icesheet_coverage
   access_method: http
   sources:

@@ -7,6 +7,7 @@ from qgreenland.tasks.layers.gzipped_vector_parts import GzippedVectorParts
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
 from qgreenland.tasks.layers.local_vector import LocalVector
 from qgreenland.tasks.layers.netcdf_raster import NetCdfRaster
+from qgreenland.tasks.layers.ogr_remote_vector import OgrRemoteVector
 from qgreenland.tasks.layers.online_vector import OnlineVector
 from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_vector import RarredVector
@@ -15,6 +16,7 @@ from qgreenland.tasks.layers.raster_calc import RasterCalc
 from qgreenland.tasks.layers.zipped_netcdf import ZippedNetCdf
 from qgreenland.tasks.layers.zipped_vector import ZippedVector
 
+# TODO: Automatically generate this list from some Python metadata?
 INGEST_TASKS = {
     'arctic_vegetation': ArcticVegetation,
     'background_image': BackgroundImage,
@@ -25,6 +27,7 @@ INGEST_TASKS = {
     'ice_thickness_change': IceThicknessChange,
     'local_vector': LocalVector,
     'netcdf_raster': NetCdfRaster,
+    'ogr_remote_vector': OgrRemoteVector,
     'online_vector': OnlineVector,
     'permaice': Permaice,
     'rarred_vector': RarredVector,

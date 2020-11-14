@@ -7,6 +7,7 @@ from qgreenland.constants import ASSETS_DIR, TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import fetch_and_write_file, temporary_path_dir
+from qgreenland.util.vector import ogr2ogr
 
 
 class FetchTask(luigi.Task):
@@ -73,3 +74,24 @@ class FetchLocalDataFiles(FetchTask):
                 out_path = os.path.join(temp_path, os.path.basename(filename))
 
                 shutil.copy2(source_path, out_path)
+
+
+class FetchOgrRemoteData(FetchTask):
+    def output(self):
+        return luigi.LocalTarget(
+            os.path.join(TaskType.FETCH.value,
+                         self.output_name),
+            format=luigi.format.Nop
+        )
+
+    def run(self):
+        with temporary_path_dir(self.output()) as temp_path:
+            # TODO: Support multiple urls for this type?
+            for url in self.source_cfg['urls']:
+                ofile = os.path.join(temp_path, 'fetched.geojson')
+                ogr2ogr_kwargs = {
+                    'oo': 'FEATURE_SERVER_PAGING=YES',
+                }
+
+                breakpoint()
+                ogr2ogr(f'"{url}"', ofile, **ogr2ogr_kwargs)

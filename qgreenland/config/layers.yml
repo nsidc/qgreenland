@@ -354,6 +354,20 @@
   file_type: '.shp'
   data_type: 'vector'
 
+- id: populated_places_eva
+  title: 'Populated Places (Eva)'
+  data_source: ogr_remote.populated_places_eva
+  visible: True
+  group_path: 'Built environment'
+  style: 'populated_places'
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame
+    input_filename: 'fetched.geojson'
+
 - &hdx_hotosm
   id: populated_places_alt
   title: 'Populated Places (alt)'
