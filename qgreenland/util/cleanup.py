@@ -134,6 +134,8 @@ def print_and_run(cmd, *, dry_run):
               ),
               type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
               default='True', show_default=True)
+# TODO: delete_all_wip_tmp: Deletes dirs like `transform-luigi-tmp-4765361527/`
+#       from wip
 # TODO: delete_all_dev_releases?
 @click.option('delete_all_releases', '--delete-all-releases', '-R',
               help=(
