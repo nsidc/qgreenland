@@ -1,5 +1,6 @@
 # v0.37.0 (Unreleased)
 
+- New "Built environment" layer: Populated places (NAME TBD)
 - Update GEM research stations symbology to label stations with their names.
 - Increase circular background to 40 degrees latitude
 - Increase resolution of background layer to 500m
