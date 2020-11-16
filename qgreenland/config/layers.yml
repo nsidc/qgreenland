@@ -361,6 +361,7 @@
 # Built environment #
 #####################
 
+# TODO: Layer title
 - id: municipalities_population
   title: 'Municipalities and Population (nunagis)'
   data_source: nunagis.pop2019_municipalities
