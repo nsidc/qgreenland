@@ -68,22 +68,11 @@ def _validate_ambiguous_command(kwargs):
         ' {resource}s _and_ to delete {resource}s by layer ID. Please choose'
         ' only one.'
     )
-    if kwargs['layer_id_pattern']:
-        if (
-            not kwargs['delete_wips_by_pattern']
-            and not kwargs['delete_inputs_by_pattern']
-        ):
-            raise click.UsageError(
-                'Ambiguous command! You provided a layer ID glob pattern but'
-                ' also requested that no data be deleted by pattern. Please'
-                ' either enable deletion of a resource by pattern or remove the'
-                ' pattern from your command.'
-            )
-        if kwargs['delete_all_wip'] and kwargs['delete_wips_by_pattern']:
-            raise click.UsageError(msg.format(resource='WIP'))
+    if kwargs['delete_all_wip'] and kwargs['delete_wips_by_pattern']:
+        raise click.UsageError(msg.format(resource='WIP'))
 
-        if kwargs['delete_all_input'] and kwargs['delete_inputs_by_pattern']:
-            raise click.UsageError(msg.format(resource='input'))
+    if kwargs['delete_all_input'] and kwargs['delete_inputs_by_pattern']:
+        raise click.UsageError(msg.format(resource='input'))
 
     return kwargs
 
@@ -105,17 +94,13 @@ def print_and_run(cmd, *, dry_run):
               is_flag=True)
 @click.option('delete_inputs_by_pattern', '--delete-inputs-by-pattern', '-i',
               help=(
-                  'Use LAYER_ID_PATTERN to delete input-cached layers by glob'
-                  ' pattern'
-              ),
-              type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
-              default='False', show_default=True)
+                  'Bash glob/brace pattern used to delete input datasources by'
+                  ' `<dataset_id>.<source_id>`'
+              ))
 @click.option('delete_wips_by_pattern', '--delete-wips-by-pattern', '-w',
               help=(
-                  'Use LAYER_ID_PATTERN to delete WIP layers by glob pattern'
-              ),
-              type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
-              default='True', show_default=True)
+                  'Pattern used to delete WIP layers by layer ID'
+              ))
 @click.option('delete_all_input', '--delete-all-input', '-I',
               help=(
                   'Delete _ALL_ input-cached layers, ignoring LAYER_ID_PATTERN'
@@ -134,6 +119,8 @@ def print_and_run(cmd, *, dry_run):
               ),
               type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
               default='True', show_default=True)
+# TODO: delete_all_wip_tmp: Deletes dirs like `transform-luigi-tmp-4765361527/`
+#       from wip
 # TODO: delete_all_dev_releases?
 @click.option('delete_all_releases', '--delete-all-releases', '-R',
               help=(
@@ -141,18 +128,12 @@ def print_and_run(cmd, *, dry_run):
               ),
               type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
               default='False', show_default=True)
-@click.argument('layer_id_pattern',
-                required=False, default=None)
 # NOTE: Complexity check (C901) is disabled because this function is just a big
 #       set of switches by design!
 def cleanup_cli(**kwargs):  # noqa: C901
     """Clean up input, WIP, and/or output data created by QGreenland.
 
-    LAYER_ID_PATTERN supports shell globbing (*) and brace expansion to select
-    layers to cleanup by id.
-
-    By default, clean up the compiled (but not zipped) datapackage and, if
-    LAYER_ID_PATTERN is provided, any matching WIP layers.
+    By default, clean up the compiled (but not zipped) datapackage.
     """
     _validate_ambiguous_command(kwargs)
 
@@ -160,17 +141,16 @@ def cleanup_cli(**kwargs):  # noqa: C901
         print('WARNING: In DRY RUN mode. Nothing will be deleted.')
         print()
 
-    if kwargs['layer_id_pattern']:
-        if kwargs['delete_wips_by_pattern']:
-            print_and_run(
-                f'rm -rf {TaskType.WIP.value}/{kwargs["layer_id_pattern"]}',
-                dry_run=kwargs['dry_run']
-            )
-        if kwargs['delete_inputs_by_pattern']:
-            print_and_run(
-                f'rm -rf {INPUT_DIR}/{kwargs["layer_id_pattern"]}',
-                dry_run=kwargs['dry_run']
-            )
+    if kwargs['delete_wips_by_pattern']:
+        print_and_run(
+            f'rm -rf {TaskType.WIP.value}/{kwargs["delete_wips_by_pattern"]}',
+            dry_run=kwargs['dry_run']
+        )
+    if kwargs['delete_inputs_by_pattern']:
+        print_and_run(
+            f'rm -rf {INPUT_DIR}/{kwargs["delete_inputs_by_pattern"]}',
+            dry_run=kwargs['dry_run']
+        )
 
     if kwargs['delete_all_input']:
         print_and_run(

@@ -13,6 +13,8 @@ def cleanup_valid_shapefile(path):
             pass
 
 
+# TODO: Take kwargs, args, and env as separate inputs to avoid special cases.
+#       This implies separate config keys for each of these as well.
 def ogr2ogr(in_filepath, out_filepath, **ogr2ogr_kwargs):
     cmd_args_list = []
     cmd_prefix = ''

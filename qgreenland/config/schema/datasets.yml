@@ -23,6 +23,10 @@ source:
   # list of files instead
   urls: list(str(), required=False)
 
+  # For "ogr_remote_vector" access_method:
+  # TODO: Consider breaking up in to "featureserver_url", "feature_id", "query"?
+  query_url: str(required=False)
+
   # TODO: Override default filename? By default, the filename from the URL is used
   # base_filename: str(required=False)
 

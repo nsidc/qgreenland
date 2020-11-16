@@ -973,6 +973,36 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://nsidc.org/data/rdbts4/versions/1'
 
 
+- id: nunat_aqqi
+  access_method: ogr_remote_vector
+  sources:
+    - id: only
+      query_url: 'https://services5.arcgis.com/wbN76kmEQ2ue8VQm/arcgis/rest/services/Nunat_Aqqi/FeatureServer/0/query/?f=json&where=OBJECTID<>null&outFields=*&orderByFields=OBJECTID+ASC'
+  # TODO
+  metadata:
+    title: 'TBD'
+    abstract: 'TBD'
+    citation:
+      text: 'TBD'
+      url: 'http://example.com/TBD'
+
+
+- id: nunagis
+  access_method: ogr_remote_vector
+  sources:
+    - id: protected_areas
+      query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC'
+    - id: pop2019_municipalities
+      query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC'
+  # TODO
+  metadata:
+    title: 'TBD'
+    abstract: 'TBD'
+    citation:
+      text: 'TBD'
+      url: 'http://example.com/TBD'
+
+
 - id: future_icesheet_coverage
   access_method: http
   sources:
