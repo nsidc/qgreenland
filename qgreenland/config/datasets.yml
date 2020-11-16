@@ -980,11 +980,11 @@ The images and data are produced in a consistent way that makes the Index time-s
       query_url: 'https://services5.arcgis.com/wbN76kmEQ2ue8VQm/arcgis/rest/services/Nunat_Aqqi/FeatureServer/0/query/?f=json&where=OBJECTID<>null&outFields=*&orderByFields=OBJECTID+ASC'
   # TODO
   metadata:
-    title: 'PLACEHOLDER'
-    abstract: 'PLACEHOLDER'
+    title: 'TBD'
+    abstract: 'TBD'
     citation:
-      text: 'PLACEHOLDER'
-      url: 'http://example.com/PLACEHOLDER'
+      text: 'TBD'
+      url: 'http://example.com/TBD'
 
 
 - id: nunagis
@@ -996,11 +996,11 @@ The images and data are produced in a consistent way that makes the Index time-s
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC'
   # TODO
   metadata:
-    title: 'PLACEHOLDER'
-    abstract: 'PLACEHOLDER'
+    title: 'TBD'
+    abstract: 'TBD'
     citation:
-      text: 'PLACEHOLDER'
-      url: 'http://example.com/PLACEHOLDER'
+      text: 'TBD'
+      url: 'http://example.com/TBD'
 
 
 - id: future_icesheet_coverage
