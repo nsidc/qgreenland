@@ -283,6 +283,7 @@
   data_type: 'raster'
 
 
+# TODO: Split this layer up in to many layers
 - id: protected_zones
   title: 'Protected areas (nunagis)'
   data_source: nunagis.protected_areas
@@ -386,19 +387,20 @@
   file_type: '.shp'
   data_type: 'vector'
 
-- id: populated_places_eva
-  title: 'Populated Places (Eva)'
-  data_source: nunat_aqqi.only
-  visible: True
-  group_path: 'Built environment'
-  style: 'populated_places'
-  boundary: 'data'
-  ingest_task: ogr_remote_vector
-  file_type: '.shp'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
+  # # TODO: Better layer ID and title.
+  # - id: populated_places_eva
+  #   title: 'Populated Places (Eva)'
+  #   data_source: nunat_aqqi.only
+  #   visible: True
+  #   group_path: 'Built environment'
+  #   style: 'populated_places'
+  #   boundary: 'data'
+  #   ingest_task: ogr_remote_vector
+  #   file_type: '.shp'
+  #   data_type: 'vector'
+  #   ogr2ogr_kwargs:
+  #     # TODO: This is lame, stop it!
+  #     input_filename: 'fetched.geojson'
 
 - &hdx_hotosm
   id: populated_places_alt
