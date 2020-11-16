@@ -86,11 +86,11 @@ class FetchOgrRemoteData(FetchTask):
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
-            # TODO: Support multiple urls for this type?
-            for url in self.source_cfg['urls']:
-                ofile = os.path.join(temp_path, 'fetched.geojson')
-                ogr2ogr_kwargs = {
-                    'oo': 'FEATURE_SERVER_PAGING=YES',
-                }
+            url = self.source_cfg['query_url']
 
-                ogr2ogr(f'"{url}"', ofile, **ogr2ogr_kwargs)
+            ofile = os.path.join(temp_path, 'fetched.geojson')
+            ogr2ogr_kwargs = {
+                'oo': 'FEATURE_SERVER_PAGING=YES',
+            }
+
+            ogr2ogr(f'"{url}"', ofile, **ogr2ogr_kwargs)

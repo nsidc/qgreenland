@@ -282,6 +282,23 @@
   file_type: '.tif'
   data_type: 'raster'
 
+
+- id: protected_zones
+  title: 'Protected areas (nunagis)'
+  data_source: nunagis.protected_areas
+  visible: True
+  group_path: 'Biology'
+  # TODO:
+  style: null
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+
+
 - id: caff_thickbilled_murre_colonies
   title: 'Thickbilled Murre Colonies'
   data_source: caff_murre_colonies.only
@@ -343,6 +360,21 @@
 # Built environment #
 #####################
 
+- id: municipalities_population
+  title: 'Municipalities and Population (nunagis)'
+  data_source: nunagis.pop2019_municipalities
+  visible: True
+  group_path: 'Built environment'
+  # TODO:
+  style: null
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+
 - id: populated_places
   title: 'Populated Places'
   data_source: populated_places.only
@@ -356,7 +388,7 @@
 
 - id: populated_places_eva
   title: 'Populated Places (Eva)'
-  data_source: ogr_remote.populated_places_eva
+  data_source: nunat_aqqi.only
   visible: True
   group_path: 'Built environment'
   style: 'populated_places'
@@ -365,7 +397,7 @@
   file_type: '.shp'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # TODO: This is lame
+    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
 
 - &hdx_hotosm
