@@ -284,8 +284,9 @@
 
 
 # TODO: Split this layer up in to many layers
-- id: protected_zones
-  title: 'Protected areas (nunagis)'
+- &protected_areas
+  id: walrus
+  title: 'Walrus (nunagis)'
   data_source: nunagis.protected_areas
   visible: True
   group_path: 'Biology'
@@ -298,6 +299,19 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE \"Walrus%\""'
+
+- <<: *protected_areas
+  id: unesco_world_heritage_sites
+  title: 'UNESCO World Heritage Sites (nunagis)'
+  visible: True
+  group_path: 'Environmental management/Protected zones'
+  # TODO:
+  style: null
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE \"UNESCO%\""'
 
 
 - id: caff_thickbilled_murre_colonies

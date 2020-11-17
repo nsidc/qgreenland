@@ -991,6 +991,9 @@ The images and data are produced in a consistent way that makes the Index time-s
   access_method: ogr_remote_vector
   sources:
     - id: protected_areas
+      # TODO: consider other services under
+      # https://kort.nunagis.gl/server/rest/services/Hosted/. This URL implies the
+      # query will only return results related to birds.
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC'
     - id: pop2019_municipalities
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC'
