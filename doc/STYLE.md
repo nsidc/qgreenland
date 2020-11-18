@@ -3,7 +3,8 @@
 Categorical data can be raster or vector, but styling considerations are
 similar either way.
 
-Use the "Spectral" colorramp that's built-in to QGIS for Categorical data.
+Use the "Spectral" color palette from cpt-city for Categorical data. You can
+use this colormap without leaving the QGIS user interface.
 
 TODO: Pick a better color ramp or palette.
 
