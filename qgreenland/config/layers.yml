@@ -283,15 +283,13 @@
   data_type: 'raster'
 
 
-# TODO: Split this layer up in to many layers
-- &protected_areas
-  id: walrus
-  title: 'Walrus (nunagis)'
+- &walrus_protected_areas
+  id: nunagis_walrus_protected_areas
+  title: 'Walrus Protected Areas'
   data_source: nunagis.protected_areas
-  visible: True
-  group_path: 'Biology'
-  # TODO:
-  style: null
+  visible: False
+  group_path: 'Biology/Mammals'
+  style: 'protected_area_polygon'
   boundary: 'data'
   ingest_task: ogr_remote_vector
   file_type: '.shp'
@@ -299,25 +297,111 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE \"Walrus%\""'
+    where: '"\"type\" LIKE ''Walrus%''"'
 
-- <<: *protected_areas
-  id: unesco_world_heritage_sites
-  title: 'UNESCO World Heritage Sites (nunagis)'
-  visible: True
-  group_path: 'Environmental management/Protected zones'
-  # TODO:
-  style: null
+- <<: *walrus_protected_areas
+  id: nunagis_goose_protected_areas
+  title: 'Goose Protected Areas'
+  group_path: 'Biology/Birds'
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE \"UNESCO%\""'
+    where: '"\"type\" IN (''Barnacle goose colony'', ''Goose moulting and breeding areas'')"'
 
+- <<: *walrus_protected_areas
+  id: nunagis_caribou_calving_areas
+  title: 'Caribou Calving Areas'
+  group_path: 'Biology/Mammals'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Caribou%''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_beluga_areas
+  title: 'Beluga Areas'
+  group_path: 'Biology/Mammals'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Beluga%''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_bird_protected_areas
+  title: 'Bird Protected Areas'
+  group_path: 'Biology/Birds'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" IN (''Bird Protection Area'', ''Important Bird Area of BirdLife International'')"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_thickbilled_murre_colonies
+  title: 'Thickbilled Murre Breeding Colony 5km Zones'
+  group_path: 'Biology/Birds'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Colonies of breeding Brünnichs guillemots%''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_seabirds_colonies
+  title: 'Seabird Breeding Colonies'
+  group_path: 'Biology/Birds'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Colonies of breeding sea birds%''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_eider_protected_areas
+  title: 'Eider Protected Areas'
+  group_path: 'Biology/Birds'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Eider%''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_murre_group_1km_zones
+  title: 'Murre Group 1km Zones'
+  group_path: 'Biology/Birds'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Murre%''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_musk_oxen_calving_areas
+  title: 'Musk Oxen Calving Areas'
+  group_path: 'Biology/Mammals'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Musk oxen%''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_narwhal_areas
+  title: 'Narwhal Areas'
+  group_path: 'Biology/Mammals'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Narwhal%''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_polar_bear_breeding_areas
+  title: 'Polar Bear Breeding Areas'
+  group_path: 'Biology/Mammals'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" LIKE ''Polar bear%''"'
 
 - id: caff_thickbilled_murre_colonies
   title: 'Thickbilled Murre Colonies'
   data_source: caff_murre_colonies.only
-  visible: True
+  visible: False
   group_path: 'Biology/Birds'
   boundary: 'data'
   ingest_task: zipped_vector
@@ -334,7 +418,7 @@
 - id: caff_common_murre_colonies
   title: 'Common Murre Colonies'
   data_source: caff_murre_colonies.only
-  visible: True
+  visible: False
   group_path: 'Biology/Birds'
   boundary: 'data'
   ingest_task: zipped_vector
@@ -348,23 +432,12 @@
       - 'Distribution_Common_Murre_Colonies.shp'
       - 'Distribution_Common_Murre_Colonies.shx'
 
-- id: caff_rangifer
-  title: 'Wild Reindeer Populations'
-  description: 'Polygons indicating the distribution of Rangifer (Reindeer) populations.'
-  data_source: caff_rangifer.only
-  visible: True
-  group_path: 'Biology/Mammals'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.shp'
-  data_type: 'vector'
-
 - id: caff_char
   title: 'Arctic Char Populations'
   description: 'Polygons indicating the distribution of Arctic Char populations.'
   data_source: caff_char.only
   style: 'semitransparent_polygon'
-  visible: True
+  visible: False
   group_path: 'Biology/Fish'
   boundary: 'data'
   ingest_task: zipped_vector
@@ -476,18 +549,77 @@
 # Environmental management #
 ############################
 
-- id: caff_protected_areas
-  title: 'Arctic Protected Areas (CAFF 2017)'
-  visible: True
+- <<: *walrus_protected_areas
+  id: nunagis_unesco_treaty_zones
+  title: 'UNESCO Treaty Zones'
   group_path: 'Environmental management/Protected zones'
-  style: 'protected_area_polygon'
-  boundary: 'data'
-  data_source: caff_protected_areas.only
-  ingest_task: zipped_vector
-  file_type: '.shp'
-  data_type: 'vector'
   ogr2ogr_kwargs:
-    sql: "'SELECT *, NAME as label from CAFF_Protected_Areas_20_01_2017'"
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" IN (''UNESCO World Heritage Site'', ''Ramsar area'')"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_no_go_areas
+  title: 'No Go Areas'
+  group_path: 'Environmental management/Protected zones'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" = ''No Go Area''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_closed_areas
+  title: 'Closed Areas'
+  group_path: 'Environmental management/Protected zones'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" = ''Closed Area''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_salt_or_saline_lake_100m_zones
+  title: 'Salt or Saline Lake 100m Zones'
+  group_path: 'Environmental management/Protected zones'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" = ''Salt or saline lake 100m zone''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_homothermic_spring_100m_zones
+  title: 'Homothermic Spring 100m Zones'
+  group_path: 'Environmental management/Protected zones'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" = ''Homothermic spring 100 m zone''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_national_park
+  title: 'National Park'
+  group_path: 'Environmental management/Protected zones'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" = ''National Park''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_biological_important_areas
+  title: 'Biological Important Areas in the National Park'
+  group_path: 'Environmental management/Protected zones'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" = ''Biological Important Areas in the National Park''"'
+
+- <<: *walrus_protected_areas
+  id: nunagis_nature_protection_areas
+  title: 'Nature Protection Areas'
+  group_path: 'Environmental management/Protected zones'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    where: '"\"type\" = ''Nature Protection Area''"'
 
 
 #################
