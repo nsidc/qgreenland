@@ -48,7 +48,7 @@ Biology/Mammals:
 
 Biology/Vegetation:
   visible: False 
-  expanded: True 
+  expanded: False
 
 
 Built environment:

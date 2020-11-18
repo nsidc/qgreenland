@@ -1,11 +1,43 @@
-# v0.37.0 (Unreleased)
+# v0.37.0 (2020-11-17)
 
-- New "Built environment" layer: Populated places (NAME TBD)
+- New "Biology" layers:
+  - Walrus Protected Areas
+  - Goose Protected Areas
+  - Caribou Calving Areas
+  - Beluga Areas
+  - Bird Protected Areas
+  - Thickbilled Murre Breeding Colony 5km Zones
+  - Seabird Breeding Colonies
+  - Eider Protected Areas
+  - Murre Group 1km Zones
+  - Musk Oxen Calving Areas
+  - Narwhal Areas
+  - Polar Bear Breeding Areas
+- New "Built Environment" layers:
+  - Municipalities & Population
+- New "Environmental Management" layers:
+  - UNESCO Treaty Zones
+  - No Go Areas
+  - Closed Areas
+  - Salt or Saline Lake 100m  Zones
+  - Homothermic Spring 100m Zones
+  - National Park
+  - Biological Important Areas in the National Park
+  - Nature Protection Areas
+- New 'Future projections' layers:
+  - Future (year 3007) Ice Sheet coverage - RCP 2.6 Scenario (1.8km)
+  - Future (year 3007) Ice Sheet coverage - RCP 4.5 Scenario (1.8km)
+  - Future (year 3007) Ice Sheet coverage - RCP 8.5 Scenario (1.8km)
+- Removed layers:
+  - Wild Reindeer Populations: Data not representative of actual population
+    coverage
+  - Natural Earth Populated Places: Too much incorrect data - the OSM populated
+    places layer is probably more useful
+  - Arctic Protected Areas (CAFF 2017): Replaced by more comprehensive NunaGIS
+    datasources
 - Update GEM research stations symbology to label stations with their names.
 - Increase circular background to 40 degrees latitude
-- Increase resolution of background layer to 500m
-- New 'Future projections' layers: Future (year 3007) Ice Sheet Coverage under
-  RCP 2.6, 4.5, 8.5.
+- Increase resolution of Natural Earth "Background" layer to 500m
 
 # v0.36.0 (2020-11-09)
 
