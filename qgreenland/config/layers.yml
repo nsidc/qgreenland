@@ -491,11 +491,11 @@
   #     input_filename: 'fetched.geojson'
 
 - &hdx_hotosm
-  id: populated_places_alt
-  title: 'Populated Places (alt)'
+  id: hotosm_populated_places
+  title: 'Populated Places'
   data_source: hdx_hotosm.populated_places
-  visible: True
-  group_path: 'Built environment'
+  visible: False
+  group_path: 'Built environment/OpenStreetMap'
   # style: 'populated_places'
   boundary: 'data'
   ingest_task: zipped_vector
@@ -503,44 +503,45 @@
   data_type: 'vector'
 
 - <<: *hdx_hotosm
-  id: health_facilities
+  id: hotosm_health_facilities
   title: 'Health Facilities'
   data_source: hdx_hotosm.health_facilities
   style: health_facility_point
 - <<: *hdx_hotosm
-  id: airports
+  id: hotosm_airports
   title: 'Airports'
   data_source: hdx_hotosm.airports
   style: airport_point
 - <<: *hdx_hotosm
-  id: seaports 
+  id: hotosm_seaports
   title: 'Seaports'
   data_source: hdx_hotosm.seaports
   style: seaport_point
 - <<: *hdx_hotosm
-  id: waterways 
+  id: hotosm_waterways
   title: 'Waterways'
   data_source: hdx_hotosm.waterways
 - <<: *hdx_hotosm
-  id: financial_services
+  id: hotosm_financial_services
   title: 'Financial Services'
   data_source: hdx_hotosm.financial_services
   style: financial_facility_point
 - <<: *hdx_hotosm
-  id: education_facilities
+  id: hotosm_education_facilities
   title: 'Education Facilities'
   data_source: hdx_hotosm.education_facilities
   style: education_facility_point
 - <<: *hdx_hotosm
-  id: points_of_interest
+  id: hotosm_points_of_interest
   title: 'Points of Interest'
   data_source: hdx_hotosm.points_of_interest
 - <<: *hdx_hotosm
-  id: roads
+  id: hotosm_roads
   title: 'Roads'
+  visible: True
   data_source: hdx_hotosm.roads
 - <<: *hdx_hotosm
-  id: buildings
+  id: hotosm_buildings
   title: 'Buildings'
   data_source: hdx_hotosm.buildings
 
