@@ -289,7 +289,7 @@
   data_source: nunagis.protected_areas
   visible: False
   group_path: 'Biology/Mammals'
-  style: 'protected_area_polygon'
+  style: nunagis_walrus_protected_areas
   boundary: 'data'
   ingest_task: ogr_remote_vector
   file_type: '.shp'
@@ -303,6 +303,7 @@
   id: nunagis_goose_protected_areas
   title: 'Goose Protected Areas'
   group_path: 'Biology/Birds'
+  style: nunagis_goose_protected_areas
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -312,6 +313,7 @@
   id: nunagis_caribou_calving_areas
   title: 'Caribou Calving Areas'
   group_path: 'Biology/Mammals'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -321,6 +323,7 @@
   id: nunagis_beluga_areas
   title: 'Beluga Areas'
   group_path: 'Biology/Mammals'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -330,6 +333,7 @@
   id: nunagis_bird_protected_areas
   title: 'Bird Protected Areas'
   group_path: 'Biology/Birds'
+  style: nunagis_bird_protected_areas
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -339,6 +343,7 @@
   id: nunagis_thickbilled_murre_colonies
   title: 'Thickbilled Murre Breeding Colony 5km Zones'
   group_path: 'Biology/Birds'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -348,6 +353,7 @@
   id: nunagis_seabirds_colonies
   title: 'Seabird Breeding Colonies'
   group_path: 'Biology/Birds'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -357,6 +363,7 @@
   id: nunagis_eider_protected_areas
   title: 'Eider Protected Areas'
   group_path: 'Biology/Birds'
+  style: nunagis_eider_protected_areas
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -366,6 +373,7 @@
   id: nunagis_murre_group_1km_zones
   title: 'Murre Group 1km Zones'
   group_path: 'Biology/Birds'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -375,6 +383,7 @@
   id: nunagis_musk_oxen_calving_areas
   title: 'Musk Oxen Calving Areas'
   group_path: 'Biology/Mammals'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -384,6 +393,7 @@
   id: nunagis_narwhal_areas
   title: 'Narwhal Areas'
   group_path: 'Biology/Mammals'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -393,6 +403,7 @@
   id: nunagis_polar_bear_breeding_areas
   title: 'Polar Bear Breeding Areas'
   group_path: 'Biology/Mammals'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -544,6 +555,7 @@
   id: nunagis_unesco_treaty_zones
   title: 'UNESCO Treaty Zones'
   group_path: 'Environmental management/Protected zones'
+  style: nunagis_unesco_treaty_zones
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -553,6 +565,7 @@
   id: nunagis_no_go_areas
   title: 'No Go Areas'
   group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -562,6 +575,7 @@
   id: nunagis_closed_areas
   title: 'Closed Areas'
   group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -571,6 +585,7 @@
   id: nunagis_salt_or_saline_lake_100m_zones
   title: 'Salt or Saline Lake 100m Zones'
   group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -580,6 +595,7 @@
   id: nunagis_homothermic_spring_100m_zones
   title: 'Homothermic Spring 100m Zones'
   group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -589,6 +605,7 @@
   id: nunagis_national_park
   title: 'National Park'
   group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -598,6 +615,7 @@
   id: nunagis_biological_important_areas
   title: 'Biological Important Areas in the National Park'
   group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -607,6 +625,7 @@
   id: nunagis_nature_protection_areas
   title: 'Nature Protection Areas'
   group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
