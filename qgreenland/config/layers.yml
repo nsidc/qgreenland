@@ -480,7 +480,7 @@
   data_source: hdx_hotosm.populated_places
   visible: False
   group_path: 'Built environment/OpenStreetMap'
-  # style: 'populated_places'
+  style: hotosm_populated_places_point
   boundary: 'data'
   ingest_task: zipped_vector
   file_type: '.shp'
@@ -505,6 +505,7 @@
   id: hotosm_waterways
   title: 'Waterways'
   data_source: hdx_hotosm.waterways
+  style: null
 - <<: *hdx_hotosm
   id: hotosm_financial_services
   title: 'Financial Services'
@@ -519,15 +520,18 @@
   id: hotosm_points_of_interest
   title: 'Points of Interest'
   data_source: hdx_hotosm.points_of_interest
+  style: null
 - <<: *hdx_hotosm
   id: hotosm_roads
   title: 'Roads'
   visible: True
   data_source: hdx_hotosm.roads
+  style: roads_line
 - <<: *hdx_hotosm
   id: hotosm_buildings
   title: 'Buildings'
   data_source: hdx_hotosm.buildings
+  style: buildings_shape
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and Population'
