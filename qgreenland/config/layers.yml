@@ -448,21 +448,6 @@
 # Built environment #
 #####################
 
-# TODO: Layer title
-- id: municipalities_population
-  title: 'Municipalities and Population (nunagis)'
-  data_source: nunagis.pop2019_municipalities
-  visible: True
-  group_path: 'Built environment'
-  # TODO:
-  style: null
-  boundary: 'data'
-  ingest_task: ogr_remote_vector
-  file_type: '.shp'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
 
 - id: populated_places
   title: 'Populated Places'
@@ -544,6 +529,23 @@
   id: hotosm_buildings
   title: 'Buildings'
   data_source: hdx_hotosm.buildings
+
+- id: nunagis_municipalities_population
+  title: 'Municipalities and Population'
+  data_source: nunagis.pop2019_municipalities
+  visible: False
+  group_path: 'Built environment'
+  # TODO:
+  style: null
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+
+# Administrative boundaries
 
 
 ############################
