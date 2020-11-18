@@ -3,7 +3,9 @@
 Categorical data can be raster or vector, but styling considerations are
 similar either way.
 
-TODO: What categorical colormap(s) will we use?
+Use the "Spectral" colorramp that's built-in to QGIS for Categorical data.
+
+TODO: Pick a better color ramp or palette.
 
 
 # Raster Data
