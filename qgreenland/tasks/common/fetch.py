@@ -68,23 +68,25 @@ class FetchLocalDataFiles(FetchTask):
         )
 
     def run(self):
-        # TODO: better
-        # TODO: currently have this setup so that the local archive is nested
-        # under dataset_id.
         if self.dataset_cfg['access_method'] == 'local':
             local_dir = LOCALDATA_DIR
-        elif self.dataset_cfg['access_method'] == 'private-archive':
+            with temporary_path_dir(self.output()) as temp_path:
+                for filename in self.source_cfg['urls']:
+                    source_path = os.path.join(local_dir, filename)
+                    out_path = os.path.join(temp_path, os.path.basename(filename))
+
+                    shutil.copy2(source_path, out_path)
+
+        elif self.dataset_cfg['access_method'] == 'manual':
             local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg['id'])
+            with temporary_path_dir(self.output()) as temp_path:
+                shutil.copytree(local_dir, temp_path, dirs_exist_ok=True)
+
         else:
-            # TODO: use appropraite error or avoid this conditional.
-            raise RuntimeError('NOOOOOOOOO')
-
-        with temporary_path_dir(self.output()) as temp_path:
-            for filename in self.source_cfg['urls']:
-                source_path = os.path.join(local_dir, filename)
-                out_path = os.path.join(temp_path, os.path.basename(filename))
-
-                shutil.copy2(source_path, out_path)
+            raise RuntimeError(
+                'You selected an unsupported access_method:'
+                f' {self.dataset_cfg["access_method"]}'
+            )
 
 
 class FetchOgrRemoteData(FetchTask):
