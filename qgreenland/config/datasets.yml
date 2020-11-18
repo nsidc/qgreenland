@@ -580,31 +580,6 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'TBD: https://earthquake.usgs.gov/earthquakes/search/'
 
 
-- id: caff_protected_areas
-  access_method: http
-  sources:
-    - id: only
-      urls:
-        - 'http://geo.abds.is/geonetwork/srv/api/records/2e56ee1f-50a9-4983-88f4-edaa8588950d/attachments/CAFF_Protected_Areas_20_01_2017.zip'
-  metadata:
-    title: 'Arctic Protected Areas - 2017'
-    abstract: >-
-        The Conservation of Arctic Flora and Fauna (CAFF) and Protection of the
-        Arctic Marine Environments (PAME) working groups of the Arctic Council
-        developed this indicator report. It provides an overview of the status
-        and trends of protected areas in the Arctic. The data used represents
-        the results of the 2016 update to the Protected Areas Database submitted
-        by each of the Arctic Council member states (Annex 1). This report uses
-        the International Union for the Conservation of Nature (IUCN) definition
-        for protected areas (see Box 1) which includes a wide range of
-        Management Categories – from strict nature reserve to protection with
-        sustainable use. Consequently, the level of protection and governance of
-        these areas varies throughout the circumpolar region and its countries.
-    citation:
-      text: 'Conservation of Arctic Flora and Fauna (CAFF www.caff.is) working group of the Arctic Council'
-      url: 'http://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/2e56ee1f-50a9-4983-88f4-edaa8588950d'
-
-
 - id: caff_murre_colonies
   access_method: http
   sources:

@@ -448,18 +448,6 @@
 # Built environment #
 #####################
 
-
-- id: populated_places
-  title: 'Populated Places'
-  data_source: populated_places.only
-  visible: False
-  group_path: 'Built environment'
-  style: 'populated_places'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.shp'
-  data_type: 'vector'
-
   # # TODO: Better layer ID and title.
   # - id: populated_places_eva
   #   title: 'Populated Places (Eva)'
