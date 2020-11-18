@@ -263,6 +263,26 @@
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
+- id: exclusive_economic_zone
+  title: 'Exclusive Economic Zone'
+  data_source: 1973_agreement.only
+  visible: False
+  group_path: 'Miscellaneous'
+  # style: 'TBD'
+  boundary: 'background'
+  ingest_task: local_zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - '1973_Agreement/EXEZNE.cpg'
+      - '1973_Agreement/EXEZNE.dbf'
+      - '1973_Agreement/EXEZNE.prj'
+      - '1973_Agreement/EXEZNE.sbn'
+      - '1973_Agreement/EXEZNE.sbx'
+      - '1973_Agreement/EXEZNE.shp'
+      - '1973_Agreement/EXEZNE.shp_rxl'
+      - '1973_Agreement/EXEZNE.shx'
 
 ###########
 # Biology #

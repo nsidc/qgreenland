@@ -3,7 +3,7 @@ import shutil
 
 import luigi
 
-from qgreenland.constants import LOCALDATA_DIR, TaskType
+from qgreenland.constants import LOCALDATA_DIR, PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import fetch_and_write_file, temporary_path_dir
@@ -68,9 +68,20 @@ class FetchLocalDataFiles(FetchTask):
         )
 
     def run(self):
+        # TODO: better
+        # TODO: currently have this setup so that the local archive is nested
+        # under dataset_id.
+        if self.dataset_cfg['access_method'] == 'local':
+            local_dir = LOCALDATA_DIR
+        elif self.dataset_cfg['access_method'] == 'private-archive':
+            local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg['id'])
+        else:
+            # TODO: use appropraite error or avoid this conditional.
+            raise RuntimeError('NOOOOOOOOO')
+
         with temporary_path_dir(self.output()) as temp_path:
             for filename in self.source_cfg['urls']:
-                source_path = os.path.join(LOCALDATA_DIR, filename)
+                source_path = os.path.join(local_dir, filename)
                 out_path = os.path.join(temp_path, os.path.basename(filename))
 
                 shutil.copy2(source_path, out_path)

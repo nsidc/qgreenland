@@ -1034,3 +1034,18 @@ The images and data are produced in a consistent way that makes the Index time-s
         spatial time series, 2008-3007. Arctic Data
         Center. doi:10.18739/A29G5GD39.
       url: 'https://doi.org/10.18739/A29G5GD39'
+
+
+- id: 1973_agreement
+  access_method: private-archive
+  sources:
+    - id: only
+      urls:
+        - '1973_Agreement.zip'
+  # TODO
+  metadata:
+    title: 'TBD'
+    abstract: 'TBD'
+    citation:
+      text: 'TBD'
+      url: 'http://example.com/TBD'

@@ -17,6 +17,7 @@ services:
       # Data
       - /share/appdata/qgreenland:/luigi/data:rw
       - /share/appdata/qgreenland-input-cache:/input:rw
+      - /share/appdata/qgreenland-private-archive:/private-archive/:ro
     environment:
       - LUIGI_CONFIG_PARSER=toml
       - ENVIRONMENT
