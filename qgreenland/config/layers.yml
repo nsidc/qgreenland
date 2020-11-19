@@ -265,6 +265,7 @@
 
 - id: exclusive_economic_zone
   title: 'Exclusive Economic Zone'
+  description: 'Exclusive Economic Zone of Greenland based on the 1973 Agreement'
   data_source: 1973_agreement.only
   visible: False
   group_path: 'Miscellaneous'
