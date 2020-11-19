@@ -1,3 +1,8 @@
+# v0.38.0 (unreleased)
+
+- New "Miscellaneous" layer: Exclusive Economic Zone
+- Support adding layers from data contained in a private repository.
+
 # v0.37.0 (2020-11-17)
 
 - New "Biology" layers:
