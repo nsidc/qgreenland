@@ -1042,9 +1042,9 @@ The images and data are produced in a consistent way that makes the Index time-s
   sources:
     - id: only
       access_instructions: >-
-        Dataset provided by Karl Zinglersen of Greenland Institude for Natural
-        Resources via a private one-time FTP transfer. This dataset is not
-        expected to be publicily archived outside of QGreenland.
+        Dataset provided by Karl Zinglersen of the Greenland Institude for
+        Natural Resources via a private one-time FTP transfer. This dataset is
+        not expected to be publicily archived outside of QGreenland.
   metadata:
     title: 'TBD'
     abstract: 'TBD'
