@@ -299,7 +299,7 @@ def load_qml_style(map_layer, style_name):
 
 
 def _build_layer_description(layer_cfg):
-    """Return a string representing the layer's description"""
+    """Return a string representing the layer's description."""
     layer_description = ''
 
     if cfg_description := layer_cfg.get('description'):
@@ -309,9 +309,7 @@ def _build_layer_description(layer_cfg):
 
 
 def build_layer_tooltip(layer_cfg):
-    """Return a properly escaped layer tooltip text ready for inclusion in the
-    project XML file.
-    """
+    """Return a properly escaped layer tooltip text."""
     tt = _build_layer_description(layer_cfg)
     tt += (
         '\n\n'
@@ -321,7 +319,7 @@ def build_layer_tooltip(layer_cfg):
 
 
 def _build_dataset_description(layer_cfg):
-    """Return a string representing the layer's dataset description"""
+    """Return a string representing the layer's dataset description."""
     dataset_description = ''
 
     dataset_metadata = layer_cfg['dataset']['metadata']
@@ -335,7 +333,7 @@ def _build_dataset_description(layer_cfg):
 
 
 def _build_dataset_citation(layer_cfg):
-    """Return a string representing the layer's dataset citation"""
+    """Return a string representing the layer's dataset citation."""
     citation = ''
 
     dataset_metadata = layer_cfg['dataset']['metadata']
@@ -352,9 +350,7 @@ def _build_dataset_citation(layer_cfg):
 
 
 def build_layer_abstract(layer_cfg):
-    """Return a properly escaped layer abstract text ready for inclusion in the
-    project XML file.
-    """
+    """Return a properly escaped layer abstract text."""
     # Include the layer description first.
     abstract = _build_layer_description(layer_cfg)
 
