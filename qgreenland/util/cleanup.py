@@ -172,7 +172,10 @@ def cleanup_cli(**kwargs):  # noqa: C901
         # The triggerfile tells Luigi tasks to zip the compiled data. Can't do
         # that if we just deleted it!
         if os.path.isfile(ZIP_TRIGGERFILE):
-            print_and_run(f'rm {ZIP_TRIGGERFILE}')
+            print_and_run(
+                f'rm {ZIP_TRIGGERFILE}',
+                dry_run=kwargs['dry_run']
+            )
 
     if kwargs['delete_all_releases']:
         print_and_run(
