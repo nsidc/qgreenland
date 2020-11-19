@@ -298,16 +298,30 @@ def load_qml_style(map_layer, style_name):
         raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
 
 
+def _build_layer_description(layer_cfg):
+    """Return a string representing the layer's description"""
+    layer_description = ''
+
+    if cfg_description := layer_cfg.get('description'):
+        layer_description += cfg_description
+
+    return layer_description
+
+
 def build_layer_tooltip(layer_cfg):
-    tt = build_layer_description(layer_cfg)
+    """Return a properly escaped layer tooltip text ready for inclusion in the
+    project XML file.
+    """
+    tt = _build_layer_description(layer_cfg)
     tt += (
         '\n\n'
         'Open Layer Properties and select the Metadata tab for more information.'
     )
-    return tt
+    return escape(tt)
 
 
-def build_dataset_description(layer_cfg):
+def _build_dataset_description(layer_cfg):
+    """Return a string representing the layer's dataset description"""
     dataset_description = ''
 
     dataset_metadata = layer_cfg['dataset']['metadata']
@@ -317,34 +331,44 @@ def build_dataset_description(layer_cfg):
         dataset_description += '\n\n'
         dataset_description += abstract
 
-    return escape(dataset_description)
+    return dataset_description
 
 
-def build_layer_description(layer_cfg):
-    layer_description = ''
-
-    if cfg_description := layer_cfg.get('description'):
-        layer_description += cfg_description
-
-    return escape(layer_description)
-
-
-def build_layer_abstract(layer_cfg):
-    abstract = build_layer_description(layer_cfg)
-    abstract += '\n\n=== Original Data Source ===\n'
-    abstract += build_dataset_description(layer_cfg)
-
-    if abstract:
-        abstract += '\n\n'
+def _build_dataset_citation(layer_cfg):
+    """Return a string representing the layer's dataset citation"""
+    citation = ''
 
     dataset_metadata = layer_cfg['dataset']['metadata']
     if citation_cfg := dataset_metadata.get('citation'):
         if citation_text := citation_cfg.get('text'):
-            abstract += 'Citation:\n'
-            abstract += citation_text + '\n\n'
+            citation += 'Citation:\n'
+            citation += citation_text + '\n\n'
 
         if citation_url := citation_cfg.get('url'):
-            abstract += 'Citation URL:\n'
-            abstract += citation_url
+            citation += 'Citation URL:\n'
+            citation += citation_url
+
+    return citation
+
+
+def build_layer_abstract(layer_cfg):
+    """Return a properly escaped layer abstract text ready for inclusion in the
+    project XML file.
+    """
+    # Include the layer description first.
+    abstract = _build_layer_description(layer_cfg)
+
+    # If the layer has a description, separate it from the abstract of the
+    # original data source.
+    if abstract:
+        abstract += '\n\n=== Original Data Source ===\n'
+
+    abstract += _build_dataset_description(layer_cfg)
+
+    if abstract:
+        abstract += '\n\n'
+
+    # Add the dataset's citation
+    abstract += _build_dataset_citation(layer_cfg)
 
     return escape(abstract)
