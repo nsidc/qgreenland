@@ -1,3 +1,4 @@
+import datetime as dt
 import logging
 import os
 import subprocess
@@ -269,7 +270,8 @@ def _add_decorations(project):
     project.writeEntry('CopyrightLabel', '/Enabled', True)
     # project.writeEntry('CopyrightLabel', '/FontName', 'Sans Serif')
     # NOTE: Does the copyright symbol work this way or should we use HTML codes?
-    copyright_label = f'QGreenland {get_build_version()} © NSIDC 2020'
+    year = dt.date.today().year
+    copyright_label = f'QGreenland {get_build_version()} © NSIDC {year}'
     project.writeEntry('CopyrightLabel', '/Label', copyright_label)
     project.writeEntry('CopyrightLabel', '/Placement', 0)
     project.writeEntry('CopyrightLabel', '/MarginH', 0)
