@@ -302,30 +302,37 @@ def build_layer_tooltip(layer_cfg):
     tt = build_layer_description(layer_cfg)
     tt += (
         '\n\n'
-        'Open Layer Properties and select the Metadata tab for more.'
+        'Open Layer Properties and select the Metadata tab for more information.'
     )
     return tt
 
 
-def build_layer_description(layer_cfg):
-    description = ''
-
-    if cfg_description := layer_cfg.get('description'):
-        description += cfg_description
-        description += '\n\n=== Original Data Source ===\n'
+def build_dataset_description(layer_cfg):
+    dataset_description = ''
 
     dataset_metadata = layer_cfg['dataset']['metadata']
-    description += dataset_metadata['title']
+    dataset_description += dataset_metadata['title']
 
     if abstract := dataset_metadata.get('abstract'):
-        description += '\n\n'
-        description += abstract
+        dataset_description += '\n\n'
+        dataset_description += abstract
 
-    return escape(description)
+    return escape(dataset_description)
+
+
+def build_layer_description(layer_cfg):
+    layer_description = ''
+
+    if cfg_description := layer_cfg.get('description'):
+        layer_description += cfg_description
+
+    return escape(layer_description)
 
 
 def build_layer_abstract(layer_cfg):
     abstract = build_layer_description(layer_cfg)
+    abstract += '\n\n=== Original Data Source ===\n'
+    abstract += build_dataset_description(layer_cfg)
 
     if abstract:
         abstract += '\n\n'
