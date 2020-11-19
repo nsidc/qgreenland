@@ -2,7 +2,7 @@
 
 set -e
 
-LOCAL_PRIVATE_ARCHVIE_DIR='/share/appdata/qgreenland-private-archive'
+LOCAL_PRIVATE_ARCHVIE_DIR='/share/appdata/qgreenland-private-archive/'
 PROD_PRIVATE_ARCHIVE_DIR='/share/appdata/qgreenland-private-archive/'
 PROD_HOSTNAME='qgreenland.apps.int.nsidc.org'
 VAGRANT_SSH_KEY='~/.ssh/id_rsa_vagrant_vsphere'
