@@ -963,6 +963,21 @@
     input_filename: 'stations.kmz'
 
 
+- id: arctic_sea_routes
+  title: 'Arctic Sea Routes'
+  description: >-
+    Lines depict the Northern Sea Route, Northwest Passate, and hypothetical
+    Transpolar Route.
+  visible: False
+  style: 'arctic_sea_routes'
+  group_path: 'Human activity'
+  data_source: nga_arctic_sea_routes.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  boundary: 'background'
+
+
 #############
 # Hydrology #
 #############
@@ -1583,18 +1598,18 @@
   file_type: '.tif'
   data_type: 'raster'
 
-# NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
-# an hour or more on `qgc.QgsRasterLayer` call. Remove it?
-- id: image_mosaic_2015
-  title: 'Greenland Image Mosaic 2015 (Online Only)'
-  description: 'Sentinel-2 multispectral satellite imagery from 2015.'
-  visible: False
-  group_path: 'Internet-required data'
-  boundary: 'data'
-  data_source: image_mosaic.2015
-  ingest_task: None
-  file_type: '.tif'
-  data_type: 'raster'
+# # NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
+# # an hour or more on `qgc.QgsRasterLayer` call. Remove it?
+# - id: image_mosaic_2015
+#   title: 'Greenland Image Mosaic 2015 (Online Only)'
+#   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
+#   visible: False
+#   group_path: 'Internet-required data'
+#   boundary: 'data'
+#   data_source: image_mosaic.2015
+#   ingest_task: None
+#   file_type: '.tif'
+#   data_type: 'raster'
 
 
 ############
