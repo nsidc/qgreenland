@@ -1,3 +1,10 @@
+# v0.38.0 (unreleased)
+
+- New "Environmental management/Exclusive economic zones" layer: Exclusive
+  Economic Zone
+- Support adding layers from data contained in a private repository (just a
+  special directory exposed as a docker volume mount for now).
+
 # v0.37.0 (2020-11-17)
 
 - New "Biology" layers:

@@ -3,7 +3,7 @@ import shutil
 
 import luigi
 
-from qgreenland.constants import ASSETS_DIR, TaskType
+from qgreenland.constants import LOCALDATA_DIR, PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import fetch_and_write_file, temporary_path_dir
@@ -68,12 +68,25 @@ class FetchLocalDataFiles(FetchTask):
         )
 
     def run(self):
-        with temporary_path_dir(self.output()) as temp_path:
-            for filename in self.source_cfg['urls']:
-                source_path = os.path.join(ASSETS_DIR, 'local_data', filename)
-                out_path = os.path.join(temp_path, os.path.basename(filename))
+        if self.dataset_cfg['access_method'] == 'local':
+            local_dir = LOCALDATA_DIR
+            with temporary_path_dir(self.output()) as temp_path:
+                for filename in self.source_cfg['urls']:
+                    source_path = os.path.join(local_dir, filename)
+                    out_path = os.path.join(temp_path, os.path.basename(filename))
 
-                shutil.copy2(source_path, out_path)
+                    shutil.copy2(source_path, out_path)
+
+        elif self.dataset_cfg['access_method'] == 'manual':
+            local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg['id'])
+            with temporary_path_dir(self.output()) as temp_path:
+                shutil.copytree(local_dir, temp_path, dirs_exist_ok=True)
+
+        else:
+            raise RuntimeError(
+                'You selected an unsupported access_method:'
+                f' {self.dataset_cfg["access_method"]}'
+            )
 
 
 class FetchOgrRemoteData(FetchTask):

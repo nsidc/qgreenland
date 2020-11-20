@@ -263,7 +263,6 @@
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
-
 ###########
 # Biology #
 ###########
@@ -634,6 +633,29 @@
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     where: '"\"type\" = ''Nature Protection Area''"'
+
+- id: exclusive_economic_zone
+  title: 'Exclusive Economic Zone'
+  description: 'Exclusive Economic Zone of Greenland based on the 1973 Agreement'
+  data_source: 1973_agreement.only
+  visible: False
+  # TODO: does this need to be in its own group?
+  group_path: 'Environmental management/Exclusive economic zones'
+  # style: 'TBD'
+  boundary: 'background'
+  ingest_task: local_zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - '1973_Agreement/EXEZNE.cpg'
+      - '1973_Agreement/EXEZNE.dbf'
+      - '1973_Agreement/EXEZNE.prj'
+      - '1973_Agreement/EXEZNE.sbn'
+      - '1973_Agreement/EXEZNE.sbx'
+      - '1973_Agreement/EXEZNE.shp'
+      - '1973_Agreement/EXEZNE.shp_rxl'
+      - '1973_Agreement/EXEZNE.shx'
 
 
 #################

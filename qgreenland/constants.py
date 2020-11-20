@@ -11,6 +11,7 @@ PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 PROJECT_DIR = os.path.abspath(os.path.join(PACKAGE_DIR, os.pardir))
 INPUT_DIR = '/input'
 DATA_DIR = '/luigi/data'
+PRIVATE_ARCHIVE_DIR = '/private-archive'
 RELEASES_DIR = os.path.join(DATA_DIR, 'release')
 WIP_DIR = os.path.join(DATA_DIR, 'luigi-wip')
 ASSETS_DIR = os.path.join(PACKAGE_DIR, 'assets')
