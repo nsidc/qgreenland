@@ -271,7 +271,10 @@ def _add_decorations(project):
     # project.writeEntry('CopyrightLabel', '/FontName', 'Sans Serif')
     # NOTE: Does the copyright symbol work this way or should we use HTML codes?
     year = dt.date.today().year
-    copyright_label = escape(f'QGreenland {get_build_version()} © NSIDC {year}\nhttps://qgreenland.org | https://github.com/nsidc/qgreenland/')
+    copyright_label = escape(
+        f'QGreenland {get_build_version()} © NSIDC {year}'
+        '\nhttps://qgreenland.org | https://github.com/nsidc/qgreenland/'
+    )
     project.writeEntry('CopyrightLabel', '/Label', copyright_label)
     project.writeEntry('CopyrightLabel', '/Placement', 0)
     project.writeEntry('CopyrightLabel', '/MarginH', 0)
