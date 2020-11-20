@@ -6,6 +6,8 @@
   special directory exposed as a docker volume mount for now).
 - Stop displaying dataset abstract and citation information in the layer
   tooltip. This information is still available in each layer's 'Metadata'.
+- Add qgreenland.org and qgreenland github URLs in QGreenland's lower-left
+  corner citation text.
 
 # v0.37.0 (2020-11-17)
 
