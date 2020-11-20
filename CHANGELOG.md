@@ -8,6 +8,9 @@
   tooltip. This information is still available in each layer's 'Metadata'.
 - Add qgreenland.org and qgreenland github URLs in QGreenland's lower-left
   corner citation text.
+- Reorder "Basemaps" layers so that land and ocean polygon layers are on top
+  of the Natural Earth background image. Disable land and ocean polygons by
+  default.
 
 # v0.37.0 (2020-11-17)
 

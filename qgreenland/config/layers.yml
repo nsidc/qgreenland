@@ -1637,6 +1637,33 @@
   data_type: 'vector'
 
 
+# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
+# holes for small islands which are not present on the land layer, and that was
+# gross so we removed the ocean layer.
+- id: land
+  title: 'Land'
+  visible: False
+  group_path: 'Basemaps'
+  style: 'land'
+  boundary: 'background'
+  data_source: land_shape.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
+
+- id: ocean
+  title: 'Ocean'
+  visible: False
+  group_path: 'Basemaps'
+  style: 'ocean'
+  boundary: 'background'
+  data_source: ocean_shape.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
+
 - id: background
   title: 'Background (500m)'
   visible: True
@@ -1660,30 +1687,3 @@
     # the original image meet after polar wrapping. TODO: This doesn't actually
     # get rid of the line.
     warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
-
-
-# NOTE: We attempted to add the corresponding NE Ocean layer, but it included
-# holes for small islands which are not present on the land layer, and that was
-# gross so we removed the ocean layer.
-- id: land
-  title: 'Land'
-  visible: True
-  group_path: 'Basemaps'
-  style: 'land'
-  boundary: 'background'
-  data_source: land_shape.only
-  ingest_task: zipped_vector
-  file_type: '.shp'
-  data_type: 'vector'
-
-
-- id: ocean
-  title: 'Ocean'
-  visible: True
-  group_path: 'Basemaps'
-  style: 'ocean'
-  boundary: 'background'
-  data_source: ocean_shape.only
-  ingest_task: zipped_vector
-  file_type: '.shp'
-  data_type: 'vector'
