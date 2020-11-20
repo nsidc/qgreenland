@@ -11,6 +11,7 @@
 - Reorder "Basemaps" layers so that land and ocean polygon layers are on top
   of the Natural Earth background image. Disable land and ocean polygons by
   default.
+- New "Human Activity" layer: Arctic Sea Routes
 
 # v0.37.0 (2020-11-17)
 

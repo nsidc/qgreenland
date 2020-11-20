@@ -963,6 +963,21 @@
     input_filename: 'stations.kmz'
 
 
+- id: arctic_sea_routes
+  title: 'Arctic Sea Routes'
+  description: >-
+    Lines depict the Northern Sea Route, Northwest Passate, and hypothetical
+    Transpolar Route.
+  visible: False
+  style: 'arctic_sea_routes'
+  group_path: 'Human activity'
+  data_source: nga_arctic_sea_routes.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  boundary: 'background'
+
+
 #############
 # Hydrology #
 #############
