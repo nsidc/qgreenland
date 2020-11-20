@@ -76,7 +76,27 @@ def test__add_layer_metadata():
     assert expected_extent == meta_extent.bounds.toRectangle()
 
 
-def test_build_abstract():
+def test__build_dataset_description():
+    actual = qgis._build_dataset_description(mock_layer_cfg)
+    expected = """Example Dataset
+
+Example abstract"""
+
+    assert actual == expected
+
+
+def __build_dataset_citation():
+    actual = qgis._build_dataset_citation(mock_layer_cfg)
+    expected = """Citation:
+NSIDC 2020
+
+Citation URL:
+https://nsidc.org"""
+
+    assert actual == expected
+
+
+def test__build_layer_abstract():
     actual = qgis.build_layer_abstract(mock_layer_cfg)
     expected = """Example Dataset
 
