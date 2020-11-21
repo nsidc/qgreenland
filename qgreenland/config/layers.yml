@@ -686,6 +686,28 @@
 # Glaciology #
 ##############
 
+- id: jakobshavn_supraglacial_lakes
+  title: 'Sermeq Kujalleq/Jakobshavn Supraglacial Lakes'
+  description: >-
+      Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for 2019/05/01 and
+      2019/10/01 generated using Sentinel-2 data.
+  data_source: esa_cci_supraglacial_lakes.only
+  visible: False
+  # TODO: does this need to be in its own group?
+  group_path: 'Glaciology'
+  # style: 'TBD'
+  boundary: 'data'
+  ingest_task: local_zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.dbf'
+      - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.prj'
+      - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.qpj'
+      - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp'
+      - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shx'
+
 - id: basal_thermal_state
   title: 'Likely Basal Thermal State (5km)'
   description: 'Likely basal frozen/thawed state of the Greenland Ice Sheet.'
