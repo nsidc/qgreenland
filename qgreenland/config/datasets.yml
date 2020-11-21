@@ -1071,3 +1071,33 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'National Geospatial-Intelligence Agency (NGA)'
       url: 'https://arctic-nga.opendata.arcgis.com/datasets/67760a7f85614902ac19fa6ff643b9fa_0'
+
+
+- id: esa_cci_supraglacial_lakes
+  access_method: manual
+  sources:
+    - id: only
+      access_instructions: >-
+        Dataset can be found on the European Space Agency (ESA) Climate Change
+        Initiative (CCI) products website
+        (http://products.esa-icesheets-cci.org). Data are free to download after
+        simple registration requiring `first.last` name and `affiliation`. No
+        password is required.
+  metadata:
+    title: 'ESA Greenland Ice Sheet CCI, Supraglacial Lakes from Sentinel-2'
+    abstract: >-
+        Supraglacial Lake (SGL) vectors for select AOI's on the Greenland Ice
+        Sheet produced using Sentinel-2
+
+        Version 1.1 includes.
+        AOI:
+        *Sermeq Kujalleq (Jakobshavn Isbræ)
+
+        Time-period:
+        *2019/05/01-2019/10/01
+
+        For general background information see
+        http://esa-icesheets-greenland-cci.org
+    citation:
+      text: 'Data are produced by Penelope How, Alexandra Messerli, and Eva Mätzler (Department of Remote Sensing, Asiaq Greenland Survey)'
+      url: 'http://products.esa-icesheets-cci.org/products/details/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip/'
