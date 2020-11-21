@@ -693,7 +693,6 @@
       2019/10/01 generated using Sentinel-2 data.
   data_source: esa_cci_supraglacial_lakes.only
   visible: False
-  # TODO: does this need to be in its own group?
   group_path: 'Glaciology'
   # style: 'TBD'
   boundary: 'data'
