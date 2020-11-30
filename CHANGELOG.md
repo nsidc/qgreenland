@@ -1,6 +1,15 @@
 # v0.39.0 (unreleased)
 
 - New "Glaciology" layer: Sermeq Kujalleq/Jakobshavn Supraglacial Lakes
+- Remove "Environmental management/Exclusive economic zones" layer: Exclusive
+  Economic Zone
+- New "Environmental management/Exclusive economic zones" layers:
+  - Exclusive Economic Zone (polyline)
+  - Baseline (polyline)
+  - 3NM (polyline)
+  - 12NM (polyline)
+  - 3NM (polygon)
+  - Fishing zone (polygon)
 
 # v0.38.0 (2020-11-20)
 
