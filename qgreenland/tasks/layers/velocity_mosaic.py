@@ -36,8 +36,15 @@ class GdalCalcMaskedVelocity(LayerTask):
             inp_path = find_single_file_by_ext(self.input().path,
                                                ext='.nc')
 
+            try:
+                variable = self.layer_cfg['translate_kwargs']['extract_dataset']
+            except KeyError:
+                raise RuntimeError(
+                    'Missing layer config for ITS_LIVE velocity mosiac: Needs `translate_kwargs:extract_dataset`'
+                )
+
             cmd = (
-                f'gdal_calc.py -A NETCDF:{inp_path}:v -B NETCDF:{inp_path}:ice'
+                f'gdal_calc.py -A NETCDF:{inp_path}:{variable} -B NETCDF:{inp_path}:ice'
                 f'  --calc="A*B" --outfile={out_path}'
             )
             result = subprocess.run(cmd,

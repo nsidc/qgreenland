@@ -857,7 +857,8 @@
     sql: "'SELECT *, Name as label from \"Ice Core\"'"
 
 
-- id: velocity_mosaic
+- &its_live_velocity_mosaic
+  id: velocity_mosaic
   title: 'Ice Sheet Velocity (500m)'
   description: 'Magnitude of velocity in meters per year.'
   visible: False
@@ -877,6 +878,23 @@
     xRes: 500
     yRes: 500
 
+- <<: *its_live_velocity_mosaic
+  id: velocity_mosaic_error
+  title: 'Velocity Error'
+  description: 'Magnitude of Velocity error in meters per year.'
+  ingest_task: velocity_mosaic
+  style: ice_sheet_velocity_error
+  translate_kwargs:
+    extract_dataset: 'v_err'
+
+- <<: *its_live_velocity_mosaic
+  id: velocity_mosaic_ice_mask
+  title: 'Ice mask'
+  style: null
+  description: 'Ice mask used for velocity mosiac.'
+  ingest_task: netcdf_raster
+  translate_kwargs:
+    extract_dataset: 'ice'
 
 - id: ice_thickness_change
   title: 'Ice Column Thickness 2003-2019 (5km)'
