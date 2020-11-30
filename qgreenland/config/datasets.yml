@@ -1036,21 +1036,23 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://doi.org/10.18739/A29G5GD39'
 
 
-# TODO: More descriptive id? Are these borders, ...?
-- id: 1973_agreement
+- id: greenland_territorial_waters
   access_method: manual
   sources:
     - id: only
       access_instructions: >-
         Dataset provided by Karl Zinglersen of the Greenland Institude for
-        Natural Resources via a private one-time FTP transfer. This dataset is
-        not expected to be publicily archived outside of QGreenland.
+        Natural Resources via a private one-time FTP transfer on Nov. 30,
+        2020. This dataset is not expected to be publicily archived outside of
+        QGreenland.
   metadata:
-    title: 'TBD'
+    title: 'Greenland Territorial Waters'
     abstract: 'TBD'
     citation:
-      text: 'TBD'
-      url: 'http://example.com/TBD'
+      text: >-
+          Vector data from the Danish Geodata Agency. Attributes processed by
+          Karl Brix Zinglersen, Greenland Institute of Natural Resources
+      url: ''
 
 
 - id: nga_arctic_sea_routes

@@ -634,29 +634,75 @@
     input_filename: 'fetched.geojson'
     where: '"\"type\" = ''Nature Protection Area''"'
 
-- id: exclusive_economic_zone
-  title: 'Exclusive Economic Zone'
-  description: 'Exclusive Economic Zone of Greenland based on the 1973 Agreement'
-  data_source: 1973_agreement.only
+- &greenland_territorial_waters
+  id: exclusive_economic_zone
+  title: 'Exclusive Economic Zone (polyline)'
+  description: >-
+    Exclusive Economic Zone of Greenland based on Executive Order on the
+    Exclusive Economic Zone at Greenland. BEK no. 1020 of 20/10/2004. Foreign
+    Ministry of Denmark
+  data_source: greenland_territorial_waters.only
   visible: False
   # TODO: does this need to be in its own group?
   group_path: 'Environmental management/Exclusive economic zones'
   # style: 'TBD'
   boundary: 'background'
-  ingest_task: local_zipped_vector
+  ingest_task: local_vector
   file_type: '.shp'
   data_type: 'vector'
-  decompress_kwargs:
-    extract_files:
-      - '1973_Agreement/EXEZNE.cpg'
-      - '1973_Agreement/EXEZNE.dbf'
-      - '1973_Agreement/EXEZNE.prj'
-      - '1973_Agreement/EXEZNE.sbn'
-      - '1973_Agreement/EXEZNE.sbx'
-      - '1973_Agreement/EXEZNE.shp'
-      - '1973_Agreement/EXEZNE.shp_rxl'
-      - '1973_Agreement/EXEZNE.shx'
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
+    where: '"\"layer\" = ''Boundary_EEZ''"'
 
+- <<: *greenland_territorial_waters
+  id: baseline
+  title: 'Baseline (polyline)'
+  description: >-
+    The territorial sea baseline is shown in accordance to executive order
+    no 1004 dated 15.10.2004.
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
+    where: '"\"layer\" = ''Boundary_basisline''"'
+
+- <<: *greenland_territorial_waters
+  id: 3nm_polyline
+  title: '3NM (polyline)'
+  description: >-
+    Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of the
+    marine environment, paragraph 4, 2.
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
+    where: '"\"layer\" = ''Boundary_3NM''"'
+
+- <<: *greenland_territorial_waters
+  id: 12nm_polyline
+  title: '12NM (polyline)'
+  description: >-
+    FISHERY LIMIT. Regarding the fishery limit, reference is made to Greenland
+    Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7, 2.
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
+    where: '"\"layer\" = ''Boundary_12NM''"'
+
+- <<: *greenland_territorial_waters
+  id: 3nm_polygon
+  title: '3NM (polygon)'
+  description: >-
+    Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of the
+    marine environment, paragraph 4, 2.
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
+    where: '"\"layer\" = ''Boundary_3NM_area''"'
+
+- <<: *greenland_territorial_waters
+  id: fishzone_boundary
+  title: 'Fishing zone (polygon)'
+  description: >-
+    FISHERY LIMIT. Regarding the fishery limit, reference is made to Greenland
+    Home Rule Parliament Act no 18 dated 31.10.1996
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
+    where: '"\"layer\" = ''Boundary_fishzone''"'
 
 #################
 # Frozen ground #
@@ -1621,16 +1667,16 @@
 
 # NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
 # an hour or more on `qgc.QgsRasterLayer` call. Remove it?
-- id: image_mosaic_2015
-  title: 'Greenland Image Mosaic 2015 (Online Only)'
-  description: 'Sentinel-2 multispectral satellite imagery from 2015.'
-  visible: False
-  group_path: 'Internet-required data'
-  boundary: 'data'
-  data_source: image_mosaic.2015
-  ingest_task: None
-  file_type: '.tif'
-  data_type: 'raster'
+# - id: image_mosaic_2015
+#   title: 'Greenland Image Mosaic 2015 (Online Only)'
+#   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
+#   visible: False
+#   group_path: 'Internet-required data'
+#   boundary: 'data'
+#   data_source: image_mosaic.2015
+#   ingest_task: None
+#   file_type: '.tif'
+#   data_type: 'raster'
 
 
 ############
