@@ -40,7 +40,8 @@ class GdalCalcMaskedVelocity(LayerTask):
                 variable = self.layer_cfg['translate_kwargs']['extract_dataset']
             except KeyError:
                 raise RuntimeError(
-                    'Missing layer config for ITS_LIVE velocity mosiac: Needs `translate_kwargs:extract_dataset`'
+                    'Missing layer config for ITS_LIVE velocity mosiac:'
+                    ' Needs `translate_kwargs:extract_dataset`'
                 )
 
             cmd = (
