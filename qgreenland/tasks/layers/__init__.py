@@ -14,6 +14,7 @@ from qgreenland.tasks.layers.permaice import Permaice
 from qgreenland.tasks.layers.rarred_vector import RarredVector
 from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.raster_calc import RasterCalc
+from qgreenland.tasks.layers.velocity_mosaic import VelocityMosaic
 from qgreenland.tasks.layers.zipped_netcdf import ZippedNetCdf
 from qgreenland.tasks.layers.zipped_vector import ZippedVector
 
@@ -35,6 +36,7 @@ INGEST_TASKS = {
     'rarred_vector': RarredVector,
     'raster': Raster,
     'raster_calc': RasterCalc,
+    'velocity_mosaic': VelocityMosaic,
     'zipped_netcdf': ZippedNetCdf,
     'zipped_vector': ZippedVector,
 }

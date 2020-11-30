@@ -865,7 +865,7 @@
   style: 'ice_sheet_velocity'
   boundary: 'data'
   data_source: velocity_mosaic.only
-  ingest_task: netcdf_raster
+  ingest_task: velocity_mosaic
   file_type: '.tif'
   data_type: 'raster'
   translate_kwargs:
