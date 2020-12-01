@@ -15,6 +15,10 @@
   - Velocity Error
   - Ice mask
 - New "Environmental management" layer: NAFO Divisions
+- New "Geology & natural resources/Geological map of the Arctic" layers:
+  - Onshore pattern
+  - Onshore Planar
+  - Onshore
 
 # v0.38.0 (2020-11-20)
 
