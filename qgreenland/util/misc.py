@@ -36,17 +36,24 @@ def _ftp_fetch_and_write(url, output_dir):
                 f.write(chunk)
 
 
-def fetch_and_write_file(url, *, output_dir, session=None):
+# Ignore complexity rule C901
+# TODO: make this less complex!
+def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa:C901
     """Attempt to download and write file from url.
 
     Assumes filename from URL or content-disposition header.
     """
     if url.startswith('ftp://'):
+        if not verify:
+            raise RuntimeError(
+                'Ignoring TLS certificate verification is not supported for FTP sources.'
+            )
+
         _ftp_fetch_and_write(url, output_dir)
     else:
         # TODO: Share the session across requests somehow?
         if not session:
-            session = create_earthdata_authenticated_session(hosts=[url])
+            session = create_earthdata_authenticated_session(hosts=[url], verify=verify)
 
         with session.get(url, timeout=REQUEST_TIMEOUT, stream=True) as resp:
 

@@ -5,7 +5,7 @@ import requests
 from qgreenland.constants import URS_COOKIE
 
 
-def create_earthdata_authenticated_session(s=None, *, hosts):
+def create_earthdata_authenticated_session(s=None, *, hosts, verify):
     if not s:
         s = requests.session()
 
@@ -15,7 +15,8 @@ def create_earthdata_authenticated_session(s=None, *, hosts):
             # We only want to inspect the redirect, not follow it yet:
             allow_redirects=False,
             # We don't want to accidentally fetch any data:
-            stream=True
+            stream=True,
+            verify=verify
         )
         # Copy the headers so they can be used case-insensitively after the
         # response is closed.
