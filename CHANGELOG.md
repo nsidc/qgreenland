@@ -10,6 +10,10 @@
   - 12NM (polyline)
   - 3NM (polygon)
   - Fishing zone (polygon)
+- Apply ice mask to ITS_LIVE ice velocity layer.
+- New "Glaciology/Ice sheet velocity" layers:
+  - Velocity Error
+  - Ice mask
 
 # v0.38.0 (2020-11-20)
 
