@@ -1003,6 +1003,22 @@
       - 'data/shape/geology/Greenland_onshore_Planar.shx'
 
 - <<: *geological_map
+  id: onshore_pattern_geological_map
+  title: 'Onshore pattern'
+  description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
+  style: geological_map_polygons
+  boundary: 'data'
+  decompress_kwargs:
+    extract_files:
+      - 'data/shape/geology/Greenland_onshore_pattern.dbf'
+      - 'data/shape/geology/Greenland_onshore_pattern.prj'
+      - 'data/shape/geology/Greenland_onshore_pattern.sbn'
+      - 'data/shape/geology/Greenland_onshore_pattern.sbx'
+      - 'data/shape/geology/Greenland_onshore_pattern.shp'
+      - 'data/shape/geology/Greenland_onshore_pattern.shp.xml'
+      - 'data/shape/geology/Greenland_onshore_pattern.shx'
+
+- <<: *geological_map
   id: onshore_geological_map
   title: 'Onshore'
   description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
