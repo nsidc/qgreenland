@@ -980,6 +980,59 @@
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shp.xml'
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shx'
 
+
+- &geological_map
+  id: onshore_planar_geological_map
+  title: 'Onshore Planar'
+  description: 'This layer contains onshore faults for the landmass and islands of Greenland.'
+  visible: False
+  group_path: 'Geology & natural resources/Geological map of the Arctic'
+  style: onshore_planar_geological_map
+  data_source: geological_map.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'data/shape/geology/Greenland_onshore_Planar.dbf'
+      - 'data/shape/geology/Greenland_onshore_Planar.prj'
+      - 'data/shape/geology/Greenland_onshore_Planar.sbn'
+      - 'data/shape/geology/Greenland_onshore_Planar.sbx'
+      - 'data/shape/geology/Greenland_onshore_Planar.shp'
+      - 'data/shape/geology/Greenland_onshore_Planar.shp.xml'
+      - 'data/shape/geology/Greenland_onshore_Planar.shx'
+
+- <<: *geological_map
+  id: onshore_pattern_geological_map
+  title: 'Onshore pattern'
+  description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
+  style: geological_map_polygons
+  boundary: 'data'
+  decompress_kwargs:
+    extract_files:
+      - 'data/shape/geology/Greenland_onshore_pattern.dbf'
+      - 'data/shape/geology/Greenland_onshore_pattern.prj'
+      - 'data/shape/geology/Greenland_onshore_pattern.sbn'
+      - 'data/shape/geology/Greenland_onshore_pattern.sbx'
+      - 'data/shape/geology/Greenland_onshore_pattern.shp'
+      - 'data/shape/geology/Greenland_onshore_pattern.shp.xml'
+      - 'data/shape/geology/Greenland_onshore_pattern.shx'
+
+- <<: *geological_map
+  id: onshore_geological_map
+  title: 'Onshore'
+  description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
+  style: geological_map_polygons
+  decompress_kwargs:
+    extract_files:
+      - 'data/shape/geology/Greenland_onshore.dbf'
+      - 'data/shape/geology/Greenland_onshore.prj'
+      - 'data/shape/geology/Greenland_onshore.sbn'
+      - 'data/shape/geology/Greenland_onshore.sbx'
+      - 'data/shape/geology/Greenland_onshore.shp'
+      - 'data/shape/geology/Greenland_onshore.shp.xml'
+      - 'data/shape/geology/Greenland_onshore.shx'
+
 # TODO: this layer results in missing features due to reprojection issues. Try
 # to come back to this later.
 # - id: tectonic_plates

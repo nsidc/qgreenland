@@ -26,6 +26,8 @@ source:
   # If a granule_ur and collection_concept_id isn't provided, provide a
   # list of files instead
   urls: list(str(), required=False)
+  # Override TLS certificate verification
+  verify: bool(required=False)
 
   ##### access_method: ogr_remote_vector #####
   # TODO: Consider breaking up in to "featureserver_url", "feature_id", "query"?

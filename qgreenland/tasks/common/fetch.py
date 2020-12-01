@@ -34,6 +34,12 @@ class FetchCmrGranule(FetchTask):
             granule_ur=self.source_cfg['granule_ur'],
             collection_concept_id=self.source_cfg['collection_concept_id'])
 
+        verify = self.source_cfg.get('verify')
+        if verify is not None:
+            raise RuntimeError(
+                'Ignoring TLS certificate verification is not supported for CMR granules.'
+            )
+
         with temporary_path_dir(self.output()) as temp_path:
             for url in granule.urls:
                 if not self.session:
@@ -54,9 +60,10 @@ class FetchDataFiles(FetchTask):
         if self.dataset_cfg['access_method'] == 'cmr':
             raise RuntimeError('Use a FetchCmrGranule task!')
 
+        verify = self.source_cfg.get('verify', True)
         with temporary_path_dir(self.output()) as temp_path:
             for url in self.source_cfg['urls']:
-                fetch_and_write_file(url, output_dir=temp_path)
+                fetch_and_write_file(url, output_dir=temp_path, verify=verify)
 
 
 class FetchLocalDataFiles(FetchTask):

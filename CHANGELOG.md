@@ -1,4 +1,4 @@
-# v0.39.0 (unreleased)
+# v0.39.0 (2020-12-01)
 
 - New "Glaciology" layer: Sermeq Kujalleq/Jakobshavn Supraglacial Lakes
 - Remove "Environmental management/Exclusive economic zones" layer: Exclusive
@@ -15,6 +15,10 @@
   - Velocity Error
   - Ice mask
 - New "Environmental management" layer: NAFO Divisions
+- New "Geology & natural resources/Geological map of the Arctic" layers:
+  - Onshore pattern
+  - Onshore Planar
+  - Onshore
 
 # v0.38.0 (2020-11-20)
 
