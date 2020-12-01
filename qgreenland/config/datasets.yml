@@ -1103,3 +1103,21 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: 'Data are produced by Penelope How, Alexandra Messerli, and Eva Mätzler (Department of Remote Sensing, Asiaq Greenland Survey)'
       url: 'http://products.esa-icesheets-cci.org/products/details/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip/'
+
+
+- id: nafo_divisions
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.nafo.int/Portals/0/GIS/Divisions.zip'
+  metadata:
+    title: 'NAFO Divisions'
+    abstract: >-
+        The Northwest Atlantic Fisheries Organization (NAFO) Secretariat is a
+        repository of information and meta-data related to the fishery,
+        including catch statistics, scientific literature, fisheries management
+        documentation and GIS (geographic information system) resources.
+    citation:
+      text: 'Northwest Atlantic Fisheries Organization Secretariat'
+      url: 'https://www.nafo.int/Data'

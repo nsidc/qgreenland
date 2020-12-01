@@ -14,6 +14,7 @@
 - New "Glaciology/Ice sheet velocity" layers:
   - Velocity Error
   - Ice mask
+- New "Environmental management" layer: NAFO Divisions
 
 # v0.38.0 (2020-11-20)
 

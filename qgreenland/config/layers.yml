@@ -554,6 +554,18 @@
 # Environmental management #
 ############################
 
+- id: nafo_divisions
+  title: 'NAFO Divisions'
+  description: 'The Northwest Atlantic Fisheries Organization Zones'
+  data_source: nafo_divisions.only
+  visible: False
+  group_path: 'Environmental management'
+  style: null
+  boundary: 'background'
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
 - <<: *walrus_protected_areas
   id: nunagis_unesco_treaty_zones
   title: 'UNESCO Treaty Zones'
