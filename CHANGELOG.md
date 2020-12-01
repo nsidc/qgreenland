@@ -1,4 +1,4 @@
-# v0.39.0 (unreleased)
+# v0.39.0 (2020-12-01)
 
 - New "Glaciology" layer: Sermeq Kujalleq/Jakobshavn Supraglacial Lakes
 - Remove "Environmental management/Exclusive economic zones" layer: Exclusive
