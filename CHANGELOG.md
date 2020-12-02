@@ -1,4 +1,4 @@
-# v0.40.0 (unreleased)
+# v0.40.0 (2020-12-02)
 
 - New "Frozen Ground" layers:
   - Ground temperature (10km)
