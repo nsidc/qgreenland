@@ -755,26 +755,6 @@
   translate_kwargs:
     extract_dataset: 'PerProb'
 
-- id: permaice
-  title: 'Permafrost and Ground-Ice (12.5km)'
-  description: >-
-      Soil characteristics categorized by permafrost extent, ground ice content,
-      overburden thickness, and exposed bedrock.
-  visible: False
-  group_path: 'Frozen ground'
-  style: 'permaice'
-  boundary: 'data'
-  data_source: permaice_nhipa.only
-  ingest_task: permaice
-  file_type: '.tif'
-  data_type: 'raster'
-  warp_kwargs:
-    xRes: 12500
-    yRes: 12500
-    resampleAlg: 'near'
-    srcSRS: '+proj=laea +a=6371228.000 +b=6371228.000 +lon_0=0 +lat_0=90 +x_0=0 +y_0=0'
-
-
 ##############
 # Glaciology #
 ##############

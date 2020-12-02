@@ -248,21 +248,6 @@
       url: 'http://hdl.handle.net/1773/45388'
 
 
-- id: permaice_nhipa
-  access_method: http
-  sources:
-    - id: only
-      urls:
-        - 'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd318_map_circumarctic/nhipa.hdr'
-        - 'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd318_map_circumarctic/nhipa.byte'
-  metadata:
-    title: 'Circum-Arctic Map of Permafrost and Ground-Ice Conditions, Version 2'
-    abstract: 'The circumpolar permafrost and ground ice data contribute to a unified international data set that depicts the distribution and properties of permafrost and ground ice in the Northern Hemisphere (20°N to 90°N). The re-gridded data set shows discontinuous, sporadic, or isolated permafrost boundaries. Permafrost extent is estimated in percent area (90-100 percent, 50-90 percent, 10-50 percent, <10 percent, and no permafrost). Relative abundance of ground ice in the upper 20 m is estimated in percent volume (>20 percent, 10-20 percent, <10 percent, and 0 percent). The data set also contains the location of subsea and relict permafrost. the gridded data are gridded at 12.5 km, 25 km, and 0.5 degree resolution. The shapefiles were derived from the original 1:10,000,000 paper map (Brown et al. 1997)'
-    citation:
-      text: 'Brown, J., O. Ferrians, J. A. Heginbottom, and E. Melnikov. 2002. Circum-Arctic Map of Permafrost and Ground-Ice Conditions, Version 2. [Indicate subset used]. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/. 2020-07-30'
-      url: 'https://nsidc.org/data/GGD318/versions/2'
-
-
 - id: soil_types
   access_method: http
   sources:
