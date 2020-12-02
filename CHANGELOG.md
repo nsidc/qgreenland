@@ -4,6 +4,7 @@
   - Ground temperature (10km)
   - Ground temperature standard deviation (10km)
   - Permafrost Probability (10km)
+- New "Basemaps" layer: Greenland Coastlines.
 
 # v0.39.0 (2020-12-01)
 
