@@ -1801,8 +1801,10 @@
 # BASEMAPS #
 ############
 
+# TODO: remove this layer? This covers the entire background region, while the
+# bas coastlines only focuses on Greenland.
 - id: coastlines
-  title: 'Coastlines'
+  title: 'Coastlines [OLD]'
   visible: False
   group_path: 'Basemaps'
   style: 'coastline-IHOECDIS'
@@ -1812,6 +1814,18 @@
   file_type: '.shp'
   data_type: 'vector'
 
+- id: bas_coastlines
+  title: 'BAS Coastlines'
+  visible: False
+  group_path: 'Basemaps'
+  # TODO: new style similar to coastline-IHOECDIS? The source data is a polygon,
+  # but the other coastline data we have is polyline.
+  style: null
+  boundary: 'background'
+  data_source: bas_coastlines.only
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
 
 - id: ne_states_provinces
   title: 'Administrative Divisions'
