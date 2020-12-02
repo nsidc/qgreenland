@@ -720,6 +720,41 @@
 # Frozen ground #
 #################
 
+- &ground_temperature
+  id:  ground_temperature
+  title: 'Ground temperature (10km)'
+  description: >-
+      Average mean annual ground temperature in degrees Celsius.
+  visible: False
+  group_path: 'Frozen ground'
+  style: null
+  boundary: 'data'
+  data_source: pangaea_ground_temperature.10km
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'MAGT'
+  warp_kwargs:
+    srcSRS: 'EPSG:3995'
+
+- <<: *ground_temperature
+  id:  ground_temperature_sd
+  title: 'Ground temperature standard deviation (10km)'
+  description: >-
+     Standard deviation of the average mean annual ground temperature in degrees Celsius.
+  translate_kwargs:
+    extract_dataset: 'SD'
+
+- <<: *ground_temperature
+  id:  permafrost_probability
+  title: 'Permafrost Probability (10km)'
+  description: >-
+     Permafrost probability (fraction values from 0 to 1) is assigned to each
+     grid cell with MAGT < 0°C.
+  translate_kwargs:
+    extract_dataset: 'PerProb'
+
 - id: permaice
   title: 'Permafrost and Ground-Ice (12.5km)'
   description: >-

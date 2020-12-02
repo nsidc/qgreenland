@@ -1,3 +1,10 @@
+# v0.40.0 (unreleased)
+
+- New "Frozen Ground" layers:
+  - Ground temperature (10km)
+  - Ground temperature standard deviation (10km)
+  - Permafrost Probability (10km)
+
 # v0.39.0 (2020-12-01)
 
 - New "Glaciology" layer: Sermeq Kujalleq/Jakobshavn Supraglacial Lakes
