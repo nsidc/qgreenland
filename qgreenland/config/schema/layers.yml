@@ -80,6 +80,7 @@ ogr2ogr_kwargs:
   sql: str(required=False)
   makevalid: str(required=False)
   where: str(required=False)
+  skipfailures: str(required=False)
   # TODO: this really isn't an `ogr2ogr` arg, its an envvar. Sometimes (natural
   # earth timezones) this is required to allow reprojection of some shapes.
   # Move to `ogr2ogr_env`?
