@@ -3,6 +3,10 @@
 - Remove existing "Frozen Ground" layer: Permafrost and Ground-Ice (12.5km). The
   "Frozen Ground" layers provided by the Pangaea Ground Temperature Map replace
   this.
+- New "Glaciology/GLIMS" layers:
+  - Points
+  - Images (points)
+  - Polygons
 
 # v0.40.0 (2020-12-02)
 
