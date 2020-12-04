@@ -1233,6 +1233,23 @@
       - 'WMM_2020_all_shape_geographic/I_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/I_2020.shx'
 
+- <<: *wmm_d_2020
+  id: wmm_z_2020
+  title: 'Z'
+  description: >-
+    Geomagnetic main field down component
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/Z_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/Z_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/Z_2020.prj'
+      - 'WMM_2020_all_shape_geographic/Z_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/Z_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/Z_2020.shp'
+      - 'WMM_2020_all_shape_geographic/Z_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/Z_2020.shx'
+
+
 ######## World Magnetic Model 2021 ########
 - &wmm_d_2021
   id: wmm_d_2021
@@ -1339,6 +1356,22 @@
       - 'WMM_2021_all_shape_geographic/I_2021.shp'
       - 'WMM_2021_all_shape_geographic/I_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/I_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_z_2021
+  title: 'Z'
+  description: >-
+    Geomagnetic main field down component
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/Z_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/Z_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/Z_2021.prj'
+      - 'WMM_2021_all_shape_geographic/Z_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/Z_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/Z_2021.shp'
+      - 'WMM_2021_all_shape_geographic/Z_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/Z_2021.shx'
 
 ######## World Magnetic Model 2022 ########
 - &wmm_d_2022
@@ -1447,6 +1480,22 @@
       - 'WMM_2022_all_shape_geographic/I_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/I_2022.shx'
 
+- <<: *wmm_d_2022
+  id: wmm_z_2022
+  title: 'Z'
+  description: >-
+    Geomagnetic main field down component
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/Z_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/Z_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/Z_2022.prj'
+      - 'WMM_2022_all_shape_geographic/Z_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/Z_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/Z_2022.shp'
+      - 'WMM_2022_all_shape_geographic/Z_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/Z_2022.shx'
+
 ######## World Magnetic Model 2023 ########
 - &wmm_d_2023
   id: wmm_d_2023
@@ -1553,6 +1602,22 @@
       - 'WMM_2023_all_shape_geographic/I_2023.shp'
       - 'WMM_2023_all_shape_geographic/I_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/I_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_z_2023
+  title: 'Z'
+  description: >-
+    Geomagnetic main field down component
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/Z_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/Z_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/Z_2023.prj'
+      - 'WMM_2023_all_shape_geographic/Z_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/Z_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/Z_2023.shp'
+      - 'WMM_2023_all_shape_geographic/Z_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/Z_2023.shx'
 
 ######## World Magnetic Model 2024 ########
 - &wmm_d_2024
@@ -1661,6 +1726,22 @@
       - 'WMM_2024_all_shape_geographic/I_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/I_2024.shx'
 
+- <<: *wmm_d_2024
+  id: wmm_z_2024
+  title: 'Z'
+  description: >-
+    Geomagnetic main field down component
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/Z_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/Z_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/Z_2024.prj'
+      - 'WMM_2024_all_shape_geographic/Z_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/Z_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/Z_2024.shp'
+      - 'WMM_2024_all_shape_geographic/Z_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/Z_2024.shx'
+
 ######## World Magnetic Model 2025 ########
 - &wmm_d_2025
   id: wmm_d_2025
@@ -1767,6 +1848,22 @@
       - 'WMM_2025_all_shape_geographic/I_2025.shp'
       - 'WMM_2025_all_shape_geographic/I_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/I_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_z_2025
+  title: 'Z'
+  description: >-
+    Geomagnetic main field down component
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/Z_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/Z_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/Z_2025.prj'
+      - 'WMM_2025_all_shape_geographic/Z_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/Z_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/Z_2025.shp'
+      - 'WMM_2025_all_shape_geographic/Z_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/Z_2025.shx'
 
 ######## Geothermal Heat Flux ########
 - id: geothermal_heat_flux

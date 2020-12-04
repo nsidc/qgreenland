@@ -16,6 +16,7 @@
   - X (North Component of the geomagnetic field)
   - Y (East Component of the geomagnetic field)
   - I (Geomagnetic Inclination)
+  - Z (Geomagnetic main field down component)
 
 # v0.40.0 (2020-12-02)
 
