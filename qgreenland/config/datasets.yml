@@ -1252,9 +1252,6 @@ The images and data are produced in a consistent way that makes the Index time-s
 
 - id: world_magnetic_model
   access_method: http
-  # TODO: can we use the glims search API directly to query for points in our
-  # area of interest instead of downloading a snapshot of the entire database?
-  # There is a web-based GUI: http://www.glims.org/maps/textsearch/
   sources:
     - id: '2020'
       urls:
