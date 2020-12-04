@@ -1464,7 +1464,7 @@
   description: 'Median extent from the period 1981 through 2010.'
   visible: False
   group_path: 'Sea ice/Median ice extent'
-  boundary: 'data'
+  boundary: 'background'
   data_source: seaice_index.median_extent_line_01
   ingest_task: 'zipped_vector'
   file_type: '.shp'
@@ -1545,7 +1545,7 @@
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
-  boundary: 'data'
+  boundary: 'background'
   data_source: seaice_index.minimum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
@@ -1624,7 +1624,7 @@
   visible: False
   group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent)'
   style: 'sea_ice_concentration'
-  boundary: 'data'
+  boundary: 'background'
   data_source: seaice_index.maximum_concentration_2009
   ingest_task: 'raster_calc'
   file_type: '.tif'
