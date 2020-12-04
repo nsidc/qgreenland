@@ -1248,3 +1248,65 @@ The images and data are produced in a consistent way that makes the Index time-s
         by the international GLIMS community and the National Snow and Ice Data
         Center, Boulder CO, U.S.A.  DOI:10.7265/N5V98602
       url: 'https://doi.org/10.7265/N5V98602'
+
+
+- id: world_magnetic_model
+  access_method: http
+  # TODO: can we use the glims search API directly to query for points in our
+  # area of interest instead of downloading a snapshot of the entire database?
+  # There is a web-based GUI: http://www.glims.org/maps/textsearch/
+  sources:
+    - id: '2020'
+      urls:
+        - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/2020/WMM_2020_all_shape_geographic.zip'
+    - id: '2021'
+      urls:
+        - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/2021/WMM_2021_all_shape_geographic.zip'
+    - id: '2022'
+      urls:
+        - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/2022/WMM_2022_all_shape_geographic.zip'
+    - id: '2023'
+      urls:
+        - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/2023/WMM_2023_all_shape_geographic.zip'
+    - id: '2024'
+      urls:
+        - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/2024/WMM_2024_all_shape_geographic.zip'
+    - id: '2025'
+      urls:
+        - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/2025/WMM_2025_all_shape_geographic.zip'
+  metadata:
+    title: 'The World Magnetic Model'
+    abstract: >-
+      The World Magnetic Model is a joint product of the United States’ National
+      Geospatial-Intelligence Agency (NGA) and the United Kingdom’s Defence
+      Geographic Centre (DGC). The WMM was developed jointly by the National
+      Centers for Environmental Information (NCEI, Boulder CO, USA) (formerly
+      National Geophysical Data Center (NGDC)) and the British Geological Survey
+      (BGS, Edinburgh, Scotland).
+
+      The World Magnetic Model is the standard model used by the U.S. Department
+      of Defense, the U.K. Ministry of Defence, the North Atlantic Treaty
+      Organization (NATO) and the International Hydrographic Organization (IHO),
+      for navigation, attitude and heading referencing systems using the
+      geomagnetic field. It is also used widely in civilian navigation and
+      heading systems. The model, associated software, and documentation are
+      distributed by NCEI on behalf of NGA. The model is produced at 5-year
+      intervals, with the current model expiring on December 31, 2024.
+
+      Changes of the fluid flow in the Earth's outer core lead to unpredictable
+      changes in the Earth's magnetic field. Fortunately, the system has large
+      inertia, so that these changes take place over time scales of many
+      years. By surveying the field for a few years, one can precisely map the
+      present field and its rate of change and then linearly extrapolate it out
+      into the future. Provided that suitable satellite magnetic observations
+      are available, the prediction of the WMM is highly accurate on its release
+      date and then subsequently deteriorates towards the end of the 5 year
+      epoch, when it has to be updated with revised values of the model
+      coefficients.
+    citation:
+      text: >-
+        NCEI Geomagnetic Modeling Team and British Geological
+        Survey. 2019. World Magnetic Model 2020. NOAA National Centers for
+        Environmental Information. doi: 10.25921/11v3-da71, 2020, [date
+        accessed].
+      url: 'https://doi.org/10.25921/11v3-da71'
