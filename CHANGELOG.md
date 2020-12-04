@@ -1,4 +1,4 @@
-# v0.41.0 (unreleased)
+# v0.41.0 (2020-12-04)
 
 - Remove existing "Frozen Ground" layer: Permafrost and Ground-Ice (12.5km). The
   "Frozen Ground" layers provided by the Pangaea Ground Temperature Map replace
