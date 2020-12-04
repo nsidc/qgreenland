@@ -1253,6 +1253,9 @@ The images and data are produced in a consistent way that makes the Index time-s
 - id: world_magnetic_model
   access_method: http
   sources:
+    - id: 'blackout_zones'
+      urls:
+        - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020-2025_BoZ_Shapefile.zip'
     - id: '2020'
       urls:
         - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/2020/WMM_2020_all_shape_geographic.zip'

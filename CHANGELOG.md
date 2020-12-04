@@ -10,6 +10,7 @@
 - NSIDC sea ice layers are now clipped to the 'background' boundary instead of
   the immediate rectanular area around Greenland.
 - New "Geophysics/World Magnetic Model/202X" layers for 2020-2025:
+  - Blackout Zones
   - D (Geomagnetic Declination (Magnetic Variation))
   - F (Total Intensity of the geomagnetic field)
   - H (Horizontal Intensity of the geomagnetic field)

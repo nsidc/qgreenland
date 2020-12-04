@@ -1127,6 +1127,39 @@
 ##############
 
 ######## World Magnetic Model 2020 ########
+- &boz_2020
+  id: wmm_boz_2020
+  title: 'Blackout Zones'
+  description: >-
+    Based on the WMM military specification, we define “Blackout Zones” (BoZ)
+    around the north and south magnetic poles where compass accuracy is highly
+    degraded. The BoZ are defined as regions around the north and south magnetic
+    poles where the horizontal intensity of Earth’s magnetic field (H) is less
+    than 2000 nT. In BoZs, WMM declination values are not accurate and compasses
+    are unreliable.
+
+    We additionally define a “Caution Zone” (2000 nT <= H < 6000 nT) around the
+    BoZ, where caution must be exercised while using a compass. Compass accuracy
+    may be degraded in this region.
+  visible: False
+  group_path: 'Geophysics/World Magnetic Model/2020'
+  style: blackout_zones
+  data_source: world_magnetic_model.blackout_zones
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  boundary: 'background'
+  decompress_kwargs:
+    extract_files:
+      - 'BOZ_arctic_all/BOZ_2020.CPG'
+      - 'BOZ_arctic_all/BOZ_2020.dbf'
+      - 'BOZ_arctic_all/BOZ_2020.prj'
+      - 'BOZ_arctic_all/BOZ_2020.sbn'
+      - 'BOZ_arctic_all/BOZ_2020.sbx'
+      - 'BOZ_arctic_all/BOZ_2020.shp'
+      - 'BOZ_arctic_all/BOZ_2020.shp.xml'
+      - 'BOZ_arctic_all/BOZ_2020.shx'
+
 - &wmm_d_2020
   id: wmm_d_2020
   title: 'D'
@@ -1251,6 +1284,21 @@
 
 
 ######## World Magnetic Model 2021 ########
+- <<: *boz_2020
+  id: wmm_boz_2021
+  title: 'Blackout Zones'
+  group_path: 'Geophysics/World Magnetic Model/2021'
+  decompress_kwargs:
+    extract_files:
+      - 'BOZ_arctic_all/BOZ_2021.CPG'
+      - 'BOZ_arctic_all/BOZ_2021.dbf'
+      - 'BOZ_arctic_all/BOZ_2021.prj'
+      - 'BOZ_arctic_all/BOZ_2021.sbn'
+      - 'BOZ_arctic_all/BOZ_2021.sbx'
+      - 'BOZ_arctic_all/BOZ_2021.shp'
+      - 'BOZ_arctic_all/BOZ_2021.shp.xml'
+      - 'BOZ_arctic_all/BOZ_2021.shx'
+
 - &wmm_d_2021
   id: wmm_d_2021
   title: 'D'
@@ -1374,6 +1422,21 @@
       - 'WMM_2021_all_shape_geographic/Z_2021.shx'
 
 ######## World Magnetic Model 2022 ########
+- <<: *boz_2020
+  id: wmm_boz_2022
+  title: 'Blackout Zones'
+  group_path: 'Geophysics/World Magnetic Model/2022'
+  decompress_kwargs:
+    extract_files:
+      - 'BOZ_arctic_all/BOZ_2022.CPG'
+      - 'BOZ_arctic_all/BOZ_2022.dbf'
+      - 'BOZ_arctic_all/BOZ_2022.prj'
+      - 'BOZ_arctic_all/BOZ_2022.sbn'
+      - 'BOZ_arctic_all/BOZ_2022.sbx'
+      - 'BOZ_arctic_all/BOZ_2022.shp'
+      - 'BOZ_arctic_all/BOZ_2022.shp.xml'
+      - 'BOZ_arctic_all/BOZ_2022.shx'
+
 - &wmm_d_2022
   id: wmm_d_2022
   title: 'D'
@@ -1497,6 +1560,21 @@
       - 'WMM_2022_all_shape_geographic/Z_2022.shx'
 
 ######## World Magnetic Model 2023 ########
+- <<: *boz_2020
+  id: wmm_boz_2023
+  title: 'Blackout Zones'
+  group_path: 'Geophysics/World Magnetic Model/2023'
+  decompress_kwargs:
+    extract_files:
+      - 'BOZ_arctic_all/BOZ_2023.CPG'
+      - 'BOZ_arctic_all/BOZ_2023.dbf'
+      - 'BOZ_arctic_all/BOZ_2023.prj'
+      - 'BOZ_arctic_all/BOZ_2023.sbn'
+      - 'BOZ_arctic_all/BOZ_2023.sbx'
+      - 'BOZ_arctic_all/BOZ_2023.shp'
+      - 'BOZ_arctic_all/BOZ_2023.shp.xml'
+      - 'BOZ_arctic_all/BOZ_2023.shx'
+
 - &wmm_d_2023
   id: wmm_d_2023
   title: 'D'
@@ -1620,6 +1698,21 @@
       - 'WMM_2023_all_shape_geographic/Z_2023.shx'
 
 ######## World Magnetic Model 2024 ########
+- <<: *boz_2020
+  id: wmm_boz_2024
+  title: 'Blackout Zones'
+  group_path: 'Geophysics/World Magnetic Model/2024'
+  decompress_kwargs:
+    extract_files:
+      - 'BOZ_arctic_all/BOZ_2024.CPG'
+      - 'BOZ_arctic_all/BOZ_2024.dbf'
+      - 'BOZ_arctic_all/BOZ_2024.prj'
+      - 'BOZ_arctic_all/BOZ_2024.sbn'
+      - 'BOZ_arctic_all/BOZ_2024.sbx'
+      - 'BOZ_arctic_all/BOZ_2024.shp'
+      - 'BOZ_arctic_all/BOZ_2024.shp.xml'
+      - 'BOZ_arctic_all/BOZ_2024.shx'
+
 - &wmm_d_2024
   id: wmm_d_2024
   title: 'D'
@@ -1743,6 +1836,21 @@
       - 'WMM_2024_all_shape_geographic/Z_2024.shx'
 
 ######## World Magnetic Model 2025 ########
+- <<: *boz_2020
+  id: wmm_boz_2025
+  title: 'Blackout Zones'
+  group_path: 'Geophysics/World Magnetic Model/2025'
+  decompress_kwargs:
+    extract_files:
+      - 'BOZ_arctic_all/BOZ_2025.CPG'
+      - 'BOZ_arctic_all/BOZ_2025.dbf'
+      - 'BOZ_arctic_all/BOZ_2025.prj'
+      - 'BOZ_arctic_all/BOZ_2025.sbn'
+      - 'BOZ_arctic_all/BOZ_2025.sbx'
+      - 'BOZ_arctic_all/BOZ_2025.shp'
+      - 'BOZ_arctic_all/BOZ_2025.shp.xml'
+      - 'BOZ_arctic_all/BOZ_2025.shx'
+
 - &wmm_d_2025
   id: wmm_d_2025
   title: 'D'
