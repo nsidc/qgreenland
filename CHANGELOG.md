@@ -8,7 +8,7 @@
   - Images (points)
   - Polygons
 - NSIDC sea ice layers are now clipped to the 'background' boundary instead of
-  the immediate rectanular area around Greenland.
+  the immediate rectangular area around Greenland.
 - New "Geophysics/World Magnetic Model/202X" layers for 2020-2025:
   - Blackout Zones
   - D (Geomagnetic Declination (Magnetic Variation))
