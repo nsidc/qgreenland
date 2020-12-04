@@ -1127,7 +1127,6 @@
 ##############
 
 ######## World Magnetic Model 2020 ########
-
 - &wmm_d_2020
   id: wmm_d_2020
   title: 'D'
@@ -1235,7 +1234,6 @@
       - 'WMM_2020_all_shape_geographic/I_2020.shx'
 
 ######## World Magnetic Model 2021 ########
-
 - &wmm_d_2021
   id: wmm_d_2021
   title: 'D'
@@ -1341,8 +1339,8 @@
       - 'WMM_2021_all_shape_geographic/I_2021.shp'
       - 'WMM_2021_all_shape_geographic/I_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/I_2021.shx'
-######## World Magnetic Model 2022 ########
 
+######## World Magnetic Model 2022 ########
 - &wmm_d_2022
   id: wmm_d_2022
   title: 'D'
@@ -1448,6 +1446,7 @@
       - 'WMM_2022_all_shape_geographic/I_2022.shp'
       - 'WMM_2022_all_shape_geographic/I_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/I_2022.shx'
+
 ######## World Magnetic Model 2023 ########
 - &wmm_d_2023
   id: wmm_d_2023
@@ -1554,8 +1553,8 @@
       - 'WMM_2023_all_shape_geographic/I_2023.shp'
       - 'WMM_2023_all_shape_geographic/I_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/I_2023.shx'
-######## World Magnetic Model 2024 ########
 
+######## World Magnetic Model 2024 ########
 - &wmm_d_2024
   id: wmm_d_2024
   title: 'D'
@@ -1661,8 +1660,8 @@
       - 'WMM_2024_all_shape_geographic/I_2024.shp'
       - 'WMM_2024_all_shape_geographic/I_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/I_2024.shx'
-######## World Magnetic Model 2025 ########
 
+######## World Magnetic Model 2025 ########
 - &wmm_d_2025
   id: wmm_d_2025
   title: 'D'
