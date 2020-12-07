@@ -7,9 +7,51 @@ from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
-from qgreenland.util.vector import cleanup_valid_shapefile, ogr2ogr
+from qgreenland.util.vector import cleanup_valid_shapefile, ogr2ogr, points_txt_to_shape
 
 logger = logging.getLogger('luigi-interface')
+
+
+class DelimitedTextPointsVector(LayerTask):
+    """Acts on point vector data that is stored in a delimited text file.
+
+    `header` defaults to 0 (first column),
+    `delimiter` defaults to `,`
+    `x_field` defaults to `latitude`
+    `y_field` defaults to `longitude`
+    """
+
+    task_type = TaskType.WIP
+
+    def output(self):
+        return luigi.LocalTarget(f'{self.outdir}/transform_delimited/')
+
+    def run(self):
+        delimited_text_vector_kwargs = self.layer_cfg['delimited_text_vector_kwargs']
+
+        if 'input_filename' in delimited_text_vector_kwargs:
+            input_filepath = os.path.join(
+                self.input().path,
+                delimited_text_vector_kwargs.pop('input_filename')
+            )
+        else:
+            text_file = find_single_file_by_ext(self.input().path, ext='.txt')
+            input_filepath = text_file
+
+        input_filename = os.path.basename(input_filepath)
+        with temporary_path_dir(self.output()) as temp_path:
+            infile = os.path.join(self.input().path, input_filename)
+
+            out_filename = os.path.splitext(input_filename)[0] + '.shp'
+            outfile = os.path.join(temp_path, out_filename)
+            points_txt_to_shape(
+                infile, outfile,
+                header=delimited_text_vector_kwargs.get('header', 0),
+                delimiter=delimited_text_vector_kwargs.get('delimiter', ','),
+                field_names=delimited_text_vector_kwargs.get('field_names'),
+                x_field=delimited_text_vector_kwargs.get('x_field', 'latitude'),
+                y_field=delimited_text_vector_kwargs.get('y_field', 'longitude')
+            )
 
 
 class Ogr2OgrVector(LayerTask):

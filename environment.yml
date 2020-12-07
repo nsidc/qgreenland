@@ -28,6 +28,8 @@ dependencies:
   - requests=2.22.0
   - vulture=1.0
   - yamale=2.0.1
+  - pandas=1.1.4
+  - geopandas=0.6.2
   - pip:
     - flake8-debugger==3.2.1
     - flake8-use-fstring==1.0

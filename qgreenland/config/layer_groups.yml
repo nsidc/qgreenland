@@ -107,6 +107,9 @@ Geophysics:
   visible: False
   expanded: False
 
+Geophysics/World Magnetic Model:
+  visible: False
+  expanded: False
 
 Human activity:
   visible: False

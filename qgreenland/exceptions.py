@@ -4,3 +4,7 @@ class QgrVersionError(Exception):
 
 class QgrInvalidConfigError(Exception):
     pass
+
+
+class QgrRuntimeError(Exception):
+    pass
