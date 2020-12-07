@@ -5,6 +5,8 @@ import subprocess
 import geopandas as gpd
 import pandas as pd
 
+from qgreenland.exceptions import QgrRuntimeError
+
 logger = logging.getLogger('luigi-interface')
 
 
@@ -14,7 +16,15 @@ def points_txt_to_shape(
 ):
     df = pd.read_table(in_filepath, header=header, delimiter=delimiter)
 
+    # If the header is 'none', there is no header and it must be defiend via
+    # `field_names`
     if header is None:
+        if not field_names or len(field_names) != len(df.columns):
+            raise QgrRuntimeError(
+                '`field_names` must be a list of field names corresponding to each of the'
+                f' {len(df.columns)} columns in {in_filepath}. Got {field_names=}'
+            )
+
         df = df.rename(columns={idx: field_names[idx] for idx in range(len(field_names))})
 
     gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df[x_field], df[y_field]))
