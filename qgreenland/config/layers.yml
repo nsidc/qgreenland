@@ -1130,7 +1130,11 @@
 - id: wmm_north_poles
   title: 'Geomagnetic North Pole 2020-2025'
   description: >-
-      TBD
+    The magnetic poles or dip pole are computed from all the Gauss coefficients
+    using an iterative method. Magnetic poles derived in this fashion are
+    geographically closer to the experimentally observed poles. Based on the
+    current WMM model, the 2020 location of the north magnetic pole is 86.50°N
+    and 164.04°E and the south magnetic pole is 64.07°S and 135.88°E.
   visible: False
   group_path: 'Geophysics/World Magnetic Model'
   style: null
