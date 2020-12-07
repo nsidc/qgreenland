@@ -1129,19 +1129,19 @@
 ######## World Magnetic Model 2020 ########
 - &wmm_north_poles
   id: wmm_north_poles
-  title: 'Geomagnetic North Pole 2020-2025'
+  title: 'Geomagnetic North Dip Pole 2020-2025'
   description: >-
-    The geomagnetic poles, or geocentric dipole, is computed from the first
-    three Gauss coefficients from the World Magnetic Model (WMM) main field
-    model. The WMM representation of the field includes a magnetic dipole at the
-    center of the Earth. This dipole defines an axis that intersects the Earth's
-    surface at two antipodal points called geomagnetic poles.
+    The locations of northern hemisphere dip poles (2020-2025) from the World
+    Magnetic Model (WMM) 2020 model.
 
-    The magnetic poles or dip pole are computed from all the Gauss coefficients
-    using an iterative method. Magnetic poles derived in this fashion are
-    geographically closer to the experimentally observed poles. Based on the
-    current WMM model, the 2020 location of the north magnetic pole is 86.50°N
-    and 164.04°E and the south magnetic pole is 64.07°S and 135.88°E.
+    The geomagnetic dip poles are positions on the Earth's surface where the
+    geomagnetic field is perpendicular to the ellipsoid, that is, vertical. The
+    north and south dip poles do not have to be (and are not now) antipodal.
+
+    These model dip poles are computed from all the Gauss coefficients using an
+    iterative method. In 2020.0 the north dip pole computed from WMM2020 is
+    located at longitude 164.04°E and geodetic latitude 86.50°N and the south
+    dip pole at longitude 135.88°E and geodetic latitude 64.07°S.
   visible: False
   group_path: 'Geophysics/World Magnetic Model'
   style: geomagnetic_north_pole
@@ -1163,15 +1163,17 @@
 
 - <<: *wmm_north_poles
   id: wmm_igrf_north_poles
-  title: 'IGRF Geomagnetic North Pole 1590-2025'
+  title: 'IGRF Geomagnetic North Dip Pole 1590-2025'
   description: >-
-    The geomagnetic poles, or geocentric dipole, is computed from the first
-    three Gauss coefficients from the International Geomagnetic Reference Field
-    (IGRF) main field model.
+    The locations of northern hemisphere dip poles (1590-2025) from the latest
+    International Geomagnetic Reference Field (IGRF) model.
 
-    The magnetic poles or dip pole are computed from all the Gauss coefficients
-    using an iterative method. Magnetic poles derived in this fashion are
-    geographically closer to the experimentally observed poles.
+    The geomagnetic dip poles are positions on the Earth's surface where the
+    geomagnetic field is perpendicular to the ellipsoid, that is, vertical. The
+    north and south dip poles do not have to be (and are not now) antipodal.
+
+    These model dip poles are computed from all the Gauss coefficients using an
+    iterative method.
   data_source: world_magnetic_model.igrf_geomagnetic_north_pole
   delimited_text_vector_kwargs:
     input_filename: 'NP.xy'
