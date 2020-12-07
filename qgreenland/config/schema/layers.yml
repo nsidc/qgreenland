@@ -45,7 +45,17 @@ layer:
   translate_kwargs: include('translate_kwargs', required=False)
   gdal_mdim_translate_kwargs: include('gdal_mdim_translate_kwargs', required=False)
   gdal_edit_kwargs: include('gdal_edit_kwargs', required=False)
+  delimited_text_vector_kwargs: include('delimited_text_vector_kwargs', required=False)
 
+
+---
+delimited_text_vector_kwargs:
+  input_filename: str(required=False)
+  header: int(required=False)
+  delimiter: str(required=False)
+  field_names: list(required=False)
+  x_field: str(required=False)
+  y_field: str(required=False)
 
 ---
 gdal_edit_kwargs:

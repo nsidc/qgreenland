@@ -1127,6 +1127,29 @@
 ##############
 
 ######## World Magnetic Model 2020 ########
+- id: wmm_north_poles
+  title: 'Geomagnetic North Pole 2020-2025'
+  description: >-
+      TBD
+  visible: False
+  group_path: 'Geophysics/World Magnetic Model'
+  style: null
+  data_source: world_magnetic_model.geomagnetic_north_pole
+  ingest_task: delimited_text_points_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  boundary: 'background'
+  delimited_text_vector_kwargs:
+    input_filename: 'WMM2020_NP.xy'
+    header: null
+    delimiter: ' '
+    field_names:
+      - latitude
+      - longitude
+      - year
+  ogr2ogr_kwargs:
+    s_srs: 'EPSG:4326'
+
 - &boz_2020
   id: wmm_boz_2020
   title: 'Blackout Zones'

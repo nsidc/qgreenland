@@ -1274,6 +1274,9 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: '2025'
       urls:
         - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/2025/WMM_2025_all_shape_geographic.zip'
+    - id: 'geomagnetic_north_pole'
+      urls:
+        - 'https://www.ngdc.noaa.gov/geomag/data/poles/WMM2020_NP.xy'
   metadata:
     title: 'The World Magnetic Model'
     abstract: >-
