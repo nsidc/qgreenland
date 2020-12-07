@@ -2,8 +2,11 @@
 
 - "Geophysics/World Magnetic Model" group begins closed.
 - New "Geophysics/World Magnetic Model" layers:
-  - Geomagnetic North Pole 2020-2025
-  - IGRF Geomagnetic North Pole 1590-2025
+  - Geomagnetic North Dip Pole 2020-2025
+  - IGRF Geomagnetic North Dip Pole 1590-2025
+- New "Geophysics/World Magnetic Model/Coordinates" layers:
+  - Geomagnetic Latitudes
+  - Geomagnetic Longitudes
 
 # v0.41.0 (2020-12-04)
 
