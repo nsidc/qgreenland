@@ -1127,9 +1127,16 @@
 ##############
 
 ######## World Magnetic Model 2020 ########
-- id: wmm_north_poles
+- &wmm_north_poles
+  id: wmm_north_poles
   title: 'Geomagnetic North Pole 2020-2025'
   description: >-
+    The geomagnetic poles, or geocentric dipole, is computed from the first
+    three Gauss coefficients from the World Magnetic Model (WMM) main field
+    model. The WMM representation of the field includes a magnetic dipole at the
+    center of the Earth. This dipole defines an axis that intersects the Earth's
+    surface at two antipodal points called geomagnetic poles.
+
     The magnetic poles or dip pole are computed from all the Gauss coefficients
     using an iterative method. Magnetic poles derived in this fashion are
     geographically closer to the experimentally observed poles. Based on the
@@ -1137,7 +1144,7 @@
     and 164.04°E and the south magnetic pole is 64.07°S and 135.88°E.
   visible: False
   group_path: 'Geophysics/World Magnetic Model'
-  style: null
+  style: geomagnetic_north_pole
   data_source: world_magnetic_model.geomagnetic_north_pole
   ingest_task: delimited_text_points_vector
   file_type: '.shp'
@@ -1153,6 +1160,27 @@
       - year
   ogr2ogr_kwargs:
     s_srs: 'EPSG:4326'
+
+- <<: *wmm_north_poles
+  id: wmm_igrf_north_poles
+  title: 'IGRF Geomagnetic North Pole 1590-2025'
+  description: >-
+    The geomagnetic poles, or geocentric dipole, is computed from the first
+    three Gauss coefficients from the International Geomagnetic Reference Field
+    (IGRF) main field model.
+
+    The magnetic poles or dip pole are computed from all the Gauss coefficients
+    using an iterative method. Magnetic poles derived in this fashion are
+    geographically closer to the experimentally observed poles.
+  data_source: world_magnetic_model.igrf_geomagnetic_north_pole
+  delimited_text_vector_kwargs:
+    input_filename: 'NP.xy'
+    header: null
+    delimiter: ' '
+    field_names:
+      - latitude
+      - longitude
+      - year
 
 - &boz_2020
   id: wmm_boz_2020

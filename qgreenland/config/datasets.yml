@@ -1277,6 +1277,9 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: 'geomagnetic_north_pole'
       urls:
         - 'https://www.ngdc.noaa.gov/geomag/data/poles/WMM2020_NP.xy'
+    - id: 'igrf_geomagnetic_north_pole'
+      urls:
+        - 'https://www.ngdc.noaa.gov/geomag/data/poles/NP.xy'
   metadata:
     title: 'The World Magnetic Model'
     abstract: >-
