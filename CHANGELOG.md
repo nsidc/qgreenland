@@ -1,3 +1,9 @@
+# v0.42.0 (unreleased)
+
+- New "Geophysics/World Magnetic Model" layers:
+  - Geomagnetic North Pole 2020-2025
+  - IGRF Geomagnetic North Pole 1590-2025
+
 # v0.41.0 (2020-12-04)
 
 - Remove existing "Frozen Ground" layer: Permafrost and Ground-Ice (12.5km). The
