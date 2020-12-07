@@ -1250,7 +1250,8 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://doi.org/10.7265/N5V98602'
 
 
-- id: world_magnetic_model
+- &world_magnetic_model
+  id: world_magnetic_model
   access_method: http
   sources:
     - id: 'blackout_zones'
@@ -1332,3 +1333,11 @@ The images and data are produced in a consistent way that makes the Index time-s
         Environmental Information. doi: 10.25921/11v3-da71, 2020, [date
         accessed].
       url: 'https://doi.org/10.25921/11v3-da71'
+
+- <<: *world_magnetic_model
+  id: local_world_magnetic_model
+  access_method: local
+  sources:
+    - id: only
+      urls:
+        - 'wmm2020_geomagnetic_north_pole.geojson'

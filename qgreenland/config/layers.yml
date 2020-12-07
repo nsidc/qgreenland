@@ -1143,7 +1143,7 @@
     located at longitude 164.04°E and geodetic latitude 86.50°N and the south
     dip pole at longitude 135.88°E and geodetic latitude 64.07°S.
   visible: False
-  group_path: 'Geophysics/World Magnetic Model'
+  group_path: 'Geophysics/World Magnetic Model/Dip Poles'
   style: geomagnetic_north_pole
   data_source: world_magnetic_model.geomagnetic_north_pole
   ingest_task: delimited_text_points_vector
@@ -1184,6 +1184,31 @@
       - longitude
       - year
 
+- id: wmm_geomagnetic_north_pole
+  title: 'Geomagnetic North Pole (2020)'
+  description: >-
+    The WMM representation of the field includes a magnetic dipole at the center
+    of the Earth. This dipole defines an axis that intersects the Earth's
+    surface at two antipodal points. These points are called geomagnetic
+    poles. The geomagnetic poles, otherwise known as the dipole poles, can be
+    computed from the first three Gauss coefficients of the WMM. Based on the
+    WMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68°W
+    longitude and 80.59°N geocentric latitude (80.65°N geodetic latitude), and
+    the geomagnetic south pole is at 107.32°E longitude and 80.59°S geocentric
+    latitude (80.65°S geodetic latitude). The axis of the dipole is currently
+    inclined at 9.41° to the Earth's rotation axis. The same dipole is the basis
+    for the simple geomagnetic coordinate system of geomagnetic latitude and
+    longitude
+  visible: False
+  group_path: 'Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020)'
+  data_source: local_world_magnetic_model.only
+  ingest_task: local_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'wmm2020_geomagnetic_north_pole.geojson'
+    s_srs: 'EPSG:4326'
+
 - &wmm_geomag_coordinates
   id: wmm_latitudes
   title: 'Geomagnetic Latitudes'
@@ -1201,7 +1226,7 @@
     for the simple geomagnetic coordinate system of geomagnetic latitude and
     longitude
   visible: False
-  group_path: 'Geophysics/World Magnetic Model/Coordinates'
+  group_path: 'Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020)'
   style: null
   data_source: world_magnetic_model.geomagnetic_coordinates
   ingest_task: zipped_vector
