@@ -1,5 +1,6 @@
 # v0.42.0 (unreleased)
 
+- "Geophysics/World Magnetic Model" group begins closed.
 - New "Geophysics/World Magnetic Model" layers:
   - Geomagnetic North Pole 2020-2025
   - IGRF Geomagnetic North Pole 1590-2025
