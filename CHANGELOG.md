@@ -1,4 +1,4 @@
-# v0.42.0 (unreleased)
+# v0.42.0 (2020-12-07)
 
 - "Geophysics/World Magnetic Model" group begins closed.
 - New "Geophysics/World Magnetic Model/Dip Pole" layers:
