@@ -4,6 +4,9 @@
   components (D, F, H, I, X, Y, Z) for 2020-2025:
   - SV (secular variation). Secular variation is the slow change in time of the
     main magnetic field.
+- Update "Geophysics/World Magnetic Model/202X" layers with more descriptive
+  titles.
+- "Geophysics/World Magnetic Model" subgroups start collapsed.
 
 # v0.42.0 (2020-12-07)
 
