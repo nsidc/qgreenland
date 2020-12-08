@@ -1486,8 +1486,6 @@
 - <<: *wmm_d_2020
   id: wmm_z_2020
   title: 'Main Field Down Component (Z)'
-  description: >-
-    Geomagnetic main field component 'Z'.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Z_2020.cpg'
@@ -1725,8 +1723,6 @@
 - <<: *wmm_d_2021
   id: wmm_z_2021
   title: 'Main Field Down Component (Z)'
-  description: >-
-    Geomagnetic main field component 'Z'.
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Z_2021.cpg'
@@ -1963,8 +1959,6 @@
 - <<: *wmm_d_2022
   id: wmm_z_2022
   title: 'Main Field Down Component (Z)'
-  description: >-
-    Geomagnetic main field component 'Z'.
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Z_2022.cpg'
@@ -2201,8 +2195,6 @@
 - <<: *wmm_d_2023
   id: wmm_z_2023
   title: 'Main Field Down Component (Z)'
-  description: >-
-    Geomagnetic main field component 'Z'.
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Z_2023.cpg'
@@ -2439,8 +2431,6 @@
 - <<: *wmm_d_2024
   id: wmm_z_2024
   title: 'Main Field Down Component (Z)'
-  description: >-
-    Geomagnetic main field component 'Z'.
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Z_2024.cpg'
@@ -2677,8 +2667,6 @@
 - <<: *wmm_d_2025
   id: wmm_z_2025
   title: 'Main Field Down Component (Z)'
-  description: >-
-    Geomagnetic main field component 'Z'.
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Z_2025.cpg'
