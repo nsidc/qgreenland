@@ -1334,6 +1334,11 @@ The images and data are produced in a consistent way that makes the Index time-s
         accessed].
       url: 'https://doi.org/10.25921/11v3-da71'
 
+# separate 'local' source for geomatnetic north pole. This is a local layer
+# (single lat/lon point as geojson) because the WMM does not publish an
+# ogr-compliant data file for this point. They just note what the lat/lon is on
+# the website and in this paper:
+# https://www.ngdc.noaa.gov/geomag/WMM/data/WMM2020/WMM2020_Report.pdf
 - <<: *world_magnetic_model
   id: local_world_magnetic_model
   access_method: local
