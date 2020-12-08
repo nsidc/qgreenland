@@ -8,6 +8,7 @@
   - Geomagnetic North Pole
   - Geomagnetic Latitudes
   - Geomagnetic Longitudes
+- Changed map background color from white to gray (rgb[200, 200, 200])
 
 # v0.41.0 (2020-12-04)
 
