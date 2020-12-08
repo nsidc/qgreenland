@@ -1295,9 +1295,7 @@
 
 - &wmm_d_2020
   id: wmm_d_2020
-  title: 'D'
-  description: >-
-    Geomagnetic Declination (Magnetic Variation)
+  title: 'Main Field Declination (D)'
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2020'
   style: null
@@ -1320,10 +1318,24 @@
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
 - <<: *wmm_d_2020
-  id: wmm_f_2020
-  title: 'F'
+  id: wmm_d_sv_2020
+  title: 'Annual Change Declination (D_SV)'
   description: >-
-    Total Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/D_SV_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/D_SV_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/D_SV_2020.prj'
+      - 'WMM_2020_all_shape_geographic/D_SV_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/D_SV_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/D_SV_2020.shp'
+      - 'WMM_2020_all_shape_geographic/D_SV_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/D_SV_2020.shx'
+
+- <<: *wmm_d_2020
+  id: wmm_f_2020
+  title: 'Main Field Total Intensity (F)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/F_2020.cpg'
@@ -1336,10 +1348,24 @@
       - 'WMM_2020_all_shape_geographic/F_2020.shx'
 
 - <<: *wmm_d_2020
-  id: wmm_h_2020
-  title: 'H'
+  id: wmm_f_sv_2020
+  title: 'Annual Change Total Intensity (F_SV)'
   description: >-
-    Horizontal Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/F_SV_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/F_SV_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/F_SV_2020.prj'
+      - 'WMM_2020_all_shape_geographic/F_SV_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/F_SV_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/F_SV_2020.shp'
+      - 'WMM_2020_all_shape_geographic/F_SV_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/F_SV_2020.shx'
+
+- <<: *wmm_d_2020
+  id: wmm_h_2020
+  title: 'Main Field Horizontal Intensity (H)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/H_2020.cpg'
@@ -1352,42 +1378,24 @@
       - 'WMM_2020_all_shape_geographic/H_2020.shx'
 
 - <<: *wmm_d_2020
-  id: wmm_x_2020
-  title: 'X'
+  id: wmm_h_sv_2020
+  title: 'Annual Change Horizontal Intensity (H_SV)'
   description: >-
-    North Component of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
   decompress_kwargs:
     extract_files:
-      - 'WMM_2020_all_shape_geographic/X_2020.cpg'
-      - 'WMM_2020_all_shape_geographic/X_2020.dbf'
-      - 'WMM_2020_all_shape_geographic/X_2020.prj'
-      - 'WMM_2020_all_shape_geographic/X_2020.sbn'
-      - 'WMM_2020_all_shape_geographic/X_2020.sbx'
-      - 'WMM_2020_all_shape_geographic/X_2020.shp'
-      - 'WMM_2020_all_shape_geographic/X_2020.shp.xml'
-      - 'WMM_2020_all_shape_geographic/X_2020.shx'
-
-- <<: *wmm_d_2020
-  id: wmm_y_2020
-  title: 'Y'
-  description: >-
-    East Component of the geomagnetic field
-  decompress_kwargs:
-    extract_files:
-      - 'WMM_2020_all_shape_geographic/Y_2020.cpg'
-      - 'WMM_2020_all_shape_geographic/Y_2020.dbf'
-      - 'WMM_2020_all_shape_geographic/Y_2020.prj'
-      - 'WMM_2020_all_shape_geographic/Y_2020.sbn'
-      - 'WMM_2020_all_shape_geographic/Y_2020.sbx'
-      - 'WMM_2020_all_shape_geographic/Y_2020.shp'
-      - 'WMM_2020_all_shape_geographic/Y_2020.shp.xml'
-      - 'WMM_2020_all_shape_geographic/Y_2020.shx'
+      - 'WMM_2020_all_shape_geographic/H_SV_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/H_SV_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/H_SV_2020.prj'
+      - 'WMM_2020_all_shape_geographic/H_SV_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/H_SV_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/H_SV_2020.shp'
+      - 'WMM_2020_all_shape_geographic/H_SV_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/H_SV_2020.shx'
 
 - <<: *wmm_d_2020
   id: wmm_i_2020
-  title: 'I'
-  description: >-
-    Geomagnetic Inclination
+  title: 'Main Field Inclination (I)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/I_2020.cpg'
@@ -1400,10 +1408,84 @@
       - 'WMM_2020_all_shape_geographic/I_2020.shx'
 
 - <<: *wmm_d_2020
-  id: wmm_z_2020
-  title: 'Z'
+  id: wmm_i_sv_2020
+  title: 'Annual Change Inclination (I_SV)'
   description: >-
-    Geomagnetic main field down component
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/I_SV_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/I_SV_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/I_SV_2020.prj'
+      - 'WMM_2020_all_shape_geographic/I_SV_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/I_SV_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/I_SV_2020.shp'
+      - 'WMM_2020_all_shape_geographic/I_SV_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/I_SV_2020.shx'
+
+- <<: *wmm_d_2020
+  id: wmm_x_2020
+  title: 'Main Field North Component (X)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/X_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/X_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/X_2020.prj'
+      - 'WMM_2020_all_shape_geographic/X_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/X_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/X_2020.shp'
+      - 'WMM_2020_all_shape_geographic/X_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/X_2020.shx'
+
+- <<: *wmm_d_2020
+  id: wmm_x_sv_2020
+  title: 'Annual Change North Component (X_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/X_SV_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/X_SV_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/X_SV_2020.prj'
+      - 'WMM_2020_all_shape_geographic/X_SV_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/X_SV_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/X_SV_2020.shp'
+      - 'WMM_2020_all_shape_geographic/X_SV_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/X_SV_2020.shx'
+
+- <<: *wmm_d_2020
+  id: wmm_y_2020
+  title: 'Main Field East Component (Y)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/Y_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/Y_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/Y_2020.prj'
+      - 'WMM_2020_all_shape_geographic/Y_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/Y_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/Y_2020.shp'
+      - 'WMM_2020_all_shape_geographic/Y_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/Y_2020.shx'
+
+- <<: *wmm_d_2020
+  id: wmm_y_sv_2020
+  title: 'Annual Change East Component (Y_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/Y_SV_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/Y_SV_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/Y_SV_2020.prj'
+      - 'WMM_2020_all_shape_geographic/Y_SV_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/Y_SV_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/Y_SV_2020.shp'
+      - 'WMM_2020_all_shape_geographic/Y_SV_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/Y_SV_2020.shx'
+
+- <<: *wmm_d_2020
+  id: wmm_z_2020
+  title: 'Main Field Down Component (Z)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Z_2020.cpg'
@@ -1414,6 +1496,22 @@
       - 'WMM_2020_all_shape_geographic/Z_2020.shp'
       - 'WMM_2020_all_shape_geographic/Z_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Z_2020.shx'
+
+- <<: *wmm_d_2020
+  id: wmm_z_sv_2020
+  title: 'Annual Change Down Component (Z_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2020_all_shape_geographic/Z_SV_2020.cpg'
+      - 'WMM_2020_all_shape_geographic/Z_SV_2020.dbf'
+      - 'WMM_2020_all_shape_geographic/Z_SV_2020.prj'
+      - 'WMM_2020_all_shape_geographic/Z_SV_2020.sbn'
+      - 'WMM_2020_all_shape_geographic/Z_SV_2020.sbx'
+      - 'WMM_2020_all_shape_geographic/Z_SV_2020.shp'
+      - 'WMM_2020_all_shape_geographic/Z_SV_2020.shp.xml'
+      - 'WMM_2020_all_shape_geographic/Z_SV_2020.shx'
 
 
 ######## World Magnetic Model 2021 ########
@@ -1434,9 +1532,7 @@
 
 - &wmm_d_2021
   id: wmm_d_2021
-  title: 'D'
-  description: >-
-    Geomagnetic Declination (Magnetic Variation)
+  title: 'Main Field Declination (D)'
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2021'
   style: null
@@ -1459,10 +1555,24 @@
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
 - <<: *wmm_d_2021
-  id: wmm_f_2021
-  title: 'F'
+  id: wmm_d_sv_2021
+  title: 'Annual Change Declination (D_SV)'
   description: >-
-    Total Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/D_SV_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/D_SV_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/D_SV_2021.prj'
+      - 'WMM_2021_all_shape_geographic/D_SV_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/D_SV_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/D_SV_2021.shp'
+      - 'WMM_2021_all_shape_geographic/D_SV_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/D_SV_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_f_2021
+  title: 'Main Field Total Intensity (F)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/F_2021.cpg'
@@ -1475,10 +1585,24 @@
       - 'WMM_2021_all_shape_geographic/F_2021.shx'
 
 - <<: *wmm_d_2021
-  id: wmm_h_2021
-  title: 'H'
+  id: wmm_f_sv_2021
+  title: 'Annual Change Total Intensity (F_SV)'
   description: >-
-    Horizontal Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/F_SV_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/F_SV_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/F_SV_2021.prj'
+      - 'WMM_2021_all_shape_geographic/F_SV_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/F_SV_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/F_SV_2021.shp'
+      - 'WMM_2021_all_shape_geographic/F_SV_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/F_SV_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_h_2021
+  title: 'Main Field Horizontal Intensity (H)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/H_2021.cpg'
@@ -1491,42 +1615,24 @@
       - 'WMM_2021_all_shape_geographic/H_2021.shx'
 
 - <<: *wmm_d_2021
-  id: wmm_x_2021
-  title: 'X'
+  id: wmm_h_sv_2021
+  title: 'Annual Change Horizontal Intensity (H_SV)'
   description: >-
-    North Component of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
   decompress_kwargs:
     extract_files:
-      - 'WMM_2021_all_shape_geographic/X_2021.cpg'
-      - 'WMM_2021_all_shape_geographic/X_2021.dbf'
-      - 'WMM_2021_all_shape_geographic/X_2021.prj'
-      - 'WMM_2021_all_shape_geographic/X_2021.sbn'
-      - 'WMM_2021_all_shape_geographic/X_2021.sbx'
-      - 'WMM_2021_all_shape_geographic/X_2021.shp'
-      - 'WMM_2021_all_shape_geographic/X_2021.shp.xml'
-      - 'WMM_2021_all_shape_geographic/X_2021.shx'
-
-- <<: *wmm_d_2021
-  id: wmm_y_2021
-  title: 'Y'
-  description: >-
-    East Component of the geomagnetic field
-  decompress_kwargs:
-    extract_files:
-      - 'WMM_2021_all_shape_geographic/Y_2021.cpg'
-      - 'WMM_2021_all_shape_geographic/Y_2021.dbf'
-      - 'WMM_2021_all_shape_geographic/Y_2021.prj'
-      - 'WMM_2021_all_shape_geographic/Y_2021.sbn'
-      - 'WMM_2021_all_shape_geographic/Y_2021.sbx'
-      - 'WMM_2021_all_shape_geographic/Y_2021.shp'
-      - 'WMM_2021_all_shape_geographic/Y_2021.shp.xml'
-      - 'WMM_2021_all_shape_geographic/Y_2021.shx'
+      - 'WMM_2021_all_shape_geographic/H_SV_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/H_SV_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/H_SV_2021.prj'
+      - 'WMM_2021_all_shape_geographic/H_SV_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/H_SV_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/H_SV_2021.shp'
+      - 'WMM_2021_all_shape_geographic/H_SV_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/H_SV_2021.shx'
 
 - <<: *wmm_d_2021
   id: wmm_i_2021
-  title: 'I'
-  description: >-
-    Geomagnetic Inclination
+  title: 'Main Field Inclination (I)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/I_2021.cpg'
@@ -1539,10 +1645,84 @@
       - 'WMM_2021_all_shape_geographic/I_2021.shx'
 
 - <<: *wmm_d_2021
-  id: wmm_z_2021
-  title: 'Z'
+  id: wmm_i_sv_2021
+  title: 'Annual Change Inclination (I_SV)'
   description: >-
-    Geomagnetic main field down component
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/I_SV_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/I_SV_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/I_SV_2021.prj'
+      - 'WMM_2021_all_shape_geographic/I_SV_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/I_SV_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/I_SV_2021.shp'
+      - 'WMM_2021_all_shape_geographic/I_SV_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/I_SV_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_x_2021
+  title: 'Main Field North Component (X)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/X_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/X_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/X_2021.prj'
+      - 'WMM_2021_all_shape_geographic/X_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/X_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/X_2021.shp'
+      - 'WMM_2021_all_shape_geographic/X_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/X_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_x_sv_2021
+  title: 'Annual Change North Component (X_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/X_SV_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/X_SV_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/X_SV_2021.prj'
+      - 'WMM_2021_all_shape_geographic/X_SV_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/X_SV_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/X_SV_2021.shp'
+      - 'WMM_2021_all_shape_geographic/X_SV_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/X_SV_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_y_2021
+  title: 'Main Field East Component (Y)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/Y_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/Y_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/Y_2021.prj'
+      - 'WMM_2021_all_shape_geographic/Y_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/Y_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/Y_2021.shp'
+      - 'WMM_2021_all_shape_geographic/Y_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/Y_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_y_sv_2021
+  title: 'Annual Change East Component (Y_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/Y_SV_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/Y_SV_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/Y_SV_2021.prj'
+      - 'WMM_2021_all_shape_geographic/Y_SV_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/Y_SV_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/Y_SV_2021.shp'
+      - 'WMM_2021_all_shape_geographic/Y_SV_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/Y_SV_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_z_2021
+  title: 'Main Field Down Component (Z)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Z_2021.cpg'
@@ -1553,6 +1733,22 @@
       - 'WMM_2021_all_shape_geographic/Z_2021.shp'
       - 'WMM_2021_all_shape_geographic/Z_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/Z_2021.shx'
+
+- <<: *wmm_d_2021
+  id: wmm_z_sv_2021
+  title: 'Annual Change Down Component (Z_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2021_all_shape_geographic/Z_SV_2021.cpg'
+      - 'WMM_2021_all_shape_geographic/Z_SV_2021.dbf'
+      - 'WMM_2021_all_shape_geographic/Z_SV_2021.prj'
+      - 'WMM_2021_all_shape_geographic/Z_SV_2021.sbn'
+      - 'WMM_2021_all_shape_geographic/Z_SV_2021.sbx'
+      - 'WMM_2021_all_shape_geographic/Z_SV_2021.shp'
+      - 'WMM_2021_all_shape_geographic/Z_SV_2021.shp.xml'
+      - 'WMM_2021_all_shape_geographic/Z_SV_2021.shx'
 
 ######## World Magnetic Model 2022 ########
 - <<: *boz_2020
@@ -1572,9 +1768,7 @@
 
 - &wmm_d_2022
   id: wmm_d_2022
-  title: 'D'
-  description: >-
-    Geomagnetic Declination (Magnetic Variation)
+  title: 'Main Field Declination (D)'
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2022'
   style: null
@@ -1597,10 +1791,24 @@
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
 - <<: *wmm_d_2022
-  id: wmm_f_2022
-  title: 'F'
+  id: wmm_d_sv_2022
+  title: 'Annual Change Declination (D_SV)'
   description: >-
-    Total Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/D_SV_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/D_SV_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/D_SV_2022.prj'
+      - 'WMM_2022_all_shape_geographic/D_SV_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/D_SV_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/D_SV_2022.shp'
+      - 'WMM_2022_all_shape_geographic/D_SV_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/D_SV_2022.shx'
+
+- <<: *wmm_d_2022
+  id: wmm_f_2022
+  title: 'Main Field Total Intensity (F)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/F_2022.cpg'
@@ -1613,10 +1821,24 @@
       - 'WMM_2022_all_shape_geographic/F_2022.shx'
 
 - <<: *wmm_d_2022
-  id: wmm_h_2022
-  title: 'H'
+  id: wmm_f_sv_2022
+  title: 'Annual Change Total Intensity (F_SV)'
   description: >-
-    Horizontal Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/F_SV_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/F_SV_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/F_SV_2022.prj'
+      - 'WMM_2022_all_shape_geographic/F_SV_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/F_SV_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/F_SV_2022.shp'
+      - 'WMM_2022_all_shape_geographic/F_SV_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/F_SV_2022.shx'
+
+- <<: *wmm_d_2022
+  id: wmm_h_2022
+  title: 'Main Field Horizontal Intensity (H)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/H_2022.cpg'
@@ -1629,42 +1851,24 @@
       - 'WMM_2022_all_shape_geographic/H_2022.shx'
 
 - <<: *wmm_d_2022
-  id: wmm_x_2022
-  title: 'X'
+  id: wmm_h_sv_2022
+  title: 'Annual Change Horizontal Intensity (H_SV)'
   description: >-
-    North Component of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
   decompress_kwargs:
     extract_files:
-      - 'WMM_2022_all_shape_geographic/X_2022.cpg'
-      - 'WMM_2022_all_shape_geographic/X_2022.dbf'
-      - 'WMM_2022_all_shape_geographic/X_2022.prj'
-      - 'WMM_2022_all_shape_geographic/X_2022.sbn'
-      - 'WMM_2022_all_shape_geographic/X_2022.sbx'
-      - 'WMM_2022_all_shape_geographic/X_2022.shp'
-      - 'WMM_2022_all_shape_geographic/X_2022.shp.xml'
-      - 'WMM_2022_all_shape_geographic/X_2022.shx'
-
-- <<: *wmm_d_2022
-  id: wmm_y_2022
-  title: 'Y'
-  description: >-
-    East Component of the geomagnetic field
-  decompress_kwargs:
-    extract_files:
-      - 'WMM_2022_all_shape_geographic/Y_2022.cpg'
-      - 'WMM_2022_all_shape_geographic/Y_2022.dbf'
-      - 'WMM_2022_all_shape_geographic/Y_2022.prj'
-      - 'WMM_2022_all_shape_geographic/Y_2022.sbn'
-      - 'WMM_2022_all_shape_geographic/Y_2022.sbx'
-      - 'WMM_2022_all_shape_geographic/Y_2022.shp'
-      - 'WMM_2022_all_shape_geographic/Y_2022.shp.xml'
-      - 'WMM_2022_all_shape_geographic/Y_2022.shx'
+      - 'WMM_2022_all_shape_geographic/H_SV_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/H_SV_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/H_SV_2022.prj'
+      - 'WMM_2022_all_shape_geographic/H_SV_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/H_SV_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/H_SV_2022.shp'
+      - 'WMM_2022_all_shape_geographic/H_SV_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/H_SV_2022.shx'
 
 - <<: *wmm_d_2022
   id: wmm_i_2022
-  title: 'I'
-  description: >-
-    Geomagnetic Inclination
+  title: 'Main Field Inclination (I)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/I_2022.cpg'
@@ -1677,10 +1881,84 @@
       - 'WMM_2022_all_shape_geographic/I_2022.shx'
 
 - <<: *wmm_d_2022
-  id: wmm_z_2022
-  title: 'Z'
+  id: wmm_i_sv_2022
+  title: 'Annual Change Inclination (I_SV)'
   description: >-
-    Geomagnetic main field down component
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/I_SV_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/I_SV_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/I_SV_2022.prj'
+      - 'WMM_2022_all_shape_geographic/I_SV_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/I_SV_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/I_SV_2022.shp'
+      - 'WMM_2022_all_shape_geographic/I_SV_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/I_SV_2022.shx'
+
+- <<: *wmm_d_2022
+  id: wmm_x_2022
+  title: 'Main Field North Component (X)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/X_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/X_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/X_2022.prj'
+      - 'WMM_2022_all_shape_geographic/X_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/X_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/X_2022.shp'
+      - 'WMM_2022_all_shape_geographic/X_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/X_2022.shx'
+
+- <<: *wmm_d_2022
+  id: wmm_x_sv_2022
+  title: 'Annual Change North Component (X_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/X_SV_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/X_SV_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/X_SV_2022.prj'
+      - 'WMM_2022_all_shape_geographic/X_SV_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/X_SV_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/X_SV_2022.shp'
+      - 'WMM_2022_all_shape_geographic/X_SV_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/X_SV_2022.shx'
+
+- <<: *wmm_d_2022
+  id: wmm_y_2022
+  title: 'Main Field East Component (Y)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/Y_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/Y_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/Y_2022.prj'
+      - 'WMM_2022_all_shape_geographic/Y_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/Y_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/Y_2022.shp'
+      - 'WMM_2022_all_shape_geographic/Y_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/Y_2022.shx'
+
+- <<: *wmm_d_2022
+  id: wmm_y_sv_2022
+  title: 'Annual Change East Component (Y_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/Y_SV_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/Y_SV_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/Y_SV_2022.prj'
+      - 'WMM_2022_all_shape_geographic/Y_SV_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/Y_SV_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/Y_SV_2022.shp'
+      - 'WMM_2022_all_shape_geographic/Y_SV_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/Y_SV_2022.shx'
+
+- <<: *wmm_d_2022
+  id: wmm_z_2022
+  title: 'Main Field Down Component (Z)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Z_2022.cpg'
@@ -1691,6 +1969,22 @@
       - 'WMM_2022_all_shape_geographic/Z_2022.shp'
       - 'WMM_2022_all_shape_geographic/Z_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/Z_2022.shx'
+
+- <<: *wmm_d_2022
+  id: wmm_z_sv_2022
+  title: 'Annual Change Down Component (Z_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2022_all_shape_geographic/Z_SV_2022.cpg'
+      - 'WMM_2022_all_shape_geographic/Z_SV_2022.dbf'
+      - 'WMM_2022_all_shape_geographic/Z_SV_2022.prj'
+      - 'WMM_2022_all_shape_geographic/Z_SV_2022.sbn'
+      - 'WMM_2022_all_shape_geographic/Z_SV_2022.sbx'
+      - 'WMM_2022_all_shape_geographic/Z_SV_2022.shp'
+      - 'WMM_2022_all_shape_geographic/Z_SV_2022.shp.xml'
+      - 'WMM_2022_all_shape_geographic/Z_SV_2022.shx'
 
 ######## World Magnetic Model 2023 ########
 - <<: *boz_2020
@@ -1710,9 +2004,7 @@
 
 - &wmm_d_2023
   id: wmm_d_2023
-  title: 'D'
-  description: >-
-    Geomagnetic Declination (Magnetic Variation)
+  title: 'Main Field Declination (D)'
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2023'
   style: null
@@ -1735,10 +2027,24 @@
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
 - <<: *wmm_d_2023
-  id: wmm_f_2023
-  title: 'F'
+  id: wmm_d_sv_2023
+  title: 'Annual Change Declination (D_SV)'
   description: >-
-    Total Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/D_SV_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/D_SV_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/D_SV_2023.prj'
+      - 'WMM_2023_all_shape_geographic/D_SV_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/D_SV_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/D_SV_2023.shp'
+      - 'WMM_2023_all_shape_geographic/D_SV_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/D_SV_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_f_2023
+  title: 'Main Field Total Intensity (F)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/F_2023.cpg'
@@ -1751,10 +2057,24 @@
       - 'WMM_2023_all_shape_geographic/F_2023.shx'
 
 - <<: *wmm_d_2023
-  id: wmm_h_2023
-  title: 'H'
+  id: wmm_f_sv_2023
+  title: 'Annual Change Total Intensity (F_SV)'
   description: >-
-    Horizontal Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/F_SV_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/F_SV_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/F_SV_2023.prj'
+      - 'WMM_2023_all_shape_geographic/F_SV_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/F_SV_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/F_SV_2023.shp'
+      - 'WMM_2023_all_shape_geographic/F_SV_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/F_SV_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_h_2023
+  title: 'Main Field Horizontal Intensity (H)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/H_2023.cpg'
@@ -1767,42 +2087,24 @@
       - 'WMM_2023_all_shape_geographic/H_2023.shx'
 
 - <<: *wmm_d_2023
-  id: wmm_x_2023
-  title: 'X'
+  id: wmm_h_sv_2023
+  title: 'Annual Change Horizontal Intensity (H_SV)'
   description: >-
-    North Component of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
   decompress_kwargs:
     extract_files:
-      - 'WMM_2023_all_shape_geographic/X_2023.cpg'
-      - 'WMM_2023_all_shape_geographic/X_2023.dbf'
-      - 'WMM_2023_all_shape_geographic/X_2023.prj'
-      - 'WMM_2023_all_shape_geographic/X_2023.sbn'
-      - 'WMM_2023_all_shape_geographic/X_2023.sbx'
-      - 'WMM_2023_all_shape_geographic/X_2023.shp'
-      - 'WMM_2023_all_shape_geographic/X_2023.shp.xml'
-      - 'WMM_2023_all_shape_geographic/X_2023.shx'
-
-- <<: *wmm_d_2023
-  id: wmm_y_2023
-  title: 'Y'
-  description: >-
-    East Component of the geomagnetic field
-  decompress_kwargs:
-    extract_files:
-      - 'WMM_2023_all_shape_geographic/Y_2023.cpg'
-      - 'WMM_2023_all_shape_geographic/Y_2023.dbf'
-      - 'WMM_2023_all_shape_geographic/Y_2023.prj'
-      - 'WMM_2023_all_shape_geographic/Y_2023.sbn'
-      - 'WMM_2023_all_shape_geographic/Y_2023.sbx'
-      - 'WMM_2023_all_shape_geographic/Y_2023.shp'
-      - 'WMM_2023_all_shape_geographic/Y_2023.shp.xml'
-      - 'WMM_2023_all_shape_geographic/Y_2023.shx'
+      - 'WMM_2023_all_shape_geographic/H_SV_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/H_SV_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/H_SV_2023.prj'
+      - 'WMM_2023_all_shape_geographic/H_SV_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/H_SV_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/H_SV_2023.shp'
+      - 'WMM_2023_all_shape_geographic/H_SV_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/H_SV_2023.shx'
 
 - <<: *wmm_d_2023
   id: wmm_i_2023
-  title: 'I'
-  description: >-
-    Geomagnetic Inclination
+  title: 'Main Field Inclination (I)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/I_2023.cpg'
@@ -1815,10 +2117,84 @@
       - 'WMM_2023_all_shape_geographic/I_2023.shx'
 
 - <<: *wmm_d_2023
-  id: wmm_z_2023
-  title: 'Z'
+  id: wmm_i_sv_2023
+  title: 'Annual Change Inclination (I_SV)'
   description: >-
-    Geomagnetic main field down component
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/I_SV_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/I_SV_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/I_SV_2023.prj'
+      - 'WMM_2023_all_shape_geographic/I_SV_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/I_SV_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/I_SV_2023.shp'
+      - 'WMM_2023_all_shape_geographic/I_SV_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/I_SV_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_x_2023
+  title: 'Main Field North Component (X)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/X_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/X_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/X_2023.prj'
+      - 'WMM_2023_all_shape_geographic/X_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/X_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/X_2023.shp'
+      - 'WMM_2023_all_shape_geographic/X_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/X_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_x_sv_2023
+  title: 'Annual Change North Component (X_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/X_SV_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/X_SV_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/X_SV_2023.prj'
+      - 'WMM_2023_all_shape_geographic/X_SV_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/X_SV_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/X_SV_2023.shp'
+      - 'WMM_2023_all_shape_geographic/X_SV_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/X_SV_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_y_2023
+  title: 'Main Field East Component (Y)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/Y_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/Y_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/Y_2023.prj'
+      - 'WMM_2023_all_shape_geographic/Y_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/Y_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/Y_2023.shp'
+      - 'WMM_2023_all_shape_geographic/Y_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/Y_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_y_sv_2023
+  title: 'Annual Change East Component (Y_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/Y_SV_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/Y_SV_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/Y_SV_2023.prj'
+      - 'WMM_2023_all_shape_geographic/Y_SV_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/Y_SV_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/Y_SV_2023.shp'
+      - 'WMM_2023_all_shape_geographic/Y_SV_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/Y_SV_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_z_2023
+  title: 'Main Field Down Component (Z)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Z_2023.cpg'
@@ -1829,6 +2205,22 @@
       - 'WMM_2023_all_shape_geographic/Z_2023.shp'
       - 'WMM_2023_all_shape_geographic/Z_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/Z_2023.shx'
+
+- <<: *wmm_d_2023
+  id: wmm_z_sv_2023
+  title: 'Annual Change Down Component (Z_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2023_all_shape_geographic/Z_SV_2023.cpg'
+      - 'WMM_2023_all_shape_geographic/Z_SV_2023.dbf'
+      - 'WMM_2023_all_shape_geographic/Z_SV_2023.prj'
+      - 'WMM_2023_all_shape_geographic/Z_SV_2023.sbn'
+      - 'WMM_2023_all_shape_geographic/Z_SV_2023.sbx'
+      - 'WMM_2023_all_shape_geographic/Z_SV_2023.shp'
+      - 'WMM_2023_all_shape_geographic/Z_SV_2023.shp.xml'
+      - 'WMM_2023_all_shape_geographic/Z_SV_2023.shx'
 
 ######## World Magnetic Model 2024 ########
 - <<: *boz_2020
@@ -1848,9 +2240,7 @@
 
 - &wmm_d_2024
   id: wmm_d_2024
-  title: 'D'
-  description: >-
-    Geomagnetic Declination (Magnetic Variation)
+  title: 'Main Field Declination (D)'
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2024'
   style: null
@@ -1873,10 +2263,24 @@
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
 - <<: *wmm_d_2024
-  id: wmm_f_2024
-  title: 'F'
+  id: wmm_d_sv_2024
+  title: 'Annual Change Declination (D_SV)'
   description: >-
-    Total Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/D_SV_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/D_SV_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/D_SV_2024.prj'
+      - 'WMM_2024_all_shape_geographic/D_SV_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/D_SV_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/D_SV_2024.shp'
+      - 'WMM_2024_all_shape_geographic/D_SV_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/D_SV_2024.shx'
+
+- <<: *wmm_d_2024
+  id: wmm_f_2024
+  title: 'Main Field Total Intensity (F)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/F_2024.cpg'
@@ -1889,10 +2293,24 @@
       - 'WMM_2024_all_shape_geographic/F_2024.shx'
 
 - <<: *wmm_d_2024
-  id: wmm_h_2024
-  title: 'H'
+  id: wmm_f_sv_2024
+  title: 'Annual Change Total Intensity (F_SV)'
   description: >-
-    Horizontal Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/F_SV_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/F_SV_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/F_SV_2024.prj'
+      - 'WMM_2024_all_shape_geographic/F_SV_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/F_SV_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/F_SV_2024.shp'
+      - 'WMM_2024_all_shape_geographic/F_SV_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/F_SV_2024.shx'
+
+- <<: *wmm_d_2024
+  id: wmm_h_2024
+  title: 'Main Field Horizontal Intensity (H)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/H_2024.cpg'
@@ -1905,42 +2323,24 @@
       - 'WMM_2024_all_shape_geographic/H_2024.shx'
 
 - <<: *wmm_d_2024
-  id: wmm_x_2024
-  title: 'X'
+  id: wmm_h_sv_2024
+  title: 'Annual Change Horizontal Intensity (H_SV)'
   description: >-
-    North Component of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
   decompress_kwargs:
     extract_files:
-      - 'WMM_2024_all_shape_geographic/X_2024.cpg'
-      - 'WMM_2024_all_shape_geographic/X_2024.dbf'
-      - 'WMM_2024_all_shape_geographic/X_2024.prj'
-      - 'WMM_2024_all_shape_geographic/X_2024.sbn'
-      - 'WMM_2024_all_shape_geographic/X_2024.sbx'
-      - 'WMM_2024_all_shape_geographic/X_2024.shp'
-      - 'WMM_2024_all_shape_geographic/X_2024.shp.xml'
-      - 'WMM_2024_all_shape_geographic/X_2024.shx'
-
-- <<: *wmm_d_2024
-  id: wmm_y_2024
-  title: 'Y'
-  description: >-
-    East Component of the geomagnetic field
-  decompress_kwargs:
-    extract_files:
-      - 'WMM_2024_all_shape_geographic/Y_2024.cpg'
-      - 'WMM_2024_all_shape_geographic/Y_2024.dbf'
-      - 'WMM_2024_all_shape_geographic/Y_2024.prj'
-      - 'WMM_2024_all_shape_geographic/Y_2024.sbn'
-      - 'WMM_2024_all_shape_geographic/Y_2024.sbx'
-      - 'WMM_2024_all_shape_geographic/Y_2024.shp'
-      - 'WMM_2024_all_shape_geographic/Y_2024.shp.xml'
-      - 'WMM_2024_all_shape_geographic/Y_2024.shx'
+      - 'WMM_2024_all_shape_geographic/H_SV_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/H_SV_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/H_SV_2024.prj'
+      - 'WMM_2024_all_shape_geographic/H_SV_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/H_SV_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/H_SV_2024.shp'
+      - 'WMM_2024_all_shape_geographic/H_SV_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/H_SV_2024.shx'
 
 - <<: *wmm_d_2024
   id: wmm_i_2024
-  title: 'I'
-  description: >-
-    Geomagnetic Inclination
+  title: 'Main Field Inclination (I)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/I_2024.cpg'
@@ -1953,10 +2353,84 @@
       - 'WMM_2024_all_shape_geographic/I_2024.shx'
 
 - <<: *wmm_d_2024
-  id: wmm_z_2024
-  title: 'Z'
+  id: wmm_i_sv_2024
+  title: 'Annual Change Inclination (I_SV)'
   description: >-
-    Geomagnetic main field down component
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/I_SV_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/I_SV_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/I_SV_2024.prj'
+      - 'WMM_2024_all_shape_geographic/I_SV_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/I_SV_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/I_SV_2024.shp'
+      - 'WMM_2024_all_shape_geographic/I_SV_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/I_SV_2024.shx'
+
+- <<: *wmm_d_2024
+  id: wmm_x_2024
+  title: 'Main Field North Component (X)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/X_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/X_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/X_2024.prj'
+      - 'WMM_2024_all_shape_geographic/X_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/X_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/X_2024.shp'
+      - 'WMM_2024_all_shape_geographic/X_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/X_2024.shx'
+
+- <<: *wmm_d_2024
+  id: wmm_x_sv_2024
+  title: 'Annual Change North Component (X_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/X_SV_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/X_SV_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/X_SV_2024.prj'
+      - 'WMM_2024_all_shape_geographic/X_SV_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/X_SV_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/X_SV_2024.shp'
+      - 'WMM_2024_all_shape_geographic/X_SV_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/X_SV_2024.shx'
+
+- <<: *wmm_d_2024
+  id: wmm_y_2024
+  title: 'Main Field East Component (Y)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/Y_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/Y_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/Y_2024.prj'
+      - 'WMM_2024_all_shape_geographic/Y_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/Y_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/Y_2024.shp'
+      - 'WMM_2024_all_shape_geographic/Y_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/Y_2024.shx'
+
+- <<: *wmm_d_2024
+  id: wmm_y_sv_2024
+  title: 'Annual Change East Component (Y_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/Y_SV_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/Y_SV_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/Y_SV_2024.prj'
+      - 'WMM_2024_all_shape_geographic/Y_SV_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/Y_SV_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/Y_SV_2024.shp'
+      - 'WMM_2024_all_shape_geographic/Y_SV_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/Y_SV_2024.shx'
+
+- <<: *wmm_d_2024
+  id: wmm_z_2024
+  title: 'Main Field Down Component (Z)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Z_2024.cpg'
@@ -1967,6 +2441,22 @@
       - 'WMM_2024_all_shape_geographic/Z_2024.shp'
       - 'WMM_2024_all_shape_geographic/Z_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/Z_2024.shx'
+
+- <<: *wmm_d_2024
+  id: wmm_z_sv_2024
+  title: 'Annual Change Down Component (Z_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2024_all_shape_geographic/Z_SV_2024.cpg'
+      - 'WMM_2024_all_shape_geographic/Z_SV_2024.dbf'
+      - 'WMM_2024_all_shape_geographic/Z_SV_2024.prj'
+      - 'WMM_2024_all_shape_geographic/Z_SV_2024.sbn'
+      - 'WMM_2024_all_shape_geographic/Z_SV_2024.sbx'
+      - 'WMM_2024_all_shape_geographic/Z_SV_2024.shp'
+      - 'WMM_2024_all_shape_geographic/Z_SV_2024.shp.xml'
+      - 'WMM_2024_all_shape_geographic/Z_SV_2024.shx'
 
 ######## World Magnetic Model 2025 ########
 - <<: *boz_2020
@@ -1986,9 +2476,7 @@
 
 - &wmm_d_2025
   id: wmm_d_2025
-  title: 'D'
-  description: >-
-    Geomagnetic Declination (Magnetic Variation)
+  title: 'Main Field Declination (D)'
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2025'
   style: null
@@ -2011,10 +2499,24 @@
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
 - <<: *wmm_d_2025
-  id: wmm_f_2025
-  title: 'F'
+  id: wmm_d_sv_2025
+  title: 'Annual Change Declination (D_SV)'
   description: >-
-    Total Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/D_SV_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/D_SV_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/D_SV_2025.prj'
+      - 'WMM_2025_all_shape_geographic/D_SV_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/D_SV_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/D_SV_2025.shp'
+      - 'WMM_2025_all_shape_geographic/D_SV_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/D_SV_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_f_2025
+  title: 'Main Field Total Intensity (F)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/F_2025.cpg'
@@ -2027,10 +2529,24 @@
       - 'WMM_2025_all_shape_geographic/F_2025.shx'
 
 - <<: *wmm_d_2025
-  id: wmm_h_2025
-  title: 'H'
+  id: wmm_f_sv_2025
+  title: 'Annual Change Total Intensity (F_SV)'
   description: >-
-    Horizontal Intensity of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/F_SV_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/F_SV_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/F_SV_2025.prj'
+      - 'WMM_2025_all_shape_geographic/F_SV_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/F_SV_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/F_SV_2025.shp'
+      - 'WMM_2025_all_shape_geographic/F_SV_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/F_SV_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_h_2025
+  title: 'Main Field Horizontal Intensity (H)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/H_2025.cpg'
@@ -2043,42 +2559,24 @@
       - 'WMM_2025_all_shape_geographic/H_2025.shx'
 
 - <<: *wmm_d_2025
-  id: wmm_x_2025
-  title: 'X'
+  id: wmm_h_sv_2025
+  title: 'Annual Change Horizontal Intensity (H_SV)'
   description: >-
-    North Component of the geomagnetic field
+    Secular variation is the slow change in time of the main magnetic field.
   decompress_kwargs:
     extract_files:
-      - 'WMM_2025_all_shape_geographic/X_2025.cpg'
-      - 'WMM_2025_all_shape_geographic/X_2025.dbf'
-      - 'WMM_2025_all_shape_geographic/X_2025.prj'
-      - 'WMM_2025_all_shape_geographic/X_2025.sbn'
-      - 'WMM_2025_all_shape_geographic/X_2025.sbx'
-      - 'WMM_2025_all_shape_geographic/X_2025.shp'
-      - 'WMM_2025_all_shape_geographic/X_2025.shp.xml'
-      - 'WMM_2025_all_shape_geographic/X_2025.shx'
-
-- <<: *wmm_d_2025
-  id: wmm_y_2025
-  title: 'Y'
-  description: >-
-    East Component of the geomagnetic field
-  decompress_kwargs:
-    extract_files:
-      - 'WMM_2025_all_shape_geographic/Y_2025.cpg'
-      - 'WMM_2025_all_shape_geographic/Y_2025.dbf'
-      - 'WMM_2025_all_shape_geographic/Y_2025.prj'
-      - 'WMM_2025_all_shape_geographic/Y_2025.sbn'
-      - 'WMM_2025_all_shape_geographic/Y_2025.sbx'
-      - 'WMM_2025_all_shape_geographic/Y_2025.shp'
-      - 'WMM_2025_all_shape_geographic/Y_2025.shp.xml'
-      - 'WMM_2025_all_shape_geographic/Y_2025.shx'
+      - 'WMM_2025_all_shape_geographic/H_SV_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/H_SV_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/H_SV_2025.prj'
+      - 'WMM_2025_all_shape_geographic/H_SV_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/H_SV_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/H_SV_2025.shp'
+      - 'WMM_2025_all_shape_geographic/H_SV_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/H_SV_2025.shx'
 
 - <<: *wmm_d_2025
   id: wmm_i_2025
-  title: 'I'
-  description: >-
-    Geomagnetic Inclination
+  title: 'Main Field Inclination (I)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/I_2025.cpg'
@@ -2091,10 +2589,84 @@
       - 'WMM_2025_all_shape_geographic/I_2025.shx'
 
 - <<: *wmm_d_2025
-  id: wmm_z_2025
-  title: 'Z'
+  id: wmm_i_sv_2025
+  title: 'Annual Change Inclination (I_SV)'
   description: >-
-    Geomagnetic main field down component
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/I_SV_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/I_SV_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/I_SV_2025.prj'
+      - 'WMM_2025_all_shape_geographic/I_SV_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/I_SV_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/I_SV_2025.shp'
+      - 'WMM_2025_all_shape_geographic/I_SV_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/I_SV_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_x_2025
+  title: 'Main Field North Component (X)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/X_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/X_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/X_2025.prj'
+      - 'WMM_2025_all_shape_geographic/X_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/X_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/X_2025.shp'
+      - 'WMM_2025_all_shape_geographic/X_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/X_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_x_sv_2025
+  title: 'Annual Change North Component (X_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/X_SV_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/X_SV_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/X_SV_2025.prj'
+      - 'WMM_2025_all_shape_geographic/X_SV_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/X_SV_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/X_SV_2025.shp'
+      - 'WMM_2025_all_shape_geographic/X_SV_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/X_SV_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_y_2025
+  title: 'Main Field East Component (Y)'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/Y_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/Y_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/Y_2025.prj'
+      - 'WMM_2025_all_shape_geographic/Y_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/Y_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/Y_2025.shp'
+      - 'WMM_2025_all_shape_geographic/Y_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/Y_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_y_sv_2025
+  title: 'Annual Change East Component (Y_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/Y_SV_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/Y_SV_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/Y_SV_2025.prj'
+      - 'WMM_2025_all_shape_geographic/Y_SV_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/Y_SV_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/Y_SV_2025.shp'
+      - 'WMM_2025_all_shape_geographic/Y_SV_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/Y_SV_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_z_2025
+  title: 'Main Field Down Component (Z)'
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Z_2025.cpg'
@@ -2105,6 +2677,22 @@
       - 'WMM_2025_all_shape_geographic/Z_2025.shp'
       - 'WMM_2025_all_shape_geographic/Z_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Z_2025.shx'
+
+- <<: *wmm_d_2025
+  id: wmm_z_sv_2025
+  title: 'Annual Change Down Component (Z_SV)'
+  description: >-
+    Secular variation is the slow change in time of the main magnetic field.
+  decompress_kwargs:
+    extract_files:
+      - 'WMM_2025_all_shape_geographic/Z_SV_2025.cpg'
+      - 'WMM_2025_all_shape_geographic/Z_SV_2025.dbf'
+      - 'WMM_2025_all_shape_geographic/Z_SV_2025.prj'
+      - 'WMM_2025_all_shape_geographic/Z_SV_2025.sbn'
+      - 'WMM_2025_all_shape_geographic/Z_SV_2025.sbx'
+      - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp'
+      - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp.xml'
+      - 'WMM_2025_all_shape_geographic/Z_SV_2025.shx'
 
 ######## Geothermal Heat Flux ########
 - id: geothermal_heat_flux

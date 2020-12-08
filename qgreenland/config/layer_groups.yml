@@ -111,6 +111,38 @@ Geophysics/World Magnetic Model:
   visible: False
   expanded: False
 
+Geophysics/World Magnetic Model/Dip Poles:
+  visible: False
+  expanded: False
+
+Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020):
+  visible: False
+  expanded: False
+
+Geophysics/World Magnetic Model/2020:
+  visible: False
+  expanded: False
+
+Geophysics/World Magnetic Model/2021:
+  visible: False
+  expanded: False
+
+Geophysics/World Magnetic Model/2022:
+  visible: False
+  expanded: False
+
+Geophysics/World Magnetic Model/2023:
+  visible: False
+  expanded: False
+
+Geophysics/World Magnetic Model/2024:
+  visible: False
+  expanded: False
+
+Geophysics/World Magnetic Model/2025:
+  visible: False
+  expanded: False
+
 Human activity:
   visible: False
   expanded: False
