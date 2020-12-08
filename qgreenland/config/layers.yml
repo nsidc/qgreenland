@@ -1227,7 +1227,7 @@
     longitude
   visible: False
   group_path: 'Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020)'
-  style: null
+  style: geomagnetic_latlon
   data_source: world_magnetic_model.geomagnetic_coordinates
   ingest_task: zipped_vector
   file_type: '.shp'
