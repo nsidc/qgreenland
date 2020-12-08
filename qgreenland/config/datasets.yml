@@ -1250,7 +1250,8 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://doi.org/10.7265/N5V98602'
 
 
-- id: world_magnetic_model
+- &world_magnetic_model
+  id: world_magnetic_model
   access_method: http
   sources:
     - id: 'blackout_zones'
@@ -1280,6 +1281,9 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: 'igrf_geomagnetic_north_pole'
       urls:
         - 'https://www.ngdc.noaa.gov/geomag/data/poles/NP.xy'
+    - id: 'geomagnetic_coordinates'
+      urls:
+        - 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020_geomagnetic_coordinate_shapefiles.zip'
   metadata:
     title: 'The World Magnetic Model'
     abstract: >-
@@ -1329,3 +1333,16 @@ The images and data are produced in a consistent way that makes the Index time-s
         Environmental Information. doi: 10.25921/11v3-da71, 2020, [date
         accessed].
       url: 'https://doi.org/10.25921/11v3-da71'
+
+# separate 'local' source for geomatnetic north pole. This is a local layer
+# (single lat/lon point as geojson) because the WMM does not publish an
+# ogr-compliant data file for this point. They just note what the lat/lon is on
+# the website and in this paper:
+# https://www.ngdc.noaa.gov/geomag/WMM/data/WMM2020/WMM2020_Report.pdf
+- <<: *world_magnetic_model
+  id: local_world_magnetic_model
+  access_method: local
+  sources:
+    - id: only
+      urls:
+        - 'wmm2020_geomagnetic_north_pole.geojson'

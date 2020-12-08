@@ -6,6 +6,7 @@ import tempfile
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc
+from PyQt5.QtGui import QColor
 from jinja2 import Template
 from osgeo import gdal
 
@@ -235,6 +236,9 @@ def make_qgis_project_file(path):
 
     project_crs = qgc.QgsCoordinateReferenceSystem(CONFIG['project']['crs'])
     project.setCrs(project_crs)
+
+    # Set the map background color to be gray (same color as Quantarctica)
+    project.setBackgroundColor(QColor(200, 200, 200))
 
     # Set the default extent. Eventually we may want to pull the extent directly
     # from the configured 'map frame' layer.

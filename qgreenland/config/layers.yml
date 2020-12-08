@@ -1129,21 +1129,21 @@
 ######## World Magnetic Model 2020 ########
 - &wmm_north_poles
   id: wmm_north_poles
-  title: 'Geomagnetic North Pole 2020-2025'
+  title: 'Geomagnetic North Dip Pole 2020-2025'
   description: >-
-    The geomagnetic poles, or geocentric dipole, is computed from the first
-    three Gauss coefficients from the World Magnetic Model (WMM) main field
-    model. The WMM representation of the field includes a magnetic dipole at the
-    center of the Earth. This dipole defines an axis that intersects the Earth's
-    surface at two antipodal points called geomagnetic poles.
+    The locations of northern hemisphere dip poles (2020-2025) from the World
+    Magnetic Model (WMM) 2020 model.
 
-    The magnetic poles or dip pole are computed from all the Gauss coefficients
-    using an iterative method. Magnetic poles derived in this fashion are
-    geographically closer to the experimentally observed poles. Based on the
-    current WMM model, the 2020 location of the north magnetic pole is 86.50°N
-    and 164.04°E and the south magnetic pole is 64.07°S and 135.88°E.
+    The geomagnetic dip poles are positions on the Earth's surface where the
+    geomagnetic field is perpendicular to the ellipsoid, that is, vertical. The
+    north and south dip poles do not have to be (and are not now) antipodal.
+
+    These model dip poles are computed from all the Gauss coefficients using an
+    iterative method. In 2020.0 the north dip pole computed from WMM2020 is
+    located at longitude 164.04°E and geodetic latitude 86.50°N and the south
+    dip pole at longitude 135.88°E and geodetic latitude 64.07°S.
   visible: False
-  group_path: 'Geophysics/World Magnetic Model'
+  group_path: 'Geophysics/World Magnetic Model/Dip Poles'
   style: geomagnetic_north_pole
   data_source: world_magnetic_model.geomagnetic_north_pole
   ingest_task: delimited_text_points_vector
@@ -1163,15 +1163,17 @@
 
 - <<: *wmm_north_poles
   id: wmm_igrf_north_poles
-  title: 'IGRF Geomagnetic North Pole 1590-2025'
+  title: 'IGRF Geomagnetic North Dip Pole 1590-2025'
   description: >-
-    The geomagnetic poles, or geocentric dipole, is computed from the first
-    three Gauss coefficients from the International Geomagnetic Reference Field
-    (IGRF) main field model.
+    The locations of northern hemisphere dip poles (1590-2025) from the latest
+    International Geomagnetic Reference Field (IGRF) model.
 
-    The magnetic poles or dip pole are computed from all the Gauss coefficients
-    using an iterative method. Magnetic poles derived in this fashion are
-    geographically closer to the experimentally observed poles.
+    The geomagnetic dip poles are positions on the Earth's surface where the
+    geomagnetic field is perpendicular to the ellipsoid, that is, vertical. The
+    north and south dip poles do not have to be (and are not now) antipodal.
+
+    These model dip poles are computed from all the Gauss coefficients using an
+    iterative method.
   data_source: world_magnetic_model.igrf_geomagnetic_north_pole
   delimited_text_vector_kwargs:
     input_filename: 'NP.xy'
@@ -1181,6 +1183,82 @@
       - latitude
       - longitude
       - year
+
+- id: wmm_geomagnetic_north_pole
+  title: 'Geomagnetic North Pole (2020)'
+  description: >-
+    The WMM representation of the field includes a magnetic dipole at the center
+    of the Earth. This dipole defines an axis that intersects the Earth's
+    surface at two antipodal points. These points are called geomagnetic
+    poles. The geomagnetic poles, otherwise known as the dipole poles, can be
+    computed from the first three Gauss coefficients of the WMM. Based on the
+    WMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68°W
+    longitude and 80.59°N geocentric latitude (80.65°N geodetic latitude), and
+    the geomagnetic south pole is at 107.32°E longitude and 80.59°S geocentric
+    latitude (80.65°S geodetic latitude). The axis of the dipole is currently
+    inclined at 9.41° to the Earth's rotation axis. The same dipole is the basis
+    for the simple geomagnetic coordinate system of geomagnetic latitude and
+    longitude
+  visible: False
+  group_path: 'Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020)'
+  data_source: local_world_magnetic_model.only
+  ingest_task: local_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'wmm2020_geomagnetic_north_pole.geojson'
+    s_srs: 'EPSG:4326'
+
+- &wmm_geomag_coordinates
+  id: wmm_latitudes
+  title: 'Geomagnetic Latitudes'
+  description: >-
+    The WMM representation of the field includes a magnetic dipole at the center
+    of the Earth. This dipole defines an axis that intersects the Earth's
+    surface at two antipodal points. These points are called geomagnetic
+    poles. The geomagnetic poles, otherwise known as the dipole poles, can be
+    computed from the first three Gauss coefficients of the WMM. Based on the
+    WMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68°W
+    longitude and 80.59°N geocentric latitude (80.65°N geodetic latitude), and
+    the geomagnetic south pole is at 107.32°E longitude and 80.59°S geocentric
+    latitude (80.65°S geodetic latitude). The axis of the dipole is currently
+    inclined at 9.41° to the Earth's rotation axis. The same dipole is the basis
+    for the simple geomagnetic coordinate system of geomagnetic latitude and
+    longitude
+  visible: False
+  group_path: 'Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020)'
+  style: geomagnetic_latlon
+  data_source: world_magnetic_model.geomagnetic_coordinates
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  boundary: 'background'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+  decompress_kwargs:
+    extract_files:
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.cpg'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.dbf'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.prj'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.sbn'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.sbx'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.shp'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.shp.xml'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.shx'
+
+- <<: *wmm_geomag_coordinates
+  id: wmm_longitudes
+  title: 'Geomagnetic Longitudes'
+  decompress_kwargs:
+    extract_files:
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.cpg'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.dbf'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.prj'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.sbn'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.sbx'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.shp'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.shp.xml'
+      - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.shx'
 
 - &boz_2020
   id: wmm_boz_2020

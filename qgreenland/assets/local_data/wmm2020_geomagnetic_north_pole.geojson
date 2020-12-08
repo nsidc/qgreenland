@@ -1,0 +1,14 @@
+{"type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-72.68, 80.65]
+      },
+      "properties": {
+        "Name": "Geomagnetic North Pole",
+      }
+    }
+  ]
+}
