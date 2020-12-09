@@ -999,7 +999,7 @@
   id: surface_elevation_change_1992_1996
   title: 'Surface Elevation change 1992-1996'
   description: >-
-    Surface elevation change in meters per year.
+    Rate of surface elevation change in meters per year.
   data_source: esa_cci_surface_elevation_change.only
   visible: False
   group_path: 'Glaciology/Surface elevation change/Observations'
@@ -1153,7 +1153,7 @@
   id: surface_elevation_change_error_1992_1996
   title: 'Surface Elevation change 1992-1996'
   description: >-
-    Surface elevation change in meters per year.
+    Error of rate of surface elevation change in meters per year.
   data_source: esa_cci_surface_elevation_change.only
   visible: False
   group_path: 'Glaciology/Surface elevation change/Errors'
