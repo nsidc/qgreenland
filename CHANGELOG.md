@@ -1,6 +1,12 @@
 # v0.44.0 (unreleased)
 
 - New "Sea ice/NSIDC Concentration (25 km)/September (min extent)" layer: NSIDC Sea Ice Concentration September 2020
+- New "Glaciology/Surface elevation change/Observations" layers representing
+  Greenland ice sheet surface elevation changes for five year periods between
+  1994 and 2019.
+- New "Glaciology/Surface elevation change/Errors" layers representing errors in
+  the Greenland ice sheet surface elevation changes for five year periods
+  between 1994 and 2019.
 
 # v0.43.0 (2020-12-08)
 
