@@ -2,10 +2,12 @@ from qgreenland.tasks.layers.arctic_vegetation import ArcticVegetation
 from qgreenland.tasks.layers.background_image import BackgroundImage
 from qgreenland.tasks.layers.basal_thermal_state import BasalThermalState
 from qgreenland.tasks.layers.bedmachine import BedMachineDataset
+from qgreenland.tasks.layers.surface_elevation_change import CCISurfaceElevationChange
 from qgreenland.tasks.layers.delimited_text_vector import DelimitedTextVector
 from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
 from qgreenland.tasks.layers.gzipped_vector_parts import GzippedVectorParts
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
+from qgreenland.tasks.layers.local_netcdf_raster import LocalNetCdfRaster
 from qgreenland.tasks.layers.local_vector import LocalVector
 from qgreenland.tasks.layers.local_zipped_vector import LocalZippedVector
 from qgreenland.tasks.layers.netcdf_raster import NetCdfRaster
@@ -24,10 +26,12 @@ INGEST_TASKS = {
     'background_image': BackgroundImage,
     'basal_thermal_state': BasalThermalState,
     'bedmachine': BedMachineDataset,
+    'cci_surface_elevation_change': CCISurfaceElevationChange,
     'delimited_text_points_vector': DelimitedTextVector,
     'glacier_terminus': GlacierTerminus,
     'gzipped_vector_parts': GzippedVectorParts,
     'ice_thickness_change': IceThicknessChange,
+    'local_netcdf_raster': LocalNetCdfRaster,
     'local_vector': LocalVector,
     'local_zipped_vector': LocalZippedVector,
     'netcdf_raster': NetCdfRaster,

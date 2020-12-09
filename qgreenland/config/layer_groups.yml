@@ -97,6 +97,18 @@ Glaciology/Ice thickness change:
   visible: False
   expanded: False
 
+Glaciology/Surface elevation change:
+  visible: False
+  expanded: False
+
+Glaciology/Surface elevation change/Observations:
+  visible: False
+  expanded: False
+
+Glaciology/Surface elevation change/Errors:
+  visible: False
+  expanded: False
+
 
 Geology & natural resources:
   visible: False
