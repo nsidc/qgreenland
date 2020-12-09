@@ -339,6 +339,9 @@
     - id: minimum_concentration_2019
       urls:
         - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201909_concentration_v3.0.tif'
+    - id: minimum_concentration_2020
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_202009_concentration_v3.0.tif'
     # Concentration Maximums
     - id: maximum_concentration_2009
       urls:
