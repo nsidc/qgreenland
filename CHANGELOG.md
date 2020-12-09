@@ -1,3 +1,7 @@
+# v0.44.0 (unreleased)
+
+- New "Sea ice/NSIDC Concentration (25 km)/September (min extent)" layer: NSIDC Sea Ice Concentration September 2020
+
 # v0.43.0 (2020-12-08)
 
 - New "Geophysics/World Magnetic Model/202X" layers for each of the main field
