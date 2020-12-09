@@ -1,5 +1,5 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
-from qgreenland.tasks.common.raster import GdalEdit, GdalMDimTranslate
+from qgreenland.tasks.common.raster import GdalMDimTranslate
 from qgreenland.util.luigi import LayerPipeline
 
 

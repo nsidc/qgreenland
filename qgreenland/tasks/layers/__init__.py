@@ -2,7 +2,6 @@ from qgreenland.tasks.layers.arctic_vegetation import ArcticVegetation
 from qgreenland.tasks.layers.background_image import BackgroundImage
 from qgreenland.tasks.layers.basal_thermal_state import BasalThermalState
 from qgreenland.tasks.layers.bedmachine import BedMachineDataset
-from qgreenland.tasks.layers.surface_elevation_change import CCISurfaceElevationChange
 from qgreenland.tasks.layers.delimited_text_vector import DelimitedTextVector
 from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
 from qgreenland.tasks.layers.gzipped_vector_parts import GzippedVectorParts
@@ -16,6 +15,7 @@ from qgreenland.tasks.layers.online_vector import OnlineVector
 from qgreenland.tasks.layers.rarred_vector import RarredVector
 from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.raster_calc import RasterCalc
+from qgreenland.tasks.layers.surface_elevation_change import CCISurfaceElevationChange
 from qgreenland.tasks.layers.velocity_mosaic import VelocityMosaic
 from qgreenland.tasks.layers.zipped_netcdf import ZippedNetCdf
 from qgreenland.tasks.layers.zipped_vector import ZippedVector
@@ -26,7 +26,6 @@ INGEST_TASKS = {
     'background_image': BackgroundImage,
     'basal_thermal_state': BasalThermalState,
     'bedmachine': BedMachineDataset,
-    'cci_surface_elevation_change': CCISurfaceElevationChange,
     'delimited_text_points_vector': DelimitedTextVector,
     'glacier_terminus': GlacierTerminus,
     'gzipped_vector_parts': GzippedVectorParts,
@@ -40,6 +39,7 @@ INGEST_TASKS = {
     'rarred_vector': RarredVector,
     'raster': Raster,
     'raster_calc': RasterCalc,
+    'cci_surface_elevation_change': CCISurfaceElevationChange,
     'velocity_mosaic': VelocityMosaic,
     'zipped_netcdf': ZippedNetCdf,
     'zipped_vector': ZippedVector,
