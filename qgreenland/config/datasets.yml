@@ -1457,3 +1457,29 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: only
       urls:
         - 'wmm2020_geomagnetic_north_pole.geojson'
+
+
+- id: mineral_and_hydrocarbon_licenses
+  access_method: http
+  # TODO: `FetchOgrRemoteData` should be able to handle this. For example, a
+  # shapefile can be fetched via this `ogr2ogr` command:
+  # ogr2ogr mcas_mlsa_public_sensitive_areas.shp "https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetCapabilities" MLSA:mcas_mlsa_public_sensitive_areas
+  sources:
+    - id: mcas_mlsa_public_sensitive_areas
+      urls:
+        - 'https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_sensitive_areas'
+    - id: mcas_mlsa_public_all
+      urls:
+        - 'https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_all'
+    - id: mcas_mlsa_public_protected_areas
+      urls:
+        - 'https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_protected_areas'
+    - id: mcas_mlsa_public_historic
+      urls:
+        - 'https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_historic'
+  metadata:
+    title: 'TBD'
+    abstract: 'TBD'
+    citation:
+      text: 'Government of Greenland/GINR'
+      url: 'TBD'
