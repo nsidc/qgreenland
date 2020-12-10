@@ -937,6 +937,104 @@
     input_filename: 'paleo_icecore.kmz'
     sql: "'SELECT *, Name as label from \"Ice Core\"'"
 
+- &esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2005
+  title: 'Mass balance trend 2005-07-01:12:00:00'
+  description: >-
+      TBD
+  visible: False
+  group_path: 'Glaciology/GMB/DTU Space'
+  data_source: esa_cci_gravimetric_mass_balance_dtu.only
+  ingest_task: local_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2005_07_01_12_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2006
+  title: 'Mass balance trend 2006-07-02:00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2006_07_02_00_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2007
+  title: 'Mass balance trend 2007-07-02:12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2007_07_02_12_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2008
+  title: 'Mass balance trend 2008-07-01:12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2008_07_01_12_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2009
+  title: 'Mass balance trend 2009-07-01:12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2009_07_01_12_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2010
+  title: 'Mass balance trend 2010-07-02:00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2010_07_02_00_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2011
+  title: 'Mass balance trend 2011-07-02:12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2011_07_02_12_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2012
+  title: 'Mass balance trend 2012-06-16:00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2012_06_16_00_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2013
+  title: 'Mass balance trend 2013-07-17:00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2013_07_17_00_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2014
+  title: 'Mass balance trend 2014-07-02:00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2014_07_02_00_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2015
+  title: 'Mass balance trend 2015-04-02:00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2015_04_02_00_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2016
+  title: 'Mass balance trend 2016-07-01:12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2016_07_01_12_00_00.shp'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2017
+  title: 'Mass balance trend 2017-07-01:12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2017_07_01_12_00_00.shp'
+    s_srs: 'EPSG:4326'
 
 - &its_live_velocity_mosaic
   id: velocity_mosaic

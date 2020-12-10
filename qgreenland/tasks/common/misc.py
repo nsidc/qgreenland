@@ -10,7 +10,7 @@ from osgeo import gdal
 
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
-from qgreenland.util.misc import (find_in_dir_by_ext,
+from qgreenland.util.misc import (find_in_dir_by_pattern,
                                   find_single_file_by_ext,
                                   temporary_path_dir)
 
@@ -31,7 +31,7 @@ class Decompress(LayerTask):
 
 class UngzipMany(Decompress):
     def run(self):
-        gzip_paths = find_in_dir_by_ext(self.input().path, ext='.gz')
+        gzip_paths = find_in_dir_by_pattern(self.input().path, pattern='*.gz')
         with temporary_path_dir(self.output()) as temp_path:
             for gzip_path in gzip_paths:
                 with gzip.open(gzip_path, 'rb') as gf:

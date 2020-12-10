@@ -6,7 +6,9 @@ import luigi
 from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
-from qgreenland.util.misc import find_single_file_by_ext, temporary_path_dir
+from qgreenland.util.misc import (find_single_file_by_ext,
+                                  find_single_file_by_name,
+                                  temporary_path_dir)
 from qgreenland.util.vector import cleanup_valid_shapefile, ogr2ogr, points_txt_to_shape
 
 logger = logging.getLogger('luigi-interface')
@@ -77,9 +79,9 @@ class Ogr2OgrVector(LayerTask):
         ogr2ogr_kwargs.update(input_ogr2ogr_kwargs)
 
         if 'input_filename' in ogr2ogr_kwargs:
-            input_filename = os.path.join(
+            input_filename = find_single_file_by_name(
                 self.input().path,
-                ogr2ogr_kwargs.pop('input_filename')
+                filename=ogr2ogr_kwargs.pop('input_filename')
             )
         else:
             shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
