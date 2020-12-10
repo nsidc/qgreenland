@@ -1,3 +1,7 @@
+# v0.45.0 (unreleased)
+
+- New "Glaciology/GMB/DTU Space" layers for 2005-2017: Mass Balance Trend.
+
 # v0.44.0 (2020-12-09)
 
 - New "Sea ice/NSIDC Concentration (25 km)/September (min extent)" layer: NSIDC Sea Ice Concentration September 2020
