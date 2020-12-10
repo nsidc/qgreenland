@@ -1485,7 +1485,7 @@
 
 - &mcas_mlsa
   id: mcas_mlsa_public_all
-  title: 'mcas_mlsa_public_all'
+  title: 'Public Licenses'
   visible: False
   group_path: 'Geology & natural resources/Mineral and hydrocarbon licenses'
   style: 'mcas_mlsa_licenses'
@@ -1497,7 +1497,7 @@
 
 - <<: *mcas_mlsa
   id: mcas_mlsa_public_historic
-  title: 'mcas_mlsa_public_historic'
+  title: 'Historic Public Licenses'
   data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_historic
 
 - &geological_map
