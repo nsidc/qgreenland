@@ -1484,34 +1484,15 @@
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shx'
 
 - &mcas_mlsa
-  id: mcas_mlsa_public_sensitive_areas
-  title: 'mcas_mlsa_public_sensitive_areas'
+  id: mcas_mlsa_public_all
+  title: 'mcas_mlsa_public_all'
   visible: False
   group_path: 'Geology & natural resources/Mineral and hydrocarbon licenses'
   boundary: 'data'
-  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_sensitive_areas
+  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_all
   ingest_task: zipped_vector
   file_type: '.shp'
   data_type: 'vector'
-
-- <<: *mcas_mlsa
-  id: mcas_mlsa_public_all
-  title: 'mcas_mlsa_public_all'
-  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_all
-
-- <<: *mcas_mlsa
-  id: mcas_mlsa_public_protected_areas
-  title: 'mcas_mlsa_public_protected_areas'
-  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_protected_areas
-  # We have to specifically extract the polygons from this one because the
-  # zipfile also comes with a `NULL` shapefile.
-  decompress_kwargs:
-    extract_files:
-      - 'mcas_mlsa_public_protected_areasPolygon.cst'
-      - 'mcas_mlsa_public_protected_areasPolygon.dbf'
-      - 'mcas_mlsa_public_protected_areasPolygon.prj'
-      - 'mcas_mlsa_public_protected_areasPolygon.shp'
-      - 'mcas_mlsa_public_protected_areasPolygon.shx'
 
 - <<: *mcas_mlsa
   id: mcas_mlsa_public_historic

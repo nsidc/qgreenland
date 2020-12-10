@@ -2,9 +2,7 @@
 
 - New "Glaciology/GMB/DTU Space" layers for 2005-2017: Mass Balance Trend.
 - New "Geology & natural resources/Mineral and hydrocarbon licenses":
-  - mcas_mlsa_public_sensitive_areas
   - mcas_mlsa_public_all
-  - mcas_mlsa_public_protected_areas
   - mcas_mlsa_public_historic
 
 # v0.44.0 (2020-12-09)
