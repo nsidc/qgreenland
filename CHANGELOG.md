@@ -1,4 +1,4 @@
-# v0.44.0 (unreleased)
+# v0.44.0 (2020-12-09)
 
 - New "Sea ice/NSIDC Concentration (25 km)/September (min extent)" layer: NSIDC Sea Ice Concentration September 2020
 - New "Glaciology/Surface elevation change/Observations" layers representing
