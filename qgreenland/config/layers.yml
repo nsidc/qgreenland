@@ -1488,6 +1488,7 @@
   title: 'mcas_mlsa_public_all'
   visible: False
   group_path: 'Geology & natural resources/Mineral and hydrocarbon licenses'
+  style: 'mcas_mlsa_licenses'
   boundary: 'data'
   data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_all
   ingest_task: zipped_vector
