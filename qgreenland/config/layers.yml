@@ -1483,6 +1483,22 @@
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shp.xml'
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shx'
 
+- &mcas_mlsa
+  id: mcas_mlsa_public_all
+  title: 'Public Licenses'
+  visible: False
+  group_path: 'Geology & natural resources/Mineral and hydrocarbon licenses'
+  style: 'mcas_mlsa_licenses'
+  boundary: 'data'
+  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_all
+  ingest_task: zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
+- <<: *mcas_mlsa
+  id: mcas_mlsa_public_historic
+  title: 'Historic Public Licenses'
+  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_historic
 
 - &geological_map
   id: onshore_planar_geological_map
