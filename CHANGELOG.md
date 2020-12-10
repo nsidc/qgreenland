@@ -7,6 +7,10 @@
 - New "Glaciology/Surface elevation change/Errors" layers representing errors in
   the Greenland ice sheet surface elevation changes for five year periods
   between 1994 and 2019.
+- New "Glaciology/Ice sheet velocity/CCI" layers:
+  - Land Ice Surface Velocity (250m)
+  - Land Ice Surface Vertical Velocity (250m)
+- ITS_LIVE velocity layers moved to "ITS_LIVE" subgroup under "Glaciology/Ice sheet velocity"
 
 # v0.43.0 (2020-12-08)
 
