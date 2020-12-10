@@ -977,6 +977,35 @@
   translate_kwargs:
     extract_dataset: 'ice'
 
+- &esa_cci_velocity
+  id: esa_cci_velocity_magnitude
+  title: 'Land Ice Surface Velocity (250m)'
+  description: 'Magnitude of horizontal ice velocity in meters per day.'
+  visible: False
+  group_path: 'Glaciology/Ice sheet velocity/CCI'
+  style: esa_cci_velocity
+  boundary: 'data'
+  data_source: esa_cci_ice_sheet_velocity_20191214_20200131.only
+  ingest_task: local_zipped_netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'land_ice_surface_velocity_magnitude'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  decompress_kwargs:
+    extract_files:
+      - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
+
+- <<: *esa_cci_velocity
+  id: esa_cci_velocity_vertical
+  title: 'Land Ice Surface Vertical Velocity (250m)'
+  description: 'Vertical ice velocity in meters per day.'
+  style: null
+  translate_kwargs:
+    extract_dataset: 'land_ice_surface_vertical_velocity'
+
 - id: ice_thickness_change
   title: 'Ice Column Thickness 2003-2019 (5km)'
   # TODO: better description.
