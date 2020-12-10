@@ -1121,16 +1121,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       post-processing to 5 km grid resolution by ordinary kriging.
     citation:
       text: >-
-        Simonsen, S. B., and Sørensen, L. S. (2017) ‘Implications of changing
-        scattering properties on Greenland ice sheet volume change from
-        Cryosat-2 altimetry’, Remote Sensing of Environment. Elsevier Inc., 190,
-        pp. 207–216. DOI: 10.1016/j.rse.2016.12.012.
-
-        Sørensen, L. S., Simonsen, S. B., Forsberg, R., Khvorostovsky, K.,
-        Meister, R., and Engdahl, M. E. (2018) '25 years of elevation changes of
-        the Greenland Ice Sheet from ERS, Envisat, and CryoSat-2 radar
-        altimetry', Earth and Planetary Science Letters, 495, pp. 234-241 DOI:
-        10.1016/j.epsl.2018.05.015
+        TBD
       url: 'http://products.esa-icesheets-cci.org/products/details/cci_sec_2020.tar.gz/'
 
 
