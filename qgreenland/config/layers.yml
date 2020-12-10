@@ -995,7 +995,313 @@
     extract_files:
       - 'ICESat1_ICESat2_mass_change/gris.tif'
 
+- &cci_surface_elevation_change
+  id: surface_elevation_change_1992_1996
+  title: 'Surface Elevation change 1992-1996'
+  description: >-
+    Rate of surface elevation change in meters per year.
+  data_source: esa_cci_surface_elevation_change.only
+  visible: False
+  group_path: 'Glaciology/Surface elevation change/Observations'
+  style: null
+  boundary: 'data'
+  ingest_task: cci_surface_elevation_change
+  file_type: '.tif'
+  data_type: 'raster'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,0]"
 
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_1993_1997
+  title: 'Surface Elevation change 1993-1997'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,1]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_1994_1998
+  title: 'Surface Elevation change 1994-1998'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,2]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_1995_1999
+  title: 'Surface Elevation change 1995-1999'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,3]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_1996_2000
+  title: 'Surface Elevation change 1996-2000'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,4]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_1997_2001
+  title: 'Surface Elevation change 1997-2001'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,5]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_1998_2002
+  title: 'Surface Elevation change 1998-2002'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,6]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_1999_2003
+  title: 'Surface Elevation change 1999-2003'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,7]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2000_2004
+  title: 'Surface Elevation change 2000-2004'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,8]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2001_2005
+  title: 'Surface Elevation change 2001-2005'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,9]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2002_2006
+  title: 'Surface Elevation change 2002-2006'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,10]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2003_2007
+  title: 'Surface Elevation change 2003-2007'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,11]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2004_2008
+  title: 'Surface Elevation change 2004-2008'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,12]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2005_2009
+  title: 'Surface Elevation change 2005-2009'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,13]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2006_2010
+  title: 'Surface Elevation change 2006-2010'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,14]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2007_2011
+  title: 'Surface Elevation change 2007-2011'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,15]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2008_2012
+  title: 'Surface Elevation change 2008-2012'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,16]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2009_2013
+  title: 'Surface Elevation change 2009-2013'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,17]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2010_2014
+  title: 'Surface Elevation change 2010-2014'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,18]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2011_2015
+  title: 'Surface Elevation change 2011-2015'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,19]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2012_2016
+  title: 'Surface Elevation change 2012-2016'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,20]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2013_2017
+  title: 'Surface Elevation change 2013-2017'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,21]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2014_2018
+  title: 'Surface Elevation change 2014-2018'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,22]"
+
+- <<: *cci_surface_elevation_change
+  id: surface_elevation_change_2015_2019
+  title: 'Surface Elevation change 2015-2019'
+  gdal_mdim_translate_kwargs:
+    array: "name=SEC,view=[:,:,23]"
+
+- &cci_surface_elevation_change_error
+  id: surface_elevation_change_error_1992_1996
+  title: 'Surface Elevation change 1992-1996'
+  description: >-
+    Error of rate of surface elevation change in meters per year.
+  data_source: esa_cci_surface_elevation_change.only
+  visible: False
+  group_path: 'Glaciology/Surface elevation change/Errors'
+  style: null
+  boundary: 'data'
+  ingest_task: cci_surface_elevation_change
+  file_type: '.tif'
+  data_type: 'raster'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,0]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_1993_1997
+  title: 'Surface Elevation change 1993-1997'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,1]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_1994_1998
+  title: 'Surface Elevation change 1994-1998'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,2]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_1995_1999
+  title: 'Surface Elevation change 1995-1999'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,3]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_1996_2000
+  title: 'Surface Elevation change 1996-2000'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,4]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_1997_2001
+  title: 'Surface Elevation change 1997-2001'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,5]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_1998_2002
+  title: 'Surface Elevation change 1998-2002'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,6]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_1999_2003
+  title: 'Surface Elevation change 1999-2003'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,7]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2000_2004
+  title: 'Surface Elevation change 2000-2004'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,8]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2001_2005
+  title: 'Surface Elevation change 2001-2005'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,9]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2002_2006
+  title: 'Surface Elevation change 2002-2006'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,10]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2003_2007
+  title: 'Surface Elevation change 2003-2007'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,11]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2004_2008
+  title: 'Surface Elevation change 2004-2008'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,12]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2005_2009
+  title: 'Surface Elevation change 2005-2009'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,13]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2006_2010
+  title: 'Surface Elevation change 2006-2010'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,14]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2007_2011
+  title: 'Surface Elevation change 2007-2011'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,15]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2008_2012
+  title: 'Surface Elevation change 2008-2012'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,16]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2009_2013
+  title: 'Surface Elevation change 2009-2013'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,17]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2010_2014
+  title: 'Surface Elevation change 2010-2014'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,18]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2011_2015
+  title: 'Surface Elevation change 2011-2015'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,19]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2012_2016
+  title: 'Surface Elevation change 2012-2016'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,20]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2013_2017
+  title: 'Surface Elevation change 2013-2017'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,21]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2014_2018
+  title: 'Surface Elevation change 2014-2018'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,22]"
+
+- <<: *cci_surface_elevation_change_error
+  id: surface_elevation_change_error_2015_2019
+  title: 'Surface Elevation change 2015-2019'
+  gdal_mdim_translate_kwargs:
+    array: "name=SECer,view=[:,:,23]"
 ###############################
 # Geology & natural resources #
 ###############################

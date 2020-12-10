@@ -6,6 +6,7 @@ from qgreenland.tasks.layers.delimited_text_vector import DelimitedTextVector
 from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
 from qgreenland.tasks.layers.gzipped_vector_parts import GzippedVectorParts
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
+from qgreenland.tasks.layers.local_netcdf_raster import LocalNetCdfRaster
 from qgreenland.tasks.layers.local_vector import LocalVector
 from qgreenland.tasks.layers.local_zipped_vector import LocalZippedVector
 from qgreenland.tasks.layers.netcdf_raster import NetCdfRaster
@@ -14,6 +15,7 @@ from qgreenland.tasks.layers.online_vector import OnlineVector
 from qgreenland.tasks.layers.rarred_vector import RarredVector
 from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.raster_calc import RasterCalc
+from qgreenland.tasks.layers.surface_elevation_change import CCISurfaceElevationChange
 from qgreenland.tasks.layers.velocity_mosaic import VelocityMosaic
 from qgreenland.tasks.layers.zipped_netcdf import ZippedNetCdf
 from qgreenland.tasks.layers.zipped_vector import ZippedVector
@@ -28,6 +30,7 @@ INGEST_TASKS = {
     'glacier_terminus': GlacierTerminus,
     'gzipped_vector_parts': GzippedVectorParts,
     'ice_thickness_change': IceThicknessChange,
+    'local_netcdf_raster': LocalNetCdfRaster,
     'local_vector': LocalVector,
     'local_zipped_vector': LocalZippedVector,
     'netcdf_raster': NetCdfRaster,
@@ -36,6 +39,7 @@ INGEST_TASKS = {
     'rarred_vector': RarredVector,
     'raster': Raster,
     'raster_calc': RasterCalc,
+    'cci_surface_elevation_change': CCISurfaceElevationChange,
     'velocity_mosaic': VelocityMosaic,
     'zipped_netcdf': ZippedNetCdf,
     'zipped_vector': ZippedVector,
