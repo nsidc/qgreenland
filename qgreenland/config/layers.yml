@@ -944,6 +944,7 @@
       TBD
   visible: False
   group_path: 'Glaciology/GMB/DTU Space'
+  style: 'gmb_dtu_space'
   data_source: esa_cci_gravimetric_mass_balance_dtu.only
   ingest_task: local_vector
   file_type: '.shp'
