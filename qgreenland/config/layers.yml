@@ -922,7 +922,6 @@
   title: 'Glacier Termini 2016 to 2017'
   data_source: glacier_terminus.2016_2017
 
-
 - id: ice_cores
   title: 'Ice Cores'
   visible: False
@@ -941,7 +940,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2005
   title: 'Mass balance trend 2005-07-01:12:00:00'
   description: >-
-      TBD
+      The trends are derived for 5-year periods and are given on a ~50 km
+      resolution grid (displayed as points).
   visible: False
   group_path: 'Glaciology/GMB/DTU Space'
   style: 'gmb_dtu_space'

@@ -1167,7 +1167,32 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'GMB products for the Greenland Ice Sheet from GRACE satellite gravimetry (CSR RL06) by DTU Space.'
     abstract: >-
-        TBD
+      During the last decade, the GRACE mission hasprovided valuable data for
+      determining the mass changes ofthe Greenland and Antarctic ice sheets.
+      Yet, discrepancies still exist in the published mass balance results, and
+      comprehensive analyses on the sources of errors and discrepancies are
+      lacking. Here, we present monthly mass changes together with trends
+      derived from GRACE data at basin scalefor both the Greenland and Antarctic
+      ice sheets, and we assess the variability and errors for each of the
+      possible sources of discrepancies, and we do this in an unprecedented
+      systematic way, taking into account mass inference methods, datasets and
+      background models.  We find a very good agreement between the monthly mass
+      change results derived from two independent methods, which represents a
+      cross validation.  For the monthly solutions, we find that most of the
+      scatter is caused by the use of the two different data sets rather than
+      the two different methods applied. Besides the well-known GIA trend
+      uncertainty, we find that the geocenter motion and the recent dealiasing
+      corrections significantly impact the trends, with contributions of+13.2 Gt
+      yr−1and−20 Gt yr−1, respectively, for Antarctica, which is more affected
+      by these than Greenland.  We show differences between the use of release
+      RL04 and the new RL05 and confirma lower noise content in the new
+      release. The overall scatter of the solutions well exceeds the
+      uncertainties propagated from the data errors and the leakage (as done in
+      the past); hence we calculate new sound total errors for the monthly
+      solutions and the trends. We find that the scatter in the monthly
+      solutions caused by applying different estimates of geocenter motion time
+      series(degree-1 corrections) is significant – contributing with up to 40%
+      of the total error.
     citation:
       text: >-
         Barletta, V. R., Sørensen, L. S., and Forsberg, R.: Scatter of mass
