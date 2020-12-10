@@ -943,7 +943,7 @@
   title: 'Ice Sheet Velocity (500m)'
   description: 'Magnitude of velocity in meters per year.'
   visible: False
-  group_path: 'Glaciology/Ice sheet velocity'
+  group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
   style: 'ice_sheet_velocity'
   boundary: 'data'
   data_source: velocity_mosaic.only
