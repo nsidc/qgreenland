@@ -1,4 +1,4 @@
-# v0.45.0 (unreleased)
+# v0.45.0 (2020-12-10)
 
 - New "Glaciology/GMB/DTU Space" layers for 2005-2017: Mass Balance Trend.
 - New "Geology & natural resources/Mineral and hydrocarbon licenses":
