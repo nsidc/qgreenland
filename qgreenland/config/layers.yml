@@ -318,6 +318,17 @@
     input_filename: 'fetched.geojson'
     where: '"\"type\" LIKE ''Caribou%''"'
 
+- id: ginr_caribou_areas
+  title: 'Caribou Areas'
+  group_path: 'Biology/Mammals'
+  data_source: ginr_caribou.only
+  visible: False
+  style: null
+  boundary: 'data'
+  ingest_task: local_zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
+
 - <<: *walrus_protected_areas
   id: nunagis_beluga_areas
   title: 'Beluga Areas'
@@ -387,6 +398,17 @@
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     where: '"\"type\" LIKE ''Musk oxen%''"'
+
+- id: ginr_muskoken
+  title: 'Muskoxen Areas'
+  group_path: 'Biology/Mammals'
+  data_source: ginr_muskoxen.only
+  visible: False
+  style: null
+  boundary: 'data'
+  ingest_task: local_zipped_vector
+  file_type: '.shp'
+  data_type: 'vector'
 
 - <<: *walrus_protected_areas
   id: nunagis_narwhal_areas
