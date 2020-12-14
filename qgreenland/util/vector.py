@@ -21,7 +21,7 @@ def points_txt_to_shape(
     pass on the correct info to `ogr2ogr` about what each column represents
     positionally? An example ogr2ogr command:
 
-    $ ogr2ogr -oo X_POSSIBLE_NAMES=lon -oo Y_POSSIBLE_NAMES=lat -a_srs "EPSG:4326" out.shp in.csv
+    $ ogr2ogr -oo X_POSSIBLE_NAMES=lon -oo Y_POSSIBLE_NAMES=lat -a_srs "EPSG:4326" out.shp in.csv  # noqa
     """
     df = pd.read_table(in_filepath, header=header, delimiter=delimiter)
 
