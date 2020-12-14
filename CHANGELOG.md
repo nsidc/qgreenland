@@ -3,6 +3,10 @@
 - New "Biology/Mammals" layers:
   - Caribou Areas
   - Muskoxen Areas
+- New "Human activity/Research stations" layers:
+  - PROMICE Automated Weather Stations
+  - Former PROMICE Automated Weather Stations
+  - GC-NET Automated Weather Stations
 
 # v0.45.0 (2020-12-10)
 

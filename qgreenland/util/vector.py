@@ -14,6 +14,15 @@ def points_txt_to_shape(
         in_filepath, out_filepath, *,
         header, delimiter, field_names, x_field, y_field
 ):
+    """Convert a textfile of points to shapefile.
+
+    TODO: `ogr2ogr` can operate on delimited text files, but not without a
+    header. Perhaps this task could add header to files that don't have one? Or
+    pass on the correct info to `ogr2ogr` about what each column represents
+    positionally? An example ogr2ogr command:
+
+    $ ogr2ogr -oo X_POSSIBLE_NAMES=lon -oo Y_POSSIBLE_NAMES=lat -a_srs "EPSG:4326" out.shp in.csv  # noqa
+    """
     df = pd.read_table(in_filepath, header=header, delimiter=delimiter)
 
     # If the header is 'none', there is no header and it must be defiend via

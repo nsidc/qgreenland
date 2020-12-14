@@ -3207,6 +3207,52 @@
   ogr2ogr_kwargs:
     sql: "'SELECT *, StationNam as label from \"GEMStations\"'"
 
+- &gc_net_promice_stations
+  id: promice_research_stations
+  title: 'PROMICE Automated Weather Stations'
+  visible: False
+  group_path: 'Human activity/Research stations'
+  style: 'labeled_point'
+  data_source: gc_net_promice_stations.promice
+  ingest_task: delimited_text_points_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  boundary: 'data'
+  delimited_text_vector_kwargs:
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.csv'
+    delimiter: "\t"
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018\"'"
+
+- <<: *gc_net_promice_stations
+  id: promice_research_stations_former
+  title: 'Former PROMICE Automated Weather Stations'
+  data_source: gc_net_promice_stations.promice_former
+  delimited_text_vector_kwargs:
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.csv'
+    delimiter: "\t"
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018_former_sites\"'"
+
+- <<: *gc_net_promice_stations
+  id: gc_net_research_stations
+  title: 'GC-NET Automated Weather Stations'
+  data_source: gc_net_promice_stations.gc_net
+  delimited_text_vector_kwargs:
+    input_filename: 'GCN%20info%20ca.2000.csv'
+    delimiter: ','
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"GCN%20info%20ca.2000\"'"
+
 - id: seismograph_stations
   title: 'Seismograph Stations'
   description: >-
