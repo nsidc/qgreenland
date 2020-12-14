@@ -1515,9 +1515,6 @@ The images and data are produced in a consistent way that makes the Index time-s
 
 - id: mineral_and_hydrocarbon_licenses
   access_method: http
-  # TODO: `FetchOgrRemoteData` should be able to handle this. For example, a
-  # shapefile can be fetched via this `ogr2ogr` command:
-  # ogr2ogr mcas_mlsa_public_sensitive_areas.shp "https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetCapabilities" MLSA:mcas_mlsa_public_sensitive_areas
   sources:
     - id: mcas_mlsa_public_all
       urls:
