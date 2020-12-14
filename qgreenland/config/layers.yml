@@ -781,6 +781,24 @@
 # Glaciology #
 ##############
 
+- id: machguth_massbalance_locations
+  title: 'Mass-balance glacier observation locations (Machguth et al.)'
+  description: >-
+     Locations of glaciers used in surface mass-balance observations (Machguth
+     et al.).
+  visible: False
+  group_path: 'Glaciology'
+  style: labeled_point
+  data_source: machguth_etal_massbalance_obs_locations.only
+  ingest_task: local_vector
+  file_type: '.shp'
+  data_type: 'vector'
+  boundary: 'background'
+  delimited_text_vector_kwargs:
+  ogr2ogr_kwargs:
+    input_filename: 'locations.gpkg'
+    s_srs: 'EPSG:4326'
+
 - id: jakobshavn_supraglacial_lakes
   title: 'Sermeq Kujalleq/Jakobshavn Supraglacial Lakes'
   description: >-

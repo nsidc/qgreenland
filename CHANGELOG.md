@@ -7,6 +7,8 @@
   - PROMICE Automated Weather Stations
   - Former PROMICE Automated Weather Stations
   - GC-NET Automated Weather Stations
+- New "Glaciology" layer: Mass-balance glacier observation locations (Machguth
+  et al.)
 
 # v0.45.0 (2020-12-10)
 
