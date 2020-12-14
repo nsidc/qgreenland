@@ -1042,6 +1042,60 @@ The images and data are produced in a consistent way that makes the Index time-s
           Karl Brix Zinglersen, Greenland Institute of Natural Resources
       url: ''
 
+- id: ginr_muskoxen
+  access_method: manual
+  sources:
+    - id: only
+      access_instructions: >-
+        Dataset provided by Karl Zinglersen of the Greenland Institude for
+        Natural Resources via a an email attachment on Oct. 16, 2020. This
+        dataset is not expected to be publicily archived outside of QGreenland.
+  metadata:
+    title: 'Muskox status, recent variation, and uncertain future'
+    abstract: >-
+      Muskoxen (Ovibos moschatus) are an integral component of Arctic
+      biodiversity. Given low genetic diversity, their ability to respond to
+      future and rapid Arctic change is unknown, although paleontological
+      history demonstrates adaptability within limits. We discuss status and
+      limitations of current monitoring, and summarize circumpolar status and
+      recent variations, delineating all 55 endemic or translocated
+      populations. Acknowledging uncertainties, global abundance is ca 170 000
+      muskoxen. Not all populations are thriving. Six populations are in
+      decline, and as recently as the turn of the century, one of these was the
+      largest population in the world, equaling ca 41% of today’s total
+      abundance. Climate, diseases, and anthropogenic changes are likely the
+      principal drivers of muskox population change and result in multiple
+      stressors that vary temporally and spatially. Impacts to muskoxen are
+      precipitated by habitat loss/degradation, altered vegetation and species
+      associations, pollution, and harvest. Which elements are relevant for a
+      specific population will vary, as will their cumulative interactions. Our
+      summaries highlight the importance of harmonizing existing data,
+      intensifying long-term monitoring efforts including demographics and
+      health assessments, standardizing and implementing monitoring protocols,
+      and increasing stakeholder engagement/contributions.
+    citation:
+      text: >-
+        Christine Cuyler and Karl Zinglersen, Greenland Institute of Natural
+        Resources.
+      url: 'https://doi.org/10.1007/s13280-019-01205-x'
+
+- id: ginr_caribou
+  access_method: manual
+  sources:
+    - id: only
+      access_instructions: >-
+        Dataset provided by Karl Zinglersen of the Greenland Institude for
+        Natural Resources via a an email attachment on Oct. 16, 2020. This
+        dataset is not expected to be publicily archived outside of QGreenland.
+  metadata:
+    title: 'Caribou'
+    abstract: >-
+        TBD
+    citation:
+      text: >-
+          Christine Cuyler and Karl Zinglersen, Greenland Institute of Natural Resources
+      url: 'TBD'
+
 
 - id: nga_arctic_sea_routes
   access_method: http

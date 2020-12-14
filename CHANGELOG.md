@@ -1,3 +1,9 @@
+# v0.46.0 (unreleased)
+
+- New "Biology/Mammals" layers:
+  - Caribou Areas
+  - Muskoxen Areas
+
 # v0.45.0 (2020-12-10)
 
 - New "Glaciology/GMB/DTU Space" layers for 2005-2017: Mass Balance Trend.
