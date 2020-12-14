@@ -794,7 +794,6 @@
   file_type: '.shp'
   data_type: 'vector'
   boundary: 'background'
-  delimited_text_vector_kwargs:
   ogr2ogr_kwargs:
     input_filename: 'locations.gpkg'
     s_srs: 'EPSG:4326'
