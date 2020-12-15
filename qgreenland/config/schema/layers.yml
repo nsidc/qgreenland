@@ -61,6 +61,7 @@ delimited_text_vector_kwargs:
 gdal_edit_kwargs:
   a_ullr: str(required=False)
   a_srs: str(required=False)
+  scale: num(required=False)
 
 ---
 gdal_mdim_translate_kwargs:
@@ -75,6 +76,8 @@ translate_kwargs:
 ---
 gdal_calc_kwargs:
   calc: str(required=True)
+  creation-option: str(required=False)
+  type: str(required=False)
 
 ---
 # TODO: These kwargs are passed to CLI. Consider expressing as list instead of

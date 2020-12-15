@@ -9,6 +9,8 @@
   - GC-NET Automated Weather Stations
 - New "Glaciology" layer: Mass-balance glacier observation locations (Machguth
   et al.)
+- Update "Terrain models" Arctic DEM layer to use 100m resolution source over
+  1km.
 
 # v0.45.0 (2020-12-10)
 

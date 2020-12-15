@@ -3854,24 +3854,26 @@
   translate_kwargs:
     extract_dataset: 'errbed'
 
-
 - id: arctic_dem
-  title: 'Arctic DEM (1km)'
+  title: 'Arctic DEM (100m)'
   description: 'Surface elevation in meters.'
   visible: False
   group_path: 'Terrain models'
   style: 'arctic_dem'
   boundary: 'data'
-  data_source: arctic_dem.only
-  ingest_task: 'raster'
+  data_source: arctic_dem.100m
+  ingest_task: 'arctic_dem'
   file_type: '.tif'
   data_type: 'raster'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
-
-
-
+  gdal_calc_kwargs:
+    calc: "'A * 100.0'"
+    creation-option: "COMPRESS=DEFLATE"
+    type: "Int32"
+  gdal_edit_kwargs:
+    scale: 0.01
 
 ######################
 # Future Projections #
