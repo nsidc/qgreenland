@@ -1,3 +1,4 @@
+from qgreenland.tasks.layers.arctic_dem import ArcticDEM
 from qgreenland.tasks.layers.arctic_vegetation import ArcticVegetation
 from qgreenland.tasks.layers.background_image import BackgroundImage
 from qgreenland.tasks.layers.basal_thermal_state import BasalThermalState
@@ -22,6 +23,7 @@ from qgreenland.tasks.layers.zipped_vector import ZippedVector
 
 # TODO: Automatically generate this list from some Python metadata?
 INGEST_TASKS = {
+    'arctic_dem': ArcticDEM,
     'arctic_vegetation': ArcticVegetation,
     'background_image': BackgroundImage,
     'basal_thermal_state': BasalThermalState,
