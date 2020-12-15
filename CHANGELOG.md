@@ -1,4 +1,4 @@
-# v0.46.0 (unreleased)
+# v0.46.0 (2020-12-15)
 
 - New "Biology/Mammals" layers:
   - Caribou Areas
