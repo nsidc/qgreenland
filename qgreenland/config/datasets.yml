@@ -105,9 +105,15 @@
 - id: arctic_dem
   access_method: http
   sources:
-    - id: only
+    - id: 1km
       urls:
         - 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif'
+    - id: 500m
+      urls:
+        - 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/500m/arcticdem_mosaic_500m_v3.0.tif'
+    - id: 100m
+      urls:
+        - 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/100m/arcticdem_mosaic_100m_v3.0.tif'
   metadata:
     title: 'Arctic DEM (1km mosaic)'
     abstract: 'ArcticDEM is an NGA-NSF public-private initiative to automatically produce a high-resolution, high quality, digital surface model (DSM) of the Arctic using optical stereo imagery, high-performance computing, and open source photogrammetry software.'
