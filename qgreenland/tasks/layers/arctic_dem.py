@@ -1,7 +1,7 @@
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.raster import (BuildRasterOverviews,
-                                            GdalEdit,
                                             GdalCalcRaster,
+                                            GdalEdit,
                                             WarpRaster)
 from qgreenland.util.luigi import LayerPipeline
 
