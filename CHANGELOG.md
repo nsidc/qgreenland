@@ -1,3 +1,10 @@
+# v0.47.0 (unreleased)
+
+- Updated "Glaciology" Mass-balance glacier observation locations (Machguth et al.) layer:
+  - Removed entries where no data were found.
+  - Layer now has all attributes from the 'overview' tab in the source database.
+  - Updated access instructions in dataset configuration.
+
 # v0.46.0 (2020-12-15)
 
 - New "Biology/Mammals" layers:
