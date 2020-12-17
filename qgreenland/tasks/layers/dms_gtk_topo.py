@@ -1,5 +1,4 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
-from qgreenland.tasks.common.raster import BuildRasterOverviews, WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -14,8 +13,9 @@ class DmsGtkTopo(LayerPipeline):
     to EPSG:3413. We could convert this into an RGBA raster, but that brings the
     filesize from 54M to 16G.
     """
+
     def requires(self):
         return FetchLocalDataFiles(
             source_cfg=self.cfg['source'],
             dataset_cfg=self.cfg['dataset']
-        ) 
+        )
