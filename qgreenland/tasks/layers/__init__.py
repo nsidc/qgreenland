@@ -7,6 +7,7 @@ from qgreenland.tasks.layers.delimited_text_vector import DelimitedTextVector
 from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
 from qgreenland.tasks.layers.gzipped_vector_parts import GzippedVectorParts
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
+from qgreenland.tasks.layers.dms_gtk_topo import DmsGtkTopo
 from qgreenland.tasks.layers.local_vector import LocalVector
 from qgreenland.tasks.layers.local_zipped_netcdf_raster import LocalZippedNetCdfRaster
 from qgreenland.tasks.layers.local_zipped_vector import LocalZippedVector
@@ -32,6 +33,7 @@ INGEST_TASKS = {
     'glacier_terminus': GlacierTerminus,
     'gzipped_vector_parts': GzippedVectorParts,
     'ice_thickness_change': IceThicknessChange,
+    'dms_gtk_topo': DmsGtkTopo,
     'local_vector': LocalVector,
     'local_zipped_vector': LocalZippedVector,
     'local_zipped_netcdf_raster': LocalZippedNetCdfRaster,
