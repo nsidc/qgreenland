@@ -116,7 +116,10 @@ def get_map_layer(layer_cfg, project_crs):
     if style := layer_cfg.get('style'):
         load_qml_style(map_layer, style)
 
-    map_layer.setCrs(project_crs)
+    if layer_crs := layer_cfg.get('project_crs'):
+        map_layer.setCrs(qgc.QgsCoordinateReferenceSystem(layer_crs))
+    else:
+        map_layer.setCrs(project_crs)
 
     return map_layer
 

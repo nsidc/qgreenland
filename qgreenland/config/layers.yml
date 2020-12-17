@@ -3875,6 +3875,17 @@
   gdal_edit_kwargs:
     scale: 0.01
 
+- id: dms_gtk_topo
+  title: 'Danish Map Supply Topographic Map (1:500,000)'
+  visible: False
+  group_path: 'Terrain models'
+  style: null
+  data_source: danish_agency_for_data_supply_and_efficiency_gtk_topop_map.only
+  ingest_task: 'dms_gtk_topo'
+  file_type: '.tif'
+  data_type: 'raster'
+  project_crs: 'EPSG:32624'
+
 ######################
 # Future Projections #
 ######################
