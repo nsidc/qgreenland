@@ -14,8 +14,10 @@ else
     tty_arg="-T"
 fi
 
+# docker-compose up/down commands are useful for dev, but must be
+# removed/commented for prod.
+# docker-compose up -d
 # NOTE: Workers must be set to 1 for python debug breakpoints to be usable
-docker-compose up -d
 docker-compose exec ${tty_arg} luigi luigi --workers=1 \
   --module qgreenland.tasks.main ZipQGreenland
-docker-compose down
+# docker-compose down
