@@ -47,10 +47,16 @@ layer:
   gdal_edit_kwargs: include('gdal_edit_kwargs', required=False)
   delimited_text_vector_kwargs: include('delimited_text_vector_kwargs', required=False)
 
+  unzip_kwargs: include('unzip_kwargs', required=False)
+
   # Sometimes, we may want to keep the original dataset's CRS, and not have it
   # set to the project crs:
   project_crs: str(required=False)
 
+
+---
+unzip_kwargs:
+  input_filename: str(required=False)
 
 ---
 delimited_text_vector_kwargs:

@@ -263,6 +263,273 @@
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
+##############
+# Atmosphere #
+##############
+
+- &racmo
+  id: racmo_wind_speed
+  title: 'Annual mean wind speed (5.5km)'
+  description: 'TBD'
+  visible: False
+  group_path: 'Atmosphere/RACMO model output/5.5km'
+  style: null
+  boundary: 'data'
+  data_source: racmo_qgreenland_aug2020.only
+  ingest_task: racmo
+  file_type: '.tif'
+  data_type: 'raster'
+  unzip_kwargs:
+    input_filename: 'RACMO_QGreenland_Aug2020.zip'
+  translate_kwargs:
+    extract_dataset: 'ff10m'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+  decompress_kwargs:
+    extract_files:
+      - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/ff10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
+
+- <<: *racmo
+  id: racmo_wind_direction_v10m
+  title: 'Annual mean wind direction v10m (5.5km)'
+  description: >-
+      Annual mean wind direction in meters per second from RACMO2.3p2 averaged
+      for 1958-2018.
+  translate_kwargs:
+    extract_dataset: 'v10m'
+  decompress_kwargs:
+    extract_files:
+      - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/v10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
+
+- <<: *racmo
+  id: racmo_wind_direction_u10m
+  title: 'Annual mean wind direction u10m (5.5km)'
+  description: >-
+      Annual mean wind direction in meters per second from RACMO2.3p2 averaged
+      for 1958-2018.
+  translate_kwargs:
+    extract_dataset: 'u10m'
+  decompress_kwargs:
+    extract_files:
+      - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/u10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
+
+- &racmo_1km
+  id: racmo_precip
+  title: 'Total Precipitation (1km)'
+  description: >-
+      Averaged for the period 1958 - 2018 covering the whole ice sheet and
+      peripheral ice caps
+  visible: False
+  group_path: 'Atmosphere/RACMO model output/1km'
+  style: null
+  boundary: 'data'
+  data_source: racmo_qgreenland_aug2020.only
+  ingest_task: racmo
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'precip'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+  decompress_kwargs:
+    extract_files:
+      - 'precip.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+  unzip_kwargs:
+    input_filename: 'extracted_1km.zip'
+
+- <<: *racmo_1km
+  id: racmo_snowfall
+  title: 'Snowfall (1km)'
+  translate_kwargs:
+    extract_dataset: 'snowfall'
+  decompress_kwargs:
+    extract_files:
+      - 'snowfall.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+
+- <<: *racmo_1km
+  id: racmo_melt
+  title: 'Snowmelt (1km)'
+  translate_kwargs:
+    extract_dataset: 'snowmelt'
+  decompress_kwargs:
+    extract_files:
+      - 'snowmelt.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+
+- <<: *racmo_1km
+  id: racmo_runoff
+  title: 'Runoff (1km)'
+  translate_kwargs:
+    extract_dataset: 'runoff'
+  decompress_kwargs:
+    extract_files:
+      - 'runoff.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+
+- <<: *racmo_1km
+  id: racmo_subl
+  title: 'Sublimation (1km)'
+  translate_kwargs:
+    extract_dataset: 'subl'
+  decompress_kwargs:
+    extract_files:
+      - 'subl.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+
+- <<: *racmo_1km
+  id: racmo_sndiv
+  # TODO: correct title
+  title: 'Sndiv (Snow drift erosion?) (1km)'
+  translate_kwargs:
+    extract_dataset: 'sndiv'
+  decompress_kwargs:
+    extract_files:
+      - 'sndiv.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+
+- <<: *racmo_1km
+  id: racmo_t2m
+  # TODO: correct title
+  title: 'Annual Mean Temperature at 2m (1km)'
+  description: >-
+      Annual Mean Temperature at 2m in degrees Kelvin.
+  translate_kwargs:
+    extract_dataset: 't2m'
+  decompress_kwargs:
+    extract_files:
+      - 't2m.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+
+- <<: *racmo_1km
+  id: racmo_LAT
+  title: 'LAT'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'LAT'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_LON
+  title: 'LON'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'LON'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_icemask
+  title: 'Icemask'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'Icemask'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_gris
+  title: 'GrIS'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'GrIS'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_gic
+  title: 'GIC'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'GIC'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_promicemask
+  title: 'Promicemask'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'Promicemask'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_topography
+  title: 'Topography'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'Topography'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_grounded_ice
+  title: 'Grounded Ice'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'grounded_ice'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_easting
+  title: 'Easting'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'Easting'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+- <<: *racmo_1km
+  id: racmo_northing
+  title: 'Northing'
+  group_path: 'Atmosphere/RACMO model output/masks'
+  translate_kwargs:
+    extract_dataset: 'Northing'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
 ###########
 # Biology #
 ###########

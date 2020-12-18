@@ -12,6 +12,7 @@ from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import (find_in_dir_by_pattern,
                                   find_single_file_by_ext,
+                                  find_single_file_by_name,
                                   temporary_path_dir)
 
 
@@ -58,7 +59,10 @@ class Unrar(Decompress):
 
 class Unzip(Decompress):
     def run(self):
-        zf_path = find_single_file_by_ext(self.input().path, ext='.zip')
+        if unzip_filename := self.layer_cfg.get('unzip_kwargs', {}).get('input_filename'):
+            zf_path = find_single_file_by_name(self.input().path, filename=unzip_filename)
+        else:
+            zf_path = find_single_file_by_ext(self.input().path, ext='.zip')
         zf = zipfile.ZipFile(zf_path)
 
         with temporary_path_dir(self.output()) as temp_path:
