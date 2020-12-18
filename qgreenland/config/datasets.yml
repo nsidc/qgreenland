@@ -1633,6 +1633,7 @@ The images and data are produced in a consistent way that makes the Index time-s
   access_method: manual
   sources:
     - id: only
+      # This was obtained from Dropbox. Did we get it directly from the authors?
       access_instructions: >-
           TBD
   metadata:
