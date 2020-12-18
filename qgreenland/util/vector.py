@@ -14,7 +14,7 @@ def points_txt_to_shape(
         in_filepath, out_filepath, *,
         header, delimiter, field_names, x_field, y_field
 ):
-    """Convert a textfile of points to shapefile.
+    """Convert a textfile of points to a vector data file.
 
     TODO: `ogr2ogr` can operate on delimited text files, but not without a
     header. Perhaps this task could add header to files that don't have one? Or
@@ -37,11 +37,11 @@ def points_txt_to_shape(
         df = df.rename(columns={idx: field_names[idx] for idx in range(len(field_names))})
 
     gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df[x_field], df[y_field]))
-    gdf.to_file(out_filepath)
+    gdf.to_file(out_filepath, driver='GPKG')
 
 
-def cleanup_valid_shapefile(path):
-    for ext in ['shp', 'shx', 'prj', 'dbf']:
+def cleanup_valid_datafiles(path, *, extensions):
+    for ext in extensions:
         try:
             os.remove(os.path.join(path, f'valid.{ext}'))
         except FileNotFoundError:
