@@ -1,3 +1,9 @@
+# v0.48.0 (unreleased)
+
+- Vector layers are now stored in the Geopackage format instead of as ESRI
+  Shapefiles.
+- New "Glaciology" layer: Ice Layer Output Thicknesses
+
 # v0.47.0 (2020-12-17)
 
 - Updated "Glaciology" Mass-balance glacier observation locations (Machguth et al.) layer:
