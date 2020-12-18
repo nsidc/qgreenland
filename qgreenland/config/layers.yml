@@ -800,13 +800,13 @@
 
 
 - id: firn_ice_layer_thickness
-  title: 'Ice Layer Output Thicknesses'
+  title: 'Firn Ice Layer Output Thicknesses'
   description: >-
       TBD
   visible: False
   group_path: 'Glaciology'
   style: null
-  data_source: macferrin_etal_firn_ice_layer_thickness.only
+  data_source: macferrin_etal_firn_ice_layer_thicknesses.only
   ingest_task: local_vector
   file_type: '.gpkg'
   data_type: 'vector'
