@@ -15,6 +15,7 @@ from qgreenland.tasks.layers.netcdf_raster import NetCdfRaster
 from qgreenland.tasks.layers.ogr_remote_vector import OgrRemoteVector
 from qgreenland.tasks.layers.online_vector import OnlineVector
 from qgreenland.tasks.layers.rarred_vector import RarredVector
+from qgreenland.tasks.layers.racmo import Racmo
 from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.raster_calc import RasterCalc
 from qgreenland.tasks.layers.surface_elevation_change import CCISurfaceElevationChange
@@ -41,6 +42,7 @@ INGEST_TASKS = {
     'ogr_remote_vector': OgrRemoteVector,
     'online_vector': OnlineVector,
     'rarred_vector': RarredVector,
+    'racmo': Racmo,
     'raster': Raster,
     'raster_calc': RasterCalc,
     'cci_surface_elevation_change': CCISurfaceElevationChange,
