@@ -798,6 +798,23 @@
     input_filename: 'locations.gpkg'
     s_srs: 'EPSG:4326'
 
+
+- id: firn_ice_layer_thickness
+  title: 'Firn Ice Layer Output Thicknesses'
+  description: >-
+      TBD
+  visible: False
+  group_path: 'Glaciology'
+  style: null
+  data_source: macferrin_etal_firn_ice_layer_thicknesses.only
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'background'
+  ogr2ogr_kwargs:
+    input_filename: 'Ice_Layer_Output_Thickness.gpkg'
+
+
 - id: jakobshavn_supraglacial_lakes
   title: 'Sermeq Kujalleq/Jakobshavn Supraglacial Lakes'
   description: >-
