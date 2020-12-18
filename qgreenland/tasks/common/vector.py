@@ -102,7 +102,7 @@ class Ogr2OgrVector(LayerTask):
             # TODO probably need to cleanup this output? Put it in another dir?
             valid_outfile = os.path.join(
                 temp_path,
-                f"valid.{self.layer_cfg['file_type']}"
+                f"valid{self.layer_cfg['file_type']}"
             )
             valid_kwargs = {'makevalid': ''}
             if 'sql' in ogr2ogr_kwargs:
