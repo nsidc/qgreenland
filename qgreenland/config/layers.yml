@@ -800,7 +800,7 @@
 
 
 - id: firn_ice_layer_thickness
-  title: 'Ice Layer Output Thickness'
+  title: 'Ice Layer Output Thicknesses'
   description: >-
       TBD
   visible: False
