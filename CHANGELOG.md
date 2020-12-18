@@ -3,6 +3,29 @@
 - Vector layers are now stored in the Geopackage format instead of as ESRI
   Shapefiles.
 - New "Glaciology" layer: Ice Layer Output Thicknesses
+- New "Atmosphere/RACMO model output/5.5km" layers:
+  - Annual mean wind speed (5.5km)
+  - Annual mean wind direction v10m (5.5km)
+  - Annual mean wind direction u10m (5.5km)
+- New "Atmosphere/RACMO model output/1km" layers:
+  - Total Precipitation (1km)
+  - Snowfall (1km)
+  - Snowmelt (1km)
+  - Runoff (1km)
+  - Sublimation (1km)
+  - Sndiv (Snow drift erosion?) (1km)
+  - Annual Mean Temperature at 2m (1km)
+- New "Atmosphere/RACMO model output/masks" layers:
+  - LAT
+  - LON
+  - Icemask
+  - GrIS
+  - GIC
+  - Promicemask
+  - Topography
+  - Grounded Ice
+  - Easting
+  - Northing
 
 # v0.47.0 (2020-12-17)
 
