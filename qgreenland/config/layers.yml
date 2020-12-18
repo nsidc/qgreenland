@@ -10,7 +10,7 @@
   boundary: 'data'
   data_source: utm_zones.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     where: '"\"ZONE\" != 0"'
@@ -26,7 +26,7 @@
   group_path: 'Miscellaneous'
   data_source: arctic_circle.only
   ingest_task: local_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'arctic_circle.geojson'
@@ -43,7 +43,7 @@
   style: 'latlon'
   data_source: latlon.lat_0_25_deg
   ingest_task: local_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'latitudes_0_25_degree.geojson'
@@ -139,7 +139,7 @@
   style: 'latlon'
   data_source: latlon.lon_0_5_deg
   ingest_task: local_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'longitudes_0_5_degree.geojson'
@@ -258,7 +258,7 @@
   style: 'transparent_shape'
   boundary: 'background'
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
@@ -291,7 +291,7 @@
   style: nunagis_walrus_protected_areas
   boundary: 'data'
   ingest_task: ogr_remote_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
@@ -326,7 +326,7 @@
   style: null
   boundary: 'data'
   ingest_task: local_zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - <<: *walrus_protected_areas
@@ -407,7 +407,7 @@
   style: null
   boundary: 'data'
   ingest_task: local_zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - <<: *walrus_protected_areas
@@ -437,7 +437,7 @@
   group_path: 'Biology/Birds'
   boundary: 'data'
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   decompress_kwargs:
     extract_files:
@@ -454,7 +454,7 @@
   group_path: 'Biology/Birds'
   boundary: 'data'
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   decompress_kwargs:
     extract_files:
@@ -473,7 +473,7 @@
   group_path: 'Biology/Fish'
   boundary: 'data'
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 #####################
@@ -489,7 +489,7 @@
   #   style: 'populated_places'
   #   boundary: 'data'
   #   ingest_task: ogr_remote_vector
-  #   file_type: '.shp'
+  #   file_type: '.gpkg'
   #   data_type: 'vector'
   #   ogr2ogr_kwargs:
   #     # TODO: This is lame, stop it!
@@ -504,7 +504,7 @@
   style: hotosm_populated_places_point
   boundary: 'data'
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - <<: *hdx_hotosm
@@ -563,7 +563,7 @@
   style: null
   boundary: 'data'
   ingest_task: ogr_remote_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
@@ -585,7 +585,7 @@
   style: null
   boundary: 'background'
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - <<: *walrus_protected_areas
@@ -682,7 +682,7 @@
   # style: 'TBD'
   boundary: 'background'
   ingest_task: local_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
@@ -791,7 +791,7 @@
   style: labeled_point
   data_source: machguth_etal_massbalance_obs_locations.only
   ingest_task: local_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   ogr2ogr_kwargs:
@@ -809,7 +809,7 @@
   # style: 'TBD'
   boundary: 'data'
   ingest_task: local_zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   decompress_kwargs:
     extract_files:
@@ -832,7 +832,7 @@
   group_path: 'Glaciology/GLIMS'
   boundary: 'data'
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   decompress_kwargs:
     extract_files:
@@ -900,7 +900,7 @@
   boundary: 'data'
   data_source: glacier_terminus.glacier_ids
   ingest_task: glacier_terminus
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - &glacier_terminus
@@ -911,7 +911,7 @@
   boundary: 'data'
   data_source: glacier_terminus.2000_2001
   ingest_task: glacier_terminus
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - <<: *glacier_terminus
@@ -969,7 +969,7 @@
   boundary: 'data'
   data_source: ice_cores.only
   ingest_task: online_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'paleo_icecore.kmz'
@@ -986,7 +986,7 @@
   style: 'gmb_dtu_space'
   data_source: esa_cci_gravimetric_mass_balance_dtu.only
   ingest_task: local_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'points_2005_07_01_12_00_00.shp'
@@ -1499,7 +1499,7 @@
   boundary: 'data'
   data_source: soil_types.only
   ingest_task: gzipped_vector_parts
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     s_srs: '"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0"'
@@ -1511,7 +1511,7 @@
   boundary: 'background'
   data_source: tectonic_plates.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   decompress_kwargs:
     extract_files:
@@ -1531,7 +1531,7 @@
   boundary: 'data'
   data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_all
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - <<: *mcas_mlsa
@@ -1548,7 +1548,7 @@
   style: onshore_planar_geological_map
   data_source: geological_map.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   decompress_kwargs:
     extract_files:
@@ -1600,7 +1600,7 @@
 #   boundary: 'background'
 #   data_source: tectonic_plates.only
 #   ingest_task: zipped_vector
-#   file_type: '.shp'
+#   file_type: '.gpkg'
 #   data_type: 'vector'
 #   decompress_kwargs:
 #     extract_files:
@@ -1636,7 +1636,7 @@
   style: geomagnetic_north_pole
   data_source: world_magnetic_model.geomagnetic_north_pole
   ingest_task: delimited_text_points_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   delimited_text_vector_kwargs:
@@ -1692,7 +1692,7 @@
   group_path: 'Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020)'
   data_source: local_world_magnetic_model.only
   ingest_task: local_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'wmm2020_geomagnetic_north_pole.geojson'
@@ -1719,7 +1719,7 @@
   style: geomagnetic_latlon
   data_source: world_magnetic_model.geomagnetic_coordinates
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   ogr2ogr_kwargs:
@@ -1768,7 +1768,7 @@
   style: blackout_zones
   data_source: world_magnetic_model.blackout_zones
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   decompress_kwargs:
@@ -1790,7 +1790,7 @@
   style: null
   data_source: world_magnetic_model.2020
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   decompress_kwargs:
@@ -2027,7 +2027,7 @@
   style: null
   data_source: world_magnetic_model.2021
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   decompress_kwargs:
@@ -2263,7 +2263,7 @@
   style: null
   data_source: world_magnetic_model.2022
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   decompress_kwargs:
@@ -2499,7 +2499,7 @@
   style: null
   data_source: world_magnetic_model.2023
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   decompress_kwargs:
@@ -2735,7 +2735,7 @@
   style: null
   data_source: world_magnetic_model.2024
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   decompress_kwargs:
@@ -2971,7 +2971,7 @@
   style: null
   data_source: world_magnetic_model.2025
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
   decompress_kwargs:
@@ -3218,7 +3218,7 @@
   style: 'labeled_point'
   data_source: gem_research_stations.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'data'
   ogr2ogr_kwargs:
@@ -3232,7 +3232,7 @@
   style: 'labeled_point'
   data_source: gc_net_promice_stations.promice
   ingest_task: delimited_text_points_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'data'
   delimited_text_vector_kwargs:
@@ -3279,7 +3279,7 @@
   group_path: 'Human activity/Research stations'
   data_source: seismograph_stations.only
   ingest_task: online_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'data'
   ogr2ogr_kwargs:
@@ -3296,7 +3296,7 @@
   group_path: 'Human activity'
   data_source: nga_arctic_sea_routes.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
 
@@ -3312,7 +3312,7 @@
       TODO
   data_source: streams_outlets_basins.ice_basins
   ingest_task: online_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   visible: False
   group_path: 'Hydrology'
@@ -3395,7 +3395,7 @@
       - 'features/features-point.prj'
       - 'features/features-point.shp'
       - 'features/features-point.shx'
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     sql: "'SELECT *, name as label from \"features-point\"'"
@@ -3571,7 +3571,7 @@
   boundary: 'background'
   data_source: seaice_index.median_extent_line_01
   ingest_task: 'zipped_vector'
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - <<: *seaice_median_extent
@@ -3965,7 +3965,7 @@
   boundary: 'background'
   data_source: bas_coastlines.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - id: coastlines
@@ -3978,7 +3978,7 @@
   boundary: 'background'
   data_source: coastlines.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 - id: ne_states_provinces
@@ -3989,7 +3989,7 @@
   boundary: 'data'
   data_source: ne_states_provinces.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 
@@ -4001,7 +4001,7 @@
   boundary: 'background'
   data_source: ne_countries.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 
@@ -4016,7 +4016,7 @@
   boundary: 'background'
   data_source: land_shape.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 
@@ -4028,7 +4028,7 @@
   boundary: 'background'
   data_source: ocean_shape.only
   ingest_task: zipped_vector
-  file_type: '.shp'
+  file_type: '.gpkg'
   data_type: 'vector'
 
 

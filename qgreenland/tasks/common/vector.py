@@ -9,7 +9,7 @@ from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import (find_single_file_by_ext,
                                   find_single_file_by_name,
                                   temporary_path_dir)
-from qgreenland.util.vector import cleanup_valid_shapefile, ogr2ogr, points_txt_to_shape
+from qgreenland.util.vector import cleanup_valid_datafiles, ogr2ogr, points_txt_to_shape
 
 logger = logging.getLogger('luigi-interface')
 
@@ -44,7 +44,8 @@ class DelimitedTextPointsVector(LayerTask):
         with temporary_path_dir(self.output()) as temp_path:
             infile = os.path.join(self.input().path, input_filename)
 
-            out_filename = os.path.splitext(input_filename)[0] + '.shp'
+            file_ext = self.layer_cfg['file_type']
+            out_filename = os.path.splitext(input_filename)[0] + file_ext
             outfile = os.path.join(temp_path, out_filename)
             points_txt_to_shape(
                 infile, outfile,
@@ -69,7 +70,7 @@ class Ogr2OgrVector(LayerTask):
         boundary_fp = self.layer_cfg['boundary']['fp']
 
         ogr2ogr_kwargs = {
-            # Output an UTF-8 encoded shapefile instead of default ISO-8859-1
+            # Output an UTF-8 encoded data file instead of default ISO-8859-1
             'lco': 'ENCODING=UTF-8',
             't_srs': CONFIG['project']['crs'],
             # As opposed to `clipsrc`, `clipdst` uses the destination SRS
@@ -84,18 +85,24 @@ class Ogr2OgrVector(LayerTask):
                 filename=ogr2ogr_kwargs.pop('input_filename')
             )
         else:
-            shapefile = find_single_file_by_ext(self.input().path, ext='.shp')
-            input_filename = shapefile
+            # TODO: we assume input data comes in .shp format unless we override
+            # the input_filename, but maybe we should have a list of possible
+            # extensions we look for, starting with self.layer_cfg['file_type']?
+            datafile = find_single_file_by_ext(
+                self.input().path,
+                ext='shp'
+            )
+            input_filename = datafile
 
         with temporary_path_dir(self.output()) as temp_path:
             # Before doing the requested transformation, make the vector data
             # valid. We have to do the SQL step here because this command will
-            # change the internal table name of the output shapefile.
+            # change the internal table name of the output datafile.
             infile = os.path.join(self.input().path, input_filename)
             # TODO probably need to cleanup this output? Put it in another dir?
             valid_outfile = os.path.join(
                 temp_path,
-                'valid.shp'
+                f"valid.{self.layer_cfg['file_type']}"
             )
             valid_kwargs = {'makevalid': ''}
             if 'sql' in ogr2ogr_kwargs:
@@ -111,4 +118,7 @@ class Ogr2OgrVector(LayerTask):
             ogr2ogr(infile, outfile, **ogr2ogr_kwargs)
 
             # TODO: Make valid without writing to disk?
-            cleanup_valid_shapefile(temp_path)
+            cleanup_valid_datafiles(
+                temp_path,
+                extensions=[self.layer_cfg['file_type']]
+            )
