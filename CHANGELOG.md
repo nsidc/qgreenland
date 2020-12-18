@@ -1,4 +1,4 @@
-# v0.47.0 (unreleased)
+# v0.47.0 (2020-12-17)
 
 - Updated "Glaciology" Mass-balance glacier observation locations (Machguth et al.) layer:
   - Removed entries where no data were found.
