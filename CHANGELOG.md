@@ -1,4 +1,4 @@
-# v0.48.0 (unreleased)
+# v0.48.0 (2020-12-18)
 
 - Vector layers are now stored in the Geopackage format instead of as ESRI
   Shapefiles.
