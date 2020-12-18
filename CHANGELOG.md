@@ -2,7 +2,7 @@
 
 - Vector layers are now stored in the Geopackage format instead of as ESRI
   Shapefiles.
-- New "Glaciology" layer: Ice Layer Output Thicknesses
+- New "Glaciology" layer: Firn Ice Layer Output Thicknesses
 - New "Atmosphere/RACMO model output/5.5km" layers:
   - Annual mean wind speed (5.5km)
   - Annual mean wind direction v10m (5.5km)
