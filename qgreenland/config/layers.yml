@@ -1079,7 +1079,7 @@
   data_type: 'vector'
   boundary: 'background'
   ogr2ogr_kwargs:
-    input_filename: 'Ice_Layer_Output_Thickness.gpkg'
+    input_filename: 'Ice_Layer_Output_Thicknesses.gpkg'
 
 
 - id: jakobshavn_supraglacial_lakes
@@ -1933,6 +1933,7 @@
       - year
   ogr2ogr_kwargs:
     s_srs: 'EPSG:4326'
+    input_filename: 'WMM2020_NP.gpkg'
 
 - <<: *wmm_north_poles
   id: wmm_igrf_north_poles
@@ -1956,6 +1957,9 @@
       - latitude
       - longitude
       - year
+  ogr2ogr_kwargs:
+    s_srs: 'EPSG:4326'
+    input_filename: 'NP.gpkg'
 
 - id: wmm_geomagnetic_north_pole
   title: 'Geomagnetic North Pole (2020)'
@@ -3527,6 +3531,7 @@
   ogr2ogr_kwargs:
     s_srs: "EPSG:4326"
     sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018\"'"
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.gpkg'
 
 - <<: *gc_net_promice_stations
   id: promice_research_stations_former
@@ -3540,6 +3545,7 @@
   ogr2ogr_kwargs:
     s_srs: "EPSG:4326"
     sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018_former_sites\"'"
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.gpkg'
 
 - <<: *gc_net_promice_stations
   id: gc_net_research_stations
@@ -3553,6 +3559,7 @@
   ogr2ogr_kwargs:
     s_srs: "EPSG:4326"
     sql: "'SELECT *, name as label from \"GCN%20info%20ca.2000\"'"
+    input_filename: 'GCN%20info%20ca.2000.gpkg'
 
 - id: seismograph_stations
   title: 'Seismograph Stations'
