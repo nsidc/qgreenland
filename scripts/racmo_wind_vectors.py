@@ -22,7 +22,7 @@ x_data = u_ds.variables['x'][:]
 y_data = u_ds.variables['y'][:]
 
 with open(BASE_DIR / 'wind_vector_points.csv', 'w') as f:
-    f.write(f'x_component,v_component,magnitude,x,y\n')
+    f.write(f'eastward_component,northward_component,magnitude,x,y\n')
     for i, j in product(range(u_data.shape[0]), range(u_data.shape[1])):
         u = u_data[i, j]
         if np.ma.is_masked(u):
