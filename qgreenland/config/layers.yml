@@ -294,7 +294,7 @@
 
 - <<: *racmo
   id: racmo_wind_direction_v10m
-  title: 'Annual mean wind direction v10m (5.5km)'
+  title: 'Annual mean northward wind speed (v10m) (5.5km)'
   description: >-
       Annual mean wind direction in meters per second from RACMO2.3p2 averaged
       for 1958-2018.
@@ -306,7 +306,7 @@
 
 - <<: *racmo
   id: racmo_wind_direction_u10m
-  title: 'Annual mean wind direction u10m (5.5km)'
+  title: 'Annual mean eastward wind speed (u10m) (5.5km)'
   description: >-
       Annual mean wind direction in meters per second from RACMO2.3p2 averaged
       for 1958-2018.
