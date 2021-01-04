@@ -16,6 +16,9 @@ the others.
 
 Each element represents a QGIS layer.
 
+To disable a layer, comment out the whole list element for that layer in the
+`layers.yml` file. This is convenient for layers with `manual` access method.
+
 
 ### Layer groups
 
@@ -25,9 +28,15 @@ group will always be automatically selected and expanded.
 
 ### Datasets
 
-A dataset isn't necessarily a dataproduct, but it might be. A dataset is any
-collection of data representing some measurement, hosted anywhere. Current
-access methods include `cmr` (by `granule_ur`s) and `http` (by `url`s).
+A dataset isn't necessarily the same thing as a "dataproduct", but it might be.
+A dataset is any collection of data representing some measurement, hosted
+anywhere. Current access methods include:
+
+* `cmr`: Access by `granule_ur`s
+* `http`: Access by `url`s
+* `manual`: Access by `access_instructions`. This data is either inaccessible
+  publicly or programmatically, so instructions must be followed to seed the
+  data locally.
 
 
 ## Pipeline
