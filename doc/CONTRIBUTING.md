@@ -32,8 +32,10 @@ A dataset isn't necessarily the same thing as a "dataproduct", but it might be.
 A dataset is any collection of data representing some measurement, hosted
 anywhere. Current access methods include:
 
-* `cmr`: Access by `granule_ur`s
-* `http`: Access by `url`s
+* `cmr`: Access CMR-indexed data by `granule_ur`s.
+* `http`: Access online resource by `url`s.
+* `local`: Access in-repo data by `url`s. `url` is relative to
+  `qgreenland/assets/local_data`.
 * `manual`: Access by `access_instructions`. This data is either inaccessible
   publicly or programmatically, so instructions must be followed to seed the
   data locally.
