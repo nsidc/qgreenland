@@ -1,3 +1,7 @@
+# v0.49.0 (Unreleased)
+
+- Remove ocean outline
+
 # v0.48.0 (2020-12-18)
 
 - Vector layers are now stored in the Geopackage format instead of as ESRI
