@@ -316,6 +316,19 @@
     extract_files:
       - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/u10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
 
+- <<: *racmo
+  id: racmo_wind_vectors
+  title: 'Annual mean wind vectors (5.5km)'
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ingest_task: 'local_vector'
+  # TODO: call out that this is a 'grid' of vector data?
+  description: >-
+      Annual mean wind direction in meters per second from RACMO2.3p2 averaged
+      for 1958-2018.
+  ogr2ogr_kwargs:
+    input_filename: 'wind_vector_points.gpkg'
+
 - &racmo_1km
   id: racmo_precip
   title: 'Total Precipitation (1km)'
