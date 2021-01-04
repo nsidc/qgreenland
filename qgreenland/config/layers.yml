@@ -4263,7 +4263,7 @@
   title: 'Coastlines'
   description: >-
     Note that the 'Greenland Coastlines' layer is preferred for Greenland.
-  visible: True
+  visible: False
   group_path: 'Basemaps'
   style: 'coastline-IHOECDIS'
   boundary: 'background'
