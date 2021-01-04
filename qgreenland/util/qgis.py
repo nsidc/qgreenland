@@ -261,7 +261,7 @@ def make_qgis_project_file(path):
 
     _set_groups_options(project)
 
-    _add_empty_groups(project)
+    # _add_empty_groups(project)
 
     # TODO: is it normal to write multiple times?
     project.write()
