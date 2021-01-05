@@ -1,6 +1,9 @@
-# v0.49.0 (Unreleased)
+# v0.49.0 (2021-01-05)
 
 - Remove ocean outline
+- Replace "Atmosphere/RACMO model output/5.5km" 'v10m' and 'u10m' layers with
+  wind vectors layer, which shows wind speed and direction.
+
 
 # v0.48.0 (2020-12-18)
 

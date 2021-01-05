@@ -267,8 +267,25 @@
 # Atmosphere #
 ##############
 
-- &racmo
-  id: racmo_wind_speed
+
+- id: racmo_wind_vectors
+  title: 'Annual mean wind vectors (5.5km)'
+  description: >-
+      Annual mean wind direction in meters per second from RACMO2.3p2 averaged
+      for 1958-2018.
+  visible: False
+  group_path: 'Atmosphere/RACMO model output/5.5km'
+  style: racmo_wind_vectors
+  boundary: 'data'
+  data_source: racmo_qgreenland_aug2020.only
+  ingest_task: 'local_vector'
+  file_type: '.gpkg'
+  data_type: 'vector'
+  # TODO: call out that this is a 'grid' of vector data?
+  ogr2ogr_kwargs:
+    input_filename: 'wind_vector_points.gpkg'
+
+- id: racmo_wind_speed
   title: 'Annual mean wind speed (5.5km)'
   description: 'TBD'
   visible: False
@@ -291,30 +308,6 @@
   decompress_kwargs:
     extract_files:
       - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/ff10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
-
-- <<: *racmo
-  id: racmo_wind_direction_v10m
-  title: 'Annual mean wind direction v10m (5.5km)'
-  description: >-
-      Annual mean wind direction in meters per second from RACMO2.3p2 averaged
-      for 1958-2018.
-  translate_kwargs:
-    extract_dataset: 'v10m'
-  decompress_kwargs:
-    extract_files:
-      - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/v10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
-
-- <<: *racmo
-  id: racmo_wind_direction_u10m
-  title: 'Annual mean wind direction u10m (5.5km)'
-  description: >-
-      Annual mean wind direction in meters per second from RACMO2.3p2 averaged
-      for 1958-2018.
-  translate_kwargs:
-    extract_dataset: 'u10m'
-  decompress_kwargs:
-    extract_files:
-      - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/u10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
 
 - &racmo_1km
   id: racmo_precip
