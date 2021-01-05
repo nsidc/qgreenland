@@ -319,13 +319,14 @@
 - <<: *racmo
   id: racmo_wind_vectors
   title: 'Annual mean wind vectors (5.5km)'
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ingest_task: 'local_vector'
-  # TODO: call out that this is a 'grid' of vector data?
   description: >-
       Annual mean wind direction in meters per second from RACMO2.3p2 averaged
       for 1958-2018.
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ingest_task: 'local_vector'
+  style: racmo_wind_vectors
+  # TODO: call out that this is a 'grid' of vector data?
   ogr2ogr_kwargs:
     input_filename: 'wind_vector_points.gpkg'
 
