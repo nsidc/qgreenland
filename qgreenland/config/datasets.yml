@@ -1739,3 +1739,28 @@ The images and data are produced in a consistent way that makes the Index time-s
         Greenland’s low-permeability ice slabs. Nature 573, 403–407
         (2019). https://doi.org/10.1038/s41586-019-1550-3
       url: 'https://doi.org/10.1038/s41586-019-1550-3'
+
+
+- id: sea_ice_age
+  access_method: cmr
+  sources:
+    - id: only
+      granule_ur: ''
+      collection_concept_id: ''
+  metadata:
+    title: 'https://nsidc.org/data/nsidc-0611'
+    abstract: >-
+        This data set provides weekly estimates of sea ice age for the Arctic
+        Ocean derived from remotely sensed sea ice motion and sea ice
+        extent. The temporal coverage for this data set is January 1984 through
+        December 2019. For more recent data, see the Quicklook Arctic Weekly
+        EASE-Grid Sea Ice Age data product (https://nsidc.org/data/nsidc-0749).
+    citation:
+      text: >-
+        Tschudi, M., W. N. Meier, J. S. Stewart, C. Fowler, and
+        J. Maslanik. 2019. EASE-Grid Sea Ice Age, Version 4. [Indicate subset
+        used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center
+        Distributed Active Archive Center. doi:
+        https://doi.org/10.5067/UTAV7490FEPB. 2021/01/05.
+      url: 'https://doi.org/10.5067/UTAV7490FEPB'
+
