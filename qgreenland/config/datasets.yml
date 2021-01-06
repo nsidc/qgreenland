@@ -1741,12 +1741,42 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://doi.org/10.1038/s41586-019-1550-3'
 
 
-- id: sea_ice_age
+- id: seaice_age
   access_method: cmr
   sources:
-    - id: only
-      granule_ur: ''
-      collection_concept_id: ''
+    - id: '2009'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20090101_20091231_v4.1.nc'
+    - id: '2010'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20100101_20101231_v4.1.nc'
+    - id: '2011'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20110101_20111231_v4.1.nc'
+    - id: '2012'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20120101_20121231_v4.1.nc'
+    - id: '2013'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20130101_20131231_v4.1.nc'
+    - id: '2014'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20140101_20141231_v4.1.nc'
+    - id: '2015'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20150101_20151231_v4.1.nc'
+    - id: '2016'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20160101_20161231_v4.1.nc'
+    - id: '2017'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20170101_20171231_v4.1.nc'
+    - id: '2018'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20180101_20181231_v4.1.nc'
+    - id: '2019'
+      urls:
+        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20190101_20191231_v4.1.nc'
   metadata:
     title: 'https://nsidc.org/data/nsidc-0611'
     abstract: >-
@@ -1763,4 +1793,3 @@ The images and data are produced in a consistent way that makes the Index time-s
         Distributed Active Archive Center. doi:
         https://doi.org/10.5067/UTAV7490FEPB. 2021/01/05.
       url: 'https://doi.org/10.5067/UTAV7490FEPB'
-
