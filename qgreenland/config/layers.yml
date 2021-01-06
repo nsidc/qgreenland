@@ -1003,7 +1003,7 @@
 #################
 
 - &ground_temperature
-  id:  ground_temperature
+  id: ground_temperature
   title: 'Ground temperature (10km)'
   description: >-
       Average mean annual ground temperature in degrees Celsius.
@@ -3853,11 +3853,16 @@
       Age of sea ice. A value of N indicates ice aged N-1 to N years. TBD: Flag
       values, etc. 
   visible: False
+  # TODO: "September" is not correct, this is weekly data.
   group_path: 'Sea ice/NSIDC Ice Age (12.5 km)/September (min extent)'
   # style: 'sea_ice_concentration'
   boundary: 'background'
   data_source: seaice_age.2009
-  ingest_task: 'TBD'
+  ingest_task: 'netcdf_raster'
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # TODO: Extract the correct week's data
+    bandList: [5]
   file_type: '.tif'
   data_type: 'raster'
 
