@@ -3850,7 +3850,8 @@
   id: seaice_minimum_age_2009
   title: 'NSIDC Sea Ice Age September 2009'
   description: >-
-      Age of sea ice in years. TBD: Flag values, etc. 
+      Age of sea ice. A value of N indicates ice aged N-1 to N years. TBD: Flag
+      values, etc. 
   visible: False
   group_path: 'Sea ice/NSIDC Ice Age (12.5 km)/September (min extent)'
   # style: 'sea_ice_concentration'
