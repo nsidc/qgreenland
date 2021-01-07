@@ -19,7 +19,7 @@ class SeaIceAge(LayerPipeline):
         gdal_edited = GdalEdit(
             requires_task=extract_nc_dataset,
             layer_id=self.layer_id,
-        )  # -> 
+        )  # ->
         return WarpRaster(
             requires_task=gdal_edited,
             layer_id=self.layer_id
