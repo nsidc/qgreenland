@@ -1,21 +1,21 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis minScale="1e+08" styleCategories="AllStyleCategories" maxScale="0" version="3.10.4-A Coruña" hasScaleBasedVisibilityFlag="0">
+<qgis hasScaleBasedVisibilityFlag="0" styleCategories="AllStyleCategories" version="3.10.4-A Coruña" minScale="1e+08" maxScale="0">
   <flags>
     <Identifiable>1</Identifiable>
     <Removable>1</Removable>
     <Searchable>1</Searchable>
   </flags>
   <customproperties>
-    <property value="false" key="WMSBackgroundLayer"/>
-    <property value="false" key="WMSPublishDataSourceUrl"/>
-    <property value="0" key="embeddedWidgets/count"/>
-    <property value="Value" key="identify/format"/>
+    <property key="WMSBackgroundLayer" value="false"/>
+    <property key="WMSPublishDataSourceUrl" value="false"/>
+    <property key="embeddedWidgets/count" value="0"/>
+    <property key="identify/format" value="Value"/>
   </customproperties>
   <pipe>
-    <rasterrenderer type="paletted" alphaBand="-1" opacity="1" band="1">
+    <rasterrenderer band="1" alphaBand="-1" opacity="1" type="paletted">
       <rasterTransparency>
         <singleValuePixelList>
-          <pixelListEntry max="21" min="20" percentTransparent="100"/>
+          <pixelListEntry percentTransparent="100" min="20" max="20"/>
         </singleValuePixelList>
       </rasterTransparency>
       <minMaxOrigin>
@@ -27,27 +27,25 @@
         <stdDevFactor>2</stdDevFactor>
       </minMaxOrigin>
       <colorPalette>
-        <paletteEntry value="1" color="#440154" alpha="255" label="0-1 years old"/>
-        <paletteEntry value="2" color="#471366" alpha="255" label="1-2 years old"/>
-        <paletteEntry value="3" color="#482475" alpha="255" label="2-3 years old"/>
-        <paletteEntry value="4" color="#453480" alpha="255" label="3-4 years old"/>
-        <paletteEntry value="5" color="#404387" alpha="255" label="4-5 years old"/>
-        <paletteEntry value="6" color="#3a528b" alpha="255" label="5-6 years old"/>
-        <paletteEntry value="7" color="#345f8d" alpha="255" label="6-7 years old"/>
-        <paletteEntry value="8" color="#2e6c8e" alpha="255" label="7-8 years old"/>
-        <paletteEntry value="9" color="#29788e" alpha="255" label="8-9 years old"/>
-        <paletteEntry value="10" color="#25848e" alpha="255" label="9-10 years old"/>
-        <paletteEntry value="11" color="#20908d" alpha="255" label="10-11 years old"/>
-        <paletteEntry value="12" color="#1e9c89" alpha="255" label="11-12 years old"/>
-        <paletteEntry value="13" color="#22a884" alpha="255" label="12-13 years old"/>
-        <paletteEntry value="14" color="#2fb47c" alpha="255" label="13-14 years old"/>
-        <paletteEntry value="15" color="#43bf70" alpha="255" label="14-15 years old"/>
-        <paletteEntry value="16" color="#5dc962" alpha="255" label="15-16 years old"/>
-        <paletteEntry value="17" color="#7ad251" alpha="255" label="16-17 years old"/>
-        <paletteEntry value="18" color="#9ad93d" alpha="255" label="17-18 years old"/>
-        <paletteEntry value="19" color="#bcdf27" alpha="255" label="18-19 years old"/>
+        <paletteEntry color="#440154" value="1" label="0-1 years old" alpha="255"/>
+        <paletteEntry color="#471366" value="2" label="1-2 years old" alpha="255"/>
+        <paletteEntry color="#482475" value="3" label="2-3 years old" alpha="255"/>
+        <paletteEntry color="#453480" value="4" label="3-4 years old" alpha="255"/>
+        <paletteEntry color="#404387" value="5" label="4-5 years old" alpha="255"/>
+        <paletteEntry color="#3a528b" value="6" label="5-6 years old" alpha="255"/>
+        <paletteEntry color="#345f8d" value="7" label="6-7 years old" alpha="255"/>
+        <paletteEntry color="#2e6c8e" value="8" label="7-8 years old" alpha="255"/>
+        <paletteEntry color="#29788e" value="9" label="8-9 years old" alpha="255"/>
+        <paletteEntry color="#25848e" value="10" label="9-10 years old" alpha="255"/>
+        <paletteEntry color="#20908d" value="11" label="10-11 years old" alpha="255"/>
+        <paletteEntry color="#1e9c89" value="12" label="11-12 years old" alpha="255"/>
+        <paletteEntry color="#22a884" value="13" label="12-13 years old" alpha="255"/>
+        <paletteEntry color="#2fb47c" value="14" label="13-14 years old" alpha="255"/>
+        <paletteEntry color="#43bf70" value="15" label="14-15 years old" alpha="255"/>
+        <paletteEntry color="#5dc962" value="16" label="15-16 years old" alpha="255"/>
+        <paletteEntry color="#808080" value="21" label="Not calculated (ocean)" alpha="255"/>
       </colorPalette>
-      <colorramp type="gradient" name="[source]">
+      <colorramp name="[source]" type="gradient">
         <prop k="color1" v="68,1,84,255"/>
         <prop k="color2" v="253,231,37,255"/>
         <prop k="discrete" v="0"/>
@@ -56,7 +54,7 @@
       </colorramp>
     </rasterrenderer>
     <brightnesscontrast contrast="0" brightness="0"/>
-    <huesaturation saturation="0" colorizeBlue="128" colorizeGreen="128" colorizeStrength="100" grayscaleMode="0" colorizeOn="0" colorizeRed="255"/>
+    <huesaturation grayscaleMode="0" colorizeRed="255" saturation="0" colorizeOn="0" colorizeBlue="128" colorizeStrength="100" colorizeGreen="128"/>
     <rasterresampler maxOversampling="2"/>
   </pipe>
   <blendMode>0</blendMode>
