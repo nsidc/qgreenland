@@ -3847,8 +3847,8 @@
 
 # age of sea ice minimum/maximum rasters:
 - &seaice_minimum_age
-  id: seaice_minimum_age_2009
-  title: 'NSIDC Sea Ice Age September 10-17 2009'
+  id: seaice_minimum_age_2010
+  title: 'NSIDC Sea Ice Age September 17-24 2010'
   description: >-
       Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
       20 represents land; 21 represents ocean cells where ice age was not
@@ -3859,25 +3859,16 @@
   group_path: 'Sea ice/NSIDC Ice Age (12.5 km)/September (min extent)'
   style: 'sea_ice_age'
   boundary: 'background'
-  data_source: seaice_age.2009
-  ingest_task: 'sea_ice_age'
-  translate_kwargs:
-    extract_dataset: 'age_of_sea_ice'
-    # Week of 2009-09-10
-    bandList: [37]
-  file_type: '.tif'
-  data_type: 'raster'
-  gdal_edit_kwargs:
-    a_ullr: "-4518421 4518421 4506579 -4506579"
-
-- <<: *seaice_minimum_age
-  id: seaice_minimum_age_2010
-  title: 'NSIDC Sea Ice Age September 17-24 2010'
   data_source: seaice_age.2010
+  ingest_task: 'sea_ice_age'
   translate_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2010-09-17
     bandList: [38]
+  file_type: '.tif'
+  data_type: 'raster'
+  gdal_edit_kwargs:
+    a_ullr: "-4518421 4518421 4506579 -4506579"
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2011
@@ -3961,8 +3952,8 @@
     bandList: [38]
 
 - &seaice_maximum_age
-  id: seaice_maximum_age_2009
-  title: 'NSIDC Sea Ice Age March 5-12 2009'
+  id: seaice_maximum_age_2010
+  title: 'NSIDC Sea Ice Age March 26-April 2 2010'
   description: >-
       Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
       20 represents land; 21 represents ocean cells where ice age was not
@@ -3972,25 +3963,16 @@
   group_path: 'Sea ice/NSIDC Ice Age (12.5 km)/Feb or March (max extent)'
   style: 'sea_ice_age'
   boundary: 'background'
-  data_source: seaice_age.2009
+  data_source: seaice_age.2010
   ingest_task: sea_ice_age
   file_type: '.tif'
   data_type: 'raster'
   translate_kwargs:
     extract_dataset: 'age_of_sea_ice'
-    # Week of 2009-03-05
-    bandList: [10]
-  gdal_edit_kwargs:
-    a_ullr: "-4518421 4518421 4506579 -4506579"
-
-- <<: *seaice_maximum_age
-  id: seaice_maximum_age_2010
-  title: 'NSIDC Sea Ice Age March 26-April 2 2010'
-  data_source: seaice_age.2010
-  translate_kwargs:
-    extract_dataset: 'age_of_sea_ice'
     # Week of 2010-03-26
     bandList: [13]
+  gdal_edit_kwargs:
+    a_ullr: "-4518421 4518421 4506579 -4506579"
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2011
@@ -4153,9 +4135,10 @@
   data_source: seaice_index.median_extent_line_12
 
 
+# sea ice min extent monthly concentration:
 - &seaice_minimum_concentration
-  id: minimum_concentration_2009
-  title: 'NSIDC Sea Ice Concentration September 2009'
+  id: minimum_concentration_2010
+  title: 'NSIDC Sea Ice Concentration September 2010'
   description: >-
       Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values
       under 15% are considered to be open water.
@@ -4163,20 +4146,12 @@
   group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
-  data_source: seaice_index.minimum_concentration_2009
+  data_source: seaice_index.minimum_concentration_2010
   ingest_task: 'raster_calc'
   file_type: '.tif'
   data_type: 'raster'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
-
-
-# sea ice min extent monthly concentration:
-- <<: *seaice_minimum_concentration
-  id: minimum_concentration_2010
-  title: 'NSIDC Sea Ice Concentration September 2010'
-  data_source: seaice_index.minimum_concentration_2010
-
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2011
@@ -4238,8 +4213,8 @@
 
 # sea ice max extent monthly concentrations:
 - &seaice_maximum_concentration
-  id: maximum_concentration_2009
-  title: 'NSIDC Sea Ice Concentration March 2009'
+  id: maximum_concentration_2010
+  title: 'NSIDC Sea Ice Concentration March 2010'
   description: >-
      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
      15% are considered to be open water.
@@ -4247,18 +4222,12 @@
   group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
-  data_source: seaice_index.maximum_concentration_2009
+  data_source: seaice_index.maximum_concentration_2010
   ingest_task: 'raster_calc'
   file_type: '.tif'
   data_type: 'raster'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
-
-
-- <<: *seaice_maximum_concentration
-  id: maximum_concentration_2010
-  title: 'NSIDC Sea Ice Concentration March 2010'
-  data_source: seaice_index.maximum_concentration_2010
 
 
 - <<: *seaice_maximum_concentration

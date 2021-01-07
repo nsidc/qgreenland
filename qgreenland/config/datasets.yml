@@ -348,9 +348,6 @@
         - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median/median_extent_N_12_1981-2010_polyline_v3.0.zip'
 
     # Concentration Minimums
-    - id: minimum_concentration_2009
-      urls:
-        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_200909_concentration_v3.0.tif'
     - id: minimum_concentration_2010
       urls:
         - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201009_concentration_v3.0.tif'
@@ -385,9 +382,6 @@
       urls:
         - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_202009_concentration_v3.0.tif'
     # Concentration Maximums
-    - id: maximum_concentration_2009
-      urls:
-        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/03_Mar/N_200903_concentration_v3.0.tif'
     - id: maximum_concentration_2010
       urls:
         - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/03_Mar/N_201003_concentration_v3.0.tif'
@@ -1747,9 +1741,6 @@ The images and data are produced in a consistent way that makes the Index time-s
 - id: seaice_age
   access_method: http
   sources:
-    - id: '2009'
-      urls:
-        - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20090101_20091231_v4.1.nc'
     - id: '2010'
       urls:
         - 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20100101_20101231_v4.1.nc'
