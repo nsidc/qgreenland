@@ -3869,6 +3869,8 @@
     a_ullr: "-4518421 4518421 4506579 -4506579"
   warp_kwargs:
     resampleAlg: near
+    xRes: 12500
+    yRes: 12500
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2010
@@ -3981,6 +3983,8 @@
     a_ullr: "-4518421 4518421 4506579 -4506579"
   warp_kwargs:
     resampleAlg: near
+    xRes: 12500
+    yRes: 12500
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2010
