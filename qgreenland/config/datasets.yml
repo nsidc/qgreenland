@@ -1742,7 +1742,7 @@ The images and data are produced in a consistent way that makes the Index time-s
 
 
 - id: seaice_age
-  access_method: cmr
+  access_method: http
   sources:
     - id: '2009'
       urls:

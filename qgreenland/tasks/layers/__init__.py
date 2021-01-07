@@ -18,6 +18,7 @@ from qgreenland.tasks.layers.racmo import Racmo
 from qgreenland.tasks.layers.rarred_vector import RarredVector
 from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.raster_calc import RasterCalc
+from qgreenland.tasks.layers.sea_ice_age import SeaIceAge
 from qgreenland.tasks.layers.surface_elevation_change import CCISurfaceElevationChange
 from qgreenland.tasks.layers.velocity_mosaic import VelocityMosaic
 from qgreenland.tasks.layers.zipped_netcdf import ZippedNetCdf
@@ -45,6 +46,7 @@ INGEST_TASKS = {
     'rarred_vector': RarredVector,
     'raster': Raster,
     'raster_calc': RasterCalc,
+    'sea_ice_age': SeaIceAge,
     'cci_surface_elevation_change': CCISurfaceElevationChange,
     'velocity_mosaic': VelocityMosaic,
     'zipped_netcdf': ZippedNetCdf,

@@ -3855,66 +3855,108 @@
   visible: False
   # TODO: "September" is not correct, this is weekly data.
   group_path: 'Sea ice/NSIDC Ice Age (12.5 km)/September (min extent)'
-  # style: 'sea_ice_concentration'
+  style: 'sea_ice_age'
   boundary: 'background'
   data_source: seaice_age.2009
-  ingest_task: 'netcdf_raster'
+  ingest_task: 'sea_ice_age'
   translate_kwargs:
     extract_dataset: 'age_of_sea_ice'
-    # TODO: Extract the correct week's data
-    bandList: [5]
+    # Week of 2009-09-10
+    bandList: [37]
   file_type: '.tif'
   data_type: 'raster'
+  gdal_edit_kwargs:
+    a_ullr: "-4518421 4518421 4506579 -4506579"
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2010
   title: 'NSIDC Sea Ice Age September 2010'
   data_source: seaice_age.2010
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2010-09-17
+    bandList: [38]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2011
   title: 'NSIDC Sea Ice Age September 2011'
   data_source: seaice_age.2011
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2011-09-10
+    bandList: [37]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2012
   title: 'NSIDC Sea Ice Age September 2012'
   data_source: seaice_age.2012
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2012-09-16
+    bandList: [38]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2013
   title: 'NSIDC Sea Ice Age September 2013'
   data_source: seaice_age.2013
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2013-09-10
+    bandList: [37]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2014
   title: 'NSIDC Sea Ice Age September 2014'
   data_source: seaice_age.2014
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2014-09-17
+    bandList: [38]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2015
   title: 'NSIDC Sea Ice Age September 2015'
   data_source: seaice_age.2015
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2015-09-03
+    bandList: [36]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2016
   title: 'NSIDC Sea Ice Age September 2016'
   data_source: seaice_age.2016
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2016-09-09
+    bandList: [37]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2017
   title: 'NSIDC Sea Ice Age September 2017'
   data_source: seaice_age.2017
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2017-09-10
+    bandList: [37]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2018
   title: 'NSIDC Sea Ice Age September 2018'
   data_source: seaice_age.2018
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2018-09-17
+    bandList: [38]
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2019
   title: 'NSIDC Sea Ice Age September 2019'
   data_source: seaice_age.2019
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2019-09-17
+    bandList: [38]
 
 - &seaice_maximum_age
   id: seaice_maximum_age_2009
@@ -3923,62 +3965,108 @@
       Age of sea ice in years. TBD: Flag values, etc. 
   visible: False
   group_path: 'Sea ice/NSIDC Ice Age (12.5 km)/Feb or March (max extent)'
-  # style: 'sea_ice_concentration'
+  style: 'sea_ice_age'
   boundary: 'background'
   data_source: seaice_age.2009
-  ingest_task: 'TBD'
+  ingest_task: sea_ice_age
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2009-03-05
+    bandList: [10]
+  gdal_edit_kwargs:
+    a_ullr: "-4518421 4518421 4506579 -4506579"
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2010
   title: 'NSIDC Sea Ice Age March 2010'
   data_source: seaice_age.2010
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2010-03-26
+    bandList: [13]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2011
   title: 'NSIDC Sea Ice Age March 2011'
   data_source: seaice_age.2011
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2011-03-05
+    bandList: [10]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2012
   title: 'NSIDC Sea Ice Age March 2012'
   data_source: seaice_age.2012
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2012-03-18
+    bandList: [12]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2013
   title: 'NSIDC Sea Ice Age March 2013'
   data_source: seaice_age.2013
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2013-03-12
+    bandList: [11]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2014
   title: 'NSIDC Sea Ice Age March 2014'
   data_source: seaice_age.2014
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2014-03-19
+    bandList: [12]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2015
   title: 'NSIDC Sea Ice Age February 2015'
   data_source: seaice_age.2015
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2015-02-12
+    bandList: [7]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2016
   title: 'NSIDC Sea Ice Age March 2016'
   data_source: seaice_age.2016
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2016-03-18
+    bandList: [12]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2017
   title: 'NSIDC Sea Ice Age March 2017'
   data_source: seaice_age.2017
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2017-03-05
+    bandList: [10]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2018
   title: 'NSIDC Sea Ice Age March 2018'
   data_source: seaice_age.2018
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2018-03-12
+    bandList: [11]
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2019
   title: 'NSIDC Sea Ice Age March 2019'
   data_source: seaice_age.2019
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2019-03-12
+    bandList: [11]
 
 # sea ice median extent polylines:
 # TODO: Normalize median and min/max layer titles. Month first or dataset first, pick one!
