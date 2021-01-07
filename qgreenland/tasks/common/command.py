@@ -4,7 +4,9 @@ import luigi
 
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
-from qgreenland.util.misc import find_single_file_by_ext, run_ogr_command, temporary_path_dir
+from qgreenland.util.misc import (find_single_file_by_ext,
+                                  run_ogr_command,
+                                  temporary_path_dir)
 
 
 class Commands(LayerTask):
@@ -31,7 +33,8 @@ class Commands(LayerTask):
                 }
 
                 interpolated_command = [
-                    element.format(**interpolate_kwargs) if isinstance(element, str) else str(element)
+                    element.format(**interpolate_kwargs) if isinstance(element, str)
+                    else str(element)
                     for element in command
                 ]
 

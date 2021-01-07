@@ -1,10 +1,7 @@
-from pathlib import Path
-
-from qgreenland.constants import ASSETS_DIR
 from qgreenland.tasks.common.command import Commands
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset
-from qgreenland.tasks.common.raster import GdalEdit, WarpRaster
+from qgreenland.tasks.common.raster import GdalEdit
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -16,12 +13,23 @@ class SeaIceAge(LayerPipeline):
     This is a temporary hack to resolve a non-standard set of `gdalwarp`
     operations to prevent smearing of data along the 45°E line.
     """
+
     def requires(self):
         source = self.cfg['source']
 
         commands = [
-            ['gdalwarp', '-t_srs', 'EPSG:3413', '-tr', '12500', '12500', '{INPUT}', '{OUTDIR}/reprojected.tif'],
-            ['gdalwarp', '-cutline', self.cfg['boundary']['fp'], '-crop_to_cutline', '{OUTDIR}/reprojected.tif', '{OUTPUT}'],
+            [
+                'gdalwarp',
+                '-t_srs', 'EPSG:3413',
+                '-tr', '12500', '12500',
+                '{INPUT}', '{OUTDIR}/reprojected.tif'
+            ],
+            [
+                'gdalwarp',
+                '-cutline', self.cfg['boundary']['fp'],
+                '-crop_to_cutline',
+                '{OUTDIR}/reprojected.tif', '{OUTPUT}'
+            ],
         ]
 
         fetch_data = FetchDataFiles(
