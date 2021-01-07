@@ -1003,7 +1003,7 @@
 #################
 
 - &ground_temperature
-  id:  ground_temperature
+  id: ground_temperature
   title: 'Ground temperature (10km)'
   description: >-
       Average mean annual ground temperature in degrees Celsius.
@@ -3845,7 +3845,218 @@
 # Sea ice #
 ##################
 
+# age of sea ice minimum/maximum rasters:
+- &seaice_minimum_age
+  id: seaice_minimum_age_2010
+  title: 'NSIDC Sea Ice Age September 17-24 2010'
+  description: >-
+      Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
+      20 represents land; 21 represents ocean cells where ice age was not
+      calculated. Week of minimum extent chosen based on NSDIC's Sea Ice Index
+      5-day average.
+  visible: False
+  # TODO: "September" is not correct, this is weekly data.
+  group_path: 'Sea ice/NSIDC Ice Age (12.5 km)/September (min extent)'
+  style: 'sea_ice_age'
+  boundary: 'background'
+  data_source: seaice_age.2010
+  ingest_task: 'sea_ice_age'
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2010-09-17
+    bandList: [38]
+  file_type: '.tif'
+  data_type: 'raster'
+  gdal_edit_kwargs:
+    a_ullr: "-4518421 4518421 4506579 -4506579"
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2011
+  title: 'NSIDC Sea Ice Age September 10-17 2011'
+  data_source: seaice_age.2011
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2011-09-10
+    bandList: [37]
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2012
+  title: 'NSIDC Sea Ice Age September 16-23 2012'
+  data_source: seaice_age.2012
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2012-09-16
+    bandList: [38]
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2013
+  title: 'NSIDC Sea Ice Age September 10-17 2013'
+  data_source: seaice_age.2013
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2013-09-10
+    bandList: [37]
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2014
+  title: 'NSIDC Sea Ice Age September 17-24 2014'
+  data_source: seaice_age.2014
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2014-09-17
+    bandList: [38]
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2015
+  title: 'NSIDC Sea Ice Age September 3-10 2015'
+  data_source: seaice_age.2015
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2015-09-03
+    bandList: [36]
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2016
+  title: 'NSIDC Sea Ice Age September 9-16 2016'
+  data_source: seaice_age.2016
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2016-09-09
+    bandList: [37]
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2017
+  title: 'NSIDC Sea Ice Age September 10-17 2017'
+  data_source: seaice_age.2017
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2017-09-10
+    bandList: [37]
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2018
+  title: 'NSIDC Sea Ice Age September 17-24 2018'
+  data_source: seaice_age.2018
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2018-09-17
+    bandList: [38]
+
+- <<: *seaice_minimum_age
+  id: seaice_minimum_age_2019
+  title: 'NSIDC Sea Ice Age September 17-24 2019'
+  data_source: seaice_age.2019
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2019-09-17
+    bandList: [38]
+
+- &seaice_maximum_age
+  id: seaice_maximum_age_2010
+  title: 'NSIDC Sea Ice Age March 26-April 2 2010'
+  description: >-
+      Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
+      20 represents land; 21 represents ocean cells where ice age was not
+      calculated. Week of maximum extent chosen based on NSDIC's Sea Ice Index
+      5-day average.
+  visible: False
+  group_path: 'Sea ice/NSIDC Ice Age (12.5 km)/Feb or March (max extent)'
+  style: 'sea_ice_age'
+  boundary: 'background'
+  data_source: seaice_age.2010
+  ingest_task: sea_ice_age
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2010-03-26
+    bandList: [13]
+  gdal_edit_kwargs:
+    a_ullr: "-4518421 4518421 4506579 -4506579"
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2011
+  title: 'NSIDC Sea Ice Age March 5-12 2011'
+  data_source: seaice_age.2011
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2011-03-05
+    bandList: [10]
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2012
+  title: 'NSIDC Sea Ice Age March 18-25 2012'
+  data_source: seaice_age.2012
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2012-03-18
+    bandList: [12]
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2013
+  title: 'NSIDC Sea Ice Age March 12-19 2013'
+  data_source: seaice_age.2013
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2013-03-12
+    bandList: [11]
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2014
+  title: 'NSIDC Sea Ice Age March 19-26 2014'
+  data_source: seaice_age.2014
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2014-03-19
+    bandList: [12]
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2015
+  title: 'NSIDC Sea Ice Age February 12-19 2015'
+  data_source: seaice_age.2015
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2015-02-12
+    bandList: [7]
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2016
+  title: 'NSIDC Sea Ice Age March 18-25 2016'
+  data_source: seaice_age.2016
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2016-03-18
+    bandList: [12]
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2017
+  title: 'NSIDC Sea Ice Age March 5-12 2017'
+  data_source: seaice_age.2017
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2017-03-05
+    bandList: [10]
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2018
+  title: 'NSIDC Sea Ice Age March 11-18 2018'
+  data_source: seaice_age.2018
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2018-03-12
+    bandList: [11]
+
+- <<: *seaice_maximum_age
+  id: seaice_maximum_age_2019
+  title: 'NSIDC Sea Ice Age March 12-19 2019'
+  data_source: seaice_age.2019
+  translate_kwargs:
+    extract_dataset: 'age_of_sea_ice'
+    # Week of 2019-03-12
+    bandList: [11]
+
 # sea ice median extent polylines:
+# TODO: Normalize median and min/max layer titles. Month first or dataset first, pick one!
 - &seaice_median_extent
   id: seaice_median_extent_01
   title: 'January Median Sea Ice Extent'
@@ -3924,9 +4135,10 @@
   data_source: seaice_index.median_extent_line_12
 
 
+# sea ice min extent monthly concentration:
 - &seaice_minimum_concentration
-  id: minimum_concentration_2009
-  title: 'NSIDC Sea Ice Concentration September 2009'
+  id: minimum_concentration_2010
+  title: 'NSIDC Sea Ice Concentration September 2010'
   description: >-
       Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values
       under 15% are considered to be open water.
@@ -3934,20 +4146,12 @@
   group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
-  data_source: seaice_index.minimum_concentration_2009
+  data_source: seaice_index.minimum_concentration_2010
   ingest_task: 'raster_calc'
   file_type: '.tif'
   data_type: 'raster'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
-
-
-# sea ice min extent monthly concentration:
-- <<: *seaice_minimum_concentration
-  id: minimum_concentration_2010
-  title: 'NSIDC Sea Ice Concentration September 2010'
-  data_source: seaice_index.minimum_concentration_2010
-
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2011
@@ -4009,8 +4213,8 @@
 
 # sea ice max extent monthly concentrations:
 - &seaice_maximum_concentration
-  id: maximum_concentration_2009
-  title: 'NSIDC Sea Ice Concentration March 2009'
+  id: maximum_concentration_2010
+  title: 'NSIDC Sea Ice Concentration March 2010'
   description: >-
      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
      15% are considered to be open water.
@@ -4018,18 +4222,12 @@
   group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
-  data_source: seaice_index.maximum_concentration_2009
+  data_source: seaice_index.maximum_concentration_2010
   ingest_task: 'raster_calc'
   file_type: '.tif'
   data_type: 'raster'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
-
-
-- <<: *seaice_maximum_concentration
-  id: maximum_concentration_2010
-  title: 'NSIDC Sea Ice Concentration March 2010'
-  data_source: seaice_index.maximum_concentration_2010
 
 
 - <<: *seaice_maximum_concentration

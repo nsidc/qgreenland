@@ -2,6 +2,7 @@ import cgi
 import glob
 import os
 import re
+import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 
@@ -185,3 +186,21 @@ def get_layer_path(layer_cfg):
         raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
 
     return layer_path
+
+
+def run_ogr_command(cmd_list):
+    cmd = ['.', 'activate', 'gdal', '&&']
+    cmd.extend(cmd_list)
+
+    # Hack. The activation of the gdal environment does not work as a list.
+    cmd_str = ' '.join(cmd)
+
+    result = subprocess.run(cmd_str,
+                            shell=True,
+                            executable='/bin/bash',
+                            capture_output=True)
+
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr)
+
+    return result

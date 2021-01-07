@@ -1,3 +1,10 @@
+# v0.50.0 (unreleased)
+
+- New "Sea ice/NSIDC Ice Age (12.5 km)/September (min extent)" layers for each
+  week of the annual minimum sea ice extent from 2009-2019.
+- New "Sea ice/NSIDC Ice Age (12.5 km)/Feb or March (max extent)" layers for
+  each week of the annual maximum sea ice extent from 2009-2019.
+
 # v0.49.0 (2021-01-05)
 
 - Remove ocean outline
