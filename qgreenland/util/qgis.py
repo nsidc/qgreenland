@@ -197,16 +197,6 @@ def _add_layers(project):
     logger.debug('Done adding layers.')
 
 
-def _add_empty_groups(project):
-    logger.debug('Adding empty groups...')
-
-    groups_config = CONFIG['layer_groups']
-    for group_path in groups_config.keys():
-        _get_or_create_group(project, group_path)
-
-    logger.debug('Done adding empty groups.')
-
-
 def make_qgis_project_file(path):
     """Create a QGIS project file with the correct stuff in it.
 
@@ -260,8 +250,6 @@ def make_qgis_project_file(path):
     _add_decorations(project)
 
     _set_groups_options(project)
-
-    # _add_empty_groups(project)
 
     # TODO: is it normal to write multiple times?
     project.write()
