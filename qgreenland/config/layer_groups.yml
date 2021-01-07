@@ -4,10 +4,6 @@ Miscellaneous:
   # that:(
   expanded: False
 
-Miscellaneous/Place names:
-  visible: False
-  expanded: False
-
 Miscellaneous/Latitude lines:
   visible: False
   expanded: False
@@ -22,10 +18,6 @@ Atmosphere:
   expanded: False
 
 Atmosphere/RACMO model output:
-  visible: False
-  expanded: False
-
-Atmosphere/ERA5 Re-analysis:
   visible: False
   expanded: False
 
@@ -159,20 +151,7 @@ Human activity:
   visible: False
   expanded: False
 
-Human activity/Arctic shipping:
-  visible: False
-  expanded: False
-
 Human activity/Research stations:
-  visible: False
-  expanded: False
-
-Human activity/Historic expedition routes and stations:
-  visible: False
-  expanded: False
-
-
-Human health:
   visible: False
   expanded: False
 
@@ -212,11 +191,6 @@ Sea ice/NSIDC Concentration (25 km)/September (min extent):
   expanded: False
 
 Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent):
-  visible: False
-  expanded: False
-
-
-Social Science:
   visible: False
   expanded: False
 
