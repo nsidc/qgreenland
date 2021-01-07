@@ -5,6 +5,10 @@
 - New "Sea ice/NSIDC Ice Age (12.5 km)/Feb or March (max extent)" layers for
   each week of the annual maximum sea ice extent from 2010-2019.
 - Removed empty layer groups from table of contents.
+- Remove "Sea ice/NSIDC Concentration (25 km)/September (min extent)" layer
+  for 2009. 2010-2020 represents the latest decade's worth of data.
+- Remove "Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent)" layer
+  for 2009.2010-2020 represents the latest decade's worth of data.
 
 # v0.49.0 (2021-01-05)
 
