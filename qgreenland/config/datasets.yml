@@ -418,6 +418,9 @@
     - id: maximum_concentration_2019
       urls:
         - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/03_Mar/N_201903_concentration_v3.0.tif'
+    - id: maximum_concentration_2020
+      urls:
+        - 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/03_Mar/N_202003_concentration_v3.0.tif'
   metadata:
     title: 'Sea Ice Index, Version 3'
     abstract: 'The Sea Ice Index provides a quick look at Arctic- and Antarctic-wide changes in sea ice. It is a source for consistent, up-to-date sea ice extent and concentration images, in PNG format, and data values, in GeoTIFF and ASCII text files, from November 1978 to the present. Sea Ice Index images also depict trends and anomalies in ice cover calculated using a 30-year reference period of 1981 through 2010.
