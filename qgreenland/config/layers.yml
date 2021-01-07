@@ -3867,6 +3867,8 @@
   data_type: 'raster'
   gdal_edit_kwargs:
     a_ullr: "-4518421 4518421 4506579 -4506579"
+  warp_kwargs:
+    resampleAlg: near
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2010
@@ -3977,6 +3979,8 @@
     bandList: [10]
   gdal_edit_kwargs:
     a_ullr: "-4518421 4518421 4506579 -4506579"
+  warp_kwargs:
+    resampleAlg: near
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2010
