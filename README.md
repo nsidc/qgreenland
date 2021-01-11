@@ -17,6 +17,21 @@ An international Editorial Board and Project Collaborators connects the
 QGreenland Team to data and user communities.
 
 
+## Disclaimer
+
+QGreenland should not be used as a sole navigational aid while performing remote
+research activities in Greenland. Always bring appropriate saftey and
+navigational aids (including hard-copies of topographic maps) when visiting the
+field.
+
+QGreenland's layers may contain errors from the original data providers.
+QGreenland makes no guarantees about the accuracy and validity of data
+contained in QGreenland. For example, some layers may not perfectly align with
+each other due to unidentified georeferencing issues. We recommend using the
+'Greenland Coastlines' layer as the reference layer for geolocating Greenland's
+coastline.
+
+
 # Getting Started
 
 We recommend using QGIS 3.10.x, as it is the Long Term Support version as of
