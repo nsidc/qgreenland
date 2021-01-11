@@ -40,14 +40,6 @@ def points_txt_to_shape(
     gdf.to_file(out_filepath, driver='GPKG')
 
 
-def cleanup_valid_datafiles(path, *, extensions):
-    for ext in extensions:
-        try:
-            os.remove(os.path.join(path, f'valid.{ext}'))
-        except FileNotFoundError:
-            pass
-
-
 # TODO: Take kwargs, args, and env as separate inputs to avoid special cases.
 #       This implies separate config keys for each of these as well.
 def ogr2ogr(in_filepath, out_filepath, **ogr2ogr_kwargs):
