@@ -1,7 +1,10 @@
-# QGreenland
+# Architecture
 
-This project uses a `luigi` pipeline to generate the QGreenland package. This
-project is currently in early development stages, so expect rapid change.
+This project uses a `luigi` pipeline to generate the QGreenland package. Luigi
+is a workflow management system developed by Spotify:
+https://github.com/spotify/luigi
+
+This project is currently in early development stages, so expect rapid change.
 Nothing is written in stone! Releases can be found at
 https://qgreenland.org/explore!
 
@@ -12,21 +15,9 @@ There are 3 configuration files; `layers.yml` is the important one. It reference
 the others.
 
 
-### Layers
-
-Each element represents a QGIS layer.
-
-To disable a layer, comment out the whole list element for that layer in the
-`layers.yml` file. This is convenient for layers with `manual` access method.
-
-
-### Layer groups
-
-Each element represents a QGIS layer group. Keep in mind that the first layer's
-group will always be automatically selected and expanded.
-
-
 ### Datasets
+
+When adding a new layer, start by adding a new entry to `datasets.yml`.
 
 A dataset isn't necessarily the same thing as a "dataproduct", but it might be.
 A dataset is any collection of data representing some measurement, hosted
@@ -40,40 +31,91 @@ anywhere. Current access methods include:
   publicly or programmatically, so instructions must be followed to seed the
   data locally.
 
+A dataset can have many sources, each with their own id, but a layer can only
+have one datasource. See the `datasource` field in `layers.yml` for more
+detail.
+
+### Layers
+
+Each element in `layers.yml` represents a QGIS layer.
+
+To disable a layer, comment out the whole list element for that layer in the
+`layers.yml` file. This is convenient for layers with `manual` access method.
+
+The `ingest_task` key defines which processing pipeline will handle data for
+this layer.  Pipelines are currently defined as Python code in
+`qgreenland/tasks/layers/`.  There are several other fields (typically ending
+in `_kwargs` or `_args` which can be used to parameterize these pipelines.
+
+A layer references `datasets.yml` with the `datasource` compound key composed
+as `<dataset_id>.<source_id>`.
+
+A layer references `layer_groups.yml` with the `group_path` key.
+
+
+### Layer groups
+
+Each element in `layer_groups.yml` represents a QGIS layer group in the table
+of contents. Keep in mind that the first layer's group will always be
+automatically selected and expanded.
+
 
 ## Pipeline
 
-As of `v0.6.0`:
+As of `v0.50.0`:
 
-* Build layers:
+* Build layers to WIP location:
     * Coastlines
-        * Fetch
+        * Fetch (HTTP)
         * Unzip
-        * Reproject (EPSG:3411)
-        * Subset (QGreenland project extent)
+        * `ogr2ogr`
+          * Reproject (EPSG:3413)
+          * Subset ("background" boundary)
     * Arctic DEM
-        * Fetch
-        * Reproject (EPSG:3411)
-        * Subset (QGreenland project extent)
+        * Fetch (HTTP)
+        * Gdal Warp
+          * Reproject (EPSG:3413)
+          * Subset ("data" boundary)
+        * Gdal Calc & Edit
+          * Scale the data for more effective compression and update metadata
+            to represent scaling. These tasks both have to be done to produce a
+            working output.
+        * Build Raster Overviews
     * IceBridge BedMachine
-        * Fetch
+        * Fetch (CMR)
         * For each dataset (bed, thickness, surface):
             * Extract dataset
-            * Reproject (EPSG:3411) and resample (1km)
-* Generate .qgs project file including all layers.
-* Create zip file with version in filename, e.g. `QGreenland_v0.6.0.zip`.
+            * Gdal Warp
+              * Reproject (EPSG:3413)
+              * Resample (500m)
+    * ... and many more ...
 
-NOTE: The full pipeline will not always be enumerated here; just a
-representative sample.
+* Add ancillary files to WIP location:
+  * `qgreenland.png`: QGreenland logo
+  * `layer_manifest.csv`: Layer manifest
+  * `CHANGELOG.txt`: Text version of `CHANGELOG.md`
+  * `CONTRIBUTING.txt`: Text version of `doc/CONTRIBUTING.md`
+  * `README.txt`: Text version of `README.md`
+  * `STYLE.txt`: Text version of `doc/STYLE.md`
+
+* Generate .qgs project file:
+  * Reference all layers in WIP dir
+  * Reference QGreenland logo
+  * Populate QGIS project metadata, e.g. copyright
+
+* Create zip file with version in filename, e.g. `QGreenland_v0.50.0.zip`
+  from data in WIP location.
 
 
 ## Running the project
 
-The project is run as a docker container stack. It runs Luigi (with visualizer
-at port 8082) as a service for running tasks, as well as NGINX for hosting
-outputs.
+This project uses Docker and `docker-compose` to run each of its components.
+https://docs.docker.com/get-started/
 
-In order to download data behind Earthdata Login, you must provide the
+The docker-compose stack runs Luigi (with visualizer at port 8082) as a service
+for running tasks, as well as NGINX (port 80, 443) for hosting outputs.
+
+In order to download data behind Earthdata Login, you must `export` the
 following environment variables on the docker host:
 
 * `EARTHDATA_USERNAME`
@@ -85,51 +127,57 @@ Earthdata Login credentials. New users to Earthdata can register here:
 https://urs.earthdata.nasa.gov/users/new
 
 
+
 ### Starting the stack locally
 
-Populate the environment variables with the `export` command, then bring up the
-stack:
+Ensure environment variables enumerated above are populated before starting the
+stack.
 
 ```
-cd luigi
 docker-compose up -d
 ```
 
 ### Starting a Luigi pipeline
 
 ```
-cd scripts/
-. run_task.sh
+./scripts/run_task.sh
 ```
 
-The `run_task.sh` script is built to run the entire pipeline. From its example,
-you can run individual layer pipelines, e.g.:
+The `run_task.sh` script is built to run the entire pipeline. To run a subset
+of layers or individual layers, comment `layers.yml` as desired.
 
-```
-docker-compose exec luigi \
-  luigi --module qgreenland.tasks.layers \
-  BedMachineDataset --dataset-name=bed
-```
+There is also a convenience script, `scripts/dev_run_task.sh` which skips the
+zip step. This saves time for development, because you will usually want to
+inspect the data pre-zip.
 
-See the [Luigi documentation](https://luigi.readthedocs.io/en/stable/running_luigi.html)
-for more information on running Luigi from the CLI.
+See the [Luigi
+documentation](https://luigi.readthedocs.io/en/stable/running_luigi.html) for
+more information on running Luigi from the CLI if you want to do anything not
+documented here.
 
 
 #### Debugging a Luigi pipeline
 
-Simply put `breakpoint()` anywhere in the pipeline code, then use `scripts/run_task.sh` (ensure worker count is `1`).
+Simply put `breakpoint()` anywhere in the pipeline code, then use
+`scripts/dev_run_task.sh`.
 
 
-## Contributing
+# Contributing
+
+One of the primary goals of this project is to allow for as much control by
+config as possible so data users can add layers without having to know how to
+program. While we haven't achieved this goal completely, layer styles and
+metadata (e.g. title, description, citation, abstract, etc.) can currently be
+contributed without any programming knowledge.
 
 You can contribute to this project even if you don't have write access by
-forking, making your change, making all tests pass, then opening a Pull
-Request.
+forking, making your change, making all CI checks pass, then opening a Pull
+Request. Learn more:
 
-Changes to layer styles can be done without editing Python code.
+https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork
 
 
-### Contributing styles
+## Contributing styles
 
 You can contribute style changes without editing any Python code using the
 following process:
@@ -150,64 +198,92 @@ following process:
   the style a generic name instead of a layer-specific name where possible.
 * Edit the `qgreenland/layers.yml` file and find the layer(s) you wish to apply
   this style to. Populate the `style` key for each layer with the name of the
-  `.qml` file you saved in the previous step, excluding the extension. For
+  `.qml` file you saved in the previous step, excluding the file extension. For
   example, if you saved `foo.qml`, then populate `style: 'foo'`.
 
 ![Style in YAML](images/style_in_yaml.png)
 
 
-### Contributing metadata
+## Contributing metadata
 
-Metadata for a layer can be set in the `qgreenland/layers.yml` configuration
-file, under the `metadata` key for the layer in question. For example, metadata
-for the `coastlines` layer may look like the following:
+Metadata for layers and datasets can be edited in the `qgreenland/config/` YAML
+files. The `datasets.yml`, for example, contains dataset-level metadata like:
 
 ```
-coastlines:
+- id: coastlines
+  access_method: http
+  sources:
+    - id: only
+      urls:
+        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
   metadata:
-    title: 'Natural Earth Coastlines'
-    abstract:
-      text:  'Natural Earth Coastlines (Public Domain)'
-      citation:
-        text: 'Made with Natural Earth'
-        url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+    title: 'Natural Earth Coastlines (10m)'
+    abstract: 'Natural Earth Coastlines (Public Domain)'
+    citation:
+      text: 'Made with Natural Earth'
+      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
 ```
 
-The metadata section defines the values that get used to create the on-hover
-popup text that is shown when a user hovers their cursor over a layer in the
-table of contents in QGIS. Additionally, these values are used to set the fields
-in the metadata section of the layer's properties` popup.
+The `metadata.title`, `metadata.abstract`, and `metadata.citation` fields are
+used to populate the Layer Properties / Metadata menu in QGIS.
 
-The final abstract text shown in QGIS is a combination of the values under the
-`abstract` key. In the above example, the abstract text would become:
+`layer.yml` contains layer-level metadata that looks like:
 
 ```
-Natural Earth Coastlines (Public Domain)
-
-Citation:
-Made with Natural Earth
-
-Citation URL:
-https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md
+- id: coastlines
+  title: 'Coastlines'
+  description: >-
+    Note that the 'Greenland Coastlines' layer is preferred for Greenland.
+  visible: False
+  group_path: 'Basemaps'
+  style: 'coastline-IHOECDIS'
+  boundary: 'background'
+  data_source: coastlines.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
 ```
 
-Note:
+The `data_source` key here references the dataset id `coastlines` and the
+source `only` in `datasets.yml` above, allowing the QGreenland code to locate
+the data for processing.
 
-It is possible to export metadata from the QGIS GUI to an xml-formatted `.qmd`
-file. If collaborators wish to define metadata through the QGIS GUI, support for
-ingesting `.qmd` files may be implemented in the future.
+The `title` and `description` fields here are used to populate layer title and
+hover text in the QGIS Layer table of contents.
+
+Some of the other keys here control layer processing and should not be modified
+unless you're comfortable reading code.
 
 
-### Contributing new layers
+## Contributing new layers
 
-Add a new class to `qgreenland/tasks/layers.py` for your new layer. Compose
-Luigi tasks to build your final QGreenland layer following the example of other
-layers.
+If no existing task meets your needs, add a new class to
+`qgreenland/tasks/layers.py` for your new layer. Compose Luigi tasks to build
+your final QGreenland layer following the example of other layers.
 
 TODO: Flesh this out more.
 
+TODO: Convert the processing pipeline over to allow chaining of OGR commands in
+      the config file, so anyone comfortable with CLI data manipulation can
+      contribute.
 
-## Releasing
+# Layer Requirements
+
+Data must be:
+
+* In EPSG:3413. This is to reduce load on QGIS caused by on-the-fly
+  reprojection. Some exceptions may exist in the current code as a workaround,
+  but they are bugs.
+
+* Subset to one of the defined layer boundaries in `config/project.yml`.
+  Existing layer tasks can do this for vector or raster data.
+
+* In the correct format. As of this writing, our current convention is to store
+  raster data in GeoTIFF (`.tif`) format, and vector data in GeoPackage
+  (`.gpkg`) format.
+
+
+# Releasing
 
 Currently there is no automated release process. The manual process is:
 

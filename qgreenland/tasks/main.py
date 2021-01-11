@@ -54,7 +54,7 @@ class AncillaryFile(luigi.Task):
 
 class LayerManifest(AncillaryFile):
     src_filepath = None
-    dest_relative_filepath = 'manifest.csv'
+    dest_relative_filepath = 'layer_manifest.csv'
 
     def run(self):
         with self.output().temporary_path() as temp_path:
