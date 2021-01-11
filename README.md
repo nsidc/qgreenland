@@ -16,6 +16,12 @@ environment for offline and online use.
 An international Editorial Board and Project Collaborators connects the
 QGreenland Team to data and user communities.
 
+## Disclaimer
+
+QGreenland should not be used as a sole navigational aid while performing remote
+research activities in Greenland. Always bring appropriate saftey and
+navigational aids (including hard-copies of topographic maps) when visiting the
+field.
 
 # Getting Started
 
