@@ -9,7 +9,7 @@ from qgreenland.util.luigi import LayerTask
 from qgreenland.util.misc import (find_single_file_by_ext,
                                   find_single_file_by_name,
                                   temporary_path_dir)
-from qgreenland.util.vector import cleanup_valid_datafiles, ogr2ogr, points_txt_to_shape
+from qgreenland.util.vector import ogr2ogr, points_txt_to_shape
 
 logger = logging.getLogger('luigi-interface')
 
@@ -118,7 +118,4 @@ class Ogr2OgrVector(LayerTask):
             ogr2ogr(infile, outfile, **ogr2ogr_kwargs)
 
             # TODO: Make valid without writing to disk?
-            cleanup_valid_datafiles(
-                temp_path,
-                extensions=[self.layer_cfg['file_type']]
-            )
+            os.remove(os.path.join(temp_path, f"valid{self.layer_cfg['file_type']}"))

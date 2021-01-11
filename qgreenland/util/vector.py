@@ -1,5 +1,4 @@
 import logging
-import os
 import subprocess
 
 import geopandas as gpd
@@ -38,14 +37,6 @@ def points_txt_to_shape(
 
     gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df[x_field], df[y_field]))
     gdf.to_file(out_filepath, driver='GPKG')
-
-
-def cleanup_valid_datafiles(path, *, extensions):
-    for ext in extensions:
-        try:
-            os.remove(os.path.join(path, f'valid.{ext}'))
-        except FileNotFoundError:
-            pass
 
 
 # TODO: Take kwargs, args, and env as separate inputs to avoid special cases.

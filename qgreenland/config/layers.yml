@@ -1065,7 +1065,7 @@
       TBD
   visible: False
   group_path: 'Glaciology'
-  style: null
+  style: firn_ice_points
   data_source: macferrin_etal_firn_ice_layer_thicknesses.only
   ingest_task: local_vector
   file_type: '.gpkg'
