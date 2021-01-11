@@ -1,16 +1,19 @@
 import logging
 import os
 import shutil
+from pathlib import Path
 
 import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import (ASSETS_DIR,
                                   ENVIRONMENT,
+                                  PROJECT,
                                   PROJECT_DIR,
                                   RELEASE_DIR,
                                   TMP_DIR,
                                   TaskType,
+                                  WIP_DIR,
                                   ZIP_TRIGGERFILE)
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config import export_config
@@ -107,17 +110,27 @@ class ZipQGreenland(luigi.Task):
 
     def output(self):
         os.makedirs(RELEASE_DIR, exist_ok=True)
-        fn = f'{RELEASE_DIR}/QGreenland_{get_build_version()}.zip'
+        fn = f'{RELEASE_DIR}/{PROJECT}_{get_build_version()}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):
-        logger.info(f'Creating QGreenland package: {self.output().path} ...')
+        logger.info(f'Creating {PROJECT} package: {self.output().path} ...')
 
+        # rename the FINAL package dir to include the version name for archiving
+        # purposes.
+        versioned_package_name = f'{PROJECT}_{get_build_version()}'
+        versioned_package_path = Path(WIP_DIR) / versioned_package_name
+        os.rename(TaskType.FINAL.value, versioned_package_path)
+
+        # Create the archive.
         tmp_name = f'{TMP_DIR}/final_archive'
-        shutil.make_archive(tmp_name, 'zip', TMP_DIR, 'qgreenland')
-
+        shutil.make_archive(tmp_name, 'zip', Path(WIP_DIR), versioned_package_name)
         os.rename(f'{tmp_name}.zip', self.output().path)
 
+        # rename the versioned package subdir to its original name
+        os.rename(versioned_package_path, TaskType.FINAL.value)
+
+        # Remove the zip triggerfile.
         os.remove(self.input().path)
 
         if ENVIRONMENT != 'dev':
@@ -133,4 +146,4 @@ class ZipQGreenland(luigi.Task):
         say: "Iluatsitsilluarneq!"
         """
         logger.info('Pingasoriarluni horaarutiginninneq!'
-                    f' Created QGreenland package: {self.output().path}')
+                    f' Created {PROJECT} package: {self.output().path}')
