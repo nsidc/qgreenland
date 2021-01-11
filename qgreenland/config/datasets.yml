@@ -1639,18 +1639,10 @@ The images and data are produced in a consistent way that makes the Index time-s
           Downloaded through the The Danish Agency for Map Supply and
           Efficiency's website on 2020-12-17. User registration is
           required. Once the ordered data were delivered (as a zipfile), they
-          were extractracted and a mosaic was crated of the 500m version of the
-          data via the following commands:
-
-          ```
-          $ unzip GTK_TIFF_UTM24-WGS84.zip
-          $ cd gtk/G500/
-          $ gdalbuildvrt dms_gtk_topo.vrt *.tif
-          $ gdal_translate -co "COMPRESS=DEFLATE" -co "TILED=YES" dms_gtk_topo.vrt dms_gtk_topo.tif
-          $ gdal_edit.py -a_srs "EPSG:32624" dms_gtk_topo.tif
-          $ mv dms_gtk_topo.tif ../../
-          $ rm -rf gtk
-          ```
+          were extractracted and a mosaic was created of the 500m version of the
+          data via the
+          `scripts/danish_agency_for_data_supply_and_efficiency_gtk_topop_map/preprocess.sh`
+          script.
   metadata:
     title: "Greenland's Topographical Map 1:500,000"
     abstract: >-
