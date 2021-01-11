@@ -1,3 +1,10 @@
+# v0.51.0 (unreleased)
+
+- Update private archive datasets to include preprocessing scripts where
+  appropriate.
+- Fixup issue with ice firn and racmo wind vector layers that had numerical
+  fields incorrectly cast to `string`.
+
 # v0.50.0 (2021-01-07)
 
 - New "Sea ice/NSIDC Ice Age (12.5 km)/September (min extent)" layers for each

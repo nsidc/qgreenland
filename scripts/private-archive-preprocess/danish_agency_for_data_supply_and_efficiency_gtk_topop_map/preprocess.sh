@@ -1,5 +1,6 @@
 #! /bin/bash
 
+cd /share/appdata/qgreenland-private-archive/danish_agency_for_data_supply_and_efficiency_gtk_topop_map/
 unzip GTK_TIFF_UTM24-WGS84.zip
 cd gtk/G500/
 gdalbuildvrt dms_gtk_topo.vrt *.tif
