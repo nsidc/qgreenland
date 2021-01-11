@@ -247,6 +247,21 @@ TODO: Convert the processing pipeline over to allow chaining of OGR commands in
       the config file, so anyone comfortable with CLI data manipulation can
       contribute.
 
+# Layer Requirements
+
+Data must be:
+
+* In EPSG:3413. This is to reduce load on QGIS caused by on-the-fly
+  reprojection. Some exceptions may exist in the current code as a workaround,
+  but they are bugs.
+
+* Subset to one of the defined layer boundaries in `config/project.yml`.
+  Existing layer tasks can do this for vector or raster data.
+
+* In the correct format. As of this writing, our current convention is to store
+  raster data in GeoTIFF (`.tif`) format, and vector data in GeoPackage
+  (`.gpkg`) format.
+
 
 # Releasing
 
