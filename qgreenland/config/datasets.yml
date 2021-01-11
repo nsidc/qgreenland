@@ -1186,20 +1186,9 @@ The images and data are produced in a consistent way that makes the Index time-s
       text: 'Data are produced by Penelope How, Alexandra Messerli, and Eva Mätzler (Department of Remote Sensing, Asiaq Greenland Survey)'
       url: 'http://products.esa-icesheets-cci.org/products/details/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip/'
 
-- id: esa_cci_surface_elevation_change
+- &esa_cci
+  id: esa_cci_surface_elevation_change
   access_method: manual
-  sources:
-    - id: only
-      # TODO: support tar.gz archives.
-      access_instructions: >-
-        Dataset can be found on the European Space Agency (ESA) Climate Change
-        Initiative (CCI) products website
-        (http://products.esa-icesheets-cci.org). Data are free to download after
-        simple registration requiring `first.last` name and `affiliation`. No
-        password is required.
-
-        Once the `cci_sec_2020.tar.gz` file is downloaded, use `tar -xvf
-        cci_sec_2020.tar.gz` to extract the data.
   metadata:
     title: '1992-2020 Greenland SEC from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-years means'
     abstract: >-
@@ -1606,13 +1595,10 @@ The images and data are produced in a consistent way that makes the Index time-s
         Accessed the Greenland Mass Balance database on Dec. 12, 2020 from
         PROMICE
         (https://promice.org/PromiceDataPortal/api/download/1198f862-4afa-4862-952f-acd9129d790d/greenland_SMB_database_v2020/greenland_SMB_database_v2020.xlsx)
-        and manually converted the 'overview' sheet to a 'locations.csv' csv
-        file with `libreoffice`. The 'locations.csv' file was then manually
-        edited to remove records where the 'finished' column has a value of 'no
-        data found'.  The csv file was then converted to a geopackage via the
-        following `ogr2ogr` command:
 
-        `ogr2ogr -oo X_POSSIBLE_NAMES=glacier_lon -oo Y_POSSIBLE_NAMES=glacier_lat -a_srs "EPSG:4326" -sql "select *, glacier_name as label from locations" locations.gpkg locations.csv`
+        See
+        `scripts/private-archive-preprocess/machguth_etal_massbalance_obs_locations/README.md`
+        for preprocessing steps.
   metadata:
     title: ''
     abstract: >-
