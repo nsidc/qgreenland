@@ -8,6 +8,8 @@
 - Zipped package root directory now reflects the name of the zip file. For
   example, `QGreenland_v1.0.0.zip` will be extracted to a `QGreenland_v1.0.0/`
   directory instead of `qgreenland/`.
+- Reorder the layer groups so that the `Built Environment` layer group is above
+  the `Biology` layer group.
 
 # v0.50.0 (2021-01-07)
 
