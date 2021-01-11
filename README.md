@@ -24,11 +24,12 @@ research activities in Greenland. Always bring appropriate saftey and
 navigational aids (including hard-copies of topographic maps) when visiting the
 field.
 
-QGreenland's layers contain errors from the original data providers which
-cannot be corrected without making assumptions, so we've chosen to leave many
-of those errors in. You will find layers whose georeferencing differs in
-various areas of the map. Please use the 'Greenland Coastlines' layer as the
-reference for geolocating Greenland's coastline.
+QGreenland's layers may contain errors from the original data providers.
+QGreenland makes no guarantees about the accuracy and validity of data
+contained in QGreenland. For example, some layers may not perfectly align with
+each other due to unidentified georeferencing issues. We recommend using the
+'Greenland Coastlines' layer as the reference layer for geolocating Greenland's
+coastline.
 
 
 # Getting Started
