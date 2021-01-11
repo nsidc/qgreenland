@@ -23,7 +23,7 @@ Atmosphere/RACMO model output:
 
 
 Biology:
-  visible: False 
+  visible: False
   expanded: False
 
 Biology/Fish:
@@ -39,7 +39,7 @@ Biology/Mammals:
   expanded: False
 
 Biology/Vegetation:
-  visible: False 
+  visible: False
   expanded: False
 
 
