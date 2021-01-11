@@ -42,6 +42,11 @@ Each element in `layers.yml` represents a QGIS layer.
 To disable a layer, comment out the whole list element for that layer in the
 `layers.yml` file. This is convenient for layers with `manual` access method.
 
+The `ingest_task` key defines which processing pipeline will handle data for
+this layer.  Pipelines are currently defined as Python code in
+`qgreenland/tasks/layers/`.  There are several other fields (typically ending
+in `_kwargs` or `_args` which can be used to parameterize these pipelines.
+
 A layer references `datasets.yml` with the `datasource` compound key composed
 as `<dataset_id>.<source_id>`.
 
