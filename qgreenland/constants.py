@@ -3,7 +3,7 @@ from enum import Enum
 
 from qgreenland.util.version import get_build_version, version_is_full_release
 
-PROJECT = 'qgreenland'
+PROJECT = 'QGreenland'
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
