@@ -1254,9 +1254,9 @@ The images and data are produced in a consistent way that makes the Index time-s
         Once the
         `greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820.zip` file
         is downloaded, use `unzip` to extract the data. Next, the supplied
-        `scripts/gmb_dtu_nc_to_shp.py` script is run to convert the netcdf data
-        into shapefiles that can easily ingested via the `LocalVector` layer
-        task.
+        `scripts/esa_cci_gravimetric_mass_balance_dtu/gmb_dtu_nc_to_shp.py`
+        script is run to convert the netcdf data into shapefiles that can easily
+        ingested via the `LocalVector` layer task.
   metadata:
     title: 'GMB products for the Greenland Ice Sheet from GRACE satellite gravimetry (CSR RL06) by DTU Space.'
     abstract: >-
