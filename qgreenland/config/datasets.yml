@@ -1186,7 +1186,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       text: 'Data are produced by Penelope How, Alexandra Messerli, and Eva Mätzler (Department of Remote Sensing, Asiaq Greenland Survey)'
       url: 'http://products.esa-icesheets-cci.org/products/details/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip/'
 
-- &esa_cci
+- <<: *esa_cci
   id: esa_cci_surface_elevation_change
   access_method: manual
   metadata:
