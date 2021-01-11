@@ -4446,6 +4446,8 @@
 
 - id: bas_greenland_coastlines
   title: 'Greenland Coastlines'
+  description: >-
+    This layer should be used as the 'reference coastline' for Greenland.
   visible: False
   group_path: 'Basemaps'
   style: greenland_coastline
