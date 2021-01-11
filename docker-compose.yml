@@ -38,14 +38,17 @@ services:
 
   # QGreenland package hosting
   webserver:
-    image: nginx
+    image: nsidc/nginx:local
+    build: ./nginx
+    container_name: webserver 
     volumes:
       - /share/appdata/qgreenland/release/:/usr/share/nginx/html/:ro
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /share/logs/qgreenland:/logs
+      - /share/logs/qgreenland:/logs:rw
     ports:
       - 80:80
+      - 443:443
     logging:
       options:
         max-size: "20m"
