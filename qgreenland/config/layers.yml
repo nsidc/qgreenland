@@ -523,6 +523,104 @@
   decompress_kwargs:
     extract_files:
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+
+
+#####################
+# Built environment #
+#####################
+
+  # # TODO: Better layer ID and title.
+  # - id: populated_places_eva
+  #   title: 'Populated Places (Eva)'
+  #   data_source: nunat_aqqi.only
+  #   visible: True
+  #   group_path: 'Built environment'
+  #   style: 'populated_places'
+  #   boundary: 'data'
+  #   ingest_task: ogr_remote_vector
+  #   file_type: '.gpkg'
+  #   data_type: 'vector'
+  #   ogr2ogr_kwargs:
+  #     # TODO: This is lame, stop it!
+  #     input_filename: 'fetched.geojson'
+
+- &hdx_hotosm
+  id: hotosm_populated_places
+  title: 'Populated Places'
+  data_source: hdx_hotosm.populated_places
+  visible: False
+  group_path: 'Built environment/OpenStreetMap'
+  style: hotosm_populated_places_point
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *hdx_hotosm
+  id: hotosm_health_facilities
+  title: 'Health Facilities'
+  data_source: hdx_hotosm.health_facilities
+  style: health_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_airports
+  title: 'Airports'
+  data_source: hdx_hotosm.airports
+  style: airport_point
+- <<: *hdx_hotosm
+  id: hotosm_seaports
+  title: 'Seaports'
+  data_source: hdx_hotosm.seaports
+  style: seaport_point
+- <<: *hdx_hotosm
+  id: hotosm_waterways
+  title: 'Waterways'
+  data_source: hdx_hotosm.waterways
+  style: null
+- <<: *hdx_hotosm
+  id: hotosm_financial_services
+  title: 'Financial Services'
+  data_source: hdx_hotosm.financial_services
+  style: financial_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_education_facilities
+  title: 'Education Facilities'
+  data_source: hdx_hotosm.education_facilities
+  style: education_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_points_of_interest
+  title: 'Points of Interest'
+  data_source: hdx_hotosm.points_of_interest
+  style: null
+- <<: *hdx_hotosm
+  id: hotosm_roads
+  title: 'Roads'
+  visible: True
+  data_source: hdx_hotosm.roads
+  style: roads_line
+- <<: *hdx_hotosm
+  id: hotosm_buildings
+  title: 'Buildings'
+  data_source: hdx_hotosm.buildings
+  style: buildings_shape
+
+- id: nunagis_municipalities_population
+  title: 'Municipalities and Population'
+  data_source: nunagis.pop2019_municipalities
+  visible: False
+  group_path: 'Built environment'
+  # TODO:
+  style: null
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+
+# Administrative boundaries
+
+
 ###########
 # Biology #
 ###########
@@ -735,101 +833,6 @@
   ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
-
-#####################
-# Built environment #
-#####################
-
-  # # TODO: Better layer ID and title.
-  # - id: populated_places_eva
-  #   title: 'Populated Places (Eva)'
-  #   data_source: nunat_aqqi.only
-  #   visible: True
-  #   group_path: 'Built environment'
-  #   style: 'populated_places'
-  #   boundary: 'data'
-  #   ingest_task: ogr_remote_vector
-  #   file_type: '.gpkg'
-  #   data_type: 'vector'
-  #   ogr2ogr_kwargs:
-  #     # TODO: This is lame, stop it!
-  #     input_filename: 'fetched.geojson'
-
-- &hdx_hotosm
-  id: hotosm_populated_places
-  title: 'Populated Places'
-  data_source: hdx_hotosm.populated_places
-  visible: False
-  group_path: 'Built environment/OpenStreetMap'
-  style: hotosm_populated_places_point
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- <<: *hdx_hotosm
-  id: hotosm_health_facilities
-  title: 'Health Facilities'
-  data_source: hdx_hotosm.health_facilities
-  style: health_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_airports
-  title: 'Airports'
-  data_source: hdx_hotosm.airports
-  style: airport_point
-- <<: *hdx_hotosm
-  id: hotosm_seaports
-  title: 'Seaports'
-  data_source: hdx_hotosm.seaports
-  style: seaport_point
-- <<: *hdx_hotosm
-  id: hotosm_waterways
-  title: 'Waterways'
-  data_source: hdx_hotosm.waterways
-  style: null
-- <<: *hdx_hotosm
-  id: hotosm_financial_services
-  title: 'Financial Services'
-  data_source: hdx_hotosm.financial_services
-  style: financial_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_education_facilities
-  title: 'Education Facilities'
-  data_source: hdx_hotosm.education_facilities
-  style: education_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_points_of_interest
-  title: 'Points of Interest'
-  data_source: hdx_hotosm.points_of_interest
-  style: null
-- <<: *hdx_hotosm
-  id: hotosm_roads
-  title: 'Roads'
-  visible: True
-  data_source: hdx_hotosm.roads
-  style: roads_line
-- <<: *hdx_hotosm
-  id: hotosm_buildings
-  title: 'Buildings'
-  data_source: hdx_hotosm.buildings
-  style: buildings_shape
-
-- id: nunagis_municipalities_population
-  title: 'Municipalities and Population'
-  data_source: nunagis.pop2019_municipalities
-  visible: False
-  group_path: 'Built environment'
-  # TODO:
-  style: null
-  boundary: 'data'
-  ingest_task: ogr_remote_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-
-# Administrative boundaries
 
 
 ############################
