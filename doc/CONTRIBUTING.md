@@ -1,7 +1,10 @@
 # Architecture
 
-This project uses a `luigi` pipeline to generate the QGreenland package. This
-project is currently in early development stages, so expect rapid change.
+This project uses a `luigi` pipeline to generate the QGreenland package. Luigi
+is a workflow management system developed by Spotify:
+https://github.com/spotify/luigi
+
+This project is currently in early development stages, so expect rapid change.
 Nothing is written in stone! Releases can be found at
 https://qgreenland.org/explore!
 
