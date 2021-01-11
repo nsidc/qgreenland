@@ -262,6 +262,7 @@ If no existing task meets your needs, add a new class to
 your final QGreenland layer following the example of other layers.
 
 TODO: Flesh this out more.
+
 TODO: Convert the processing pipeline over to allow chaining of OGR commands in
       the config file, so anyone comfortable with CLI data manipulation can
       contribute.
