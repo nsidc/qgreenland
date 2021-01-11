@@ -15,21 +15,9 @@ There are 3 configuration files; `layers.yml` is the important one. It reference
 the others.
 
 
-### Layers
-
-Each element represents a QGIS layer.
-
-To disable a layer, comment out the whole list element for that layer in the
-`layers.yml` file. This is convenient for layers with `manual` access method.
-
-
-### Layer groups
-
-Each element represents a QGIS layer group. Keep in mind that the first layer's
-group will always be automatically selected and expanded.
-
-
 ### Datasets
+
+When adding a new layer, start by adding a new entry to `datasets.yml`.
 
 A dataset isn't necessarily the same thing as a "dataproduct", but it might be.
 A dataset is any collection of data representing some measurement, hosted
@@ -42,6 +30,29 @@ anywhere. Current access methods include:
 * `manual`: Access by `access_instructions`. This data is either inaccessible
   publicly or programmatically, so instructions must be followed to seed the
   data locally.
+
+A dataset can have many sources, each with their own id, but a layer can only
+have one datasource. See the `datasource` field in `layers.yml` for more
+detail.
+
+### Layers
+
+Each element in `layers.yml` represents a QGIS layer.
+
+To disable a layer, comment out the whole list element for that layer in the
+`layers.yml` file. This is convenient for layers with `manual` access method.
+
+A layer references `datasets.yml` with the `datasource` compound key composed
+as `<dataset_id>.<source_id>`.
+
+A layer references `layer_groups.yml` with the `group_path` key.
+
+
+### Layer groups
+
+Each element in `layer_groups.yml` represents a QGIS layer group in the table
+of contents. Keep in mind that the first layer's group will always be
+automatically selected and expanded.
 
 
 ## Pipeline
