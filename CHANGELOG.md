@@ -4,6 +4,7 @@
   appropriate.
 - Fixup issue with ice firn and racmo wind vector layers that had numerical
   fields incorrectly cast to `string`.
+- Rename `manifest.csv` -> `layer_manifest.csv`
 
 # v0.50.0 (2021-01-07)
 
