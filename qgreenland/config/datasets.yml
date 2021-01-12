@@ -671,12 +671,15 @@ The images and data are produced in a consistent way that makes the Index time-s
 
 - id: gem_research_stations
   # TODO: use HTTP access method when the GEM station data is updated to have
-  # full station descriptions.
+  # full station descriptions. Also, cleanup citation text to only retain Romer
+  # 2020 citation.
+  #
   # access_method: http
   # sources:
   #   - id: only
   #     urls:
   #       - 'https://zenodo.org/record/3991670/files/GEMStationsPackage.zip'
+  #
   access_method: local
   sources:
     - id: only
