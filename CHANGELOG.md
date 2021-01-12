@@ -8,6 +8,8 @@
 - Zipped package root directory now reflects the name of the zip file. For
   example, `QGreenland_v1.0.0.zip` will be extracted to a `QGreenland_v1.0.0/`
   directory instead of `qgreenland/`.
+- Update GEM research station layer to include full station descriptions (source
+  data have truncated descriptions).
 
 # v0.50.0 (2021-01-07)
 
