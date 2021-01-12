@@ -670,11 +670,18 @@ The images and data are produced in a consistent way that makes the Index time-s
 
 
 - id: gem_research_stations
-  access_method: http
+  # TODO: use HTTP access method when the GEM station data is updated to have
+  # full station descriptions.
+  # access_method: http
+  # sources:
+  #   - id: only
+  #     urls:
+  #       - 'https://zenodo.org/record/3991670/files/GEMStationsPackage.zip'
+  access_method: local
   sources:
     - id: only
       urls:
-        - 'https://zenodo.org/record/3991670/files/GEMStationsPackage.zip'
+        - 'gem_research_stations.geojson'
   metadata:
     title: 'Greenland Ecosystem Monitoring - Location and Description of Research Stations'
     abstract: >-
@@ -694,7 +701,15 @@ The images and data are produced in a consistent way that makes the Index time-s
         GEM participants and external scientists to produce scientific papers,
         scientific assessments, advisory reports, etc.
     citation:
-      text: 'Roemer, Jonas K. (2020). Greenland Ecosystem Monitoring - Location and Description of Research Stations (Version 1.0) [Data set]. Zenodo. http://doi.org/10.5281/zenodo.3991670'
+      text: >-
+          Original location data were downloaded from:
+
+          Roemer, Jonas K. (2020). Greenland Ecosystem Monitoring - Location and
+          Description of Research Stations (Version
+          1.0). Zenodo. http://doi.org/10.5281/zenodo.3991670
+
+          Full station descriptions were manually added from the 'Station Link'
+          associated with each feature.
       url: 'http://doi.org/10.5281/zenodo.3991670'
 
 

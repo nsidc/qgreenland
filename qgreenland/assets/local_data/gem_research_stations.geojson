@@ -1,0 +1,45 @@
+{
+  "_comment": "Location data and station links obtained from Roemer 2020 (http://doi.org/10.5281/zenodo.3991670). Full station descriptions added from each feature's Station Link. Source data are in ESRI Shapefile format and contain truncated field names and descriptions.",
+  "type": "FeatureCollection",
+  "crs": {
+      "type": "name", "properties": {"name": "urn:ogc:def:crs:EPSG:32624"}
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-69079.2473999998, 7750188.8971]
+      },
+      "properties": {
+        "Station Name": "Disko",
+        "Station Description": "The Arctic Station is located on the south coast of the Disko Island in central west Greenland (69°15'N, 53°34'W). It is thus facing the Disko Bay / Davis Strait and is characterized by an arctic, marine climate. There is a small lagune immeadiately in front of the station (see pictures below). The lagune is in turn separated from the open ocean by a sandy beach ('Sorte Sand'). Some of the world's largest icebergs drift by the Arctic Station. The cliffs behind the station abruptly reaches heights of more than 600 metre.\nThe main building (comprising e.g. guest facilities and the private home of the chief of logistics), the laboratory and library, and the private home of the chief scientist are all located in a nature sanctuary, approximately 1 km west of a small town, Qeqertarsuaq (formerly Godhavn), with ca. 1100 inhabitants. Within the town community is located all necessary service facilities, incl. several shops, bank, postoffice, church and a hospital.\nThe Arctic Station buildings and logistics have been continuously modernized, expanded and developed.  The station therefore will appear as a 'state of the art' platform for year-round environmental research.\n",
+        "Station Link": "https://arktiskstation.ku.dk/english/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-99793.5975000001, 7170121.0347]
+      },
+      "properties": {
+        "Station Name": "Nuuk",
+        "Station Description": "Nuuk Basic is an extensive cross-disciplinary ecological monitoring programme in low Arctic West Greenland. Nuuk Basic study the effect of climate change and variability on terrestrial and marine ecosystems. The terrestrial study area is located in Kobbefjord (64°07’N / 51°21'W), approximately 20 km from Nuuk, the Capital of Greenland, while the marine part is focused in Nuup Kangerlua (Godthåbsfjord). Nuuk Basic is coordinated with the GEM monitoring programme in Zackenberg in Northeast Greenland.",
+        "Station Link": "https://g-e-m.dk/gem-localities/nuuk-basic/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1042650.016, 8349400.3691]
+      },
+      "properties": {
+        "Station Name": "Zackenberg",
+        "Station Description": "Zackenberg Research Station is an ecosystem research and monitoring facility at Zackenberg (74º28’ N, 20º34’ W) in Northeast Greenland. A branch facility is situated at Daneborg, 25 km north-east of Zackenberg\nZackenberg welcomes national and international scientists and students who wish to carry out research projects or run a course.\nIn addition to individual research projects and programmes, a comprehensive environmental monitoring programme, is operating at Zackenberg since 1995. This programme is coordinated with a monitoring programme in Nuuk and in Disko in West Greenland under the Greenland Ecosystem Monitoring programme.\n Zackenberg is owned by The Government of Greenland and is operated by the Department of Bioscience, Aarhus University.\n For further information on issues relating to the research, monitoring and logistics at Zackenberg Research Station please contact the Zackenberg secretariat at zackenberg@au.dk",
+        "Station Link": "https://g-e-m.dk/gem-localities/zackenberg/"
+      }
+    }
+  ]
+}

@@ -3498,12 +3498,13 @@
   group_path: 'Human activity/Research stations'
   style: 'labeled_point'
   data_source: gem_research_stations.only
-  ingest_task: zipped_vector
+  ingest_task: local_vector
   file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'data'
   ogr2ogr_kwargs:
-    sql: "'SELECT *, StationNam as label from \"GEMStations\"'"
+    sql: "'SELECT *, \"Station Name\" as label from \"gem_research_stations\"'"
+    input_filename: 'gem_research_stations.geojson'
 
 - &gc_net_promice_stations
   id: promice_research_stations
