@@ -1,4 +1,4 @@
-# v0.51.0 (unreleased)
+# v0.51.0 (2021-01-12)
 
 - Update private archive datasets to include preprocessing scripts where
   appropriate.
