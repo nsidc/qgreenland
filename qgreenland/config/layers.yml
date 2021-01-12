@@ -4527,7 +4527,7 @@
   visible: True
   group_path: 'Basemaps'
   boundary: 'background'
-  data_source: background_hd.only
+  data_source: background.high_res
   ingest_task: background_image
   file_type: '.tif'
   data_type: 'raster'
