@@ -1423,13 +1423,13 @@
     extract_dataset: 'land_ice_surface_vertical_velocity'
 
 - id: ice_thickness_change
-  title: 'Ice Column Thickness 2003-2019 (5km)'
+  title: 'Ice column thickness rate of change 2003-2019 (5km)'
   # TODO: better description.
   description: >-
-    Ice-column thickness-change-rate estimates in meters per year based on data
+    Ice column thickness-change-rate estimates in meters per year based on data
     from NASA's ICESat and ICESat-2 satellites.
   visible: False
-  group_path: 'Glaciology/Ice thickness change'
+  group_path: 'Glaciology'
   style: 'ice_thickness_change'
   boundary: 'data'
   data_source: icesheet_height_and_thickness_change.only
