@@ -1589,7 +1589,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         `scripts/private-archive-preprocess/machguth_etal_massbalance_obs_locations/README.md`
         for preprocessing steps.
   metadata:
-    title: ''
+    title: 'Greenland surface mass-balance observations from the ice-sheet ablation area and local glaciers'
     abstract: >-
        These are historical surface mass balance measurements from Greenland Ice
        Sheet ablation area and surrounding local glaciers. There are

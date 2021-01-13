@@ -1080,10 +1080,9 @@
 ##############
 
 - id: machguth_massbalance_locations
-  title: 'Mass-balance glacier observation locations (Machguth et al.)'
+  title: 'Mass-balance glacier observation locations'
   description: >-
-     Locations of glaciers used in surface mass-balance observations (Machguth
-     et al.).
+     Locations of glaciers used in surface mass-balance observations.
   visible: False
   group_path: 'Glaciology'
   style: labeled_point
