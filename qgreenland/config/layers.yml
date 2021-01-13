@@ -269,7 +269,7 @@
 
 
 - id: racmo_wind_vectors
-  title: 'Annual mean wind vectors (5.5km)'
+  title: 'Annual mean wind vectors'
   description: >-
       Annual mean wind direction in meters per second from RACMO2.3p2 averaged
       for 1958-2018.
@@ -286,8 +286,10 @@
     input_filename: 'wind_vector_points.gpkg'
 
 - id: racmo_wind_speed
-  title: 'Annual mean wind speed (5.5km)'
-  description: 'TBD'
+  title: 'Annual mean wind speed'
+  description: >-
+      Annual mean wind speed in meters per second from RACMO2.3p2 averaged for
+      1958-2018.
   visible: False
   group_path: 'Atmosphere/RACMO model output/5.5km'
   style: null
@@ -311,10 +313,11 @@
 
 - &racmo_1km
   id: racmo_precip
-  title: 'Total Precipitation (1km)'
+  title: 'Total Precipitation'
   description: >-
-      Averaged for the period 1958 - 2018 covering the whole ice sheet and
-      peripheral ice caps
+      Averaged total precipitation in milimeters of water equivilent (mm w.e.)
+      for the period 1958 - 2018 covering the whole ice sheet and peripheral ice
+      caps.
   visible: False
   group_path: 'Atmosphere/RACMO model output/1km'
   style: null
@@ -338,7 +341,10 @@
 
 - <<: *racmo_1km
   id: racmo_snowfall
-  title: 'Snowfall (1km)'
+  title: 'Snowfall'
+  description: >-
+      Averaged snowfall in milimeters of water equivilent (mm w.e.) for the
+      period 1958 - 2018 covering the whole ice sheet and peripheral ice caps.
   translate_kwargs:
     extract_dataset: 'snowfall'
   decompress_kwargs:
@@ -347,7 +353,10 @@
 
 - <<: *racmo_1km
   id: racmo_melt
-  title: 'Snowmelt (1km)'
+  title: 'Snowmelt'
+  description: >-
+      Averaged snowmelt in milimeters of water equivilent (mm w.e.) for the
+      period 1958 - 2018 covering the whole ice sheet and peripheral ice caps.
   translate_kwargs:
     extract_dataset: 'snowmelt'
   decompress_kwargs:
@@ -356,7 +365,10 @@
 
 - <<: *racmo_1km
   id: racmo_runoff
-  title: 'Runoff (1km)'
+  title: 'Runoff'
+  description: >-
+      Averaged runoff in milimeters of water equivilent (mm w.e.) for the
+      period 1958 - 2018 covering the whole ice sheet and peripheral ice caps.
   translate_kwargs:
     extract_dataset: 'runoff'
   decompress_kwargs:
@@ -365,7 +377,10 @@
 
 - <<: *racmo_1km
   id: racmo_subl
-  title: 'Sublimation (1km)'
+  title: 'Sublimation'
+  description: >-
+      Averaged sublimation in milimeters of water equivilent (mm w.e.) for the
+      period 1958 - 2018 covering the whole ice sheet and peripheral ice caps.
   translate_kwargs:
     extract_dataset: 'subl'
   decompress_kwargs:
@@ -375,7 +390,9 @@
 - <<: *racmo_1km
   id: racmo_sndiv
   # TODO: correct title
-  title: 'Sndiv (Snow drift erosion?) (1km)'
+  title: 'Sndiv (Snow drift erosion?)'
+  description: >-
+      TBD
   translate_kwargs:
     extract_dataset: 'sndiv'
   decompress_kwargs:
@@ -384,8 +401,9 @@
 
 - <<: *racmo_1km
   id: racmo_t2m
-  # TODO: correct title
-  title: 'Annual Mean Temperature at 2m (1km)'
+  title: 'Annual Mean Temperature at 2m'
+  # TODO: is this correct? the source data states that the data are in units of
+  # mm of water equivilent.
   description: >-
       Annual Mean Temperature at 2m in degrees Kelvin.
   translate_kwargs:
@@ -397,6 +415,8 @@
 - <<: *racmo_1km
   id: racmo_LAT
   title: 'LAT'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'LAT'
@@ -410,6 +430,8 @@
 - <<: *racmo_1km
   id: racmo_LON
   title: 'LON'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'LON'
@@ -423,6 +445,8 @@
 - <<: *racmo_1km
   id: racmo_icemask
   title: 'Icemask'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'Icemask'
@@ -436,6 +460,8 @@
 - <<: *racmo_1km
   id: racmo_gris
   title: 'GrIS'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'GrIS'
@@ -449,6 +475,8 @@
 - <<: *racmo_1km
   id: racmo_gic
   title: 'GIC'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'GIC'
@@ -462,6 +490,8 @@
 - <<: *racmo_1km
   id: racmo_promicemask
   title: 'Promicemask'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'Promicemask'
@@ -475,6 +505,8 @@
 - <<: *racmo_1km
   id: racmo_topography
   title: 'Topography'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'Topography'
@@ -488,6 +520,8 @@
 - <<: *racmo_1km
   id: racmo_grounded_ice
   title: 'Grounded Ice'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'grounded_ice'
@@ -501,6 +535,8 @@
 - <<: *racmo_1km
   id: racmo_easting
   title: 'Easting'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'Easting'
@@ -514,6 +550,8 @@
 - <<: *racmo_1km
   id: racmo_northing
   title: 'Northing'
+  description: >-
+      TBD
   group_path: 'Atmosphere/RACMO model output/masks'
   translate_kwargs:
     extract_dataset: 'Northing'
