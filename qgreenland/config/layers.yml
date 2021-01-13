@@ -1357,7 +1357,7 @@
 - &its_live_velocity_mosaic
   id: velocity_mosaic
   title: 'Ice Sheet Velocity (500m)'
-  description: 'Magnitude of velocity in meters per year.'
+  description: 'Magnitude of velocity in meters per year. Data provided by JPL.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
   style: 'ice_sheet_velocity'
@@ -4299,7 +4299,8 @@
   id: bedmachine_thickness
   title: 'Ice Thickness (500m)'
   description: >-
-    Ice thickness in meters. Source is Mass conservation (Mathieu Morlighem)
+    Ice thickness in meters. Mass conservation source data provided by Mathieu
+    Morlighem.
   group_path: 'Terrain models/BedMachine'
   visible: False
   style: 'bedmachine_thickness'
@@ -4328,8 +4329,8 @@
   id: bedmachine_bed
   title: 'Bedrock Elevation (500m)'
   description: >-
-    Bedrock elevation in meters. Source is mass conservation (Mathieu
-    Morlighem).
+    Bedrock elevation in meters. Mass conservation source data provided by
+    Mathieu Morlighem.
   style: 'bedmachine_bed'
   translate_kwargs:
     extract_dataset: 'bed'
@@ -4345,7 +4346,8 @@
 
 - id: arctic_dem
   title: 'Arctic DEM (100m)'
-  description: 'Surface elevation in meters.'
+  description: >-
+    Surface elevation in meters. Data provided by the Polar Geospatial Center.
   visible: False
   group_path: 'Terrain models'
   style: 'arctic_dem'
