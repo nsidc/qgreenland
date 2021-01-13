@@ -569,7 +569,8 @@
   title: 'Vegetation Biomass 2010 (1km)'
   description: >-
     Estimated above ground plant biomass for the tundra biome in kilograms per
-    square meter. Based on trans-Arctic field data and AVHRR NDVI.
+    square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
+    provided by ORNL DAAC.
   visible: False
   group_path: 'Biology/Vegetation'
   style: 'vegetation_biomass'
@@ -1393,7 +1394,7 @@
 - &its_live_velocity_mosaic
   id: velocity_mosaic
   title: 'Ice Sheet Velocity (500m)'
-  description: 'Magnitude of velocity in meters per year.'
+  description: 'Magnitude of velocity in meters per year. Data provided by JPL.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
   style: 'ice_sheet_velocity'
@@ -1459,13 +1460,13 @@
     extract_dataset: 'land_ice_surface_vertical_velocity'
 
 - id: ice_thickness_change
-  title: 'Ice Column Thickness 2003-2019 (5km)'
+  title: 'Ice column thickness rate of change 2003-2019 (5km)'
   # TODO: better description.
   description: >-
-    Ice-column thickness-change-rate estimates in meters per year based on data
+    Ice column thickness-change-rate estimates in meters per year based on data
     from NASA's ICESat and ICESat-2 satellites.
   visible: False
-  group_path: 'Glaciology/Ice thickness change'
+  group_path: 'Glaciology'
   style: 'ice_thickness_change'
   boundary: 'data'
   data_source: icesheet_height_and_thickness_change.only
@@ -4107,7 +4108,7 @@
 # TODO: Normalize median and min/max layer titles. Month first or dataset first, pick one!
 - &seaice_median_extent
   id: seaice_median_extent_01
-  title: 'January Median Sea Ice Extent'
+  title: 'January'
   description: 'Median extent from the period 1981 through 2010.'
   visible: False
   group_path: 'Sea ice/Median ice extent'
@@ -4119,79 +4120,79 @@
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_02
-  title: 'February Median Sea Ice Extent'
+  title: 'February'
   data_source: seaice_index.median_extent_line_02
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_03
-  title: 'March Median Sea Ice Extent'
+  title: 'March'
   data_source: seaice_index.median_extent_line_03
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_04
-  title: 'April Median Sea Ice Extent'
+  title: 'April'
   data_source: seaice_index.median_extent_line_04
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_05
-  title: 'May Median Sea Ice Extent'
+  title: 'May'
   data_source: seaice_index.median_extent_line_05
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_06
-  title: 'June Median Sea Ice Extent'
+  title: 'June'
   data_source: seaice_index.median_extent_line_06
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_07
-  title: 'July Median Sea Ice Extent'
+  title: 'July'
   data_source: seaice_index.median_extent_line_07
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_08
-  title: 'August Median Sea Ice Extent'
+  title: 'August'
   data_source: seaice_index.median_extent_line_08
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_09
-  title: 'September Median Sea Ice Extent'
+  title: 'September'
   data_source: seaice_index.median_extent_line_09
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_10
-  title: 'October Median Sea Ice Extent'
+  title: 'October'
   data_source: seaice_index.median_extent_line_10
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_11
-  title: 'November Median Sea Ice Extent'
+  title: 'November'
   data_source: seaice_index.median_extent_line_11
 
 
 - <<: *seaice_median_extent
   id: seaice_median_extent_12
-  title: 'December Median Sea Ice Extent'
+  title: 'December'
   data_source: seaice_index.median_extent_line_12
 
 
 # sea ice min extent monthly concentration:
 - &seaice_minimum_concentration
   id: minimum_concentration_2010
-  title: 'NSIDC Sea Ice Concentration September 2010'
+  title: 'September 2010'
   description: >-
       Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values
       under 15% are considered to be open water.
   visible: False
-  group_path: 'Sea ice/NSIDC Concentration (25 km)/September (min extent)'
+  group_path: 'Sea ice/Sea ice concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
   data_source: seaice_index.minimum_concentration_2010
@@ -4203,71 +4204,71 @@
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2011
-  title: 'NSIDC Sea Ice Concentration September 2011'
+  title: 'September 2011'
   data_source: seaice_index.minimum_concentration_2011
 
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2012
-  title: 'NSIDC Sea Ice Concentration September 2012'
+  title: 'September 2012'
   data_source: seaice_index.minimum_concentration_2012
 
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2013
-  title: 'NSIDC Sea Ice Concentration September 2013'
+  title: 'September 2013'
   data_source: seaice_index.minimum_concentration_2013
 
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2014
-  title: 'NSIDC Sea Ice Concentration September 2014'
+  title: 'September 2014'
   data_source: seaice_index.minimum_concentration_2014
 
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2015
-  title: 'NSIDC Sea Ice Concentration September 2015'
+  title: 'September 2015'
   data_source: seaice_index.minimum_concentration_2015
 
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2016
-  title: 'NSIDC Sea Ice Concentration September 2016'
+  title: 'September 2016'
   data_source: seaice_index.minimum_concentration_2016
 
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2017
-  title: 'NSIDC Sea Ice Concentration September 2017'
+  title: 'September 2017'
   data_source: seaice_index.minimum_concentration_2017
 
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2018
-  title: 'NSIDC Sea Ice Concentration September 2018'
+  title: 'September 2018'
   data_source: seaice_index.minimum_concentration_2018
 
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2019
-  title: 'NSIDC Sea Ice Concentration September 2019'
+  title: 'September 2019'
   data_source: seaice_index.minimum_concentration_2019
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2020
-  title: 'NSIDC Sea Ice Concentration September 2020'
+  title: 'September 2020'
   data_source: seaice_index.minimum_concentration_2020
 
 # sea ice max extent monthly concentrations:
 - &seaice_maximum_concentration
   id: maximum_concentration_2010
-  title: 'NSIDC Sea Ice Concentration March 2010'
+  title: 'March 2010'
   description: >-
      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
      15% are considered to be open water.
   visible: False
-  group_path: 'Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent)'
+  group_path: 'Sea ice/Concentration (25 km)/Feb or March (max extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
   data_source: seaice_index.maximum_concentration_2010
@@ -4280,60 +4281,60 @@
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2011
-  title: 'NSIDC Sea Ice Concentration March 2011'
+  title: 'March 2011'
   data_source: seaice_index.maximum_concentration_2011
 
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2012
-  title: 'NSIDC Sea Ice Concentration March 2012'
+  title: 'March 2012'
   data_source: seaice_index.maximum_concentration_2012
 
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2013
-  title: 'NSIDC Sea Ice Concentration March 2013'
+  title: 'March 2013'
   data_source: seaice_index.maximum_concentration_2013
 
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2014
-  title: 'NSIDC Sea Ice Concentration March 2014'
+  title: 'March 2014'
   data_source: seaice_index.maximum_concentration_2014
 
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2015
-  title: 'NSIDC Sea Ice Concentration February 2015'
+  title: 'February 2015'
   data_source: seaice_index.maximum_concentration_2015
 
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2016
-  title: 'NSIDC Sea Ice Concentration March 2016'
+  title: 'March 2016'
   data_source: seaice_index.maximum_concentration_2016
 
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2017
-  title: 'NSIDC Sea Ice Concentration March 2017'
+  title: 'March 2017'
   data_source: seaice_index.maximum_concentration_2017
 
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2018
-  title: 'NSIDC Sea Ice Concentration March 2018'
+  title: 'March 2018'
   data_source: seaice_index.maximum_concentration_2018
 
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2019
-  title: 'NSIDC Sea Ice Concentration March 2019'
+  title: 'March 2019'
   data_source: seaice_index.maximum_concentration_2019
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2020
-  title: 'NSIDC Sea Ice Concentration March 2020'
+  title: 'March 2020'
   data_source: seaice_index.maximum_concentration_2019
 
 
@@ -4345,7 +4346,8 @@
   id: bedmachine_thickness
   title: 'Ice Thickness (500m)'
   description: >-
-    Ice thickness in meters. Source is Mass conservation (Mathieu Morlighem)
+    Ice thickness in meters. Mass conservation source data provided by Mathieu
+    Morlighem.
   group_path: 'Terrain models/BedMachine'
   visible: False
   style: 'bedmachine_thickness'
@@ -4374,8 +4376,8 @@
   id: bedmachine_bed
   title: 'Bedrock Elevation (500m)'
   description: >-
-    Bedrock elevation in meters. Source is mass conservation (Mathieu
-    Morlighem).
+    Bedrock elevation in meters. Mass conservation source data provided by
+    Mathieu Morlighem.
   style: 'bedmachine_bed'
   translate_kwargs:
     extract_dataset: 'bed'
@@ -4391,7 +4393,8 @@
 
 - id: arctic_dem
   title: 'Arctic DEM (100m)'
-  description: 'Surface elevation in meters.'
+  description: >-
+    Surface elevation in meters. Data provided by the Polar Geospatial Center.
   visible: False
   group_path: 'Terrain models'
   style: 'arctic_dem'

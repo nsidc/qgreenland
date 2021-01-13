@@ -79,13 +79,7 @@ Glaciology/Glacier terminus positions 2000-2017:
   visible: False
   expanded: False
 
-# TODO: Do we need this group? Why would we want >1 layer in this group?
 Glaciology/Ice sheet velocity:
-  visible: False
-  expanded: False
-
-# TODO: Do we need this group? Why would we want >1 layer in this group?
-Glaciology/Ice thickness change:
   visible: False
   expanded: False
 
@@ -194,15 +188,15 @@ Sea ice/Median ice extent:
   visible: False
   expanded: False
 
-Sea ice/NSIDC Concentration (25 km):
+Sea ice/Concentration (25 km):
   visible: False
   expanded: True
 
-Sea ice/NSIDC Concentration (25 km)/September (min extent):
+Sea ice/Concentration (25 km)/September (min extent):
   visible: False
   expanded: False
 
-Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent):
+Sea ice/Concentration (25 km)/Feb or March (max extent):
   visible: False
   expanded: False
 
