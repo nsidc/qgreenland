@@ -4403,6 +4403,8 @@
 
 - id: dms_gtk_topo
   title: 'Danish Map Supply Topographic Map (1:500,000)'
+  description: >-
+    TBD
   visible: False
   group_path: 'Terrain models'
   style: null
