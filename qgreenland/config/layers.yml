@@ -3647,6 +3647,7 @@
   file_type: '.gpkg'
   data_type: 'vector'
   visible: False
+  style: 'ice_outlets'
   group_path: 'Hydrology'
   data_source: streams_outlets_basins.ice_outlets
   ogr2ogr_kwargs:
@@ -3657,6 +3658,7 @@
   title: 'Land Outlets'
   description: >-
       TBD
+  style: 'land_outlets'
   data_source: streams_outlets_basins.land_outlets
   ogr2ogr_kwargs:
     input_filename: 'outlets.gpkg'
@@ -3666,6 +3668,7 @@
   title: 'Ice Streams'
   description: >-
       TBD
+  style: 'ice_streams'
   data_source: streams_outlets_basins.ice_streams
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
@@ -3676,6 +3679,7 @@
   title: 'Ice Basins'
   description: >-
       TBD
+  style: 'ice_basins'
   data_source: streams_outlets_basins.ice_basins
   ogr2ogr_kwargs:
     input_filename: 'basins.gpkg'
@@ -3685,6 +3689,7 @@
   title: 'Ice Basins Filled'
   description: >-
       TBD
+  style: 'ice_basins'
   data_source: streams_outlets_basins.ice_basins_filled
   ogr2ogr_kwargs:
     input_filename: 'basins_filled.gpkg'
@@ -3692,6 +3697,9 @@
 - <<: *streams_outlets_basins
   id: land_streams
   title: 'Land Streams'
+  description: >-
+      TBD
+  style: 'land_streams'
   data_source: streams_outlets_basins.land_streams
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
@@ -3702,6 +3710,7 @@
   title: 'Land Basins'
   description: >-
       TBD
+  style: 'land_basins'
   data_source: streams_outlets_basins.land_basins
   ogr2ogr_kwargs:
     input_filename: 'basins.gpkg'
@@ -3711,6 +3720,7 @@
   title: 'Land Basins Filled'
   description: >-
       TBD
+  style: 'land_basins'
   data_source: streams_outlets_basins.land_basins_filled
   ogr2ogr_kwargs:
     input_filename: 'basins_filled.gpkg'
