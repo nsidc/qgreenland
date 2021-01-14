@@ -752,7 +752,7 @@
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and Population'
-  data_source: nunagis.nunagis_pop2019_municipalities
+  data_source: nunagis_pop2019_municipalities
   visible: False
   group_path: 'Built environment'
   # TODO:
