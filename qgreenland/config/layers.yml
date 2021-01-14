@@ -2006,6 +2006,10 @@
 - &wmm_d_2020
   id: wmm_d_2020
   title: 'Main Field Declination (D)'
+  description: >-
+    Countrous representing magnetic declination (D) in degrees. D is the angle
+    between magnetic north and true north. D is considered positive when the
+    angle measured is east of true north and negative when west.
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2020'
   style: null
@@ -2046,6 +2050,12 @@
 - <<: *wmm_d_2020
   id: wmm_f_2020
   title: 'Main Field Total Intensity (F)'
+  description: >-
+    Contours representing the intensity of the total field (F) in nanoTesla
+    (nT). F is described by the horizontal component (H), vertical component
+    (Z), and the north (X) and east (Y) components of the horizontal
+    intensity. The Earth's magnetic field intensity is roughly between 25,000 -
+    65,000 nT (.25 - .65 gauss).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/F_2020.cpg'
@@ -2076,6 +2086,9 @@
 - <<: *wmm_d_2020
   id: wmm_h_2020
   title: 'Main Field Horizontal Intensity (H)'
+  description: >-
+    Contours representing Horizontal Intensity (H) of the geomagnetic main field
+    in nanoTesla (nT).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/H_2020.cpg'
@@ -2106,6 +2119,10 @@
 - <<: *wmm_d_2020
   id: wmm_i_2020
   title: 'Main Field Inclination (I)'
+  description: >-
+    Contours representing magnetic inclination (I) in degrees. I is the angle
+    between the horizontal plane and the total field vector, measured positive
+    into Earth.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/I_2020.cpg'
@@ -2136,6 +2153,9 @@
 - <<: *wmm_d_2020
   id: wmm_x_2020
   title: 'Main Field North Component (X)'
+  description: >-
+    Contours representing the main field North component (X) of the horizontal
+    intensity in nanoTesla (nT).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/X_2020.cpg'
@@ -2166,6 +2186,9 @@
 - <<: *wmm_d_2020
   id: wmm_y_2020
   title: 'Main Field East Component (Y)'
+  description: >-
+    Contours representing the main field East component (Y) of the horizontal
+    intensity in nanoTesla (nT).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Y_2020.cpg'
@@ -2196,6 +2219,8 @@
 - <<: *wmm_d_2020
   id: wmm_z_2020
   title: 'Main Field Down Component (Z)'
+  description: >-
+    Contours representing the main field down component (Z) in nanoTesla (nT).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Z_2020.cpg'
