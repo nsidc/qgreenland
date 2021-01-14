@@ -2009,7 +2009,7 @@
   id: wmm_d_2020
   title: 'Main Field Declination (D)'
   description: &wmm_d_description >-
-    Countrous representing magnetic declination (D) in degrees. D is the angle
+    Contours representing magnetic declination (D) in degrees. D is the angle
     between magnetic north and true north. D is considered positive when the
     angle measured is east of true north and negative when west.
   visible: False
