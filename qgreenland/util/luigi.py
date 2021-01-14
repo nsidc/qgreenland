@@ -18,6 +18,12 @@ class LayerTask(luigi.Task):
     requires_task = luigi.Parameter()
     layer_id = luigi.Parameter()
     task_type = None
+    
+    def __repr__(self):
+        return (
+            f'{self.__class__.__name__}('
+            f'layer_id={self.layer_id})'
+        )
 
     def requires(self):
         return self.requires_task
@@ -64,6 +70,12 @@ class LayerPipeline(luigi.Task):
     """
 
     layer_id = luigi.Parameter()
+
+    def __repr__(self):
+        return (
+            f'{self.__class__.__name__}('
+            f'layer_id={self.layer_id})'
+        )
 
     @property
     def cfg(self):
