@@ -974,8 +974,9 @@ The images and data are produced in a consistent way that makes the Index time-s
       query_url: 'https://services5.arcgis.com/wbN76kmEQ2ue8VQm/arcgis/rest/services/Nunat_Aqqi/FeatureServer/0/query/?f=json&where=OBJECTID<>null&outFields=*&orderByFields=OBJECTID+ASC'
   # TODO
   metadata:
-    title: 'TBD' Place names
-    abstract: 'TBD' Place names as provided by Asiaq Greenland Survey, December 2020.
+    title: Place names
+    abstract: >-
+      Place names as provided by Asiaq Greenland Survey, December 2020.
     citation:
       text: 'TBD'
       url: 'http://example.com/TBD'
@@ -995,7 +996,10 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Municipalities with Population'
     abstract: >- 
-    TBD (fix that it's two layers - separate for metadata) Greenland municipality boundaries. Data includes information on 2019 municipality population and the municipality population as a percent of total Greenland population.
+      TBD (fix that it's two layers - separate for metadata) Greenland
+      municipality boundaries. Data includes information on 2019 municipality
+      population and the municipality population as a percent of total
+      Greenland population.
     citation:
       text: 'TBD'
       url: 'https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61'
@@ -1551,7 +1555,10 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Mineral and hydrocarbon licenses'
     abstract: >-
-    Mineral and hydrocarbon license data, including historic public licenses and public licenses. License data is sources from the Mineral Resource Authority, Government of Greenland using their GeoServer version 2.14.1 (https://gis.govmin.gl/geoserver/web/).
+      Mineral and hydrocarbon license data, including historic public licenses
+      and public licenses. License data is sources from the Mineral Resource
+      Authority, Government of Greenland using their GeoServer version 2.14.1
+      (https://gis.govmin.gl/geoserver/web/).
     citation:
       text: 'Government of Greenland/GINR'
       url: ''
