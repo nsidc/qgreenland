@@ -392,7 +392,7 @@
   # TODO: correct title
   title: 'Sndiv (Snow drift erosion?)'
   description: >-
-      TBD
+      TBD - waiting on email response from Brice
   translate_kwargs:
     extract_dataset: 'sndiv'
   decompress_kwargs:
@@ -402,8 +402,8 @@
 - <<: *racmo_1km
   id: racmo_t2m
   title: 'Annual Mean Temperature at 2m'
-  # TODO: is this correct? the source data states that the data are in units of
-  # mm of water equivilent.
+  # NOTE: the source data states that the data are in units of mm of water
+  # equivilent, but the values are clearly degrees Kelvin.
   description: >-
       Annual Mean Temperature at 2m in degrees Kelvin.
   translate_kwargs:
@@ -413,86 +413,12 @@
       - 't2m.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
 
 - <<: *racmo_1km
-  id: racmo_LAT
-  title: 'LAT'
-  description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
-  translate_kwargs:
-    extract_dataset: 'LAT'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
-
-- <<: *racmo_1km
-  id: racmo_LON
-  title: 'LON'
-  description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
-  translate_kwargs:
-    extract_dataset: 'LON'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
-
-- <<: *racmo_1km
-  id: racmo_icemask
-  title: 'Icemask'
-  description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
-  translate_kwargs:
-    extract_dataset: 'Icemask'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
-
-- <<: *racmo_1km
-  id: racmo_gris
-  title: 'GrIS'
-  description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
-  translate_kwargs:
-    extract_dataset: 'GrIS'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
-
-- <<: *racmo_1km
-  id: racmo_gic
-  title: 'GIC'
-  description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
-  translate_kwargs:
-    extract_dataset: 'GIC'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
-
-- <<: *racmo_1km
   id: racmo_promicemask
-  title: 'Promicemask'
+  title: 'PROMICE Mask'
   description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
+    Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
+    peripheral ice caps; 0 = Ocean.
+  group_path: 'Atmosphere/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'Promicemask'
   gdal_edit_kwargs:
@@ -506,8 +432,8 @@
   id: racmo_topography
   title: 'Topography'
   description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
+      Surface elevation in meters.
+  group_path: 'Atmosphere/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'Topography'
   gdal_edit_kwargs:
@@ -521,8 +447,8 @@
   id: racmo_grounded_ice
   title: 'Grounded Ice'
   description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
+      Mask of grounded ice.
+  group_path: 'Atmosphere/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'grounded_ice'
   gdal_edit_kwargs:
@@ -532,35 +458,6 @@
     extract_files:
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
 
-- <<: *racmo_1km
-  id: racmo_easting
-  title: 'Easting'
-  description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
-  translate_kwargs:
-    extract_dataset: 'Easting'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
-
-- <<: *racmo_1km
-  id: racmo_northing
-  title: 'Northing'
-  description: >-
-      TBD
-  group_path: 'Atmosphere/RACMO model output/masks'
-  translate_kwargs:
-    extract_dataset: 'Northing'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
 ###########
 # Biology #
 ###########
@@ -584,7 +481,7 @@
 - &walrus_protected_areas
   id: nunagis_walrus_protected_areas
   title: 'Walrus Protected Areas'
-  data_source: nunagis.protected_areas
+  data_source: nunagis_protected_areas.only
   visible: False
   group_path: 'Biology/Mammals'
   style: nunagis_walrus_protected_areas
@@ -855,7 +752,7 @@
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and Population'
-  data_source: nunagis.pop2019_municipalities
+  data_source: nunagis_pop2019_municipalities.only
   visible: False
   group_path: 'Built environment'
   # TODO:
@@ -1097,10 +994,11 @@
     s_srs: 'EPSG:4326'
 
 
-- id: firn_ice_layer_thickness
-  title: 'Firn Ice Layer Output Thicknesses'
+- id: firn_ice_layer_thicknesses
+  title: 'Ice slab thickness in firn ice'
   description: >-
-      TBD
+      Ice slab thickness, in meters, in the top 20 meters of firn. Only slabs
+      between 1 and 16 meters are included.
   visible: False
   group_path: 'Glaciology'
   style: firn_ice_points
@@ -1841,7 +1739,7 @@
   id: mcas_mlsa_public_all
   title: 'Public Licenses'
   description: >-
-      TBD
+      Mining licenses granted by the government of Greenland.
   visible: False
   group_path: 'Geology & natural resources/Mineral and hydrocarbon licenses'
   style: 'mcas_mlsa_licenses'
@@ -1855,7 +1753,7 @@
   id: mcas_mlsa_public_historic
   title: 'Historic Public Licenses'
   description: >-
-      TBD
+      Historic mining licenses granted by the government of Greenland.
   data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_historic
 
 - &geological_map
@@ -3552,7 +3450,7 @@
   id: promice_research_stations
   title: 'PROMICE Automated Weather Stations'
   description: >-
-      TBD
+      Locations and details of PROMICE Automated Weather Stations.
   visible: False
   group_path: 'Human activity/Research stations'
   style: 'labeled_point'
@@ -3575,7 +3473,7 @@
   id: promice_research_stations_former
   title: 'Former PROMICE Automated Weather Stations'
   description: >-
-      TBD
+      Locations and details of inactive PROMICE Automated Weather Stations.
   data_source: gc_net_promice_stations.promice_former
   delimited_text_vector_kwargs:
     input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.csv'
@@ -3591,7 +3489,7 @@
   id: gc_net_research_stations
   title: 'GC-NET Automated Weather Stations'
   description: >-
-      TBD
+      Location and details of GC-NET Automated Weather Stations.
   data_source: gc_net_promice_stations.gc_net
   delimited_text_vector_kwargs:
     input_filename: 'GCN%20info%20ca.2000.csv'
@@ -3642,7 +3540,7 @@
   id: ice_basins
   title: 'Ice Basins'
   description: >-
-      TODO
+      TBD
   data_source: streams_outlets_basins.ice_basins
   ingest_task: online_vector
   file_type: '.gpkg'
@@ -3655,6 +3553,8 @@
 - <<: *streams_outlets_basins
   id: land_basins
   title: 'Land Basins'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.land_basins
   ogr2ogr_kwargs:
     input_filename: 'basins.gpkg'
@@ -3662,6 +3562,8 @@
 - <<: *streams_outlets_basins
   id: ice_basins_filled
   title: 'Ice Basins Filled'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.ice_basins_filled
   ogr2ogr_kwargs:
     input_filename: 'basins_filled.gpkg'
@@ -3669,6 +3571,8 @@
 - <<: *streams_outlets_basins
   id: land_basins_filled
   title: 'Land Basins Filled'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.land_basins_filled
   ogr2ogr_kwargs:
     input_filename: 'basins_filled.gpkg'
@@ -3676,6 +3580,8 @@
 - <<: *streams_outlets_basins
   id: ice_outlets
   title: 'Ice Outlets'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.ice_outlets
   ogr2ogr_kwargs:
     input_filename: 'outlets.gpkg'
@@ -3683,6 +3589,8 @@
 - <<: *streams_outlets_basins
   id: land_outlets
   title: 'Land Outlets'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.land_outlets
   ogr2ogr_kwargs:
     input_filename: 'outlets.gpkg'
@@ -3690,6 +3598,8 @@
 - <<: *streams_outlets_basins
   id: ice_streams
   title: 'Ice Streams'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.ice_streams
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
@@ -3698,6 +3608,8 @@
 - <<: *streams_outlets_basins
   id: land_streams
   title: 'Land Streams'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.land_streams
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
@@ -4376,8 +4288,7 @@
   id: bedmachine_bed
   title: 'Bedrock Elevation (500m)'
   description: >-
-    Bedrock elevation in meters. Mass conservation source data provided by
-    Mathieu Morlighem.
+    Bedrock elevation in meters.
   style: 'bedmachine_bed'
   translate_kwargs:
     extract_dataset: 'bed'
@@ -4386,7 +4297,7 @@
   id: bedmachine_errbed
   title: 'Bedrock Elevation/Ice Thickness Error (500m)'
   description: >-
-    TBD
+    Error estimate for Greenland bed elevation and ice thickness in meters.
   style: 'bedmachine_errbed'
   translate_kwargs:
     extract_dataset: 'errbed'
@@ -4394,7 +4305,7 @@
 - id: arctic_dem
   title: 'Arctic DEM (100m)'
   description: >-
-    Surface elevation in meters. Data provided by the Polar Geospatial Center.
+    Surface elevation in meters.
   visible: False
   group_path: 'Terrain models'
   style: 'arctic_dem'
@@ -4414,9 +4325,9 @@
     scale: 0.01
 
 - id: dms_gtk_topo
-  title: 'Danish Map Supply Topographic Map (1:500,000)'
+  title: 'Topographic Map (1:500,000)'
   description: >-
-    TBD
+    Digitized and geolocated topographic map of Greenland.
   visible: False
   group_path: 'Terrain models'
   style: null
