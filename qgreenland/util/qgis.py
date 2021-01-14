@@ -16,6 +16,8 @@ from qgreenland.util.misc import get_layer_path
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
+LAYERGROUP_EXPANDED_DEFAULT = False
+LAYERGROUP_VISIBLE_DEFAULT = False
 
 # TODO: Figure out which functions should start with underscore and apply
 # consistently
@@ -124,49 +126,80 @@ def get_map_layer(layer_cfg, project_crs):
     return map_layer
 
 
-def _set_groups_options(project):
-    logger.debug('Configuring layer groups...')
-    groups_config = CONFIG['layer_groups']
-
-    def _set_group_visibility(group, group_opts):
-        # Layer group config is a path of layer groups separated by '/'
-        # Group is visible by default.
-        group_visible = group_opts.get('visible', True)
-        group.setItemVisibilityChecked(group_visible)
-
-    def _set_group_expanded(group, group_opts):
-        # Layer group config is a path of layer groups separated by '/'
-        # Group is visible by default.
-        group_expanded = group_opts.get('expanded', True)
-        group.setExpanded(group_expanded)
-
-    for group_path, options in groups_config.items():
-        group = _get_or_create_group(project, group_path)
-
-        _set_group_visibility(group, options)
-        _set_group_expanded(group, options)
-
-    logger.debug('Done configuring layer groups.')
+def _set_group_visibility(group, visibility: bool):
+    group.setItemVisibilityChecked(visibility)
 
 
-def _get_or_create_group(project, group_path):
-    """Get or create the layer group in `project` by `group_path`."""
+def _set_group_expanded(group, expanded: bool):
+    group.setExpanded(expanded)
+
+
+def _get_group(project, group_path):
+    """Find a nested group by "path" syntax.
+
+    `parent/child/grandchild/great-grandchild`
+    """
     group = project.layerTreeRoot()
 
-    # If the group path is an empty string, return the root layer group.
+    # If the group path is an empty string, return the root layer group
     if not group_path:
         return group
 
     group_names = group_path.split('/')
 
     for group_name in group_names:
-        if group.findGroup(group_name) is None:
-            # Create the group.
-            group = group.addGroup(group_name)
-        else:
-            group = group.findGroup(group_name)
+        group = group.findGroup(group_name)
+
+        # Group not found
+        if group is None:
+            return None
 
     return group
+
+
+def _ensure_group_exists(project, group_path):
+    """Get or create the layer group in `project` by `group_path`."""
+    if group := _get_group(project, group_path):
+        return group
+
+    group_names = group_path.split('/')
+
+    # Create the group path from the ground up; it's OK if part of the path
+    # already exists.
+    group = project.layerTreeRoot()
+    for group_name in group_names:
+        if g := group.findGroup(group_name):
+            group = g
+            continue
+
+        group = group.addGroup(group_name)
+
+        # Set default configuration
+        _set_group_visibility(group, LAYERGROUP_VISIBLE_DEFAULT)
+        _set_group_expanded(group, LAYERGROUP_EXPANDED_DEFAULT)
+
+    return group
+
+
+def _set_groups_options(project):
+    logger.debug('Configuring layer groups...')
+    groups_config = CONFIG['layer_groups']
+
+    for group_path, options in groups_config.items():
+        group = _get_group(project, group_path)
+
+        _set_group_visibility(
+            group,
+            options.get('visible', LAYERGROUP_VISIBLE_DEFAULT)
+        )
+        _set_group_expanded(
+            group,
+            options.get('expanded', LAYERGROUP_EXPANDED_DEFAULT)
+        )
+
+        logger.debug(f'{group_path} configured: {options}')
+
+    logger.debug('Done configuring layer groups.')
 
 
 def _add_layers(project):
@@ -179,11 +212,11 @@ def _add_layers(project):
                                   project.crs())
 
         group_path = layer_cfg.get('group_path', '')
-        group = _get_or_create_group(project, group_path)
+        group = _ensure_group_exists(project, group_path)
         group_layer = group.addLayer(map_layer)
+        # Make the layer invisible and collapsed by default
         group_layer.setItemVisibilityChecked(
-            # Make the layer visible by default.
-            layer_cfg.get('visible', True)
+            layer_cfg.get('visible', False)
         )
 
         # All layers start collapsed. When expanded (the default), they show the
