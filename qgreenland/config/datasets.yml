@@ -1716,6 +1716,10 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://download.kortforsyningen.dk/content/gr%C3%B8nlands-topografiske-kortv%C3%A6rk'
 
 - id: macferrin_etal_firn_ice_layer_thicknesses
+  # TODO: this can be an http access layer. Link to the data:
+  # https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-019-1550-3/MediaObjects/41586_2019_1550_MOESM3_ESM.xlsx
+  # ogr2ogr should be able to convert from xlsx to e.g. geopackage:
+  # https://gdal.org/drivers/vector/xlsx.html
   access_method: manual
   sources:
     - id: only
