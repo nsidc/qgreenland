@@ -2,6 +2,12 @@
 # path configures only the leaf node. To configure a parent node, enumerate it
 # explicitly.
 
+Miscellaneous:
+  # This is the top group, so even if we set expanded to False, it would show
+  # as expanded.
+  visible: True
+  expanded: True
+
 Built environment:
   visible: True
   expanded: False
@@ -16,4 +22,4 @@ Sea ice/Concentration (25 km):
 
 Basemaps:
   visible: True
-  expanded: False
+  expanded: True

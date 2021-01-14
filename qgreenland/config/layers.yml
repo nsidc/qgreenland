@@ -2,6 +2,65 @@
 # Miscellaneous #
 #################
 
+- &hdx_hotosm
+  id: hotosm_populated_places
+  title: 'Populated Places'
+  data_source: hdx_hotosm.populated_places
+  visible: False
+  group_path: 'Built environment/OpenStreetMap'
+  style: hotosm_populated_places_point
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *hdx_hotosm
+  id: hotosm_health_facilities
+  title: 'Health Facilities'
+  data_source: hdx_hotosm.health_facilities
+  style: health_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_airports
+  title: 'Airports'
+  data_source: hdx_hotosm.airports
+  style: airport_point
+- <<: *hdx_hotosm
+  id: hotosm_seaports
+  title: 'Seaports'
+  data_source: hdx_hotosm.seaports
+  style: seaport_point
+- <<: *hdx_hotosm
+  id: hotosm_waterways
+  title: 'Waterways'
+  data_source: hdx_hotosm.waterways
+  style: null
+- <<: *hdx_hotosm
+  id: hotosm_financial_services
+  title: 'Financial Services'
+  data_source: hdx_hotosm.financial_services
+  style: financial_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_education_facilities
+  title: 'Education Facilities'
+  data_source: hdx_hotosm.education_facilities
+  style: education_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_points_of_interest
+  title: 'Points of Interest'
+  data_source: hdx_hotosm.points_of_interest
+  style: null
+- <<: *hdx_hotosm
+  id: hotosm_roads
+  title: 'Roads'
+  visible: True
+  data_source: hdx_hotosm.roads
+  style: roads_line
+- <<: *hdx_hotosm
+  id: hotosm_buildings
+  title: 'Buildings'
+  data_source: hdx_hotosm.buildings
+  style: buildings_shape
+
 - id: utm_zones
   title: Universal Transverse Mercator (UTM) Zones
   visible: False
@@ -690,65 +749,6 @@
   #   ogr2ogr_kwargs:
   #     # TODO: This is lame, stop it!
   #     input_filename: 'fetched.geojson'
-
-- &hdx_hotosm
-  id: hotosm_populated_places
-  title: 'Populated Places'
-  data_source: hdx_hotosm.populated_places
-  visible: False
-  group_path: 'Built environment/OpenStreetMap'
-  style: hotosm_populated_places_point
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- <<: *hdx_hotosm
-  id: hotosm_health_facilities
-  title: 'Health Facilities'
-  data_source: hdx_hotosm.health_facilities
-  style: health_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_airports
-  title: 'Airports'
-  data_source: hdx_hotosm.airports
-  style: airport_point
-- <<: *hdx_hotosm
-  id: hotosm_seaports
-  title: 'Seaports'
-  data_source: hdx_hotosm.seaports
-  style: seaport_point
-- <<: *hdx_hotosm
-  id: hotosm_waterways
-  title: 'Waterways'
-  data_source: hdx_hotosm.waterways
-  style: null
-- <<: *hdx_hotosm
-  id: hotosm_financial_services
-  title: 'Financial Services'
-  data_source: hdx_hotosm.financial_services
-  style: financial_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_education_facilities
-  title: 'Education Facilities'
-  data_source: hdx_hotosm.education_facilities
-  style: education_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_points_of_interest
-  title: 'Points of Interest'
-  data_source: hdx_hotosm.points_of_interest
-  style: null
-- <<: *hdx_hotosm
-  id: hotosm_roads
-  title: 'Roads'
-  visible: True
-  data_source: hdx_hotosm.roads
-  style: roads_line
-- <<: *hdx_hotosm
-  id: hotosm_buildings
-  title: 'Buildings'
-  data_source: hdx_hotosm.buildings
-  style: buildings_shape
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and Population'
@@ -4400,16 +4400,16 @@
 
 # NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
 # an hour or more on `qgc.QgsRasterLayer` call. Remove it?
-- id: image_mosaic_2015
-  title: 'Greenland Image Mosaic 2015 (Online Only)'
-  description: 'Sentinel-2 multispectral satellite imagery from 2015.'
-  visible: False
-  group_path: 'Internet-required data'
-  boundary: 'data'
-  data_source: image_mosaic.2015
-  ingest_task: None
-  file_type: '.tif'
-  data_type: 'raster'
+# - id: image_mosaic_2015
+#   title: 'Greenland Image Mosaic 2015 (Online Only)'
+#   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
+#   visible: False
+#   group_path: 'Internet-required data'
+#   boundary: 'data'
+#   data_source: image_mosaic.2015
+#   ingest_task: None
+#   file_type: '.tif'
+#   data_type: 'raster'
 
 
 ############
