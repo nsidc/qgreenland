@@ -481,7 +481,7 @@
 - &walrus_protected_areas
   id: nunagis_walrus_protected_areas
   title: 'Walrus Protected Areas'
-  data_source: nunagis.protected_areas
+  data_source: nunagis_protected_areas
   visible: False
   group_path: 'Biology/Mammals'
   style: nunagis_walrus_protected_areas
@@ -752,7 +752,7 @@
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and Population'
-  data_source: nunagis.pop2019_municipalities
+  data_source: nunagis.nunagis_pop2019_municipalities
   visible: False
   group_path: 'Built environment'
   # TODO:
