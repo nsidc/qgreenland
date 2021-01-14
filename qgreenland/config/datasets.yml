@@ -539,10 +539,8 @@ The images and data are produced in a consistent way that makes the Index time-s
         - 'https://github.com/fraxen/tectonicplates/archive/339b0c5.zip'
   metadata:
     title: 'World tectonic plates and boundaries'
-    # TODO: should we just copy most of the github repo README into the abstract like quantarctica does?
     abstract: >-
-        TBD--
-        This is a conversion of the dataset originally published in the paper
+        As per data source - This dataset is a conversion of the dataset originally published in the paper
         _An updated digital model of plate boundaries_ by Peter Bird
         (Geochemistry Geophysics Geosystems, 4(3), 1027,
         [doi:10.1029/2001GC000252](http://scholar.google.se/scholar?cluster=1268723667321132798),
@@ -555,9 +553,10 @@ The images and data are produced in a consistent way that makes the Index time-s
         information on the fields and values, please refer to the
         [original](http://peterbird.name/oldFTP/PB2002/2001GC000252_readme.txt)
         documentation and the scientific article.
+        
+        Dataset credit should acknowledge Hugo Ahlenius, Peter Bird, and Nordpil, with an additional suggested citation included.
     citation:
-      # TODO Is this citation correct?
-      text: 'TBD: Hugo Ahlenius, Nordpil and Peter Bird'
+      text: 'Ahlenius, H. (2014). World tectonic plates and boundaries. Data available from https://github.com/fraxen/tectonicplates.'
       url: 'https://github.com/fraxen/tectonicplates'
 
 - id: earthquakes
@@ -572,10 +571,10 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'USGS Earthquakes 1990-2020'
     abstract: >-
-      TBD
+      United States Geological Survey earthquake data for earthquakes occuring during 1990-2020. Data is sourced from the ANSS Comprehensive Earthquake Catalog (ComCat). ComCat data are produced by contributing seismic networks.
     citation:
-      text: 'TBD: USGS. Initial access: 2020-08-20.'
-      url: 'TBD: https://earthquake.usgs.gov/earthquakes/search/'
+      text: 'U.S. Geological Survey (2020). ANSS Comprehensive Earthquake Catalog. Initial access: 2020-08-20.'
+      url: 'https://earthquake.usgs.gov/earthquakes/search/'
 
 
 - id: caff_murre_colonies
@@ -780,16 +779,12 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Ice Cores'
     abstract: >-
-        Records of past temperature, precipitation, atmospheric trace gases, and
-        other aspects of climate and environment derived from ice cores drilled
-        on glaciers and ice caps around the world. Parameter keywords describe
-        what was measured in this data set. Additional summary information can
-        be found in the abstracts of papers listed in the data set
-        citations. For details please see:
-        http://www.ncdc.noaa.gov/paleo/icecore.html
+        Greenland ice core locations. Ice cores can provide records of past temperature, precipitation, atmospheric trace gases, and
+        other aspects of climate and environment. Additional information is available in the 'description' attribute, including an ice core dataset URL. Data were accessed using the Google Earth Map Search Dataset. For 
+        details please see: http://www.ncdc.noaa.gov/paleo/icecore.html
     citation:
-      text: 'TBD'
-      url: 'https://cmr.earthdata.nasa.gov/search/concepts/C1214567770-NOAA_NCEI'
+      text: 'World Data Center (2020). Ice core locations. Download: http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Accessed July 1, 2020.'
+      url: 'http://www.ncdc.noaa.gov/paleo/icecore.html'
 
 
 - id: ne_countries
@@ -929,13 +924,21 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Humanitarian OpenStreetMap Team'
     abstract: >-
-      TBD
-    citation:
-      text: >-
-        HOT is an international team dedicated to humanitarian action and
-        community development through open mapping. We work together to provide
+        Humanitarian OpenStreetMap Team (HOT) is an international team dedicated to humanitarian action and
+        community development through open mapping. HOT works together to provide
         map data which revolutionises disaster management, reduces risks, and
         contributes to achievement of the Sustainable Development Goals.
+        
+        Full HOT License information: 
+        Copyright (c) 2015-2020, Humanitarian OpenStreetMap Team All rights reserved.
+        Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+        Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+        Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+         Neither the name of copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    citation:
+      text: >-
+        Humanitarian OpenStreetMap Team (2020). Web: https://export.hotosm.org/en/v3/. Accessed July 1, 2020.
       url: 'https://www.hotosm.org/'
 
 
@@ -971,8 +974,8 @@ The images and data are produced in a consistent way that makes the Index time-s
       query_url: 'https://services5.arcgis.com/wbN76kmEQ2ue8VQm/arcgis/rest/services/Nunat_Aqqi/FeatureServer/0/query/?f=json&where=OBJECTID<>null&outFields=*&orderByFields=OBJECTID+ASC'
   # TODO
   metadata:
-    title: 'TBD'
-    abstract: 'TBD'
+    title: 'TBD' Place names
+    abstract: 'TBD' Place names as provided by Asiaq Greenland Survey, December 2020.
     citation:
       text: 'TBD'
       url: 'http://example.com/TBD'
@@ -990,11 +993,12 @@ The images and data are produced in a consistent way that makes the Index time-s
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC'
   # TODO
   metadata:
-    title: 'TBD'
-    abstract: 'TBD'
+    title: 'Municipalities with Population'
+    abstract: >- 
+    TBD (fix that it's two layers - separate for metadata) Greenland municipality boundaries. Data includes information on 2019 municipality population and the municipality population as a percent of total Greenland population.
     citation:
       text: 'TBD'
-      url: 'http://example.com/TBD'
+      url: 'https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61'
 
 
 - id: future_icesheet_coverage
@@ -1063,11 +1067,12 @@ The images and data are produced in a consistent way that makes the Index time-s
         QGreenland.
   metadata:
     title: 'Greenland Territorial Waters'
-    abstract: 'TBD'
+    abstract: >-
+        Datasets provided by the Greenland Institute for Natural Resources (from Karl Zinglersen) via a private one-time FTP transfer on November 30, 2020. These data are not expected to be publicly archived outside of QGreenland.
     citation:
       text: >-
           Vector data from the Danish Geodata Agency. Attributes processed by
-          Karl Brix Zinglersen, Greenland Institute of Natural Resources
+          Karl Brix Zinglersen, Greenland Institute of Natural Resources (2020).
       url: ''
 
 - id: ginr_muskoxen
@@ -1118,11 +1123,11 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Caribou'
     abstract: >-
-        TBD
+        Dataset provided by the Greenland Institute for Natural Resources (from Karl Zinglersen) via email on October 16, 2020. These data are not expected to be publicly archived outside of QGreenland.
     citation:
       text: >-
-          Christine Cuyler and Karl Zinglersen, Greenland Institute of Natural Resources
-      url: 'TBD'
+          Christine Cuyler and Karl Zinglersen, Greenland Institute of Natural Resources (2020)
+      url: ''
 
 
 - id: nga_arctic_sea_routes
@@ -1179,9 +1184,9 @@ The images and data are produced in a consistent way that makes the Index time-s
   id: esa_cci_surface_elevation_change
   access_method: manual
   metadata:
-    title: '1992-2020 Greenland SEC from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-years means'
+    title: '1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-years means'
     abstract: >-
-      Data are based on ESAs Ku-band radar satellite level-2 data products.
+      Data are based on the European Space Agency's Ku-band radar satellite level-2 data products.
       Given the longer time span of operation of the satellites, the data are
       provided at a five-year mean.
 
@@ -1191,9 +1196,13 @@ The images and data are produced in a consistent way that makes the Index time-s
       PF-algorithm; the data are corrected for both backscatter and leading-edge
       width, and solved at 1 km grid resolution and averaged in the
       post-processing to 5 km grid resolution by ordinary kriging.
+      
+      Simonsen, S. B., and Sørensen, L. S. (2017) ‘Implications of changing scattering properties on Greenland ice sheet volume change from Cryosat-2 altimetry’, Remote Sensing of Environment. Elsevier Inc., 190, pp. 207–216. DOI: 10.1016/j.rse.2016.12.012.
+
+      Sørensen, L. S., Simonsen, S. B., Forsberg, R., Khvorostovsky, K., Meister, R., and Engdahl, M. E. (2018) '25 years of elevation changes of the Greenland Ice Sheet from ERS, Envisat, and CryoSat-2 radar altimetry', Earth and Planetary Science Letters, 495, pp. 234-241 DOI: 10.1016/j.epsl.2018.05.015
     citation:
       text: >-
-        TBD
+        ESA. (2020) 1992-2020 Greenland SEC from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-year means. Greenland Ice Sheet CCI Products.
       url: 'http://products.esa-icesheets-cci.org/products/details/cci_sec_2020.tar.gz/'
 
 - <<: *esa_cci
@@ -1540,11 +1549,12 @@ The images and data are produced in a consistent way that makes the Index time-s
       urls:
         - 'https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_historic'
   metadata:
-    title: 'TBD'
-    abstract: 'TBD'
+    title: 'Mineral and hydrocarbon licenses'
+    abstract: >-
+    Mineral and hydrocarbon license data, including historic public licenses and public licenses. License data is sources from the Mineral Resource Authority, Government of Greenland using their GeoServer version 2.14.1 (https://gis.govmin.gl/geoserver/web/).
     citation:
       text: 'Government of Greenland/GINR'
-      url: 'TBD'
+      url: ''
 
 
 - id: gc_net_promice_stations
@@ -1562,10 +1572,11 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'map_GC-Net_PROMICE'
     abstract: >-
+      GitHub data description (creator: jasonebox): 
       For PROMICE, I use a 2017-2018 average of station GPS data. I added an
       updated position for THU-U2. An improvement would be to have the .kml add
       the position date to the description and how it was obtained. For GC-Net,
-      I use a table from Koni. I added an updated position for PET ELA from
+      I use a table from Konrad Steffen. I added an updated position for PET ELA from
       2016.
 
       Accuracy of positions is very important to avoid arriving in the field at
@@ -1573,7 +1584,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       can cause expensive problems not finding stations because of bad
       coordinates.
     citation:
-      text: 'TBD'
+      text: 'PROMICE, (2020). Map of GC-Net and PROMICE station locations. Web: https://github.com/GEUS-PROMICE. Accessed July 1, 2020.'
       url: 'https://github.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/tree/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92'
 
 - id: machguth_etal_massbalance_obs_locations
@@ -1635,7 +1646,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: only
       # This was obtained from Dropbox. Did we get it directly from the authors?
       access_instructions: >-
-          TBD
+          Available via the publication website, and contained in the Source Data Fig. 2 file. 
   metadata:
     title: "Rapid expansion of Greenland’s low-permeability ice slabs"
     abstract: >-
