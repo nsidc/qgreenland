@@ -1897,6 +1897,8 @@
 - id: wmm_geomagnetic_north_pole
   title: 'Geomagnetic North Pole (2020)'
   description: >-
+    Location of the Geomagnetic North Pole.
+
     The WMM representation of the field includes a magnetic dipole at the center
     of the Earth. This dipole defines an axis that intersects the Earth's
     surface at two antipodal points. These points are called geomagnetic
@@ -2006,6 +2008,10 @@
 - &wmm_d_2020
   id: wmm_d_2020
   title: 'Main Field Declination (D)'
+  description: &wmm_d_description >-
+    Contours representing magnetic declination (D) in degrees. D is the angle
+    between magnetic north and true north. D is considered positive when the
+    angle measured is east of true north and negative when west.
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2020'
   style: null
@@ -2030,8 +2036,9 @@
 - <<: *wmm_d_2020
   id: wmm_d_sv_2020
   title: 'Annual Change Declination (D_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: &wmm_sv_description >-
+    Contours representing annual change (secular variation) in the total
+    intensity of the main magnetic field in arcminutes per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/D_SV_2020.cpg'
@@ -2046,6 +2053,12 @@
 - <<: *wmm_d_2020
   id: wmm_f_2020
   title: 'Main Field Total Intensity (F)'
+  description: &wmm_f_description >-
+    Contours representing the intensity of the total field (F) in nanoTesla
+    (nT). F is described by the horizontal component (H), vertical component
+    (Z), and the north (X) and east (Y) components of the horizontal
+    intensity. The Earth's magnetic field intensity is roughly between 25,000 -
+    65,000 nT (.25 - .65 gauss).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/F_2020.cpg'
@@ -2060,8 +2073,7 @@
 - <<: *wmm_d_2020
   id: wmm_f_sv_2020
   title: 'Annual Change Total Intensity (F_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/F_SV_2020.cpg'
@@ -2076,6 +2088,9 @@
 - <<: *wmm_d_2020
   id: wmm_h_2020
   title: 'Main Field Horizontal Intensity (H)'
+  description: &wmm_h_description >-
+    Contours representing Horizontal Intensity (H) of the geomagnetic main field
+    in nanoTesla (nT).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/H_2020.cpg'
@@ -2090,8 +2105,7 @@
 - <<: *wmm_d_2020
   id: wmm_h_sv_2020
   title: 'Annual Change Horizontal Intensity (H_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/H_SV_2020.cpg'
@@ -2106,6 +2120,10 @@
 - <<: *wmm_d_2020
   id: wmm_i_2020
   title: 'Main Field Inclination (I)'
+  description: &wmm_i_description >-
+    Contours representing magnetic inclination (I) in degrees. I is the angle
+    between the horizontal plane and the total field vector, measured positive
+    into Earth.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/I_2020.cpg'
@@ -2120,8 +2138,7 @@
 - <<: *wmm_d_2020
   id: wmm_i_sv_2020
   title: 'Annual Change Inclination (I_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/I_SV_2020.cpg'
@@ -2136,6 +2153,9 @@
 - <<: *wmm_d_2020
   id: wmm_x_2020
   title: 'Main Field North Component (X)'
+  description: &wmm_x_description >-
+    Contours representing the main field North component (X) of the horizontal
+    intensity in nanoTesla (nT).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/X_2020.cpg'
@@ -2150,8 +2170,7 @@
 - <<: *wmm_d_2020
   id: wmm_x_sv_2020
   title: 'Annual Change North Component (X_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/X_SV_2020.cpg'
@@ -2166,6 +2185,9 @@
 - <<: *wmm_d_2020
   id: wmm_y_2020
   title: 'Main Field East Component (Y)'
+  description: &wmm_y_description >-
+    Contours representing the main field East component (Y) of the horizontal
+    intensity in nanoTesla (nT).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Y_2020.cpg'
@@ -2180,8 +2202,7 @@
 - <<: *wmm_d_2020
   id: wmm_y_sv_2020
   title: 'Annual Change East Component (Y_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.cpg'
@@ -2196,6 +2217,8 @@
 - <<: *wmm_d_2020
   id: wmm_z_2020
   title: 'Main Field Down Component (Z)'
+  description: &wmm_z_description >-
+    Contours representing the main field down component (Z) in nanoTesla (nT).
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Z_2020.cpg'
@@ -2210,8 +2233,7 @@
 - <<: *wmm_d_2020
   id: wmm_z_sv_2020
   title: 'Annual Change Down Component (Z_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.cpg'
@@ -2243,6 +2265,7 @@
 - &wmm_d_2021
   id: wmm_d_2021
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2021'
   style: null
@@ -2267,8 +2290,7 @@
 - <<: *wmm_d_2021
   id: wmm_d_sv_2021
   title: 'Annual Change Declination (D_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/D_SV_2021.cpg'
@@ -2283,6 +2305,7 @@
 - <<: *wmm_d_2021
   id: wmm_f_2021
   title: 'Main Field Total Intensity (F)'
+  description: *wmm_f_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/F_2021.cpg'
@@ -2297,8 +2320,7 @@
 - <<: *wmm_d_2021
   id: wmm_f_sv_2021
   title: 'Annual Change Total Intensity (F_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/F_SV_2021.cpg'
@@ -2313,6 +2335,7 @@
 - <<: *wmm_d_2021
   id: wmm_h_2021
   title: 'Main Field Horizontal Intensity (H)'
+  description: *wmm_h_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/H_2021.cpg'
@@ -2327,8 +2350,7 @@
 - <<: *wmm_d_2021
   id: wmm_h_sv_2021
   title: 'Annual Change Horizontal Intensity (H_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/H_SV_2021.cpg'
@@ -2343,6 +2365,7 @@
 - <<: *wmm_d_2021
   id: wmm_i_2021
   title: 'Main Field Inclination (I)'
+  description: *wmm_i_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/I_2021.cpg'
@@ -2357,8 +2380,7 @@
 - <<: *wmm_d_2021
   id: wmm_i_sv_2021
   title: 'Annual Change Inclination (I_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/I_SV_2021.cpg'
@@ -2373,6 +2395,7 @@
 - <<: *wmm_d_2021
   id: wmm_x_2021
   title: 'Main Field North Component (X)'
+  description: *wmm_x_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/X_2021.cpg'
@@ -2387,8 +2410,7 @@
 - <<: *wmm_d_2021
   id: wmm_x_sv_2021
   title: 'Annual Change North Component (X_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/X_SV_2021.cpg'
@@ -2403,6 +2425,7 @@
 - <<: *wmm_d_2021
   id: wmm_y_2021
   title: 'Main Field East Component (Y)'
+  description: *wmm_y_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Y_2021.cpg'
@@ -2417,8 +2440,7 @@
 - <<: *wmm_d_2021
   id: wmm_y_sv_2021
   title: 'Annual Change East Component (Y_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Y_SV_2021.cpg'
@@ -2433,6 +2455,7 @@
 - <<: *wmm_d_2021
   id: wmm_z_2021
   title: 'Main Field Down Component (Z)'
+  description: *wmm_z_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Z_2021.cpg'
@@ -2447,8 +2470,7 @@
 - <<: *wmm_d_2021
   id: wmm_z_sv_2021
   title: 'Annual Change Down Component (Z_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Z_SV_2021.cpg'
@@ -2479,6 +2501,7 @@
 - &wmm_d_2022
   id: wmm_d_2022
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2022'
   style: null
@@ -2503,8 +2526,7 @@
 - <<: *wmm_d_2022
   id: wmm_d_sv_2022
   title: 'Annual Change Declination (D_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/D_SV_2022.cpg'
@@ -2519,6 +2541,7 @@
 - <<: *wmm_d_2022
   id: wmm_f_2022
   title: 'Main Field Total Intensity (F)'
+  description: *wmm_f_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/F_2022.cpg'
@@ -2533,8 +2556,7 @@
 - <<: *wmm_d_2022
   id: wmm_f_sv_2022
   title: 'Annual Change Total Intensity (F_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/F_SV_2022.cpg'
@@ -2549,6 +2571,7 @@
 - <<: *wmm_d_2022
   id: wmm_h_2022
   title: 'Main Field Horizontal Intensity (H)'
+  description: *wmm_h_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/H_2022.cpg'
@@ -2563,8 +2586,7 @@
 - <<: *wmm_d_2022
   id: wmm_h_sv_2022
   title: 'Annual Change Horizontal Intensity (H_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/H_SV_2022.cpg'
@@ -2579,6 +2601,7 @@
 - <<: *wmm_d_2022
   id: wmm_i_2022
   title: 'Main Field Inclination (I)'
+  description: *wmm_i_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/I_2022.cpg'
@@ -2593,8 +2616,7 @@
 - <<: *wmm_d_2022
   id: wmm_i_sv_2022
   title: 'Annual Change Inclination (I_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/I_SV_2022.cpg'
@@ -2609,6 +2631,7 @@
 - <<: *wmm_d_2022
   id: wmm_x_2022
   title: 'Main Field North Component (X)'
+  description: *wmm_x_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/X_2022.cpg'
@@ -2623,8 +2646,7 @@
 - <<: *wmm_d_2022
   id: wmm_x_sv_2022
   title: 'Annual Change North Component (X_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/X_SV_2022.cpg'
@@ -2639,6 +2661,7 @@
 - <<: *wmm_d_2022
   id: wmm_y_2022
   title: 'Main Field East Component (Y)'
+  description: *wmm_y_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Y_2022.cpg'
@@ -2653,8 +2676,7 @@
 - <<: *wmm_d_2022
   id: wmm_y_sv_2022
   title: 'Annual Change East Component (Y_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Y_SV_2022.cpg'
@@ -2669,6 +2691,7 @@
 - <<: *wmm_d_2022
   id: wmm_z_2022
   title: 'Main Field Down Component (Z)'
+  description: *wmm_z_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Z_2022.cpg'
@@ -2683,8 +2706,7 @@
 - <<: *wmm_d_2022
   id: wmm_z_sv_2022
   title: 'Annual Change Down Component (Z_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Z_SV_2022.cpg'
@@ -2715,6 +2737,7 @@
 - &wmm_d_2023
   id: wmm_d_2023
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2023'
   style: null
@@ -2739,8 +2762,7 @@
 - <<: *wmm_d_2023
   id: wmm_d_sv_2023
   title: 'Annual Change Declination (D_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/D_SV_2023.cpg'
@@ -2755,6 +2777,7 @@
 - <<: *wmm_d_2023
   id: wmm_f_2023
   title: 'Main Field Total Intensity (F)'
+  description: *wmm_f_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/F_2023.cpg'
@@ -2769,8 +2792,7 @@
 - <<: *wmm_d_2023
   id: wmm_f_sv_2023
   title: 'Annual Change Total Intensity (F_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/F_SV_2023.cpg'
@@ -2785,6 +2807,7 @@
 - <<: *wmm_d_2023
   id: wmm_h_2023
   title: 'Main Field Horizontal Intensity (H)'
+  description: *wmm_h_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/H_2023.cpg'
@@ -2799,8 +2822,7 @@
 - <<: *wmm_d_2023
   id: wmm_h_sv_2023
   title: 'Annual Change Horizontal Intensity (H_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/H_SV_2023.cpg'
@@ -2815,6 +2837,7 @@
 - <<: *wmm_d_2023
   id: wmm_i_2023
   title: 'Main Field Inclination (I)'
+  description: *wmm_i_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/I_2023.cpg'
@@ -2829,8 +2852,7 @@
 - <<: *wmm_d_2023
   id: wmm_i_sv_2023
   title: 'Annual Change Inclination (I_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/I_SV_2023.cpg'
@@ -2845,6 +2867,7 @@
 - <<: *wmm_d_2023
   id: wmm_x_2023
   title: 'Main Field North Component (X)'
+  description: *wmm_x_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/X_2023.cpg'
@@ -2859,8 +2882,7 @@
 - <<: *wmm_d_2023
   id: wmm_x_sv_2023
   title: 'Annual Change North Component (X_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/X_SV_2023.cpg'
@@ -2875,6 +2897,7 @@
 - <<: *wmm_d_2023
   id: wmm_y_2023
   title: 'Main Field East Component (Y)'
+  description: *wmm_y_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Y_2023.cpg'
@@ -2889,8 +2912,7 @@
 - <<: *wmm_d_2023
   id: wmm_y_sv_2023
   title: 'Annual Change East Component (Y_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Y_SV_2023.cpg'
@@ -2905,6 +2927,7 @@
 - <<: *wmm_d_2023
   id: wmm_z_2023
   title: 'Main Field Down Component (Z)'
+  description: *wmm_z_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Z_2023.cpg'
@@ -2919,8 +2942,7 @@
 - <<: *wmm_d_2023
   id: wmm_z_sv_2023
   title: 'Annual Change Down Component (Z_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Z_SV_2023.cpg'
@@ -2951,6 +2973,7 @@
 - &wmm_d_2024
   id: wmm_d_2024
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2024'
   style: null
@@ -2975,8 +2998,7 @@
 - <<: *wmm_d_2024
   id: wmm_d_sv_2024
   title: 'Annual Change Declination (D_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/D_SV_2024.cpg'
@@ -2991,6 +3013,7 @@
 - <<: *wmm_d_2024
   id: wmm_f_2024
   title: 'Main Field Total Intensity (F)'
+  description: *wmm_f_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/F_2024.cpg'
@@ -3005,8 +3028,7 @@
 - <<: *wmm_d_2024
   id: wmm_f_sv_2024
   title: 'Annual Change Total Intensity (F_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/F_SV_2024.cpg'
@@ -3021,6 +3043,7 @@
 - <<: *wmm_d_2024
   id: wmm_h_2024
   title: 'Main Field Horizontal Intensity (H)'
+  description: *wmm_h_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/H_2024.cpg'
@@ -3035,8 +3058,7 @@
 - <<: *wmm_d_2024
   id: wmm_h_sv_2024
   title: 'Annual Change Horizontal Intensity (H_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/H_SV_2024.cpg'
@@ -3051,6 +3073,7 @@
 - <<: *wmm_d_2024
   id: wmm_i_2024
   title: 'Main Field Inclination (I)'
+  description: *wmm_i_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/I_2024.cpg'
@@ -3065,8 +3088,7 @@
 - <<: *wmm_d_2024
   id: wmm_i_sv_2024
   title: 'Annual Change Inclination (I_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/I_SV_2024.cpg'
@@ -3081,6 +3103,7 @@
 - <<: *wmm_d_2024
   id: wmm_x_2024
   title: 'Main Field North Component (X)'
+  description: *wmm_x_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/X_2024.cpg'
@@ -3095,8 +3118,7 @@
 - <<: *wmm_d_2024
   id: wmm_x_sv_2024
   title: 'Annual Change North Component (X_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/X_SV_2024.cpg'
@@ -3111,6 +3133,7 @@
 - <<: *wmm_d_2024
   id: wmm_y_2024
   title: 'Main Field East Component (Y)'
+  description: *wmm_y_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Y_2024.cpg'
@@ -3125,8 +3148,7 @@
 - <<: *wmm_d_2024
   id: wmm_y_sv_2024
   title: 'Annual Change East Component (Y_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Y_SV_2024.cpg'
@@ -3141,6 +3163,7 @@
 - <<: *wmm_d_2024
   id: wmm_z_2024
   title: 'Main Field Down Component (Z)'
+  description: *wmm_z_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Z_2024.cpg'
@@ -3155,8 +3178,7 @@
 - <<: *wmm_d_2024
   id: wmm_z_sv_2024
   title: 'Annual Change Down Component (Z_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Z_SV_2024.cpg'
@@ -3187,6 +3209,7 @@
 - &wmm_d_2025
   id: wmm_d_2025
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2025'
   style: null
@@ -3211,8 +3234,7 @@
 - <<: *wmm_d_2025
   id: wmm_d_sv_2025
   title: 'Annual Change Declination (D_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/D_SV_2025.cpg'
@@ -3227,6 +3249,7 @@
 - <<: *wmm_d_2025
   id: wmm_f_2025
   title: 'Main Field Total Intensity (F)'
+  description: *wmm_f_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/F_2025.cpg'
@@ -3241,8 +3264,7 @@
 - <<: *wmm_d_2025
   id: wmm_f_sv_2025
   title: 'Annual Change Total Intensity (F_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/F_SV_2025.cpg'
@@ -3257,6 +3279,7 @@
 - <<: *wmm_d_2025
   id: wmm_h_2025
   title: 'Main Field Horizontal Intensity (H)'
+  description: *wmm_h_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/H_2025.cpg'
@@ -3271,8 +3294,7 @@
 - <<: *wmm_d_2025
   id: wmm_h_sv_2025
   title: 'Annual Change Horizontal Intensity (H_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/H_SV_2025.cpg'
@@ -3287,6 +3309,7 @@
 - <<: *wmm_d_2025
   id: wmm_i_2025
   title: 'Main Field Inclination (I)'
+  description: *wmm_i_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/I_2025.cpg'
@@ -3301,8 +3324,7 @@
 - <<: *wmm_d_2025
   id: wmm_i_sv_2025
   title: 'Annual Change Inclination (I_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/I_SV_2025.cpg'
@@ -3317,6 +3339,7 @@
 - <<: *wmm_d_2025
   id: wmm_x_2025
   title: 'Main Field North Component (X)'
+  description: *wmm_x_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/X_2025.cpg'
@@ -3331,8 +3354,7 @@
 - <<: *wmm_d_2025
   id: wmm_x_sv_2025
   title: 'Annual Change North Component (X_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/X_SV_2025.cpg'
@@ -3347,6 +3369,7 @@
 - <<: *wmm_d_2025
   id: wmm_y_2025
   title: 'Main Field East Component (Y)'
+  description: *wmm_y_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Y_2025.cpg'
@@ -3361,8 +3384,7 @@
 - <<: *wmm_d_2025
   id: wmm_y_sv_2025
   title: 'Annual Change East Component (Y_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Y_SV_2025.cpg'
@@ -3377,6 +3399,7 @@
 - <<: *wmm_d_2025
   id: wmm_z_2025
   title: 'Main Field Down Component (Z)'
+  description: *wmm_z_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Z_2025.cpg'
@@ -3391,8 +3414,7 @@
 - <<: *wmm_d_2025
   id: wmm_z_sv_2025
   title: 'Annual Change Down Component (Z_SV)'
-  description: >-
-    Secular variation is the slow change in time of the main magnetic field.
+  description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.cpg'
