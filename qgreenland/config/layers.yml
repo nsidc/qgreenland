@@ -2008,7 +2008,7 @@
 - &wmm_d_2020
   id: wmm_d_2020
   title: 'Main Field Declination (D)'
-  description: >-
+  description: &wmm_d_description >-
     Countrous representing magnetic declination (D) in degrees. D is the angle
     between magnetic north and true north. D is considered positive when the
     angle measured is east of true north and negative when west.
@@ -2265,6 +2265,7 @@
 - &wmm_d_2021
   id: wmm_d_2021
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2021'
   style: null
@@ -2494,6 +2495,7 @@
 - &wmm_d_2022
   id: wmm_d_2022
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2022'
   style: null
@@ -2723,6 +2725,7 @@
 - &wmm_d_2023
   id: wmm_d_2023
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2023'
   style: null
@@ -2952,6 +2955,7 @@
 - &wmm_d_2024
   id: wmm_d_2024
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2024'
   style: null
@@ -3181,6 +3185,7 @@
 - &wmm_d_2025
   id: wmm_d_2025
   title: 'Main Field Declination (D)'
+  description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2025'
   style: null
