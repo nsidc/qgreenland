@@ -990,11 +990,14 @@ The images and data are produced in a consistent way that makes the Index time-s
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC'
   # TODO
   metadata:
-    title: 'TBD'
-    abstract: 'TBD'
+    title: 'Municipalities with Population'
+    abstract: >-
+      Greenland municipality boundaries. Data includes information on 2019
+      municipality population and the municipality population as a percent of
+      total Greenland population.
     citation:
       text: 'TBD'
-      url: 'http://example.com/TBD'
+      url: 'https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61'
 
 - id: nunagis_protected_areas
   access_method: ogr_remote_vector
@@ -1006,15 +1009,11 @@ The images and data are produced in a consistent way that makes the Index time-s
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC'
   # TODO
   metadata:
-    title: 'Municipalities with Population'
-    abstract: >- 
-      TBD (fix that it's two layers - separate for metadata) Greenland
-      municipality boundaries. Data includes information on 2019 municipality
-      population and the municipality population as a percent of total
-      Greenland population.
+    title: 'TBD'
+    abstract: 'TBD'
     citation:
       text: 'TBD'
-      url: 'https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61'
+      url: 'http://example.com/TBD'
 
 
 - id: future_icesheet_coverage
