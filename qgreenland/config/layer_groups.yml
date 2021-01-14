@@ -1,220 +1,25 @@
+# All layer groups default to collapsed and non-visible. Note that a config
+# path configures only the leaf node. To configure a parent node, enumerate it
+# explicitly.
+
 Miscellaneous:
-  visible: False
-  # The first group will be automatically expanded by QGIS, but we don't want
-  # that:(
-  expanded: False
-
-Miscellaneous/Latitude lines:
-  visible: False
-  expanded: False
-
-Miscellaneous/Longitude lines:
-  visible: False
-  expanded: False
-
-
-Atmosphere:
-  visible: False
-  expanded: False
-
-Atmosphere/RACMO model output:
-  visible: False
-  expanded: False
-
-
-Biology:
-  visible: False
-  expanded: False
-
-Biology/Fish:
-  visible: False
-  expanded: False
-
-Biology/Birds:
-  visible: False
-  expanded: False
-
-Biology/Mammals:
-  visible: False
-  expanded: False
-
-Biology/Vegetation:
-  visible: False
-  expanded: False
-
+  # This is the top group, so even if we set expanded to False, it would show
+  # as expanded.
+  visible: True
+  expanded: True
 
 Built environment:
   visible: True
   expanded: False
 
-
-Environmental management:
-  visible: False
-  expanded: False
-
-Environmental management/Protected zones:
-  visible: False
-  expanded: False
-
-Environmental management/Exclusive economic zones:
-  visible: False
-  expanded: False
-
-
-Frozen ground:
-  visible: False
-  expanded: False
-
-
-Future projections:
-  visible: False
-  expanded: False
-
-
-Glaciology:
-  visible: False
-  expanded: False
-
-Glaciology/Glacier terminus positions 2000-2017:
-  visible: False
-  expanded: False
-
-Glaciology/Ice sheet velocity:
-  visible: False
-  expanded: False
-
-Glaciology/Surface elevation change:
-  visible: False
-  expanded: False
-
-Glaciology/Surface elevation change/Observations:
-  visible: False
-  expanded: False
-
-Glaciology/Surface elevation change/Errors:
-  visible: False
-  expanded: False
-
-
-Geology & natural resources:
-  visible: False
-  expanded: False
-
-
-Geophysics:
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model:
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model/Dip Poles:
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020):
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model/2020:
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model/2021:
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model/2022:
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model/2023:
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model/2024:
-  visible: False
-  expanded: False
-
-Geophysics/World Magnetic Model/2025:
-  visible: False
-  expanded: False
-
-Human activity:
-  visible: False
-  expanded: False
-
-Human activity/Research stations:
-  visible: False
-  expanded: False
-
-
-Hydrology:
-  visible: False
-  expanded: False
-
-
-Oceanography:
-  visible: False
-  expanded: False
-
-Oceanography/IHO-ICO GEBCO Undersea feature names:
-  visible: False
-  expanded: False
-
-Oceanography/World Ocean Atlas (WOA) 2018:
-  visible: False
-  expanded: False
-
-
-Sea ice:
-  visible: False
-  expanded: False
-
 Sea ice/Ice Age (12.5 km):
   visible: False
-  expanded: False
-
-Sea ice/Ice Age (12.5 km)/September (min extent):
-  visible: False
-  expanded: False
-
-Sea ice/Ice Age (12.5 km)/Feb or March (max extent):
-  visible: False
-  expanded: False
-
-Sea ice/Median ice extent:
-  visible: False
-  expanded: False
+  expanded: True
 
 Sea ice/Concentration (25 km):
   visible: False
   expanded: True
 
-Sea ice/Concentration (25 km)/September (min extent):
-  visible: False
-  expanded: False
-
-Sea ice/Concentration (25 km)/Feb or March (max extent):
-  visible: False
-  expanded: False
-
-
-Terrain models:
-  visible: False
-  expanded: False
-
-Terrain models/BedMachine:
-  visible: False
-  expanded: False
-
-
-Internet-required data:
-  visible: False
-  expanded: False
-
-
 Basemaps:
   visible: True
-  expanded: False
+  expanded: True
