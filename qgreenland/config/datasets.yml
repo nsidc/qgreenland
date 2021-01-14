@@ -972,7 +972,8 @@ The images and data are produced in a consistent way that makes the Index time-s
   sources:
     - id: only
       query_url: 'https://services5.arcgis.com/wbN76kmEQ2ue8VQm/arcgis/rest/services/Nunat_Aqqi/FeatureServer/0/query/?f=json&where=OBJECTID<>null&outFields=*&orderByFields=OBJECTID+ASC'
-  # TODO
+  # TODO: We're not using this dataset yet, but when it's updated we may want
+  # to use it.
   metadata:
     title: Place names
     abstract: >-
@@ -982,16 +983,27 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'http://example.com/TBD'
 
 
-- id: nunagis
+- id: nunagis_pop2019_municipalities
   access_method: ogr_remote_vector
   sources:
-    - id: protected_areas
+    - id: only
+      query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC'
+  # TODO
+  metadata:
+    title: 'TBD'
+    abstract: 'TBD'
+    citation:
+      text: 'TBD'
+      url: 'http://example.com/TBD'
+
+- id: nunagis_protected_areas
+  access_method: ogr_remote_vector
+  sources:
+    - id: only
       # TODO: consider other services under
       # https://kort.nunagis.gl/server/rest/services/Hosted/. This URL implies the
       # query will only return results related to birds.
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC'
-    - id: pop2019_municipalities
-      query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC'
   # TODO
   metadata:
     title: 'Municipalities with Population'
@@ -1632,7 +1644,7 @@ The images and data are produced in a consistent way that makes the Index time-s
           Downloaded through the The Danish Agency for Map Supply and
           Efficiency's website on 2020-12-17. User registration is
           required. Once the ordered data were delivered (as a zipfile), they
-          were extractracted and a mosaic was created of the 500m version of the
+          were extracted and a mosaic was created of the 500m version of the
           data via the
           `scripts/danish_agency_for_data_supply_and_efficiency_gtk_topop_map/preprocess.sh`
           script.
@@ -1653,30 +1665,32 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: only
       # This was obtained from Dropbox. Did we get it directly from the authors?
       access_instructions: >-
-          Available via the publication website, and contained in the Source Data Fig. 2 file. 
+        Available via the publication website, and contained in the Source Data
+        Fig. 2 file. 
   metadata:
     title: "Rapid expansion of Greenland’s low-permeability ice slabs"
     abstract: >-
-      In recent decades, meltwater runoff has accelerated to become the dominant
-      mechanism for mass loss in the Greenland ice sheet1–3. In Greenland’s
-      high-elevation interior, porous snow and firn accumulate; these can absorb
-      surface meltwater and inhibit runoff4, but this buffering effect is
-      limited if enough water refreezes near the surface to restrict
-      percolation5,6. However, the influence of refreezing on runoff from
+      In recent decades, meltwater runoff has accelerated to become the
+      dominant mechanism for mass loss in the Greenland ice sheet. In
+      Greenland’s high-elevation interior, porous snow and firn accumulate;
+      these can absorb surface meltwater and inhibit runoff, but this buffering
+      effect is limited if enough water refreezes near the surface to restrict
+      percolation. However, the influence of refreezing on runoff from
       Greenland remains largely unquantified. Here we use firn cores, radar
       observations and regional climate models to show that recent increases in
-      meltwater have resulted in the formation of metres-thick, low-permeability
-      ‘ice slabs’ that have expanded the Greenland ice sheet’s total runoff area
-      by 26 ± 3 per cent since 2001. Although runoff from the top of ice slabs
-      has added less than one millimetre to global sea-level rise so far, this
-      contribution will grow substantially as ice slabs expand inland in a
-      warming climate. Runoff over ice slabs is set to contribute 7 to 33
-      millimetres and 17 to 74 millimetres to global sea-level rise by 2100
-      under moderate- and high-emissions scenarios, respectively—approximately
-      double the estimated runoff from Greenland’s high-elevation interior, as
-      predicted by surface mass balance models without ice slabs. Ice slabs will
-      have an important role in enhancing surface meltwater feedback processes,
-      fundamentally altering the ice sheet’s present and future hydrology.
+      meltwater have resulted in the formation of metres-thick,
+      low-permeability ‘ice slabs’ that have expanded the Greenland ice sheet’s
+      total runoff area by 26 ± 3 per cent since 2001. Although runoff from the
+      top of ice slabs has added less than one millimetre to global sea-level
+      rise so far, this contribution will grow substantially as ice slabs
+      expand inland in a warming climate. Runoff over ice slabs is set to
+      contribute 7 to 33 millimetres and 17 to 74 millimetres to global
+      sea-level rise by 2100 under moderate- and high-emissions scenarios,
+      respectively—approximately double the estimated runoff from Greenland’s
+      high-elevation interior, as predicted by surface mass balance models
+      without ice slabs. Ice slabs will have an important role in enhancing
+      surface meltwater feedback processes, fundamentally altering the ice
+      sheet’s present and future hydrology.
     citation:
       text: >-
         MacFerrin, M., Machguth, H., As, D.v. et al. Rapid expansion of
