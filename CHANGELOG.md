@@ -1,3 +1,9 @@
+# v0.52.0 (Unreleased)
+
+- Move OpenStreetMap layers into Miscellaneous group.
+- All layer groups except Basemaps and Miscellaneous now initialize collapsed
+  and unchecked.
+
 # v0.51.0 (2021-01-12)
 
 - Update private archive datasets to include preprocessing scripts where
