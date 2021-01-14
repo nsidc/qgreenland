@@ -3639,43 +3639,15 @@
 #############
 
 - &streams_outlets_basins
-  id: ice_basins
-  title: 'Ice Basins'
+  id: ice_outlets
+  title: 'Ice Outlets'
   description: >-
-      TODO
-  data_source: streams_outlets_basins.ice_basins
+      TBD
   ingest_task: online_vector
   file_type: '.gpkg'
   data_type: 'vector'
   visible: False
   group_path: 'Hydrology'
-  ogr2ogr_kwargs:
-    input_filename: 'basins.gpkg'
-
-- <<: *streams_outlets_basins
-  id: land_basins
-  title: 'Land Basins'
-  data_source: streams_outlets_basins.land_basins
-  ogr2ogr_kwargs:
-    input_filename: 'basins.gpkg'
-
-- <<: *streams_outlets_basins
-  id: ice_basins_filled
-  title: 'Ice Basins Filled'
-  data_source: streams_outlets_basins.ice_basins_filled
-  ogr2ogr_kwargs:
-    input_filename: 'basins_filled.gpkg'
-
-- <<: *streams_outlets_basins
-  id: land_basins_filled
-  title: 'Land Basins Filled'
-  data_source: streams_outlets_basins.land_basins_filled
-  ogr2ogr_kwargs:
-    input_filename: 'basins_filled.gpkg'
-
-- <<: *streams_outlets_basins
-  id: ice_outlets
-  title: 'Ice Outlets'
   data_source: streams_outlets_basins.ice_outlets
   ogr2ogr_kwargs:
     input_filename: 'outlets.gpkg'
@@ -3683,6 +3655,8 @@
 - <<: *streams_outlets_basins
   id: land_outlets
   title: 'Land Outlets'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.land_outlets
   ogr2ogr_kwargs:
     input_filename: 'outlets.gpkg'
@@ -3690,10 +3664,30 @@
 - <<: *streams_outlets_basins
   id: ice_streams
   title: 'Ice Streams'
+  description: >-
+      TBD
   data_source: streams_outlets_basins.ice_streams
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
     sql: "'SELECT * from streams WHERE GeometryType(geom) = \"LINESTRING\" AND ST_NPoints(geom) > 1'"
+
+- <<: *streams_outlets_basins
+  id: ice_basins
+  title: 'Ice Basins'
+  description: >-
+      TBD
+  data_source: streams_outlets_basins.ice_basins
+  ogr2ogr_kwargs:
+    input_filename: 'basins.gpkg'
+
+- <<: *streams_outlets_basins
+  id: ice_basins_filled
+  title: 'Ice Basins Filled'
+  description: >-
+      TBD
+  data_source: streams_outlets_basins.ice_basins_filled
+  ogr2ogr_kwargs:
+    input_filename: 'basins_filled.gpkg'
 
 - <<: *streams_outlets_basins
   id: land_streams
@@ -3702,6 +3696,24 @@
   ogr2ogr_kwargs:
     input_filename: 'streams.gpkg'
     sql: "'SELECT * from streams WHERE GeometryType(geom) = \"LINESTRING\" AND ST_NPoints(geom) > 1'"
+
+- <<: *streams_outlets_basins
+  id: land_basins
+  title: 'Land Basins'
+  description: >-
+      TBD
+  data_source: streams_outlets_basins.land_basins
+  ogr2ogr_kwargs:
+    input_filename: 'basins.gpkg'
+
+- <<: *streams_outlets_basins
+  id: land_basins_filled
+  title: 'Land Basins Filled'
+  description: >-
+      TBD
+  data_source: streams_outlets_basins.land_basins_filled
+  ogr2ogr_kwargs:
+    input_filename: 'basins_filled.gpkg'
 
 
 ################
@@ -4481,16 +4493,16 @@
 
 # NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
 # an hour or more on `qgc.QgsRasterLayer` call. Remove it?
-- id: image_mosaic_2015
-  title: 'Greenland Image Mosaic 2015 (Online Only)'
-  description: 'Sentinel-2 multispectral satellite imagery from 2015.'
-  visible: False
-  group_path: 'Internet-required data'
-  boundary: 'data'
-  data_source: image_mosaic.2015
-  ingest_task: None
-  file_type: '.tif'
-  data_type: 'raster'
+# - id: image_mosaic_2015
+#   title: 'Greenland Image Mosaic 2015 (Online Only)'
+#   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
+#   visible: False
+#   group_path: 'Internet-required data'
+#   boundary: 'data'
+#   data_source: image_mosaic.2015
+#   ingest_task: None
+#   file_type: '.tif'
+#   data_type: 'raster'
 
 
 ############
