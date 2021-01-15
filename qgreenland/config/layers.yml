@@ -3806,7 +3806,7 @@
 
 
 - id: bathymetric_chart
-  title: 'IBCAO Bathymetric Chart of the Arctic Ocean (500m)'
+  title: 'Bathymetric Chart of the Arctic Ocean (500m)'
   description: >-
       Surface (bedrock or icesheet) elevation in meters.  Elevations can be
       assumed to be relative to Mean Sea Level. However, in some shallow water
