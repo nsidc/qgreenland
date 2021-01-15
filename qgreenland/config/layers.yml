@@ -1190,6 +1190,7 @@
 
 - &esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2005
+  # TODO: provide the 5 year period instead of just one datetime.
   title: 'Mass balance trend 2005-07-01:12:00:00'
   description: >-
       The trends are derived for 5-year periods and are given on a ~50 km

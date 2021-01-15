@@ -44,6 +44,7 @@ shp_schema = {
 
 crs = from_epsg(4326)
 
+# TODO: use geopackage. Combine into one instead of many layers?
 for time_idx, time in enumerate(times):
     date = epoch_start + dt.timedelta(days=float(time))
     with fiona.open(
