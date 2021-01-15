@@ -1042,11 +1042,7 @@ The images and data are produced in a consistent way that makes the Index time-s
   access_method: ogr_remote_vector
   sources:
     - id: only
-      # TODO: consider other services under
-      # https://kort.nunagis.gl/server/rest/services/Hosted/. This URL implies the
-      # query will only return results related to birds.
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC'
-  # TODO
   metadata:
     title: 'NunaGIS data server protected area data'
     abstract: >-
@@ -1059,8 +1055,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       Narwhal Areas, and Polar Bear Breeding Areas.
     citation:
       text: 'NunaGIS (2020). Date accessed: {{date_accessed}}.'
-      url: 'https://kort.nunagis.gl/server/rest/services'
-      # TODO - Matt/Trey - what do you think of providing this as our url? Another possibility is: https://kort.nunagis.gl/server/rest/services/Hosted
+      url: 'https://kort.nunagis.gl/server/rest/services/Hosted'
 
 
 - id: future_icesheet_coverage
