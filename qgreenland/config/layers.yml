@@ -3652,12 +3652,12 @@
 
 - &undersea_features
   id: undersea_features_point
-  title: 'IHO-ICO GEBCO Features (point)'
+  title: 'Points'
   description: >-
       Undersea feature names curated by the General Bathymetric Chart of the
       Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
   visible: False
-  group_path: 'Oceanography/IHO-ICO GEBCO Undersea feature names'
+  group_path: 'Oceanography/Undersea feature names'
   style: 'undersea_features_point'
   boundary: 'data'
   data_source: undersea_features.only
@@ -3680,7 +3680,7 @@
 
 - <<: *undersea_features
   id: undersea_features_multilinestring
-  title: 'IHO-ICO GEBCO Features (multiline)'
+  title: 'Multiline'
   style: 'undersea_features_line'
   decompress_kwargs:
     extract_files:
@@ -3693,7 +3693,7 @@
 
 - <<: *undersea_features
   id: undersea_features_multipolygon
-  title: 'IHO-ICO GEBCO Features (multipolygon)'
+  title: 'Multipolygon'
   style: 'undersea_features_polygon'
   decompress_kwargs:
     extract_files:

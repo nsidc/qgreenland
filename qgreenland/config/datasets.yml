@@ -534,7 +534,8 @@ The images and data are produced in a consistent way that makes the Index time-s
         Organization Data Centre for Digital Bathymetry (IHO DCDB) co-located
         with the US National Centers for Environmental Information (NCEI).
     citation:
-      text: 'IHO-IOC GEBCO Gazetteer of Undersea Feature Names, www.gebco.net'
+      text: >-
+        IHO-IOC GEBCO Gazetteer of Undersea Feature Names, www.gebco.net
       url: 'https://www.gebco.net/data_and_products/undersea_feature_names/'
 
 
