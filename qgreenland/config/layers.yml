@@ -7,7 +7,7 @@
   title: 'Populated Places'
   data_source: hdx_hotosm.populated_places
   visible: False
-  group_path: 'Built environment/OpenStreetMap'
+  group_path: 'Miscellaneous/OpenStreetMap'
   style: hotosm_populated_places_point
   boundary: 'data'
   ingest_task: zipped_vector
