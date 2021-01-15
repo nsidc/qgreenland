@@ -672,7 +672,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         coherent and integrated understanding of the functioning of ecosystems
         in a highly variable climate, which is based upon a comprehensive,
         long-term inter-disciplinary data collection carried out by Danish and
-        Greenlandic monitoring and research institutions. 
+        Greenlandic monitoring and research institutions.
 
         The GEM Programme put around 75 scientists in the field annually to
         collect data on ecosystem and climate change in Greenland. The data
@@ -947,7 +947,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         disaster management, reduces risks, and contributes to achievement of
         the Sustainable Development Goals.
         
-        Full HOT License information: 
+        Full HOT License information:
         Copyright (c) 2015-2020, Humanitarian OpenStreetMap Team All rights
         reserved.  Redistribution and use in source and binary forms, with or
         without modification, are permitted provided that the following
@@ -1031,7 +1031,11 @@ The images and data are produced in a consistent way that makes the Index time-s
       municipality population and the municipality population as a percent of
       total Greenland population.
     citation:
-      text: 'NunaGIS (2020). Municipalities by population numbers in 2019, Greenland. Web: https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61. Date accessed: {{date_accessed}}.'
+      text: >-
+        NunaGIS (2020). Municipalities by population numbers in 2019,
+        Greenland. Web:
+          https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61.
+        Date accessed: {{date_accessed}}.
       url: 'https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61'
 
 - id: nunagis_protected_areas
@@ -1046,7 +1050,13 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'NunaGIS data server protected area data'
     abstract: >-
-      The NunaGIS data server provides a range of datasets on animal areas of importance and protected areas. These data are used to populate the following QGreenland data layers: Walrus Protected Areas, Goose Protected Areas, Caribou Calving Areas, Beluga Areas, Bird Protected Areas, Thickbilled Murre Breeding Colony 5km Zones, Seabird Breeding Colonies, Eider Protected Areas, Murre Group 1 km Zones, Musk Oxen Calving Areas, Narwhal Areas, and Polar Bear Breeding Areas.  
+      The NunaGIS data server provides a range of datasets on animal areas of
+      importance and protected areas. These data are used to populate the
+      following QGreenland data layers: Walrus Protected Areas, Goose Protected
+      Areas, Caribou Calving Areas, Beluga Areas, Bird Protected Areas,
+      Thickbilled Murre Breeding Colony 5km Zones, Seabird Breeding Colonies,
+      Eider Protected Areas, Murre Group 1 km Zones, Musk Oxen Calving Areas,
+      Narwhal Areas, and Polar Bear Breeding Areas.
     citation:
       text: 'NunaGIS (2020). Date accessed: {{date_accessed}}.'
       url: 'https://kort.nunagis.gl/server/rest/services'
@@ -1644,7 +1654,7 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'map_GC-Net_PROMICE'
     abstract: >-
-      GitHub data description (creator: jasonebox): 
+      GitHub data description (creator: jasonebox):
       For PROMICE, I use a 2017-2018 average of station GPS data. I added an
       updated position for THU-U2. An improvement would be to have the .kml add
       the position date to the description and how it was obtained. For GC-Net,
@@ -1725,7 +1735,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       # This was obtained from Dropbox. Did we get it directly from the authors?
       access_instructions: >-
         Available via the publication website, and contained in the Source Data
-        Fig. 2 file. 
+        Fig. 2 file.
   metadata:
     title: "Rapid expansion of Greenland’s low-permeability ice slabs"
     abstract: >-
