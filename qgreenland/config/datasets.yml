@@ -650,8 +650,7 @@ The images and data are produced in a consistent way that makes the Index time-s
 
 - id: gem_research_stations
   # TODO: use HTTP access method when the GEM station data is updated to have
-  # full station descriptions. Also, cleanup citation text to only retain Romer
-  # 2020 citation.
+  # full station descriptions.
   #
   # access_method: http
   # sources:
@@ -673,7 +672,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         coherent and integrated understanding of the functioning of ecosystems
         in a highly variable climate, which is based upon a comprehensive,
         long-term inter-disciplinary data collection carried out by Danish and
-        Greenlandic monitoring and research institutions. 
+        Greenlandic monitoring and research institutions.
 
         The GEM Programme put around 75 scientists in the field annually to
         collect data on ecosystem and climate change in Greenland. The data
@@ -682,16 +681,14 @@ The images and data are produced in a consistent way that makes the Index time-s
         1000 parameters are freely available via the GEM Database and used by
         GEM participants and external scientists to produce scientific papers,
         scientific assessments, advisory reports, etc.
+        
+        Full station descriptions were manually added from the 'Station Link'
+        associated with each feature.
     citation:
       text: >-
-          Original location data were downloaded from:
-
           Roemer, Jonas K. (2020). Greenland Ecosystem Monitoring - Location and
           Description of Research Stations (Version
           1.0). Zenodo. http://doi.org/10.5281/zenodo.3991670
-
-          Full station descriptions were manually added from the 'Station Link'
-          associated with each feature.
       url: 'http://doi.org/10.5281/zenodo.3991670'
 
 
@@ -803,7 +800,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: >-
         World Data Center (2020). Ice core locations. Download:
-        http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Accessed July 1, 2020.
+        http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed: {{date_accessed}}.
       url: 'http://www.ncdc.noaa.gov/paleo/icecore.html'
 
 
@@ -950,7 +947,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         disaster management, reduces risks, and contributes to achievement of
         the Sustainable Development Goals.
         
-        Full HOT License information: 
+        Full HOT License information:
         Copyright (c) 2015-2020, Humanitarian OpenStreetMap Team All rights
         reserved.  Redistribution and use in source and binary forms, with or
         without modification, are permitted provided that the following
@@ -976,7 +973,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: >-
         Humanitarian OpenStreetMap Team (2020). Web:
-        https://export.hotosm.org/en/v3/. Accessed July 1, 2020.
+        https://export.hotosm.org/en/v3/. Date accessed: {{date_accessed}}.
       url: 'https://www.hotosm.org/'
 
 
@@ -1034,24 +1031,31 @@ The images and data are produced in a consistent way that makes the Index time-s
       municipality population and the municipality population as a percent of
       total Greenland population.
     citation:
-      text: 'TBD'
+      text: >-
+        NunaGIS (2020). Municipalities by population numbers in 2019,
+        Greenland. Web:
+          https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61.
+        Date accessed: {{date_accessed}}.
       url: 'https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61'
 
 - id: nunagis_protected_areas
   access_method: ogr_remote_vector
   sources:
     - id: only
-      # TODO: consider other services under
-      # https://kort.nunagis.gl/server/rest/services/Hosted/. This URL implies the
-      # query will only return results related to birds.
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC'
-  # TODO
   metadata:
-    title: 'TBD'
-    abstract: 'TBD'
+    title: 'NunaGIS data server protected area data'
+    abstract: >-
+      The NunaGIS data server provides a range of datasets on animal areas of
+      importance and protected areas. These data are used to populate the
+      following QGreenland data layers: Walrus Protected Areas, Goose Protected
+      Areas, Caribou Calving Areas, Beluga Areas, Bird Protected Areas,
+      Thickbilled Murre Breeding Colony 5km Zones, Seabird Breeding Colonies,
+      Eider Protected Areas, Murre Group 1 km Zones, Musk Oxen Calving Areas,
+      Narwhal Areas, and Polar Bear Breeding Areas.
     citation:
-      text: 'TBD'
-      url: 'http://example.com/TBD'
+      text: 'NunaGIS (2020). Date accessed: {{date_accessed}}.'
+      url: 'https://kort.nunagis.gl/server/rest/services/Hosted'
 
 
 - id: future_icesheet_coverage
@@ -1645,7 +1649,7 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'map_GC-Net_PROMICE'
     abstract: >-
-      GitHub data description (creator: jasonebox): 
+      GitHub data description (creator: jasonebox):
       For PROMICE, I use a 2017-2018 average of station GPS data. I added an
       updated position for THU-U2. An improvement would be to have the .kml add
       the position date to the description and how it was obtained. For GC-Net,
@@ -1659,7 +1663,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: >-
         PROMICE, (2020). Map of GC-Net and PROMICE station locations. Web:
-        https://github.com/GEUS-PROMICE. Accessed July 1, 2020.
+        https://github.com/GEUS-PROMICE. Date accessed: {{date_accessed}}.
       url: 'https://github.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/tree/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92'
 
 - id: machguth_etal_massbalance_obs_locations
@@ -1726,7 +1730,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       # This was obtained from Dropbox. Did we get it directly from the authors?
       access_instructions: >-
         Available via the publication website, and contained in the Source Data
-        Fig. 2 file. 
+        Fig. 2 file.
   metadata:
     title: "Rapid expansion of Greenland’s low-permeability ice slabs"
     abstract: >-
@@ -1767,34 +1771,13 @@ The images and data are produced in a consistent way that makes the Index time-s
       access_instructions: >-
           TBD
   metadata:
-    title: "Rapid expansion of Greenland’s low-permeability ice slabs"
+    title: "TBD"
     abstract: >-
-      In recent decades, meltwater runoff has accelerated to become the dominant
-      mechanism for mass loss in the Greenland ice sheet1–3. In Greenland’s
-      high-elevation interior, porous snow and firn accumulate; these can absorb
-      surface meltwater and inhibit runoff4, but this buffering effect is
-      limited if enough water refreezes near the surface to restrict
-      percolation5,6. However, the influence of refreezing on runoff from
-      Greenland remains largely unquantified. Here we use firn cores, radar
-      observations and regional climate models to show that recent increases in
-      meltwater have resulted in the formation of metres-thick, low-permeability
-      ‘ice slabs’ that have expanded the Greenland ice sheet’s total runoff area
-      by 26 ± 3 per cent since 2001. Although runoff from the top of ice slabs
-      has added less than one millimetre to global sea-level rise so far, this
-      contribution will grow substantially as ice slabs expand inland in a
-      warming climate. Runoff over ice slabs is set to contribute 7 to 33
-      millimetres and 17 to 74 millimetres to global sea-level rise by 2100
-      under moderate- and high-emissions scenarios, respectively—approximately
-      double the estimated runoff from Greenland’s high-elevation interior, as
-      predicted by surface mass balance models without ice slabs. Ice slabs will
-      have an important role in enhancing surface meltwater feedback processes,
-      fundamentally altering the ice sheet’s present and future hydrology.
+      TBD
     citation:
       text: >-
-        MacFerrin, M., Machguth, H., As, D.v. et al. Rapid expansion of
-        Greenland’s low-permeability ice slabs. Nature 573, 403–407
-        (2019). https://doi.org/10.1038/s41586-019-1550-3
-      url: 'https://doi.org/10.1038/s41586-019-1550-3'
+        TBD
+      url: 'TBD'
 
 
 - id: seaice_age
