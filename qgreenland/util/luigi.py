@@ -18,7 +18,7 @@ class LayerTask(luigi.Task):
     requires_task = luigi.Parameter()
     layer_id = luigi.Parameter()
     task_type = None
-    
+
     def __repr__(self):
         return (
             f'{self.__class__.__name__}('
