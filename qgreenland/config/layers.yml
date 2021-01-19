@@ -1179,7 +1179,7 @@
   data_source: glacier_terminus.2016_2017
 
 - id: ice_cores
-  title: 'Ice Cores'
+  title: 'Ice cores'
   description: >-
     Point locations of ice cores sampled in Greenland.
   visible: False
