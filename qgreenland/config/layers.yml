@@ -539,7 +539,7 @@
 
 - &walrus_protected_areas
   id: nunagis_walrus_protected_areas
-  title: 'Walrus Protected Areas'
+  title: 'Walrus protected areas'
   data_source: nunagis_protected_areas.only
   visible: False
   group_path: 'Biology/Mammals'
@@ -555,7 +555,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_goose_protected_areas
-  title: 'Goose Protected Areas'
+  title: 'Goose protected areas'
   group_path: 'Biology/Birds'
   style: nunagis_goose_protected_areas
   ogr2ogr_kwargs:
@@ -565,7 +565,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_caribou_calving_areas
-  title: 'Caribou Calving Areas'
+  title: 'Caribou calving areas'
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -574,7 +574,7 @@
     where: '"\"type\" LIKE ''Caribou%''"'
 
 - id: ginr_caribou_areas
-  title: 'Caribou Areas'
+  title: 'Caribou areas'
   group_path: 'Biology/Mammals'
   data_source: ginr_caribou.only
   visible: False
@@ -586,7 +586,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_beluga_areas
-  title: 'Beluga Areas'
+  title: 'Beluga areas'
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -596,7 +596,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_bird_protected_areas
-  title: 'Bird Protected Areas'
+  title: 'Bird protected areas'
   group_path: 'Biology/Birds'
   style: nunagis_bird_protected_areas
   ogr2ogr_kwargs:
@@ -606,7 +606,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_thickbilled_murre_colonies
-  title: 'Thickbilled Murre Breeding Colony 5km Zones'
+  title: 'Thickbilled Murre breeding colony 5km zones'
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -616,7 +616,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_seabirds_colonies
-  title: 'Seabird Breeding Colonies'
+  title: 'Seabird breeding colonies'
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -626,7 +626,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_eider_protected_areas
-  title: 'Eider Protected Areas'
+  title: 'Eider protected areas'
   group_path: 'Biology/Birds'
   style: nunagis_eider_protected_areas
   ogr2ogr_kwargs:
@@ -636,7 +636,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_murre_group_1km_zones
-  title: 'Murre Group 1km Zones'
+  title: 'Murre group 1km zones'
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -646,7 +646,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_musk_oxen_calving_areas
-  title: 'Musk Oxen Calving Areas'
+  title: 'Musk Oxen calving areas'
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -655,7 +655,7 @@
     where: '"\"type\" LIKE ''Musk oxen%''"'
 
 - id: ginr_muskoken
-  title: 'Muskoxen Areas'
+  title: 'Muskoxen areas'
   group_path: 'Biology/Mammals'
   data_source: ginr_muskoxen.only
   visible: False
@@ -737,7 +737,7 @@
 
   # # TODO: Better layer ID and title.
   # - id: populated_places_eva
-  #   title: 'Populated Places (Eva)'
+  #   title: 'Populated places (Eva)'
   #   data_source: nunat_aqqi.only
   #   visible: True
   #   group_path: 'Built environment'
@@ -751,11 +751,10 @@
   #     input_filename: 'fetched.geojson'
 
 - id: nunagis_municipalities_population
-  title: 'Municipalities and Population'
+  title: 'Municipalities and population 2019'
   data_source: nunagis_pop2019_municipalities.only
   visible: False
   group_path: 'Built environment'
-  # TODO:
   style: null
   boundary: 'data'
   ingest_task: ogr_remote_vector
@@ -866,16 +865,16 @@
 
 - &greenland_territorial_waters
   id: exclusive_economic_zone
-  title: 'Exclusive Economic Zone (polyline)'
+  title: 'Exclusive economic zone (polyline)'
   description: >-
     Exclusive Economic Zone of Greenland based on Executive Order on the
     Exclusive Economic Zone at Greenland. BEK no. 1020 of 20/10/2004. Foreign
-    Ministry of Denmark
+    Ministry of Denmark.
   data_source: greenland_territorial_waters.only
   visible: False
   # TODO: does this need to be in its own group?
   group_path: 'Environmental management/Exclusive economic zones'
-  # style: 'TBD'
+  style: null
   boundary: 'background'
   ingest_task: local_vector
   file_type: '.gpkg'
@@ -908,7 +907,7 @@
   id: 12nm_polyline
   title: '12NM (polyline)'
   description: >-
-    FISHERY LIMIT. Regarding the fishery limit, reference is made to Greenland
+    Fishery limit. Regarding the fishery limit, reference is made to Greenland
     Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7, 2.
   ogr2ogr_kwargs:
     input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
@@ -928,7 +927,7 @@
   id: fishzone_boundary
   title: 'Fishing zone (polygon)'
   description: >-
-    FISHERY LIMIT. Regarding the fishery limit, reference is made to Greenland
+    Fishery limit. Regarding the fishery limit, reference is made to Greenland
     Home Rule Parliament Act no 18 dated 31.10.1996
   ogr2ogr_kwargs:
     input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
@@ -1019,7 +1018,7 @@
   data_source: esa_cci_supraglacial_lakes.only
   visible: False
   group_path: 'Glaciology'
-  # style: 'TBD'
+  style: null
   boundary: 'data'
   ingest_task: local_zipped_vector
   file_type: '.gpkg'
@@ -1087,8 +1086,9 @@
       - 'glims_download_82381/glims_polygons.shx'
 
 - id: basal_thermal_state
-  title: 'Likely Basal Thermal State (5km)'
-  description: 'Likely basal frozen/thawed state of the Greenland Ice Sheet.'
+  title: 'Likely basal thermal state (5km)'
+  description: >-
+      Likely basal frozen/thawed state of the Greenland Ice Sheet.
   visible: False
   group_path: 'Glaciology'
   style: basal_thermal_state
@@ -1334,7 +1334,7 @@
   title: 'Land Ice Surface Velocity (250m)'
   description: 'Magnitude of horizontal ice velocity in meters per day.'
   visible: False
-  group_path: 'Glaciology/Ice sheet velocity/CCI'
+  group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
   style: esa_cci_velocity
   boundary: 'data'
   data_source: esa_cci_ice_sheet_velocity_20191214_20200131.only
@@ -4375,7 +4375,7 @@
 # TODO: better id, title, description for these layers
 - &future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_26
-  title: 'Future (year 3007) ice sheet coverage - RCP 2.6 scenario (1.8km)'
+  title: 'Future ice sheet coverage - RCP 2.6 scenario for the year 3007 (1.8km)'
   description: >-
       Fraction of a grid cell covered by ice (grounded or floating) in the year
       3007. Values less than or equal to 16% are masked.
@@ -4396,12 +4396,12 @@
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_45
-  title: 'Future (year 3007) ice sheet coverage - RCP 4.5 scenario (1.8km)'
+  title: 'Future ice sheet coverage - RCP 4.5 scenario for the year 3007 (1.8km)'
   data_source: future_icesheet_coverage.rcp_45
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_85
-  title: 'Future (year 3007) ice sheet coverage - RCP 8.5 scenario (1.8km)'
+  title: 'Future ice sheet coverage - RCP 8.5 scenario for the year 3007 (1.8km)'
   data_source: future_icesheet_coverage.rcp_85
 
 
