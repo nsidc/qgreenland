@@ -1248,7 +1248,9 @@ The images and data are produced in a consistent way that makes the Index time-s
         For general background information see
         http://esa-icesheets-greenland-cci.org
     citation:
-      text: 'Data are produced by Penelope How, Alexandra Messerli, and Eva Mätzler (Department of Remote Sensing, Asiaq Greenland Survey)'
+      text: >-
+        Data are produced by Penelope How, Alexandra Messerli, and Eva Mätzler
+        (Department of Remote Sensing, Asiaq Greenland Survey)
       url: 'http://products.esa-icesheets-cci.org/products/details/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip/'
 
 - <<: *esa_cci
