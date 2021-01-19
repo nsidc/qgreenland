@@ -4294,7 +4294,7 @@
 
 - &bedmachine
   id: bedmachine_thickness
-  title: 'Ice Thickness (500m)'
+  title: 'Ice thickness (500m)'
   description: >-
     Ice thickness in meters. Mass conservation source data provided by Mathieu
     Morlighem.
@@ -4314,7 +4314,7 @@
 
 - <<: *bedmachine
   id: bedmachine_surface
-  title: 'Surface Elevation (500m)'
+  title: 'Surface elevation (500m)'
   description: >-
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
@@ -4324,7 +4324,7 @@
 
 - <<: *bedmachine
   id: bedmachine_bed
-  title: 'Bedrock Elevation (500m)'
+  title: 'Bedrock elevation (500m)'
   description: >-
     Bedrock elevation in meters.
   style: 'bedmachine_bed'
@@ -4333,7 +4333,7 @@
 
 - <<: *bedmachine
   id: bedmachine_errbed
-  title: 'Bedrock Elevation/Ice Thickness Error (500m)'
+  title: 'Bedrock elevation/ice thickness error (500m)'
   description: >-
     Error estimate for Greenland bed elevation and ice thickness in meters.
   style: 'bedmachine_errbed'
