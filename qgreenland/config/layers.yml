@@ -62,7 +62,7 @@
   style: buildings_shape
 
 - id: utm_zones
-  title: Universal Transverse Mercator (UTM) Zones
+  title: Universal Transverse Mercator (UTM) zones
   visible: False
   group_path: 'Miscellaneous'
   style: 'utm_zones'
