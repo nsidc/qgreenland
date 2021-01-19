@@ -1090,7 +1090,7 @@
       - 'glims_download_82381/glims_polygons.shx'
 
 - id: basal_thermal_state
-  title: 'Likely basal thermal state (5km)'
+  title: 'Likely basal thermal state June 23 1993 - April 26 2013 (5km)'
   description: >-
       Likely basal frozen/thawed state of the Greenland Ice Sheet.
   visible: False
