@@ -686,7 +686,9 @@
     where: '"\"type\" LIKE ''Polar bear%''"'
 
 - id: caff_thickbilled_murre_colonies
-  title: 'Thickbilled Murre Colonies'
+  title: 'Thickbilled Murre Colonies 2010'
+  description: >-
+    Point locations of Thickbilled Murre colonies as surveyed in 2010.
   data_source: caff_murre_colonies.only
   visible: False
   group_path: 'Biology/Birds'
@@ -703,7 +705,9 @@
       - 'Distribution_Thickbilled_Murre_Colonies.shx'
 
 - id: caff_common_murre_colonies
-  title: 'Common Murre Colonies'
+  title: 'Common Murre Colonies 2010'
+  description: >-
+    Point locations of Common Murre colonies as surveyed in 2010.
   data_source: caff_murre_colonies.only
   visible: False
   group_path: 'Biology/Birds'
