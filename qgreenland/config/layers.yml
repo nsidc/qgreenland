@@ -1122,7 +1122,7 @@
 
 - &glacier_terminus
   id: glacier_terminus_2000_2001
-  title: 'Glacier Termini 2000 to 2001'
+  title: 'Glacier termini 2000 to 2001'
   visible: False
   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
   boundary: 'data'
@@ -1133,49 +1133,49 @@
 
 - <<: *glacier_terminus
   id: glacier_terminus_2005_2006
-  title: 'Glacier Termini 2005 to 2006'
+  title: 'Glacier termini 2005 to 2006'
   data_source: glacier_terminus.2005_2006
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2006_2007
-  title: 'Glacier Termini 2006 to 2007'
+  title: 'Glacier termini 2006 to 2007'
   data_source: glacier_terminus.2006_2007
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2007_2008
-  title: 'Glacier Termini 2007 to 2008'
+  title: 'Glacier termini 2007 to 2008'
   data_source: glacier_terminus.2007_2008
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2008_2009
-  title: 'Glacier Termini 2008 to 2009'
+  title: 'Glacier termini 2008 to 2009'
   data_source: glacier_terminus.2008_2009
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2012_2013
-  title: 'Glacier Termini 2012 to 2013'
+  title: 'Glacier termini 2012 to 2013'
   data_source: glacier_terminus.2012_2013
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2014_2015
-  title: 'Glacier Termini 2014 to 2015'
+  title: 'Glacier termini 2014 to 2015'
   data_source: glacier_terminus.2014_2015
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2015_2016
-  title: 'Glacier Termini 2015 to 2016'
+  title: 'Glacier termini 2015 to 2016'
   data_source: glacier_terminus.2015_2016
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2016_2017
-  title: 'Glacier Termini 2016 to 2017'
+  title: 'Glacier termini 2016 to 2017'
   data_source: glacier_terminus.2016_2017
 
 - id: ice_cores
@@ -1299,7 +1299,7 @@
 - &its_live_velocity_mosaic
   id: velocity_mosaic
   title: 'Ice sheet velocity (500m)'
-  description: 'Magnitude of velocity in meters per year. Data provided by JPL.'
+  description: 'Magnitude of velocity in meters per year.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
   style: 'ice_sheet_velocity'
