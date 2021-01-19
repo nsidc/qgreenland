@@ -3852,7 +3852,7 @@
       Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
       20 represents land; 21 represents ocean cells where ice age was not
       calculated. Week of minimum extent chosen based on NSDIC's Sea Ice Index
-      5-day average. Data Provided by NSIDC.
+      5-day average.
   visible: False
   # TODO: "September" is not correct, this is weekly data.
   group_path: 'Sea ice/Ice age (12.5 km)/September (min extent)'
