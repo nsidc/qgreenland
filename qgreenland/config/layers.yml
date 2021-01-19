@@ -1709,7 +1709,7 @@
     input_filename: 'query.geojson'
 
 - id: soil_types
-  title: 'Soil Characteristics'
+  title: 'Soil characteristics'
   description: >-
       Polygons representing dominant soil characteristics with percentage
       polygon area for each soil type. Data coverage limited to Greenland.
