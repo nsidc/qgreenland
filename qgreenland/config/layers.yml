@@ -328,12 +328,12 @@
 
 
 - id: racmo_wind_vectors
-  title: 'Annual mean wind vectors 1958-2018'
+  title: 'Annual mean wind vectors 1958-2018 (5.5km)'
   description: >-
       Averaged annual mean wind direction in meters per second from RACMO2.3p2
       for the period 1958-2018.
   visible: False
-  group_path: 'Atmosphere/RACMO model output/5.5km'
+  group_path: 'Atmosphere/RACMO model output'
   style: racmo_wind_vectors
   boundary: 'data'
   data_source: racmo_qgreenland_aug2020.only
@@ -345,12 +345,12 @@
     input_filename: 'wind_vector_points.gpkg'
 
 - id: racmo_wind_speed
-  title: 'Annual mean wind speed 1958-2018'
+  title: 'Annual mean wind speed 1958-2018 (5.5km)'
   description: >-
       Averaged annual mean wind speed in meters per second from RACMO2.3p2 for
       the period 1958-2018.
   visible: False
-  group_path: 'Atmosphere/RACMO model output/5.5km'
+  group_path: 'Atmosphere/RACMO model output'
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_aug2020.only
@@ -372,13 +372,13 @@
 
 - &racmo_1km
   id: racmo_precip
-  title: 'Total precipitation 1958-2018'
+  title: 'Total precipitation 1958-2018 (1km)'
   description: >-
       Averaged total precipitation in milimeters of water equivilent (mm w.e.)
       for the period 1958-2018 covering the whole ice sheet and peripheral ice
       caps.
   visible: False
-  group_path: 'Atmosphere/RACMO model output/1km'
+  group_path: 'Atmosphere/RACMO model output'
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_aug2020.only
@@ -400,7 +400,7 @@
 
 - <<: *racmo_1km
   id: racmo_snowfall
-  title: 'Snowfall 1958-2018'
+  title: 'Snowfall 1958-2018 (1km)'
   description: >-
       Averaged snowfall in milimeters of water equivilent (mm w.e.) for the
       period 1958-2018 covering the whole ice sheet and peripheral ice caps.
@@ -412,7 +412,7 @@
 
 - <<: *racmo_1km
   id: racmo_melt
-  title: 'Snowmelt 1958-2018'
+  title: 'Snowmelt 1958-2018 (1km)'
   description: >-
       Averaged snowmelt in milimeters of water equivilent (mm w.e.) for the
       period 1958-2018 covering the whole ice sheet and peripheral ice caps.
@@ -424,7 +424,7 @@
 
 - <<: *racmo_1km
   id: racmo_runoff
-  title: 'Runoff 1958-2018'
+  title: 'Runoff 1958-2018 (1km)'
   description: >-
       Averaged runoff in milimeters of water equivilent (mm w.e.) for the
       period 1958-2018 covering the whole ice sheet and peripheral ice caps.
@@ -436,7 +436,7 @@
 
 - <<: *racmo_1km
   id: racmo_subl
-  title: 'Sublimation 1958-2018'
+  title: 'Sublimation 1958-2018 (1km)'
   description: >-
       Averaged sublimation in milimeters of water equivilent (mm w.e.) for the
       period 1958-2018 covering the whole ice sheet and peripheral ice caps.
@@ -449,7 +449,7 @@
 - <<: *racmo_1km
   id: racmo_sndiv
   # TODO: correct title
-  title: 'Sndiv (snow drift erosion?) 1958-2018'
+  title: 'Sndiv (snow drift erosion?) 1958-2018 (1km)'
   description: >-
       TBD - waiting on email response from Brice
   translate_kwargs:
@@ -460,7 +460,7 @@
 
 - <<: *racmo_1km
   id: racmo_t2m
-  title: 'Annual mean temperature at 2m 1958-2018'
+  title: 'Annual mean temperature at 2m 1958-2018 (1km)'
   # NOTE: the source data states that the data are in units of mm of water
   # equivilent, but the values are clearly degrees Kelvin.
   description: >-
@@ -474,7 +474,7 @@
 
 - <<: *racmo_1km
   id: racmo_promicemask
-  title: 'PROMICE mask'
+  title: 'PROMICE mask (1km)'
   description: >-
     Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
     peripheral ice caps; 0 = Ocean.
@@ -490,7 +490,7 @@
 
 - <<: *racmo_1km
   id: racmo_topography
-  title: 'Topography'
+  title: 'Topography (1km)'
   description: >-
       Surface elevation in meters.
   group_path: 'Atmosphere/RACMO model output/RACMO masks'
@@ -505,7 +505,7 @@
 
 - <<: *racmo_1km
   id: racmo_grounded_ice
-  title: 'Grounded ice'
+  title: 'Grounded ice (1km)'
   description: >-
       Mask of grounded ice.
   group_path: 'Atmosphere/RACMO model output/RACMO masks'
