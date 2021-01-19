@@ -4,7 +4,7 @@
 
 - &hdx_hotosm
   id: hotosm_populated_places
-  title: 'Populated Places'
+  title: 'Populated places'
   data_source: hdx_hotosm.populated_places
   visible: False
   group_path: 'Miscellaneous/OpenStreetMap'
@@ -16,7 +16,7 @@
 
 - <<: *hdx_hotosm
   id: hotosm_health_facilities
-  title: 'Health Facilities'
+  title: 'Health facilities'
   data_source: hdx_hotosm.health_facilities
   style: health_facility_point
 - <<: *hdx_hotosm
@@ -36,17 +36,17 @@
   style: null
 - <<: *hdx_hotosm
   id: hotosm_financial_services
-  title: 'Financial Services'
+  title: 'Financial services'
   data_source: hdx_hotosm.financial_services
   style: financial_facility_point
 - <<: *hdx_hotosm
   id: hotosm_education_facilities
-  title: 'Education Facilities'
+  title: 'Education facilities'
   data_source: hdx_hotosm.education_facilities
   style: education_facility_point
 - <<: *hdx_hotosm
   id: hotosm_points_of_interest
-  title: 'Points of Interest'
+  title: 'Points of interest'
   data_source: hdx_hotosm.points_of_interest
   style: null
 - <<: *hdx_hotosm
