@@ -3433,9 +3433,8 @@
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shx'
 
-######## Geothermal Heat Flux ########
 - id: geothermal_heat_flux
-  title: 'Geothermal heat flux'
+  title: 'Geothermal heat flux (5km)'
   description: >-
     Geothermal heat flux interpolated from ice core measurements in miliwatts
     per square meter.
