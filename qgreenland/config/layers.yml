@@ -655,7 +655,7 @@
     where: '"\"type\" LIKE ''Musk oxen%''"'
 
 - id: ginr_muskoken
-  title: 'Muskoxen Areas'
+  title: 'Muskoxen areas'
   group_path: 'Biology/Mammals'
   data_source: ginr_muskoxen.only
   visible: False
