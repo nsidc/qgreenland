@@ -4473,7 +4473,7 @@
   data_type: 'vector'
 
 - id: ne_states_provinces
-  title: 'Administrative Divisions'
+  title: 'Administrative divisions'
   visible: False
   group_path: 'Basemaps'
   style: 'administrative_divisions'
