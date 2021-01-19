@@ -724,7 +724,7 @@
       - 'Distribution_Common_Murre_Colonies.shx'
 
 - id: caff_char
-  title: 'Arctic Char Populations'
+  title: 'Arctic Char populations 2010'
   description: 'Polygons indicating the distribution of Arctic Char populations.'
   data_source: caff_char.only
   style: 'semitransparent_polygon'
@@ -3435,7 +3435,7 @@
 
 ######## Geothermal Heat Flux ########
 - id: geothermal_heat_flux
-  title: 'Geothermal Heat Flux'
+  title: 'Geothermal heat flux'
   description: >-
     Geothermal heat flux interpolated from ice core measurements in miliwatts
     per square meter.
@@ -3531,7 +3531,7 @@
     input_filename: 'GCN%20info%20ca.2000.gpkg'
 
 - id: seismograph_stations
-  title: 'Seismograph Stations'
+  title: 'Seismograph stations'
   description: >-
     Location and details of Greenland seismograph stations.
   visible: False
