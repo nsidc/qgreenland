@@ -4375,7 +4375,7 @@
 # TODO: better id, title, description for these layers
 - &future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_26
-  title: 'Future (year 3007) ice sheet coverage - RCP 2.6 scenario (1.8km)'
+  title: 'Future ice sheet coverage - RCP 2.6 scenario for the year 3007 (1.8km)'
   description: >-
       Fraction of a grid cell covered by ice (grounded or floating) in the year
       3007. Values less than or equal to 16% are masked.
@@ -4396,12 +4396,12 @@
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_45
-  title: 'Future (year 3007) ice sheet coverage - RCP 4.5 scenario (1.8km)'
+  title: 'Future ice sheet coverage - RCP 4.5 scenario for the year 3007 (1.8km)'
   data_source: future_icesheet_coverage.rcp_45
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_85
-  title: 'Future (year 3007) ice sheet coverage - RCP 8.5 scenario (1.8km)'
+  title: 'Future ice sheet coverage - RCP 8.5 scenario for the year 3007 (1.8km)'
   data_source: future_icesheet_coverage.rcp_85
 
 
