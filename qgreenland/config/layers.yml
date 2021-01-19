@@ -522,7 +522,7 @@
 ###########
 
 - id: vegetation_biomass_2010
-  title: 'Vegetation Biomass 2010 (1km)'
+  title: 'Vegetation biomass 2010 (1km)'
   description: >-
     Estimated above ground plant biomass for the tundra biome in kilograms per
     square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
