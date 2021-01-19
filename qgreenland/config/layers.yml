@@ -1694,7 +1694,7 @@
 ###############################
 
 - id: earthquakes
-  title: 'Earthquakes (M>2.5, 1900-2020)'
+  title: 'Earthquakes M>2.5 1900-2020'
   description: >-
     Location and magnitude of earthquakes.
   visible: False
