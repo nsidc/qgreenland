@@ -4,7 +4,7 @@
 
 - &hdx_hotosm
   id: hotosm_populated_places
-  title: 'Populated Places'
+  title: 'Populated places'
   data_source: hdx_hotosm.populated_places
   visible: False
   group_path: 'Miscellaneous/OpenStreetMap'
@@ -16,7 +16,7 @@
 
 - <<: *hdx_hotosm
   id: hotosm_health_facilities
-  title: 'Health Facilities'
+  title: 'Health facilities'
   data_source: hdx_hotosm.health_facilities
   style: health_facility_point
 - <<: *hdx_hotosm
@@ -36,17 +36,17 @@
   style: null
 - <<: *hdx_hotosm
   id: hotosm_financial_services
-  title: 'Financial Services'
+  title: 'Financial services'
   data_source: hdx_hotosm.financial_services
   style: financial_facility_point
 - <<: *hdx_hotosm
   id: hotosm_education_facilities
-  title: 'Education Facilities'
+  title: 'Education facilities'
   data_source: hdx_hotosm.education_facilities
   style: education_facility_point
 - <<: *hdx_hotosm
   id: hotosm_points_of_interest
-  title: 'Points of Interest'
+  title: 'Points of interest'
   data_source: hdx_hotosm.points_of_interest
   style: null
 - <<: *hdx_hotosm
@@ -686,7 +686,9 @@
     where: '"\"type\" LIKE ''Polar bear%''"'
 
 - id: caff_thickbilled_murre_colonies
-  title: 'Thickbilled Murre Colonies'
+  title: 'Thickbilled Murre Colonies 2010'
+  description: >-
+    Point locations of Thickbilled Murre colonies as surveyed in 2010.
   data_source: caff_murre_colonies.only
   visible: False
   group_path: 'Biology/Birds'
@@ -703,7 +705,9 @@
       - 'Distribution_Thickbilled_Murre_Colonies.shx'
 
 - id: caff_common_murre_colonies
-  title: 'Common Murre Colonies'
+  title: 'Common Murre Colonies 2010'
+  description: >-
+    Point locations of Common Murre colonies as surveyed in 2010.
   data_source: caff_murre_colonies.only
   visible: False
   group_path: 'Biology/Birds'
@@ -720,7 +724,7 @@
       - 'Distribution_Common_Murre_Colonies.shx'
 
 - id: caff_char
-  title: 'Arctic Char Populations'
+  title: 'Arctic Char populations 2010'
   description: 'Polygons indicating the distribution of Arctic Char populations.'
   data_source: caff_char.only
   style: 'semitransparent_polygon'
@@ -1175,7 +1179,9 @@
   data_source: glacier_terminus.2016_2017
 
 - id: ice_cores
-  title: 'Ice Cores'
+  title: 'Ice cores'
+  description: >-
+    Point locations of ice cores sampled in Greenland.
   visible: False
   group_path: 'Glaciology'
   style: 'labeled_point'
@@ -1688,7 +1694,7 @@
 ###############################
 
 - id: earthquakes
-  title: 'USGS Earthquakes (M>2.5, 1900-2020)'
+  title: 'Earthquakes (M>2.5, 1900-2020)'
   description: >-
     Location and magnitude of earthquakes.
   visible: False
@@ -1720,6 +1726,8 @@
 
 - id: tectonic_plate_boundaries
   title: 'Tectonic plate boundaries'
+  description: >-
+    Linestrings representing borders between tectonic plates.
   visible: False
   group_path: 'Geology & natural resources'
   boundary: 'background'
@@ -3427,9 +3435,8 @@
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shx'
 
-######## Geothermal Heat Flux ########
 - id: geothermal_heat_flux
-  title: 'Geothermal Heat Flux'
+  title: 'Geothermal heat flux (5km)'
   description: >-
     Geothermal heat flux interpolated from ice core measurements in miliwatts
     per square meter.
@@ -3525,7 +3532,7 @@
     input_filename: 'GCN%20info%20ca.2000.gpkg'
 
 - id: seismograph_stations
-  title: 'Seismograph Stations'
+  title: 'Seismograph stations'
   description: >-
     Location and details of Greenland seismograph stations.
   visible: False
@@ -3709,11 +3716,11 @@
 
 - &woa2018
   id: woa2018_0m_temperature_winter
-  title: 'Temperature (Surface, Winter)'
+  title: 'Surface, Winter'
   description: >-
     Seawater temperature at surface depth in °C.
   visible: False
-  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  group_path: 'Oceanography/Seawater temperature 2018 (25km)'
   style: 'seawater_temperature'
   boundary: 'data'
   data_source: woa2018_temperature.seasonal_winter
@@ -3732,8 +3739,8 @@
 
 - <<: *woa2018
   id: woa2018_0m_temperature_summer
-  title: 'Temperature (Surface, Summer)'
-  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  title: 'Surface, Summer'
+  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
     extract_dataset: 't_an'
@@ -3741,10 +3748,10 @@
 
 - <<: *woa2018
   id: woa2018_50m_temperature_winter
-  title: 'Temperature (50m, Winter)'
+  title: '50m, Winter'
   description: >-
     Seawater temperature at 50m depth in °C.
-  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
     extract_dataset: 't_an'
@@ -3752,10 +3759,10 @@
 
 - <<: *woa2018
   id: woa2018_50m_temperature_summer
-  title: 'Temperature (50m, Summer)'
+  title: '50m, Summer'
   description: >-
     Seawater temperature at 50m depth in °C.
-  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
     extract_dataset: 't_an'
@@ -3763,10 +3770,10 @@
 
 - <<: *woa2018
   id: woa2018_200m_temperature_winter
-  title: 'Temperature (200m, Winter)'
+  title: '200m, Winter'
   description: >-
     Seawater temperature at 200m depth in °C.
-  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
     extract_dataset: 't_an'
@@ -3774,10 +3781,10 @@
 
 - <<: *woa2018
   id: woa2018_200m_temperature_summer
-  title: 'Temperature (200m, Summer)'
+  title: '200m, Summer'
   description: >-
     Seawater temperature at 200m depth in °C.
-  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
     extract_dataset: 't_an'
@@ -3785,10 +3792,10 @@
 
 - <<: *woa2018
   id: woa2018_500m_temperature_winter
-  title: 'Temperature (500m, Winter)'
+  title: '500m, Winter'
   description: >-
     Seawater temperature at 500m depth in °C.
-  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
     extract_dataset: 't_an'
@@ -3796,10 +3803,10 @@
 
 - <<: *woa2018
   id: woa2018_500m_temperature_summer
-  title: 'Temperature (500m, Summer)'
+  title: '500m, Summer'
   description: >-
     Seawater temperature at 500m depth in °C.
-  group_path: 'Oceanography/World Ocean Atlas (WOA) 2018'
+  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
     extract_dataset: 't_an'
@@ -4410,7 +4417,7 @@
 ######################
 
 - id: image_mosaic_2019
-  title: 'Greenland Image Mosaic 2019 (Online Only)'
+  title: 'Greenland image mosaic 2019 (10m)'
   description: 'Sentinel-2 multispectral satellite imagery from 2019.'
   visible: False
   group_path: 'Internet-required data'
@@ -4424,7 +4431,7 @@
 # NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
 # an hour or more on `qgc.QgsRasterLayer` call. Remove it?
 - id: image_mosaic_2015
-  title: 'Greenland Image Mosaic 2015 (Online Only)'
+  title: 'Greenland image mosaic 2015 (15m)'
   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
   visible: False
   group_path: 'Internet-required data'
@@ -4466,7 +4473,7 @@
   data_type: 'vector'
 
 - id: ne_states_provinces
-  title: 'Administrative Divisions'
+  title: 'Administrative divisions'
   visible: False
   group_path: 'Basemaps'
   style: 'administrative_divisions'
