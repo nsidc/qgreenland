@@ -737,7 +737,7 @@
 
   # # TODO: Better layer ID and title.
   # - id: populated_places_eva
-  #   title: 'Populated Places (Eva)'
+  #   title: 'Populated places (Eva)'
   #   data_source: nunat_aqqi.only
   #   visible: True
   #   group_path: 'Built environment'
