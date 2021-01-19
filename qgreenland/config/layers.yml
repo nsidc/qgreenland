@@ -539,7 +539,7 @@
 
 - &walrus_protected_areas
   id: nunagis_walrus_protected_areas
-  title: 'Walrus Protected Areas'
+  title: 'Walrus protected areas'
   data_source: nunagis_protected_areas.only
   visible: False
   group_path: 'Biology/Mammals'
@@ -555,7 +555,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_goose_protected_areas
-  title: 'Goose Protected Areas'
+  title: 'Goose protected areas'
   group_path: 'Biology/Birds'
   style: nunagis_goose_protected_areas
   ogr2ogr_kwargs:
@@ -565,7 +565,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_caribou_calving_areas
-  title: 'Caribou Calving Areas'
+  title: 'Caribou calving areas'
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -586,7 +586,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_beluga_areas
-  title: 'Beluga Areas'
+  title: 'Beluga areas'
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -596,7 +596,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_bird_protected_areas
-  title: 'Bird Protected Areas'
+  title: 'Bird protected areas'
   group_path: 'Biology/Birds'
   style: nunagis_bird_protected_areas
   ogr2ogr_kwargs:
@@ -606,7 +606,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_thickbilled_murre_colonies
-  title: 'Thickbilled Murre Breeding Colony 5km Zones'
+  title: 'Thickbilled Murre breeding colony 5km zones'
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -616,7 +616,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_seabirds_colonies
-  title: 'Seabird Breeding Colonies'
+  title: 'Seabird breeding colonies'
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -626,7 +626,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_eider_protected_areas
-  title: 'Eider Protected Areas'
+  title: 'Eider protected areas'
   group_path: 'Biology/Birds'
   style: nunagis_eider_protected_areas
   ogr2ogr_kwargs:
@@ -636,7 +636,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_murre_group_1km_zones
-  title: 'Murre Group 1km Zones'
+  title: 'Murre group 1km zones'
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -646,7 +646,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_musk_oxen_calving_areas
-  title: 'Musk Oxen Calving Areas'
+  title: 'Musk Oxen calving areas'
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
