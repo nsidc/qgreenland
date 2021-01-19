@@ -3568,7 +3568,7 @@
 
 - &streams_outlets_basins
   id: ice_outlets
-  title: 'Ice Outlets'
+  title: 'Ice outlets'
   description: >-
       TBD
   ingest_task: online_vector
@@ -3583,7 +3583,7 @@
 
 - <<: *streams_outlets_basins
   id: land_outlets
-  title: 'Land Outlets'
+  title: 'Land outlets'
   description: >-
       TBD
   style: 'land_outlets'
@@ -3593,7 +3593,7 @@
 
 - <<: *streams_outlets_basins
   id: ice_streams
-  title: 'Ice Streams'
+  title: 'Ice streams'
   description: >-
       TBD
   style: 'ice_streams'
@@ -3604,7 +3604,7 @@
 
 - <<: *streams_outlets_basins
   id: ice_basins
-  title: 'Ice Basins'
+  title: 'Ice basins'
   description: >-
       TBD
   style: 'ice_basins'
@@ -3614,7 +3614,7 @@
 
 - <<: *streams_outlets_basins
   id: ice_basins_filled
-  title: 'Ice Basins Filled'
+  title: 'Ice basins filled'
   description: >-
       TBD
   style: 'ice_basins'
@@ -3624,7 +3624,7 @@
 
 - <<: *streams_outlets_basins
   id: land_streams
-  title: 'Land Streams'
+  title: 'Land streams'
   description: >-
       TBD
   style: 'land_streams'
@@ -3635,7 +3635,7 @@
 
 - <<: *streams_outlets_basins
   id: land_basins
-  title: 'Land Basins'
+  title: 'Land basins'
   description: >-
       TBD
   style: 'land_basins'
@@ -3645,7 +3645,7 @@
 
 - <<: *streams_outlets_basins
   id: land_basins_filled
-  title: 'Land Basins Filled'
+  title: 'Land basins filled'
   description: >-
       TBD
   style: 'land_basins'
