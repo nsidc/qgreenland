@@ -776,8 +776,8 @@
 ############################
 
 - id: nafo_divisions
-  title: 'NAFO Divisions'
-  description: 'The Northwest Atlantic Fisheries Organization Zones'
+  title: 'NAFO divisions'
+  description: 'The Northwest Atlantic Fisheries Organization zones'
   data_source: nafo_divisions.only
   visible: False
   group_path: 'Environmental management'
@@ -943,7 +943,7 @@
 
 - &ground_temperature
   id: ground_temperature
-  title: 'Ground temperature (10km)'
+  title: 'Ground temperature 2000-2016 (10km)'
   description: >-
       Average mean annual ground temperature in degrees Celsius.
   visible: False
@@ -1767,7 +1767,7 @@
 
 - &geological_map
   id: onshore_planar_geological_map
-  title: 'Onshore Planar'
+  title: 'Onshore planar'
   description: 'This layer contains onshore faults for the landmass and islands of Greenland.'
   visible: False
   group_path: 'Geology & natural resources/Geological map of the Arctic'
@@ -4447,7 +4447,7 @@
 ############
 
 - id: bas_greenland_coastlines
-  title: 'Greenland Coastlines'
+  title: 'Greenland coastlines 2017'
   description: >-
     This layer should be used as the 'reference coastline' for Greenland.
   visible: False
