@@ -1337,7 +1337,7 @@
 
 - &esa_cci_velocity
   id: esa_cci_velocity_magnitude
-  title: 'Land Ice Surface Velocity (250m)'
+  title: 'Land ice surface velocity 2019-2020 (250m)'
   description: 'Magnitude of horizontal ice velocity in meters per day.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
@@ -1384,7 +1384,7 @@
 
 - &cci_surface_elevation_change
   id: surface_elevation_change_1992_1996
-  title: 'Surface Elevation change 1992-1996'
+  title: 'Surface elevation change 1992-1996'
   description: >-
     Rate of surface elevation change in meters per year.
   data_source: esa_cci_surface_elevation_change.only
