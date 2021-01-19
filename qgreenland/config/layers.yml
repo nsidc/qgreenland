@@ -1334,7 +1334,7 @@
   title: 'Land Ice Surface Velocity (250m)'
   description: 'Magnitude of horizontal ice velocity in meters per day.'
   visible: False
-  group_path: 'Glaciology/Ice sheet velocity/CCI'
+  group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
   style: esa_cci_velocity
   boundary: 'data'
   data_source: esa_cci_ice_sheet_velocity_20191214_20200131.only
