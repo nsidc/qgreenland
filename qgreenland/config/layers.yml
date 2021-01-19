@@ -1086,8 +1086,9 @@
       - 'glims_download_82381/glims_polygons.shx'
 
 - id: basal_thermal_state
-  title: 'Likely Basal Thermal State (5km)'
-  description: 'Likely basal frozen/thawed state of the Greenland Ice Sheet.'
+  title: 'Likely basal thermal state (5km)'
+  description: >-
+      Likely basal frozen/thawed state of the Greenland Ice Sheet.
   visible: False
   group_path: 'Glaciology'
   style: basal_thermal_state
