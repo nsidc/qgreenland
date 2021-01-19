@@ -4415,7 +4415,7 @@
 ######################
 
 - id: image_mosaic_2019
-  title: 'Greenland Image Mosaic 2019 (Online Only)'
+  title: 'Greenland image mosaic 2019 (10m)'
   description: 'Sentinel-2 multispectral satellite imagery from 2019.'
   visible: False
   group_path: 'Internet-required data'
@@ -4429,7 +4429,7 @@
 # NOTE: This layer sometimes causes the CreateQgisProjectFile step to hang for
 # an hour or more on `qgc.QgsRasterLayer` call. Remove it?
 - id: image_mosaic_2015
-  title: 'Greenland Image Mosaic 2015 (Online Only)'
+  title: 'Greenland image mosaic 2015 (15m)'
   description: 'Sentinel-2 multispectral satellite imagery from 2015.'
   visible: False
   group_path: 'Internet-required data'
