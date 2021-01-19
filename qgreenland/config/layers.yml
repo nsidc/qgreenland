@@ -372,7 +372,7 @@
 
 - &racmo_1km
   id: racmo_precip
-  title: 'Total Precipitation'
+  title: 'Total precipitation'
   description: >-
       Averaged total precipitation in milimeters of water equivilent (mm w.e.)
       for the period 1958 - 2018 covering the whole ice sheet and peripheral ice
@@ -449,7 +449,7 @@
 - <<: *racmo_1km
   id: racmo_sndiv
   # TODO: correct title
-  title: 'Sndiv (Snow drift erosion?)'
+  title: 'Sndiv (snow drift erosion?)'
   description: >-
       TBD - waiting on email response from Brice
   translate_kwargs:
@@ -460,7 +460,7 @@
 
 - <<: *racmo_1km
   id: racmo_t2m
-  title: 'Annual Mean Temperature at 2m'
+  title: 'Annual mean temperature at 2m'
   # NOTE: the source data states that the data are in units of mm of water
   # equivilent, but the values are clearly degrees Kelvin.
   description: >-
@@ -473,7 +473,7 @@
 
 - <<: *racmo_1km
   id: racmo_promicemask
-  title: 'PROMICE Mask'
+  title: 'PROMICE mask'
   description: >-
     Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
     peripheral ice caps; 0 = Ocean.
@@ -504,7 +504,7 @@
 
 - <<: *racmo_1km
   id: racmo_grounded_ice
-  title: 'Grounded Ice'
+  title: 'Grounded ice'
   description: >-
       Mask of grounded ice.
   group_path: 'Atmosphere/RACMO model output/RACMO masks'
