@@ -1298,7 +1298,7 @@
 
 - &its_live_velocity_mosaic
   id: velocity_mosaic
-  title: 'Ice Sheet Velocity (500m)'
+  title: 'Ice sheet velocity (500m)'
   description: 'Magnitude of velocity in meters per year. Data provided by JPL.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
@@ -1319,7 +1319,7 @@
 
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_error
-  title: 'Velocity Error'
+  title: 'Velocity error'
   description: 'Magnitude of Velocity error in meters per year.'
   ingest_task: velocity_mosaic
   style: ice_sheet_velocity_error
