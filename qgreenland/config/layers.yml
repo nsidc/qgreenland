@@ -574,7 +574,7 @@
     where: '"\"type\" LIKE ''Caribou%''"'
 
 - id: ginr_caribou_areas
-  title: 'Caribou Areas'
+  title: 'Caribou areas'
   group_path: 'Biology/Mammals'
   data_source: ginr_caribou.only
   visible: False
