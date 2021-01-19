@@ -1180,6 +1180,8 @@
 
 - id: ice_cores
   title: 'Ice Cores'
+  description: >-
+    Point locations of ice cores sampled in Greenland.
   visible: False
   group_path: 'Glaciology'
   style: 'labeled_point'
