@@ -751,11 +751,10 @@
   #     input_filename: 'fetched.geojson'
 
 - id: nunagis_municipalities_population
-  title: 'Municipalities and Population'
+  title: 'Municipalities and population 2019'
   data_source: nunagis_pop2019_municipalities.only
   visible: False
   group_path: 'Built environment'
-  # TODO:
   style: null
   boundary: 'data'
   ingest_task: ogr_remote_vector
