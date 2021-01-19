@@ -62,7 +62,7 @@
   style: buildings_shape
 
 - id: utm_zones
-  title: Universal Transverse Mercator (UTM) Zones
+  title: Universal Transverse Mercator (UTM) zones
   visible: False
   group_path: 'Miscellaneous'
   style: 'utm_zones'
@@ -522,7 +522,7 @@
 ###########
 
 - id: vegetation_biomass_2010
-  title: 'Vegetation Biomass 2010 (1km)'
+  title: 'Vegetation biomass 2010 (1km)'
   description: >-
     Estimated above ground plant biomass for the tundra biome in kilograms per
     square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
@@ -686,7 +686,7 @@
     where: '"\"type\" LIKE ''Polar bear%''"'
 
 - id: caff_thickbilled_murre_colonies
-  title: 'Thickbilled Murre Colonies 2010'
+  title: 'Thickbilled Murre colonies 2010'
   description: >-
     Point locations of Thickbilled Murre colonies as surveyed in 2010.
   data_source: caff_murre_colonies.only
@@ -705,7 +705,7 @@
       - 'Distribution_Thickbilled_Murre_Colonies.shx'
 
 - id: caff_common_murre_colonies
-  title: 'Common Murre Colonies 2010'
+  title: 'Common Murre colonies 2010'
   description: >-
     Point locations of Common Murre colonies as surveyed in 2010.
   data_source: caff_murre_colonies.only
@@ -1122,7 +1122,7 @@
 
 - &glacier_terminus
   id: glacier_terminus_2000_2001
-  title: 'Glacier Termini 2000 to 2001'
+  title: 'Glacier termini 2000 to 2001'
   visible: False
   group_path: 'Glaciology/Glacier terminus positions 2000-2017'
   boundary: 'data'
@@ -1133,49 +1133,49 @@
 
 - <<: *glacier_terminus
   id: glacier_terminus_2005_2006
-  title: 'Glacier Termini 2005 to 2006'
+  title: 'Glacier termini 2005 to 2006'
   data_source: glacier_terminus.2005_2006
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2006_2007
-  title: 'Glacier Termini 2006 to 2007'
+  title: 'Glacier termini 2006 to 2007'
   data_source: glacier_terminus.2006_2007
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2007_2008
-  title: 'Glacier Termini 2007 to 2008'
+  title: 'Glacier termini 2007 to 2008'
   data_source: glacier_terminus.2007_2008
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2008_2009
-  title: 'Glacier Termini 2008 to 2009'
+  title: 'Glacier termini 2008 to 2009'
   data_source: glacier_terminus.2008_2009
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2012_2013
-  title: 'Glacier Termini 2012 to 2013'
+  title: 'Glacier termini 2012 to 2013'
   data_source: glacier_terminus.2012_2013
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2014_2015
-  title: 'Glacier Termini 2014 to 2015'
+  title: 'Glacier termini 2014 to 2015'
   data_source: glacier_terminus.2014_2015
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2015_2016
-  title: 'Glacier Termini 2015 to 2016'
+  title: 'Glacier termini 2015 to 2016'
   data_source: glacier_terminus.2015_2016
 
 
 - <<: *glacier_terminus
   id: glacier_terminus_2016_2017
-  title: 'Glacier Termini 2016 to 2017'
+  title: 'Glacier termini 2016 to 2017'
   data_source: glacier_terminus.2016_2017
 
 - id: ice_cores
@@ -1298,8 +1298,8 @@
 
 - &its_live_velocity_mosaic
   id: velocity_mosaic
-  title: 'Ice Sheet Velocity (500m)'
-  description: 'Magnitude of velocity in meters per year. Data provided by JPL.'
+  title: 'Ice sheet velocity (500m)'
+  description: 'Magnitude of velocity in meters per year.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
   style: 'ice_sheet_velocity'
@@ -1319,7 +1319,7 @@
 
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_error
-  title: 'Velocity Error'
+  title: 'Velocity error'
   description: 'Magnitude of Velocity error in meters per year.'
   ingest_task: velocity_mosaic
   style: ice_sheet_velocity_error
@@ -1694,7 +1694,7 @@
 ###############################
 
 - id: earthquakes
-  title: 'Earthquakes (M>2.5, 1900-2020)'
+  title: 'Earthquakes M>2.5 1900-2020'
   description: >-
     Location and magnitude of earthquakes.
   visible: False
@@ -1709,7 +1709,7 @@
     input_filename: 'query.geojson'
 
 - id: soil_types
-  title: 'Soil Characteristics'
+  title: 'Soil characteristics'
   description: >-
       Polygons representing dominant soil characteristics with percentage
       polygon area for each soil type. Data coverage limited to Greenland.
@@ -3548,7 +3548,7 @@
 
 
 - id: arctic_sea_routes
-  title: 'Arctic Sea Routes'
+  title: 'Arctic sea routes'
   description: >-
     Lines depict the Northern Sea Route, Northwest Passate, and hypothetical
     Transpolar Route.
@@ -3568,7 +3568,7 @@
 
 - &streams_outlets_basins
   id: ice_outlets
-  title: 'Ice Outlets'
+  title: 'Ice outlets'
   description: >-
       TBD
   ingest_task: online_vector
@@ -3583,7 +3583,7 @@
 
 - <<: *streams_outlets_basins
   id: land_outlets
-  title: 'Land Outlets'
+  title: 'Land outlets'
   description: >-
       TBD
   style: 'land_outlets'
@@ -3593,7 +3593,7 @@
 
 - <<: *streams_outlets_basins
   id: ice_streams
-  title: 'Ice Streams'
+  title: 'Ice streams'
   description: >-
       TBD
   style: 'ice_streams'
@@ -3604,7 +3604,7 @@
 
 - <<: *streams_outlets_basins
   id: ice_basins
-  title: 'Ice Basins'
+  title: 'Ice basins'
   description: >-
       TBD
   style: 'ice_basins'
@@ -3614,7 +3614,7 @@
 
 - <<: *streams_outlets_basins
   id: ice_basins_filled
-  title: 'Ice Basins Filled'
+  title: 'Ice basins filled'
   description: >-
       TBD
   style: 'ice_basins'
@@ -3624,7 +3624,7 @@
 
 - <<: *streams_outlets_basins
   id: land_streams
-  title: 'Land Streams'
+  title: 'Land streams'
   description: >-
       TBD
   style: 'land_streams'
@@ -3635,7 +3635,7 @@
 
 - <<: *streams_outlets_basins
   id: land_basins
-  title: 'Land Basins'
+  title: 'Land basins'
   description: >-
       TBD
   style: 'land_basins'
@@ -3645,7 +3645,7 @@
 
 - <<: *streams_outlets_basins
   id: land_basins_filled
-  title: 'Land Basins Filled'
+  title: 'Land basins filled'
   description: >-
       TBD
   style: 'land_basins'
@@ -3814,7 +3814,7 @@
 
 
 - id: bathymetric_chart
-  title: 'Bathymetric Chart of the Arctic Ocean (500m)'
+  title: 'Bathymetric chart of the Arctic Ocean (500m)'
   description: >-
       Surface (bedrock or icesheet) elevation in meters.  Elevations can be
       assumed to be relative to Mean Sea Level. However, in some shallow water
@@ -4294,7 +4294,7 @@
 
 - &bedmachine
   id: bedmachine_thickness
-  title: 'Ice Thickness (500m)'
+  title: 'Ice thickness (500m)'
   description: >-
     Ice thickness in meters. Mass conservation source data provided by Mathieu
     Morlighem.
@@ -4314,7 +4314,7 @@
 
 - <<: *bedmachine
   id: bedmachine_surface
-  title: 'Surface Elevation (500m)'
+  title: 'Surface elevation (500m)'
   description: >-
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
@@ -4324,7 +4324,7 @@
 
 - <<: *bedmachine
   id: bedmachine_bed
-  title: 'Bedrock Elevation (500m)'
+  title: 'Bedrock elevation (500m)'
   description: >-
     Bedrock elevation in meters.
   style: 'bedmachine_bed'
@@ -4333,7 +4333,7 @@
 
 - <<: *bedmachine
   id: bedmachine_errbed
-  title: 'Bedrock Elevation/Ice Thickness Error (500m)'
+  title: 'Bedrock elevation/ice thickness error (500m)'
   description: >-
     Error estimate for Greenland bed elevation and ice thickness in meters.
   style: 'bedmachine_errbed'
