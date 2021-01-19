@@ -1720,6 +1720,8 @@
 
 - id: tectonic_plate_boundaries
   title: 'Tectonic plate boundaries'
+  description: >-
+    Linestrings representing borders between tectonic plates.
   visible: False
   group_path: 'Geology & natural resources'
   boundary: 'background'
