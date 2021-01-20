@@ -52,9 +52,9 @@ class AncillaryFile(luigi.Task):
             shutil.copy(self.src_filepath, temp_path)
 
 
-class LayerManifest(AncillaryFile):
+class LayerList(AncillaryFile):
     src_filepath = None
-    dest_relative_filepath = 'layer_manifest.csv'
+    dest_relative_filepath = 'layer_list.csv'
 
     def run(self):
         with self.output().temporary_path() as temp_path:
@@ -65,7 +65,7 @@ class CreateQgisProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
-        yield LayerManifest()
+        yield LayerList()
         yield AncillaryFile(
             src_filepath=os.path.join(ASSETS_DIR, 'images', 'qgreenland.png'),
             dest_relative_filepath='qgreenland.png'
