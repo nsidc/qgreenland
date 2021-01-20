@@ -1747,7 +1747,7 @@
 
 - &mcas_mlsa
   id: mcas_mlsa_public_all
-  title: 'Public Licenses'
+  title: 'Public licenses'
   description: >-
       Mining licenses granted by the government of Greenland.
   visible: False
@@ -1761,7 +1761,7 @@
 
 - <<: *mcas_mlsa
   id: mcas_mlsa_public_historic
-  title: 'Historic Public Licenses'
+  title: 'Historic public licenses'
   description: >-
       Historic mining licenses granted by the government of Greenland.
   data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_historic
