@@ -186,12 +186,13 @@ def _set_groups_options(project):
     groups_config = CONFIG['layer_groups']
 
     for group_path, options in groups_config.items():
-        group = _get_group(project, group_path)
-
+        group = _ensure_group_exists(project, group_path)
+ 
         _set_group_visibility(
             group,
             options.get('visible', LAYERGROUP_VISIBLE_DEFAULT)
         )
+
         _set_group_expanded(
             group,
             options.get('expanded', LAYERGROUP_EXPANDED_DEFAULT)
