@@ -776,8 +776,8 @@
 ############################
 
 - id: nafo_divisions
-  title: 'NAFO Divisions'
-  description: 'The Northwest Atlantic Fisheries Organization Zones'
+  title: 'NAFO divisions'
+  description: 'The Northwest Atlantic Fisheries Organization zones'
   data_source: nafo_divisions.only
   visible: False
   group_path: 'Environmental management'
@@ -943,7 +943,7 @@
 
 - &ground_temperature
   id: ground_temperature
-  title: 'Ground temperature (10km)'
+  title: 'Ground temperature 2000-2016 (10km)'
   description: >-
       Average mean annual ground temperature in degrees Celsius.
   visible: False
@@ -1015,7 +1015,7 @@
 
 
 - id: jakobshavn_supraglacial_lakes
-  title: 'Sermeq Kujalleq/Jakobshavn Supraglacial Lakes'
+  title: 'Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019'
   description: >-
       Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for 2019/05/01 and
       2019/10/01 generated using Sentinel-2 data.
@@ -1337,7 +1337,7 @@
 
 - &esa_cci_velocity
   id: esa_cci_velocity_magnitude
-  title: 'Land Ice Surface Velocity (250m)'
+  title: 'Land ice surface velocity 2019-2020 (250m)'
   description: 'Magnitude of horizontal ice velocity in meters per day.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
@@ -1384,7 +1384,7 @@
 
 - &cci_surface_elevation_change
   id: surface_elevation_change_1992_1996
-  title: 'Surface Elevation change 1992-1996'
+  title: 'Surface elevation change 1992-1996'
   description: >-
     Rate of surface elevation change in meters per year.
   data_source: esa_cci_surface_elevation_change.only
@@ -1767,7 +1767,7 @@
 
 - &geological_map
   id: onshore_planar_geological_map
-  title: 'Onshore Planar'
+  title: 'Onshore planar'
   description: 'This layer contains onshore faults for the landmass and islands of Greenland.'
   visible: False
   group_path: 'Geology & natural resources/Geological map of the Arctic'
@@ -1844,7 +1844,7 @@
 ######## World Magnetic Model 2020 ########
 - &wmm_north_poles
   id: wmm_north_poles
-  title: 'Geomagnetic North Dip Pole 2020-2025'
+  title: 'Geomagnetic North dip pole 2020-2025'
   description: >-
     The locations of northern hemisphere dip poles (2020-2025) from the World
     Magnetic Model (WMM) 2020 model.
@@ -1858,7 +1858,7 @@
     located at longitude 164.04°E and geodetic latitude 86.50°N and the south
     dip pole at longitude 135.88°E and geodetic latitude 64.07°S.
   visible: False
-  group_path: 'Geophysics/World Magnetic Model/Dip Poles'
+  group_path: 'Geophysics/World Magnetic Model/Dip poles'
   style: geomagnetic_north_pole
   data_source: world_magnetic_model.geomagnetic_north_pole
   ingest_task: delimited_text_points_vector
@@ -1879,7 +1879,7 @@
 
 - <<: *wmm_north_poles
   id: wmm_igrf_north_poles
-  title: 'IGRF Geomagnetic North Dip Pole 1590-2025'
+  title: 'IGRF Geomagnetic North dip pole 1590-2025'
   description: >-
     The locations of northern hemisphere dip poles (1590-2025) from the latest
     International Geomagnetic Reference Field (IGRF) model.
@@ -1904,7 +1904,7 @@
     input_filename: 'NP.gpkg'
 
 - id: wmm_geomagnetic_north_pole
-  title: 'Geomagnetic North Pole (2020)'
+  title: 'Geomagnetic North Pole 2020'
   description: >-
     Location of the Geomagnetic North Pole.
 
@@ -1921,7 +1921,7 @@
     for the simple geomagnetic coordinate system of geomagnetic latitude and
     longitude
   visible: False
-  group_path: 'Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020)'
+  group_path: 'Geophysics/World Magnetic Model/Geomagnetic coordinates 2020'
   data_source: local_world_magnetic_model.only
   ingest_task: local_vector
   file_type: '.gpkg'
@@ -1932,7 +1932,7 @@
 
 - &wmm_geomag_coordinates
   id: wmm_latitudes
-  title: 'Geomagnetic Latitudes'
+  title: 'Geomagnetic latitudes'
   description: >-
     The WMM representation of the field includes a magnetic dipole at the center
     of the Earth. This dipole defines an axis that intersects the Earth's
@@ -1947,7 +1947,7 @@
     for the simple geomagnetic coordinate system of geomagnetic latitude and
     longitude
   visible: False
-  group_path: 'Geophysics/World Magnetic Model/Geomagnetic Coordinates (2020)'
+  group_path: 'Geophysics/World Magnetic Model/Geomagnetic coordinates 2020'
   style: geomagnetic_latlon
   data_source: world_magnetic_model.geomagnetic_coordinates
   ingest_task: zipped_vector
@@ -1983,7 +1983,7 @@
 
 - &boz_2020
   id: wmm_boz_2020
-  title: 'Blackout Zones'
+  title: 'Blackout zones'
   description: >-
     Based on the WMM military specification, we define “Blackout Zones” (BoZ)
     around the north and south magnetic poles where compass accuracy is highly
@@ -2016,7 +2016,7 @@
 
 - &wmm_d_2020
   id: wmm_d_2020
-  title: 'Main Field Declination (D)'
+  title: 'Main field declination (D)'
   description: &wmm_d_description >-
     Contours representing magnetic declination (D) in degrees. D is the angle
     between magnetic north and true north. D is considered positive when the
@@ -2044,7 +2044,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_d_sv_2020
-  title: 'Annual Change Declination (D_SV)'
+  title: 'Annual change declination (D_SV)'
   description: &wmm_sv_description >-
     Contours representing annual change (secular variation) in the total
     intensity of the main magnetic field in arcminutes per year.
@@ -2061,7 +2061,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_f_2020
-  title: 'Main Field Total Intensity (F)'
+  title: 'Main field total intensity (F)'
   description: &wmm_f_description >-
     Contours representing the intensity of the total field (F) in nanoTesla
     (nT). F is described by the horizontal component (H), vertical component
@@ -2081,7 +2081,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_f_sv_2020
-  title: 'Annual Change Total Intensity (F_SV)'
+  title: 'Annual change total intensity (F_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2096,7 +2096,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_h_2020
-  title: 'Main Field Horizontal Intensity (H)'
+  title: 'Main field horizontal intensity (H)'
   description: &wmm_h_description >-
     Contours representing Horizontal Intensity (H) of the geomagnetic main field
     in nanoTesla (nT).
@@ -2113,7 +2113,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_h_sv_2020
-  title: 'Annual Change Horizontal Intensity (H_SV)'
+  title: 'Annual change horizontal intensity (H_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2128,7 +2128,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_i_2020
-  title: 'Main Field Inclination (I)'
+  title: 'Main field inclination (I)'
   description: &wmm_i_description >-
     Contours representing magnetic inclination (I) in degrees. I is the angle
     between the horizontal plane and the total field vector, measured positive
@@ -2146,7 +2146,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_i_sv_2020
-  title: 'Annual Change Inclination (I_SV)'
+  title: 'Annual change inclination (I_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2161,7 +2161,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_x_2020
-  title: 'Main Field North Component (X)'
+  title: 'Main field North component (X)'
   description: &wmm_x_description >-
     Contours representing the main field North component (X) of the horizontal
     intensity in nanoTesla (nT).
@@ -2178,7 +2178,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_x_sv_2020
-  title: 'Annual Change North Component (X_SV)'
+  title: 'Annual change North component (X_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2193,7 +2193,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_y_2020
-  title: 'Main Field East Component (Y)'
+  title: 'Main field East component (Y)'
   description: &wmm_y_description >-
     Contours representing the main field East component (Y) of the horizontal
     intensity in nanoTesla (nT).
@@ -2210,7 +2210,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_y_sv_2020
-  title: 'Annual Change East Component (Y_SV)'
+  title: 'Annual change East component (Y_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2225,7 +2225,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_z_2020
-  title: 'Main Field Down Component (Z)'
+  title: 'Main field down component (Z)'
   description: &wmm_z_description >-
     Contours representing the main field down component (Z) in nanoTesla (nT).
   decompress_kwargs:
@@ -2241,7 +2241,7 @@
 
 - <<: *wmm_d_2020
   id: wmm_z_sv_2020
-  title: 'Annual Change Down Component (Z_SV)'
+  title: 'Annual change down component (Z_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2258,7 +2258,7 @@
 ######## World Magnetic Model 2021 ########
 - <<: *boz_2020
   id: wmm_boz_2021
-  title: 'Blackout Zones'
+  title: 'Blackout zones'
   group_path: 'Geophysics/World Magnetic Model/2021'
   decompress_kwargs:
     extract_files:
@@ -2273,7 +2273,7 @@
 
 - &wmm_d_2021
   id: wmm_d_2021
-  title: 'Main Field Declination (D)'
+  title: 'Main field declination (D)'
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2021'
@@ -2298,7 +2298,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_d_sv_2021
-  title: 'Annual Change Declination (D_SV)'
+  title: 'Annual change declination (D_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2313,7 +2313,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_f_2021
-  title: 'Main Field Total Intensity (F)'
+  title: 'Main field total intensity (F)'
   description: *wmm_f_description
   decompress_kwargs:
     extract_files:
@@ -2328,7 +2328,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_f_sv_2021
-  title: 'Annual Change Total Intensity (F_SV)'
+  title: 'Annual change total intensity (F_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2343,7 +2343,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_h_2021
-  title: 'Main Field Horizontal Intensity (H)'
+  title: 'Main field horizontal intensity (H)'
   description: *wmm_h_description
   decompress_kwargs:
     extract_files:
@@ -2358,7 +2358,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_h_sv_2021
-  title: 'Annual Change Horizontal Intensity (H_SV)'
+  title: 'Annual change horizontal intensity (H_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2373,7 +2373,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_i_2021
-  title: 'Main Field Inclination (I)'
+  title: 'Main field inclination (I)'
   description: *wmm_i_description
   decompress_kwargs:
     extract_files:
@@ -2388,7 +2388,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_i_sv_2021
-  title: 'Annual Change Inclination (I_SV)'
+  title: 'Annual change inclination (I_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2403,7 +2403,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_x_2021
-  title: 'Main Field North Component (X)'
+  title: 'Main field North component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -2418,7 +2418,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_x_sv_2021
-  title: 'Annual Change North Component (X_SV)'
+  title: 'Annual change North component (X_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2433,7 +2433,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_y_2021
-  title: 'Main Field East Component (Y)'
+  title: 'Main field East component (Y)'
   description: *wmm_y_description
   decompress_kwargs:
     extract_files:
@@ -2448,7 +2448,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_y_sv_2021
-  title: 'Annual Change East Component (Y_SV)'
+  title: 'Annual change East component (Y_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2463,7 +2463,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_z_2021
-  title: 'Main Field Down Component (Z)'
+  title: 'Main field down component (Z)'
   description: *wmm_z_description
   decompress_kwargs:
     extract_files:
@@ -2478,7 +2478,7 @@
 
 - <<: *wmm_d_2021
   id: wmm_z_sv_2021
-  title: 'Annual Change Down Component (Z_SV)'
+  title: 'Annual change down component (Z_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2494,7 +2494,7 @@
 ######## World Magnetic Model 2022 ########
 - <<: *boz_2020
   id: wmm_boz_2022
-  title: 'Blackout Zones'
+  title: 'Blackout zones'
   group_path: 'Geophysics/World Magnetic Model/2022'
   decompress_kwargs:
     extract_files:
@@ -2509,7 +2509,7 @@
 
 - &wmm_d_2022
   id: wmm_d_2022
-  title: 'Main Field Declination (D)'
+  title: 'Main field declination (D)'
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2022'
@@ -2534,7 +2534,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_d_sv_2022
-  title: 'Annual Change Declination (D_SV)'
+  title: 'Annual change declination (D_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2549,7 +2549,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_f_2022
-  title: 'Main Field Total Intensity (F)'
+  title: 'Main field total intensity (F)'
   description: *wmm_f_description
   decompress_kwargs:
     extract_files:
@@ -2564,7 +2564,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_f_sv_2022
-  title: 'Annual Change Total Intensity (F_SV)'
+  title: 'Annual change total intensity (F_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2579,7 +2579,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_h_2022
-  title: 'Main Field Horizontal Intensity (H)'
+  title: 'Main field horizontal intensity (H)'
   description: *wmm_h_description
   decompress_kwargs:
     extract_files:
@@ -2594,7 +2594,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_h_sv_2022
-  title: 'Annual Change Horizontal Intensity (H_SV)'
+  title: 'Annual change horizontal intensity (H_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2609,7 +2609,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_i_2022
-  title: 'Main Field Inclination (I)'
+  title: 'Main field inclination (I)'
   description: *wmm_i_description
   decompress_kwargs:
     extract_files:
@@ -2624,7 +2624,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_i_sv_2022
-  title: 'Annual Change Inclination (I_SV)'
+  title: 'Annual change inclination (I_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2639,7 +2639,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_x_2022
-  title: 'Main Field North Component (X)'
+  title: 'Main field north component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -2654,7 +2654,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_x_sv_2022
-  title: 'Annual Change North Component (X_SV)'
+  title: 'Annual change North component (X_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2669,7 +2669,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_y_2022
-  title: 'Main Field East Component (Y)'
+  title: 'Main field East component (Y)'
   description: *wmm_y_description
   decompress_kwargs:
     extract_files:
@@ -2684,7 +2684,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_y_sv_2022
-  title: 'Annual Change East Component (Y_SV)'
+  title: 'Annual change East component (Y_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2699,7 +2699,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_z_2022
-  title: 'Main Field Down Component (Z)'
+  title: 'Main field down component (Z)'
   description: *wmm_z_description
   decompress_kwargs:
     extract_files:
@@ -2714,7 +2714,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_z_sv_2022
-  title: 'Annual Change Down Component (Z_SV)'
+  title: 'Annual change down component (Z_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2730,7 +2730,7 @@
 ######## World Magnetic Model 2023 ########
 - <<: *boz_2020
   id: wmm_boz_2023
-  title: 'Blackout Zones'
+  title: 'Blackout zones'
   group_path: 'Geophysics/World Magnetic Model/2023'
   decompress_kwargs:
     extract_files:
@@ -2745,7 +2745,7 @@
 
 - &wmm_d_2023
   id: wmm_d_2023
-  title: 'Main Field Declination (D)'
+  title: 'Main field declination (D)'
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2023'
@@ -2770,7 +2770,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_d_sv_2023
-  title: 'Annual Change Declination (D_SV)'
+  title: 'Annual change declination (D_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2785,7 +2785,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_f_2023
-  title: 'Main Field Total Intensity (F)'
+  title: 'Main field total intensity (F)'
   description: *wmm_f_description
   decompress_kwargs:
     extract_files:
@@ -2800,7 +2800,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_f_sv_2023
-  title: 'Annual Change Total Intensity (F_SV)'
+  title: 'Annual change total intensity (F_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2815,7 +2815,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_h_2023
-  title: 'Main Field Horizontal Intensity (H)'
+  title: 'Main field horizontal intensity (H)'
   description: *wmm_h_description
   decompress_kwargs:
     extract_files:
@@ -2830,7 +2830,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_h_sv_2023
-  title: 'Annual Change Horizontal Intensity (H_SV)'
+  title: 'Annual change horizontal intensity (H_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2845,7 +2845,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_i_2023
-  title: 'Main Field Inclination (I)'
+  title: 'Main field inclination (I)'
   description: *wmm_i_description
   decompress_kwargs:
     extract_files:
@@ -2860,7 +2860,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_i_sv_2023
-  title: 'Annual Change Inclination (I_SV)'
+  title: 'Annual change inclination (I_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2875,7 +2875,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_x_2023
-  title: 'Main Field North Component (X)'
+  title: 'Main field north component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -2890,7 +2890,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_x_sv_2023
-  title: 'Annual Change North Component (X_SV)'
+  title: 'Annual change North component (X_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2905,7 +2905,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_y_2023
-  title: 'Main Field East Component (Y)'
+  title: 'Main field East component (Y)'
   description: *wmm_y_description
   decompress_kwargs:
     extract_files:
@@ -2920,7 +2920,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_y_sv_2023
-  title: 'Annual Change East Component (Y_SV)'
+  title: 'Annual change East component (Y_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2935,7 +2935,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_z_2023
-  title: 'Main Field Down Component (Z)'
+  title: 'Main field down component (Z)'
   description: *wmm_z_description
   decompress_kwargs:
     extract_files:
@@ -2950,7 +2950,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_z_sv_2023
-  title: 'Annual Change Down Component (Z_SV)'
+  title: 'Annual change down component (Z_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -2966,7 +2966,7 @@
 ######## World Magnetic Model 2024 ########
 - <<: *boz_2020
   id: wmm_boz_2024
-  title: 'Blackout Zones'
+  title: 'Blackout zones'
   group_path: 'Geophysics/World Magnetic Model/2024'
   decompress_kwargs:
     extract_files:
@@ -2981,7 +2981,7 @@
 
 - &wmm_d_2024
   id: wmm_d_2024
-  title: 'Main Field Declination (D)'
+  title: 'Main field declination (D)'
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2024'
@@ -3006,7 +3006,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_d_sv_2024
-  title: 'Annual Change Declination (D_SV)'
+  title: 'Annual change declination (D_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3021,7 +3021,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_f_2024
-  title: 'Main Field Total Intensity (F)'
+  title: 'Main field total intensity (F)'
   description: *wmm_f_description
   decompress_kwargs:
     extract_files:
@@ -3036,7 +3036,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_f_sv_2024
-  title: 'Annual Change Total Intensity (F_SV)'
+  title: 'Annual change total intensity (F_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3051,7 +3051,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_h_2024
-  title: 'Main Field Horizontal Intensity (H)'
+  title: 'Main field horizontal intensity (H)'
   description: *wmm_h_description
   decompress_kwargs:
     extract_files:
@@ -3066,7 +3066,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_h_sv_2024
-  title: 'Annual Change Horizontal Intensity (H_SV)'
+  title: 'Annual change horizontal intensity (H_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3081,7 +3081,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_i_2024
-  title: 'Main Field Inclination (I)'
+  title: 'Main field inclination (I)'
   description: *wmm_i_description
   decompress_kwargs:
     extract_files:
@@ -3096,7 +3096,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_i_sv_2024
-  title: 'Annual Change Inclination (I_SV)'
+  title: 'Annual change inclination (I_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3111,7 +3111,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_x_2024
-  title: 'Main Field North Component (X)'
+  title: 'Main field north component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -3126,7 +3126,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_x_sv_2024
-  title: 'Annual Change North Component (X_SV)'
+  title: 'Annual change North component (X_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3141,7 +3141,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_y_2024
-  title: 'Main Field East Component (Y)'
+  title: 'Main field East component (Y)'
   description: *wmm_y_description
   decompress_kwargs:
     extract_files:
@@ -3156,7 +3156,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_y_sv_2024
-  title: 'Annual Change East Component (Y_SV)'
+  title: 'Annual change East component (Y_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3171,7 +3171,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_z_2024
-  title: 'Main Field Down Component (Z)'
+  title: 'Main field down component (Z)'
   description: *wmm_z_description
   decompress_kwargs:
     extract_files:
@@ -3186,7 +3186,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_z_sv_2024
-  title: 'Annual Change Down Component (Z_SV)'
+  title: 'Annual change down component (Z_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3202,7 +3202,7 @@
 ######## World Magnetic Model 2025 ########
 - <<: *boz_2020
   id: wmm_boz_2025
-  title: 'Blackout Zones'
+  title: 'Blackout zones'
   group_path: 'Geophysics/World Magnetic Model/2025'
   decompress_kwargs:
     extract_files:
@@ -3217,7 +3217,7 @@
 
 - &wmm_d_2025
   id: wmm_d_2025
-  title: 'Main Field Declination (D)'
+  title: 'Main field declination (D)'
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2025'
@@ -3242,7 +3242,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_d_sv_2025
-  title: 'Annual Change Declination (D_SV)'
+  title: 'Annual change declination (D_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3257,7 +3257,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_f_2025
-  title: 'Main Field Total Intensity (F)'
+  title: 'Main field total intensity (F)'
   description: *wmm_f_description
   decompress_kwargs:
     extract_files:
@@ -3272,7 +3272,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_f_sv_2025
-  title: 'Annual Change Total Intensity (F_SV)'
+  title: 'Annual change total intensity (F_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3287,7 +3287,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_h_2025
-  title: 'Main Field Horizontal Intensity (H)'
+  title: 'Main field horizontal intensity (H)'
   description: *wmm_h_description
   decompress_kwargs:
     extract_files:
@@ -3302,7 +3302,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_h_sv_2025
-  title: 'Annual Change Horizontal Intensity (H_SV)'
+  title: 'Annual change horizontal intensity (H_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3317,7 +3317,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_i_2025
-  title: 'Main Field Inclination (I)'
+  title: 'Main field inclination (I)'
   description: *wmm_i_description
   decompress_kwargs:
     extract_files:
@@ -3332,7 +3332,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_i_sv_2025
-  title: 'Annual Change Inclination (I_SV)'
+  title: 'Annual change inclination (I_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3347,7 +3347,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_x_2025
-  title: 'Main Field North Component (X)'
+  title: 'Main field north component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -3362,7 +3362,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_x_sv_2025
-  title: 'Annual Change North Component (X_SV)'
+  title: 'Annual change North component (X_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3377,7 +3377,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_y_2025
-  title: 'Main Field East Component (Y)'
+  title: 'Main field East component (Y)'
   description: *wmm_y_description
   decompress_kwargs:
     extract_files:
@@ -3392,7 +3392,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_y_sv_2025
-  title: 'Annual Change East Component (Y_SV)'
+  title: 'Annual change East component (Y_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -3407,7 +3407,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_z_2025
-  title: 'Main Field Down Component (Z)'
+  title: 'Main field down component (Z)'
   description: *wmm_z_description
   decompress_kwargs:
     extract_files:
@@ -3422,7 +3422,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_z_sv_2025
-  title: 'Annual Change Down Component (Z_SV)'
+  title: 'Annual change down component (Z_SV)'
   description: *wmm_sv_description
   decompress_kwargs:
     extract_files:
@@ -4447,7 +4447,7 @@
 ############
 
 - id: bas_greenland_coastlines
-  title: 'Greenland Coastlines'
+  title: 'Greenland coastlines 2017'
   description: >-
     This layer should be used as the 'reference coastline' for Greenland.
   visible: False
