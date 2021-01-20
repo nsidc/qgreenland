@@ -4364,7 +4364,7 @@
     scale: 0.01
 
 - id: dms_gtk_topo
-  title: 'Topographic Map (1:500,000)'
+  title: 'Topographic map (1:500,000)'
   description: >-
     Digitized and geolocated topographic map of Greenland.
   visible: False
