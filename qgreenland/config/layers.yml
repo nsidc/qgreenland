@@ -3479,9 +3479,9 @@
 
 - &gc_net_promice_stations
   id: promice_research_stations
-  title: 'PROMICE Automated Weather Stations'
+  title: 'PROMICE automated weather stations'
   description: >-
-      Locations and details of PROMICE Automated Weather Stations.
+      Locations and details of PROMICE automated weather stations.
   visible: False
   group_path: 'Human activity/Research stations'
   style: 'labeled_point'
@@ -3502,9 +3502,9 @@
 
 - <<: *gc_net_promice_stations
   id: promice_research_stations_former
-  title: 'Former PROMICE Automated Weather Stations'
+  title: 'Former PROMICE automated weather stations'
   description: >-
-      Locations and details of inactive PROMICE Automated Weather Stations.
+      Locations and details of inactive PROMICE automated weather stations.
   data_source: gc_net_promice_stations.promice_former
   delimited_text_vector_kwargs:
     input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.csv'
@@ -3518,9 +3518,9 @@
 
 - <<: *gc_net_promice_stations
   id: gc_net_research_stations
-  title: 'GC-NET Automated Weather Stations'
+  title: 'GC-NET automated weather stations'
   description: >-
-      Location and details of GC-NET Automated Weather Stations.
+      Location and details of GC-NET automated weather stations.
   data_source: gc_net_promice_stations.gc_net
   delimited_text_vector_kwargs:
     input_filename: 'GCN%20info%20ca.2000.csv'
