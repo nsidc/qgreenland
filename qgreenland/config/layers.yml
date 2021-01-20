@@ -4369,6 +4369,7 @@
     Digitized and geolocated topographic map of Greenland.
   visible: False
   group_path: 'Terrain models'
+  # This data has an internal colormap, and should not get a style.
   style: null
   data_source: danish_agency_for_data_supply_and_efficiency_gtk_topop_map.only
   ingest_task: 'dms_gtk_topo'
