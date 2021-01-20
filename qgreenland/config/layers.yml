@@ -999,7 +999,7 @@
 
 
 - id: firn_ice_layer_thicknesses
-  title: 'Ice slab thickness in firn ice'
+  title: 'Ice slab thickness in firn ice 2010-2014'
   description: >-
       Ice slab thickness, in meters, in the top 20 meters of firn. Only slabs
       between 1 and 16 meters are included.
