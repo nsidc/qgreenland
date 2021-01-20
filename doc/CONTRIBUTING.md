@@ -25,7 +25,7 @@ anywhere. Current access methods include:
 
 * `cmr`: Access CMR-indexed data by `granule_ur`s.
 * `http`: Access online resource by `url`s.
-* `local`: Access in-repo data by `url`s. `url` is relative to
+* `local`: Access in-repository data by `url`s. `url` is relative to
   `qgreenland/assets/local_data`.
 * `manual`: Access by `access_instructions`. This data is either inaccessible
   publicly or programmatically, so instructions must be followed to seed the
@@ -55,8 +55,7 @@ A layer references `layer_groups.yml` with the `group_path` key.
 
 ### Layer groups
 
-Each element in `layer_groups.yml` represents a QGIS layer group in the table
-of contents. Keep in mind that the first layer's group will always be
+Each element in `layer_groups.yml` represents a QGIS layer group in the Layers Panel. Keep in mind that the first layer's group will always be
 automatically selected and expanded.
 
 
@@ -92,7 +91,7 @@ As of `v0.50.0`:
 
 * Add ancillary files to WIP location:
   * `qgreenland.png`: QGreenland logo
-  * `layer_manifest.csv`: Layer manifest
+  * `layer_manifest.csv`: Full layer list and associated information
   * `CHANGELOG.txt`: Text version of `CHANGELOG.md`
   * `CONTRIBUTING.txt`: Text version of `doc/CONTRIBUTING.md`
   * `README.txt`: Text version of `README.md`
@@ -249,7 +248,7 @@ source `only` in `datasets.yml` above, allowing the QGreenland code to locate
 the data for processing.
 
 The `title` and `description` fields here are used to populate layer title and
-hover text in the QGIS Layer table of contents.
+hover text in the QGIS Layers Panel.
 
 Some of the other keys here control layer processing and should not be modified
 unless you're comfortable reading code.
