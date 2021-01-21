@@ -12,6 +12,7 @@ from osgeo import gdal
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR
+from qgreenland.exceptions import QgrInvalidConfigError
 from qgreenland.util.misc import get_layer_path
 from qgreenland.util.version import get_build_version
 
