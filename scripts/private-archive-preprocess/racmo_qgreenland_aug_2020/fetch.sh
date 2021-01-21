@@ -10,12 +10,6 @@ fi
 
 # 5.5km
 wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/5.5km/v10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/5.5km/u10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
     $REPO_ROOT/5.5km/mean/v10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
 
 wget --user $USERNAME --password $PASSWORD \
@@ -23,36 +17,6 @@ wget --user $USERNAME --password $PASSWORD \
 
 
 # 1km
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/t2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/subl.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/snowmelt.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/snowfall.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/sndiv.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/smb_rec.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/runoff.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/refreeze.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/1km/precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY.nc.gz --directory-prefix=$DEST_ROOT
-
 wget --user $USERNAME --password $PASSWORD \
     $REPO_ROOT/1km/mean/t2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
 
