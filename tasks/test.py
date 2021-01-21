@@ -68,17 +68,17 @@ def validate(ctx, verbose=False):
 @task(pre=[lint, typecheck, validate])
 def static(ctx):
     """Run static analysis."""
-    print(f'🎉🌩️ All static analysis passed.')
+    print(f'🎉🌩️  All static analysis passed.')
 
 
 @task
 def unit(ctx):
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' pytest {TEST_DIR}',
+        f' pytest -c setup.cfg --cov-config=setup.cfg {TEST_DIR}',
         pty=True
     )
-    print('🎉🛠️ Unit tests passed.')
+    print('🎉🛠️  Unit tests passed.')
 
 
 @task(pre=[static, unit], default=True)
