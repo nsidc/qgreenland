@@ -188,6 +188,12 @@ def _set_groups_options(project):
     for group_path, options in groups_config.items():
         group = _get_group(project, group_path)
 
+        if group is None:
+            # TODO: check for this case in config validation/linting.
+            raise QgrInvalidConfigError(
+                f"Encountered group '{group_path}' without reference in layers.yml."
+            )
+
         _set_group_visibility(
             group,
             options.get('visible', LAYERGROUP_VISIBLE_DEFAULT)
