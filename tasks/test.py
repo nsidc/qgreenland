@@ -15,16 +15,34 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(
 ))
 sys.path.append(PROJECT_DIR)
 
-from qgreenland.constants import PACKAGE_DIR, TEST_DIR
+from qgreenland.constants import PACKAGE_DIR, PROJECT_DIR, TEST_DIR
 
 
 @task(aliases=['flake8'])
 def lint(ctx):
     """Run flake8 linting."""
-    print_and_run(f'flake8 {PACKAGE_DIR}', pty=True)
-    print_and_run(f'vulture {PACKAGE_DIR} --min-confidence 100', pty=True)
-    print('Linting passed.')
+    print_and_run(
+        f'cd {PROJECT_DIR} &&'
+        f' flake8 {PACKAGE_DIR}',
+        pty=True,
+    )
+    print_and_run(
+        f'cd {PROJECT_DIR} &&'
+        f' vulture {PACKAGE_DIR} --min-confidence 100',
+        pty=True
+    )
+    print('🎉🙈 Linting passed.')
 
+
+@task(aliases=['mypy'])
+def typecheck(ctx):
+    """Run mypy static type analysis."""
+    print_and_run(
+        f'cd {PROJECT_DIR} &&'
+        f' mypy --config-file={PROJECT_DIR}/.mypy.ini {PACKAGE_DIR}',
+        pty=True,
+    )
+    print('🎉🦆 Type checking passed.')
 
 @task
 def validate(ctx, verbose=False):
@@ -44,16 +62,26 @@ def validate(ctx, verbose=False):
         print('Datasets:')
         pprint(CONFIG['datasets'])
 
-    print('Configuration is valid.')
+    print('🎉🦆 Configuration validation passed.')
+
+
+@task(pre=[lint, typecheck, validate])
+def static(ctx):
+    """Run static analysis."""
+    print(f'🎉🌩️  All static analysis passed.')
 
 
 @task
 def unit(ctx):
-    print_and_run(f'cd {PROJECT_DIR} && pytest {TEST_DIR}', pty=True)
-    print('Unit tests passed.')
+    print_and_run(
+        f'cd {PROJECT_DIR} &&'
+        f' pytest -c setup.cfg --cov-config=setup.cfg {TEST_DIR}',
+        pty=True
+    )
+    print('🎉🛠️  Unit tests passed.')
 
 
-@task(pre=[validate, lint, unit], default=True)
+@task(pre=[static, unit], default=True)
 def all(ctx):
     """Run all tasks."""
-    pass
+    print('🎉❤️  All tests passed!')

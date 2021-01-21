@@ -1,5 +1,6 @@
 import os
 import shutil
+from typing import Optional
 
 import luigi
 
@@ -17,7 +18,7 @@ class LayerTask(luigi.Task):
 
     requires_task = luigi.Parameter()
     layer_id = luigi.Parameter()
-    task_type = None
+    task_type: Optional[TaskType] = None
 
     def __repr__(self):
         return (

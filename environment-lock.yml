@@ -22,7 +22,7 @@ dependencies:
   - certifi=2020.12.5=py38h578d9bd_1
   - cffi=1.14.4=py38ha312104_0
   - cfitsio=3.470=hb418390_7
-  - cftime=1.3.0=py38h5c078b8_0
+  - cftime=1.3.1=py38h5c078b8_0
   - chardet=3.0.4=py38h924ce5b_1008
   - click=7.1.2=pyh9f0ad1d_0
   - click-plugins=1.1.1=py_0
@@ -57,7 +57,7 @@ dependencies:
   - glib=2.66.3=h58526e2_0
   - gobject-introspection=1.66.1=py38h4eacb9c_3
   - graphite2=1.3.13=h58526e2_1001
-  - gsl=2.6=he838d99_1
+  - gsl=2.6=he838d99_2
   - gst-plugins-base=1.14.5=h0935bb2_2
   - gstreamer=1.14.5=h36ae1b5_2
   - gtk2=2.24.32=h586f36d_1
@@ -72,7 +72,7 @@ dependencies:
   - importlib_metadata=3.4.0=hd8ed1ab_0
   - invoke=1.4.0=py_0
   - ipdb=0.13.4=pyhd3deb0d_0
-  - ipython=7.19.0=py38h81c977d_1
+  - ipython=7.19.0=py38h81c977d_2
   - ipython_genutils=0.2.0=py_1
   - jedi=0.17.2=py38h578d9bd_1
   - jinja2=2.11.2=pyh9f0ad1d_0
@@ -89,12 +89,12 @@ dependencies:
   - libedit=3.1.20191231=he28a2e2_2
   - libev=4.33=h516909a_1
   - libffi=3.2.1=he1b5a44_1007
-  - libgcc-ng=9.3.0=h5dbcf3e_17
+  - libgcc-ng=9.3.0=h2828fa1_18
   - libgdal=3.0.4=he6a97d6_10
-  - libgfortran-ng=9.3.0=he4bcb1c_17
-  - libgfortran5=9.3.0=he4bcb1c_17
+  - libgfortran-ng=9.3.0=hff62375_18
+  - libgfortran5=9.3.0=hff62375_18
   - libglib=2.66.3=hbe7bbb4_0
-  - libgomp=9.3.0=h5dbcf3e_17
+  - libgomp=9.3.0=h2828fa1_18
   - libiconv=1.16=h516909a_0
   - libkml=1.3.0=hd79254b_1012
   - liblapack=3.9.0=7_openblas
@@ -107,14 +107,14 @@ dependencies:
   - libspatialindex=1.9.3=he1b5a44_3
   - libspatialite=4.3.0a=h2482549_1038
   - libssh2=1.9.0=hab1572f_5
-  - libstdcxx-ng=9.3.0=h2ae2ef3_17
+  - libstdcxx-ng=9.3.0=h6de172a_18
   - libtiff=4.2.0=hdc55705_0
   - libuuid=2.32.1=h7f98852_1000
   - libwebp-base=1.1.0=h36c2ea0_3
   - libxcb=1.13=h7f98852_1003
   - libxkbcommon=0.10.0=he1b5a44_0
   - libxml2=2.9.10=hee79883_0
-  - libzip=1.7.3=he9f05b3_0
+  - libzip=1.7.3=h4de3113_0
   - lockfile=0.12.2=py_1
   - luigi=2.8.11=py38_0
   - lz4-c=1.9.2=he1b5a44_3
@@ -123,6 +123,8 @@ dependencies:
   - mock=4.0.3=py38h578d9bd_1
   - more-itertools=8.6.0=pyhd8ed1ab_0
   - munch=2.5.0=py_0
+  - mypy=0.790=py_0
+  - mypy_extensions=0.4.3=py38h578d9bd_3
   - ncurses=6.2=h58526e2_4
   - netcdf4=1.5.5.1=nompi_py38h1cdf482_100
   - nose2=0.9.2=py_0
@@ -149,7 +151,8 @@ dependencies:
   - postgresql=12.3=hc2f5b80_3
   - proj=7.0.0=h966b41f_5
   - prometheus_client=0.5.0=py_0
-  - prompt-toolkit=3.0.10=pyha770c72_0
+  - prompt-toolkit=3.0.11=pyha770c72_0
+  - psutil=5.8.0=py38h497a2fe_1
   - psycopg2=2.8.6=py38h2b97feb_1
   - pthread-stubs=0.4=h36c2ea0_1001
   - ptyprocess=0.7.0=pyhd3deb0d_0
@@ -158,7 +161,7 @@ dependencies:
   - pycparser=2.20=pyh9f0ad1d_2
   - pydocstyle=5.1.1=py_0
   - pyflakes=2.2.0=pyh9f0ad1d_0
-  - pygments=2.7.3=pyhd8ed1ab_0
+  - pygments=2.7.4=pyhd8ed1ab_0
   - pyopenssl=20.0.1=pyhd8ed1ab_0
   - pyparsing=2.4.7=pyh9f0ad1d_0
   - pyproj=2.6.1.post1=py38h7521cb9_0
@@ -200,6 +203,8 @@ dependencies:
   - toml=0.10.2=pyhd8ed1ab_0
   - tornado=5.1.1=py38h1e0a361_2
   - traitlets=5.0.5=py_0
+  - typed-ast=1.4.2=py38h497a2fe_0
+  - typing_extensions=3.7.4.3=py_0
   - tzcode=2020f=h7f98852_0
   - urllib3=1.25.11=py_0
   - vulture=1.0=py_0
