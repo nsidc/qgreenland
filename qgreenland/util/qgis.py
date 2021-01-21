@@ -12,6 +12,7 @@ from osgeo import gdal
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR
+from qgreenland.exceptions import QgrInvalidConfigError
 from qgreenland.util.misc import get_layer_path
 from qgreenland.util.version import get_build_version
 
@@ -187,6 +188,12 @@ def _set_groups_options(project):
 
     for group_path, options in groups_config.items():
         group = _get_group(project, group_path)
+
+        if group is None:
+            # TODO: check for this case in config validation/linting.
+            raise QgrInvalidConfigError(
+                f"Encountered group '{group_path}' without reference in layers.yml."
+            )
 
         _set_group_visibility(
             group,
