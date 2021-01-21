@@ -1008,7 +1008,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://nsidc.org/data/rdbts4/versions/1'
 
 
-- id: eva_placenames
+- id: asiaq_private_placenames
   access_method: manual
   sources:
     - id: only

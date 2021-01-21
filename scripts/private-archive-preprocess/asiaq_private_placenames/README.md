@@ -1,11 +1,12 @@
-# Eva placenames preprocessing steps
+# ASIAQ placenames preprocessing steps
 
 ## 20201112_Oqaasileriffik_place-name register.zip
 
-Provided by Eva. This data was placed in the appropriate private archive location and then unzipped:
+Provided by Eva Mätzler. This data was placed in the appropriate private archive
+location and then unzipped:
 
 ```
-cd /share/appdata/qgreenland-private-archive/eva_placenames
+cd /share/appdata/qgreenland-private-archive/asiaq_private_placenames/
 unzip 20201112_Oqaasileriffik_place-name register.zip
 ```
 
