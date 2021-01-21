@@ -3,6 +3,7 @@
 - Move OpenStreetMap layers into Miscellaneous group.
 - All layer groups except Basemaps and Miscellaneous now initialize collapsed
   and unchecked.
+- Rename `layer_manifest.csv` -> `layer_list.csv`
 - New "Built environment" layer: Towns and Settlements
 
 # v0.51.0 (2021-01-12)

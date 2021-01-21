@@ -91,7 +91,7 @@ As of `v0.50.0`:
 
 * Add ancillary files to WIP location:
   * `qgreenland.png`: QGreenland logo
-  * `layer_manifest.csv`: Full layer list and associated information
+  * `layer_list.csv`: Full layer list and associated information
   * `CHANGELOG.txt`: Text version of `CHANGELOG.md`
   * `CONTRIBUTING.txt`: Text version of `doc/CONTRIBUTING.md`
   * `README.txt`: Text version of `README.md`
