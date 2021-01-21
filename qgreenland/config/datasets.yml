@@ -1008,13 +1008,12 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://nsidc.org/data/rdbts4/versions/1'
 
 
-- id: nunat_aqqi
-  access_method: ogr_remote_vector
+- id: eva_placenames
+  access_method: manual
   sources:
     - id: only
-      query_url: 'https://services5.arcgis.com/wbN76kmEQ2ue8VQm/arcgis/rest/services/Nunat_Aqqi/FeatureServer/0/query/?f=json&where=OBJECTID<>null&outFields=*&orderByFields=OBJECTID+ASC'
-  # TODO: We're not using this dataset yet, but when it's updated we may want
-  # to use it.
+      access_instructions: >-
+          TBD
   metadata:
     title: Place names
     abstract: >-

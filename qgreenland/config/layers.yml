@@ -741,19 +741,19 @@
 #####################
 
   # # TODO: Better layer ID and title.
-  # - id: populated_places_eva
-  #   title: 'Populated places (Eva)'
-  #   data_source: nunat_aqqi.only
-  #   visible: True
-  #   group_path: 'Built environment'
-  #   style: 'populated_places'
-  #   boundary: 'data'
-  #   ingest_task: ogr_remote_vector
-  #   file_type: '.gpkg'
-  #   data_type: 'vector'
-  #   ogr2ogr_kwargs:
-  #     # TODO: This is lame, stop it!
-  #     input_filename: 'fetched.geojson'
+- id: populated_places_eva
+  title: 'Populated places (Eva)'
+  data_source: eva_placenames.only
+  visible: True
+  group_path: 'Built environment'
+  style: 'populated_places'
+  boundary: 'data'
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'translations_joined.gpkg'
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and population 2019'
