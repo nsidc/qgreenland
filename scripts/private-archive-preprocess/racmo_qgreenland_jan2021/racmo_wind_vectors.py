@@ -17,22 +17,24 @@ v_ds = Dataset(v_path, 'r')
 u_data = u_ds.variables['u10m'][0, 0, :]
 v_data = v_ds.variables['v10m'][0, 0, :]
 
-breakpoint()
-# TODO: Use lats and lons instead of x's and y's; but we will need to add a
-# reproject step -- do that in pipeline?
-x_data = u_ds.variables['x'][:]
-y_data = u_ds.variables['y'][:]
+lon_data = u_ds.variables['lon'][:]
+lat_data = u_ds.variables['lat'][:]
 
 with open(BASE_DIR / 'wind_vector_points.csv', 'w') as f:
-    f.write(f'eastward_component,northward_component,magnitude,x,y\n')
+    f.write(f'eastward_component,northward_component,magnitude,lon,lat\n')
+    last_i = None
     for i, j in product(range(u_data.shape[0]), range(u_data.shape[1])):
+        if i != last_i:
+            print(f'Handling row: {i}')
+        last_i = i
+
         u = u_data[i, j]
         if np.ma.is_masked(u):
             continue
 
         v = v_data[i, j]
-        x = x_data[j]
-        y = y_data[i]
+        lon = lon_data[i, j]
+        lat = lat_data[i, j]
         magnitude = np.sqrt(u**2 + v**2)
 
-        f.write(f'{u},{v},{magnitude},{x},{y}\n')
+        f.write(f'{u},{v},{magnitude},{lon},{lat}\n')
