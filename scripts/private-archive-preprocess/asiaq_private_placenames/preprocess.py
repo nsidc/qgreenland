@@ -52,9 +52,18 @@ joined = joined.rename(columns={
     'Historie': 'Placename history',
 }, errors='raise')
 
-# TODO: drop 'KMS Cartography', DMS lat/lon, Appearance
-# use 'new greenlandic' for towns and settlements.
-# use compound of category & new greenlandic name for the 'other places'.
+# Drop these columns from the final output.
+joined = joined.drop(columns=[
+    # 'Longitude' field sufficient
+    'DMS longitude',
+    # 'Latitude' field sufficient
+    'DMS latitude',
+    # This column is full of empty strings. No data.
+    'KMS cartography',
+    # This was provided by our translator, and simply shows the number of
+    # occurances that an object designation occurs.
+    'Appearence',
+], errors='raise')
 
 column_names = joined.columns.values
 if len(column_names) != len(set(column_names)):
