@@ -6,11 +6,10 @@ from netCDF4 import Dataset
 import numpy as np
 
 
-BASE_DIR = Path('/share/appdata/qgreenland-private-archive/racmo_qgreenland_aug2020/')
-SUBDIR_5KM = BASE_DIR /'RACMO_QGreenland_Aug2020/QGreenland/5.5km/'
+BASE_DIR = Path('/share/appdata/qgreenland-private-archive/racmo_qgreenland_jan2021/')
 
-u_path = SUBDIR_5KM / 'u10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
-v_path = SUBDIR_5KM / 'v10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
+u_path = BASE_DIR / 'u10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY-mean.nc'
+v_path = BASE_DIR / 'v10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY-mean.nc'
 
 u_ds = Dataset(u_path, 'r')
 v_ds = Dataset(v_path, 'r')

@@ -4,6 +4,7 @@ from qgreenland.tasks.common.raster import GdalEdit
 from qgreenland.util.luigi import LayerPipeline
 
 
+# TODO: Rename to racmo_raster
 class Racmo(LayerPipeline):
 
     def requires(self):
