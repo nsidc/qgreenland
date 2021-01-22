@@ -49,10 +49,12 @@ joined = joined.rename(columns={
     'Navngiver': 'Namer',
     'Navngivet': 'Namesake',
     'Betydning': 'Meaning of the placename',
-    'Historie': 'History',
+    'Historie': 'Placename history',
 }, errors='raise')
 
-# TODO: drop the 'KMS Cartography' column? All empty strings.
+# TODO: drop 'KMS Cartography', DMS lat/lon, Appearance
+# use 'new greenlandic' for towns and settlements.
+# use compound of category & new greenlandic name for the 'other places'.
 
 column_names = joined.columns.values
 if len(column_names) != len(set(column_names)):
