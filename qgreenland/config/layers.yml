@@ -1895,7 +1895,7 @@
 - <<: *geoid
   id: faye_gravity_anomaly
   # Source data is 0.05x-0.02 degrees resolution
-  title: 'Faye gravity anomaly (1.8km)'
+  title: 'Faye (free-air) gravity anomaly (1.8km)'
   description: >-
     TBD
   visible: False
