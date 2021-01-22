@@ -336,7 +336,7 @@
   group_path: 'Atmosphere/RACMO model output'
   style: racmo_wind_vectors
   boundary: 'data'
-  data_source: racmo_qgreenland_aug2020.only
+  data_source: racmo_qgreenland_jan2021.only
   ingest_task: 'local_vector'
   file_type: '.gpkg'
   data_type: 'vector'
@@ -353,7 +353,7 @@
   group_path: 'Atmosphere/RACMO model output'
   style: null
   boundary: 'data'
-  data_source: racmo_qgreenland_aug2020.only
+  data_source: racmo_qgreenland_jan2021.only
   ingest_task: racmo
   file_type: '.tif'
   data_type: 'raster'
@@ -381,7 +381,7 @@
   group_path: 'Atmosphere/RACMO model output'
   style: null
   boundary: 'data'
-  data_source: racmo_qgreenland_aug2020.only
+  data_source: racmo_qgreenland_jan2021.only
   ingest_task: racmo
   file_type: '.tif'
   data_type: 'raster'

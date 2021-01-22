@@ -35,11 +35,17 @@ This batch of files contained a `refreeze` file which could not be `gunzip`ed. E
 gzip: refreeze.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc.gz: unexpected end of file
 ```
 
+This batch also contained a calculated complete wind vector file ff10m which
+did not match our own calculations.
+
 
 ## January 2021
 
 Instead of a zip, we downloaded each individual file from the server. See
 `fetch.sh`. This contains the fix for the 0-byte `refreeze` file.
+
+This batch did not include the ff10m file that we believe was inaccurate in the
+last batch, so we need to calculate it ourselves.
 
 
 # Pre-processing
@@ -62,6 +68,12 @@ files.
 The raster layers are gzipped, but we don't have a pipeline step that handles
 this. We have a huge revamp coming up, so we'll take care of this in
 pre-processing for now.
+
+
+## Calculated wind magnitudes: `magnitudes.tif`
+
+The `./racmo_wind_vectors` script produces `magnitudes.tif` from the `u` and
+`v` wind component netcdf files.
 
 
 ## Calculated wind vectors: `wind_vector_points.gpkg`
