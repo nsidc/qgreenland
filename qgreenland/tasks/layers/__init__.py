@@ -9,6 +9,7 @@ from qgreenland.tasks.layers.glacier_terminus import GlacierTerminus
 from qgreenland.tasks.layers.gzipped_vector_parts import GzippedVectorParts
 from qgreenland.tasks.layers.ice_thickness_change import IceThicknessChange
 from qgreenland.tasks.layers.local_vector import LocalVector
+from qgreenland.tasks.layers.local_zipped_raster import LocalZippedRaster
 from qgreenland.tasks.layers.local_zipped_netcdf_raster import LocalZippedNetCdfRaster
 from qgreenland.tasks.layers.local_zipped_vector import LocalZippedVector
 from qgreenland.tasks.layers.netcdf_raster import NetCdfRaster
@@ -38,6 +39,7 @@ INGEST_TASKS = {
     'ice_thickness_change': IceThicknessChange,
     'local_vector': LocalVector,
     'local_zipped_vector': LocalZippedVector,
+    'local_zipped_raster': LocalZippedRaster,
     'local_zipped_netcdf_raster': LocalZippedNetCdfRaster,
     'netcdf_raster': NetCdfRaster,
     'ogr_remote_vector': OgrRemoteVector,

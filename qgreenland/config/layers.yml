@@ -1847,6 +1847,66 @@
 # Geophysics #
 ##############
 
+- &geoid
+  id: geoid
+  # TODO: force 2km output res? The abstract notes the resolution is approx 2km.
+  # Source data is 0.05x-0.02 degrees resolution
+  title: 'Geoid Model (1.8km)'
+  description: >-
+    Official gravimetric geoid model for Greenland.
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  boundary: 'data'
+  data_source: geoid.only
+  ingest_task: local_zipped_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  decompress_kwargs:
+    extract_files:
+      - 'ggeoid16.tif'
+
+- <<: *geoid
+  id: bouguer_gravity_anomaly
+  # Source data is 0.02x-0.02 degrees
+  title: 'Bouguer gravity anomaly (909m)'
+  description: >-
+    TBD
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  data_source: gravity_anomalies.only
+  decompress_kwargs:
+    extract_files:
+      - 'bouguer_gravity_anomaly.tif'
+  warp_kwargs:
+    # TODO: is this correct? Unlike the other files we received, the Bouguer
+    # gravity model does not have any 'nodata' metadata. An entire column of
+    # pixels at the far eastern edge of the data has this value. There does
+    # appear to be at least one other pixel in the middle of the dataset with
+    # this value as well, however.
+    srcNodata: -32767.0
+
+- <<: *geoid
+  id: faye_gravity_anomaly
+  # Source data is 0.05x-0.02 degrees resolution
+  title: 'Faye gravity anomaly (1.8km)'
+  description: >-
+    TBD
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  data_source: gravity_anomalies.only
+  decompress_kwargs:
+    extract_files:
+      - 'faye_gravity_anomaly.tif'
+
 ######## World Magnetic Model 2020 ########
 - &wmm_north_poles
   id: wmm_north_poles

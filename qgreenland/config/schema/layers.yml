@@ -131,3 +131,4 @@ warp_kwargs:
   #       rasters and vectors
   srcSRS: str(required=False)
   dstNodata: num(required=False)
+  srcNodata:  num(required=False)

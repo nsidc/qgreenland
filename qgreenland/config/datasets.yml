@@ -1900,7 +1900,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://doi.org/10.1007/1345_2015_50'
 
 
-- << *dtu_space_geoid
+- <<: *dtu_space_geoid
   id: gravity_anomalies
   access_method: manual
   metadata:
@@ -1908,7 +1908,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     abstract: >-
       The Bouguer anomaly grid of Greenland have been derived from a rigorous
       least-squares collocation downward continuation process of
-      terrain-corrected data, from the same data used to derive the geoid.  The
+      terrain-corrected data, from the same data used to derive the geoid. The
       Bouguer anomalies are derived for a density of 2.67 g/cm3 over for rock
       density, and 0.92 g/cm3 for ice thickness. No Bouguer correction have been
       applied for marine areas, so offshore and data are free-air anomalies. The
@@ -1918,7 +1918,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       The gravity Faye (free-air) anomaly grid has been restored from the
       Bouguer anomaly grid by the normal gravity gradient of 0.1119 mGal/m,
       without terrain corrections, based on the underlying DEM of land and
-      glaciers/ice sheet. Plot at right indicate data density.
+      glaciers/ice sheet.
     citation:
       text: >-
         Forsberg R., Jensen T. (2015) New Geoid of Greenland: A Case Study of
