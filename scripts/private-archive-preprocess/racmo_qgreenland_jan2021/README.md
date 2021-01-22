@@ -71,6 +71,6 @@ include wind vector points derived from wind direction component magnitudes in
 the `u10m` and `v10m` 5.5km component grids. Steps taken in this process:
 
 * Generate `wind_vector_points.csv` from `u10m` and `v10m` input grids.
-* Use `ogr2ogr` to convert `.csv` to `.gpkg`:
-    ogr2ogr -oo X_POSSIBLE_NAMES=x -oo Y_POSSIBLE_NAMES=y -a_srs "EPSG:3413" -oo AUTODETECT_TYPE=True wind_vector_points.gpkg wind_vector_points.csv
-* Clean up `wind_vector_points.csv` temporary file
+* Use `ogr2ogr` to convert `.csv` to `.gpkg`.
+
+Clean up `wind_vector_points.csv` temporary file at the end if you want.
