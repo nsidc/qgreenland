@@ -17,6 +17,9 @@ v_ds = Dataset(v_path, 'r')
 u_data = u_ds.variables['u10m'][0, 0, :]
 v_data = v_ds.variables['v10m'][0, 0, :]
 
+breakpoint()
+# TODO: Use lats and lons instead of x's and y's; but we will need to add a
+# reproject step -- do that in pipeline?
 x_data = u_ds.variables['x'][:]
 y_data = u_ds.variables['y'][:]
 
