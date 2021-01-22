@@ -1,5 +1,5 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
-from qgreenland.tasks.common.misc import ExtractNcDataset, Unzip
+from qgreenland.tasks.common.misc import Unzip
 from qgreenland.tasks.common.raster import WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
