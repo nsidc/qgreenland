@@ -764,6 +764,9 @@
 - <<: *asiaq_placenames
   id: other_places
   title: 'Other places'
+  # TODO: should this be moved to 'misc' or someplace else? Many points are
+  # natural features.
+  group_path: 'Built environment'
   description: >-
       Points representing named points of interest in Greenland.
   ogr2ogr_kwargs:
