@@ -759,7 +759,19 @@
     input_filename: 'translations_joined.gpkg'
     # According to Eva, "BY" represents a town and "BYGD" represents a
     # settlement
-    sql: "'SELECT * from translations_joined where \"Object designation\" in (\"BY\", \"BYGD\")'"
+    sql: "'SELECT * FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
+
+- <<: *asiaq_placenames
+  id: other_places
+  title: 'Other places'
+  description: >-
+      Points representing named points of interest in Greenland.
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'translations_joined.gpkg'
+    # According to Eva, "BY" represents a town and "BYGD" represents a
+    # settlement
+    sql: "'SELECT * FROM translations_joined WHERE \"Object designation\" NOT IN (\"BY\", \"BYGD\")'"
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and population 2019'
