@@ -140,6 +140,25 @@ def find_single_file_by_ext(path, *, ext):
         raise RuntimeError(f"No files with extension '{ext}' found at '{path}'")
 
 
+def find_single_file_by_exts(path, *, exts):
+    """Return a single file with matching extension.
+
+    Fails for any number of results except 1.
+    """
+    files_found = []
+    for ext in exts:
+        try:
+            found_file = find_single_file_by_ext(path, ext=ext)
+            files_found.append(found_file)
+        except RuntimeError:
+            continue
+
+    if len(files_found) != 1:
+        raise RuntimeError(
+            f'Unexpected number ({len(files_found)} of files with extensions {exts} in {path}.'
+        )
+
+
 @contextmanager
 def temporary_path_dir(target):
     """Standardizes Luigi task file output behavior.
