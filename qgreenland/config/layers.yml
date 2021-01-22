@@ -741,12 +741,13 @@
 #####################
 
   # # TODO: Better layer ID and title.
-- id: populated_places
+- &asiaq_placenames
+  id: populated_places
   title: 'Towns and Settlements'
   description: >-
       Points representing towns and settlements in Greenland.
   data_source: asiaq_private_placenames.only
-  visible: True
+  visible: False
   group_path: 'Built environment'
   style: 'populated_places'
   boundary: 'data'
