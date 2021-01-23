@@ -74,10 +74,12 @@ def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
     u_fp = in_dir / U_FN
     v_fp = in_dir / V_FN
 
+    tif_fp = out_fp.with_suffix('.tif')
     return _cmd(
         'gdal_calc.py'
         f' -A NETCDF:{u_fp}:u10m -B NETCDF:{v_fp}:v10m'
-        f' --calc="sqrt(A**2 + B**2)" --outfile={out_fp}'
+        f' --calc="sqrt(A**2 + B**2)" --outfile={tif_fp}'
+        f' && gdal_translate -of NetCDF {tif_fp} {out_fp}'
     )
 
 def zip_dir_contents(in_dir: Path, out_fp: Path):
@@ -100,7 +102,7 @@ if __name__ == '__main__':
         # Generate magnitude.tif
         u_v_to_magnitude_raster(
             in_dir=tmppath,
-            out_fp=tmppath / 'magnitudes.tif'
+            out_fp=tmppath / 'magnitudes.nc'
         )
 
         # Generate wind_vector_points.gpkg
