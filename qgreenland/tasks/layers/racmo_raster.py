@@ -5,7 +5,7 @@ from qgreenland.util.luigi import LayerPipeline
 
 
 # TODO: Rename to racmo_raster
-class Racmo(LayerPipeline):
+class RacmoRaster(LayerPipeline):
 
     def requires(self):
         source = self.cfg['source']
