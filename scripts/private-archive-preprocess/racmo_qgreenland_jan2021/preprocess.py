@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 import tempfile
 from itertools import product
@@ -79,10 +80,11 @@ def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
         f' --calc="sqrt(A**2 + B**2)" --outfile={out_fp}'
     )
 
-def zip_dir_contents(the_dir: Path, out_fp: Path):
+def zip_dir_contents(in_dir: Path, out_fp: Path):
     # NOTE: You may be asking "Why do we zip everything up?" Right now we can
     # only have 1 "source" per private dataset.
-    raise NotImplementedError('haha you thought')
+    shutil.make_archive(out_fp.with_suffix(''), 'zip', in_dir)
+
     return out_fp
 
 
@@ -115,7 +117,5 @@ if __name__ == '__main__':
             tmpdir,
             out_fp=BASE_DIR / 'RACMO_QGreenland_Jan2021.zip'
         )
-
-        breakpoint()
 
     print(f'Wrote zip: {zip_fp}')
