@@ -354,11 +354,11 @@
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
-  ingest_task: racmo
+  ingest_task: racmo_raster
   file_type: '.tif'
   data_type: 'raster'
   unzip_kwargs:
-    input_filename: 'RACMO_QGreenland_Aug2020.zip'
+    input_filename: 'RACMO_QGreenland_Jan2021.zip'
   translate_kwargs:
     extract_dataset: 'ff10m'
   overviews_kwargs:
@@ -368,7 +368,7 @@
     a_srs: 'EPSG:3413'
   decompress_kwargs:
     extract_files:
-      - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/ff10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
+      - 'magnitudes.nc'
 
 - &racmo_1km
   id: racmo_precip
@@ -382,7 +382,7 @@
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
-  ingest_task: racmo
+  ingest_task: racmo_raster
   file_type: '.tif'
   data_type: 'raster'
   translate_kwargs:
@@ -394,7 +394,7 @@
     a_srs: 'EPSG:3413'
   decompress_kwargs:
     extract_files:
-      - 'precip.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
   unzip_kwargs:
     input_filename: 'extracted_1km.zip'
 
@@ -408,7 +408,7 @@
     extract_dataset: 'snowfall'
   decompress_kwargs:
     extract_files:
-      - 'snowfall.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'snowfall.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_melt
@@ -420,7 +420,7 @@
     extract_dataset: 'snowmelt'
   decompress_kwargs:
     extract_files:
-      - 'snowmelt.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'snowmelt.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_runoff
@@ -432,7 +432,7 @@
     extract_dataset: 'runoff'
   decompress_kwargs:
     extract_files:
-      - 'runoff.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'runoff.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_subl
@@ -444,7 +444,7 @@
     extract_dataset: 'subl'
   decompress_kwargs:
     extract_files:
-      - 'subl.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'subl.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_sndiv
@@ -456,7 +456,7 @@
     extract_dataset: 'sndiv'
   decompress_kwargs:
     extract_files:
-      - 'sndiv.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'sndiv.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_t2m
@@ -470,7 +470,7 @@
     extract_dataset: 't2m'
   decompress_kwargs:
     extract_files:
-      - 't2m.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 't2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_promicemask
@@ -486,7 +486,7 @@
     a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
   decompress_kwargs:
     extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
 - <<: *racmo_1km
   id: racmo_topography
@@ -501,7 +501,7 @@
     a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
   decompress_kwargs:
     extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
 - <<: *racmo_1km
   id: racmo_grounded_ice
@@ -516,7 +516,7 @@
     a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
   decompress_kwargs:
     extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
 ###########
 # Biology #
