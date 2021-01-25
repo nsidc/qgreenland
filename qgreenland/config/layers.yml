@@ -762,7 +762,7 @@
     sql: "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
 
 - <<: *asiaq_placenames
-  id: other_places
+  id: comprehensive_places
   title: 'Comprehensive placenames'
   # TODO: should this be moved to 'misc' or someplace else? Many points are
   # natural features.
@@ -772,7 +772,7 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'translations_joined.gpkg'
-    sql: "'SELECT *,  \"Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
+    sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and population 2019'
