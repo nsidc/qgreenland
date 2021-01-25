@@ -503,20 +503,20 @@
     extract_files:
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
-        # - <<: *racmo_1km
-        #   id: racmo_grounded_ice
-        #   title: 'Grounded ice (1km)'
-        #   description: >-
-        #       Mask of grounded ice.
-        #   group_path: 'Atmosphere/RACMO model output/RACMO masks'
-        #   translate_kwargs:
-        #     extract_dataset: 'grounded_ice'
-        #   gdal_edit_kwargs:
-        #     a_srs: 'EPSG:3413'
-        #     a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-        #   decompress_kwargs:
-        #     extract_files:
-        #       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
+- <<: *racmo_1km
+  id: racmo_grounded_ice
+  title: 'Grounded ice (1km)'
+  description: >-
+      Mask of grounded ice.
+  group_path: 'Atmosphere/RACMO model output/RACMO masks'
+  translate_kwargs:
+    extract_dataset: 'grounded_ice'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc'
 
 ###########
 # Biology #
