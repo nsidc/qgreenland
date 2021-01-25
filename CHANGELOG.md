@@ -7,6 +7,10 @@
 - New "Built environment" layers: 
   - Towns and Settlements
   - Comprehensive placenames
+- New "Geophysics" layers:
+  - Geoid Model
+  - Bouguer gravity anomaly
+  - Faye (free-air) gravity anomaly
 
 # v0.51.0 (2021-01-12)
 
