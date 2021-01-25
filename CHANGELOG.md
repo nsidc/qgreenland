@@ -5,6 +5,7 @@
   and unchecked.
 - Rename `layer_manifest.csv` -> `layer_list.csv`
 - New "Built environment" layer: Towns and Settlements
+- Add total size of each layer on disk to the `layer_list.csv`
 
 # v0.51.0 (2021-01-12)
 
