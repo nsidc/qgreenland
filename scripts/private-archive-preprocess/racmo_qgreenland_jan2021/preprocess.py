@@ -39,11 +39,11 @@ def copy_aug2020_icemask(*, out_dir: Path):
     expected_fp = BASE_DIR / new_fn
 
     if not expected_fp.is_file():
-        zip_fp = BASEDIR.parent / 'racmo_qgreenland_aug2020/RACMO_QGreenland_Aug2020.zip'
-        old_fn = 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+        zip_fp = BASE_DIR.parent / 'racmo_qgreenland_aug2020/RACMO_QGreenland_Aug2020.zip'
+        old_fn = 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc.gz'
         with zipfile.ZipFile(zip_fp) as z:
-            with z.open(f'/RACMO_QGreenland_Aug2020/QGreenland/1km/{old_fn}') as zf, \
-                 open(expected_fp) as f:
+            with z.open(f'RACMO_QGreenland_Aug2020/QGreenland/1km/{old_fn}') as zf, \
+                 open(expected_fp, 'wb') as f:
                 shutil.copyfile(zf, f)
 
     shutil.copyfile(expected_fp, out_dir / new_fn)
