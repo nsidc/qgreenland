@@ -6,7 +6,7 @@
 - Rename `layer_manifest.csv` -> `layer_list.csv`
 - New "Built environment" layers: 
   - Towns and Settlements
-  - Other places
+  - Comprehensive placenames
 
 # v0.51.0 (2021-01-12)
 
