@@ -49,10 +49,21 @@ joined = joined.rename(columns={
     'Navngiver': 'Namer',
     'Navngivet': 'Namesake',
     'Betydning': 'Meaning of the placename',
-    'Historie': 'History',
+    'Historie': 'Placename history',
 }, errors='raise')
 
-# TODO: drop the 'KMS Cartography' column? All empty strings.
+# Drop these columns from the final output.
+joined = joined.drop(columns=[
+    # 'Longitude' field sufficient
+    'DMS longitude',
+    # 'Latitude' field sufficient
+    'DMS latitude',
+    # This column is full of empty strings. No data.
+    'KMS cartography',
+    # This was provided by our translator, and simply shows the number of
+    # occurances that an object designation occurs.
+    'Appearence',
+], errors='raise')
 
 column_names = joined.columns.values
 if len(column_names) != len(set(column_names)):
