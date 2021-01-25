@@ -20,7 +20,7 @@ from humanize import naturalsize
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import LOCALDATA_DIR
-from qgreenland.util.misc import get_layer_path
+from qgreenland.util.misc import directory_size_bytes, get_layer_path
 
 
 def _load_config(config_filename, *, config_dir, schema_dir):
@@ -163,20 +163,29 @@ def make_config(*, config_dir, schema_dir):
 
 
 def export_config(cfg, output_path='./layers.csv'):
-    report = [{
-        'Group': layer['group_path'].split('/', 1)[0],
-        'Subgroup': (layer['group_path'].split('/', 1)[1]
-                     if '/' in layer['group_path'] else ''),
-        'Layer Title': layer['title'],
-        'Layer Description': layer.get('description', ''),
-        'Vector or Raster': layer['data_type'],
-        'Data Source Title': layer['dataset']['metadata']['title'],
-        'Data Source Abstract': layer['dataset']['metadata']['abstract'],
-        'Data Source Citation': layer['dataset']['metadata']['citation']['text'],
-        'Data Source Citation URL': layer['dataset']['metadata']['citation']['url'],
-        'Layer Size': (naturalsize(Path(get_layer_path(layer)).stat().st_size)
-                       if layer['dataset']['access_method'] != 'gdal_remote' else ''),
-    } for _, layer in cfg['layers'].items()]
+    report = []
+    for _, layer in cfg['layers'].items():
+        if layer['dataset']['access_method'] != 'gdal_remote':
+            layer_dir = Path(get_layer_path(layer)).parent
+            layer_size_bytes = directory_size_bytes(layer_dir)
+        else:
+            # online layers have no size on disk.
+            layer_size_bytes = 0
+
+        report.append({
+            'Group': layer['group_path'].split('/', 1)[0],
+            'Subgroup': (layer['group_path'].split('/', 1)[1]
+                         if '/' in layer['group_path'] else ''),
+            'Layer Title': layer['title'],
+            'Layer Description': layer.get('description', ''),
+            'Vector or Raster': layer['data_type'],
+            'Data Source Title': layer['dataset']['metadata']['title'],
+            'Data Source Abstract': layer['dataset']['metadata']['abstract'],
+            'Data Source Citation': layer['dataset']['metadata']['citation']['text'],
+            'Data Source Citation URL': layer['dataset']['metadata']['citation']['url'],
+            'Layer Size': naturalsize(layer_size_bytes),
+            'Layer Size Bytes': layer_size_bytes,
+        })
 
     with open(output_path, 'w') as ofile:
         dict_writer = csv.DictWriter(ofile, report[0].keys())
