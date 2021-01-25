@@ -7,6 +7,7 @@ import copy
 import csv
 import functools
 import os
+from pathlib import Path
 
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 # Importing qgis before fiona is absolutely necessary to avoid segmentation
@@ -15,9 +16,11 @@ import qgis.core as qgc  # noqa: F401
 import fiona  # noqa: I100
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 import yamale
+from humanize import naturalsize
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import LOCALDATA_DIR
+from qgreenland.util.misc import get_layer_path
 
 
 def _load_config(config_filename, *, config_dir, schema_dir):
@@ -171,6 +174,8 @@ def export_config(cfg, output_path='./layers.csv'):
         'Data Source Abstract': layer['dataset']['metadata']['abstract'],
         'Data Source Citation': layer['dataset']['metadata']['citation']['text'],
         'Data Source Citation URL': layer['dataset']['metadata']['citation']['url'],
+        'Layer Size': (naturalsize(Path(get_layer_path(layer)).stat().st_size)
+                       if layer['dataset']['access_method'] != 'gdal_remote' else ''),
     } for _, layer in cfg['layers'].items()]
 
     with open(output_path, 'w') as ofile:

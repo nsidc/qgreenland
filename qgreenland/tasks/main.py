@@ -56,6 +56,9 @@ class LayerList(AncillaryFile):
     src_filepath = None
     dest_relative_filepath = 'layer_list.csv'
 
+    def requires(self):
+        yield IngestAllLayers()
+
     def run(self):
         with self.output().temporary_path() as temp_path:
             export_config(CONFIG, output_path=temp_path)
@@ -65,7 +68,6 @@ class CreateQgisProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
-        yield LayerList()
         yield AncillaryFile(
             src_filepath=os.path.join(ASSETS_DIR, 'images', 'qgreenland.png'),
             dest_relative_filepath='qgreenland.png'
@@ -86,7 +88,7 @@ class CreateQgisProjectFile(luigi.Task):
             src_filepath=os.path.join(PROJECT_DIR, 'CHANGELOG.md'),
             dest_relative_filepath='CHANGELOG.txt'
         )
-        yield IngestAllLayers()
+        yield LayerList()
 
     def output(self):
         return luigi.LocalTarget(ZIP_TRIGGERFILE)
