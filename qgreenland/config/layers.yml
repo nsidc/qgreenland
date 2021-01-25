@@ -1863,7 +1863,6 @@
 
 - &geoid
   id: geoid
-  # Source data is 0.05x-0.02 degrees resolution
   title: 'Geoid Model (2km)'
   description: >-
     Official gravimetric geoid model for Greenland.
@@ -1883,12 +1882,14 @@
     extract_files:
       - 'ggeoid16.tif'
   warp_kwargs:
+    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
     xRes: 2000
     yRes: 2000
 
 - <<: *geoid
   id: bouguer_gravity_anomaly
-  # Source data is 0.02x-0.02 degrees
   title: 'Bouguer gravity anomaly (2km)'
   description: >-
     TBD
@@ -1901,6 +1902,9 @@
     extract_files:
       - 'bouguer_gravity_anomaly.tif'
   warp_kwargs:
+    # Source data is 0.02x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
     xRes: 2000
     yRes: 2000
     # TODO: is this correct? Unlike the other files we received, the Bouguer
@@ -1912,7 +1916,6 @@
 
 - <<: *geoid
   id: faye_gravity_anomaly
-  # Source data is 0.05x-0.02 degrees resolution
   title: 'Faye (free-air) gravity anomaly (2km)'
   description: >-
     TBD
@@ -1924,6 +1927,12 @@
   decompress_kwargs:
     extract_files:
       - 'faye_gravity_anomaly.tif'
+  warp_kwargs:
+    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
 
 ######## World Magnetic Model 2020 ########
 - &wmm_north_poles
