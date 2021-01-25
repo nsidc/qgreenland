@@ -2,11 +2,11 @@
 
 # Run the cleanup script if the user passes any arguments. Convenient to do
 # everything in one step.
-if [ -n $1 ]; then
-    echo "Doing cleanup..."
+if [ -n "$1" ]; then
+    echo "🧹Doing cleanup..."
     THIS_DIR="$( readlink -f "$( dirname "${BASH_SOURCE[0]}" )")"
     $THIS_DIR/cleanup.sh $@
-    echo "Cleanup done!"
+    echo "🧹Cleanup done!"
 fi
 
 
