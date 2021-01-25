@@ -741,14 +741,15 @@
 #####################
 
   # # TODO: Better layer ID and title.
-- id: populated_places
+- &asiaq_placenames
+  id: populated_places
   title: 'Towns and Settlements'
   description: >-
       Points representing towns and settlements in Greenland.
   data_source: asiaq_private_placenames.only
-  visible: True
+  visible: False
   group_path: 'Built environment'
-  style: 'populated_places'
+  style: 'labeled_point'
   boundary: 'data'
   ingest_task: local_vector
   file_type: '.gpkg'
@@ -758,7 +759,20 @@
     input_filename: 'translations_joined.gpkg'
     # According to Eva, "BY" represents a town and "BYGD" represents a
     # settlement
-    sql: "'SELECT * from translations_joined where \"Object designation\" in (\"BY\", \"BYGD\")'"
+    sql: "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
+
+- <<: *asiaq_placenames
+  id: comprehensive_places
+  title: 'Comprehensive placenames'
+  # TODO: should this be moved to 'misc' or someplace else? Many points are
+  # natural features.
+  group_path: 'Built environment'
+  description: >-
+      Points representing named points of interest in Greenland.
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'translations_joined.gpkg'
+    sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and population 2019'
