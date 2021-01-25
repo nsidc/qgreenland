@@ -79,6 +79,7 @@ def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
         'gdal_calc.py'
         f' -A NETCDF:{u_fp}:u10m -B NETCDF:{v_fp}:v10m'
         f' --calc="sqrt(A**2 + B**2)" --outfile={tif_fp}'
+        # NOTE: gdal_translate puts the data in variable "Band1"
         f' && gdal_translate -of NetCDF {tif_fp} {out_fp}'
     )
 

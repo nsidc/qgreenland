@@ -360,7 +360,7 @@
   unzip_kwargs:
     input_filename: 'RACMO_QGreenland_Jan2021.zip'
   translate_kwargs:
-    extract_dataset: 'ff10m'
+    extract_dataset: 'Band1'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
@@ -396,7 +396,7 @@
     extract_files:
       - 'precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
   unzip_kwargs:
-    input_filename: 'extracted_1km.zip'
+    input_filename: 'RACMO_QGreenland_Jan2021.zip'
 
 - <<: *racmo_1km
   id: racmo_snowfall
@@ -503,20 +503,20 @@
     extract_files:
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
-- <<: *racmo_1km
-  id: racmo_grounded_ice
-  title: 'Grounded ice (1km)'
-  description: >-
-      Mask of grounded ice.
-  group_path: 'Atmosphere/RACMO model output/RACMO masks'
-  translate_kwargs:
-    extract_dataset: 'grounded_ice'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
+        # - <<: *racmo_1km
+        #   id: racmo_grounded_ice
+        #   title: 'Grounded ice (1km)'
+        #   description: >-
+        #       Mask of grounded ice.
+        #   group_path: 'Atmosphere/RACMO model output/RACMO masks'
+        #   translate_kwargs:
+        #     extract_dataset: 'grounded_ice'
+        #   gdal_edit_kwargs:
+        #     a_srs: 'EPSG:3413'
+        #     a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+        #   decompress_kwargs:
+        #     extract_files:
+        #       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
 ###########
 # Biology #
