@@ -16,7 +16,7 @@ import qgis.core as qgc  # noqa: F401
 import fiona  # noqa: I100
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 import yamale
-from humanize import naturalsize  # type: ignore
+from humanize import naturalsize
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import LOCALDATA_DIR
