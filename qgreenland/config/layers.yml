@@ -741,14 +741,15 @@
 #####################
 
   # # TODO: Better layer ID and title.
-- id: populated_places
+- &asiaq_placenames
+  id: populated_places
   title: 'Towns and Settlements'
   description: >-
       Points representing towns and settlements in Greenland.
   data_source: asiaq_private_placenames.only
-  visible: True
+  visible: False
   group_path: 'Built environment'
-  style: 'populated_places'
+  style: 'labeled_point'
   boundary: 'data'
   ingest_task: local_vector
   file_type: '.gpkg'
@@ -758,7 +759,20 @@
     input_filename: 'translations_joined.gpkg'
     # According to Eva, "BY" represents a town and "BYGD" represents a
     # settlement
-    sql: "'SELECT * from translations_joined where \"Object designation\" in (\"BY\", \"BYGD\")'"
+    sql: "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
+
+- <<: *asiaq_placenames
+  id: comprehensive_places
+  title: 'Comprehensive placenames'
+  # TODO: should this be moved to 'misc' or someplace else? Many points are
+  # natural features.
+  group_path: 'Built environment'
+  description: >-
+      Points representing named points of interest in Greenland.
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'translations_joined.gpkg'
+    sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and population 2019'
@@ -1846,6 +1860,79 @@
 ##############
 # Geophysics #
 ##############
+
+- &geoid
+  id: geoid
+  title: 'Geoid Model (2km)'
+  description: >-
+    Official gravimetric geoid model for Greenland.
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  boundary: 'data'
+  data_source: geoid.only
+  ingest_task: local_zipped_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  decompress_kwargs:
+    extract_files:
+      - 'ggeoid16.tif'
+  warp_kwargs:
+    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
+
+- <<: *geoid
+  id: bouguer_gravity_anomaly
+  title: 'Bouguer gravity anomaly (2km)'
+  description: >-
+    TBD
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  data_source: gravity_anomalies.only
+  decompress_kwargs:
+    extract_files:
+      - 'bouguer_gravity_anomaly.tif'
+  warp_kwargs:
+    # Source data is 0.02x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
+    # TODO: is this correct? Unlike the other files we received, the Bouguer
+    # gravity model does not have any 'nodata' metadata. An entire column of
+    # pixels at the far eastern edge of the data has this value. There does
+    # appear to be at least one other pixel in the middle of the dataset with
+    # this value as well, however.
+    srcNodata: -32767.0
+
+- <<: *geoid
+  id: faye_gravity_anomaly
+  title: 'Faye (free-air) gravity anomaly (2km)'
+  description: >-
+    TBD
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  data_source: gravity_anomalies.only
+  decompress_kwargs:
+    extract_files:
+      - 'faye_gravity_anomaly.tif'
+  warp_kwargs:
+    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
 
 ######## World Magnetic Model 2020 ########
 - &wmm_north_poles
