@@ -749,7 +749,7 @@
   data_source: asiaq_private_placenames.only
   visible: False
   group_path: 'Built environment'
-  style: 'populated_places'
+  style: 'labeled_point'
   boundary: 'data'
   ingest_task: local_vector
   file_type: '.gpkg'
@@ -759,11 +759,11 @@
     input_filename: 'translations_joined.gpkg'
     # According to Eva, "BY" represents a town and "BYGD" represents a
     # settlement
-    sql: "'SELECT * FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
+    sql: "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
 
 - <<: *asiaq_placenames
   id: other_places
-  title: 'Other places'
+  title: 'Comprehensive placenames'
   # TODO: should this be moved to 'misc' or someplace else? Many points are
   # natural features.
   group_path: 'Built environment'
@@ -772,9 +772,7 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'translations_joined.gpkg'
-    # According to Eva, "BY" represents a town and "BYGD" represents a
-    # settlement
-    sql: "'SELECT * FROM translations_joined WHERE \"Object designation\" NOT IN (\"BY\", \"BYGD\")'"
+    sql: "'SELECT *,  \"Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and population 2019'
