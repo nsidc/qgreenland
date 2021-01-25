@@ -2,6 +2,7 @@ import os
 import shutil
 import subprocess
 import tempfile
+import zipfile
 from itertools import product
 from pathlib import Path
 
@@ -33,6 +34,21 @@ def copy_ncs(*, out_dir: Path):
     return _cmd(f'cp {BASE_DIR}/*.nc {out_dir}/.')
 
 
+def copy_aug2020_icemask(*, out_dir: Path):
+    new_fn = 'Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc'
+    expected_fp = BASE_DIR / new_fn
+
+    if not expected_fp.is_file():
+        zip_fp = BASEDIR.parent / 'racmo_qgreenland_aug2020/RACMO_QGreenland_Aug2020.zip'
+        old_fn = 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+        with zipfile.ZipFile(zip_fp) as z:
+            with z.open(f'/RACMO_QGreenland_Aug2020/QGreenland/1km/{old_fn}') as zf, \
+                 open(expected_fp) as f:
+                shutil.copyfile(zf, f)
+
+    shutil.copyfile(expected_fp, out_dir / new_fn)
+
+
 def write_csv(*, in_dir: Path, out_fp: Path) -> Path:
     u_ds = Dataset(in_dir / U_FN, 'r')
     v_ds = Dataset(in_dir / V_FN, 'r')
@@ -59,6 +75,7 @@ def write_csv(*, in_dir: Path, out_fp: Path) -> Path:
 
     return out_fp 
 
+
 def convert_to_gpkg(*, in_fp: Path, out_fp: Path):
     return _cmd(
         'ogr2ogr'
@@ -73,6 +90,13 @@ def convert_to_gpkg(*, in_fp: Path, out_fp: Path):
 def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
     u_fp = in_dir / U_FN
     v_fp = in_dir / V_FN
+    # a_srs = ('-m 57.295779506 +proj=ob_tran +o_proj=latlon'
+    #          ' +o_lat_p=18.0 +lon_0=-37.5')
+    a_srs = 'EPSG:3413'
+    # Calculated from -10.0750000 13.8750000 11.8250000 -14.4250000 using:
+    #     gdaltransform -s_srs "EPSG:4326" -t_srs "EPSG:3413"
+    a_ullr = '5536539.53520588 -7929068.15539236 13289017.0808539 -8687810.06519536'
+    a_nodata = '-9999'
 
     tif_fp = out_fp.with_suffix('.tif')
     return _cmd(
@@ -80,8 +104,11 @@ def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
         f' -A NETCDF:{u_fp}:u10m -B NETCDF:{v_fp}:v10m'
         f' --calc="sqrt(A**2 + B**2)" --outfile={tif_fp}'
         # NOTE: gdal_translate puts the data in variable "Band1"
-        f' && gdal_translate -of NetCDF {tif_fp} {out_fp}'
+        f' && gdal_translate -of NetCDF'
+        f' -a_srs "{a_srs}" -a_ullr {a_ullr} -a_nodata {a_nodata}'
+        f' {tif_fp} {out_fp}'
     )
+
 
 def zip_dir_contents(in_dir: Path, out_fp: Path):
     # NOTE: You may be asking "Why do we zip everything up?" Right now we can
@@ -99,6 +126,9 @@ if __name__ == '__main__':
         # TODO: Actually run the fetch and gunzip scripts to pull data directly
         # in to tempdir. No need to have all this junk laying around at the end.
         copy_ncs(out_dir=tmppath)
+
+        # Grab Aug2020 icemask file, the 2021 doesn't have grounded ice.
+        copy_aug2020_icemask(out_dir=tmppath)
 
         # Generate magnitude.tif
         u_v_to_magnitude_raster(

@@ -35,8 +35,11 @@ This batch of files contained a `refreeze` file which could not be `gunzip`ed. E
 gzip: refreeze.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc.gz: unexpected end of file
 ```
 
-This batch also contained a calculated complete wind vector file ff10m which
-did not match our own calculations.
+This batch contained a calculated complete wind vector file ff10m which did not
+match our own calculations, so we calculate our own wind vectors.
+
+This batch contained an Icemask file which included the PROMICE mask,
+topography, and grounded ice.
 
 
 ## January 2021
@@ -46,6 +49,11 @@ Instead of a zip, we downloaded each individual file from the server. See
 
 This batch did not include the ff10m file that we believe was inaccurate in the
 last batch, so we need to calculate it ourselves.
+
+NOTE: This batch included an Icemask file which included the PROMICE mask and
+topography, but not grounded ice. We copy the Aug2020 icemask into the Jan2021
+private archive location during preprocessing so we can extract the grounded
+ice layer.
 
 
 # Pre-processing
