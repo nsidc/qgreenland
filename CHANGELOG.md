@@ -4,7 +4,14 @@
 - All layer groups except Basemaps and Miscellaneous now initialize collapsed
   and unchecked.
 - Rename `layer_manifest.csv` -> `layer_list.csv`
-- New "Built environment" layer: Towns and Settlements
+- New "Built environment" layers: 
+  - Towns and Settlements
+  - Comprehensive placenames
+- New "Geophysics" layers:
+  - Geoid Model
+  - Bouguer gravity anomaly
+  - Faye (free-air) gravity anomaly
+- Add total size of each layer on disk to the `layer_list.csv`
 
 # v0.51.0 (2021-01-12)
 
