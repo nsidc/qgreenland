@@ -5,8 +5,10 @@ import re
 import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
+from pathlib import Path
 
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType
+from qgreenland.exceptions import QgrRuntimeError
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 CHUNK_SIZE = 8 * 1024
@@ -204,3 +206,17 @@ def run_ogr_command(cmd_list):
         raise RuntimeError(result.stderr)
 
     return result
+
+
+def directory_size_bytes(dir_path):
+    """Return the size of the directory's contents in bytes."""
+    dir_path = Path(dir_path)
+    if not dir_path.is_dir():
+        raise QgrRuntimeError(f'`dir_path` must be a directory. Got {dir_path}')
+
+    contents = dir_path.glob('**/*')
+    total_size = 0
+    for content in contents:
+        total_size += content.stat().st_size
+
+    return total_size

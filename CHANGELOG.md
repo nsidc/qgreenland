@@ -11,6 +11,7 @@
   - Geoid Model
   - Bouguer gravity anomaly
   - Faye (free-air) gravity anomaly
+- Add total size of each layer on disk to the `layer_list.csv`
 
 # v0.51.0 (2021-01-12)
 
