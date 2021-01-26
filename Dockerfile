@@ -1,4 +1,7 @@
-FROM axiom/docker-luigi:2.8.11
+# NOTE: We do not use this version of Luigi, because a Docker image isn't
+# available for our desired version. `environment.yml` specifies the actual
+# version we use.
+FROM axiom/docker-luigi:2.8.13
 
 # `libgl1-mesa-glx` is required for qgis to work
 # `unrar` is required for layer pipelines
