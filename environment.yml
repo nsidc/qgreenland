@@ -10,7 +10,7 @@ dependencies:
   - fiona=1.8.13
   - gdal=3.0.4
   - humanize=2.6.0
-  - luigi=2.8.11
+  - luigi=3.0.2
   - pyyaml=5.3
   - qgis=3.10.12
   - rasterio=1.1.2
