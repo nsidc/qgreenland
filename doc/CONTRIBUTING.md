@@ -2,11 +2,11 @@
 
 This project uses a `luigi` pipeline to generate the QGreenland package. Luigi
 is a workflow management system developed by Spotify:
-https://github.com/spotify/luigi
+[https://github.com/spotify/luigi](https://github.com/spotify/luigi).
 
-This project is currently in early development stages, so expect rapid change.
-Nothing is written in stone! Releases can be found at
-https://qgreenland.org/explore!
+This project is currently undergoing rapid development, so expect change in any
+release except releases labeled as "stable". Stable releases can be found at
+[https://qgreenland.org/explore](https://qgreenland.org/explore)!
 
 
 ## Configuration
@@ -55,8 +55,9 @@ A layer references `layer_groups.yml` with the `group_path` key.
 
 ### Layer groups
 
-Each element in `layer_groups.yml` represents a QGIS layer group in the Layers Panel. Keep in mind that the first layer's group will always be
-automatically selected and expanded.
+Each element in `layer_groups.yml` represents a QGIS layer group in the Layers
+Panel. Keep in mind that the first layer's group will always be automatically
+selected and expanded.
 
 
 ## Pipeline
@@ -256,15 +257,17 @@ unless you're comfortable reading code.
 
 ## Contributing new layers
 
-If no existing task meets your needs, add a new class to
-`qgreenland/tasks/layers.py` for your new layer. Compose Luigi tasks to build
-your final QGreenland layer following the example of other layers.
+If no existing task meets your needs, create a new class in
+`qgreenland/tasks/layers/<yournewpipeline>.py`, and ensure that new class is
+enumerated in `qgreenland/tasks/layers/__init__.py`. Compose Luigi tasks to
+build your final QGreenland layer following the example of other layer
+pipelines in the same location.
 
-TODO: Flesh this out more.
+We plan to expand upon this section and make the process of contributing new
+layers easier in the future. In the meantime, please open a GitHub issue for
+assistance or additional information. If you're not comfortable with GitHub,
+you can always [email the QGreenland team](mailto:qgreenland.info@gmail.com).
 
-TODO: Convert the processing pipeline over to allow chaining of OGR commands in
-      the config file, so anyone comfortable with CLI data manipulation can
-      contribute.
 
 # Layer Requirements
 
@@ -312,7 +315,9 @@ This will remove the `dev` part from the version. For example, using the
 
 ## QGIS won't start on OSX Catalina
 
-QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of this app needs to update it to work with this version of macOS. Contact the developer for more information.`, then, in your OSX menus, try:
+QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of
+this app needs to update it to work with this version of macOS. Contact the
+developer for more information.`, then, in your OSX menus, try:
 
 - "Security and Privacy"
 - "Allow apps downloaded from..."

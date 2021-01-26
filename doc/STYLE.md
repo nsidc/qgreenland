@@ -19,7 +19,7 @@ TODO: Find better typenames
 ### Scalar
 
 Colormaps should be limited to N "classes" to reduce vertical space taken in
-the table of contents by the legend.
+the Layers Panel by the legend.
 
 TODO: How many elements?
 
