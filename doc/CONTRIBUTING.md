@@ -313,7 +313,9 @@ This will remove the `dev` part from the version. For example, using the
 
 ## QGIS won't start on OSX Catalina
 
-QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of this app needs to update it to work with this version of macOS. Contact the developer for more information.`, then, in your OSX menus, try:
+QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of
+this app needs to update it to work with this version of macOS. Contact the
+developer for more information.`, then, in your OSX menus, try:
 
 - "Security and Privacy"
 - "Allow apps downloaded from..."
