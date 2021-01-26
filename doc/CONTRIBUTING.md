@@ -261,11 +261,11 @@ If no existing task meets your needs, add a new class to
 `qgreenland/tasks/layers.py` for your new layer. Compose Luigi tasks to build
 your final QGreenland layer following the example of other layers.
 
-TODO: Flesh this out more.
+We plan to expand upon this section and make the process of contributing new
+layers easier in the future. In the meantime, [email the QGreenland
+team](mailto:qgreenland.info@gmail.com) for assistance or additional
+information.
 
-TODO: Convert the processing pipeline over to allow chaining of OGR commands in
-      the config file, so anyone comfortable with CLI data manipulation can
-      contribute.
 
 # Layer Requirements
 
