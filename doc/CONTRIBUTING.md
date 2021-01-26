@@ -55,8 +55,9 @@ A layer references `layer_groups.yml` with the `group_path` key.
 
 ### Layer groups
 
-Each element in `layer_groups.yml` represents a QGIS layer group in the Layers Panel. Keep in mind that the first layer's group will always be
-automatically selected and expanded.
+Each element in `layer_groups.yml` represents a QGIS layer group in the Layers
+Panel. Keep in mind that the first layer's group will always be automatically
+selected and expanded.
 
 
 ## Pipeline
