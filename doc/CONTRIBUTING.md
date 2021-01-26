@@ -257,14 +257,16 @@ unless you're comfortable reading code.
 
 ## Contributing new layers
 
-If no existing task meets your needs, add a new class to
-`qgreenland/tasks/layers.py` for your new layer. Compose Luigi tasks to build
-your final QGreenland layer following the example of other layers.
+If no existing task meets your needs, create a new class in
+`qgreenland/tasks/layers/<yournewpipeline>.py`, and ensure that new class is
+enumerated in `qgreenland/tasks/layers/__init__.py`. Compose Luigi tasks to
+build your final QGreenland layer following the example of other layer
+pipelines in the same location.
 
 We plan to expand upon this section and make the process of contributing new
-layers easier in the future. In the meantime, [email the QGreenland
-team](mailto:qgreenland.info@gmail.com) for assistance or additional
-information.
+layers easier in the future. In the meantime, please open a GitHub issue for
+assistance or additional information. If you're not comfortable with GitHub,
+you can always [email the QGreenland team](mailto:qgreenland.info@gmail.com).
 
 
 # Layer Requirements
