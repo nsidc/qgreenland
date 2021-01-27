@@ -9,11 +9,11 @@ if [[ -z $USERNAME || -z $PASSWORD ]]; then
 fi
 
 # 5.5km
-wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/5.5km/mean/v10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
+ wget --user $USERNAME --password $PASSWORD \
+     $REPO_ROOT/5.5km/mean/v10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km_EPSG3413.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
 
 wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/5.5km/mean/u10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
+    $REPO_ROOT/5.5km/mean/u10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km_EPSG3413.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
 
 
 # 1km
