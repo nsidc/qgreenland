@@ -8,15 +8,13 @@ if [[ -z $USERNAME || -z $PASSWORD ]]; then
     exit 1
 fi
 
-# 5.5km
+# 1km
  wget --user $USERNAME --password $PASSWORD \
-     $REPO_ROOT/5.5km/mean/v10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km_EPSG3413.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
+     $REPO_ROOT/1km/mean/v10m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
 
 wget --user $USERNAME --password $PASSWORD \
-    $REPO_ROOT/5.5km/mean/u10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km_EPSG3413.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
+    $REPO_ROOT/1km/mean/u10m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
 
-
-# 1km
 wget --user $USERNAME --password $PASSWORD \
     $REPO_ROOT/1km/mean/t2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc.gz --directory-prefix=$DEST_ROOT
 
