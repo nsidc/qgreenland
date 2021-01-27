@@ -13,8 +13,8 @@ import numpy as np
 BASE_DIR = Path('/share/appdata/qgreenland-private-archive/racmo_qgreenland_jan2021/')
 
 # Filenames of "u" and "v" directional magnitude components of windspeed vectors
-U_FN = 'u10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY-mean.nc'
-V_FN = 'v10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY-mean.nc'
+U_FN = 'u10m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
+V_FN = 'v10m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 
 def _cmd(cmd: str):
