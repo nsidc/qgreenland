@@ -1,3 +1,4 @@
+import gzip
 import os
 import shutil
 import subprocess
@@ -42,9 +43,10 @@ def copy_aug2020_icemask(*, out_dir: Path):
         zip_fp = BASE_DIR.parent / 'racmo_qgreenland_aug2020/RACMO_QGreenland_Aug2020.zip'
         old_fn = 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc.gz'
         with zipfile.ZipFile(zip_fp) as z:
-            with z.open(f'RACMO_QGreenland_Aug2020/QGreenland/1km/{old_fn}') as zf, \
-                 open(expected_fp, 'wb') as f:
-                shutil.copyfile(zf, f)
+            with z.open(f'RACMO_QGreenland_Aug2020/QGreenland/1km/{old_fn}') as zf:
+                with open(expected_fp, 'wb') as f:
+                    gzf = gzip.decompress(zf.read())
+                    f.write(gzf)
 
     shutil.copyfile(expected_fp, out_dir / new_fn)
 
