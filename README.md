@@ -55,7 +55,7 @@ the package root:
 * `CONTRIBUTING.txt`: Instructions to users looking for help contributing to
   this project.
 * `STYLE.txt`: Guidelines and standards for QGreenland styling.
-* `manifest.csv`: Comma-separated values representing the configuration of
+* `layer_list.csv`: Comma-separated values representing the configuration of
   layers in QGreenland.
 
 
