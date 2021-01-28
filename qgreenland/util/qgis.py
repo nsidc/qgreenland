@@ -400,11 +400,14 @@ def _populate_date_accessed(text: str, *, layer_cfg):
         source_id=layer_cfg['source']['id'],
     )
     fetch_dir = Path(INPUT_DIR) / ds_dir
-    # fetch_dir.stat().st_mtime gives float time
+    
     # TODO: Use modified time for directory, or latest modified time for files
     # inside?
-    breakpoint()
-    return text.replace('{{date_accessed}}', date_accessed)
+    mtime = dt.datetime.utcfromtimestamp(
+        fetch_dir.stat().st_mtime
+    )
+
+    return text.replace('{{date_accessed}}', date_accessed.date().isoformat())
 
 
 
