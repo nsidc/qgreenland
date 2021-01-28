@@ -61,24 +61,17 @@ the package root:
 
 # Educational Resources
 
+We keep the QGreenland official website up-to-date with links to helpful
+educational resources, including our own QGreenland User Guide.
+
+* [QGreenland official website](https://qgreenland.org)
+  * [Additional resources](https://qgreenland.org/resources)
 * [QGreenland YouTube channel](https://www.youtube.com/channel/UCjWae_Jrbognx2ju_SHBZ2A/videos)
-
-
-## Using QGIS
-
-* [SpatialThoughts GIS Courses](https://courses.spatialthoughts.com/)
-* [QGIS Tutorial](https://gisgeography.com/qgis-tutorial-how-to-use-qgis-3/)
-
-
-## Symbology
-
-* [QGIS Docs - Style Manager](https://docs.qgis.org/3.10/en/docs/user_manual/style_library/style_manager.html)
-* [Adding more QGIS Styles](https://www.youtube.com/watch?v=rmYehinZa1U)
 
 
 # Contributing
 
-Please see [contributing instructions](CONTRIBUTING.md) for more info. A good
+Please see [contributing instructions](doc/CONTRIBUTING.md) for more info. A good
 portion of this document contains technical instructions about running the
 QGreenland pipeline, but also includes less-technical instructions for
 contributing styles you have developed within QGIS. Our goal is to make it as
