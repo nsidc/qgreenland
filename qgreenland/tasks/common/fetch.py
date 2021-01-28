@@ -6,7 +6,11 @@ import luigi
 from qgreenland.constants import LOCALDATA_DIR, PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
-from qgreenland.util.misc import fetch_and_write_file, temporary_path_dir
+from qgreenland.util.misc import (
+    datasource_dirname,
+    fetch_and_write_file,
+    temporary_path_dir, 
+)
 from qgreenland.util.vector import ogr2ogr
 
 
@@ -16,7 +20,10 @@ class FetchTask(luigi.Task):
 
     @property
     def output_name(self):
-        return f"{self.dataset_cfg['id']}.{self.source_cfg['id']}"
+        return datasource_dirname(
+            dataset_id=self.dataset_cfg['id'],
+            source_id=self.source_cfg['id'],
+        )
 
 
 class FetchCmrGranule(FetchTask):
