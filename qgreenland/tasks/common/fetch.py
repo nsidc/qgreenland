@@ -9,7 +9,7 @@ from qgreenland.util.edl import create_earthdata_authenticated_session as make_s
 from qgreenland.util.misc import (
     datasource_dirname,
     fetch_and_write_file,
-    temporary_path_dir, 
+    temporary_path_dir,
 )
 from qgreenland.util.vector import ogr2ogr
 

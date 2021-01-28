@@ -3,8 +3,8 @@ import logging
 import os
 import subprocess
 import tempfile
-from xml.sax.saxutils import escape
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 import qgis.core as qgc
 from PyQt5.QtGui import QColor
@@ -394,20 +394,19 @@ def _build_dataset_citation(layer_cfg):
 def _populate_date_accessed(text: str, *, layer_cfg):
     if '{{date_accessed}}' not in text:
         return text
-    
+
     ds_dir = datasource_dirname(
         dataset_id=layer_cfg['dataset']['id'],
         source_id=layer_cfg['source']['id'],
     )
     fetch_dir = Path(INPUT_DIR) / ds_dir
-    
+
     # TODO: Use modified time for directory, or latest modified time for files
     # inside?
     mtime = fetch_dir.stat().st_mtime
     date_accessed = dt.datetime.utcfromtimestamp(mtime)
 
     return text.replace('{{date_accessed}}', date_accessed.date().isoformat())
-
 
 
 def build_layer_abstract(layer_cfg):
