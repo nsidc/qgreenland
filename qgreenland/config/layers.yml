@@ -63,10 +63,12 @@
 
 - id: utm_zones
   title: Universal Transverse Mercator (UTM) zones
+  description: >-
+      Polygons representing Universal Transverse Mercator (UTM) zones.
   visible: False
   group_path: 'Miscellaneous'
   style: 'utm_zones'
-  boundary: 'data'
+  boundary: 'background'
   data_source: utm_zones.only
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -546,6 +548,8 @@
 - &walrus_protected_areas
   id: nunagis_walrus_protected_areas
   title: 'Walrus protected areas'
+  description: >-
+      Polygons representing areas protected for Walruses.
   data_source: nunagis_protected_areas.only
   visible: False
   group_path: 'Biology/Mammals'
@@ -562,6 +566,8 @@
 - <<: *walrus_protected_areas
   id: nunagis_goose_protected_areas
   title: 'Goose protected areas'
+  description: >-
+      Polygons representing areas protected for Geese.
   group_path: 'Biology/Birds'
   style: nunagis_goose_protected_areas
   ogr2ogr_kwargs:
@@ -572,6 +578,8 @@
 - <<: *walrus_protected_areas
   id: nunagis_caribou_calving_areas
   title: 'Caribou calving areas'
+  description: >-
+      Polygons representing caribou calving areas.
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -581,6 +589,8 @@
 
 - id: ginr_caribou_areas
   title: 'Caribou areas'
+  description: >-
+     Polygons representing areas with Caribou.
   group_path: 'Biology/Mammals'
   data_source: ginr_caribou.only
   visible: False
@@ -593,6 +603,8 @@
 - <<: *walrus_protected_areas
   id: nunagis_beluga_areas
   title: 'Beluga areas'
+  description: >-
+      Polygons representing areas protected for Beluga whales.
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -603,6 +615,8 @@
 - <<: *walrus_protected_areas
   id: nunagis_bird_protected_areas
   title: 'Bird protected areas'
+  description: >-
+      Polygons representing areas protected for birds.
   group_path: 'Biology/Birds'
   style: nunagis_bird_protected_areas
   ogr2ogr_kwargs:
@@ -613,6 +627,9 @@
 - <<: *walrus_protected_areas
   id: nunagis_thickbilled_murre_colonies
   title: 'Thickbilled Murre breeding colony 5km zones'
+  description: >-
+      Polygons representing 5km zones protected for Thickbilled Murre breeding
+      colonies.
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -623,6 +640,9 @@
 - <<: *walrus_protected_areas
   id: nunagis_seabirds_colonies
   title: 'Seabird breeding colonies'
+  description: >-
+      Polygons representing areas protected for seabird breeding
+      colonies.
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -633,6 +653,8 @@
 - <<: *walrus_protected_areas
   id: nunagis_eider_protected_areas
   title: 'Eider protected areas'
+  description: >-
+      Polygons representing areas protected for Eiders.
   group_path: 'Biology/Birds'
   style: nunagis_eider_protected_areas
   ogr2ogr_kwargs:
@@ -643,6 +665,8 @@
 - <<: *walrus_protected_areas
   id: nunagis_murre_group_1km_zones
   title: 'Murre group 1km zones'
+  description: >-
+      Polygons representing 1km zones protected for Muure groups.
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -653,6 +677,8 @@
 - <<: *walrus_protected_areas
   id: nunagis_musk_oxen_calving_areas
   title: 'Musk Oxen calving areas'
+  description: >-
+      Polygons representing areas protected for Musk Oxen calving.
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -662,6 +688,8 @@
 
 - id: ginr_muskoken
   title: 'Muskoxen areas'
+  description: >-
+      Polygons representing areas with Muskoxen.
   group_path: 'Biology/Mammals'
   data_source: ginr_muskoxen.only
   visible: False
@@ -673,7 +701,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_narwhal_areas
-  title: 'Narwhal Areas'
+  title: 'Narwhal areas'
+  description: >-
+      Polygons representing areas protected for Narwhals.
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -683,7 +713,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_polar_bear_breeding_areas
-  title: 'Polar Bear Breeding Areas'
+  title: 'Polar bear breeding areas'
+  description: >-
+      Polygons representing areas protected for Polar Bear breeding.
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -745,7 +777,6 @@
 # Built environment #
 #####################
 
-  # # TODO: Better layer ID and title.
 - &asiaq_placenames
   id: populated_places
   title: 'Towns and Settlements'
@@ -781,6 +812,9 @@
 
 - id: nunagis_municipalities_population
   title: 'Municipalities and population 2019'
+  description: >-
+      Polygons representing municipalities of Greenland and associated
+      population numbers as of 2019.
   data_source: nunagis_pop2019_municipalities.only
   visible: False
   group_path: 'Built environment'
@@ -814,7 +848,7 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_unesco_treaty_zones
-  title: 'UNESCO Treaty Zones'
+  title: 'UNESCO treaty zones'
   group_path: 'Environmental management/Protected zones'
   style: nunagis_unesco_treaty_zones
   ogr2ogr_kwargs:
@@ -824,7 +858,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_no_go_areas
-  title: 'No Go Areas'
+  title: 'No go areas'
+  description: >-
+      Polygons representing areas that should not be entered.
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -834,7 +870,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_closed_areas
-  title: 'Closed Areas'
+  title: 'Closed areas'
+  description: >-
+      Polygons representing areas that are closed.
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -844,7 +882,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_salt_or_saline_lake_100m_zones
-  title: 'Salt or Saline Lake 100m Zones'
+  title: 'Salt or saline lake 100m zones'
+  description: >-
+      Polygons representing 100m zones protected for salt or saline lakes.
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -854,7 +894,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_homothermic_spring_100m_zones
-  title: 'Homothermic Spring 100m Zones'
+  title: 'Homothermic spring 100m zones'
+  description: >-
+      Polygons representing 100m zones protected for homothermic springs.
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -864,7 +906,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_national_park
-  title: 'National Park'
+  title: 'National park'
+  description: >-
+      Polygon representing the area protected for the national park.
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -874,7 +918,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_biological_important_areas
-  title: 'Biological Important Areas in the National Park'
+  title: 'Biological important areas in the national park'
+  description: >-
+      Polygons representing areas protected for biologically important areas in the national park.
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
@@ -884,7 +930,9 @@
 
 - <<: *walrus_protected_areas
   id: nunagis_nature_protection_areas
-  title: 'Nature Protection Areas'
+  title: 'Nature protection areas'
+  description: >-
+      Polygons representing areas protected for nature.
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
