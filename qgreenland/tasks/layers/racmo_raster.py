@@ -1,6 +1,5 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset, Unzip
-from qgreenland.tasks.common.raster import GdalEdit
 from qgreenland.tasks.common.raster import (
     BuildRasterOverviews,
     GdalEdit,
