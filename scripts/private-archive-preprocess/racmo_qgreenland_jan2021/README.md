@@ -88,7 +88,7 @@ The `./preprocess.py` script produces `magnitudes.tif` from the `u` and
 
 The `./preprocess.py` script produces `wind_vector_points.gpkg` to
 include wind vector points derived from wind direction component magnitudes in
-the `u10m` and `v10m` 5.5km component grids. Steps taken in this process:
+the `u10m` and `v10m` 1km component grids. Steps taken in this process:
 
 * Generate `wind_vector_points.csv` from `u10m` and `v10m` input grids.
 * Use `ogr2ogr` to convert `.csv` to `.gpkg`.
