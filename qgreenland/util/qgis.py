@@ -3,6 +3,7 @@ import logging
 import os
 import subprocess
 import tempfile
+from pathlib import Path
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc
@@ -11,9 +12,9 @@ from jinja2 import Template
 from osgeo import gdal
 
 from qgreenland.config import CONFIG
-from qgreenland.constants import ASSETS_DIR
+from qgreenland.constants import ASSETS_DIR, INPUT_DIR
 from qgreenland.exceptions import QgrInvalidConfigError
-from qgreenland.util.misc import get_layer_path
+from qgreenland.util.misc import datasource_dirname, get_layer_path
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
@@ -379,14 +380,33 @@ def _build_dataset_citation(layer_cfg):
     dataset_metadata = layer_cfg['dataset']['metadata']
     if citation_cfg := dataset_metadata.get('citation'):
         if citation_text := citation_cfg.get('text'):
+            ct = _populate_date_accessed(citation_text, layer_cfg=layer_cfg)
             citation += 'Citation:\n'
-            citation += citation_text + '\n\n'
+            citation += ct + '\n\n'
 
         if citation_url := citation_cfg.get('url'):
             citation += 'Citation URL:\n'
             citation += citation_url
 
     return citation
+
+
+def _populate_date_accessed(text: str, *, layer_cfg):
+    if '{{date_accessed}}' not in text:
+        return text
+
+    ds_dir = datasource_dirname(
+        dataset_id=layer_cfg['dataset']['id'],
+        source_id=layer_cfg['source']['id'],
+    )
+    fetch_dir = Path(INPUT_DIR) / ds_dir
+
+    # TODO: Use modified time for directory, or latest modified time for files
+    # inside?
+    mtime = fetch_dir.stat().st_mtime
+    date_accessed = dt.datetime.utcfromtimestamp(mtime)
+
+    return text.replace('{{date_accessed}}', date_accessed.date().isoformat())
 
 
 def build_layer_abstract(layer_cfg):

@@ -220,3 +220,7 @@ def directory_size_bytes(dir_path):
         total_size += content.stat().st_size
 
     return total_size
+
+
+def datasource_dirname(*, dataset_id: str, source_id: str) -> str:
+    return f'{dataset_id}.{source_id}'
