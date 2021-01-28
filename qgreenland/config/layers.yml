@@ -450,7 +450,6 @@
 - <<: *racmo_1km
   id: racmo_sndiv
   title: 'Snow drift erosion 1958-2019 (1km)'
-  # TODO: confirm with Brice what the units for this are.
   description: >-
       Averaged annual snow drift erosion in milimeters of water equivilent (mm
       w.e.)  for the period 1958-2019 covering the whole ice sheet and
