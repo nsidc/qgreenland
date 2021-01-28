@@ -55,25 +55,25 @@ def write_csv(*, in_dir: Path, out_fp: Path) -> Path:
     u_ds = Dataset(in_dir / U_FN, 'r')
     v_ds = Dataset(in_dir / V_FN, 'r')
 
-    u_data = u_ds.variables['u10m'][0, 0, :]
-    v_data = v_ds.variables['v10m'][0, 0, :]
+    u_data = u_ds.variables['u10m'][0, :]
+    v_data = v_ds.variables['v10m'][0, :]
 
-    lon_data = u_ds.variables['lon'][:]
-    lat_data = u_ds.variables['lat'][:]
+    x_data = u_ds.variables['x'][:]
+    y_data = u_ds.variables['y'][:]
 
     with open(out_fp, 'w') as f:
-        f.write(f'eastward_component,northward_component,magnitude,lon,lat\n')
+        f.write(f'eastward_component,northward_component,magnitude,x,y\n')
         for i, j in product(range(u_data.shape[0]), range(u_data.shape[1])):
             u = u_data[i, j]
             if np.ma.is_masked(u):
                 continue
 
             v = v_data[i, j]
-            lon = lon_data[i, j]
-            lat = lat_data[i, j]
+            x = x_data[j]
+            y = y_data[i]
             magnitude = np.sqrt(u**2 + v**2)
 
-            f.write(f'{u},{v},{magnitude},{lon},{lat}\n')
+            f.write(f'{u},{v},{magnitude},{x},{y}\n')
 
     return out_fp 
 
@@ -81,10 +81,10 @@ def write_csv(*, in_dir: Path, out_fp: Path) -> Path:
 def convert_to_gpkg(*, in_fp: Path, out_fp: Path):
     return _cmd(
         'ogr2ogr'
-        ' -oo X_POSSIBLE_NAMES=lon'
-        ' -oo Y_POSSIBLE_NAMES=lat'
+        ' -oo X_POSSIBLE_NAMES=x'
+        ' -oo Y_POSSIBLE_NAMES=y'
         ' -oo AUTODETECT_TYPE=True'
-        ' -s_srs "EPSG:4326" -t_srs "EPSG:3413"'
+        ' -a_srs "EPSG:3413"'
         f' {out_fp} {in_fp}'
     )
 
@@ -92,13 +92,7 @@ def convert_to_gpkg(*, in_fp: Path, out_fp: Path):
 def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
     u_fp = in_dir / U_FN
     v_fp = in_dir / V_FN
-    # a_srs = ('-m 57.295779506 +proj=ob_tran +o_proj=latlon'
-    #          ' +o_lat_p=18.0 +lon_0=-37.5')
     a_srs = 'EPSG:3413'
-    # Calculated from -10.0750000 13.8750000 11.8250000 -14.4250000 using:
-    #     gdaltransform -s_srs "EPSG:4326" -t_srs "EPSG:3413"
-    a_ullr = '5536539.53520588 -7929068.15539236 13289017.0808539 -8687810.06519536'
-    a_nodata = '-9999'
 
     tif_fp = out_fp.with_suffix('.tif')
     return _cmd(
@@ -107,7 +101,7 @@ def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
         f' --calc="sqrt(A**2 + B**2)" --outfile={tif_fp}'
         # NOTE: gdal_translate puts the data in variable "Band1"
         f' && gdal_translate -of NetCDF'
-        f' -a_srs "{a_srs}" -a_ullr {a_ullr} -a_nodata {a_nodata}'
+        f' -a_srs "{a_srs}"'
         f' {tif_fp} {out_fp}'
     )
 
