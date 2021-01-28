@@ -581,6 +581,8 @@
 
 - id: ginr_caribou_areas
   title: 'Caribou areas'
+  description: >-
+     Polygons representing areas with Caribou.
   group_path: 'Biology/Mammals'
   data_source: ginr_caribou.only
   visible: False
@@ -662,6 +664,8 @@
 
 - id: ginr_muskoken
   title: 'Muskoxen areas'
+  description: >-
+      Polygons representing areas with Muskoxen.
   group_path: 'Biology/Mammals'
   data_source: ginr_muskoxen.only
   visible: False
