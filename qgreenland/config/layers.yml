@@ -66,7 +66,7 @@
   visible: False
   group_path: 'Miscellaneous'
   style: 'utm_zones'
-  boundary: 'data'
+  boundary: 'background'
   data_source: utm_zones.only
   ingest_task: zipped_vector
   file_type: '.gpkg'
