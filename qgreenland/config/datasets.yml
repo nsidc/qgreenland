@@ -1786,11 +1786,11 @@ The images and data are produced in a consistent way that makes the Index time-s
       url: 'https://doi.org/10.1038/s41586-019-1550-3'
 
 
-- id: racmo_qgreenland_aug2020
+- id: racmo_qgreenland_jan2021
   access_method: manual
   sources:
     - id: only
-      # This was obtained from Dropbox. Did we get it directly from the authors?
+      # This was obtained from a private hosting location.
       access_instructions: >-
           TBD
   metadata:

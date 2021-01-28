@@ -72,6 +72,7 @@ gdal_edit_kwargs:
   a_ullr: str(required=False)
   a_srs: str(required=False)
   scale: num(required=False)
+  a_nodata: num(required=False)
 
 ---
 gdal_mdim_translate_kwargs:

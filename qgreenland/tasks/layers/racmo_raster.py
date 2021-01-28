@@ -1,10 +1,14 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset, Unzip
-from qgreenland.tasks.common.raster import GdalEdit
+from qgreenland.tasks.common.raster import (
+    BuildRasterOverviews,
+    GdalEdit,
+    WarpRaster,
+)
 from qgreenland.util.luigi import LayerPipeline
 
 
-class Racmo(LayerPipeline):
+class RacmoRaster(LayerPipeline):
 
     def requires(self):
         source = self.cfg['source']
@@ -21,7 +25,15 @@ class Racmo(LayerPipeline):
             requires_task=unzip,
             layer_id=self.layer_id,
         )  # ->
-        return GdalEdit(
+        gdaledit = GdalEdit(
             requires_task=extract_nc_dataset,
+            layer_id=self.layer_id
+        )
+        warp_raster = WarpRaster(
+            requires_task=gdaledit,
+            layer_id=self.layer_id
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=warp_raster,
             layer_id=self.layer_id
         )
