@@ -403,9 +403,8 @@ def _populate_date_accessed(text: str, *, layer_cfg):
     
     # TODO: Use modified time for directory, or latest modified time for files
     # inside?
-    mtime = dt.datetime.utcfromtimestamp(
-        fetch_dir.stat().st_mtime
-    )
+    mtime = fetch_dir.stat().st_mtime
+    date_accessed = dt.datetime.utcfromtimestamp(mtime)
 
     return text.replace('{{date_accessed}}', date_accessed.date().isoformat())
 
