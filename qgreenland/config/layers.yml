@@ -1869,7 +1869,7 @@
 
 - &geoid
   id: geoid
-  title: 'Geoid Model (2km)'
+  title: 'Geoid model (2km)'
   description: >-
     Official gravimetric geoid model for Greenland.
   visible: False
