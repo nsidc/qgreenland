@@ -1035,7 +1035,6 @@ The images and data are produced in a consistent way that makes the Index time-s
   sources:
     - id: only
       query_url: 'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC'
-  # TODO
   metadata:
     title: 'Municipalities with Population'
     abstract: >-
@@ -1431,8 +1430,6 @@ The images and data are produced in a consistent way that makes the Index time-s
 - id: pangaea_ground_temperature
   access_method: http
   sources:
-    # TODO: which of these sources do we want to use?
-    # 25km
     - id: 25km
       urls:
         - 'http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_25km.nc'
