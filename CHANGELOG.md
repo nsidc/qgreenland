@@ -1,3 +1,7 @@
+# v0.53.0 (unreleased)
+
+- Update RACMO layers with 2019 data from Brice Noël.
+
 # v0.52.0 (2021-01-25)
 
 - Move OpenStreetMap layers into Miscellaneous group.
