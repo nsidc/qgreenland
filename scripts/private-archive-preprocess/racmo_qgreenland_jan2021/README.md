@@ -11,7 +11,7 @@ MT for full access information.
 
 # Received files
 
-* `{u,v}10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km.YY-mean.nc.gz`
+* `{u,v}10m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc.gz`
 * `Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc.gz`
 * `<variable>.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc.gz`
   * `precip`
