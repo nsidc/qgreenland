@@ -749,7 +749,6 @@
 # Built environment #
 #####################
 
-  # # TODO: Better layer ID and title.
 - &asiaq_placenames
   id: populated_places
   title: 'Towns and Settlements'
