@@ -328,16 +328,16 @@
 
 
 - id: racmo_wind_vectors
-  title: 'Annual mean wind vectors 1958-2018 (5.5km)'
+  title: 'Annual mean wind vectors 1958-2019 (1km)'
   description: >-
       Averaged annual mean wind direction in meters per second from RACMO2.3p2
-      for the period 1958-2018.
+      for the period 1958-2019.
   visible: False
   group_path: 'Atmosphere/RACMO model output'
   style: racmo_wind_vectors
   boundary: 'data'
-  data_source: racmo_qgreenland_aug2020.only
-  ingest_task: 'local_vector'
+  data_source: racmo_qgreenland_jan2021.only
+  ingest_task: 'local_zipped_vector'
   file_type: '.gpkg'
   data_type: 'vector'
   # TODO: call out that this is a 'grid' of vector data?
@@ -345,22 +345,22 @@
     input_filename: 'wind_vector_points.gpkg'
 
 - id: racmo_wind_speed
-  title: 'Annual mean wind speed 1958-2018 (5.5km)'
+  title: 'Annual mean wind speed 1958-2019 (1km)'
   description: >-
-      Averaged annual mean wind speed in meters per second from RACMO2.3p2 for
-      the period 1958-2018.
+      Averaged annual mean wind speed in meters per second from
+      RACMO2.3p2 for the period 1958-2019.
   visible: False
   group_path: 'Atmosphere/RACMO model output'
   style: null
   boundary: 'data'
-  data_source: racmo_qgreenland_aug2020.only
-  ingest_task: racmo
+  data_source: racmo_qgreenland_jan2021.only
+  ingest_task: racmo_raster
   file_type: '.tif'
   data_type: 'raster'
   unzip_kwargs:
-    input_filename: 'RACMO_QGreenland_Aug2020.zip'
+    input_filename: 'RACMO_QGreenland_Jan2021.zip'
   translate_kwargs:
-    extract_dataset: 'ff10m'
+    extract_dataset: 'Band1'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
@@ -368,21 +368,21 @@
     a_srs: 'EPSG:3413'
   decompress_kwargs:
     extract_files:
-      - 'RACMO_QGreenland_Aug2020/QGreenland/5.5km/ff10m.1958-2018.FGRN055_BN_RACMO2.3p2_FGRN055_EPSG3413.YYmean.nc'
+      - 'magnitudes.nc'
 
 - &racmo_1km
   id: racmo_precip
-  title: 'Total precipitation 1958-2018 (1km)'
+  title: 'Total precipitation 1958-2019 (1km)'
   description: >-
-      Averaged total precipitation in milimeters of water equivilent (mm w.e.)
-      for the period 1958-2018 covering the whole ice sheet and peripheral ice
-      caps.
+      Averaged annual total precipitation in milimeters of water equivilent (mm
+      w.e.)  for the period 1958-2019 covering the whole ice sheet and
+      peripheral ice caps.
   visible: False
   group_path: 'Atmosphere/RACMO model output'
   style: null
   boundary: 'data'
-  data_source: racmo_qgreenland_aug2020.only
-  ingest_task: racmo
+  data_source: racmo_qgreenland_jan2021.only
+  ingest_task: racmo_raster
   file_type: '.tif'
   data_type: 'raster'
   translate_kwargs:
@@ -394,83 +394,85 @@
     a_srs: 'EPSG:3413'
   decompress_kwargs:
     extract_files:
-      - 'precip.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
   unzip_kwargs:
-    input_filename: 'extracted_1km.zip'
+    input_filename: 'RACMO_QGreenland_Jan2021.zip'
 
 - <<: *racmo_1km
   id: racmo_snowfall
-  title: 'Snowfall 1958-2018 (1km)'
+  title: 'Snowfall 1958-2019 (1km)'
   description: >-
-      Averaged snowfall in milimeters of water equivilent (mm w.e.) for the
-      period 1958-2018 covering the whole ice sheet and peripheral ice caps.
+      Averaged annual snowfall in milimeters of water equivilent (mm w.e.) for
+      the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
   translate_kwargs:
     extract_dataset: 'snowfall'
   decompress_kwargs:
     extract_files:
-      - 'snowfall.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'snowfall.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_melt
-  title: 'Snowmelt 1958-2018 (1km)'
+  title: 'Snowmelt 1958-2019 (1km)'
   description: >-
-      Averaged snowmelt in milimeters of water equivilent (mm w.e.) for the
-      period 1958-2018 covering the whole ice sheet and peripheral ice caps.
+      Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) for
+      the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
   translate_kwargs:
     extract_dataset: 'snowmelt'
   decompress_kwargs:
     extract_files:
-      - 'snowmelt.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'snowmelt.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_runoff
-  title: 'Runoff 1958-2018 (1km)'
+  title: 'Runoff 1958-2019 (1km)'
   description: >-
-      Averaged runoff in milimeters of water equivilent (mm w.e.) for the
-      period 1958-2018 covering the whole ice sheet and peripheral ice caps.
+      Averaged annual runoff in milimeters of water equivilent (mm w.e.) for the
+      period 1958-2019 covering the whole ice sheet and peripheral ice caps.
   translate_kwargs:
     extract_dataset: 'runoff'
   decompress_kwargs:
     extract_files:
-      - 'runoff.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'runoff.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_subl
-  title: 'Sublimation 1958-2018 (1km)'
+  title: 'Sublimation 1958-2019 (1km)'
   description: >-
-      Averaged sublimation in milimeters of water equivilent (mm w.e.) for the
-      period 1958-2018 covering the whole ice sheet and peripheral ice caps.
+      Averaged annual sublimation in milimeters of water equivilent (mm w.e.)
+      for the period 1958-2019 covering the whole ice sheet and peripheral ice
+      caps.
   translate_kwargs:
     extract_dataset: 'subl'
   decompress_kwargs:
     extract_files:
-      - 'subl.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'subl.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_sndiv
-  # TODO: correct title
-  title: 'Sndiv (snow drift erosion?) 1958-2018 (1km)'
+  title: 'Snow drift erosion 1958-2019 (1km)'
   description: >-
-      TBD - waiting on email response from Brice
+      Averaged annual snow drift erosion in milimeters of water equivilent (mm
+      w.e.)  for the period 1958-2019 covering the whole ice sheet and
+      peripheral ice caps.
   translate_kwargs:
     extract_dataset: 'sndiv'
   decompress_kwargs:
     extract_files:
-      - 'sndiv.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 'sndiv.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_t2m
-  title: 'Annual mean temperature at 2m 1958-2018 (1km)'
+  title: 'Annual mean temperature at 2m 1958-2019 (1km)'
   # NOTE: the source data states that the data are in units of mm of water
   # equivilent, but the values are clearly degrees Kelvin.
   description: >-
       Averaged annual mean temperature at 2m in degrees Kelvin for the period
-      1958-2018.
+      1958-2019.
   translate_kwargs:
     extract_dataset: 't2m'
   decompress_kwargs:
     extract_files:
-      - 't2m.1958-2018.BN_RACMO2.3p2_FGRN055_1km.YYmean.nc'
+      - 't2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
 - <<: *racmo_1km
   id: racmo_promicemask
@@ -486,7 +488,7 @@
     a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
   decompress_kwargs:
     extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
 - <<: *racmo_1km
   id: racmo_topography
@@ -499,9 +501,12 @@
   gdal_edit_kwargs:
     a_srs: 'EPSG:3413'
     a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+    a_nodata: 9999.0
   decompress_kwargs:
     extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
+  warp_kwargs:
+    srcNodata: 9999.0
 
 - <<: *racmo_1km
   id: racmo_grounded_ice
@@ -516,7 +521,7 @@
     a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
   decompress_kwargs:
     extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km.nc'
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc'
 
 ###########
 # Biology #
