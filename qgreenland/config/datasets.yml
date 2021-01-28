@@ -1793,7 +1793,10 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: only
       # This was obtained from a private hosting location.
       access_instructions: >-
-          TBD
+          RACMO data were obtained via a private data transer by Brice Noël. See
+          the
+          `scripts/preprocess-private-archive/racmo_qgreenland_jan2021/README.md`
+          for additional information.
   metadata:
     title: "TBD"
     abstract: >-
