@@ -63,6 +63,8 @@
 
 - id: utm_zones
   title: Universal Transverse Mercator (UTM) zones
+  description: >-
+      Polygons representing Universal Transverse Mercator (UTM) zones.
   visible: False
   group_path: 'Miscellaneous'
   style: 'utm_zones'
