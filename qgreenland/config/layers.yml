@@ -561,7 +561,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Walrus%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE \"type\" LIKE 'Walrus%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_goose_protected_areas
