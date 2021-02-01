@@ -4777,6 +4777,8 @@
 
 - id: ne_countries
   title: 'Countries'
+  description: >-
+    Polygons representing countries.
   visible: False
   group_path: 'Basemaps'
   style: 'countries'
