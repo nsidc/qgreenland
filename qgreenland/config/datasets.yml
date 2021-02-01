@@ -917,6 +917,7 @@ The images and data are produced in a consistent way that makes the Index time-s
 
 - id: hdx_hotosm
   access_method: http
+  # NOTE: the HOTOSM website notes "This dataset updates: Every month". These links are not stable.
   sources:
     - id: roads
       urls:
