@@ -235,86 +235,6 @@
     s_srs: 'EPSG:4326'
     segmentize: 100
 
-
-- &hdx_hotosm
-  id: hotosm_populated_places
-  title: 'Populated places'
-  description: >-
-      Points representing populated places in Greenland.
-  data_source: hdx_hotosm.populated_places
-  visible: False
-  group_path: 'Reference/OpenStreetMap'
-  style: hotosm_populated_places_point
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- <<: *hdx_hotosm
-  id: hotosm_health_facilities
-  title: 'Health facilities'
-  description: >-
-      Points representing health facilities in Greenland.
-  data_source: hdx_hotosm.health_facilities
-  style: health_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_airports
-  title: 'Airports'
-  description: >-
-      Points representing airports in Greenland.
-  data_source: hdx_hotosm.airports
-  style: airport_point
-- <<: *hdx_hotosm
-  id: hotosm_seaports
-  title: 'Seaports'
-  description: >-
-      Points representing seaports in Greenland.
-  data_source: hdx_hotosm.seaports
-  style: seaport_point
-- <<: *hdx_hotosm
-  id: hotosm_waterways
-  title: 'Waterways'
-  description: >-
-      Lines representing waterways in Greenland.
-  data_source: hdx_hotosm.waterways
-  style: null
-- <<: *hdx_hotosm
-  id: hotosm_financial_services
-  title: 'Financial services'
-  description: >-
-      Points representing financial services in Greenland.
-  data_source: hdx_hotosm.financial_services
-  style: financial_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_education_facilities
-  title: 'Education facilities'
-  description: >-
-      Points representing educational facilities in Greenland.
-  data_source: hdx_hotosm.education_facilities
-  style: education_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_points_of_interest
-  title: 'Points of interest'
-  description: >-
-      Points of interest in Greenland.
-  data_source: hdx_hotosm.points_of_interest
-  style: null
-- <<: *hdx_hotosm
-  id: hotosm_roads
-  title: 'Roads'
-  description: >-
-      Lines representing roads in Greenland.
-  visible: True
-  data_source: hdx_hotosm.roads
-  style: roads_line
-- <<: *hdx_hotosm
-  id: hotosm_buildings
-  title: 'Buildings'
-  description: >-
-      Points representing buildings in Greenland.
-  data_source: hdx_hotosm.buildings
-  style: buildings_shape
-
 - id: timezones
   title: 'Time zones'
   description: >-
@@ -414,6 +334,123 @@
   ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
+
+
+##########
+# Places #
+##########
+
+- &asiaq_placenames
+  id: populated_places
+  title: 'Towns and Settlements'
+  description: >-
+      Points representing towns and settlements in Greenland.
+  data_source: asiaq_private_placenames.only
+  visible: False
+  group_path: 'Places'
+  style: 'labeled_point'
+  boundary: 'data'
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'translations_joined.gpkg'
+    # According to Eva, "BY" represents a town and "BYGD" represents a
+    # settlement
+    sql: "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
+
+- <<: *asiaq_placenames
+  id: comprehensive_places
+  title: 'Place names database'
+  # TODO: should this be moved to 'misc' or someplace else? Many points are
+  # natural features.
+  group_path: 'Places'
+  description: >-
+      Points representing named points of interest in Greenland.
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'translations_joined.gpkg'
+    sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
+
+- &hdx_hotosm
+  id: hotosm_populated_places
+  title: 'Populated places'
+  description: >-
+      Points representing populated places in Greenland.
+  data_source: hdx_hotosm.populated_places
+  visible: False
+  group_path: 'Places/Community map (open source)'
+  style: hotosm_populated_places_point
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *hdx_hotosm
+  id: hotosm_health_facilities
+  title: 'Health facilities'
+  description: >-
+      Points representing health facilities in Greenland.
+  data_source: hdx_hotosm.health_facilities
+  style: health_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_airports
+  title: 'Airports'
+  description: >-
+      Points representing airports in Greenland.
+  data_source: hdx_hotosm.airports
+  style: airport_point
+- <<: *hdx_hotosm
+  id: hotosm_seaports
+  title: 'Seaports'
+  description: >-
+      Points representing seaports in Greenland.
+  data_source: hdx_hotosm.seaports
+  style: seaport_point
+- <<: *hdx_hotosm
+  id: hotosm_waterways
+  title: 'Waterways'
+  description: >-
+      Lines representing waterways in Greenland.
+  data_source: hdx_hotosm.waterways
+  style: null
+- <<: *hdx_hotosm
+  id: hotosm_financial_services
+  title: 'Financial services'
+  description: >-
+      Points representing financial services in Greenland.
+  data_source: hdx_hotosm.financial_services
+  style: financial_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_education_facilities
+  title: 'Education facilities'
+  description: >-
+      Points representing educational facilities in Greenland.
+  data_source: hdx_hotosm.education_facilities
+  style: education_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_points_of_interest
+  title: 'Points of interest'
+  description: >-
+      Points of interest in Greenland.
+  data_source: hdx_hotosm.points_of_interest
+  style: null
+- <<: *hdx_hotosm
+  id: hotosm_roads
+  title: 'Roads'
+  description: >-
+      Lines representing roads in Greenland.
+  visible: True
+  data_source: hdx_hotosm.roads
+  style: roads_line
+- <<: *hdx_hotosm
+  id: hotosm_buildings
+  title: 'Buildings'
+  description: >-
+      Points representing buildings in Greenland.
+  data_source: hdx_hotosm.buildings
+  style: buildings_shape
 
 
 ##############
@@ -936,45 +973,6 @@
   ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
-
-#####################
-# Built environment #
-#####################
-
-- &asiaq_placenames
-  id: populated_places
-  title: 'Towns and Settlements'
-  description: >-
-      Points representing towns and settlements in Greenland.
-  data_source: asiaq_private_placenames.only
-  visible: False
-  group_path: 'Built environment'
-  style: 'labeled_point'
-  boundary: 'data'
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'translations_joined.gpkg'
-    # According to Eva, "BY" represents a town and "BYGD" represents a
-    # settlement
-    sql: "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
-
-- <<: *asiaq_placenames
-  id: comprehensive_places
-  title: 'Comprehensive placenames'
-  # TODO: should this be moved to 'misc' or someplace else? Many points are
-  # natural features.
-  group_path: 'Built environment'
-  description: >-
-      Points representing named points of interest in Greenland.
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'translations_joined.gpkg'
-    sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
-
-# Administrative boundaries
 
 
 ############################
