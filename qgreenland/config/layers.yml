@@ -4741,6 +4741,8 @@
 
 - id: ne_states_provinces
   title: 'Administrative divisions'
+  description: >-
+    Polygons representing countries' internal administrative boundaries.
   visible: False
   group_path: 'Basemaps'
   style: 'administrative_divisions'
