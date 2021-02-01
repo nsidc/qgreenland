@@ -946,7 +946,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         - 'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_health_facilities_points_shp.zip'
     - id: populated_places
       urls:
-        - 'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_populated_places_polygons_shp.zip'
+        - 'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_populated_places_points_shp.zip'
     - id: points_of_interest
       urls:
         - 'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_points_of_interest_points_shp.zip'
