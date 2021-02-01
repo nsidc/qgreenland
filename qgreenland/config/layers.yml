@@ -9,7 +9,7 @@
       approximately 66° 34' N and marks the latitude above which the sun does
       not set on the summer solstice, and does not rise on the winter solstice.
   visible: False
-  group_path: 'Miscellaneous'
+  group_path: 'Reference'
   data_source: arctic_circle.only
   ingest_task: local_vector
   file_type: '.gpkg'
@@ -322,7 +322,7 @@
       Polygons representing time zones.
   data_source: ne_timezones.only
   visible: False
-  group_path: 'Miscellaneous'
+  group_path: 'Reference'
   style: 'transparent_shape'
   boundary: 'background'
   ingest_task: zipped_vector
@@ -336,7 +336,7 @@
   description: >-
       Polygons representing Universal Transverse Mercator (UTM) zones.
   visible: False
-  group_path: 'Miscellaneous'
+  group_path: 'Reference'
   style: 'utm_zones'
   boundary: 'background'
   data_source: utm_zones.only
