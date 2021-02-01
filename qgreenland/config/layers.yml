@@ -1417,7 +1417,7 @@
       The trends are derived for 5-year periods and are given on a ~50 km
       resolution grid (displayed as points).
   visible: False
-  group_path: 'Glaciology/Gravimetric mass balance/'
+  group_path: 'Glaciology/Gravimetric mass balance'
   style: 'gmb_dtu_space'
   data_source: esa_cci_gravimetric_mass_balance_dtu.only
   ingest_task: local_vector
