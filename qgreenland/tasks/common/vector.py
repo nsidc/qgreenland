@@ -105,8 +105,16 @@ class Ogr2OgrVector(LayerTask):
                 f"valid{self.layer_cfg['file_type']}"
             )
             valid_kwargs = {'makevalid': ''}
-            if 'sql' in ogr2ogr_kwargs:
-                valid_kwargs['sql'] = ogr2ogr_kwargs.pop('sql')
+
+            # HACK.
+            # Apply SQL-related kwargs in the first (validation) step. Sometimes
+            # we use SQL to remove invalid data, change data types, convert
+            # columns from unix timestamps to datetimes, etc. So we can only run
+            # SQL-related operations once.
+            for sql_kwarg in ('sql', 'where', 'dialect', 'clipsrcsql', 'clipdstsql'):
+                if sql_kwarg in ogr2ogr_kwargs:
+                    valid_kwargs[sql_kwarg] = ogr2ogr_kwargs.pop(sql_kwarg)
+
             ogr2ogr(infile, valid_outfile, **valid_kwargs)
             infile = valid_outfile
 
