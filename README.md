@@ -79,3 +79,8 @@ easy as possible for any user of QGreenland to contribute to the project, so
 please do not be deterred from sharing your ideas.
 
 **If all else fails, please [email us](mailto:qgreenland.info@gmail.com)!**
+
+# Acknowledgements
+
+Please see our [acknowledgements document](doc/ACKNOWLEDGEMENTS.md) for our
+best effort to acknowledge all of the giants upon whose shoulders we stand.
