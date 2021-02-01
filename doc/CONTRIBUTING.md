@@ -271,18 +271,30 @@ you can always [email the QGreenland team](mailto:qgreenland.info@gmail.com).
 
 # Layer Requirements
 
-Data must be:
+In order for a new dataset to be added to QGreenland, we strongly encourage
+public archival with OGC-compliant metadata.  If data is not publicly archived
+or stored in a weird format, maintenance of that layer takes an order of
+magnitude more effort. File formats that are particularly challenging include:
+Raw binary grids, excel files, word documents. We prefer geotiffs or netcdfs
+for raster data, and geopackages or shapefiles for vector data. 
 
-* In EPSG:3413. This is to reduce load on QGIS caused by on-the-fly
+A correct QGreenland data pipeline will output data that:
+
+* Is in EPSG:3413. This is to reduce load on QGIS caused by on-the-fly
   reprojection. Some exceptions may exist in the current code as a workaround,
   but they are bugs.
 
-* Subset to one of the defined layer boundaries in `config/project.yml`.
+* Is subset to one of the defined layer boundaries in `config/project.yml`.
   Existing layer tasks can do this for vector or raster data.
 
-* In the correct format. As of this writing, our current convention is to store
-  raster data in GeoTIFF (`.tif`) format, and vector data in GeoPackage
-  (`.gpkg`) format.
+* For raster data:
+  * In GeoTIFF (`.tif`) format.
+  * Includes overviews, for raster data. This improves QGIS performance.
+  * Is losslessly compressed using the DEFLATE algorithm.
+
+* For vector data:
+  * In GeoPackage (`.gpkg`) format.
+  * Uses the `label` attribute name for pre-calculated labels.
 
 
 # Releasing
