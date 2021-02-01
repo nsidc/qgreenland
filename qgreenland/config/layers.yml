@@ -316,22 +316,6 @@
   data_source: hdx_hotosm.buildings
   style: buildings_shape
 
-- id: utm_zones
-  title: Universal Transverse Mercator (UTM) zones
-  description: >-
-      Polygons representing Universal Transverse Mercator (UTM) zones.
-  visible: False
-  group_path: 'Miscellaneous'
-  style: 'utm_zones'
-  boundary: 'background'
-  data_source: utm_zones.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    where: '"\"ZONE\" != 0"'
-
-
 - id: timezones
   title: 'Time zones'
   description: >-
@@ -346,6 +330,21 @@
   data_type: 'vector'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
+
+- id: utm_zones
+  title: Universal Transverse Mercator (UTM) zones
+  description: >-
+      Polygons representing Universal Transverse Mercator (UTM) zones.
+  visible: False
+  group_path: 'Miscellaneous'
+  style: 'utm_zones'
+  boundary: 'background'
+  data_source: utm_zones.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    where: '"\"ZONE\" != 0"'
 
 ##############
 # Atmosphere #
