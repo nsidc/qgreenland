@@ -567,7 +567,7 @@
                 DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
                 *
         FROM ESRIJSON
-        WHERE \"type\" LIKE 'Walrus%'"
+        WHERE type LIKE 'Walrus%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_goose_protected_areas
@@ -579,7 +579,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" IN (''Barnacle goose colony'', ''Goose moulting and breeding areas'')"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
 
 - <<: *walrus_protected_areas
   id: nunagis_caribou_calving_areas
@@ -591,7 +597,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Caribou%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Caribou%'"
 
 - id: ginr_caribou_areas
   title: 'Caribou areas'
@@ -616,7 +628,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Beluga%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Beluga%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_bird_protected_areas
@@ -628,7 +646,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" IN (''Bird Protection Area'', ''Important Bird Area of BirdLife International'')"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('Bird Protection Area', 'Important Bird Area of BirdLife International')"
 
 - <<: *walrus_protected_areas
   id: nunagis_thickbilled_murre_colonies
@@ -641,7 +665,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Colonies of breeding Brünnichs guillemots%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Colonies of breeding Brünnichs guillemots%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_seabirds_colonies
@@ -654,7 +684,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Colonies of breeding sea birds%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Colonies of breeding sea birds%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_eider_protected_areas
@@ -666,7 +702,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Eider%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Eider%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_murre_group_1km_zones
@@ -678,7 +720,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Murre%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Murre%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_musk_oxen_calving_areas
@@ -690,7 +738,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Musk oxen%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Musk oxen%'"
 
 - id: ginr_muskoken
   title: 'Muskoxen areas'
@@ -715,7 +769,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Narwhal%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Narwhal%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_polar_bear_breeding_areas
@@ -727,7 +787,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Polar bear%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Polar bear%'"
 
 - id: caff_thickbilled_murre_colonies
   title: 'Thickbilled Murre colonies 2010'
@@ -860,7 +926,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" IN (''UNESCO World Heritage Site'', ''Ramsar area'')"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('UNESCO World Heritage Site', 'Ramsar area')"
 
 - <<: *walrus_protected_areas
   id: nunagis_no_go_areas
@@ -872,7 +944,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''No Go Area''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'No Go Area'"
 
 - <<: *walrus_protected_areas
   id: nunagis_closed_areas
@@ -884,7 +962,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Closed Area''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Closed Area'"
 
 - <<: *walrus_protected_areas
   id: nunagis_salt_or_saline_lake_100m_zones
@@ -896,7 +980,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Salt or saline lake 100m zone''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Salt or saline lake 100m zone'"
 
 - <<: *walrus_protected_areas
   id: nunagis_homothermic_spring_100m_zones
@@ -908,7 +998,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Homothermic spring 100 m zone''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Homothermic spring 100 m zone'"
 
 - <<: *walrus_protected_areas
   id: nunagis_national_park
@@ -920,7 +1016,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''National Park''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'National Park'"
 
 - <<: *walrus_protected_areas
   id: nunagis_biological_important_areas
@@ -932,7 +1034,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Biological Important Areas in the National Park''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Biological Important Areas in the National Park'"
 
 - <<: *walrus_protected_areas
   id: nunagis_nature_protection_areas
@@ -944,7 +1052,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Nature Protection Area''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Nature Protection Area'"
 
 - &greenland_territorial_waters
   id: exclusive_economic_zone
