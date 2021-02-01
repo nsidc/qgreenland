@@ -3,6 +3,8 @@
 - Update RACMO layers with 2019 data from Brice Noël.
 - Populate `{{date_accessed}}` in citation text with modified time of input
   cache dir.
+- Update nunagis protected areas layers: convert fields representing unix
+  timestamps to dates.
 
 # v0.52.0 (2021-01-25)
 
