@@ -5,6 +5,8 @@
 - &hdx_hotosm
   id: hotosm_populated_places
   title: 'Populated places'
+  description: >-
+      Points representing populated places in Greenland.
   data_source: hdx_hotosm.populated_places
   visible: False
   group_path: 'Miscellaneous/OpenStreetMap'
@@ -17,47 +19,65 @@
 - <<: *hdx_hotosm
   id: hotosm_health_facilities
   title: 'Health facilities'
+  description: >-
+      Points representing health facilities in Greenland.
   data_source: hdx_hotosm.health_facilities
   style: health_facility_point
 - <<: *hdx_hotosm
   id: hotosm_airports
   title: 'Airports'
+  description: >-
+      Points representing airports in Greenland.
   data_source: hdx_hotosm.airports
   style: airport_point
 - <<: *hdx_hotosm
   id: hotosm_seaports
   title: 'Seaports'
+  description: >-
+      Points representing seaports in Greenland.
   data_source: hdx_hotosm.seaports
   style: seaport_point
 - <<: *hdx_hotosm
   id: hotosm_waterways
   title: 'Waterways'
+  description: >-
+      Lines representing waterways in Greenland.
   data_source: hdx_hotosm.waterways
   style: null
 - <<: *hdx_hotosm
   id: hotosm_financial_services
   title: 'Financial services'
+  description: >-
+      Points representing financial services in Greenland.
   data_source: hdx_hotosm.financial_services
   style: financial_facility_point
 - <<: *hdx_hotosm
   id: hotosm_education_facilities
   title: 'Education facilities'
+  description: >-
+      Points representing educational facilities in Greenland.
   data_source: hdx_hotosm.education_facilities
   style: education_facility_point
 - <<: *hdx_hotosm
   id: hotosm_points_of_interest
   title: 'Points of interest'
+  description: >-
+      Points of interest in Greenland.
   data_source: hdx_hotosm.points_of_interest
   style: null
 - <<: *hdx_hotosm
   id: hotosm_roads
   title: 'Roads'
+  description: >-
+      Lines representing roads in Greenland.
   visible: True
   data_source: hdx_hotosm.roads
   style: roads_line
 - <<: *hdx_hotosm
   id: hotosm_buildings
   title: 'Buildings'
+  description: >-
+      Points representing buildings in Greenland.
   data_source: hdx_hotosm.buildings
   style: buildings_shape
 
