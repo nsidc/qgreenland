@@ -9,7 +9,7 @@
       Points representing populated places in Greenland.
   data_source: hdx_hotosm.populated_places
   visible: False
-  group_path: 'Miscellaneous/OpenStreetMap'
+  group_path: 'Reference/OpenStreetMap'
   style: hotosm_populated_places_point
   boundary: 'data'
   ingest_task: zipped_vector
@@ -120,7 +120,7 @@
   title: Latitude lines (0.25 degree)
   description: "Lines of latitude in 0.25-degree resolution."
   visible: False
-  group_path: 'Miscellaneous/Latitude lines'
+  group_path: 'Reference/Latitude lines'
   style: 'latlon'
   data_source: latlon.lat_0_25_deg
   ingest_task: local_vector
@@ -216,7 +216,7 @@
   title: Longitude lines (0.5 degree)
   description: "Lines of longitude in 0.5-degree resolution."
   visible: False
-  group_path: 'Miscellaneous/Longitude lines'
+  group_path: 'Reference/Longitude lines'
   style: 'latlon'
   data_source: latlon.lon_0_5_deg
   ingest_task: local_vector
