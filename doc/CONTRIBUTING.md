@@ -43,9 +43,9 @@ To disable a layer, comment out the whole list element for that layer in the
 `layers.yml` file. This is convenient for layers with `manual` access method.
 
 The `ingest_task` key defines which processing pipeline will handle data for
-this layer.  Pipelines are currently defined as Python code in
-`qgreenland/tasks/layers/`.  There are several other fields (typically ending
-in `_kwargs` or `_args` which can be used to parameterize these pipelines.
+this layer. Pipelines are currently defined as Python code in
+`qgreenland/tasks/layers/`. There are several other fields (typically ending in
+`_kwargs` or `_args` which can be used to parameterize these pipelines.
 
 A layer references `datasets.yml` with the `datasource` compound key composed
 as `<dataset_id>.<source_id>`.
@@ -269,12 +269,13 @@ assistance or additional information. If you're not comfortable with GitHub,
 you can always [email the QGreenland team](mailto:qgreenland.info@gmail.com).
 
 
-# Layer Requirements
+### Layer Requirements
 
 In order for a new dataset to be added to QGreenland, we strongly encourage
-public archival with OGC-compliant metadata.  If data is not publicly archived
+public archival with OGC-compliant metadata. If data is not publicly archived
 or stored in a weird format, maintenance of that layer takes an order of
-magnitude more effort. File formats that are particularly challenging include:
+magnitude more effort and therefore we are unable to promise permanent
+inclusion of such data. File formats that are particularly challenging include:
 Raw binary grids, excel files, word documents. We prefer geotiffs or netcdfs
 for raster data, and geopackages or shapefiles for vector data. 
 
