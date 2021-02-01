@@ -453,10 +453,116 @@
   style: buildings_shape
 
 
+##################
+# Human activity #
+##################
+
+- id: gem_research_stations
+  title: 'GEM research stations'
+  description: >-
+    Location and description of Greenland Ecosystem Monitoring research
+    stations.
+  visible: False
+  group_path: 'Human activity/Research stations'
+  style: 'labeled_point'
+  data_source: gem_research_stations.only
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'data'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, \"Station Name\" as label from \"gem_research_stations\"'"
+    input_filename: 'gem_research_stations.geojson'
+
+- &gc_net_promice_stations
+  id: promice_research_stations
+  title: 'PROMICE automated weather stations'
+  description: >-
+      Locations and details of PROMICE automated weather stations.
+  visible: False
+  group_path: 'Human activity/Research stations'
+  style: 'labeled_point'
+  data_source: gc_net_promice_stations.promice
+  ingest_task: delimited_text_points_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'data'
+  delimited_text_vector_kwargs:
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.csv'
+    delimiter: "\t"
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018\"'"
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.gpkg'
+
+- <<: *gc_net_promice_stations
+  id: promice_research_stations_former
+  title: 'Former PROMICE automated weather stations'
+  description: >-
+      Locations and details of inactive PROMICE automated weather stations.
+  data_source: gc_net_promice_stations.promice_former
+  delimited_text_vector_kwargs:
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.csv'
+    delimiter: "\t"
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018_former_sites\"'"
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.gpkg'
+
+- <<: *gc_net_promice_stations
+  id: gc_net_research_stations
+  title: 'GC-NET automated weather stations'
+  description: >-
+      Location and details of GC-NET automated weather stations.
+  data_source: gc_net_promice_stations.gc_net
+  delimited_text_vector_kwargs:
+    input_filename: 'GCN%20info%20ca.2000.csv'
+    delimiter: ','
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"GCN%20info%20ca.2000\"'"
+    input_filename: 'GCN%20info%20ca.2000.gpkg'
+
+- id: seismograph_stations
+  title: 'Seismograph stations'
+  description: >-
+    Location and details of Greenland seismograph stations.
+  visible: False
+  # TODO: is this where this layer should live?
+  group_path: 'Human activity/Research stations'
+  data_source: seismograph_stations.only
+  ingest_task: online_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'data'
+  ogr2ogr_kwargs:
+    input_filename: 'stations.kmz'
+
+
+- id: arctic_sea_routes
+  title: 'Arctic sea routes'
+  description: >-
+    Lines depict the Northern Sea Route, Northwest Passate, and hypothetical
+    Transpolar Route.
+  visible: False
+  style: 'arctic_sea_routes'
+  group_path: 'Human activity'
+  data_source: nga_arctic_sea_routes.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'background'
+
+
 ##############
 # Atmosphere #
 ##############
-
 
 - id: racmo_wind_vectors
   title: 'Annual mean wind vectors 1958-2019 (1km)'
@@ -3792,113 +3898,6 @@
   file_type: '.tif'
   data_type: 'raster'
   boundary: 'data'
-
-
-##################
-# Human activity #
-##################
-
-- id: gem_research_stations
-  title: 'GEM research stations'
-  description: >-
-    Location and description of Greenland Ecosystem Monitoring research
-    stations.
-  visible: False
-  group_path: 'Human activity/Research stations'
-  style: 'labeled_point'
-  data_source: gem_research_stations.only
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'data'
-  ogr2ogr_kwargs:
-    sql: "'SELECT *, \"Station Name\" as label from \"gem_research_stations\"'"
-    input_filename: 'gem_research_stations.geojson'
-
-- &gc_net_promice_stations
-  id: promice_research_stations
-  title: 'PROMICE automated weather stations'
-  description: >-
-      Locations and details of PROMICE automated weather stations.
-  visible: False
-  group_path: 'Human activity/Research stations'
-  style: 'labeled_point'
-  data_source: gc_net_promice_stations.promice
-  ingest_task: delimited_text_points_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'data'
-  delimited_text_vector_kwargs:
-    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.csv'
-    delimiter: "\t"
-    x_field: 'lon'
-    y_field: 'lat'
-  ogr2ogr_kwargs:
-    s_srs: "EPSG:4326"
-    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018\"'"
-    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.gpkg'
-
-- <<: *gc_net_promice_stations
-  id: promice_research_stations_former
-  title: 'Former PROMICE automated weather stations'
-  description: >-
-      Locations and details of inactive PROMICE automated weather stations.
-  data_source: gc_net_promice_stations.promice_former
-  delimited_text_vector_kwargs:
-    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.csv'
-    delimiter: "\t"
-    x_field: 'lon'
-    y_field: 'lat'
-  ogr2ogr_kwargs:
-    s_srs: "EPSG:4326"
-    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018_former_sites\"'"
-    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.gpkg'
-
-- <<: *gc_net_promice_stations
-  id: gc_net_research_stations
-  title: 'GC-NET automated weather stations'
-  description: >-
-      Location and details of GC-NET automated weather stations.
-  data_source: gc_net_promice_stations.gc_net
-  delimited_text_vector_kwargs:
-    input_filename: 'GCN%20info%20ca.2000.csv'
-    delimiter: ','
-    x_field: 'lon'
-    y_field: 'lat'
-  ogr2ogr_kwargs:
-    s_srs: "EPSG:4326"
-    sql: "'SELECT *, name as label from \"GCN%20info%20ca.2000\"'"
-    input_filename: 'GCN%20info%20ca.2000.gpkg'
-
-- id: seismograph_stations
-  title: 'Seismograph stations'
-  description: >-
-    Location and details of Greenland seismograph stations.
-  visible: False
-  # TODO: is this where this layer should live?
-  group_path: 'Human activity/Research stations'
-  data_source: seismograph_stations.only
-  ingest_task: online_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'data'
-  ogr2ogr_kwargs:
-    input_filename: 'stations.kmz'
-
-
-- id: arctic_sea_routes
-  title: 'Arctic sea routes'
-  description: >-
-    Lines depict the Northern Sea Route, Northwest Passate, and hypothetical
-    Transpolar Route.
-  visible: False
-  style: 'arctic_sea_routes'
-  group_path: 'Human activity'
-  data_source: nga_arctic_sea_routes.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'background'
 
 
 #############
