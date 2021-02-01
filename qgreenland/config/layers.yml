@@ -4797,6 +4797,8 @@
 # gross so we removed the ocean layer.
 - id: land
   title: 'Land'
+  description: >-
+    Polygons representing the land.
   visible: False
   group_path: 'Basemaps'
   style: 'land'
@@ -4809,6 +4811,8 @@
 
 - id: ocean
   title: 'Ocean'
+  description: >-
+    Polygons representing the ocean.
   visible: False
   group_path: 'Basemaps'
   style: 'ocean'
