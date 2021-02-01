@@ -5,6 +5,8 @@
 - &hdx_hotosm
   id: hotosm_populated_places
   title: 'Populated places'
+  description: >-
+      Points representing populated places in Greenland.
   data_source: hdx_hotosm.populated_places
   visible: False
   group_path: 'Miscellaneous/OpenStreetMap'
@@ -17,47 +19,65 @@
 - <<: *hdx_hotosm
   id: hotosm_health_facilities
   title: 'Health facilities'
+  description: >-
+      Points representing health facilities in Greenland.
   data_source: hdx_hotosm.health_facilities
   style: health_facility_point
 - <<: *hdx_hotosm
   id: hotosm_airports
   title: 'Airports'
+  description: >-
+      Points representing airports in Greenland.
   data_source: hdx_hotosm.airports
   style: airport_point
 - <<: *hdx_hotosm
   id: hotosm_seaports
   title: 'Seaports'
+  description: >-
+      Points representing seaports in Greenland.
   data_source: hdx_hotosm.seaports
   style: seaport_point
 - <<: *hdx_hotosm
   id: hotosm_waterways
   title: 'Waterways'
+  description: >-
+      Lines representing waterways in Greenland.
   data_source: hdx_hotosm.waterways
   style: null
 - <<: *hdx_hotosm
   id: hotosm_financial_services
   title: 'Financial services'
+  description: >-
+      Points representing financial services in Greenland.
   data_source: hdx_hotosm.financial_services
   style: financial_facility_point
 - <<: *hdx_hotosm
   id: hotosm_education_facilities
   title: 'Education facilities'
+  description: >-
+      Points representing educational facilities in Greenland.
   data_source: hdx_hotosm.education_facilities
   style: education_facility_point
 - <<: *hdx_hotosm
   id: hotosm_points_of_interest
   title: 'Points of interest'
+  description: >-
+      Points of interest in Greenland.
   data_source: hdx_hotosm.points_of_interest
   style: null
 - <<: *hdx_hotosm
   id: hotosm_roads
   title: 'Roads'
+  description: >-
+      Lines representing roads in Greenland.
   visible: True
   data_source: hdx_hotosm.roads
   style: roads_line
 - <<: *hdx_hotosm
   id: hotosm_buildings
   title: 'Buildings'
+  description: >-
+      Points representing buildings in Greenland.
   data_source: hdx_hotosm.buildings
   style: buildings_shape
 
@@ -312,7 +332,9 @@
 
 
 - id: timezones
-  title: 'Timezones'
+  title: 'Time zones'
+  description: >-
+      Polygons representing time zones.
   data_source: ne_timezones.only
   visible: False
   group_path: 'Miscellaneous'
@@ -561,7 +583,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Walrus%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Walrus%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_goose_protected_areas
@@ -573,7 +601,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" IN (''Barnacle goose colony'', ''Goose moulting and breeding areas'')"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
 
 - <<: *walrus_protected_areas
   id: nunagis_caribou_calving_areas
@@ -585,7 +619,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Caribou%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Caribou%'"
 
 - id: ginr_caribou_areas
   title: 'Caribou areas'
@@ -610,7 +650,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Beluga%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Beluga%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_bird_protected_areas
@@ -622,7 +668,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" IN (''Bird Protection Area'', ''Important Bird Area of BirdLife International'')"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('Bird Protection Area', 'Important Bird Area of BirdLife International')"
 
 - <<: *walrus_protected_areas
   id: nunagis_thickbilled_murre_colonies
@@ -635,7 +687,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Colonies of breeding Brünnichs guillemots%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Colonies of breeding Brünnichs guillemots%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_seabirds_colonies
@@ -648,7 +706,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Colonies of breeding sea birds%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Colonies of breeding sea birds%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_eider_protected_areas
@@ -660,7 +724,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Eider%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Eider%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_murre_group_1km_zones
@@ -672,7 +742,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Murre%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Murre%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_musk_oxen_calving_areas
@@ -684,7 +760,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Musk oxen%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Musk oxen%'"
 
 - id: ginr_muskoken
   title: 'Muskoxen areas'
@@ -709,7 +791,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Narwhal%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Narwhal%'"
 
 - <<: *walrus_protected_areas
   id: nunagis_polar_bear_breeding_areas
@@ -721,7 +809,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" LIKE ''Polar bear%''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Polar bear%'"
 
 - id: caff_thickbilled_murre_colonies
   title: 'Thickbilled Murre colonies 2010'
@@ -854,7 +948,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" IN (''UNESCO World Heritage Site'', ''Ramsar area'')"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('UNESCO World Heritage Site', 'Ramsar area')"
 
 - <<: *walrus_protected_areas
   id: nunagis_no_go_areas
@@ -866,7 +966,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''No Go Area''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'No Go Area'"
 
 - <<: *walrus_protected_areas
   id: nunagis_closed_areas
@@ -878,7 +984,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Closed Area''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Closed Area'"
 
 - <<: *walrus_protected_areas
   id: nunagis_salt_or_saline_lake_100m_zones
@@ -890,7 +1002,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Salt or saline lake 100m zone''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Salt or saline lake 100m zone'"
 
 - <<: *walrus_protected_areas
   id: nunagis_homothermic_spring_100m_zones
@@ -902,7 +1020,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Homothermic spring 100 m zone''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Homothermic spring 100 m zone'"
 
 - <<: *walrus_protected_areas
   id: nunagis_national_park
@@ -914,7 +1038,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''National Park''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'National Park'"
 
 - <<: *walrus_protected_areas
   id: nunagis_biological_important_areas
@@ -926,7 +1056,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Biological Important Areas in the National Park''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Biological Important Areas in the National Park'"
 
 - <<: *walrus_protected_areas
   id: nunagis_nature_protection_areas
@@ -938,7 +1074,13 @@
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
-    where: '"\"type\" = ''Nature Protection Area''"'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Nature Protection Area'"
 
 - &greenland_territorial_waters
   id: exclusive_economic_zone
@@ -1270,12 +1412,12 @@
 - &esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2005
   # TODO: provide the 5 year period instead of just one datetime.
-  title: 'Mass balance trend 2005-07-01:12:00:00'
+  title: 'Mass balance trend 2005-07-01 12:00:00'
   description: >-
       The trends are derived for 5-year periods and are given on a ~50 km
       resolution grid (displayed as points).
   visible: False
-  group_path: 'Glaciology/Gravimetric mass balance/'
+  group_path: 'Glaciology/Gravimetric mass balance'
   style: 'gmb_dtu_space'
   data_source: esa_cci_gravimetric_mass_balance_dtu.only
   ingest_task: local_vector
@@ -1287,84 +1429,84 @@
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2006
-  title: 'Mass balance trend 2006-07-02:00:00:00'
+  title: 'Mass balance trend 2006-07-02 00:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2006_07_02_00_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2007
-  title: 'Mass balance trend 2007-07-02:12:00:00'
+  title: 'Mass balance trend 2007-07-02 12:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2007_07_02_12_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2008
-  title: 'Mass balance trend 2008-07-01:12:00:00'
+  title: 'Mass balance trend 2008-07-01 12:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2008_07_01_12_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2009
-  title: 'Mass balance trend 2009-07-01:12:00:00'
+  title: 'Mass balance trend 2009-07-01 12:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2009_07_01_12_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2010
-  title: 'Mass balance trend 2010-07-02:00:00:00'
+  title: 'Mass balance trend 2010-07-02 00:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2010_07_02_00_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2011
-  title: 'Mass balance trend 2011-07-02:12:00:00'
+  title: 'Mass balance trend 2011-07-02 12:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2011_07_02_12_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2012
-  title: 'Mass balance trend 2012-06-16:00:00:00'
+  title: 'Mass balance trend 2012-06-16 00:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2012_06_16_00_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2013
-  title: 'Mass balance trend 2013-07-17:00:00:00'
+  title: 'Mass balance trend 2013-07-17 00:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2013_07_17_00_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2014
-  title: 'Mass balance trend 2014-07-02:00:00:00'
+  title: 'Mass balance trend 2014-07-02 00:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2014_07_02_00_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2015
-  title: 'Mass balance trend 2015-04-02:00:00:00'
+  title: 'Mass balance trend 2015-04-02 00:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2015_04_02_00_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2016
-  title: 'Mass balance trend 2016-07-01:12:00:00'
+  title: 'Mass balance trend 2016-07-01 12:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2016_07_01_12_00_00.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2017
-  title: 'Mass balance trend 2017-07-01:12:00:00'
+  title: 'Mass balance trend 2017-07-01 12:00:00'
   ogr2ogr_kwargs:
     input_filename: 'points_2017_07_01_12_00_00.gpkg'
     s_srs: 'EPSG:4326'
@@ -1776,7 +1918,7 @@
   boundary: 'data'
   data_source: earthquakes.only
   ingest_task: 'online_vector'
-  file_type: '.geojson'  # ?
+  file_type: '.geojson'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'query.geojson'
@@ -3808,8 +3950,7 @@
   id: undersea_features_point
   title: 'Points'
   description: >-
-      Undersea feature names curated by the General Bathymetric Chart of the
-      Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
+      Points representing undersea features.
   visible: False
   group_path: 'Oceanography/Undersea feature names'
   style: 'undersea_features_point'
@@ -3835,6 +3976,8 @@
 - <<: *undersea_features
   id: undersea_features_multilinestring
   title: 'Multiline'
+  description: >-
+      Lines representing undersea features.
   style: 'undersea_features_line'
   decompress_kwargs:
     extract_files:
@@ -3848,6 +3991,8 @@
 - <<: *undersea_features
   id: undersea_features_multipolygon
   title: 'Multipolygon'
+  description: >-
+      Polygons representing undersea features.
   style: 'undersea_features_polygon'
   decompress_kwargs:
     extract_files:
@@ -4621,10 +4766,12 @@
 
 - id: ne_states_provinces
   title: 'Administrative divisions'
+  description: >-
+    Polygons representing countries' internal administrative boundaries.
   visible: False
   group_path: 'Basemaps'
   style: 'administrative_divisions'
-  boundary: 'data'
+  boundary: 'background'
   data_source: ne_states_provinces.only
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -4633,6 +4780,8 @@
 
 - id: ne_countries
   title: 'Countries'
+  description: >-
+    Polygons representing countries.
   visible: False
   group_path: 'Basemaps'
   style: 'countries'
@@ -4648,6 +4797,8 @@
 # gross so we removed the ocean layer.
 - id: land
   title: 'Land'
+  description: >-
+    Polygons representing the land.
   visible: False
   group_path: 'Basemaps'
   style: 'land'
@@ -4660,6 +4811,8 @@
 
 - id: ocean
   title: 'Ocean'
+  description: >-
+    Polygons representing the ocean.
   visible: False
   group_path: 'Basemaps'
   style: 'ocean'
