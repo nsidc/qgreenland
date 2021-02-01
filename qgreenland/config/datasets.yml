@@ -547,13 +547,14 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'IHO-IOC GEBCO Gazetteer of Undersea Feature Names'
     abstract: >-
-        The GEBCO Sub-Committee on Undersea Feature Names (SCUFN) maintains and
-        makes available a digital gazetteer of the names, generic feature type
-        and geographic position of features on the seafloor. The gazetteer is
-        available to view and download (http://www.ngdc.noaa.gov/gazetteer/) via
-        a web map application, hosted by the International Hydrographic
-        Organization Data Centre for Digital Bathymetry (IHO DCDB) co-located
-        with the US National Centers for Environmental Information (NCEI).
+        The General Bathymetric Chart of the Oceans (GEBCO) Sub-Committee on
+        Undersea Feature Names (SCUFN) maintains and makes available a digital
+        gazetteer of the names, generic feature type and geographic position of
+        features on the seafloor. The gazetteer is available to view and
+        download (http://www.ngdc.noaa.gov/gazetteer/) via a web map
+        application, hosted by the International Hydrographic Organization Data
+        Centre for Digital Bathymetry (IHO DCDB) co-located with the US National
+        Centers for Environmental Information (NCEI).
     citation:
       text: >-
         IHO-IOC GEBCO Gazetteer of Undersea Feature Names, www.gebco.net

@@ -3950,8 +3950,7 @@
   id: undersea_features_point
   title: 'Points'
   description: >-
-      Undersea feature names curated by the General Bathymetric Chart of the
-      Oceans (GEBCO) Sub-Committee on Undersea Feature Names (SCUFN)
+      Points representing undersea features.
   visible: False
   group_path: 'Oceanography/Undersea feature names'
   style: 'undersea_features_point'
@@ -3977,6 +3976,8 @@
 - <<: *undersea_features
   id: undersea_features_multilinestring
   title: 'Multiline'
+  description: >-
+      Lines representing undersea features.
   style: 'undersea_features_line'
   decompress_kwargs:
     extract_files:
@@ -3990,6 +3991,8 @@
 - <<: *undersea_features
   id: undersea_features_multipolygon
   title: 'Multipolygon'
+  description: >-
+      Polygons representing undersea features.
   style: 'undersea_features_polygon'
   decompress_kwargs:
     extract_files:
