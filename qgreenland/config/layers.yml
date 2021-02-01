@@ -236,7 +236,6 @@
     segmentize: 100
 
 
-
 - &hdx_hotosm
   id: hotosm_populated_places
   title: 'Populated places'
