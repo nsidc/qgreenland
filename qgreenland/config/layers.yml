@@ -332,7 +332,9 @@
 
 
 - id: timezones
-  title: 'Timezones'
+  title: 'Time zones'
+  description: >-
+      Polygons representing time zones.
   data_source: ne_timezones.only
   visible: False
   group_path: 'Miscellaneous'
