@@ -1109,9 +1109,10 @@
     input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
     where: '"\"layer\" = ''Boundary_fishzone''"'
 
-##############
-# Atmosphere #
-##############
+
+###########################
+# Regional climate models #
+###########################
 
 - id: racmo_wind_vectors
   title: 'Annual mean wind vectors 1958-2019 (1km)'
@@ -1119,7 +1120,7 @@
       Averaged annual mean wind direction in meters per second from RACMO2.3p2
       for the period 1958-2019.
   visible: False
-  group_path: 'Atmosphere/RACMO model output'
+  group_path: 'Regional climate models/RACMO model output'
   style: racmo_wind_vectors
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
@@ -1136,7 +1137,7 @@
       Averaged annual mean wind speed in meters per second from
       RACMO2.3p2 for the period 1958-2019.
   visible: False
-  group_path: 'Atmosphere/RACMO model output'
+  group_path: 'Regional climate models/RACMO model output'
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
@@ -1164,7 +1165,7 @@
       w.e.)  for the period 1958-2019 covering the whole ice sheet and
       peripheral ice caps.
   visible: False
-  group_path: 'Atmosphere/RACMO model output'
+  group_path: 'Regional climate models/RACMO model output'
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
@@ -1266,7 +1267,7 @@
   description: >-
     Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
     peripheral ice caps; 0 = Ocean.
-  group_path: 'Atmosphere/RACMO model output/RACMO masks'
+  group_path: 'Regional climate models/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'Promicemask'
   gdal_edit_kwargs:
@@ -1281,7 +1282,7 @@
   title: 'Topography (1km)'
   description: >-
       Surface elevation in meters.
-  group_path: 'Atmosphere/RACMO model output/RACMO masks'
+  group_path: 'Regional climate models/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'Topography'
   gdal_edit_kwargs:
@@ -1299,7 +1300,7 @@
   title: 'Grounded ice (1km)'
   description: >-
       Mask of grounded ice.
-  group_path: 'Atmosphere/RACMO model output/RACMO masks'
+  group_path: 'Regional climate models/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'grounded_ice'
   gdal_edit_kwargs:
