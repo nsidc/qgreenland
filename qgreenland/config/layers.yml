@@ -3965,195 +3965,6 @@
     input_filename: 'basins_filled.gpkg'
 
 
-################
-# Oceanography #
-################
-
-- &undersea_features
-  id: undersea_features_point
-  title: 'Points'
-  description: >-
-      Points representing undersea features.
-  visible: False
-  group_path: 'Oceanography/Undersea feature names'
-  style: 'undersea_features_point'
-  boundary: 'data'
-  data_source: undersea_features.only
-  ingest_task: zipped_vector
-  # TODO: ingest_kwargs vs decompress_kwargs
-  decompress_kwargs:
-  # TODO: regex(s) instad of file list?
-    extract_files:
-      - 'features/features-point.dbf'
-      - 'features/features-point.prj'
-      - 'features/features-point.shp'
-      - 'features/features-point.shx'
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    sql: "'SELECT *, name as label from \"features-point\"'"
-
-  # Note: source zipfile for undersea features data has multipoint shapefile
-  # that only contains data outside of the project extent.
-
-- <<: *undersea_features
-  id: undersea_features_multilinestring
-  title: 'Multiline'
-  description: >-
-      Lines representing undersea features.
-  style: 'undersea_features_line'
-  decompress_kwargs:
-    extract_files:
-      - 'features/features-multilinestring.dbf'
-      - 'features/features-multilinestring.prj'
-      - 'features/features-multilinestring.shp'
-      - 'features/features-multilinestring.shx'
-  ogr2ogr_kwargs:
-    sql: "'SELECT *, name as label from \"features-multilinestring\"'"
-
-- <<: *undersea_features
-  id: undersea_features_multipolygon
-  title: 'Multipolygon'
-  description: >-
-      Polygons representing undersea features.
-  style: 'undersea_features_polygon'
-  decompress_kwargs:
-    extract_files:
-      - 'features/features-multipolygon.dbf'
-      - 'features/features-multipolygon.prj'
-      - 'features/features-multipolygon.shp'
-      - 'features/features-multipolygon.shx'
-  ogr2ogr_kwargs:
-    # Prevent polygon from being turned in to a linestring during clip operation
-    nlt: 'POLYGON'
-    sql: "'SELECT *, name as label from \"features-multipolygon\"'"
-
-- &woa2018
-  id: woa2018_0m_temperature_winter
-  title: 'Surface, Winter'
-  description: >-
-    Seawater temperature at surface depth in °C.
-  visible: False
-  group_path: 'Oceanography/Seawater temperature 2018 (25km)'
-  style: 'seawater_temperature'
-  boundary: 'data'
-  data_source: woa2018_temperature.seasonal_winter
-  ingest_task: netcdf_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [1]
-  warp_kwargs:
-    xRes: 25000
-    yRes: 25000
-
-- <<: *woa2018
-  id: woa2018_0m_temperature_summer
-  title: 'Surface, Summer'
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [1]
-
-- <<: *woa2018
-  id: woa2018_50m_temperature_winter
-  title: '50m, Winter'
-  description: >-
-    Seawater temperature at 50m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [11]
-
-- <<: *woa2018
-  id: woa2018_50m_temperature_summer
-  title: '50m, Summer'
-  description: >-
-    Seawater temperature at 50m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [11]
-
-- <<: *woa2018
-  id: woa2018_200m_temperature_winter
-  title: '200m, Winter'
-  description: >-
-    Seawater temperature at 200m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [25]
-
-- <<: *woa2018
-  id: woa2018_200m_temperature_summer
-  title: '200m, Summer'
-  description: >-
-    Seawater temperature at 200m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [25]
-
-- <<: *woa2018
-  id: woa2018_500m_temperature_winter
-  title: '500m, Winter'
-  description: >-
-    Seawater temperature at 500m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [37]
-
-- <<: *woa2018
-  id: woa2018_500m_temperature_summer
-  title: '500m, Summer'
-  description: >-
-    Seawater temperature at 500m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [37]
-
-
-- id: bathymetric_chart
-  title: 'Bathymetric chart of the Arctic Ocean (500m)'
-  description: >-
-      Surface (bedrock or icesheet) elevation in meters.  Elevations can be
-      assumed to be relative to Mean Sea Level. However, in some shallow water
-      areas, the grids include data from sources having a vertical datum other
-      than mean sea level.
-  visible: False
-  group_path: 'Oceanography'
-  style: 'ibcao_bathymetry'
-  boundary: 'background'
-  data_source: bathymetric_chart.only
-  ingest_task: netcdf_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'z'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  warp_kwargs:
-    srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
-    dstNodata: -9999
-    xRes: 500
-    yRes: 500
-
-
 ##################
 # Sea ice #
 ##################
@@ -4600,6 +4411,195 @@
   id: maximum_concentration_2020
   title: 'March 2020'
   data_source: seaice_index.maximum_concentration_2019
+
+
+################
+# Oceanography #
+################
+
+- &undersea_features
+  id: undersea_features_point
+  title: 'Points'
+  description: >-
+      Points representing undersea features.
+  visible: False
+  group_path: 'Oceanography/Undersea feature names'
+  style: 'undersea_features_point'
+  boundary: 'data'
+  data_source: undersea_features.only
+  ingest_task: zipped_vector
+  # TODO: ingest_kwargs vs decompress_kwargs
+  decompress_kwargs:
+  # TODO: regex(s) instad of file list?
+    extract_files:
+      - 'features/features-point.dbf'
+      - 'features/features-point.prj'
+      - 'features/features-point.shp'
+      - 'features/features-point.shx'
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-point\"'"
+
+  # Note: source zipfile for undersea features data has multipoint shapefile
+  # that only contains data outside of the project extent.
+
+- <<: *undersea_features
+  id: undersea_features_multilinestring
+  title: 'Multiline'
+  description: >-
+      Lines representing undersea features.
+  style: 'undersea_features_line'
+  decompress_kwargs:
+    extract_files:
+      - 'features/features-multilinestring.dbf'
+      - 'features/features-multilinestring.prj'
+      - 'features/features-multilinestring.shp'
+      - 'features/features-multilinestring.shx'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-multilinestring\"'"
+
+- <<: *undersea_features
+  id: undersea_features_multipolygon
+  title: 'Multipolygon'
+  description: >-
+      Polygons representing undersea features.
+  style: 'undersea_features_polygon'
+  decompress_kwargs:
+    extract_files:
+      - 'features/features-multipolygon.dbf'
+      - 'features/features-multipolygon.prj'
+      - 'features/features-multipolygon.shp'
+      - 'features/features-multipolygon.shx'
+  ogr2ogr_kwargs:
+    # Prevent polygon from being turned in to a linestring during clip operation
+    nlt: 'POLYGON'
+    sql: "'SELECT *, name as label from \"features-multipolygon\"'"
+
+- &woa2018
+  id: woa2018_0m_temperature_winter
+  title: 'Surface, Winter'
+  description: >-
+    Seawater temperature at surface depth in °C.
+  visible: False
+  group_path: 'Oceanography/Seawater temperature 2018 (25km)'
+  style: 'seawater_temperature'
+  boundary: 'data'
+  data_source: woa2018_temperature.seasonal_winter
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [1]
+  warp_kwargs:
+    xRes: 25000
+    yRes: 25000
+
+- <<: *woa2018
+  id: woa2018_0m_temperature_summer
+  title: 'Surface, Summer'
+  group_path: 'Oceanography/Seawater temperature 2018'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [1]
+
+- <<: *woa2018
+  id: woa2018_50m_temperature_winter
+  title: '50m, Winter'
+  description: >-
+    Seawater temperature at 50m depth in °C.
+  group_path: 'Oceanography/Seawater temperature 2018'
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [11]
+
+- <<: *woa2018
+  id: woa2018_50m_temperature_summer
+  title: '50m, Summer'
+  description: >-
+    Seawater temperature at 50m depth in °C.
+  group_path: 'Oceanography/Seawater temperature 2018'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [11]
+
+- <<: *woa2018
+  id: woa2018_200m_temperature_winter
+  title: '200m, Winter'
+  description: >-
+    Seawater temperature at 200m depth in °C.
+  group_path: 'Oceanography/Seawater temperature 2018'
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [25]
+
+- <<: *woa2018
+  id: woa2018_200m_temperature_summer
+  title: '200m, Summer'
+  description: >-
+    Seawater temperature at 200m depth in °C.
+  group_path: 'Oceanography/Seawater temperature 2018'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [25]
+
+- <<: *woa2018
+  id: woa2018_500m_temperature_winter
+  title: '500m, Winter'
+  description: >-
+    Seawater temperature at 500m depth in °C.
+  group_path: 'Oceanography/Seawater temperature 2018'
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [37]
+
+- <<: *woa2018
+  id: woa2018_500m_temperature_summer
+  title: '500m, Summer'
+  description: >-
+    Seawater temperature at 500m depth in °C.
+  group_path: 'Oceanography/Seawater temperature 2018'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [37]
+
+
+- id: bathymetric_chart
+  title: 'Bathymetric chart of the Arctic Ocean (500m)'
+  description: >-
+      Surface (bedrock or icesheet) elevation in meters.  Elevations can be
+      assumed to be relative to Mean Sea Level. However, in some shallow water
+      areas, the grids include data from sources having a vertical datum other
+      than mean sea level.
+  visible: False
+  group_path: 'Oceanography'
+  style: 'ibcao_bathymetry'
+  boundary: 'background'
+  data_source: bathymetric_chart.only
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'z'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  warp_kwargs:
+    srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
+    dstNodata: -9999
+    xRes: 500
+    yRes: 500
 
 
 ##################
