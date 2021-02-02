@@ -732,17 +732,12 @@
   data_type: 'vector'
 
 - <<: *nunagis_protected_areas
-  id: nunagis_walrus_protected_areas
-  title: 'Walrus protected areas'
+  id: nunagis_beluga_areas
+  title: 'Beluga areas'
   description: >-
-      Polygons representing areas protected for Walruses.
-  visible: False
+      Polygons representing areas protected for Beluga whales.
   group_path: 'Biology/Mammals'
-  style: nunagis_walrus_protected_areas
-  boundary: 'data'
-  ingest_task: ogr_remote_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
+  style: protected_area_polygon
   ogr2ogr_kwargs:
     # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
@@ -752,7 +747,7 @@
                 DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
                 *
         FROM ESRIJSON
-        WHERE type LIKE 'Walrus%'"
+        WHERE type LIKE 'Beluga%'"
 
 - <<: *nunagis_protected_areas
   id: nunagis_caribou_calving_areas
@@ -784,24 +779,6 @@
   ingest_task: local_zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
-
-- <<: *nunagis_protected_areas
-  id: nunagis_beluga_areas
-  title: 'Beluga areas'
-  description: >-
-      Polygons representing areas protected for Beluga whales.
-  group_path: 'Biology/Mammals'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Beluga%'"
 
 - <<: *nunagis_protected_areas
   id: nunagis_musk_oxen_calving_areas
@@ -869,6 +846,29 @@
                 *
         FROM ESRIJSON
         WHERE type LIKE 'Polar bear%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_walrus_protected_areas
+  title: 'Walrus protected areas'
+  description: >-
+      Polygons representing areas protected for Walruses.
+  visible: False
+  group_path: 'Biology/Mammals'
+  style: nunagis_walrus_protected_areas
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Walrus%'"
 
 - id: vegetation_biomass_2010
   title: 'Vegetation biomass 2010 (1km)'
