@@ -3974,7 +3974,9 @@
 - &seaice_median_extent
   id: seaice_median_extent_01
   title: 'January'
-  description: 'Median extent from the period 1981 through 2010.'
+  description: >-
+    Ice edge position line that is typical for a month, based on median extent
+    from the period 1981 through 2010.
   visible: False
   group_path: 'Sea ice/Median extent'
   boundary: 'background'
