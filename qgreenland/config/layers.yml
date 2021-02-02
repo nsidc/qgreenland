@@ -1414,7 +1414,7 @@
   # Greenland.
 - &glims
   id: glims_points
-  title: 'Points'
+  title: 'Glacier locations'
   description: >-
     The data are representative points for the glaciers selected.
   data_source: glims.only
@@ -1432,26 +1432,8 @@
       - 'glims_download_82381/glims_points.shx'
 
 - <<: *glims
-  id: glims_images
-  title: 'Images (points)'
-  description: >-
-    Contains information on the images that are linked to glaciers.  If the
-    'est_loc' flag is 0, it means the coordinates listed are what is stored in
-    the database.  If the flag is 1, it means no coordinates were given, so the
-    coordinates listed were estimated as an average of the other image
-    coordinates in the package.
-  decompress_kwargs:
-    extract_files:
-      - 'glims_download_82381/glims_images.dbf'
-      - 'glims_download_82381/glims_images.prj'
-      - 'glims_download_82381/glims_images.shp'
-      - 'glims_download_82381/glims_images.shx'
-  ogr2ogr_kwargs:
-    skipfailures: ''
-
-- <<: *glims
   id: glims_polygons
-  title: 'Polygons'
+  title: 'Glacier outlines'
   description: >-
     The data represent polygon features, typically glacier outlines, but also
     including regions of glacial lakes, debris cover, rocks within the glacier
