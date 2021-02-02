@@ -273,7 +273,7 @@ you can always [email the QGreenland team](mailto:qgreenland.info@gmail.com).
 
 In order for a new dataset to be added to QGreenland, we strongly encourage
 public archival with OGC-compliant metadata. If data is not publicly archived
-or stored in a weird format, maintenance of that layer takes an order of
+or stored in a non-standard format, maintenance of that layer takes an order of
 magnitude more effort and therefore we are unable to promise permanent
 inclusion of such data. File formats that are particularly challenging include:
 Raw binary grids, excel files, word documents. We prefer geotiffs or netcdfs
