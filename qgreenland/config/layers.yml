@@ -4255,8 +4255,8 @@
   id: minimum_concentration_2010
   title: 'September 2010'
   description: >-
-      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values
-      under 15% are considered to be open water.
+      Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
+      99.9%). Values under 15% are considered to be open water.
   visible: False
   group_path: 'Sea ice/Monthly mean concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
@@ -4331,8 +4331,8 @@
   id: maximum_concentration_2010
   title: 'March 2010'
   description: >-
-     Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
-     15% are considered to be open water.
+     Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
+     99.9%). Values under 15% are considered to be open water.
   visible: False
   group_path: 'Sea ice/Monthly mean concentration (25 km)/Feb or March (max extent)'
   style: 'sea_ice_concentration'
