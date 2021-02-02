@@ -4484,7 +4484,6 @@
 - <<: *woa2018
   id: woa2018_0m_temperature_summer
   title: 'Surface, Summer'
-  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
     extract_dataset: 't_an'
@@ -4495,7 +4494,6 @@
   title: '50m, Winter'
   description: >-
     Seawater temperature at 50m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
     extract_dataset: 't_an'
@@ -4506,7 +4504,6 @@
   title: '50m, Summer'
   description: >-
     Seawater temperature at 50m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
     extract_dataset: 't_an'
@@ -4517,7 +4514,6 @@
   title: '200m, Winter'
   description: >-
     Seawater temperature at 200m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
     extract_dataset: 't_an'
@@ -4528,7 +4524,6 @@
   title: '200m, Summer'
   description: >-
     Seawater temperature at 200m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
     extract_dataset: 't_an'
@@ -4539,7 +4534,6 @@
   title: '500m, Winter'
   description: >-
     Seawater temperature at 500m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_winter
   translate_kwargs:
     extract_dataset: 't_an'
@@ -4550,7 +4544,6 @@
   title: '500m, Summer'
   description: >-
     Seawater temperature at 500m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
   data_source: woa2018_temperature.seasonal_summer
   translate_kwargs:
     extract_dataset: 't_an'
