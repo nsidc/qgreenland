@@ -1445,26 +1445,6 @@
       - 'glims_download_82381/glims_polygons.shp'
       - 'glims_download_82381/glims_polygons.shx'
 
-- id: basal_thermal_state
-  title: 'Likely basal thermal state June 23 1993 - April 26 2013 (5km)'
-  description: >-
-      Likely basal frozen/thawed state of the Greenland Ice Sheet.
-  visible: False
-  group_path: 'Glaciology'
-  style: basal_thermal_state
-  boundary: 'data'
-  data_source: basal_thermal_state.only
-  ingest_task: basal_thermal_state
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'basal_thermal_state'
-  gdal_mdim_translate_kwargs:
-    array: "name=likely_basal_thermal_state,transpose=[1,0],view=[::-1,:]"
-  gdal_edit_kwargs:
-    a_ullr: "-632500.0 -667500.0 847500.0 -3342500.0"
-    a_srs: "EPSG:3413"
-
 - id: glacier_terminus_glacier_ids
   title: 'Glacier IDs'
   visible: False
@@ -2029,6 +2009,26 @@
   title: 'Surface Elevation change Error 2015-2019'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,23]"
+
+- id: basal_thermal_state
+  title: 'Likely basal thermal state June 23 1993 - April 26 2013 (5km)'
+  description: >-
+      Likely basal frozen/thawed state of the Greenland Ice Sheet.
+  visible: False
+  group_path: 'Glaciology'
+  style: basal_thermal_state
+  boundary: 'data'
+  data_source: basal_thermal_state.only
+  ingest_task: basal_thermal_state
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'basal_thermal_state'
+  gdal_mdim_translate_kwargs:
+    array: "name=likely_basal_thermal_state,transpose=[1,0],view=[::-1,:]"
+  gdal_edit_kwargs:
+    a_ullr: "-632500.0 -667500.0 847500.0 -3342500.0"
+    a_srs: "EPSG:3413"
 
 
 #################
