@@ -4045,10 +4045,10 @@
   id: seaice_minimum_age_2010
   title: 'Sea ice age September 17-24 2010'
   description: >-
-      Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
-      20 represents land; 21 represents ocean cells where ice age was not
-      calculated. Week of minimum extent chosen based on NSDIC's Sea Ice Index
-      5-day average.
+      Age of sea ice derived from weekly averaged ice motion vectors. A value of
+      N indicates ice aged N-1 to N years. A value of 20 represents land; 21
+      represents ocean cells where ice age was not calculated. Week of minimum
+      extent chosen based on NSDIC's Sea Ice Index 5-day average.
   visible: False
   # TODO: "September" is not correct, this is weekly data.
   group_path: 'Sea ice/Weekly age (12.5 km)/September (min extent)'
@@ -4150,10 +4150,11 @@
   id: seaice_maximum_age_2010
   title: 'Sea ice age March 26-April 2 2010'
   description: >-
-      Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
-      20 represents land; 21 represents ocean cells where ice age was not
-      calculated. Week of maximum extent chosen based on NSDIC's Sea Ice Index
-      5-day average. Data provided by NSIDC.
+      Age of sea ice derived from weekly averaged ice motion vectors. A value of
+      N indicates ice aged N-1 to N years. A value of 20 represents land; 21
+      represents ocean cells where ice age was not calculated. Week of maximum
+      extent chosen based on NSDIC's Sea Ice Index 5-day average. Data provided
+      by NSIDC.
   visible: False
   group_path: 'Sea ice/Ice age (12.5 km)/Feb or March (max extent)'
   style: 'sea_ice_age'
