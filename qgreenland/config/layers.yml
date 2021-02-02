@@ -4344,54 +4344,45 @@
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2011
   title: 'March 2011'
   data_source: seaice_index.maximum_concentration_2011
-
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2012
   title: 'March 2012'
   data_source: seaice_index.maximum_concentration_2012
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2013
   title: 'March 2013'
   data_source: seaice_index.maximum_concentration_2013
-
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2014
   title: 'March 2014'
   data_source: seaice_index.maximum_concentration_2014
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2015
   title: 'February 2015'
   data_source: seaice_index.maximum_concentration_2015
-
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2016
   title: 'March 2016'
   data_source: seaice_index.maximum_concentration_2016
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2017
   title: 'March 2017'
   data_source: seaice_index.maximum_concentration_2017
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2018
   title: 'March 2018'
   data_source: seaice_index.maximum_concentration_2018
-
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2019
