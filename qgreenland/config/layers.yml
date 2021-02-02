@@ -21,7 +21,7 @@
     # (Integer)`.
     dialect: sqlite
     sql: >-
-      "SELECT *, CAST(population AS INTEGER)
+      "SELECT *, CAST(population AS INTEGER) as population
       FROM hotosm_grl_populated_places_points"
 
 - <<: *hdx_hotosm
