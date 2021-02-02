@@ -1372,24 +1372,6 @@
     input_filename: 'locations.gpkg'
     s_srs: 'EPSG:4326'
 
-
-- id: firn_ice_layer_thicknesses
-  title: 'Ice slab thickness in firn ice 2010-2014'
-  description: >-
-      Ice slab thickness, in meters, in the top 20 meters of firn. Only slabs
-      between 1 and 16 meters are included.
-  visible: False
-  group_path: 'Glaciology'
-  style: firn_ice_points
-  data_source: macferrin_etal_firn_ice_layer_thicknesses.only
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'background'
-  ogr2ogr_kwargs:
-    input_filename: 'Ice_Layer_Output_Thicknesses.gpkg'
-
-
 - id: jakobshavn_supraglacial_lakes
   title: 'Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019'
   description: >-
@@ -1410,6 +1392,22 @@
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.qpj'
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp'
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shx'
+
+- id: firn_ice_layer_thicknesses
+  title: 'Ice slab thickness in firn ice 2010-2014'
+  description: >-
+      Ice slab thickness, in meters, in the top 20 meters of firn. Only slabs
+      between 1 and 16 meters are included.
+  visible: False
+  group_path: 'Glaciology'
+  style: firn_ice_points
+  data_source: macferrin_etal_firn_ice_layer_thicknesses.only
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'background'
+  ogr2ogr_kwargs:
+    input_filename: 'Ice_Layer_Output_Thicknesses.gpkg'
 
   # Note that glims also provides a polyline shapefile that represents "snow
   # lines" or "center lines" for glaciers, but there are not features for
