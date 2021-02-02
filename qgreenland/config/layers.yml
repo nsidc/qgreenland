@@ -3976,7 +3976,7 @@
   title: 'January'
   description: 'Median extent from the period 1981 through 2010.'
   visible: False
-  group_path: 'Sea ice/Median ice extent'
+  group_path: 'Sea ice/Median extent'
   boundary: 'background'
   data_source: seaice_index.median_extent_line_01
   ingest_task: 'zipped_vector'
