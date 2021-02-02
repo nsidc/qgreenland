@@ -564,6 +564,161 @@
 # Biology #
 ###########
 
+- id: caff_common_murre_colonies
+  title: 'Common Murre colonies 2010'
+  description: >-
+    Point locations of Common Murre colonies as surveyed in 2010.
+  data_source: caff_murre_colonies.only
+  visible: False
+  group_path: 'Biology/Birds'
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'Distribution_Common_Murre_Colonies.dbf'
+      - 'Distribution_Common_Murre_Colonies.prj'
+      - 'Distribution_Common_Murre_Colonies.qpj'
+      - 'Distribution_Common_Murre_Colonies.shp'
+      - 'Distribution_Common_Murre_Colonies.shx'
+
+- id: caff_thickbilled_murre_colonies
+  title: 'Thickbilled Murre colonies 2010'
+  description: >-
+    Point locations of Thickbilled Murre colonies as surveyed in 2010.
+  data_source: caff_murre_colonies.only
+  visible: False
+  group_path: 'Biology/Birds'
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'Distribution_Thickbilled_Murre_Colonies.dbf'
+      - 'Distribution_Thickbilled_Murre_Colonies.prj'
+      - 'Distribution_Thickbilled_Murre_Colonies.qpj'
+      - 'Distribution_Thickbilled_Murre_Colonies.shp'
+      - 'Distribution_Thickbilled_Murre_Colonies.shx'
+
+- &nunagis_protected_areas
+  id: nunagis_thickbilled_murre_colonies
+  title: 'Thickbilled Murre breeding colony 5km zones'
+  description: >-
+      Polygons representing 5km zones protected for Thickbilled Murre breeding
+      colonies.
+  data_source: nunagis_protected_areas.only
+  visible: False
+  group_path: 'Biology/Birds'
+  style: protected_area_polygon
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Colonies of breeding Brünnichs guillemots%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_murre_group_1km_zones
+  title: 'Murre group 1km zones'
+  description: >-
+      Polygons representing 1km zones protected for Muure groups.
+  group_path: 'Biology/Birds'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Murre%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_seabirds_colonies
+  title: 'Seabird breeding colonies'
+  description: >-
+      Polygons representing areas protected for seabird breeding
+      colonies.
+  group_path: 'Biology/Birds'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Colonies of breeding sea birds%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_bird_protected_areas
+  title: 'Bird protected areas'
+  description: >-
+      Polygons representing areas protected for birds.
+  group_path: 'Biology/Birds'
+  style: nunagis_bird_protected_areas
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('Bird Protection Area', 'Important Bird Area of BirdLife International')"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_eider_protected_areas
+  title: 'Eider protected areas'
+  description: >-
+      Polygons representing areas protected for Eiders.
+  group_path: 'Biology/Birds'
+  style: nunagis_eider_protected_areas
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Eider%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_goose_protected_areas
+  title: 'Goose protected areas'
+  description: >-
+      Polygons representing areas protected for Geese.
+  data_source: nunagis_protected_areas.only
+  group_path: 'Biology/Birds'
+  style: nunagis_goose_protected_areas
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
+
 - id: vegetation_biomass_2010
   title: 'Vegetation biomass 2010 (1km)'
   description: >-
@@ -580,12 +735,11 @@
   data_type: 'raster'
 
 
-- &walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_walrus_protected_areas
   title: 'Walrus protected areas'
   description: >-
       Polygons representing areas protected for Walruses.
-  data_source: nunagis_protected_areas.only
   visible: False
   group_path: 'Biology/Mammals'
   style: nunagis_walrus_protected_areas
@@ -604,25 +758,7 @@
         FROM ESRIJSON
         WHERE type LIKE 'Walrus%'"
 
-- <<: *walrus_protected_areas
-  id: nunagis_goose_protected_areas
-  title: 'Goose protected areas'
-  description: >-
-      Polygons representing areas protected for Geese.
-  group_path: 'Biology/Birds'
-  style: nunagis_goose_protected_areas
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
-
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_caribou_calving_areas
   title: 'Caribou calving areas'
   description: >-
@@ -653,7 +789,7 @@
   file_type: '.gpkg'
   data_type: 'vector'
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_beluga_areas
   title: 'Beluga areas'
   description: >-
@@ -671,99 +807,7 @@
         FROM ESRIJSON
         WHERE type LIKE 'Beluga%'"
 
-- <<: *walrus_protected_areas
-  id: nunagis_bird_protected_areas
-  title: 'Bird protected areas'
-  description: >-
-      Polygons representing areas protected for birds.
-  group_path: 'Biology/Birds'
-  style: nunagis_bird_protected_areas
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type IN ('Bird Protection Area', 'Important Bird Area of BirdLife International')"
-
-- <<: *walrus_protected_areas
-  id: nunagis_thickbilled_murre_colonies
-  title: 'Thickbilled Murre breeding colony 5km zones'
-  description: >-
-      Polygons representing 5km zones protected for Thickbilled Murre breeding
-      colonies.
-  group_path: 'Biology/Birds'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Colonies of breeding Brünnichs guillemots%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_seabirds_colonies
-  title: 'Seabird breeding colonies'
-  description: >-
-      Polygons representing areas protected for seabird breeding
-      colonies.
-  group_path: 'Biology/Birds'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Colonies of breeding sea birds%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_eider_protected_areas
-  title: 'Eider protected areas'
-  description: >-
-      Polygons representing areas protected for Eiders.
-  group_path: 'Biology/Birds'
-  style: nunagis_eider_protected_areas
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Eider%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_murre_group_1km_zones
-  title: 'Murre group 1km zones'
-  description: >-
-      Polygons representing 1km zones protected for Muure groups.
-  group_path: 'Biology/Birds'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Murre%'"
-
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_musk_oxen_calving_areas
   title: 'Musk Oxen calving areas'
   description: >-
@@ -794,7 +838,7 @@
   file_type: '.gpkg'
   data_type: 'vector'
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_narwhal_areas
   title: 'Narwhal areas'
   description: >-
@@ -812,7 +856,7 @@
         FROM ESRIJSON
         WHERE type LIKE 'Narwhal%'"
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_polar_bear_breeding_areas
   title: 'Polar bear breeding areas'
   description: >-
@@ -829,44 +873,6 @@
                 *
         FROM ESRIJSON
         WHERE type LIKE 'Polar bear%'"
-
-- id: caff_thickbilled_murre_colonies
-  title: 'Thickbilled Murre colonies 2010'
-  description: >-
-    Point locations of Thickbilled Murre colonies as surveyed in 2010.
-  data_source: caff_murre_colonies.only
-  visible: False
-  group_path: 'Biology/Birds'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  decompress_kwargs:
-    extract_files:
-      - 'Distribution_Thickbilled_Murre_Colonies.dbf'
-      - 'Distribution_Thickbilled_Murre_Colonies.prj'
-      - 'Distribution_Thickbilled_Murre_Colonies.qpj'
-      - 'Distribution_Thickbilled_Murre_Colonies.shp'
-      - 'Distribution_Thickbilled_Murre_Colonies.shx'
-
-- id: caff_common_murre_colonies
-  title: 'Common Murre colonies 2010'
-  description: >-
-    Point locations of Common Murre colonies as surveyed in 2010.
-  data_source: caff_murre_colonies.only
-  visible: False
-  group_path: 'Biology/Birds'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  decompress_kwargs:
-    extract_files:
-      - 'Distribution_Common_Murre_Colonies.dbf'
-      - 'Distribution_Common_Murre_Colonies.prj'
-      - 'Distribution_Common_Murre_Colonies.qpj'
-      - 'Distribution_Common_Murre_Colonies.shp'
-      - 'Distribution_Common_Murre_Colonies.shx'
 
 - id: caff_char
   title: 'Arctic Char populations 2010'
@@ -897,7 +903,7 @@
   file_type: '.gpkg'
   data_type: 'vector'
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_unesco_treaty_zones
   title: 'UNESCO treaty zones'
   group_path: 'Environmental management/Protected zones'
@@ -913,7 +919,7 @@
         FROM ESRIJSON
         WHERE type IN ('UNESCO World Heritage Site', 'Ramsar area')"
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_no_go_areas
   title: 'No go areas'
   description: >-
@@ -931,7 +937,7 @@
         FROM ESRIJSON
         WHERE type = 'No Go Area'"
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_closed_areas
   title: 'Closed areas'
   description: >-
@@ -949,7 +955,7 @@
         FROM ESRIJSON
         WHERE type = 'Closed Area'"
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_salt_or_saline_lake_100m_zones
   title: 'Salt or saline lake 100m zones'
   description: >-
@@ -967,7 +973,7 @@
         FROM ESRIJSON
         WHERE type = 'Salt or saline lake 100m zone'"
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_homothermic_spring_100m_zones
   title: 'Homothermic spring 100m zones'
   description: >-
@@ -985,7 +991,7 @@
         FROM ESRIJSON
         WHERE type = 'Homothermic spring 100 m zone'"
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_national_park
   title: 'National park'
   description: >-
@@ -1003,7 +1009,7 @@
         FROM ESRIJSON
         WHERE type = 'National Park'"
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_biological_important_areas
   title: 'Biological important areas in the national park'
   description: >-
@@ -1021,7 +1027,7 @@
         FROM ESRIJSON
         WHERE type = 'Biological Important Areas in the National Park'"
 
-- <<: *walrus_protected_areas
+- <<: *nunagis_protected_areas
   id: nunagis_nature_protection_areas
   title: 'Nature protection areas'
   description: >-
