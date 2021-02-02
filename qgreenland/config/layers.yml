@@ -1409,42 +1409,6 @@
   ogr2ogr_kwargs:
     input_filename: 'Ice_Layer_Output_Thicknesses.gpkg'
 
-  # Note that glims also provides a polyline shapefile that represents "snow
-  # lines" or "center lines" for glaciers, but there are not features for
-  # Greenland.
-- &glims
-  id: glims_points
-  title: 'Glacier locations'
-  description: >-
-    The data are representative points for the glaciers selected.
-  data_source: glims.only
-  visible: False
-  group_path: 'Glaciology/Global land ice measurements from space (GLIMS)'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  decompress_kwargs:
-    extract_files:
-      - 'glims_download_82381/glims_points.dbf'
-      - 'glims_download_82381/glims_points.prj'
-      - 'glims_download_82381/glims_points.shp'
-      - 'glims_download_82381/glims_points.shx'
-
-- <<: *glims
-  id: glims_polygons
-  title: 'Glacier outlines'
-  description: >-
-    The data represent polygon features, typically glacier outlines, but also
-    including regions of glacial lakes, debris cover, rocks within the glacier
-    (nunataks), and other polygonal features.
-  decompress_kwargs:
-    extract_files:
-      - 'glims_download_82381/glims_polygons.dbf'
-      - 'glims_download_82381/glims_polygons.prj'
-      - 'glims_download_82381/glims_polygons.shp'
-      - 'glims_download_82381/glims_polygons.shx'
-
 - id: glacier_terminus_glacier_ids
   title: 'Glacier IDs'
   visible: False
@@ -1513,6 +1477,42 @@
   id: glacier_terminus_2016_2017
   title: 'Glacier termini 2016 to 2017'
   data_source: glacier_terminus.2016_2017
+
+  # Note that glims also provides a polyline shapefile that represents "snow
+  # lines" or "center lines" for glaciers, but there are not features for
+  # Greenland.
+- &glims
+  id: glims_points
+  title: 'Glacier locations'
+  description: >-
+    The data are representative points for the glaciers selected.
+  data_source: glims.only
+  visible: False
+  group_path: 'Glaciology/Global land ice measurements from space (GLIMS)'
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'glims_download_82381/glims_points.dbf'
+      - 'glims_download_82381/glims_points.prj'
+      - 'glims_download_82381/glims_points.shp'
+      - 'glims_download_82381/glims_points.shx'
+
+- <<: *glims
+  id: glims_polygons
+  title: 'Glacier outlines'
+  description: >-
+    The data represent polygon features, typically glacier outlines, but also
+    including regions of glacial lakes, debris cover, rocks within the glacier
+    (nunataks), and other polygonal features.
+  decompress_kwargs:
+    extract_files:
+      - 'glims_download_82381/glims_polygons.dbf'
+      - 'glims_download_82381/glims_polygons.prj'
+      - 'glims_download_82381/glims_polygons.shp'
+      - 'glims_download_82381/glims_polygons.shx'
 
 - &esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2005
