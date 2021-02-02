@@ -15,6 +15,14 @@
   ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
+  ogr2ogr_kwargs:
+    # SQLite dialect allows casting a field without duplicating it. With OGR
+    # SQL, this query results in `population (String)` and `population2
+    # (Integer)`.
+    dialect: sqlite
+    sql: >-
+      "SELECT *, CAST(population AS INTEGER)
+      FROM hotosm_grl_populated_places_points"
 
 - <<: *hdx_hotosm
   id: hotosm_health_facilities
