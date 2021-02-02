@@ -4051,7 +4051,7 @@
       5-day average.
   visible: False
   # TODO: "September" is not correct, this is weekly data.
-  group_path: 'Sea ice/Ice age (12.5 km)/September (min extent)'
+  group_path: 'Sea ice/Weekly age (12.5 km)/September (min extent)'
   style: 'sea_ice_age'
   boundary: 'background'
   data_source: seaice_age.2010
