@@ -295,7 +295,8 @@ A correct QGreenland data pipeline will output data that:
 
 * For vector data:
   * In GeoPackage (`.gpkg`) format.
-  * Uses the `label` attribute name for pre-calculated labels.
+  * Uses the `label` attribute name for pre-calculated labels when using
+    generic styles with labels, for example `labeled_point.qml`
 
 
 # Releasing
