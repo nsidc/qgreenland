@@ -4334,7 +4334,7 @@
      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
      15% are considered to be open water.
   visible: False
-  group_path: 'Sea ice/Concentration (25 km)/Feb or March (max extent)'
+  group_path: 'Sea ice/Monthly mean concentration (25 km)/Feb or March (max extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
   data_source: seaice_index.maximum_concentration_2010
