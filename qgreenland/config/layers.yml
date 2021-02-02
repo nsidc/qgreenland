@@ -719,6 +719,18 @@
         FROM ESRIJSON
         WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
 
+- id: caff_char
+  title: 'Arctic Char populations 2010'
+  description: 'Polygons indicating the distribution of Arctic Char populations.'
+  data_source: caff_char.only
+  style: 'semitransparent_polygon'
+  visible: False
+  group_path: 'Biology/Fish'
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
 - id: vegetation_biomass_2010
   title: 'Vegetation biomass 2010 (1km)'
   description: >-
@@ -873,19 +885,6 @@
                 *
         FROM ESRIJSON
         WHERE type LIKE 'Polar bear%'"
-
-- id: caff_char
-  title: 'Arctic Char populations 2010'
-  description: 'Polygons indicating the distribution of Arctic Char populations.'
-  data_source: caff_char.only
-  style: 'semitransparent_polygon'
-  visible: False
-  group_path: 'Biology/Fish'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
 
 ############################
 # Environmental management #
