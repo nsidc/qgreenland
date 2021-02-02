@@ -731,22 +731,6 @@
   file_type: '.gpkg'
   data_type: 'vector'
 
-- id: vegetation_biomass_2010
-  title: 'Vegetation biomass 2010 (1km)'
-  description: >-
-    Estimated above ground plant biomass for the tundra biome in kilograms per
-    square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
-    provided by ORNL DAAC.
-  visible: False
-  group_path: 'Biology/Vegetation'
-  style: 'vegetation_biomass'
-  boundary: 'data'
-  data_source: arctic_vegetation_biomass_2010.only
-  ingest_task: arctic_vegetation
-  file_type: '.tif'
-  data_type: 'raster'
-
-
 - <<: *nunagis_protected_areas
   id: nunagis_walrus_protected_areas
   title: 'Walrus protected areas'
@@ -885,6 +869,22 @@
                 *
         FROM ESRIJSON
         WHERE type LIKE 'Polar bear%'"
+
+- id: vegetation_biomass_2010
+  title: 'Vegetation biomass 2010 (1km)'
+  description: >-
+    Estimated above ground plant biomass for the tundra biome in kilograms per
+    square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
+    provided by ORNL DAAC.
+  visible: False
+  group_path: 'Biology/Vegetation'
+  style: 'vegetation_biomass'
+  boundary: 'data'
+  data_source: arctic_vegetation_biomass_2010.only
+  ingest_task: arctic_vegetation
+  file_type: '.tif'
+  data_type: 'raster'
+
 
 ############################
 # Environmental management #
