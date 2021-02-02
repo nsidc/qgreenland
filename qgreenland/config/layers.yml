@@ -2,8 +2,7 @@
 # Miscellaneous #
 #################
 
-- &hdx_hotosm
-  id: hotosm_populated_places
+- id: hotosm_populated_places
   title: 'Populated places'
   description: >-
       Points representing populated places in Greenland.
@@ -16,21 +15,32 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # SQLite dialect allows casting a field without duplicating it. With OGR
-    # SQL, this query results in `population (String)` and `population2
-    # (Integer)`.
-    dialect: sqlite
+    # Enumerate all the fields, because it's impossible to use "*" and modify a
+    # field without duplicating it with OGR SQL. We tried sqlite dialect as
+    # well, but it failed to cast appropriately. ¯\_(ツ)_/¯
     sql: >-
-      "SELECT *, CAST(population AS INTEGER) as population
+      "SELECT
+        osm_id,
+        is_in,
+        source,
+        name,
+        place,
+        CAST(population AS INTEGER) as population
       FROM hotosm_grl_populated_places_points"
 
-- <<: *hdx_hotosm
+- &hdx_hotosm
   id: hotosm_health_facilities
   title: 'Health facilities'
   description: >-
       Points representing health facilities in Greenland.
   data_source: hdx_hotosm.health_facilities
+  visible: False
+  group_path: 'Miscellaneous/OpenStreetMap'
   style: health_facility_point
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
 - <<: *hdx_hotosm
   id: hotosm_airports
   title: 'Airports'
