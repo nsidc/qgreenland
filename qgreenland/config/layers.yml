@@ -2128,10 +2128,10 @@
 
 - &geological_map
   id: onshore_planar_geological_map
-  title: 'Onshore planar'
+  title: 'Faults'
   description: 'This layer contains onshore faults for the landmass and islands of Greenland.'
   visible: False
-  group_path: 'Geology/Geological map of the Arctic'
+  group_path: 'Geology/Geological map'
   style: onshore_planar_geological_map
   data_source: geological_map.only
   ingest_task: zipped_vector
@@ -2148,24 +2148,8 @@
       - 'data/shape/geology/Greenland_onshore_Planar.shx'
 
 - <<: *geological_map
-  id: onshore_pattern_geological_map
-  title: 'Onshore pattern'
-  description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
-  style: geological_map_polygons
-  boundary: 'data'
-  decompress_kwargs:
-    extract_files:
-      - 'data/shape/geology/Greenland_onshore_pattern.dbf'
-      - 'data/shape/geology/Greenland_onshore_pattern.prj'
-      - 'data/shape/geology/Greenland_onshore_pattern.sbn'
-      - 'data/shape/geology/Greenland_onshore_pattern.sbx'
-      - 'data/shape/geology/Greenland_onshore_pattern.shp'
-      - 'data/shape/geology/Greenland_onshore_pattern.shp.xml'
-      - 'data/shape/geology/Greenland_onshore_pattern.shx'
-
-- <<: *geological_map
   id: onshore_geological_map
-  title: 'Onshore'
+  title: 'Rock Types'
   description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
   style: geological_map_polygons
   decompress_kwargs:
@@ -2201,79 +2185,6 @@
 ##############
 # Geophysics #
 ##############
-
-- &geoid
-  id: geoid
-  title: 'Geoid model (2km)'
-  description: >-
-    Official gravimetric geoid model for Greenland.
-  visible: False
-  group_path: 'Geophysics'
-  # Style TBD
-  style: null
-  boundary: 'data'
-  data_source: geoid.only
-  ingest_task: local_zipped_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  decompress_kwargs:
-    extract_files:
-      - 'ggeoid16.tif'
-  warp_kwargs:
-    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
-    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
-    # resolution.
-    xRes: 2000
-    yRes: 2000
-
-- <<: *geoid
-  id: bouguer_gravity_anomaly
-  title: 'Bouguer gravity anomaly (2km)'
-  description: >-
-    TBD
-  visible: False
-  group_path: 'Geophysics'
-  # Style TBD
-  style: null
-  data_source: gravity_anomalies.only
-  decompress_kwargs:
-    extract_files:
-      - 'bouguer_gravity_anomaly.tif'
-  warp_kwargs:
-    # Source data is 0.02x-0.02 degrees resolution. Rene noted in his email to
-    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
-    # resolution.
-    xRes: 2000
-    yRes: 2000
-    # TODO: is this correct? Unlike the other files we received, the Bouguer
-    # gravity model does not have any 'nodata' metadata. An entire column of
-    # pixels at the far eastern edge of the data has this value. There does
-    # appear to be at least one other pixel in the middle of the dataset with
-    # this value as well, however.
-    srcNodata: -32767.0
-
-- <<: *geoid
-  id: faye_gravity_anomaly
-  title: 'Faye (free-air) gravity anomaly (2km)'
-  description: >-
-    TBD
-  visible: False
-  group_path: 'Geophysics'
-  # Style TBD
-  style: null
-  data_source: gravity_anomalies.only
-  decompress_kwargs:
-    extract_files:
-      - 'faye_gravity_anomaly.tif'
-  warp_kwargs:
-    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
-    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
-    # resolution.
-    xRes: 2000
-    yRes: 2000
 
 ######## World Magnetic Model 2020 ########
 - &wmm_north_poles
@@ -3868,6 +3779,79 @@
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp'
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shx'
+
+- &gravity_anomaly_geoid
+  id: bouguer_gravity_anomaly
+  title: 'Bouguer gravity anomaly (2km)'
+  description: >-
+    TBD
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  boundary: 'data'
+  data_source: gravity_anomalies.only
+  ingest_task: local_zipped_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  decompress_kwargs:
+    extract_files:
+      - 'bouguer_gravity_anomaly.tif'
+  warp_kwargs:
+    # Source data is 0.02x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
+    # TODO: is this correct? Unlike the other files we received, the Bouguer
+    # gravity model does not have any 'nodata' metadata. An entire column of
+    # pixels at the far eastern edge of the data has this value. There does
+    # appear to be at least one other pixel in the middle of the dataset with
+    # this value as well, however.
+    srcNodata: -32767.0
+
+- <<: *gravity_anomaly_geoid
+  id: faye_gravity_anomaly
+  title: 'Faye (free-air) gravity anomaly (2km)'
+  description: >-
+    TBD
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  data_source: gravity_anomalies.only
+  decompress_kwargs:
+    extract_files:
+      - 'faye_gravity_anomaly.tif'
+  warp_kwargs:
+    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
+
+- <<: *gravity_anomaly_geoid
+  id: geoid
+  title: 'Geoid model (2km)'
+  description: >-
+    Official gravimetric geoid model for Greenland.
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  data_source: geoid.only
+  decompress_kwargs:
+    extract_files:
+      - 'ggeoid16.tif'
+  warp_kwargs:
+    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
 
 - id: geothermal_heat_flux
   title: 'Geothermal heat flux (5km)'
