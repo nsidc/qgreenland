@@ -1532,176 +1532,6 @@
     extract_files:
       - 'ICESat1_ICESat2_mass_change/gris.tif'
 
-- &esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2005
-  # TODO: provide the 5 year period instead of just one datetime.
-  title: 'Mass balance trend 2005-07-01 12:00:00'
-  description: >-
-      The trends are derived for 5-year periods and are given on a ~50 km
-      resolution grid (displayed as points).
-  visible: False
-  group_path: 'Glaciology/Gravimetric mass balance'
-  style: 'gmb_dtu_space'
-  data_source: esa_cci_gravimetric_mass_balance_dtu.only
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2005_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2006
-  title: 'Mass balance trend 2006-07-02 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2006_07_02_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2007
-  title: 'Mass balance trend 2007-07-02 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2007_07_02_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2008
-  title: 'Mass balance trend 2008-07-01 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2008_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2009
-  title: 'Mass balance trend 2009-07-01 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2009_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2010
-  title: 'Mass balance trend 2010-07-02 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2010_07_02_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2011
-  title: 'Mass balance trend 2011-07-02 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2011_07_02_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2012
-  title: 'Mass balance trend 2012-06-16 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2012_06_16_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2013
-  title: 'Mass balance trend 2013-07-17 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2013_07_17_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2014
-  title: 'Mass balance trend 2014-07-02 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2014_07_02_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2015
-  title: 'Mass balance trend 2015-04-02 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2015_04_02_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2016
-  title: 'Mass balance trend 2016-07-01 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2016_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2017
-  title: 'Mass balance trend 2017-07-01 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2017_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- &its_live_velocity_mosaic
-  id: velocity_mosaic
-  title: 'Ice sheet velocity (500m)'
-  description: 'Magnitude of velocity in meters per year.'
-  visible: False
-  group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
-  style: 'ice_sheet_velocity'
-  boundary: 'data'
-  data_source: velocity_mosaic.only
-  ingest_task: velocity_mosaic
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'v'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  warp_kwargs:
-    xRes: 500
-    yRes: 500
-
-- <<: *its_live_velocity_mosaic
-  id: velocity_mosaic_error
-  title: 'Velocity error'
-  description: 'Magnitude of Velocity error in meters per year.'
-  ingest_task: velocity_mosaic
-  style: ice_sheet_velocity_error
-  translate_kwargs:
-    extract_dataset: 'v_err'
-
-- <<: *its_live_velocity_mosaic
-  id: velocity_mosaic_ice_mask
-  title: 'Ice mask'
-  style: null
-  description: 'Ice mask used for velocity mosiac.'
-  ingest_task: netcdf_raster
-  translate_kwargs:
-    extract_dataset: 'ice'
-
-- &esa_cci_velocity
-  id: esa_cci_velocity_magnitude
-  title: 'Land ice surface velocity 2019-2020 (250m)'
-  description: 'Magnitude of horizontal ice velocity in meters per day.'
-  visible: False
-  group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
-  style: esa_cci_velocity
-  boundary: 'data'
-  data_source: esa_cci_ice_sheet_velocity_20191214_20200131.only
-  ingest_task: local_zipped_netcdf_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'land_ice_surface_velocity_magnitude'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  decompress_kwargs:
-    extract_files:
-      - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
-
-- <<: *esa_cci_velocity
-  id: esa_cci_velocity_vertical
-  title: 'Land Ice Surface Vertical Velocity (250m)'
-  description: 'Vertical ice velocity in meters per day.'
-  style: null
-  translate_kwargs:
-    extract_dataset: 'land_ice_surface_vertical_velocity'
-
 - &cci_surface_elevation_change
   id: surface_elevation_change_1992_1996
   title: 'Surface elevation change 1992-1996'
@@ -2009,6 +1839,176 @@
   title: 'Surface Elevation change Error 2015-2019'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,23]"
+
+- &esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2005
+  # TODO: provide the 5 year period instead of just one datetime.
+  title: 'Mass balance trend 2005-07-01 12:00:00'
+  description: >-
+      The trends are derived for 5-year periods and are given on a ~50 km
+      resolution grid (displayed as points).
+  visible: False
+  group_path: 'Glaciology/Gravimetric mass balance'
+  style: 'gmb_dtu_space'
+  data_source: esa_cci_gravimetric_mass_balance_dtu.only
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2005_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2006
+  title: 'Mass balance trend 2006-07-02 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2006_07_02_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2007
+  title: 'Mass balance trend 2007-07-02 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2007_07_02_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2008
+  title: 'Mass balance trend 2008-07-01 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2008_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2009
+  title: 'Mass balance trend 2009-07-01 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2009_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2010
+  title: 'Mass balance trend 2010-07-02 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2010_07_02_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2011
+  title: 'Mass balance trend 2011-07-02 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2011_07_02_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2012
+  title: 'Mass balance trend 2012-06-16 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2012_06_16_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2013
+  title: 'Mass balance trend 2013-07-17 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2013_07_17_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2014
+  title: 'Mass balance trend 2014-07-02 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2014_07_02_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2015
+  title: 'Mass balance trend 2015-04-02 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2015_04_02_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2016
+  title: 'Mass balance trend 2016-07-01 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2016_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2017
+  title: 'Mass balance trend 2017-07-01 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2017_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- &its_live_velocity_mosaic
+  id: velocity_mosaic
+  title: 'Ice sheet velocity (500m)'
+  description: 'Magnitude of velocity in meters per year.'
+  visible: False
+  group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
+  style: 'ice_sheet_velocity'
+  boundary: 'data'
+  data_source: velocity_mosaic.only
+  ingest_task: velocity_mosaic
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'v'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  warp_kwargs:
+    xRes: 500
+    yRes: 500
+
+- <<: *its_live_velocity_mosaic
+  id: velocity_mosaic_error
+  title: 'Velocity error'
+  description: 'Magnitude of Velocity error in meters per year.'
+  ingest_task: velocity_mosaic
+  style: ice_sheet_velocity_error
+  translate_kwargs:
+    extract_dataset: 'v_err'
+
+- <<: *its_live_velocity_mosaic
+  id: velocity_mosaic_ice_mask
+  title: 'Ice mask'
+  style: null
+  description: 'Ice mask used for velocity mosiac.'
+  ingest_task: netcdf_raster
+  translate_kwargs:
+    extract_dataset: 'ice'
+
+- &esa_cci_velocity
+  id: esa_cci_velocity_magnitude
+  title: 'Land ice surface velocity 2019-2020 (250m)'
+  description: 'Magnitude of horizontal ice velocity in meters per day.'
+  visible: False
+  group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
+  style: esa_cci_velocity
+  boundary: 'data'
+  data_source: esa_cci_ice_sheet_velocity_20191214_20200131.only
+  ingest_task: local_zipped_netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'land_ice_surface_velocity_magnitude'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  decompress_kwargs:
+    extract_files:
+      - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
+
+- <<: *esa_cci_velocity
+  id: esa_cci_velocity_vertical
+  title: 'Land Ice Surface Vertical Velocity (250m)'
+  description: 'Vertical ice velocity in meters per day.'
+  style: null
+  translate_kwargs:
+    extract_dataset: 'land_ice_surface_vertical_velocity'
 
 - id: basal_thermal_state
   title: 'Likely basal thermal state June 23 1993 - April 26 2013 (5km)'
