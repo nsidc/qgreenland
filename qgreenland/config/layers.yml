@@ -1984,6 +1984,36 @@
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'query.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT
+          id,
+          mag,
+          place,
+          DATETIME(time, 'unixepoch') as time,
+          DATETIME(updated, 'unixepoch') as updated,
+          tz,
+          url,
+          detail,
+          dfi,
+          mmi,
+          alert,
+          tsunami,
+          sig,
+          net,
+          code,
+          ids,
+          sources,
+          types,
+          nst,
+          dmin,
+          rms,
+          gap,
+          magType,
+          type,
+          title,
+          title as label
+        FROM query"
 
 - id: soil_types
   title: 'Soil characteristics'
