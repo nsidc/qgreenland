@@ -599,7 +599,6 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -617,7 +616,6 @@
   group_path: 'Biology/Birds'
   style: nunagis_goose_protected_areas
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -635,7 +633,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -666,7 +663,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -684,7 +680,6 @@
   group_path: 'Biology/Birds'
   style: nunagis_bird_protected_areas
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -703,7 +698,6 @@
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -722,7 +716,6 @@
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -740,7 +733,6 @@
   group_path: 'Biology/Birds'
   style: nunagis_eider_protected_areas
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -758,7 +750,6 @@
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -776,7 +767,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -807,7 +797,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -825,7 +814,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -903,7 +891,6 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'translations_joined.gpkg'
     # According to Eva, "BY" represents a town and "BYGD" represents a
     # settlement
@@ -918,7 +905,6 @@
   description: >-
       Points representing named points of interest in Greenland.
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'translations_joined.gpkg'
     sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
 
@@ -936,7 +922,6 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
 
 # Administrative boundaries
@@ -964,7 +949,6 @@
   group_path: 'Environmental management/Protected zones'
   style: nunagis_unesco_treaty_zones
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -982,7 +966,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1000,7 +983,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1018,7 +1000,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1036,7 +1017,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1054,7 +1034,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1072,7 +1051,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1090,7 +1068,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
