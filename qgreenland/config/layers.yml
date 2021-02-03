@@ -1297,6 +1297,7 @@
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp'
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shx'
   ogr2ogr_kwargs:
+    dialect: 'sqlite'
     sql: >-
       "SELECT
         Geometry,
@@ -1995,7 +1996,8 @@
           tz,
           url,
           detail,
-          dfi,
+          felt,
+          cdi,
           mmi,
           alert,
           tsunami,
