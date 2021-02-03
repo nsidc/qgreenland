@@ -92,6 +92,7 @@ def print_and_run(cmd, *, dry_run):
 @click.option('dry_run', '--dry-run', '-d',
               help="Print commands, but don't actually delete anything.",
               is_flag=True)
+# TODO: Support multiple=True?
 @click.option('delete_inputs_by_pattern', '--delete-inputs-by-pattern', '-i',
               help=(
                   'Bash glob/brace pattern used to delete input datasources by'
