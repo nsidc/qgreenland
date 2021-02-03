@@ -1228,7 +1228,25 @@
   ogr2ogr_kwargs:
     input_filename: 'locations.gpkg'
     s_srs: 'EPSG:4326'
-
+    sql: >-
+      "SELECT
+         _ogr_geometry_,
+         fid,
+         glacier_id,
+         glacier_name,
+         glacier_type,
+         glacier_lat,
+         glacier_lon,
+         time_period,
+         sources_data,
+         sources_background,
+         CAST(\"#_points\" AS INTEGER) as \"#_points\",
+         CAST(\"#_readings\" AS INTEGER) as \"#_readings\",
+         CAST(\"#_readings_final\" AS INTEGER) as \"#_readings_final\",
+         finished,
+         comments,
+         label
+      FROM foo"
 
 - id: firn_ice_layer_thicknesses
   title: 'Ice slab thickness in firn ice 2010-2014'
