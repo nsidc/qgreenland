@@ -1301,7 +1301,6 @@
     sql: >-
       "SELECT
         Geometry,
-        fid,
         id1,
         DATE(
           substr(date, 1, 4) || '-' ||  substr(date, 5, 2) || '-' || substr(date, 7, 2)
@@ -1309,7 +1308,7 @@
         area1,
         elev,
         source,
-        title,
+        tile,
         row
       FROM greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1"
 
@@ -1981,18 +1980,19 @@
   boundary: 'data'
   data_source: earthquakes.only
   ingest_task: 'online_vector'
-  file_type: '.geojson'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'query.geojson'
     dialect: 'sqlite'
     sql: >-
         "SELECT
+          geometry,
           id,
           mag,
           place,
-          DATETIME(time, 'unixepoch') as time,
-          DATETIME(updated, 'unixepoch') as updated,
+          DATETIME(time / 1000, 'unixepoch') as time,
+          DATETIME(updated / 1000, 'unixepoch') as updated,
           tz,
           url,
           detail,
