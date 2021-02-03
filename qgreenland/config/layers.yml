@@ -1296,6 +1296,21 @@
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.qpj'
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp'
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shx'
+  ogr2ogr_kwargs:
+    sql: >-
+      "SELECT
+        Geometry,
+        fid,
+        id1,
+        DATE(
+          substr(date, 1, 4) || '-' ||  substr(date, 5, 2) || '-' || substr(date, 7, 2)
+        ) as date,
+        area1,
+        elev,
+        source,
+        title,
+        row
+      FROM greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1"
 
   # Note that glims also provides a polyline shapefile that represents "snow
   # lines" or "center lines" for glaciers, but there are not features for
