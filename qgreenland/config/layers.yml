@@ -1255,7 +1255,7 @@
   # Greenland.
 - &glims
   id: glims_points
-  title: 'Points'
+  title: 'Peripherical glacier/feature locations'
   description: >-
     The data are representative points for the glaciers selected.
   data_source: glims.only
@@ -1292,7 +1292,7 @@
 
 - <<: *glims
   id: glims_polygons
-  title: 'Polygons'
+  title: 'Peripheral glacier/feature outlines'
   description: >-
     The data represent polygon features, typically glacier outlines, but also
     including regions of glacial lakes, debris cover, rocks within the glacier
