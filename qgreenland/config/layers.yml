@@ -876,6 +876,8 @@
     dialect: 'sqlite'
     # `Geometry` seems to be the default geometry field if none is found by
     # `ogrinfo`.
+    # `CREATED` is M.YYYY, which can't be converted to a complete date without
+    # a day.
     sql: >-
       "SELECT
         Geometry,
@@ -884,8 +886,10 @@
         OWNER,
         DATA_URL,
         SOURCE,
-        DATE(CREATED, '%m.%Y') as CREATED,
-        DATE(MODIFIED, '%d.%m.%Y') as MODIFIED,
+        CREATED,
+        DATE(substr(MODIFIED, 7, 4) || '-' ||
+          substr(MODIFIED, 4, 2) || '-' ||
+          substr(MODIFIED, 1, 2)) as MODIFIED,
         CONTACT
       FROM Arctic_Char_2010"
 
