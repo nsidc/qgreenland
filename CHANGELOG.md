@@ -5,6 +5,12 @@
   cache dir.
 - Update nunagis protected areas layers: convert fields representing unix
   timestamps to dates.
+- Layer and group order and names revamped.
+- Fixed some vector attribute types, e.g. Populated Places `population` to
+  `integer`.
+- Removed layers:
+  - GLIMS Images
+  - Geology / Onshore pattern
 
 # v0.52.0 (2021-01-25)
 
