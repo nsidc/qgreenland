@@ -1154,10 +1154,10 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: only
       access_instructions: >-
         Dataset provided by Karl Zinglersen of the Greenland Institude for
-        Natural Resources via a an email attachment on Oct. 16, 2020. This
+        Natural Resources via an email attachment on Oct. 16, 2020. This
         dataset is not expected to be publicily archived outside of QGreenland.
   metadata:
-    title: 'Muskox status, recent variation, and uncertain future'
+    title: 'Journal article: Muskox status, recent variation, and uncertain future'
     abstract: >-
       Muskoxen (Ovibos moschatus) are an integral component of Arctic
       biodiversity. Given low genetic diversity, their ability to respond to
@@ -1179,10 +1179,17 @@ The images and data are produced in a consistent way that makes the Index time-s
       intensifying long-term monitoring efforts including demographics and
       health assessments, standardizing and implementing monitoring protocols,
       and increasing stakeholder engagement/contributions.
+      
+      Publication notes that "The provided boundaries are guidelines, often reflecting administrative or political regions. They are not a precise distribution/extent for a specific population, e.g., since muskoxen can and do travel across sea-ice, even the islands are not strict boundaries."
     citation:
       text: >-
-        Christine Cuyler and Karl Zinglersen, Greenland Institute of Natural
-        Resources.
+         Journal citation: Cuyler, C., J. Rowell, J. Adamczewski, et al.
+         (2020). Muskox status, recent variation, and uncertain future, Ambio
+         49, 805-819. https://doi.org/10.1007/s13280-019-01205-x
+         
+         QGreenland data source citation: Christine Cuyler and Karl Zinglersen,
+         Greenland Institute of Natural Resources (2020).
+       
       url: 'https://doi.org/10.1007/s13280-019-01205-x'
 
 - id: ginr_caribou
@@ -1198,7 +1205,9 @@ The images and data are produced in a consistent way that makes the Index time-s
     abstract: >-
         Dataset provided by the Greenland Institute for Natural Resources (from
         Karl Zinglersen) via email on October 16, 2020. These data are not
-        expected to be publicly archived outside of QGreenland.
+        expected to be publicly archived outside of QGreenland. Note that the
+        'Remarks' attribute field includes comments in Danish that accompany
+        the original data. 
     citation:
       text: >-
           Christine Cuyler and Karl Zinglersen, Greenland Institute of Natural
@@ -1686,6 +1695,10 @@ The images and data are produced in a consistent way that makes the Index time-s
       an old location. In no cases, do I transcribe positions by hand as that
       can cause expensive problems not finding stations because of bad
       coordinates.
+      
+      QGreenland team notes - Source file indicating PROMICE GPS data from
+      2017-2018 and GC-NET GPS data from 2000. See note from data creator
+      above.
     citation:
       text: >-
         PROMICE, (2020). Map of GC-Net and PROMICE station locations. Web:
