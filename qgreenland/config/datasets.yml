@@ -1203,7 +1203,9 @@ The images and data are produced in a consistent way that makes the Index time-s
     abstract: >-
         Dataset provided by the Greenland Institute for Natural Resources (from
         Karl Zinglersen) via email on October 16, 2020. These data are not
-        expected to be publicly archived outside of QGreenland. Note that the 'Remarks' attribute field includes comments in Danish that accompany the original data. 
+        expected to be publicly archived outside of QGreenland. Note that the
+        'Remarks' attribute field includes comments in Danish that accompany
+        the original data. 
     citation:
       text: >-
           Christine Cuyler and Karl Zinglersen, Greenland Institute of Natural
@@ -1692,7 +1694,9 @@ The images and data are produced in a consistent way that makes the Index time-s
       can cause expensive problems not finding stations because of bad
       coordinates.
       
-      QGreenland team notes - Source file indicating PROMICE GPS data from 2017-2018 and GC-NET GPS data from 2000. See note from data creator above.
+      QGreenland team notes - Source file indicating PROMICE GPS data from
+      2017-2018 and GC-NET GPS data from 2000. See note from data creator
+      above.
     citation:
       text: >-
         PROMICE, (2020). Map of GC-Net and PROMICE station locations. Web:
