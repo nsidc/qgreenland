@@ -2085,7 +2085,7 @@
   boundary: 'data'
   data_source: earthquakes.only
   ingest_task: 'online_vector'
-  file_type: '.geojson'
+  file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'query.geojson'
