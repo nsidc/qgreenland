@@ -1412,7 +1412,7 @@
 - &esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2005
   # TODO: provide the 5 year period instead of just one datetime.
-  title: 'Mass balance trend 2005-07-01 12:00:00'
+  title: 'Mass balance trend 2003-2007'
   description: >-
       The trends are derived for 5-year periods and are given on a ~50 km
       resolution grid (displayed as points).
@@ -1424,91 +1424,91 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    input_filename: 'points_2005_07_01_12_00_00.gpkg'
+    input_filename: 'points_2003-01-01_2007-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2006
-  title: 'Mass balance trend 2006-07-02 00:00:00'
+  title: 'Mass balance trend 2004-2008'
   ogr2ogr_kwargs:
-    input_filename: 'points_2006_07_02_00_00_00.gpkg'
+    input_filename: 'points_2004-01-01_2008-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2007
-  title: 'Mass balance trend 2007-07-02 12:00:00'
+  title: 'Mass balance trend 2005-2009'
   ogr2ogr_kwargs:
-    input_filename: 'points_2007_07_02_12_00_00.gpkg'
+    input_filename: 'points_2005-01-01_2009-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2008
-  title: 'Mass balance trend 2008-07-01 12:00:00'
+  title: 'Mass balance trend 2006-2010'
   ogr2ogr_kwargs:
-    input_filename: 'points_2008_07_01_12_00_00.gpkg'
+    input_filename: 'points_2006-01-01_2010-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2009
-  title: 'Mass balance trend 2009-07-01 12:00:00'
+  title: 'Mass balance trend 2007-2011'
   ogr2ogr_kwargs:
-    input_filename: 'points_2009_07_01_12_00_00.gpkg'
+    input_filename: 'points_2007-01-01_2011-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2010
-  title: 'Mass balance trend 2010-07-02 00:00:00'
+  title: 'Mass balance trend 2008-2012'
   ogr2ogr_kwargs:
-    input_filename: 'points_2010_07_02_00_00_00.gpkg'
+    input_filename: 'points_2008-01-01_2012-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2011
-  title: 'Mass balance trend 2011-07-02 12:00:00'
+  title: 'Mass balance trend 2009-2013'
   ogr2ogr_kwargs:
-    input_filename: 'points_2011_07_02_12_00_00.gpkg'
+    input_filename: 'points_2009-01-01_2013-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2012
-  title: 'Mass balance trend 2012-06-16 00:00:00'
+  title: 'Mass balance trend 2010-2014'
   ogr2ogr_kwargs:
-    input_filename: 'points_2012_06_16_00_00_00.gpkg'
+    input_filename: 'points_2010-01-01_2014-11-30.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2013
-  title: 'Mass balance trend 2013-07-17 00:00:00'
+  title: 'Mass balance trend 2011-2015'
   ogr2ogr_kwargs:
-    input_filename: 'points_2013_07_17_00_00_00.gpkg'
+    input_filename: 'points_2011-02-01_2015-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2014
-  title: 'Mass balance trend 2014-07-02 00:00:00'
+  title: 'Mass balance trend 2012-2016'
   ogr2ogr_kwargs:
-    input_filename: 'points_2014_07_02_00_00_00.gpkg'
+    input_filename: 'points_2012-01-01_2016-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2015
-  title: 'Mass balance trend 2015-04-02 00:00:00'
+  title: 'Mass balance trend 2013-2017'
   ogr2ogr_kwargs:
-    input_filename: 'points_2015_04_02_00_00_00.gpkg'
+    input_filename: 'points_2013-01-01_2017-07-01.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2016
-  title: 'Mass balance trend 2016-07-01 12:00:00'
+  title: 'Mass balance trend 2014-2018'
   ogr2ogr_kwargs:
-    input_filename: 'points_2016_07_01_12_00_00.gpkg'
+    input_filename: 'points_2014-01-01_2018-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - <<: *esa_cci_gravimetric_mass_balance_dtu
   id: esa_cci_gravimetric_mass_balance_dtu_2017
-  title: 'Mass balance trend 2017-07-01 12:00:00'
+  title: 'Mass balance trend 2015-2019'
   ogr2ogr_kwargs:
-    input_filename: 'points_2017_07_01_12_00_00.gpkg'
+    input_filename: 'points_2015-01-01_2019-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
 - &its_live_velocity_mosaic
