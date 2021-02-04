@@ -2,14 +2,14 @@
 # path configures only the leaf node. To configure a parent node, enumerate it
 # explicitly.
 
-Miscellaneous:
+Reference:
   # This is the top group, so even if we set expanded to False, it would show
   # as expanded.
   visible: True
   expanded: True
 
-Built environment:
-  visible: True
+Places:
+  visible: False
   expanded: False
 
 Sea ice/Ice age (12.5 km):
