@@ -1,101 +1,6 @@
-#################
-# Miscellaneous #
-#################
-
-- &hdx_hotosm
-  id: hotosm_populated_places
-  title: 'Populated places'
-  description: >-
-      Points representing populated places in Greenland.
-  data_source: hdx_hotosm.populated_places
-  visible: False
-  group_path: 'Miscellaneous/OpenStreetMap'
-  style: hotosm_populated_places_point
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- <<: *hdx_hotosm
-  id: hotosm_health_facilities
-  title: 'Health facilities'
-  description: >-
-      Points representing health facilities in Greenland.
-  data_source: hdx_hotosm.health_facilities
-  style: health_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_airports
-  title: 'Airports'
-  description: >-
-      Points representing airports in Greenland.
-  data_source: hdx_hotosm.airports
-  style: airport_point
-- <<: *hdx_hotosm
-  id: hotosm_seaports
-  title: 'Seaports'
-  description: >-
-      Points representing seaports in Greenland.
-  data_source: hdx_hotosm.seaports
-  style: seaport_point
-- <<: *hdx_hotosm
-  id: hotosm_waterways
-  title: 'Waterways'
-  description: >-
-      Lines representing waterways in Greenland.
-  data_source: hdx_hotosm.waterways
-  style: null
-- <<: *hdx_hotosm
-  id: hotosm_financial_services
-  title: 'Financial services'
-  description: >-
-      Points representing financial services in Greenland.
-  data_source: hdx_hotosm.financial_services
-  style: financial_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_education_facilities
-  title: 'Education facilities'
-  description: >-
-      Points representing educational facilities in Greenland.
-  data_source: hdx_hotosm.education_facilities
-  style: education_facility_point
-- <<: *hdx_hotosm
-  id: hotosm_points_of_interest
-  title: 'Points of interest'
-  description: >-
-      Points of interest in Greenland.
-  data_source: hdx_hotosm.points_of_interest
-  style: null
-- <<: *hdx_hotosm
-  id: hotosm_roads
-  title: 'Roads'
-  description: >-
-      Lines representing roads in Greenland.
-  visible: True
-  data_source: hdx_hotosm.roads
-  style: roads_line
-- <<: *hdx_hotosm
-  id: hotosm_buildings
-  title: 'Buildings'
-  description: >-
-      Points representing buildings in Greenland.
-  data_source: hdx_hotosm.buildings
-  style: buildings_shape
-
-- id: utm_zones
-  title: Universal Transverse Mercator (UTM) zones
-  description: >-
-      Polygons representing Universal Transverse Mercator (UTM) zones.
-  visible: False
-  group_path: 'Miscellaneous'
-  style: 'utm_zones'
-  boundary: 'background'
-  data_source: utm_zones.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    where: '"\"ZONE\" != 0"'
-
+#############
+# Reference #
+#############
 
 - id: arctic_circle
   title: Arctic Circle (66° 34' North)
@@ -104,7 +9,7 @@
       approximately 66° 34' N and marks the latitude above which the sun does
       not set on the summer solstice, and does not rise on the winter solstice.
   visible: False
-  group_path: 'Miscellaneous'
+  group_path: 'Reference'
   data_source: arctic_circle.only
   ingest_task: local_vector
   file_type: '.gpkg'
@@ -120,7 +25,7 @@
   title: Latitude lines (0.25 degree)
   description: "Lines of latitude in 0.25-degree resolution."
   visible: False
-  group_path: 'Miscellaneous/Latitude lines'
+  group_path: 'Reference/Latitude lines'
   style: 'latlon'
   data_source: latlon.lat_0_25_deg
   ingest_task: local_vector
@@ -216,7 +121,7 @@
   title: Longitude lines (0.5 degree)
   description: "Lines of longitude in 0.5-degree resolution."
   visible: False
-  group_path: 'Miscellaneous/Longitude lines'
+  group_path: 'Reference/Longitude lines'
   style: 'latlon'
   data_source: latlon.lon_0_5_deg
   ingest_task: local_vector
@@ -330,14 +235,13 @@
     s_srs: 'EPSG:4326'
     segmentize: 100
 
-
 - id: timezones
   title: 'Time zones'
   description: >-
       Polygons representing time zones.
   data_source: ne_timezones.only
   visible: False
-  group_path: 'Miscellaneous'
+  group_path: 'Reference'
   style: 'transparent_shape'
   boundary: 'background'
   ingest_task: zipped_vector
@@ -346,10 +250,895 @@
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
 
-##############
-# Atmosphere #
-##############
+- id: utm_zones
+  title: Universal Transverse Mercator (UTM) zones
+  description: >-
+      Polygons representing Universal Transverse Mercator (UTM) zones.
+  visible: False
+  group_path: 'Reference'
+  style: 'utm_zones'
+  boundary: 'background'
+  data_source: utm_zones.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    where: '"\"ZONE\" != 0"'
 
+
+- id: bas_greenland_coastlines
+  title: 'Greenland coastlines 2017'
+  description: >-
+    This layer should be used as the 'reference coastline' for Greenland.
+  visible: False
+  group_path: 'Reference/Borders'
+  style: greenland_coastline
+  boundary: 'background'
+  data_source: bas_coastlines.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- id: coastlines
+  title: 'Global coastlines'
+  description: >-
+    Note that the 'Greenland Coastlines' layer is preferred for Greenland.
+  visible: False
+  group_path: 'Reference/Borders'
+  style: 'coastline-IHOECDIS'
+  boundary: 'background'
+  data_source: coastlines.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- id: nunagis_municipalities_population
+  title: 'Greenland municipalities and population 2019'
+  description: >-
+      Polygons representing municipalities of Greenland and associated
+      population numbers as of 2019.
+  data_source: nunagis_pop2019_municipalities.only
+  visible: False
+  group_path: 'Reference/Borders'
+  style: null
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+
+- id: ne_states_provinces
+  title: 'Global administrative divisions'
+  description: >-
+    Polygons representing countries' internal administrative boundaries.
+  visible: False
+  group_path: 'Reference/Borders'
+  style: 'administrative_divisions'
+  boundary: 'background'
+  data_source: ne_states_provinces.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- id: ne_countries
+  title: 'Countries'
+  description: >-
+    Polygons representing countries.
+  visible: False
+  group_path: 'Reference/Borders'
+  style: 'countries'
+  boundary: 'background'
+  data_source: ne_countries.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+
+##########
+# Places #
+##########
+
+- &asiaq_placenames
+  id: populated_places
+  title: 'Towns and Settlements'
+  description: >-
+      Points representing towns and settlements in Greenland.
+  data_source: asiaq_private_placenames.only
+  visible: False
+  group_path: 'Places'
+  style: 'labeled_point'
+  boundary: 'data'
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'translations_joined.gpkg'
+    # According to Eva, "BY" represents a town and "BYGD" represents a
+    # settlement
+    sql: "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
+
+- <<: *asiaq_placenames
+  id: comprehensive_places
+  title: 'Place names database'
+  # TODO: should this be moved to 'misc' or someplace else? Many points are
+  # natural features.
+  group_path: 'Places'
+  description: >-
+      Points representing named points of interest in Greenland.
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'translations_joined.gpkg'
+    sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
+
+- &hdx_hotosm
+  id: hotosm_populated_places
+  title: 'Populated places'
+  description: >-
+      Points representing populated places in Greenland.
+  data_source: hdx_hotosm.populated_places
+  visible: False
+  group_path: 'Places/Community map (open source)'
+  style: hotosm_populated_places_point
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *hdx_hotosm
+  id: hotosm_health_facilities
+  title: 'Health facilities'
+  description: >-
+      Points representing health facilities in Greenland.
+  data_source: hdx_hotosm.health_facilities
+  style: health_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_airports
+  title: 'Airports'
+  description: >-
+      Points representing airports in Greenland.
+  data_source: hdx_hotosm.airports
+  style: airport_point
+- <<: *hdx_hotosm
+  id: hotosm_seaports
+  title: 'Seaports'
+  description: >-
+      Points representing seaports in Greenland.
+  data_source: hdx_hotosm.seaports
+  style: seaport_point
+- <<: *hdx_hotosm
+  id: hotosm_waterways
+  title: 'Waterways'
+  description: >-
+      Lines representing waterways in Greenland.
+  data_source: hdx_hotosm.waterways
+  style: null
+- <<: *hdx_hotosm
+  id: hotosm_financial_services
+  title: 'Financial services'
+  description: >-
+      Points representing financial services in Greenland.
+  data_source: hdx_hotosm.financial_services
+  style: financial_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_education_facilities
+  title: 'Education facilities'
+  description: >-
+      Points representing educational facilities in Greenland.
+  data_source: hdx_hotosm.education_facilities
+  style: education_facility_point
+- <<: *hdx_hotosm
+  id: hotosm_points_of_interest
+  title: 'Points of interest'
+  description: >-
+      Points of interest in Greenland.
+  data_source: hdx_hotosm.points_of_interest
+  style: null
+- <<: *hdx_hotosm
+  id: hotosm_roads
+  title: 'Roads'
+  description: >-
+      Lines representing roads in Greenland.
+  visible: True
+  data_source: hdx_hotosm.roads
+  style: roads_line
+- <<: *hdx_hotosm
+  id: hotosm_buildings
+  title: 'Buildings'
+  description: >-
+      Points representing buildings in Greenland.
+  data_source: hdx_hotosm.buildings
+  style: buildings_shape
+
+
+##################
+# Human activity #
+##################
+
+- id: gem_research_stations
+  title: 'GEM research stations'
+  description: >-
+    Location and description of Greenland Ecosystem Monitoring research
+    stations.
+  visible: False
+  group_path: 'Human activity/Research stations'
+  style: 'labeled_point'
+  data_source: gem_research_stations.only
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'data'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, \"Station Name\" as label from \"gem_research_stations\"'"
+    input_filename: 'gem_research_stations.geojson'
+
+- &gc_net_promice_stations
+  id: promice_research_stations
+  title: 'PROMICE automated weather stations'
+  description: >-
+      Locations and details of PROMICE automated weather stations.
+  visible: False
+  group_path: 'Human activity/Research stations'
+  style: 'labeled_point'
+  data_source: gc_net_promice_stations.promice
+  ingest_task: delimited_text_points_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'data'
+  delimited_text_vector_kwargs:
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.csv'
+    delimiter: "\t"
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018\"'"
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.gpkg'
+
+- <<: *gc_net_promice_stations
+  id: promice_research_stations_former
+  title: 'Former PROMICE automated weather stations'
+  description: >-
+      Locations and details of inactive PROMICE automated weather stations.
+  data_source: gc_net_promice_stations.promice_former
+  delimited_text_vector_kwargs:
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.csv'
+    delimiter: "\t"
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018_former_sites\"'"
+    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.gpkg'
+
+- <<: *gc_net_promice_stations
+  id: gc_net_research_stations
+  title: 'GC-NET automated weather stations'
+  description: >-
+      Location and details of GC-NET automated weather stations.
+  data_source: gc_net_promice_stations.gc_net
+  delimited_text_vector_kwargs:
+    input_filename: 'GCN%20info%20ca.2000.csv'
+    delimiter: ','
+    x_field: 'lon'
+    y_field: 'lat'
+  ogr2ogr_kwargs:
+    s_srs: "EPSG:4326"
+    sql: "'SELECT *, name as label from \"GCN%20info%20ca.2000\"'"
+    input_filename: 'GCN%20info%20ca.2000.gpkg'
+
+- id: seismograph_stations
+  title: 'Seismograph stations'
+  description: >-
+    Location and details of Greenland seismograph stations.
+  visible: False
+  # TODO: is this where this layer should live?
+  group_path: 'Human activity/Research stations'
+  data_source: seismograph_stations.only
+  ingest_task: online_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'data'
+  ogr2ogr_kwargs:
+    input_filename: 'stations.kmz'
+
+
+- id: arctic_sea_routes
+  title: 'Arctic sea routes'
+  description: >-
+    Lines depict the Northern Sea Route, Northwest Passate, and hypothetical
+    Transpolar Route.
+  visible: False
+  style: 'arctic_sea_routes'
+  group_path: 'Human activity'
+  data_source: nga_arctic_sea_routes.only
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'background'
+
+
+###########
+# Biology #
+###########
+
+- id: caff_common_murre_colonies
+  title: 'Common Murre colonies 2010'
+  description: >-
+    Point locations of Common Murre colonies as surveyed in 2010.
+  data_source: caff_murre_colonies.only
+  visible: False
+  group_path: 'Biology/Birds'
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'Distribution_Common_Murre_Colonies.dbf'
+      - 'Distribution_Common_Murre_Colonies.prj'
+      - 'Distribution_Common_Murre_Colonies.qpj'
+      - 'Distribution_Common_Murre_Colonies.shp'
+      - 'Distribution_Common_Murre_Colonies.shx'
+
+- id: caff_thickbilled_murre_colonies
+  title: 'Thickbilled Murre colonies 2010'
+  description: >-
+    Point locations of Thickbilled Murre colonies as surveyed in 2010.
+  data_source: caff_murre_colonies.only
+  visible: False
+  group_path: 'Biology/Birds'
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  decompress_kwargs:
+    extract_files:
+      - 'Distribution_Thickbilled_Murre_Colonies.dbf'
+      - 'Distribution_Thickbilled_Murre_Colonies.prj'
+      - 'Distribution_Thickbilled_Murre_Colonies.qpj'
+      - 'Distribution_Thickbilled_Murre_Colonies.shp'
+      - 'Distribution_Thickbilled_Murre_Colonies.shx'
+
+- &nunagis_protected_areas
+  id: nunagis_thickbilled_murre_colonies
+  title: 'Thickbilled Murre breeding colony 5km zones'
+  description: >-
+      Polygons representing 5km zones protected for Thickbilled Murre breeding
+      colonies.
+  data_source: nunagis_protected_areas.only
+  visible: False
+  group_path: 'Biology/Birds'
+  style: protected_area_polygon
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Colonies of breeding Brünnichs guillemots%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_murre_group_1km_zones
+  title: 'Murre group 1km zones'
+  description: >-
+      Polygons representing 1km zones protected for Muure groups.
+  group_path: 'Biology/Birds'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Murre%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_seabirds_colonies
+  title: 'Seabird breeding colonies'
+  description: >-
+      Polygons representing areas protected for seabird breeding
+      colonies.
+  group_path: 'Biology/Birds'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Colonies of breeding sea birds%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_bird_protected_areas
+  title: 'Bird protected areas'
+  description: >-
+      Polygons representing areas protected for birds.
+  group_path: 'Biology/Birds'
+  style: nunagis_bird_protected_areas
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('Bird Protection Area', 'Important Bird Area of BirdLife International')"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_eider_protected_areas
+  title: 'Eider protected areas'
+  description: >-
+      Polygons representing areas protected for Eiders.
+  group_path: 'Biology/Birds'
+  style: nunagis_eider_protected_areas
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Eider%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_goose_protected_areas
+  title: 'Goose protected areas'
+  description: >-
+      Polygons representing areas protected for Geese.
+  data_source: nunagis_protected_areas.only
+  group_path: 'Biology/Birds'
+  style: nunagis_goose_protected_areas
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
+
+- id: caff_char
+  title: 'Arctic Char populations 2010'
+  description: 'Polygons indicating the distribution of Arctic Char populations.'
+  data_source: caff_char.only
+  style: 'semitransparent_polygon'
+  visible: False
+  group_path: 'Biology/Fish'
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *nunagis_protected_areas
+  id: nunagis_beluga_areas
+  title: 'Beluga areas'
+  description: >-
+      Polygons representing areas protected for Beluga whales.
+  group_path: 'Biology/Mammals'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Beluga%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_caribou_calving_areas
+  title: 'Caribou calving areas'
+  description: >-
+      Polygons representing caribou calving areas.
+  group_path: 'Biology/Mammals'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Caribou%'"
+
+- id: ginr_caribou_areas
+  title: 'Caribou areas'
+  description: >-
+     Polygons representing areas with Caribou.
+  group_path: 'Biology/Mammals'
+  data_source: ginr_caribou.only
+  visible: False
+  style: null
+  boundary: 'data'
+  ingest_task: local_zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *nunagis_protected_areas
+  id: nunagis_musk_oxen_calving_areas
+  title: 'Musk Oxen calving areas'
+  description: >-
+      Polygons representing areas protected for Musk Oxen calving.
+  group_path: 'Biology/Mammals'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Musk oxen%'"
+
+- id: ginr_muskoken
+  title: 'Muskoxen areas'
+  description: >-
+      Polygons representing areas with Muskoxen.
+  group_path: 'Biology/Mammals'
+  data_source: ginr_muskoxen.only
+  visible: False
+  style: null
+  boundary: 'data'
+  ingest_task: local_zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *nunagis_protected_areas
+  id: nunagis_narwhal_areas
+  title: 'Narwhal areas'
+  description: >-
+      Polygons representing areas protected for Narwhals.
+  group_path: 'Biology/Mammals'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Narwhal%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_polar_bear_breeding_areas
+  title: 'Polar bear breeding areas'
+  description: >-
+      Polygons representing areas protected for Polar Bear breeding.
+  group_path: 'Biology/Mammals'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Polar bear%'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_walrus_protected_areas
+  title: 'Walrus protected areas'
+  description: >-
+      Polygons representing areas protected for Walruses.
+  visible: False
+  group_path: 'Biology/Mammals'
+  style: nunagis_walrus_protected_areas
+  boundary: 'data'
+  ingest_task: ogr_remote_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type LIKE 'Walrus%'"
+
+- id: vegetation_biomass_2010
+  title: 'Vegetation biomass 2010 (1km)'
+  description: >-
+    Estimated above ground plant biomass for the tundra biome in kilograms per
+    square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
+    provided by ORNL DAAC.
+  visible: False
+  group_path: 'Biology/Vegetation'
+  style: 'vegetation_biomass'
+  boundary: 'data'
+  data_source: arctic_vegetation_biomass_2010.only
+  ingest_task: arctic_vegetation
+  file_type: '.tif'
+  data_type: 'raster'
+
+
+############################
+# Environmental management #
+############################
+
+- &mcas_mlsa
+  id: mcas_mlsa_public_all
+  title: 'Public licenses'
+  description: >-
+      Mining licenses granted by the government of Greenland.
+  visible: False
+  group_path: 'Environmental management/Mineral and hydrocarbon licenses'
+  style: 'mcas_mlsa_licenses'
+  boundary: 'data'
+  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_all
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *mcas_mlsa
+  id: mcas_mlsa_public_historic
+  title: 'Historic public licenses'
+  description: >-
+      Historic mining licenses granted by the government of Greenland.
+  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_historic
+
+- id: nafo_divisions
+  title: 'NAFO divisions'
+  description: 'The Northwest Atlantic Fisheries Organization zones'
+  data_source: nafo_divisions.only
+  visible: False
+  group_path: 'Environmental management'
+  style: null
+  boundary: 'background'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *nunagis_protected_areas
+  id: nunagis_unesco_treaty_zones
+  title: 'UNESCO treaty zones'
+  group_path: 'Environmental management/Protected zones'
+  style: nunagis_unesco_treaty_zones
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type IN ('UNESCO World Heritage Site', 'Ramsar area')"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_no_go_areas
+  title: 'No go areas'
+  description: >-
+      Polygons representing areas that should not be entered.
+  group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'No Go Area'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_closed_areas
+  title: 'Closed areas'
+  description: >-
+      Polygons representing areas that are closed.
+  group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Closed Area'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_salt_or_saline_lake_100m_zones
+  title: 'Salt or saline lake 100m zones'
+  description: >-
+      Polygons representing 100m zones protected for salt or saline lakes.
+  group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Salt or saline lake 100m zone'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_homothermic_spring_100m_zones
+  title: 'Homothermic spring 100m zones'
+  description: >-
+      Polygons representing 100m zones protected for homothermic springs.
+  group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Homothermic spring 100 m zone'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_national_park
+  title: 'National park'
+  description: >-
+      Polygon representing the area protected for the national park.
+  group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'National Park'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_biological_important_areas
+  title: 'Biological important areas in the national park'
+  description: >-
+      Polygons representing areas protected for biologically important areas in the national park.
+  group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Biological Important Areas in the National Park'"
+
+- <<: *nunagis_protected_areas
+  id: nunagis_nature_protection_areas
+  title: 'Nature protection areas'
+  description: >-
+      Polygons representing areas protected for nature.
+  group_path: 'Environmental management/Protected zones'
+  style: protected_area_polygon
+  ogr2ogr_kwargs:
+    # TODO: This is lame, stop it!
+    input_filename: 'fetched.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
+                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
+                *
+        FROM ESRIJSON
+        WHERE type = 'Nature Protection Area'"
+
+- &greenland_territorial_waters
+  id: exclusive_economic_zone
+  title: 'Exclusive economic zone (polyline)'
+  description: >-
+    Exclusive Economic Zone of Greenland based on Executive Order on the
+    Exclusive Economic Zone at Greenland. BEK no. 1020 of 20/10/2004. Foreign
+    Ministry of Denmark.
+  data_source: greenland_territorial_waters.only
+  visible: False
+  # TODO: does this need to be in its own group?
+  group_path: 'Environmental management/Exclusive economic zones'
+  style: null
+  boundary: 'background'
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
+    where: '"\"layer\" = ''Boundary_EEZ''"'
+
+- <<: *greenland_territorial_waters
+  id: baseline
+  title: 'Baseline (polyline)'
+  description: >-
+    The territorial sea baseline is shown in accordance to executive order
+    no 1004 dated 15.10.2004.
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
+    where: '"\"layer\" = ''Boundary_basisline''"'
+
+- <<: *greenland_territorial_waters
+  id: 3nm_polyline
+  title: '3NM (polyline)'
+  description: >-
+    Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of the
+    marine environment, paragraph 4, 2.
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
+    where: '"\"layer\" = ''Boundary_3NM''"'
+
+- <<: *greenland_territorial_waters
+  id: 12nm_polyline
+  title: '12NM (polyline)'
+  description: >-
+    Fishery limit. Regarding the fishery limit, reference is made to Greenland
+    Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7, 2.
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
+    where: '"\"layer\" = ''Boundary_12NM''"'
+
+- <<: *greenland_territorial_waters
+  id: 3nm_polygon
+  title: '3NM (polygon)'
+  description: >-
+    Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of the
+    marine environment, paragraph 4, 2.
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
+    where: '"\"layer\" = ''Boundary_3NM_area''"'
+
+- <<: *greenland_territorial_waters
+  id: fishzone_boundary
+  title: 'Fishing zone (polygon)'
+  description: >-
+    Fishery limit. Regarding the fishery limit, reference is made to Greenland
+    Home Rule Parliament Act no 18 dated 31.10.1996
+  ogr2ogr_kwargs:
+    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
+    where: '"\"layer\" = ''Boundary_fishzone''"'
+
+
+###########################
+# Regional climate models #
+###########################
 
 - id: racmo_wind_vectors
   title: 'Annual mean wind vectors 1958-2019 (1km)'
@@ -357,7 +1146,7 @@
       Averaged annual mean wind direction in meters per second from RACMO2.3p2
       for the period 1958-2019.
   visible: False
-  group_path: 'Atmosphere/RACMO model output'
+  group_path: 'Regional climate models/RACMO model output'
   style: racmo_wind_vectors
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
@@ -374,7 +1163,7 @@
       Averaged annual mean wind speed in meters per second from
       RACMO2.3p2 for the period 1958-2019.
   visible: False
-  group_path: 'Atmosphere/RACMO model output'
+  group_path: 'Regional climate models/RACMO model output'
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
@@ -402,7 +1191,7 @@
       w.e.)  for the period 1958-2019 covering the whole ice sheet and
       peripheral ice caps.
   visible: False
-  group_path: 'Atmosphere/RACMO model output'
+  group_path: 'Regional climate models/RACMO model output'
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
@@ -504,7 +1293,7 @@
   description: >-
     Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
     peripheral ice caps; 0 = Ocean.
-  group_path: 'Atmosphere/RACMO model output/RACMO masks'
+  group_path: 'Regional climate models/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'Promicemask'
   gdal_edit_kwargs:
@@ -519,7 +1308,7 @@
   title: 'Topography (1km)'
   description: >-
       Surface elevation in meters.
-  group_path: 'Atmosphere/RACMO model output/RACMO masks'
+  group_path: 'Regional climate models/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'Topography'
   gdal_edit_kwargs:
@@ -537,7 +1326,7 @@
   title: 'Grounded ice (1km)'
   description: >-
       Mask of grounded ice.
-  group_path: 'Atmosphere/RACMO model output/RACMO masks'
+  group_path: 'Regional climate models/RACMO model output/RACMO masks'
   translate_kwargs:
     extract_dataset: 'grounded_ice'
   gdal_edit_kwargs:
@@ -547,653 +1336,25 @@
     extract_files:
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc'
 
-###########
-# Biology #
-###########
-
-- id: vegetation_biomass_2010
-  title: 'Vegetation biomass 2010 (1km)'
-  description: >-
-    Estimated above ground plant biomass for the tundra biome in kilograms per
-    square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
-    provided by ORNL DAAC.
-  visible: False
-  group_path: 'Biology/Vegetation'
-  style: 'vegetation_biomass'
-  boundary: 'data'
-  data_source: arctic_vegetation_biomass_2010.only
-  ingest_task: arctic_vegetation
-  file_type: '.tif'
-  data_type: 'raster'
-
-
-- &walrus_protected_areas
-  id: nunagis_walrus_protected_areas
-  title: 'Walrus protected areas'
-  description: >-
-      Polygons representing areas protected for Walruses.
-  data_source: nunagis_protected_areas.only
-  visible: False
-  group_path: 'Biology/Mammals'
-  style: nunagis_walrus_protected_areas
-  boundary: 'data'
-  ingest_task: ogr_remote_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Walrus%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_goose_protected_areas
-  title: 'Goose protected areas'
-  description: >-
-      Polygons representing areas protected for Geese.
-  group_path: 'Biology/Birds'
-  style: nunagis_goose_protected_areas
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
-
-- <<: *walrus_protected_areas
-  id: nunagis_caribou_calving_areas
-  title: 'Caribou calving areas'
-  description: >-
-      Polygons representing caribou calving areas.
-  group_path: 'Biology/Mammals'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Caribou%'"
-
-- id: ginr_caribou_areas
-  title: 'Caribou areas'
-  description: >-
-     Polygons representing areas with Caribou.
-  group_path: 'Biology/Mammals'
-  data_source: ginr_caribou.only
-  visible: False
-  style: null
-  boundary: 'data'
-  ingest_task: local_zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- <<: *walrus_protected_areas
-  id: nunagis_beluga_areas
-  title: 'Beluga areas'
-  description: >-
-      Polygons representing areas protected for Beluga whales.
-  group_path: 'Biology/Mammals'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Beluga%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_bird_protected_areas
-  title: 'Bird protected areas'
-  description: >-
-      Polygons representing areas protected for birds.
-  group_path: 'Biology/Birds'
-  style: nunagis_bird_protected_areas
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type IN ('Bird Protection Area', 'Important Bird Area of BirdLife International')"
-
-- <<: *walrus_protected_areas
-  id: nunagis_thickbilled_murre_colonies
-  title: 'Thickbilled Murre breeding colony 5km zones'
-  description: >-
-      Polygons representing 5km zones protected for Thickbilled Murre breeding
-      colonies.
-  group_path: 'Biology/Birds'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Colonies of breeding Brünnichs guillemots%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_seabirds_colonies
-  title: 'Seabird breeding colonies'
-  description: >-
-      Polygons representing areas protected for seabird breeding
-      colonies.
-  group_path: 'Biology/Birds'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Colonies of breeding sea birds%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_eider_protected_areas
-  title: 'Eider protected areas'
-  description: >-
-      Polygons representing areas protected for Eiders.
-  group_path: 'Biology/Birds'
-  style: nunagis_eider_protected_areas
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Eider%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_murre_group_1km_zones
-  title: 'Murre group 1km zones'
-  description: >-
-      Polygons representing 1km zones protected for Muure groups.
-  group_path: 'Biology/Birds'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Murre%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_musk_oxen_calving_areas
-  title: 'Musk Oxen calving areas'
-  description: >-
-      Polygons representing areas protected for Musk Oxen calving.
-  group_path: 'Biology/Mammals'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Musk oxen%'"
-
-- id: ginr_muskoken
-  title: 'Muskoxen areas'
-  description: >-
-      Polygons representing areas with Muskoxen.
-  group_path: 'Biology/Mammals'
-  data_source: ginr_muskoxen.only
-  visible: False
-  style: null
-  boundary: 'data'
-  ingest_task: local_zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- <<: *walrus_protected_areas
-  id: nunagis_narwhal_areas
-  title: 'Narwhal areas'
-  description: >-
-      Polygons representing areas protected for Narwhals.
-  group_path: 'Biology/Mammals'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Narwhal%'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_polar_bear_breeding_areas
-  title: 'Polar bear breeding areas'
-  description: >-
-      Polygons representing areas protected for Polar Bear breeding.
-  group_path: 'Biology/Mammals'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type LIKE 'Polar bear%'"
-
-- id: caff_thickbilled_murre_colonies
-  title: 'Thickbilled Murre colonies 2010'
-  description: >-
-    Point locations of Thickbilled Murre colonies as surveyed in 2010.
-  data_source: caff_murre_colonies.only
-  visible: False
-  group_path: 'Biology/Birds'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  decompress_kwargs:
-    extract_files:
-      - 'Distribution_Thickbilled_Murre_Colonies.dbf'
-      - 'Distribution_Thickbilled_Murre_Colonies.prj'
-      - 'Distribution_Thickbilled_Murre_Colonies.qpj'
-      - 'Distribution_Thickbilled_Murre_Colonies.shp'
-      - 'Distribution_Thickbilled_Murre_Colonies.shx'
-
-- id: caff_common_murre_colonies
-  title: 'Common Murre colonies 2010'
-  description: >-
-    Point locations of Common Murre colonies as surveyed in 2010.
-  data_source: caff_murre_colonies.only
-  visible: False
-  group_path: 'Biology/Birds'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  decompress_kwargs:
-    extract_files:
-      - 'Distribution_Common_Murre_Colonies.dbf'
-      - 'Distribution_Common_Murre_Colonies.prj'
-      - 'Distribution_Common_Murre_Colonies.qpj'
-      - 'Distribution_Common_Murre_Colonies.shp'
-      - 'Distribution_Common_Murre_Colonies.shx'
-
-- id: caff_char
-  title: 'Arctic Char populations 2010'
-  description: 'Polygons indicating the distribution of Arctic Char populations.'
-  data_source: caff_char.only
-  style: 'semitransparent_polygon'
-  visible: False
-  group_path: 'Biology/Fish'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-#####################
-# Built environment #
-#####################
-
-- &asiaq_placenames
-  id: populated_places
-  title: 'Towns and Settlements'
-  description: >-
-      Points representing towns and settlements in Greenland.
-  data_source: asiaq_private_placenames.only
-  visible: False
-  group_path: 'Built environment'
-  style: 'labeled_point'
-  boundary: 'data'
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'translations_joined.gpkg'
-    # According to Eva, "BY" represents a town and "BYGD" represents a
-    # settlement
-    sql: "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
-
-- <<: *asiaq_placenames
-  id: comprehensive_places
-  title: 'Comprehensive placenames'
-  # TODO: should this be moved to 'misc' or someplace else? Many points are
-  # natural features.
-  group_path: 'Built environment'
-  description: >-
-      Points representing named points of interest in Greenland.
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'translations_joined.gpkg'
-    sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
-
-- id: nunagis_municipalities_population
-  title: 'Municipalities and population 2019'
-  description: >-
-      Polygons representing municipalities of Greenland and associated
-      population numbers as of 2019.
-  data_source: nunagis_pop2019_municipalities.only
-  visible: False
-  group_path: 'Built environment'
-  style: null
-  boundary: 'data'
-  ingest_task: ogr_remote_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-
-# Administrative boundaries
-
-
-############################
-# Environmental management #
-############################
-
-- id: nafo_divisions
-  title: 'NAFO divisions'
-  description: 'The Northwest Atlantic Fisheries Organization zones'
-  data_source: nafo_divisions.only
-  visible: False
-  group_path: 'Environmental management'
-  style: null
-  boundary: 'background'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- <<: *walrus_protected_areas
-  id: nunagis_unesco_treaty_zones
-  title: 'UNESCO treaty zones'
-  group_path: 'Environmental management/Protected zones'
-  style: nunagis_unesco_treaty_zones
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type IN ('UNESCO World Heritage Site', 'Ramsar area')"
-
-- <<: *walrus_protected_areas
-  id: nunagis_no_go_areas
-  title: 'No go areas'
-  description: >-
-      Polygons representing areas that should not be entered.
-  group_path: 'Environmental management/Protected zones'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type = 'No Go Area'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_closed_areas
-  title: 'Closed areas'
-  description: >-
-      Polygons representing areas that are closed.
-  group_path: 'Environmental management/Protected zones'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type = 'Closed Area'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_salt_or_saline_lake_100m_zones
-  title: 'Salt or saline lake 100m zones'
-  description: >-
-      Polygons representing 100m zones protected for salt or saline lakes.
-  group_path: 'Environmental management/Protected zones'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type = 'Salt or saline lake 100m zone'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_homothermic_spring_100m_zones
-  title: 'Homothermic spring 100m zones'
-  description: >-
-      Polygons representing 100m zones protected for homothermic springs.
-  group_path: 'Environmental management/Protected zones'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type = 'Homothermic spring 100 m zone'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_national_park
-  title: 'National park'
-  description: >-
-      Polygon representing the area protected for the national park.
-  group_path: 'Environmental management/Protected zones'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type = 'National Park'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_biological_important_areas
-  title: 'Biological important areas in the national park'
-  description: >-
-      Polygons representing areas protected for biologically important areas in the national park.
-  group_path: 'Environmental management/Protected zones'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type = 'Biological Important Areas in the National Park'"
-
-- <<: *walrus_protected_areas
-  id: nunagis_nature_protection_areas
-  title: 'Nature protection areas'
-  description: >-
-      Polygons representing areas protected for nature.
-  group_path: 'Environmental management/Protected zones'
-  style: protected_area_polygon
-  ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
-    input_filename: 'fetched.geojson'
-    dialect: 'sqlite'
-    sql: >-
-        "SELECT DATETIME(CAST(created_date AS INTEGER) / 1000, 'unixepoch') as created_date,
-                DATETIME(CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch') as last_edited_date,
-                *
-        FROM ESRIJSON
-        WHERE type = 'Nature Protection Area'"
-
-- &greenland_territorial_waters
-  id: exclusive_economic_zone
-  title: 'Exclusive economic zone (polyline)'
-  description: >-
-    Exclusive Economic Zone of Greenland based on Executive Order on the
-    Exclusive Economic Zone at Greenland. BEK no. 1020 of 20/10/2004. Foreign
-    Ministry of Denmark.
-  data_source: greenland_territorial_waters.only
-  visible: False
-  # TODO: does this need to be in its own group?
-  group_path: 'Environmental management/Exclusive economic zones'
-  style: null
-  boundary: 'background'
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
-    where: '"\"layer\" = ''Boundary_EEZ''"'
-
-- <<: *greenland_territorial_waters
-  id: baseline
-  title: 'Baseline (polyline)'
-  description: >-
-    The territorial sea baseline is shown in accordance to executive order
-    no 1004 dated 15.10.2004.
-  ogr2ogr_kwargs:
-    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
-    where: '"\"layer\" = ''Boundary_basisline''"'
-
-- <<: *greenland_territorial_waters
-  id: 3nm_polyline
-  title: '3NM (polyline)'
-  description: >-
-    Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of the
-    marine environment, paragraph 4, 2.
-  ogr2ogr_kwargs:
-    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
-    where: '"\"layer\" = ''Boundary_3NM''"'
-
-- <<: *greenland_territorial_waters
-  id: 12nm_polyline
-  title: '12NM (polyline)'
-  description: >-
-    Fishery limit. Regarding the fishery limit, reference is made to Greenland
-    Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7, 2.
-  ogr2ogr_kwargs:
-    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
-    where: '"\"layer\" = ''Boundary_12NM''"'
-
-- <<: *greenland_territorial_waters
-  id: 3nm_polygon
-  title: '3NM (polygon)'
-  description: >-
-    Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of the
-    marine environment, paragraph 4, 2.
-  ogr2ogr_kwargs:
-    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
-    where: '"\"layer\" = ''Boundary_3NM_area''"'
-
-- <<: *greenland_territorial_waters
-  id: fishzone_boundary
-  title: 'Fishing zone (polygon)'
-  description: >-
-    Fishery limit. Regarding the fishery limit, reference is made to Greenland
-    Home Rule Parliament Act no 18 dated 31.10.1996
-  ogr2ogr_kwargs:
-    input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
-    where: '"\"layer\" = ''Boundary_fishzone''"'
-
-#################
-# Frozen ground #
-#################
-
-- &ground_temperature
-  id: ground_temperature
-  title: 'Ground temperature 2000-2016 (10km)'
-  description: >-
-      Average mean annual ground temperature in degrees Celsius.
-  visible: False
-  group_path: 'Frozen ground'
-  style: null
-  boundary: 'data'
-  data_source: pangaea_ground_temperature.10km
-  ingest_task: netcdf_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'MAGT'
-  warp_kwargs:
-    srcSRS: 'EPSG:3995'
-
-- <<: *ground_temperature
-  id:  ground_temperature_sd
-  title: 'Ground temperature standard deviation (10km)'
-  description: >-
-     Standard deviation of the average mean annual ground temperature in degrees Celsius.
-  translate_kwargs:
-    extract_dataset: 'SD'
-
-- <<: *ground_temperature
-  id:  permafrost_probability
-  title: 'Permafrost Probability (10km)'
-  description: >-
-     Permafrost probability (fraction values from 0 to 1) is assigned to each
-     grid cell with MAGT < 0°C.
-  translate_kwargs:
-    extract_dataset: 'PerProb'
-
 ##############
 # Glaciology #
 ##############
+
+- id: ice_cores
+  title: 'Ice cores'
+  description: >-
+    Point locations of ice cores sampled in Greenland.
+  visible: False
+  group_path: 'Glaciology'
+  style: 'labeled_point'
+  boundary: 'data'
+  data_source: ice_cores.only
+  ingest_task: online_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'paleo_icecore.kmz'
+    sql: "'SELECT *, Name as label from \"Ice Core\"'"
 
 - id: machguth_massbalance_locations
   title: 'Mass-balance glacier observation locations 1892-2020'
@@ -1210,24 +1371,6 @@
   ogr2ogr_kwargs:
     input_filename: 'locations.gpkg'
     s_srs: 'EPSG:4326'
-
-
-- id: firn_ice_layer_thicknesses
-  title: 'Ice slab thickness in firn ice 2010-2014'
-  description: >-
-      Ice slab thickness, in meters, in the top 20 meters of firn. Only slabs
-      between 1 and 16 meters are included.
-  visible: False
-  group_path: 'Glaciology'
-  style: firn_ice_points
-  data_source: macferrin_etal_firn_ice_layer_thicknesses.only
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'background'
-  ogr2ogr_kwargs:
-    input_filename: 'Ice_Layer_Output_Thicknesses.gpkg'
-
 
 - id: jakobshavn_supraglacial_lakes
   title: 'Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019'
@@ -1250,79 +1393,21 @@
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp'
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shx'
 
-  # Note that glims also provides a polyline shapefile that represents "snow
-  # lines" or "center lines" for glaciers, but there are not features for
-  # Greenland.
-- &glims
-  id: glims_points
-  title: 'Peripherical glacier/feature locations'
+- id: firn_ice_layer_thicknesses
+  title: 'Ice slab thickness in firn ice 2010-2014'
   description: >-
-    The data are representative points for the glaciers selected.
-  data_source: glims.only
-  visible: False
-  group_path: 'Glaciology/GLIMS'
-  boundary: 'data'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  decompress_kwargs:
-    extract_files:
-      - 'glims_download_82381/glims_points.dbf'
-      - 'glims_download_82381/glims_points.prj'
-      - 'glims_download_82381/glims_points.shp'
-      - 'glims_download_82381/glims_points.shx'
-
-- <<: *glims
-  id: glims_images
-  title: 'Images (points)'
-  description: >-
-    Contains information on the images that are linked to glaciers.  If the
-    'est_loc' flag is 0, it means the coordinates listed are what is stored in
-    the database.  If the flag is 1, it means no coordinates were given, so the
-    coordinates listed were estimated as an average of the other image
-    coordinates in the package.
-  decompress_kwargs:
-    extract_files:
-      - 'glims_download_82381/glims_images.dbf'
-      - 'glims_download_82381/glims_images.prj'
-      - 'glims_download_82381/glims_images.shp'
-      - 'glims_download_82381/glims_images.shx'
-  ogr2ogr_kwargs:
-    skipfailures: ''
-
-- <<: *glims
-  id: glims_polygons
-  title: 'Peripheral glacier/feature outlines'
-  description: >-
-    The data represent polygon features, typically glacier outlines, but also
-    including regions of glacial lakes, debris cover, rocks within the glacier
-    (nunataks), and other polygonal features.
-  decompress_kwargs:
-    extract_files:
-      - 'glims_download_82381/glims_polygons.dbf'
-      - 'glims_download_82381/glims_polygons.prj'
-      - 'glims_download_82381/glims_polygons.shp'
-      - 'glims_download_82381/glims_polygons.shx'
-
-- id: basal_thermal_state
-  title: 'Likely basal thermal state June 23 1993 - April 26 2013 (5km)'
-  description: >-
-      Likely basal frozen/thawed state of the Greenland Ice Sheet.
+      Ice slab thickness, in meters, in the top 20 meters of firn. Only slabs
+      between 1 and 16 meters are included.
   visible: False
   group_path: 'Glaciology'
-  style: basal_thermal_state
-  boundary: 'data'
-  data_source: basal_thermal_state.only
-  ingest_task: basal_thermal_state
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'basal_thermal_state'
-  gdal_mdim_translate_kwargs:
-    array: "name=likely_basal_thermal_state,transpose=[1,0],view=[::-1,:]"
-  gdal_edit_kwargs:
-    a_ullr: "-632500.0 -667500.0 847500.0 -3342500.0"
-    a_srs: "EPSG:3413"
+  style: firn_ice_points
+  data_source: macferrin_etal_firn_ice_layer_thicknesses.only
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  boundary: 'background'
+  ogr2ogr_kwargs:
+    input_filename: 'Ice_Layer_Output_Thicknesses.gpkg'
 
 - id: glacier_terminus_glacier_ids
   title: 'Glacier IDs'
@@ -1393,191 +1478,41 @@
   title: 'Glacier termini 2016 to 2017'
   data_source: glacier_terminus.2016_2017
 
-- id: ice_cores
-  title: 'Ice cores'
+  # Note that glims also provides a polyline shapefile that represents "snow
+  # lines" or "center lines" for glaciers, but there are not features for
+  # Greenland.
+- &glims
+  id: glims_points
+  title: 'Peripherical glacier/feature locations'
   description: >-
-    Point locations of ice cores sampled in Greenland.
+    The data are representative points for the glaciers selected.
+  data_source: glims.only
   visible: False
-  group_path: 'Glaciology'
-  style: 'labeled_point'
+  group_path: 'Glaciology/Global land ice measurements from space (GLIMS)'
   boundary: 'data'
-  data_source: ice_cores.only
-  ingest_task: online_vector
+  ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
-  ogr2ogr_kwargs:
-    input_filename: 'paleo_icecore.kmz'
-    sql: "'SELECT *, Name as label from \"Ice Core\"'"
-
-- &esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2005
-  # TODO: provide the 5 year period instead of just one datetime.
-  title: 'Mass balance trend 2005-07-01 12:00:00'
-  description: >-
-      The trends are derived for 5-year periods and are given on a ~50 km
-      resolution grid (displayed as points).
-  visible: False
-  group_path: 'Glaciology/Gravimetric mass balance'
-  style: 'gmb_dtu_space'
-  data_source: esa_cci_gravimetric_mass_balance_dtu.only
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2005_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2006
-  title: 'Mass balance trend 2006-07-02 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2006_07_02_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2007
-  title: 'Mass balance trend 2007-07-02 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2007_07_02_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2008
-  title: 'Mass balance trend 2008-07-01 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2008_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2009
-  title: 'Mass balance trend 2009-07-01 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2009_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2010
-  title: 'Mass balance trend 2010-07-02 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2010_07_02_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2011
-  title: 'Mass balance trend 2011-07-02 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2011_07_02_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2012
-  title: 'Mass balance trend 2012-06-16 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2012_06_16_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2013
-  title: 'Mass balance trend 2013-07-17 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2013_07_17_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2014
-  title: 'Mass balance trend 2014-07-02 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2014_07_02_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2015
-  title: 'Mass balance trend 2015-04-02 00:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2015_04_02_00_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2016
-  title: 'Mass balance trend 2016-07-01 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2016_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- <<: *esa_cci_gravimetric_mass_balance_dtu
-  id: esa_cci_gravimetric_mass_balance_dtu_2017
-  title: 'Mass balance trend 2017-07-01 12:00:00'
-  ogr2ogr_kwargs:
-    input_filename: 'points_2017_07_01_12_00_00.gpkg'
-    s_srs: 'EPSG:4326'
-
-- &its_live_velocity_mosaic
-  id: velocity_mosaic
-  title: 'Ice sheet velocity (500m)'
-  description: 'Magnitude of velocity in meters per year.'
-  visible: False
-  group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
-  style: 'ice_sheet_velocity'
-  boundary: 'data'
-  data_source: velocity_mosaic.only
-  ingest_task: velocity_mosaic
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'v'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  warp_kwargs:
-    xRes: 500
-    yRes: 500
-
-- <<: *its_live_velocity_mosaic
-  id: velocity_mosaic_error
-  title: 'Velocity error'
-  description: 'Magnitude of Velocity error in meters per year.'
-  ingest_task: velocity_mosaic
-  style: ice_sheet_velocity_error
-  translate_kwargs:
-    extract_dataset: 'v_err'
-
-- <<: *its_live_velocity_mosaic
-  id: velocity_mosaic_ice_mask
-  title: 'Ice mask'
-  style: null
-  description: 'Ice mask used for velocity mosiac.'
-  ingest_task: netcdf_raster
-  translate_kwargs:
-    extract_dataset: 'ice'
-
-- &esa_cci_velocity
-  id: esa_cci_velocity_magnitude
-  title: 'Land ice surface velocity 2019-2020 (250m)'
-  description: 'Magnitude of horizontal ice velocity in meters per day.'
-  visible: False
-  group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
-  style: esa_cci_velocity
-  boundary: 'data'
-  data_source: esa_cci_ice_sheet_velocity_20191214_20200131.only
-  ingest_task: local_zipped_netcdf_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'land_ice_surface_velocity_magnitude'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
   decompress_kwargs:
     extract_files:
-      - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
+      - 'glims_download_82381/glims_points.dbf'
+      - 'glims_download_82381/glims_points.prj'
+      - 'glims_download_82381/glims_points.shp'
+      - 'glims_download_82381/glims_points.shx'
 
-- <<: *esa_cci_velocity
-  id: esa_cci_velocity_vertical
-  title: 'Land Ice Surface Vertical Velocity (250m)'
-  description: 'Vertical ice velocity in meters per day.'
-  style: null
-  translate_kwargs:
-    extract_dataset: 'land_ice_surface_vertical_velocity'
+- <<: *glims
+  id: glims_polygons
+  title: 'Peripheral glacier/feature outlines'
+  description: >-
+    The data represent polygon features, typically glacier outlines, but also
+    including regions of glacial lakes, debris cover, rocks within the glacier
+    (nunataks), and other polygonal features.
+  decompress_kwargs:
+    extract_files:
+      - 'glims_download_82381/glims_polygons.dbf'
+      - 'glims_download_82381/glims_polygons.prj'
+      - 'glims_download_82381/glims_polygons.shp'
+      - 'glims_download_82381/glims_polygons.shx'
 
 - id: ice_thickness_change
   title: 'Ice column thickness rate of change 2003-2019 (5km)'
@@ -1904,16 +1839,248 @@
   title: 'Surface Elevation change Error 2015-2019'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,23]"
-###############################
-# Geology & natural resources #
-###############################
+
+- &esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2005
+  # TODO: provide the 5 year period instead of just one datetime.
+  title: 'Mass balance trend 2005-07-01 12:00:00'
+  description: >-
+      The trends are derived for 5-year periods and are given on a ~50 km
+      resolution grid (displayed as points).
+  visible: False
+  group_path: 'Glaciology/Gravimetric mass balance'
+  style: 'gmb_dtu_space'
+  data_source: esa_cci_gravimetric_mass_balance_dtu.only
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2005_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2006
+  title: 'Mass balance trend 2006-07-02 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2006_07_02_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2007
+  title: 'Mass balance trend 2007-07-02 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2007_07_02_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2008
+  title: 'Mass balance trend 2008-07-01 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2008_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2009
+  title: 'Mass balance trend 2009-07-01 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2009_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2010
+  title: 'Mass balance trend 2010-07-02 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2010_07_02_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2011
+  title: 'Mass balance trend 2011-07-02 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2011_07_02_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2012
+  title: 'Mass balance trend 2012-06-16 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2012_06_16_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2013
+  title: 'Mass balance trend 2013-07-17 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2013_07_17_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2014
+  title: 'Mass balance trend 2014-07-02 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2014_07_02_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2015
+  title: 'Mass balance trend 2015-04-02 00:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2015_04_02_00_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2016
+  title: 'Mass balance trend 2016-07-01 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2016_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- <<: *esa_cci_gravimetric_mass_balance_dtu
+  id: esa_cci_gravimetric_mass_balance_dtu_2017
+  title: 'Mass balance trend 2017-07-01 12:00:00'
+  ogr2ogr_kwargs:
+    input_filename: 'points_2017_07_01_12_00_00.gpkg'
+    s_srs: 'EPSG:4326'
+
+- &its_live_velocity_mosaic
+  id: velocity_mosaic
+  title: 'Ice sheet velocity (500m)'
+  description: 'Magnitude of velocity in meters per year.'
+  visible: False
+  group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
+  style: 'ice_sheet_velocity'
+  boundary: 'data'
+  data_source: velocity_mosaic.only
+  ingest_task: velocity_mosaic
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'v'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  warp_kwargs:
+    xRes: 500
+    yRes: 500
+
+- <<: *its_live_velocity_mosaic
+  id: velocity_mosaic_error
+  title: 'Velocity error'
+  description: 'Magnitude of Velocity error in meters per year.'
+  ingest_task: velocity_mosaic
+  style: ice_sheet_velocity_error
+  translate_kwargs:
+    extract_dataset: 'v_err'
+
+- <<: *its_live_velocity_mosaic
+  id: velocity_mosaic_ice_mask
+  title: 'Ice mask'
+  style: null
+  description: 'Ice mask used for velocity mosiac.'
+  ingest_task: netcdf_raster
+  translate_kwargs:
+    extract_dataset: 'ice'
+
+- &esa_cci_velocity
+  id: esa_cci_velocity_magnitude
+  title: 'Land ice surface velocity 2019-2020 (250m)'
+  description: 'Magnitude of horizontal ice velocity in meters per day.'
+  visible: False
+  group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
+  style: esa_cci_velocity
+  boundary: 'data'
+  data_source: esa_cci_ice_sheet_velocity_20191214_20200131.only
+  ingest_task: local_zipped_netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'land_ice_surface_velocity_magnitude'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  decompress_kwargs:
+    extract_files:
+      - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
+
+- <<: *esa_cci_velocity
+  id: esa_cci_velocity_vertical
+  title: 'Land Ice Surface Vertical Velocity (250m)'
+  description: 'Vertical ice velocity in meters per day.'
+  style: null
+  translate_kwargs:
+    extract_dataset: 'land_ice_surface_vertical_velocity'
+
+- id: basal_thermal_state
+  title: 'Likely basal thermal state June 23 1993 - April 26 2013 (5km)'
+  description: >-
+      Likely basal frozen/thawed state of the Greenland Ice Sheet.
+  visible: False
+  group_path: 'Glaciology'
+  style: basal_thermal_state
+  boundary: 'data'
+  data_source: basal_thermal_state.only
+  ingest_task: basal_thermal_state
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'basal_thermal_state'
+  gdal_mdim_translate_kwargs:
+    array: "name=likely_basal_thermal_state,transpose=[1,0],view=[::-1,:]"
+  gdal_edit_kwargs:
+    a_ullr: "-632500.0 -667500.0 847500.0 -3342500.0"
+    a_srs: "EPSG:3413"
+
+
+#################
+# Frozen ground #
+#################
+
+- &ground_temperature
+  id: ground_temperature
+  title: 'Ground temperature 2000-2016 (10km)'
+  description: >-
+      Average mean annual ground temperature in degrees Celsius.
+  visible: False
+  group_path: 'Frozen ground'
+  style: null
+  boundary: 'data'
+  data_source: pangaea_ground_temperature.10km
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'MAGT'
+  warp_kwargs:
+    srcSRS: 'EPSG:3995'
+
+- <<: *ground_temperature
+  id:  ground_temperature_sd
+  title: 'Ground temperature standard deviation (10km)'
+  description: >-
+     Standard deviation of the average mean annual ground temperature in degrees Celsius.
+  translate_kwargs:
+    extract_dataset: 'SD'
+
+- <<: *ground_temperature
+  id:  permafrost_probability
+  title: 'Permafrost Probability (10km)'
+  description: >-
+     Permafrost probability (fraction values from 0 to 1) is assigned to each
+     grid cell with MAGT < 0°C.
+  translate_kwargs:
+    extract_dataset: 'PerProb'
+
+
+###########
+# Geology #
+###########
 
 - id: earthquakes
   title: 'Earthquakes M>2.5 1900-2020'
   description: >-
     Location and magnitude of earthquakes.
   visible: False
-  group_path: 'Geology & natural resources'
+  group_path: 'Geology'
   style: 'earthquakes'
   boundary: 'data'
   data_source: earthquakes.only
@@ -1923,28 +2090,12 @@
   ogr2ogr_kwargs:
     input_filename: 'query.geojson'
 
-- id: soil_types
-  title: 'Soil characteristics'
-  description: >-
-      Polygons representing dominant soil characteristics with percentage
-      polygon area for each soil type. Data coverage limited to Greenland.
-  visible: False
-  group_path: 'Geology & natural resources'
-  style: 'soil_types'
-  boundary: 'data'
-  data_source: soil_types.only
-  ingest_task: gzipped_vector_parts
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    s_srs: '"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0"'
-
 - id: tectonic_plate_boundaries
   title: 'Tectonic plate boundaries'
   description: >-
     Linestrings representing borders between tectonic plates.
   visible: False
-  group_path: 'Geology & natural resources'
+  group_path: 'Geology'
   boundary: 'background'
   data_source: tectonic_plates.only
   ingest_task: zipped_vector
@@ -1959,33 +2110,28 @@
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shp.xml'
       - 'tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.shx'
 
-- &mcas_mlsa
-  id: mcas_mlsa_public_all
-  title: 'Public licenses'
+- id: soil_types
+  title: 'Soil characteristics'
   description: >-
-      Mining licenses granted by the government of Greenland.
+      Polygons representing dominant soil characteristics with percentage
+      polygon area for each soil type. Data coverage limited to Greenland.
   visible: False
-  group_path: 'Geology & natural resources/Mineral and hydrocarbon licenses'
-  style: 'mcas_mlsa_licenses'
+  group_path: 'Geology'
+  style: 'soil_types'
   boundary: 'data'
-  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_all
-  ingest_task: zipped_vector
+  data_source: soil_types.only
+  ingest_task: gzipped_vector_parts
   file_type: '.gpkg'
   data_type: 'vector'
-
-- <<: *mcas_mlsa
-  id: mcas_mlsa_public_historic
-  title: 'Historic public licenses'
-  description: >-
-      Historic mining licenses granted by the government of Greenland.
-  data_source: mineral_and_hydrocarbon_licenses.mcas_mlsa_public_historic
+  ogr2ogr_kwargs:
+    s_srs: '"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0"'
 
 - &geological_map
   id: onshore_planar_geological_map
-  title: 'Onshore planar'
+  title: 'Faults'
   description: 'This layer contains onshore faults for the landmass and islands of Greenland.'
   visible: False
-  group_path: 'Geology & natural resources/Geological map of the Arctic'
+  group_path: 'Geology/Geological map'
   style: onshore_planar_geological_map
   data_source: geological_map.only
   ingest_task: zipped_vector
@@ -2002,24 +2148,8 @@
       - 'data/shape/geology/Greenland_onshore_Planar.shx'
 
 - <<: *geological_map
-  id: onshore_pattern_geological_map
-  title: 'Onshore pattern'
-  description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
-  style: geological_map_polygons
-  boundary: 'data'
-  decompress_kwargs:
-    extract_files:
-      - 'data/shape/geology/Greenland_onshore_pattern.dbf'
-      - 'data/shape/geology/Greenland_onshore_pattern.prj'
-      - 'data/shape/geology/Greenland_onshore_pattern.sbn'
-      - 'data/shape/geology/Greenland_onshore_pattern.sbx'
-      - 'data/shape/geology/Greenland_onshore_pattern.shp'
-      - 'data/shape/geology/Greenland_onshore_pattern.shp.xml'
-      - 'data/shape/geology/Greenland_onshore_pattern.shx'
-
-- <<: *geological_map
   id: onshore_geological_map
-  title: 'Onshore'
+  title: 'Rock Types'
   description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
   style: geological_map_polygons
   decompress_kwargs:
@@ -2037,7 +2167,7 @@
 # - id: tectonic_plates
 #   title: 'Tectonic plates'
 #   visible: False
-#   group_path: 'Geology & natural resources'
+#   group_path: 'Geology'
 #   boundary: 'background'
 #   data_source: tectonic_plates.only
 #   ingest_task: zipped_vector
@@ -2055,79 +2185,6 @@
 ##############
 # Geophysics #
 ##############
-
-- &geoid
-  id: geoid
-  title: 'Geoid model (2km)'
-  description: >-
-    Official gravimetric geoid model for Greenland.
-  visible: False
-  group_path: 'Geophysics'
-  # Style TBD
-  style: null
-  boundary: 'data'
-  data_source: geoid.only
-  ingest_task: local_zipped_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  decompress_kwargs:
-    extract_files:
-      - 'ggeoid16.tif'
-  warp_kwargs:
-    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
-    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
-    # resolution.
-    xRes: 2000
-    yRes: 2000
-
-- <<: *geoid
-  id: bouguer_gravity_anomaly
-  title: 'Bouguer gravity anomaly (2km)'
-  description: >-
-    TBD
-  visible: False
-  group_path: 'Geophysics'
-  # Style TBD
-  style: null
-  data_source: gravity_anomalies.only
-  decompress_kwargs:
-    extract_files:
-      - 'bouguer_gravity_anomaly.tif'
-  warp_kwargs:
-    # Source data is 0.02x-0.02 degrees resolution. Rene noted in his email to
-    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
-    # resolution.
-    xRes: 2000
-    yRes: 2000
-    # TODO: is this correct? Unlike the other files we received, the Bouguer
-    # gravity model does not have any 'nodata' metadata. An entire column of
-    # pixels at the far eastern edge of the data has this value. There does
-    # appear to be at least one other pixel in the middle of the dataset with
-    # this value as well, however.
-    srcNodata: -32767.0
-
-- <<: *geoid
-  id: faye_gravity_anomaly
-  title: 'Faye (free-air) gravity anomaly (2km)'
-  description: >-
-    TBD
-  visible: False
-  group_path: 'Geophysics'
-  # Style TBD
-  style: null
-  data_source: gravity_anomalies.only
-  decompress_kwargs:
-    extract_files:
-      - 'faye_gravity_anomaly.tif'
-  warp_kwargs:
-    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
-    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
-    # resolution.
-    xRes: 2000
-    yRes: 2000
 
 ######## World Magnetic Model 2020 ########
 - &wmm_north_poles
@@ -3723,6 +3780,79 @@
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shx'
 
+- &gravity_anomaly_geoid
+  id: bouguer_gravity_anomaly
+  title: 'Bouguer gravity anomaly (2km)'
+  description: >-
+    TBD
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  boundary: 'data'
+  data_source: gravity_anomalies.only
+  ingest_task: local_zipped_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  decompress_kwargs:
+    extract_files:
+      - 'bouguer_gravity_anomaly.tif'
+  warp_kwargs:
+    # Source data is 0.02x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
+    # TODO: is this correct? Unlike the other files we received, the Bouguer
+    # gravity model does not have any 'nodata' metadata. An entire column of
+    # pixels at the far eastern edge of the data has this value. There does
+    # appear to be at least one other pixel in the middle of the dataset with
+    # this value as well, however.
+    srcNodata: -32767.0
+
+- <<: *gravity_anomaly_geoid
+  id: faye_gravity_anomaly
+  title: 'Faye (free-air) gravity anomaly (2km)'
+  description: >-
+    TBD
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  data_source: gravity_anomalies.only
+  decompress_kwargs:
+    extract_files:
+      - 'faye_gravity_anomaly.tif'
+  warp_kwargs:
+    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
+
+- <<: *gravity_anomaly_geoid
+  id: geoid
+  title: 'Geoid model (2km)'
+  description: >-
+    Official gravimetric geoid model for Greenland.
+  visible: False
+  group_path: 'Geophysics'
+  # Style TBD
+  style: null
+  data_source: geoid.only
+  decompress_kwargs:
+    extract_files:
+      - 'ggeoid16.tif'
+  warp_kwargs:
+    # Source data is 0.05x-0.02 degrees resolution. Rene noted in his email to
+    # QGreenland on 2021-01-22 that the geoid and gravity anomaly grids are 2km
+    # resolution.
+    xRes: 2000
+    yRes: 2000
+
 - id: geothermal_heat_flux
   title: 'Geothermal heat flux (5km)'
   description: >-
@@ -3741,113 +3871,6 @@
   file_type: '.tif'
   data_type: 'raster'
   boundary: 'data'
-
-
-##################
-# Human activity #
-##################
-
-- id: gem_research_stations
-  title: 'GEM research stations'
-  description: >-
-    Location and description of Greenland Ecosystem Monitoring research
-    stations.
-  visible: False
-  group_path: 'Human activity/Research stations'
-  style: 'labeled_point'
-  data_source: gem_research_stations.only
-  ingest_task: local_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'data'
-  ogr2ogr_kwargs:
-    sql: "'SELECT *, \"Station Name\" as label from \"gem_research_stations\"'"
-    input_filename: 'gem_research_stations.geojson'
-
-- &gc_net_promice_stations
-  id: promice_research_stations
-  title: 'PROMICE automated weather stations'
-  description: >-
-      Locations and details of PROMICE automated weather stations.
-  visible: False
-  group_path: 'Human activity/Research stations'
-  style: 'labeled_point'
-  data_source: gc_net_promice_stations.promice
-  ingest_task: delimited_text_points_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'data'
-  delimited_text_vector_kwargs:
-    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.csv'
-    delimiter: "\t"
-    x_field: 'lon'
-    y_field: 'lat'
-  ogr2ogr_kwargs:
-    s_srs: "EPSG:4326"
-    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018\"'"
-    input_filename: 'PROMICE_info_from_GPS_data_2017-2018.gpkg'
-
-- <<: *gc_net_promice_stations
-  id: promice_research_stations_former
-  title: 'Former PROMICE automated weather stations'
-  description: >-
-      Locations and details of inactive PROMICE automated weather stations.
-  data_source: gc_net_promice_stations.promice_former
-  delimited_text_vector_kwargs:
-    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.csv'
-    delimiter: "\t"
-    x_field: 'lon'
-    y_field: 'lat'
-  ogr2ogr_kwargs:
-    s_srs: "EPSG:4326"
-    sql: "'SELECT *, name as label from \"PROMICE_info_from_GPS_data_2017-2018_former_sites\"'"
-    input_filename: 'PROMICE_info_from_GPS_data_2017-2018_former_sites.gpkg'
-
-- <<: *gc_net_promice_stations
-  id: gc_net_research_stations
-  title: 'GC-NET automated weather stations'
-  description: >-
-      Location and details of GC-NET automated weather stations.
-  data_source: gc_net_promice_stations.gc_net
-  delimited_text_vector_kwargs:
-    input_filename: 'GCN%20info%20ca.2000.csv'
-    delimiter: ','
-    x_field: 'lon'
-    y_field: 'lat'
-  ogr2ogr_kwargs:
-    s_srs: "EPSG:4326"
-    sql: "'SELECT *, name as label from \"GCN%20info%20ca.2000\"'"
-    input_filename: 'GCN%20info%20ca.2000.gpkg'
-
-- id: seismograph_stations
-  title: 'Seismograph stations'
-  description: >-
-    Location and details of Greenland seismograph stations.
-  visible: False
-  # TODO: is this where this layer should live?
-  group_path: 'Human activity/Research stations'
-  data_source: seismograph_stations.only
-  ingest_task: online_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'data'
-  ogr2ogr_kwargs:
-    input_filename: 'stations.kmz'
-
-
-- id: arctic_sea_routes
-  title: 'Arctic sea routes'
-  description: >-
-    Lines depict the Northern Sea Route, Northwest Passate, and hypothetical
-    Transpolar Route.
-  visible: False
-  style: 'arctic_sea_routes'
-  group_path: 'Human activity'
-  data_source: nga_arctic_sea_routes.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  boundary: 'background'
 
 
 #############
@@ -3942,211 +3965,93 @@
     input_filename: 'basins_filled.gpkg'
 
 
-################
-# Oceanography #
-################
-
-- &undersea_features
-  id: undersea_features_point
-  title: 'Points'
-  description: >-
-      Points representing undersea features.
-  visible: False
-  group_path: 'Oceanography/Undersea feature names'
-  style: 'undersea_features_point'
-  boundary: 'data'
-  data_source: undersea_features.only
-  ingest_task: zipped_vector
-  # TODO: ingest_kwargs vs decompress_kwargs
-  decompress_kwargs:
-  # TODO: regex(s) instad of file list?
-    extract_files:
-      - 'features/features-point.dbf'
-      - 'features/features-point.prj'
-      - 'features/features-point.shp'
-      - 'features/features-point.shx'
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    sql: "'SELECT *, name as label from \"features-point\"'"
-
-  # Note: source zipfile for undersea features data has multipoint shapefile
-  # that only contains data outside of the project extent.
-
-- <<: *undersea_features
-  id: undersea_features_multilinestring
-  title: 'Multiline'
-  description: >-
-      Lines representing undersea features.
-  style: 'undersea_features_line'
-  decompress_kwargs:
-    extract_files:
-      - 'features/features-multilinestring.dbf'
-      - 'features/features-multilinestring.prj'
-      - 'features/features-multilinestring.shp'
-      - 'features/features-multilinestring.shx'
-  ogr2ogr_kwargs:
-    sql: "'SELECT *, name as label from \"features-multilinestring\"'"
-
-- <<: *undersea_features
-  id: undersea_features_multipolygon
-  title: 'Multipolygon'
-  description: >-
-      Polygons representing undersea features.
-  style: 'undersea_features_polygon'
-  decompress_kwargs:
-    extract_files:
-      - 'features/features-multipolygon.dbf'
-      - 'features/features-multipolygon.prj'
-      - 'features/features-multipolygon.shp'
-      - 'features/features-multipolygon.shx'
-  ogr2ogr_kwargs:
-    # Prevent polygon from being turned in to a linestring during clip operation
-    nlt: 'POLYGON'
-    sql: "'SELECT *, name as label from \"features-multipolygon\"'"
-
-- &woa2018
-  id: woa2018_0m_temperature_winter
-  title: 'Surface, Winter'
-  description: >-
-    Seawater temperature at surface depth in °C.
-  visible: False
-  group_path: 'Oceanography/Seawater temperature 2018 (25km)'
-  style: 'seawater_temperature'
-  boundary: 'data'
-  data_source: woa2018_temperature.seasonal_winter
-  ingest_task: netcdf_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [1]
-  warp_kwargs:
-    xRes: 25000
-    yRes: 25000
-
-- <<: *woa2018
-  id: woa2018_0m_temperature_summer
-  title: 'Surface, Summer'
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [1]
-
-- <<: *woa2018
-  id: woa2018_50m_temperature_winter
-  title: '50m, Winter'
-  description: >-
-    Seawater temperature at 50m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [11]
-
-- <<: *woa2018
-  id: woa2018_50m_temperature_summer
-  title: '50m, Summer'
-  description: >-
-    Seawater temperature at 50m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [11]
-
-- <<: *woa2018
-  id: woa2018_200m_temperature_winter
-  title: '200m, Winter'
-  description: >-
-    Seawater temperature at 200m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [25]
-
-- <<: *woa2018
-  id: woa2018_200m_temperature_summer
-  title: '200m, Summer'
-  description: >-
-    Seawater temperature at 200m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [25]
-
-- <<: *woa2018
-  id: woa2018_500m_temperature_winter
-  title: '500m, Winter'
-  description: >-
-    Seawater temperature at 500m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [37]
-
-- <<: *woa2018
-  id: woa2018_500m_temperature_summer
-  title: '500m, Summer'
-  description: >-
-    Seawater temperature at 500m depth in °C.
-  group_path: 'Oceanography/Seawater temperature 2018'
-  data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
-    extract_dataset: 't_an'
-    bandList: [37]
-
-
-- id: bathymetric_chart
-  title: 'Bathymetric chart of the Arctic Ocean (500m)'
-  description: >-
-      Surface (bedrock or icesheet) elevation in meters.  Elevations can be
-      assumed to be relative to Mean Sea Level. However, in some shallow water
-      areas, the grids include data from sources having a vertical datum other
-      than mean sea level.
-  visible: False
-  group_path: 'Oceanography'
-  style: 'ibcao_bathymetry'
-  boundary: 'background'
-  data_source: bathymetric_chart.only
-  ingest_task: netcdf_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'z'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  warp_kwargs:
-    srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
-    dstNodata: -9999
-    xRes: 500
-    yRes: 500
-
-
 ##################
 # Sea ice #
 ##################
+
+# sea ice median extent polylines:
+# TODO: Normalize median and min/max layer titles. Month first or dataset first, pick one!
+- &seaice_median_extent
+  id: seaice_median_extent_01
+  title: 'January'
+  description: >-
+    Ice edge position line that is typical for a month, based on median extent
+    from the period 1981 through 2010.
+  visible: False
+  group_path: 'Sea ice/Median extent'
+  boundary: 'background'
+  data_source: seaice_index.median_extent_line_01
+  ingest_task: 'zipped_vector'
+  file_type: '.gpkg'
+  data_type: 'vector'
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_02
+  title: 'February'
+  data_source: seaice_index.median_extent_line_02
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_03
+  title: 'March'
+  data_source: seaice_index.median_extent_line_03
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_04
+  title: 'April'
+  data_source: seaice_index.median_extent_line_04
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_05
+  title: 'May'
+  data_source: seaice_index.median_extent_line_05
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_06
+  title: 'June'
+  data_source: seaice_index.median_extent_line_06
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_07
+  title: 'July'
+  data_source: seaice_index.median_extent_line_07
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_08
+  title: 'August'
+  data_source: seaice_index.median_extent_line_08
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_09
+  title: 'September'
+  data_source: seaice_index.median_extent_line_09
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_10
+  title: 'October'
+  data_source: seaice_index.median_extent_line_10
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_11
+  title: 'November'
+  data_source: seaice_index.median_extent_line_11
+
+- <<: *seaice_median_extent
+  id: seaice_median_extent_12
+  title: 'December'
+  data_source: seaice_index.median_extent_line_12
 
 # age of sea ice minimum/maximum rasters:
 - &seaice_minimum_age
   id: seaice_minimum_age_2010
   title: 'Sea ice age September 17-24 2010'
   description: >-
-      Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
-      20 represents land; 21 represents ocean cells where ice age was not
-      calculated. Week of minimum extent chosen based on NSDIC's Sea Ice Index
-      5-day average.
+      Age of sea ice derived from weekly averaged ice motion vectors. A value of
+      N indicates ice aged N-1 to N years. A value of 20 represents land; 21
+      represents ocean cells where ice age was not calculated. Week of minimum
+      extent chosen based on NSDIC's Sea Ice Index 5-day average.
   visible: False
   # TODO: "September" is not correct, this is weekly data.
-  group_path: 'Sea ice/Ice age (12.5 km)/September (min extent)'
+  group_path: 'Sea ice/Weekly age (12.5 km)/September (min extent)'
   style: 'sea_ice_age'
   boundary: 'background'
   data_source: seaice_age.2010
@@ -4245,10 +4150,11 @@
   id: seaice_maximum_age_2010
   title: 'Sea ice age March 26-April 2 2010'
   description: >-
-      Age of sea ice. A value of N indicates ice aged N-1 to N years. A value of
-      20 represents land; 21 represents ocean cells where ice age was not
-      calculated. Week of maximum extent chosen based on NSDIC's Sea Ice Index
-      5-day average. Data provided by NSIDC.
+      Age of sea ice derived from weekly averaged ice motion vectors. A value of
+      N indicates ice aged N-1 to N years. A value of 20 represents land; 21
+      represents ocean cells where ice age was not calculated. Week of maximum
+      extent chosen based on NSDIC's Sea Ice Index 5-day average. Data provided
+      by NSIDC.
   visible: False
   group_path: 'Sea ice/Ice age (12.5 km)/Feb or March (max extent)'
   style: 'sea_ice_age'
@@ -4345,95 +4251,15 @@
     # Week of 2019-03-12
     bandList: [11]
 
-# sea ice median extent polylines:
-# TODO: Normalize median and min/max layer titles. Month first or dataset first, pick one!
-- &seaice_median_extent
-  id: seaice_median_extent_01
-  title: 'January'
-  description: 'Median extent from the period 1981 through 2010.'
-  visible: False
-  group_path: 'Sea ice/Median ice extent'
-  boundary: 'background'
-  data_source: seaice_index.median_extent_line_01
-  ingest_task: 'zipped_vector'
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_02
-  title: 'February'
-  data_source: seaice_index.median_extent_line_02
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_03
-  title: 'March'
-  data_source: seaice_index.median_extent_line_03
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_04
-  title: 'April'
-  data_source: seaice_index.median_extent_line_04
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_05
-  title: 'May'
-  data_source: seaice_index.median_extent_line_05
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_06
-  title: 'June'
-  data_source: seaice_index.median_extent_line_06
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_07
-  title: 'July'
-  data_source: seaice_index.median_extent_line_07
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_08
-  title: 'August'
-  data_source: seaice_index.median_extent_line_08
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_09
-  title: 'September'
-  data_source: seaice_index.median_extent_line_09
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_10
-  title: 'October'
-  data_source: seaice_index.median_extent_line_10
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_11
-  title: 'November'
-  data_source: seaice_index.median_extent_line_11
-
-
-- <<: *seaice_median_extent
-  id: seaice_median_extent_12
-  title: 'December'
-  data_source: seaice_index.median_extent_line_12
-
-
 # sea ice min extent monthly concentration:
 - &seaice_minimum_concentration
   id: minimum_concentration_2010
   title: 'September 2010'
   description: >-
-      Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values
-      under 15% are considered to be open water.
+      Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
+      99.9%). Values under 15% are considered to be open water.
   visible: False
-  group_path: 'Sea ice/Concentration (25 km)/September (min extent)'
+  group_path: 'Sea ice/Monthly mean concentration (25 km)/September (min extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
   data_source: seaice_index.minimum_concentration_2010
@@ -4506,10 +4332,10 @@
   id: maximum_concentration_2010
   title: 'March 2010'
   description: >-
-     Concentration of sea ice as a percentage (e.g., 99.9 = 99.9%). Values under
-     15% are considered to be open water.
+     Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
+     99.9%). Values under 15% are considered to be open water.
   visible: False
-  group_path: 'Sea ice/Concentration (25 km)/Feb or March (max extent)'
+  group_path: 'Sea ice/Monthly mean concentration (25 km)/Feb or March (max extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
   data_source: seaice_index.maximum_concentration_2010
@@ -4519,54 +4345,45 @@
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2011
   title: 'March 2011'
   data_source: seaice_index.maximum_concentration_2011
-
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2012
   title: 'March 2012'
   data_source: seaice_index.maximum_concentration_2012
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2013
   title: 'March 2013'
   data_source: seaice_index.maximum_concentration_2013
-
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2014
   title: 'March 2014'
   data_source: seaice_index.maximum_concentration_2014
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2015
   title: 'February 2015'
   data_source: seaice_index.maximum_concentration_2015
-
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2016
   title: 'March 2016'
   data_source: seaice_index.maximum_concentration_2016
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2017
   title: 'March 2017'
   data_source: seaice_index.maximum_concentration_2017
 
-
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2018
   title: 'March 2018'
   data_source: seaice_index.maximum_concentration_2018
-
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2019
@@ -4577,6 +4394,225 @@
   id: maximum_concentration_2020
   title: 'March 2020'
   data_source: seaice_index.maximum_concentration_2019
+
+
+################
+# Oceanography #
+################
+
+- &undersea_features
+  id: undersea_features_point
+  title: 'Point locations'
+  description: >-
+      Points representing undersea features.
+  visible: False
+  group_path: 'Oceanography/Undersea feature names'
+  style: 'undersea_features_point'
+  boundary: 'data'
+  data_source: undersea_features.only
+  ingest_task: zipped_vector
+  # TODO: ingest_kwargs vs decompress_kwargs
+  decompress_kwargs:
+  # TODO: regex(s) instad of file list?
+    extract_files:
+      - 'features/features-point.dbf'
+      - 'features/features-point.prj'
+      - 'features/features-point.shp'
+      - 'features/features-point.shx'
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-point\"'"
+
+  # Note: source zipfile for undersea features data has multipoint shapefile
+  # that only contains data outside of the project extent.
+
+- <<: *undersea_features
+  id: undersea_features_multilinestring
+  title: 'Linear features'
+  description: >-
+      Lines representing undersea features.
+  style: 'undersea_features_line'
+  decompress_kwargs:
+    extract_files:
+      - 'features/features-multilinestring.dbf'
+      - 'features/features-multilinestring.prj'
+      - 'features/features-multilinestring.shp'
+      - 'features/features-multilinestring.shx'
+  ogr2ogr_kwargs:
+    sql: "'SELECT *, name as label from \"features-multilinestring\"'"
+
+- <<: *undersea_features
+  id: undersea_features_multipolygon
+  title: 'Shapes'
+  description: >-
+      Polygons representing undersea features.
+  style: 'undersea_features_polygon'
+  decompress_kwargs:
+    extract_files:
+      - 'features/features-multipolygon.dbf'
+      - 'features/features-multipolygon.prj'
+      - 'features/features-multipolygon.shp'
+      - 'features/features-multipolygon.shx'
+  ogr2ogr_kwargs:
+    # Prevent polygon from being turned in to a linestring during clip operation
+    nlt: 'POLYGON'
+    sql: "'SELECT *, name as label from \"features-multipolygon\"'"
+
+- &woa2018
+  id: woa2018_0m_temperature_winter
+  title: 'Surface, Winter'
+  description: >-
+    Seawater temperature at surface depth in °C.
+  visible: False
+  group_path: 'Oceanography/Seawater temperature 2018 (25km)'
+  style: 'seawater_temperature'
+  boundary: 'data'
+  data_source: woa2018_temperature.seasonal_winter
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [1]
+  warp_kwargs:
+    xRes: 25000
+    yRes: 25000
+
+- <<: *woa2018
+  id: woa2018_0m_temperature_summer
+  title: 'Surface, Summer'
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [1]
+
+- <<: *woa2018
+  id: woa2018_50m_temperature_winter
+  title: '50m, Winter'
+  description: >-
+    Seawater temperature at 50m depth in °C.
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [11]
+
+- <<: *woa2018
+  id: woa2018_50m_temperature_summer
+  title: '50m, Summer'
+  description: >-
+    Seawater temperature at 50m depth in °C.
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [11]
+
+- <<: *woa2018
+  id: woa2018_200m_temperature_winter
+  title: '200m, Winter'
+  description: >-
+    Seawater temperature at 200m depth in °C.
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [25]
+
+- <<: *woa2018
+  id: woa2018_200m_temperature_summer
+  title: '200m, Summer'
+  description: >-
+    Seawater temperature at 200m depth in °C.
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [25]
+
+- <<: *woa2018
+  id: woa2018_500m_temperature_winter
+  title: '500m, Winter'
+  description: >-
+    Seawater temperature at 500m depth in °C.
+  data_source: woa2018_temperature.seasonal_winter
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [37]
+
+- <<: *woa2018
+  id: woa2018_500m_temperature_summer
+  title: '500m, Summer'
+  description: >-
+    Seawater temperature at 500m depth in °C.
+  data_source: woa2018_temperature.seasonal_summer
+  translate_kwargs:
+    extract_dataset: 't_an'
+    bandList: [37]
+
+
+- id: bathymetric_chart
+  title: 'Bathymetric chart of the Arctic Ocean (500m)'
+  description: >-
+      Surface (bedrock or icesheet) elevation in meters.  Elevations can be
+      assumed to be relative to Mean Sea Level. However, in some shallow water
+      areas, the grids include data from sources having a vertical datum other
+      than mean sea level.
+  visible: False
+  group_path: 'Oceanography'
+  style: 'ibcao_bathymetry'
+  boundary: 'background'
+  data_source: bathymetric_chart.only
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'z'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+  warp_kwargs:
+    srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
+    dstNodata: -9999
+    xRes: 500
+    yRes: 500
+
+
+######################
+# Future Projections #
+######################
+
+# TODO: better id, title, description for these layers
+- &future_ice_sheet_coverage
+  id: future_ice_sheet_coverage_rcp_26
+  title: 'Future ice sheet coverage - RCP 2.6 scenario for the year 3007 (1.8km)'
+  description: >-
+      Fraction of a grid cell covered by ice (grounded or floating) in the year
+      3007. Values less than or equal to 16% are masked.
+  visible: False
+  group_path: 'Future projections'
+  style: 'future_ice_sheet_coverage'
+  boundary: 'data'
+  data_source: future_icesheet_coverage.rcp_26
+  ingest_task: netcdf_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  translate_kwargs:
+    extract_dataset: 'sftgif'
+    noData: 0
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
+
+- <<: *future_ice_sheet_coverage
+  id: future_ice_sheet_coverage_rcp_45
+  title: 'Future ice sheet coverage - RCP 4.5 scenario for the year 3007 (1.8km)'
+  data_source: future_icesheet_coverage.rcp_45
+
+- <<: *future_ice_sheet_coverage
+  id: future_ice_sheet_coverage_rcp_85
+  title: 'Future ice sheet coverage - RCP 8.5 scenario for the year 3007 (1.8km)'
+  data_source: future_icesheet_coverage.rcp_85
 
 
 ##################
@@ -4668,43 +4704,6 @@
   project_crs: 'EPSG:32624'
 
 ######################
-# Future Projections #
-######################
-
-# TODO: better id, title, description for these layers
-- &future_ice_sheet_coverage
-  id: future_ice_sheet_coverage_rcp_26
-  title: 'Future ice sheet coverage - RCP 2.6 scenario for the year 3007 (1.8km)'
-  description: >-
-      Fraction of a grid cell covered by ice (grounded or floating) in the year
-      3007. Values less than or equal to 16% are masked.
-  visible: False
-  group_path: 'Future projections'
-  style: 'future_ice_sheet_coverage'
-  boundary: 'data'
-  data_source: future_icesheet_coverage.rcp_26
-  ingest_task: netcdf_raster
-  file_type: '.tif'
-  data_type: 'raster'
-  translate_kwargs:
-    extract_dataset: 'sftgif'
-    noData: 0
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-
-- <<: *future_ice_sheet_coverage
-  id: future_ice_sheet_coverage_rcp_45
-  title: 'Future ice sheet coverage - RCP 4.5 scenario for the year 3007 (1.8km)'
-  data_source: future_icesheet_coverage.rcp_45
-
-- <<: *future_ice_sheet_coverage
-  id: future_ice_sheet_coverage_rcp_85
-  title: 'Future ice sheet coverage - RCP 8.5 scenario for the year 3007 (1.8km)'
-  data_source: future_icesheet_coverage.rcp_85
-
-
-######################
 # ONLINE-ONLY layers #
 ######################
 
@@ -4737,60 +4736,6 @@
 ############
 # BASEMAPS #
 ############
-
-- id: bas_greenland_coastlines
-  title: 'Greenland coastlines 2017'
-  description: >-
-    This layer should be used as the 'reference coastline' for Greenland.
-  visible: False
-  group_path: 'Basemaps'
-  style: greenland_coastline
-  boundary: 'background'
-  data_source: bas_coastlines.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- id: coastlines
-  title: 'Coastlines'
-  description: >-
-    Note that the 'Greenland Coastlines' layer is preferred for Greenland.
-  visible: False
-  group_path: 'Basemaps'
-  style: 'coastline-IHOECDIS'
-  boundary: 'background'
-  data_source: coastlines.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-- id: ne_states_provinces
-  title: 'Administrative divisions'
-  description: >-
-    Polygons representing countries' internal administrative boundaries.
-  visible: False
-  group_path: 'Basemaps'
-  style: 'administrative_divisions'
-  boundary: 'background'
-  data_source: ne_states_provinces.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
-
-- id: ne_countries
-  title: 'Countries'
-  description: >-
-    Polygons representing countries.
-  visible: False
-  group_path: 'Basemaps'
-  style: 'countries'
-  boundary: 'background'
-  data_source: ne_countries.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-
 
 # NOTE: We attempted to add the corresponding NE Ocean layer, but it included
 # holes for small islands which are not present on the land layer, and that was
