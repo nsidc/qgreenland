@@ -95,6 +95,7 @@ gdal_calc_kwargs:
 # map?
 ogr2ogr_kwargs:
   # https://gdal.org/programs/ogr2ogr.html
+  # TODO: this is really an arg, not a kwarg. We made it a special cast. Fix!
   input_filename: str(required=False)
   clipdst: str(required=False)
   nlt: str(required=False)  # Make required? Ehh... Maybe...

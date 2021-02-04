@@ -306,7 +306,6 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
 
 - id: ne_states_provinces
@@ -354,7 +353,6 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'translations_joined.gpkg'
     # According to Eva, "BY" represents a town and "BYGD" represents a
     # settlement
@@ -369,12 +367,10 @@
   description: >-
       Points representing named points of interest in Greenland.
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'translations_joined.gpkg'
     sql: "'SELECT *,  \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'"
 
-- &hdx_hotosm
-  id: hotosm_populated_places
+- id: hotosm_populated_places
   title: 'Populated places'
   description: >-
       Points representing populated places in Greenland.
@@ -386,14 +382,33 @@
   ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
+  ogr2ogr_kwargs:
+    # Enumerate all the fields, because it's impossible to use "*" and modify a
+    # field without duplicating it with OGR SQL. We tried sqlite dialect as
+    # well, but it failed to cast appropriately. ¯\_(ツ)_/¯
+    sql: >-
+      "SELECT
+        osm_id,
+        is_in,
+        source,
+        name,
+        place,
+        CAST(population AS INTEGER) as population
+      FROM hotosm_grl_populated_places_points"
 
-- <<: *hdx_hotosm
+- &hdx_hotosm
   id: hotosm_health_facilities
   title: 'Health facilities'
   description: >-
       Points representing health facilities in Greenland.
   data_source: hdx_hotosm.health_facilities
+  visible: False
+  group_path: 'Places/Community map (open source)'
   style: health_facility_point
+  boundary: 'data'
+  ingest_task: zipped_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
 - <<: *hdx_hotosm
   id: hotosm_airports
   title: 'Airports'
@@ -617,7 +632,6 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -635,7 +649,6 @@
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -654,7 +667,6 @@
   group_path: 'Biology/Birds'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -672,7 +684,6 @@
   group_path: 'Biology/Birds'
   style: nunagis_bird_protected_areas
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -690,7 +701,6 @@
   group_path: 'Biology/Birds'
   style: nunagis_eider_protected_areas
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -709,7 +719,6 @@
   group_path: 'Biology/Birds'
   style: nunagis_goose_protected_areas
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -730,6 +739,26 @@
   ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
+  ogr2ogr_kwargs:
+    dialect: 'sqlite'
+    # `Geometry` seems to be the default geometry field if none is found by
+    # `ogrinfo`.
+    # `CREATED` is M.YYYY, which can't be converted to a complete date without
+    # a day.
+    sql: >-
+      "SELECT
+        Geometry,
+        SPECIES,
+        INTRODUCED,
+        OWNER,
+        DATA_URL,
+        SOURCE,
+        CREATED,
+        DATE(substr(MODIFIED, 7, 4) || '-' ||
+          substr(MODIFIED, 4, 2) || '-' ||
+          substr(MODIFIED, 1, 2)) as MODIFIED,
+        CONTACT
+      FROM Arctic_Char_2010"
 
 - <<: *nunagis_protected_areas
   id: nunagis_beluga_areas
@@ -739,7 +768,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -757,7 +785,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -788,7 +815,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -819,7 +845,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -837,7 +862,6 @@
   group_path: 'Biology/Mammals'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -860,7 +884,6 @@
   file_type: '.gpkg'
   data_type: 'vector'
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -929,7 +952,6 @@
   group_path: 'Environmental management/Protected zones'
   style: nunagis_unesco_treaty_zones
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -947,7 +969,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -965,7 +986,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -983,7 +1003,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1001,7 +1020,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1019,7 +1037,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1037,7 +1054,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1055,7 +1071,6 @@
   group_path: 'Environmental management/Protected zones'
   style: protected_area_polygon
   ogr2ogr_kwargs:
-    # TODO: This is lame, stop it!
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
     sql: >-
@@ -1371,6 +1386,28 @@
   ogr2ogr_kwargs:
     input_filename: 'locations.gpkg'
     s_srs: 'EPSG:4326'
+    # The field `_ogr_geometry_` was unexpected. `ogrinfo -so` can help you
+    # find the geometry column name.
+    # Note: `From foo` is correct. The internal table name is 'foo'.
+    sql: >-
+      "SELECT
+        _ogr_geometry_,
+        fid,
+        glacier_id,
+        glacier_name,
+        glacier_type,
+        glacier_lat,
+        glacier_lon,
+        time_period,
+        sources_data,
+        sources_background,
+        CAST(\"#_points\" AS INTEGER) as \"#_points\",
+        CAST(\"#_readings\" AS INTEGER) as \"#_readings\",
+        CAST(\"#_readings_final\" AS INTEGER) as \"#_readings_final\",
+        finished,
+        comments,
+        label
+      FROM foo"
 
 - id: jakobshavn_supraglacial_lakes
   title: 'Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019'
@@ -1392,6 +1429,21 @@
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.qpj'
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp'
       - 'greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shx'
+  ogr2ogr_kwargs:
+    dialect: 'sqlite'
+    sql: >-
+      "SELECT
+        Geometry,
+        id1,
+        DATE(
+          substr(date, 1, 4) || '-' ||  substr(date, 5, 2) || '-' || substr(date, 7, 2)
+        ) as date,
+        area1,
+        elev,
+        source,
+        tile,
+        row
+      FROM greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1"
 
 - id: firn_ice_layer_thicknesses
   title: 'Ice slab thickness in firn ice 2010-2014'
@@ -1408,6 +1460,17 @@
   boundary: 'background'
   ogr2ogr_kwargs:
     input_filename: 'Ice_Layer_Output_Thicknesses.gpkg'
+    sql: >-
+      "SELECT
+        geom,
+        fid,
+        Track_name,
+        CAST(Tracenumber AS INTEGER) as Tracenumber,
+        lat,
+        lon,
+        CAST(alongtrack_distance_m AS REAL) as alongtrack_distance_m,
+        CAST(\"20m_ice_content_m\" AS REAL) as \"20m_ice_content_m\"
+      FROM Ice_Layer_Output_Thicknesses"
 
 - id: glacier_terminus_glacier_ids
   title: 'Glacier IDs'
@@ -2125,6 +2188,38 @@
   data_type: 'vector'
   ogr2ogr_kwargs:
     input_filename: 'query.geojson'
+    dialect: 'sqlite'
+    sql: >-
+        "SELECT
+          geometry,
+          id,
+          mag,
+          place,
+          DATETIME(time / 1000, 'unixepoch') as time,
+          DATETIME(updated / 1000, 'unixepoch') as updated,
+          tz,
+          url,
+          detail,
+          felt,
+          cdi,
+          mmi,
+          alert,
+          tsunami,
+          sig,
+          net,
+          code,
+          ids,
+          sources,
+          types,
+          nst,
+          dmin,
+          rms,
+          gap,
+          magType,
+          type,
+          title,
+          title as label
+        FROM query"
 
 - id: tectonic_plate_boundaries
   title: 'Tectonic plate boundaries'

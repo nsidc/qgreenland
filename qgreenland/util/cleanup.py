@@ -96,11 +96,12 @@ def print_and_run(cmd, *, dry_run):
               help=(
                   'Bash glob/brace pattern used to delete input datasources by'
                   ' `<dataset_id>.<source_id>`'
-              ))
+              ),
+              multiple=True)
 @click.option('delete_wips_by_pattern', '--delete-wips-by-pattern', '-w',
               help=(
                   'Pattern used to delete WIP layers by layer ID'
-              ))
+              ), multiple=True)
 @click.option('delete_all_input', '--delete-all-input', '-I',
               help=(
                   'Delete _ALL_ input-cached layers, ignoring LAYER_ID_PATTERN'
@@ -141,16 +142,18 @@ def cleanup_cli(**kwargs):  # noqa: C901
         print('WARNING: In DRY RUN mode. Nothing will be deleted.')
         print()
 
-    if kwargs['delete_wips_by_pattern']:
-        print_and_run(
-            f'rm -rf {TaskType.WIP.value}/{kwargs["delete_wips_by_pattern"]}',
-            dry_run=kwargs['dry_run']
-        )
-    if kwargs['delete_inputs_by_pattern']:
-        print_and_run(
-            f'rm -rf {INPUT_DIR}/{kwargs["delete_inputs_by_pattern"]}',
-            dry_run=kwargs['dry_run']
-        )
+    if wip_patterns := kwargs['delete_wips_by_pattern']:
+        for p in wip_patterns:
+            print_and_run(
+                f'rm -rf {TaskType.WIP.value}/{p}',
+                dry_run=kwargs['dry_run']
+            )
+    if inp_patterns := kwargs['delete_inputs_by_pattern']:
+        for p in inp_patterns:
+            print_and_run(
+                f'rm -rf {INPUT_DIR}/{p}',
+                dry_run=kwargs['dry_run']
+            )
 
     if kwargs['delete_all_input']:
         print_and_run(
