@@ -1316,6 +1316,9 @@
   ingest_task: racmo_raster
   file_type: '.tif'
   data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: nearest
   translate_kwargs:
     extract_dataset: 'Promicemask'
   gdal_edit_kwargs:
