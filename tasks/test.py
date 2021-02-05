@@ -34,9 +34,15 @@ def lint(ctx):
     print_and_run(
         f'cd {PROJECT_DIR} &&'
         f' vulture --min-confidence 100 {PACKAGE_DIR} {SCRIPTS_DIR}',
-        pty=True
+        pty=True,
     )
-    # Shellcheck SCRIPTS_DIR
+    print_and_run(
+        f'cd {PROJECT_DIR} &&'
+        f' for file in $(find {SCRIPTS_DIR} -type f -name "*.sh");'
+        '    do shellcheck $file;'
+        '  done;',
+        pty=True,
+    )
     print('🎉🙈 Linting passed.')
 
 
