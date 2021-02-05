@@ -1,9 +1,8 @@
-import os
 import math
+import os
 
 import geopandas
 import numpy
-import pandas as pd
 from shapely.geometry import LineString
 
 OUT_DIR = './out'
@@ -40,10 +39,10 @@ def latitudes(*, increment=1):
 
     increment: decimal degrees
     """
-    RANGE = (0, 90)
+    degrees_range = (0, 90)
     lats = []
 
-    for lat in numpy.arange(RANGE[0], RANGE[1], increment):
+    for lat in numpy.arange(degrees_range[0], degrees_range[1], increment):
         lats.append({
             'wgs84Degrees': _decimal_degrees_to_dms(lat, lat_or_lon='lat'),
             'wgs84Decimal': float(lat),
@@ -61,10 +60,10 @@ def longitudes(*, increment=1):
 
     increment: decimal degrees
     """
-    RANGE = (-180, 180)
+    degrees_range = (-180, 180)
     lons = []
 
-    for lon in numpy.arange(RANGE[0], RANGE[1], increment):
+    for lon in numpy.arange(degrees_range[0], degrees_range[1], increment):
         lons.append({
             'wgs84Degrees': _decimal_degrees_to_dms(lon, lat_or_lon='lon'),
             'wgs84Decimal': float(lon),

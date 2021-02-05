@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 # TODO: --workers=$(nproc)  (or more?)
 # Currently hardcoded to 1 because increasing number of workers leads to failures:
 #

@@ -4,7 +4,6 @@ import os
 import re
 import sys
 from datetime import datetime
-from pprint import pprint
 
 from humanize import naturalsize
 
@@ -22,25 +21,25 @@ def logs_file_path(cmdl_args):
     If the user passed a path as positional argument, use that. Otherwise, if
     the NFS location is available, use it. Otherwise, use the local location.
     """
-    EXPECTED_FN = 'zip_access.log'
-    LOCAL_LOGS_DIR = os.path.join(REPO_ROOT, 'logs')
-    LOCAL_LOGS_FILE = os.path.join(LOCAL_LOGS_DIR, EXPECTED_FN)
-    NFS_LOGS_FILE = os.path.join('/share/logs/qgreenland', EXPECTED_FN)
+    expected_fn = 'zip_access.log'
+    local_logs_dir = os.path.join(REPO_ROOT, 'logs')
+    local_logs_file = os.path.join(local_logs_dir, expected_fn)
+    nfs_logs_file = os.path.join('/share/logs/qgreenland', expected_fn)
 
-    if os.path.isfile(LOCAL_LOGS_FILE):
-        LOGS_FILE = LOCAL_LOGS_FILE
+    if os.path.isfile(local_logs_file):
+        logs_file = local_logs_file
 
-    if os.path.isfile(NFS_LOGS_FILE):
-        LOGS_FILE = NFS_LOGS_FILE
+    if os.path.isfile(nfs_logs_file):
+        logs_file = nfs_logs_file
 
     if len(cmdl_args) > 1:
-        LOGS_FILE = cmdl_args[1]
+        logs_file = cmdl_args[1]
 
-    if not os.path.isfile(LOGS_FILE):
-        print(f"Log file '{LOGS_FILE}' does not exist.")
+    if not os.path.isfile(logs_file):
+        print(f"Log file '{logs_file}' does not exist.")
         sys.exit(1)
 
-    return LOGS_FILE
+    return logs_file
 
 
 def unusable_filename(fn):
@@ -52,13 +51,13 @@ class Parser:
     """Read log lines and build up stats for reporting.
 
     Example:
-
         {'v0.1.2': { 'downloads': 0,
                       'bytes': 0 }
          'v0.23.0dev': { 'downloads': 131,
                          'bytes': 31549151 }
         }
     """
+
     def __init__(self):
         self.state = {}
 
@@ -80,7 +79,7 @@ class Parser:
         matcher = re.compile('QGreenland_(v.+).zip')
         try:
             qgr_version = matcher.match(filename).groups()[0]
-        except AttributeError as e:
+        except AttributeError:
             unusable_filename(filename)
             return
 
@@ -91,13 +90,11 @@ class Parser:
             self.state[qgr_version] = {'downloads': 1,
                                        'bytes': num_bytes}
 
-
     def report(self):
         """Print a human-readable report.
 
         TODO: Consider printing in a nicer format than pprint(dict)
         """
-
         for key, val in self.state.items():
             print()
             print(f'== {key} ==')

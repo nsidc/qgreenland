@@ -37,6 +37,7 @@ dependencies:
   - pytest=5.3.5
   - pytest-cov=2.8.1
   - vulture=1.0
+  - shellcheck=0.7.1
 
   # Pip dependencies could be imported or non-imported :(
   - pip:

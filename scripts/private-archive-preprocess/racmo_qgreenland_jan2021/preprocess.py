@@ -1,5 +1,4 @@
 import gzip
-import os
 import shutil
 import subprocess
 import tempfile
@@ -7,8 +6,8 @@ import zipfile
 from itertools import product
 from pathlib import Path
 
-from netCDF4 import Dataset
 import numpy as np
+from netCDF4 import Dataset
 
 
 BASE_DIR = Path('/share/appdata/qgreenland-private-archive/racmo_qgreenland_jan2021/')
@@ -30,6 +29,7 @@ def _cmd(cmd: str):
         raise RuntimeError(result.stderr)
 
     return result
+
 
 def copy_ncs(*, out_dir: Path):
     return _cmd(f'cp {BASE_DIR}/*.nc {out_dir}/.')
@@ -66,7 +66,7 @@ def write_csv(*, in_dir: Path, out_fp: Path) -> Path:
     y_data = u_ds.variables['y'][:]
 
     with open(out_fp, 'w') as f:
-        f.write(f'eastward_component,northward_component,magnitude,x,y\n')
+        f.write('eastward_component,northward_component,magnitude,x,y\n')
         for i, j in product(range(u_data.shape[0]), range(u_data.shape[1])):
             u = u_data[i, j]
             if np.ma.is_masked(u):
