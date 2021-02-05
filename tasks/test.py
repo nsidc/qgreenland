@@ -28,13 +28,20 @@ def lint(ctx):
     """Run flake8 linting."""
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' flake8 {PACKAGE_DIR}',
+        f' flake8 {PACKAGE_DIR} {SCRIPTS_DIR}',
         pty=True,
     )
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' vulture {PACKAGE_DIR} --min-confidence 100',
-        pty=True
+        f' vulture --min-confidence 100 {PACKAGE_DIR} {SCRIPTS_DIR}',
+        pty=True,
+    )
+    print_and_run(
+        f'cd {PROJECT_DIR} &&'
+        f' for file in $(find {SCRIPTS_DIR} -type f -name "*.sh");'
+        '    do shellcheck $file;'
+        '  done;',
+        pty=True,
     )
     print('🎉🙈 Linting passed.')
 

@@ -5,8 +5,13 @@ import fiona
 from fiona.crs import from_epsg
 from netCDF4 import Dataset
 
-DATASET_ARCHIVE_LOCATION = Path('/share/appdata/qgreenland-private-archive/esa_cci_gravimetric_mass_balance_dtu/')
-DATA_PATH = DATASET_ARCHIVE_LOCATION / 'greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820/CCI_GMB_GIS.nc'
+PRIVATE_ARCHIVE_DIR = Path('/share/appdata/qgreenland-private-archive')
+DATASET_ARCHIVE_LOCATION = PRIVATE_ARCHIVE_DIR / 'esa_cci_gravimetric_mass_balance_dtu/'
+DATA_PATH = (
+    DATASET_ARCHIVE_LOCATION
+    / 'greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820'
+    / 'CCI_GMB_GIS.nc'
+)
 OUTPUT_GPKG_PATH = DATASET_ARCHIVE_LOCATION / 'QGREENLAND_GEOPACKAGES'
 
 OUTPUT_GPKG_PATH.mkdir(parents=True, exist_ok=True)
@@ -14,7 +19,8 @@ OUTPUT_GPKG_PATH.mkdir(parents=True, exist_ok=True)
 # Write out a simple README.
 with open(OUTPUT_GPKG_PATH / 'README.txt', 'w') as f:
     f.write(
-        f'Geopackages generated from gmb_dtu_nc_to_gpkg.py on {dt.date.today():%Y-%m-%d}\n'
+        'Geopackages generated from gmb_dtu_nc_to_gpkg.py on'
+        f' {dt.date.today():%Y-%m-%d}\n'
     )
 
 ds = Dataset(DATA_PATH, 'r')
@@ -39,6 +45,7 @@ def _schema_formatted_data(lat, lon, data, *, start_date_str, end_date_str):
             'end_date': end_date_str,
         },
     }
+
 
 gpkg_schema = {
     'geometry': 'Point',

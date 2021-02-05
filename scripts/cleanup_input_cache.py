@@ -8,7 +8,6 @@ Since this doesn't currently run in the container, it writes out a series of
 `sudo rm -rf` commands that you need to maunally run.
 """
 import os
-import shutil
 
 from qgreenland.config import CONFIG
 
@@ -18,7 +17,9 @@ DATASETS_CONFIG = 'qgreenland/config/datasets.yml'
 
 def _get_dataset_cache_ids():
     dataset_configs = [
-        dataset_config for dataset_config in CONFIG['datasets'] if dataset_config['access_method'] != 'gdal_remote'
+        dataset_config
+        for dataset_config in CONFIG['datasets']
+        if dataset_config['access_method'] != 'gdal_remote'
     ]
 
     cache_ids = []
@@ -28,11 +29,16 @@ def _get_dataset_cache_ids():
 
     return cache_ids
 
+
 if __name__ == '__main__':
     DRY_RUN = False
 
     cache_ids_from_config = _get_dataset_cache_ids()
-    existing_cache_ids = [item for item in os.listdir(INPUT_CACHE_DIR) if os.path.isdir(os.path.join(INPUT_CACHE_DIR, item))]
+    existing_cache_ids = [
+        item
+        for item in os.listdir(INPUT_CACHE_DIR)
+        if os.path.isdir(os.path.join(INPUT_CACHE_DIR, item))
+    ]
 
     rm_commands = []
     for existing_cache_id in existing_cache_ids:
@@ -47,8 +53,8 @@ if __name__ == '__main__':
                     response = input(f'Remove {path_to_remove}?\n')
 
                 if response == 'yes':
-                    rm_commands.append(f"sudo rm -rf {path_to_remove}")
-                    
+                    rm_commands.append(f'sudo rm -rf {path_to_remove}')
+
                     # print(f'Removing {path_to_remove}')
                     # shutil.rmtree(path_to_remove)
 

@@ -17,6 +17,7 @@ WIP_DIR = os.path.join(DATA_DIR, 'luigi-wip')
 ASSETS_DIR = os.path.join(PACKAGE_DIR, 'assets')
 LOCALDATA_DIR = os.path.join(ASSETS_DIR, 'local_data')
 TEST_DIR = os.path.join(PACKAGE_DIR, 'test')
+SCRIPTS_DIR = os.path.join(PROJECT_DIR, 'scripts')
 
 # TODO: Extract to function in another module to remove constants dependency on
 # get_build_version, version_is_full_release
