@@ -28,14 +28,15 @@ def lint(ctx):
     """Run flake8 linting."""
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' flake8 {PACKAGE_DIR}',
+        f' flake8 {PACKAGE_DIR} {SCRIPTS_DIR}',
         pty=True,
     )
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' vulture {PACKAGE_DIR} --min-confidence 100',
+        f' vulture --min-confidence 100 {PACKAGE_DIR} {SCRIPTS_DIR}',
         pty=True
     )
+    # Shellcheck SCRIPTS_DIR
     print('🎉🙈 Linting passed.')
 
 
