@@ -1372,7 +1372,7 @@
     sql: "'SELECT *, Name as label from \"Ice Core\"'"
 
 - id: machguth_massbalance_locations
-  title: 'Mass-balance glacier observation locations 1892-2020'
+  title: 'Mass balance glacier observation locations 1892-2020'
   description: >-
      Locations of glaciers used in surface mass-balance observations.
   visible: False
