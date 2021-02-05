@@ -75,7 +75,7 @@ def write_csv(*, in_dir: Path, out_fp: Path) -> Path:
 
             f.write(f'{u},{v},{magnitude},{x},{y}\n')
 
-    return out_fp 
+    return out_fp
 
 
 def convert_to_gpkg(*, in_fp: Path, out_fp: Path):
