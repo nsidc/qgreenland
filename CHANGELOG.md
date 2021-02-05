@@ -1,3 +1,9 @@
+# v0.54.0 (unreleased)
+
+- Update RACMO data:
+  - Mask 1km data with PromiceMask
+  - Wind speed and vectors data now use 5.5km resolution source data.
+
 # v0.53.0 (2021-02-04)
 
 - Update RACMO layers with 2019 data from Brice Noël.
