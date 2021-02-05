@@ -15,7 +15,12 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(
 ))
 sys.path.append(PROJECT_DIR)
 
-from qgreenland.constants import PACKAGE_DIR, PROJECT_DIR, TEST_DIR
+from qgreenland.constants import (
+    PACKAGE_DIR,
+    PROJECT_DIR,
+    SCRIPTS_DIR,
+    TEST_DIR
+)
 
 
 @task(aliases=['flake8'])
@@ -39,7 +44,7 @@ def typecheck(ctx):
     """Run mypy static type analysis."""
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' mypy --config-file={PROJECT_DIR}/.mypy.ini {PACKAGE_DIR}',
+        f' mypy --config-file={PROJECT_DIR}/.mypy.ini {PACKAGE_DIR} {SCRIPTS_DIR}',
         pty=True,
     )
     print('🎉🦆 Type checking passed.')

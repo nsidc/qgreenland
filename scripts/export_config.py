@@ -7,7 +7,7 @@ PARENT_DIR = os.path.dirname(THIS_DIR)
 sys.path.insert(0, PARENT_DIR)
 
 
-from qgreenland.constants import CONFIG
+from qgreenland.config import CONFIG
 from qgreenland.util.config import export_config
 
 if __name__ == '__main__':
