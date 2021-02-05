@@ -1,8 +1,6 @@
 name: qgreenland
 channels:
   - conda-forge
-  - https://conda.anaconda.org/nsidc/channel/main
-  - https://conda.anaconda.org/conda-forge/channel/main
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=conda_forge
@@ -241,4 +239,3 @@ dependencies:
     - pyqtchart==5.12
     - pyqtwebengine==5.12.1
     - rarfile==3.1
-prefix: /home/mfisher/miniconda3/envs/qgreenland
