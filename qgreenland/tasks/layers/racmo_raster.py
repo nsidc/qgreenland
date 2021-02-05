@@ -67,9 +67,10 @@ class ApplyPromiceMask(LayerTask):
             source_nodata = source_ds.nodata
             source_profile = source_ds.profile
 
-        # TODO: better err msg
         if not source_nodata:
-            raise QgrRuntimeError('Expected source DS with nodata.')
+            raise QgrRuntimeError(
+                f'Input raster {inp_path} has no `nodata` value defined. This is required to apply the PromiceMask.'
+            )
 
         with rasterio.open(self.mask_fp, 'r') as mask_ds:
             mask_data = mask_ds.read(1)
