@@ -14,8 +14,8 @@ import numpy as np
 BASE_DIR = Path('/share/appdata/qgreenland-private-archive/racmo_qgreenland_jan2021/')
 
 # Filenames of "u" and "v" directional magnitude components of windspeed vectors
-U_FN = 'u10m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
-V_FN = 'v10m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
+U_FN = 'u10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km_EPSG3413.YY-mean.nc'
+V_FN = 'v10m.1958-2019.BN_RACMO2.3p2_FGRN055_5.5km_EPSG3413.YY-mean.nc'
 
 
 def _cmd(cmd: str):
@@ -55,8 +55,12 @@ def write_csv(*, in_dir: Path, out_fp: Path) -> Path:
     u_ds = Dataset(in_dir / U_FN, 'r')
     v_ds = Dataset(in_dir / V_FN, 'r')
 
-    u_data = u_ds.variables['u10m'][0, :]
-    v_data = v_ds.variables['v10m'][0, :]
+    # The first dim is time, second is height, third is data.
+    u_data = u_ds.variables['u10m'][0, 0, :]
+    v_data = v_ds.variables['v10m'][0, 0, :]
+
+    assert u_data.shape == v_data.shape, 'u and v grids should be the same shape.'
+    assert len(u_data.shape) == 2, 'There are the wrong number of dimensions. Expected 2.'
 
     x_data = u_ds.variables['x'][:]
     y_data = u_ds.variables['y'][:]
