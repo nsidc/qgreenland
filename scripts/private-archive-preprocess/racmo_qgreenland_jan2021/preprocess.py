@@ -109,7 +109,11 @@ def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
 def zip_dir_contents(in_dir: Path, out_fp: Path):
     # NOTE: You may be asking "Why do we zip everything up?" Right now we can
     # only have 1 "source" per private dataset.
-    shutil.make_archive(out_fp.with_suffix(''), 'zip', in_dir)
+    shutil.make_archive(
+        str(out_fp.with_suffix('')),
+        'zip',
+        in_dir
+    )
 
     return out_fp
 
@@ -143,7 +147,7 @@ if __name__ == '__main__':
         )
 
         zip_fp = zip_dir_contents(
-            tmpdir,
+            tmppath,
             out_fp=BASE_DIR / 'RACMO_QGreenland_Jan2021.zip'
         )
 
