@@ -2,6 +2,29 @@
 # Reference #
 #############
 
+- &qgr_extent
+  id: qgr_extent_data
+  title: QGreenland constrained extent
+  description: >-
+    Polygon representing the extent of QGreenland data/imagery.
+  visible: False
+  group_path: 'Reference'
+  data_source: qgr_bounds.data
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'greenland_rectangle.geojson'
+
+- <<: *qgr_extent
+  id: qgr_extent_background
+  title: QGreenland background extent
+  description: >-
+    Polygon representing the extent of QGreenland background data/imagery.
+  data_source: qgr_bounds.background
+  ogr2ogr_kwargs:
+    input_filename: 'latitude_shape_40_degrees.geojson'
+
 - id: arctic_circle
   title: Arctic Circle (66° 34' North)
   description: >-
