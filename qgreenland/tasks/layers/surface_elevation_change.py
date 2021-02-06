@@ -1,5 +1,5 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
-from qgreenland.tasks.common.raster import GdalMDimTranslate
+from qgreenland.tasks.common.raster import BuildRasterOverviews, GdalMDimTranslate
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -11,8 +11,12 @@ class CCISurfaceElevationChange(LayerPipeline):
             source_cfg=source,
             dataset_cfg=self.cfg['dataset']
         )  # ->
-        return GdalMDimTranslate(
+        mdim_translate = GdalMDimTranslate(
             requires_task=fetch_data,
             input_ext_override='nc',
             layer_id=self.layer_id,
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=mdim_translate,
+            layer_id=self.layer_id
         )
