@@ -11,6 +11,7 @@
 - Removed layers:
   - GLIMS Images
   - Geology / Onshore pattern
+- Added overviews and compression to all raster layers.
 
 # v0.52.0 (2021-01-25)
 
