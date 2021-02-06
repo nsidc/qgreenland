@@ -2,6 +2,7 @@ import logging
 import os
 import subprocess
 import tempfile
+from pathlib import Path
 
 import pyproj
 from osgeo import gdal
@@ -115,10 +116,18 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs):
         _gdalwarp(out_path, step1_tempfp, **step2_kwargs)
 
 
-def _gdalwarp(out_path, inp_path, **warp_kwargs):
+def _gdalwarp(out_path: str, inp_path: str, **warp_kwargs) -> None:
     logger.debug(f'Warping {inp_path} -> {out_path} with arguments:'
                  f' {warp_kwargs}')
+
+    gdal.UseExceptions()
     gdal.Warp(out_path, inp_path, **warp_kwargs)
+
+    if not Path(out_path).is_file():
+        raise RuntimeError(
+            f'gdal.Warp failed warping {inp_path} -> {out_path} with args:'
+            f' {warp_kwargs}'
+        )
 
 
 def gdal_calc_raster(in_filepath, out_filepath, *, layer_cfg, gdal_calc_kwargs):
