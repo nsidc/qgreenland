@@ -1187,7 +1187,7 @@
   data_type: 'raster'
   unzip_kwargs:
     input_filename: 'RACMO_QGreenland_Jan2021.zip'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'Band1'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
@@ -1213,7 +1213,7 @@
   ingest_task: racmo_raster
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'precip'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
@@ -1232,7 +1232,7 @@
   description: >-
       Averaged annual snowfall in milimeters of water equivilent (mm w.e.) for
       the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'snowfall'
   decompress_kwargs:
     extract_files:
@@ -1244,7 +1244,7 @@
   description: >-
       Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) for
       the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'snowmelt'
   decompress_kwargs:
     extract_files:
@@ -1256,7 +1256,7 @@
   description: >-
       Averaged annual runoff in milimeters of water equivilent (mm w.e.) for the
       period 1958-2019 covering the whole ice sheet and peripheral ice caps.
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'runoff'
   decompress_kwargs:
     extract_files:
@@ -1269,7 +1269,7 @@
       Averaged annual sublimation in milimeters of water equivilent (mm w.e.)
       for the period 1958-2019 covering the whole ice sheet and peripheral ice
       caps.
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'subl'
   decompress_kwargs:
     extract_files:
@@ -1282,7 +1282,7 @@
       Averaged annual snow drift erosion in milimeters of water equivilent (mm
       w.e.)  for the period 1958-2019 covering the whole ice sheet and
       peripheral ice caps.
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'sndiv'
   decompress_kwargs:
     extract_files:
@@ -1296,7 +1296,7 @@
   description: >-
       Averaged annual mean temperature at 2m in degrees Kelvin for the period
       1958-2019.
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't2m'
   decompress_kwargs:
     extract_files:
@@ -1309,7 +1309,7 @@
     Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
     peripheral ice caps; 0 = Ocean.
   group_path: 'Regional climate models/RACMO model output/RACMO masks'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'Promicemask'
   gdal_edit_kwargs:
     a_srs: 'EPSG:3413'
@@ -1324,7 +1324,7 @@
   description: >-
       Surface elevation in meters.
   group_path: 'Regional climate models/RACMO model output/RACMO masks'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'Topography'
   gdal_edit_kwargs:
     a_srs: 'EPSG:3413'
@@ -1342,7 +1342,7 @@
   description: >-
       Mask of grounded ice.
   group_path: 'Regional climate models/RACMO model output/RACMO masks'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'grounded_ice'
   gdal_edit_kwargs:
     a_srs: 'EPSG:3413'
@@ -1608,6 +1608,8 @@
   ingest_task: cci_surface_elevation_change
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    creationOptions: ["COMPRESS=DEFLATE"]
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,0]"
 
@@ -1762,6 +1764,8 @@
   ingest_task: cci_surface_elevation_change
   file_type: '.tif'
   data_type: 'raster'
+  translate_kwargs:
+    creationOptions: ["COMPRESS=DEFLATE"]
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,0]"
 
@@ -2053,7 +2057,7 @@
   ingest_task: velocity_mosaic
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'v'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
@@ -2068,7 +2072,7 @@
   description: 'Magnitude of Velocity error in meters per year.'
   ingest_task: velocity_mosaic
   style: ice_sheet_velocity_error
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'v_err'
 
 - <<: *its_live_velocity_mosaic
@@ -2077,7 +2081,7 @@
   style: null
   description: 'Ice mask used for velocity mosiac.'
   ingest_task: netcdf_raster
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'ice'
 
 - &esa_cci_velocity
@@ -2092,7 +2096,7 @@
   ingest_task: local_zipped_netcdf_raster
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'land_ice_surface_velocity_magnitude'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
@@ -2106,7 +2110,7 @@
   title: 'Land Ice Surface Vertical Velocity (250m)'
   description: 'Vertical ice velocity in meters per day.'
   style: null
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'land_ice_surface_vertical_velocity'
 
 - id: basal_thermal_state
@@ -2121,7 +2125,7 @@
   ingest_task: basal_thermal_state
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'basal_thermal_state'
   gdal_mdim_translate_kwargs:
     array: "name=likely_basal_thermal_state,transpose=[1,0],view=[::-1,:]"
@@ -2147,7 +2151,7 @@
   ingest_task: netcdf_raster
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'MAGT'
   warp_kwargs:
     srcSRS: 'EPSG:3995'
@@ -2157,7 +2161,7 @@
   title: 'Ground temperature standard deviation (10km)'
   description: >-
      Standard deviation of the average mean annual ground temperature in degrees Celsius.
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'SD'
 
 - <<: *ground_temperature
@@ -2166,7 +2170,7 @@
   description: >-
      Permafrost probability (fraction values from 0 to 1) is assigned to each
      grid cell with MAGT < 0°C.
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'PerProb'
 
 
@@ -3997,7 +4001,7 @@
   decompress_kwargs:
     extract_files:
       - 'ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'GHF'
   file_type: '.tif'
   data_type: 'raster'
@@ -4187,7 +4191,7 @@
   boundary: 'background'
   data_source: seaice_age.2010
   ingest_task: 'sea_ice_age'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2010-09-17
     bandList: [38]
@@ -4200,7 +4204,7 @@
   id: seaice_minimum_age_2011
   title: 'Sea ice age September 10-17 2011'
   data_source: seaice_age.2011
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2011-09-10
     bandList: [37]
@@ -4209,7 +4213,7 @@
   id: seaice_minimum_age_2012
   title: 'Sea ice age September 16-23 2012'
   data_source: seaice_age.2012
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2012-09-16
     bandList: [38]
@@ -4218,7 +4222,7 @@
   id: seaice_minimum_age_2013
   title: 'Sea ice age September 10-17 2013'
   data_source: seaice_age.2013
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2013-09-10
     bandList: [37]
@@ -4227,7 +4231,7 @@
   id: seaice_minimum_age_2014
   title: 'Sea ice age September 17-24 2014'
   data_source: seaice_age.2014
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2014-09-17
     bandList: [38]
@@ -4236,7 +4240,7 @@
   id: seaice_minimum_age_2015
   title: 'Sea ice age September 3-10 2015'
   data_source: seaice_age.2015
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2015-09-03
     bandList: [36]
@@ -4245,7 +4249,7 @@
   id: seaice_minimum_age_2016
   title: 'Sea ice age September 9-16 2016'
   data_source: seaice_age.2016
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2016-09-09
     bandList: [37]
@@ -4254,7 +4258,7 @@
   id: seaice_minimum_age_2017
   title: 'Sea ice age September 10-17 2017'
   data_source: seaice_age.2017
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2017-09-10
     bandList: [37]
@@ -4263,7 +4267,7 @@
   id: seaice_minimum_age_2018
   title: 'Sea ice age September 17-24 2018'
   data_source: seaice_age.2018
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2018-09-17
     bandList: [38]
@@ -4272,7 +4276,7 @@
   id: seaice_minimum_age_2019
   title: 'Sea ice age September 17-24 2019'
   data_source: seaice_age.2019
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2019-09-17
     bandList: [38]
@@ -4294,7 +4298,7 @@
   ingest_task: sea_ice_age
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2010-03-26
     bandList: [13]
@@ -4305,7 +4309,7 @@
   id: seaice_maximum_age_2011
   title: 'Sea ice age March 5-12 2011'
   data_source: seaice_age.2011
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2011-03-05
     bandList: [10]
@@ -4314,7 +4318,7 @@
   id: seaice_maximum_age_2012
   title: 'Sea ice age March 18-25 2012'
   data_source: seaice_age.2012
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2012-03-18
     bandList: [12]
@@ -4323,7 +4327,7 @@
   id: seaice_maximum_age_2013
   title: 'Sea ice age March 12-19 2013'
   data_source: seaice_age.2013
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2013-03-12
     bandList: [11]
@@ -4332,7 +4336,7 @@
   id: seaice_maximum_age_2014
   title: 'Sea ice age March 19-26 2014'
   data_source: seaice_age.2014
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2014-03-19
     bandList: [12]
@@ -4341,7 +4345,7 @@
   id: seaice_maximum_age_2015
   title: 'Sea ice age February 12-19 2015'
   data_source: seaice_age.2015
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2015-02-12
     bandList: [7]
@@ -4350,7 +4354,7 @@
   id: seaice_maximum_age_2016
   title: 'Sea ice age March 18-25 2016'
   data_source: seaice_age.2016
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2016-03-18
     bandList: [12]
@@ -4359,7 +4363,7 @@
   id: seaice_maximum_age_2017
   title: 'Sea ice age March 5-12 2017'
   data_source: seaice_age.2017
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2017-03-05
     bandList: [10]
@@ -4368,7 +4372,7 @@
   id: seaice_maximum_age_2018
   title: 'Sea ice age March 11-18 2018'
   data_source: seaice_age.2018
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2018-03-12
     bandList: [11]
@@ -4377,7 +4381,7 @@
   id: seaice_maximum_age_2019
   title: 'Sea ice age March 12-19 2019'
   data_source: seaice_age.2019
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
     # Week of 2019-03-12
     bandList: [11]
@@ -4606,7 +4610,7 @@
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [1]
   warp_kwargs:
@@ -4617,7 +4621,7 @@
   id: woa2018_0m_temperature_summer
   title: 'Surface, Summer'
   data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [1]
 
@@ -4627,7 +4631,7 @@
   description: >-
     Seawater temperature at 50m depth in °C.
   data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [11]
 
@@ -4637,7 +4641,7 @@
   description: >-
     Seawater temperature at 50m depth in °C.
   data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [11]
 
@@ -4647,7 +4651,7 @@
   description: >-
     Seawater temperature at 200m depth in °C.
   data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [25]
 
@@ -4657,7 +4661,7 @@
   description: >-
     Seawater temperature at 200m depth in °C.
   data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [25]
 
@@ -4667,7 +4671,7 @@
   description: >-
     Seawater temperature at 500m depth in °C.
   data_source: woa2018_temperature.seasonal_winter
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [37]
 
@@ -4677,7 +4681,7 @@
   description: >-
     Seawater temperature at 500m depth in °C.
   data_source: woa2018_temperature.seasonal_summer
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [37]
 
@@ -4697,7 +4701,7 @@
   ingest_task: netcdf_raster
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'z'
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
@@ -4728,7 +4732,7 @@
   ingest_task: netcdf_raster
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'sftgif'
     noData: 0
   overviews_kwargs:
@@ -4764,7 +4768,7 @@
   ingest_task: bedmachine
   file_type: '.tif'
   data_type: 'raster'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'thickness'
   warp_kwargs:
     xRes: 500
@@ -4777,7 +4781,7 @@
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
   style: 'bedmachine_surface'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'surface'
 
 - <<: *bedmachine
@@ -4786,7 +4790,7 @@
   description: >-
     Bedrock elevation in meters.
   style: 'bedmachine_bed'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'bed'
 
 - <<: *bedmachine
@@ -4795,7 +4799,7 @@
   description: >-
     Error estimate for Greenland bed elevation and ice thickness in meters.
   style: 'bedmachine_errbed'
-  translate_kwargs:
+  extract_nc_dataset_kwargs:
     extract_dataset: 'errbed'
 
 - id: arctic_dem

@@ -1,5 +1,9 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
-from qgreenland.tasks.common.raster import BuildRasterOverviews, GdalMDimTranslate
+from qgreenland.tasks.common.raster import (
+    BuildRasterOverviews,
+    GdalMDimTranslate,
+    ReformatRaster,
+)
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -16,7 +20,11 @@ class CCISurfaceElevationChange(LayerPipeline):
             input_ext_override='nc',
             layer_id=self.layer_id,
         )  # ->
-        return BuildRasterOverviews(
+        reformat = ReformatRaster(
             requires_task=mdim_translate,
+            layer_id=self.layer_id,
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=reformat,
             layer_id=self.layer_id
         )
