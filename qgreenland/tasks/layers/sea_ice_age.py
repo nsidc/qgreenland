@@ -28,6 +28,7 @@ class SeaIceAge(LayerPipeline):
                 'gdalwarp',
                 '-cutline', self.cfg['boundary']['fp'],
                 '-crop_to_cutline',
+                '-co', 'COMPRESS=DEFLATE',
                 '{OUTDIR}/reprojected.tif', '{OUTPUT}'
             ],
         ]
