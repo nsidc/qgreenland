@@ -1,5 +1,9 @@
 from qgreenland.tasks.common.fetch import FetchCmrGranule
-from qgreenland.tasks.common.raster import GdalEdit, GdalMDimTranslate
+from qgreenland.tasks.common.raster import (
+    BuildRasterOverviews,
+    GdalEdit,
+    GdalMDimTranslate,
+)
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -21,7 +25,11 @@ class BasalThermalState(LayerPipeline):
             input_ext_override='nc',
             layer_id=self.layer_id,
         )  # ->
-        return GdalEdit(
+        gdal_edit = GdalEdit(
             requires_task=mdim_translate,
             layer_id=self.layer_id,
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=gdal_edit,
+            layer_id=self.layer_id
         )
