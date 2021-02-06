@@ -2132,6 +2132,8 @@
   gdal_edit_kwargs:
     a_ullr: "-632500.0 -667500.0 847500.0 -3342500.0"
     a_srs: "EPSG:3413"
+  translate_kwargs:
+    creationOptions: ["COMPRESS=DEFLATE"]
 
 
 #################
