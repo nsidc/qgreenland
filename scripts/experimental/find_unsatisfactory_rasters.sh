@@ -27,18 +27,18 @@ find "${QGR_COMPILED_DIR}" -name '*.tif' | while read -r r; do
     no_overviews=$?
     set -e
 
-    if (( $all == 1)); then
+    if (( all == 1)); then
         echo "$relative_fp"
         echo "  Compression: $compression"
         echo "  Overviews: $overviews"
     else
-        if (( $not_compressed == 0 || $no_overviews == 0 )); then
+        if (( not_compressed == 0 || no_overviews == 0 )); then
             echo "$relative_fp"
-            if (( $not_compressed == 0 )); then
+            if (( not_compressed == 0 )); then
                 echo "  Compression type: '$compression'"
             fi
 
-            if (( $no_overviews == 0 )); then
+            if (( no_overviews == 0 )); then
                 echo "  Overviews missing."
             fi
         fi
