@@ -25,12 +25,12 @@ class RacmoRaster(LayerPipeline):
             requires_task=unzip,
             layer_id=self.layer_id,
         )  # ->
-        gdaledit = GdalEdit(
+        gdal_edit = GdalEdit(
             requires_task=extract_nc_dataset,
             layer_id=self.layer_id
-        )
+        )  # ->
         warp_raster = WarpRaster(
-            requires_task=gdaledit,
+            requires_task=gdal_edit,
             layer_id=self.layer_id
         )  # ->
         return BuildRasterOverviews(
