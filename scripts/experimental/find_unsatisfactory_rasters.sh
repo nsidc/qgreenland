@@ -27,10 +27,13 @@ find "${QGR_COMPILED_DIR}" -name '*.tif' | while read -r r; do
     no_overviews=$?
     set -e
 
+    filesize=$(du -h "$r")
+
     if (( all == 1)); then
         echo "$relative_fp"
         echo "  Compression: $compression"
         echo "  Overviews: $overviews"
+        echo "  Filesize: $filesize"
     else
         if (( not_compressed == 0 || no_overviews == 0 )); then
             echo "$relative_fp"
