@@ -93,7 +93,7 @@ class ExtractNcDataset(LayerTask):
         with temporary_path_dir(self.output()) as temp_dir:
             input_fp = find_single_file_by_ext(self.input().path, ext='.nc')
 
-            dataset_name = self.layer_cfg['translate_kwargs'].pop('extract_dataset')
+            dataset_name = self.layer_cfg['extract_nc_dataset_kwargs'].pop('extract_dataset')
 
             output_filename = f"{dataset_name}{self.layer_cfg['file_type']}"
             output_fp = os.path.join(temp_dir, output_filename)
@@ -106,5 +106,5 @@ class ExtractNcDataset(LayerTask):
             gdal.Translate(
                 output_fp,
                 from_dataset_path,
-                **self.layer_cfg['translate_kwargs']
+                **self.layer_cfg['extract_nc_dataset_kwargs']
             )
