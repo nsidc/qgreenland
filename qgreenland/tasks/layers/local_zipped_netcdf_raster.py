@@ -1,6 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset, Unzip
-from qgreenland.tasks.common.raster import WarpRaster
+from qgreenland.tasks.common.raster import BuildRasterOverviews, WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -21,7 +21,11 @@ class LocalZippedNetCdfRaster(LayerPipeline):
             requires_task=unzip,
             layer_id=self.layer_id,
         )  # ->
-        return WarpRaster(
+        warp_raster = WarpRaster(
             requires_task=extract_nc_dataset,
+            layer_id=self.layer_id
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=warp_raster,
             layer_id=self.layer_id
         )

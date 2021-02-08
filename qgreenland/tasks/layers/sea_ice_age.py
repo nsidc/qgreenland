@@ -1,7 +1,7 @@
 from qgreenland.tasks.common.command import Commands
 from qgreenland.tasks.common.fetch import FetchDataFiles
 from qgreenland.tasks.common.misc import ExtractNcDataset
-from qgreenland.tasks.common.raster import GdalEdit
+from qgreenland.tasks.common.raster import BuildRasterOverviews, GdalEdit
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -28,6 +28,7 @@ class SeaIceAge(LayerPipeline):
                 'gdalwarp',
                 '-cutline', self.cfg['boundary']['fp'],
                 '-crop_to_cutline',
+                '-co', 'COMPRESS=DEFLATE',
                 '{OUTDIR}/reprojected.tif', '{OUTPUT}'
             ],
         ]
@@ -44,8 +45,12 @@ class SeaIceAge(LayerPipeline):
             requires_task=extract_nc_dataset,
             layer_id=self.layer_id,
         )  # ->
-        return Commands(
+        commands = Commands(
             requires_task=gdal_edited,
             commands=commands,
+            layer_id=self.layer_id
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=commands,
             layer_id=self.layer_id
         )

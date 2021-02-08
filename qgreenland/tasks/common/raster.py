@@ -1,8 +1,10 @@
+import logging
 import os
 import shutil
 
 import luigi
 import rasterio as rio
+from osgeo import gdal
 
 from qgreenland.constants import TaskType
 from qgreenland.util.luigi import LayerTask
@@ -11,6 +13,8 @@ from qgreenland.util.raster import (gdal_calc_raster,
                                     gdal_edit_raster,
                                     gdal_mdim_translate_raster,
                                     warp_raster)
+
+logger = logging.getLogger('luigi-interface')
 
 
 class BuildRasterOverviews(LayerTask):
@@ -27,7 +31,7 @@ class BuildRasterOverviews(LayerTask):
                                         ext=self.layer_cfg['file_type'])
 
         overviews_kwargs = {
-            'overview_levels': (2, 4, 8, 16),
+            'overview_levels': tuple(),  # noqa: C408
             'resampling_method': 'average'
         }
 
@@ -51,8 +55,13 @@ class BuildRasterOverviews(LayerTask):
             # 'internal overviews', which changes the file itself.
             shutil.copy2(ifile, tmp_path)
 
-            with rio.open(tmp_path, 'r+') as ds:
-                ds.build_overviews(overview_levels, resampling_method)
+            # HACK:
+            # Only build overviews if overview_levels is populated with values.
+            # This allows pipelines to have an overview step that can be
+            # disabled in config.
+            if overview_levels:
+                with rio.open(tmp_path, 'r+') as ds:
+                    ds.build_overviews(overview_levels, resampling_method)
 
 
 class WarpRaster(LayerTask):
@@ -105,6 +114,35 @@ class GdalCalcRaster(LayerTask):
                 inp_path, out_path,
                 layer_cfg=self.layer_cfg,
                 gdal_calc_kwargs=gdal_calc_kwargs
+            )
+
+
+class ReformatRaster(LayerTask):
+    """Perform an arbitrary GDAL translate."""
+
+    task_type = TaskType.WIP
+
+    def output(self):
+        # GDAL translate will automatically determine file type from the extension.
+        return luigi.LocalTarget(
+            os.path.join(self.outdir, 'translate')
+        )
+
+    def run(self):
+        with temporary_path_dir(self.output()) as temp_dir:
+            # TODO: inp_ext_override like WarpRaster?
+            file_ext = self.layer_cfg['file_type']
+            inp_path = find_single_file_by_ext(self.input().path, ext=file_ext)
+            out_path = os.path.join(temp_dir, self.filename)
+
+            logger.debug(
+                f'Using gdal.Translate to convert from {inp_path} to {out_path}'
+            )
+
+            gdal.Translate(
+                out_path,
+                inp_path,
+                **self.layer_cfg['translate_kwargs']
             )
 
 

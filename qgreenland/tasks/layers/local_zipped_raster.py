@@ -1,6 +1,6 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
 from qgreenland.tasks.common.misc import Unzip
-from qgreenland.tasks.common.raster import WarpRaster
+from qgreenland.tasks.common.raster import BuildRasterOverviews, WarpRaster
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -17,7 +17,11 @@ class LocalZippedRaster(LayerPipeline):
             requires_task=fetch_data,
             layer_id=self.layer_id
         )  # ->
-        return WarpRaster(
+        warp_raster = WarpRaster(
             requires_task=unzip,
+            layer_id=self.layer_id
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=warp_raster,
             layer_id=self.layer_id
         )

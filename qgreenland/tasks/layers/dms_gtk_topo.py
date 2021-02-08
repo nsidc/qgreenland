@@ -1,4 +1,5 @@
 from qgreenland.tasks.common.fetch import FetchLocalDataFiles
+from qgreenland.tasks.common.raster import BuildRasterOverviews
 from qgreenland.util.luigi import LayerPipeline
 
 
@@ -16,7 +17,11 @@ class DmsGtkTopo(LayerPipeline):
 
     # TODO: Build overviews for performance
     def requires(self):
-        return FetchLocalDataFiles(
+        fetch = FetchLocalDataFiles(
             source_cfg=self.cfg['source'],
             dataset_cfg=self.cfg['dataset']
+        )  # ->
+        return BuildRasterOverviews(
+            requires_task=fetch,
+            layer_id=self.layer_id
         )

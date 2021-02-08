@@ -43,6 +43,7 @@ layer:
   ogr2ogr_kwargs: include('ogr2ogr_kwargs', required=False)
   gdal_calc_kwargs: include('gdal_calc_kwargs', required=False)
   translate_kwargs: include('translate_kwargs', required=False)
+  extract_nc_dataset_kwargs: include('extract_nc_dataset_kwargs', required=False)
   gdal_mdim_translate_kwargs: include('gdal_mdim_translate_kwargs', required=False)
   gdal_edit_kwargs: include('gdal_edit_kwargs', required=False)
   delimited_text_vector_kwargs: include('delimited_text_vector_kwargs', required=False)
@@ -80,6 +81,10 @@ gdal_mdim_translate_kwargs:
 
 ---
 translate_kwargs:
+  creationOptions: list(str(), required=False)
+
+---
+extract_nc_dataset_kwargs:
   extract_dataset: str(required=True)
   bandList: list(int(), required=False)
   noData: int(required=False)

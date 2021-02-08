@@ -37,11 +37,11 @@ class GdalCalcMaskedVelocity(LayerTask):
                                                ext='.nc')
 
             try:
-                variable = self.layer_cfg['translate_kwargs']['extract_dataset']
+                variable = self.layer_cfg['extract_nc_dataset_kwargs']['extract_dataset']
             except KeyError:
                 raise RuntimeError(
                     'Missing layer config for ITS_LIVE velocity mosiac:'
-                    ' Needs `translate_kwargs:extract_dataset`'
+                    ' Needs `extract_nc_dataset_kwargs:extract_dataset`'
                 )
 
             cmd = (
