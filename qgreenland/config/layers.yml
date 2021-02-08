@@ -1156,7 +1156,7 @@
 ###########################
 
 - id: racmo_wind_vectors
-  title: 'Annual mean wind vectors 1958-2019 (1km)'
+  title: 'Annual mean wind vectors 1958-2019 (5km)'
   description: >-
       Averaged annual mean wind direction in meters per second from RACMO2.3p2
       for the period 1958-2019.
@@ -1173,7 +1173,7 @@
     input_filename: 'wind_vector_points.gpkg'
 
 - id: racmo_wind_speed
-  title: 'Annual mean wind speed 1958-2019 (1km)'
+  title: 'Annual mean wind speed 1958-2019 (5km)'
   description: >-
       Averaged annual mean wind speed in meters per second from
       RACMO2.3p2 for the period 1958-2019.
@@ -1210,7 +1210,7 @@
   style: null
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
-  ingest_task: racmo_raster
+  ingest_task: racmo_raster_with_mask
   file_type: '.tif'
   data_type: 'raster'
   translate_kwargs:
@@ -1302,13 +1302,23 @@
     extract_files:
       - 't2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
 
-- <<: *racmo_1km
+- &racmo_1km_masks
   id: racmo_promicemask
   title: 'PROMICE mask (1km)'
   description: >-
     Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
     peripheral ice caps; 0 = Ocean.
   group_path: 'Regional climate models/RACMO model output/RACMO masks'
+  visible: False
+  style: null
+  boundary: 'data'
+  data_source: racmo_qgreenland_jan2021.only
+  ingest_task: racmo_raster
+  file_type: '.tif'
+  data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: nearest
   translate_kwargs:
     extract_dataset: 'Promicemask'
   gdal_edit_kwargs:
@@ -1318,12 +1328,15 @@
     extract_files:
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
-- <<: *racmo_1km
+- <<: *racmo_1km_masks
   id: racmo_topography
   title: 'Topography (1km)'
   description: >-
       Surface elevation in meters.
   group_path: 'Regional climate models/RACMO model output/RACMO masks'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
   translate_kwargs:
     extract_dataset: 'Topography'
   gdal_edit_kwargs:
@@ -1336,7 +1349,7 @@
   warp_kwargs:
     srcNodata: 9999.0
 
-- <<: *racmo_1km
+- <<: *racmo_1km_masks
   id: racmo_grounded_ice
   title: 'Grounded ice (1km)'
   description: >-
