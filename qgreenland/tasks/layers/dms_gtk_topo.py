@@ -15,7 +15,6 @@ class DmsGtkTopo(LayerPipeline):
     filesize from 54M to 16G.
     """
 
-    # TODO: Build overviews for performance
     def requires(self):
         fetch = FetchLocalDataFiles(
             source_cfg=self.cfg['source'],
