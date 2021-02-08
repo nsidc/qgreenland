@@ -1038,17 +1038,19 @@ The images and data are produced in a consistent way that makes the Index time-s
   sources:
     - id: only
       access_instructions: >-
-          Provided by Eva Mätzler via Email as a zipped collection of data
-          '20201112_Oqaasileriffik_place-name register.zip'. See
-          scripts/private-archive-preprocess/eva_placenames/README.md for
-          preprocessing steps.
+        Provided by Eva Mätzler via Email as a zipped collection of data
+        '20201112_Oqaasileriffik_place-name register.zip'. See
+        scripts/private-archive-preprocess/eva_placenames/README.md for
+        preprocessing steps.
   metadata:
     title: Place names
     abstract: >-
-      Place names as provided by Asiaq Greenland Survey, December 2020.
+      Place names as provided by Asiaq Greenland Survey, December
+      2020. Translation for data fields provided by Arnaq B. Johansen, Greenland
+      Project Manager in Collection of Place Names (January 2021).
     citation:
-      text: 'TBD'
-      url: 'http://example.com/TBD'
+      text: 'Place names, Asiaq Greenland Survey, December 2020.'
+      url: ''
 
 
 - id: nunagis_pop2019_municipalities
@@ -1549,20 +1551,22 @@ The images and data are produced in a consistent way that makes the Index time-s
     abstract: >-
       Global Land Ice Measurements from Space (GLIMS) is an international
       initiative with the goal of repeatedly surveying the world's estimated
-      200,000 glaciers. GLIMS uses data collected by the Advanced Spaceborne
-      Thermal Emission and Reflection Radiometer (ASTER) instrument aboard the
-      Terra satellite and the LANDSAT series of satellites, along with
-      historical observations.
-
+      200,000 glaciers. GLIMS is characterizing and categorizing the many
+      Greenland peripheral glaciers and ice caps, rather than the contiguous ice
+      sheet region.
+      
       The GLIMS initiative has created a unique glacier inventory, storing
       information about the extent and rates of change of all the world's
-      mountain glaciers and ice caps. The GLIMS Glacier Database was built up
-      from data contributions from many glaciological institutions, which are
-      managed by Regional Coordinators, who coordinate the production of glacier
-      mapping results for their particular region. The GLIMS Glacier Database
-      provides students, educators, scientists, and the public with reliable
-      glacier data from these analyses. New glacier data are continually being
-      added to the database.
+      mountain glaciers and ice caps. GLIMS uses data collected by the Advanced
+      Spaceborne Thermal Emission and Reflection Radiometer (ASTER) instrument
+      aboard the Terra satellite and the LANDSAT series of satellites, along
+      with historical observations. The GLIMS Glacier Database was built up from
+      data contributions from many glaciological institutions, which are managed
+      by Regional Coordinators, who coordinate the production of glacier mapping
+      results for their particular region. The GLIMS Glacier Database provides
+      students, educators, scientists, and the public with reliable glacier data
+      from these analyses. New glacier data are continually being added to the
+      database.
     citation:
       text: >-
         GLIMS and NSIDC (2005, updated 2013): Global Land Ice
@@ -1830,18 +1834,48 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: only
       # This was obtained from a private hosting location.
       access_instructions: >-
-          RACMO data were obtained via a private data transer by Brice Noël. See
-          the
-          `scripts/preprocess-private-archive/racmo_qgreenland_jan2021/README.md`
-          for additional information.
+        RACMO data were obtained via a private data transer by Brice Noël. See
+        the
+        `scripts/preprocess-private-archive/racmo_qgreenland_jan2021/README.md`
+        for additional information.
   metadata:
-    title: "TBD"
+    title: "Regional Atmospheric Climate Model (RACMO)"
     abstract: >-
-      TBD
+      The Regional Atmospheric Climate Model (RACMO) data included use a new run
+      at 5.5-km horizontal resolution of the polar (p) version of RACMO2.3p2 for
+      the period 1958–2017. RACMO2.3p2 incorporates the dynamical core of the
+      High Resolution Limited Area Model and the physics from the European
+      Centre for Medium-Range Weather Forecasts–Integrated Forecast System
+      (ECMWF-IFS cycle CY33r1). RACMO2.3p2 includes a multilayer snow module
+      that simulates melt, water percolation, and retention in snow, refreezing,
+      and runoff. The model also accounts for dry snow densification, and
+      drifting snow erosion and sublimation. Snow albedo is calculated on the
+      basis of snow grain size, cloud optical thickness, solar zenith angle, and
+      impurity concentration in snow. As compared to the model described in Noel
+      et al. (2018) (reference below), no model physics have been
+      changed. However, increased horizontal resolution of the host model, i.e.,
+      5.5 km instead of 11 km, better resolves gradients in SMB components over
+      the topographically complex ice sheet margins and neighboring peripheral
+      glaciers and ice caps. Some data output has also been downscaled to 1-km
+      resolution. QGreenland currently displays data that describes annual mean
+      values over 1958-2019 for wind speed, total precipitation, snowfall,
+      snowmelt, runoff, sublication, snow drift erosion, and 2-m
+      temperature. Input topography data is also included, along with the
+      PROMICE ice mask and grounded ice mask.
+
+      For a detailed description of the RACMO model and recent updates, refer
+      to: B. Noël, W. J. van de Berg, J. M. van Wessem, E. van Meijgaard, D. van
+      As, J. T. M. Lenaerts, S. Lhermitte, P. Kuipers Munneke,
+      C. J. P. P. Smeets, L. H. van Ulft, R. S. W. van de Wal, M. R. van den
+      Broeke, Modelling the climate and surface mass balance of polar ice sheets
+      using RACMO2, Part 1: Greenland (1958-2016). Cryosphere 12, 811–831
+      (2018).
     citation:
       text: >-
-        TBD
-      url: 'TBD'
+        Noël, B., W. J. van de Berg, S. Lhermitte, and M. R. van den Broeke
+        (2019), Rapid ablation zone expansion amplifies north Greenland mass
+        loss, Science Advances, 5(9), eaaw0123.
+      url: 'https://advances.sciencemag.org/content/5/9/eaaw0123'
 
 
 - id: seaice_age
