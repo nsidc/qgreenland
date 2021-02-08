@@ -3959,10 +3959,6 @@
     # resolution.
     xRes: 2000
     yRes: 2000
-    # TODO: is this correct? Unlike the other files we received, the Bouguer
-    # gravity model does not have any 'nodata' metadata. There is at least one
-    # pixel with this outlier value.
-    srcNodata: -32767.0
 
 - <<: *gravity_anomaly_geoid
   id: faye_gravity_anomaly
