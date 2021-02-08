@@ -3940,7 +3940,7 @@
   id: bouguer_gravity_anomaly
   title: 'Bouguer gravity anomaly (2km)'
   description: >-
-    TBD
+    Gravity anomalies in miligals (mGal).
   visible: False
   group_path: 'Geophysics'
   # Style TBD
@@ -3960,17 +3960,15 @@
     xRes: 2000
     yRes: 2000
     # TODO: is this correct? Unlike the other files we received, the Bouguer
-    # gravity model does not have any 'nodata' metadata. An entire column of
-    # pixels at the far eastern edge of the data has this value. There does
-    # appear to be at least one other pixel in the middle of the dataset with
-    # this value as well, however.
+    # gravity model does not have any 'nodata' metadata. There is at least one
+    # pixel with this outlier value.
     srcNodata: -32767.0
 
 - <<: *gravity_anomaly_geoid
   id: faye_gravity_anomaly
   title: 'Faye (free-air) gravity anomaly (2km)'
   description: >-
-    TBD
+    Gravity anomalies in miligals (mGal).
   visible: False
   group_path: 'Geophysics'
   # Style TBD
@@ -3990,7 +3988,7 @@
   id: geoid
   title: 'Geoid model (2km)'
   description: >-
-    Official gravimetric geoid model for Greenland.
+    Official gravimetric geoid model for Greenland in meters.
   visible: False
   group_path: 'Geophysics'
   # Style TBD
