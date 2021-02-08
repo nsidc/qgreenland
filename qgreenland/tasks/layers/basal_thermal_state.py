@@ -3,7 +3,7 @@ from qgreenland.tasks.common.raster import (
     BuildRasterOverviews,
     GdalEdit,
     GdalMDimTranslate,
-    ReformatRaster,
+    GdalTranslateRaster,
 )
 from qgreenland.util.luigi import LayerPipeline
 
@@ -30,7 +30,7 @@ class BasalThermalState(LayerPipeline):
             requires_task=mdim_translate,
             layer_id=self.layer_id,
         )  # ->
-        reformat = ReformatRaster(
+        reformat = GdalTranslateRaster(
             requires_task=gdal_edit,
             layer_id=self.layer_id,
         )  # ->

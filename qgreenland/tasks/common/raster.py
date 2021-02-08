@@ -117,7 +117,7 @@ class GdalCalcRaster(LayerTask):
             )
 
 
-class ReformatRaster(LayerTask):
+class GdalTranslateRaster(LayerTask):
     """Perform an arbitrary GDAL translate."""
 
     task_type = TaskType.WIP
