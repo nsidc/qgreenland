@@ -1,3 +1,14 @@
+# v0.54.0 (unreleased)
+
+- Update RACMO data:
+  - Mask 1km data with PromiceMask
+  - Wind speed and vectors data now use 5.5km resolution source data.
+- New "Reference" layers:
+  - QGreenland background boundary
+  - QGreenland data boundary
+- Added compression to all raster layers.
+- Only use overviews on largest raster layers.
+
 # v0.53.0 (2021-02-04)
 
 - Update RACMO layers with 2019 data from Brice Noël.
@@ -11,7 +22,6 @@
 - Removed layers:
   - GLIMS Images
   - Geology / Onshore pattern
-- Added overviews and compression to all raster layers.
 
 # v0.52.0 (2021-01-25)
 

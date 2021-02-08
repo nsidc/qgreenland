@@ -9,6 +9,7 @@ from osgeo import gdal
 from osgeo.gdalconst import GA_ReadOnly
 
 from qgreenland.config import CONFIG
+from qgreenland.exceptions import QgrRuntimeError
 
 logger = logging.getLogger('luigi-interface')
 
@@ -69,11 +70,11 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
     # gdal.Warp(out_path, inp_path, **warp_kwargs)
     _gdalwarp_cut_hack(
         out_path, inp_path,
-        layer_cfg=layer_cfg, warp_kwargs=warp_kwargs
+        layer_cfg=layer_cfg, warp_kwargs=warp_kwargs, src_srs_str=srs_str
     )
 
 
-def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs):
+def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs, src_srs_str):
     """Hack for an issue with some gdal cutlines.
 
     <mailing list link here>
@@ -102,7 +103,15 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs):
 
     # Step 1 needs to subset for this to work (outputBounds == `-te`).
     step1_kwargs = {k: v for k, v in warp_kwargs.items() if k not in step2_keys}
-    step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
+
+    # HACK ANOTHER TERRIBLE HACK: reprojection and clipping should really be two
+    # separate steps!!!
+    # if the source dataset is already in the project's CRS, do not use
+    # `outputBounds` to limit the raster's extent. If the boundary's bbox does
+    # not exactly align with the source grid, the resulting grid will be
+    # spatially offset from the source.
+    if src_srs_str != CONFIG['project']['crs']:
+        step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
 
     # Step 2 actually does the shape-based cut as a separate step, to avoid
     # errors.
@@ -197,3 +206,15 @@ def gdal_edit_raster(in_filepath, *,
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
+
+
+def apply_mask(source_grid, mask_grid, nodata_value):
+    if source_grid.shape != mask_grid.shape:
+        raise QgrRuntimeError(
+            '`source_grid` and `mask_grid` must be the same shape.'
+        )
+
+    masked_grid = source_grid.copy()
+    masked_grid[mask_grid] = nodata_value
+
+    return masked_grid

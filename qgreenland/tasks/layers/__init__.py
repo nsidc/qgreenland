@@ -15,7 +15,7 @@ from qgreenland.tasks.layers.local_zipped_vector import LocalZippedVector
 from qgreenland.tasks.layers.netcdf_raster import NetCdfRaster
 from qgreenland.tasks.layers.ogr_remote_vector import OgrRemoteVector
 from qgreenland.tasks.layers.online_vector import OnlineVector
-from qgreenland.tasks.layers.racmo_raster import RacmoRaster
+from qgreenland.tasks.layers.racmo_raster import MaskedRacmoRaster, RacmoRaster
 from qgreenland.tasks.layers.rarred_vector import RarredVector
 from qgreenland.tasks.layers.raster import Raster
 from qgreenland.tasks.layers.raster_calc import RasterCalc
@@ -45,6 +45,7 @@ INGEST_TASKS = {
     'ogr_remote_vector': OgrRemoteVector,
     'online_vector': OnlineVector,
     'racmo_raster': RacmoRaster,
+    'racmo_raster_with_mask': MaskedRacmoRaster,
     'rarred_vector': RarredVector,
     'raster': Raster,
     'raster_calc': RasterCalc,
