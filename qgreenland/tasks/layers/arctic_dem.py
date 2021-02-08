@@ -24,6 +24,8 @@ class ArcticDEM(LayerPipeline):
             requires_task=gdal_calc,
             layer_id=self.layer_id
         )  # ->
+        # Because of its high resolution, this layer performs poorly without
+        # overviews.
         return BuildRasterOverviews(
             requires_task=gdal_edit,
             layer_id=self.layer_id

@@ -1189,9 +1189,6 @@
     input_filename: 'RACMO_QGreenland_Jan2021.zip'
   extract_nc_dataset_kwargs:
     extract_dataset: 'Band1'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
   gdal_edit_kwargs:
     a_srs: 'EPSG:3413'
   decompress_kwargs:
@@ -1215,9 +1212,6 @@
   data_type: 'raster'
   extract_nc_dataset_kwargs:
     extract_dataset: 'precip'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
   gdal_edit_kwargs:
     a_srs: 'EPSG:3413'
   decompress_kwargs:
@@ -2059,9 +2053,6 @@
   data_type: 'raster'
   extract_nc_dataset_kwargs:
     extract_dataset: 'v'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
   warp_kwargs:
     xRes: 500
     yRes: 500
@@ -2098,9 +2089,6 @@
   data_type: 'raster'
   extract_nc_dataset_kwargs:
     extract_dataset: 'land_ice_surface_velocity_magnitude'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
   decompress_kwargs:
     extract_files:
       - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
@@ -3931,9 +3919,6 @@
   ingest_task: local_zipped_raster
   file_type: '.tif'
   data_type: 'raster'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
   decompress_kwargs:
     extract_files:
       - 'bouguer_gravity_anomaly.tif'
@@ -4609,9 +4594,6 @@
   ingest_task: netcdf_raster
   file_type: '.tif'
   data_type: 'raster'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
   extract_nc_dataset_kwargs:
     extract_dataset: 't_an'
     bandList: [1]
@@ -4737,9 +4719,6 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'sftgif'
     noData: 0
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_45
@@ -4914,6 +4893,9 @@
   ingest_task: background_image
   file_type: '.tif'
   data_type: 'raster'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
   # NOTE: Without passing warp_kwargs, we get a black image.
   # TODO: Which of these args are necessary to avoid that?
   warp_kwargs:

@@ -31,7 +31,7 @@ class BuildRasterOverviews(LayerTask):
                                         ext=self.layer_cfg['file_type'])
 
         overviews_kwargs = {
-            'overview_levels': (2, 4, 8, 16),
+            'overview_levels': (),
             'resampling_method': 'average'
         }
 
@@ -55,8 +55,13 @@ class BuildRasterOverviews(LayerTask):
             # 'internal overviews', which changes the file itself.
             shutil.copy2(ifile, tmp_path)
 
-            with rio.open(tmp_path, 'r+') as ds:
-                ds.build_overviews(overview_levels, resampling_method)
+            # HACK:
+            # Only build overviews if overview_levels is populated with values.
+            # This allows pipelines to have an overview step that can be
+            # disabled in config.
+            if overview_levels:
+                with rio.open(tmp_path, 'r+') as ds:
+                    ds.build_overviews(overview_levels, resampling_method)
 
 
 class WarpRaster(LayerTask):
