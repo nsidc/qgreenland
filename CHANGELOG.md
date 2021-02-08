@@ -6,6 +6,8 @@
 - New "Reference" layers:
   - QGreenland background boundary
   - QGreenland data boundary
+- Added compression to all raster layers.
+- Only use overviews on largest raster layers.
 
 # v0.53.0 (2021-02-04)
 
@@ -20,7 +22,6 @@
 - Removed layers:
   - GLIMS Images
   - Geology / Onshore pattern
-- Added overviews and compression to all raster layers.
 
 # v0.52.0 (2021-01-25)
 
