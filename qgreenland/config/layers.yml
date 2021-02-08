@@ -4831,6 +4831,7 @@
     calc: "'A * 100.0'"
     creation-option: "COMPRESS=DEFLATE"
     type: "Int32"
+    NoDataValue: -9999
   gdal_edit_kwargs:
     scale: 0.01
 

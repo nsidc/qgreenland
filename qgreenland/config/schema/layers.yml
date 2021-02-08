@@ -94,6 +94,7 @@ gdal_calc_kwargs:
   calc: str(required=True)
   creation-option: str(required=False)
   type: str(required=False)
+  NoDataValue: num(required=False)
 
 ---
 # TODO: These kwargs are passed to CLI. Consider expressing as list instead of
