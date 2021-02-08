@@ -13,6 +13,7 @@ def test_layer_path(mock_isfile):
 
     mock_layer_cfg = {
         'id': 'coastlines',
+        'title': 'Global coastlines',
         'group_path': 'group/subgroup',
         'file_type': '.shp',
         'dataset': {
@@ -24,7 +25,7 @@ def test_layer_path(mock_isfile):
         TaskType.FINAL.value,
         'group',
         'subgroup',
-        'coastlines',
+        'Global coastlines',
         'coastlines.shp'
     )
 

@@ -6,6 +6,7 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
+from typing import Any
 
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType
 from qgreenland.exceptions import QgrRuntimeError
@@ -163,11 +164,16 @@ def get_layer_fn(layer_cfg):
     return f"{layer_cfg['id']}{layer_cfg['file_type']}"
 
 
+def _layer_dirname_from_cfg(layer_cfg: Any) -> str:
+    return layer_cfg['title']
+
+
+# TODO: rename -> get_layer_final_dir?
 def get_layer_dir(layer_cfg):
     layer_group_list = layer_cfg.get('group_path', '').split('/')
     return os.path.join(TaskType.FINAL.value,
                         *layer_group_list,
-                        layer_cfg['id'])
+                        _layer_dirname_from_cfg(layer_cfg))
 
 
 def get_layer_path(layer_cfg):

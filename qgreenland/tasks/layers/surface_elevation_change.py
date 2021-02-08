@@ -2,7 +2,7 @@ from qgreenland.tasks.common.fetch import FetchLocalDataFiles
 from qgreenland.tasks.common.raster import (
     BuildRasterOverviews,
     GdalMDimTranslate,
-    ReformatRaster,
+    GdalTranslateRaster,
 )
 from qgreenland.util.luigi import LayerPipeline
 
@@ -20,7 +20,7 @@ class CCISurfaceElevationChange(LayerPipeline):
             input_ext_override='nc',
             layer_id=self.layer_id,
         )  # ->
-        reformat = ReformatRaster(
+        reformat = GdalTranslateRaster(
             requires_task=mdim_translate,
             layer_id=self.layer_id,
         )  # ->

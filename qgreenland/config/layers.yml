@@ -4196,7 +4196,7 @@
 # age of sea ice minimum/maximum rasters:
 - &seaice_minimum_age
   id: seaice_minimum_age_2010
-  title: 'Sea ice age September 17-24 2010'
+  title: 'September 17-24 2010'
   description: >-
       Age of sea ice derived from weekly averaged ice motion vectors. A value of
       N indicates ice aged N-1 to N years. A value of 20 represents land; 21
@@ -4220,7 +4220,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2011
-  title: 'Sea ice age September 10-17 2011'
+  title: 'September 10-17 2011'
   data_source: seaice_age.2011
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4229,7 +4229,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2012
-  title: 'Sea ice age September 16-23 2012'
+  title: 'September 16-23 2012'
   data_source: seaice_age.2012
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4238,7 +4238,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2013
-  title: 'Sea ice age September 10-17 2013'
+  title: 'September 10-17 2013'
   data_source: seaice_age.2013
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4247,7 +4247,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2014
-  title: 'Sea ice age September 17-24 2014'
+  title: 'September 17-24 2014'
   data_source: seaice_age.2014
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4256,7 +4256,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2015
-  title: 'Sea ice age September 3-10 2015'
+  title: 'September 3-10 2015'
   data_source: seaice_age.2015
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4265,7 +4265,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2016
-  title: 'Sea ice age September 9-16 2016'
+  title: 'September 9-16 2016'
   data_source: seaice_age.2016
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4274,7 +4274,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2017
-  title: 'Sea ice age September 10-17 2017'
+  title: 'September 10-17 2017'
   data_source: seaice_age.2017
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4283,7 +4283,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2018
-  title: 'Sea ice age September 17-24 2018'
+  title: 'September 17-24 2018'
   data_source: seaice_age.2018
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4292,7 +4292,7 @@
 
 - <<: *seaice_minimum_age
   id: seaice_minimum_age_2019
-  title: 'Sea ice age September 17-24 2019'
+  title: 'September 17-24 2019'
   data_source: seaice_age.2019
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4301,7 +4301,7 @@
 
 - &seaice_maximum_age
   id: seaice_maximum_age_2010
-  title: 'Sea ice age March 26-April 2 2010'
+  title: 'March 26-April 2 2010'
   description: >-
       Age of sea ice derived from weekly averaged ice motion vectors. A value of
       N indicates ice aged N-1 to N years. A value of 20 represents land; 21
@@ -4325,7 +4325,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2011
-  title: 'Sea ice age March 5-12 2011'
+  title: 'March 5-12 2011'
   data_source: seaice_age.2011
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4334,7 +4334,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2012
-  title: 'Sea ice age March 18-25 2012'
+  title: 'March 18-25 2012'
   data_source: seaice_age.2012
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4343,7 +4343,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2013
-  title: 'Sea ice age March 12-19 2013'
+  title: 'March 12-19 2013'
   data_source: seaice_age.2013
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4352,7 +4352,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2014
-  title: 'Sea ice age March 19-26 2014'
+  title: 'March 19-26 2014'
   data_source: seaice_age.2014
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4361,7 +4361,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2015
-  title: 'Sea ice age February 12-19 2015'
+  title: 'February 12-19 2015'
   data_source: seaice_age.2015
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4370,7 +4370,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2016
-  title: 'Sea ice age March 18-25 2016'
+  title: 'March 18-25 2016'
   data_source: seaice_age.2016
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4379,7 +4379,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2017
-  title: 'Sea ice age March 5-12 2017'
+  title: 'March 5-12 2017'
   data_source: seaice_age.2017
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4388,7 +4388,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2018
-  title: 'Sea ice age March 11-18 2018'
+  title: 'March 11-18 2018'
   data_source: seaice_age.2018
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
@@ -4397,7 +4397,7 @@
 
 - <<: *seaice_maximum_age
   id: seaice_maximum_age_2019
-  title: 'Sea ice age March 12-19 2019'
+  title: 'March 12-19 2019'
   data_source: seaice_age.2019
   extract_nc_dataset_kwargs:
     extract_dataset: 'age_of_sea_ice'
