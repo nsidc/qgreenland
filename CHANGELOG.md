@@ -1,4 +1,4 @@
-# v0.54.0 (unreleased)
+# v0.54.0 (2021-02-08)
 
 - Update RACMO data:
   - Mask 1km data with PromiceMask
