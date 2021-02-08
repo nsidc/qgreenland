@@ -1,4 +1,5 @@
 """common.py: Tasks that could apply to any type of dataproduct."""
+import copy
 import gzip
 import logging
 import os
@@ -91,8 +92,7 @@ class ExtractNcDataset(LayerTask):
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_dir:
-            # WARNING: This doesn't copy the config object, just assigns a name.
-            kwargs = self.layer_cfg['extract_nc_dataset_kwargs']
+            kwargs = copy.deepcopy(self.layer_cfg['extract_nc_dataset_kwargs'])
             input_fp = find_single_file_by_ext(self.input().path, ext='.nc')
 
             dataset_name = kwargs.pop('extract_dataset')
