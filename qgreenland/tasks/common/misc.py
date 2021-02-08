@@ -77,7 +77,7 @@ class Unzip(Decompress):
             zf.close()
 
 
-# TODO: Make generic GdalTranslate task instead!!!!!!!
+# TODO: Delete and use generic GdalTranslate task?
 class ExtractNcDataset(LayerTask):
     """Extracts dataset `dataset_name` from input .nc file."""
 
