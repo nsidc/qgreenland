@@ -1334,6 +1334,9 @@
   description: >-
       Surface elevation in meters.
   group_path: 'Regional climate models/RACMO model output/RACMO masks'
+  overviews_kwargs:
+    overview_levels: [2, 4, 8, 16]
+    resampling_method: average
   translate_kwargs:
     extract_dataset: 'Topography'
   gdal_edit_kwargs:
