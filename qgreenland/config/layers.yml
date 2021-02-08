@@ -2,13 +2,13 @@
 # Reference #
 #############
 
-- &qgr_extent
-  id: qgr_extent_data
-  title: QGreenland constrained extent
+- &qgr_boundary
+  id: qgr_boundary_data
+  title: Greenland-focused boundary
   description: >-
-    Polygon representing the extent of QGreenland data/imagery.
+    Polygon representing the boundary of QGreenland data/imagery.
   visible: False
-  group_path: 'Reference'
+  group_path: 'Reference/QGreenland boundaries'
   style: transparent_shape
   data_source: qgr_bounds.data
   ingest_task: local_vector
@@ -17,11 +17,11 @@
   ogr2ogr_kwargs:
     input_filename: 'greenland_rectangle.geojson'
 
-- <<: *qgr_extent
-  id: qgr_extent_background
-  title: QGreenland background extent
+- <<: *qgr_boundary
+  id: qgr_boundary_background
+  title: Background boundary
   description: >-
-    Polygon representing the extent of QGreenland background data/imagery.
+    Polygon representing the boundary of QGreenland background data/imagery.
   data_source: qgr_bounds.background
   ogr2ogr_kwargs:
     input_filename: 'latitude_shape_40_degrees.geojson'
