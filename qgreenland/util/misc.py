@@ -163,11 +163,16 @@ def get_layer_fn(layer_cfg):
     return f"{layer_cfg['id']}{layer_cfg['file_type']}"
 
 
+def _format_layer_filename(fn: str) -> str:
+    return fn.replace(' ', '_')
+
+
+# TODO: rename -> get_layer_final_dir?
 def get_layer_dir(layer_cfg):
     layer_group_list = layer_cfg.get('group_path', '').split('/')
     return os.path.join(TaskType.FINAL.value,
                         *layer_group_list,
-                        layer_cfg['id'])
+                        _format_layer_filename(layer_cfg['title']))
 
 
 def get_layer_path(layer_cfg):
