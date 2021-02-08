@@ -31,7 +31,7 @@ class BuildRasterOverviews(LayerTask):
                                         ext=self.layer_cfg['file_type'])
 
         overviews_kwargs = {
-            'overview_levels': tuple(),
+            'overview_levels': tuple(),  # noqa: C408
             'resampling_method': 'average'
         }
 
