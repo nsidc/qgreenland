@@ -3940,7 +3940,7 @@
   id: bouguer_gravity_anomaly
   title: 'Bouguer gravity anomaly (2km)'
   description: >-
-    TBD
+    Gravity anomalies in miligals (mGal).
   visible: False
   group_path: 'Geophysics'
   # Style TBD
@@ -3970,7 +3970,7 @@
   id: faye_gravity_anomaly
   title: 'Faye (free-air) gravity anomaly (2km)'
   description: >-
-    TBD
+    Gravity anomalies in miligals (mGal).
   visible: False
   group_path: 'Geophysics'
   # Style TBD
@@ -3990,7 +3990,7 @@
   id: geoid
   title: 'Geoid model (2km)'
   description: >-
-    Official gravimetric geoid model for Greenland.
+    Official gravimetric geoid model for Greenland in meters.
   visible: False
   group_path: 'Geophysics'
   # Style TBD
