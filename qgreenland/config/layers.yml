@@ -2,6 +2,30 @@
 # Reference #
 #############
 
+- &qgr_boundary
+  id: qgr_boundary_data
+  title: Greenland-focused boundary
+  description: >-
+    Polygon representing the boundary of QGreenland data/imagery.
+  visible: False
+  group_path: 'Reference/QGreenland boundaries'
+  style: transparent_shape
+  data_source: qgr_bounds.data
+  ingest_task: local_vector
+  file_type: '.gpkg'
+  data_type: 'vector'
+  ogr2ogr_kwargs:
+    input_filename: 'greenland_rectangle.geojson'
+
+- <<: *qgr_boundary
+  id: qgr_boundary_background
+  title: Background boundary
+  description: >-
+    Polygon representing the boundary of QGreenland background data/imagery.
+  data_source: qgr_bounds.background
+  ogr2ogr_kwargs:
+    input_filename: 'latitude_shape_40_degrees.geojson'
+
 - id: arctic_circle
   title: Arctic Circle (66° 34' North)
   description: >-
