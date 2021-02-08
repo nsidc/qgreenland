@@ -43,5 +43,5 @@ dependencies:
   # Pip dependencies could be imported or non-imported :(
   - pip:
     - flake8-debugger ~=3.2
-    - flake8-use-fstring ~=1.1
+    - flake8-use-fstring ==1.0
     - rarfile ~=3.1

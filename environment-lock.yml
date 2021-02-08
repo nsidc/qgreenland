@@ -236,5 +236,5 @@ dependencies:
   - zstd=1.4.8=ha95c52a_1
   - pip:
     - flake8-debugger==3.2.1
-    - flake8-use-fstring==1.1
+    - flake8-use-fstring==1.0
     - rarfile==3.3
