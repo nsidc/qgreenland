@@ -6,6 +6,7 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
+from typing import Any
 
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType
 from qgreenland.exceptions import QgrRuntimeError
@@ -163,7 +164,7 @@ def get_layer_fn(layer_cfg):
     return f"{layer_cfg['id']}{layer_cfg['file_type']}"
 
 
-def _layer_dirname_from_cfg(layer_cfg: any) -> str:
+def _layer_dirname_from_cfg(layer_cfg: Any) -> str:
     return layer_cfg['title']
 
 
