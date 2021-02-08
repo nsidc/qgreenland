@@ -3,44 +3,45 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8*
+  - python ~=3.9
 
   # Imported dependencies:
-  - click=7*
-  - fiona=1.8.13
-  - gdal=3.0.4
-  - humanize=2.6.0
-  - luigi=3.0.2
-  - pyyaml=5.3
-  - qgis=3.10.12
-  - rasterio=1.1.2
-  - requests=2.22.0
-  - yamale=2.0.1
-  - pandas=1.1.4
-  - geopandas=0.6.2
-  - netcdf4=1.5.5
+  - click ~=7.1
+  - fiona ~=1.8
+  - gdal ~=3.0
+  - humanize ~=2.6
+  - luigi ~=3.0
+  - pyyaml ~=5.4
+  - qgis ~=3.10
+  - rasterio ~=1.1
+  - requests ~=2.22
+  - yamale ~=2.0
+  - pandas ~=1.1
+  - geopandas ~=0.6
+  - netcdf4 ~=1.5
 
   # Non-imported dependencies: Task-runners, test-runners, static analysis, and
   # other utilities
   - bumpversion=0.5.3
-  - flake8=3.8.3
-  - flake8-bugbear=20.1.4
-  - flake8-comprehensions=3.2.2
-  - flake8-docstrings=1.5.0
-  - flake8-import-order=0.18.1
-  - flake8-quotes=2.1.1
-  - invoke=1.4.0
+  - flake8 ~=3.8
+  - flake8-bugbear ~=20.1
+  - flake8-comprehensions ~=3.2
+  - flake8-docstrings ~=1.5
+  - flake8-import-order ~=0.18
+  - flake8-quotes ~=2.1
+  - invoke ~=1.4
   - ipython
   - ipdb
   - mypy
-  - pep8-naming=0.9.1
-  - pytest=5.3.5
-  - pytest-cov=2.8.1
-  - vulture=1.0
-  - shellcheck=0.7.1
+  - pep8-naming ~=0.9
+  - pytest ~=5.3
+  - pytest-cov ~=2.8
+  # TODO: Vulture ~=2.3
+  - vulture ~=1.6
+  - shellcheck ~=0.7
 
   # Pip dependencies could be imported or non-imported :(
   - pip:
-    - flake8-debugger==3.2.1
-    - flake8-use-fstring==1.0
-    - rarfile==3.1
+    - flake8-debugger ~=3.2
+    - flake8-use-fstring ==1.0
+    - rarfile ~=3.1
