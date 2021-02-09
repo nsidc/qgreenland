@@ -196,7 +196,7 @@ following process:
 * Save the style to `qgreenland/assets/styles/<name>.qml` directory of this
   repository. Keep in mind that styles can be shared between layers, so give
   the style a generic name instead of a layer-specific name where possible.
-* Edit the `qgreenland/layers.yml` file and find the layer(s) you wish to apply
+* Edit the `qgreenland/config/layers.yml` file and find the layer(s) you wish to apply
   this style to. Populate the `style` key for each layer with the name of the
   `.qml` file you saved in the previous step, excluding the file extension. For
   example, if you saved `foo.qml`, then populate `style: 'foo'`.
