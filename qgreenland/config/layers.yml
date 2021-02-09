@@ -2180,6 +2180,7 @@
 - <<: *ground_temperature
   id:  ground_temperature_sd
   title: 'Ground temperature standard deviation (10km)'
+  style: ground_temperature_std
   description: >-
      Standard deviation of the average mean annual ground temperature in degrees Celsius.
   extract_nc_dataset_kwargs:
