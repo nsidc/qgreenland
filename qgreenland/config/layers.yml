@@ -2166,7 +2166,7 @@
       Average mean annual ground temperature in degrees Celsius.
   visible: False
   group_path: 'Frozen ground'
-  style: null
+  style: ground_temperature
   boundary: 'data'
   data_source: pangaea_ground_temperature.10km
   ingest_task: netcdf_raster
