@@ -1231,7 +1231,7 @@
       peripheral ice caps.
   visible: False
   group_path: 'Regional climate models/RACMO model output'
-  style: precip
+  style: racmo_precip
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
   ingest_task: racmo_raster_with_mask
@@ -1253,7 +1253,7 @@
   description: >-
       Averaged annual snowfall in milimeters of water equivilent (mm w.e.) for
       the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
-  style: snowfall
+  style: racmo_snowfall
   extract_nc_dataset_kwargs:
     extract_dataset: 'snowfall'
   decompress_kwargs:
@@ -1266,7 +1266,7 @@
   description: >-
       Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) for
       the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
-  style: snowmelt
+  style: racmo_melt
   extract_nc_dataset_kwargs:
     extract_dataset: 'snowmelt'
   decompress_kwargs:
@@ -1279,7 +1279,7 @@
   description: >-
       Averaged annual runoff in milimeters of water equivilent (mm w.e.) for the
       period 1958-2019 covering the whole ice sheet and peripheral ice caps.
-  style: runoff
+  style: racmo_runoff
   extract_nc_dataset_kwargs:
     extract_dataset: 'runoff'
   decompress_kwargs:
@@ -1293,7 +1293,7 @@
       Averaged annual sublimation in milimeters of water equivilent (mm w.e.)
       for the period 1958-2019 covering the whole ice sheet and peripheral ice
       caps.
-  style: sublimation
+  style: racmo_subl
   extract_nc_dataset_kwargs:
     extract_dataset: 'subl'
   decompress_kwargs:
@@ -1307,7 +1307,7 @@
       Averaged annual snow drift erosion in milimeters of water equivilent (mm
       w.e.)  for the period 1958-2019 covering the whole ice sheet and
       peripheral ice caps.
-  style: snowdrift_erosion
+  style: racmo_sndiv 
   extract_nc_dataset_kwargs:
     extract_dataset: 'sndiv'
   decompress_kwargs:

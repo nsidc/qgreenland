@@ -1,21 +1,21 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis minScale="1e+08" version="3.10.4-A Coruña" hasScaleBasedVisibilityFlag="0" maxScale="0" styleCategories="AllStyleCategories">
+<qgis minScale="1e+08" styleCategories="AllStyleCategories" maxScale="0" hasScaleBasedVisibilityFlag="0" version="3.10.3-A Coruña">
   <flags>
     <Identifiable>1</Identifiable>
     <Removable>1</Removable>
     <Searchable>1</Searchable>
   </flags>
   <customproperties>
-    <property value="false" key="WMSBackgroundLayer"/>
-    <property value="false" key="WMSPublishDataSourceUrl"/>
-    <property value="0" key="embeddedWidgets/count"/>
-    <property value="Value" key="identify/format"/>
+    <property key="WMSBackgroundLayer" value="false"/>
+    <property key="WMSPublishDataSourceUrl" value="false"/>
+    <property key="embeddedWidgets/count" value="0"/>
+    <property key="identify/format" value="Value"/>
   </customproperties>
   <pipe>
-    <rasterrenderer band="1" classificationMin="0" classificationMax="8712.24" type="singlebandpseudocolor" opacity="1" alphaBand="-1">
+    <rasterrenderer classificationMin="0" type="singlebandpseudocolor" band="1" classificationMax="4000" opacity="1" alphaBand="-1">
       <rasterTransparency/>
       <minMaxOrigin>
-        <limits>MinMax</limits>
+        <limits>None</limits>
         <extent>WholeRaster</extent>
         <statAccuracy>Estimated</statAccuracy>
         <cumulativeCutLower>0.02</cumulativeCutLower>
@@ -24,27 +24,24 @@
       </minMaxOrigin>
       <rastershader>
         <colorrampshader colorRampType="INTERPOLATED" clip="0" classificationMode="2">
-          <colorramp name="[source]" type="gradient">
-            <prop k="color1" v="68,1,84,255"/>
-            <prop k="color2" v="253,231,37,255"/>
-            <prop k="discrete" v="0"/>
-            <prop k="rampType" v="gradient"/>
-            <prop k="stops" v="0.0196078;70,8,92,255:0.0392157;71,16,99,255:0.0588235;72,23,105,255:0.0784314;72,29,111,255:0.0980392;72,36,117,255:0.117647;71,42,122,255:0.137255;70,48,126,255:0.156863;69,55,129,255:0.176471;67,61,132,255:0.196078;65,66,135,255:0.215686;63,72,137,255:0.235294;61,78,138,255:0.254902;58,83,139,255:0.27451;56,89,140,255:0.294118;53,94,141,255:0.313725;51,99,141,255:0.333333;49,104,142,255:0.352941;46,109,142,255:0.372549;44,113,142,255:0.392157;42,118,142,255:0.411765;41,123,142,255:0.431373;39,128,142,255:0.45098;37,132,142,255:0.470588;35,137,142,255:0.490196;33,142,141,255:0.509804;32,146,140,255:0.529412;31,151,139,255:0.54902;30,156,137,255:0.568627;31,161,136,255:0.588235;33,165,133,255:0.607843;36,170,131,255:0.627451;40,174,128,255:0.647059;46,179,124,255:0.666667;53,183,121,255:0.686275;61,188,116,255:0.705882;70,192,111,255:0.72549;80,196,106,255:0.745098;90,200,100,255:0.764706;101,203,94,255:0.784314;112,207,87,255:0.803922;124,210,80,255:0.823529;137,213,72,255:0.843137;149,216,64,255:0.862745;162,218,55,255:0.882353;176,221,47,255:0.901961;189,223,38,255:0.921569;202,225,31,255:0.941176;216,226,25,255:0.960784;229,228,25,255:0.980392;241,229,29,255"/>
+          <colorramp type="gradient" name="[source]">
+            <prop v="241,241,241,255" k="color1"/>
+            <prop v="59,124,178,255" k="color2"/>
+            <prop v="0" k="discrete"/>
+            <prop v="gradient" k="rampType"/>
+            <prop v="0.016;237,239,240,255:0.032;234,237,240,255:0.048;231,235,240,255:0.063;228,233,240,255:0.079;225,231,239,255:0.095;222,229,239,255:0.111;219,227,239,255:0.127;216,225,238,255:0.143;213,223,238,255:0.159;210,221,238,255:0.175;207,220,237,255:0.19;203,218,237,255:0.206;200,216,236,255:0.222;197,214,236,255:0.238;194,212,235,255:0.254;191,210,235,255:0.27;188,208,234,255:0.286;185,206,234,255:0.302;182,204,233,255:0.317;179,203,233,255:0.333;176,201,232,255:0.349;173,199,231,255:0.365;170,197,231,255:0.381;167,195,230,255:0.397;164,193,229,255:0.413;161,191,228,255:0.429;158,189,227,255:0.444;156,188,225,255:0.46;153,186,224,255:0.476;151,184,223,255:0.492;148,182,221,255:0.508;146,180,220,255:0.524;144,178,218,255:0.54;141,176,216,255:0.556;139,174,215,255:0.571;137,172,213,255:0.587;135,170,211,255:0.603;133,169,209,255:0.619;130,167,208,255:0.635;128,165,206,255:0.651;126,163,204,255:0.667;124,161,202,255:0.683;122,159,200,255:0.698;120,157,198,255:0.714;118,155,197,255:0.73;116,153,195,255:0.746;113,152,194,255:0.762;111,150,192,255:0.778;108,148,191,255:0.794;105,146,190,255:0.81;102,144,189,255:0.825;99,143,188,255:0.841;96,141,186,255:0.857;93,139,185,255:0.873;90,137,185,255:0.889;86,136,184,255:0.905;83,134,183,255:0.921;79,132,182,255:0.937;76,130,181,255:0.952;72,129,180,255:0.968;68,127,179,255:0.984;63,125,179,255" k="stops"/>
           </colorramp>
-          <item label="0 mm w.e." value="0" color="#440154" alpha="255"/>
-          <item label="1089.03 mm w.e." value="1089.03" color="#462c7b" alpha="255"/>
-          <item label="2178.06 mm w.e." value="2178.06" color="#3a528b" alpha="255"/>
-          <item label="3267.09 mm w.e." value="3267.09" color="#2b728e" alpha="255"/>
-          <item label="4356.12 mm w.e." value="4356.12" color="#20908d" alpha="255"/>
-          <item label="5445.15 mm w.e." value="5445.15" color="#27ae80" alpha="255"/>
-          <item label="6534.18 mm w.e." value="6534.18" color="#5dc962" alpha="255"/>
-          <item label="7623.21 mm w.e." value="7623.21" color="#abdc32" alpha="255"/>
-          <item label="8712.24 mm w.e." value="8712.24" color="#fde725" alpha="255"/>
+          <item alpha="255" label="0 mm w.e." color="#f1f1f1" value="0"/>
+          <item alpha="255" label="800 mm w.e." color="#c9d9ed" value="800"/>
+          <item alpha="255" label="1600 mm w.e." color="#a4c1e5" value="1600"/>
+          <item alpha="255" label="2400 mm w.e." color="#85a9d2" value="2400"/>
+          <item alpha="255" label="3200 mm w.e." color="#6891be" value="3200"/>
+          <item alpha="255" label="4000 mm w.e." color="#3b7cb2" value="4000"/>
         </colorrampshader>
       </rastershader>
     </rasterrenderer>
     <brightnesscontrast contrast="0" brightness="0"/>
-    <huesaturation colorizeOn="0" colorizeStrength="100" saturation="0" colorizeRed="255" colorizeBlue="128" colorizeGreen="128" grayscaleMode="0"/>
+    <huesaturation colorizeRed="255" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100" colorizeOn="0" saturation="0" grayscaleMode="0"/>
     <rasterresampler maxOversampling="2"/>
   </pipe>
   <blendMode>0</blendMode>
