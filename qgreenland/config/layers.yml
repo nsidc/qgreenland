@@ -575,6 +575,7 @@
   visible: False
   # TODO: is this where this layer should live?
   group_path: 'Human activity/Research stations'
+  style: seismograph_stations
   data_source: seismograph_stations.only
   ingest_task: online_vector
   file_type: '.gpkg'
