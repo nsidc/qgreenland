@@ -1307,7 +1307,7 @@
       Averaged annual snow drift erosion in milimeters of water equivilent (mm
       w.e.)  for the period 1958-2019 covering the whole ice sheet and
       peripheral ice caps.
-  style: racmo_sndiv 
+  style: racmo_sndiv
   extract_nc_dataset_kwargs:
     extract_dataset: 'sndiv'
   decompress_kwargs:
