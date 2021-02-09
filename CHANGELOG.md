@@ -8,6 +8,7 @@
   - QGreenland data boundary
 - Added compression to all raster layers.
 - Only use overviews on largest raster layers.
+- Add preliminary styles for several layers.
 
 # v0.53.0 (2021-02-04)
 
