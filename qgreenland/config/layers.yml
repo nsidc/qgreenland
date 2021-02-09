@@ -1203,7 +1203,7 @@
       RACMO2.3p2 for the period 1958-2019.
   visible: False
   group_path: 'Regional climate models/RACMO model output'
-  style: null
+  style: racmo_wind_speed
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
   ingest_task: racmo_raster
@@ -1228,7 +1228,7 @@
       peripheral ice caps.
   visible: False
   group_path: 'Regional climate models/RACMO model output'
-  style: null
+  style: racmo_precip
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
   ingest_task: racmo_raster_with_mask
@@ -1250,6 +1250,7 @@
   description: >-
       Averaged annual snowfall in milimeters of water equivilent (mm w.e.) for
       the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
+  style: racmo_snowfall
   extract_nc_dataset_kwargs:
     extract_dataset: 'snowfall'
   decompress_kwargs:
@@ -1262,6 +1263,7 @@
   description: >-
       Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) for
       the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
+  style: racmo_melt
   extract_nc_dataset_kwargs:
     extract_dataset: 'snowmelt'
   decompress_kwargs:
@@ -1274,6 +1276,7 @@
   description: >-
       Averaged annual runoff in milimeters of water equivilent (mm w.e.) for the
       period 1958-2019 covering the whole ice sheet and peripheral ice caps.
+  style: racmo_runoff
   extract_nc_dataset_kwargs:
     extract_dataset: 'runoff'
   decompress_kwargs:
@@ -1287,6 +1290,7 @@
       Averaged annual sublimation in milimeters of water equivilent (mm w.e.)
       for the period 1958-2019 covering the whole ice sheet and peripheral ice
       caps.
+  style: racmo_subl
   extract_nc_dataset_kwargs:
     extract_dataset: 'subl'
   decompress_kwargs:
@@ -1300,6 +1304,7 @@
       Averaged annual snow drift erosion in milimeters of water equivilent (mm
       w.e.)  for the period 1958-2019 covering the whole ice sheet and
       peripheral ice caps.
+  style: racmo_sndiv
   extract_nc_dataset_kwargs:
     extract_dataset: 'sndiv'
   decompress_kwargs:
@@ -1314,6 +1319,7 @@
   description: >-
       Averaged annual mean temperature at 2m in degrees Kelvin for the period
       1958-2019.
+  style: racmo_t2m
   extract_nc_dataset_kwargs:
     extract_dataset: 't2m'
   decompress_kwargs:
@@ -1326,9 +1332,9 @@
   description: >-
     Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
     peripheral ice caps; 0 = Ocean.
-  group_path: 'Regional climate models/RACMO model output/RACMO masks'
+  group_path: 'Regional climate models/RACMO model output/Supplement'
   visible: False
-  style: null
+  style: racmo_promicemask
   boundary: 'data'
   data_source: racmo_qgreenland_jan2021.only
   ingest_task: racmo_raster
@@ -1344,11 +1350,26 @@
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
 
 - <<: *racmo_1km_masks
+  id: racmo_grounded_ice
+  title: 'Grounded ice mask (1km)'
+  description: >-
+      Mask of grounded ice.
+  extract_nc_dataset_kwargs:
+    extract_dataset: 'grounded_ice'
+  gdal_edit_kwargs:
+    a_srs: 'EPSG:3413'
+    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
+  decompress_kwargs:
+    extract_files:
+      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc'
+
+- <<: *racmo_1km_masks
   id: racmo_topography
   title: 'Topography (1km)'
   description: >-
       Surface elevation in meters.
-  group_path: 'Regional climate models/RACMO model output/RACMO masks'
+  style: racmo_topography
+  ingest_task: racmo_raster_with_mask
   extract_nc_dataset_kwargs:
     extract_dataset: 'Topography'
   gdal_edit_kwargs:
@@ -1360,21 +1381,6 @@
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
   warp_kwargs:
     srcNodata: 9999.0
-
-- <<: *racmo_1km_masks
-  id: racmo_grounded_ice
-  title: 'Grounded ice (1km)'
-  description: >-
-      Mask of grounded ice.
-  group_path: 'Regional climate models/RACMO model output/RACMO masks'
-  extract_nc_dataset_kwargs:
-    extract_dataset: 'grounded_ice'
-  gdal_edit_kwargs:
-    a_srs: 'EPSG:3413'
-    a_ullr: "-639456.0 -655096.0 856544.0 -3355096.0"
-  decompress_kwargs:
-    extract_files:
-      - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc'
 
 ##############
 # Glaciology #
@@ -2128,11 +2134,11 @@
 
 - <<: *esa_cci_velocity
   id: esa_cci_velocity_vertical
-  title: 'Land Ice Surface Vertical Velocity (250m)'
+  title: 'Land ice surface vertical velocity (250m)'
   description: >-
     Vertical ice velocity in meters per day. Data is not masked to ice sheet
     boundary.
-  style: null
+  style: vertical_velocity
   extract_nc_dataset_kwargs:
     extract_dataset: 'land_ice_surface_vertical_velocity'
 
@@ -2170,7 +2176,7 @@
       Average mean annual ground temperature in degrees Celsius.
   visible: False
   group_path: 'Frozen ground'
-  style: null
+  style: ground_temperature
   boundary: 'data'
   data_source: pangaea_ground_temperature.10km
   ingest_task: netcdf_raster
@@ -2184,6 +2190,7 @@
 - <<: *ground_temperature
   id:  ground_temperature_sd
   title: 'Ground temperature standard deviation (10km)'
+  style: ground_temperature_std
   description: >-
      Standard deviation of the average mean annual ground temperature in degrees Celsius.
   extract_nc_dataset_kwargs:
@@ -2192,6 +2199,7 @@
 - <<: *ground_temperature
   id:  permafrost_probability
   title: 'Permafrost Probability (10km)'
+  style: permafrost_probability
   description: >-
      Permafrost probability (fraction values from 0 to 1) is assigned to each
      grid cell with MAGT < 0°C.
