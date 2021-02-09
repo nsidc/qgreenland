@@ -3943,8 +3943,7 @@
     Gravity anomalies in miligals (mGal).
   visible: False
   group_path: 'Geophysics'
-  # Style TBD
-  style: null
+  style: gravity_anomaly
   boundary: 'data'
   data_source: gravity_anomalies.only
   ingest_task: local_zipped_raster
@@ -3967,8 +3966,7 @@
     Gravity anomalies in miligals (mGal).
   visible: False
   group_path: 'Geophysics'
-  # Style TBD
-  style: null
+  style: gravity_anomaly
   data_source: gravity_anomalies.only
   decompress_kwargs:
     extract_files:
@@ -3987,8 +3985,7 @@
     Official gravimetric geoid model for Greenland in meters.
   visible: False
   group_path: 'Geophysics'
-  # Style TBD
-  style: null
+  style: geoid
   data_source: geoid.only
   decompress_kwargs:
     extract_files:
