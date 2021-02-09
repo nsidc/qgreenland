@@ -1634,7 +1634,7 @@
   data_source: esa_cci_surface_elevation_change.only
   visible: False
   group_path: 'Glaciology/Surface elevation change/Observations'
-  style: null
+  style: surface_elevation_change
   boundary: 'data'
   ingest_task: cci_surface_elevation_change
   file_type: '.tif'
@@ -1790,7 +1790,7 @@
   data_source: esa_cci_surface_elevation_change.only
   visible: False
   group_path: 'Glaciology/Surface elevation change/Errors'
-  style: null
+  style: surface_elevation_change_errors
   boundary: 'data'
   ingest_task: cci_surface_elevation_change
   file_type: '.tif'
