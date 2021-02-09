@@ -2189,6 +2189,7 @@
 - <<: *ground_temperature
   id:  permafrost_probability
   title: 'Permafrost Probability (10km)'
+  style: permafrost_probability
   description: >-
      Permafrost probability (fraction values from 0 to 1) is assigned to each
      grid cell with MAGT < 0°C.
