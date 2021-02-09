@@ -1452,7 +1452,7 @@
   data_source: esa_cci_supraglacial_lakes.only
   visible: False
   group_path: 'Glaciology'
-  style: null
+  style: supraglacial_lakes
   boundary: 'data'
   ingest_task: local_zipped_vector
   file_type: '.gpkg'
