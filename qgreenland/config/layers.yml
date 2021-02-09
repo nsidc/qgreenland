@@ -1437,8 +1437,8 @@
 - id: jakobshavn_supraglacial_lakes
   title: 'Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019'
   description: >-
-      Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for 2019/05/01 and
-      2019/10/01 generated using Sentinel-2 data.
+      Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for
+      2019/05/01 and 2019/10/01 generated using Sentinel-2 data.
   data_source: esa_cci_supraglacial_lakes.only
   visible: False
   group_path: 'Glaciology'
@@ -2109,7 +2109,9 @@
 - &esa_cci_velocity
   id: esa_cci_velocity_magnitude
   title: 'Land ice surface velocity 2019-2020 (250m)'
-  description: 'Magnitude of horizontal ice velocity in meters per day. Data is not masked to ice sheet boundary.'
+  description: >-
+    Magnitude of horizontal ice velocity in meters per day. Data is not masked
+    to ice sheet boundary.
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
   style: esa_cci_velocity
@@ -2127,7 +2129,9 @@
 - <<: *esa_cci_velocity
   id: esa_cci_velocity_vertical
   title: 'Land Ice Surface Vertical Velocity (250m)'
-  description: 'Vertical ice velocity in meters per day. Data is not masked to ice sheet boundary.'
+  description: >-
+    Vertical ice velocity in meters per day. Data is not masked to ice sheet
+    boundary.
   style: null
   extract_nc_dataset_kwargs:
     extract_dataset: 'land_ice_surface_vertical_velocity'
