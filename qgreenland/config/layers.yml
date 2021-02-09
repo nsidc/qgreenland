@@ -2101,7 +2101,7 @@
   id: velocity_mosaic_ice_mask
   title: 'Ice mask'
   style: null
-  description: 'Ice mask used for velocity mosiac.'
+  description: 'Ice mask used for ITS_LIVE velocity mosiac.'
   ingest_task: netcdf_raster
   extract_nc_dataset_kwargs:
     extract_dataset: 'ice'
@@ -2109,7 +2109,7 @@
 - &esa_cci_velocity
   id: esa_cci_velocity_magnitude
   title: 'Land ice surface velocity 2019-2020 (250m)'
-  description: 'Magnitude of horizontal ice velocity in meters per day.'
+  description: 'Magnitude of horizontal ice velocity in meters per day. Data is not masked to ice sheet boundary.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ESA Climate Change Initiative'
   style: esa_cci_velocity
@@ -2127,7 +2127,7 @@
 - <<: *esa_cci_velocity
   id: esa_cci_velocity_vertical
   title: 'Land Ice Surface Vertical Velocity (250m)'
-  description: 'Vertical ice velocity in meters per day.'
+  description: 'Vertical ice velocity in meters per day. Data is not masked to ice sheet boundary.'
   style: null
   extract_nc_dataset_kwargs:
     extract_dataset: 'land_ice_surface_vertical_velocity'
