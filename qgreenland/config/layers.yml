@@ -34,6 +34,7 @@
       not set on the summer solstice, and does not rise on the winter solstice.
   visible: False
   group_path: 'Reference'
+  style: arctic_circle
   data_source: arctic_circle.only
   ingest_task: local_vector
   file_type: '.gpkg'
