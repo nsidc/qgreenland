@@ -793,7 +793,7 @@
   description: >-
       Polygons representing areas protected for Beluga whales.
   group_path: 'Biology/Mammals'
-  style: protected_area_polygon
+  style: beluga_areas
   ogr2ogr_kwargs:
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
@@ -810,7 +810,7 @@
   description: >-
       Polygons representing caribou calving areas.
   group_path: 'Biology/Mammals'
-  style: protected_area_polygon
+  style: caribou_areas
   ogr2ogr_kwargs:
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
@@ -828,7 +828,7 @@
   group_path: 'Biology/Mammals'
   data_source: ginr_caribou.only
   visible: False
-  style: null
+  style: caribou_areas
   boundary: 'data'
   ingest_task: local_zipped_vector
   file_type: '.gpkg'
@@ -836,11 +836,11 @@
 
 - <<: *nunagis_protected_areas
   id: nunagis_musk_oxen_calving_areas
-  title: 'Musk Oxen calving areas'
+  title: 'Muskoxen calving areas'
   description: >-
       Polygons representing areas protected for Musk Oxen calving.
   group_path: 'Biology/Mammals'
-  style: protected_area_polygon
+  style: muskoxen_areas
   ogr2ogr_kwargs:
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
@@ -858,7 +858,7 @@
   group_path: 'Biology/Mammals'
   data_source: ginr_muskoxen.only
   visible: False
-  style: null
+  style: muskoxen_areas
   boundary: 'data'
   ingest_task: local_zipped_vector
   file_type: '.gpkg'
@@ -870,7 +870,7 @@
   description: >-
       Polygons representing areas protected for Narwhals.
   group_path: 'Biology/Mammals'
-  style: protected_area_polygon
+  style: narwhal_areas
   ogr2ogr_kwargs:
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
@@ -887,7 +887,7 @@
   description: >-
       Polygons representing areas protected for Polar Bear breeding.
   group_path: 'Biology/Mammals'
-  style: protected_area_polygon
+  style: polar_bear_areas
   ogr2ogr_kwargs:
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
