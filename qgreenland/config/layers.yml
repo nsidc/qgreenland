@@ -2106,6 +2106,7 @@
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_ice_mask
   title: 'Ice mask'
+  # Just a binary mask. No style necessary.
   style: null
   description: 'Ice mask used for ITS_LIVE velocity mosiac.'
   ingest_task: netcdf_raster
