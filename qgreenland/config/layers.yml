@@ -2264,6 +2264,7 @@
     Linestrings representing borders between tectonic plates.
   visible: False
   group_path: 'Geology'
+  style: 'tectonic_plate_boundaries'
   boundary: 'background'
   data_source: tectonic_plates.only
   ingest_task: zipped_vector
