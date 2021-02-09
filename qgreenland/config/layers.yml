@@ -2126,9 +2126,9 @@
 
 - <<: *esa_cci_velocity
   id: esa_cci_velocity_vertical
-  title: 'Land Ice Surface Vertical Velocity (250m)'
+  title: 'Land ice surface vertical velocity (250m)'
   description: 'Vertical ice velocity in meters per day.'
-  style: null
+  style: vertical_velocity
   extract_nc_dataset_kwargs:
     extract_dataset: 'land_ice_surface_vertical_velocity'
 
