@@ -4043,7 +4043,7 @@
   id: ice_outlets
   title: 'Ice outlets'
   description: >-
-      TBD
+      Calculated locations for subglacial hydrologic basin ice-margin-terminating outlets.
   ingest_task: online_vector
   file_type: '.gpkg'
   data_type: 'vector'
@@ -4058,7 +4058,7 @@
   id: land_outlets
   title: 'Land outlets'
   description: >-
-      TBD
+      Calculated locations for terrestrial hydrologic basin coast-terminating outlets.
   style: 'land_outlets'
   data_source: streams_outlets_basins.land_outlets
   ogr2ogr_kwargs:
@@ -4068,7 +4068,7 @@
   id: ice_streams
   title: 'Ice streams'
   description: >-
-      TBD
+      Calculated subglacial hydrologic stream paths.
   style: 'ice_streams'
   data_source: streams_outlets_basins.ice_streams
   ogr2ogr_kwargs:
@@ -4079,7 +4079,7 @@
   id: ice_basins
   title: 'Ice basins'
   description: >-
-      TBD
+      Calculated ice sheet hydrologic basins using regional climate model spatial coverage.
   style: 'ice_basins'
   data_source: streams_outlets_basins.ice_basins
   ogr2ogr_kwargs:
@@ -4089,7 +4089,7 @@
   id: ice_basins_filled
   title: 'Ice basins filled'
   description: >-
-      TBD
+      Calculated ice sheet hydrologic basins including areas classified as land/ocean by regional climate models.
   style: 'ice_basins'
   data_source: streams_outlets_basins.ice_basins_filled
   ogr2ogr_kwargs:
@@ -4099,7 +4099,7 @@
   id: land_streams
   title: 'Land streams'
   description: >-
-      TBD
+      Calculated terrestrial hydrologic stream paths.
   style: 'land_streams'
   data_source: streams_outlets_basins.land_streams
   ogr2ogr_kwargs:
@@ -4110,7 +4110,7 @@
   id: land_basins
   title: 'Land basins'
   description: >-
-      TBD
+      Calculated terrestrial hydrologic basins using regional climate model spatial coverage.
   style: 'land_basins'
   data_source: streams_outlets_basins.land_basins
   ogr2ogr_kwargs:
@@ -4120,7 +4120,7 @@
   id: land_basins_filled
   title: 'Land basins filled'
   description: >-
-      TBD
+      Calculated terrestrial hydrologic basins including areas classified as ice/ocean by regional climate models.
   style: 'land_basins'
   data_source: streams_outlets_basins.land_basins_filled
   ogr2ogr_kwargs:
