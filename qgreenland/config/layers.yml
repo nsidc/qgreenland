@@ -4146,7 +4146,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2024'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2024
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -4534,7 +4534,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2025'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2025
   ingest_task: zipped_vector
   file_type: '.gpkg'
