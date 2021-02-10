@@ -8,6 +8,10 @@ Reference:
   visible: True
   expanded: True
 
+Reference/QGreenland boundaries:
+  visible: True
+  expanded: False
+
 Places:
   visible: False
   expanded: False
