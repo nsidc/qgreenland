@@ -2147,8 +2147,6 @@
       - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
   warp_kwargs:
     ignore_output_bounds_hack: True
-    xRes: 250
-    yRes: 250
 
 - <<: *esa_cci_velocity
   id: esa_cci_velocity_vertical
