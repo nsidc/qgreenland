@@ -2615,7 +2615,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' \'/y' as label
+        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
       FROM D_SV_2020"
 
 - <<: *wmm_d_2020
@@ -2787,7 +2787,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' \'/y' as label
+        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
       FROM I_SV_2020"
 
 - <<: *wmm_d_2020
