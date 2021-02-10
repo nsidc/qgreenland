@@ -2203,6 +2203,9 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'MAGT'
   warp_kwargs:
+    # Webpage for this data (https://doi.pangaea.de/10.1594/PANGAEA.888600)
+    # notes All files are provided in Arctic Polar Stereographic projection
+    # (EPSG:3995 WGS 84)
     srcSRS: 'EPSG:3995'
     xRes: 10000
     yRes: 10000
