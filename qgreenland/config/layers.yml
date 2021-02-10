@@ -2615,7 +2615,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM D_SV_2020"
 
 - <<: *wmm_d_2020
@@ -2787,7 +2787,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM I_SV_2020"
 
 - <<: *wmm_d_2020
@@ -3033,7 +3033,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM D_SV_2021"
 
 - <<: *wmm_d_2021
@@ -3189,7 +3189,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM I_SV_2021"
 
 - <<: *wmm_d_2021
@@ -3421,7 +3421,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM D_SV_2022"
 
 - <<: *wmm_d_2022
@@ -3577,7 +3577,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM I_SV_2022"
 
 - <<: *wmm_d_2022
@@ -3809,7 +3809,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM D_SV_2023"
 
 - <<: *wmm_d_2023
@@ -3965,7 +3965,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM I_SV_2023"
 
 - <<: *wmm_d_2023
@@ -4197,7 +4197,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM D_SV_2024"
 
 - <<: *wmm_d_2024
@@ -4353,7 +4353,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM I_SV_2024"
 
 - <<: *wmm_d_2024
@@ -4585,7 +4585,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM D_SV_2025"
 
 - <<: *wmm_d_2025
@@ -4741,7 +4741,7 @@
         Contour,
         SIGN,
         \"INDEX\",
-        CAST(Contour AS TEXT) ||  ' arcmin/y' as label
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
       FROM I_SV_2025"
 
 - <<: *wmm_d_2025
