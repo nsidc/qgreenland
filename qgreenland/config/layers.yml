@@ -2562,7 +2562,7 @@
     angle measured is east of true north and negative when west.
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2020'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2020
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -2580,13 +2580,22 @@
       - 'WMM_2020_all_shape_geographic/D_2020.shx'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM D_2020"
 
 - <<: *wmm_d_2020
   id: wmm_d_sv_2020
   title: 'Annual change declination (D_SV)'
-  description: &wmm_sv_description >-
-    Contours representing annual change (secular variation) in the total
-    intensity of the main magnetic field in arcminutes per year.
+  description: &wmm_d_sv_description >-
+    Contours representing annual change (secular variation) in the declination
+    (D) of the main magnetic field in arcminutes per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/D_SV_2020.cpg'
@@ -2597,6 +2606,17 @@
       - 'WMM_2020_all_shape_geographic/D_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/D_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/D_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM D_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_f_2020
@@ -2617,11 +2637,24 @@
       - 'WMM_2020_all_shape_geographic/F_2020.shp'
       - 'WMM_2020_all_shape_geographic/F_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/F_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM F_2020"
 
 - <<: *wmm_d_2020
   id: wmm_f_sv_2020
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: &wmm_f_sv_description >-
+    Contours representing annual change (secular variation) in the total
+    intensity (F) of the main magnetic field in nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/F_SV_2020.cpg'
@@ -2632,6 +2665,17 @@
       - 'WMM_2020_all_shape_geographic/F_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/F_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/F_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM F_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_h_2020
@@ -2649,11 +2693,24 @@
       - 'WMM_2020_all_shape_geographic/H_2020.shp'
       - 'WMM_2020_all_shape_geographic/H_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/H_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM H_2020"
 
 - <<: *wmm_d_2020
   id: wmm_h_sv_2020
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: &wmm_h_sv_description >-
+    Contours representing annual change (secular variation) in the horizontal
+    intensity (H) of the main magnetic field in nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/H_SV_2020.cpg'
@@ -2664,6 +2721,17 @@
       - 'WMM_2020_all_shape_geographic/H_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/H_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/H_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM H_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_i_2020
@@ -2682,11 +2750,24 @@
       - 'WMM_2020_all_shape_geographic/I_2020.shp'
       - 'WMM_2020_all_shape_geographic/I_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/I_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM I_2020"
 
 - <<: *wmm_d_2020
   id: wmm_i_sv_2020
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: &wmm_i_sv_description >-
+    Contours representing annual change (secular variation) in the magnetic
+    inclination (I) of the main magnetic field in arcminutes per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/I_SV_2020.cpg'
@@ -2697,6 +2778,17 @@
       - 'WMM_2020_all_shape_geographic/I_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/I_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/I_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM I_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_x_2020
@@ -2714,11 +2806,25 @@
       - 'WMM_2020_all_shape_geographic/X_2020.shp'
       - 'WMM_2020_all_shape_geographic/X_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/X_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM X_2020"
 
 - <<: *wmm_d_2020
   id: wmm_x_sv_2020
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: &wmm_x_sv_description >-
+    Contours representing annual change (secular variation) in the North
+    component (X) of the horizontal intensity of the main magnetic field in
+    nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/X_SV_2020.cpg'
@@ -2729,6 +2835,17 @@
       - 'WMM_2020_all_shape_geographic/X_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/X_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/X_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM X_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_y_2020
@@ -2746,11 +2863,25 @@
       - 'WMM_2020_all_shape_geographic/Y_2020.shp'
       - 'WMM_2020_all_shape_geographic/Y_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Y_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Y_2020"
 
 - <<: *wmm_d_2020
   id: wmm_y_sv_2020
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: &wmm_y_sv_description >-
+    Contours representing annual change (secular variation) in the East
+    component (Y) of the horizontal intensity of the main magnetic field in
+    nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.cpg'
@@ -2761,6 +2892,17 @@
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Y_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_z_2020
@@ -2777,11 +2919,24 @@
       - 'WMM_2020_all_shape_geographic/Z_2020.shp'
       - 'WMM_2020_all_shape_geographic/Z_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Z_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Z_2020"
 
 - <<: *wmm_d_2020
   id: wmm_z_sv_2020
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: &wmm_z_sv_description >-
+    Contours representing annual change (secular variation) in the down
+    component (Z) of the main magnetic field in nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.cpg'
@@ -2792,6 +2947,17 @@
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Z_SV_2020"
 
 
 ######## World Magnetic Model 2021 ########
@@ -2816,7 +2982,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2021'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2021
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -2834,11 +3000,20 @@
       - 'WMM_2021_all_shape_geographic/D_2021.shx'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM D_2021"
 
 - <<: *wmm_d_2021
   id: wmm_d_sv_2021
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/D_SV_2021.cpg'
@@ -2849,6 +3024,17 @@
       - 'WMM_2021_all_shape_geographic/D_SV_2021.shp'
       - 'WMM_2021_all_shape_geographic/D_SV_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/D_SV_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM D_SV_2021"
 
 - <<: *wmm_d_2021
   id: wmm_f_2021
@@ -2864,11 +3050,22 @@
       - 'WMM_2021_all_shape_geographic/F_2021.shp'
       - 'WMM_2021_all_shape_geographic/F_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/F_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM F_2021"
 
 - <<: *wmm_d_2021
   id: wmm_f_sv_2021
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/F_SV_2021.cpg'
@@ -2879,6 +3076,17 @@
       - 'WMM_2021_all_shape_geographic/F_SV_2021.shp'
       - 'WMM_2021_all_shape_geographic/F_SV_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/F_SV_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM F_SV_2021"
 
 - <<: *wmm_d_2021
   id: wmm_h_2021
@@ -2894,11 +3102,22 @@
       - 'WMM_2021_all_shape_geographic/H_2021.shp'
       - 'WMM_2021_all_shape_geographic/H_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/H_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM H_2021"
 
 - <<: *wmm_d_2021
   id: wmm_h_sv_2021
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/H_SV_2021.cpg'
@@ -2909,6 +3128,17 @@
       - 'WMM_2021_all_shape_geographic/H_SV_2021.shp'
       - 'WMM_2021_all_shape_geographic/H_SV_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/H_SV_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM H_SV_2021"
 
 - <<: *wmm_d_2021
   id: wmm_i_2021
@@ -2924,11 +3154,22 @@
       - 'WMM_2021_all_shape_geographic/I_2021.shp'
       - 'WMM_2021_all_shape_geographic/I_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/I_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM I_2021"
 
 - <<: *wmm_d_2021
   id: wmm_i_sv_2021
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/I_SV_2021.cpg'
@@ -2939,6 +3180,17 @@
       - 'WMM_2021_all_shape_geographic/I_SV_2021.shp'
       - 'WMM_2021_all_shape_geographic/I_SV_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/I_SV_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM I_SV_2021"
 
 - <<: *wmm_d_2021
   id: wmm_x_2021
@@ -2954,11 +3206,22 @@
       - 'WMM_2021_all_shape_geographic/X_2021.shp'
       - 'WMM_2021_all_shape_geographic/X_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/X_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM X_2021"
 
 - <<: *wmm_d_2021
   id: wmm_x_sv_2021
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/X_SV_2021.cpg'
@@ -2969,6 +3232,17 @@
       - 'WMM_2021_all_shape_geographic/X_SV_2021.shp'
       - 'WMM_2021_all_shape_geographic/X_SV_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/X_SV_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM X_SV_2021"
 
 - <<: *wmm_d_2021
   id: wmm_y_2021
@@ -2984,11 +3258,22 @@
       - 'WMM_2021_all_shape_geographic/Y_2021.shp'
       - 'WMM_2021_all_shape_geographic/Y_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/Y_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Y_2021"
 
 - <<: *wmm_d_2021
   id: wmm_y_sv_2021
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Y_SV_2021.cpg'
@@ -2999,6 +3284,17 @@
       - 'WMM_2021_all_shape_geographic/Y_SV_2021.shp'
       - 'WMM_2021_all_shape_geographic/Y_SV_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/Y_SV_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Y_SV_2021"
 
 - <<: *wmm_d_2021
   id: wmm_z_2021
@@ -3014,11 +3310,22 @@
       - 'WMM_2021_all_shape_geographic/Z_2021.shp'
       - 'WMM_2021_all_shape_geographic/Z_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/Z_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Z_2021"
 
 - <<: *wmm_d_2021
   id: wmm_z_sv_2021
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Z_SV_2021.cpg'
@@ -3029,6 +3336,17 @@
       - 'WMM_2021_all_shape_geographic/Z_SV_2021.shp'
       - 'WMM_2021_all_shape_geographic/Z_SV_2021.shp.xml'
       - 'WMM_2021_all_shape_geographic/Z_SV_2021.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Z_SV_2021"
 
 ######## World Magnetic Model 2022 ########
 - <<: *boz_2020
@@ -3052,7 +3370,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2022'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2022
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -3070,11 +3388,20 @@
       - 'WMM_2022_all_shape_geographic/D_2022.shx'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM D_2022"
 
 - <<: *wmm_d_2022
   id: wmm_d_sv_2022
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/D_SV_2022.cpg'
@@ -3085,6 +3412,17 @@
       - 'WMM_2022_all_shape_geographic/D_SV_2022.shp'
       - 'WMM_2022_all_shape_geographic/D_SV_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/D_SV_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM D_SV_2022"
 
 - <<: *wmm_d_2022
   id: wmm_f_2022
@@ -3100,11 +3438,22 @@
       - 'WMM_2022_all_shape_geographic/F_2022.shp'
       - 'WMM_2022_all_shape_geographic/F_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/F_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM F_2022"
 
 - <<: *wmm_d_2022
   id: wmm_f_sv_2022
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/F_SV_2022.cpg'
@@ -3115,6 +3464,17 @@
       - 'WMM_2022_all_shape_geographic/F_SV_2022.shp'
       - 'WMM_2022_all_shape_geographic/F_SV_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/F_SV_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM F_SV_2022"
 
 - <<: *wmm_d_2022
   id: wmm_h_2022
@@ -3130,11 +3490,22 @@
       - 'WMM_2022_all_shape_geographic/H_2022.shp'
       - 'WMM_2022_all_shape_geographic/H_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/H_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM H_2022"
 
 - <<: *wmm_d_2022
   id: wmm_h_sv_2022
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/H_SV_2022.cpg'
@@ -3145,6 +3516,17 @@
       - 'WMM_2022_all_shape_geographic/H_SV_2022.shp'
       - 'WMM_2022_all_shape_geographic/H_SV_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/H_SV_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM H_SV_2022"
 
 - <<: *wmm_d_2022
   id: wmm_i_2022
@@ -3160,11 +3542,22 @@
       - 'WMM_2022_all_shape_geographic/I_2022.shp'
       - 'WMM_2022_all_shape_geographic/I_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/I_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM I_2022"
 
 - <<: *wmm_d_2022
   id: wmm_i_sv_2022
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/I_SV_2022.cpg'
@@ -3175,6 +3568,17 @@
       - 'WMM_2022_all_shape_geographic/I_SV_2022.shp'
       - 'WMM_2022_all_shape_geographic/I_SV_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/I_SV_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM I_SV_2022"
 
 - <<: *wmm_d_2022
   id: wmm_x_2022
@@ -3190,11 +3594,22 @@
       - 'WMM_2022_all_shape_geographic/X_2022.shp'
       - 'WMM_2022_all_shape_geographic/X_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/X_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM X_2022"
 
 - <<: *wmm_d_2022
   id: wmm_x_sv_2022
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/X_SV_2022.cpg'
@@ -3205,6 +3620,17 @@
       - 'WMM_2022_all_shape_geographic/X_SV_2022.shp'
       - 'WMM_2022_all_shape_geographic/X_SV_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/X_SV_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM X_SV_2022"
 
 - <<: *wmm_d_2022
   id: wmm_y_2022
@@ -3220,11 +3646,22 @@
       - 'WMM_2022_all_shape_geographic/Y_2022.shp'
       - 'WMM_2022_all_shape_geographic/Y_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/Y_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Y_2022"
 
 - <<: *wmm_d_2022
   id: wmm_y_sv_2022
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Y_SV_2022.cpg'
@@ -3235,6 +3672,17 @@
       - 'WMM_2022_all_shape_geographic/Y_SV_2022.shp'
       - 'WMM_2022_all_shape_geographic/Y_SV_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/Y_SV_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Y_SV_2022"
 
 - <<: *wmm_d_2022
   id: wmm_z_2022
@@ -3250,11 +3698,22 @@
       - 'WMM_2022_all_shape_geographic/Z_2022.shp'
       - 'WMM_2022_all_shape_geographic/Z_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/Z_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Z_2022"
 
 - <<: *wmm_d_2022
   id: wmm_z_sv_2022
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Z_SV_2022.cpg'
@@ -3265,6 +3724,17 @@
       - 'WMM_2022_all_shape_geographic/Z_SV_2022.shp'
       - 'WMM_2022_all_shape_geographic/Z_SV_2022.shp.xml'
       - 'WMM_2022_all_shape_geographic/Z_SV_2022.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Z_SV_2022"
 
 ######## World Magnetic Model 2023 ########
 - <<: *boz_2020
@@ -3288,7 +3758,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2023'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2023
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -3306,11 +3776,20 @@
       - 'WMM_2023_all_shape_geographic/D_2023.shx'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM D_2023"
 
 - <<: *wmm_d_2023
   id: wmm_d_sv_2023
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/D_SV_2023.cpg'
@@ -3321,6 +3800,17 @@
       - 'WMM_2023_all_shape_geographic/D_SV_2023.shp'
       - 'WMM_2023_all_shape_geographic/D_SV_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/D_SV_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM D_SV_2023"
 
 - <<: *wmm_d_2023
   id: wmm_f_2023
@@ -3336,11 +3826,22 @@
       - 'WMM_2023_all_shape_geographic/F_2023.shp'
       - 'WMM_2023_all_shape_geographic/F_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/F_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM F_2023"
 
 - <<: *wmm_d_2023
   id: wmm_f_sv_2023
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/F_SV_2023.cpg'
@@ -3351,6 +3852,17 @@
       - 'WMM_2023_all_shape_geographic/F_SV_2023.shp'
       - 'WMM_2023_all_shape_geographic/F_SV_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/F_SV_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM F_SV_2023"
 
 - <<: *wmm_d_2023
   id: wmm_h_2023
@@ -3366,11 +3878,22 @@
       - 'WMM_2023_all_shape_geographic/H_2023.shp'
       - 'WMM_2023_all_shape_geographic/H_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/H_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM H_2023"
 
 - <<: *wmm_d_2023
   id: wmm_h_sv_2023
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/H_SV_2023.cpg'
@@ -3381,6 +3904,17 @@
       - 'WMM_2023_all_shape_geographic/H_SV_2023.shp'
       - 'WMM_2023_all_shape_geographic/H_SV_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/H_SV_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM H_SV_2023"
 
 - <<: *wmm_d_2023
   id: wmm_i_2023
@@ -3396,11 +3930,22 @@
       - 'WMM_2023_all_shape_geographic/I_2023.shp'
       - 'WMM_2023_all_shape_geographic/I_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/I_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM I_2023"
 
 - <<: *wmm_d_2023
   id: wmm_i_sv_2023
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/I_SV_2023.cpg'
@@ -3411,6 +3956,17 @@
       - 'WMM_2023_all_shape_geographic/I_SV_2023.shp'
       - 'WMM_2023_all_shape_geographic/I_SV_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/I_SV_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM I_SV_2023"
 
 - <<: *wmm_d_2023
   id: wmm_x_2023
@@ -3426,11 +3982,22 @@
       - 'WMM_2023_all_shape_geographic/X_2023.shp'
       - 'WMM_2023_all_shape_geographic/X_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/X_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM X_2023"
 
 - <<: *wmm_d_2023
   id: wmm_x_sv_2023
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/X_SV_2023.cpg'
@@ -3441,6 +4008,17 @@
       - 'WMM_2023_all_shape_geographic/X_SV_2023.shp'
       - 'WMM_2023_all_shape_geographic/X_SV_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/X_SV_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM X_SV_2023"
 
 - <<: *wmm_d_2023
   id: wmm_y_2023
@@ -3456,11 +4034,22 @@
       - 'WMM_2023_all_shape_geographic/Y_2023.shp'
       - 'WMM_2023_all_shape_geographic/Y_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/Y_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Y_2023"
 
 - <<: *wmm_d_2023
   id: wmm_y_sv_2023
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Y_SV_2023.cpg'
@@ -3471,6 +4060,17 @@
       - 'WMM_2023_all_shape_geographic/Y_SV_2023.shp'
       - 'WMM_2023_all_shape_geographic/Y_SV_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/Y_SV_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Y_SV_2023"
 
 - <<: *wmm_d_2023
   id: wmm_z_2023
@@ -3486,11 +4086,22 @@
       - 'WMM_2023_all_shape_geographic/Z_2023.shp'
       - 'WMM_2023_all_shape_geographic/Z_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/Z_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Z_2023"
 
 - <<: *wmm_d_2023
   id: wmm_z_sv_2023
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Z_SV_2023.cpg'
@@ -3501,6 +4112,17 @@
       - 'WMM_2023_all_shape_geographic/Z_SV_2023.shp'
       - 'WMM_2023_all_shape_geographic/Z_SV_2023.shp.xml'
       - 'WMM_2023_all_shape_geographic/Z_SV_2023.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Z_SV_2023"
 
 ######## World Magnetic Model 2024 ########
 - <<: *boz_2020
@@ -3524,7 +4146,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2024'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2024
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -3542,11 +4164,20 @@
       - 'WMM_2024_all_shape_geographic/D_2024.shx'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM D_2024"
 
 - <<: *wmm_d_2024
   id: wmm_d_sv_2024
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/D_SV_2024.cpg'
@@ -3557,6 +4188,17 @@
       - 'WMM_2024_all_shape_geographic/D_SV_2024.shp'
       - 'WMM_2024_all_shape_geographic/D_SV_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/D_SV_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM D_SV_2024"
 
 - <<: *wmm_d_2024
   id: wmm_f_2024
@@ -3572,11 +4214,22 @@
       - 'WMM_2024_all_shape_geographic/F_2024.shp'
       - 'WMM_2024_all_shape_geographic/F_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/F_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM F_2024"
 
 - <<: *wmm_d_2024
   id: wmm_f_sv_2024
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/F_SV_2024.cpg'
@@ -3587,6 +4240,17 @@
       - 'WMM_2024_all_shape_geographic/F_SV_2024.shp'
       - 'WMM_2024_all_shape_geographic/F_SV_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/F_SV_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM F_SV_2024"
 
 - <<: *wmm_d_2024
   id: wmm_h_2024
@@ -3602,11 +4266,22 @@
       - 'WMM_2024_all_shape_geographic/H_2024.shp'
       - 'WMM_2024_all_shape_geographic/H_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/H_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM H_2024"
 
 - <<: *wmm_d_2024
   id: wmm_h_sv_2024
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/H_SV_2024.cpg'
@@ -3617,6 +4292,17 @@
       - 'WMM_2024_all_shape_geographic/H_SV_2024.shp'
       - 'WMM_2024_all_shape_geographic/H_SV_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/H_SV_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM H_SV_2024"
 
 - <<: *wmm_d_2024
   id: wmm_i_2024
@@ -3632,11 +4318,22 @@
       - 'WMM_2024_all_shape_geographic/I_2024.shp'
       - 'WMM_2024_all_shape_geographic/I_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/I_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM I_2024"
 
 - <<: *wmm_d_2024
   id: wmm_i_sv_2024
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/I_SV_2024.cpg'
@@ -3647,6 +4344,17 @@
       - 'WMM_2024_all_shape_geographic/I_SV_2024.shp'
       - 'WMM_2024_all_shape_geographic/I_SV_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/I_SV_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM I_SV_2024"
 
 - <<: *wmm_d_2024
   id: wmm_x_2024
@@ -3662,11 +4370,22 @@
       - 'WMM_2024_all_shape_geographic/X_2024.shp'
       - 'WMM_2024_all_shape_geographic/X_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/X_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM X_2024"
 
 - <<: *wmm_d_2024
   id: wmm_x_sv_2024
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/X_SV_2024.cpg'
@@ -3677,6 +4396,17 @@
       - 'WMM_2024_all_shape_geographic/X_SV_2024.shp'
       - 'WMM_2024_all_shape_geographic/X_SV_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/X_SV_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM X_SV_2024"
 
 - <<: *wmm_d_2024
   id: wmm_y_2024
@@ -3692,11 +4422,22 @@
       - 'WMM_2024_all_shape_geographic/Y_2024.shp'
       - 'WMM_2024_all_shape_geographic/Y_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/Y_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Y_2024"
 
 - <<: *wmm_d_2024
   id: wmm_y_sv_2024
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Y_SV_2024.cpg'
@@ -3707,6 +4448,17 @@
       - 'WMM_2024_all_shape_geographic/Y_SV_2024.shp'
       - 'WMM_2024_all_shape_geographic/Y_SV_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/Y_SV_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Y_SV_2024"
 
 - <<: *wmm_d_2024
   id: wmm_z_2024
@@ -3722,11 +4474,22 @@
       - 'WMM_2024_all_shape_geographic/Z_2024.shp'
       - 'WMM_2024_all_shape_geographic/Z_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/Z_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Z_2024"
 
 - <<: *wmm_d_2024
   id: wmm_z_sv_2024
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Z_SV_2024.cpg'
@@ -3737,6 +4500,17 @@
       - 'WMM_2024_all_shape_geographic/Z_SV_2024.shp'
       - 'WMM_2024_all_shape_geographic/Z_SV_2024.shp.xml'
       - 'WMM_2024_all_shape_geographic/Z_SV_2024.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Z_SV_2024"
 
 ######## World Magnetic Model 2025 ########
 - <<: *boz_2020
@@ -3760,7 +4534,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2025'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2025
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -3778,11 +4552,20 @@
       - 'WMM_2025_all_shape_geographic/D_2025.shx'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM D_2025"
 
 - <<: *wmm_d_2025
   id: wmm_d_sv_2025
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/D_SV_2025.cpg'
@@ -3793,6 +4576,17 @@
       - 'WMM_2025_all_shape_geographic/D_SV_2025.shp'
       - 'WMM_2025_all_shape_geographic/D_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/D_SV_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM D_SV_2025"
 
 - <<: *wmm_d_2025
   id: wmm_f_2025
@@ -3808,11 +4602,22 @@
       - 'WMM_2025_all_shape_geographic/F_2025.shp'
       - 'WMM_2025_all_shape_geographic/F_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/F_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM F_2025"
 
 - <<: *wmm_d_2025
   id: wmm_f_sv_2025
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/F_SV_2025.cpg'
@@ -3823,6 +4628,17 @@
       - 'WMM_2025_all_shape_geographic/F_SV_2025.shp'
       - 'WMM_2025_all_shape_geographic/F_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/F_SV_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM F_SV_2025"
 
 - <<: *wmm_d_2025
   id: wmm_h_2025
@@ -3838,11 +4654,22 @@
       - 'WMM_2025_all_shape_geographic/H_2025.shp'
       - 'WMM_2025_all_shape_geographic/H_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/H_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM H_2025"
 
 - <<: *wmm_d_2025
   id: wmm_h_sv_2025
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/H_SV_2025.cpg'
@@ -3853,6 +4680,17 @@
       - 'WMM_2025_all_shape_geographic/H_SV_2025.shp'
       - 'WMM_2025_all_shape_geographic/H_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/H_SV_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM H_SV_2025"
 
 - <<: *wmm_d_2025
   id: wmm_i_2025
@@ -3868,11 +4706,22 @@
       - 'WMM_2025_all_shape_geographic/I_2025.shp'
       - 'WMM_2025_all_shape_geographic/I_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/I_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM I_2025"
 
 - <<: *wmm_d_2025
   id: wmm_i_sv_2025
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/I_SV_2025.cpg'
@@ -3883,6 +4732,17 @@
       - 'WMM_2025_all_shape_geographic/I_SV_2025.shp'
       - 'WMM_2025_all_shape_geographic/I_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/I_SV_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' ''/y' as label
+      FROM I_SV_2025"
 
 - <<: *wmm_d_2025
   id: wmm_x_2025
@@ -3898,11 +4758,22 @@
       - 'WMM_2025_all_shape_geographic/X_2025.shp'
       - 'WMM_2025_all_shape_geographic/X_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/X_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM X_2025"
 
 - <<: *wmm_d_2025
   id: wmm_x_sv_2025
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/X_SV_2025.cpg'
@@ -3913,6 +4784,17 @@
       - 'WMM_2025_all_shape_geographic/X_SV_2025.shp'
       - 'WMM_2025_all_shape_geographic/X_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/X_SV_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM X_SV_2025"
 
 - <<: *wmm_d_2025
   id: wmm_y_2025
@@ -3928,11 +4810,22 @@
       - 'WMM_2025_all_shape_geographic/Y_2025.shp'
       - 'WMM_2025_all_shape_geographic/Y_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Y_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Y_2025"
 
 - <<: *wmm_d_2025
   id: wmm_y_sv_2025
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Y_SV_2025.cpg'
@@ -3943,6 +4836,17 @@
       - 'WMM_2025_all_shape_geographic/Y_SV_2025.shp'
       - 'WMM_2025_all_shape_geographic/Y_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Y_SV_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Y_SV_2025"
 
 - <<: *wmm_d_2025
   id: wmm_z_2025
@@ -3958,11 +4862,22 @@
       - 'WMM_2025_all_shape_geographic/Z_2025.shp'
       - 'WMM_2025_all_shape_geographic/Z_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Z_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Z_2025"
 
 - <<: *wmm_d_2025
   id: wmm_z_sv_2025
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.cpg'
@@ -3973,6 +4888,17 @@
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp'
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shp.xml'
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Z_SV_2025"
 
 - &gravity_anomaly_geoid
   id: bouguer_gravity_anomaly
