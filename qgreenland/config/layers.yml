@@ -22,6 +22,7 @@
   title: Background boundary
   description: >-
     Polygon representing the boundary of QGreenland background data/imagery.
+  visible: True
   data_source: qgr_bounds.background
   ogr2ogr_kwargs:
     input_filename: 'latitude_shape_40_degrees.geojson'
