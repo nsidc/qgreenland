@@ -763,7 +763,7 @@
   style: 'semitransparent_polygon'
   visible: False
   group_path: 'Biology/Fish'
-  boundary: 'data'
+  boundary: 'background'
   ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
@@ -930,7 +930,7 @@
   visible: False
   group_path: 'Biology/Vegetation'
   style: 'vegetation_biomass'
-  boundary: 'data'
+  boundary: 'background'
   data_source: arctic_vegetation_biomass_2010.only
   ingest_task: arctic_vegetation
   file_type: '.tif'
