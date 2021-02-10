@@ -4072,6 +4072,7 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'GHF'
   warp_kwargs:
+    ignore_output_bounds_hack: True
     xRes: 5000
     yRes: 5000
 
