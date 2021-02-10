@@ -922,7 +922,7 @@
         WHERE type LIKE 'Walrus%'"
 
 - id: vegetation_biomass_2010
-  title: 'Vegetation biomass 2010 (1km)'
+  title: 'Vegetation biomass 2010 (12km)'
   description: >-
     Estimated above ground plant biomass for the tundra biome in kilograms per
     square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
@@ -935,6 +935,9 @@
   ingest_task: arctic_vegetation
   file_type: '.tif'
   data_type: 'raster'
+  warp_kwargs:
+    xRes: 12000
+    yRes: 12000
 
 
 ############################
@@ -1247,6 +1250,9 @@
       - 'precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
   unzip_kwargs:
     input_filename: 'RACMO_QGreenland_Jan2021.zip'
+  warp_kwargs:
+    xRes: 1000
+    yRes: 1000
 
 - <<: *racmo_1km
   id: racmo_snowfall
@@ -1629,6 +1635,9 @@
   decompress_kwargs:
     extract_files:
       - 'ICESat1_ICESat2_mass_change/gris.tif'
+  warp_kwargs:
+    xRes: 5000
+    yRes: 5000
 
 - &cci_surface_elevation_change
   id: surface_elevation_change_1992_1996
@@ -2136,6 +2145,9 @@
   decompress_kwargs:
     extract_files:
       - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
+  warp_kwargs:
+    xRes: 250
+    yRes: 250
 
 - <<: *esa_cci_velocity
   id: esa_cci_velocity_vertical
@@ -2191,6 +2203,8 @@
     extract_dataset: 'MAGT'
   warp_kwargs:
     srcSRS: 'EPSG:3995'
+    xRes: 10000
+    yRes: 10000
 
 - <<: *ground_temperature
   id:  ground_temperature_sd
@@ -4045,14 +4059,17 @@
   style: 'geothermal_heat_flux'
   data_source: geothermal_heat_flux.only
   ingest_task: zipped_netcdf
+  file_type: '.tif'
+  data_type: 'raster'
+  boundary: 'data'
   decompress_kwargs:
     extract_files:
       - 'ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc'
   extract_nc_dataset_kwargs:
     extract_dataset: 'GHF'
-  file_type: '.tif'
-  data_type: 'raster'
-  boundary: 'data'
+  warp_kwargs:
+    xRes: 5000
+    yRes: 5000
 
 
 #############
@@ -4450,6 +4467,9 @@
   data_type: 'raster'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
+  warp_kwargs:
+    xRes: 25000
+    yRes: 25000
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2011
@@ -4526,6 +4546,9 @@
   data_type: 'raster'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
+  warp_kwargs:
+    xRes: 25000
+    yRes: 25000
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2011
@@ -4779,6 +4802,9 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'sftgif'
     noData: 0
+  warp_kwargs:
+    xRes: 1800
+    yRes: 1800
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_45
@@ -4855,6 +4881,9 @@
   ingest_task: 'arctic_dem'
   file_type: '.tif'
   data_type: 'raster'
+  warp_kwargs:
+    xRes: 100
+    yRes: 100
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
