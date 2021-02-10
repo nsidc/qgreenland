@@ -4468,9 +4468,6 @@
   data_type: 'raster'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
-  warp_kwargs:
-    xRes: 25000
-    yRes: 25000
 
 - <<: *seaice_minimum_concentration
   id: minimum_concentration_2011
@@ -4547,9 +4544,6 @@
   data_type: 'raster'
   gdal_calc_kwargs:
     calc: "'A / 10.0'"
-  warp_kwargs:
-    xRes: 25000
-    yRes: 25000
 
 - <<: *seaice_maximum_concentration
   id: maximum_concentration_2011
