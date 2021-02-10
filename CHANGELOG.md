@@ -1,8 +1,9 @@
-# v0.55.0 (unreleased)
+# v0.55.0 (2021-02-09)
 
 - Update RACMO data:
  - New version of the Annual mean temperature at 2m 1958-2019 (1km) layer that
    fixes bad temperature values.
+- Apply style enhancements to many layers.
 
 # v0.54.0 (2021-02-08)
 
