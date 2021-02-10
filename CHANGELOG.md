@@ -1,3 +1,10 @@
+# v1.0.0-rc1 (Unrelease)
+
+- Add styles for World Magnetic Model layers.
+- Fix descriptions for World Magnetic Model layers.
+- Increase coverage of Arctic Char and Vegetation Biomass.
+- Fix pixel sizes for some rasters.
+
 # v0.55.0 (2021-02-09)
 
 - Update RACMO data:
