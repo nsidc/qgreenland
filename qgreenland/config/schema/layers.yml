@@ -141,3 +141,5 @@ warp_kwargs:
   srcSRS: str(required=False)
   dstNodata: num(required=False)
   srcNodata:  num(required=False)
+  # Ignore the `outputBounds` hack when clipping datasets with `gdal.Warp`.
+  ignore_output_bounds_hack: bool(required=False)

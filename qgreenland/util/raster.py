@@ -101,6 +101,8 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs, src_srs_st
     # don't, e.g. compress twice.
     step2_keys = ['cutlineDSName', 'cropToCutline', 'creationOptions']
 
+    ignore_output_bounds_hack = warp_kwargs.pop('ignore_output_bounds_hack', False)
+
     # Step 1 needs to subset for this to work (outputBounds == `-te`).
     step1_kwargs = {k: v for k, v in warp_kwargs.items() if k not in step2_keys}
 
@@ -112,8 +114,8 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs, src_srs_st
     # if the source dataset is already in the project's CRS, do not use
     # `outputBounds` to limit the raster's extent. If the boundary's bbox does
     # not exactly align with the source grid, the resulting grid will be
-    # spatially offset from the source.
-    if src_srs_str != CONFIG['project']['crs']:
+    # spatially offset from the source.warp_kwargs.pop('ignore_output_bounds')
+    if src_srs_str != CONFIG['project']['crs'] or not ignore_output_bounds_hack:
         step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
 
     # Step 2 actually does the shape-based cut as a separate step, to avoid

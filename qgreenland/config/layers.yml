@@ -937,8 +937,9 @@
   file_type: '.tif'
   data_type: 'raster'
   warp_kwargs:
-    xRes: 12000
-    yRes: 12000
+    ignore_output_bounds_hack: True
+    xRes: 12400
+    yRes: 12400
 
 
 ############################
