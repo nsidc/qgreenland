@@ -1634,8 +1634,9 @@
     extract_files:
       - 'ICESat1_ICESat2_mass_change/gris.tif'
   warp_kwargs:
-    xRes: 5000
-    yRes: 5000
+    # This dataset is in 3413 although the metadata does not state this
+    # explicitly.
+    srcSRS: 'EPSG:3413'
 
 - &cci_surface_elevation_change
   id: surface_elevation_change_1992_1996
