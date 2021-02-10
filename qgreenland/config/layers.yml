@@ -2580,13 +2580,22 @@
       - 'WMM_2020_all_shape_geographic/D_2020.shx'
   ogr2ogr_kwargs:
     OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM D_2020"
 
 - <<: *wmm_d_2020
   id: wmm_d_sv_2020
   title: 'Annual change declination (D_SV)'
-  description: &wmm_sv_description >-
-    Contours representing annual change (secular variation) in the total
-    intensity of the main magnetic field in arcminutes per year.
+  description: &wmm_d_sv_description >-
+    Contours representing annual change (secular variation) in the declination
+    (D) of the main magnetic field in arcminutes per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/D_SV_2020.cpg'
@@ -2597,6 +2606,17 @@
       - 'WMM_2020_all_shape_geographic/D_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/D_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/D_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' \'/y' as label
+      FROM D_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_f_2020
@@ -2617,11 +2637,24 @@
       - 'WMM_2020_all_shape_geographic/F_2020.shp'
       - 'WMM_2020_all_shape_geographic/F_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/F_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM F_2020"
 
 - <<: *wmm_d_2020
   id: wmm_f_sv_2020
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: &wmm_f_sv_description >-
+    Contours representing annual change (secular variation) in the total
+    intensity (F) of the main magnetic field in nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/F_SV_2020.cpg'
@@ -2632,6 +2665,17 @@
       - 'WMM_2020_all_shape_geographic/F_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/F_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/F_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM F_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_h_2020
@@ -2649,11 +2693,24 @@
       - 'WMM_2020_all_shape_geographic/H_2020.shp'
       - 'WMM_2020_all_shape_geographic/H_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/H_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM H_2020"
 
 - <<: *wmm_d_2020
   id: wmm_h_sv_2020
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: &wmm_h_sv_description >-
+    Contours representing annual change (secular variation) in the horizontal
+    intensity (H) of the main magnetic field in nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/H_SV_2020.cpg'
@@ -2664,6 +2721,17 @@
       - 'WMM_2020_all_shape_geographic/H_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/H_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/H_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM H_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_i_2020
@@ -2682,11 +2750,24 @@
       - 'WMM_2020_all_shape_geographic/I_2020.shp'
       - 'WMM_2020_all_shape_geographic/I_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/I_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM I_2020"
 
 - <<: *wmm_d_2020
   id: wmm_i_sv_2020
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: &wmm_i_sv_description >-
+    Contours representing annual change (secular variation) in the magnetic
+    inclination (I) of the main magnetic field in arcminutes per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/I_SV_2020.cpg'
@@ -2697,6 +2778,17 @@
       - 'WMM_2020_all_shape_geographic/I_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/I_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/I_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' \'/y' as label
+      FROM I_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_x_2020
@@ -2714,11 +2806,25 @@
       - 'WMM_2020_all_shape_geographic/X_2020.shp'
       - 'WMM_2020_all_shape_geographic/X_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/X_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM X_2020"
 
 - <<: *wmm_d_2020
   id: wmm_x_sv_2020
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: &wmm_x_sv_description >-
+    Contours representing annual change (secular variation) in the North
+    component (X) of the horizontal intensity of the main magnetic field in
+    nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/X_SV_2020.cpg'
@@ -2729,6 +2835,17 @@
       - 'WMM_2020_all_shape_geographic/X_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/X_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/X_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM X_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_y_2020
@@ -2746,11 +2863,25 @@
       - 'WMM_2020_all_shape_geographic/Y_2020.shp'
       - 'WMM_2020_all_shape_geographic/Y_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Y_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Y_2020"
 
 - <<: *wmm_d_2020
   id: wmm_y_sv_2020
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: &wmm_y_sv_description >-
+    Contours representing annual change (secular variation) in the East
+    component (Y) of the horizontal intensity of the main magnetic field in
+    nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.cpg'
@@ -2761,6 +2892,17 @@
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Y_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Y_SV_2020"
 
 - <<: *wmm_d_2020
   id: wmm_z_2020
@@ -2777,11 +2919,24 @@
       - 'WMM_2020_all_shape_geographic/Z_2020.shp'
       - 'WMM_2020_all_shape_geographic/Z_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Z_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT' as label
+      FROM Z_2020"
 
 - <<: *wmm_d_2020
   id: wmm_z_sv_2020
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: &wmm_z_sv_description >-
+    Contours representing annual change (secular variation) in the down
+    component (Z) of the main magnetic field in nanoTesla per year.
   decompress_kwargs:
     extract_files:
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.cpg'
@@ -2792,6 +2947,17 @@
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.shp'
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.shp.xml'
       - 'WMM_2020_all_shape_geographic/Z_SV_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' nT/y' as label
+      FROM Z_SV_2020"
 
 
 ######## World Magnetic Model 2021 ########
@@ -2838,7 +3004,7 @@
 - <<: *wmm_d_2021
   id: wmm_d_sv_2021
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/D_SV_2021.cpg'
@@ -2868,7 +3034,7 @@
 - <<: *wmm_d_2021
   id: wmm_f_sv_2021
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/F_SV_2021.cpg'
@@ -2898,7 +3064,7 @@
 - <<: *wmm_d_2021
   id: wmm_h_sv_2021
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/H_SV_2021.cpg'
@@ -2928,7 +3094,7 @@
 - <<: *wmm_d_2021
   id: wmm_i_sv_2021
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/I_SV_2021.cpg'
@@ -2958,7 +3124,7 @@
 - <<: *wmm_d_2021
   id: wmm_x_sv_2021
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/X_SV_2021.cpg'
@@ -2988,7 +3154,7 @@
 - <<: *wmm_d_2021
   id: wmm_y_sv_2021
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Y_SV_2021.cpg'
@@ -3018,7 +3184,7 @@
 - <<: *wmm_d_2021
   id: wmm_z_sv_2021
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2021_all_shape_geographic/Z_SV_2021.cpg'
@@ -3074,7 +3240,7 @@
 - <<: *wmm_d_2022
   id: wmm_d_sv_2022
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/D_SV_2022.cpg'
@@ -3104,7 +3270,7 @@
 - <<: *wmm_d_2022
   id: wmm_f_sv_2022
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/F_SV_2022.cpg'
@@ -3134,7 +3300,7 @@
 - <<: *wmm_d_2022
   id: wmm_h_sv_2022
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/H_SV_2022.cpg'
@@ -3164,7 +3330,7 @@
 - <<: *wmm_d_2022
   id: wmm_i_sv_2022
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/I_SV_2022.cpg'
@@ -3194,7 +3360,7 @@
 - <<: *wmm_d_2022
   id: wmm_x_sv_2022
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/X_SV_2022.cpg'
@@ -3224,7 +3390,7 @@
 - <<: *wmm_d_2022
   id: wmm_y_sv_2022
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Y_SV_2022.cpg'
@@ -3254,7 +3420,7 @@
 - <<: *wmm_d_2022
   id: wmm_z_sv_2022
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2022_all_shape_geographic/Z_SV_2022.cpg'
@@ -3310,7 +3476,7 @@
 - <<: *wmm_d_2023
   id: wmm_d_sv_2023
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/D_SV_2023.cpg'
@@ -3340,7 +3506,7 @@
 - <<: *wmm_d_2023
   id: wmm_f_sv_2023
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/F_SV_2023.cpg'
@@ -3370,7 +3536,7 @@
 - <<: *wmm_d_2023
   id: wmm_h_sv_2023
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/H_SV_2023.cpg'
@@ -3400,7 +3566,7 @@
 - <<: *wmm_d_2023
   id: wmm_i_sv_2023
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/I_SV_2023.cpg'
@@ -3430,7 +3596,7 @@
 - <<: *wmm_d_2023
   id: wmm_x_sv_2023
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/X_SV_2023.cpg'
@@ -3460,7 +3626,7 @@
 - <<: *wmm_d_2023
   id: wmm_y_sv_2023
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Y_SV_2023.cpg'
@@ -3490,7 +3656,7 @@
 - <<: *wmm_d_2023
   id: wmm_z_sv_2023
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2023_all_shape_geographic/Z_SV_2023.cpg'
@@ -3546,7 +3712,7 @@
 - <<: *wmm_d_2024
   id: wmm_d_sv_2024
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/D_SV_2024.cpg'
@@ -3576,7 +3742,7 @@
 - <<: *wmm_d_2024
   id: wmm_f_sv_2024
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/F_SV_2024.cpg'
@@ -3606,7 +3772,7 @@
 - <<: *wmm_d_2024
   id: wmm_h_sv_2024
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/H_SV_2024.cpg'
@@ -3636,7 +3802,7 @@
 - <<: *wmm_d_2024
   id: wmm_i_sv_2024
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/I_SV_2024.cpg'
@@ -3666,7 +3832,7 @@
 - <<: *wmm_d_2024
   id: wmm_x_sv_2024
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/X_SV_2024.cpg'
@@ -3696,7 +3862,7 @@
 - <<: *wmm_d_2024
   id: wmm_y_sv_2024
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Y_SV_2024.cpg'
@@ -3726,7 +3892,7 @@
 - <<: *wmm_d_2024
   id: wmm_z_sv_2024
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2024_all_shape_geographic/Z_SV_2024.cpg'
@@ -3782,7 +3948,7 @@
 - <<: *wmm_d_2025
   id: wmm_d_sv_2025
   title: 'Annual change declination (D_SV)'
-  description: *wmm_sv_description
+  description: *wmm_d_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/D_SV_2025.cpg'
@@ -3812,7 +3978,7 @@
 - <<: *wmm_d_2025
   id: wmm_f_sv_2025
   title: 'Annual change total intensity (F_SV)'
-  description: *wmm_sv_description
+  description: *wmm_f_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/F_SV_2025.cpg'
@@ -3842,7 +4008,7 @@
 - <<: *wmm_d_2025
   id: wmm_h_sv_2025
   title: 'Annual change horizontal intensity (H_SV)'
-  description: *wmm_sv_description
+  description: *wmm_h_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/H_SV_2025.cpg'
@@ -3872,7 +4038,7 @@
 - <<: *wmm_d_2025
   id: wmm_i_sv_2025
   title: 'Annual change inclination (I_SV)'
-  description: *wmm_sv_description
+  description: *wmm_i_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/I_SV_2025.cpg'
@@ -3902,7 +4068,7 @@
 - <<: *wmm_d_2025
   id: wmm_x_sv_2025
   title: 'Annual change North component (X_SV)'
-  description: *wmm_sv_description
+  description: *wmm_x_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/X_SV_2025.cpg'
@@ -3932,7 +4098,7 @@
 - <<: *wmm_d_2025
   id: wmm_y_sv_2025
   title: 'Annual change East component (Y_SV)'
-  description: *wmm_sv_description
+  description: *wmm_y_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Y_SV_2025.cpg'
@@ -3962,7 +4128,7 @@
 - <<: *wmm_d_2025
   id: wmm_z_sv_2025
   title: 'Annual change down component (Z_SV)'
-  description: *wmm_sv_description
+  description: *wmm_z_sv_description
   decompress_kwargs:
     extract_files:
       - 'WMM_2025_all_shape_geographic/Z_SV_2025.cpg'
