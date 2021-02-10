@@ -2562,7 +2562,7 @@
     angle measured is east of true north and negative when west.
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2020'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2020
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -2982,7 +2982,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2021'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2021
   ingest_task: zipped_vector
   file_type: '.gpkg'
@@ -3370,7 +3370,7 @@
   description: *wmm_d_description
   visible: False
   group_path: 'Geophysics/World Magnetic Model/2022'
-  style: null
+  style: wmm_contours
   data_source: world_magnetic_model.2022
   ingest_task: zipped_vector
   file_type: '.gpkg'
