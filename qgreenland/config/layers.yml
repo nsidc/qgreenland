@@ -325,7 +325,7 @@
   data_source: nunagis_pop2019_municipalities.only
   visible: False
   group_path: 'Reference/Borders'
-  style: null
+  style: nunagis_municipalities_population
   boundary: 'data'
   ingest_task: ogr_remote_vector
   file_type: '.gpkg'
@@ -968,7 +968,7 @@
   data_source: nafo_divisions.only
   visible: False
   group_path: 'Environmental management'
-  style: null
+  style: nafo_divisions
   boundary: 'background'
   ingest_task: zipped_vector
   file_type: '.gpkg'
