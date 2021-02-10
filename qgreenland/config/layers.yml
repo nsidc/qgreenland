@@ -1251,9 +1251,6 @@
       - 'precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
   unzip_kwargs:
     input_filename: 'RACMO_QGreenland_Jan2021.zip'
-  warp_kwargs:
-    xRes: 1000
-    yRes: 1000
 
 - <<: *racmo_1km
   id: racmo_snowfall
