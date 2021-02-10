@@ -2467,14 +2467,12 @@
     longitude
   visible: False
   group_path: 'Geophysics/World Magnetic Model/Geomagnetic coordinates 2020'
-  style: geomagnetic_latlon
+  style: 'latlon'
   data_source: world_magnetic_model.geomagnetic_coordinates
   ingest_task: zipped_vector
   file_type: '.gpkg'
   data_type: 'vector'
   boundary: 'background'
-  ogr2ogr_kwargs:
-    OGR_ENABLE_PARTIAL_REPROJECTION: True
   decompress_kwargs:
     extract_files:
       - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.cpg'
@@ -2485,6 +2483,17 @@
       - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.shp'
       - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.shp.xml'
       - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLatitude_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM GeomagLatitude_2020"
 
 - <<: *wmm_geomag_coordinates
   id: wmm_longitudes
@@ -2499,6 +2508,17 @@
       - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.shp'
       - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.shp.xml'
       - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.shx'
+  ogr2ogr_kwargs:
+    OGR_ENABLE_PARTIAL_REPROJECTION: True
+    dialect: sqlite
+    sql: >-
+      "SELECT
+        Geometry,
+        Contour,
+        SIGN,
+        \"INDEX\",
+        CAST(Contour AS TEXT) ||  ' °' as label
+      FROM GeomagLongitude_2020"
 
 - &boz_2020
   id: wmm_boz_2020
