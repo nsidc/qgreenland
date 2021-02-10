@@ -14,7 +14,7 @@ from qgreenland.exceptions import QgrRuntimeError
 logger = logging.getLogger('luigi-interface')
 
 
-def _get_raster_srs(fp):
+def _get_raster_srs_str(fp):
     """Read a raster with GDAL and return its SRS or None."""
     try:
         tmp_ds = gdal.Open(fp, GA_ReadOnly)
@@ -54,7 +54,7 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
 
     warp_kwargs['dstSRS'] = CONFIG['project']['crs']
 
-    srs_str = _get_raster_srs(inp_path)
+    srs_str = _get_raster_srs_str(inp_path)
     logger.info(f'Detected projection: {srs_str}')
 
     # Override with configured srcSRS, if present
