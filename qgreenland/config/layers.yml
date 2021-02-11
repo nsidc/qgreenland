@@ -4840,7 +4840,7 @@
 
 - <<: *bedmachine
   id: bedmachine_surface
-  title: 'Surface elevation (500m)'
+  title: 'Surface elevation (150m)'
   description: >-
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
@@ -4850,7 +4850,7 @@
 
 - <<: *bedmachine
   id: bedmachine_bed
-  title: 'Bedrock elevation (500m)'
+  title: 'Bedrock elevation (150m)'
   description: >-
     Bedrock elevation in meters.
   style: 'bedmachine_bed'
@@ -4859,7 +4859,7 @@
 
 - <<: *bedmachine
   id: bedmachine_errbed
-  title: 'Bedrock elevation/ice thickness error (500m)'
+  title: 'Bedrock elevation/ice thickness error (150m)'
   description: >-
     Error estimate for Greenland bed elevation and ice thickness in meters.
   style: 'bedmachine_errbed'
