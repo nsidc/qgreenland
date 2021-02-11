@@ -2089,6 +2089,7 @@
     input_filename: 'points_2015-01-01_2019-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
+# TODO: Add overviews?
 - &its_live_velocity_mosaic
   id: velocity_mosaic
   title: 'Ice sheet velocity (120m)'
@@ -4817,6 +4818,7 @@
 # Terrain models #
 ##################
 
+# TODO: add overviews?
 - &bedmachine
   id: bedmachine_thickness
   title: 'Ice thickness (150m)'
