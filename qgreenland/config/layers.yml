@@ -4878,8 +4878,7 @@
   file_type: '.tif'
   data_type: 'raster'
   warp_kwargs:
-    xRes: 100
-    yRes: 100
+    ignore_output_bounds_hack: True
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
