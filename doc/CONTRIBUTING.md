@@ -301,28 +301,17 @@ A correct QGreenland data pipeline will output data that:
 
 # Releasing
 
-Currently there is no automated release process. The manual process is:
+Currently there is no automated versioning process. The manual process is to
+edit the `greenland/__init__` file with the desired version number.
 
-When developing, increment the proper version part (`major`, `minor`, `dev`)
-with the `version.bump {part}` invoke task. For example, to bump the minor
-version:
+Versions should be in one of the following forms:
 
-```
-invoke version.bump minor
-```
+* `vX.Y.Z`: A final release, e.g. `v1.2.3`.
+* `vX.Y.ZrcN`: A release candidate, e.g. `v1.2.3rc3`.
+* `vX.Y.Zdev`: A dev build not intended for release (should not be tagged),
+  e.g. `v1.2.3dev`.
 
-This will automatically add the `dev` tag to the end of the version string if
-one does not already exist. For example, if bumping the minor version from
-`v1.1.1`, the version will become `v1.2.1dev`.
-
-To release, invoke the `version.bump` tag with the `release` part:
-
-```
-invoke version.bump release
-```
-
-This will remove the `dev` part from the version. For example, using the
-`release` part on `v1.2.1dev` will change the version to `v1.2.1`.
+Publishing a tag to GitHub will trigger an automated release.
 
 
 # Troubleshooting
