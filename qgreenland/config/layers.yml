@@ -2109,7 +2109,7 @@
 
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_error
-  title: 'Velocity error'
+  title: 'Velocity error (120m)'
   description: 'Magnitude of Velocity error in meters per year.'
   ingest_task: velocity_mosaic
   style: ice_sheet_velocity_error
@@ -2118,7 +2118,7 @@
 
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_ice_mask
-  title: 'Ice mask'
+  title: 'Ice mask (120m)'
   # Just a binary mask. No style necessary.
   style: null
   description: 'Ice mask used for ITS_LIVE velocity mosiac.'
