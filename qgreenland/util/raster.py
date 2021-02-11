@@ -14,7 +14,7 @@ from qgreenland.exceptions import QgrRuntimeError
 logger = logging.getLogger('luigi-interface')
 
 
-def _get_raster_srs(fp):
+def _get_raster_srs_str(fp):
     """Read a raster with GDAL and return its SRS or None."""
     try:
         tmp_ds = gdal.Open(fp, GA_ReadOnly)
@@ -54,7 +54,7 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
 
     warp_kwargs['dstSRS'] = CONFIG['project']['crs']
 
-    srs_str = _get_raster_srs(inp_path)
+    srs_str = _get_raster_srs_str(inp_path)
     logger.info(f'Detected projection: {srs_str}')
 
     # Override with configured srcSRS, if present
@@ -101,16 +101,21 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs, src_srs_st
     # don't, e.g. compress twice.
     step2_keys = ['cutlineDSName', 'cropToCutline', 'creationOptions']
 
+    ignore_output_bounds_hack = warp_kwargs.pop('ignore_output_bounds_hack', False)
+
     # Step 1 needs to subset for this to work (outputBounds == `-te`).
     step1_kwargs = {k: v for k, v in warp_kwargs.items() if k not in step2_keys}
 
+    # TODO: this hack is not perfect!! The `src_srs_str` may report WKT params
+    # equivilent to EPSG:3413 without it actually being the string `EPSG:3413`,
+    # which is what our project CRS is defined as.
     # HACK ANOTHER TERRIBLE HACK: reprojection and clipping should really be two
     # separate steps!!!
     # if the source dataset is already in the project's CRS, do not use
     # `outputBounds` to limit the raster's extent. If the boundary's bbox does
     # not exactly align with the source grid, the resulting grid will be
     # spatially offset from the source.
-    if src_srs_str != CONFIG['project']['crs']:
+    if src_srs_str != CONFIG['project']['crs'] and not ignore_output_bounds_hack:
         step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
 
     # Step 2 actually does the shape-based cut as a separate step, to avoid

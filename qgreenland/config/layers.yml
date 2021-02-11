@@ -22,6 +22,7 @@
   title: Background boundary
   description: >-
     Polygon representing the boundary of QGreenland background data/imagery.
+  visible: True
   data_source: qgr_bounds.background
   ogr2ogr_kwargs:
     input_filename: 'latitude_shape_40_degrees.geojson'
@@ -922,7 +923,7 @@
         WHERE type LIKE 'Walrus%'"
 
 - id: vegetation_biomass_2010
-  title: 'Vegetation biomass 2010 (1km)'
+  title: 'Vegetation biomass 2010 (12.4km)'
   description: >-
     Estimated above ground plant biomass for the tundra biome in kilograms per
     square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
@@ -935,6 +936,10 @@
   ingest_task: arctic_vegetation
   file_type: '.tif'
   data_type: 'raster'
+  warp_kwargs:
+    ignore_output_bounds_hack: True
+    xRes: 12400
+    yRes: 12400
 
 
 ############################
@@ -1629,6 +1634,10 @@
   decompress_kwargs:
     extract_files:
       - 'ICESat1_ICESat2_mass_change/gris.tif'
+  warp_kwargs:
+    # This dataset is in 3413 although the metadata does not state this
+    # explicitly.
+    srcSRS: 'EPSG:3413'
 
 - &cci_surface_elevation_change
   id: surface_elevation_change_1992_1996
@@ -2080,9 +2089,10 @@
     input_filename: 'points_2015-01-01_2019-12-31.gpkg'
     s_srs: 'EPSG:4326'
 
+# TODO: Add overviews?
 - &its_live_velocity_mosaic
   id: velocity_mosaic
-  title: 'Ice sheet velocity (500m)'
+  title: 'Ice sheet velocity (120m)'
   description: 'Magnitude of velocity in meters per year.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
@@ -2095,12 +2105,11 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'v'
   warp_kwargs:
-    xRes: 500
-    yRes: 500
+    ignore_output_bounds_hack: True
 
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_error
-  title: 'Velocity error'
+  title: 'Velocity error (120m)'
   description: 'Magnitude of Velocity error in meters per year.'
   ingest_task: velocity_mosaic
   style: ice_sheet_velocity_error
@@ -2109,7 +2118,7 @@
 
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_ice_mask
-  title: 'Ice mask'
+  title: 'Ice mask (120m)'
   # Just a binary mask. No style necessary.
   style: null
   description: 'Ice mask used for ITS_LIVE velocity mosiac.'
@@ -2136,6 +2145,8 @@
   decompress_kwargs:
     extract_files:
       - 'greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc'
+  warp_kwargs:
+    ignore_output_bounds_hack: True
 
 - <<: *esa_cci_velocity
   id: esa_cci_velocity_vertical
@@ -2190,7 +2201,12 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'MAGT'
   warp_kwargs:
+    # Webpage for this data (https://doi.pangaea.de/10.1594/PANGAEA.888600)
+    # notes All files are provided in Arctic Polar Stereographic projection
+    # (EPSG:3995 WGS 84)
     srcSRS: 'EPSG:3995'
+    xRes: 10000
+    yRes: 10000
 
 - <<: *ground_temperature
   id:  ground_temperature_sd
@@ -4971,14 +4987,16 @@
   style: 'geothermal_heat_flux'
   data_source: geothermal_heat_flux.only
   ingest_task: zipped_netcdf
+  file_type: '.tif'
+  data_type: 'raster'
+  boundary: 'data'
   decompress_kwargs:
     extract_files:
       - 'ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc'
   extract_nc_dataset_kwargs:
     extract_dataset: 'GHF'
-  file_type: '.tif'
-  data_type: 'raster'
-  boundary: 'data'
+  warp_kwargs:
+    ignore_output_bounds_hack: True
 
 
 #############
@@ -5657,7 +5675,7 @@
 
 
 - id: bathymetric_chart
-  title: 'Bathymetric chart of the Arctic Ocean (500m)'
+  title: 'Bathymetric chart of the Arctic Ocean (400m)'
   description: >-
       Surface (bedrock or icesheet) elevation in meters.  Elevations can be
       assumed to be relative to Mean Sea Level. However, in some shallow water
@@ -5679,8 +5697,9 @@
   warp_kwargs:
     srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
     dstNodata: -9999
-    xRes: 500
-    yRes: 500
+    ignore_output_bounds_hack: True
+    xRes: 400
+    yRes: 400
 
 
 ######################
@@ -5705,6 +5724,10 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'sftgif'
     noData: 0
+  warp_kwargs:
+    ignore_output_bounds_hack: True
+    xRes: 1800
+    yRes: 1800
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_45
@@ -5721,9 +5744,10 @@
 # Terrain models #
 ##################
 
+# TODO: add overviews?
 - &bedmachine
   id: bedmachine_thickness
-  title: 'Ice thickness (500m)'
+  title: 'Ice thickness (150m)'
   description: >-
     Ice thickness in meters. Mass conservation source data provided by Mathieu
     Morlighem.
@@ -5738,12 +5762,11 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'thickness'
   warp_kwargs:
-    xRes: 500
-    yRes: 500
+    ignore_output_bounds_hack: True
 
 - <<: *bedmachine
   id: bedmachine_surface
-  title: 'Surface elevation (500m)'
+  title: 'Surface elevation (150m)'
   description: >-
       Surface elevation in meters. Source is gimpdem v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
@@ -5753,7 +5776,7 @@
 
 - <<: *bedmachine
   id: bedmachine_bed
-  title: 'Bedrock elevation (500m)'
+  title: 'Bedrock elevation (150m)'
   description: >-
     Bedrock elevation in meters.
   style: 'bedmachine_bed'
@@ -5762,7 +5785,7 @@
 
 - <<: *bedmachine
   id: bedmachine_errbed
-  title: 'Bedrock elevation/ice thickness error (500m)'
+  title: 'Bedrock elevation/ice thickness error (150m)'
   description: >-
     Error estimate for Greenland bed elevation and ice thickness in meters.
   style: 'bedmachine_errbed'
@@ -5781,6 +5804,8 @@
   ingest_task: 'arctic_dem'
   file_type: '.tif'
   data_type: 'raster'
+  warp_kwargs:
+    ignore_output_bounds_hack: True
   overviews_kwargs:
     overview_levels: [2, 4, 8, 16]
     resampling_method: average
