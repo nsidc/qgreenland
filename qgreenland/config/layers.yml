@@ -2091,7 +2091,7 @@
 
 - &its_live_velocity_mosaic
   id: velocity_mosaic
-  title: 'Ice sheet velocity (500m)'
+  title: 'Ice sheet velocity (120m)'
   description: 'Magnitude of velocity in meters per year.'
   visible: False
   group_path: 'Glaciology/Ice sheet velocity/ITS_LIVE'
@@ -2104,8 +2104,7 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'v'
   warp_kwargs:
-    xRes: 500
-    yRes: 500
+    ignore_output_bounds_hack: True
 
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_error
@@ -4819,7 +4818,7 @@
 
 - &bedmachine
   id: bedmachine_thickness
-  title: 'Ice thickness (500m)'
+  title: 'Ice thickness (150m)'
   description: >-
     Ice thickness in meters. Mass conservation source data provided by Mathieu
     Morlighem.
@@ -4834,8 +4833,7 @@
   extract_nc_dataset_kwargs:
     extract_dataset: 'thickness'
   warp_kwargs:
-    xRes: 500
-    yRes: 500
+    ignore_output_bounds_hack: True
 
 - <<: *bedmachine
   id: bedmachine_surface
