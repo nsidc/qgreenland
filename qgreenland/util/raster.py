@@ -116,7 +116,6 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs, src_srs_st
     # not exactly align with the source grid, the resulting grid will be
     # spatially offset from the source.warp_kwargs.pop('ignore_output_bounds')
     if src_srs_str != CONFIG['project']['crs'] and not ignore_output_bounds_hack:
-        breakpoint()
         step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
 
     # Step 2 actually does the shape-based cut as a separate step, to avoid
