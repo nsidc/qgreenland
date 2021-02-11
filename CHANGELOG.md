@@ -1,9 +1,10 @@
-# v1.0.0-rc1 (Unrelease)
+# v1.0.0rc1 (2021-02-10)
 
 - Add styles for World Magnetic Model layers.
 - Fix descriptions for World Magnetic Model layers.
 - Increase coverage of Arctic Char and Vegetation Biomass.
 - Fix pixel sizes for some rasters.
+- Add User Guide and Quick Start Guide pdfs to built package.
 
 # v0.55.0 (2021-02-09)
 
