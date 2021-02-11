@@ -85,6 +85,14 @@ class CreateQgisProjectFile(luigi.Task):
             dest_relative_filepath='STYLE.txt'
         )
         yield AncillaryFile(
+            src_filepath=os.path.join(PROJECT_DIR, 'doc', 'QuickStartGuide.pdf'),
+            dest_relative_filepath='QuickStartGuide.pdf'
+        )
+        yield AncillaryFile(
+            src_filepath=os.path.join(PROJECT_DIR, 'doc', 'UserGuide.pdf'),
+            dest_relative_filepath='UserGuide.pdf'
+        )
+        yield AncillaryFile(
             src_filepath=os.path.join(PROJECT_DIR, 'CHANGELOG.md'),
             dest_relative_filepath='CHANGELOG.txt'
         )
