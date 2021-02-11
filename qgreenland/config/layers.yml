@@ -4748,7 +4748,7 @@
 
 
 - id: bathymetric_chart
-  title: 'Bathymetric chart of the Arctic Ocean (500m)'
+  title: 'Bathymetric chart of the Arctic Ocean (400m)'
   description: >-
       Surface (bedrock or icesheet) elevation in meters.  Elevations can be
       assumed to be relative to Mean Sea Level. However, in some shallow water
@@ -4770,8 +4770,9 @@
   warp_kwargs:
     srcSRS: '+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84'
     dstNodata: -9999
-    xRes: 500
-    yRes: 500
+    ignore_output_bounds_hack: True
+    xRes: 400
+    yRes: 400
 
 
 ######################
