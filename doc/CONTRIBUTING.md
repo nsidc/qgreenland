@@ -311,7 +311,12 @@ Versions should be in one of the following forms:
 * `vX.Y.Zdev`: A dev build not intended for release (should not be tagged),
   e.g. `v1.2.3dev`.
 
-Publishing a tag to GitHub will trigger an automated release.
+Publishing a tag to GitHub will trigger an automated build and publish of the
+QGreenland package to various mirrors.
+
+Creating a "Release" in GitHub will trigger archival of our code in Zenodo and
+issuance of a new DOI. Do _not_ create a "Release" in GitHub until a new
+version of the package has been successfully built and pushed to mirrors.
 
 
 # Troubleshooting
