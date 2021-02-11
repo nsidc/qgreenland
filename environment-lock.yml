@@ -14,7 +14,6 @@ dependencies:
   - backports.functools_lru_cache=1.6.1=py_0
   - boost-cpp=1.72.0=h8e57a91_0
   - brotlipy=0.7.0=py38h497a2fe_1001
-  - bumpversion=0.5.3=py_1001
   - bzip2=1.0.8=h7f98852_4
   - c-ares=1.17.1=h36c2ea0_0
   - ca-certificates=2020.12.5=ha878542_0
@@ -28,7 +27,7 @@ dependencies:
   - click-plugins=1.1.1=py_0
   - cligj=0.7.1=pyhd8ed1ab_0
   - coverage=5.4=py38h497a2fe_0
-  - cryptography=3.3.1=py38h2b97feb_1
+  - cryptography=3.4.4=py38h3e25421_0
   - curl=7.71.1=he644dc0_8
   - dbus=1.13.6=hfdff14a_1
   - decorator=4.4.2=py_0
@@ -79,7 +78,7 @@ dependencies:
   - jinja2=2.11.3=pyh44b312d_0
   - jpeg=9d=h36c2ea0_0
   - json-c=0.13.1=hbfbb72e_1002
-  - kealib=1.4.14=he4dc956_0
+  - kealib=1.4.14=he4dc956_1
   - krb5=1.17.2=h926e7f8_0
   - ld_impl_linux-64=2.35.1=hea4e1c9_2
   - libblas=3.9.0=8_openblas
@@ -131,7 +130,7 @@ dependencies:
   - nose2=0.9.2=py_0
   - nspr=4.29=h9c3ff4c_1
   - nss=3.61=hb5efdd6_0
-  - numpy=1.20.0=py38h18fd61f_0
+  - numpy=1.20.1=py38h18fd61f_0
   - openjpeg=2.3.1=hf7af979_3
   - openssl=1.1.1i=h7f98852_0
   - owslib=0.23.0=pyhd8ed1ab_0
