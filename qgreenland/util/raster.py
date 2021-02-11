@@ -114,7 +114,7 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs, src_srs_st
     # if the source dataset is already in the project's CRS, do not use
     # `outputBounds` to limit the raster's extent. If the boundary's bbox does
     # not exactly align with the source grid, the resulting grid will be
-    # spatially offset from the source.warp_kwargs.pop('ignore_output_bounds')
+    # spatially offset from the source.
     if src_srs_str != CONFIG['project']['crs'] and not ignore_output_bounds_hack:
         step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
 
