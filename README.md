@@ -1,4 +1,4 @@
-[![NSF-1928366](https://img.shields.io/badge/NSF-1928393-red.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1928393)
+[![NSF-1928393](https://img.shields.io/badge/NSF-1928393-red.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1928393)
 [![DOI](https://zenodo.org/badge/241453043.svg)](https://zenodo.org/badge/latestdoi/241453043)
 
 # QGreenland
