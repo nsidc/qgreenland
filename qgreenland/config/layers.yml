@@ -4798,6 +4798,7 @@
     extract_dataset: 'sftgif'
     noData: 0
   warp_kwargs:
+    ignore_output_bounds_hack: True
     xRes: 1800
     yRes: 1800
 
