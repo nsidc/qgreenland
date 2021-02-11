@@ -104,7 +104,6 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs):
     # don't, e.g. compress twice.
     step2_keys = ['cutlineDSName', 'cropToCutline', 'creationOptions']
 
-
     # Step 1 needs to subset for this to work (outputBounds == `-te`).
     step1_kwargs = {k: v for k, v in warp_kwargs.items() if k not in step2_keys}
 
