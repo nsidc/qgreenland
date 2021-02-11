@@ -67,14 +67,17 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
                            'No projection automatically detected and '
                            'none explicitly provided.')
 
-    # gdal.Warp(out_path, inp_path, **warp_kwargs)
-    _gdalwarp_cut_hack(
-        out_path, inp_path,
-        layer_cfg=layer_cfg, warp_kwargs=warp_kwargs, src_srs_str=srs_str
-    )
+    ignore_output_bounds_hack = warp_kwargs.pop('ignore_output_bounds_hack', False)
+    if ignore_output_bounds_hack:
+        _gdalwarp(out_path, inp_path, **warp_kwargs)
+    else:
+        _gdalwarp_cut_hack(
+            out_path, inp_path,
+            layer_cfg=layer_cfg, warp_kwargs=warp_kwargs
+        )
 
 
-def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs, src_srs_str):
+def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs):
     """Hack for an issue with some gdal cutlines.
 
     <mailing list link here>
@@ -101,22 +104,11 @@ def _gdalwarp_cut_hack(out_path, inp_path, *, layer_cfg, warp_kwargs, src_srs_st
     # don't, e.g. compress twice.
     step2_keys = ['cutlineDSName', 'cropToCutline', 'creationOptions']
 
-    ignore_output_bounds_hack = warp_kwargs.pop('ignore_output_bounds_hack', False)
 
     # Step 1 needs to subset for this to work (outputBounds == `-te`).
     step1_kwargs = {k: v for k, v in warp_kwargs.items() if k not in step2_keys}
 
-    # TODO: this hack is not perfect!! The `src_srs_str` may report WKT params
-    # equivilent to EPSG:3413 without it actually being the string `EPSG:3413`,
-    # which is what our project CRS is defined as.
-    # HACK ANOTHER TERRIBLE HACK: reprojection and clipping should really be two
-    # separate steps!!!
-    # if the source dataset is already in the project's CRS, do not use
-    # `outputBounds` to limit the raster's extent. If the boundary's bbox does
-    # not exactly align with the source grid, the resulting grid will be
-    # spatially offset from the source.
-    if src_srs_str != CONFIG['project']['crs'] and not ignore_output_bounds_hack:
-        step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
+    step1_kwargs['outputBounds'] = layer_cfg['boundary']['bbox']
 
     # Step 2 actually does the shape-based cut as a separate step, to avoid
     # errors.
