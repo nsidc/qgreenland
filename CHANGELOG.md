@@ -1,3 +1,8 @@
+# v1.0.0rc2 (2021-02-11)
+
+- Fixed mistake in raster processing code that resulted in GDAL unnecessarily
+  requesting ~22GB of diskspace for reprojection.
+
 # v1.0.0rc1 (2021-02-10)
 
 - Add styles for World Magnetic Model layers.
