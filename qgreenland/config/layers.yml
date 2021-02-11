@@ -1227,6 +1227,8 @@
   decompress_kwargs:
     extract_files:
       - 'magnitudes.nc'
+  warp_kwargs:
+    ignore_output_bounds_hack: True
 
 - &racmo_1km
   id: racmo_precip
@@ -1252,6 +1254,8 @@
       - 'precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
   unzip_kwargs:
     input_filename: 'RACMO_QGreenland_Jan2021.zip'
+  warp_kwargs:
+    ignore_output_bounds_hack: True
 
 - <<: *racmo_1km
   id: racmo_snowfall
@@ -1357,6 +1361,8 @@
   decompress_kwargs:
     extract_files:
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
+  warp_kwargs:
+    ignore_output_bounds_hack: True
 
 - <<: *racmo_1km_masks
   id: racmo_grounded_ice
@@ -1390,6 +1396,7 @@
       - 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
   warp_kwargs:
     srcNodata: 9999.0
+    ignore_output_bounds_hack: True
 
 ##############
 # Glaciology #
@@ -1635,9 +1642,7 @@
     extract_files:
       - 'ICESat1_ICESat2_mass_change/gris.tif'
   warp_kwargs:
-    # This dataset is in 3413 although the metadata does not state this
-    # explicitly.
-    srcSRS: 'EPSG:3413'
+    ignore_output_bounds_hack: True
 
 - &cci_surface_elevation_change
   id: surface_elevation_change_1992_1996
