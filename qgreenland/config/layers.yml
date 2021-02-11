@@ -923,7 +923,7 @@
         WHERE type LIKE 'Walrus%'"
 
 - id: vegetation_biomass_2010
-  title: 'Vegetation biomass 2010 (12km)'
+  title: 'Vegetation biomass 2010 (12.4km)'
   description: >-
     Estimated above ground plant biomass for the tundra biome in kilograms per
     square meter. Based on trans-Arctic field data and AVHRR NDVI. Data
