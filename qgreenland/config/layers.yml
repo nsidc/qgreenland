@@ -6,7 +6,7 @@
   id: qgr_boundary_data
   title: Greenland-focused boundary
   description: >-
-    Polygon representing the boundary of QGreenland data/imagery.
+    Polygon representing the tight boundary for QGreenland data/imagery.
   visible: False
   group_path: 'Reference/QGreenland boundaries'
   style: transparent_shape
@@ -21,7 +21,7 @@
   id: qgr_boundary_background
   title: Background boundary
   description: >-
-    Polygon representing the boundary of QGreenland background data/imagery.
+    Polygon representing the full boundary of QGreenland background data/imagery.
   visible: True
   data_source: qgr_bounds.background
   ogr2ogr_kwargs:
@@ -308,7 +308,7 @@
 - id: coastlines
   title: 'Global coastlines'
   description: >-
-    Note that the 'Greenland Coastlines' layer is preferred for Greenland.
+    Note that the 'Greenland coastlines 2017' layer is preferred for Greenland.
   visible: False
   group_path: 'Reference/Borders'
   style: 'coastline-IHOECDIS'
@@ -322,7 +322,7 @@
   title: 'Greenland municipalities and population 2019'
   description: >-
       Polygons representing municipalities of Greenland and associated
-      population numbers as of 2019.
+      population numbers for 2019.
   data_source: nunagis_pop2019_municipalities.only
   visible: False
   group_path: 'Reference/Borders'
@@ -367,7 +367,7 @@
 
 - &asiaq_placenames
   id: populated_places
-  title: 'Towns and Settlements'
+  title: 'Towns and settlements'
   description: >-
       Points representing towns and settlements in Greenland.
   data_source: asiaq_private_placenames.only
@@ -489,7 +489,7 @@
   id: hotosm_buildings
   title: 'Buildings'
   description: >-
-      Points representing buildings in Greenland.
+      Polygons representing buildings in Greenland.
   data_source: hdx_hotosm.buildings
   style: buildings_shape
 
@@ -743,7 +743,7 @@
   id: nunagis_goose_protected_areas
   title: 'Goose protected areas'
   description: >-
-      Polygons representing areas protected for Geese.
+      Polygons representing areas protected for geese.
   data_source: nunagis_protected_areas.only
   group_path: 'Biology/Birds'
   style: nunagis_goose_protected_areas
@@ -759,7 +759,7 @@
 
 - id: caff_char
   title: 'Arctic Char populations 2010'
-  description: 'Polygons indicating the distribution of Arctic Char populations.'
+  description: 'Polygons indicating the 2010 distribution of Arctic Char populations.'
   data_source: caff_char.only
   style: 'semitransparent_polygon'
   visible: False
@@ -793,7 +793,7 @@
   id: nunagis_beluga_areas
   title: 'Beluga areas'
   description: >-
-      Polygons representing areas protected for Beluga whales.
+      Polygons representing areas protected for beluga whales.
   group_path: 'Biology/Mammals'
   style: beluga_areas
   ogr2ogr_kwargs:
@@ -826,7 +826,7 @@
 - id: ginr_caribou_areas
   title: 'Caribou areas'
   description: >-
-     Polygons representing areas with Caribou.
+     Polygons representing areas with caribou.
   group_path: 'Biology/Mammals'
   data_source: ginr_caribou.only
   visible: False
@@ -838,9 +838,9 @@
 
 - <<: *nunagis_protected_areas
   id: nunagis_musk_oxen_calving_areas
-  title: 'Muskoxen calving areas'
+  title: 'Musk oxen calving areas'
   description: >-
-      Polygons representing areas protected for Musk Oxen calving.
+      Polygons representing areas protected for musk oxen calving.
   group_path: 'Biology/Mammals'
   style: muskoxen_areas
   ogr2ogr_kwargs:
@@ -854,9 +854,9 @@
         WHERE type LIKE 'Musk oxen%'"
 
 - id: ginr_muskoken
-  title: 'Muskoxen areas'
+  title: 'Musk oxen areas'
   description: >-
-      Polygons representing areas with Muskoxen.
+      Polygons representing areas with musk oxen.
   group_path: 'Biology/Mammals'
   data_source: ginr_muskoxen.only
   visible: False
@@ -870,7 +870,7 @@
   id: nunagis_narwhal_areas
   title: 'Narwhal areas'
   description: >-
-      Polygons representing areas protected for Narwhals.
+      Polygons representing areas protected for narwhal whales.
   group_path: 'Biology/Mammals'
   style: narwhal_areas
   ogr2ogr_kwargs:
@@ -887,7 +887,7 @@
   id: nunagis_polar_bear_breeding_areas
   title: 'Polar bear breeding areas'
   description: >-
-      Polygons representing areas protected for Polar Bear breeding.
+      Polygons representing areas protected for polar bear breeding.
   group_path: 'Biology/Mammals'
   style: polar_bear_areas
   ogr2ogr_kwargs:
@@ -904,7 +904,7 @@
   id: nunagis_walrus_protected_areas
   title: 'Walrus protected areas'
   description: >-
-      Polygons representing areas protected for Walruses.
+      Polygons representing areas protected for walruses.
   visible: False
   group_path: 'Biology/Mammals'
   style: nunagis_walrus_protected_areas
@@ -1137,7 +1137,7 @@
   id: baseline
   title: 'Baseline (polyline)'
   description: >-
-    The territorial sea baseline is shown in accordance to executive order
+    The territorial sea baseline is shown in accordance to Executive Order
     no 1004 dated 15.10.2004.
   ogr2ogr_kwargs:
     input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
@@ -1148,7 +1148,7 @@
   title: '3NM (polyline)'
   description: >-
     Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of the
-    marine environment, paragraph 4, 2.
+    marine environment, paragraph 4, 2. NM = nautical mile.
   ogr2ogr_kwargs:
     input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
     where: '"\"layer\" = ''Boundary_3NM''"'
@@ -1158,7 +1158,7 @@
   title: '12NM (polyline)'
   description: >-
     Fishery limit. Regarding the fishery limit, reference is made to Greenland
-    Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7, 2.
+    Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7, 2. NM = nautical mile.
   ogr2ogr_kwargs:
     input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
     where: '"\"layer\" = ''Boundary_12NM''"'
@@ -1168,7 +1168,7 @@
   title: '3NM (polygon)'
   description: >-
     Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of the
-    marine environment, paragraph 4, 2.
+    marine environment, paragraph 4, 2. NM = nautical mile.
   ogr2ogr_kwargs:
     input_filename: 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp'
     where: '"\"layer\" = ''Boundary_3NM_area''"'
@@ -1235,7 +1235,7 @@
   title: 'Total precipitation 1958-2019 (1km)'
   description: >-
       Averaged annual total precipitation in milimeters of water equivilent (mm
-      w.e.)  for the period 1958-2019 covering the whole ice sheet and
+      w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and
       peripheral ice caps.
   visible: False
   group_path: 'Regional climate models/RACMO model output'
@@ -1261,7 +1261,7 @@
   id: racmo_snowfall
   title: 'Snowfall 1958-2019 (1km)'
   description: >-
-      Averaged annual snowfall in milimeters of water equivilent (mm w.e.) for
+      Averaged annual snowfall in milimeters of water equivilent (mm w.e.) from RACMO2.3p2 for
       the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
   style: racmo_snowfall
   extract_nc_dataset_kwargs:
@@ -1274,7 +1274,7 @@
   id: racmo_melt
   title: 'Snowmelt 1958-2019 (1km)'
   description: >-
-      Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) for
+      Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) from RACMO2.3p2 for
       the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
   style: racmo_melt
   extract_nc_dataset_kwargs:
@@ -1287,7 +1287,7 @@
   id: racmo_runoff
   title: 'Runoff 1958-2019 (1km)'
   description: >-
-      Averaged annual runoff in milimeters of water equivilent (mm w.e.) for the
+      Averaged annual runoff in milimeters of water equivilent (mm w.e.) from RACMO2.3p2 for the
       period 1958-2019 covering the whole ice sheet and peripheral ice caps.
   style: racmo_runoff
   extract_nc_dataset_kwargs:
@@ -1300,7 +1300,7 @@
   id: racmo_subl
   title: 'Sublimation 1958-2019 (1km)'
   description: >-
-      Averaged annual sublimation in milimeters of water equivilent (mm w.e.)
+      Averaged annual sublimation in milimeters of water equivilent (mm w.e.) from RACMO2.3p2
       for the period 1958-2019 covering the whole ice sheet and peripheral ice
       caps.
   style: racmo_subl
@@ -1315,7 +1315,7 @@
   title: 'Snow drift erosion 1958-2019 (1km)'
   description: >-
       Averaged annual snow drift erosion in milimeters of water equivilent (mm
-      w.e.)  for the period 1958-2019 covering the whole ice sheet and
+      w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and
       peripheral ice caps.
   style: racmo_sndiv
   extract_nc_dataset_kwargs:
@@ -1330,7 +1330,7 @@
   # NOTE: the source data states that the data are in units of mm of water
   # equivilent, but the values are clearly degrees Kelvin.
   description: >-
-      Averaged annual mean temperature at 2m in degrees Kelvin for the period
+      Averaged annual mean temperature at 2m in degrees Kelvin from RACMO2.3p2 for the period
       1958-2019.
   style: racmo_t2m
   extract_nc_dataset_kwargs:
@@ -1368,7 +1368,7 @@
   id: racmo_grounded_ice
   title: 'Grounded ice mask (1km)'
   description: >-
-      Mask of grounded ice.
+      Mask of grounded ice. 1 = grounded.
   extract_nc_dataset_kwargs:
     extract_dataset: 'grounded_ice'
   gdal_edit_kwargs:
@@ -1380,9 +1380,9 @@
 
 - <<: *racmo_1km_masks
   id: racmo_topography
-  title: 'Topography (1km)'
+  title: 'Ice surface topography (1km)'
   description: >-
-      Surface elevation in meters.
+      Ice sheet surface elevation in meters upscaled from the Greenland Mapping Project (GIMP) Digital Elevation Model.
   style: racmo_topography
   ingest_task: racmo_raster_with_mask
   extract_nc_dataset_kwargs:
@@ -1421,7 +1421,7 @@
 - id: machguth_massbalance_locations
   title: 'Mass balance glacier observation locations 1892-2020'
   description: >-
-     Locations of glaciers used in surface mass-balance observations.
+     Locations used in surface mass balance observations.
   visible: False
   group_path: 'Glaciology'
   style: labeled_point
@@ -1460,7 +1460,7 @@
   title: 'Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019'
   description: >-
       Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for
-      2019/05/01 and 2019/10/01 generated using Sentinel-2 data.
+      2019/05/01 and 2019/10/01 generated using Sentinel-2 satellite data.
   data_source: esa_cci_supraglacial_lakes.only
   visible: False
   group_path: 'Glaciology'
@@ -1595,7 +1595,7 @@
   id: glims_points
   title: 'Peripherical glacier/feature locations'
   description: >-
-    The data are representative points for the glaciers selected.
+    Points representing GLIMS glaciers and locations of interest.
   data_source: glims.only
   visible: False
   group_path: 'Glaciology/Global land ice measurements from space (GLIMS)'
@@ -1614,7 +1614,7 @@
   id: glims_polygons
   title: 'Peripheral glacier/feature outlines'
   description: >-
-    The data represent polygon features, typically glacier outlines, but also
+    Polygons represent GLIMS features, typically glacier outlines, but also
     including regions of glacial lakes, debris cover, rocks within the glacier
     (nunataks), and other polygonal features.
   decompress_kwargs:
@@ -1664,145 +1664,145 @@
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_1993_1997
-  title: 'Surface Elevation change 1993-1997'
+  title: 'Surface elevation change 1993-1997'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,1]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_1994_1998
-  title: 'Surface Elevation change 1994-1998'
+  title: 'Surface elevation change 1994-1998'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,2]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_1995_1999
-  title: 'Surface Elevation change 1995-1999'
+  title: 'Surface elevation change 1995-1999'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,3]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_1996_2000
-  title: 'Surface Elevation change 1996-2000'
+  title: 'Surface elevation change 1996-2000'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,4]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_1997_2001
-  title: 'Surface Elevation change 1997-2001'
+  title: 'Surface elevation change 1997-2001'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,5]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_1998_2002
-  title: 'Surface Elevation change 1998-2002'
+  title: 'Surface elevation change 1998-2002'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,6]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_1999_2003
-  title: 'Surface Elevation change 1999-2003'
+  title: 'Surface elevation change 1999-2003'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,7]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2000_2004
-  title: 'Surface Elevation change 2000-2004'
+  title: 'Surface elevation change 2000-2004'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,8]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2001_2005
-  title: 'Surface Elevation change 2001-2005'
+  title: 'Surface elevation change 2001-2005'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,9]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2002_2006
-  title: 'Surface Elevation change 2002-2006'
+  title: 'Surface elevation change 2002-2006'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,10]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2003_2007
-  title: 'Surface Elevation change 2003-2007'
+  title: 'Surface elevation change 2003-2007'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,11]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2004_2008
-  title: 'Surface Elevation change 2004-2008'
+  title: 'Surface elevation change 2004-2008'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,12]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2005_2009
-  title: 'Surface Elevation change 2005-2009'
+  title: 'Surface elevation change 2005-2009'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,13]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2006_2010
-  title: 'Surface Elevation change 2006-2010'
+  title: 'Surface elevation change 2006-2010'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,14]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2007_2011
-  title: 'Surface Elevation change 2007-2011'
+  title: 'Surface elevation change 2007-2011'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,15]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2008_2012
-  title: 'Surface Elevation change 2008-2012'
+  title: 'Surface elevation change 2008-2012'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,16]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2009_2013
-  title: 'Surface Elevation change 2009-2013'
+  title: 'Surface elevation change 2009-2013'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,17]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2010_2014
-  title: 'Surface Elevation change 2010-2014'
+  title: 'Surface elevation change 2010-2014'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,18]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2011_2015
-  title: 'Surface Elevation change 2011-2015'
+  title: 'Surface elevation change 2011-2015'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,19]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2012_2016
-  title: 'Surface Elevation change 2012-2016'
+  title: 'Surface elevation change 2012-2016'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,20]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2013_2017
-  title: 'Surface Elevation change 2013-2017'
+  title: 'Surface elevation change 2013-2017'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,21]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2014_2018
-  title: 'Surface Elevation change 2014-2018'
+  title: 'Surface elevation change 2014-2018'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,22]"
 
 - <<: *cci_surface_elevation_change
   id: surface_elevation_change_2015_2019
-  title: 'Surface Elevation change 2015-2019'
+  title: 'Surface elevation change 2015-2019'
   gdal_mdim_translate_kwargs:
     array: "name=SEC,view=[:,:,23]"
 
 - &cci_surface_elevation_change_error
   id: surface_elevation_change_error_1992_1996
-  title: 'Surface Elevation change Error 1992-1996'
+  title: 'Surface elevation change error 1992-1996'
   description: >-
     Error of rate of surface elevation change in meters per year.
   data_source: esa_cci_surface_elevation_change.only
@@ -1820,139 +1820,139 @@
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_1993_1997
-  title: 'Surface Elevation change Error 1993-1997'
+  title: 'Surface elevation change error 1993-1997'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,1]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_1994_1998
-  title: 'Surface Elevation change Error 1994-1998'
+  title: 'Surface elevation change error 1994-1998'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,2]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_1995_1999
-  title: 'Surface Elevation change Error 1995-1999'
+  title: 'Surface elevation change error 1995-1999'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,3]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_1996_2000
-  title: 'Surface Elevation change Error 1996-2000'
+  title: 'Surface elevation change error 1996-2000'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,4]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_1997_2001
-  title: 'Surface Elevation change Error 1997-2001'
+  title: 'Surface elevation change error 1997-2001'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,5]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_1998_2002
-  title: 'Surface Elevation change Error 1998-2002'
+  title: 'Surface elevation change error 1998-2002'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,6]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_1999_2003
-  title: 'Surface Elevation change Error 1999-2003'
+  title: 'Surface elevation change error 1999-2003'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,7]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2000_2004
-  title: 'Surface Elevation change Error 2000-2004'
+  title: 'Surface elevation change error 2000-2004'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,8]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2001_2005
-  title: 'Surface Elevation change Error 2001-2005'
+  title: 'Surface elevation change error 2001-2005'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,9]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2002_2006
-  title: 'Surface Elevation change Error 2002-2006'
+  title: 'Surface elevation change error 2002-2006'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,10]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2003_2007
-  title: 'Surface Elevation change Error 2003-2007'
+  title: 'Surface elevation change error 2003-2007'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,11]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2004_2008
-  title: 'Surface Elevation change Error 2004-2008'
+  title: 'Surface elevation change error 2004-2008'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,12]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2005_2009
-  title: 'Surface Elevation change Error 2005-2009'
+  title: 'Surface elevation change error 2005-2009'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,13]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2006_2010
-  title: 'Surface Elevation change Error 2006-2010'
+  title: 'Surface elevation change error 2006-2010'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,14]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2007_2011
-  title: 'Surface Elevation change Error 2007-2011'
+  title: 'Surface elevation change error 2007-2011'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,15]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2008_2012
-  title: 'Surface Elevation change Error 2008-2012'
+  title: 'Surface elevation change error 2008-2012'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,16]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2009_2013
-  title: 'Surface Elevation change Error 2009-2013'
+  title: 'Surface elevation change error 2009-2013'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,17]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2010_2014
-  title: 'Surface Elevation change Error 2010-2014'
+  title: 'Surface elevation change error 2010-2014'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,18]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2011_2015
-  title: 'Surface Elevation change Error 2011-2015'
+  title: 'SSurface elevation change error 2011-2015'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,19]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2012_2016
-  title: 'Surface Elevation change Error 2012-2016'
+  title: 'Surface elevation change error 2012-2016'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,20]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2013_2017
-  title: 'Surface Elevation change Error 2013-2017'
+  title: 'Surface elevation change error 2013-2017'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,21]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2014_2018
-  title: 'Surface Elevation change Error 2014-2018'
+  title: 'Surface elevation change error 2014-2018'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,22]"
 
 - <<: *cci_surface_elevation_change_error
   id: surface_elevation_change_error_2015_2019
-  title: 'Surface Elevation change Error 2015-2019'
+  title: 'Surface elevation change error 2015-2019'
   gdal_mdim_translate_kwargs:
     array: "name=SECer,view=[:,:,23]"
 
@@ -1961,7 +1961,7 @@
   # TODO: provide the 5 year period instead of just one datetime.
   title: 'Mass balance trend 2003-2007'
   description: >-
-    Trend derived from the period 2003-01-01 to 2007-12-31. Data is on a ~50 km
+    Trend derived from the period 2003-01-01 to 2007-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   visible: False
   group_path: 'Glaciology/Gravimetric mass balance'
@@ -1978,7 +1978,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2006
   title: 'Mass balance trend 2004-2008'
   description: >-
-    Trend derived from the period 2004-01-01 to 2008-12-31. Data is on a ~50 km
+    Trend derived from the period 2004-01-01 to 2008-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2004-01-01_2008-12-31.gpkg'
@@ -1988,7 +1988,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2007
   title: 'Mass balance trend 2005-2009'
   description: >-
-    Trend derived from the period 2005-01-01 to 2009-12-31. Data is on a ~50 km
+    Trend derived from the period 2005-01-01 to 2009-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2005-01-01_2009-12-31.gpkg'
@@ -1998,7 +1998,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2008
   title: 'Mass balance trend 2006-2010'
   description: >-
-    Trend derived from the period 2006-01-01 to 2010-12-31. Data is on a ~50 km
+    Trend derived from the period 2006-01-01 to 2010-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2006-01-01_2010-12-31.gpkg'
@@ -2008,7 +2008,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2009
   title: 'Mass balance trend 2007-2011'
   description: >-
-    Trend derived from the period 2007-01-01 to 2011-12-31. Data is on a ~50 km
+    Trend derived from the period 2007-01-01 to 2011-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2007-01-01_2011-12-31.gpkg'
@@ -2018,7 +2018,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2010
   title: 'Mass balance trend 2008-2012'
   description: >-
-    Trend derived from the period 2008-01-01 to 2012-12-31. Data is on a ~50 km
+    Trend derived from the period 2008-01-01 to 2012-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2008-01-01_2012-12-31.gpkg'
@@ -2028,7 +2028,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2011
   title: 'Mass balance trend 2009-2013'
   description: >-
-    Trend derived from the period 2009-01-01 to 2013-12-31. Data is on a ~50 km
+    Trend derived from the period 2009-01-01 to 2013-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2009-01-01_2013-12-31.gpkg'
@@ -2038,7 +2038,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2012
   title: 'Mass balance trend 2010-2014'
   description: >-
-    Trend derived from the period 2010-01-01 to 2014-11-30. Data is on a ~50 km
+    Trend derived from the period 2010-01-01 to 2014-11-30 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2010-01-01_2014-11-30.gpkg'
@@ -2048,7 +2048,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2013
   title: 'Mass balance trend 2011-2015'
   description: >-
-    Trend derived from the period 2011-02-01 to 2015-12-31. Data is on a ~50 km
+    Trend derived from the period 2011-02-01 to 2015-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2011-02-01_2015-12-31.gpkg'
@@ -2058,7 +2058,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2014
   title: 'Mass balance trend 2012-2016'
   description: >-
-    Trend derived from the period 2012-01-01 to 2016-12-31. Data is on a ~50 km
+    Trend derived from the period 2012-01-01 to 2016-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2012-01-01_2016-12-31.gpkg'
@@ -2068,7 +2068,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2015
   title: 'Mass balance trend 2013-2017'
   description: >-
-    Trend derived from the period 2013-01-01 to 2017-07-01. Data is on a ~50 km
+    Trend derived from the period 2013-01-01 to 2017-07-01 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2013-01-01_2017-07-01.gpkg'
@@ -2078,7 +2078,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2016
   title: 'Mass balance trend 2014-2018'
   description: >-
-    Trend derived from the period 2014-01-01 to 2018-12-31. Data is on a ~50 km
+    Trend derived from the period 2014-01-01 to 2018-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2014-01-01_2018-12-31.gpkg'
@@ -2088,7 +2088,7 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2017
   title: 'Mass balance trend 2015-2019'
   description: >-
-    Trend derived from the period 2015-01-01 to 2019-12-31. Data is on a ~50 km
+    Trend derived from the period 2015-01-01 to 2019-12-31 via gravity measurements. Data is on a ~50 km
     resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2015-01-01_2019-12-31.gpkg'
@@ -2115,7 +2115,7 @@
 - <<: *its_live_velocity_mosaic
   id: velocity_mosaic_error
   title: 'Velocity error (120m)'
-  description: 'Magnitude of Velocity error in meters per year.'
+  description: 'Magnitude of velocity error in meters per year.'
   ingest_task: velocity_mosaic
   style: ice_sheet_velocity_error
   extract_nc_dataset_kwargs:
@@ -2224,11 +2224,11 @@
 
 - <<: *ground_temperature
   id:  permafrost_probability
-  title: 'Permafrost Probability (10km)'
+  title: 'Permafrost probability (10km)'
   style: permafrost_probability
   description: >-
-     Permafrost probability (fraction values from 0 to 1) is assigned to each
-     grid cell with MAGT < 0°C.
+     Permafrost probability (fraction values from 0 to 1) assigned to each
+     grid cell with mean annual ground temperature (MAGT) < 0°C.
   extract_nc_dataset_kwargs:
     extract_dataset: 'PerProb'
 
@@ -2324,7 +2324,7 @@
 - &geological_map
   id: onshore_planar_geological_map
   title: 'Faults'
-  description: 'This layer contains onshore faults for the landmass and islands of Greenland.'
+  description: 'Onshore faults for the landmass and islands of Greenland.'
   visible: False
   group_path: 'Geology/Geological map'
   style: onshore_planar_geological_map
@@ -2345,7 +2345,7 @@
 - <<: *geological_map
   id: onshore_geological_map
   title: 'Rock Types'
-  description: 'Geological unit polygon feature class for the onshore landmass and islands of Greenland.'
+  description: 'Geological unit polygon features for the onshore landmass and islands of Greenland.'
   style: geological_map_polygons
   decompress_kwargs:
     extract_files:
@@ -2518,7 +2518,7 @@
 
 - <<: *wmm_geomag_coordinates
   id: wmm_longitudes
-  title: 'Geomagnetic Longitudes'
+  title: 'Geomagnetic longitudes'
   decompress_kwargs:
     extract_files:
       - 'WMM2020_geomagnetic_coordinate_shapefiles/geographic_projection/GeomagLongitude_2020.cpg'
@@ -3603,7 +3603,7 @@
 
 - <<: *wmm_d_2022
   id: wmm_x_2022
-  title: 'Main field north component (X)'
+  title: 'Main field North component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -3991,7 +3991,7 @@
 
 - <<: *wmm_d_2023
   id: wmm_x_2023
-  title: 'Main field north component (X)'
+  title: 'Main field North component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -4379,7 +4379,7 @@
 
 - <<: *wmm_d_2024
   id: wmm_x_2024
-  title: 'Main field north component (X)'
+  title: 'Main field North component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -4767,7 +4767,7 @@
 
 - <<: *wmm_d_2025
   id: wmm_x_2025
-  title: 'Main field north component (X)'
+  title: 'Main field North component (X)'
   description: *wmm_x_description
   decompress_kwargs:
     extract_files:
@@ -5058,7 +5058,7 @@
   id: ice_basins_filled
   title: 'Ice basins filled'
   description: >-
-      Calculated ice sheet hydrologic basins including areas classified as land/ocean by regional climate models.
+      Calculated ice sheet hydrologic basins including areas classified as land/ocean by regional climate models (filled).
   style: 'ice_basins'
   data_source: streams_outlets_basins.ice_basins_filled
   ogr2ogr_kwargs:
@@ -5089,7 +5089,7 @@
   id: land_basins_filled
   title: 'Land basins filled'
   description: >-
-      Calculated terrestrial hydrologic basins including areas classified as ice/ocean by regional climate models.
+      Calculated terrestrial hydrologic basins including areas classified as ice/ocean by regional climate models (filled).
   style: 'land_basins'
   data_source: streams_outlets_basins.land_basins_filled
   ogr2ogr_kwargs:
@@ -5682,8 +5682,8 @@
 - id: bathymetric_chart
   title: 'Bathymetric chart of the Arctic Ocean (400m)'
   description: >-
-      Surface (bedrock or icesheet) elevation in meters.  Elevations can be
-      assumed to be relative to Mean Sea Level. However, in some shallow water
+      Bathymetric elevation in meters.  Elevations can be
+      assumed to be relative to mean sea level. However, in some shallow water
       areas, the grids include data from sources having a vertical datum other
       than mean sea level.
   visible: False
@@ -5714,7 +5714,7 @@
 # TODO: better id, title, description for these layers
 - &future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_26
-  title: 'Future ice sheet coverage - RCP 2.6 scenario for the year 3007 (1.8km)'
+  title: 'Future ice sheet coverage for RCP 2.6 scenario for the year 3007 (1.8km)'
   description: >-
       Fraction of a grid cell covered by ice (grounded or floating) in the year
       3007. Values less than or equal to 16% are masked.
@@ -5736,12 +5736,12 @@
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_45
-  title: 'Future ice sheet coverage - RCP 4.5 scenario for the year 3007 (1.8km)'
+  title: 'Future ice sheet coverage for RCP 4.5 scenario for the year 3007 (1.8km)'
   data_source: future_icesheet_coverage.rcp_45
 
 - <<: *future_ice_sheet_coverage
   id: future_ice_sheet_coverage_rcp_85
-  title: 'Future ice sheet coverage - RCP 8.5 scenario for the year 3007 (1.8km)'
+  title: 'Future ice sheet coverage for RCP 8.5 scenario for the year 3007 (1.8km)'
   data_source: future_icesheet_coverage.rcp_85
 
 
@@ -5773,7 +5773,7 @@
   id: bedmachine_surface
   title: 'Surface elevation (150m)'
   description: >-
-      Surface elevation in meters. Source is gimpdem v2.1
+      Surface elevation in meters. Source is GIMP DEM v2.1
       (http://bprc.osu.edu/GDG/gimpdem.php)
   style: 'bedmachine_surface'
   extract_nc_dataset_kwargs:
