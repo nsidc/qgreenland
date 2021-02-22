@@ -13,28 +13,27 @@ TODO: Pick a better color ramp or palette.
 
 ## Colormaps
 
-TODO: Find better typenames
-
-
 ### Scalar
 
-Colormaps should be limited to N "classes" to reduce vertical space taken in
+Colormaps should be limited to 11 "classes" to reduce vertical space taken in
 the Layers Panel by the legend.
 
-TODO: How many elements?
+Divergent colormaps should always contain an odd number of classes, and the
+median class should represent the critical value in the data, e.g. 0 for
+anomaly or "error" data.
 
 
 # Vector Data
 
+Vector data should primarily use colors from [Color
+Brewer](http://colorbrewer2.org). These colors can be imported into QGIS via
+cpt-city
+[here](http://soliton.vm.bytemark.co.uk/pub/cpt-city/cb/seq/index.html).
+
+
 ## Protected Areas
 
-### Colors
-
-Any color from this pallette:
-
-    http://soliton.vm.bytemark.co.uk/pub/cpt-city/cb/seq/tn/YlOrRd_09.png.index.html
-
-TODO: Standards for colors. What do they mean?
+Use any color from Color Brewer's `YlOrRd09` color palette.
 
 
 ### Polygon
