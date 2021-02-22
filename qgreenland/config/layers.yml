@@ -402,7 +402,7 @@
       Points representing populated places in Greenland.
   data_source: hdx_hotosm.populated_places
   visible: False
-  group_path: 'Places/Community map (open source)'
+  group_path: 'Places/Community map (crowd-sourced)'
   style: hotosm_populated_places_point
   boundary: 'data'
   ingest_task: zipped_vector
@@ -429,7 +429,7 @@
       Points representing health facilities in Greenland.
   data_source: hdx_hotosm.health_facilities
   visible: False
-  group_path: 'Places/Community map (open source)'
+  group_path: 'Places/Community map (crowd-sourced)'
   style: health_facility_point
   boundary: 'data'
   ingest_task: zipped_vector
@@ -1123,7 +1123,7 @@
   data_source: greenland_territorial_waters.only
   visible: False
   # TODO: does this need to be in its own group?
-  group_path: 'Environmental management/Exclusive economic zones'
+  group_path: 'Environmental management/Maritime boundaries'
   style: null
   boundary: 'background'
   ingest_task: local_vector
