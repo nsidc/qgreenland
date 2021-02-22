@@ -617,6 +617,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         [original](http://peterbird.name/oldFTP/PB2002/2001GC000252_readme.txt)
         documentation and the scientific article.
 
+
         Dataset credit should acknowledge Hugo Ahlenius, Peter Bird, and
         Nordpil, with an additional suggested citation included.
     citation:
@@ -1428,6 +1429,7 @@ The images and data are produced in a consistent way that makes the Index time-s
          (2020). Muskox status, recent variation, and uncertain future, Ambio
          49, 805-819. https://doi.org/10.1007/s13280-019-01205-x
 
+
          QGreenland data source citation: Christine Cuyler and Karl Zinglersen,
          Greenland Institute of Natural Resources (2020).
       url: 'https://doi.org/10.1007/s13280-019-01205-x'
@@ -1972,8 +1974,8 @@ The images and data are produced in a consistent way that makes the Index time-s
         MACHGUTH, H., THOMSEN, H., WEIDICK, A., AHLSTRØM, A., ABERMANN, J.,
         ANDERSEN, M., . . . VAN DE WAL, R. (2016). Greenland surface
         mass-balance observations from the ice-sheet ablation area and local
-        glaciers. Journal of Glaciology, 62(235),
-        861-887. doi:10.1017/jog.2016.75
+        glaciers. Journal of Glaciology, 62(235), 861-887.
+        doi:10.1017/jog.2016.75
       url: 'https://www.doi.org/10.1017/jog.2016.75'
 
 
@@ -1997,7 +1999,8 @@ The images and data are produced in a consistent way that makes the Index time-s
         1: 250,000, 1: 500,000 and 1: 2.5 million.
     citation:
       text: >-
-        Contains data from Styrelsen for dataforsyning og effektivisering. Accessed 2020-12-17.
+        Contains data from Styrelsen for dataforsyning og effektivisering.
+        Accessed {{date_accessed}}.
       url: 'https://download.kortforsyningen.dk/content/gr%C3%B8nlands-topografiske-kortv%C3%A6rk'
 
 - id: macferrin_etal_firn_ice_layer_thicknesses
