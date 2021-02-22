@@ -1014,6 +1014,86 @@ The images and data are produced in a consistent way that makes the Index time-s
         THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
         (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
         OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+        QGreenland Team: Noted Data Issues
+        
+        Layer: Populated places
+            * Near Ittoqqortoormiit: Uunarteq and Itterajivit are abandoned settlements.
+            * East Greenland: Pupik does not exist.
+            * South Greenland: Uunartoq is a hot spring and is not populated
+            * Kangilinnguit: abandoned Danish naval station.
+            * Near Sisimiut: ‘skilift’ is not a populated settlement, it is a skiing area. 
+            * Nivâq near Aasiaat is an abandoned settlement.
+            * Ataa just north of ilulissat is abandoned.
+            * Qullissat, on Disko Island, appears twice, and is an abandoned settlement.
+            * Near Uummannaq: Appat, Qernertuarssuit 
+            * North from Upernavik: Saattoq, Sarfaq, Kuuk, Aqqaalissiorfik, Itissaalik, Ikermiut, Illulik
+            * North from Qaanaaq: Annoatok is a small, unpopulated hunting station.
+            
+        Layer: Health facilities
+            There is some sort of a health clinic in all populated Greenland settlements and towns. Health clinics are larger and more sophisticated in towns. We note that health clinics exist in:
+            * Qaanaaq
+            * Siorapaluk
+            * Savissivik
+            * Kullorsuaq
+            * Nuussuaq
+            * Tasiusaq
+            * Nutaarmiut
+            * Innarsuit
+            * Naajaat
+            * Aappilatoq
+            * Kangersuatsiaq
+            * Upernavik Kujalleq
+            * Qaarsut
+            * Saattut
+            * Niaqornat
+            * Saaqqaq
+            * Qeqertaq
+            * Qasigiannguit
+            * Ikamiut
+            * Akunnaaq
+            * Kitsissuarsuit
+            * Attu
+            * Niaqornaarsuk
+            * Ikerasaarsuk
+            * Ignniarfik
+            * Kangerlussuaq
+            * Maniitsoq
+            * Atammik
+            * Napasoq
+            * Kangaamiut
+            * Kapisillit
+            * Qeqertarsuatsiaat
+            * All settlements in the south of Greenland + Narsaq, Nanortalik, Narsaq.
+            * Tasiilaq and five settlements around Tasiilaq
+            * Ittoqqortoormiit
+        
+        Layer: Airports
+            QGreenland Team notes that there are helistops in all settlements and other towns. We also note that there are airports for fixed-winged aircrafts in the following towns: 
+            * Qaanaaq
+            * Upernavik
+            * Qaarsut
+            * Ilulissat
+            * Aasiaat 
+            * Kangerlussuaq
+            * Maniitsoq
+            * Nuuk
+            * Nerlerit Inaat
+            * Paamiut
+            * Pituffik (Thule Airbase)
+            * Sisimiut
+            * Narsarsuaq
+            * Kulusuk
+
+        Layer: Seaports
+            Note that all Greenland towns and settlements are located by the sea. Hence ALL settlements and towns have a harbour or seaport.
+            
+        Layer: Financial services
+            Basic banking for withdrawing money is available in all settlements and towns.
+            
+        Layer: Educational facilities
+            This layer is quite incomplete. There is a school in every town and settlement in Greenland. Note that Nuuk includes six schools, Sisimiut two schools, and Ilulissat two schools.
+
     citation:
       text: >-
         Humanitarian OpenStreetMap Team (2020). Web:
@@ -1061,6 +1141,18 @@ The images and data are produced in a consistent way that makes the Index time-s
       Place names as provided by Asiaq Greenland Survey, December
       2020. Translation for data fields provided by Arnaq B. Johansen, Greenland
       Project Manager in Collection of Place Names (January 2021).
+      
+      QGreenland Team - Noted Data Issues
+      * East Greenland: Ikkatteq (correctly spelled ‘Ikateq’) is an abandoned airstrip and is not populated.
+      * Near Ittoqqortoormiit: Uunartoq and Ittaajimmiit are both abandoned.
+      * Westcoast of Greenland, near Paamiut: Ivittuut is abandoned, Narsalik was abandoned in 1997.
+      * South Greenland: Qaqortoq is placed twice - two dots next to each other.
+      * Near Qaanaaq: Qeqertarsuaq and Moriusaq are abandoned.
+      * Near Upernavik: Tussaaq is an abandoned settlement.
+      * Near Uummannaq: Illorsuit and Nuugaatsiaq are two recently abandoned settlements (2017) due a massive landslide and subsequent tsunami.
+      * Kangerlussuaq (west coast): Is not indicated on the map.
+      * West: Aasiaat is placed twice - two dots next to each other.
+
     citation:
       text: 'Place names, Asiaq Greenland Survey, December 2020.'
       url: ''
