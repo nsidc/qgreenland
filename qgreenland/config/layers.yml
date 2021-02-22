@@ -21,7 +21,8 @@
   id: qgr_boundary_background
   title: Background boundary
   description: >-
-    Polygon representing the full boundary of QGreenland background data/imagery.
+    Polygon representing the full boundary of QGreenland background
+    data/imagery.
   visible: True
   data_source: qgr_bounds.background
   ogr2ogr_kwargs:
@@ -1208,8 +1209,8 @@
 - id: racmo_wind_speed
   title: 'Annual mean wind speed 1958-2019 (5km)'
   description: >-
-      Averaged annual mean wind speed in meters per second from
-      RACMO2.3p2 for the period 1958-2019.
+      Averaged annual mean wind speed in meters per second from RACMO2.3p2 for
+      the period 1958-2019.
   visible: False
   group_path: 'Regional climate models/RACMO model output'
   style: racmo_wind_speed
@@ -1235,8 +1236,8 @@
   title: 'Total precipitation 1958-2019 (1km)'
   description: >-
       Averaged annual total precipitation in milimeters of water equivilent (mm
-      w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and
-      peripheral ice caps.
+      w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole ice
+      sheet and peripheral ice caps.
   visible: False
   group_path: 'Regional climate models/RACMO model output'
   style: racmo_precip
@@ -1261,8 +1262,9 @@
   id: racmo_snowfall
   title: 'Snowfall 1958-2019 (1km)'
   description: >-
-      Averaged annual snowfall in milimeters of water equivilent (mm w.e.) from RACMO2.3p2 for
-      the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
+      Averaged annual snowfall in milimeters of water equivilent (mm w.e.) from
+      RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and
+      peripheral ice caps.
   style: racmo_snowfall
   extract_nc_dataset_kwargs:
     extract_dataset: 'snowfall'
@@ -1274,8 +1276,9 @@
   id: racmo_melt
   title: 'Snowmelt 1958-2019 (1km)'
   description: >-
-      Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) from RACMO2.3p2 for
-      the period 1958-2019 covering the whole ice sheet and peripheral ice caps.
+      Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) from
+      RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and
+      peripheral ice caps.
   style: racmo_melt
   extract_nc_dataset_kwargs:
     extract_dataset: 'snowmelt'
@@ -1287,8 +1290,9 @@
   id: racmo_runoff
   title: 'Runoff 1958-2019 (1km)'
   description: >-
-      Averaged annual runoff in milimeters of water equivilent (mm w.e.) from RACMO2.3p2 for the
-      period 1958-2019 covering the whole ice sheet and peripheral ice caps.
+      Averaged annual runoff in milimeters of water equivilent (mm w.e.) from
+      RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and
+      peripheral ice caps.
   style: racmo_runoff
   extract_nc_dataset_kwargs:
     extract_dataset: 'runoff'
@@ -1300,9 +1304,9 @@
   id: racmo_subl
   title: 'Sublimation 1958-2019 (1km)'
   description: >-
-      Averaged annual sublimation in milimeters of water equivilent (mm w.e.) from RACMO2.3p2
-      for the period 1958-2019 covering the whole ice sheet and peripheral ice
-      caps.
+      Averaged annual sublimation in milimeters of water equivilent (mm w.e.)
+      from RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and
+      peripheral ice caps.
   style: racmo_subl
   extract_nc_dataset_kwargs:
     extract_dataset: 'subl'
@@ -1315,8 +1319,8 @@
   title: 'Snow drift erosion 1958-2019 (1km)'
   description: >-
       Averaged annual snow drift erosion in milimeters of water equivilent (mm
-      w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and
-      peripheral ice caps.
+      w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole ice
+      sheet and peripheral ice caps.
   style: racmo_sndiv
   extract_nc_dataset_kwargs:
     extract_dataset: 'sndiv'
@@ -1330,8 +1334,8 @@
   # NOTE: the source data states that the data are in units of mm of water
   # equivilent, but the values are clearly degrees Kelvin.
   description: >-
-      Averaged annual mean temperature at 2m in degrees Kelvin from RACMO2.3p2 for the period
-      1958-2019.
+      Averaged annual mean temperature at 2m in degrees Kelvin from RACMO2.3p2
+      for the period 1958-2019.
   style: racmo_t2m
   extract_nc_dataset_kwargs:
     extract_dataset: 't2m'
@@ -1382,7 +1386,8 @@
   id: racmo_topography
   title: 'Ice surface topography (1km)'
   description: >-
-      Ice sheet surface elevation in meters upscaled from the Greenland Mapping Project (GIMP) Digital Elevation Model.
+      Ice sheet surface elevation in meters upscaled from the Greenland Mapping
+      Project (GIMP) Digital Elevation Model.
   style: racmo_topography
   ingest_task: racmo_raster_with_mask
   extract_nc_dataset_kwargs:
@@ -1961,8 +1966,8 @@
   # TODO: provide the 5 year period instead of just one datetime.
   title: 'Mass balance trend 2003-2007'
   description: >-
-    Trend derived from the period 2003-01-01 to 2007-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2003-01-01 to 2007-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   visible: False
   group_path: 'Glaciology/Gravimetric mass balance'
   style: 'gmb_dtu_space'
@@ -1978,8 +1983,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2006
   title: 'Mass balance trend 2004-2008'
   description: >-
-    Trend derived from the period 2004-01-01 to 2008-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2004-01-01 to 2008-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2004-01-01_2008-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -1988,8 +1993,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2007
   title: 'Mass balance trend 2005-2009'
   description: >-
-    Trend derived from the period 2005-01-01 to 2009-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2005-01-01 to 2009-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2005-01-01_2009-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -1998,8 +2003,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2008
   title: 'Mass balance trend 2006-2010'
   description: >-
-    Trend derived from the period 2006-01-01 to 2010-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2006-01-01 to 2010-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2006-01-01_2010-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -2008,8 +2013,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2009
   title: 'Mass balance trend 2007-2011'
   description: >-
-    Trend derived from the period 2007-01-01 to 2011-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2007-01-01 to 2011-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2007-01-01_2011-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -2018,8 +2023,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2010
   title: 'Mass balance trend 2008-2012'
   description: >-
-    Trend derived from the period 2008-01-01 to 2012-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2008-01-01 to 2012-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2008-01-01_2012-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -2028,8 +2033,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2011
   title: 'Mass balance trend 2009-2013'
   description: >-
-    Trend derived from the period 2009-01-01 to 2013-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2009-01-01 to 2013-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2009-01-01_2013-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -2038,8 +2043,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2012
   title: 'Mass balance trend 2010-2014'
   description: >-
-    Trend derived from the period 2010-01-01 to 2014-11-30 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2010-01-01 to 2014-11-30 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2010-01-01_2014-11-30.gpkg'
     s_srs: 'EPSG:4326'
@@ -2048,8 +2053,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2013
   title: 'Mass balance trend 2011-2015'
   description: >-
-    Trend derived from the period 2011-02-01 to 2015-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2011-02-01 to 2015-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2011-02-01_2015-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -2058,8 +2063,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2014
   title: 'Mass balance trend 2012-2016'
   description: >-
-    Trend derived from the period 2012-01-01 to 2016-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2012-01-01 to 2016-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2012-01-01_2016-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -2068,8 +2073,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2015
   title: 'Mass balance trend 2013-2017'
   description: >-
-    Trend derived from the period 2013-01-01 to 2017-07-01 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2013-01-01 to 2017-07-01 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2013-01-01_2017-07-01.gpkg'
     s_srs: 'EPSG:4326'
@@ -2078,8 +2083,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2016
   title: 'Mass balance trend 2014-2018'
   description: >-
-    Trend derived from the period 2014-01-01 to 2018-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2014-01-01 to 2018-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2014-01-01_2018-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -2088,8 +2093,8 @@
   id: esa_cci_gravimetric_mass_balance_dtu_2017
   title: 'Mass balance trend 2015-2019'
   description: >-
-    Trend derived from the period 2015-01-01 to 2019-12-31 via gravity measurements. Data is on a ~50 km
-    resolution grid (displayed as points).
+    Trend derived from the period 2015-01-01 to 2019-12-31 via gravity
+    measurements. Data is on a ~50 km resolution grid (displayed as points).
   ogr2ogr_kwargs:
     input_filename: 'points_2015-01-01_2019-12-31.gpkg'
     s_srs: 'EPSG:4326'
@@ -2218,7 +2223,8 @@
   title: 'Ground temperature standard deviation (10km)'
   style: ground_temperature_std
   description: >-
-     Standard deviation of the average mean annual ground temperature in degrees Celsius.
+     Standard deviation of the average mean annual ground temperature in
+     degrees Celsius.
   extract_nc_dataset_kwargs:
     extract_dataset: 'SD'
 
@@ -2227,8 +2233,8 @@
   title: 'Permafrost probability (10km)'
   style: permafrost_probability
   description: >-
-     Permafrost probability (fraction values from 0 to 1) assigned to each
-     grid cell with mean annual ground temperature (MAGT) < 0°C.
+     Permafrost probability (fraction values from 0 to 1) assigned to each grid
+     cell with mean annual ground temperature (MAGT) < 0°C.
   extract_nc_dataset_kwargs:
     extract_dataset: 'PerProb'
 
@@ -2345,7 +2351,9 @@
 - <<: *geological_map
   id: onshore_geological_map
   title: 'Rock Types'
-  description: 'Geological unit polygon features for the onshore landmass and islands of Greenland.'
+  description: >-
+    Geological unit polygon features for the onshore landmass and islands of
+    Greenland.
   style: geological_map_polygons
   decompress_kwargs:
     extract_files:
@@ -5058,7 +5066,8 @@
   id: ice_basins_filled
   title: 'Ice basins filled'
   description: >-
-      Calculated ice sheet hydrologic basins including areas classified as land/ocean by regional climate models (filled).
+      Calculated ice sheet hydrologic basins including areas classified as
+      land/ocean by regional climate models (filled).
   style: 'ice_basins'
   data_source: streams_outlets_basins.ice_basins_filled
   ogr2ogr_kwargs:
@@ -5089,7 +5098,8 @@
   id: land_basins_filled
   title: 'Land basins filled'
   description: >-
-      Calculated terrestrial hydrologic basins including areas classified as ice/ocean by regional climate models (filled).
+      Calculated terrestrial hydrologic basins including areas classified as
+      ice/ocean by regional climate models (filled).
   style: 'land_basins'
   data_source: streams_outlets_basins.land_basins_filled
   ogr2ogr_kwargs:
@@ -5682,10 +5692,10 @@
 - id: bathymetric_chart
   title: 'Bathymetric chart of the Arctic Ocean (400m)'
   description: >-
-      Bathymetric elevation in meters.  Elevations can be
-      assumed to be relative to mean sea level. However, in some shallow water
-      areas, the grids include data from sources having a vertical datum other
-      than mean sea level.
+      Bathymetric elevation in meters. Elevations can be assumed to be relative
+      to mean sea level. However, in some shallow water areas, the grids
+      include data from sources having a vertical datum other than mean sea
+      level.
   visible: False
   group_path: 'Oceanography'
   style: 'ibcao_bathymetry'
