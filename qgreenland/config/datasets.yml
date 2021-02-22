@@ -145,6 +145,16 @@
       text: >-
         Velocity data generated using auto-RIFT (Gardner et al., 2018) and
         provided by the NASA MEaSUREs ITS_LIVE project (Gardner et al., 2019).
+        
+        Gardner, A. S., M. A. Fahnestock, and T. A. Scambos, 2019 [Accessed on
+        {{date_accessed}}]: ITS_LIVE Regional Glacier and Ice Sheet Surface
+        Velocities. Data archived at National Snow and Ice Data Center;
+        doi:10.5067/6II6VW8LLWJ7.
+
+        Gardner, A. S., G. Moholdt, T. Scambos, M. Fahnstock, S. Ligtenberg, M.
+        van den Broeke, and J. Nilsson, 2018: Increased West Antarctic and
+        unchanged East Antarctic ice discharge over the last 7 years,
+        Cryosphere, 12(2): 521–547, doi:10.5194/tc-12-521-2018.
       url: 'https://its-live.jpl.nasa.gov/#documentation'
 
 - id: glacier_terminus
@@ -254,9 +264,22 @@
       collection_concept_id: 'C1581605757-ORNL_DAAC'
   metadata:
     title: 'Circumpolar Arctic Vegetation, Geobotanical, Physiographic Maps, 1982-2003'
-    abstract: 'This data set provides the spatial distributions of vegetation types, geobotanical characteristics, and physiographic features for the circumpolar Arctic tundra biome for the period 1982-2003. Specific attributes include dominant vegetation, bioclimate subzones, floristic subprovinces, landscape types, lake coverage, Arctic treeline, elevation, and substrate chemistry data. Vegetation indices, trends, and biomass estimate products for the circumpolar Arctic through 2010 are also provided.'
+    abstract: >-
+      The broader data set provides the spatial distributions of vegetation
+      types, geobotanical characteristics, and physiographic features for the
+      circumpolar Arctic tundra biome for the period 1982-2003. Specific
+      attributes include dominant vegetation, bioclimate subzones, floristic
+      subprovinces, landscape types, lake coverage, Arctic treeline, elevation,
+      and substrate chemistry data. Vegetation indices, trends, and biomass
+      estimate products for the circumpolar Arctic through 2010 are also
+      provided. QGreenland displays the 2010 vegetation biomass in kilograms
+      per square meter. Users can look to the source information for additional
+      data.
     citation:
-      text: 'Walker, D.A., and M.K. Raynolds. 2018. Circumpolar Arctic Vegetation, Geobotanical, Physiographic Maps, 1982-2003. ORNL DAAC, Oak Ridge, Tennessee, USA. https://doi.org/10.3334/ORNLDAAC/1323'
+      text: >-
+        Walker, D.A., and M.K. Raynolds. 2018. Circumpolar Arctic Vegetation,
+        Geobotanical, Physiographic Maps, 1982-2003. ORNL DAAC, Oak Ridge,
+        Tennessee, USA. https://doi.org/10.3334/ORNLDAAC/1323
       url: 'https://doi.org/10.3334/ORNLDAAC/1323'
 
 
@@ -285,20 +308,20 @@
   metadata:
     title: 'Northern Circumpolar Soils Map, Version 1'
     abstract: >-
-      This data set consists of a circumpolar map of dominant soil
+      The full data set consists of a circumpolar map of dominant soil
       characteristics, with a scale of 1:10,000,000, covering the United
       States, Canada, Greenland, Iceland, northern Europe, Russia, Mongolia,
       and Kazakhstan. The map was created using the Northern and Mid Latitude
       Soil Database. The map is in ESRI Shapefile format, consisting of 11
-      regional areas.. Polygons have attributes that give the percentage
-      polygon area that is a given soil type. The map shows the dominant soil
-      of the spatial polygon unless the polygon is over 90 percent rock or ice.
-      It also shows the proportion of polygon encompassed by the dominant soil
-      or nonsoil. Soils include turbels, orthels, histels, histosols,
-      mollisols, vertisols, aridisols, andisols, entisols, spodosols,
-      inceptisols (and hapludolls), alfisols (cryalf and udalf), natric great
-      groups, aqu-suborders, glaciers, and rocklands. Data are available via
-      ftp.
+      regional areas. Polygons have attributes that give the percentage polygon
+      area that is a given soil type. The map shows the dominant soil of the
+      spatial polygon unless the polygon is over 90 percent rock or ice.  It
+      also shows the proportion of polygon encompassed by the dominant soil or
+      nonsoil. Soils include turbels, orthels, histels, histosols, mollisols,
+      vertisols, aridisols, andisols, entisols, spodosols, inceptisols (and
+      hapludolls), alfisols (cryalf and udalf), natric great groups,
+      aqu-suborders, glaciers, and rocklands. QGreenland dispalys data for
+      Greenland. Users can look to the source information for additional data.
     citation:
       text: >-
         Tarnocai, C., J. Kimble, D. Swanson, S. Goryachkin, Y. M. Naumov, V.
@@ -436,7 +459,16 @@ The images and data are produced in a consistent way that makes the Index time-s
         - 'http://sandbox.idre.ucla.edu/mapshare/data/world/data/utmzone.zip'
   metadata:
     title: 'World UTM Zones'
-    abstract: 'World UTM Zones represents the Universal Transverse Mercator (UTM) zones of the world. The polygons represent the Universal Transverse Mercator (UTM) zones, which, lie between 84 degrees North and 80 degrees South latitude. With few exceptions, they divide the world into sixty zones, each of which is six degrees of longitude wide. The zones are numbered from 1 through 60 eastward from 180 degrees West longitude. The zone characters designate eight degrees of latitude high rows extending north and south from the equator with the exception of the northern-most row which is 12 degrees high.'
+    abstract: >-
+      World UTM Zones represents the Universal Transverse Mercator (UTM) zones
+      of the world. The polygons represent the Universal Transverse Mercator
+      (UTM) zones, which lie between 84 degrees North and 80 degrees South
+      latitude. With few exceptions, they divide the world into sixty zones,
+      each of which is six degrees of longitude wide. The zones are numbered
+      from 1 through 60 eastward from 180 degrees West longitude. The zone
+      characters designate rows that are 8 degrees of latitude high extending
+      north and south from the equator with the exception of the northern-most
+      row which is 12 degrees high.
     # Is this citation good enough? Find another source?
     citation:
       text: 'ESRI Data & Maps. 2015.'
@@ -455,8 +487,7 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'QGreenland boundaries'
     abstract: >-
-      QGreenland's extents allow us to automatically subset data to useful
-      spatial bounds.
+      This boundary is used to subset many datasets for QGreenland.
     citation:
       text: 'Generated by QGreenland.'
       url: ''
@@ -558,7 +589,7 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Bathymetric Chart of the Arctic Ocean (IBCAO)'
     abstract: >-
-      The goal of the IBCAO initiative is to develop a digital data base that
+      The goal of the IBCAO initiative is to develop a digital database that
       contains all available bathymetric data north of 64° North, for use by
       mapmakers, researchers, institutions, and others whose work requires a
       detailed and accurate knowledge of the depth and the shape of the Arctic
@@ -581,7 +612,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     abstract: >-
         The General Bathymetric Chart of the Oceans (GEBCO) Sub-Committee on
         Undersea Feature Names (SCUFN) maintains and makes available a digital
-        gazetteer of the names, generic feature type and geographic position of
+        gazetteer of the names, generic feature type, and geographic position of
         features on the seafloor. The gazetteer is available to view and
         download (http://www.ngdc.noaa.gov/gazetteer/) via a web map
         application, hosted by the International Hydrographic Organization Data
@@ -603,17 +634,17 @@ The images and data are produced in a consistent way that makes the Index time-s
     title: 'World tectonic plates and boundaries'
     abstract: >-
         As per data source - This dataset is a conversion of the dataset
-        originally published in the paper _An updated digital model of plate
-        boundaries_ by Peter Bird (Geochemistry Geophysics Geosystems, 4(3),
-        1027,
-        [doi:10.1029/2001GC000252](http://scholar.google.se/scholar?cluster=1268723667321132798),
-        2003). To bring this dataset into the modern age, the original data has
-        been parsed, cleaned and verified using ArcGIS 10.2 and converted to
-        shape files. The dataset presents tectonic plates and their boundaries,
-        and in addition orogens and information about the boundaries. The data
-        is useful for geological applications, analysis and education, and
-        should be easy to use in any modern GIS software application. For
-        information on the fields and values, please refer to the
+        originally published in the paper 'An updated digital model of plate
+        boundaries' by Peter Bird (Geochemistry Geophysics Geosystems, 4(3),
+        1027, doi:10.1029/2001GC000252
+        [http://scholar.google.se/scholar?cluster=1268723667321132798], 2003).
+        To bring this dataset into the modern age, the original data has been
+        parsed, cleaned, and verified using ArcGIS 10.2 and converted to shape
+        files. The dataset presents tectonic plates and their boundaries, and
+        in addition orogens and information about the boundaries. The data is
+        useful for geological applications, analysis and education, and should
+        be easy to use in any modern GIS software application. For information
+        on the fields and values, please refer to the
         [original](http://peterbird.name/oldFTP/PB2002/2001GC000252_readme.txt)
         documentation and the scientific article.
         
@@ -715,7 +746,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         long-term inter-disciplinary data collection carried out by Danish and
         Greenlandic monitoring and research institutions.
 
-        The GEM Programme put around 75 scientists in the field annually to
+        The GEM Programme puts around 75 scientists in the field annually to
         collect data on ecosystem and climate change in Greenland. The data
         base currently covers data from monitoring programmes from Zackenberg
         (1995-), Kobbefjord at Nuuk (2007-) and Disko (2017-). The well over
@@ -723,8 +754,8 @@ The images and data are produced in a consistent way that makes the Index time-s
         GEM participants and external scientists to produce scientific papers,
         scientific assessments, advisory reports, etc.
         
-        Full station descriptions were manually added from the 'Station Link'
-        associated with each feature.
+        Full station descriptions were manually added by QGreenland from the
+        'Station Link' associated with each feature.
     citation:
       text: >-
           Roemer, Jonas K. (2020). Greenland Ecosystem Monitoring - Location and
@@ -743,9 +774,10 @@ The images and data are produced in a consistent way that makes the Index time-s
     title: 'International Registry of Seismograph Stations (IR)'
     abstract: >-
         The International Seismograph Station Registry (IR) has been jointly
-        maintained by the ISC and the World Data Center for Seismology
-        (NEIC/USGS) since the 1960s.  At present there are over 26000 (including
-        those already closed) with globally unique codes registered in the IR.
+        maintained by the International Seismological Centre (ISC) and the
+        World Data Center for Seismology (NEIC/USGS) since the 1960s. At
+        present there are over 26000 stations (including those already closed)
+        with globally unique codes registered in the IR.
     citation:
       text: >-
           International Seismological Centre (2020), International Seismograph
@@ -764,7 +796,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       Geothermal heat flux distribution for the Greenland ice sheet, derived by
       combining a global representation and information from deep ice cores
     abstract: >-
-      We present a distribution of the geothermal heat flux (GHF) for
+      The data present a distribution of the geothermal heat flux (GHF) for
       Greenland, which is an update of two earlier versions by Greve (2005,
       Ann. Glaciol. 42) and Greve and Herzfeld (2013, Ann. Glaciol. 54). The
       GHF distribution is constructed in two steps. First, the global
@@ -775,10 +807,10 @@ The images and data are produced in a consistent way that makes the Index time-s
       basal temperatures match closely. The resulting GHF distribution
       generally features low values in the south and the north-west, whereas
       elevated values prevail in central North Greenland and towards the
-      north-east. The data are provided as NetCDF files on two different grids
-      (EPSG:3413 grid, Bamber grid) that have frequently been used in modelling
-      studies of the Greenland ice sheet, and for the three different
-      resolutions of 5 km, 10 km and 20 km.
+      north-east. The original source data are provided as NetCDF files on two
+      different grids (EPSG:3413 grid, Bamber grid) that have frequently been
+      used in modelling studies of the Greenland ice sheet, and for the three
+      different resolutions of 5 km, 10 km and 20 km.
     citation:
       text: 'Polar Data Journal, 3, 22-36. https://doi.org/10.20575/00000006'
       url: 'https://doi.org/10.20575/00000006'
@@ -796,26 +828,30 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Sentinel-2 Imagery Mosaics'
     abstract: >-
-        Each summer, surface melting of the margin of the Greenland Ice Sheet
-        exposes a distinctive visible stratigraphy that is related to past
-        variability in subaerial dust deposition across the accumulation zone
-        and subsequent ice flow toward the margin. Here we map this surface
-        stratigraphy along the northern margin of the ice sheet using mosaicked
-        Sentinel-2 multispectral satellite imagery from the end of the 2019 melt
-        season and finer-resolution WorldView-2/3 imagery for smaller regions of
-        interest. We trace three distinct transitions in apparent dust
-        concentration and the top of a darker basal layer. The three dust
-        transitions have been identified previously as representing
-        late-Pleistocene climatic transitions, allowing us to develop a coarse
-        margin chronostratigraphy for northern Greenland. Substantial folding of
-        late-Pleistocene stratigraphy is observed but uncommon. The oldest
-        conformal surface-exposed ice in northern Greenland is likely located
-        adjacent to Warming Land and may be up to ~55 thousand years old. Basal
-        ice is commonly exposed hundreds of metres from the ice margin and may
+        Abstract for reference publication: Each summer, surface melting of the
+        margin of the Greenland Ice Sheet exposes a distinctive visible
+        stratigraphy that is related to past variability in subaerial dust
+        deposition across the accumulation zone and subsequent ice flow toward
+        the margin. Here we map this surface stratigraphy along the northern
+        margin of the ice sheet using mosaicked Sentinel-2 multispectral
+        satellite imagery from the end of the 2019 melt season and
+        finer-resolution WorldView-2/3 imagery for smaller regions of interest.
+        We trace three distinct transitions in apparent dust concentration and
+        the top of a darker basal layer. The three dust transitions have been
+        identified previously as representing late-Pleistocene climatic
+        transitions, allowing us to develop a coarse margin chronostratigraphy
+        for northern Greenland. Substantial folding of late-Pleistocene
+        stratigraphy is observed but uncommon. The oldest conformal
+        surface-exposed ice in northern Greenland is likely located adjacent to
+        Warming Land and may be up to ~55 thousand years old. Basal ice is
+        commonly exposed hundreds of metres from the ice margin and may
         indicate a widespread frozen basal thermal state. We conclude that the
         ice margin across northern Greenland offers multiple opportunities to
         recover paleoclimatically distinct ice relative to previously studied
         regions in southwestern Greenland.
+        
+        QGreenland displays 2015 and 2019 Sentinel-2 mosaics as online-only
+        access layers.
     citation:
       text: >-
         MacGregor JA, Fahnestock MA, Colgan WT, Larsen NK, Kjeldsen KK, Welker
@@ -843,7 +879,8 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: >-
         World Data Center (2020). Ice core locations. Download:
-        http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed: {{date_accessed}}.
+        http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed:
+        {{date_accessed}}.
       url: 'http://www.ncdc.noaa.gov/paleo/icecore.html'
 
 
@@ -867,7 +904,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         Countries are coded with standard ISO and FIPS codes. French INSEE codes
         are also included.
 
-        Includes some thematic data from the United Nations (1), U.S. Central
+        Includes some thematic data from the United Nations, U.S. Central
         Intelligence Agency, and elsewhere.
     citation:
       text: 'Made with Natural Earth'
@@ -929,17 +966,18 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'WORLD OCEAN ATLAS 2018 Volume 1: Temperature'
     abstract: >-
-        This atlas consists of a description of data analysis procedures and
-        horizontal maps of climatological distribution fields of temperature at
-        selected standard depth levels of the World Ocean on one-degree and
-        quarter-degree latitude-longitude grids.  The aim of the maps is to
-        illustrate large-scale characteristics of the distribution of ocean
-        temperature.  The fields used to generate these climatological maps were
-        computed by objective analysis of all scientifically quality-controlled
-        historical temperature data in the World Ocean Database 2018.  Maps are
-        presented for climatological composite periods (annual, seasonal,
-        monthly, seasonal and monthly difference fields from the annual mean
-        field, and the number of observations) at 102 standard depths.
+        From the World Ocean Atlas: This atlas consists of a description of
+        data analysis procedures and horizontal maps of climatological
+        distribution fields of temperature at selected standard depth levels of
+        the World Ocean on one-degree and quarter-degree latitude-longitude
+        grids.  The aim of the maps is to illustrate large-scale
+        characteristics of the distribution of ocean temperature.  The fields
+        used to generate these climatological maps were computed by objective
+        analysis of all scientifically quality-controlled historical
+        temperature data in the World Ocean Database 2018.  Maps are presented
+        for climatological composite periods (annual, seasonal, monthly,
+        seasonal and monthly difference fields from the annual mean field, and
+        the number of observations) at 102 standard depths.
     citation:
       text: >-
         Locarnini, R. A., A. V. Mishonov, O. K. Baranova, T. P. Boyer, M. M.
@@ -1030,11 +1068,18 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Likely Basal Thermal State of the Greenland Ice Sheet'
     abstract: >-
-        The Likely Basal Thermal State of the Greenland Ice Sheet (GrIS) product
-        contains key datasets that show how the likely basal thermal state was
-        inferred from existing airborne and satellite datasets and recent
-        methods, and provides a synthesis mask of the likely basal thermal state
-        over the Greenland Ice Sheet (MacGregor et al. 2016).
+        The Likely Basal Thermal State of the Greenland Ice Sheet product at
+        the National Snow and Ice Data Center contains key datasets that show
+        how the likely basal thermal state was inferred from existing airborne
+        and satellite datasets and recent methods, and provides a synthesis
+        mask of the likely basal thermal state over the Greenland Ice Sheet
+        (MacGregor et al. 2016), which is displayed in QGreenland.
+        
+        MacGregor, J.A., M.A. Fahnestock, G.A. Catania, A. Aschwanden, G.D.
+        Clow, W.T. Colgan, S.P.  Gogineni, M. Morlighem, S.M.J. Nowicki, J.D.
+        Paden, S.F. Price and H. Seroussi. 2016. A synthesis of the basal
+        thermal state of the Greenland Ice Sheet, Journal of Geophysical
+        Research Earth Surface, 121:1328–1350, doi:10.1002/2015JF003808.
     citation:
       text: >-
         MacGregor, J. A., M. Fahnestock, G. Catania, J. Paden, P. Gogineni,
@@ -1051,9 +1096,10 @@ The images and data are produced in a consistent way that makes the Index time-s
   sources:
     - id: only
       access_instructions: >-
-        Provided by Eva Mätzler via Email as a zipped collection of data
+        Provided by Eva Mätzler via email as a zipped collection of data
         '20201112_Oqaasileriffik_place-name register.zip'. See
-        scripts/private-archive-preprocess/eva_placenames/README.md for
+        scripts/private-archive-preprocess/eva_placenames/README.md (at
+        QGreenland GitHub: https://github.com/nsidc/qgreenland) for
         preprocessing steps.
   metadata:
     title: Place names
@@ -1123,26 +1169,27 @@ The images and data are produced in a consistent way that makes the Index time-s
         millennium using Large Ensemble Simulations, spatial time series,
         2008-3007.
     abstract: >-
-        The Greenland Ice Sheet holds around 7.2 meters of sea-level equivalent. In
-        recent decades rising atmosphere and ocean temperatures have led to an
-        acceleration in mass loss, adding an average of about 0.5 millimeters per
-        year to global mean sea-level between 1991 and 2015. Current ice margin
-        recession in Greenland is led by the retreat of outlet glaciers, the large
-        rivers of ice ending in narrow fjords that drain the ice sheet
-        interior. Recent progress in measuring ice thickness is enabling models to
-        reproduce the complex flow patterns found in outlet glaciers, a key step
-        towards realistic projections. Here we pair an outlet glacier resolving ice
-        sheet model with a comprehensive uncertainty quantification to estimate
-        Greenland's contribution to sea-level over the next millennium under
-        different climate forcings. We find that Greenland could contribute 5-33
+        Citation publication abstract: The Greenland Ice Sheet holds around 7.2
+        meters of sea-level equivalent. In recent decades rising atmosphere and
+        ocean temperatures have led to an acceleration in mass loss, adding an
+        average of about 0.5 millimeters per year to global mean sea-level
+        between 1991 and 2015. Current ice margin recession in Greenland is led
+        by the retreat of outlet glaciers, the large rivers of ice ending in
+        narrow fjords that drain the ice sheet interior. Recent progress in
+        measuring ice thickness is enabling models to reproduce the complex
+        flow patterns found in outlet glaciers, a key step towards realistic
+        projections. Here we pair an outlet glacier resolving ice sheet model
+        with a comprehensive uncertainty quantification to estimate Greenland's
+        contribution to sea-level over the next millennium under different
+        climate forcings. We find that Greenland could contribute 5-33
         centimeters to sea-level by 2100 and 11-155 centimeters by 2200, with
         discharge from outlet glaciers contributing 6-45% of the total mass
         loss. Our analysis shows that uncertainties in projecting mass loss are
         dominated by uncertainties in climate scenarios and surface processes,
-        followed by ice dynamics, whereas uncertainties in ocean conditions play a
-        minor role, particularly in the long term. We project that Greenland will
-        very likely become ice-free within a millennium without significant
-        reductions in greenhouse gas emissions.
+        followed by ice dynamics, whereas uncertainties in ocean conditions
+        play a minor role, particularly in the long term. We project that
+        Greenland will very likely become ice-free within a millennium without
+        significant reductions in greenhouse gas emissions.
 
         This dataset compilation contains the simulations for the manuscript
         "Contribution of the Greenland Ice Sheet to sea-level over the next
@@ -1235,7 +1282,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     - id: only
       access_instructions: >-
         Dataset provided by Karl Zinglersen of the Greenland Institude for
-        Natural Resources via a an email attachment on Oct. 16, 2020. This
+        Natural Resources via an email attachment on Oct. 16, 2020. This
         dataset is not expected to be publicily archived outside of QGreenland.
   metadata:
     title: 'Caribou'
@@ -1261,12 +1308,13 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Arctic Sea Routes'
     abstract: >-
-        Arctic lines of communication. In the case of the Northern Sea Route,
-        the route is based on the actual route used by Russian icebreakers and
-        cargo ships. The Northwest Passage is based on the channels that would
-        be able to support large cargo ships. The transpolar route is a
-        hypothetical route that could be used either as a result of ice-free
-        summers or the extensive use of icebreakers and ice-hardened ships.
+        Arctic lines of general transportation. In the case of the Northern Sea
+        Route, the route is based on the actual route used by Russian
+        icebreakers and cargo ships. The Northwest Passage is based on the
+        channels that would be able to support large cargo ships. The
+        transpolar route is a hypothetical route that could be used either as a
+        result of ice-free summers or the extensive use of icebreakers and
+        ice-hardened ships.
     citation:
       text: 'National Geospatial-Intelligence Agency (NGA)'
       url: 'https://arctic-nga.opendata.arcgis.com/datasets/67760a7f85614902ac19fa6ff643b9fa_0'
@@ -1286,8 +1334,8 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'ESA Greenland Ice Sheet CCI, Supraglacial Lakes from Sentinel-2'
     abstract: >-
-        Supraglacial Lake (SGL) vectors for select AOI's on the Greenland Ice
-        Sheet produced using Sentinel-2
+        Supraglacial Lake vectors for select areas of interest (AOI) on the
+        Greenland Ice Sheet produced using Sentinel-2
 
         Version 1.1 includes.
         AOI:
@@ -1316,7 +1364,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         simple registration requiring `first.last` name and `affiliation`. No
         password is required.
 
-        Once the `cci_sec_2020.tar.gz` file is downloaded, usethe supplied
+        Once the `cci_sec_2020.tar.gz` file is downloaded, use the supplied
         `scripts/esa_cci_surface_elevation_change/preprocess.sh` script to
         uncompress the data.
   metadata:
@@ -1362,15 +1410,15 @@ The images and data are produced in a consistent way that makes the Index time-s
       velocity map, generated applying coherent and incoherent offset tracking
       using SENTINEL-1 data acquired between 2019-12-14 and 2020-01-31.
 
-      This data set is part of the ESA Greenland Ice sheet CCI project. The file
-      is including all measurements and annotation.  It provides components of
-      the ice velocity, along with maps showing the horizontal magnitude, valid
-      pixel count and uncertainty (based on the std.) within a NetCDF file.  The
-      ice velocity map is provided on a polar stereographic grid (EPSG 3413)
-      with 250m grid spacing.  The horizontal velocity is provided in true
-      meters per day, towards Easting (x) and Northing (y) direction of the
-      grid. The vertical displacement is derived from a digital elevation model.
-      The product was generated by ENVEO.
+      This data set is part of the ESA Greenland Ice sheet CCI project. The
+      original source data file includes all measurements and annotation.  It
+      provides components of the ice velocity, along with maps showing the
+      horizontal magnitude, valid pixel count and uncertainty (based on the
+      std.) within a NetCDF file.  The ice velocity map is provided on a polar
+      stereographic grid (EPSG 3413) with 250m grid spacing.  The horizontal
+      velocity is provided in true meters per day, towards Easting (x) and
+      Northing (y) direction of the grid. The vertical displacement is derived
+      from a digital elevation model.  The product was generated by ENVEO.
     citation:
       text: 'Greenland Ice Sheet velocity map from Sentinel-1, winter campaign 2019/2020 [version 1.3]'
       url: 'http://products.esa-icesheets-cci.org/products/details/greenland_iv_250m_s1_20191214_20200131_v1_3.zip/'
@@ -1395,32 +1443,32 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'GMB products for the Greenland Ice Sheet from GRACE satellite gravimetry (CSR RL06) by DTU Space.'
     abstract: >-
-      During the last decade, the GRACE mission hasprovided valuable data for
-      determining the mass changes ofthe Greenland and Antarctic ice sheets.
-      Yet, discrepancies still exist in the published mass balance results, and
-      comprehensive analyses on the sources of errors and discrepancies are
-      lacking. Here, we present monthly mass changes together with trends
-      derived from GRACE data at basin scalefor both the Greenland and Antarctic
-      ice sheets, and we assess the variability and errors for each of the
-      possible sources of discrepancies, and we do this in an unprecedented
-      systematic way, taking into account mass inference methods, datasets and
-      background models.  We find a very good agreement between the monthly mass
-      change results derived from two independent methods, which represents a
-      cross validation.  For the monthly solutions, we find that most of the
-      scatter is caused by the use of the two different data sets rather than
-      the two different methods applied. Besides the well-known GIA trend
-      uncertainty, we find that the geocenter motion and the recent dealiasing
-      corrections significantly impact the trends, with contributions of+13.2 Gt
-      yr−1and−20 Gt yr−1, respectively, for Antarctica, which is more affected
-      by these than Greenland.  We show differences between the use of release
-      RL04 and the new RL05 and confirma lower noise content in the new
-      release. The overall scatter of the solutions well exceeds the
-      uncertainties propagated from the data errors and the leakage (as done in
-      the past); hence we calculate new sound total errors for the monthly
-      solutions and the trends. We find that the scatter in the monthly
-      solutions caused by applying different estimates of geocenter motion time
-      series(degree-1 corrections) is significant – contributing with up to 40%
-      of the total error.
+      From citation publication: During the last decade, the GRACE mission has
+      provided valuable data for determining the mass changes ofthe Greenland
+      and Antarctic ice sheets.  Yet, discrepancies still exist in the
+      published mass balance results, and comprehensive analyses on the sources
+      of errors and discrepancies are lacking. Here, we present monthly mass
+      changes together with trends derived from GRACE data at basin scalefor
+      both the Greenland and Antarctic ice sheets, and we assess the
+      variability and errors for each of the possible sources of discrepancies,
+      and we do this in an unprecedented systematic way, taking into account
+      mass inference methods, datasets and background models.  We find a very
+      good agreement between the monthly mass change results derived from two
+      independent methods, which represents a cross validation.  For the
+      monthly solutions, we find that most of the scatter is caused by the use
+      of the two different data sets rather than the two different methods
+      applied. Besides the well-known GIA trend uncertainty, we find that the
+      geocenter motion and the recent dealiasing corrections significantly
+      impact the trends, with contributions of+13.2 Gt yr−1and−20 Gt yr−1,
+      respectively, for Antarctica, which is more affected by these than
+      Greenland.  We show differences between the use of release RL04 and the
+      new RL05 and confirma lower noise content in the new release. The overall
+      scatter of the solutions well exceeds the uncertainties propagated from
+      the data errors and the leakage (as done in the past); hence we calculate
+      new sound total errors for the monthly solutions and the trends. We find
+      that the scatter in the monthly solutions caused by applying different
+      estimates of geocenter motion time series(degree-1 corrections) is
+      significant – contributing with up to 40% of the total error.
     citation:
       text: >-
         Barletta, V. R., Sørensen, L. S., and Forsberg, R.: Scatter of mass
@@ -1441,7 +1489,8 @@ The images and data are produced in a consistent way that makes the Index time-s
         The Northwest Atlantic Fisheries Organization (NAFO) Secretariat is a
         repository of information and meta-data related to the fishery,
         including catch statistics, scientific literature, fisheries management
-        documentation and GIS (geographic information system) resources.
+        documentation and GIS (geographic information system) resources. Users
+        can find additional data at the citation URL.
     citation:
       text: 'Northwest Atlantic Fisheries Organization Secretariat'
       url: 'https://www.nafo.int/Data'
@@ -1464,7 +1513,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       database at a scale of 1:5 000 000. The map, released in north polar
       stereographic projection using the World Geodetic System (WGS) 84 datum,
       includes complete geological and physiographic coverage of all onshore and
-      offshore bedrock areas north of latitude 60<B0> north.
+      offshore bedrock areas north of latitude 60 degrees north.
     citation:
       text: >-
         Harrison, J.C., St-Onge, M.R., Petrov, O.V., Strelnikov, S.I., Lopatin,
@@ -1490,19 +1539,21 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Ground Temperature Map, 2000-2016, Northern Hemisphere Permafrost'
     abstract: >-
-      The product provides modeled mean annual ground temperatures (MAGT) at the
-      top of the permafrost for the Northern Hemisphere at 1 km spatial
-      resolution. Permafrost probability (fraction values from 0 to 1) is
-      assigned to each grid cell with MAGT < 0°C. Based on its permafrost
-      probability each grid cell is classified as continuous, discontinuous and
-      sporadic permafrost. The processing extent covers exposed land areas of
-      the Northern Hemisphere down to 25 ° latitude. The mean MAGT was validated
-      with GTN-P and TSP borehole ground temperature data and yielded a RMS of
-      2.0 °C. According to the results, permafrost (MAGT < 0 °C) covers 15 % of
-      exposed land of the Northern Hemisphere.
+      Original data information: The product provides modeled mean annual
+      ground temperatures (MAGT) at the top of the permafrost for the Northern
+      Hemisphere at 1 km spatial resolution. Permafrost probability (fraction
+      values from 0 to 1) is assigned to each grid cell with MAGT < 0°C. Based
+      on its permafrost probability each grid cell is classified as continuous,
+      discontinuous and sporadic permafrost. The processing extent covers
+      exposed land areas of the Northern Hemisphere down to 25° latitude. The
+      mean MAGT was validated with GTN-P and TSP borehole ground temperature
+      data and yielded a RMS of 2.0 °C. According to the results, permafrost
+      (MAGT < 0 °C) covers 15 % of exposed land of the Northern Hemisphere.
 
       The map was produced within the project ESA Data User Element
       GlobPermafrost.
+      
+      QGreenland displays data at 10 km resolution.
 
       Dataset update: 2019-04-01
     citation:
@@ -1626,12 +1677,12 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'The World Magnetic Model'
     abstract: >-
-      The World Magnetic Model is a joint product of the United States’ National
-      Geospatial-Intelligence Agency (NGA) and the United Kingdom’s Defence
-      Geographic Centre (DGC). The WMM was developed jointly by the National
-      Centers for Environmental Information (NCEI, Boulder CO, USA) (formerly
-      National Geophysical Data Center (NGDC)) and the British Geological Survey
-      (BGS, Edinburgh, Scotland).
+      The World Magnetic Model (WMM) is a joint product of the United States’
+      National Geospatial-Intelligence Agency (NGA) and the United Kingdom’s
+      Defence Geographic Centre (DGC). The WMM was developed jointly by the
+      National Centers for Environmental Information (NCEI, Boulder CO, USA)
+      (formerly National Geophysical Data Center (NGDC)) and the British
+      Geological Survey (BGS, Edinburgh, Scotland).
 
       The World Magnetic Model is the standard model used by the U.S. Department
       of Defense, the U.K. Ministry of Defence, the North Atlantic Treaty
@@ -1667,10 +1718,10 @@ The images and data are produced in a consistent way that makes the Index time-s
       uncommon but are usually of small spatial extent.
     citation:
       text: >-
-        NCEI Geomagnetic Modeling Team and British Geological
-        Survey. 2019. World Magnetic Model 2020. NOAA National Centers for
-        Environmental Information. doi: 10.25921/11v3-da71, 2020, [date
-        accessed].
+        NCEI Geomagnetic Modeling Team and British Geological Survey. 2019.
+        World Magnetic Model 2020. NOAA National Centers for Environmental
+        Information. doi: 10.25921/11v3-da71, 2020, Date accessed:
+        {{date_accessed}}.
       url: 'https://doi.org/10.25921/11v3-da71'
 
 # separate 'local' source for geomatnetic north pole. This is a local layer
@@ -1700,7 +1751,7 @@ The images and data are produced in a consistent way that makes the Index time-s
     title: 'Mineral and hydrocarbon licenses'
     abstract: >-
       Mineral and hydrocarbon license data, including historic public licenses
-      and public licenses. License data is sources from the Mineral Resource
+      and public licenses. License data is sourced from the Mineral Resource
       Authority, Government of Greenland using their GeoServer version 2.14.1
       (https://gis.govmin.gl/geoserver/web/).
     citation:
@@ -1721,7 +1772,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       urls:
         - 'https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/GCN%20info%20ca.2000.csv'
   metadata:
-    title: 'map_GC-Net_PROMICE'
+    title: 'Map of GC-Net and PROMICE locations'
     abstract: >-
       GitHub data description (creator: jasonebox):
       For PROMICE, I use a 2017-2018 average of station GPS data. I added an
@@ -1759,18 +1810,17 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'Greenland surface mass-balance observations from the ice-sheet ablation area and local glaciers'
     abstract: >-
-       These are historical surface mass balance measurements from Greenland Ice
-       Sheet ablation area and surrounding local glaciers. There are
-       approximately 3000 unique measurements from 46 sites. The earliest
-       measurements are from 1892. Each measurement is accompanied with position
-       and date information, as well as quality and source flags.
+       These are historical surface mass balance measurement locations from
+       Greenland Ice Sheet ablation area and surrounding local glaciers. There
+       are approximately 3000 unique measurements from 46 sites. The earliest
+       measurements are from 1892. Each measurement is accompanied with
+       position and date information, as well as quality and source flags.
+       Users can look to the citation URL for additional data.
     citation:
       text: >-
-        MACHGUTH, H., THOMSEN, H., WEIDICK, A., AHLSTRØM, A., ABERMANN, J.,
-        ANDERSEN, M., . . . VAN DE WAL, R. (2016). Greenland surface
-        mass-balance observations from the ice-sheet ablation area and local
-        glaciers. Journal of Glaciology, 62(235),
-        861-887. doi:10.1017/jog.2016.75
+        Machgruth, H. et al (2016). Greenland surface mass-balance observations
+        from the ice-sheet ablation area and local glaciers. Journal of
+        Glaciology, 62(235), 861-887. doi:10.1017/jog.2016.75
       url: 'https://www.doi.org/10.1017/jog.2016.75'
 
 
@@ -1790,8 +1840,8 @@ The images and data are produced in a consistent way that makes the Index time-s
     title: "Greenland's Topographical Map 1:500,000"
     abstract: >-
         Greenland's topographical map work is a collection of Greenland maps in
-        different dimensions. The product contains the following target ratios:
-        1: 250,000, 1: 500,000 and 1: 2.5 million.
+        different dimensions. The original product contains the following
+        target ratios: 1:250,000, 1:500,000 and 1:2.5 million.
     citation:
       text: >-
         Contains data from Styrelsen for dataforsyning og effektivisering. Accessed 2020-12-17.
@@ -1812,27 +1862,27 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: "Rapid expansion of Greenland’s low-permeability ice slabs"
     abstract: >-
-      In recent decades, meltwater runoff has accelerated to become the
-      dominant mechanism for mass loss in the Greenland ice sheet. In
-      Greenland’s high-elevation interior, porous snow and firn accumulate;
-      these can absorb surface meltwater and inhibit runoff, but this buffering
-      effect is limited if enough water refreezes near the surface to restrict
-      percolation. However, the influence of refreezing on runoff from
-      Greenland remains largely unquantified. Here we use firn cores, radar
-      observations and regional climate models to show that recent increases in
-      meltwater have resulted in the formation of metres-thick,
-      low-permeability ‘ice slabs’ that have expanded the Greenland ice sheet’s
-      total runoff area by 26 ± 3 per cent since 2001. Although runoff from the
-      top of ice slabs has added less than one millimetre to global sea-level
-      rise so far, this contribution will grow substantially as ice slabs
-      expand inland in a warming climate. Runoff over ice slabs is set to
-      contribute 7 to 33 millimetres and 17 to 74 millimetres to global
-      sea-level rise by 2100 under moderate- and high-emissions scenarios,
-      respectively—approximately double the estimated runoff from Greenland’s
-      high-elevation interior, as predicted by surface mass balance models
-      without ice slabs. Ice slabs will have an important role in enhancing
-      surface meltwater feedback processes, fundamentally altering the ice
-      sheet’s present and future hydrology.
+      Citation publication abstract: In recent decades, meltwater runoff has
+      accelerated to become the dominant mechanism for mass loss in the
+      Greenland ice sheet. In Greenland’s high-elevation interior, porous snow
+      and firn accumulate; these can absorb surface meltwater and inhibit
+      runoff, but this buffering effect is limited if enough water refreezes
+      near the surface to restrict percolation. However, the influence of
+      refreezing on runoff from Greenland remains largely unquantified. Here we
+      use firn cores, radar observations and regional climate models to show
+      that recent increases in meltwater have resulted in the formation of
+      metres-thick, low-permeability ‘ice slabs’ that have expanded the
+      Greenland ice sheet’s total runoff area by 26 ± 3 per cent since 2001.
+      Although runoff from the top of ice slabs has added less than one
+      millimetre to global sea-level rise so far, this contribution will grow
+      substantially as ice slabs expand inland in a warming climate. Runoff
+      over ice slabs is set to contribute 7 to 33 millimetres and 17 to 74
+      millimetres to global sea-level rise by 2100 under moderate- and
+      high-emissions scenarios, respectively—approximately double the estimated
+      runoff from Greenland’s high-elevation interior, as predicted by surface
+      mass balance models without ice slabs. Ice slabs will have an important
+      role in enhancing surface meltwater feedback processes, fundamentally
+      altering the ice sheet’s present and future hydrology.
     citation:
       text: >-
         MacFerrin, M., Machguth, H., As, D.v. et al. Rapid expansion of
@@ -1927,11 +1977,13 @@ The images and data are produced in a consistent way that makes the Index time-s
   metadata:
     title: 'https://nsidc.org/data/nsidc-0611'
     abstract: >-
-        This data set provides weekly estimates of sea ice age for the Arctic
-        Ocean derived from remotely sensed sea ice motion and sea ice
-        extent. The temporal coverage for this data set is January 1984 through
-        December 2019. For more recent data, see the Quicklook Arctic Weekly
-        EASE-Grid Sea Ice Age data product (https://nsidc.org/data/nsidc-0749).
+        The full original data set provides weekly estimates of sea ice age for
+        the Arctic Ocean derived from remotely sensed sea ice motion and sea
+        ice extent. The temporal coverage for this data set is January 1984
+        through December 2019. For more recent data, see the Quicklook Arctic
+        Weekly EASE-Grid Sea Ice Age data product
+        (https://nsidc.org/data/nsidc-0749). QGreenland displays a subset of
+        data to coincide with information contained in other sea ice layers.
     citation:
       text: >-
         Tschudi, M., W. N. Meier, J. S. Stewart, C. Fowler, and
