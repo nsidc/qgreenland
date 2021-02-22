@@ -146,8 +146,8 @@
         Velocity data generated using auto-RIFT (Gardner et al., 2018) and
         provided by the NASA MEaSUREs ITS_LIVE project (Gardner et al., 2019).
         
-        Gardner, A. S., M. A. Fahnestock, and T. A. Scambos, 2019 [update to
-        time of data download]: ITS_LIVE Regional Glacier and Ice Sheet Surface
+        Gardner, A. S., M. A. Fahnestock, and T. A. Scambos, 2019 [Accessed on
+        {{date_accessed}}]: ITS_LIVE Regional Glacier and Ice Sheet Surface
         Velocities. Data archived at National Snow and Ice Data Center;
         doi:10.5067/6II6VW8LLWJ7.
 
@@ -879,7 +879,8 @@ The images and data are produced in a consistent way that makes the Index time-s
     citation:
       text: >-
         World Data Center (2020). Ice core locations. Download:
-        http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed: {{date_accessed}}.
+        http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed:
+        {{date_accessed}}.
       url: 'http://www.ncdc.noaa.gov/paleo/icecore.html'
 
 
