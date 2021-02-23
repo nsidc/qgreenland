@@ -1,3 +1,7 @@
+# v1.0.0 (2021-02-22)
+
+- Enable Greenland coastline layer by default, add semitransparent fill.
+
 # v1.0.0rc2 (2021-02-11)
 
 - Fixed mistake in raster processing code that resulted in GDAL unnecessarily

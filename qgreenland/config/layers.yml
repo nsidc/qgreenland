@@ -297,7 +297,7 @@
   title: 'Greenland coastlines 2017'
   description: >-
     This layer should be used as the 'reference coastline' for Greenland.
-  visible: False
+  visible: True
   group_path: 'Reference/Borders'
   style: greenland_coastline
   boundary: 'background'
