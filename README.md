@@ -50,14 +50,17 @@ At the root of the package, you will find scientific discipline-specific
 directories containing data. Additionally, the following files are present at
 the package root:
 
-* `qgreenland.pdf` (COMING SOON): Detailed user-guide.
+* `UserGuide.pdf`: Detailed user-guide.
+* `QuickStartGuide.pdf`: Guide for QGIS beginners.
+* `MakingDataQGRCompatible.pdf`: Data compatibility guide for data providers,
+  contributors, and users.
 * `README.txt`: The README file you are currently reading.
 * `CHANGELOG.txt`: A summary of changes for each new QGreenland version.
 * `CONTRIBUTING.txt`: Instructions to users looking for help contributing to
   this project.
-* `STYLE.txt`: Guidelines and standards for QGreenland styling.
 * `layer_list.csv`: Comma-separated values representing the configuration of
-  layers in QGreenland.
+  layers in QGreenland. This includes limited layer metadata, including, but
+  not limited to: title, description, abstract, and citation.
 
 
 # Educational Resources
@@ -66,7 +69,6 @@ We keep the QGreenland official website up-to-date with links to helpful
 educational resources, including our own QGreenland User Guide.
 
 * [QGreenland official website](https://qgreenland.org)
-  * [Additional resources](https://qgreenland.org/resources)
 * [QGreenland YouTube channel](https://www.youtube.com/channel/UCjWae_Jrbognx2ju_SHBZ2A/videos)
 
 

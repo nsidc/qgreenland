@@ -1,3 +1,8 @@
+# v1.0.1 (2021-02-23)
+
+- Remove `STYLE.txt` from zip package.
+- Fix README mistakes
+
 # v1.0.0 (2021-02-22)
 
 - Enable Greenland coastline layer by default, add semitransparent fill.
