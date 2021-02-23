@@ -984,7 +984,7 @@
   id: nunagis_unesco_treaty_zones
   title: 'UNESCO treaty zones'
   group_path: 'Environmental management/Protected zones'
-  style: nunagis_unesco_treaty_zones
+  style: UNESCO_treaty_zones
   ogr2ogr_kwargs:
     input_filename: 'fetched.geojson'
     dialect: 'sqlite'
@@ -5548,7 +5548,7 @@
       Points representing undersea features.
   visible: False
   group_path: 'Oceanography/Undersea feature names'
-  style: 'undersea_features_point'
+  style: 'Undersea_Points'
   boundary: 'data'
   data_source: undersea_features.only
   ingest_task: zipped_vector
@@ -5573,7 +5573,7 @@
   title: 'Linear features'
   description: >-
       Lines representing undersea features.
-  style: 'undersea_features_line'
+  style: 'Undersea_Linear'
   decompress_kwargs:
     extract_files:
       - 'features/features-multilinestring.dbf'
@@ -5588,7 +5588,7 @@
   title: 'Shapes'
   description: >-
       Polygons representing undersea features.
-  style: 'undersea_features_polygon'
+  style: 'Undersea_Shapes'
   decompress_kwargs:
     extract_files:
       - 'features/features-multipolygon.dbf'
