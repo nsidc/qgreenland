@@ -2111,7 +2111,7 @@
 ###########
 
 - id: earthquakes
-  title: 'Earthquakes M>2.5 1900-2020'
+  title: 'Earthquakes M above 2.5 1900-2020'
   description: >-
     Location and magnitude of earthquakes.
   visible: False
@@ -5700,7 +5700,7 @@
     scale: 0.01
 
 - id: dms_gtk_topo
-  title: 'Topographic map (1:500,000)'
+  title: 'Topographic map (1 to 500,000)'
   description: >-
     Digitized and geolocated topographic map of Greenland.
   visible: False
