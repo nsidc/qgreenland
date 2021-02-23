@@ -93,6 +93,10 @@ class CreateQgisProjectFile(luigi.Task):
             dest_relative_filepath='UserGuide.pdf'
         )
         yield AncillaryFile(
+            src_filepath=os.path.join(PROJECT_DIR, 'doc', 'MakingDataQGRCompatible.pdf'),
+            dest_relative_filepath='MakingDataQGRCompatible.pdf'
+        )
+        yield AncillaryFile(
             src_filepath=os.path.join(PROJECT_DIR, 'CHANGELOG.md'),
             dest_relative_filepath='CHANGELOG.txt'
         )
