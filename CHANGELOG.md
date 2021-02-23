@@ -1,6 +1,7 @@
 # v1.0.0 (2021-02-22)
 
 - Enable Greenland coastline layer by default, add semitransparent fill.
+- Avoid use of special characters in layer titles for Windows compatibility.
 
 # v1.0.0rc2 (2021-02-11)
 
