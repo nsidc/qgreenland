@@ -3,6 +3,11 @@
 - Enable Greenland coastline layer by default, add semitransparent fill.
 - Avoid use of special characters in layer titles for Windows compatibility.
 - Update PDF documentation, add compatibility guide.
+- Remove layers due to inaccurate data:
+  - All layers in `Biology/Mammals` group
+- Update various layer styles.
+- Fix various issues in layer/dataset metadata.
+- Add notes about data issues to abstracts for various datasets.
 
 # v1.0.0rc2 (2021-02-11)
 
