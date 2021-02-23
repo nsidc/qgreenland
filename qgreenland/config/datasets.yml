@@ -647,7 +647,8 @@ The images and data are produced in a consistent way that makes the Index time-s
         on the fields and values, please refer to the
         [original](http://peterbird.name/oldFTP/PB2002/2001GC000252_readme.txt)
         documentation and the scientific article.
-        
+
+
         Dataset credit should acknowledge Hugo Ahlenius, Peter Bird, and
         Nordpil, with an additional suggested citation included.
     citation:
@@ -1028,30 +1029,208 @@ The images and data are produced in a consistent way that makes the Index time-s
         mapping. HOT works together to provide map data which revolutionises
         disaster management, reduces risks, and contributes to achievement of
         the Sustainable Development Goals.
-        
+
+
+
         Full HOT License information:
+
+
         Copyright (c) 2015-2020, Humanitarian OpenStreetMap Team All rights
         reserved.  Redistribution and use in source and binary forms, with or
         without modification, are permitted provided that the following
         conditions are met:
-        Redistributions of source code must retain the above copyright notice, this
-        list of conditions and the following disclaimer.  Redistributions in binary
-        form must reproduce the above copyright notice, this list of conditions and
-        the following disclaimer in the documentation and/or other materials
-        provided with the distribution.  Neither the name of copyright holder nor
-        the names of its contributors may be used to endorse or promote products
-        derived from this software without specific prior written permission.
-        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
-        IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-        TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
-        PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-        HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-        SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-        LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-        DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-        THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+        Redistributions of source code must retain the above copyright notice,
+        this list of conditions and the following disclaimer.  Redistributions
+        in binary form must reproduce the above copyright notice, this list of
+        conditions and the following disclaimer in the documentation and/or
+        other materials provided with the distribution.  Neither the name of
+        copyright holder nor the names of its contributors may be used to
+        endorse or promote products derived from this software without specific
+        prior written permission.  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+        HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+        INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+        MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
+        NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY
+        DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+        OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+        STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+        IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+        POSSIBILITY OF SUCH DAMAGE.
+
+
+        QGreenland Team: Noted Data Issues
+
+
+        Layer: Populated places
+
+        * Near Ittoqqortoormiit: Uunarteq and Itterajivit are abandoned
+        settlements.
+
+        * East Greenland: Pupik does not exist.
+
+        * South Greenland: Uunartoq is a hot spring and is not populated
+
+        * Kangilinnguit: abandoned Danish naval station.
+
+        * Near Sisimiut: ‘skilift’ is not a populated settlement, it is a
+        skiing area.
+
+        * Nivâq near Aasiaat is an abandoned settlement.
+
+        * Ataa just north of ilulissat is abandoned.
+
+        * Qullissat, on Disko Island, appears twice, and is an abandoned
+        settlement.
+
+        * Near Uummannaq: Appat, Qernertuarssuit
+
+        * North from Upernavik: Saattoq, Sarfaq, Kuuk, Aqqaalissiorfik,
+        Itissaalik, Ikermiut, Illulik
+
+        * North from Qaanaaq: Annoatok is a small, unpopulated hunting station.
+
+
+        Layer: Health facilities
+
+
+        There is some sort of a health clinic in all populated Greenland
+        settlements and towns. Health clinics are larger and more
+        sophisticated in towns. We note that health clinics exist in:
+
+
+        * Qaanaaq
+
+        * Siorapaluk
+
+        * Savissivik
+
+        * Kullorsuaq
+
+        * Nuussuaq
+
+        * Tasiusaq
+
+        * Nutaarmiut
+
+        * Innarsuit
+
+        * Naajaat
+
+        * Aappilatoq
+
+        * Kangersuatsiaq
+
+        * Upernavik Kujalleq
+
+        * Qaarsut
+
+        * Saattut
+
+        * Niaqornat
+
+        * Saaqqaq
+
+        * Qeqertaq
+
+        * Qasigiannguit
+
+        * Ikamiut
+
+        * Akunnaaq
+
+        * Kitsissuarsuit
+
+        * Attu
+
+        * Niaqornaarsuk
+
+        * Ikerasaarsuk
+
+        * Ignniarfik
+
+        * Kangerlussuaq
+
+        * Maniitsoq
+
+        * Atammik
+
+        * Napasoq
+
+        * Kangaamiut
+
+        * Kapisillit
+
+        * Qeqertarsuatsiaat
+
+        * All settlements in the south of Greenland + Narsaq, Nanortalik,
+        Narsaq.
+
+        * Tasiilaq and five settlements around Tasiilaq
+
+        * Ittoqqortoormiit
+
+
+        Layer: Airports
+
+
+        QGreenland Team notes that there are helistops in all settlements and
+        other towns. We also note that there are airports for fixed-winged
+        aircrafts in the following towns:
+
+
+        * Qaanaaq
+
+        * Upernavik
+
+        * Qaarsut
+
+        * Ilulissat
+
+        * Aasiaat
+
+        * Kangerlussuaq
+
+        * Maniitsoq
+
+        * Nuuk
+
+        * Nerlerit Inaat
+
+        * Paamiut
+
+        * Pituffik (Thule Airbase)
+
+        * Sisimiut
+
+        * Narsarsuaq
+
+        * Kulusuk
+
+
+        Layer: Seaports
+
+
+        Note that all Greenland towns and settlements are located by the sea.
+        Hence ALL settlements and towns have a harbour or seaport.
+
+
+        Layer: Financial services
+
+
+        Basic banking for withdrawing money is available in all settlements
+        and towns.
+
+
+        Layer: Educational facilities
+
+
+        This layer is quite incomplete. There is a school in every town and
+        settlement in Greenland. Note that Nuuk includes six schools, Sisimiut
+        two schools, and Ilulissat two schools.
     citation:
       text: >-
         Humanitarian OpenStreetMap Team (2020). Web:
@@ -1107,6 +1286,32 @@ The images and data are produced in a consistent way that makes the Index time-s
       Place names as provided by Asiaq Greenland Survey, December
       2020. Translation for data fields provided by Arnaq B. Johansen, Greenland
       Project Manager in Collection of Place Names (January 2021).
+
+
+      QGreenland Team - Noted Data Issues
+
+
+      * East Greenland: Ikkatteq (correctly spelled ‘Ikateq’) is an abandoned
+      airstrip and is not populated.
+
+      * Near Ittoqqortoormiit: Uunartoq and Ittaajimmiit are both abandoned.
+
+      * Westcoast of Greenland, near Paamiut: Ivittuut is abandoned, Narsalik
+      was abandoned in 1997.
+
+      * South Greenland: Qaqortoq is placed twice - two dots next to each
+      other.
+
+      * Near Qaanaaq: Qeqertarsuaq and Moriusaq are abandoned.
+
+      * Near Upernavik: Tussaaq is an abandoned settlement.
+
+      * Near Uummannaq: Illorsuit and Nuugaatsiaq are two recently abandoned
+      settlements (2017) due a massive landslide and subsequent tsunami.
+
+      * Kangerlussuaq (west coast): Is not indicated on the map.
+
+      * West: Aasiaat is placed twice - two dots next to each other.
     citation:
       text: 'Place names, Asiaq Greenland Survey, December 2020.'
       url: ''
@@ -1260,7 +1465,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       intensifying long-term monitoring efforts including demographics and
       health assessments, standardizing and implementing monitoring protocols,
       and increasing stakeholder engagement/contributions.
-      
+
       Publication notes that "The provided boundaries are guidelines, often
       reflecting administrative or political regions. They are not a precise
       distribution/extent for a specific population, e.g., since muskoxen can
@@ -1270,10 +1475,10 @@ The images and data are produced in a consistent way that makes the Index time-s
          Journal citation: Cuyler, C., J. Rowell, J. Adamczewski, et al.
          (2020). Muskox status, recent variation, and uncertain future, Ambio
          49, 805-819. https://doi.org/10.1007/s13280-019-01205-x
-         
+
+
          QGreenland data source citation: Christine Cuyler and Karl Zinglersen,
          Greenland Institute of Natural Resources (2020).
-       
       url: 'https://doi.org/10.1007/s13280-019-01205-x'
 
 - id: ginr_caribou
@@ -1291,7 +1496,7 @@ The images and data are produced in a consistent way that makes the Index time-s
         Karl Zinglersen) via email on October 16, 2020. These data are not
         expected to be publicly archived outside of QGreenland. Note that the
         'Remarks' attribute field includes comments in Danish that accompany
-        the original data. 
+        the original data.
     citation:
       text: >-
           Christine Cuyler and Karl Zinglersen, Greenland Institute of Natural
@@ -1618,7 +1823,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       200,000 glaciers. GLIMS is characterizing and categorizing the many
       Greenland peripheral glaciers and ice caps, rather than the contiguous ice
       sheet region.
-      
+
       The GLIMS initiative has created a unique glacier inventory, storing
       information about the extent and rates of change of all the world's
       mountain glaciers and ice caps. GLIMS uses data collected by the Advanced
@@ -1785,7 +1990,7 @@ The images and data are produced in a consistent way that makes the Index time-s
       an old location. In no cases, do I transcribe positions by hand as that
       can cause expensive problems not finding stations because of bad
       coordinates.
-      
+
       QGreenland team notes - Source file indicating PROMICE GPS data from
       2017-2018 and GC-NET GPS data from 2000. See note from data creator
       above.
@@ -1844,7 +2049,8 @@ The images and data are produced in a consistent way that makes the Index time-s
         target ratios: 1:250,000, 1:500,000 and 1:2.5 million.
     citation:
       text: >-
-        Contains data from Styrelsen for dataforsyning og effektivisering. Accessed 2020-12-17.
+        Contains data from Styrelsen for dataforsyning og effektivisering.
+        Accessed {{date_accessed}}.
       url: 'https://download.kortforsyningen.dk/content/gr%C3%B8nlands-topografiske-kortv%C3%A6rk'
 
 - id: macferrin_etal_firn_ice_layer_thicknesses
