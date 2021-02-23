@@ -12,6 +12,10 @@ Reference/QGreenland boundaries:
   visible: True
   expanded: False
 
+Reference/Borders:
+  visible: True
+  expanded: False
+
 Places:
   visible: False
   expanded: False
