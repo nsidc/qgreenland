@@ -1,0 +1,13 @@
+# Reusable chains of commands/operations for encapsulating common sets of operations.
+#
+# e.g.:
+# do_some_operations:
+#   kwargs:
+#     foo:
+#       required: true
+#     bar:
+#       required: false
+#   steps:
+#     - ['gdalsomething', '{input}', '--foo', '{foo}', '{output}']
+#     - ['gdalsomethingelse', '--bar', '{bar}', '{input}', '{output}']
+# 
