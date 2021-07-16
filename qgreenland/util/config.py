@@ -76,6 +76,7 @@ def _deref_boundaries(cfg):
                 f' match project CRS ({project_crs}).'
             )
 
+        # TODO: remove features and bbox? Just deref to the filepath.
         boundaries_config[boundary_name] = {
             'fp': fp,
             'features': features,
@@ -94,18 +95,14 @@ def _deref_layers(cfg):
     for layer_config in layers_config:
         # Populate related dataset configuration
         if 'dataset' not in layer_config:
-            dataset_id, source_id = layer_config['data_source'].split('.')
+            dataset_id = layer_config['input']['dataset']
+            asset_id = layer_config['input']['asset']
             dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
             layer_config['dataset'] = dataset_config
 
-            layer_config['source'] = _find_in_list_by_id(dataset_config['sources'],
-                                                         source_id)
-            del layer_config['dataset']['sources']
-
-        # Always default to the background extent
-        boundary_name = layer_config.get('boundary', 'background')
-
-        layer_config['boundary'] = project_config['boundaries'][boundary_name]
+            layer_config['source'] = _find_in_list_by_id(dataset_config['assets'],
+                                                         asset_id)
+            del layer_config['dataset']['assets']
 
 
 def _dereference_config(cfg):
@@ -138,24 +135,27 @@ def load_configs_from_dir(config_dir: Path, schema_fp: Path) -> List[Any]:
 
 
 @functools.lru_cache(maxsize=None)
-def make_config(*, config_dir, schema_dir):
+def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
     # TODO: Avoid all this argument drilling without import cycles... this
     # shouldn't be so hard!
     # TODO: Consider namedtuple or something?
 
     cfg = {
-        'project': _load_config('project.yml',
-                                config_dir=config_dir,
-                                schema_dir=schema_dir),
-        'layers': _load_config('layers.yml',
-                               config_dir=config_dir,
-                               schema_dir=schema_dir),
-        'layer_groups': _load_config('layer_groups.yml',
-                                     config_dir=config_dir,
-                                     schema_dir=schema_dir),
-        'datasets': _load_config('datasets.yml',
-                                 config_dir=config_dir,
-                                 schema_dir=schema_dir)
+        'project': _load_config(
+            config_dir / 'project.yml',
+            schema_dir / 'project.yml'
+        ),
+        'layers': load_configs_from_dir(
+            config_dir / 'layers',
+            schema_dir / 'layers.yml'
+        ),
+        # 'layer_groups': _load_config('layer_groups.yml',
+        #                              config_dir=config_dir,
+        #                              schema_dir=schema_dir),
+        'datasets': load_configs_from_dir(
+            config_dir / 'datasets',
+            schema_dir / 'datasets.yml'
+        )
     }
 
     return _dereference_config(cfg)
