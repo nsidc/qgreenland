@@ -1,32 +1,45 @@
-# OLD:
 - id: caff_char
-  title: 'Arctic Char populations 2010'
+  name: 'Arctic Char populations 2010'
   description: 'Polygons indicating the 2010 distribution of Arctic Char populations.'
-  data_source: caff_char.only
+  hierarchy: ['Biology', 'Fish']
+  in_package: True
   style: 'semitransparent_polygon'
-  visible: False
-  group_path: 'Biology/Fish'
-  boundary: 'background'
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-  ogr2ogr_kwargs:
-    dialect: 'sqlite'
-    # `Geometry` seems to be the default geometry field if none is found by
-    # `ogrinfo`.
-    # `CREATED` is M.YYYY, which can't be converted to a complete date without
-    # a day.
-    sql: >-
-      "SELECT
-        Geometry,
-        SPECIES,
-        INTRODUCED,
-        OWNER,
-        DATA_URL,
-        SOURCE,
-        CREATED,
-        DATE(substr(MODIFIED, 7, 4) || '-' ||
-          substr(MODIFIED, 4, 2) || '-' ||
-          substr(MODIFIED, 1, 2)) as MODIFIED,
-        CONTACT
-      FROM Arctic_Char_2010"
+  show: False
+  input:
+    dataset: 'caff_char'
+    asset: 'only'
+  steps:
+    - command: ['ogr2ogr', 'TODO']
+
+# OLD:
+# - id: caff_char
+#   title: 'Arctic Char populations 2010'
+#   description: 'Polygons indicating the 2010 distribution of Arctic Char populations.'
+#   data_source: caff_char.only
+#   style: 'semitransparent_polygon'
+#   visible: False
+#   group_path: 'Biology/Fish'
+#   boundary: 'background'
+#   ingest_task: zipped_vector
+#   file_type: '.gpkg'
+#   data_type: 'vector'
+#   ogr2ogr_kwargs:
+#     dialect: 'sqlite'
+#     # `Geometry` seems to be the default geometry field if none is found by
+#     # `ogrinfo`.
+#     # `CREATED` is M.YYYY, which can't be converted to a complete date without
+#     # a day.
+#     sql: >-
+#       "SELECT
+#         Geometry,
+#         SPECIES,
+#         INTRODUCED,
+#         OWNER,
+#         DATA_URL,
+#         SOURCE,
+#         CREATED,
+#         DATE(substr(MODIFIED, 7, 4) || '-' ||
+#           substr(MODIFIED, 4, 2) || '-' ||
+#           substr(MODIFIED, 1, 2)) as MODIFIED,
+#         CONTACT
+#       FROM Arctic_Char_2010"

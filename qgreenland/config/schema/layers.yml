@@ -9,137 +9,36 @@ layer:
   # Used for unique identification, e.g. config, filenames.
   id: str()
   # The layer name in QGIS.
-  title: str()
+  name: str()
   # descriptive text
   description: str(required=False)
-
+  hierarchy: list()
+  in_package: bool()
   # Is this layer initially "checked" as visible in QGIS?
-  visible: bool()
-  # The fully-qualified QGIS group the layer should be placed in, e.g.
-  # 'Group/Subgroup/Subsubgroup'
-  group_path: str()
+  show: bool()
+  input: include('input', required=True)
+
   # The name of a style (represented as .qml file in `assets/styles`). Should
   # NOT include .qml file extension
   style: str(required=False)
-  boundary: enum('background', 'data', required=False)
 
-  # Reference to a data source in datasets.yml (`{dataset_id}.{source_id}`)
-  data_source: str()
-  # The index of a task enumerated in qgreenland.tasks.layers.ingest_tasks
-  # TODO: Validate that `ingest_task` is member of INGEST_TASKS
-  ingest_task: str()
-  ingest_task_kwargs: map(required=False)
-  # The file extension, e.g. '.shp'
-  file_type: str()
-  data_type: enum('vector', 'raster')
-  # Sometimes, the source data may not come with projection metadata, or the
-  # metadta may be wrong. Override the layer projection with this key. E.g.,
-  # `EPSG:3321`.
-  override_source_projection: str(required=False)
-
-  decompress_kwargs: include('decompress_kwargs', required=False)
-  overviews_kwargs: include('overviews_kwargs', required=False)
-  warp_kwargs: include('warp_kwargs', required=False)
-  ogr2ogr_kwargs: include('ogr2ogr_kwargs', required=False)
-  gdal_calc_kwargs: include('gdal_calc_kwargs', required=False)
-  translate_kwargs: include('translate_kwargs', required=False)
-  extract_nc_dataset_kwargs: include('extract_nc_dataset_kwargs', required=False)
-  gdal_mdim_translate_kwargs: include('gdal_mdim_translate_kwargs', required=False)
-  gdal_edit_kwargs: include('gdal_edit_kwargs', required=False)
-  delimited_text_vector_kwargs: include('delimited_text_vector_kwargs', required=False)
-
-  unzip_kwargs: include('unzip_kwargs', required=False)
-
-  # Sometimes, we may want to keep the original dataset's CRS, and not have it
-  # set to the project crs:
-  project_crs: str(required=False)
-
+  steps: list(include('steps', required=True))
 
 ---
-unzip_kwargs:
-  input_filename: str(required=False)
+input:
+  dataset: str(required=True)
+  asset: str(required=True)
 
 ---
-delimited_text_vector_kwargs:
-  input_filename: str(required=False)
-  header: int(required=False)
-  delimiter: str(required=False)
-  field_names: list(required=False)
-  x_field: str(required=False)
-  y_field: str(required=False)
-
+steps:
+  command: list(required=False)
+  template: include('template', required=False)
+# TODO
+#   python: include('python', required=False)
+# 
 ---
-gdal_edit_kwargs:
-  a_ullr: str(required=False)
-  a_srs: str(required=False)
-  scale: num(required=False)
-  a_nodata: num(required=False)
+template:
+  name: str(required=True)
 
----
-gdal_mdim_translate_kwargs:
-  array: str(required=False)
-
----
-translate_kwargs:
-  creationOptions: list(str(), required=False)
-
----
-extract_nc_dataset_kwargs:
-  extract_dataset: str(required=True)
-  bandList: list(int(), required=False)
-  noData: int(required=False)
-
----
-gdal_calc_kwargs:
-  calc: str(required=True)
-  creation-option: str(required=False)
-  type: str(required=False)
-  NoDataValue: num(required=False)
-
----
-# TODO: These kwargs are passed to CLI. Consider expressing as list instead of
-# map?
-ogr2ogr_kwargs:
-  # https://gdal.org/programs/ogr2ogr.html
-  # TODO: this is really an arg, not a kwarg. We made it a special cast. Fix!
-  input_filename: str(required=False)
-  clipdst: str(required=False)
-  nlt: str(required=False)  # Make required? Ehh... Maybe...
-  s_srs: str(required=False)
-  t_srs: str(required=False)
-  segmentize: int(required=False)
-  sql: str(required=False)
-  dialect: str(required=False)
-  makevalid: str(required=False)
-  where: str(required=False)
-  skipfailures: str(required=False)
-  # TODO: this really isn't an `ogr2ogr` arg, its an envvar. Sometimes (natural
-  # earth timezones) this is required to allow reprojection of some shapes.
-  # Move to `ogr2ogr_env`?
-  OGR_ENABLE_PARTIAL_REPROJECTION: bool(required=False)
-
----
-decompress_kwargs:
-  # Explicit files to extract from the zip/rar
-  extract_files: list(str())
-
----
-overviews_kwargs:
-  # Keyword arguments to rasterio `dataset.build_overviews()` method
-  overview_levels: list(int())
-  resampling_method: str()
-
----
-warp_kwargs:
-  # Keyword arguments to gdal.Warp method
-  xRes: int(required=False)
-  yRes: int(required=False)
-  warpOptions: list(str(), required=False)
-  resampleAlg: str(required=False)
-  # TODO: Pick _one_ interface for supplying/overriding source projections for
-  #       rasters and vectors
-  srcSRS: str(required=False)
-  dstNodata: num(required=False)
-  srcNodata:  num(required=False)
-  # Ignore the `outputBounds` hack when clipping datasets with `gdal.Warp`.
-  ignore_output_bounds_hack: bool(required=False)
+# ---
+# python:
