@@ -23,24 +23,13 @@ from qgreenland.constants import LOCALDATA_DIR
 from qgreenland.util.misc import directory_size_bytes, get_layer_path
 
 
-def _load_config(config_filename, *, config_dir, schema_dir):
+def _load_config(config_fp, schema_fp):
     """Validate config file against schema with Yamale.
-
-    It is expected that the given config filename in CONFIG_DIR has a schema of
-    matching name in CONFIG_SCHEMA_DIR.
 
     Yamale can read in directories of config files, so it returns a list of
     (data, fp) tuples. We always read single files, so we return just the data
     from result[0][0].
     """
-    config_fp = os.path.join(config_dir, config_filename)
-    schema_fp = os.path.join(schema_dir, config_filename)
-
-    if not os.path.isfile(config_fp):
-        raise NotImplementedError(
-            'Loading is supported for only one config file at a time.'
-        )
-
     schema = yamale.make_schema(schema_fp)
     config = yamale.make_data(config_fp)
     yamale.validate(schema, config, strict=True)
@@ -139,11 +128,20 @@ def _dereference_config(cfg):
     return cfg
 
 
+def load_configs_from_dir(config_dir, schema_fp):
+    config = []
+    for config_fp in Path(config_dir).glob('*.yml'):
+        config.extend(_load_config(config_fp, schema_fp))
+
+    return config
+
+
 @functools.lru_cache(maxsize=None)
 def make_config(*, config_dir, schema_dir):
     # TODO: Avoid all this argument drilling without import cycles... this
     # shouldn't be so hard!
     # TODO: Consider namedtuple or something?
+
     cfg = {
         'project': _load_config('project.yml',
                                 config_dir=config_dir,
