@@ -56,6 +56,7 @@ def typecheck(ctx):
     )
     print('🎉🦆 Type checking passed.')
 
+
 @task
 def validate(ctx, verbose=False):
     """Validate the configuration files.
