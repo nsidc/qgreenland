@@ -9,7 +9,23 @@ from qgreenland.constants import TaskType
 from qgreenland.util.misc import get_layer_dir, get_layer_fn, temporary_path_dir
 
 
+# we need a way to create tasks that require other tasks without having to create a new class.
+
+# could this be a function that takes some args and just returns a Luigi Task?
+
+# what other features does the old layer task have that we might need?
+
+# Maybe instead of 'LayerTask' (or in addition, inheriting from) create
+# CommandTask, PythonTask, TemplateTask
 class LayerTask(luigi.Task):
+    # Does this need to be a luigi parameter?
+    requires_task = luigi.Parameter()
+
+    def requires(self):
+        return self.requires_task
+
+
+class LayerTaskOLD(luigi.Task):
     """Allow tasks to receive layer_id as parameter and get the correct config.
 
     Used for all tasks that require a layer config. This way, we only have to
