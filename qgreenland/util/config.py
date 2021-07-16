@@ -8,7 +8,7 @@ import csv
 import functools
 import os
 from pathlib import Path
-from typing import Any, List
+from typing import Any, Dict, List, Union
 
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 # Importing qgis before fiona is absolutely necessary to avoid segmentation
@@ -24,7 +24,7 @@ from qgreenland.constants import LOCALDATA_DIR
 from qgreenland.util.misc import directory_size_bytes, get_layer_path
 
 
-def _load_config(config_fp, schema_fp):
+def _load_config(config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
     """Validate config file against schema with Yamale.
 
     Yamale can read in directories of config files, so it returns a list of
@@ -130,7 +130,7 @@ def _dereference_config(cfg):
 
 
 def load_configs_from_dir(config_dir: Path, schema_fp: Path) -> List[Any]:
-    config = []
+    config: List = []
     for config_fp in Path(config_dir).glob('*.yml'):
         config.extend(_load_config(config_fp, schema_fp))
 
