@@ -8,6 +8,7 @@ import csv
 import functools
 import os
 from pathlib import Path
+from typing import Any, List
 
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 # Importing qgis before fiona is absolutely necessary to avoid segmentation
@@ -128,7 +129,7 @@ def _dereference_config(cfg):
     return cfg
 
 
-def load_configs_from_dir(config_dir, schema_fp):
+def load_configs_from_dir(config_dir: Path, schema_fp: Path) -> List[Any]:
     config = []
     for config_fp in Path(config_dir).glob('*.yml'):
         config.extend(_load_config(config_fp, schema_fp))
