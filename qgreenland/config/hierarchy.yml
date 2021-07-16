@@ -9,7 +9,14 @@ Biology:
   Fish: fish.yml
 
 Geophysics:
+  layers:
+    -
+    -
   World Magnetic Model: wmm.yml
+  layers:
+    -
+    - 
+    - 
 
 Basemaps: basemaps.yml
 

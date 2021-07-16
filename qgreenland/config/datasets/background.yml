@@ -1,17 +1,42 @@
-# TODO: How to handle >1 source in the new schema?
-# OLD:
+# How to describe the "elements" of a dataset? Previously we used the term
+# "source", now we could improve it. "granules"? "assets"? "artifacts"? Do they
+# need _any_ name?
+# TODO: Validate that all dataset asset ids are unique
 - id: background
-  access_method: http
-  sources:
+  assets:
     - id: high_res
-      urls:
-        - 'https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip'
+      # # TODO: Override metadata to avoid duplication
+      # override_metadata:
+      #   title: 'foo'
+      http:
+        urls:
+          - 'https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip'
     - id: low_res
-      urls:
-        - 'https://naciscdn.org/naturalearth/10m/raster/NE2_LR_LC_SR_W.zip'
+      http:
+        urls:
+          - 'https://naciscdn.org/naturalearth/10m/raster/NE2_LR_LC_SR_W.zip'
   metadata:
     title: 'Natural Earth II with Shaded Relief and Water (1:10m)'
     abstract: 'Natural Earth II (Public Domain)'
     citation:
       text: 'Made with Natural Earth'
       url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
+
+
+# TODO: How to handle >1 source in the new schema?
+# # OLD:
+# - id: background
+#   access_method: http
+#   sources:
+#     - id: high_res
+#       urls:
+#         - 'https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip'
+#     - id: low_res
+#       urls:
+#         - 'https://naciscdn.org/naturalearth/10m/raster/NE2_LR_LC_SR_W.zip'
+#   metadata:
+#     title: 'Natural Earth II with Shaded Relief and Water (1:10m)'
+#     abstract: 'Natural Earth II (Public Domain)'
+#     citation:
+#       text: 'Made with Natural Earth'
+#       url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'

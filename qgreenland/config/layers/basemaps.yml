@@ -1,27 +1,54 @@
-# OLD:
-- id: background
-  title: 'Background (500m)'
-  visible: True
-  group_path: 'Basemaps'
-  boundary: 'background'
-  data_source: background.high_res
-  ingest_task: background_image
-  file_type: '.tif'
-  data_type: 'raster'
-  overviews_kwargs:
-    overview_levels: [2, 4, 8, 16]
-    resampling_method: average
-  # NOTE: Without passing warp_kwargs, we get a black image.
-  # TODO: Which of these args are necessary to avoid that?
-  warp_kwargs:
-    # We measured the size of the pixels in the input datasource (WGS84) at the
-    # North and South ends of Greenland and found a range of roughly 250m to
-    # 900m. 500m is somewhere in the middle, so some of greenland will be
-    # downsampled, and some will be oversampled.
-    xRes: 500
-    yRes: 500
-    dstNodata: 0
-    # Attempt to avoid pole hole and nodata line where east and west edges of
-    # the original image meet after polar wrapping. TODO: This doesn't actually
-    # get rid of the line.
-    warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
+# What about combining id, name, group_path in to one triple-duty unique
+# identifier? One problem with this is coupling the group path with the unique
+# identifier -- you have to change the identifier to change the groups a layer is
+# shown in on the QGIS layers panel. e.g.:
+#     - layer: 'Basemaps/Background (500m)'
+
+- id: background  # The on-disk folder containing the data
+  name: 'Background (500m)'  # The layer name in the QGIS panel
+  # TODO: originally called 'group_path', but that's a confusing name. Do we like 'hierarchy'?
+  hierarchy: ['Basemaps']  # The group(s, if nested) in the QGIS panel that this layer is in
+  in_package: True
+  show: True  # Whether this layer is "shown" in QGIS
+  input:
+    dataset: 'background'
+    asset: 'high_res'
+  steps:
+    - command: ['unzip', '{input}', '-O', '{output_dir}']
+    - template:
+        name: warp_multiple_steps
+    - template:
+        name: build_overviews
+    - template:
+        name: compress
+
+
+
+
+# # OLD:
+# - id: background
+#   title: 'Background (500m)'
+#   visible: True
+#   group_path: 'Basemaps'
+#   boundary: 'background'
+#   data_source: background.high_res
+#   ingest_task: background_image
+#   file_type: '.tif'
+#   data_type: 'raster'
+#   overviews_kwargs:
+#     overview_levels: [2, 4, 8, 16]
+#     resampling_method: average
+#   # NOTE: Without passing warp_kwargs, we get a black image.
+#   # TODO: Which of these args are necessary to avoid that?
+#   warp_kwargs:
+#     # We measured the size of the pixels in the input datasource (WGS84) at the
+#     # North and South ends of Greenland and found a range of roughly 250m to
+#     # 900m. 500m is somewhere in the middle, so some of greenland will be
+#     # downsampled, and some will be oversampled.
+#     xRes: 500
+#     yRes: 500
+#     dstNodata: 0
+#     # Attempt to avoid pole hole and nodata line where east and west edges of
+#     # the original image meet after polar wrapping. TODO: This doesn't actually
+#     # get rid of the line.
+#     warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
