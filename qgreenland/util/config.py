@@ -49,7 +49,7 @@ def _find_in_list_by_id(haystack, needle):
     return copy.deepcopy(matches[0])
 
 
-def _deref_boundaries(cfg):
+def _deref_boundaries(cfg: Dict[str, Any]) -> None:
     """Dereference project boundaries, modifying `cfg`.
 
     Replace project boundary value (filename) with an object containing
@@ -84,7 +84,7 @@ def _deref_boundaries(cfg):
         }
 
 
-def _deref_layers(cfg):
+def _deref_layers(cfg: Dict[str, Any]) -> None:
     """Dereferences layers in `cfg`, modifying `cfg`.
 
     Expects boundaries to already be dereferenced.
@@ -105,7 +105,7 @@ def _deref_layers(cfg):
             del layer_config['dataset']['assets']
 
 
-def _dereference_config(cfg):
+def _dereference_config(cfg: Dict[str, Any]) -> Dict[str, Any]:
     """Take a full configuration object, replace references with the referent.
 
     - Datasets
