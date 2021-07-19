@@ -77,9 +77,14 @@ class LayerStepTask(ChainableTask):
         What about always outputting a trigger file instead of caring about the
         outputs of the commands?
 
-        Do we need to know if a layer is "raster" or "vector"? Or do we provide
-        file extension in config? Or do we require the config to specify the
+        Do we need to know if a layer is "raster" or "vector" (yes - to create a
+        layer we need to call a specific function)? Or do we provide file
+        extension in config? Or do we require the config to specify the
         input/output filenames of each step?
+
+        What about allowing all non-final steps to output whatever the author
+        wants, but the "Finalize" step looks for a GeoTIFF or GeoPackage to
+        figure out what kind of layer was created by the steps.
         """
         pass
 
