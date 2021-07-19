@@ -14,15 +14,16 @@ from qgreenland.util.misc import (
 from qgreenland.util.vector import ogr2ogr
 
 
+# TODO: call this 'FetchDataset'? 'FetchAsset'?
 class FetchTask(luigi.Task):
     dataset_cfg = luigi.DictParameter()
-    source_cfg = luigi.DictParameter()
+    asset_cfg = luigi.DictParameter()
 
     @property
     def output_name(self):
         return datasource_dirname(
             dataset_id=self.dataset_cfg['id'],
-            source_id=self.source_cfg['id'],
+            asset_id=self.asset_cfg['id'],
         )
 
 

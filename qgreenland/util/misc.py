@@ -228,5 +228,5 @@ def directory_size_bytes(dir_path):
     return total_size
 
 
-def datasource_dirname(*, dataset_id: str, source_id: str) -> str:
-    return f'{dataset_id}.{source_id}'
+def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
+    return f'{dataset_id}.{asset_id}'
