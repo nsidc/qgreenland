@@ -1,18 +1,10 @@
-import inspect
-import os
 import sys
 from pprint import pprint
 
 from invoke import task
 
-from .util import print_and_run
+from .util import print_and_run, PROJECT_DIR
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(
-    os.path.join(
-        inspect.getfile(inspect.currentframe()),
-        os.pardir
-    )
-))
 sys.path.append(PROJECT_DIR)
 
 from qgreenland.constants import (
