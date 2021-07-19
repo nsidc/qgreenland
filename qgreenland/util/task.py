@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Type
 
 from qgreenland.config import CONFIG
 from qgreenland.runners import RUNNERS
@@ -7,7 +7,7 @@ from qgreenland.tasks.common.fetch import FetchTask, FetchDataFiles, FetchCmrGra
 from qgreenland.util.luigi import Finalize
 
 
-ACCESS_METHODS: Dict[str, FetchTask] = {
+ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
     'http': FetchDataFiles,
     'cmr': FetchCmrGranule,
     'TODO': FetchCmrGranule,
@@ -17,6 +17,7 @@ ACCESS_METHODS: Dict[str, FetchTask] = {
 def _fetch_task_getter(layer_cfg: Dict[Any, Any]) -> FetchTask:
     dataset_cfg = layer_cfg['dataset']
     asset_cfg = dataset_cfg['asset']
+    breakpoint()
 
     # TODO: come back to access methods, extract constant?
     for access_method in ('http', 'cmr', 'manual'):
