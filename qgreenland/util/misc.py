@@ -203,10 +203,12 @@ def run_ogr_command(cmd_list):
     # Hack. The activation of the gdal environment does not work as a list.
     cmd_str = ' '.join(cmd)
 
-    result = subprocess.run(cmd_str,
-                            shell=True,
-                            executable='/bin/bash',
-                            capture_output=True)
+    result = subprocess.run(
+        cmd_str,
+        shell=True,
+        executable='/bin/bash',
+        capture_output=True,
+    )
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)

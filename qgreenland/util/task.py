@@ -17,16 +17,16 @@ ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
 def _fetch_task_getter(layer_cfg: Dict[Any, Any]) -> FetchTask:
     dataset_cfg = layer_cfg['dataset']
     asset_cfg = dataset_cfg['asset']
-    breakpoint()
 
     # TODO: come back to access methods, extract constant?
     for access_method in ('http', 'cmr', 'manual'):
         try:
-            asset_params = asset_cfg[access_method]
+            # Test that we're looking at the right asset
+            asset_cfg[access_method]
+
             fetch_task = ACCESS_METHODS[access_method](
-                dataset_id=dataset_cfg,
+                dataset_cfg=dataset_cfg,
                 asset_cfg=asset_cfg,
-                **asset_params
             )
             return fetch_task
         except KeyError:
@@ -44,14 +44,11 @@ def generate_layer_tasks():
     tasks = []
 
     for cfg in CONFIG['layers'].values():
-        # TODO: list of what (typing)
         tasks: List[LayerTask] = []
 
         # TODO: Look at `cfg['input']` to figure out which fetch task to use and
         # what params to pass into it.
         task = _fetch_task_getter(cfg)
-
-        breakpoint()
 
         for step in cfg['steps']:
             # figure out the correct task and pass kwargs (command, python, template).
@@ -59,7 +56,12 @@ def generate_layer_tasks():
             # into the steps within each template. Do we want templates to be
             # nestable? Should templates be able to reference other templates?
             for task_type, task_params in step.items():
-                task = RUNNERS[task_type](task_params, required_task=task, layer_id=layer_id) 
+                breakpoint()
+                task = RUNNERS[task_type](
+                    task_params,
+                    required_task=task,
+                    layer_id=layer_id,
+                )
 
             # We only need the last task in the layer pipeline to run all
             # previous tasks.

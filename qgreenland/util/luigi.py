@@ -9,6 +9,74 @@ from qgreenland.constants import TaskType
 from qgreenland.util.misc import get_layer_dir, get_layer_fn, temporary_path_dir
 
 
+# TODO: QgrTask?
+class ChainableTask(luigi.Task):
+    requires_task = luigi.Parameter()
+    layer_id = luigi.Parameter()
+
+    def requires(self):
+        return self.requires_task
+
+    # TODO: return a deepcopy of these properties.
+    @property
+    def layer_cfg(self):
+        return CONFIG['layers'][self.layer_id]
+
+    @property
+    def id(self):
+        return self.layer_cfg['id']
+
+    @property
+    def outdir(self):
+        # We could possibly DRY this out by adding a task_type param to
+        # get_layer_path
+        if self.task_type not in TaskType:
+            msg = (f"This class defines self.task_type as '{self.task_type}'. "
+                   f'Must be one of: {list(TaskType)}.')
+            raise RuntimeError(msg)
+
+        if self.task_type is TaskType.FINAL:
+            outdir = (f"{TaskType.FINAL.value}/{self.layer_cfg['layer_group']}/"
+                      f'{self.id}')
+        else:
+            outdir = f'{self.task_type.value}/{self.id}'
+
+        os.makedirs(outdir, exist_ok=True)
+        return outdir
+
+
+class LayerStepTask(ChainableTask):
+    """A chainable Luigi task which runs the given configured processing step."""
+    step_number = luigi.IntParameter()
+
+    def __repr__(self):
+        return (
+            f'{self.__class__.__name__}('
+            f'layer_id={self.layer_id})'
+        )
+
+    def run(self):
+        """Select a runner based on the step configuration and run the step."""
+
+        # task = RUNNERS[task_type](
+        #     task_params,
+        #     required_task=task,
+        #     layer_id=layer_id,
+        # )
+
+    def output(self):
+        """How do we know what the output is?
+
+        There could be multiple files and/or file types? There are steps where
+        we use ogr2ogr to e.g., convert a shapefile to a gpkg. The previous
+        task's output determines the next task's input.
+
+        Maybe some "smart" routine could infer the correct output from the
+        available set of files after running."""
+        pass
+
+
+
 # we need a way to create tasks that require other tasks without having to create a new class.
 
 # could this be a function that takes some args and just returns a Luigi Task?
