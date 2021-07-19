@@ -103,6 +103,8 @@ class Finalize(LayerTask):
         with temporary_path_dir(self.output()) as temp_path:
             shutil.copytree(source_path, temp_path, dirs_exist_ok=True)
 
+
+# TODO: can probably remove this!?
 class LayerPipeline(luigi.Task):
     """Allow top-level layer tasks to lookup config from class attr layer_id.
 
