@@ -1,5 +1,6 @@
 import os
 from enum import Enum
+from pathlib import Path
 
 from qgreenland.util.version import get_build_version, version_is_full_release
 
@@ -7,8 +8,8 @@ PROJECT = 'QGreenland'
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
-PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
-PROJECT_DIR = os.path.abspath(os.path.join(PACKAGE_DIR, os.pardir))
+PACKAGE_DIR = Path(__file__).parent
+PROJECT_DIR = PACKAGE_DIR.parent
 INPUT_DIR = '/input'
 DATA_DIR = '/luigi/data'
 PRIVATE_ARCHIVE_DIR = '/private-archive'
@@ -26,8 +27,8 @@ if version_is_full_release(version := get_build_version()):
 else:
     RELEASE_DIR = os.path.join(RELEASES_DIR, 'dev', version)
 
-CONFIG_DIR = os.path.join(PACKAGE_DIR, 'config')
-CONFIG_SCHEMA_DIR = os.path.join(CONFIG_DIR, 'schema')
+CONFIG_DIR = PACKAGE_DIR / 'config'
+CONFIG_SCHEMA_DIR = CONFIG_DIR / 'schema'
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?
