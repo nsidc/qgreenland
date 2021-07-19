@@ -1,9 +1,9 @@
-from typing import List
+from typing import Any, Dict, List
 
 from qgreenland.config import CONFIG
 from qgreenland.runners import RUNNERS
 from qgreenland.exceptions import QgrRuntimeError
-from qgreenland.tasks.common.fetch import FetchDataFiles, FetchCmrGranule
+from qgreenland.tasks.common.fetch import FetchTask, FetchDataFiles, FetchCmrGranule
 from qgreenland.util.luigi import Finalize
 
 
