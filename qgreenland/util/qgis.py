@@ -397,7 +397,7 @@ def _populate_date_accessed(text: str, *, layer_cfg):
 
     ds_dir = datasource_dirname(
         dataset_id=layer_cfg['dataset']['id'],
-        source_id=layer_cfg['source']['id'],
+        asset_id=layer_cfg['asset']['id'],
     )
     fetch_dir = Path(INPUT_DIR) / ds_dir
 
