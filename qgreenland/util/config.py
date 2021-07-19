@@ -100,8 +100,10 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
             layer_config['dataset'] = dataset_config
 
-            layer_config['source'] = _find_in_list_by_id(dataset_config['assets'],
-                                                         asset_id)
+            layer_config['dataset']['asset'] = _find_in_list_by_id(
+                dataset_config['assets'],
+                asset_id
+            )
             del layer_config['dataset']['assets']
 
 
