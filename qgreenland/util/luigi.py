@@ -72,7 +72,15 @@ class LayerStepTask(ChainableTask):
         task's output determines the next task's input.
 
         Maybe some "smart" routine could infer the correct output from the
-        available set of files after running."""
+        available set of files after running.
+
+        What about always outputting a trigger file instead of caring about the
+        outputs of the commands?
+
+        Do we need to know if a layer is "raster" or "vector"? Or do we provide
+        file extension in config? Or do we require the config to specify the
+        input/output filenames of each step?
+        """
         pass
 
 

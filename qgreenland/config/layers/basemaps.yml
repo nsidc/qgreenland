@@ -14,13 +14,18 @@
     dataset: 'background'
     asset: 'high_res'
   steps:
-    - command: ['unzip', '{input}', '-O', '{output_dir}']
+    - command:
+        args: ['unzip', '{input}', '-O', '{output_dir}']
+        output_fn: 'foo.tif'
     - template:
         name: warp_multiple_steps
+        output_fn: 'foo.tif'
     - template:
         name: build_overviews
+        output_fn: 'foo.tif'
     - template:
         name: compress
+        output_fn: 'foo.tif'
 
 
 

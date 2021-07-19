@@ -21,7 +21,9 @@
     asset: 'geomagnetic_north_pole'
   style: 'geomagnetic_north_pole'
   steps:
-    - command: ['fooo', 'TODO']
+    - command:
+        args: ['fooo', 'TODO']
+        output_fn: 'foo.tif'
 
 - &boz_2020
   id: wmm_boz_2020

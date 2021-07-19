@@ -10,7 +10,9 @@
     dataset: bas_coastlines
     asset: only
   steps:
-    - command: ['foo', 'bar']
+    - command:
+        args: ['foo', 'bar']
+        output_fn: 'foo.tif'
 
 # OLD:
 # - id: bas_greenland_coastlines

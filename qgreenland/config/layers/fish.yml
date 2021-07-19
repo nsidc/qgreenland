@@ -9,7 +9,9 @@
     dataset: 'caff_char'
     asset: 'only'
   steps:
-    - command: ['ogr2ogr', 'TODO']
+    - command:
+        args: ['ogr2ogr', 'TODO']
+        output_fn: 'foo.tif'
 
 # OLD:
 # - id: caff_char
