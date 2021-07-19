@@ -38,7 +38,7 @@ def _load_config(config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
     return config[0][0]
 
 
-def _find_in_list_by_id(haystack, needle):
+def _find_in_list_by_id(haystack: Dict[Any, Any], needle: Any):
     matches = [d for d in haystack if d['id'] == needle]
     if len(matches) > 1:
         raise LookupError(f'Found multiple matches in list with same id: {needle}')
@@ -108,7 +108,7 @@ def _deref_layers(cfg):
         layer_config['boundary'] = project_config['boundaries'][boundary_name]
 
 
-def _dereference_config(cfg):
+def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
     """Take a full configuration object, replace references with the referent.
 
     - Datasets
