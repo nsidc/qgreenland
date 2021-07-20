@@ -27,13 +27,11 @@ def command_runner(
     """
     # TODO: Some better data structure; this access is confusing.
     command_args = list(step.values())[0]
-
     command_args = interpolate_args(
         command_args,
         input_dir=input_dir,
         output_dir=output_dir,
     )
-    breakpoint()
 
     # TODO: What's an "ogr" command? Any command will work, this just runs the
     # command in our special "gdal" conda environment. Rename the "gdal"
