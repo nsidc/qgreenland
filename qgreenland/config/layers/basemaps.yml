@@ -5,7 +5,7 @@
 #     - layer: 'Basemaps/Background (500m)'
 
 - id: background  # The on-disk folder containing the data
-  name: 'Background (500m)'  # The layer name in the QGIS panel
+  title: 'Background (500m)'  # The layer name in the QGIS panel
   # TODO: originally called 'group_path', but that's a confusing name. Do we like 'hierarchy'?
   hierarchy: ['Basemaps']  # The group(s, if nested) in the QGIS panel that this layer is in
   in_package: True

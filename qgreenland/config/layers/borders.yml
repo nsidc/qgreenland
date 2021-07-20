@@ -1,5 +1,5 @@
 - id: bas_greenland_coastlines
-  name: 'Greenland coastlines 2017'
+  title: 'Greenland coastlines 2017'
   description: >-
     This layer should be used as the 'reference coastline' for Greenland.
   show: True
@@ -10,9 +10,7 @@
     dataset: bas_coastlines
     asset: only
   steps:
-    - command:
-        args: ['foo', 'bar']
-        output_fn: 'foo.tif'
+    - command: ['foo', 'bar']
 
 # OLD:
 # - id: bas_greenland_coastlines

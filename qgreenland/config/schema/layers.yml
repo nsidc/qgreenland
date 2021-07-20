@@ -9,7 +9,7 @@ layer:
   # Used for unique identification, e.g. config, filenames.
   id: str()
   # The layer name in QGIS.
-  name: str()
+  title: str()
   # descriptive text
   description: str(required=False)
   hierarchy: list()
@@ -39,6 +39,7 @@ steps:
 ---
 template:
   name: str(required=True)
+  output_fn: str(required=True)
 
 # ---
 # python:

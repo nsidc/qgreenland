@@ -1,5 +1,5 @@
 - id: caff_char
-  name: 'Arctic Char populations 2010'
+  title: 'Arctic Char populations 2010'
   description: 'Polygons indicating the 2010 distribution of Arctic Char populations.'
   hierarchy: ['Biology', 'Fish']
   in_package: True
@@ -9,9 +9,7 @@
     dataset: 'caff_char'
     asset: 'only'
   steps:
-    - command:
-        args: ['ogr2ogr', 'TODO']
-        output_fn: 'foo.tif'
+    - command: ['ogr2ogr', 'TODO']
 
 # OLD:
 # - id: caff_char

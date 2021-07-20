@@ -1,6 +1,6 @@
 - &wmm_north_poles
   id: wmm_north_poles
-  name: 'Geomagnetic North dip pole 2020-2025'
+  title: 'Geomagnetic North dip pole 2020-2025'
   description: >-
     The locations of northern hemisphere dip poles (2020-2025) from the World
     Magnetic Model (WMM) 2020 model.
@@ -21,13 +21,11 @@
     asset: 'geomagnetic_north_pole'
   style: 'geomagnetic_north_pole'
   steps:
-    - command:
-        args: ['fooo', 'TODO']
-        output_fn: 'foo.tif'
+    - command: ['fooo', 'TODO']
 
 - &boz_2020
   id: wmm_boz_2020
-  name: 'Blackout zones'
+  title: 'Blackout zones'
   description: >-
     Based on the WMM military specification, we define “Blackout Zones” (BoZ)
     around the north and south magnetic poles where compass accuracy is highly
@@ -51,7 +49,7 @@
 
 - &wmm_d_2020
   id: wmm_d_2020
-  name: 'Main field declination (D)'
+  title: 'Main field declination (D)'
   description: &wmm_d_description >-
     Contours representing magnetic declination (D) in degrees. D is the angle
     between magnetic north and true north. D is considered positive when the
