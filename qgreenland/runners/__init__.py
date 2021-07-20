@@ -1,6 +1,4 @@
-"""A runner is a chainable Luigi Task which performs some type of operation.
-
-"""
+"""A runner is a function which executes a certain type of step."""
 
 from typing import Any, Dict, Literal
 
@@ -18,7 +16,6 @@ RUNNERS: Dict[StepType, Any] = {
 }
 
 def step_runner(
-    # TODO: Extract step type?
     step: Step,
     *,
     input_dir: str,
