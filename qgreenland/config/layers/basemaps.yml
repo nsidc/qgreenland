@@ -14,7 +14,51 @@
     dataset: 'background'
     asset: 'high_res'
   steps:
+    # warp_raster = WarpRaster(
+    #     requires_task=unzip,
+    #     layer_id=self.layer_id
+    # )  # ->
+    #
+#   warp_kwargs:
+#     # We measured the size of the pixels in the input datasource (WGS84) at the
+#     # North and South ends of Greenland and found a range of roughly 250m to
+#     # 900m. 500m is somewhere in the middle, so some of greenland will be
+#     # downsampled, and some will be oversampled.
+#     xRes: 500
+#     yRes: 500
+#     dstNodata: 0
+#     # Attempt to avoid pole hole and nodata line where east and west edges of
+#     # the original image meet after polar wrapping. TODO: This doesn't actually
+#     # get rid of the line.
+#     warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
+#
+    # return BuildRasterOverviews(
+    #     requires_task=warp_raster,
+    #     layer_id=self.layer_id
+    # )
     - command: ['unzip', '{input_dir}/*.zip', '-d', '{output_dir}']
+    - command:
+      - 'gdalwarp'
+      - '-dstCRS'
+      - 'EPSG:3413'
+      - '-CutlineDSName'
+      # TODO: Abstract the boundary filenames?
+      - '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
+      - '-CropToCutline'
+      - 'True'
+      - '-creationOptions'
+      - 'COMPRESS=DEFLATE'
+      - '-xRes'
+      - '500'
+      - '-yRes'
+      - '500'
+      - '-dstNodata'
+      - '0'
+      - '-warpOptions'
+      - 'SOURCE_EXTRA=100'
+      - '-warpOptions'
+      - 'SAMPLE_GRID=YES'
+
     - command: ['gdalwhatever', '-i', '{input_dir}/foo.tif', '-o', '{output_dir}/foo.shp']
     - template:
         name: warp_multiple_steps
