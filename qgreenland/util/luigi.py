@@ -1,3 +1,10 @@
+"""Responsible for task orchestration.
+
+Manages input and output directories and various ways of running pipeline steps.
+Doesn't care about what files end up in the output directory, that's the
+responsibility of the step configuration.
+"""
+import copy
 import os
 import shutil
 from typing import Optional
@@ -6,193 +13,107 @@ import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
+from qgreenland.runners import RUNNERS
 from qgreenland.util.misc import get_layer_dir, get_layer_fn, temporary_path_dir
 
 
-# TODO: QgrTask?
+# TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
 class ChainableTask(luigi.Task):
+    """Define dependencies at instantiation-time.
+
+    Each chainable task is specific to a single step in creation of a single
+    layer (for now).
+
+    TODO: Consider multiple inheritance to separate layer/step repsonsibility
+    from dependency-specification responsibility?
+    """
+
     requires_task = luigi.Parameter()
     layer_id = luigi.Parameter()
-
-    def requires(self):
-        return self.requires_task
-
-    # TODO: return a deepcopy of these properties.
-    @property
-    def layer_cfg(self):
-        return CONFIG['layers'][self.layer_id]
-
-    @property
-    def id(self):
-        return self.layer_cfg['id']
-
-    @property
-    def outdir(self):
-        # We could possibly DRY this out by adding a task_type param to
-        # get_layer_path
-        if self.task_type not in TaskType:
-            msg = (f"This class defines self.task_type as '{self.task_type}'. "
-                   f'Must be one of: {list(TaskType)}.')
-            raise RuntimeError(msg)
-
-        if self.task_type is TaskType.FINAL:
-            outdir = (f"{TaskType.FINAL.value}/{self.layer_cfg['layer_group']}/"
-                      f'{self.id}')
-        else:
-            outdir = f'{self.task_type.value}/{self.id}'
-
-        os.makedirs(outdir, exist_ok=True)
-        return outdir
-
-
-class LayerStepTask(ChainableTask):
-    """A chainable Luigi task which runs the given configured processing step."""
     step_number = luigi.IntParameter()
 
     def __repr__(self):
         return (
             f'{self.__class__.__name__}('
-            f'layer_id={self.layer_id})'
-        )
-
-    def run(self):
-        """Select a runner based on the step configuration and run the step."""
-
-        # task = RUNNERS[task_type](
-        #     task_params,
-        #     required_task=task,
-        #     layer_id=layer_id,
-        # )
-
-    def output(self):
-        """How do we know what the output is?
-
-        There could be multiple files and/or file types? There are steps where
-        we use ogr2ogr to e.g., convert a shapefile to a gpkg. The previous
-        task's output determines the next task's input.
-
-        Maybe some "smart" routine could infer the correct output from the
-        available set of files after running.
-
-        What about always outputting a trigger file instead of caring about the
-        outputs of the commands?
-
-        Do we need to know if a layer is "raster" or "vector" (yes - to create a
-        layer we need to call a specific function)? Or do we provide file
-        extension in config? Or do we require the config to specify the
-        input/output filenames of each step?
-
-        What about allowing all non-final steps to output whatever the author
-        wants, but the "Finalize" step looks for a GeoTIFF or GeoPackage to
-        figure out what kind of layer was created by the steps.
-        """
-        pass
-
-
-
-# we need a way to create tasks that require other tasks without having to create a new class.
-
-# could this be a function that takes some args and just returns a Luigi Task?
-
-# what other features does the old layer task have that we might need?
-
-# Maybe instead of 'LayerTask' (or in addition, inheriting from) create
-# CommandTask, PythonTask, TemplateTask
-
-# TODO: rename to 'ChainableTask'? 'ChainableLayerStep'?
-class LayerTask(luigi.Task):
-    """Chainable task allows dynamic dependency specification at instantiation.
-
-    Allow tasks to receive layer_id as parameter and get the correct config.
-
-    Used for all tasks that require a layer config. This way, we only have to
-    pass a string instead of a whole config object as a parameter.
-    """
-
-    requires_task = luigi.Parameter()
-    layer_id = luigi.Parameter()
-    task_type: Optional[TaskType] = None
-
-    def __repr__(self):
-        return (
-            f'{self.__class__.__name__}('
-            f'layer_id={self.layer_id})'
+            f'layer_id={self.layer_id},'
+            f' step_number={self.step_number})'
         )
 
     def requires(self):
+        """Dynamically specify task this task depends on."""
         return self.requires_task
 
-    # TODO: return a deepcopy of these properties.
     @property
     def layer_cfg(self):
-        return CONFIG['layers'][self.layer_id]
+        return copy.deepcopy(
+            CONFIG['layers'][self.layer_id]
+        )
 
+    @property
+    def step(self):
+        return self.layer_cfg['steps'][self.step_id]
+
+    @property
+    def step_type(self):
+        return self.step.keys()[0]
+
+    @property
+    def step_short_name(self):
+        first_part = f'{self.step_id}-{self.step_type}'
+        last_part = (
+            f"-{self.step['command'][0]}"
+            if self.step_type == 'command'
+            else 'TODO'
+        )
+        return f'{first_part}{last_part}'
+
+    # TODO: Rename. Avoid conflict with the luigi property layer_id.
     @property
     def id(self):
         return self.layer_cfg['id']
 
-    @property
-    def filename(self):
-        return get_layer_fn(self.layer_cfg)
+    def output(self):
+        """A directory for the step's behavior to write things into.
 
-    @property
-    def outdir(self):
-        # We could possibly DRY this out by adding a task_type param to
-        # get_layer_path
-        if self.task_type not in TaskType:
-            msg = (f"This class defines self.task_type as '{self.task_type}'. "
-                   f'Must be one of: {list(TaskType)}.')
-            raise RuntimeError(msg)
+        We don't care what those files are or what directory structure lies
+        within.
 
-        if self.task_type is TaskType.FINAL:
-            outdir = (f"{TaskType.FINAL.value}/{self.layer_cfg['layer_group']}/"
-                      f'{self.id}')
-        else:
-            outdir = f'{self.task_type.value}/{self.id}'
+        NOTE: As soon as this directory exists, Luigi will consider this Task
+        complete. _Always_ wrap behaviors in a temporary directory for outputs.
+        """
+        output_dir = (
+            Path(TaskType.WIP.value) /
+            f'{self.step_number:02}-{self.step_short_name}'
+        )
+        return luigi.LocalTarget(output_dir)
 
-        os.makedirs(outdir, exist_ok=True)
-        return outdir
+    def run(self):
+        """Execute the step with a temporary directory.
 
-    # TODO: Standardize the output method of layer tasks
-    # def output(self):
+        Enables Luigi to trigger the next job at the right time.
+        """
+
+        with temporary_path_dir(self.output()) as temp_path:
+            step_runner(
+                self.step,
+                input_dir=self.input(),
+                output_dir=temp_path,
+            )
+
 
 class Finalize(LayerTask):
     """Allow top-level layer tasks to lookup config from class attr layer_id.
 
     Also standardizes output directory for top-level layer tasks.
+
+    TODO: Expect a .gpkg or a .tif file in its input directory. If none (or >1?)
+    exists, throw an exception so the pipeline developer knows. If one exists,
+    create the appropriate type of QGIS Layer.
+
+    TODO: How to handle "extra" layers that aren't in the zip, but are exposed
+    for use with plugin? Separate "Final" step? Or make this one handle both
+    cases?
     """
-
-    def __repr__(self):
-        return (
-            f'{self.__class__.__name__}('
-            f'layer_id={self.layer_id})'
-        )
-
-    @property
-    def cfg(self):
-        return CONFIG['layers'][self.layer_id]
-
-    def output(self):
-        return luigi.LocalTarget(get_layer_dir(self.cfg))
-
-    def run(self):
-        if os.path.isdir(self.input().path):
-            source_path = self.input().path
-        else:
-            source_path = os.path.dirname(self.input().path)
-
-        with temporary_path_dir(self.output()) as temp_path:
-            shutil.copytree(source_path, temp_path, dirs_exist_ok=True)
-
-
-# TODO: can probably remove this!?
-class LayerPipeline(luigi.Task):
-    """Allow top-level layer tasks to lookup config from class attr layer_id.
-
-    Also standardizes output directory for top-level layer tasks.
-    """
-
-    layer_id = luigi.Parameter()
 
     def __repr__(self):
         return (
