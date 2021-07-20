@@ -14,9 +14,8 @@
     dataset: 'background'
     asset: 'high_res'
   steps:
-    - command:
-        args: ['unzip', '{input}', '-O', '{output_dir}']
-        output_fn: 'foo.tif'
+    - command: ['unzip', '{input_dir}/*.zip', '-O', '{output_dir}/foo.tif']
+    - command: ['gdalwhatever', '-i', '{input_dir}/foo.tif', '-o', '{output_dir}/foo.shp']
     - template:
         name: warp_multiple_steps
         output_fn: 'foo.tif'
