@@ -6,3 +6,10 @@ qgis-data/Quantarctica*
 __pycache__
 .env
 logs/
+
+# Vim swapfiles
+.*.swp
+
+# Ctags
+/tags
+/tags.lock
