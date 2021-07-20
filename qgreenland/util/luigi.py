@@ -96,7 +96,7 @@ class ChainableTask(luigi.Task):
         with temporary_path_dir(self.output()) as temp_path:
             step_runner(
                 self.step,
-                input_dir=self.input(),
+                input_dir=self.input().path,
                 output_dir=temp_path,
             )
 
