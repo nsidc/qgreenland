@@ -70,11 +70,6 @@ class ChainableTask(luigi.Task):
         )
         return f'{first_part}{last_part}'
 
-    # TODO: Rename. Avoid conflict with the luigi property layer_id.
-    @property
-    def id(self):
-        return self.layer_cfg['id']
-
     def output(self):
         """A directory for the step's behavior to write things into.
 
@@ -84,7 +79,11 @@ class ChainableTask(luigi.Task):
         NOTE: As soon as this directory exists, Luigi will consider this Task
         complete. _Always_ wrap behaviors in a temporary directory for outputs.
         """
-        output_dir = Path(TaskType.WIP.value) / self.step_identifier
+        output_dir = (
+            Path(TaskType.WIP.value) /
+            self.layer_id /
+            self.step_identifier
+        )
         return luigi.LocalTarget(output_dir)
 
     def run(self):
@@ -93,6 +92,7 @@ class ChainableTask(luigi.Task):
         Enables Luigi to trigger the next job at the right time.
         """
 
+        # TODO: Cleanup tempdir when things fail! Currently left in place.
         with temporary_path_dir(self.output()) as temp_path:
             step_runner(
                 self.step,
