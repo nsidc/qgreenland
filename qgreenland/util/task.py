@@ -4,7 +4,7 @@ from qgreenland.config import CONFIG
 from qgreenland.runners import RUNNERS
 from qgreenland.exceptions import QgrRuntimeError
 from qgreenland.tasks.common.fetch import FetchTask, FetchDataFiles, FetchCmrGranule
-from qgreenland.util.luigi import Finalize
+from qgreenland.util.luigi import ChainableTask, FinalizeTask
 
 
 ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
@@ -43,35 +43,32 @@ def generate_layer_tasks():
     """
     tasks = []
 
-    for cfg in CONFIG['layers'].values():
+    for layer_cfg in CONFIG['layers'].values():
+        layer_id = layer_cfg['id']
         tasks: List[LayerTask] = []
 
-        # TODO: Look at `cfg['input']` to figure out which fetch task to use and
-        # what params to pass into it.
-        task = _fetch_task_getter(cfg)
+        # Create tasks, making each task dependent on the previous task.
+        task = _fetch_task_getter(layer_cfg)
+        for step_number, step in enumerate(layer_cfg['steps']):
+            task = ChainableTask(
+                requires_task=task,
+                layer_id=layer_id,
+                step_number=step_number,
+            )
 
-        for step in cfg['steps']:
-            # figure out the correct task and pass kwargs (command, python, template).
-            # wait to do templates til the end -- we'll probably need to recurse
-            # into the steps within each template. Do we want templates to be
-            # nestable? Should templates be able to reference other templates?
-            for task_type, task_params in step.items():
-                breakpoint()
-                task = RUNNERS[task_type](
-                    task_params,
-                    required_task=task,
-                    layer_id=layer_id,
-                )
-
-            # We only need the last task in the layer pipeline to run all
-            # previous tasks.
-            layer_final_task = Finalize(requires_task=task)
-            tasks.append(layer_final_task)
+        # We only need the last task in the layer pipeline to run all
+        # previous tasks.
+        # TODO: Is `layer_final_task` a good name? What about just `task`?
+        layer_final_task = FinalizeTask(
+            requires_task=task,
+            layer_id=layer_id,
+        )
+        tasks.append(layer_final_task)
 
         # TODO: figure out what do to about this!!! (add one of these layers as a test)
         # `gdal_remote` layers are accessed by QGIS from a remote location, so
         # no processing is required.
-        # if cfg['dataset']['access_method'] == 'gdal_remote':
+        # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
         #     continue
 
     return tasks

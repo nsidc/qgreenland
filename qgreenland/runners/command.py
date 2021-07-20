@@ -1,6 +1,8 @@
+from typing import List
+
 import luigi
 
-from qgreenland.util.luigi import LayerTask
+from qgreenland.types import Step
 from qgreenland.util.misc import run_ogr_command
 
 
@@ -24,14 +26,14 @@ def command_runner(
     `kwargs` are string-interpolated for each of the command's arguments.
     """
     # TODO: Some better data structure; this access is confusing.
-    command_args = step[0]
+    command_args = list(step.values())[0]
 
-    breakpoint()
-    interpolate_args(
+    command_args = interpolate_args(
         command_args,
         input_dir=input_dir,
         output_dir=output_dir,
     )
+    breakpoint()
 
     # TODO: What's an "ogr" command? Any command will work, this just runs the
     # command in our special "gdal" conda environment. Rename the "gdal"

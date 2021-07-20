@@ -7,13 +7,14 @@ responsibility of the step configuration.
 import copy
 import os
 import shutil
+from pathlib import Path
 from typing import Optional
 
 import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
-from qgreenland.runners import RUNNERS
+from qgreenland.runners import step_runner
 from qgreenland.util.misc import get_layer_dir, get_layer_fn, temporary_path_dir
 
 
@@ -51,15 +52,17 @@ class ChainableTask(luigi.Task):
 
     @property
     def step(self):
-        return self.layer_cfg['steps'][self.step_id]
+        return self.layer_cfg['steps'][self.step_number]
 
     @property
     def step_type(self):
-        return self.step.keys()[0]
+        # TODO: A better Step API would make this less ugly.
+        return list(self.step.keys())[0]
 
     @property
-    def step_short_name(self):
-        first_part = f'{self.step_id}-{self.step_type}'
+    def step_identifier(self):
+        """A short string uniquely identifying the step within the layer."""
+        first_part = f'{self.step_number:02}-{self.step_type}'
         last_part = (
             f"-{self.step['command'][0]}"
             if self.step_type == 'command'
@@ -81,10 +84,7 @@ class ChainableTask(luigi.Task):
         NOTE: As soon as this directory exists, Luigi will consider this Task
         complete. _Always_ wrap behaviors in a temporary directory for outputs.
         """
-        output_dir = (
-            Path(TaskType.WIP.value) /
-            f'{self.step_number:02}-{self.step_short_name}'
-        )
+        output_dir = Path(TaskType.WIP.value) / self.step_identifier
         return luigi.LocalTarget(output_dir)
 
     def run(self):
@@ -101,7 +101,7 @@ class ChainableTask(luigi.Task):
             )
 
 
-class Finalize(LayerTask):
+class FinalizeTask(luigi.Task):
     """Allow top-level layer tasks to lookup config from class attr layer_id.
 
     Also standardizes output directory for top-level layer tasks.
@@ -114,6 +114,9 @@ class Finalize(LayerTask):
     for use with plugin? Separate "Final" step? Or make this one handle both
     cases?
     """
+    # TODO: DRY
+    requires_task = luigi.Parameter()
+    layer_id = luigi.Parameter()
 
     def __repr__(self):
         return (
@@ -121,9 +124,15 @@ class Finalize(LayerTask):
             f'layer_id={self.layer_id})'
         )
 
+    # TODO: DRY
     @property
     def cfg(self):
         return CONFIG['layers'][self.layer_id]
+
+    # TODO: DRY
+    def requires(self):
+        """Dynamically specify task this task depends on."""
+        return self.requires_task
 
     def output(self):
         return luigi.LocalTarget(get_layer_dir(self.cfg))

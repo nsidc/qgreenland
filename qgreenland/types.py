@@ -1,5 +1,7 @@
-# NOTE: Will this cause a weird conflict?
+# NOTE: Will naming this module "types.py" cause a weird conflict?
+from typing import Any, Dict, Literal
 
-type StepType = Literal['command', 'python', 'template']
+
+StepType = Literal['command', 'python', 'template']
 # TODO: Make this into an interface that specifies only one top-level key
-type Step = Dict[StepType, Dict[str, Any]]
+Step = Dict[StepType, Dict[str, Any]]
