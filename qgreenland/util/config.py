@@ -35,7 +35,13 @@ def _load_config(config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
     config = yamale.make_data(config_fp)
     yamale.validate(schema, config, strict=True)
 
-    return config[0][0]
+    try:
+        return config[0][0]
+    except IndexError:
+        # TODO: Reconsider this behavior.
+        # If there is an empty file, maybe it's intentional. Ignore it.
+        return []
+
 
 
 def _find_in_list_by_id(haystack: Dict[Any, Any], needle: Any):
