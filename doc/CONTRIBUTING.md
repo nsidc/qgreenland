@@ -9,7 +9,59 @@ release except releases labeled as "stable". Stable releases can be found at
 [https://qgreenland.org/explore](https://qgreenland.org/explore)!
 
 
-## Configuration
+## New configuration
+
+These are the types of configuration files available in
+QGreenland:
+
+* `config/layers/*.yml`: Layer-level metadata and the steps involved in
+  building the layer from a source dataset. Try to keep related layer
+  configurations together in the same file.
+* `config/datasets/*.yml`: Dataset-level metadata, including how to acquire
+  source dataset. Try to keep related dataset configurations together in the
+  same file.
+* `config/layer_groups.yml`: Options for layer groups.
+* `config/layer_templates/*.yml`: Re-usable sets of layer steps.
+* `config/project.yml`: Project-level options, such as CRS.
+
+
+### Layer pipeline steps
+
+Layer pipelines are composed of steps. A step can be one of the following
+types:
+
+* `command`: Run a shell command in a conda environment (currently
+  `environment.gdal.yml`).
+* `python`: Run a python function with the given args/kwargs.
+* `template`: Re-use a pre-written set of steps (these can also be `command`,
+  `python`, or `template`). Templates can be nested!
+
+
+#### Command
+
+Run a shell command in a pre-built Conda environment. The following slugs in
+your command will be string-interpolated:
+
+* `{input_dir}`: The directory containing the previous step's output.
+* `{output_dir}`: The directory in which this step will write its output.
+* `{assets_dir}`: The `qgreenland/assets` directory in this repository.
+
+
+#### Python
+
+Run a python function specified with the same syntax as `python -m`, e.g.:
+`package.module:function` (? I forgot.)
+
+
+#### Template
+
+Templates enable re-use or encapsulation of complex steps. Templates can be
+nested arbitrarily deeply, so go wild.
+
+TODO: Template naming/directory structure conventions.
+
+
+## OLD configuration
 
 There are 3 configuration files; `layers.yml` is the important one. It references
 the others.
@@ -107,7 +159,7 @@ As of `v0.50.0`:
   from data in WIP location.
 
 
-## Running the project
+# Running the project
 
 This project uses Docker and `docker-compose` to run each of its components.
 https://docs.docker.com/get-started/
@@ -128,7 +180,7 @@ https://urs.earthdata.nasa.gov/users/new
 
 
 
-### Starting the stack locally
+## Starting the stack locally
 
 Ensure environment variables enumerated above are populated before starting the
 stack.
@@ -137,7 +189,7 @@ stack.
 docker-compose up -d
 ```
 
-### Starting a Luigi pipeline
+## Starting a Luigi pipeline
 
 ```
 ./scripts/run_task.sh
@@ -156,7 +208,7 @@ more information on running Luigi from the CLI if you want to do anything not
 documented here.
 
 
-#### Debugging a Luigi pipeline
+### Debugging a Luigi pipeline
 
 Simply put `breakpoint()` anywhere in the pipeline code, then use
 `scripts/dev_run_task.sh`.
