@@ -18,50 +18,40 @@
     dataset: 'background'
     asset: 'high_res'
   steps:
-    # warp_raster = WarpRaster(
-    #     requires_task=unzip,
-    #     layer_id=self.layer_id
-    # )  # ->
-    #
-#   warp_kwargs:
-#     # We measured the size of the pixels in the input datasource (WGS84) at the
-#     # North and South ends of Greenland and found a range of roughly 250m to
-#     # 900m. 500m is somewhere in the middle, so some of greenland will be
-#     # downsampled, and some will be oversampled.
-#     xRes: 500
-#     yRes: 500
-#     dstNodata: 0
-#     # Attempt to avoid pole hole and nodata line where east and west edges of
-#     # the original image meet after polar wrapping. TODO: This doesn't actually
-#     # get rid of the line.
-#     warpOptions: ['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
-#
-    # return BuildRasterOverviews(
-    #     requires_task=warp_raster,
-    #     layer_id=self.layer_id
-    # )
     - command: ['unzip', '{input_dir}/*.zip', '-d', '{output_dir}']
+    # "cut hack". Instead of doing one warp operation, we break it into two
+    # pieces to avoid:
+    #
+    #     Self-intersection at or near point 21540.002777633181
+    #     2999.9999813578638\nERROR 1: Cutline polygon is invalid.\n
+    #
+    # TODO: Template!
+    # - command:
+    #   - 'gdalwarp'
+
+    #   - '{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif'
+    #   - '{output_dir}/hacked.tif'
     - command:
       - 'gdalwarp'
-      - '-dstCRS'
+      - '-t_srs'  # dstCRS
       - 'EPSG:3413'
-      - '-CutlineDSName'
+      - '-cutline'  # CutlineDSName
       # TODO: Abstract the boundary filenames?
       - '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
-      - '-CropToCutline'
-      - 'True'
-      - '-creationOptions'
+      - '-crop_to_cutline'  # CropToCutline=True
+      - '-co'  # creationOptions=['COMPRESS=DEFLATE']
       - 'COMPRESS=DEFLATE'
-      - '-xRes'
+      - '-tr'  # xRes=500, yRes=500
       - '500'
-      - '-yRes'
       - '500'
-      - '-dstNodata'
+      - '-dstnodata'  # dstNodata
       - '0'
-      - '-warpOptions'
+      - '-wo'  # warpOptions=['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
       - 'SOURCE_EXTRA=100'
-      - '-warpOptions'
+      - '-wo'
       - 'SAMPLE_GRID=YES'
+      - '{input_dir}/hacked.tif'
+      - '{output_dir}/warped.tif'
 
     - command: ['gdalwhatever', '-i', '{input_dir}/foo.tif', '-o', '{output_dir}/foo.shp']
     - template:
