@@ -52,6 +52,13 @@ your command will be string-interpolated:
 Run a python function specified with the same syntax as `python -m`, e.g.:
 `package.module:function` (? I forgot.)
 
+Python steps are located at `qgreenland/steps`. TODO: Naming and directory
+structure conventions.
+
+TODO: Define a type for a Python step function. It should always receive an
+input directory and an output directory from the caller, but other args could
+be anything from the YAML.
+
 
 #### Template
 
