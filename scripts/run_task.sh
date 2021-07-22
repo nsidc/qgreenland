@@ -22,5 +22,5 @@ fi
 # docker-compose up -d
 # NOTE: Workers must be set to 1 for python debug breakpoints to be usable
 docker-compose exec ${tty_arg} luigi luigi --workers=1 \
-  --module qgreenland.tasks.main ZipQGreenland
+  --module qgreenland.util.luigi.tasks.pipeline ZipQGreenland
 # docker-compose down

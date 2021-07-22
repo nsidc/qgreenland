@@ -3,8 +3,8 @@ from typing import Any, Dict, List, Type
 from qgreenland.config import CONFIG
 from qgreenland.runners import RUNNERS
 from qgreenland.exceptions import QgrRuntimeError
-from qgreenland.tasks.common.fetch import FetchTask, FetchDataFiles, FetchCmrGranule
-from qgreenland.util.luigi import ChainableTask, FinalizeTask
+from qgreenland.util.luigi.tasks.fetch import FetchTask, FetchDataFiles, FetchCmrGranule
+from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 
 # TODO: Make "fetch" tasks into Python "steps".
