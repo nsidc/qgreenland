@@ -4,7 +4,7 @@
 # shown in on the QGIS layers panel. e.g.:
 #     - layer: 'Basemaps/Background (500m)'
 
-- id: background  # The on-disk folder containing the data
+- id: 'background'  # The on-disk folder containing the data
   title: 'Background (500m)'  # The layer name in the QGIS panel
   # TODO: originally called 'group_path', but that's a confusing name. Do we like 'hierarchy'?
   hierarchy: ['Basemaps']  # The group(s, if nested) in the QGIS panel that this layer is in
@@ -25,43 +25,45 @@
     #     Self-intersection at or near point 21540.002777633181
     #     2999.9999813578638\nERROR 1: Cutline polygon is invalid.\n
     #
-    # TODO: Template!
-    # - command:
-    #   - 'gdalwarp'
-
-    #   - '{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif'
-    #   - '{output_dir}/hacked.tif'
+    # TODO: Template for the cut hack!
     - command:
       - 'gdalwarp'
       - '-t_srs'  # dstCRS
       - 'EPSG:3413'
-      - '-cutline'  # CutlineDSName
-      # TODO: Abstract the boundary filenames?
-      - '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
-      - '-crop_to_cutline'  # CropToCutline=True
-      - '-co'  # creationOptions=['COMPRESS=DEFLATE']
-      - 'COMPRESS=DEFLATE'
       - '-tr'  # xRes=500, yRes=500
       - '500'
       - '500'
+      - '-te'
+      # TODO: Abstract boundary extent?
+      - '-5774572.727595 -5774572.727595 5774572.727595 5774572.727595'
       - '-dstnodata'  # dstNodata
       - '0'
       - '-wo'  # warpOptions=['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
       - 'SOURCE_EXTRA=100'
       - '-wo'
       - 'SAMPLE_GRID=YES'
-      - '{input_dir}/hacked.tif'
-      - '{output_dir}/warped.tif'
+      - '{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif'  # <--- Input
+      - '{output_dir}/warped.tif'  # <--- Output
+    - command:
+      - 'gdalwarp'
+      - '-cutline'  # CutlineDSName
+      # TODO: Abstract the boundary filenames?
+      - '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
+      - '-crop_to_cutline'  # CropToCutline=True
+      - '-co'  # creationOptions=['COMPRESS=DEFLATE']
+      - 'COMPRESS=DEFLATE'
+      - '{input_dir}/warped.tif'  # <--- Input
+      - '{output_dir}/cut.tif'  # <--- Output
 
     - command: ['gdalwhatever', '-i', '{input_dir}/foo.tif', '-o', '{output_dir}/foo.shp']
     - template:
-        name: warp_multiple_steps
+        name: 'warp_multiple_steps'
         output_fn: 'foo.tif'
     - template:
-        name: build_overviews
+        name: 'build_overviews'
         output_fn: 'foo.tif'
     - template:
-        name: compress
+        name: 'compress'
         output_fn: 'foo.tif'
 
 
