@@ -10,6 +10,10 @@
   hierarchy: ['Basemaps']  # The group(s, if nested) in the QGIS panel that this layer is in
   in_package: True
   show: True  # Whether this layer is "shown" in QGIS
+  # TODO: Make "input" into a "step"? i.e.:
+  # - fetch:
+  #     dataset: 'background'
+  #     asset: 'high_res'
   input:
     dataset: 'background'
     asset: 'high_res'
