@@ -7,6 +7,7 @@ from qgreenland.tasks.common.fetch import FetchTask, FetchDataFiles, FetchCmrGra
 from qgreenland.util.luigi import ChainableTask, FinalizeTask
 
 
+# TODO: Make "fetch" tasks into Python "steps".
 ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
     'http': FetchDataFiles,
     'cmr': FetchCmrGranule,
