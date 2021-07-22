@@ -73,6 +73,7 @@
       - 'cp'
       - '{input_dir}/cut.tif'
       - '{output_dir}/overviews.tif'
+      - '&&'
       - 'gdaladdo'
       - '-r'
       - 'average'
@@ -85,9 +86,15 @@
     # - template:
     #     name: 'warp_multiple_steps'
     #     output_fn: 'foo.tif'
+    #     kwargs:
+    #       foo: bar
     # - template:
     #     name: 'build_overviews'
     #     output_fn: 'foo.tif'
+    #     kwargs:
+    #       baz: qux
     # - template:
     #     name: 'compress'
     #     output_fn: 'foo.tif'
+    #     kwargs:
+    #       banana: manaña 
