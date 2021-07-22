@@ -2,6 +2,7 @@ from typing import List
 
 import luigi
 
+from qgreenland.constants import ASSETS_DIR
 from qgreenland.types import Step
 from qgreenland.util.misc import run_ogr_command
 
@@ -31,6 +32,7 @@ def command_runner(
         command_args,
         input_dir=input_dir,
         output_dir=output_dir,
+        assets_dir=ASSETS_DIR,
     )
 
     # TODO: What's an "ogr" command? Any command will work, this just runs the
