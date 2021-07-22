@@ -45,6 +45,7 @@ your command will be string-interpolated:
 * `{input_dir}`: The directory containing the previous step's output.
 * `{output_dir}`: The directory in which this step will write its output.
 * `{assets_dir}`: The `qgreenland/assets` directory in this repository.
+* ...TBD...
 
 
 #### Python
