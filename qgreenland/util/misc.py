@@ -1,5 +1,6 @@
 import cgi
 import glob
+import logging
 import os
 import re
 import subprocess
@@ -12,6 +13,7 @@ from qgreenland.constants import REQUEST_TIMEOUT, TaskType
 from qgreenland.exceptions import QgrRuntimeError
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
+logger = logging.getLogger('luigi-interface')
 CHUNK_SIZE = 8 * 1024
 
 
@@ -203,6 +205,8 @@ def run_ogr_command(cmd_list):
     # Hack. The activation of the gdal environment does not work as a list.
     cmd_str = ' '.join(cmd)
 
+    logger.info('Running command:')
+    logger.info(cmd_str)
     result = subprocess.run(
         cmd_str,
         shell=True,
