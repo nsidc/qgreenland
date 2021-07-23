@@ -202,7 +202,6 @@ def get_final_layer_filepath(layer_cfg: Dict[Any, Any]) -> Path:
 
     d = get_final_layer_dir(layer_cfg)
     layer_fp = _get_layer_fp(d)
-    breakpoint()
 
     if not layer_fp.is_file():
         raise QgrRuntimeError(f"Layer located at '{layer_fp}' does not exist.")
