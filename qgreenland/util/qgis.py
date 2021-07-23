@@ -4,7 +4,7 @@ import os
 import subprocess
 import tempfile
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc
@@ -146,10 +146,14 @@ def _set_group_expanded(group, expanded: bool):
     group.setExpanded(expanded)
 
 
-def _get_group(project, group_path):
-    """Find a nested group by "path" syntax.
+# TODO: Type `project` (QgsProject?) and return (`QgsGroup`?)`
+def _get_group(
+    project: qgc.QgsProject,
+    group_path: List['str'],
+) -> Optional[qgc.QgsLayerTreeGroup]:
+    """Find a group in `project` from ordered list of group names.
 
-    `parent/child/grandchild/great-grandchild`
+    e.g. group_path: `['parent', 'child', 'grandchild']`
     """
     group = project.layerTreeRoot()
 
@@ -157,13 +161,12 @@ def _get_group(project, group_path):
     if not group_path:
         return group
 
-    group_names = group_path.split('/')
-
-    for group_name in group_names:
+    for group_name in group_path:
         group = group.findGroup(group_name)
 
         # Group not found
         if group is None:
+            # TODO: Raise instead of return None?
             return None
 
     return group
@@ -195,7 +198,6 @@ def _ensure_group_exists(project, group_path):
 
 def _set_groups_options(project):
     logger.debug('Configuring layer groups...')
-    # TODO: hierarchy
     groups_config = CONFIG['layer_groups']
 
     for group_path, options in groups_config.items():
@@ -203,9 +205,12 @@ def _set_groups_options(project):
 
         if group is None:
             # TODO: check for this case in config validation/linting.
-            raise QgrInvalidConfigError(
-                f"Encountered group '{group_path}' without reference in layers.yml."
+            # raise QgrInvalidConfigError(
+            logger.error(
+                f"Encountered group '{group_path}' without reference in"
+                ' layers.yml. Ignoring.'
             )
+            return
 
         _set_group_visibility(
             group,

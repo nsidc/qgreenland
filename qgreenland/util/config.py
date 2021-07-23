@@ -28,7 +28,7 @@ from qgreenland.util.misc import (
 )
 
 
-def _load_config(config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
+def _load_config(*, config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
     """Validate config file against schema with Yamale.
 
     Yamale can read in directories of config files, so it returns a list of
@@ -141,7 +141,10 @@ def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
 def load_configs_from_dir(config_dir: Path, schema_fp: Path) -> List[Any]:
     config: List = []
     for config_fp in Path(config_dir).glob('*.yml'):
-        config.extend(_load_config(config_fp, schema_fp))
+        config.extend(_load_config(
+            config_fp=config_fp,
+            schema_fp=schema_fp,
+        ))
 
     return config
 
@@ -154,16 +157,17 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
 
     cfg = {
         'project': _load_config(
-            config_dir / 'project.yml',
-            schema_dir / 'project.yml'
+            config_fp=config_dir / 'project.yml',
+            schema_fp=schema_dir / 'project.yml'
         ),
         'layers': load_configs_from_dir(
             config_dir / 'layers',
             schema_dir / 'layers.yml'
         ),
-        # 'layer_groups': _load_config('layer_groups.yml',
-        #                              config_dir=config_dir,
-        #                              schema_dir=schema_dir),
+        'layer_groups': _load_config(
+            config_fp=config_dir / 'layer_groups.yml',
+            schema_fp=schema_dir / 'layer_groups.yml',
+        ),
         'datasets': load_configs_from_dir(
             config_dir / 'datasets',
             schema_dir / 'datasets.yml'
