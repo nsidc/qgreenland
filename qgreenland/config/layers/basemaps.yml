@@ -50,6 +50,9 @@
       - 'SOURCE_EXTRA=100'
       - '-wo'
       - 'SAMPLE_GRID=YES'
+      # What about using dedicated keys for `input_file` and `output_file` so
+      # the command itself can reference that slug. If either is repeated in
+      # the command, this will help avoid mistakes.
       - '{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif'  # <--- Input
       - '{output_dir}/warped.tif'  # <--- Output
 
