@@ -15,7 +15,7 @@ import luigi
 from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.runners import step_runner
-from qgreenland.util.misc import get_layer_dir, get_layer_fn, temporary_path_dir
+from qgreenland.util.misc import get_final_layer_dir, temporary_path_dir
 
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
@@ -135,7 +135,7 @@ class FinalizeTask(luigi.Task):
         return self.requires_task
 
     def output(self):
-        return luigi.LocalTarget(get_layer_dir(self.cfg))
+        return luigi.LocalTarget(get_final_layer_dir(self.cfg))
 
     def run(self):
         if os.path.isdir(self.input().path):

@@ -7,7 +7,7 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict, Literal
 
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType
 from qgreenland.exceptions import QgrRuntimeError
@@ -51,7 +51,7 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
     """
     if url.startswith('ftp://'):
         if not verify:
-            raise RuntimeError(
+            raise QgrRuntimeError(
                 'Ignoring TLS certificate verification is not supported for FTP sources.'
             )
 
@@ -81,14 +81,14 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
                     fn = parsed[1]['filename']
             else:
                 if not (fn := _filename_from_url(url)):
-                    raise RuntimeError(
+                    raise QgrRuntimeError(
                         f'Failed to retrieve output filename from {url}'
                     )
 
             fp = os.path.join(output_dir, fn)
 
             if resp.status_code != 200:
-                raise RuntimeError(
+                raise QgrRuntimeError(
                     f"Received '{resp.status_code}' from {resp.request.url}."
                     f'Content: {resp.text}'
                 )
@@ -125,7 +125,7 @@ def find_single_file_by_name(path, *, filename):
     try:
         return files[0]
     except IndexError:
-        raise RuntimeError(f"No files with name '{filename}' found at '{path}'")
+        raise QgrRuntimeError(f"No files with name '{filename}' found at '{path}'")
 
 
 def find_single_file_by_ext(path, *, ext):
@@ -142,7 +142,7 @@ def find_single_file_by_ext(path, *, ext):
     try:
         return files[0]
     except IndexError:
-        raise RuntimeError(f"No files with extension '{ext}' found at '{path}'")
+        raise QgrRuntimeError(f"No files with extension '{ext}' found at '{path}'")
 
 
 @contextmanager
@@ -161,41 +161,53 @@ def temporary_path_dir(target):
     return
 
 
-def get_layer_fn(layer_cfg):
-    # NOTE: "file_type" includes a leading period
-    return f"{layer_cfg['id']}{layer_cfg['file_type']}"
+def _get_layer_fp(layer_dir: Path) -> Path:
+    """Look for one and only one standard file type 'gpkg' or 'tif'."""
+    # TODO: Extract standard file types into some structure
+    rasters = list(layer_dir.glob('*.tif'))
+    vectors = list(layer_dir.glob('*.gpkg'))
+    files = rasters + vectors
+
+    if len(files) > 1:
+        raise QgrRuntimeError(
+            f'>1 file found in layer output directory: {files}'
+        )
+
+    return files[0]
 
 
 def _layer_dirname_from_cfg(layer_cfg: Any) -> str:
     return layer_cfg['title']
 
 
-# TODO: rename -> get_layer_final_dir?
-def get_layer_dir(layer_cfg):
-    layer_group_list = layer_cfg.get('group_path', '').split('/')
-    return os.path.join(TaskType.FINAL.value,
-                        *layer_group_list,
-                        _layer_dirname_from_cfg(layer_cfg))
+def get_final_layer_dir(layer_cfg) -> Path:
+    """Get the layer directory in its final pre-zip location."""
+    layer_group_list = '/'.join(layer_cfg.get('hierarchy', []))
+    return (
+        Path(TaskType.FINAL.value) /
+        layer_group_list /
+        _layer_dirname_from_cfg(layer_cfg)
+    )
 
 
-def get_layer_path(layer_cfg):
-    if layer_cfg['dataset']['access_method'] == 'gdal_remote':
-        if (urls_count := len(layer_cfg['source']['urls'])) != 1:
-            raise RuntimeError(
-                f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}."
-            )
+def get_final_layer_filepath(layer_cfg: Dict[Any, Any]) -> Path:
+    # TODO: Re-implement gdal_remote layers
+    # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
+    #     if (urls_count := len(layer_cfg['source']['urls'])) != 1:
+    #         raise QgrRuntimeError(
+    #             f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}."
+    #         )
 
-        return f"{layer_cfg['source']['urls'][0]}"
+    #     return f"{layer_cfg['source']['urls'][0]}"
 
-    d = get_layer_dir(layer_cfg)
-    f = get_layer_fn(layer_cfg)
+    d = get_final_layer_dir(layer_cfg)
+    layer_fp = _get_layer_fp(d)
+    breakpoint()
 
-    layer_path = os.path.join(d, f)
+    if not layer_fp.is_file():
+        raise QgrRuntimeError(f"Layer located at '{layer_fp}' does not exist.")
 
-    if not os.path.isfile(layer_path):
-        raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
-
-    return layer_path
+    return layer_fp
 
 
 def run_ogr_command(cmd_list):
@@ -215,7 +227,7 @@ def run_ogr_command(cmd_list):
     )
 
     if result.returncode != 0:
-        raise RuntimeError(result.stderr)
+        raise QgrRuntimeError(result.stderr)
 
     return result
 
@@ -236,3 +248,10 @@ def directory_size_bytes(dir_path):
 
 def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
     return f'{dataset_id}.{asset_id}'
+
+
+def vector_or_raster(fp: Path) -> Literal['Vector', 'Raster']:
+    if fp.suffix == '.tif':
+        return 'Vector'
+    elif fp.suffix == '.gpkg':
+        return 'Raster'

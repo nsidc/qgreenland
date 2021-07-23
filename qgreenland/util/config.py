@@ -21,7 +21,11 @@ from humanize import naturalsize
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import LOCALDATA_DIR
-from qgreenland.util.misc import directory_size_bytes, get_layer_path
+from qgreenland.util.misc import (
+    directory_size_bytes,
+    get_final_layer_filepath,
+    vector_or_raster,
+)
 
 
 def _load_config(config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
@@ -169,23 +173,34 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
     return _dereference_config(cfg)
 
 
-def export_config(cfg, output_path='./layers.csv'):
+def export_config(
+    cfg: Dict[Any, Any],
+    output_path: Path=Path('./layers.csv'),
+) -> None:
+    """Write a report to disk containing a summary of layers in config.
+
+    This must be run after the layers are in their location, because we need to
+    calculate their size on disk.
+    """
     report = []
     for _, layer in cfg['layers'].items():
-        if layer['dataset']['access_method'] != 'gdal_remote':
-            layer_dir = Path(get_layer_path(layer)).parent
-            layer_size_bytes = directory_size_bytes(layer_dir)
-        else:
-            # online layers have no size on disk.
-            layer_size_bytes = 0
+        # TODO: Re-implement gdal_remote layers conditional.
+        # if layer['dataset']['access_method'] != 'gdal_remote':
+        #     layer_dir = Path(get_final_layer_filepath(layer)).parent
+        #     layer_size_bytes = directory_size_bytes(layer_dir)
+        # else:
+        #     # online layers have no size on disk.
+        #     layer_size_bytes = 0
+        layer_fp = get_final_layer_filepath(layer)
+        layer_dir = layer_fp.parent
+        layer_size_bytes = directory_size_bytes(layer_dir)
 
         report.append({
-            'Group': layer['group_path'].split('/', 1)[0],
-            'Subgroup': (layer['group_path'].split('/', 1)[1]
-                         if '/' in layer['group_path'] else ''),
+            'Group': layer['hierarchy'][0],
+            'Subgroup': ('/'.join(layer['hierarchy'][1:])),
             'Layer Title': layer['title'],
             'Layer Description': layer.get('description', ''),
-            'Vector or Raster': layer['data_type'],
+            'Vector or Raster': vector_or_raster(layer_fp),
             'Data Source Title': layer['dataset']['metadata']['title'],
             'Data Source Abstract': layer['dataset']['metadata']['abstract'],
             'Data Source Citation': layer['dataset']['metadata']['citation']['text'],

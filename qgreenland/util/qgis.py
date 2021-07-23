@@ -4,6 +4,7 @@ import os
 import subprocess
 import tempfile
 from pathlib import Path
+from typing import Any, Dict
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc
@@ -14,7 +15,11 @@ from osgeo import gdal
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, INPUT_DIR
 from qgreenland.exceptions import QgrInvalidConfigError
-from qgreenland.util.misc import datasource_dirname, get_layer_path
+from qgreenland.util.misc import (
+    datasource_dirname,
+    get_final_layer_filepath,
+    vector_or_raster,
+)
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
@@ -25,7 +30,8 @@ LAYERGROUP_VISIBLE_DEFAULT = False
 # consistently
 
 
-def _get_raster_layer(layer_path, layer_cfg):
+# TODO: _create_raster_layer? Pass in "title" instead of "layer_cfg"?
+def _get_raster_layer(layer_path: Path, layer_cfg: Dict[Any, Any]):
     return qgc.QgsRasterLayer(
         layer_path,
         layer_cfg['title'],
@@ -33,9 +39,10 @@ def _get_raster_layer(layer_path, layer_cfg):
     )
 
 
-def create_raster_map_layer(layer_path, layer_cfg):
-    if layer_cfg['dataset']['access_method'] == 'gdal_remote':
-        return _get_raster_layer(layer_path, layer_cfg)
+def create_raster_map_layer(layer_path: Path, layer_cfg: Dict[Any, Any]):
+    # TODO: Re-implement
+    # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
+    #     return _get_raster_layer(layer_path, layer_cfg)
 
     # Generate statistics for the raster layer. This creates an `aux.xml` file
     # alongside the .tif file that includes statistics (min/max/std) that qgis
@@ -97,22 +104,25 @@ def _add_layer_metadata(map_layer, layer_cfg):
 
 
 def get_map_layer(layer_cfg, project_crs):
+    """Create Qgs layer objects from layer config."""
     # Give the absolute path to the layer. We think project.addMapLayer()
     # automatically generates the correct relative paths. Using a relative
     # path causes statistics (nodata value, min/max) to not be generated,
     # resulting in rendering a gray rectangle.
     # TODO: do we need to worry about differences in path structure between linux
     # and windows?
-    layer_path = get_layer_path(layer_cfg)
+    layer_path = get_final_layer_filepath(layer_cfg)
+    # TODO: LayerType definition
+    layer_type = vector_or_raster(layer_path)
 
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
-    if layer_cfg['data_type'] == 'vector':
+    if layer_type == 'Vector':
         map_layer = qgc.QgsVectorLayer(
-            layer_path,
+            str(layer_path),
             layer_cfg['title'],  # layer name as it shows up in QGIS TOC
             'ogr'  # name of the data provider (e.g. memory, postgresql)
         )
-    elif layer_cfg['data_type'] == 'raster':
+    elif layer_type == 'Raster':
         map_layer = create_raster_map_layer(layer_path, layer_cfg)
 
     _add_layer_metadata(map_layer, layer_cfg)
@@ -185,6 +195,7 @@ def _ensure_group_exists(project, group_path):
 
 def _set_groups_options(project):
     logger.debug('Configuring layer groups...')
+    # TODO: hierarchy
     groups_config = CONFIG['layer_groups']
 
     for group_path, options in groups_config.items():
