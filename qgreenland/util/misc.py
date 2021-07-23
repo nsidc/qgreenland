@@ -251,6 +251,6 @@ def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
 
 def vector_or_raster(fp: Path) -> Literal['Vector', 'Raster']:
     if fp.suffix == '.tif':
-        return 'Vector'
-    elif fp.suffix == '.gpkg':
         return 'Raster'
+    elif fp.suffix == '.gpkg':
+        return 'Vector'
