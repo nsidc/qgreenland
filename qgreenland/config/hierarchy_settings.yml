@@ -5,29 +5,29 @@
 Reference:
   # This is the top group, so even if we set expanded to False, it would show
   # as expanded.
-  visible: True
-  expanded: True
+  show: True
+  expand: True
 
 Reference/QGreenland boundaries:
-  visible: True
-  expanded: False
+  show: True
+  expand: False
 
 Reference/Borders:
-  visible: True
-  expanded: False
+  show: True
+  expand: False
 
 Places:
-  visible: False
-  expanded: False
+  show: False
+  expand: False
 
 Sea ice/Weekly age (12.5 km):
-  visible: False
-  expanded: True
+  show: False
+  expand: True
 
 Sea ice/Monthly mean concentration (25 km):
-  visible: False
-  expanded: True
+  show: False
+  expand: True
 
 Basemaps:
-  visible: True
-  expanded: True
+  show: True
+  expand: True

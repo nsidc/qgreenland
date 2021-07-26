@@ -20,7 +20,7 @@ QGreenland:
 * `config/datasets/*.yml`: Dataset-level metadata, including how to acquire
   source dataset. Try to keep related dataset configurations together in the
   same file.
-* `config/layer_groups.yml`: Options for layer groups.
+* `config/hierarchy_settings.yml`: Options for groups in the layer hierarchy.
 * `config/layer_templates/*.yml`: Re-usable sets of layer steps.
 * `config/project.yml`: Project-level options, such as CRS.
 

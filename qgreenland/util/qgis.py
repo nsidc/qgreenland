@@ -203,27 +203,28 @@ def _ensure_group_exists(
 
 def _set_groups_options(project):
     logger.debug('Configuring layer groups...')
-    groups_config = CONFIG['layer_groups']
+    groups_config = CONFIG['hierarchy_settings']
 
-    for group_path, options in groups_config.items():
+    for group_str, options in groups_config.items():
+        group_path = group_str.split('/')
         group = _get_group(project, group_path)
 
         if group is None:
             # TODO: check for this case in config validation/linting.
             # raise QgrInvalidConfigError(
-            logger.error(
+            logger.warning(
                 f"Encountered group '{group_path}' without reference in"
-                ' layers.yml. Ignoring.'
+                ' any layer configuration. Ignoring.'
             )
-            return
+            continue
 
         _set_group_visibility(
             group,
-            options.get('visible', LAYERGROUP_VISIBLE_DEFAULT)
+            options.get('show', LAYERGROUP_VISIBLE_DEFAULT)
         )
         _set_group_expanded(
             group,
-            options.get('expanded', LAYERGROUP_EXPANDED_DEFAULT)
+            options.get('expand', LAYERGROUP_EXPANDED_DEFAULT)
         )
 
         logger.debug(f'{group_path} configured: {options}')
