@@ -32,8 +32,9 @@ LAYERGROUP_VISIBLE_DEFAULT = False
 
 # TODO: _create_raster_layer? Pass in "title" instead of "layer_cfg"?
 def _get_raster_layer(layer_path: Path, layer_cfg: Dict[Any, Any]):
+    # TODO: Does qgis have types that can catch passing a Path here?
     return qgc.QgsRasterLayer(
-        layer_path,
+        str(layer_path),
         layer_cfg['title'],
         'gdal'
     )
@@ -49,7 +50,10 @@ def create_raster_map_layer(layer_path: Path, layer_cfg: Dict[Any, Any]):
     # can read.
     # Note that generating this file before creating the map layer allows the
     # layer's statistics to be correctly initialized.
-    gdal.Info(layer_path, stats=True)
+
+    # TODO: Does gdal have types that can throw an error if a `Path` is passed?
+    # If not, write stubs!
+    gdal.Info(str(layer_path), stats=True)
 
     map_layer = _get_raster_layer(layer_path, layer_cfg)
 
