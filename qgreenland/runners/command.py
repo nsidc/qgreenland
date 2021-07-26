@@ -3,7 +3,7 @@ from typing import List
 import luigi
 
 from qgreenland.constants import ASSETS_DIR
-from qgreenland.types import Step
+from qgreenland._typing import Step
 from qgreenland.util.misc import run_ogr_command
 
 

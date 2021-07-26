@@ -4,7 +4,7 @@ from typing import Any, Dict, Literal
 
 # TODO: Not a Luigi.Task anymore, make functions instead.
 from qgreenland.runners.command import command_runner
-from qgreenland.types import Step, StepType
+from qgreenland._typing import Step, StepType
 
 
 # Each runner corresponds to a type of "step" available in the layer
