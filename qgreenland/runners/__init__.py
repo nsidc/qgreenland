@@ -12,7 +12,6 @@ from qgreenland._typing import Step, StepType
 RUNNERS: Dict[StepType, Any] = {
     'command': command_runner,
     'python': 'TODO',
-    'template': 'TODO',
 }
 
 def step_runner(

@@ -32,7 +32,14 @@ input:
 ---
 steps:
   type: enum('command', 'python', 'template')
-  # TODO: Are `args` only useful for `command`s?
+
+  # TODO: Only required if type == 'template'
+  template_name: str(required=False)
+
+  # TODO: Only required if type == 'python'
+  # func: str(required=False)  # e.g. qgreenland.foo.bar:baz
+
   # TODO: One of these is required... how to do with Yamale?
+  # TODO: Are `args` only useful for `command`s?
   args: list(str(), int(), required=False)
   kwargs: map(str(), int(), map(), required=False)

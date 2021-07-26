@@ -1,16 +1,17 @@
-- id: bas_greenland_coastlines
-  title: 'Greenland coastlines 2017'
-  description: >-
-    This layer should be used as the 'reference coastline' for Greenland.
-  show: True
-  hierarchy: ['Reference', 'Borders']
-  in_package: True
-  style: greenland_coastline
-  input:
-    dataset: bas_coastlines
-    asset: only
-  steps:
-    - command: ['foo', 'bar']
+# # NEW:
+# - id: bas_greenland_coastlines
+#   title: 'Greenland coastlines 2017'
+#   description: >-
+#     This layer should be used as the 'reference coastline' for Greenland.
+#   show: True
+#   hierarchy: ['Reference', 'Borders']
+#   in_package: True
+#   style: greenland_coastline
+#   input:
+#     dataset: bas_coastlines
+#     asset: only
+#   steps:
+#     - command: ['foo', 'bar']
 
 # OLD:
 # - id: bas_greenland_coastlines
