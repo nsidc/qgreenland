@@ -22,6 +22,8 @@ def step_runner(
     output_dir: str,
 ):
     """Execute a runner based on the step configuration."""
-    # TODO: Improve Step API
-    step_type = list(step.keys())[0]
-    RUNNERS[step_type](step, input_dir=input_dir, output_dir=output_dir)
+    RUNNERS[step['type']](
+        step,
+        input_dir=input_dir,
+        output_dir=output_dir,
+    )

@@ -31,15 +31,8 @@ input:
 
 ---
 steps:
-  command: list(required=False)
-  template: include('template', required=False)
-# TODO
-#   python: include('python', required=False)
-# 
----
-template:
-  name: str(required=True)
-  output_fn: str(required=True)
-
-# ---
-# python:
+  type: enum('command', 'python', 'template')
+  # TODO: Are `args` only useful for `command`s?
+  # TODO: One of these is required... how to do with Yamale?
+  args: list(str(), int(), required=False)
+  kwargs: map(str(), int(), map(), required=False)

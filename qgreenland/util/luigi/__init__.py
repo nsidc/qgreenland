@@ -36,6 +36,51 @@ def _fetch_task_getter(layer_cfg: Dict[Any, Any]) -> FetchTask:
     raise QgrRuntimeError('Found asset config without expected access method.')
 
 
+def _make_step_tasks(
+    steps_cfg: List[Dict[Any, Any]],
+    requires_task: ChainableTask,
+    layer_id: str,
+) -> List[ChainableTask]:
+    """From a list of steps, create tasks.
+
+    For "template" steps, which are really collections of steps, recurse.
+    """
+    # TODO: Should we return a list or just the final task?
+    tasks = []
+
+    for step_number, step in enumerate(steps_cfg):
+
+        # TODO: Is this readable?
+        if tasks:
+            requires_task = tasks[-1]
+
+        # TODO: Handle templates...
+        if step['type'] == 'template':
+            template_steps_cfg = load_yaml_template(
+                step['template']['name'],
+                kwargs=step['template']['kwargs']
+            )
+
+            tasks.extend(
+                # Recurse!
+                _make_step_tasks(
+                    steps_cfg=template_steps_cfg,
+                    requires_task=tasks[-1],
+                    layer_id=layer_id,
+                )
+            )
+
+        else:
+            task = ChainableTask(
+                requires_task=requires_task,
+                layer_id=layer_id,
+                step_number=step_number,
+            )
+        tasks.append(task)
+
+    return tasks
+
+
 def generate_layer_tasks():
     """Generate a list of pre-configured tasks based on layer configuration.
 
@@ -49,22 +94,22 @@ def generate_layer_tasks():
         tasks: List[LayerTask] = []
 
         # Create tasks, making each task dependent on the previous task.
-        task = _fetch_task_getter(layer_cfg)
-        for step_number, step in enumerate(layer_cfg['steps']):
-            task = ChainableTask(
-                requires_task=task,
-                layer_id=layer_id,
-                step_number=step_number,
-            )
+        first_task = _fetch_task_getter(layer_cfg)
+
+        step_tasks = _make_step_tasks(
+            steps_cfg=layer_cfg['steps'],
+            requires_task=first_task,
+            layer_id=layer_id,
+        )
 
         # We only need the last task in the layer pipeline to run all
         # previous tasks.
-        # TODO: Is `layer_final_task` a good name? What about just `task`?
-        layer_final_task = FinalizeTask(
-            requires_task=task,
+        # TODO: Is `final_task` a good name? What about just `task`?
+        final_task = FinalizeTask(
+            requires_task=step_tasks[-1],
             layer_id=layer_id,
         )
-        tasks.append(layer_final_task)
+        tasks.append(final_task)
 
         # TODO: figure out what do to about this!!! (add one of these layers as a test)
         # `gdal_remote` layers are accessed by QGIS from a remote location, so

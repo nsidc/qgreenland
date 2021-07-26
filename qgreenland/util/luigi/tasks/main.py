@@ -55,17 +55,12 @@ class ChainableTask(luigi.Task):
         return self.layer_cfg['steps'][self.step_number]
 
     @property
-    def step_type(self):
-        # TODO: A better Step API would make this less ugly.
-        return list(self.step.keys())[0]
-
-    @property
     def step_identifier(self):
         """A short string uniquely identifying the step within the layer."""
-        first_part = f'{self.step_number:02}-{self.step_type}'
+        first_part = f"{self.step_number:02}-{self.step['type']}"
         last_part = (
-            f"-{self.step['command'][0]}"
-            if self.step_type == 'command'
+            f"-{self.step['args'][0]}"
+            if self.step['type'] == 'command'
             else 'TODO'
         )
         return f'{first_part}{last_part}'

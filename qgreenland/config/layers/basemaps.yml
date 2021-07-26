@@ -19,7 +19,8 @@
     asset: 'high_res'
   steps:
     # Extract the data
-    - command: ['unzip', '{input_dir}/*.zip', '-d', '{output_dir}']
+    - type: 'command'
+      args: ['unzip', '{input_dir}/*.zip', '-d', '{output_dir}']
 
     # Warp the data
     # "cut hack". Instead of doing one warp operation, we break it into two
@@ -30,74 +31,57 @@
     #
     # TODO: Template for the cut hack!
     # TODO: Consider adding a "description" to each step?
-    - command:
-      - 'gdalwarp'
-      - '-t_srs'  # dstCRS
-      - 'EPSG:3413'
-      - '-tr'  # xRes=500, yRes=500
-      - '500'
-      - '500'
-      - '-te'
-      # TODO: Abstract boundaries... as slugs? e.g.:
-      #     {boundaries.background.extent['minx']}
-      #     {boundaries.background.extent['miny']}
-      #     {boundaries.background.extent['maxx']}
-      #     {boundaries.background.extent['maxy']}
-      - '-5774572.727595 -5774572.727595 5774572.727595 5774572.727595'
-      - '-dstnodata'  # dstNodata
-      - '0'
-      - '-wo'  # warpOptions=['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
-      - 'SOURCE_EXTRA=100'
-      - '-wo'
-      - 'SAMPLE_GRID=YES'
-      # What about using dedicated keys for `input_file` and `output_file` so
-      # the command itself can reference that slug. If either is repeated in
-      # the command, this will help avoid mistakes.
-      - '{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif'  # <--- Input
-      - '{output_dir}/warped.tif'  # <--- Output
+    - type: 'command'
+      args:
+        - 'gdalwarp'
+        - '-t_srs'  # dstCRS
+        # TODO: Reference project SRS
+        - 'EPSG:3413'
+        - '-tr'  # xRes=500, yRes=500
+        - '500'
+        - '500'
+        - '-te'
+        - '-5774572.727595 -5774572.727595 5774572.727595 5774572.727595'
+        - '-dstnodata'  # dstNodata
+        - '0'
+        - '-wo'  # warpOptions=['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
+        - 'SOURCE_EXTRA=100'
+        - '-wo'
+        - 'SAMPLE_GRID=YES'
+        # What about using dedicated keys for `input_file` and `output_file` so
+        # the command itself can reference that slug. If either is repeated in
+        # the command, this will help avoid mistakes.
+        - '{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif'  # <--- Input
+        - '{output_dir}/warped.tif'  # <--- Output
 
     # Cut the data and compress output
-    - command:
-      - 'gdalwarp'
-      - '-cutline'  # CutlineDSName
-      # TODO: Abstract boundaries... as slugs? e.g.:
-      #     {boundaries.background.filepath}
-      - '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
-      - '-crop_to_cutline'  # CropToCutline=True
-      - '-co'  # creationOptions=['COMPRESS=DEFLATE']
-      - 'COMPRESS=DEFLATE'
-      - '{input_dir}/warped.tif'  # <--- Input
-      - '{output_dir}/cut.tif'  # <--- Output
+    - type: 'command'
+      args:
+        - 'gdalwarp'
+        - '-cutline'  # CutlineDSName
+        # TODO: Abstract boundaries... as slugs? e.g.:
+        #     {boundaries.background.filepath}
+        - '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
+        - '-crop_to_cutline'  # CropToCutline=True
+        - '-co'  # creationOptions=['COMPRESS=DEFLATE']
+        - 'COMPRESS=DEFLATE'
+        - '{input_dir}/warped.tif'  # <--- Input
+        - '{output_dir}/warped_and_cut.tif'  # <--- Output
 
     # Add overviews
-    - command:
-      # TODO: Is this the best solution? gdaladdo can only modify in place.
-      # What about rasterio (`rio` at CLI)?
-      - 'cp'
-      - '{input_dir}/cut.tif'
-      - '{output_dir}/overviews.tif'
-      - '&&'
-      - 'gdaladdo'
-      - '-r'
-      - 'average'
-      - '{output_dir}/overviews.tif'
-      - '2'
-      - '4'
-      - '8'
-      - '16'
-
-    # - template:
-    #     name: 'warp_multiple_steps'
-    #     output_fn: 'foo.tif'
-    #     kwargs:
-    #       foo: bar
-    # - template:
-    #     name: 'build_overviews'
-    #     output_fn: 'foo.tif'
-    #     kwargs:
-    #       baz: qux
-    # - template:
-    #     name: 'compress'
-    #     output_fn: 'foo.tif'
-    #     kwargs:
-    #       banana: manaña 
+    - type: 'command'
+      args:
+        # TODO: Is this the best solution? gdaladdo can only modify in place.
+        # What about rasterio (`rio` at CLI)?
+        - 'cp'
+        - '{input_dir}/cut.tif'
+        - '{output_dir}/overviews.tif'
+        - '&&'
+        - 'gdaladdo'
+        - '-r'
+        - 'average'
+        - '{output_dir}/overviews.tif'
+        - '2'
+        - '4'
+        - '8'
+        - '16'

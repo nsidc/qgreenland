@@ -27,9 +27,8 @@ def command_runner(
     `kwargs` are string-interpolated for each of the command's arguments.
     """
     # TODO: Some better data structure; this access is confusing.
-    command_args = list(step.values())[0]
     command_args = interpolate_args(
-        command_args,
+        step['args'],
         input_dir=input_dir,
         output_dir=output_dir,
         assets_dir=ASSETS_DIR,
