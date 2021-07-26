@@ -164,9 +164,9 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
             config_dir / 'layers',
             schema_dir / 'layers.yml'
         ),
-        'layer_groups': _load_config(
-            config_fp=config_dir / 'layer_groups.yml',
-            schema_fp=schema_dir / 'layer_groups.yml',
+        'hierarchy_settings': _load_config(
+            config_fp=config_dir / 'hierarchy_settings.yml',
+            schema_fp=schema_dir / 'hierarchy_settings.yml',
         ),
         'datasets': load_configs_from_dir(
             config_dir / 'datasets',

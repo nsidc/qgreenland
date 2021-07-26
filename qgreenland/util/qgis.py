@@ -150,10 +150,9 @@ def _set_group_expanded(group, expanded: bool):
     group.setExpanded(expanded)
 
 
-# TODO: Type `project` (QgsProject?) and return (`QgsGroup`?)`
 def _get_group(
     project: qgc.QgsProject,
-    group_path: List['str'],
+    group_path: List[str],
 ) -> Optional[qgc.QgsLayerTreeGroup]:
     """Find a group in `project` from ordered list of group names.
 
@@ -176,17 +175,19 @@ def _get_group(
     return group
 
 
-def _ensure_group_exists(project, group_path):
+def _ensure_group_exists(
+    project: qgc.QgsProject,
+    group_path: List[str],
+) -> qgc.QgsLayerTreeGroup:
     """Get or create the layer group in `project` by `group_path`."""
+    # If the group exists, just return it:
     if group := _get_group(project, group_path):
         return group
 
-    group_names = group_path.split('/')
-
-    # Create the group path from the ground up; it's OK if part of the path
-    # already exists.
+    # Otherwise, create the group path from the root up; it's OK if part of the
+    # path already exists:
     group = project.layerTreeRoot()
-    for group_name in group_names:
+    for group_name in group_path:
         if g := group.findGroup(group_name):
             group = g
             continue
@@ -202,32 +203,44 @@ def _ensure_group_exists(project, group_path):
 
 def _set_groups_options(project):
     logger.debug('Configuring layer groups...')
-    groups_config = CONFIG['layer_groups']
+    groups_config = CONFIG['hierarchy_settings']
 
-    for group_path, options in groups_config.items():
+    for group_str, options in groups_config.items():
+        group_path = group_str.split('/')
         group = _get_group(project, group_path)
 
         if group is None:
             # TODO: check for this case in config validation/linting.
             # raise QgrInvalidConfigError(
-            logger.error(
+            logger.warning(
                 f"Encountered group '{group_path}' without reference in"
-                ' layers.yml. Ignoring.'
+                ' any layer configuration. Ignoring.'
             )
-            return
+            continue
 
         _set_group_visibility(
             group,
-            options.get('visible', LAYERGROUP_VISIBLE_DEFAULT)
+            options.get('show', LAYERGROUP_VISIBLE_DEFAULT)
         )
         _set_group_expanded(
             group,
-            options.get('expanded', LAYERGROUP_EXPANDED_DEFAULT)
+            options.get('expand', LAYERGROUP_EXPANDED_DEFAULT)
         )
 
         logger.debug(f'{group_path} configured: {options}')
 
     logger.debug('Done configuring layer groups.')
+
+
+# TODO: Name...
+def _ensure_layer_group(
+    *,
+    project: qgc.QgsProject,
+    layer_cfg: Dict[Any, Any],
+) -> qgc.QgsLayerTreeGroup:
+    group_path: List[str] = layer_cfg.get('hierarchy', '')
+    return _ensure_group_exists(project, group_path)
+
 
 
 def _add_layers(project):
@@ -236,21 +249,28 @@ def _add_layers(project):
 
     for layer_cfg in layers_cfg.values():
         logger.debug(f"Adding {layer_cfg['id']}...")
-        map_layer = get_map_layer(layer_cfg,
-                                  project.crs())
+        map_layer = get_map_layer(
+            layer_cfg,
+            project.crs(),
+        )
 
-        group_path = layer_cfg.get('group_path', '')
-        group = _ensure_group_exists(project, group_path)
-        group_layer = group.addLayer(map_layer)
+        group = _ensure_layer_group(
+            project=project,
+            layer_cfg=layer_cfg,
+        )
+
+        # TODO: Why do we have a separate object here?
+        grouped_layer = group.addLayer(map_layer)
+
         # Make the layer invisible and collapsed by default
-        group_layer.setItemVisibilityChecked(
+        grouped_layer.setItemVisibilityChecked(
             layer_cfg.get('show', False)
         )
 
         # All layers start collapsed. When expanded (the default), they show the
         # entire colormap. This takes up a large amount of space in the table of
         # contents.
-        group_layer.setExpanded(False)
+        grouped_layer.setExpanded(False)
 
         # TODO: necessary for root group?
         project.addMapLayer(map_layer, addToLegend=False)
