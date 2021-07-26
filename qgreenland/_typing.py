@@ -1,4 +1,8 @@
-# NOTE: Will naming this module "types.py" cause a weird conflict?
+"""QGreenland type definitions.
+
+NOTE: This module is named strangely to avoid conflicts with the stdlib's
+`types` module.
+"""
 from typing import Any, Dict, Literal
 
 
