@@ -244,7 +244,7 @@ def _add_layers(project):
         group_layer = group.addLayer(map_layer)
         # Make the layer invisible and collapsed by default
         group_layer.setItemVisibilityChecked(
-            layer_cfg.get('visible', False)
+            layer_cfg.get('show', False)
         )
 
         # All layers start collapsed. When expanded (the default), they show the
