@@ -1,10 +1,6 @@
 list(include('layer'))
 
 ---
-# TODO: Consider renaming file_type to "output_file_type" or something --
-# currently this is used when adding layers to the project file, so we should
-# consider this as output_file_type and use a new key for source file type.
-
 layer:
   # Used for unique identification, e.g. config, filenames.
   id: str()
