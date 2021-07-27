@@ -148,7 +148,7 @@ def _interpolate_template_kwargs(
             f"Received kwargs: {kwargs}"
         )
 
-    return _interpolate_nested_values( 
+    return _interpolate_nested_values(
         template['steps'],
         **kwargs,
     )
@@ -240,7 +240,7 @@ def load_configs_from_dir(
             schema_fp=schema_fp,
         )
 
-        # Sometimes a config file can be empty 
+        # Sometimes a config file can be empty
         if not cfg:
             logger.warning(f'{config_fp} is empty!')
             continue
