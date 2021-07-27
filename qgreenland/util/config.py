@@ -6,9 +6,11 @@ ONLY the constants module should import this module.
 import copy
 import csv
 import functools
+import itertools
+import logging
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Tuple, Union
 
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 # Importing qgis before fiona is absolutely necessary to avoid segmentation
@@ -26,6 +28,9 @@ from qgreenland.util.misc import (
     get_final_layer_filepath,
     vector_or_raster,
 )
+
+
+logger = logging.getLogger('luigi-interface')
 
 
 def _load_config(*, config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
@@ -94,6 +99,89 @@ def _deref_boundaries(cfg: Dict[str, Any]) -> None:
         }
 
 
+class PartialFormatDict(dict):
+    """Hack to enable partial formatting of strings with {slugs}.
+
+    e.g.:
+
+        '{foo} {bar}, {baz}'.format(foo='Hello', bar='there')
+        >>> 'Hello there, {baz}'
+    """
+    def __missing__(self, key):
+        return '{' + key + '}'
+
+
+def _interpolate_nested_values(
+    thing: Union[Dict[Any, Any], Tuple[Any], List[Any]],
+    **kwargs,
+) -> Dict[Any, Any]:
+    """Recurse through `thing` and interpolate any strings with `kwargs`."""
+
+    if isinstance(thing, dict):
+        items = thing.items()
+    elif isinstance(thing, (list, tuple)):
+        items = enumerate(thing)
+    elif isinstance(thing, str):
+        return thing.format_map(PartialFormatDict(**kwargs))
+    else:
+        return thing
+
+
+    for key, value in items:
+        thing[key] = _interpolate_nested_values(value, **kwargs)
+
+    return thing
+
+
+def _interpolate_template_kwargs(
+    template: Dict[str, Any],
+    **kwargs: Dict[str, Any],
+) -> List[Dict[str, Any]]:
+    # TODO: kwarg default values (i.e. optional kwargs) would be cool to
+    # provide. Careful, cowboy, we're getting into Jinja-like templating
+    # territory.
+
+    # Validate all kwargs are passed
+    if set(template['kwargs']) != set(kwargs.keys()):
+        raise exc.QgrInvalidConfigError(
+            f"Expected kwargs: {template['kwargs']}.\n"
+            f"Received kwargs: {kwargs}"
+        )
+
+    return _interpolate_nested_values( 
+        template['steps'],
+        **kwargs,
+    )
+
+
+
+def _deref_steps(
+    steps: List[Dict[str, Any]],
+    *,
+    templates: Dict[str, Any],
+) -> None:
+    """Dereference templates specified in `layers.steps`."""
+    for index, step in enumerate(steps):
+
+        if step['type'] == 'template':
+            template = templates[step['template_name']]
+            interpolated_steps = _interpolate_template_kwargs(
+                template=template,
+                **step['kwargs'],
+            )
+
+            dereferenced = _deref_steps(
+                steps=interpolated_steps,
+                templates=templates
+            )
+
+            before_template = steps[:index]
+            after_template = steps[index+1:]
+            steps = before_template + dereferenced + after_template
+
+    return steps
+
+
 def _deref_layers(cfg: Dict[str, Any]) -> None:
     """Dereferences layers in `cfg`, modifying `cfg`.
 
@@ -103,6 +191,7 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
     datasets_config = cfg['datasets']
     project_config = cfg['project']
     for layer_config in layers_config:
+
         # Populate related dataset configuration
         if 'dataset' not in layer_config:
             dataset_id = layer_config['input']['dataset']
@@ -116,14 +205,15 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             )
             del layer_config['dataset']['assets']
 
+        # Populate steps with templates where necessary
+        layer_config['steps'] = _deref_steps(
+            steps=layer_config['steps'],
+            templates=cfg['step_templates'],
+        )
+
 
 def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
-    """Take a full configuration object, replace references with the referent.
-
-    - Datasets
-    - Sources
-    - Ingest Tasks
-    """
+    """Take a full configuration object, replace references with the referent."""
     _deref_boundaries(cfg)
     _deref_layers(cfg)
 
@@ -138,15 +228,26 @@ def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
     return cfg
 
 
-def load_configs_from_dir(config_dir: Path, schema_fp: Path) -> List[Any]:
-    config: List = []
+def load_configs_from_dir(
+    config_dir: Path,
+    schema_fp: Path,
+) -> Dict[str, Any]:
+    configs: Dict[str, Any] = {}
+
     for config_fp in Path(config_dir).glob('*.yml'):
-        config.extend(_load_config(
+        cfg = _load_config(
             config_fp=config_fp,
             schema_fp=schema_fp,
-        ))
+        )
 
-    return config
+        # Sometimes a config file can be empty 
+        if not cfg:
+            logger.warning(f'{config_fp} is empty!')
+            continue
+
+        configs[config_fp.stem] = cfg
+
+    return configs
 
 
 @functools.lru_cache(maxsize=None)
@@ -155,23 +256,38 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
     # shouldn't be so hard!
     # TODO: Consider namedtuple or something?
 
+    # TODO: Some better solution for configs from dir...? Could be keyed by
+    # filename, as in templates; in that case each file represents a "thing". Or
+    # could be concatenated together for cases where each file contains a number
+    # of things, and the files are just used for organization, to avoid a huge
+    # unweildy file.
     cfg = {
         'project': _load_config(
             config_fp=config_dir / 'project.yml',
             schema_fp=schema_dir / 'project.yml'
         ),
-        'layers': load_configs_from_dir(
-            config_dir / 'layers',
-            schema_dir / 'layers.yml'
-        ),
         'hierarchy_settings': _load_config(
             config_fp=config_dir / 'hierarchy_settings.yml',
             schema_fp=schema_dir / 'hierarchy_settings.yml',
         ),
-        'datasets': load_configs_from_dir(
-            config_dir / 'datasets',
-            schema_dir / 'datasets.yml'
-        )
+        # Flatten out the layer configs into a single list of layers
+        'layers': list(itertools.chain.from_iterable(
+            load_configs_from_dir(
+                config_dir / 'layers',
+                schema_dir / 'layers.yml'
+            ).values()
+        )),
+        # Flatten out the dataset config files into a single list of datasets
+        'datasets': list(itertools.chain.from_iterable(
+            load_configs_from_dir(
+                config_dir / 'datasets',
+                schema_dir / 'datasets.yml'
+            ).values()
+        )),
+        'step_templates': load_configs_from_dir(
+            config_dir / 'step_templates',
+            schema_dir / 'step_templates.yml',
+        ),
     }
 
     return _dereference_config(cfg)

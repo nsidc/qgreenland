@@ -61,7 +61,7 @@
         # TODO: Is this the best solution? gdaladdo can only modify in place.
         # What about rasterio (`rio` at CLI)?
         - 'cp'
-        - '{input_dir}/cut.tif'
+        - '{input_dir}/warped_and_cut.tif'
         - '{output_dir}/overviews.tif'
         - '&&'
         - 'gdaladdo'
