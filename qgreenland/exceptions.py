@@ -8,3 +8,7 @@ class QgrInvalidConfigError(Exception):
 
 class QgrRuntimeError(Exception):
     pass
+
+
+class QgrQgsLayerError(Exception):
+    pass

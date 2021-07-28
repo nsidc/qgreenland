@@ -9,8 +9,8 @@ from contextlib import closing, contextmanager
 from pathlib import Path
 from typing import Any, Dict, Literal
 
+import qgreenland.exceptions as exc
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType
-from qgreenland.exceptions import QgrRuntimeError
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 logger = logging.getLogger('luigi-interface')
@@ -51,7 +51,7 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
     """
     if url.startswith('ftp://'):
         if not verify:
-            raise QgrRuntimeError(
+            raise exc.QgrRuntimeError(
                 'Ignoring TLS certificate verification is not supported for FTP sources.'
             )
 
@@ -81,14 +81,14 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
                     fn = parsed[1]['filename']
             else:
                 if not (fn := _filename_from_url(url)):
-                    raise QgrRuntimeError(
+                    raise exc.QgrRuntimeError(
                         f'Failed to retrieve output filename from {url}'
                     )
 
             fp = os.path.join(output_dir, fn)
 
             if resp.status_code != 200:
-                raise QgrRuntimeError(
+                raise exc.QgrRuntimeError(
                     f"Received '{resp.status_code}' from {resp.request.url}."
                     f'Content: {resp.text}'
                 )
@@ -125,7 +125,7 @@ def find_single_file_by_name(path, *, filename):
     try:
         return files[0]
     except IndexError:
-        raise QgrRuntimeError(f"No files with name '{filename}' found at '{path}'")
+        raise exc.QgrRuntimeError(f"No files with name '{filename}' found at '{path}'")
 
 
 def find_single_file_by_ext(path, *, ext):
@@ -142,7 +142,7 @@ def find_single_file_by_ext(path, *, ext):
     try:
         return files[0]
     except IndexError:
-        raise QgrRuntimeError(f"No files with extension '{ext}' found at '{path}'")
+        raise exc.QgrRuntimeError(f"No files with extension '{ext}' found at '{path}'")
 
 
 @contextmanager
@@ -169,7 +169,7 @@ def _get_layer_fp(layer_dir: Path) -> Path:
     files = rasters + vectors
 
     if len(files) > 1:
-        raise QgrRuntimeError(
+        raise exc.QgrRuntimeError(
             f'>1 file found in layer output directory: {files}'
         )
 
@@ -194,7 +194,7 @@ def get_final_layer_filepath(layer_cfg: Dict[Any, Any]) -> Path:
     # TODO: Re-implement gdal_remote layers
     # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
     #     if (urls_count := len(layer_cfg['source']['urls'])) != 1:
-    #         raise QgrRuntimeError(
+    #         raise exc.QgrRuntimeError(
     #             f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}."
     #         )
 
@@ -204,7 +204,7 @@ def get_final_layer_filepath(layer_cfg: Dict[Any, Any]) -> Path:
     layer_fp = _get_layer_fp(d)
 
     if not layer_fp.is_file():
-        raise QgrRuntimeError(f"Layer located at '{layer_fp}' does not exist.")
+        raise exc.QgrRuntimeError(f"Layer located at '{layer_fp}' does not exist.")
 
     return layer_fp
 
@@ -226,7 +226,7 @@ def run_ogr_command(cmd_list):
     )
 
     if result.returncode != 0:
-        raise QgrRuntimeError(result.stderr)
+        raise exc.QgrRuntimeError(result.stderr)
 
     return result
 
@@ -235,7 +235,7 @@ def directory_size_bytes(dir_path):
     """Return the size of the directory's contents in bytes."""
     dir_path = Path(dir_path)
     if not dir_path.is_dir():
-        raise QgrRuntimeError(f'`dir_path` must be a directory. Got {dir_path}')
+        raise exc.QgrRuntimeError(f'`dir_path` must be a directory. Got {dir_path}')
 
     contents = dir_path.glob('**/*')
     total_size = 0
@@ -254,3 +254,7 @@ def vector_or_raster(fp: Path) -> Literal['Vector', 'Raster']:
         return 'Raster'
     elif fp.suffix == '.gpkg':
         return 'Vector'
+    else:
+        raise exc.QgrQgsLayerError(
+            f'Unexpected extension: {fp}. Expected .tif or .gpkg.'
+        )
