@@ -19,7 +19,7 @@ def command_runner(
     *,
     input_dir: str,
     output_dir: str,
-):
+) -> None:
     """Run a shell command in the "gdal" conda environment.
 
     `kwargs` are string-interpolated for each of the command's arguments.

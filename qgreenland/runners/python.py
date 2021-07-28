@@ -1,5 +1,10 @@
-from qgreenland.util.luigi import LayerTask
+from qgreenland._typing import Step
 
 
-class PythonRunner(LayerTask):
-    pass
+def python_runner(
+    step: Step,
+    *,
+    input_dir: str,
+    output_dir: str,
+) -> None:
+    ...

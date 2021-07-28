@@ -169,8 +169,11 @@ def _deref_steps(
     steps: List[Dict[str, Any]],
     *,
     templates: Dict[str, Any],
-) -> None:
-    """Dereference templates specified in `layer.steps`."""
+) -> List[Dict[str, Any]]:
+    """Dereference layer `steps`.
+
+    Search for template-type steps and render them.
+    """
     for index, step in enumerate(steps):
         if step['type'] == 'template':
             # Dereference this template
@@ -343,7 +346,11 @@ def export_config(
         })
 
     with open(output_path, 'w') as ofile:
-        dict_writer = csv.DictWriter(ofile, report[0].keys())
+        # TODO: Why can't mypy infer this?
+        dict_writer: csv.DictWriter = csv.DictWriter(
+            ofile,
+            list(report[0].keys()),
+        )
         dict_writer.writeheader()
         dict_writer.writerows(report)
         print(f'Exported: {os.path.abspath(ofile.name)}')
