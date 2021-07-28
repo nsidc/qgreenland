@@ -6,7 +6,7 @@ import numpy
 from shapely.geometry import LineString
 
 OUT_DIR = './out'
-degrees_template = '{deg}° {min}\' {sec}"'
+degrees_template = '{deg}° {min}\' {sec}"'  # noqa: FS003
 
 
 def _decimal_degrees_to_dms(decimal, *, lat_or_lon, include_secs=True):

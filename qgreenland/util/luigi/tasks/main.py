@@ -8,7 +8,6 @@ import copy
 import os
 import shutil
 from pathlib import Path
-from typing import Optional
 
 import luigi
 
@@ -56,7 +55,11 @@ class ChainableTask(luigi.Task):
 
     @property
     def step_identifier(self):
-        """A short string uniquely identifying the step within the layer."""
+        """Generate a short string uniquely identifying a step within a layer.
+
+        WARNING: Only uniquely identifies a _step_ in the context of a layer;
+        does not uniquely ID a step + layer combination.
+        """
         first_part = f"{self.step_number:02}-{self.step['type']}"
         last_part = (
             f"-{self.step['args'][0]}"
@@ -66,7 +69,7 @@ class ChainableTask(luigi.Task):
         return f'{first_part}{last_part}'
 
     def output(self):
-        """A directory for the step's behavior to write things into.
+        """Define a directory for the step's behavior to write things into.
 
         We don't care what those files are or what directory structure lies
         within.
@@ -75,9 +78,9 @@ class ChainableTask(luigi.Task):
         complete. _Always_ wrap behaviors in a temporary directory for outputs.
         """
         output_dir = (
-            Path(TaskType.WIP.value) /
-            self.layer_id /
-            self.step_identifier
+            Path(TaskType.WIP.value)
+            / self.layer_id
+            / self.step_identifier
         )
         return luigi.LocalTarget(output_dir)
 
@@ -85,9 +88,10 @@ class ChainableTask(luigi.Task):
         """Execute the step with a temporary directory.
 
         Enables Luigi to trigger the next job at the right time.
-        """
 
-        # TODO: Cleanup tempdir when things fail! Currently left in place.
+        NOTE: If jobs fail, temporary directory is not cleaned up. The WIP dir
+        is ephemeral and will be cleaned up in a more wholesale manner.
+        """
         with temporary_path_dir(self.output()) as temp_path:
             step_runner(
                 self.step,
@@ -109,6 +113,7 @@ class FinalizeTask(luigi.Task):
     for use with plugin? Separate "Final" step? Or make this one handle both
     cases?
     """
+
     # TODO: DRY
     requires_task = luigi.Parameter()
     layer_id = luigi.Parameter()

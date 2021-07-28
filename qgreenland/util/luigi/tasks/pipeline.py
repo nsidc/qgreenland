@@ -17,8 +17,8 @@ from qgreenland.constants import (ASSETS_DIR,
                                   ZIP_TRIGGERFILE)
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config import export_config
-from qgreenland.util.qgis import make_qgis_project_file
 from qgreenland.util.luigi import generate_layer_tasks
+from qgreenland.util.qgis import make_qgis_project_file
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')

@@ -31,6 +31,7 @@ from qgreenland.util.misc import (
 
 
 logger = logging.getLogger('luigi-interface')
+DEFAULT_LAYER_MANIFEST_PATH = Path('./layers.csv')
 
 
 def _load_config(*, config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
@@ -50,7 +51,6 @@ def _load_config(*, config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
         # TODO: Reconsider this behavior.
         # If there is an empty file, maybe it's intentional. Ignore it.
         return []
-
 
 
 def _find_in_list_by_id(haystack: Dict[Any, Any], needle: Any):
@@ -107,6 +107,7 @@ class PartialFormatDict(dict):
         '{foo} {bar}, {baz}'.format(foo='Hello', bar='there')
         >>> 'Hello there, {baz}'
     """
+
     def __missing__(self, key):
         return '{' + key + '}'
 
@@ -116,7 +117,6 @@ def _interpolate_nested_values(
     **kwargs,
 ) -> Dict[Any, Any]:
     """Recurse through `thing` and interpolate any strings with `kwargs`."""
-
     if isinstance(thing, dict):
         items = thing.items()
     elif isinstance(thing, (list, tuple)):
@@ -125,7 +125,6 @@ def _interpolate_nested_values(
         return thing.format_map(PartialFormatDict(**kwargs))
     else:
         return thing
-
 
     for key, value in items:
         thing[key] = _interpolate_nested_values(value, **kwargs)
@@ -145,7 +144,7 @@ def _interpolate_template_kwargs(
     if set(template['kwargs']) != set(kwargs.keys()):
         raise exc.QgrInvalidConfigError(
             f"Expected kwargs: {template['kwargs']}.\n"
-            f"Received kwargs: {kwargs}"
+            f'Received kwargs: {kwargs}'
         )
 
     return _interpolate_nested_values(
@@ -154,29 +153,33 @@ def _interpolate_template_kwargs(
     )
 
 
-
 def _deref_steps(
     steps: List[Dict[str, Any]],
     *,
     templates: Dict[str, Any],
 ) -> None:
-    """Dereference templates specified in `layers.steps`."""
+    """Dereference templates specified in `layer.steps`."""
     for index, step in enumerate(steps):
-
         if step['type'] == 'template':
+            # Dereference this template
             template = templates[step['template_name']]
+
+            # Replace kwarg {slugs} with values
             interpolated_steps = _interpolate_template_kwargs(
                 template=template,
                 **step['kwargs'],
             )
 
+            # Recurse into this template and look for more nested templates to
+            # dereference!
             dereferenced = _deref_steps(
                 steps=interpolated_steps,
                 templates=templates
             )
 
+            # Insert rendered template at the correct location in the step chain
             before_template = steps[:index]
-            after_template = steps[index+1:]
+            after_template = steps[index + 1:]
             steps = before_template + dereferenced + after_template
 
     return steps
@@ -187,10 +190,8 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
 
     Expects boundaries to already be dereferenced.
     """
-    layers_config = cfg['layers']
     datasets_config = cfg['datasets']
-    project_config = cfg['project']
-    for layer_config in layers_config:
+    for layer_config in cfg['layers']:
 
         # Populate related dataset configuration
         if 'dataset' not in layer_config:
@@ -295,7 +296,7 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
 
 def export_config(
     cfg: Dict[Any, Any],
-    output_path: Path=Path('./layers.csv'),
+    output_path: Path = DEFAULT_LAYER_MANIFEST_PATH,
 ) -> None:
     """Write a report to disk containing a summary of layers in config.
 
@@ -303,7 +304,7 @@ def export_config(
     calculate their size on disk.
     """
     report = []
-    for _, layer in cfg['layers'].items():
+    for layer in cfg['layers'].values():
         # TODO: Re-implement gdal_remote layers conditional.
         # if layer['dataset']['access_method'] != 'gdal_remote':
         #     layer_dir = Path(get_final_layer_filepath(layer)).parent

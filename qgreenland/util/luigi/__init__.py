@@ -1,9 +1,10 @@
 from typing import Any, Dict, List, Type
 
+import luigi
+
 from qgreenland.config import CONFIG
-from qgreenland.runners import RUNNERS
 from qgreenland.exceptions import QgrRuntimeError
-from qgreenland.util.luigi.tasks.fetch import FetchTask, FetchDataFiles, FetchCmrGranule
+from qgreenland.util.luigi.tasks.fetch import FetchCmrGranule, FetchDataFiles, FetchTask
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 
@@ -47,12 +48,12 @@ def generate_layer_tasks():
 
     for layer_cfg in CONFIG['layers'].values():
         layer_id = layer_cfg['id']
-        tasks: List[LayerTask] = []
+        tasks: List[luigi.Task] = []
 
         # Create tasks, making each task dependent on the previous task.
         task = _fetch_task_getter(layer_cfg)
 
-        for step_number, step in enumerate(layer_cfg['steps']):
+        for step_number, _ in enumerate(layer_cfg['steps']):
             task = ChainableTask(
                 requires_task=task,
                 layer_id=layer_id,

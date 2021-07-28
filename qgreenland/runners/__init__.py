@@ -1,10 +1,9 @@
 """A runner is a function which executes a certain type of step."""
 
-from typing import Any, Dict, Literal
+from typing import Any, Dict
 
-# TODO: Not a Luigi.Task anymore, make functions instead.
-from qgreenland.runners.command import command_runner
 from qgreenland._typing import Step, StepType
+from qgreenland.runners.command import command_runner
 
 
 # Each runner corresponds to a type of "step" available in the layer
@@ -13,6 +12,7 @@ RUNNERS: Dict[StepType, Any] = {
     'command': command_runner,
     'python': 'TODO',
 }
+
 
 def step_runner(
     step: Step,
