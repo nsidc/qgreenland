@@ -1,5 +1,6 @@
 name: qgreenland
 channels:
+  - nsidc
   - conda-forge
   - nodefaults
 dependencies:
@@ -79,9 +80,9 @@ dependencies:
   - json-c=0.13.1=hbfbb72e_1002
   - kealib=1.4.14=hcc255d8_2
   - krb5=1.17.2=h926e7f8_0
-  - ld_impl_linux-64=2.36.1=hea4e1c9_1
-  - libblas=3.9.0=9_openblas
-  - libcblas=3.9.0=9_openblas
+  - ld_impl_linux-64=2.36.1=hea4e1c9_2
+  - libblas=3.9.0=10_openblas
+  - libcblas=3.9.0=10_openblas
   - libclang=11.1.0=default_ha53f305_1
   - libcurl=7.76.1=hc4aaa36_1
   - libdap4=3.20.6=hd7c4107_2
@@ -97,11 +98,11 @@ dependencies:
   - libgomp=11.1.0=hc902ee8_2
   - libiconv=1.16=h516909a_0
   - libkml=1.3.0=h238a007_1014
-  - liblapack=3.9.0=9_openblas
+  - liblapack=3.9.0=10_openblas
   - libllvm11=11.1.0=hf817b99_2
   - libnetcdf=4.7.4=nompi_h56d31a8_107
   - libnghttp2=1.43.0=h812cca2_0
-  - libopenblas=0.3.15=pthreads_h8fe5266_1
+  - libopenblas=0.3.17=pthreads_h8fe5266_1
   - libpng=1.6.37=h21135ba_2
   - libpq=12.3=h255efa7_3
   - librttopo=1.1.0=hb271727_4
@@ -144,8 +145,8 @@ dependencies:
   - parso=0.8.2=pyhd8ed1ab_0
   - pcre=8.45=h9c3ff4c_0
   - pep8-naming=0.9.1=py_0
-  - pexpect=4.8.0=py38h32f6830_1
-  - pickleshare=0.7.5=py38h32f6830_1002
+  - pexpect=4.8.0=pyh9f0ad1d_2
+  - pickleshare=0.7.5=py_1003
   - pip=21.2.1=pyhd8ed1ab_0
   - pixman=0.40.0=h36c2ea0_0
   - plotly=5.1.0=pyhd8ed1ab_1
@@ -177,8 +178,8 @@ dependencies:
   - pysocks=1.7.1=py38h578d9bd_3
   - pytest=5.3.5=py38h32f6830_2
   - pytest-cov=2.8.1=py_0
-  - python=3.8.10=h49503c6_1_cpython
-  - python-daemon=2.3.0=py38h578d9bd_0
+  - python=3.8.8=hffdb5ce_0_cpython
+  - python-daemon=2.3.0=pyhd8ed1ab_1
   - python-dateutil=2.8.2=pyhd8ed1ab_0
   - python_abi=3.8=2_cp38
   - pytz=2021.1=pyhd8ed1ab_0
