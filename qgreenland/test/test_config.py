@@ -4,7 +4,7 @@ from qgreenland.config import CONFIG
 
 
 # TODO: Remove XFAIL once more layers added
-@pytest.mark.xfail()
+@pytest.mark.xfail(reason='Only 1 layer currently migrated to new config')
 def test_get_layer_config_all():
     layer_config = CONFIG['layers']
 
