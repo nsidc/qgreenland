@@ -9,3 +9,6 @@ import_order_style = pycharm
 # D1: Ignore errors requiring docstrings on everything
 # W503: Line breaks should occur after the binary operator to keep all variable names aligned.
 ignore = D1,W503
+
+per-file-ignores =
+  qgreenland/test/util/test_config.py: FS003
