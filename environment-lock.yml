@@ -178,7 +178,7 @@ dependencies:
   - pysocks=1.7.1=py38h578d9bd_3
   - pytest=5.3.5=py38h32f6830_2
   - pytest-cov=2.8.1=py_0
-  - python=3.8.8=hffdb5ce_0_cpython
+  - python=3.8.10=h49503c6_1_cpython
   - python-daemon=2.3.0=pyhd8ed1ab_1
   - python-dateutil=2.8.2=pyhd8ed1ab_0
   - python_abi=3.8=2_cp38
