@@ -10,7 +10,7 @@ import itertools
 import logging
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, Iterable, List, Tuple, TypeVar, Union
 
 # HACK HACK HACK HACK HACK HACK HACK HACK HACK THIS IS A DUMB HACK HACK HACK
 # Importing qgis before fiona is absolutely necessary to avoid segmentation
@@ -112,14 +112,26 @@ class PartialFormatDict(dict):
         return '{' + key + '}'
 
 
+DictOrList = TypeVar(
+    'DictOrList',
+    Dict[Any, Any],
+    Tuple[Any],
+    List[Any],
+)
+
+
 def _interpolate_nested_values(
-    thing: Union[Dict[Any, Any], Tuple[Any], List[Any]],
+    thing: DictOrList,
     **kwargs,
-) -> Dict[Any, Any]:
-    """Recurse through `thing` and interpolate any strings with `kwargs`."""
+) -> DictOrList:
+    """Recurse through `thing` and interpolate any strings with `kwargs`.
+
+    WARNING: Mutates `thing`!
+    """
+    items: Iterable[Any]
     if isinstance(thing, dict):
         items = thing.items()
-    elif isinstance(thing, (list, tuple)):
+    elif isinstance(thing, list):
         items = enumerate(thing)
     elif isinstance(thing, str):
         return thing.format_map(PartialFormatDict(**kwargs))
