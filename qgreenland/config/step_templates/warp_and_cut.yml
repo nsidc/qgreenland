@@ -13,7 +13,6 @@ steps:
   #     Self-intersection at or near point 21540.002777633181
   #     2999.9999813578638\nERROR 1: Cutline polygon is invalid.\n
   #
-  # TODO: Template for the cut hack!
   # TODO: Consider adding a "description" to each step?
   - type: 'command'
     args:
