@@ -104,7 +104,9 @@ class PartialFormatDict(dict):
 
     e.g.:
 
-        '{foo} {bar}, {baz}'.format(foo='Hello', bar='there')
+        '{foo} {bar}, {baz}'.format_map(
+            PartialFormatDict(foo='Hello', bar='there')
+        )
         >>> 'Hello there, {baz}'
     """
 
@@ -124,7 +126,7 @@ def _interpolate_nested_values(
     thing: DictOrList,
     **kwargs,
 ) -> DictOrList:
-    """Recurse through `thing` and interpolate any strings with `kwargs`.
+    """Interpolate all strings found in `thing` with `kwargs`.
 
     WARNING: Mutates `thing`!
     """
@@ -139,6 +141,7 @@ def _interpolate_nested_values(
         return thing
 
     for key, value in items:
+        # 🌶️ Recurse 🌶️!
         thing[key] = _interpolate_nested_values(value, **kwargs)
 
     return thing
@@ -175,27 +178,29 @@ def _deref_steps(
     Search for template-type steps and render them.
     """
     for index, step in enumerate(steps):
-        if step['type'] == 'template':
-            # Dereference this template
-            template = templates[step['template_name']]
+        if step['type'] != 'template':
+            continue
 
-            # Replace kwarg {slugs} with values
-            interpolated_steps = _interpolate_template_kwargs(
-                template=template,
-                **step['kwargs'],
-            )
+        # Dereference this template
+        template = templates[step['template_name']]
 
-            # Recurse into this template and look for more nested templates to
-            # dereference!
-            dereferenced = _deref_steps(
-                steps=interpolated_steps,
-                templates=templates
-            )
+        # Replace kwarg {slugs} with values
+        interpolated_steps = _interpolate_template_kwargs(
+            template=template,
+            **step['kwargs'],
+        )
 
-            # Insert rendered template at the correct location in the step chain
-            before_template = steps[:index]
-            after_template = steps[index + 1:]
-            steps = before_template + dereferenced + after_template
+        # 🌶️ Recurse 🌶️ into this template and look for more nested templates to
+        # dereference!
+        dereferenced = _deref_steps(
+            steps=interpolated_steps,
+            templates=templates
+        )
+
+        # Insert rendered template at the correct location in the step chain
+        before_template = steps[:index]
+        after_template = steps[index + 1:]
+        steps = before_template + dereferenced + after_template
 
     return steps
 
