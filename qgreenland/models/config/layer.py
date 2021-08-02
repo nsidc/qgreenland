@@ -1,11 +1,27 @@
-class ConfigLayer:
+from typing import List
+
+from pydantic import BaseModel
+
+from qgreenland.models.config.step import ConfigLayerStep
+
+
+class ConfigLayerInput(BaseModel):
+    # TODO: De-reference?
+    # Reference
+    dataset: str
+    # Reference
+    asset: str
+
+
+class ConfigLayer(BaseModel):
     id: str
 
     # The layer name in QGIS layers panel:
     title: str
 
     # Descriptive text:
-    description: str
+    # TODO: require? Better default?
+    description: str = ''
 
     hierarchy: List[str]
     # in_package: bool
@@ -15,16 +31,11 @@ class ConfigLayer:
     show: bool
 
     # Which style (.qml) file to use for this layer?
-    style: str
+    # TODO: require? Better default?
+    style: str = ''
     
     input: ConfigLayerInput
 
     steps: List[ConfigLayerStep]
 
 
-class ConfigLayerInput:
-    # TODO: De-reference?
-    # Reference
-    dataset: str
-    # Reference
-    asset: str

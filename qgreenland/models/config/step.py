@@ -1,8 +1,18 @@
-class ConfigLayerStep:
+from pathlib import Path
+from typing import List
+
+from pydantic import BaseModel
+
+from qgreenland._typing import ConfigStepType
+
+
+class ConfigLayerStep(BaseModel):
     type: ConfigStepType
 
-    input_file: Path
-    output_file: Path
+    # input_file: Path
+    # output_file: Path
+    type: str
+    args: List[str]
     
     # If template:
     # template_name: str
