@@ -14,22 +14,16 @@ class ConfigDatasetMetadata(BaseModel):
     citation: ConfigDatasetCitation
 
 
+class ConfigDatasetAsset(BaseModel):
+    id: str
+
+    # Allow extra attrs for http, cmr, etc.
+    # TODO: better way to handle this. Maybe with TypeVar and Generic?
+    class Config:
+        extra = 'allow'
+
+
 class ConfigDataset(BaseModel):
     id: str
-    assets: List[Dict[str, Any]]
+    assets: List[ConfigDatasetAsset]
     metadata: ConfigDatasetMetadata
-
-    # TODO: re-consider this approach...
-    @validator('assets')
-    def deref_assets(cls, value, values, **kwargs):
-        if not value:
-            # TOOD: better err and qgr exception
-            raise RuntimeError('PROBLEM!!!!')
-
-        assets = {}
-        for asset in value:
-            assets[asset['id']] = asset
-
-        return assets
-
-

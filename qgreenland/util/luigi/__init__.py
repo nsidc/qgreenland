@@ -17,14 +17,14 @@ ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
 
 
 def _fetch_task_getter(layer_cfg: Dict[Any, Any]) -> FetchTask:
-    dataset_cfg = CONFIG.datasets[layer_cfg.input.dataset]
-    asset_cfg = dataset_cfg.assets[layer_cfg.input.asset]
+    dataset_cfg = layer_cfg.input.dataset
+    asset_cfg = layer_cfg.input.asset
 
     # TODO: come back to access methods, extract constant?
     for access_method in ('http', 'cmr', 'manual'):
         try:
             # Test that we're looking at the right asset
-            asset_cfg[access_method]
+            asset_cfg.dict()[access_method]
 
             fetch_task = ACCESS_METHODS[access_method](
                 dataset_cfg=dataset_cfg,

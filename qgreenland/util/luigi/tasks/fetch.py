@@ -23,7 +23,7 @@ class FetchTask(luigi.Task):
     def output_name(self):
         return datasource_dirname(
             dataset_id=self.dataset_cfg.id,
-            asset_id=self.asset_cfg['id'],
+            asset_id=self.asset_cfg.id,
         )
 
 

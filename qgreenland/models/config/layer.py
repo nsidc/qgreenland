@@ -3,12 +3,12 @@ from typing import Any, Dict, List
 from pydantic import BaseModel
 
 from qgreenland.models.config.step import ConfigLayerStep
-from qgreenland.models.config.dataset import ConfigDatasetMetadata
+from qgreenland.models.config.dataset import ConfigDatasetAsset, ConfigDataset
 
 
 class ConfigLayerInput(BaseModel):
-    dataset: str
-    asset: str
+    dataset: ConfigDataset
+    asset: ConfigDatasetAsset
 
 
 class ConfigLayer(BaseModel):

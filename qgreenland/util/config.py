@@ -218,13 +218,12 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             dataset_id = layer_config['input']['dataset']
             asset_id = layer_config['input']['asset']
             dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
-            layer_config['dataset'] = dataset_config
+            layer_config['input']['dataset'] = dataset_config
 
-            layer_config['dataset']['asset'] = _find_in_list_by_id(
+            layer_config['input']['asset'] = _find_in_list_by_id(
                 dataset_config['assets'],
                 asset_id
             )
-            del layer_config['dataset']['assets']
 
         # Populate steps with templates where necessary
         layer_config['steps'] = _deref_steps(
@@ -336,7 +335,7 @@ def export_config(
         layer_dir = layer_fp.parent
         layer_size_bytes = directory_size_bytes(layer_dir)
 
-        dataset_cfg = cfg.datasets[layer.input.dataset]
+        dataset_cfg = layer.input.dataset
 
         report.append({
             'Group': layer.hierarchy[0],
