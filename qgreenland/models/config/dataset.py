@@ -1,6 +1,6 @@
 from typing import List
 
-from pydantic import BaseModel, validator
+from pydantic import AnyUrl, BaseModel, validator
 
 
 class ConfigDatasetCitation(BaseModel):
@@ -24,8 +24,7 @@ class ConfigDatasetAsset(BaseModel):
 
 
 class ConfigDatasetHttpAsset(ConfigDatasetAsset):
-    # TODO: use pydantic URL type
-    urls: List[str]
+    urls: List[AnyUrl]
 
 
 class ConfigDataset(BaseModel):
