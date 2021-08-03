@@ -17,8 +17,8 @@ ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
 
 
 def _fetch_task_getter(layer_cfg: Dict[Any, Any]) -> FetchTask:
-    dataset_cfg = layer_cfg['dataset']
-    asset_cfg = dataset_cfg['asset']
+    dataset_cfg = layer_cfg.dataset
+    asset_cfg = dataset_cfg.asset
 
     # TODO: come back to access methods, extract constant?
     for access_method in ('http', 'cmr', 'manual'):
@@ -46,14 +46,14 @@ def generate_layer_tasks():
     """
     tasks = []
 
-    for layer_cfg in CONFIG['layers'].values():
-        layer_id = layer_cfg['id']
+    for layer_cfg in CONFIG.layers.values():
+        layer_id = layer_cfg.id
         tasks: List[luigi.Task] = []
 
         # Create tasks, making each task dependent on the previous task.
         task = _fetch_task_getter(layer_cfg)
 
-        for step_number, _ in enumerate(layer_cfg['steps']):
+        for step_number, _ in enumerate(layer_cfg.steps):
             task = ChainableTask(
                 requires_task=task,
                 layer_id=layer_id,

@@ -21,7 +21,7 @@ def step_runner(
     output_dir: str,
 ):
     """Execute a runner based on the step configuration."""
-    RUNNERS[step['type']](
+    RUNNERS[step.type](
         step,
         input_dir=input_dir,
         output_dir=output_dir,

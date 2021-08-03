@@ -177,12 +177,12 @@ def _get_layer_fp(layer_dir: Path) -> Path:
 
 
 def _layer_dirname_from_cfg(layer_cfg: Any) -> str:
-    return layer_cfg['title']
+    return layer_cfg.title
 
 
 def get_final_layer_dir(layer_cfg) -> Path:
     """Get the layer directory in its final pre-zip location."""
-    layer_group_list = '/'.join(layer_cfg.get('hierarchy', []))
+    layer_group_list = '/'.join(layer_cfg.hierarchy)
     return (
         Path(TaskType.FINAL.value)
         / layer_group_list

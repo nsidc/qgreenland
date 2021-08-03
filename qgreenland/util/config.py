@@ -324,7 +324,7 @@ def export_config(
     calculate their size on disk.
     """
     report = []
-    for layer in cfg['layers'].values():
+    for layer in cfg.layers.values():
         # TODO: Re-implement gdal_remote layers conditional.
         # if layer['dataset']['access_method'] != 'gdal_remote':
         #     layer_dir = Path(get_final_layer_filepath(layer)).parent
@@ -337,15 +337,15 @@ def export_config(
         layer_size_bytes = directory_size_bytes(layer_dir)
 
         report.append({
-            'Group': layer['hierarchy'][0],
-            'Subgroup': ('/'.join(layer['hierarchy'][1:])),
-            'Layer Title': layer['title'],
-            'Layer Description': layer.get('description', ''),
+            'Group': layer.hierarchy[0],
+            'Subgroup': ('/'.join(layer.hierarchy[1:])),
+            'Layer Title': layer.title,
+            'Layer Description': layer.description,
             'Vector or Raster': vector_or_raster(layer_fp),
-            'Data Source Title': layer['dataset']['metadata']['title'],
-            'Data Source Abstract': layer['dataset']['metadata']['abstract'],
-            'Data Source Citation': layer['dataset']['metadata']['citation']['text'],
-            'Data Source Citation URL': layer['dataset']['metadata']['citation']['url'],
+            'Data Source Title': layer.dataset.metadata.title,
+            'Data Source Abstract': layer.dataset.metadata.abstract,
+            'Data Source Citation': layer.dataset.metadata.citation.text,
+            'Data Source Citation URL': layer.dataset.metadata.citation.url,
             'Layer Size': naturalsize(layer_size_bytes),
             'Layer Size Bytes': layer_size_bytes,
         })

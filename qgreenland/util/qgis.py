@@ -34,7 +34,7 @@ def _get_raster_layer(layer_path: Path, layer_cfg: Dict[Any, Any]):
     # TODO: Does qgis have types that can catch passing a Path here?
     return qgc.QgsRasterLayer(
         str(layer_path),
-        layer_cfg['title'],
+        layer_cfg.title,
         'gdal'
     )
 
@@ -90,7 +90,7 @@ def _add_layer_metadata(map_layer, layer_cfg):
     qmd_template = Template(qmd_template_str)
     rendered_qmd = qmd_template.render(
         abstract=abstract,
-        title=layer_cfg['title'],
+        title=layer_cfg.title,
         minx=layer_extent.xMinimum(),
         miny=layer_extent.yMinimum(),
         maxx=layer_extent.xMaximum(),
@@ -130,10 +130,10 @@ def get_map_layer(layer_cfg, project_crs):
 
     _add_layer_metadata(map_layer, layer_cfg)
 
-    if style := layer_cfg.get('style'):
+    if style := layer_cfg.style:
         load_qml_style(map_layer, style)
 
-    if layer_crs := layer_cfg.get('project_crs'):
+    if layer_crs := layer_cfg.project_crs:
         map_layer.setCrs(qgc.QgsCoordinateReferenceSystem(layer_crs))
     else:
         map_layer.setCrs(project_crs)
@@ -202,10 +202,10 @@ def _ensure_group_exists(
 
 def _set_groups_options(project):
     logger.debug('Configuring layer groups...')
-    groups_config = CONFIG['hierarchy_settings']
+    groups_config = CONFIG.hierarchy_settings
 
-    for group_str, options in groups_config.items():
-        group_path = group_str.split('/')
+    for group_config in groups_config:
+        group_path = group_config.path
         group = _get_group(project, group_path)
 
         if group is None:
@@ -219,14 +219,14 @@ def _set_groups_options(project):
 
         _set_group_visibility(
             group,
-            options.get('show', LAYERGROUP_VISIBLE_DEFAULT)
+            group_config.show
         )
         _set_group_expanded(
             group,
-            options.get('expand', LAYERGROUP_EXPANDED_DEFAULT)
+            group_config.expand
         )
 
-        logger.debug(f'{group_path} configured: {options}')
+        logger.debug(f'{group_path} configured: {group_config}')
 
     logger.debug('Done configuring layer groups.')
 
@@ -237,16 +237,16 @@ def _ensure_layer_group(
     project: qgc.QgsProject,
     layer_cfg: Dict[Any, Any],
 ) -> qgc.QgsLayerTreeGroup:
-    group_path: List[str] = layer_cfg.get('hierarchy', '')
+    group_path: List[str] = layer_cfg.hierarchy
     return _ensure_group_exists(project, group_path)
 
 
 def _add_layers(project):
     logger.debug('Adding layers...')
-    layers_cfg = CONFIG['layers']
+    layers_cfg = CONFIG.layers
 
     for layer_cfg in layers_cfg.values():
-        logger.debug(f"Adding {layer_cfg['id']}...")
+        logger.debug(f"Adding {layer_cfg.id}...")
         map_layer = get_map_layer(
             layer_cfg,
             project.crs(),
@@ -262,7 +262,7 @@ def _add_layers(project):
 
         # Make the layer invisible and collapsed by default
         grouped_layer.setItemVisibilityChecked(
-            layer_cfg.get('show', False)
+            layer_cfg.show
         )
 
         # All layers start collapsed. When expanded (the default), they show the
@@ -306,7 +306,7 @@ def make_qgis_project_file(path):
     project = qgc.QgsProject.instance()
     project.write(path)
 
-    project_crs = qgc.QgsCoordinateReferenceSystem(CONFIG['project']['crs'])
+    project_crs = qgc.QgsCoordinateReferenceSystem(CONFIG.project.crs)
     project.setCrs(project_crs)
 
     # Set the map background color to be gray (same color as Quantarctica)
@@ -318,7 +318,7 @@ def make_qgis_project_file(path):
 
     project_rectangle = qgc.QgsReferencedRectangle(
         qgc.QgsRectangle(
-            *CONFIG['project']['boundaries']['data']['bbox']
+            *CONFIG.project.boundaries['data'].bbox
         ),
         project_crs
     )
@@ -381,7 +381,7 @@ def _build_layer_description(layer_cfg):
     """Return a string representing the layer's description."""
     layer_description = ''
 
-    if cfg_description := layer_cfg.get('description'):
+    if cfg_description := layer_cfg.description:
         layer_description += cfg_description
 
     return layer_description
@@ -401,10 +401,10 @@ def _build_dataset_description(layer_cfg):
     """Return a string representing the layer's dataset description."""
     dataset_description = ''
 
-    dataset_metadata = layer_cfg['dataset']['metadata']
-    dataset_description += dataset_metadata['title']
+    dataset_metadata = layer_cfg.dataset.metadata
+    dataset_description += dataset_metadata.title
 
-    if abstract := dataset_metadata.get('abstract'):
+    if abstract := dataset_metadata.abstract:
         dataset_description += '\n\n'
         dataset_description += abstract
 
@@ -415,14 +415,14 @@ def _build_dataset_citation(layer_cfg):
     """Return a string representing the layer's dataset citation."""
     citation = ''
 
-    dataset_metadata = layer_cfg['dataset']['metadata']
-    if citation_cfg := dataset_metadata.get('citation'):
-        if citation_text := citation_cfg.get('text'):
+    dataset_metadata = layer_cfg.dataset.metadata
+    if citation_cfg := dataset_metadata.citation:
+        if citation_text := citation_cfg.text:
             ct = _populate_date_accessed(citation_text, layer_cfg=layer_cfg)
             citation += 'Citation:\n'
             citation += ct + '\n\n'
 
-        if citation_url := citation_cfg.get('url'):
+        if citation_url := citation_cfg.url:
             citation += 'Citation URL:\n'
             citation += citation_url
 

@@ -46,12 +46,12 @@ class ChainableTask(luigi.Task):
     @property
     def layer_cfg(self):
         return copy.deepcopy(
-            CONFIG['layers'][self.layer_id]
+            CONFIG.layers[self.layer_id]
         )
 
     @property
     def step(self):
-        return self.layer_cfg['steps'][self.step_number]
+        return self.layer_cfg.steps[self.step_number]
 
     @property
     def step_identifier(self):
@@ -60,10 +60,10 @@ class ChainableTask(luigi.Task):
         WARNING: Only uniquely identifies a _step_ in the context of a layer;
         does not uniquely ID a step + layer combination.
         """
-        first_part = f"{self.step_number:02}-{self.step['type']}"
+        first_part = f"{self.step_number:02}-{self.step.type}"
         last_part = (
-            f"-{self.step['args'][0]}"
-            if self.step['type'] == 'command'
+            f"-{self.step.args[0]}"
+            if self.step.type == 'command'
             else 'TODO'
         )
         return f'{first_part}{last_part}'
@@ -127,7 +127,7 @@ class FinalizeTask(luigi.Task):
     # TODO: DRY
     @property
     def cfg(self):
-        return CONFIG['layers'][self.layer_id]
+        return CONFIG.layers[self.layer_id]
 
     # TODO: DRY
     def requires(self):

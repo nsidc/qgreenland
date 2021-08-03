@@ -6,8 +6,8 @@ from pydantic import BaseModel, validator
 # TODO: maybe hierarchy config should just be a list of Hierarchy settings?
 class HierarchySettings(BaseModel):
     path: str
-    show: bool
-    expand: bool
+    show: bool = False
+    expand: bool = False
 
     @validator('path')
     def path_is_a_list(cls, value):

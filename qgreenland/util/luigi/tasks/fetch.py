@@ -16,13 +16,13 @@ from qgreenland.util.vector import ogr2ogr
 
 # TODO: call this 'FetchDataset'? 'FetchAsset'?
 class FetchTask(luigi.Task):
-    dataset_cfg = luigi.DictParameter()
-    asset_cfg = luigi.DictParameter()
+    dataset_cfg = luigi.Parameter()
+    asset_cfg = luigi.Parameter()
 
     @property
     def output_name(self):
         return datasource_dirname(
-            dataset_id=self.dataset_cfg['id'],
+            dataset_id=self.dataset_cfg.id,
             asset_id=self.asset_cfg['id'],
         )
 
@@ -65,12 +65,13 @@ class FetchDataFiles(FetchTask):
         )
 
     def run(self):
-        if self.dataset_cfg['access_method'] == 'cmr':
-            raise RuntimeError('Use a FetchCmrGranule task!')
+        # TODO: no longer have access to 'access_method'...
+        # if self.dataset_cfg['access_method'] == 'cmr':
+        #     raise RuntimeError('Use a FetchCmrGranule task!')
 
-        verify = self.source_cfg.get('verify', True)
+        verify = self.asset_cfg.get('verify', True)
         with temporary_path_dir(self.output()) as temp_path:
-            for url in self.source_cfg['urls']:
+            for url in self.asset_cfg['http']['urls']:
                 fetch_and_write_file(url, output_dir=temp_path, verify=verify)
 
 

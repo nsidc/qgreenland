@@ -5,6 +5,7 @@ from pydantic import BaseModel, validator
 
 class ConfigDatasetAsset(BaseModel):
     id: str
+    verify: bool = True
 
 
 class ConfigDatasetHttpAsset(ConfigDatasetAsset):

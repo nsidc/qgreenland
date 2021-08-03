@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 
 from pydantic import BaseModel
 
@@ -11,7 +11,7 @@ from qgreenland.models.config.step_template import ConfigStepTemplate
 
 class Config(BaseModel):
     project: ConfigProject
-    layers: List[ConfigLayer]
+    layers: Dict[str, ConfigLayer]
     datasets: List[ConfigDataset]
     step_templates: List[ConfigStepTemplate]
     hierarchy_settings: List[HierarchySettings]

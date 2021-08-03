@@ -26,7 +26,7 @@ def command_runner(
     """
     # TODO: Some better data structure; this access is confusing.
     command_args = interpolate_args(
-        step['args'],
+        step.args,
         input_dir=input_dir,
         output_dir=output_dir,
         assets_dir=ASSETS_DIR,

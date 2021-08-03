@@ -1,8 +1,9 @@
-from typing import List
+from typing import Any, Dict, List
 
 from pydantic import BaseModel
 
 from qgreenland.models.config.step import ConfigLayerStep
+from qgreenland.models.config.dataset import ConfigDatasetMetadata
 
 
 class ConfigLayerInput(BaseModel):
@@ -13,6 +14,12 @@ class ConfigLayerInput(BaseModel):
     asset: str
 
 
+class ConfigLayerDataset(BaseModel):
+    id: str
+    metadata: ConfigDatasetMetadata
+    asset: Dict[str, Any]
+
+
 class ConfigLayer(BaseModel):
     id: str
 
@@ -20,7 +27,6 @@ class ConfigLayer(BaseModel):
     title: str
 
     # Descriptive text:
-    # TODO: require? Better default?
     description: str = ''
 
     hierarchy: List[str]
@@ -28,14 +34,18 @@ class ConfigLayer(BaseModel):
 
 
     # Is this layer initially "checked" as visible in QGIS?:
-    show: bool
+    show: bool = False
 
     # Which style (.qml) file to use for this layer?
     # TODO: require? Better default?
     style: str = ''
     
     input: ConfigLayerInput
+    # TODO: deref
+    dataset: ConfigLayerDataset
 
     steps: List[ConfigLayerStep]
 
-
+    # TODO: remove.
+    # This was for overriding the output projection of a layer.
+    project_crs: str = ''
