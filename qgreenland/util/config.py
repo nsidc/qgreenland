@@ -336,16 +336,18 @@ def export_config(
         layer_dir = layer_fp.parent
         layer_size_bytes = directory_size_bytes(layer_dir)
 
+        dataset_cfg = cfg.datasets[layer.input.dataset]
+
         report.append({
             'Group': layer.hierarchy[0],
             'Subgroup': ('/'.join(layer.hierarchy[1:])),
             'Layer Title': layer.title,
             'Layer Description': layer.description,
             'Vector or Raster': vector_or_raster(layer_fp),
-            'Data Source Title': layer.dataset.metadata.title,
-            'Data Source Abstract': layer.dataset.metadata.abstract,
-            'Data Source Citation': layer.dataset.metadata.citation.text,
-            'Data Source Citation URL': layer.dataset.metadata.citation.url,
+            'Data Source Title': dataset_cfg.metadata.title,
+            'Data Source Abstract': dataset_cfg.metadata.abstract,
+            'Data Source Citation': dataset_cfg.metadata.citation.text,
+            'Data Source Citation URL': dataset_cfg.metadata.citation.url,
             'Layer Size': naturalsize(layer_size_bytes),
             'Layer Size Bytes': layer_size_bytes,
         })

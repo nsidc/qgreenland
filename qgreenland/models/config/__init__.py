@@ -12,6 +12,6 @@ from qgreenland.models.config.step_template import ConfigStepTemplate
 class Config(BaseModel):
     project: ConfigProject
     layers: Dict[str, ConfigLayer]
-    datasets: List[ConfigDataset]
+    datasets: Dict[str, ConfigDataset]
     step_templates: List[ConfigStepTemplate]
     hierarchy_settings: List[HierarchySettings]

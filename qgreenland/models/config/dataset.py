@@ -3,15 +3,6 @@ from typing import Any, Dict, List
 from pydantic import BaseModel, validator
 
 
-class ConfigDatasetAsset(BaseModel):
-    id: str
-    verify: bool = True
-
-
-class ConfigDatasetHttpAsset(ConfigDatasetAsset):
-    urls: List[str]
-
-
 class ConfigDatasetCitation(BaseModel):
     text: str
     url: str
@@ -35,13 +26,9 @@ class ConfigDataset(BaseModel):
             # TOOD: better err and qgr exception
             raise RuntimeError('PROBLEM!!!!')
 
-        assets = []
+        assets = {}
         for asset in value:
-            if 'http' in asset.keys():
-                assets.append(ConfigDatasetHttpAsset(id=asset['id'], **asset['http']))
-            else:
-                # TODO: better err
-                raise RuntimeError('Unsupported asset configuration.')
+            assets[asset['id']] = asset
 
         return assets
 

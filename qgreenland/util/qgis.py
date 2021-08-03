@@ -401,7 +401,7 @@ def _build_dataset_description(layer_cfg):
     """Return a string representing the layer's dataset description."""
     dataset_description = ''
 
-    dataset_metadata = layer_cfg.dataset.metadata
+    dataset_metadata = CONFIG.datasets[layer_cfg.input.dataset].metadata
     dataset_description += dataset_metadata.title
 
     if abstract := dataset_metadata.abstract:
@@ -415,7 +415,7 @@ def _build_dataset_citation(layer_cfg):
     """Return a string representing the layer's dataset citation."""
     citation = ''
 
-    dataset_metadata = layer_cfg.dataset.metadata
+    dataset_metadata = CONFIG.datasets[layer_cfg.input.dataset].metadata
     if citation_cfg := dataset_metadata.citation:
         if citation_text := citation_cfg.text:
             ct = _populate_date_accessed(citation_text, layer_cfg=layer_cfg)
