@@ -16,15 +16,6 @@ class ConfigBoundariesInfo(BaseModel):
 # boundaries ('data' and 'background'. Alternatively, in this case, perhaps it's
 # best just to define `ConfiProjectBoundaries` as Dict[str,
 # ConfigBoundariesInfo]. Processing would be fetching these data by key anyway?
-def create_project_config_model(project_config_dict):
-
-    ConfigProjectBoundaries = create_model(
-        'ConfigProjectBoundaries',
-        **{k: (ConfigBoundariesInfo, ...) for k in project_config_dict['boundaries'].keys()}
-    )
-
-    class ConfigProject(BaseModel):
-        crs: str
-        boundaries: ConfigProjectBoundaries
-
-    return ConfigProject(**project_config_dict)
+class ConfigProject(BaseModel):
+    crs: str
+    boundaries: Dict[str, ConfigBoundariesInfo]

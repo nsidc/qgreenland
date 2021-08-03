@@ -1,13 +1,17 @@
+from typing import List
+
+from pydantic import BaseModel
+
 from qgreenland.models.config.dataset import ConfigDataset
-from qgreenland.models.config.hierarchy import ConfigHierarchy
+from qgreenland.models.config.hierarchy import HierarchySettings
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.project import ConfigProject
 from qgreenland.models.config.step_template import ConfigStepTemplate
 
 
-class Config:
+class Config(BaseModel):
     project: ConfigProject
     layers: List[ConfigLayer]
     datasets: List[ConfigDataset]
     step_templates: List[ConfigStepTemplate]
-    hierarchy_settings: ConfigHierarchy
+    hierarchy_settings: List[HierarchySettings]
