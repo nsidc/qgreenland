@@ -23,6 +23,7 @@ from humanize import naturalsize
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import LOCALDATA_DIR
+from qgreenland.models.config import Config
 from qgreenland.util.misc import (
     directory_size_bytes,
     get_final_layer_filepath,
@@ -314,7 +315,7 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
 
 
 def export_config(
-    cfg: Dict[Any, Any],
+    cfg: Config,
     output_path: Path = DEFAULT_LAYER_MANIFEST_PATH,
 ) -> None:
     """Write a report to disk containing a summary of layers in config.

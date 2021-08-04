@@ -11,7 +11,6 @@ class ConfigLayerStep(BaseModel):
 
     # input_file: Path
     # output_file: Path
-    type: str
     args: List[str]
     
     # If template:

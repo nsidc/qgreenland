@@ -1,7 +1,7 @@
 from typing import List
 
-from qgreenland._typing import Step
 from qgreenland.constants import ASSETS_DIR
+from qgreenland.models.config.step import ConfigLayerStep
 from qgreenland.util.misc import run_ogr_command
 
 
@@ -15,7 +15,7 @@ def interpolate_args(
 
 
 def command_runner(
-    step: Step,
+    step: ConfigLayerStep,
     *,
     input_dir: str,
     output_dir: str,

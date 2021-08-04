@@ -7,7 +7,3 @@ from typing import Any, Dict, Literal
 
 
 ConfigStepType = Literal['command', 'python', 'template']
-StepType = Literal['command', 'python']
-# TODO: A better interface for steps and everything else. Pydantic models?
-# Dataclasses?
-Step = Dict[str, Any]

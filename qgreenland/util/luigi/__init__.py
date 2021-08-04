@@ -4,6 +4,7 @@ import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.exceptions import QgrRuntimeError
+from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.luigi.tasks.fetch import FetchCmrGranule, FetchDataFiles, FetchTask
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
@@ -16,7 +17,7 @@ ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
 }
 
 
-def _fetch_task_getter(layer_cfg: Dict[Any, Any]) -> FetchTask:
+def _fetch_task_getter(layer_cfg: ConfigLayer) -> FetchTask:
     dataset_cfg = layer_cfg.input.dataset
     asset_cfg = layer_cfg.input.asset
 

@@ -14,6 +14,7 @@ from osgeo import gdal
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, INPUT_DIR
+from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.misc import (
     datasource_dirname,
     get_final_layer_filepath,
@@ -30,7 +31,7 @@ LAYERGROUP_VISIBLE_DEFAULT = False
 
 
 # TODO: _create_raster_layer? Pass in "title" instead of "layer_cfg"?
-def _get_raster_layer(layer_path: Path, layer_cfg: Dict[Any, Any]):
+def _get_raster_layer(layer_path: Path, layer_cfg: ConfigLayer):
     # TODO: Does qgis have types that can catch passing a Path here?
     return qgc.QgsRasterLayer(
         str(layer_path),
@@ -39,7 +40,7 @@ def _get_raster_layer(layer_path: Path, layer_cfg: Dict[Any, Any]):
     )
 
 
-def create_raster_map_layer(layer_path: Path, layer_cfg: Dict[Any, Any]):
+def create_raster_map_layer(layer_path: Path, layer_cfg: ConfigLayer):
     # TODO: Re-implement
     # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
     #     return _get_raster_layer(layer_path, layer_cfg)
@@ -235,7 +236,7 @@ def _set_groups_options(project):
 def _ensure_layer_group(
     *,
     project: qgc.QgsProject,
-    layer_cfg: Dict[Any, Any],
+    layer_cfg: ConfigLayer,
 ) -> qgc.QgsLayerTreeGroup:
     group_path: List[str] = layer_cfg.hierarchy
     return _ensure_group_exists(project, group_path)

@@ -2,20 +2,21 @@
 
 from typing import Any, Dict
 
-from qgreenland._typing import Step, StepType
+from qgreenland._typing import ConfigStepType
 from qgreenland.runners.command import command_runner
+from qgreenland.models.config.step import ConfigLayerStep
 
 
 # Each runner corresponds to a type of "step" available in the layer
 # configuration file.
-RUNNERS: Dict[StepType, Any] = {
+RUNNERS: Dict[ConfigStepType, Any] = {
     'command': command_runner,
     'python': 'TODO',
 }
 
 
 def step_runner(
-    step: Step,
+    step: ConfigLayerStep,
     *,
     input_dir: str,
     output_dir: str,

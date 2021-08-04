@@ -11,6 +11,7 @@ from typing import Any, Dict, Literal
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType
+from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 logger = logging.getLogger('luigi-interface')
@@ -190,7 +191,7 @@ def get_final_layer_dir(layer_cfg) -> Path:
     )
 
 
-def get_final_layer_filepath(layer_cfg: Dict[Any, Any]) -> Path:
+def get_final_layer_filepath(layer_cfg: ConfigLayer) -> Path:
     # TODO: Re-implement gdal_remote layers
     # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
     #     if (urls_count := len(layer_cfg['source']['urls'])) != 1:
