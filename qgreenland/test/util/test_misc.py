@@ -4,20 +4,15 @@ import pytest
 
 from qgreenland.constants import TaskType
 from qgreenland.util import misc
+from qgreenland.test.fixtures import raster_layer_cfg as mock_layer_cfg
 
 
-def test_final_layer_dir():
-    mock_layer_cfg = {
-        'id': 'coastlines',
-        'title': 'Global coastlines',
-        'hierarchy': ['group', 'subgroup'],
-    }
-
+def test_final_layer_dir(mock_layer_cfg):
     expected = (
         Path(TaskType.FINAL.value)
         / 'group'
         / 'subgroup'
-        / 'Global coastlines'
+        / 'Example Raster'
     )
 
     actual = misc.get_final_layer_dir(mock_layer_cfg)

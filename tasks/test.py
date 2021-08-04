@@ -61,11 +61,11 @@ def validate(ctx, verbose=False):
 
     if verbose:
         print('Layers:')
-        pprint(CONFIG['layers'])
-        print('Layer Groups:')
-        pprint(CONFIG['layer_groups'])
+        pprint(CONFIG.layers)
+        print('Hierarchy Settings:')
+        pprint(CONFIG.hierarchy_settings)
         print('Datasets:')
-        pprint(CONFIG['datasets'])
+        pprint(CONFIG.datasets)
 
     print('🎉🦆 Configuration validation passed.')
 
