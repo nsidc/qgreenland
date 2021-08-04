@@ -4,11 +4,11 @@ import os
 import qgis.core as qgc
 
 from qgreenland.constants import PACKAGE_DIR
+from qgreenland.test.fixtures import raster_layer_cfg as mock_layer_cfg  # noqa: F401
 from qgreenland.util import qgis
-from qgreenland.test.fixtures import raster_layer_cfg as mock_layer_cfg
 
 
-def test_create_raster_map_layer(mock_layer_cfg):
+def test_create_raster_map_layer(mock_layer_cfg):  # noqa: F811
     mock_raster_path = os.path.join(
         PACKAGE_DIR,
         'test',
@@ -33,7 +33,7 @@ def test_create_raster_map_layer(mock_layer_cfg):
     assert result.name() == mock_layer_cfg.title
 
 
-def test__add_layer_metadata(mock_layer_cfg):
+def test__add_layer_metadata(mock_layer_cfg):  # noqa: F811
     mock_raster_path = os.path.join(
         PACKAGE_DIR,
         'test',
@@ -62,7 +62,7 @@ def test__add_layer_metadata(mock_layer_cfg):
     assert expected_extent == meta_extent.bounds.toRectangle()
 
 
-def test__build_dataset_description(mock_layer_cfg):
+def test__build_dataset_description(mock_layer_cfg):  # noqa: F811
     actual = qgis._build_dataset_description(mock_layer_cfg)
     expected = """Example Dataset
 
@@ -71,7 +71,7 @@ Example abstract"""
     assert actual == expected
 
 
-def __build_dataset_citation(mock_layer_cfg):
+def __build_dataset_citation(mock_layer_cfg):  # noqa: F811
     actual = qgis._build_dataset_citation(mock_layer_cfg)
     expected = """Citation:
 NSIDC 2020
@@ -82,7 +82,7 @@ https://nsidc.org"""
     assert actual == expected
 
 
-def test__build_layer_abstract(mock_layer_cfg):
+def test__build_layer_abstract(mock_layer_cfg):  # noqa: F811
     actual = qgis.build_layer_abstract(mock_layer_cfg)
     expected = """Example Dataset
 
@@ -97,7 +97,7 @@ https://nsidc.org"""
     assert actual == expected
 
 
-def test_build_abstract_with_description(mock_layer_cfg):
+def test_build_abstract_with_description(mock_layer_cfg):  # noqa: F811
     mock_cfg = copy.deepcopy(mock_layer_cfg)
     mock_cfg.description = 'Example layer description'
     actual = qgis.build_layer_abstract(mock_cfg)

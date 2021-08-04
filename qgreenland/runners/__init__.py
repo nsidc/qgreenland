@@ -3,8 +3,8 @@
 from typing import Any, Dict
 
 from qgreenland._typing import ConfigStepType
-from qgreenland.runners.command import command_runner
 from qgreenland.models.config.step import ConfigLayerStep
+from qgreenland.runners.command import command_runner
 
 
 # Each runner corresponds to a type of "step" available in the layer

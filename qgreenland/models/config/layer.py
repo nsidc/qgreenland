@@ -1,9 +1,9 @@
-from typing import Any, Dict, List
+from typing import List
 
 from pydantic import BaseModel
 
+from qgreenland.models.config.dataset import ConfigDataset, ConfigDatasetAsset
 from qgreenland.models.config.step import ConfigLayerStep
-from qgreenland.models.config.dataset import ConfigDatasetAsset, ConfigDataset
 
 
 class ConfigLayerInput(BaseModel):
@@ -29,7 +29,7 @@ class ConfigLayer(BaseModel):
     # Which style (.qml) file to use for this layer?
     # TODO: require? Better default?
     style: str = ''
-    
+
     input: ConfigLayerInput
 
     steps: List[ConfigLayerStep]

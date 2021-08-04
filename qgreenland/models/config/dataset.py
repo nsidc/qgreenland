@@ -33,7 +33,7 @@ class ConfigDataset(BaseModel):
     metadata: ConfigDatasetMetadata
 
     @validator('assets')
-    def validate_assets(cls, value, values, **kwargs):
+    def validate_assets(cls, value):  # noqa:N805
         # `value` is a list of assets.
         if not value:
             # TODO: better.

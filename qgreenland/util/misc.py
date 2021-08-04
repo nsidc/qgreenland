@@ -7,7 +7,7 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
-from typing import Any, Dict, Literal
+from typing import Any, Literal
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Type
+from typing import Dict, List, Type
 
 import luigi
 

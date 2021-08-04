@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Tuple
 
-from pydantic import create_model, BaseModel
+from pydantic import BaseModel
 
 
 class ConfigBoundariesInfo(BaseModel):
@@ -8,7 +8,6 @@ class ConfigBoundariesInfo(BaseModel):
     # TODO: create class for features? (keys: type, id, propperties, geometry
     features: List[Dict[Any, Any]]
     bbox: Tuple[float, float, float, float]
-
 
 
 # TODO: re-consider this...proof of concept for dynamic model generation.

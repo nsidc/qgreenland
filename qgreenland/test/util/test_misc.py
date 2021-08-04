@@ -3,11 +3,11 @@ from pathlib import Path
 import pytest
 
 from qgreenland.constants import TaskType
+from qgreenland.test.fixtures import raster_layer_cfg as mock_layer_cfg  # noqa: F401
 from qgreenland.util import misc
-from qgreenland.test.fixtures import raster_layer_cfg as mock_layer_cfg
 
 
-def test_final_layer_dir(mock_layer_cfg):
+def test_final_layer_dir(mock_layer_cfg):  # noqa: F811
     expected = (
         Path(TaskType.FINAL.value)
         / 'group'
@@ -23,7 +23,7 @@ def test_final_layer_dir(mock_layer_cfg):
 # TODO: Remove xfail once gdal_remote implemented
 @pytest.mark.xfail(reason='Remote layers temporarily not imlemented')
 def test_layer_path_remote():
-    mock_layer_cfg = {
+    layer_cfg = {
         'id': 'coastlines',
         'group_path': 'group/subgroup',
         'file_type': '.shp',
@@ -37,7 +37,7 @@ def test_layer_path_remote():
 
     expected = '/vsicurl/http://test.remote.datasource.com'
 
-    actual = misc.get_layer_path(mock_layer_cfg)
+    actual = misc.get_layer_path(layer_cfg)
 
     assert expected == actual
 
@@ -46,7 +46,7 @@ def test_layer_path_remote():
 @pytest.mark.xfail(reason='Remote layers temporarily not imlemented')
 def test_layer_path_remote_multiple_urls():
     """Multiple URLS are not supported for the `gdal_remote` access method."""
-    mock_layer_cfg = {
+    layer_cfg = {
         'id': 'coastlines',
         'group_path': 'group/subgroup',
         'file_type': '.shp',
@@ -62,4 +62,4 @@ def test_layer_path_remote_multiple_urls():
     }
 
     with pytest.raises(RuntimeError):
-        misc.get_layer_path(mock_layer_cfg)
+        misc.get_layer_path(layer_cfg)

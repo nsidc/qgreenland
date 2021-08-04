@@ -4,7 +4,7 @@ import os
 import subprocess
 import tempfile
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc
@@ -247,7 +247,7 @@ def _add_layers(project):
     layers_cfg = CONFIG.layers
 
     for layer_cfg in layers_cfg.values():
-        logger.debug(f"Adding {layer_cfg.id}...")
+        logger.debug(f'Adding {layer_cfg.id}...')
         map_layer = get_map_layer(
             layer_cfg,
             project.crs(),

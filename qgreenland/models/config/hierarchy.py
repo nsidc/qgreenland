@@ -1,5 +1,3 @@
-from typing import Dict
-
 from pydantic import BaseModel, validator
 
 
@@ -10,7 +8,7 @@ class HierarchySettings(BaseModel):
     expand: bool = False
 
     @validator('path')
-    def path_is_a_list(cls, value):
+    def path_is_a_list(cls, value):  # noqa: N805
         return value.split('/')
 
 

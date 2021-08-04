@@ -60,9 +60,9 @@ class ChainableTask(luigi.Task):
         WARNING: Only uniquely identifies a _step_ in the context of a layer;
         does not uniquely ID a step + layer combination.
         """
-        first_part = f"{self.step_number:02}-{self.step.type}"
+        first_part = f'{self.step_number:02}-{self.step.type}'
         last_part = (
-            f"-{self.step.args[0]}"
+            f'-{self.step.args[0]}'
             if self.step.type == 'command'
             else 'TODO'
         )

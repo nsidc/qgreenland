@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import List
 
 from pydantic import BaseModel
@@ -12,11 +11,10 @@ class ConfigLayerStep(BaseModel):
     # input_file: Path
     # output_file: Path
     args: List[str]
-    
+
     # If template:
     # template_name: str
     # kwargs: Dict[str, Any]
-
 
     # If command:
     # args: List[str, int]

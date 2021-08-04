@@ -25,7 +25,7 @@ def lint(ctx):
     )
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' vulture --min-confidence 100 {PACKAGE_DIR} {SCRIPTS_DIR}',
+        f' vulture --min-confidence 100 {PACKAGE_DIR} {SCRIPTS_DIR} vulture-whitelist.py',
         pty=True,
     )
     print_and_run(
