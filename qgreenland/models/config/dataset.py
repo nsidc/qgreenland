@@ -1,6 +1,6 @@
 from typing import Any, List
 
-from pydantic import AnyUrl, BaseModel, validator
+from pydantic import AnyUrl, BaseModel, Field, validator
 
 
 class ConfigDatasetCitation(BaseModel):
@@ -15,7 +15,7 @@ class ConfigDatasetMetadata(BaseModel):
 
 
 class ConfigDatasetAsset(BaseModel):
-    id: str
+    id: str = Field(..., min_length=1)
 
     # Allow extra attrs for http, cmr, etc.
     # TODO: better way to handle this. Maybe with TypeVar and Generic?
@@ -28,17 +28,11 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
 
 
 class ConfigDataset(BaseModel):
-    id: str
-    assets: List[ConfigDatasetAsset]
+    id: str = Field(..., min_length=1)
+    assets: List[ConfigDatasetAsset] = Field(..., min_items=1)
     metadata: ConfigDatasetMetadata
 
     # TODO: Better type than List[Any]?
-    @classmethod
-    @validator('assets')
-    def check_assets_not_empty(cls, value: List[Any]) -> None:
-        if not value:
-            raise RuntimeError('Expected a list of assets.')
-
     @classmethod
     @validator('assets')
     def handle_asset_subtypes(cls, value: List[Any]) -> List[Any]:
