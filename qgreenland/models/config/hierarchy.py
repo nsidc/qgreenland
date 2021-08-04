@@ -7,8 +7,9 @@ class HierarchySettings(BaseModel):
     show: bool = False
     expand: bool = False
 
+    @classmethod
     @validator('path')
-    def path_is_a_list(cls, value):  # noqa: N805
+    def path_is_a_list(cls, value):
         return value.split('/')
 
 

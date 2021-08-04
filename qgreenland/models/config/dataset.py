@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, List
 
 from pydantic import AnyUrl, BaseModel, validator
 
@@ -32,13 +32,16 @@ class ConfigDataset(BaseModel):
     assets: List[ConfigDatasetAsset]
     metadata: ConfigDatasetMetadata
 
+    # TODO: Better type than List[Any]?
+    @classmethod
     @validator('assets')
-    def validate_assets(cls, value):  # noqa:N805
-        # `value` is a list of assets.
+    def check_assets_not_empty(cls, value: List[Any]) -> None:
         if not value:
-            # TODO: better.
-            raise RuntimeError('Very problem.')
+            raise RuntimeError('Expected a list of assets.')
 
+    @classmethod
+    @validator('assets')
+    def handle_asset_subtypes(cls, value: List[Any]) -> List[Any]:
         assets = []
         for asset in value:
             if 'http' in asset.dict():
