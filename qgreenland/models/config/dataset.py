@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Generic, List, Literal, TypeVar
+from typing import Dict, Generic, List, Literal, TypeVar
 
 from pydantic import AnyUrl, BaseModel, Field
 
@@ -41,5 +41,5 @@ AnyAsset = TypeVar('AnyAsset', ConfigDatasetHttpAsset, ConfigDatasetCmrAsset)
 
 class ConfigDataset(BaseModel, Generic[AnyAsset]):
     id: str = Field(..., min_length=1)
-    assets: List[AnyAsset] = Field(..., min_items=1)
+    assets: Dict[str, AnyAsset]
     metadata: ConfigDatasetMetadata

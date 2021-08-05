@@ -219,12 +219,15 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             dataset_id = layer_config['input']['dataset']
             asset_id = layer_config['input']['asset']
             dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
+            dataset_config['assets'] = {x['id']: copy.deepcopy(x) for x in dataset_config['assets']}
             layer_config['input']['dataset'] = dataset_config
 
-            layer_config['input']['asset'] = _find_in_list_by_id(
-                dataset_config['assets'],
-                asset_id
-            )
+            layer_config['input']['asset'] = {
+                asset_id: _find_in_list_by_id(
+                    dataset_config['assets'],
+                    asset_id
+                )
+            }
 
         # Populate steps with templates where necessary
         layer_config['steps'] = _deref_steps(
@@ -245,6 +248,8 @@ def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
     # value. So, if we try to e.g., `pop` an element from a list in the config,
     # it will affect all other pieces of config that reference that data.
     cfg['layers'] = {x['id']: copy.deepcopy(x) for x in cfg['layers']}
+    for dataset_cfg in cfg['datasets']:
+        dataset_cfg['assets'] = {x['id']: copy.deepcopy(x) for x in dataset_cfg['assets']}
 
     return cfg
 

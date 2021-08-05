@@ -16,8 +16,8 @@ from qgreenland.util.vector import ogr2ogr
 
 # TODO: call this 'FetchDataset'? 'FetchAsset'?
 class FetchTask(luigi.Task):
-    dataset_cfg = luigi.Parameter()
-    asset_cfg = luigi.Parameter()
+    dataset_id = luigi.Parameter()
+    asset_id = luigi.Parameter()
 
     @property
     def output_name(self):
@@ -25,6 +25,14 @@ class FetchTask(luigi.Task):
             dataset_id=self.dataset_cfg.id,
             asset_id=self.asset_cfg.id,
         )
+
+    @property
+    def dataset_cfg(self):
+        return CONFIG.datasets[self.dataset_id]
+
+    @property
+    def asset_cfg(self):
+        return self.dataset_cfg.assets[self.asset_id]
 
 
 class FetchCmrGranule(FetchTask):
