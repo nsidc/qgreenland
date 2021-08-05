@@ -230,8 +230,9 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
 
 
 def _normalize_datasets(cfg: Dict[Any, Any]) -> None:
-    """Normalize datasets by converting the list of assets into a dict keyed by
-    asset id.
+    """Normalize dataset assets to a dict.
+
+    Convert the list of assets into a dict keyed by asset id.
     """
     for dataset_cfg in cfg['datasets']:
         dataset_cfg['assets'] = {x['id']: copy.deepcopy(x) for x in dataset_cfg['assets']}
