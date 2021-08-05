@@ -179,7 +179,7 @@ def _deref_steps(
     Search for template-type steps and render them.
     """
     rendered_steps = []
-    for index, step in enumerate(steps):
+    for step in steps:
         if step['type'] != 'template':
             rendered_steps.append(step)
             continue
