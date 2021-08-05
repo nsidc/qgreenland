@@ -1,3 +1,4 @@
+from abc import ABC
 from typing import Any, List
 
 from pydantic import AnyUrl, BaseModel, Field, validator
@@ -14,17 +15,20 @@ class ConfigDatasetMetadata(BaseModel):
     citation: ConfigDatasetCitation
 
 
-class ConfigDatasetAsset(BaseModel):
+class ConfigDatasetAsset(BaseModel, ABC):
     id: str = Field(..., min_length=1)
-
-    # Allow extra attrs for http, cmr, etc.
-    # TODO: better way to handle this. Maybe with TypeVar and Generic?
-    class Config:
-        extra = 'allow'
 
 
 class ConfigDatasetHttpAsset(ConfigDatasetAsset):
     urls: List[AnyUrl]
+
+
+class ConfigDatasetCmrAsset(ConfigDatasetAsset):
+    granule_ur: str = Field(..., min_length=1)
+    collection_concept_id: str = Field(..., min_length=1)
+
+
+# ... ogr_remote_vector, manual assets
 
 
 class ConfigDataset(BaseModel):
@@ -36,12 +40,18 @@ class ConfigDataset(BaseModel):
     @classmethod
     @validator('assets')
     def handle_asset_subtypes(cls, value: List[Any]) -> List[Any]:
+        """."""
         assets = []
+        mapping = {
+            'http': ConfigDatasetHttpAsset,
+        }
         for asset in value:
-            if 'http' in asset.dict():
-                assets.append(ConfigDatasetHttpAsset(id=asset.id, **asset.http))
+            if asset.type in mapping.keys():
+                assets.append(mapping[asset.type](**asset))
             else:
-                # TODO
-                raise RuntimeError('Only http assets are currently supported!!!')
+                raise RuntimeError(
+                    f'Only {mapping.keys()} assets are currently supported.'
+                )
 
+        # breakpoint()
         return assets
