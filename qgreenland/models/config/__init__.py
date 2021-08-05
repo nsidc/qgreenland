@@ -9,6 +9,8 @@ from qgreenland.models.config.project import ConfigProject
 
 
 class Config(BaseModel):
+    """Validated and de-referenced configuration."""
+
     project: ConfigProject
     layers: Dict[str, ConfigLayer]
     datasets: Dict[str, ConfigDataset]
