@@ -14,7 +14,7 @@ import luigi
 from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.runners import step_runner
-from qgreenland.util.misc import get_final_layer_dir, temporary_path_dir
+from qgreenland.util.misc import get_layer_fp, get_final_layer_dir, temporary_path_dir
 
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
@@ -138,10 +138,18 @@ class FinalizeTask(luigi.Task):
         return luigi.LocalTarget(get_final_layer_dir(self.cfg))
 
     def run(self):
-        if os.path.isdir(self.input().path):
-            source_path = self.input().path
-        else:
-            source_path = os.path.dirname(self.input().path)
+        if not os.path.isdir(self.input().path):
+            # TODO: better err
+            raise RuntimeError(
+                f'Expected final output to be a directory, not {self.input().path}!'
+            )
 
+        source_dir = Path(self.input().path)
+
+        # find compatible layer in dir (gpkg | tif)
+        input_fp = get_layer_fp(source_dir)
+
+        # TODO: have `temporary_path_dir` return a `Path`.
         with temporary_path_dir(self.output()) as temp_path:
-            shutil.copytree(source_path, temp_path, dirs_exist_ok=True)
+            output_tmp_fp = Path(temp_path) / f'{self.cfg.id}{input_fp.suffix}'
+            shutil.copy2(input_fp, output_tmp_fp)

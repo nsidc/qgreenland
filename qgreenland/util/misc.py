@@ -162,7 +162,7 @@ def temporary_path_dir(target):
     return
 
 
-def _get_layer_fp(layer_dir: Path) -> Path:
+def get_layer_fp(layer_dir: Path) -> Path:
     """Look for one and only one standard file type 'gpkg' or 'tif'."""
     # TODO: Extract standard file types into some structure
     rasters = list(layer_dir.glob('*.tif'))
@@ -202,7 +202,7 @@ def get_final_layer_filepath(layer_cfg: ConfigLayer) -> Path:
     #     return f"{layer_cfg['source']['urls'][0]}"
 
     d = get_final_layer_dir(layer_cfg)
-    layer_fp = _get_layer_fp(d)
+    layer_fp = get_layer_fp(d)
 
     if not layer_fp.is_file():
         raise exc.QgrRuntimeError(f"Layer located at '{layer_fp}' does not exist.")
