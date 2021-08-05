@@ -22,20 +22,15 @@ def _fetch_task_getter(layer_cfg: ConfigLayer) -> FetchTask:
     asset_cfg = layer_cfg.input.asset
 
     # TODO: come back to access methods, extract constant?
-    for access_method in ('http', 'cmr', 'manual'):
-        try:
-            # Test that we're looking at the right asset
-            asset_cfg.dict()[access_method]
+    if asset_cfg.type not in ('http', 'cmr', 'manual'):
+        raise QgrRuntimeError('Found asset config without expected access method.')
 
-            fetch_task = ACCESS_METHODS[access_method](
-                dataset_cfg=dataset_cfg,
-                asset_cfg=asset_cfg,
-            )
-            return fetch_task
-        except KeyError:
-            pass
+    fetch_task = ACCESS_METHODS[asset_cfg.type](
+        dataset_id=dataset_cfg.id,
+        asset_id=asset_cfg.id,
+    )
 
-    raise QgrRuntimeError('Found asset config without expected access method.')
+    return fetch_task
 
 
 # Generate layer pipelines?

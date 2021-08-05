@@ -3,6 +3,7 @@ import shutil
 
 import luigi
 
+from qgreenland.config import CONFIG
 from qgreenland.constants import LOCALDATA_DIR, PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
@@ -73,14 +74,16 @@ class FetchDataFiles(FetchTask):
         )
 
     def run(self):
-        # TODO: no longer have access to 'access_method'...
-        # if self.dataset_cfg['access_method'] == 'cmr':
-        #     raise RuntimeError('Use a FetchCmrGranule task!')
+        if self.asset_cfg.type == 'cmr':
+            raise RuntimeError('Use a FetchCmrGranule task!')
 
-        verify = self.asset_cfg.get('verify', True)
         with temporary_path_dir(self.output()) as temp_path:
             for url in self.asset_cfg['http']['urls']:
-                fetch_and_write_file(url, output_dir=temp_path, verify=verify)
+                fetch_and_write_file(
+                    url,
+                    output_dir=temp_path,
+                    verify=self.asset_cfg.verify
+                )
 
 
 class FetchLocalDataFiles(FetchTask):
