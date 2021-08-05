@@ -178,8 +178,10 @@ def _deref_steps(
 
     Search for template-type steps and render them.
     """
+    rendered_steps = []
     for index, step in enumerate(steps):
         if step['type'] != 'template':
+            rendered_steps.append(step)
             continue
 
         # Dereference this template
@@ -190,7 +192,6 @@ def _deref_steps(
             template=template,
             **step['kwargs'],
         )
-
         # 🌶️ Recurse 🌶️ into this template and look for more nested templates to
         # dereference!
         dereferenced = _deref_steps(
@@ -198,12 +199,9 @@ def _deref_steps(
             templates=templates
         )
 
-        # Insert rendered template at the correct location in the step chain
-        before_template = steps[:index]
-        after_template = steps[index + 1:]
-        steps = before_template + dereferenced + after_template
+        rendered_steps.extend(dereferenced)
 
-    return steps
+    return rendered_steps
 
 
 def _deref_layers(cfg: Dict[str, Any]) -> None:
