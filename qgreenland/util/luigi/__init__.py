@@ -40,11 +40,10 @@ def generate_layer_tasks():
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
-    tasks = []
+    tasks: List[luigi.Task] = []
 
     for layer_cfg in CONFIG.layers.values():
         layer_id = layer_cfg.id
-        tasks: List[luigi.Task] = []
 
         # Create tasks, making each task dependent on the previous task.
         task = _fetch_task_getter(layer_cfg)
@@ -62,6 +61,7 @@ def generate_layer_tasks():
             requires_task=task,
             layer_id=layer_id,
         )
+
         tasks.append(task)
 
         # TODO: figure out what do to about this!!! (add one of these layers as a test)

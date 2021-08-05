@@ -1,0 +1,10 @@
+kwargs:
+  - 'variable'
+  - 'input_file'
+  - 'output_file'
+steps:
+  - type: 'command'
+    args:
+      - 'gdal_translate'
+      - 'NETCDF:{input_file}:{variable}'
+      - '{output_file}'

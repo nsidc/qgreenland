@@ -41,17 +41,14 @@ class FetchCmrGranule(FetchTask):
 
     def output(self):
         path = [TaskType.FETCH.value, self.output_name]
-        if 'subdir_path' in self.source_cfg:
-            path.append(self.source_cfg['subdir_path'])
-
         return luigi.LocalTarget(os.path.join(*path))
 
     def run(self):
         granule = get_cmr_granule(
-            granule_ur=self.source_cfg['granule_ur'],
-            collection_concept_id=self.source_cfg['collection_concept_id'])
+            granule_ur=self.asset_cfg.granule_ur,
+            collection_concept_id=self.asset_cfg.collection_concept_id)
 
-        verify = self.source_cfg.get('verify')
+        verify = self.asset_cfg.verify
         if verify is not None:
             raise RuntimeError(
                 'Ignoring TLS certificate verification is not supported for CMR granules.'

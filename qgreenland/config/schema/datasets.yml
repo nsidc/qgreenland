@@ -22,8 +22,8 @@ assets:
   urls: list(str(), required=False)
 
   # cmr
-  # granule_ur: str(required=False)
-  # collection_concept_id: str(required=False)
+  granule_ur: str(required=False)
+  collection_concept_id: str(required=False)
 
   # ogr_remote_vector
   # TODO: Consider breaking up in to "featureserver_url", "feature_id", "query"?
