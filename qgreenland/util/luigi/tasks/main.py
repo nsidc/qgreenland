@@ -14,7 +14,7 @@ import luigi
 from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.runners import step_runner
-from qgreenland.util.misc import get_layer_fp, get_final_layer_dir, temporary_path_dir
+from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
 
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
