@@ -1,0 +1,18 @@
+kwargs:
+  - 'input_file'
+  - 'output_file'
+steps:
+  - type: 'command'
+    args:
+      - 'cp'
+      - '{input_file}'
+      - '{output_file}'
+      - '&&'
+      - 'gdaladdo'
+      - '-r'
+      - 'average'
+      - '{output_file}'
+      - '2'
+      - '4'
+      - '8'
+      - '16'

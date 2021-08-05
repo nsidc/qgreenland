@@ -56,19 +56,8 @@
         cut_file: '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
 
     # Add overviews
-    - type: 'command'
-      args:
-        # TODO: Is this the best solution? gdaladdo can only modify in place.
-        # What about rasterio (`rio` at CLI)?
-        - 'cp'
-        - '{input_dir}/warped_and_cut.tif'
-        - '{output_dir}/overviews.tif'
-        - '&&'
-        - 'gdaladdo'
-        - '-r'
-        - 'average'
-        - '{output_dir}/overviews.tif'
-        - '2'
-        - '4'
-        - '8'
-        - '16'
+    - type: 'template'
+      template_name: 'build_overviews'
+      kwargs:
+        input_file: '{input_dir}/warped_and_cut.tif'
+        output_file: '{output_dir}/overviews.tif'
