@@ -4,25 +4,11 @@ import os
 import qgis.core as qgc
 
 from qgreenland.constants import PACKAGE_DIR
+from qgreenland.test.fixtures import raster_layer_cfg as mock_layer_cfg  # noqa: F401
 from qgreenland.util import qgis
 
-mock_layer_cfg = {
-    'title': 'Example Raster',
-    'dataset': {
-        'access_method': 'http',
-        'metadata': {
-            'title': 'Example Dataset',
-            'abstract': 'Example abstract',
-            'citation': {
-                'text': 'NSIDC 2020',
-                'url': 'https://nsidc.org'
-            }
-        }
-    }
-}
 
-
-def test_create_raster_map_layer():
+def test_create_raster_map_layer(mock_layer_cfg):  # noqa: F811
     mock_raster_path = os.path.join(
         PACKAGE_DIR,
         'test',
@@ -44,10 +30,10 @@ def test_create_raster_map_layer():
     assert result_shape == expected_shape
 
     # Assert that the title is correctly set.
-    assert result.name() == mock_layer_cfg['title']
+    assert result.name() == mock_layer_cfg.title
 
 
-def test__add_layer_metadata():
+def test__add_layer_metadata(mock_layer_cfg):  # noqa: F811
     mock_raster_path = os.path.join(
         PACKAGE_DIR,
         'test',
@@ -64,7 +50,7 @@ def test__add_layer_metadata():
         qgis.build_layer_abstract(mock_layer_cfg)
 
     actual_title = mock_raster_layer.metadata().title()
-    expected_title = mock_layer_cfg['title']
+    expected_title = mock_layer_cfg.title
     assert actual_title == expected_title
 
     # Sets the spatial extent based on the the layer extent.
@@ -76,7 +62,7 @@ def test__add_layer_metadata():
     assert expected_extent == meta_extent.bounds.toRectangle()
 
 
-def test__build_dataset_description():
+def test__build_dataset_description(mock_layer_cfg):  # noqa: F811
     actual = qgis._build_dataset_description(mock_layer_cfg)
     expected = """Example Dataset
 
@@ -85,7 +71,7 @@ Example abstract"""
     assert actual == expected
 
 
-def __build_dataset_citation():
+def __build_dataset_citation(mock_layer_cfg):  # noqa: F811
     actual = qgis._build_dataset_citation(mock_layer_cfg)
     expected = """Citation:
 NSIDC 2020
@@ -96,24 +82,8 @@ https://nsidc.org"""
     assert actual == expected
 
 
-def test__build_layer_abstract():
-    actual = qgis.build_layer_abstract(mock_layer_cfg)
-    expected = """Example Dataset
-
-Example abstract
-
-Citation:
-NSIDC 2020
-
-Citation URL:
-https://nsidc.org"""
-
-    assert actual == expected
-
-
-def test_build_abstract_with_description():
+def test_build_abstract(mock_layer_cfg):  # noqa: F811
     mock_cfg = copy.deepcopy(mock_layer_cfg)
-    mock_cfg['description'] = 'Example layer description'
     actual = qgis.build_layer_abstract(mock_cfg)
     expected = """Example layer description
 

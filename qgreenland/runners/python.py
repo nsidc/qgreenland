@@ -1,8 +1,8 @@
-from qgreenland._typing import Step
+from qgreenland.models.config.step import ConfigLayerStep
 
 
 def python_runner(
-    step: Step,
+    step: ConfigLayerStep,
     *,
     input_dir: str,
     output_dir: str,

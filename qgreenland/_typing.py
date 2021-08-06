@@ -3,10 +3,11 @@
 NOTE: This module is named strangely to avoid conflicts with the stdlib's
 `types` module.
 """
-from typing import Any, Dict, Literal
+from typing import Literal, Union
+
+import qgis.core as qgc
 
 
-StepType = Literal['command', 'python']
-# TODO: A better interface for steps and everything else. Pydantic models?
-# Dataclasses?
-Step = Dict[str, Any]
+ConfigStepType = Literal['command', 'python', 'template']
+
+AnyQgsLayer = Union[qgc.QgsVectorLayer, qgc.QgsRasterLayer]

@@ -3,6 +3,7 @@ import shutil
 
 import luigi
 
+from qgreenland.config import CONFIG
 from qgreenland.constants import LOCALDATA_DIR, PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
@@ -16,15 +17,23 @@ from qgreenland.util.vector import ogr2ogr
 
 # TODO: call this 'FetchDataset'? 'FetchAsset'?
 class FetchTask(luigi.Task):
-    dataset_cfg = luigi.DictParameter()
-    asset_cfg = luigi.DictParameter()
+    dataset_id = luigi.Parameter()
+    asset_id = luigi.Parameter()
 
     @property
     def output_name(self):
         return datasource_dirname(
-            dataset_id=self.dataset_cfg['id'],
-            asset_id=self.asset_cfg['id'],
+            dataset_id=self.dataset_cfg.id,
+            asset_id=self.asset_cfg.id,
         )
+
+    @property
+    def dataset_cfg(self):
+        return CONFIG.datasets[self.dataset_id]
+
+    @property
+    def asset_cfg(self):
+        return self.dataset_cfg.assets[self.asset_id]
 
 
 class FetchCmrGranule(FetchTask):
@@ -32,17 +41,14 @@ class FetchCmrGranule(FetchTask):
 
     def output(self):
         path = [TaskType.FETCH.value, self.output_name]
-        if 'subdir_path' in self.source_cfg:
-            path.append(self.source_cfg['subdir_path'])
-
         return luigi.LocalTarget(os.path.join(*path))
 
     def run(self):
         granule = get_cmr_granule(
-            granule_ur=self.source_cfg['granule_ur'],
-            collection_concept_id=self.source_cfg['collection_concept_id'])
+            granule_ur=self.asset_cfg.granule_ur,
+            collection_concept_id=self.asset_cfg.collection_concept_id)
 
-        verify = self.source_cfg.get('verify')
+        verify = self.asset_cfg.verify
         if verify is not None:
             raise RuntimeError(
                 'Ignoring TLS certificate verification is not supported for CMR granules.'
@@ -65,13 +71,16 @@ class FetchDataFiles(FetchTask):
         )
 
     def run(self):
-        if self.dataset_cfg['access_method'] == 'cmr':
+        if self.asset_cfg.type == 'cmr':
             raise RuntimeError('Use a FetchCmrGranule task!')
 
-        verify = self.source_cfg.get('verify', True)
         with temporary_path_dir(self.output()) as temp_path:
-            for url in self.source_cfg['urls']:
-                fetch_and_write_file(url, output_dir=temp_path, verify=verify)
+            for url in self.asset_cfg['http']['urls']:
+                fetch_and_write_file(
+                    url,
+                    output_dir=temp_path,
+                    verify=self.asset_cfg.verify
+                )
 
 
 class FetchLocalDataFiles(FetchTask):

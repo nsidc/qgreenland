@@ -6,7 +6,8 @@
 
 - id: 'background'  # The on-disk folder containing the data
   title: 'Background (500m)'  # The layer name in the QGIS panel
-  # TODO: originally called 'group_path', but that's a confusing name. Do we like 'hierarchy'?
+  description: >-
+    Stylized shaded-relief map for providing a general sense of geography.
   hierarchy: ['Basemaps']  # The group(s, if nested) in the QGIS panel that this layer is in
   in_package: True
   show: True  # Whether this layer is "shown" in QGIS
@@ -56,19 +57,8 @@
         cut_file: '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
 
     # Add overviews
-    - type: 'command'
-      args:
-        # TODO: Is this the best solution? gdaladdo can only modify in place.
-        # What about rasterio (`rio` at CLI)?
-        - 'cp'
-        - '{input_dir}/warped_and_cut.tif'
-        - '{output_dir}/overviews.tif'
-        - '&&'
-        - 'gdaladdo'
-        - '-r'
-        - 'average'
-        - '{output_dir}/overviews.tif'
-        - '2'
-        - '4'
-        - '8'
-        - '16'
+    - type: 'template'
+      template_name: 'build_overviews'
+      kwargs:
+        input_file: '{input_dir}/warped_and_cut.tif'
+        output_file: '{output_dir}/overviews.tif'

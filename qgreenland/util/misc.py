@@ -7,10 +7,11 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
-from typing import Any, Dict, Literal
+from typing import Any, Literal
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType
+from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 logger = logging.getLogger('luigi-interface')
@@ -161,7 +162,7 @@ def temporary_path_dir(target):
     return
 
 
-def _get_layer_fp(layer_dir: Path) -> Path:
+def get_layer_fp(layer_dir: Path) -> Path:
     """Look for one and only one standard file type 'gpkg' or 'tif'."""
     # TODO: Extract standard file types into some structure
     rasters = list(layer_dir.glob('*.tif'))
@@ -177,12 +178,12 @@ def _get_layer_fp(layer_dir: Path) -> Path:
 
 
 def _layer_dirname_from_cfg(layer_cfg: Any) -> str:
-    return layer_cfg['title']
+    return layer_cfg.title
 
 
 def get_final_layer_dir(layer_cfg) -> Path:
     """Get the layer directory in its final pre-zip location."""
-    layer_group_list = '/'.join(layer_cfg.get('hierarchy', []))
+    layer_group_list = '/'.join(layer_cfg.hierarchy)
     return (
         Path(TaskType.FINAL.value)
         / layer_group_list
@@ -190,7 +191,7 @@ def get_final_layer_dir(layer_cfg) -> Path:
     )
 
 
-def get_final_layer_filepath(layer_cfg: Dict[Any, Any]) -> Path:
+def get_final_layer_filepath(layer_cfg: ConfigLayer) -> Path:
     # TODO: Re-implement gdal_remote layers
     # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
     #     if (urls_count := len(layer_cfg['source']['urls'])) != 1:
@@ -201,7 +202,7 @@ def get_final_layer_filepath(layer_cfg: Dict[Any, Any]) -> Path:
     #     return f"{layer_cfg['source']['urls'][0]}"
 
     d = get_final_layer_dir(layer_cfg)
-    layer_fp = _get_layer_fp(d)
+    layer_fp = get_layer_fp(d)
 
     if not layer_fp.is_file():
         raise exc.QgrRuntimeError(f"Layer located at '{layer_fp}' does not exist.")

@@ -13,11 +13,24 @@ assets:
   # Unique ID used for generating paths and uniquely identifiying an asset
   # within a dataset.
   id: str()
-  http: include('http', required=False)
-  # cmr: list(include('cmr', required=False), required=False)
-  # ogr_remote_vector: include('ogr_remote_vector', required=False)
-  ## TODO: do we like 'manual' as a name?
-  # manual: include('manual', required=False)
+  type: enum('http', 'cmr', 'manual', 'ogr_remote_vector')
+
+  # TODO: Allow arbitrary "extra" fields instead of typing out all the possible
+  # kinds of assets? Let Pydantic do this validation?
+
+  # http
+  urls: list(str(), required=False)
+
+  # cmr
+  granule_ur: str(required=False)
+  collection_concept_id: str(required=False)
+
+  # ogr_remote_vector
+  # TODO: Consider breaking up in to "featureserver_url", "feature_id", "query"?
+  # query_url: str(required=False)
+
+  # manual:
+  # access_instructions: str(required=False)
 
 ---
 metadata:
@@ -26,53 +39,3 @@ metadata:
   citation:
     text: str()
     url: str()
-
----
-http:
-  urls: list(str())
-
-# ---
-# cmr:
-#   granule_ur: str()
-#   collection_concept_id: str()
-# 
-# ---
-# ogr_remote_vector:
-#   # TODO: Consider breaking up in to "featureserver_url", "feature_id", "query"?
-#   query_url: str()
-
-# ---
-# manual:
-#   access_instructions: str()
-  
-# ---
-# source:
-#   # Unique ID used for generating paths and uniquely identifiying a source
-#   # within a dataset.
-#   id: str()
-# 
-#   # TODO: Make the access-method-dependent params mutually-exclusive. Does
-#   #       Yamale support this?
-# 
-#   ##### access_method: cmr #####
-#   # A granule corresponds to n >= 1 files
-#   granule_ur: str(required=False)
-#   collection_concept_id: str(required=False)
-# 
-#   ##### access_method: http #####
-#   # If a granule_ur and collection_concept_id isn't provided, provide a
-#   # list of files instead
-#   urls: list(str(), required=False)
-#   # Override TLS certificate verification
-#   verify: bool(required=False)
-# 
-#   ##### access_method: ogr_remote_vector #####
-#   query_url: str(required=False)
-# 
-#   ##### access_method: manual #####
-#   access_instructions: str(required=False)
-# 
-#   # TODO: Override default filename? By default, the filename from the URL is used
-#   # base_filename: str(required=False)
-# 
-# 

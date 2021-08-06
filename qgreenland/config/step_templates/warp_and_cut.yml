@@ -1,3 +1,5 @@
+# TODO: how to support optional kwargs. E.g., not all layers will need to pass
+# xRes, yRes.
 kwargs:
   - 'input_file'
   - 'output_file'

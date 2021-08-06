@@ -23,6 +23,7 @@ from humanize import naturalsize
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import LOCALDATA_DIR
+from qgreenland.models.config import Config
 from qgreenland.util.misc import (
     directory_size_bytes,
     get_final_layer_filepath,
@@ -94,8 +95,12 @@ def _deref_boundaries(cfg: Dict[str, Any]) -> None:
         # TODO: remove features and bbox? Just deref to the filepath.
         boundaries_config[boundary_name] = {
             'fp': fp,
-            'features': features,
-            'bbox': bbox,
+            'bbox': {
+                'min_x': bbox[0],
+                'min_y': bbox[1],
+                'max_x': bbox[2],
+                'max_y': bbox[3],
+            },
         }
 
 
@@ -177,8 +182,10 @@ def _deref_steps(
 
     Search for template-type steps and render them.
     """
-    for index, step in enumerate(steps):
+    rendered_steps = []
+    for step in steps:
         if step['type'] != 'template':
+            rendered_steps.append(step)
             continue
 
         # Dereference this template
@@ -189,7 +196,6 @@ def _deref_steps(
             template=template,
             **step['kwargs'],
         )
-
         # 🌶️ Recurse 🌶️ into this template and look for more nested templates to
         # dereference!
         dereferenced = _deref_steps(
@@ -197,12 +203,9 @@ def _deref_steps(
             templates=templates
         )
 
-        # Insert rendered template at the correct location in the step chain
-        before_template = steps[:index]
-        after_template = steps[index + 1:]
-        steps = before_template + dereferenced + after_template
+        rendered_steps.extend(dereferenced)
 
-    return steps
+    return rendered_steps
 
 
 def _deref_layers(cfg: Dict[str, Any]) -> None:
@@ -218,13 +221,8 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             dataset_id = layer_config['input']['dataset']
             asset_id = layer_config['input']['asset']
             dataset_config = _find_in_list_by_id(datasets_config, dataset_id)
-            layer_config['dataset'] = dataset_config
-
-            layer_config['dataset']['asset'] = _find_in_list_by_id(
-                dataset_config['assets'],
-                asset_id
-            )
-            del layer_config['dataset']['assets']
+            layer_config['input']['dataset'] = dataset_config
+            layer_config['input']['asset'] = dataset_config['assets'][asset_id]
 
         # Populate steps with templates where necessary
         layer_config['steps'] = _deref_steps(
@@ -233,8 +231,18 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
         )
 
 
+def _normalize_datasets(cfg: Dict[Any, Any]) -> None:
+    """Normalize dataset assets to a dict.
+
+    Convert the list of assets into a dict keyed by asset id.
+    """
+    for dataset_cfg in cfg['datasets']:
+        dataset_cfg['assets'] = {x['id']: copy.deepcopy(x) for x in dataset_cfg['assets']}
+
+
 def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
     """Take a full configuration object, replace references with the referent."""
+    _normalize_datasets(cfg)
     _deref_boundaries(cfg)
     _deref_layers(cfg)
 
@@ -273,9 +281,9 @@ def load_configs_from_dir(
 
 @functools.lru_cache(maxsize=None)
 def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
+    """Read all config files and dereference relationships between concepts."""
     # TODO: Avoid all this argument drilling without import cycles... this
     # shouldn't be so hard!
-    # TODO: Consider namedtuple or something?
 
     # TODO: Some better solution for configs from dir...? Could be keyed by
     # filename, as in templates; in that case each file represents a "thing". Or
@@ -315,7 +323,7 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
 
 
 def export_config(
-    cfg: Dict[Any, Any],
+    cfg: Config,
     output_path: Path = DEFAULT_LAYER_MANIFEST_PATH,
 ) -> None:
     """Write a report to disk containing a summary of layers in config.
@@ -324,7 +332,7 @@ def export_config(
     calculate their size on disk.
     """
     report = []
-    for layer in cfg['layers'].values():
+    for layer in cfg.layers.values():
         # TODO: Re-implement gdal_remote layers conditional.
         # if layer['dataset']['access_method'] != 'gdal_remote':
         #     layer_dir = Path(get_final_layer_filepath(layer)).parent
@@ -336,16 +344,18 @@ def export_config(
         layer_dir = layer_fp.parent
         layer_size_bytes = directory_size_bytes(layer_dir)
 
+        dataset_cfg = layer.input.dataset
+
         report.append({
-            'Group': layer['hierarchy'][0],
-            'Subgroup': ('/'.join(layer['hierarchy'][1:])),
-            'Layer Title': layer['title'],
-            'Layer Description': layer.get('description', ''),
+            'Group': layer.hierarchy[0],
+            'Subgroup': ('/'.join(layer.hierarchy[1:])),
+            'Layer Title': layer.title,
+            'Layer Description': layer.description,
             'Vector or Raster': vector_or_raster(layer_fp),
-            'Data Source Title': layer['dataset']['metadata']['title'],
-            'Data Source Abstract': layer['dataset']['metadata']['abstract'],
-            'Data Source Citation': layer['dataset']['metadata']['citation']['text'],
-            'Data Source Citation URL': layer['dataset']['metadata']['citation']['url'],
+            'Data Source Title': dataset_cfg.metadata.title,
+            'Data Source Abstract': dataset_cfg.metadata.abstract,
+            'Data Source Citation': dataset_cfg.metadata.citation.text,
+            'Data Source Citation URL': dataset_cfg.metadata.citation.url,
             'Layer Size': naturalsize(layer_size_bytes),
             'Layer Size Bytes': layer_size_bytes,
         })

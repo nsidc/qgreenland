@@ -1,40 +1,36 @@
-from typing import Any, Dict, List, Type
+from typing import Dict, List, Type
 
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.exceptions import QgrRuntimeError
+from qgreenland.models.config.dataset import (
+    AnyAsset,
+    ConfigDatasetCmrAsset,
+    ConfigDatasetHttpAsset,
+)
+from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.luigi.tasks.fetch import FetchCmrGranule, FetchDataFiles, FetchTask
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 
 # TODO: Make "fetch" tasks into Python "steps".
-ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
-    'http': FetchDataFiles,
-    'cmr': FetchCmrGranule,
-    'TODO': FetchCmrGranule,
+ASSET_TYPE_TASKS: Dict[Type[AnyAsset], Type[FetchTask]] = {
+    ConfigDatasetHttpAsset: FetchDataFiles,
+    ConfigDatasetCmrAsset: FetchCmrGranule,
 }
 
 
-def _fetch_task_getter(layer_cfg: Dict[Any, Any]) -> FetchTask:
-    dataset_cfg = layer_cfg['dataset']
-    asset_cfg = dataset_cfg['asset']
+# TODO: Unit test!
+def _fetch_task_getter(layer_cfg: ConfigLayer) -> FetchTask:
+    dataset_cfg = layer_cfg.input.dataset
+    asset_cfg = layer_cfg.input.asset
 
-    # TODO: come back to access methods, extract constant?
-    for access_method in ('http', 'cmr', 'manual'):
-        try:
-            # Test that we're looking at the right asset
-            asset_cfg[access_method]
+    fetch_task = ASSET_TYPE_TASKS[type(asset_cfg)](
+        dataset_id=dataset_cfg.id,
+        asset_id=asset_cfg.id,
+    )
 
-            fetch_task = ACCESS_METHODS[access_method](
-                dataset_cfg=dataset_cfg,
-                asset_cfg=asset_cfg,
-            )
-            return fetch_task
-        except KeyError:
-            pass
-
-    raise QgrRuntimeError('Found asset config without expected access method.')
+    return fetch_task
 
 
 # Generate layer pipelines?
@@ -44,16 +40,15 @@ def generate_layer_tasks():
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
-    tasks = []
+    tasks: List[luigi.Task] = []
 
-    for layer_cfg in CONFIG['layers'].values():
-        layer_id = layer_cfg['id']
-        tasks: List[luigi.Task] = []
+    for layer_cfg in CONFIG.layers.values():
+        layer_id = layer_cfg.id
 
         # Create tasks, making each task dependent on the previous task.
         task = _fetch_task_getter(layer_cfg)
 
-        for step_number, _ in enumerate(layer_cfg['steps']):
+        for step_number, _ in enumerate(layer_cfg.steps):
             task = ChainableTask(
                 requires_task=task,
                 layer_id=layer_id,
@@ -66,6 +61,7 @@ def generate_layer_tasks():
             requires_task=task,
             layer_id=layer_id,
         )
+
         tasks.append(task)
 
         # TODO: figure out what do to about this!!! (add one of these layers as a test)
