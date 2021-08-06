@@ -15,11 +15,6 @@ class ConfigBoundariesInfo(BaseModel):
     bbox: BoundingBox
 
 
-# TODO: re-consider this...proof of concept for dynamic model generation.
-# In this case, it probably is OK to just statically define the project
-# boundaries ('data' and 'background'. Alternatively, in this case, perhaps it's
-# best just to define `ConfiProjectBoundaries` as Dict[str,
-# ConfigBoundariesInfo]. Processing would be fetching these data by key anyway?
 class ConfigProject(BaseModel):
     crs: str
     boundaries: Dict[str, ConfigBoundariesInfo]
