@@ -12,7 +12,6 @@ from PyQt5.QtGui import QColor
 from jinja2 import Template
 from osgeo import gdal
 
-from qgreenland._typing import AnyQgsLayer
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, INPUT_DIR
 from qgreenland.models.config.layer import ConfigLayer
@@ -72,7 +71,7 @@ def create_raster_map_layer(
     return map_layer
 
 
-def _add_layer_metadata(map_layer: AnyQgsLayer, layer_cfg: ConfigLayer) -> None:
+def _add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> None:
     """Add layer metadata.
 
     Renders a jinja template to a temporary file location as a valid QGIS qmd
@@ -405,7 +404,7 @@ def _add_decorations(project: qgc.QgsProject) -> None:
     logger.debug('Done adding decorations.')
 
 
-def load_qml_style(map_layer: AnyQgsLayer, style_name: str) -> None:
+def load_qml_style(map_layer: qgc.QgsMapLayer, style_name: str) -> None:
     style_path = os.path.join(ASSETS_DIR, 'styles', style_name + '.qml')
     # If you pass a path to nothing, it will silently fail
     if not os.path.isfile(style_path):
