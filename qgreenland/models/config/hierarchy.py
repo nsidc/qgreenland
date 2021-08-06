@@ -1,15 +1,17 @@
+from typing import List
+
 from pydantic import BaseModel, validator
 
 
 # TODO: maybe hierarchy config should just be a list of Hierarchy settings?
 class HierarchySettings(BaseModel):
-    path: str
+    path: List[str]
     show: bool = False
     expand: bool = False
 
+    @validator('path', pre=True)
     @classmethod
-    @validator('path')
-    def path_is_a_list(cls, value):
+    def path_str_to_list(cls, value):
         return value.split('/')
 
 

@@ -12,6 +12,7 @@ from PyQt5.QtGui import QColor
 from jinja2 import Template
 from osgeo import gdal
 
+from qgreenland._typing import AnyQgsLayer
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, INPUT_DIR
 from qgreenland.models.config.layer import ConfigLayer
@@ -31,7 +32,7 @@ LAYERGROUP_VISIBLE_DEFAULT = False
 
 
 # TODO: _create_raster_layer? Pass in "title" instead of "layer_cfg"?
-def _get_raster_layer(layer_path: Path, layer_cfg: ConfigLayer):
+def _get_raster_layer(layer_path: Path, layer_cfg: ConfigLayer) -> qgc.QgsRasterLayer:
     # TODO: Does qgis have types that can catch passing a Path here?
     return qgc.QgsRasterLayer(
         str(layer_path),
@@ -40,7 +41,10 @@ def _get_raster_layer(layer_path: Path, layer_cfg: ConfigLayer):
     )
 
 
-def create_raster_map_layer(layer_path: Path, layer_cfg: ConfigLayer):
+def create_raster_map_layer(
+    layer_path: Path,
+    layer_cfg: ConfigLayer
+) -> qgc.QgsRasterLayer:
     # TODO: Re-implement
     # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
     #     return _get_raster_layer(layer_path, layer_cfg)
@@ -68,7 +72,7 @@ def create_raster_map_layer(layer_path: Path, layer_cfg: ConfigLayer):
     return map_layer
 
 
-def _add_layer_metadata(map_layer, layer_cfg):
+def _add_layer_metadata(map_layer: AnyQgsLayer, layer_cfg: ConfigLayer) -> None:
     """Add layer metadata.
 
     Renders a jinja template to a temporary file location as a valid QGIS qmd
@@ -107,7 +111,8 @@ def _add_layer_metadata(map_layer, layer_cfg):
         map_layer.loadNamedMetadata(temp_file.name)
 
 
-def get_map_layer(layer_cfg, project_crs):
+# TODO: type project_crs
+def get_map_layer(layer_cfg: ConfigLayer, project_crs):
     """Create Qgs layer objects from layer config."""
     # Give the absolute path to the layer. We think project.addMapLayer()
     # automatically generates the correct relative paths. Using a relative
@@ -123,7 +128,7 @@ def get_map_layer(layer_cfg, project_crs):
     if layer_type == 'Vector':
         map_layer = qgc.QgsVectorLayer(
             str(layer_path),
-            layer_cfg['title'],  # layer name as it shows up in QGIS TOC
+            layer_cfg.title,  # layer name as it shows up in QGIS TOC
             'ogr'  # name of the data provider (e.g. memory, postgresql)
         )
     elif layer_type == 'Raster':
@@ -149,11 +154,11 @@ def get_map_layer(layer_cfg, project_crs):
     return map_layer
 
 
-def _set_group_visibility(group, visibility: bool):
+def _set_group_visibility(group: qgc.QgsLayerTreeGroup, visibility: bool) -> None:
     group.setItemVisibilityChecked(visibility)
 
 
-def _set_group_expanded(group, expanded: bool):
+def _set_group_expanded(group: qgc.QgsLayerTreeGroup, expanded: bool) -> None:
     group.setExpanded(expanded)
 
 
@@ -208,7 +213,7 @@ def _ensure_group_exists(
     return group
 
 
-def _set_groups_options(project):
+def _set_groups_options(project: qgc.QgsProject) -> None:
     logger.debug('Configuring layer groups...')
     groups_config = CONFIG.hierarchy_settings
 
@@ -249,7 +254,7 @@ def _ensure_layer_group(
     return _ensure_group_exists(project, group_path)
 
 
-def _add_layers(project):
+def _add_layers(project: qgc.QgsProject) -> None:
     logger.debug('Adding layers...')
     layers_cfg = CONFIG.layers
 
@@ -284,7 +289,8 @@ def _add_layers(project):
     logger.debug('Done adding layers.')
 
 
-def make_qgis_project_file(path):
+# TODO: make this path a Path
+def make_qgis_project_file(path: str) -> None:
     """Create a QGIS project file with the correct stuff in it.
 
     path: the desired path to .qgs project file, e.g.:
@@ -346,7 +352,7 @@ def make_qgis_project_file(path):
     project.clear()
 
 
-def _add_decorations(project):
+def _add_decorations(project: qgc.QgsProject) -> None:
     logger.debug('Adding decorations...')
     # Add CopyrightLabel:
     project.writeEntry('CopyrightLabel', '/Enabled', True)
@@ -373,7 +379,7 @@ def _add_decorations(project):
     logger.debug('Done adding decorations.')
 
 
-def load_qml_style(map_layer, style_name):
+def load_qml_style(map_layer: AnyQgsLayer, style_name: str) -> None:
     style_path = os.path.join(ASSETS_DIR, 'styles', style_name + '.qml')
     # If you pass a path to nothing, it will silently fail
     if not os.path.isfile(style_path):
@@ -385,7 +391,7 @@ def load_qml_style(map_layer, style_name):
         raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
 
 
-def _build_layer_description(layer_cfg):
+def _build_layer_description(layer_cfg: ConfigLayer) -> str:
     """Return a string representing the layer's description."""
     layer_description = ''
 
@@ -395,7 +401,7 @@ def _build_layer_description(layer_cfg):
     return layer_description
 
 
-def build_layer_tooltip(layer_cfg):
+def build_layer_tooltip(layer_cfg: ConfigLayer) -> str:
     """Return a properly escaped layer tooltip text."""
     tt = _build_layer_description(layer_cfg)
     tt += (
@@ -407,7 +413,7 @@ def build_layer_tooltip(layer_cfg):
 
 # TODO: this could take a dataset cfg instead of a layer_cfg and be
 # cached. Sometimes multiple layers are derived from the same dataset.
-def _build_dataset_description(layer_cfg):
+def _build_dataset_description(layer_cfg: ConfigLayer) -> str:
     """Return a string representing the layer's dataset description."""
     dataset_description = ''
 
@@ -423,7 +429,7 @@ def _build_dataset_description(layer_cfg):
 
 # TODO: this could take a dataset cfg instead of a layer_cfg and be
 # cached. Sometimes multiple layers are derived from the same dataset.
-def _build_dataset_citation(layer_cfg):
+def _build_dataset_citation(layer_cfg: ConfigLayer) -> str:
     """Return a string representing the layer's dataset citation."""
     citation = ''
 
@@ -441,13 +447,13 @@ def _build_dataset_citation(layer_cfg):
     return citation
 
 
-def _populate_date_accessed(text: str, *, layer_cfg):
+def _populate_date_accessed(text: str, *, layer_cfg: ConfigLayer) -> str:
     if '{{date_accessed}}' not in text:
         return text
 
     ds_dir = datasource_dirname(
-        dataset_id=layer_cfg['dataset']['id'],
-        asset_id=layer_cfg['asset']['id'],
+        dataset_id=layer_cfg.input.dataset.id,
+        asset_id=layer_cfg.input.asset.id,
     )
     fetch_dir = Path(INPUT_DIR) / ds_dir
 
@@ -459,7 +465,7 @@ def _populate_date_accessed(text: str, *, layer_cfg):
     return text.replace('{{date_accessed}}', date_accessed.date().isoformat())
 
 
-def build_layer_abstract(layer_cfg):
+def build_layer_abstract(layer_cfg: ConfigLayer) -> str:
     """Return a properly escaped layer abstract text."""
     # Include the layer description first.
     abstract = _build_layer_description(layer_cfg)
