@@ -1,11 +1,10 @@
 from typing import List
 
-from pydantic import BaseModel
-
 from qgreenland._typing import ConfigStepType
+from qgreenland.models.immutable_model import ImmutableBaseModel
 
 
-class ConfigLayerStep(BaseModel):
+class ConfigLayerStep(ImmutableBaseModel):
     type: ConfigStepType
 
     # input_file: Path

@@ -1,21 +1,23 @@
 from abc import ABC
 from typing import Dict, List, Literal, Union
 
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import AnyUrl, Field
+
+from qgreenland.models.immutable_model import ImmutableBaseModel
 
 
-class ConfigDatasetCitation(BaseModel):
+class ConfigDatasetCitation(ImmutableBaseModel):
     text: str
     url: str
 
 
-class ConfigDatasetMetadata(BaseModel):
+class ConfigDatasetMetadata(ImmutableBaseModel):
     title: str
     abstract: str
     citation: ConfigDatasetCitation
 
 
-class ConfigDatasetAsset(BaseModel, ABC):
+class ConfigDatasetAsset(ImmutableBaseModel, ABC):
     id: str = Field(..., min_length=1)
 
 
@@ -39,7 +41,7 @@ AnyAsset = Union[ConfigDatasetHttpAsset, ConfigDatasetCmrAsset]
 # ... ogr_remote_vector, manual assets
 
 
-class ConfigDataset(BaseModel):
+class ConfigDataset(ImmutableBaseModel):
     id: str = Field(..., min_length=1)
     assets: Dict[str, AnyAsset]
     metadata: ConfigDatasetMetadata
