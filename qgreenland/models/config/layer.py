@@ -1,4 +1,4 @@
-from typing import Generic, List, Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -6,7 +6,7 @@ from qgreenland.models.config.dataset import AnyAsset, ConfigDataset
 from qgreenland.models.config.step import ConfigLayerStep
 
 
-class ConfigLayerInput(BaseModel, Generic[AnyAsset]):
+class ConfigLayerInput(BaseModel):
     # TODO: just maintain ids here?
     dataset: ConfigDataset
     asset: AnyAsset

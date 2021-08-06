@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Dict, Generic, List, Literal, TypeVar
+from typing import Dict, List, Literal, Union
 
 from pydantic import AnyUrl, BaseModel, Field
 
@@ -34,12 +34,12 @@ class ConfigDatasetCmrAsset(ConfigDatasetAsset):
 # that pydantic does not try to find all subclasses of `ConfigDatasetAsset` when
 # casting data to an appropriate model. Explicitly listing out the possible
 # types allows pydantic to select the correct model based on the input data.
-AnyAsset = TypeVar('AnyAsset', ConfigDatasetHttpAsset, ConfigDatasetCmrAsset)
+AnyAsset = Union[ConfigDatasetHttpAsset, ConfigDatasetCmrAsset]
 
 # ... ogr_remote_vector, manual assets
 
 
-class ConfigDataset(BaseModel, Generic[AnyAsset]):
+class ConfigDataset(BaseModel):
     id: str = Field(..., min_length=1)
     assets: Dict[str, AnyAsset]
     metadata: ConfigDatasetMetadata

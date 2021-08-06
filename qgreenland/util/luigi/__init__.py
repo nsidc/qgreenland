@@ -14,7 +14,7 @@ from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 
 # TODO: Make "fetch" tasks into Python "steps".
-ASSET_TYPE_TASKS: Dict[AnyAsset, Type[FetchTask]] = {
+ASSET_TYPE_TASKS: Dict[Type[AnyAsset], Type[FetchTask]] = {
     ConfigDatasetHttpAsset: FetchDataFiles,
     ConfigDatasetCmrAsset: FetchCmrGranule,
 }
