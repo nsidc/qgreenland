@@ -26,7 +26,6 @@ def _fetch_task_getter(layer_cfg: ConfigLayer) -> FetchTask:
     dataset_cfg = layer_cfg.input.dataset
     asset_cfg = layer_cfg.input.asset
 
-    breakpoint()
     fetch_task = ASSET_TYPE_TASKS[type(asset_cfg)](
         dataset_id=dataset_cfg.id,
         asset_id=asset_cfg.id,
