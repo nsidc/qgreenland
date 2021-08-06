@@ -9,5 +9,6 @@ class ImmutableBaseModel(BaseModel):
     This immutability is not 'strict' (e.g., dicts can be mutated) - a
     determined dev can still mutate model instances.
     """
+
     class Config:
         allow_mutation = False
