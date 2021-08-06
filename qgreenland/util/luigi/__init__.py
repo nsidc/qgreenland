@@ -3,13 +3,12 @@ from typing import Dict, List, Type
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.exceptions import QgrRuntimeError
-from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.dataset import (
     AnyAsset,
-    ConfigDatasetHttpAsset,
     ConfigDatasetCmrAsset,
+    ConfigDatasetHttpAsset,
 )
+from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.luigi.tasks.fetch import FetchCmrGranule, FetchDataFiles, FetchTask
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
