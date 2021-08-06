@@ -1,5 +1,4 @@
-import os
-from unittest.mock import patch
+from pathlib import Path
 
 import pytest
 
@@ -7,33 +6,27 @@ from qgreenland.constants import TaskType
 from qgreenland.util import misc
 
 
-@patch('os.path.isfile')
-def test_layer_path(mock_isfile):
-    mock_isfile.return_value = True
-
+def test_final_layer_dir():
     mock_layer_cfg = {
         'id': 'coastlines',
         'title': 'Global coastlines',
-        'group_path': 'group/subgroup',
-        'file_type': '.shp',
-        'dataset': {
-            'access_method': 'http'
-        }
+        'hierarchy': ['group', 'subgroup'],
     }
 
-    expected = os.path.join(
-        TaskType.FINAL.value,
-        'group',
-        'subgroup',
-        'Global coastlines',
-        'coastlines.shp'
+    expected = (
+        Path(TaskType.FINAL.value)
+        / 'group'
+        / 'subgroup'
+        / 'Global coastlines'
     )
 
-    actual = misc.get_layer_path(mock_layer_cfg)
+    actual = misc.get_final_layer_dir(mock_layer_cfg)
 
     assert expected == actual
 
 
+# TODO: Remove xfail once gdal_remote implemented
+@pytest.mark.xfail(reason='Remote layers temporarily not imlemented')
 def test_layer_path_remote():
     mock_layer_cfg = {
         'id': 'coastlines',
@@ -54,6 +47,8 @@ def test_layer_path_remote():
     assert expected == actual
 
 
+# TODO: Remove xfail once gdal_remote implemented
+@pytest.mark.xfail(reason='Remote layers temporarily not imlemented')
 def test_layer_path_remote_multiple_urls():
     """Multiple URLS are not supported for the `gdal_remote` access method."""
     mock_layer_cfg = {

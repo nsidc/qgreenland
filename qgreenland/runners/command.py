@@ -1,9 +1,7 @@
 from typing import List
 
-import luigi
-
-from qgreenland.constants import ASSETS_DIR
 from qgreenland._typing import Step
+from qgreenland.constants import ASSETS_DIR
 from qgreenland.util.misc import run_ogr_command
 
 
@@ -21,15 +19,14 @@ def command_runner(
     *,
     input_dir: str,
     output_dir: str,
-):
+) -> None:
     """Run a shell command in the "gdal" conda environment.
 
     `kwargs` are string-interpolated for each of the command's arguments.
     """
     # TODO: Some better data structure; this access is confusing.
-    command_args = list(step.values())[0]
     command_args = interpolate_args(
-        command_args,
+        step['args'],
         input_dir=input_dir,
         output_dir=output_dir,
         assets_dir=ASSETS_DIR,

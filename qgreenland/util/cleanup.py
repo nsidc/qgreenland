@@ -65,8 +65,8 @@ def _validate_ambiguous_command(kwargs):
     """Validate for conflicting options and suggest a fix."""
     msg = (
         'Ambiguous command! You have requested both to delete all'
-        ' {resource}s _and_ to delete {resource}s by layer ID. Please choose'
-        ' only one.'
+        ' {resource}s _and_ to delete {resource}s'  # noqa: FS003
+        ' by layer ID. Please choose only one.'
     )
     if kwargs['delete_all_wip'] and kwargs['delete_wips_by_pattern']:
         raise click.UsageError(msg.format(resource='WIP'))

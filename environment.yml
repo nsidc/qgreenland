@@ -3,7 +3,12 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python=3.8*
+  # Python 3.8.10 has a regression I accidentally triggered. At the time of
+  # this commit, 3.8.11 was not yet available on anaconda.org.
+  #     https://bugs.python.org/issue44061
+  #     https://github.com/conda-forge/python-feedstock/issues/478
+  # TODO: Update Python once newer compatible versions are available
+  - python ~=3.8.10
 
   #################################################
   # Imported dependencies (and related typestubs) #

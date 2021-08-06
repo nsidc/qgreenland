@@ -1,6 +1,10 @@
+import pytest
+
 from qgreenland.config import CONFIG
 
 
+# TODO: Remove XFAIL once more layers added
+@pytest.mark.xfail(reason='Only 1 layer currently migrated to new config')
 def test_get_layer_config_all():
     layer_config = CONFIG['layers']
 
@@ -11,4 +15,4 @@ def test_get_layer_config_all():
 def test_get_layer_config_one():
     # If the layer does not exist, an exception will be raised and pytest will
     # appropriately fail.
-    assert CONFIG['layers']['coastlines']
+    assert CONFIG['layers']['background']

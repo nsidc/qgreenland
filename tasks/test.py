@@ -5,7 +5,7 @@ from invoke import task
 
 from .util import print_and_run, PROJECT_DIR
 
-sys.path.append(PROJECT_DIR)
+sys.path.append(str(PROJECT_DIR))
 
 from qgreenland.constants import (
     PACKAGE_DIR,

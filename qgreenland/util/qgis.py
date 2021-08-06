@@ -14,7 +14,6 @@ from osgeo import gdal
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, INPUT_DIR
-from qgreenland.exceptions import QgrInvalidConfigError
 from qgreenland.util.misc import (
     datasource_dirname,
     get_final_layer_filepath,
@@ -240,7 +239,6 @@ def _ensure_layer_group(
 ) -> qgc.QgsLayerTreeGroup:
     group_path: List[str] = layer_cfg.get('hierarchy', '')
     return _ensure_group_exists(project, group_path)
-
 
 
 def _add_layers(project):

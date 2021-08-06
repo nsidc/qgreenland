@@ -6,6 +6,7 @@ NOTE: This module is named strangely to avoid conflicts with the stdlib's
 from typing import Any, Dict, Literal
 
 
-StepType = Literal['command', 'python', 'template']
-# TODO: Make this into an interface that specifies only one top-level key
-Step = Dict[StepType, Dict[str, Any]]
+StepType = Literal['command', 'python']
+# TODO: A better interface for steps and everything else. Pydantic models?
+# Dataclasses?
+Step = Dict[str, Any]

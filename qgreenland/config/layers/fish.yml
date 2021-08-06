@@ -1,15 +1,16 @@
-- id: caff_char
-  title: 'Arctic Char populations 2010'
-  description: 'Polygons indicating the 2010 distribution of Arctic Char populations.'
-  hierarchy: ['Biology', 'Fish']
-  in_package: True
-  style: 'semitransparent_polygon'
-  show: False
-  input:
-    dataset: 'caff_char'
-    asset: 'only'
-  steps:
-    - command: ['ogr2ogr', 'TODO']
+# # NEW:
+# - id: caff_char
+#   title: 'Arctic Char populations 2010'
+#   description: 'Polygons indicating the 2010 distribution of Arctic Char populations.'
+#   hierarchy: ['Biology', 'Fish']
+#   in_package: True
+#   style: 'semitransparent_polygon'
+#   show: False
+#   input:
+#     dataset: 'caff_char'
+#     asset: 'only'
+#   steps:
+#     - command: ['ogr2ogr', 'TODO']
 
 # OLD:
 # - id: caff_char

@@ -1,10 +1,6 @@
 list(include('layer'))
 
 ---
-# TODO: Consider renaming file_type to "output_file_type" or something --
-# currently this is used when adding layers to the project file, so we should
-# consider this as output_file_type and use a new key for source file type.
-
 layer:
   # Used for unique identification, e.g. config, filenames.
   id: str()
@@ -31,15 +27,15 @@ input:
 
 ---
 steps:
-  command: list(required=False)
-  template: include('template', required=False)
-# TODO
-#   python: include('python', required=False)
-# 
----
-template:
-  name: str(required=True)
-  output_fn: str(required=True)
+  type: enum('command', 'python', 'template')
 
-# ---
-# python:
+  # TODO: Only required if type == 'template'
+  template_name: str(required=False)
+
+  # TODO: Only required if type == 'python'
+  # func: str(required=False)  # e.g. qgreenland.foo.bar:baz
+
+  # TODO: One of these is required... how to do with Yamale?
+  # TODO: Are `args` only useful for `command`s?
+  args: list(str(), int(), required=False)
+  kwargs: map(str(), int(), map(), required=False)

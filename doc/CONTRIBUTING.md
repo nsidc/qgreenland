@@ -21,7 +21,7 @@ QGreenland:
   source dataset. Try to keep related dataset configurations together in the
   same file.
 * `config/hierarchy_settings.yml`: Options for groups in the layer hierarchy.
-* `config/layer_templates/*.yml`: Re-usable sets of layer steps.
+* `config/step_templates/*.yml`: Re-usable sets of layer steps.
 * `config/project.yml`: Project-level options, such as CRS.
 
 

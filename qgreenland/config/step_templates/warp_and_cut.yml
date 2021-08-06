@@ -1,0 +1,52 @@
+kwargs:
+  - 'input_file'
+  - 'output_file'
+  - 'xRes'
+  - 'yRes'
+  - 'target_extent'
+  - 'cut_file'
+steps:
+  # Warp the data
+  # "cut hack". Instead of doing one warp operation, we break it into two
+  # pieces to avoid:
+  #
+  #     Self-intersection at or near point 21540.002777633181
+  #     2999.9999813578638\nERROR 1: Cutline polygon is invalid.\n
+  #
+  # TODO: Consider adding a "description" to each step?
+  - type: 'command'
+    args:
+      - 'gdalwarp'
+      - '-t_srs'  # dstCRS
+      # TODO: Reference project SRS
+      - 'EPSG:3413'
+      - '-tr'  # xRes=500, yRes=500
+      - '{xRes}'
+      - '{yRes}'
+      - '-te'
+      - '{target_extent}'
+      - '-dstnodata'  # dstNodata
+      - '0'
+      - '-wo'  # warpOptions=['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
+      - 'SOURCE_EXTRA=100'
+      - '-wo'
+      - 'SAMPLE_GRID=YES'
+      # What about using dedicated keys for `input_file` and `output_file` so
+      # the command itself can reference that slug. If either is repeated in
+      # the command, this will help avoid mistakes.
+      - '{input_file}'  # <--- Input
+      - '{output_dir}/warped.tif'  # <--- Output
+
+  # Cut the data and compress output
+  - type: 'command'
+    args:
+      - 'gdalwarp'
+      - '-cutline'  # CutlineDSName
+      # TODO: Abstract boundaries... as slugs? e.g.:
+      #     {boundaries.background.filepath}
+      - '{cut_file}'
+      - '-crop_to_cutline'  # CropToCutline=True
+      - '-co'  # creationOptions=['COMPRESS=DEFLATE']
+      - 'COMPRESS=DEFLATE'
+      - '{input_dir}/warped.tif'  # <--- Input
+      - '{output_file}'  # <--- Output
