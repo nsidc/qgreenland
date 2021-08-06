@@ -1,3 +1,5 @@
+import pytest
+
 from qgreenland.config import CONFIG
 
 
@@ -12,3 +14,11 @@ def test_get_layer_config_one():
     # If the layer does not exist, an exception will be raised and pytest will
     # appropriately fail.
     assert CONFIG.layers['background']
+
+
+def test_immutable_model():
+    # Immutable models raise a TypeError on item assignment with a message like:
+    # `TypeError: "ConfigLayer" is immutable and does not support item
+    # assignment`
+    with pytest.raises(TypeError):
+        CONFIG.layers['background'].description = 'override'
