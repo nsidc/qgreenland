@@ -1,6 +1,5 @@
 name: qgreenland
 channels:
-  - nsidc
   - conda-forge
   - nodefaults
 dependencies:
