@@ -5,27 +5,29 @@ import luigi
 from qgreenland.config import CONFIG
 from qgreenland.exceptions import QgrRuntimeError
 from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.dataset import (
+    AnyAsset,
+    ConfigDatasetHttpAsset,
+    ConfigDatasetCmrAsset,
+)
 from qgreenland.util.luigi.tasks.fetch import FetchCmrGranule, FetchDataFiles, FetchTask
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 
 # TODO: Make "fetch" tasks into Python "steps".
-ACCESS_METHODS: Dict[str, Type[FetchTask]] = {
-    'http': FetchDataFiles,
-    'cmr': FetchCmrGranule,
-    'TODO': FetchCmrGranule,
+ASSET_TYPE_TASKS: Dict[AnyAsset, Type[FetchTask]] = {
+    ConfigDatasetHttpAsset: FetchDataFiles,
+    ConfigDatasetCmrAsset: FetchCmrGranule,
 }
 
 
+# TODO: Unit test!
 def _fetch_task_getter(layer_cfg: ConfigLayer) -> FetchTask:
     dataset_cfg = layer_cfg.input.dataset
     asset_cfg = layer_cfg.input.asset
 
-    # TODO: come back to access methods, extract constant?
-    if asset_cfg.type not in ('http', 'cmr', 'manual'):
-        raise QgrRuntimeError('Found asset config without expected access method.')
-
-    fetch_task = ACCESS_METHODS[asset_cfg.type](
+    breakpoint()
+    fetch_task = ASSET_TYPE_TASKS[type(asset_cfg)](
         dataset_id=dataset_cfg.id,
         asset_id=asset_cfg.id,
     )
