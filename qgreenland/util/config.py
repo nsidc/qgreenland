@@ -277,9 +277,9 @@ def load_configs_from_dir(
 
 @functools.lru_cache(maxsize=None)
 def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
+    """Read all config files and dereference relationships between concepts."""
     # TODO: Avoid all this argument drilling without import cycles... this
     # shouldn't be so hard!
-    # TODO: Consider namedtuple or something?
 
     # TODO: Some better solution for configs from dir...? Could be keyed by
     # filename, as in templates; in that case each file represents a "thing". Or

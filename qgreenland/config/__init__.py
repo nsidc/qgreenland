@@ -4,20 +4,19 @@ from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.hierarchy import HierarchySettings
 from qgreenland.util.config import make_config
 
+_init_conf = make_config(config_dir=CONFIG_DIR, schema_dir=CONFIG_SCHEMA_DIR)
 
 # TODO: Consider doing dereferencing in pydantic validators
-init_conf = make_config(config_dir=CONFIG_DIR, schema_dir=CONFIG_SCHEMA_DIR)
-
 CONFIG = Config(
-    project=init_conf['project'],
-    layers=init_conf['layers'],
+    project=_init_conf['project'],
+    layers=_init_conf['layers'],
     datasets={
-        dataset['id']: ConfigDataset(**dataset) for dataset in init_conf['datasets']
+        dataset['id']: ConfigDataset(**dataset) for dataset in _init_conf['datasets']
     },
     hierarchy_settings=[
         HierarchySettings(
             path=path,
             **settings
-        ) for path, settings in init_conf['hierarchy_settings'].items()
+        ) for path, settings in _init_conf['hierarchy_settings'].items()
     ]
 )
