@@ -1,6 +1,6 @@
-from typing import Any, Dict, List
+from typing import Dict
 
-from pydantic import BaseModel
+from pydantic import BaseModel, FilePath
 
 
 class BoundingBox(BaseModel):
@@ -11,9 +11,7 @@ class BoundingBox(BaseModel):
 
 
 class ConfigBoundariesInfo(BaseModel):
-    fp: str
-    # TODO: create class for features? (keys: type, id, propperties, geometry
-    features: List[Dict[Any, Any]]
+    fp: FilePath
     bbox: BoundingBox
 
 

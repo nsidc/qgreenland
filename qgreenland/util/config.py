@@ -95,7 +95,6 @@ def _deref_boundaries(cfg: Dict[str, Any]) -> None:
         # TODO: remove features and bbox? Just deref to the filepath.
         boundaries_config[boundary_name] = {
             'fp': fp,
-            'features': features,
             'bbox': {
                 'min_x': bbox[0],
                 'min_y': bbox[1],
