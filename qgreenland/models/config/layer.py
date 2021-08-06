@@ -1,6 +1,6 @@
-from typing import Generic, List
+from typing import Generic, List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from qgreenland.models.config.dataset import AnyAsset, ConfigDataset
 from qgreenland.models.config.step import ConfigLayerStep
@@ -19,7 +19,7 @@ class ConfigLayer(BaseModel):
     title: str
 
     # Descriptive text:
-    description: str = ''
+    description: str = Field(..., min_length=1)
 
     hierarchy: List[str]
     # in_package: bool
@@ -28,13 +28,8 @@ class ConfigLayer(BaseModel):
     show: bool = False
 
     # Which style (.qml) file to use for this layer?
-    # TODO: require? Better default?
-    style: str = ''
+    style: Optional[str] = Field(None, min_length=1)
 
     input: ConfigLayerInput
 
     steps: List[ConfigLayerStep]
-
-    # TODO: remove.
-    # This was for overriding the output projection of a layer.
-    project_crs: str = ''

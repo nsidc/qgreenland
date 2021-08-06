@@ -16,6 +16,7 @@ def raster_layer_cfg():
     mock_layer_cfg = ConfigLayer(**{
         'id': 'example_raster',
         'title': 'Example Raster',
+        'description': 'Example layer description',
         'hierarchy': ['group', 'subgroup'],
         'input': {
             'dataset': {

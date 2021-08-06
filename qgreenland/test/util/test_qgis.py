@@ -82,24 +82,8 @@ https://nsidc.org"""
     assert actual == expected
 
 
-def test__build_layer_abstract(mock_layer_cfg):  # noqa: F811
-    actual = qgis.build_layer_abstract(mock_layer_cfg)
-    expected = """Example Dataset
-
-Example abstract
-
-Citation:
-NSIDC 2020
-
-Citation URL:
-https://nsidc.org"""
-
-    assert actual == expected
-
-
-def test_build_abstract_with_description(mock_layer_cfg):  # noqa: F811
+def test_build_abstract(mock_layer_cfg):  # noqa: F811
     mock_cfg = copy.deepcopy(mock_layer_cfg)
-    mock_cfg.description = 'Example layer description'
     actual = qgis.build_layer_abstract(mock_cfg)
     expected = """Example layer description
 
