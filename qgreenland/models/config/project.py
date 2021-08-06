@@ -1,13 +1,20 @@
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 from pydantic import BaseModel
+
+
+class BoundingBox(BaseModel):
+    min_x: float
+    min_y: float
+    max_x: float
+    max_y: float
 
 
 class ConfigBoundariesInfo(BaseModel):
     fp: str
     # TODO: create class for features? (keys: type, id, propperties, geometry
     features: List[Dict[Any, Any]]
-    bbox: Tuple[float, float, float, float]
+    bbox: BoundingBox
 
 
 # TODO: re-consider this...proof of concept for dynamic model generation.

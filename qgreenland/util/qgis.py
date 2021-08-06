@@ -332,7 +332,10 @@ def make_qgis_project_file(path: str) -> None:
 
     project_rectangle = qgc.QgsReferencedRectangle(
         qgc.QgsRectangle(
-            *CONFIG.project.boundaries['data'].bbox
+            CONFIG.project.boundaries['data'].bbox.min_x,
+            CONFIG.project.boundaries['data'].bbox.min_y,
+            CONFIG.project.boundaries['data'].bbox.max_x,
+            CONFIG.project.boundaries['data'].bbox.max_y,
         ),
         project_crs
     )

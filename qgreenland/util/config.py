@@ -96,7 +96,12 @@ def _deref_boundaries(cfg: Dict[str, Any]) -> None:
         boundaries_config[boundary_name] = {
             'fp': fp,
             'features': features,
-            'bbox': bbox,
+            'bbox': {
+                'min_x': bbox[0],
+                'min_y': bbox[1],
+                'max_x': bbox[2],
+                'max_y': bbox[3],
+            },
         }
 
 
