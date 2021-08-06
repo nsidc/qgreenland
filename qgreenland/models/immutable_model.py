@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class ImmutableBaseModel(BaseModel):
-    """Implements 'faux' immutability on models that inherit form this class.
+    """Implements 'faux' immutability on models that inherit from this class.
 
     See https://pydantic-docs.helpmanual.io/usage/models/#faux-immutability
 
