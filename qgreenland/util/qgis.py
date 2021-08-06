@@ -354,6 +354,10 @@ def make_qgis_project_file(path: str) -> None:
     # layer source files after zipping the project.
     project.clear()
 
+    # Run `exitQgis` to properly cleanup the QgsApplication. Not doing so causes
+    # a segfault on program completion.
+    qgs.exitQgis()
+
 
 def _add_decorations(project: qgc.QgsProject) -> None:
     logger.debug('Adding decorations...')
