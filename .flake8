@@ -10,5 +10,6 @@ import_order_style = pycharm
 # W503: Line breaks should occur after the binary operator to keep all variable names aligned.
 ignore = D1,W503
 
+# FS003: f-string missing prefix. Useful for config templates.
 per-file-ignores =
   qgreenland/test/util/test_config.py: FS003
