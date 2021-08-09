@@ -4,6 +4,15 @@ setup: &setup
   docker:
     - image: continuumio/miniconda:4.7.12
   environment:
+    # QGIS complains when setting up an QgsApplicatoin if `QT_QPA_PLATFORM` is not
+    # set to `offscreen`:
+    #     qt.qpa.xcb: could not connect to display
+    #     qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
+    #     This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+    #
+    #     Available platform plugins are: eglfs, minimal, minimalegl, offscreen, vnc, webgl, xcb.
+    #
+    #     Fatal Python error: Aborted
     QT_QPA_PLATFORM: offscreen
   working_directory: ~/qgreenland
 
