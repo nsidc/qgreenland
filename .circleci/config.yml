@@ -3,6 +3,8 @@ version: 2
 setup: &setup
   docker:
     - image: continuumio/miniconda:4.7.12
+  environment:
+    QT_QPA_PLATFORM: offscreen
   working_directory: ~/qgreenland
 
 jobs:
