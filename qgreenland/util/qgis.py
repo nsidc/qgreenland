@@ -301,7 +301,7 @@ def _get_qgs_prefix_path() -> str:
     return qgis_prefix_path
 
 
-def setup_qgs_app() -> qgc.QgsApplication:
+def _setup_qgs_app() -> qgc.QgsApplication:
     """Set up QgsApplication.
 
     This function should only be called once to instantiate a
@@ -321,6 +321,25 @@ def setup_qgs_app() -> qgc.QgsApplication:
     return qgs
 
 
+class QgsApplicationContext:
+    """Context manager for setting up and tearing down the QgsApplication.
+
+    WARNING: This context manager should be used once and only once per program
+    execution. Attempting to use this context manager more than once may cause a
+    segfault.
+    """
+
+    def __enter__(self):
+        self.qgs = _setup_qgs_app()
+
+        return self.qgs
+
+    def __exit__(self, _exc_type, _exc_value, _traceback):
+        # Run `exitQgis` to properly cleanup the QgsApplication. Not doing so
+        # causes a segfault on program completion.
+        self.qgs.exitQgis()
+
+
 # TODO: make this path a Path
 def make_qgis_project_file(path: str) -> None:
     """Create a QGIS project file with the correct stuff in it.
@@ -332,8 +351,6 @@ def make_qgis_project_file(path: str) -> None:
 
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
-    qgs = setup_qgs_app()
-
     # Create a new project; initializes basic structure
     project = qgc.QgsProject.instance()
     project.write(path)
@@ -371,10 +388,6 @@ def make_qgis_project_file(path: str) -> None:
     # Release all file locks! If we don't do this, we won't be able to clean up
     # layer source files after zipping the project.
     project.clear()
-
-    # Run `exitQgis` to properly cleanup the QgsApplication. Not doing so causes
-    # a segfault on program completion.
-    qgs.exitQgis()
 
 
 def _add_decorations(project: qgc.QgsProject) -> None:

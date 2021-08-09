@@ -18,7 +18,10 @@ from qgreenland.constants import (ASSETS_DIR,
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config import export_config
 from qgreenland.util.luigi import generate_layer_tasks
-from qgreenland.util.qgis import make_qgis_project_file
+from qgreenland.util.qgis import (
+    QgsApplicationContext,
+    make_qgis_project_file,
+)
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
@@ -105,7 +108,8 @@ class CreateQgisProjectFile(luigi.Task):
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
-        make_qgis_project_file(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
+        with QgsApplicationContext():
+            make_qgis_project_file(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
 
         # Create trigger file and don't write anything
         with self.output().open('w'):
