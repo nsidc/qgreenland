@@ -43,6 +43,9 @@ def generate_layer_tasks():
     tasks: List[luigi.Task] = []
 
     for layer_cfg in CONFIG.layers.values():
+        if layer_cfg.input.type == 'gdal_remote':
+            continue
+
         layer_id = layer_cfg.id
 
         # Create tasks, making each task dependent on the previous task.
@@ -63,11 +66,5 @@ def generate_layer_tasks():
         )
 
         tasks.append(task)
-
-        # TODO: figure out what do to about this!!! (add one of these layers as a test)
-        # `gdal_remote` layers are accessed by QGIS from a remote location, so
-        # no processing is required.
-        # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
-        #     continue
 
     return tasks

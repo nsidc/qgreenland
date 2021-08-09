@@ -192,14 +192,13 @@ def get_final_layer_dir(layer_cfg) -> Path:
 
 
 def get_final_layer_filepath(layer_cfg: ConfigLayer) -> Path:
-    # TODO: Re-implement gdal_remote layers
-    # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
-    #     if (urls_count := len(layer_cfg['source']['urls'])) != 1:
-    #         raise exc.QgrRuntimeError(
-    #             f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}."
-    #         )
+    if layer_cfg.input.asset.type == 'gdal_remote':
+        if (urls_count := len(layer_cfg.input.asset.urls)) != 1:
+            raise exc.QgrRuntimeError(
+                f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}."
+            )
 
-    #     return f"{layer_cfg['source']['urls'][0]}"
+        return f"{layer_cfg.input.asset.urls[0]}"
 
     d = get_final_layer_dir(layer_cfg)
     layer_fp = get_layer_fp(d)

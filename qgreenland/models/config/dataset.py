@@ -26,17 +26,22 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
     urls: List[AnyUrl]
 
 
+class ConfigDatasetGdalRemoteAsset(ConfigDatasetAsset):
+    type: Literal['gdal_remote']
+    urls: List[str]
+
+
 class ConfigDatasetCmrAsset(ConfigDatasetAsset):
     type: Literal['cmr']
     granule_ur: str = Field(..., min_length=1)
     collection_concept_id: str = Field(..., min_length=1)
 
 
-# It is unclear why we cannot just use `bound=ConfigDatasetAsset`, but suspect
-# that pydantic does not try to find all subclasses of `ConfigDatasetAsset` when
-# casting data to an appropriate model. Explicitly listing out the possible
-# types allows pydantic to select the correct model based on the input data.
-AnyAsset = Union[ConfigDatasetHttpAsset, ConfigDatasetCmrAsset]
+AnyAsset = Union[
+    ConfigDatasetHttpAsset,
+    ConfigDatasetGdalRemoteAsset,
+    ConfigDatasetCmrAsset
+]
 
 # ... ogr_remote_vector, manual assets
 

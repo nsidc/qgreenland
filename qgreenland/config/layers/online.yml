@@ -1,0 +1,10 @@
+- id: image_mosaic_2019
+  title: 'Greenland image mosaic 2019 (10m)'
+  description: 'Sentinel-2 multispectral satellite imagery from 2019.'
+  show: False
+  in_package: True
+  hierarchy: ['Internet-required data']
+  style: 'transparent_rgb'
+  input:
+    dataset: image_mosaic
+    asset: '2019'

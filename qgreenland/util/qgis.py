@@ -44,9 +44,8 @@ def create_raster_map_layer(
     layer_path: Path,
     layer_cfg: ConfigLayer
 ) -> qgc.QgsRasterLayer:
-    # TODO: Re-implement
-    # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
-    #     return _get_raster_layer(layer_path, layer_cfg)
+    if layer_cfg.input.asset.type == 'gdal_remote':
+        return _get_raster_layer(layer_path, layer_cfg)
 
     # Generate statistics for the raster layer. This creates an `aux.xml` file
     # alongside the .tif file that includes statistics (min/max/std) that qgis
@@ -121,7 +120,10 @@ def get_map_layer(layer_cfg: ConfigLayer, project_crs):
     # and windows?
     layer_path = get_final_layer_filepath(layer_cfg)
     # TODO: LayerType definition
-    layer_type = vector_or_raster(layer_path)
+    if layer_cfg.input.asset.type == 'gdal_remote':
+        layer_type = 'Raster'
+    else:
+        layer_type = vector_or_raster(layer_path)
 
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     if layer_type == 'Vector':

@@ -224,6 +224,10 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             layer_config['input']['dataset'] = dataset_config
             layer_config['input']['asset'] = dataset_config['assets'][asset_id]
 
+        if layer_config['input']['asset']['type'] == 'gdal_remote':
+            # gdal remote layers have no steps
+            continue
+
         # Populate steps with templates where necessary
         layer_config['steps'] = _deref_steps(
             steps=layer_config['steps'],
@@ -333,16 +337,15 @@ def export_config(
     """
     report = []
     for layer in cfg.layers.values():
-        # TODO: Re-implement gdal_remote layers conditional.
-        # if layer['dataset']['access_method'] != 'gdal_remote':
-        #     layer_dir = Path(get_final_layer_filepath(layer)).parent
-        #     layer_size_bytes = directory_size_bytes(layer_dir)
-        # else:
-        #     # online layers have no size on disk.
-        #     layer_size_bytes = 0
-        layer_fp = get_final_layer_filepath(layer)
-        layer_dir = layer_fp.parent
-        layer_size_bytes = directory_size_bytes(layer_dir)
+        if layer.asset.type != 'gdal_remote':
+            layer_fp = get_final_layer_filepath(layer)
+            layer_dir = layer_fp.parent
+            layer_size_bytes = directory_size_bytes(layer_dir)
+            data_type = vector_or_raster(layer_fp)
+        else:
+            # online layers have no size on disk.
+            data_type = 'raster'
+            layer_size_bytes = 0
 
         dataset_cfg = layer.input.dataset
 
@@ -351,7 +354,7 @@ def export_config(
             'Subgroup': ('/'.join(layer.hierarchy[1:])),
             'Layer Title': layer.title,
             'Layer Description': layer.description,
-            'Vector or Raster': vector_or_raster(layer_fp),
+            'Vector or Raster': data_type,
             'Data Source Title': dataset_cfg.metadata.title,
             'Data Source Abstract': dataset_cfg.metadata.abstract,
             'Data Source Citation': dataset_cfg.metadata.citation.text,

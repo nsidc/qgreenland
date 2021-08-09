@@ -18,7 +18,7 @@ layer:
   # NOT include .qml file extension
   style: str(required=False)
 
-  steps: list(include('steps', required=True))
+  steps: list(include('steps', required=True), required=False)
 
 ---
 input:
