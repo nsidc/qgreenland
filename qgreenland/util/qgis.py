@@ -12,7 +12,6 @@ from PyQt5.QtGui import QColor
 from jinja2 import Template
 from osgeo import gdal
 
-from qgreenland._typing import AnyQgsLayer
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, INPUT_DIR
 from qgreenland.models.config.layer import ConfigLayer
@@ -72,7 +71,7 @@ def create_raster_map_layer(
     return map_layer
 
 
-def _add_layer_metadata(map_layer: AnyQgsLayer, layer_cfg: ConfigLayer) -> None:
+def _add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> None:
     """Add layer metadata.
 
     Renders a jinja template to a temporary file location as a valid QGIS qmd
@@ -289,6 +288,39 @@ def _add_layers(project: qgc.QgsProject) -> None:
     logger.debug('Done adding layers.')
 
 
+def _get_qgs_prefix_path() -> str:
+    # The qgis prefix path is two directories above the qgis executable.
+    # See:
+    # https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
+    qgis_path = subprocess.run(
+        ['which', 'qgis'],
+        stdout=subprocess.PIPE
+    ).stdout.decode('utf-8').strip('\n')
+    qgis_prefix_path = os.path.abspath(os.path.join(qgis_path, '..', '..'))
+
+    return qgis_prefix_path
+
+
+def setup_qgs_app() -> qgc.QgsApplication:
+    """Set up QgsApplication.
+
+    This function should only be called once to instantiate a
+    QgsApplication. Once all pyqgis operations are complete, the QgsApplication
+    MUST be cleaned up with the QgsApplication instance's `exitQgis`
+    method. Failure to do so will result in a segmentation fault.
+    """
+    qgis_prefix_path = _get_qgs_prefix_path()
+
+    # Boilerplate QGIS initialization code;
+    # - Suppresses "Application path not intialized" errors
+    # - Enables Qt support for fonts used in layer styles (labels)
+    qgs = qgc.QgsApplication([], False)
+    qgs.initQgis()
+    qgc.QgsApplication.setPrefixPath(qgis_prefix_path, True)
+
+    return qgs
+
+
 # TODO: make this path a Path
 def make_qgis_project_file(path: str) -> None:
     """Create a QGIS project file with the correct stuff in it.
@@ -300,21 +332,7 @@ def make_qgis_project_file(path: str) -> None:
 
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
-    # The qgis prefix path is two directories above the qgis executable.
-    # See:
-    # https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
-    qgis_path = subprocess.run(
-        ['which', 'qgis'],
-        stdout=subprocess.PIPE
-    ).stdout.decode('utf-8').strip('\n')
-    qgis_prefix_path = os.path.abspath(os.path.join(qgis_path, '..', '..'))
-
-    # Boilerplate QGIS initialization code;
-    # - Suppresses "Application path not intialized" errors
-    # - Enables Qt support for fonts used in layer styles (labels)
-    qgs = qgc.QgsApplication([], False)
-    qgs.initQgis()
-    qgc.QgsApplication.setPrefixPath(qgis_prefix_path, True)
+    qgs = setup_qgs_app()
 
     # Create a new project; initializes basic structure
     project = qgc.QgsProject.instance()
@@ -354,6 +372,10 @@ def make_qgis_project_file(path: str) -> None:
     # layer source files after zipping the project.
     project.clear()
 
+    # Run `exitQgis` to properly cleanup the QgsApplication. Not doing so causes
+    # a segfault on program completion.
+    qgs.exitQgis()
+
 
 def _add_decorations(project: qgc.QgsProject) -> None:
     logger.debug('Adding decorations...')
@@ -382,7 +404,7 @@ def _add_decorations(project: qgc.QgsProject) -> None:
     logger.debug('Done adding decorations.')
 
 
-def load_qml_style(map_layer: AnyQgsLayer, style_name: str) -> None:
+def load_qml_style(map_layer: qgc.QgsMapLayer, style_name: str) -> None:
     style_path = os.path.join(ASSETS_DIR, 'styles', style_name + '.qml')
     # If you pass a path to nothing, it will silently fail
     if not os.path.isfile(style_path):
