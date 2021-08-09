@@ -1,7 +1,7 @@
 import pytest
 
 from qgreenland.models.config.layer import ConfigLayer
-from qgreenland.util.qgis import setup_qgs_app
+from qgreenland.util.qgis import QgsApplicationContext
 
 
 @pytest.fixture
@@ -53,6 +53,5 @@ def setup_teardown_qgis_app():
     only once. Attempting to setup and teardown more than once will result in
     segmentation faults.
     """
-    qgs = setup_qgs_app()
-    yield qgs
-    qgs.exitQgis()
+    with QgsApplicationContext():
+        yield
