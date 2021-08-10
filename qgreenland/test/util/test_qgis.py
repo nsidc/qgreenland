@@ -4,12 +4,10 @@ import os
 import qgis.core as qgc
 
 from qgreenland.constants import PACKAGE_DIR
-from qgreenland.test.fixtures import raster_layer_cfg as mock_layer_cfg  # noqa: F401
-from qgreenland.test.fixtures import setup_teardown_qgis_app  # noqa: F401
 from qgreenland.util import qgis as _qgis
 
 
-def test_create_raster_map_layer(setup_teardown_qgis_app, mock_layer_cfg):  # noqa: F811
+def test_create_raster_map_layer(setup_teardown_qgis_app, mock_layer_cfg):
     mock_raster_path = os.path.join(
         PACKAGE_DIR,
         'test',
@@ -37,7 +35,7 @@ def test_create_raster_map_layer(setup_teardown_qgis_app, mock_layer_cfg):  # no
     del result
 
 
-def test__add_layer_metadata(setup_teardown_qgis_app, mock_layer_cfg):  # noqa: F811
+def test__add_layer_metadata(setup_teardown_qgis_app, mock_layer_cfg):
     mock_raster_path = os.path.join(
         PACKAGE_DIR,
         'test',
@@ -68,7 +66,7 @@ def test__add_layer_metadata(setup_teardown_qgis_app, mock_layer_cfg):  # noqa: 
     del mock_raster_layer
 
 
-def test__build_dataset_description(mock_layer_cfg):  # noqa: F811
+def test__build_dataset_description(mock_layer_cfg):
     actual = _qgis._build_dataset_description(mock_layer_cfg)
     expected = """Example Dataset
 
@@ -77,7 +75,7 @@ Example abstract"""
     assert actual == expected
 
 
-def __build_dataset_citation(mock_layer_cfg):  # noqa: F811
+def __build_dataset_citation(mock_layer_cfg):
     actual = _qgis._build_dataset_citation(mock_layer_cfg)
     expected = """Citation:
 NSIDC 2020
@@ -88,7 +86,7 @@ https://nsidc.org"""
     assert actual == expected
 
 
-def test_build_abstract(mock_layer_cfg):  # noqa: F811
+def test_build_abstract(mock_layer_cfg):
     mock_cfg = copy.deepcopy(mock_layer_cfg)
     actual = _qgis.build_layer_abstract(mock_cfg)
     expected = """Example layer description
