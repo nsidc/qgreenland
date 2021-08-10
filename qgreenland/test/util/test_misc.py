@@ -1,10 +1,7 @@
 from pathlib import Path
 
 from qgreenland.constants import TaskType
-from qgreenland.test.fixtures import (
-    online_layer_cfg,  # noqa: F401
-    raster_layer_cfg,  # noqa: F401
-)
+from qgreenland.test.fixtures import online_layer_cfg, raster_layer_cfg  # noqa: F401
 from qgreenland.util import misc
 
 

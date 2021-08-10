@@ -42,7 +42,6 @@ def online_layer_cfg():
     })
 
 
-
 @pytest.fixture
 def raster_layer_cfg():
     return ConfigLayer(**{
