@@ -353,45 +353,43 @@ def make_qgis_project_file(path: str) -> None:
 
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
-    with QgsApplicationContext():
+    # Create a new project; initializes basic structure
+    project = qgc.QgsProject.instance()
+    project.write(path)
 
-        # Create a new project; initializes basic structure
-        project = qgc.QgsProject.instance()
-        project.write(path)
+    project_crs = qgc.QgsCoordinateReferenceSystem(CONFIG.project.crs)
+    project.setCrs(project_crs)
 
-        project_crs = qgc.QgsCoordinateReferenceSystem(CONFIG.project.crs)
-        project.setCrs(project_crs)
+    # Set the map background color to be gray (same color as Quantarctica)
+    project.setBackgroundColor(QColor(200, 200, 200))
 
-        # Set the map background color to be gray (same color as Quantarctica)
-        project.setBackgroundColor(QColor(200, 200, 200))
+    # Set the default extent. Eventually we may want to pull the extent directly
+    # from the configured 'map frame' layer.
+    view = project.viewSettings()
 
-        # Set the default extent. Eventually we may want to pull the extent directly
-        # from the configured 'map frame' layer.
-        view = project.viewSettings()
+    project_rectangle = qgc.QgsReferencedRectangle(
+        qgc.QgsRectangle(
+            CONFIG.project.boundaries['data'].bbox.min_x,
+            CONFIG.project.boundaries['data'].bbox.min_y,
+            CONFIG.project.boundaries['data'].bbox.max_x,
+            CONFIG.project.boundaries['data'].bbox.max_y,
+        ),
+        project_crs
+    )
+    view.setDefaultViewExtent(project_rectangle)
 
-        project_rectangle = qgc.QgsReferencedRectangle(
-            qgc.QgsRectangle(
-                CONFIG.project.boundaries['data'].bbox.min_x,
-                CONFIG.project.boundaries['data'].bbox.min_y,
-                CONFIG.project.boundaries['data'].bbox.max_x,
-                CONFIG.project.boundaries['data'].bbox.max_y,
-            ),
-            project_crs
-        )
-        view.setDefaultViewExtent(project_rectangle)
+    _add_layers(project)
 
-        _add_layers(project)
+    _add_decorations(project)
 
-        _add_decorations(project)
+    _set_groups_options(project)
 
-        _set_groups_options(project)
+    # TODO: is it normal to write multiple times?
+    project.write()
 
-        # TODO: is it normal to write multiple times?
-        project.write()
-
-        # Release all file locks! If we don't do this, we won't be able to clean up
-        # layer source files after zipping the project.
-        project.clear()
+    # Release all file locks! If we don't do this, we won't be able to clean up
+    # layer source files after zipping the project.
+    project.clear()
 
 
 def _add_decorations(project: qgc.QgsProject) -> None:
