@@ -20,8 +20,6 @@ def test_final_layer_dir(mock_layer_cfg):  # noqa: F811
     assert expected == actual
 
 
-# TODO: Remove xfail once gdal_remote implemented
-@pytest.mark.xfail(reason='Remote layers temporarily not imlemented')
 def test_layer_path_remote():
     layer_cfg = {
         'id': 'coastlines',
@@ -42,8 +40,6 @@ def test_layer_path_remote():
     assert expected == actual
 
 
-# TODO: Remove xfail once gdal_remote implemented
-@pytest.mark.xfail(reason='Remote layers temporarily not imlemented')
 def test_layer_path_remote_multiple_urls():
     """Multiple URLS are not supported for the `gdal_remote` access method."""
     layer_cfg = {
