@@ -1,3 +1,4 @@
+# flake8: noqa E501
 """Generate a sample layer manifest file.
 
 Describes how to find a layer's files relative to the manifest, how to represent
@@ -29,7 +30,7 @@ manifest = {
             # Used for search or tag-based browsing.
             'tags': ['Birds', 'Nests', 'Protected areas', 'Restricted areas'],
 
-            'layer_details': '''Polygons representing areas protected for birds.
+            'layer_details': """Polygons representing areas protected for birds.
 
 <h2>Original Data Source</h2>
 NunaGIS data server protected area data
@@ -52,7 +53,7 @@ Date accessed: 2021-01-26.</a>
 <li><pre>gdaltranslate ... v3.1.2</pre></li>
 <li>...</li>
 </ul>
-''',
+""",
         },
     ],
 }

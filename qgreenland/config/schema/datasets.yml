@@ -27,7 +27,7 @@ assets:
 
   # ogr_remote_vector
   # TODO: Consider breaking up in to "featureserver_url", "feature_id", "query"?
-  # query_url: str(required=False)
+  url: str(required=False)
 
   # manual:
   # access_instructions: str(required=False)

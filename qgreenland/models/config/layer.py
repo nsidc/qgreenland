@@ -33,4 +33,4 @@ class ConfigLayer(ImmutableBaseModel):
 
     input: ConfigLayerInput
 
-    steps: List[ConfigLayerStep] = []
+    steps: Optional[List[ConfigLayerStep]]

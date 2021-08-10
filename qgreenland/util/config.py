@@ -224,8 +224,10 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             layer_config['input']['dataset'] = dataset_config
             layer_config['input']['asset'] = dataset_config['assets'][asset_id]
 
-        if layer_config['input']['asset']['type'] == 'gdal_remote':
-            # gdal remote layers have no steps
+        breakpoint()
+        if not layer_config.get('steps'):
+            # gdal remote layers and layers which require not processing have no
+            # "steps"
             continue
 
         # Populate steps with templates where necessary
@@ -343,8 +345,9 @@ def export_config(
             layer_size_bytes = directory_size_bytes(layer_dir)
             data_type = vector_or_raster(layer_fp)
         else:
+            # TODO: Is there a better way to determine "vector or raster" here?
+            data_type = 'online'
             # online layers have no size on disk.
-            data_type = 'raster'
             layer_size_bytes = 0
 
         dataset_cfg = layer.input.dataset

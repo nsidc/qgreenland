@@ -44,6 +44,7 @@ def create_raster_map_layer(
     layer_path: Path,
     layer_cfg: ConfigLayer
 ) -> qgc.QgsRasterLayer:
+    # Handle online layers. TODO: Make it more general? Extract function?
     if layer_cfg.input.asset.type == 'gdal_remote':
         return _get_raster_layer(layer_path, layer_cfg)
 
@@ -118,13 +119,9 @@ def get_map_layer(layer_cfg: ConfigLayer, project_crs):
     # resulting in rendering a gray rectangle.
     # TODO: do we need to worry about differences in path structure between linux
     # and windows?
-    layer_path = get_final_layer_filepath(layer_cfg)
-    # TODO: LayerType definition
-    if layer_cfg.input.asset.type == 'gdal_remote':
-        layer_type = 'Raster'
-    else:
-        layer_type = vector_or_raster(layer_path)
+    layer_type = vector_or_raster(layer_cfg)
 
+    layer_path = get_final_layer_filepath(layer_cfg)
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     if layer_type == 'Vector':
         map_layer = qgc.QgsVectorLayer(
