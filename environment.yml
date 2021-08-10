@@ -8,7 +8,7 @@ dependencies:
   #     https://bugs.python.org/issue44061
   #     https://github.com/conda-forge/python-feedstock/issues/478
   # TODO: Update Python once newer compatible versions are available
-  - python ~=3.8.10
+  - python ~=3.9.0
 
   #################################################
   # Imported dependencies (and related typestubs) #
@@ -22,7 +22,7 @@ dependencies:
   - luigi ~=3.0.2
   - pydantic ~=1.8
   - pyyaml ~=5.3.1
-  - qgis ~=3.10.14
+  - qgis ~=3.16.0
   - rasterio ~=1.1.2
   - requests ~=2.25.0
   - types-requests ~=2.25.0
@@ -41,8 +41,8 @@ dependencies:
   - invoke ~=1.4.0
 
   # test-runners
-  - pytest ~=5.3.5
-  - pytest-cov ~=2.8.1
+  - pytest ~=6.2
+  - pytest-cov ~=2.12
 
   # static analysis
   - flake8 ~=3.8.3

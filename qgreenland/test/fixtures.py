@@ -1,6 +1,7 @@
 import pytest
 
 from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.util.qgis import QgsApplicationContext
 
 
 @pytest.fixture
@@ -42,3 +43,15 @@ def raster_layer_cfg():
     })
 
     return mock_layer_cfg
+
+
+@pytest.fixture(scope='session')
+def setup_teardown_qgis_app():
+    """Set up and teardown a QgsApplication instance ONCE.
+
+    The QgsApplication must be setup and torn town once (`scope='session'`) and
+    only once. Attempting to setup and teardown more than once will result in
+    segmentation faults.
+    """
+    with QgsApplicationContext():
+        yield
