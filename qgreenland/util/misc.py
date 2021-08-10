@@ -12,7 +12,6 @@ from typing import Any
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType
 from qgreenland.constants import REQUEST_TIMEOUT, TaskType
-from qgreenland.models.config import Config
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
@@ -194,9 +193,6 @@ def get_final_layer_dir(layer_cfg) -> Path:
 
 
 def get_final_layer_filepath(layer_cfg: ConfigLayer) -> Path:
-    if layer_cfg.input.asset.type == 'gdal_remote':
-        return f'{layer_cfg.input.asset.url}'
-
     d = get_final_layer_dir(layer_cfg)
     layer_fp = get_layer_fp(d)
 
@@ -246,7 +242,7 @@ def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
     return f'{dataset_id}.{asset_id}'
 
 
-def vector_or_raster(layer_cfg: Config) -> QgsLayerType:
+def vector_or_raster(layer_cfg: ConfigLayer) -> QgsLayerType:
     if layer_cfg.input.asset.type == 'gdal_remote':
         return 'Raster'
     else:

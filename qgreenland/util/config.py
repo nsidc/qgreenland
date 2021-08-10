@@ -338,14 +338,16 @@ def export_config(
     """
     report = []
     for layer in cfg.layers.values():
-        if layer.asset.type != 'gdal_remote':
+        layer_type: str
+        if layer.input.asset.type != 'gdal_remote':
             layer_fp = get_final_layer_filepath(layer)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
-            data_type = vector_or_raster(layer_fp)
+            layer_type = vector_or_raster(layer)
         else:
             # TODO: Is there a better way to determine "vector or raster" here?
-            data_type = 'online'
+            # TODO: Expand the LayerType type to include "online"?
+            layer_type = 'online'
             # online layers have no size on disk.
             layer_size_bytes = 0
 
@@ -356,7 +358,7 @@ def export_config(
             'Subgroup': ('/'.join(layer.hierarchy[1:])),
             'Layer Title': layer.title,
             'Layer Description': layer.description,
-            'Vector or Raster': data_type,
+            'Vector or Raster': layer_type,
             'Data Source Title': dataset_cfg.metadata.title,
             'Data Source Abstract': dataset_cfg.metadata.abstract,
             'Data Source Citation': dataset_cfg.metadata.citation.text,
