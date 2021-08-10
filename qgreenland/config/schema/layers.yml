@@ -12,13 +12,22 @@ layer:
   in_package: bool()
   # Is this layer initially "checked" as visible in QGIS?
   show: bool()
+
+  # NOTE: We considered making `input` in to a "step" of "python" type with
+  # dataset/asset as parameters. This pattern falls short for `gdal_remote`
+  # layers, so it's probably a good idea to keep the first class linkage
+  # between layers and datasets here.
   input: include('input', required=True)
 
   # The name of a style (represented as .qml file in `assets/styles`). Should
   # NOT include .qml file extension
   style: str(required=False)
 
+  # Steps is optional because a layer could be created from a fetch alone, or a
+  # layer could be a `gdal_remote` or other type of online layer which requires
+  # only configuration in the QGIS project, no local processing.
   steps: list(include('steps', required=True), required=False)
+
 
 ---
 input:

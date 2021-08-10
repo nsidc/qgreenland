@@ -28,7 +28,8 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
 
 class ConfigDatasetGdalRemoteAsset(ConfigDatasetAsset):
     type: Literal['gdal_remote']
-    urls: List[str]
+    # AnyUrl doesn't work because of `/vsicurl/https://` prefix
+    url: str = Field(..., min_length=1)
 
 
 class ConfigDatasetCmrAsset(ConfigDatasetAsset):
