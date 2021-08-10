@@ -244,6 +244,10 @@ def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
 
 def vector_or_raster(layer_cfg: ConfigLayer) -> QgsLayerType:
     if layer_cfg.input.asset.type == 'gdal_remote':
+        # TODO: Support non-raster remote layers! Consider replacing the
+        # existing gdal_remote type with an "online" type which has an attribute
+        # defining the layer type. When a layer has a file, we can check its
+        # type, but if it's remote, we have to explicitly configure its type.
         return 'Raster'
     else:
         layer_path = get_final_layer_filepath(layer_cfg)

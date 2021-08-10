@@ -26,6 +26,9 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
     urls: List[AnyUrl]
 
 
+# TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
+# "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
+# regular layer with a URL as its path.
 class ConfigDatasetGdalRemoteAsset(ConfigDatasetAsset):
     type: Literal['gdal_remote']
     # AnyUrl doesn't work because of `/vsicurl/https://` prefix
