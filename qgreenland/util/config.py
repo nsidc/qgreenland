@@ -224,7 +224,6 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             layer_config['input']['dataset'] = dataset_config
             layer_config['input']['asset'] = dataset_config['assets'][asset_id]
 
-        breakpoint()
         if not layer_config.get('steps'):
             # gdal remote layers and layers which require not processing have no
             # "steps"
