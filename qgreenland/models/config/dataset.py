@@ -49,7 +49,7 @@ class ConfigDatasetCmrAsset(ConfigDatasetAsset):
 AnyAsset = Union[
     ConfigDatasetHttpAsset,
     ConfigDatasetOnlineAsset,
-    ConfigDatasetCmrAsset
+    ConfigDatasetCmrAsset,
 ]
 
 
