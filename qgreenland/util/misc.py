@@ -248,7 +248,6 @@ def vector_or_raster(layer_cfg: ConfigLayer) -> QgsLayerType:
         # existing gdal_remote type with an "online" type which has an attribute
         # defining the layer type. When a layer has a file, we can check its
         # type, but if it's remote, we have to explicitly configure its type.
-        breakpoint()
         return 'Raster'
     else:
         layer_path = get_final_layer_filepath(layer_cfg)

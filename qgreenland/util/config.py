@@ -347,7 +347,6 @@ def export_config(
         else:
             # TODO: Is there a better way to determine "vector or raster" here?
             # TODO: Expand the LayerType type to include "online"?
-            breakpoint()
             layer_type = 'online'
             # online layers have no size on disk.
             layer_size_bytes = 0
