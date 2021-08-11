@@ -36,11 +36,15 @@ def _get_raster_layer(
     layer_path: Union[Path, str],
     layer_cfg: ConfigLayer,
 ) -> qgc.QgsRasterLayer:
-    # TODO: Does qgis have types that can catch passing a Path here?
+    if layer_cfg.input.asset.type == 'online':
+        provider = layer_cfg.input.asset.provider
+    else:
+        provider = 'gdal'
+
     return qgc.QgsRasterLayer(
         str(layer_path),
         layer_cfg.title,
-        'gdal'
+        provider,
     )
 
 
@@ -115,23 +119,17 @@ def _add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> N
         map_layer.loadNamedMetadata(temp_file.name)
 
 
-# TODO: type project_crs
-def get_map_layer(layer_cfg: ConfigLayer, project_crs):
-    """Create Qgs layer objects from layer config."""
-    # Give the absolute path to the layer. We think project.addMapLayer()
-    # automatically generates the correct relative paths. Using a relative
-    # path causes statistics (nodata value, min/max) to not be generated,
-    # resulting in rendering a gray rectangle.
-    # TODO: do we need to worry about differences in path structure between linux
-    # and windows?
+def _get_map_layer(layer_cfg: ConfigLayer):
+    """Determine the correct type of layer to create and create it."""
     layer_type = vector_or_raster(layer_cfg)
-
     layer_path: Union[Path, str]
     if layer_cfg.input.asset.type == 'online':
         layer_path = f'{layer_cfg.input.asset.url}'
     else:
         layer_path = get_final_layer_filepath(layer_cfg)
 
+    # TODO: Is there a way to simplify creating a raster or vector layer?
+    # Extract side-effects into callback functions?
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     if layer_type == 'Vector':
         map_layer = qgc.QgsVectorLayer(
@@ -146,6 +144,21 @@ def get_map_layer(layer_cfg: ConfigLayer, project_crs):
         raise exc.QgrRuntimeError(
             f'Invalid QgsMapLayer created for layer {layer_cfg.id}'
         )
+
+    return map_layer
+
+
+# TODO: Refactor!!!
+# TODO: type project_crs
+def get_map_layer(layer_cfg: ConfigLayer, project_crs):
+    """Create Qgs layer objects, attach style, and set CRS."""
+    # Give the absolute path to the layer. We think project.addMapLayer()
+    # automatically generates the correct relative paths. Using a relative
+    # path causes statistics (nodata value, min/max) to not be generated,
+    # resulting in rendering a gray rectangle.
+    # TODO: do we need to worry about differences in path structure between linux
+    # and windows?
+    map_layer = _get_map_layer(layer_cfg)
 
     _add_layer_metadata(map_layer, layer_cfg)
 
