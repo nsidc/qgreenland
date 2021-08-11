@@ -152,18 +152,6 @@ def get_map_layer(layer_cfg: ConfigLayer, project_crs):
     if style := layer_cfg.style:
         load_qml_style(map_layer, style)
 
-    # TODO: set CRS based on detected CRS of the layer. The pipelines are
-    # responsible for converting them into project_crs and adding metadata or
-    # not. This function is responsible for adding layers and setting their CRS
-    # based on the _actual_ value in the layer.
-    #
-    # if layer_crs := layer_cfg.project_crs:
-    #     map_layer.setCrs(qgc.QgsCoordinateReferenceSystem(layer_crs))
-    # else:
-    #     map_layer.setCrs(project_crs)
-
-    map_layer.setCrs(project_crs)
-
     return map_layer
 
 
