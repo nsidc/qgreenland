@@ -1,10 +1,11 @@
 import datetime as dt
+import functools
 import logging
 import os
 import subprocess
 import tempfile
 from pathlib import Path
-from typing import List, Optional, Union
+from typing import Callable, List, Optional, Union
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc
@@ -14,7 +15,11 @@ from osgeo import gdal
 
 import qgreenland.exceptions as exc
 from qgreenland.config import CONFIG
-from qgreenland.constants import ASSETS_DIR, INPUT_DIR
+from qgreenland.constants import (
+    ASSETS_DIR,
+    INPUT_DIR,
+)
+from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.misc import (
     datasource_dirname,
@@ -26,62 +31,6 @@ from qgreenland.util.version import get_build_version
 logger = logging.getLogger('luigi-interface')
 LAYERGROUP_EXPANDED_DEFAULT = False
 LAYERGROUP_VISIBLE_DEFAULT = False
-
-# TODO: Figure out which functions should start with underscore and apply
-# consistently
-
-
-# TODO: _create_raster_layer? Pass in "title" instead of "layer_cfg"?
-def _get_raster_layer(
-    layer_path: Union[Path, str],
-    layer_cfg: ConfigLayer,
-) -> qgc.QgsRasterLayer:
-    # TODO: Infer provider from QgsLayerType and asset type? i.e. if offline,
-    # use `vector_or_raster` to decide if provider is `ogr` or `gdal`. If
-    # online, use the given provder, and use the mapping to decide what type of
-    # layer to create for that provider.
-    if layer_cfg.input.asset.type == 'online':
-        provider = layer_cfg.input.asset.provider
-    else:
-        provider = 'gdal'
-
-    return qgc.QgsRasterLayer(
-        str(layer_path),
-        layer_cfg.title,
-        provider,
-    )
-
-
-def create_raster_map_layer(
-    # The path could be a URL or `/vsicurl/` string
-    layer_path: Union[Path, str],
-    layer_cfg: ConfigLayer
-) -> qgc.QgsRasterLayer:
-    # Handle online layers. TODO: Make it more general? Extract function?
-    if layer_cfg.input.asset.type == 'online':
-        return _get_raster_layer(layer_path, layer_cfg)
-
-    # Generate statistics for the raster layer. This creates an `aux.xml` file
-    # alongside the .tif file that includes statistics (min/max/std) that qgis
-    # can read.
-    # Note that generating this file before creating the map layer allows the
-    # layer's statistics to be correctly initialized.
-
-    # TODO: Does gdal have types that can throw an error if a `Path` is passed?
-    # If not, write stubs!
-    gdal.Info(str(layer_path), stats=True)
-
-    map_layer = _get_raster_layer(layer_path, layer_cfg)
-
-    # Set the min/max render accuracy to 'Exact'. Usually qgis estimates
-    # statistics for e.g., generating the default colormap.
-    mmo = map_layer.renderer().minMaxOrigin()
-    # 0 == 'Exact'
-    # map_layer.renderer().minMaxOrigin().statAccuracyString(0)
-    mmo.setStatAccuracy(0)
-    map_layer.renderer().setMinMaxOrigin(mmo)
-
-    return map_layer
 
 
 def _add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> None:
@@ -123,49 +72,73 @@ def _add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> N
         map_layer.loadNamedMetadata(temp_file.name)
 
 
-def _get_map_layer(layer_cfg: ConfigLayer):
-    """Determine the correct type of layer to create and create it."""
-    layer_type = vector_or_raster(layer_cfg)
-    layer_path: Union[Path, str]
-    if layer_cfg.input.asset.type == 'online':
-        layer_path = f'{layer_cfg.input.asset.url}'
+def _layer_path(layer_cfg: ConfigLayer) -> Union[Path, str]:
+    if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
+        return f'{layer_cfg.input.asset.url}'
     else:
-        layer_path = get_final_layer_filepath(layer_cfg)
+        # Give the absolute path to the layer. We think project.addMapLayer()
+        # automatically generates the correct relative paths. Using a relative
+        # path causes statistics (nodata value, min/max) to not be generated,
+        # resulting in rendering a gray rectangle.
+        return get_final_layer_filepath(layer_cfg)
 
-    # TODO: Is there a way to simplify creating a raster or vector layer?
-    # Extract side-effects into callback functions?
-    # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
+
+def _create_layer_with_side_effects(
+    creator: Callable[..., qgc.QgsMapLayer],
+    *,
+    layer_cfg: ConfigLayer,
+) -> qgc.QgsMapLayer:
+    """Apply special steps before/after creating a layer."""
+    layer_path = _layer_path(layer_cfg)
+    layer_type = vector_or_raster(layer_cfg)
     if layer_type == 'Vector':
-        if layer_cfg.input.asset.type == 'online':
-            raise NotImplementedError('Online vector layers not supported')
-
-        map_layer = qgc.QgsVectorLayer(
-            str(layer_path),
-            layer_cfg.title,  # layer name as it shows up in QGIS TOC
-            'ogr'  # name of the data provider (e.g. memory, postgresql)
-        )
+        map_layer = creator()
     elif layer_type == 'Raster':
-        map_layer = create_raster_map_layer(layer_path, layer_cfg)
+        if type(layer_cfg.input.asset) is not ConfigDatasetOnlineAsset:
+            gdal.Info(str(layer_path), stats=True)
+
+        map_layer = creator()
+
+        # Set the min/max render accuracy to 'Exact'. Usually qgis estimates
+        # statistics for e.g., generating the default colormap.
+        mmo = map_layer.renderer().minMaxOrigin()
+        # 0 == 'Exact'
+        # map_layer.renderer().minMaxOrigin().statAccuracyString(0)
+        mmo.setStatAccuracy(0)
+        map_layer.renderer().setMinMaxOrigin(mmo)
+
+    return map_layer
+
+
+def make_map_layer(layer_cfg: ConfigLayer) -> qgc.QgsMapLayer:
+    layer_path = _layer_path(layer_cfg)
+    layer_type = vector_or_raster(layer_cfg)
+    if layer_type == 'Vector':
+        provider = 'ogr'
+        qgs_layer_creator = qgc.QgsVectorLayer
+    elif layer_type == 'Raster':
+        provider = 'gdal'
+        qgs_layer_creator = qgc.QgsRasterLayer
+
+    # For online layers, the provider is specified in the config.
+    if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
+        provider = layer_cfg.input.asset.provider
+
+    creator = functools.partial(
+        qgs_layer_creator,
+        str(layer_path),
+        layer_cfg.title,
+        provider,
+    )
+    map_layer = _create_layer_with_side_effects(
+        creator,
+        layer_cfg=layer_cfg,
+    )
 
     if not map_layer.isValid():
         raise exc.QgrRuntimeError(
             f'Invalid QgsMapLayer created for layer {layer_cfg.id}'
         )
-
-    return map_layer
-
-
-# TODO: Refactor!!!
-# TODO: type project_crs
-def get_map_layer(layer_cfg: ConfigLayer, project_crs):
-    """Create Qgs layer objects, attach style, and set CRS."""
-    # Give the absolute path to the layer. We think project.addMapLayer()
-    # automatically generates the correct relative paths. Using a relative
-    # path causes statistics (nodata value, min/max) to not be generated,
-    # resulting in rendering a gray rectangle.
-    # TODO: do we need to worry about differences in path structure between linux
-    # and windows?
-    map_layer = _get_map_layer(layer_cfg)
 
     _add_layer_metadata(map_layer, layer_cfg)
 
@@ -281,10 +254,7 @@ def _add_layers(project: qgc.QgsProject) -> None:
 
     for layer_cfg in layers_cfg.values():
         logger.debug(f'Adding {layer_cfg.id}...')
-        map_layer = get_map_layer(
-            layer_cfg,
-            project.crs(),
-        )
+        map_layer = make_map_layer(layer_cfg)
 
         group = _ensure_layer_group(
             project=project,

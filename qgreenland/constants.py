@@ -54,6 +54,7 @@ URS_COOKIE = 'urs_user_already_logged'
 PROVIDER_LAYERTYPE_MAPPING: Dict[QgsLayerProviderType, QgsLayerType] = {
     'gdal': 'Raster',
     'wms': 'Raster',
+    'wfs': 'Vector',
 }
 
 
