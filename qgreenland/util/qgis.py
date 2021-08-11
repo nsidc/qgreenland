@@ -36,6 +36,10 @@ def _get_raster_layer(
     layer_path: Union[Path, str],
     layer_cfg: ConfigLayer,
 ) -> qgc.QgsRasterLayer:
+    # TODO: Infer provider from QgsLayerType and asset type? i.e. if offline,
+    # use `vector_or_raster` to decide if provider is `ogr` or `gdal`. If
+    # online, use the given provder, and use the mapping to decide what type of
+    # layer to create for that provider.
     if layer_cfg.input.asset.type == 'online':
         provider = layer_cfg.input.asset.provider
     else:
@@ -132,6 +136,9 @@ def _get_map_layer(layer_cfg: ConfigLayer):
     # Extract side-effects into callback functions?
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     if layer_type == 'Vector':
+        if layer_cfg.input.asset.type == 'online':
+            raise NotImplementedError('Online vector layers not supported')
+
         map_layer = qgc.QgsVectorLayer(
             str(layer_path),
             layer_cfg.title,  # layer name as it shows up in QGIS TOC
