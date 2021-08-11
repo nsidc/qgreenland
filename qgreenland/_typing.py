@@ -8,3 +8,6 @@ from typing import Literal
 
 ConfigStepType = Literal['command', 'python', 'template']
 QgsLayerType = Literal['Vector', 'Raster']
+# We're currently only bothering with "online" providers in this type...
+# TODO: Rename? Add all providers, even offline?
+QgsLayerProviderType = Literal['gdal', 'wms']  # TODO: ogr, wfs, wcs?

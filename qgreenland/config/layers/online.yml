@@ -8,3 +8,14 @@
   input:
     dataset: image_mosaic
     asset: '2019'
+
+
+- id: wms_example
+  title: 'WMS Example'
+  description: 'WMS Example!!!'
+  show: True
+  in_package: True
+  hierarchy: ['Internet-required data']
+  input:
+    dataset: wms_example
+    asset: only

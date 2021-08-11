@@ -2,7 +2,14 @@ import os
 from enum import Enum
 from pathlib import Path
 
-from qgreenland.util.version import get_build_version, version_is_full_release
+from qgreenland.util.version import (
+    get_build_version,
+    version_is_full_release,
+)
+from qgreenland._typing import (
+    QgsLayerProviderType,
+    QgsLayerType,
+)
 
 PROJECT = 'QGreenland'
 
@@ -42,6 +49,11 @@ REQUEST_TIMEOUT = 20
 
 # URS stuff
 URS_COOKIE = 'urs_user_already_logged'
+
+PROVIDER_LAYERTYPE_MAPPING: Dict[QgsLayerProviderType, QgsLayerType] = {
+    'gdal': 'Raster',
+    'wms': 'Raster',
+}
 
 
 class TaskType(Enum):

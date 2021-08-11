@@ -28,9 +28,8 @@ assets:
   granule_ur: str(required=False)
   collection_concept_id: str(required=False)
 
-  # ogr_remote_vector
+  # online
   # TODO: Consider breaking up in to "featureserver_url", "feature_id", "query"?
-
   url: str(required=False)
 
   # manual:

@@ -1,12 +1,12 @@
-- id: image_mosaic
+- id: 'image_mosaic'
   assets:
     - id: '2019'
-      type: online
-      provider: gdal
+      type: 'online'
+      provider: 'gdal'
       url: '/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
     - id: '2015'
-      type: online
-      provider: gdal
+      type: 'online'
+      provider: 'gdal'
       url: '/vsicurl/http://its-live-data.jpl.nasa.gov.s3-us-west-2.amazonaws.com/rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt'
   metadata:
     title: 'Sentinel-2 Imagery Mosaics'
@@ -42,3 +42,17 @@
         the Greenland Ice Sheet. Journal of Glaciology 66(258), 667–684.
         https://doi.org/10.1017/jog.2020.62
       url: 'https://doi.org/10.1017/jog.2020.62'
+
+
+- id: 'wms_example'
+  assets:
+    - id: 'only'
+      type: 'online'
+      provider: 'wms'
+      url: 'crs=EPSG:4326&format=image/png&layers=continents&styles&url=https://demo.mapserver.org/cgi-bin/wms'
+  metadata:
+    title: 'foo'
+    abstract: 'foo'
+    citation:
+      text: 'foo'
+      url: 'https://example.com'
