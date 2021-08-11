@@ -49,7 +49,7 @@ def create_raster_map_layer(
     layer_cfg: ConfigLayer
 ) -> qgc.QgsRasterLayer:
     # Handle online layers. TODO: Make it more general? Extract function?
-    if layer_cfg.input.asset.type == 'gdal_remote':
+    if layer_cfg.input.asset.type == 'online':
         return _get_raster_layer(layer_path, layer_cfg)
 
     # Generate statistics for the raster layer. This creates an `aux.xml` file
@@ -126,7 +126,7 @@ def get_map_layer(layer_cfg: ConfigLayer, project_crs):
     layer_type = vector_or_raster(layer_cfg)
 
     layer_path: Union[Path, str]
-    if layer_cfg.input.asset.type == 'gdal_remote':
+    if layer_cfg.input.asset.type == 'online':
         layer_path = f'{layer_cfg.input.asset.url}'
     else:
         layer_path = get_final_layer_filepath(layer_cfg)

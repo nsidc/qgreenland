@@ -44,7 +44,7 @@ def generate_layer_tasks():
 
     for layer_cfg in CONFIG.layers.values():
         # Check if it's an online layer; those have no processing pipeline.
-        if layer_cfg.input.type == 'gdal_remote':
+        if layer_cfg.input.type == 'online':
             continue
 
         # Create tasks, making each task dependent on the previous task.

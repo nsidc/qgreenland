@@ -29,8 +29,9 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
 # TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
 # "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
 # regular layer with a URL as its path.
-class ConfigDatasetGdalRemoteAsset(ConfigDatasetAsset):
-    type: Literal['gdal_remote']
+class ConfigDatasetOnlineAsset(ConfigDatasetAsset):
+    type: Literal['online']
+    provider: Literal['gdal', 'ogr', 'wms']
     # AnyUrl doesn't work because of `/vsicurl/https://` prefix
     url: str = Field(..., min_length=1)
 
@@ -43,7 +44,7 @@ class ConfigDatasetCmrAsset(ConfigDatasetAsset):
 
 AnyAsset = Union[
     ConfigDatasetHttpAsset,
-    ConfigDatasetGdalRemoteAsset,
+    ConfigDatasetOnlineAsset,
     ConfigDatasetCmrAsset
 ]
 

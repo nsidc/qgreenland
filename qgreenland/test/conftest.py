@@ -17,8 +17,8 @@ _mock_http_asset_cfg = {
     'id': _mock_asset_id,
     'urls': ['https://foo.bar.com/data.zip'],
 }
-_mock_gdal_remote_asset_cfg = {
-    'type': 'gdal_remote',
+_mock_online_asset_cfg = {
+    'type': 'online',
     'id': _mock_asset_id,
     'url': '/vsicurl/https://example.com/foo.tif',
 }
@@ -34,10 +34,10 @@ def online_layer_cfg():
         'input': {
             'dataset': {
                 'id': 'baz',
-                'assets': {_mock_asset_id: _mock_gdal_remote_asset_cfg},
+                'assets': {_mock_asset_id: _mock_online_asset_cfg},
                 'metadata': _mock_metadata,
             },
-            'asset': _mock_gdal_remote_asset_cfg,
+            'asset': _mock_online_asset_cfg,
         },
     })
 
