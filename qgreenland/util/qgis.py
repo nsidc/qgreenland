@@ -14,6 +14,7 @@ from osgeo import gdal
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, INPUT_DIR
+from qgreenland.exceptions import exc
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.misc import (
     datasource_dirname,
@@ -140,6 +141,11 @@ def get_map_layer(layer_cfg: ConfigLayer, project_crs):
         )
     elif layer_type == 'Raster':
         map_layer = create_raster_map_layer(layer_path, layer_cfg)
+
+    if not map_layer.isValid():
+        raise exc.QgrRuntimeError(
+            f'Invalid QgsMapLayer created for layer {layer_cfg.id}'
+        )
 
     _add_layer_metadata(map_layer, layer_cfg)
 
