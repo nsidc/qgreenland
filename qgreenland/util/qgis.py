@@ -12,9 +12,9 @@ from PyQt5.QtGui import QColor
 from jinja2 import Template
 from osgeo import gdal
 
+import qgreenland.exceptions as exc
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, INPUT_DIR
-from qgreenland.exceptions import exc
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.misc import (
     datasource_dirname,
