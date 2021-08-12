@@ -2,10 +2,10 @@ from functools import cached_property
 from typing import List
 
 from qgreenland._typing import ConfigStepType
-from qgreenland.models.immutable_model import ImmutableBaseModel
+from qgreenland.models.base_model import QgrBaseModel
 
 
-class ConfigLayerStep(ImmutableBaseModel):
+class ConfigLayerStep(QgrBaseModel):
     type: ConfigStepType
 
     # input_file: Path

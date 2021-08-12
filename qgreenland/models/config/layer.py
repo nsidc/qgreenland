@@ -2,18 +2,18 @@ from typing import List, Optional
 
 from pydantic import Field
 
+from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.dataset import AnyAsset, ConfigDataset
 from qgreenland.models.config.step import ConfigLayerStep
-from qgreenland.models.immutable_model import ImmutableBaseModel
 
 
-class ConfigLayerInput(ImmutableBaseModel):
+class ConfigLayerInput(QgrBaseModel):
     # TODO: just maintain ids here?
     dataset: ConfigDataset
     asset: AnyAsset
 
 
-class ConfigLayer(ImmutableBaseModel):
+class ConfigLayer(QgrBaseModel):
     id: str
 
     # The layer name in QGIS layers panel:

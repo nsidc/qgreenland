@@ -4,21 +4,21 @@ from typing import Dict, List, Literal, Union
 from pydantic import AnyUrl, Field
 
 from qgreenland._typing import QgsLayerProviderType
-from qgreenland.models.immutable_model import ImmutableBaseModel
+from qgreenland.models.base_model import QgrBaseModel
 
 
-class ConfigDatasetCitation(ImmutableBaseModel):
+class ConfigDatasetCitation(QgrBaseModel):
     text: str
     url: str
 
 
-class ConfigDatasetMetadata(ImmutableBaseModel):
+class ConfigDatasetMetadata(QgrBaseModel):
     title: str
     abstract: str
     citation: ConfigDatasetCitation
 
 
-class ConfigDatasetAsset(ImmutableBaseModel, ABC):
+class ConfigDatasetAsset(QgrBaseModel, ABC):
     id: str = Field(..., min_length=1)
 
 
@@ -53,7 +53,7 @@ AnyAsset = Union[
 ]
 
 
-class ConfigDataset(ImmutableBaseModel):
+class ConfigDataset(QgrBaseModel):
     id: str = Field(..., min_length=1)
     assets: Dict[str, AnyAsset]
     metadata: ConfigDatasetMetadata
