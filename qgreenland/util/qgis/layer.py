@@ -74,8 +74,10 @@ def _create_layer_with_side_effects(
     """Apply special steps before/after creating a layer."""
     layer_path = _layer_path(layer_cfg)
     layer_type = vector_or_raster(layer_cfg)
+
     if layer_type == 'Vector':
         map_layer = creator()
+
     elif layer_type == 'Raster':
         if type(layer_cfg.input.asset) is not ConfigDatasetOnlineAsset:
             # Create .aux.xml metadatafile with raster band statistics; useful
@@ -88,9 +90,7 @@ def _create_layer_with_side_effects(
         # Set the min/max render accuracy to 'Exact'. Usually qgis estimates
         # statistics for e.g., generating the default colormap.
         mmo = map_layer.renderer().minMaxOrigin()
-        # 0 == 'Exact'
-        # map_layer.renderer().minMaxOrigin().statAccuracyString(0)
-        mmo.setStatAccuracy(0)
+        mmo.setStatAccuracy(0)  # 0 == 'Exact'
         map_layer.renderer().setMinMaxOrigin(mmo)
 
     return map_layer
