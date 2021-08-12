@@ -66,36 +66,47 @@ def _layer_path(layer_cfg: ConfigLayer) -> Union[Path, str]:
         return get_final_layer_filepath(layer_cfg)
 
 
+def _offline_raster_side_effects(
+    creator: Callable[..., qgc.QgsRasterLayer],
+    *,
+    layer_cfg: ConfigLayer,
+) -> qgc.QgsRasterLayer:
+    """Generate raster statistics on disk and in the layer object."""
+    layer_path = _layer_path(layer_cfg)
+
+    # Create .aux.xml metadatafile with raster band statistics; useful
+    # for styling and accurate min/max/stdev/mean in QGIS layer info
+    # panel
+    gdal.Info(str(layer_path), stats=True)
+
+    map_layer = creator()
+
+    # Set the min/max render accuracy to 'Exact'. Usually qgis estimates
+    # statistics for e.g., generating the default colormap.
+    mmo = map_layer.renderer().minMaxOrigin()
+    mmo.setStatAccuracy(0)  # 0 == 'Exact'
+    map_layer.renderer().setMinMaxOrigin(mmo)
+
+    return map_layer
+
+
 def _create_layer_with_side_effects(
     creator: Callable[..., qgc.QgsMapLayer],
     *,
     layer_cfg: ConfigLayer,
 ) -> qgc.QgsMapLayer:
     """Apply special steps before/after creating a layer."""
-    layer_path = _layer_path(layer_cfg)
     layer_type = vector_or_raster(layer_cfg)
 
-    if (
-        layer_type == 'Vector':
-        or type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset
-    ):
-        map_layer = creator()
+    offline_raster = (
+        layer_type == 'Raster'
+        and type(layer_cfg.input.asset) is not ConfigDatasetOnlineAsset
+    )
 
-    elif layer_type == 'Raster':
-        # Create .aux.xml metadatafile with raster band statistics; useful
-        # for styling and accurate min/max/stdev/mean in QGIS layer info
-        # panel
-        gdal.Info(str(layer_path), stats=True)
-
-        map_layer = creator()
-
-        # Set the min/max render accuracy to 'Exact'. Usually qgis estimates
-        # statistics for e.g., generating the default colormap.
-        mmo = map_layer.renderer().minMaxOrigin()
-        mmo.setStatAccuracy(0)  # 0 == 'Exact'
-        map_layer.renderer().setMinMaxOrigin(mmo)
-
-    return map_layer
+    if offline_raster:
+        return _offline_raster_side_effects(creator, layer_cfg=layer_cfg)
+    else:
+        return creator()
 
 
 def _load_qml_style(map_layer: qgc.QgsMapLayer, style_name: str) -> None:
