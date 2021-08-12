@@ -16,6 +16,14 @@ class MockTaskType(Enum):
     FINAL = str(test_layers_dir)
 
 
+def test_make_map_layer_online(setup_teardown_qgis_app, online_layer_cfg):
+    result = qgl.make_map_layer(online_layer_cfg)
+
+    assert 'https://demo.mapserver.org' in result.source() 
+    assert result.dataProvider().name() == 'wms'
+    assert result.name() == online_layer_cfg.title
+
+
 @patch(
     'qgreenland.util.misc.TaskType',
     new=MockTaskType,
@@ -42,12 +50,30 @@ def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_cfg):
     assert result.name() == raster_layer_cfg.title
 
 
-def test_make_map_layer_online(setup_teardown_qgis_app, online_layer_cfg):
-    result = qgl.make_map_layer(online_layer_cfg)
+@patch(
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
+)
+def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_cfg):
+    mock_raster_layer = qgl.make_map_layer(raster_layer_cfg)
 
-    assert 'https://demo.mapserver.org' in result.source() 
-    assert result.dataProvider().name() == 'wms'
-    assert result.name() == online_layer_cfg.title
+    qgm.add_layer_metadata(mock_raster_layer, raster_layer_cfg)
+
+    # The abstract gets set with the value returned by `qgis.build_abstract`.
+    assert mock_raster_layer.metadata().abstract() == \
+        qgm.build_layer_abstract(raster_layer_cfg)
+
+    actual_title = mock_raster_layer.metadata().title()
+    expected_title = raster_layer_cfg.title
+    assert actual_title == expected_title
+
+    # Sets the spatial extent based on the the layer extent.
+    expected_extent = mock_raster_layer.extent()
+    # extent metadata contains both spatial and temporal elements. These are
+    # lists. We set one overall extent for the dataset, so take the first element.
+    meta_extent = mock_raster_layer.metadata().extent().spatialExtents()[0]
+    # The `expected_extent` is a QgsRectangle.
+    assert expected_extent == meta_extent.bounds.toRectangle()
 
 
 def test__build_dataset_description(raster_layer_cfg):
