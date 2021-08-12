@@ -81,7 +81,7 @@ def static(ctx):
 def unit(ctx):
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' pytest -c setup.cfg --cov-config=setup.cfg {TEST_DIR}',
+        f' pytest --fixtures -c setup.cfg --cov-config=setup.cfg {TEST_DIR}',
         pty=True
     )
     print('🎉🛠️  Unit tests passed.')
