@@ -1,4 +1,4 @@
-- id: image_mosaic_2019
+- id: 'image_mosaic_2019'
   title: 'Greenland image mosaic 2019 (10m)'
   description: 'Sentinel-2 multispectral satellite imagery from 2019.'
   show: False
@@ -6,16 +6,16 @@
   hierarchy: ['Internet-required data']
   style: 'transparent_rgb'
   input:
-    dataset: image_mosaic
+    dataset: 'image_mosaic'
     asset: '2019'
 
 
-- id: wms_example
+- id: 'wms_example'
   title: 'WMS Example'
   description: 'WMS Example!!!'
   show: True
   in_package: True
   hierarchy: ['Internet-required data']
   input:
-    dataset: wms_example
-    asset: only
+    dataset: 'wms_example'
+    asset: 'only'
