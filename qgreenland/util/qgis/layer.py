@@ -75,15 +75,17 @@ def _create_layer_with_side_effects(
     layer_path = _layer_path(layer_cfg)
     layer_type = vector_or_raster(layer_cfg)
 
-    if layer_type == 'Vector':
+    if (
+        layer_type == 'Vector':
+        or type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset
+    ):
         map_layer = creator()
 
     elif layer_type == 'Raster':
-        if type(layer_cfg.input.asset) is not ConfigDatasetOnlineAsset:
-            # Create .aux.xml metadatafile with raster band statistics; useful
-            # for styling and accurate min/max/stdev/mean in QGIS layer info
-            # panel
-            gdal.Info(str(layer_path), stats=True)
+        # Create .aux.xml metadatafile with raster band statistics; useful
+        # for styling and accurate min/max/stdev/mean in QGIS layer info
+        # panel
+        gdal.Info(str(layer_path), stats=True)
 
         map_layer = creator()
 
