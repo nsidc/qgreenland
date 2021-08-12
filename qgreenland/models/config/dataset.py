@@ -3,6 +3,7 @@ from typing import Dict, List, Literal, Union
 
 from pydantic import AnyUrl, Field
 
+from qgreenland._typing import QgsLayerProviderType
 from qgreenland.models.immutable_model import ImmutableBaseModel
 
 
@@ -29,10 +30,13 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
 # TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
 # "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
 # regular layer with a URL as its path.
-class ConfigDatasetGdalRemoteAsset(ConfigDatasetAsset):
-    type: Literal['gdal_remote']
-    # AnyUrl doesn't work because of `/vsicurl/https://` prefix
-    url: str = Field(..., min_length=1)
+class ConfigDatasetOnlineAsset(ConfigDatasetAsset):
+    type: Literal['online']
+    provider: QgsLayerProviderType
+    # AnyUrl alone doesn't work because "gdal" remote layers use a
+    # `/vsicurl/https://` prefix, "wms" remote layers prefix the URL with
+    # parameters. Maybe "url" isn't a good name for this parameter.
+    url: Union[AnyUrl, str] = Field(..., min_length=1)
 
 
 class ConfigDatasetCmrAsset(ConfigDatasetAsset):
@@ -41,13 +45,12 @@ class ConfigDatasetCmrAsset(ConfigDatasetAsset):
     collection_concept_id: str = Field(..., min_length=1)
 
 
+# TODO: manual assets
 AnyAsset = Union[
     ConfigDatasetHttpAsset,
-    ConfigDatasetGdalRemoteAsset,
-    ConfigDatasetCmrAsset
+    ConfigDatasetOnlineAsset,
+    ConfigDatasetCmrAsset,
 ]
-
-# ... ogr_remote_vector, manual assets
 
 
 class ConfigDataset(ImmutableBaseModel):

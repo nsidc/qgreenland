@@ -1,7 +1,7 @@
 import pytest
 
 from qgreenland.models.config.layer import ConfigLayer
-from qgreenland.util.qgis import QgsApplicationContext
+from qgreenland.util.qgis.project import QgsApplicationContext
 
 _mock_metadata = {
     'title': 'Example Dataset',
@@ -12,20 +12,17 @@ _mock_metadata = {
     },
 }
 _mock_asset_id = 'only'
-_mock_http_asset_cfg = {
-    'type': 'http',
-    'id': _mock_asset_id,
-    'urls': ['https://foo.bar.com/data.zip'],
-}
-_mock_gdal_remote_asset_cfg = {
-    'type': 'gdal_remote',
-    'id': _mock_asset_id,
-    'url': '/vsicurl/https://example.com/foo.tif',
-}
 
 
 @pytest.fixture
 def online_layer_cfg():
+    """Return an example online layer."""
+    _mock_online_asset_cfg = {
+        'type': 'online',
+        'id': _mock_asset_id,
+        'provider': 'wms',
+        'url': 'crs=EPSG:4326&format=image/png&layers=continents&styles&url=https://demo.mapserver.org/cgi-bin/wms'  # noqa
+    }
     return ConfigLayer(**{
         'id': 'example_online',
         'title': 'Example online',
@@ -34,16 +31,22 @@ def online_layer_cfg():
         'input': {
             'dataset': {
                 'id': 'baz',
-                'assets': {_mock_asset_id: _mock_gdal_remote_asset_cfg},
+                'assets': {_mock_asset_id: _mock_online_asset_cfg},
                 'metadata': _mock_metadata,
             },
-            'asset': _mock_gdal_remote_asset_cfg,
+            'asset': _mock_online_asset_cfg,
         },
     })
 
 
 @pytest.fixture
 def raster_layer_cfg():
+    """Return an example local raster layer."""
+    _mock_http_asset_cfg = {
+        'type': 'http',
+        'id': _mock_asset_id,
+        'urls': ['https://foo.bar.com/data.zip'],
+    }
     return ConfigLayer(**{
         'id': 'example_raster',
         'title': 'Example raster',

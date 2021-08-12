@@ -339,7 +339,7 @@ def export_config(
     report = []
     for layer in cfg.layers.values():
         layer_type: str
-        if layer.input.asset.type != 'gdal_remote':
+        if layer.input.asset.type != 'online':
             layer_fp = get_final_layer_filepath(layer)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)

@@ -11,7 +11,11 @@ from typing import Any
 
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType
-from qgreenland.constants import REQUEST_TIMEOUT, TaskType
+from qgreenland.constants import (
+    PROVIDER_LAYERTYPE_MAPPING,
+    REQUEST_TIMEOUT,
+    TaskType,
+)
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
@@ -243,12 +247,8 @@ def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
 
 
 def vector_or_raster(layer_cfg: ConfigLayer) -> QgsLayerType:
-    if layer_cfg.input.asset.type == 'gdal_remote':
-        # TODO: Support non-raster remote layers! Consider replacing the
-        # existing gdal_remote type with an "online" type which has an attribute
-        # defining the layer type. When a layer has a file, we can check its
-        # type, but if it's remote, we have to explicitly configure its type.
-        return 'Raster'
+    if layer_cfg.input.asset.type == 'online':
+        return PROVIDER_LAYERTYPE_MAPPING[layer_cfg.input.asset.provider]
     else:
         layer_path = get_final_layer_filepath(layer_cfg)
         return _vector_or_raster_from_fp(layer_path)

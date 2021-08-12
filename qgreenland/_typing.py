@@ -8,3 +8,4 @@ from typing import Literal
 
 ConfigStepType = Literal['command', 'python', 'template']
 QgsLayerType = Literal['Vector', 'Raster']
+QgsLayerProviderType = Literal['gdal', 'ogr', 'wms', 'wfs', 'wcs']

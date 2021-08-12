@@ -13,7 +13,10 @@ assets:
   # Unique ID used for generating paths and uniquely identifiying an asset
   # within a dataset.
   id: str()
-  type: enum('http', 'cmr', 'manual', 'ogr_remote_vector', 'gdal_remote')
+  type: enum('http', 'cmr', 'manual', 'online')
+
+  # online
+  provider: str(required=False)
 
   # TODO: Allow arbitrary "extra" fields instead of typing out all the possible
   # kinds of assets? Let Pydantic do this validation?
@@ -25,7 +28,7 @@ assets:
   granule_ur: str(required=False)
   collection_concept_id: str(required=False)
 
-  # ogr_remote_vector
+  # online
   # TODO: Consider breaking up in to "featureserver_url", "feature_id", "query"?
   url: str(required=False)
 
