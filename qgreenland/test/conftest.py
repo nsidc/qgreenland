@@ -1,7 +1,7 @@
 import pytest
 
 from qgreenland.models.config.layer import ConfigLayer
-from qgreenland.util.qgis import QgsApplicationContext
+from qgreenland.util.qgis.project import QgsApplicationContext
 
 _mock_metadata = {
     'title': 'Example Dataset',
@@ -20,8 +20,8 @@ def online_layer_cfg():
     _mock_online_asset_cfg = {
         'type': 'online',
         'id': _mock_asset_id,
-        'provider': 'gdal',
-        'url': '/vsicurl/https://example.com/foo.tif',
+        'provider': 'wms',
+        'url': 'crs=EPSG:4326&format=image/png&layers=continents&styles&url=https://demo.mapserver.org/cgi-bin/wms'  # noqa
     }
     return ConfigLayer(**{
         'id': 'example_online',

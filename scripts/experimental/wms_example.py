@@ -1,6 +1,6 @@
 import qgis.core as qgc
 
-from qgreenland.util.qgis import QgsApplicationContext
+from qgreenland.util.qgis.project import QgsApplicationContext
 
 url = 'crs=EPSG:4326&format=image/png&layers=continents&styles&url=https://demo.mapserver.org/cgi-bin/wms'  # noqa
 
