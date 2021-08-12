@@ -16,7 +16,7 @@ def create_earthdata_authenticated_session(s=None, *, hosts, verify):
             allow_redirects=False,
             # We don't want to accidentally fetch any data:
             stream=True,
-            verify=verify
+            verify=verify,
         )
         # Copy the headers so they can be used case-insensitively after the
         # response is closed.

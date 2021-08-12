@@ -82,14 +82,14 @@ def _deref_boundaries(cfg: Dict[str, Any]) -> None:
         if (feature_count := len(features)) != 1:
             raise exc.QgrInvalidConfigError(
                 f'Configured boundary {boundary_name} contains the wrong'
-                f' number of features. Expected 1, got {feature_count}.'
+                f' number of features. Expected 1, got {feature_count}.',
             )
 
         if (boundary_crs := meta['crs']['init'].lower()) \
            != (project_crs := cfg['project']['crs'].lower()):
             raise exc.QgrInvalidConfigError(
                 f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
-                f' match project CRS ({project_crs}).'
+                f' match project CRS ({project_crs}).',
             )
 
         # TODO: remove features and bbox? Just deref to the filepath.
@@ -164,7 +164,7 @@ def _interpolate_template_kwargs(
     if set(template['kwargs']) != set(kwargs.keys()):
         raise exc.QgrInvalidConfigError(
             f"Expected kwargs: {template['kwargs']}.\n"
-            f'Received kwargs: {kwargs}'
+            f'Received kwargs: {kwargs}',
         )
 
     return _interpolate_nested_values(
@@ -200,7 +200,7 @@ def _deref_steps(
         # dereference!
         dereferenced = _deref_steps(
             steps=interpolated_steps,
-            templates=templates
+            templates=templates,
         )
 
         rendered_steps.extend(dereferenced)
@@ -298,7 +298,7 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
     cfg = {
         'project': _load_config(
             config_fp=config_dir / 'project.yml',
-            schema_fp=schema_dir / 'project.yml'
+            schema_fp=schema_dir / 'project.yml',
         ),
         'hierarchy_settings': _load_config(
             config_fp=config_dir / 'hierarchy_settings.yml',
@@ -308,15 +308,15 @@ def make_config(*, config_dir: Path, schema_dir: Path) -> Dict[str, Any]:
         'layers': list(itertools.chain.from_iterable(
             load_configs_from_dir(
                 config_dir / 'layers',
-                schema_dir / 'layers.yml'
-            ).values()
+                schema_dir / 'layers.yml',
+            ).values(),
         )),
         # Flatten out the dataset config files into a single list of datasets
         'datasets': list(itertools.chain.from_iterable(
             load_configs_from_dir(
                 config_dir / 'datasets',
-                schema_dir / 'datasets.yml'
-            ).values()
+                schema_dir / 'datasets.yml',
+            ).values(),
         )),
         'step_templates': load_configs_from_dir(
             config_dir / 'step_templates',

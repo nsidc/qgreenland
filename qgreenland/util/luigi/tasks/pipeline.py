@@ -47,7 +47,7 @@ class AncillaryFile(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(
-            os.path.join(TaskType.FINAL.value, self.dest_relative_filepath)
+            os.path.join(TaskType.FINAL.value, self.dest_relative_filepath),
         )
 
     def run(self):
@@ -73,31 +73,31 @@ class CreateQgisProjectFile(luigi.Task):
     def requires(self):
         yield AncillaryFile(
             src_filepath=os.path.join(ASSETS_DIR, 'images', 'qgreenland.png'),
-            dest_relative_filepath='qgreenland.png'
+            dest_relative_filepath='qgreenland.png',
         )
         yield AncillaryFile(
             src_filepath=os.path.join(PROJECT_DIR, 'README.md'),
-            dest_relative_filepath='README.txt'
+            dest_relative_filepath='README.txt',
         )
         yield AncillaryFile(
             src_filepath=os.path.join(PROJECT_DIR, 'doc', 'CONTRIBUTING.md'),
-            dest_relative_filepath='CONTRIBUTING.txt'
+            dest_relative_filepath='CONTRIBUTING.txt',
         )
         yield AncillaryFile(
             src_filepath=os.path.join(PROJECT_DIR, 'doc', 'QuickStartGuide.pdf'),
-            dest_relative_filepath='QuickStartGuide.pdf'
+            dest_relative_filepath='QuickStartGuide.pdf',
         )
         yield AncillaryFile(
             src_filepath=os.path.join(PROJECT_DIR, 'doc', 'UserGuide.pdf'),
-            dest_relative_filepath='UserGuide.pdf'
+            dest_relative_filepath='UserGuide.pdf',
         )
         yield AncillaryFile(
             src_filepath=os.path.join(PROJECT_DIR, 'doc', 'MakingDataQGRCompatible.pdf'),
-            dest_relative_filepath='MakingDataQGRCompatible.pdf'
+            dest_relative_filepath='MakingDataQGRCompatible.pdf',
         )
         yield AncillaryFile(
             src_filepath=os.path.join(PROJECT_DIR, 'CHANGELOG.md'),
-            dest_relative_filepath='CHANGELOG.txt'
+            dest_relative_filepath='CHANGELOG.txt',
         )
         yield LayerList()
 

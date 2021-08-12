@@ -46,7 +46,7 @@ class ChainableTask(luigi.Task):
     @property
     def layer_cfg(self):
         return copy.deepcopy(
-            CONFIG.layers[self.layer_id]
+            CONFIG.layers[self.layer_id],
         )
 
     @property
@@ -141,7 +141,8 @@ class FinalizeTask(luigi.Task):
         if not os.path.isdir(self.input().path):
             # TODO: better err
             raise RuntimeError(
-                f'Expected final output to be a directory, not {self.input().path}!'
+                'Expected final output to be a directory, not'
+                f' {self.input().path}!',
             )
 
         source_dir = Path(self.input().path)

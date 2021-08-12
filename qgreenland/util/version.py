@@ -50,7 +50,7 @@ def get_build_version():
     version_tags = _select_version_tags(tags)
     if len(version_tags) > 1:
         raise exc.QgrVersionError(
-            f'Can not determine desired version from tags: {tags}'
+            f'Can not determine desired version from tags: {tags}',
         )
 
     if len(version_tags) == 1:

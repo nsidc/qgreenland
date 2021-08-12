@@ -73,7 +73,7 @@ def warp_raster(inp_path, out_path, *, layer_cfg, warp_kwargs=None):
     else:
         _gdalwarp_cut_hack(
             out_path, inp_path,
-            layer_cfg=layer_cfg, warp_kwargs=warp_kwargs
+            layer_cfg=layer_cfg, warp_kwargs=warp_kwargs,
         )
 
 
@@ -131,7 +131,7 @@ def _gdalwarp(out_path: str, inp_path: str, **warp_kwargs) -> None:
     if not Path(out_path).is_file():
         raise RuntimeError(
             f'gdal.Warp failed warping {inp_path} -> {out_path} with args:'
-            f' {warp_kwargs}'
+            f' {warp_kwargs}',
         )
 
 
@@ -207,7 +207,7 @@ def gdal_edit_raster(in_filepath, *,
 def apply_mask(source_grid, mask_grid, nodata_value):
     if source_grid.shape != mask_grid.shape:
         raise QgrRuntimeError(
-            '`source_grid` and `mask_grid` must be the same shape.'
+            '`source_grid` and `mask_grid` must be the same shape.',
         )
 
     masked_grid = source_grid.copy()
