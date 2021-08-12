@@ -4,7 +4,7 @@ import os
 import subprocess
 import tempfile
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Union
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc
@@ -31,7 +31,10 @@ LAYERGROUP_VISIBLE_DEFAULT = False
 
 
 # TODO: _create_raster_layer? Pass in "title" instead of "layer_cfg"?
-def _get_raster_layer(layer_path: Path, layer_cfg: ConfigLayer) -> qgc.QgsRasterLayer:
+def _get_raster_layer(
+    layer_path: Union[Path, str],
+    layer_cfg: ConfigLayer,
+) -> qgc.QgsRasterLayer:
     # TODO: Does qgis have types that can catch passing a Path here?
     return qgc.QgsRasterLayer(
         str(layer_path),
@@ -41,12 +44,13 @@ def _get_raster_layer(layer_path: Path, layer_cfg: ConfigLayer) -> qgc.QgsRaster
 
 
 def create_raster_map_layer(
-    layer_path: Path,
+    # The path could be a URL or `/vsicurl/` string
+    layer_path: Union[Path, str],
     layer_cfg: ConfigLayer
 ) -> qgc.QgsRasterLayer:
-    # TODO: Re-implement
-    # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
-    #     return _get_raster_layer(layer_path, layer_cfg)
+    # Handle online layers. TODO: Make it more general? Extract function?
+    if layer_cfg.input.asset.type == 'gdal_remote':
+        return _get_raster_layer(layer_path, layer_cfg)
 
     # Generate statistics for the raster layer. This creates an `aux.xml` file
     # alongside the .tif file that includes statistics (min/max/std) that qgis
@@ -119,9 +123,13 @@ def get_map_layer(layer_cfg: ConfigLayer, project_crs):
     # resulting in rendering a gray rectangle.
     # TODO: do we need to worry about differences in path structure between linux
     # and windows?
-    layer_path = get_final_layer_filepath(layer_cfg)
-    # TODO: LayerType definition
-    layer_type = vector_or_raster(layer_path)
+    layer_type = vector_or_raster(layer_cfg)
+
+    layer_path: Union[Path, str]
+    if layer_cfg.input.asset.type == 'gdal_remote':
+        layer_path = f'{layer_cfg.input.asset.url}'
+    else:
+        layer_path = get_final_layer_filepath(layer_cfg)
 
     # https://qgis.org/pyqgis/master/core/QgsVectorLayer.html
     if layer_type == 'Vector':

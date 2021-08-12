@@ -43,31 +43,29 @@ def generate_layer_tasks():
     tasks: List[luigi.Task] = []
 
     for layer_cfg in CONFIG.layers.values():
-        layer_id = layer_cfg.id
+        # Check if it's an online layer; those have no processing pipeline.
+        if layer_cfg.input.type == 'gdal_remote':
+            continue
 
         # Create tasks, making each task dependent on the previous task.
         task = _fetch_task_getter(layer_cfg)
 
-        for step_number, _ in enumerate(layer_cfg.steps):
-            task = ChainableTask(
-                requires_task=task,
-                layer_id=layer_id,
-                step_number=step_number,
-            )
+        # If the layer has no steps, it's just fetched and finalized.
+        if layer_cfg.steps:
+            for step_number, _ in enumerate(layer_cfg.steps):
+                task = ChainableTask(
+                    requires_task=task,
+                    layer_id=layer_cfg.id,
+                    step_number=step_number,
+                )
 
         # We only need the last task in the layer pipeline to run all
         # "required" tasks in a layer pipeline.
         task = FinalizeTask(
             requires_task=task,
-            layer_id=layer_id,
+            layer_id=layer_cfg.id,
         )
 
         tasks.append(task)
-
-        # TODO: figure out what do to about this!!! (add one of these layers as a test)
-        # `gdal_remote` layers are accessed by QGIS from a remote location, so
-        # no processing is required.
-        # if layer_cfg['dataset']['access_method'] == 'gdal_remote':
-        #     continue
 
     return tasks

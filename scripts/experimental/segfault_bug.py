@@ -4,6 +4,7 @@ Creating an SSCCE for this has been elusive. Check out
 https://github.com/nsidc/sscce-qgis-conda-segfault for the latest progress.
 TODO: Open an issue against conda-forge/qgis-feedstock (?) with SSCCE.
 """
+import os
 import subprocess
 
 import qgis.core as qgc

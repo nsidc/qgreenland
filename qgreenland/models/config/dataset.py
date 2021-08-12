@@ -26,17 +26,26 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
     urls: List[AnyUrl]
 
 
+# TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
+# "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
+# regular layer with a URL as its path.
+class ConfigDatasetGdalRemoteAsset(ConfigDatasetAsset):
+    type: Literal['gdal_remote']
+    # AnyUrl doesn't work because of `/vsicurl/https://` prefix
+    url: str = Field(..., min_length=1)
+
+
 class ConfigDatasetCmrAsset(ConfigDatasetAsset):
     type: Literal['cmr']
     granule_ur: str = Field(..., min_length=1)
     collection_concept_id: str = Field(..., min_length=1)
 
 
-# It is unclear why we cannot just use `bound=ConfigDatasetAsset`, but suspect
-# that pydantic does not try to find all subclasses of `ConfigDatasetAsset` when
-# casting data to an appropriate model. Explicitly listing out the possible
-# types allows pydantic to select the correct model based on the input data.
-AnyAsset = Union[ConfigDatasetHttpAsset, ConfigDatasetCmrAsset]
+AnyAsset = Union[
+    ConfigDatasetHttpAsset,
+    ConfigDatasetGdalRemoteAsset,
+    ConfigDatasetCmrAsset
+]
 
 # ... ogr_remote_vector, manual assets
 
