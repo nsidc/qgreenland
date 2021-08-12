@@ -1,3 +1,5 @@
+from functools import cached_property
+
 from pydantic import BaseModel
 
 
@@ -12,3 +14,4 @@ class ImmutableBaseModel(BaseModel):
 
     class Config:
         allow_mutation = False
+        keep_untouched = (cached_property,)

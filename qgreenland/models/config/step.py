@@ -1,3 +1,4 @@
+from functools import cached_property
 from typing import List
 
 from qgreenland._typing import ConfigStepType
@@ -21,8 +22,11 @@ class ConfigLayerStep(ImmutableBaseModel):
     # If Python:
     # kwargs: Dict[str, Any]
 
+    # @cache
+    # def _provenance_text(self) -> str:
+    #     return 'foo'
+
     # TODO: ABC for COnfigLayerStep, subclasses for command, python func.
-    @property
-    @classmethod
-    def provenance(cls):
-        ...
+    @cached_property
+    def provenance(self) -> str:
+        return ' '.join(self.args)

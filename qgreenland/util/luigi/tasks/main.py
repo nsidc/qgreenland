@@ -8,6 +8,7 @@ import copy
 import os
 import shutil
 from pathlib import Path
+from typing import List
 
 import luigi
 
@@ -15,6 +16,7 @@ from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
 from qgreenland.runners import step_runner
 from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
+from qgreenland.models.config.step import ConfigLayerStep
 
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
@@ -150,13 +152,13 @@ class FinalizeTask(luigi.Task):
         # find compatible layer in dir (gpkg | tif)
         input_fp = get_layer_fp(source_dir)
 
-        # TODO: Function that takes steps and returns text representing each
-        # step as provenance. txt file is generated to sit next to data. Text is
-        # used for building the QGIS metadata tab/panel.
-        steps_to_provenance_text(self.cfg.steps)
-
         # TODO: have `temporary_path_dir` return a `Path`.
         with temporary_path_dir(self.output()) as temp_path:
+            with open(Path(temp_path) / 'provenance.txt', 'w') as provenance_file:
+                provenance_file.write(
+                    steps_to_provenance_text(self.cfg.steps)
+                )
+
             output_tmp_fp = Path(temp_path) / f'{self.cfg.id}{input_fp.suffix}'
             shutil.copy2(input_fp, output_tmp_fp)
 
