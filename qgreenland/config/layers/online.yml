@@ -14,6 +14,7 @@
 # before that.
 - id: 'g02135_polyline_n'
   title: 'Sea Ice Index'
+  style: 'g02135_polyline_n'
   description: >-
       Lines representing monthly sea ice extent edges. Note that aside from 2016
       to present, most of the data is missing.
