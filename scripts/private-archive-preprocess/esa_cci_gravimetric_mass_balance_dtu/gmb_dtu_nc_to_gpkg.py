@@ -20,7 +20,7 @@ OUTPUT_GPKG_PATH.mkdir(parents=True, exist_ok=True)
 with open(OUTPUT_GPKG_PATH / 'README.txt', 'w') as f:
     f.write(
         'Geopackages generated from gmb_dtu_nc_to_gpkg.py on'
-        f' {dt.date.today():%Y-%m-%d}\n'
+        f' {dt.date.today():%Y-%m-%d}\n',
     )
 
 ds = Dataset(DATA_PATH, 'r')
@@ -53,7 +53,7 @@ gpkg_schema = {
         'GMB_trend': 'float',
         'start_date': 'str',
         'end_date': 'str',
-    }
+    },
 }
 
 crs = from_epsg(4326)

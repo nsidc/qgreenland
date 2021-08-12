@@ -42,7 +42,7 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> No
         minx=layer_extent.xMinimum(),
         miny=layer_extent.yMinimum(),
         maxx=layer_extent.xMaximum(),
-        maxy=layer_extent.yMaximum()
+        maxy=layer_extent.yMaximum(),
     )
 
     # Write the rendered tempalte to a temporary file

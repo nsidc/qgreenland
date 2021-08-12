@@ -9,7 +9,7 @@ from humanize import naturalsize
 
 try:
     REPO_ROOT = os.path.abspath(
-        os.path.join(sys.path[0], os.pardir)
+        os.path.join(sys.path[0], os.pardir),
     )
 except Exception as e:
     raise RuntimeError(f'Failed to find script path: {e}')
