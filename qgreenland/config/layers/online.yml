@@ -10,12 +10,16 @@
     asset: '2019'
 
 
-- id: 'wms_example'
-  title: 'WMS Example'
-  description: 'WMS Example!!!'
-  show: True
+# TODO: why does QGIS only show data back to 2011. We clearly have data from
+# before that.
+- id: 'g02135_polyline_n'
+  title: 'Sea Ice Index'
+  description: >-
+      Lines representing monthly sea ice extent edges. Note that aside from 2016
+      to present, most of the data is missing.
+  show: False
   in_package: True
-  hierarchy: ['Internet-required data']
+  hierarchy: ['Internet-required data', 'Sea Ice']
   input:
-    dataset: 'wms_example'
-    asset: 'only'
+    dataset: 'sea_ice_index'
+    asset: 'monthly_polyline_n'
