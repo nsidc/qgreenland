@@ -44,7 +44,7 @@ def make_map_layer(layer_cfg: ConfigLayer) -> qgc.QgsMapLayer:
 
     if not map_layer.isValid():
         raise exc.QgrRuntimeError(
-            f'Invalid QgsMapLayer created for layer {layer_cfg.id}'
+            f'Invalid QgsMapLayer created for layer {layer_cfg.id}',
         )
 
     add_layer_metadata(map_layer, layer_cfg)

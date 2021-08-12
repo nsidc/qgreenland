@@ -51,7 +51,8 @@ class FetchCmrGranule(FetchTask):
         verify = self.asset_cfg.verify
         if verify is not None:
             raise RuntimeError(
-                'Ignoring TLS certificate verification is not supported for CMR granules.'
+                'Ignoring TLS certificate verification is not supported for CMR'
+                ' granules.',
             )
 
         with temporary_path_dir(self.output()) as temp_path:
@@ -67,7 +68,7 @@ class FetchDataFiles(FetchTask):
         return luigi.LocalTarget(
             os.path.join(TaskType.FETCH.value,
                          self.output_name),
-            format=luigi.format.Nop
+            format=luigi.format.Nop,
         )
 
     def run(self):
@@ -79,7 +80,7 @@ class FetchDataFiles(FetchTask):
                 fetch_and_write_file(
                     url,
                     output_dir=temp_path,
-                    verify=self.asset_cfg.verify
+                    verify=self.asset_cfg.verify,
                 )
 
 
@@ -88,7 +89,7 @@ class FetchLocalDataFiles(FetchTask):
         return luigi.LocalTarget(
             os.path.join(TaskType.FETCH.value,
                          self.output_name),
-            format=luigi.format.Nop
+            format=luigi.format.Nop,
         )
 
     def run(self):
@@ -109,7 +110,7 @@ class FetchLocalDataFiles(FetchTask):
         else:
             raise RuntimeError(
                 'You selected an unsupported access_method:'
-                f' {self.dataset_cfg["access_method"]}'
+                f' {self.dataset_cfg["access_method"]}',
             )
 
 
@@ -118,7 +119,7 @@ class FetchOgrRemoteData(FetchTask):
         return luigi.LocalTarget(
             os.path.join(TaskType.FETCH.value,
                          self.output_name),
-            format=luigi.format.Nop
+            format=luigi.format.Nop,
         )
 
     def run(self):

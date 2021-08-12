@@ -13,7 +13,7 @@ import qgis.core as qgc
 def _get_prefix_path():
     qgis_path = subprocess.run(
         ['which', 'qgis'],
-        stdout=subprocess.PIPE
+        stdout=subprocess.PIPE,
     ).stdout.decode('utf-8').strip('\n')
 
     qgis_prefix_path = os.path.abspath(os.path.join(qgis_path, '..', '..'))
@@ -32,7 +32,7 @@ def trigger_with_vector():
     result = qgc.QgsVectorLayer(
         vector_path,
         'vectorlayer',
-        'ogr'
+        'ogr',
     )
 
     return result
@@ -43,7 +43,7 @@ def trigger_with_raster():
     result = qgc.QgsRasterLayer(
         raster_path,
         'overviews',
-        'gdal'
+        'gdal',
     )
 
     return result

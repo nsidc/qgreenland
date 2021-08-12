@@ -64,7 +64,7 @@ def raster_layer_cfg():
             {
                 'type': 'command',
                 'args': ['foo', 'bar'],
-            }
+            },
         ],
     })
 

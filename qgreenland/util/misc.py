@@ -58,7 +58,8 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
     if url.startswith('ftp://'):
         if not verify:
             raise exc.QgrRuntimeError(
-                'Ignoring TLS certificate verification is not supported for FTP sources.'
+                'Ignoring TLS certificate verification is not supported for FTP'
+                ' sources.',
             )
 
         _ftp_fetch_and_write(url, output_dir)
@@ -81,14 +82,14 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
                 if 'filename' in parsed[0]:
                     fn = re.match(
                         'filename="?(.*)"?',
-                        parsed[0]
+                        parsed[0],
                     ).groups()[0].strip('\'"')
                 else:
                     fn = parsed[1]['filename']
             else:
                 if not (fn := _filename_from_url(url)):
                     raise exc.QgrRuntimeError(
-                        f'Failed to retrieve output filename from {url}'
+                        f'Failed to retrieve output filename from {url}',
                     )
 
             fp = os.path.join(output_dir, fn)
@@ -96,7 +97,7 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
             if resp.status_code != 200:
                 raise exc.QgrRuntimeError(
                     f"Received '{resp.status_code}' from {resp.request.url}."
-                    f'Content: {resp.text}'
+                    f'Content: {resp.text}',
                 )
 
             with open(fp, 'wb') as f:
@@ -125,7 +126,8 @@ def find_single_file_by_name(path, *, filename):
     files = find_in_dir_by_pattern(path, pattern=filename)
     if len(files) > 1:
         raise NotImplementedError(
-            f"We're not ready to handle multiple '{filename}' files in one task yet!"
+            f"We're not ready to handle multiple '{filename}' files in one task"
+            ' yet!',
         )
 
     try:
@@ -142,7 +144,8 @@ def find_single_file_by_ext(path, *, ext):
     files = find_in_dir_by_pattern(path, pattern=f'*{ext}')
     if len(files) > 1:
         raise NotImplementedError(
-            f"We're not ready to handle multiple '{ext}' files in one task yet!"
+            f"We're not ready to handle multiple '{ext}' files in one task"
+            ' yet!',
         )
 
     try:
@@ -176,7 +179,7 @@ def get_layer_fp(layer_dir: Path) -> Path:
 
     if len(files) > 1:
         raise exc.QgrRuntimeError(
-            f'>1 file found in layer output directory: {files}'
+            f'>1 file found in layer output directory: {files}',
         )
 
     return files[0]
@@ -261,5 +264,5 @@ def _vector_or_raster_from_fp(fp: Path) -> QgsLayerType:
         return 'Vector'
     else:
         raise exc.QgrQgsLayerError(
-            f'Unexpected extension: {fp}. Expected .tif or .gpkg.'
+            f'Unexpected extension: {fp}. Expected .tif or .gpkg.',
         )

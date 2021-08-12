@@ -75,13 +75,13 @@ column_names = joined.columns.values
 if len(column_names) != len(set(column_names)):
     raise RuntimeError(
         'Detected duplicate column names in joined dataframe. No duplicate'
-        ' columns can exist before writing to geopackage.'
+        ' columns can exist before writing to geopackage.',
     )
 
 joined.to_file(
     ARCHIVE_PATH / 'translations_joined.gpkg',
     driver='GPKG',
-    encoding='utf-8'
+    encoding='utf-8',
 )
 
 print('done')

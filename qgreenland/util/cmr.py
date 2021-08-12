@@ -54,13 +54,13 @@ def get_cmr_granule(*, granule_ur, collection_concept_id):
         try:
             start_time = datetime.datetime.strptime(
                 granule['Start Time'],
-                new_time_fmt
+                new_time_fmt,
             )
         except ValueError as e:
             logger.info(f'Error with date parsing: {e}. Trying old format...')
             start_time = datetime.datetime.strptime(
                 granule['Start Time'],
-                old_time_fmt
+                old_time_fmt,
             )
 
         if not url:

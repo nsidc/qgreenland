@@ -9,9 +9,16 @@ from qgreenland.exceptions import QgrRuntimeError
 logger = logging.getLogger('luigi-interface')
 
 
+# TODO: Types!
 def points_txt_to_shape(
-        in_filepath, out_filepath, *,
-        header, delimiter, field_names, x_field, y_field
+    in_filepath,
+    out_filepath,
+    *,
+    header,
+    delimiter,
+    field_names,
+    x_field,
+    y_field,
 ):
     """Convert a textfile of points to a vector data file.
 
@@ -30,7 +37,8 @@ def points_txt_to_shape(
         if not field_names or len(field_names) != len(df.columns):
             raise QgrRuntimeError(
                 '`field_names` must be a list of field names corresponding to each of the'
-                f' {len(df.columns)} columns in {in_filepath}. Got {field_names=}'
+                f' {len(df.columns)} columns in {in_filepath}. Got'
+                f' {field_names=}',
             )
 
         df = df.rename(columns={idx: field_names[idx] for idx in range(len(field_names))})
@@ -46,7 +54,7 @@ def ogr2ogr(in_filepath, out_filepath, **ogr2ogr_kwargs):
     cmd_prefix = ''
     if 'OGR_ENABLE_PARTIAL_REPROJECTION' in ogr2ogr_kwargs.keys():
         enable_partial_reprojection = ogr2ogr_kwargs.pop(
-            'OGR_ENABLE_PARTIAL_REPROJECTION'
+            'OGR_ENABLE_PARTIAL_REPROJECTION',
         )
         cmd_prefix = f'OGR_ENABLE_PARTIAL_REPROJECTION={enable_partial_reprojection}'
 

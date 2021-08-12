@@ -57,7 +57,7 @@ def _validate_boolean_choice(_ctx, _param, value):
         return False
 
     raise click.BadParameter(
-        f'Expected "True" or "False"; Received "{value}"'
+        f'Expected "True" or "False"; Received "{value}"',
     )
 
 
@@ -84,7 +84,7 @@ def print_and_run(cmd, *, dry_run):
             cmd,
             shell=True,
             check=True,
-            executable='/bin/bash'  # /bin/sh doesn't support brace expansion
+            executable='/bin/bash',  # /bin/sh doesn't support brace expansion
         )
 
 
@@ -146,44 +146,44 @@ def cleanup_cli(**kwargs):  # noqa: C901
         for p in wip_patterns:
             print_and_run(
                 f'rm -rf {TaskType.WIP.value}/{p}',
-                dry_run=kwargs['dry_run']
+                dry_run=kwargs['dry_run'],
             )
     if inp_patterns := kwargs['delete_inputs_by_pattern']:
         for p in inp_patterns:
             print_and_run(
                 f'rm -rf {INPUT_DIR}/{p}',
-                dry_run=kwargs['dry_run']
+                dry_run=kwargs['dry_run'],
             )
 
     if kwargs['delete_all_input']:
         print_and_run(
             f'rm -rf {INPUT_DIR}/*',
-            dry_run=kwargs['dry_run']
+            dry_run=kwargs['dry_run'],
         )
 
     if kwargs['delete_all_wip']:
         print_and_run(
             f'rm -rf {TaskType.WIP.value}/*',
-            dry_run=kwargs['dry_run']
+            dry_run=kwargs['dry_run'],
         )
 
     if kwargs['delete_compiled']:
         print_and_run(
             f'rm -rf {TaskType.FINAL.value}/*',
-            dry_run=kwargs['dry_run']
+            dry_run=kwargs['dry_run'],
         )
         # The triggerfile tells Luigi tasks to zip the compiled data. Can't do
         # that if we just deleted it!
         if os.path.isfile(ZIP_TRIGGERFILE):
             print_and_run(
                 f'rm {ZIP_TRIGGERFILE}',
-                dry_run=kwargs['dry_run']
+                dry_run=kwargs['dry_run'],
             )
 
     if kwargs['delete_all_releases']:
         print_and_run(
             f'rm -rf {RELEASES_DIR}/*',
-            dry_run=kwargs['dry_run']
+            dry_run=kwargs['dry_run'],
         )
 
 

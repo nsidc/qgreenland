@@ -47,7 +47,9 @@ def latitudes(*, increment=1):
             'wgs84Degrees': _decimal_degrees_to_dms(lat, lat_or_lon='lat'),
             'wgs84Decimal': float(lat),
             'label': _decimal_degrees_to_dms(
-                lat, lat_or_lon='lat', include_secs=False
+                lat,
+                lat_or_lon='lat',
+                include_secs=False,
             ),
             'geometry': LineString([(-180, lat), (180, lat)]),
         })
@@ -68,7 +70,9 @@ def longitudes(*, increment=1):
             'wgs84Degrees': _decimal_degrees_to_dms(lon, lat_or_lon='lon'),
             'wgs84Decimal': float(lon),
             'label': _decimal_degrees_to_dms(
-                lon, lat_or_lon='lon', include_secs=False
+                lon,
+                lat_or_lon='lon',
+                include_secs=False,
             ),
             'geometry': LineString([(lon, -90), (lon, 90)]),
         })

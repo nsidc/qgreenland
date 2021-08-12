@@ -69,7 +69,7 @@ def make_qgis_project_file(path: str) -> None:
             CONFIG.project.boundaries['data'].bbox.max_x,
             CONFIG.project.boundaries['data'].bbox.max_y,
         ),
-        project_crs
+        project_crs,
     )
     view.setDefaultViewExtent(project_rectangle)
 
@@ -159,17 +159,17 @@ def _set_groups_options(project: qgc.QgsProject) -> None:
             # raise QgrInvalidConfigError(
             logger.warning(
                 f"Encountered group '{group_path}' without reference in"
-                ' any layer configuration. Ignoring.'
+                ' any layer configuration. Ignoring.',
             )
             continue
 
         _set_group_visibility(
             group,
-            group_config.show
+            group_config.show,
         )
         _set_group_expanded(
             group,
-            group_config.expand
+            group_config.expand,
         )
 
         logger.debug(f'{group_path} configured: {group_config}')
@@ -205,7 +205,7 @@ def _add_layers(project: qgc.QgsProject) -> None:
 
         # Make the layer invisible and collapsed by default
         grouped_layer.setItemVisibilityChecked(
-            layer_cfg.show
+            layer_cfg.show,
         )
 
         # All layers start collapsed. When expanded (the default), they show the
@@ -225,7 +225,7 @@ def _get_qgs_prefix_path() -> str:
     # https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     qgis_path = subprocess.run(
         ['which', 'qgis'],
-        stdout=subprocess.PIPE
+        stdout=subprocess.PIPE,
     ).stdout.decode('utf-8').strip('\n')
     qgis_prefix_path = os.path.abspath(os.path.join(qgis_path, '..', '..'))
 
@@ -261,7 +261,7 @@ def _add_decorations(project: qgc.QgsProject) -> None:
     year = dt.date.today().year
     copyright_label = escape(
         f'QGreenland {get_build_version()} © NSIDC {year}'
-        '\nhttps://qgreenland.org | https://github.com/nsidc/qgreenland/'
+        '\nhttps://qgreenland.org | https://github.com/nsidc/qgreenland/',
     )
     project.writeEntry('CopyrightLabel', '/Label', copyright_label)
     project.writeEntry('CopyrightLabel', '/Placement', 0)

@@ -16,7 +16,7 @@ CONFIG = Config(
     hierarchy_settings=[
         HierarchySettings(
             path=path,
-            **settings
+            **settings,
         ) for path, settings in _init_conf['hierarchy_settings'].items()
-    ]
+    ],
 )

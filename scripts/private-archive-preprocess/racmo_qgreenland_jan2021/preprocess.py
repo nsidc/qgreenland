@@ -89,7 +89,7 @@ def convert_to_gpkg(*, in_fp: Path, out_fp: Path):
         ' -oo Y_POSSIBLE_NAMES=y'
         ' -oo AUTODETECT_TYPE=True'
         ' -a_srs "EPSG:3413"'
-        f' {out_fp} {in_fp}'
+        f' {out_fp} {in_fp}',
     )
 
 
@@ -106,7 +106,7 @@ def u_v_to_magnitude_raster(*, in_dir: Path, out_fp: Path):
         # NOTE: gdal_translate puts the data in variable "Band1"
         f' && gdal_translate -of NetCDF'
         f' -a_srs "{a_srs}"'
-        f' {tif_fp} {out_fp}'
+        f' {tif_fp} {out_fp}',
     )
 
 
@@ -116,7 +116,7 @@ def zip_dir_contents(in_dir: Path, out_fp: Path):
     shutil.make_archive(
         str(out_fp.with_suffix('')),
         'zip',
-        in_dir
+        in_dir,
     )
 
     return out_fp
@@ -137,22 +137,22 @@ if __name__ == '__main__':
         # Generate magnitude.tif
         u_v_to_magnitude_raster(
             in_dir=tmppath,
-            out_fp=tmppath / 'magnitudes.nc'
+            out_fp=tmppath / 'magnitudes.nc',
         )
 
         # Generate wind_vector_points.gpkg
         csv_fp = write_csv(
             in_dir=tmppath,
-            out_fp=tmppath / 'wind_vector_points.csv'
+            out_fp=tmppath / 'wind_vector_points.csv',
         )
         convert_to_gpkg(
             in_fp=csv_fp,
-            out_fp=tmppath / 'wind_vector_points.gpkg'
+            out_fp=tmppath / 'wind_vector_points.gpkg',
         )
 
         zip_fp = zip_dir_contents(
             tmppath,
-            out_fp=BASE_DIR / 'RACMO_QGreenland_Jan2021.zip'
+            out_fp=BASE_DIR / 'RACMO_QGreenland_Jan2021.zip',
         )
 
     print(f'Wrote zip: {zip_fp}')
