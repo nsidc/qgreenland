@@ -1,25 +1,26 @@
 import copy
-import os
 from enum import Enum
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import qgis.core as qgc
 
-from qgreenland.constants import PACKAGE_DIR
 import qgreenland.util.qgis.layer as qgl
 import qgreenland.util.qgis.metadata as qgm
+from qgreenland.constants import PACKAGE_DIR
 
 
-test_layers_dir = Path(PACKAGE_DIR) / 'test' / 'data' / 'layers'
+mock_layers_dir = Path(PACKAGE_DIR) / 'test' / 'data' / 'layers'
+
+
 class MockTaskType(Enum):
-    FINAL = str(test_layers_dir)
+    FINAL = str(mock_layers_dir)
 
 
 def test_make_map_layer_online(setup_teardown_qgis_app, online_layer_cfg):
     result = qgl.make_map_layer(online_layer_cfg)
 
-    assert 'https://demo.mapserver.org' in result.source() 
+    assert 'https://demo.mapserver.org' in result.source()
     assert result.dataProvider().name() == 'wms'
     assert result.name() == online_layer_cfg.title
 
@@ -36,7 +37,7 @@ def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_cfg):
 
     # Has the expected path to the data on disk.
     expected_raster_path = (
-        test_layers_dir / 'group' / 'subgroup' / 'Example raster'
+        mock_layers_dir / 'group' / 'subgroup' / 'Example raster'
         / 'example.tif'
     )
     assert result.source() == str(expected_raster_path)
