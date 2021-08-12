@@ -20,8 +20,8 @@ def online_layer_cfg():
     _mock_online_asset_cfg = {
         'type': 'online',
         'id': _mock_asset_id,
-        'provider': 'gdal',
-        'url': '/vsicurl/https://example.com/foo.tif',
+        'provider': 'wms',
+        'url': 'crs=EPSG:4326&format=image/png&layers=continents&styles&url=https://demo.mapserver.org/cgi-bin/wms'  # noqa
     }
     return ConfigLayer(**{
         'id': 'example_online',
