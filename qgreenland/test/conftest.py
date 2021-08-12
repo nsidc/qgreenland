@@ -1,7 +1,7 @@
 import pytest
 
 from qgreenland.models.config.layer import ConfigLayer
-from qgreenland.util.qgis import QgsApplicationContext
+from qgreenland.util.qgis.project import QgsApplicationContext
 
 _mock_metadata = {
     'title': 'Example Dataset',

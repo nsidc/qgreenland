@@ -18,7 +18,7 @@ from qgreenland.constants import (ASSETS_DIR,
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config import export_config
 from qgreenland.util.luigi import generate_layer_tasks
-from qgreenland.util.qgis import (
+from qgreenland.util.qgis.project import (
     QgsApplicationContext,
     make_qgis_project_file,
 )
