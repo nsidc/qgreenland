@@ -150,7 +150,18 @@ class FinalizeTask(luigi.Task):
         # find compatible layer in dir (gpkg | tif)
         input_fp = get_layer_fp(source_dir)
 
+        # TODO: Function that takes steps and returns text representing each
+        # step as provenance. txt file is generated to sit next to data. Text is
+        # used for building the QGIS metadata tab/panel.
+        steps_to_provenance_text(self.cfg.steps)
+
         # TODO: have `temporary_path_dir` return a `Path`.
         with temporary_path_dir(self.output()) as temp_path:
             output_tmp_fp = Path(temp_path) / f'{self.cfg.id}{input_fp.suffix}'
             shutil.copy2(input_fp, output_tmp_fp)
+
+
+def steps_to_provenance_text(steps: List[ConfigLayerStep]) -> str:
+    steps_as_text = [step.provenance for step in steps]
+
+    return '\n\n'.join(steps_as_text)

@@ -20,3 +20,9 @@ class ConfigLayerStep(ImmutableBaseModel):
 
     # If Python:
     # kwargs: Dict[str, Any]
+
+    # TODO: ABC for COnfigLayerStep, subclasses for command, python func.
+    @property
+    @classmethod
+    def provenance(cls):
+        ...
