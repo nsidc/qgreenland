@@ -2,13 +2,10 @@ from abc import ABC, abstractmethod
 from functools import cached_property
 from typing import List, Literal, Union
 
-from qgreenland._typing import ConfigStepType
 from qgreenland.models.base_model import QgrBaseModel
 
 
 class ConfigLayerStep(QgrBaseModel, ABC):
-    type: ConfigStepType
-
     @cached_property
     @abstractmethod
     def provenance(self) -> str:

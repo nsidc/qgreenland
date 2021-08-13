@@ -14,7 +14,7 @@ import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
-from qgreenland.models.config.step import ConfigLayerStep
+from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
 
@@ -62,6 +62,7 @@ class ChainableTask(luigi.Task):
         WARNING: Only uniquely identifies a _step_ in the context of a layer;
         does not uniquely ID a step + layer combination.
         """
+        breakpoint()
         first_part = f'{self.step_number:02}-{self.step.type}'
         last_part = (
             f'-{self.step.args[0]}'
@@ -163,7 +164,7 @@ class FinalizeTask(luigi.Task):
             shutil.copy2(input_fp, output_tmp_fp)
 
 
-def steps_to_provenance_text(steps: List[ConfigLayerStep]) -> str:
+def steps_to_provenance_text(steps: List[AnyStep]) -> str:
     steps_as_text = [step.provenance for step in steps]
 
     return '\n\n'.join(steps_as_text)
