@@ -32,7 +32,6 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
     # def _provenance_text(self) -> str:
     #     return 'foo'
 
-    # TODO: ABC for COnfigLayerStep, subclasses for command, python func.
     @cached_property
     def provenance(self) -> str:
         return ' '.join(self.args)
