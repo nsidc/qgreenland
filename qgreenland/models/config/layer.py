@@ -4,7 +4,7 @@ from pydantic import Field
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.dataset import AnyAsset, ConfigDataset
-from qgreenland.models.config.step import ConfigLayerStep
+from qgreenland.models.config.step import AnyStep
 
 
 class ConfigLayerInput(QgrBaseModel):
@@ -33,4 +33,4 @@ class ConfigLayer(QgrBaseModel):
 
     input: ConfigLayerInput
 
-    steps: Optional[List[ConfigLayerStep]]
+    steps: Optional[List[AnyStep]]
