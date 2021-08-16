@@ -5,14 +5,13 @@ from typing import List, Literal, Union
 from qgreenland.models.base_model import QgrBaseModel
 
 
-class ConfigLayerStep(QgrBaseModel, ABC):
-    @cached_property
+class ConfigLayerStep(ABC):
     @abstractmethod
     def provenance(self) -> str:
         pass
 
 
-class ConfigLayerCommandStep(ConfigLayerStep):
+class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
     type: Literal['command']
 
     # input_file: Path
