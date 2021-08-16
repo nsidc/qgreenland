@@ -38,7 +38,10 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> No
     layer_crs = map_layer.crs()
 
     qmd_template = Template(qmd_template_str)
-    provenance_list = [escape(step.provenance) for step in layer_cfg.steps] if layer_cfg.steps else []
+    if layer_cfg.steps:
+        provenance_list = [escape(step.provenance) for step in layer_cfg.steps]
+    else:
+        provenance_list = []
 
     rendered_qmd = qmd_template.render(
         provenance_list=provenance_list,
