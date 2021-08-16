@@ -156,7 +156,7 @@ class FinalizeTask(luigi.Task):
         with temporary_path_dir(self.output()) as temp_path:
             with open(Path(temp_path) / 'provenance.txt', 'w') as provenance_file:
                 provenance_file.write(
-                    steps_to_provenance_text(self.cfg.steps)
+                    steps_to_provenance_text(self.cfg.steps),
                 )
 
             output_tmp_fp = Path(temp_path) / f'{self.cfg.id}{input_fp.suffix}'
