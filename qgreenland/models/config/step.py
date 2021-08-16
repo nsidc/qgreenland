@@ -28,10 +28,6 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
     # If Python:
     # kwargs: Dict[str, Any]
 
-    # @cache
-    # def _provenance_text(self) -> str:
-    #     return 'foo'
-
     @cached_property
     def provenance(self) -> str:
         return ' '.join(self.args)
