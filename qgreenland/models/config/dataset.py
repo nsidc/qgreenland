@@ -18,11 +18,11 @@ class ConfigDatasetMetadata(QgrBaseModel):
     citation: ConfigDatasetCitation
 
 
-class ConfigDatasetAsset(QgrBaseModel, ABC):
+class ConfigDatasetAsset(ABC):
     id: str = Field(..., min_length=1)
 
 
-class ConfigDatasetHttpAsset(ConfigDatasetAsset):
+class ConfigDatasetHttpAsset(QgrBaseModel, ConfigDatasetAsset):
     type: Literal['http']
     urls: List[AnyUrl]
 
@@ -30,7 +30,7 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
 # TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
 # "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
 # regular layer with a URL as its path.
-class ConfigDatasetOnlineAsset(ConfigDatasetAsset):
+class ConfigDatasetOnlineAsset(QgrBaseModel, ConfigDatasetAsset):
     type: Literal['online']
     provider: QgsLayerProviderType
     # AnyUrl alone doesn't work because "gdal" remote layers use a
@@ -39,7 +39,7 @@ class ConfigDatasetOnlineAsset(ConfigDatasetAsset):
     url: Union[AnyUrl, str] = Field(..., min_length=1)
 
 
-class ConfigDatasetCmrAsset(ConfigDatasetAsset):
+class ConfigDatasetCmrAsset(QgrBaseModel, ConfigDatasetAsset):
     type: Literal['cmr']
     granule_ur: str = Field(..., min_length=1)
     collection_concept_id: str = Field(..., min_length=1)
