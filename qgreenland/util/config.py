@@ -214,7 +214,11 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
     Expects boundaries to already be dereferenced.
     """
     datasets_config = cfg['datasets']
-    for layer_config in cfg['layers']:
+    for layer_idx, layer_config in enumerate(cfg['layers']):
+        # Deepcopy each layer config to ensure shared keys (via yaml anchors and
+        # aliases) are copies of eachother and not references to eachother.
+        layer_config = copy.deepcopy(layer_config)
+        cfg['layers'][layer_idx] = layer_config
 
         # Populate related dataset configuration
         if 'dataset' not in layer_config:
@@ -242,7 +246,10 @@ def _normalize_datasets(cfg: Dict[Any, Any]) -> None:
     Convert the list of assets into a dict keyed by asset id.
     """
     for dataset_cfg in cfg['datasets']:
-        dataset_cfg['assets'] = {x['id']: copy.deepcopy(x) for x in dataset_cfg['assets']}
+        dataset_cfg['assets'] = {
+            x['id']: copy.deepcopy(x)
+            for x in dataset_cfg['assets']
+        }
 
 
 def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
