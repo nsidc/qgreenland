@@ -93,17 +93,17 @@ class FetchLocalDataFiles(FetchTask):
         )
 
     def run(self):
-        if self.dataset_cfg['access_method'] == 'local':
+        if self.dataset_cfg.type == 'local':
             local_dir = LOCALDATA_DIR
             with temporary_path_dir(self.output()) as temp_path:
-                for filename in self.source_cfg['urls']:
+                for filename in self.asset_cfg.urls:
                     source_path = os.path.join(local_dir, filename)
                     out_path = os.path.join(temp_path, os.path.basename(filename))
 
                     shutil.copy2(source_path, out_path)
 
-        elif self.dataset_cfg['access_method'] == 'manual':
-            local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg['id'])
+        elif self.dataset_cfg.type == 'manual':
+            local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg.id)
             with temporary_path_dir(self.output()) as temp_path:
                 shutil.copytree(local_dir, temp_path, dirs_exist_ok=True)
 
@@ -124,7 +124,7 @@ class FetchOgrRemoteData(FetchTask):
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
-            url = self.source_cfg['query_url']
+            url = self.asset_cfg.query_url
 
             ofile = os.path.join(temp_path, 'fetched.geojson')
             ogr2ogr_kwargs = {

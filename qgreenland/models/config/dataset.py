@@ -45,11 +45,17 @@ class ConfigDatasetCmrAsset(QgrBaseModel, ConfigDatasetAsset):
     collection_concept_id: str = Field(..., min_length=1)
 
 
-# TODO: manual assets
+class ConfigDatasetManualAsset(QgrBaseModel, ConfigDatasetAsset):
+    type: Literal['manual']
+    access_instructions: str = Field(..., min_length=1)
+
+
+# TODO: local assets
 AnyAsset = Union[
     ConfigDatasetHttpAsset,
     ConfigDatasetOnlineAsset,
     ConfigDatasetCmrAsset,
+    ConfigDatasetManualAsset,
 ]
 
 
