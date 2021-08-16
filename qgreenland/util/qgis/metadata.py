@@ -35,10 +35,25 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> No
     # Render the qmd template.
     abstract = build_layer_abstract(layer_cfg)
     layer_extent = map_layer.extent()
+    layer_crs = map_layer.crs()
+
     qmd_template = Template(qmd_template_str)
+    if layer_cfg.steps:
+        provenance_list = [escape(step.provenance) for step in layer_cfg.steps]
+    else:
+        provenance_list = []
+
     rendered_qmd = qmd_template.render(
+        provenance_list=provenance_list,
         abstract=abstract,
         title=layer_cfg.title,
+        crs_proj4_str=layer_crs.toProj4(),
+        crs_srsid=layer_crs.srsid(),
+        crs_postgres_srid=layer_crs.postgisSrid(),
+        crs_authid=layer_crs.authid(),
+        crs_description=layer_crs.description(),
+        crs_projection_acronym=layer_crs.projectionAcronym(),
+        crs_ellipsoid_acronym=layer_crs.ellipsoidAcronym(),
         minx=layer_extent.xMinimum(),
         miny=layer_extent.yMinimum(),
         maxx=layer_extent.xMaximum(),

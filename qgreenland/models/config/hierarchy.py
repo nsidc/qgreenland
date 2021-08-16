@@ -2,11 +2,11 @@ from typing import List
 
 from pydantic import validator
 
-from qgreenland.models.immutable_model import ImmutableBaseModel
+from qgreenland.models.base_model import QgrBaseModel
 
 
 # TODO: maybe hierarchy config should just be a list of Hierarchy settings?
-class HierarchySettings(ImmutableBaseModel):
+class HierarchySettings(QgrBaseModel):
     path: List[str]
     show: bool = False
     expand: bool = False

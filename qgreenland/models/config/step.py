@@ -1,11 +1,18 @@
-from typing import List
+from abc import ABC, abstractmethod
+from functools import cached_property
+from typing import List, Literal, Union
 
-from qgreenland._typing import ConfigStepType
-from qgreenland.models.immutable_model import ImmutableBaseModel
+from qgreenland.models.base_model import QgrBaseModel
 
 
-class ConfigLayerStep(ImmutableBaseModel):
-    type: ConfigStepType
+class ConfigLayerStep(ABC):
+    @abstractmethod
+    def provenance(self) -> str:
+        pass
+
+
+class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
+    type: Literal['command']
 
     # input_file: Path
     # output_file: Path
@@ -20,3 +27,10 @@ class ConfigLayerStep(ImmutableBaseModel):
 
     # If Python:
     # kwargs: Dict[str, Any]
+
+    @cached_property
+    def provenance(self) -> str:
+        return ' '.join(self.args)
+
+
+AnyStep = Union[ConfigLayerCommandStep]

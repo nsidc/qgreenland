@@ -8,11 +8,13 @@ import copy
 import os
 import shutil
 from pathlib import Path
+from typing import List
 
 import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import TaskType
+from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
 
@@ -152,5 +154,16 @@ class FinalizeTask(luigi.Task):
 
         # TODO: have `temporary_path_dir` return a `Path`.
         with temporary_path_dir(self.output()) as temp_path:
+            with open(Path(temp_path) / 'provenance.txt', 'w') as provenance_file:
+                provenance_file.write(
+                    steps_to_provenance_text(self.cfg.steps),
+                )
+
             output_tmp_fp = Path(temp_path) / f'{self.cfg.id}{input_fp.suffix}'
             shutil.copy2(input_fp, output_tmp_fp)
+
+
+def steps_to_provenance_text(steps: List[AnyStep]) -> str:
+    steps_as_text = [step.provenance for step in steps]
+
+    return '\n\n'.join(steps_as_text)
