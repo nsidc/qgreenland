@@ -44,7 +44,7 @@ TMP_DIR = WIP_DIR
 
 # Output target file of the task just before the ZipQGreenland task.
 # Presence indicates the project is ready to be zipped for release.
-ZIP_TRIGGERFILE = WIP_DIR / 'READY_TO_ZIP')
+ZIP_TRIGGERFILE = WIP_DIR / 'READY_TO_ZIP'
 
 REQUEST_TIMEOUT = 20
 
