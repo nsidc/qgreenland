@@ -246,7 +246,10 @@ def _normalize_datasets(cfg: Dict[Any, Any]) -> None:
     Convert the list of assets into a dict keyed by asset id.
     """
     for dataset_cfg in cfg['datasets']:
-        dataset_cfg['assets'] = {x['id']: copy.deepcopy(x) for x in dataset_cfg['assets']}
+        dataset_cfg['assets'] = {
+            x['id']: copy.deepcopy(x)
+            for x in dataset_cfg['assets']
+        }
 
 
 def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
