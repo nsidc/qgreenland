@@ -20,6 +20,13 @@ class FetchTask(luigi.Task):
     dataset_id = luigi.Parameter()
     asset_id = luigi.Parameter()
 
+    def output(self):
+        return luigi.LocalTarget(
+            os.path.join(TaskType.FETCH.value,
+                         self.output_name),
+            format=luigi.format.Nop,
+        )
+
     @property
     def output_name(self):
         return datasource_dirname(
@@ -38,10 +45,6 @@ class FetchTask(luigi.Task):
 
 class FetchCmrGranule(FetchTask):
     session = None
-
-    def output(self):
-        path = [TaskType.FETCH.value, self.output_name]
-        return luigi.LocalTarget(os.path.join(*path))
 
     def run(self):
         granule = get_cmr_granule(
@@ -64,13 +67,6 @@ class FetchCmrGranule(FetchTask):
 
 
 class FetchDataFiles(FetchTask):
-    def output(self):
-        return luigi.LocalTarget(
-            os.path.join(TaskType.FETCH.value,
-                         self.output_name),
-            format=luigi.format.Nop,
-        )
-
     def run(self):
         if self.asset_cfg.type == 'cmr':
             raise RuntimeError('Use a FetchCmrGranule task!')
@@ -84,44 +80,22 @@ class FetchDataFiles(FetchTask):
                 )
 
 
-class FetchLocalDataFiles(FetchTask):
-    def output(self):
-        return luigi.LocalTarget(
-            os.path.join(TaskType.FETCH.value,
-                         self.output_name),
-            format=luigi.format.Nop,
-        )
-
+class FetchManualDataFiles(FetchTask):
     def run(self):
-        if self.dataset_cfg.type == 'local':
-            local_dir = ASSETS_DIR
-            with temporary_path_dir(self.output()) as temp_path:
-                for filename in self.asset_cfg.urls:
-                    source_path = os.path.join(local_dir, filename)
-                    out_path = os.path.join(temp_path, os.path.basename(filename))
+        local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg.id)
+        with temporary_path_dir(self.output()) as temp_path:
+            shutil.copytree(local_dir, temp_path, dirs_exist_ok=True)
 
-                    shutil.copy2(source_path, out_path)
 
-        elif self.dataset_cfg.type == 'manual':
-            local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg.id)
-            with temporary_path_dir(self.output()) as temp_path:
-                shutil.copytree(local_dir, temp_path, dirs_exist_ok=True)
+class FetchRepoDataFiles(FetchTask):
+    def run(self):
+        with temporary_path_dir(self.output()) as temp_path:
+            source_path = self.asset_cfg.filepath
+            out_path = Path(temp_path) / self.asset_cfg.filepath.name
 
-        else:
-            raise RuntimeError(
-                'You selected an unsupported access_method:'
-                f' {self.dataset_cfg["access_method"]}',
-            )
-
+            shutil.copy2(source_path, out_path)
 
 class FetchOgrRemoteData(FetchTask):
-    def output(self):
-        return luigi.LocalTarget(
-            os.path.join(TaskType.FETCH.value,
-                         self.output_name),
-            format=luigi.format.Nop,
-        )
-
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
             url = self.asset_cfg.query_url

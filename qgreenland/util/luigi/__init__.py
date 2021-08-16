@@ -24,7 +24,8 @@ ASSET_TYPE_TASKS: Dict[Type[AnyAsset], Type[FetchTask]] = {
     ConfigDatasetHttpAsset: FetchDataFiles,
     ConfigDatasetCmrAsset: FetchCmrGranule,
     # TODO: rename `FetchLocalDataFiles`, split in two.
-    ConfigDatasetManualAsset: FetchLocalDataFiles,
+    ConfigDatasetManualAsset: FetchManuallDataFiles,
+    ConfigDatasetRepoAsset: FetchRepoDataFiles,
 }
 
 

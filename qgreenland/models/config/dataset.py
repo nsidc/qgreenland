@@ -4,6 +4,7 @@ from typing import Dict, List, Literal, Union
 from pydantic import AnyUrl, Field
 
 from qgreenland._typing import QgsLayerProviderType
+from qgreenland.constants import ASSETS_DIR
 from qgreenland.models.base_model import QgrBaseModel
 
 
@@ -48,6 +49,20 @@ class ConfigDatasetCmrAsset(ConfigDatasetAsset):
 class ConfigDatasetManualAsset(ConfigDatasetAsset):
     type: Literal['manual']
     access_instructions: str = Field(..., min_length=1)
+
+
+class ConfigDatasetRepoAsset(ConfigDatasetAsset):
+    type: Literal['repo']
+    filepath: Path() = Field(..., alias='filename')
+
+    @validator('filepath', pre=True)
+    @classmethod
+    def filename_to_filepath(cls, value):
+        path = ASSETS_DIR / value
+        if not path.is_file():
+            raise ValueError(f'{path} is not a file.')
+
+        return path
 
 
 # TODO: local assets
