@@ -62,7 +62,6 @@ class ChainableTask(luigi.Task):
         WARNING: Only uniquely identifies a _step_ in the context of a layer;
         does not uniquely ID a step + layer combination.
         """
-        breakpoint()
         first_part = f'{self.step_number:02}-{self.step.type}'
         last_part = (
             f'-{self.step.args[0]}'
