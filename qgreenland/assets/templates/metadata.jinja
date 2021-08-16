@@ -16,7 +16,7 @@
     <role></role>
   </contact>
   <links/>
-  <history></history>
+  {% for provenance_str in provenance_list -%}<history>{{ provenance_str }}</history>{%- endfor %}
   <fees></fees>
   <rights></rights>
   <encoding></encoding>
