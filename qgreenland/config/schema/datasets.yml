@@ -33,7 +33,7 @@ assets:
   url: str(required=False)
 
   # manual:
-  # access_instructions: str(required=False)
+  access_instructions: str(required=False)
 
 ---
 metadata:
