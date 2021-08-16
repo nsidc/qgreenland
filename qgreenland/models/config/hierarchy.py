@@ -13,6 +13,8 @@ class HierarchySettings(QgrBaseModel):
 
     @validator('path', pre=True)
     @classmethod
+    # TODO: Remove classmethod decorator?
+    # https://github.com/samuelcolvin/pydantic/issues/1415#issuecomment-617809543
     def path_str_to_list(cls, value):
         return value.split('/')
 
