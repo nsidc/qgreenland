@@ -33,7 +33,7 @@
       args:
         - 'gdalwarp'
         - '-cutline'
-        - '{assets_dir}/local_data/greenland_rectangle.geojson'
+        - '{assets_dir}/greenland_rectangle.geojson'
         - '-crop_to_cutline'
         - '-co'  # creationOptions=['COMPRESS=DEFLATE']
         - 'COMPRESS=DEFLATE'

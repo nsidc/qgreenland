@@ -54,7 +54,7 @@
         #     {boundaries.background.extent['maxx']}
         #     {boundaries.background.extent['maxy']}
         target_extent: '-5774572.727595 -5774572.727595 5774572.727595 5774572.727595'
-        cut_file: '{assets_dir}/local_data/latitude_shape_40_degrees.geojson'
+        cut_file: '{assets_dir}/latitude_shape_40_degrees.geojson'
 
     # Add overviews
     - type: 'template'

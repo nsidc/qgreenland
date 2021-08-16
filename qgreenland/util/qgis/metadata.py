@@ -8,7 +8,7 @@ import qgis.core as qgc
 from jinja2 import Template
 
 from qgreenland.constants import (
-    ASSETS_DIR,
+    ANCILLARY_DIR,
     INPUT_DIR,
 )
 from qgreenland.models.config.layer import ConfigLayer
@@ -24,7 +24,7 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> No
     file when the layer is added to the `project`.
     """
     # Load/render the template.
-    template_path = os.path.join(ASSETS_DIR, 'templates', 'metadata.jinja')
+    template_path = os.path.join(ANCILLARY_DIR, 'templates', 'metadata.jinja')
     with open(template_path, 'r') as f:
         qmd_template_str = ' '.join(f.readlines())
 

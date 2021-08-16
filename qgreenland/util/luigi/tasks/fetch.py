@@ -4,7 +4,7 @@ import shutil
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.constants import LOCALDATA_DIR, PRIVATE_ARCHIVE_DIR, TaskType
+from qgreenland.constants import ASSETS_DIR, PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import (
@@ -94,7 +94,7 @@ class FetchLocalDataFiles(FetchTask):
 
     def run(self):
         if self.dataset_cfg.type == 'local':
-            local_dir = LOCALDATA_DIR
+            local_dir = ASSETS_DIR
             with temporary_path_dir(self.output()) as temp_path:
                 for filename in self.asset_cfg.urls:
                     source_path = os.path.join(local_dir, filename)
