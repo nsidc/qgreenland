@@ -22,7 +22,7 @@ import yamale
 from humanize import naturalsize
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import LOCALDATA_DIR
+from qgreenland.constants import ASSETS_DIR 
 from qgreenland.models.config import Config
 from qgreenland.util.misc import (
     directory_size_bytes,
@@ -73,7 +73,7 @@ def _deref_boundaries(cfg: Dict[str, Any]) -> None:
     """
     boundaries_config = cfg['project']['boundaries']
     for boundary_name, boundary_fn in boundaries_config.items():
-        fp = os.path.join(LOCALDATA_DIR, boundary_fn)
+        fp = os.path.join(ASSETS_DIR, boundary_fn)
         with fiona.open(fp) as ifile:
             features = list(ifile)
             meta = ifile.meta

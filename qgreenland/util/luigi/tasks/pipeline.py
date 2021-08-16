@@ -6,7 +6,7 @@ from pathlib import Path
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.constants import (ASSETS_DIR,
+from qgreenland.constants import (ANCILLARY_DIR,
                                   ENVIRONMENT,
                                   PROJECT,
                                   PROJECT_DIR,
@@ -72,7 +72,7 @@ class CreateQgisProjectFile(luigi.Task):
 
     def requires(self):
         yield AncillaryFile(
-            src_filepath=os.path.join(ASSETS_DIR, 'images', 'qgreenland.png'),
+            src_filepath=os.path.join(ANCILLARY_DIR, 'images', 'qgreenland.png'),
             dest_relative_filepath='qgreenland.png',
         )
         yield AncillaryFile(

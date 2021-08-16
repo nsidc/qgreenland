@@ -1,6 +1,6 @@
 from typing import List
 
-from qgreenland.constants import ASSETS_DIR
+from qgreenland.constants import ASSETS_DIR, ANCILLARY_DIR
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.misc import run_ogr_command
 
@@ -29,7 +29,9 @@ def command_runner(
         step.args,
         input_dir=input_dir,
         output_dir=output_dir,
+        # TODO: Make below kwargs all-caps to match constants??
         assets_dir=ASSETS_DIR,
+        ancillary_dir=ANCILLARY_DIR
     )
 
     # TODO: What's an "ogr" command? Any command will work, this just runs the
