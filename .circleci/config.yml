@@ -2,7 +2,7 @@ version: 2
 
 setup: &setup
   docker:
-    - image: continuumio/miniconda:4.7.12
+    - image: continuumio/miniconda:4.10.3
   environment:
     # QGIS complains when setting up an QgsApplicatoin if `QT_QPA_PLATFORM` is not
     # set to `offscreen`:
