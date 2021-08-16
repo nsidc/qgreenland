@@ -22,7 +22,7 @@ import yamale
 from humanize import naturalsize
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import ASSETS_DIR 
+from qgreenland.constants import ASSETS_DIR
 from qgreenland.models.config import Config
 from qgreenland.util.misc import (
     directory_size_bytes,
