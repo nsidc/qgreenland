@@ -13,11 +13,7 @@
     - type: template
       template_name: ogr2ogr_segmentize
       kwargs:
-        foo: bar
-        # ogr2ogr_kwargs:
-        #   input_filename: 'latitudes_0_25_degree.geojson'
-        #   s_srs: 'EPSG:4326'
-        #   segmentize: 1
+        segment_max_distance: 1
 
 - <<: *lat_lines
   id: lat_0_5_deg
@@ -91,14 +87,10 @@
     - type: template
       template_name: ogr2ogr_segmentize
       kwargs:
-        foo: bar
-      # ogr2ogr_kwargs:
-      #   input_filename: 'longitudes_0_5_degree.geojson'
-      #   s_srs: 'EPSG:4326'
-      #   # The value "1000" resulted in straned points after subset, so we went
-      #   # smaller. We think this is becuase the unit we segmentize is in the source
-      #   # srs (degrees), not the dest srs (meters).
-      #   segmentize: 100
+        # The value "1000" resulted in straned points after subset, so we went
+        # smaller. We think this is becuase the unit we segmentize is in the source
+        # srs (degrees), not the dest srs (meters).
+        segment_max_distance: 100
 
 - <<: *lon_lines
   id: lon_1_deg
