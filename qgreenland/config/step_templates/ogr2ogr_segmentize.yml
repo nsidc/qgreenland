@@ -1,5 +1,7 @@
 kwargs:
   - segment_max_distance
+  - input_file
+  - output_file
 
 steps:
   - type: 'command'

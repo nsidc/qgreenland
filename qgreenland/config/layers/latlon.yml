@@ -14,6 +14,8 @@
       template_name: ogr2ogr_segmentize
       kwargs:
         segment_max_distance: 1
+        input_file: '{input_dir}/latitudes_0_25_degree.geojson'
+        output_file: '{output_dir}/latitudes_0_25_degree.gpkg'
 
 - <<: *lat_lines
   id: lat_0_5_deg
@@ -22,6 +24,13 @@
   input:
     dataset: latlon
     asset: lat_0_5_deg
+  steps:
+    - type: template
+      template_name: ogr2ogr_segmentize
+      kwargs:
+        segment_max_distance: 1
+        input_file: '{input_dir}/latitudes_0_5_degree.geojson'
+        output_file: '{output_dir}/latitudes_0_5_degree.gpkg'
 
 - <<: *lat_lines
   id: lat_1_deg
@@ -30,6 +39,13 @@
   input:
     dataset: latlon
     asset: lat_1_deg
+  steps:
+    - type: template
+      template_name: ogr2ogr_segmentize
+      kwargs:
+        segment_max_distance: 1
+        input_file: '{input_dir}/latitudes_1_degree.geojson'
+        output_file: '{output_dir}/latitudes_1_degree.gpkg'
 
 - <<: *lat_lines
   id: lat_2_deg
@@ -38,6 +54,13 @@
   input:
     dataset: latlon
     asset: lat_2_deg
+  steps:
+    - type: template
+      template_name: ogr2ogr_segmentize
+      kwargs:
+        segment_max_distance: 1
+        input_file: '{input_dir}/latitudes_2_degree.geojson'
+        output_file: '{output_dir}/latitudes_2_degree.gpkg'
 
     # - <<: *lat_lines
     #   id: lat_5_deg
@@ -91,6 +114,8 @@
         # smaller. We think this is becuase the unit we segmentize is in the source
         # srs (degrees), not the dest srs (meters).
         segment_max_distance: 100
+        input_file: '{input_dir}/longitudes_0_5_degree.geojson'
+        output_file: '{output_dir}/longitudes_0_5_degree.gpkg'
 
 - <<: *lon_lines
   id: lon_1_deg
@@ -99,6 +124,16 @@
   input:
     dataset: latlon
     asset: lon_1_deg
+  steps:
+    - type: template
+      template_name: ogr2ogr_segmentize
+      kwargs:
+        # The value "1000" resulted in straned points after subset, so we went
+        # smaller. We think this is becuase the unit we segmentize is in the source
+        # srs (degrees), not the dest srs (meters).
+        segment_max_distance: 100
+        input_file: '{input_dir}/longitudes_1_degree.geojson'
+        output_file: '{output_dir}/longitudes_1_degree.gpkg'
 
 - <<: *lon_lines
   id: lon_2_deg
@@ -107,6 +142,16 @@
   input:
     dataset: latlon
     asset: lon_2_deg
+  steps:
+    - type: template
+      template_name: ogr2ogr_segmentize
+      kwargs:
+        # The value "1000" resulted in straned points after subset, so we went
+        # smaller. We think this is becuase the unit we segmentize is in the source
+        # srs (degrees), not the dest srs (meters).
+        segment_max_distance: 100
+        input_file: '{input_dir}/longitudes_2_degree.geojson'
+        output_file: '{output_dir}/longitudes_2_degree.gpkg'
 
 - <<: *lon_lines
   id: lon_3_deg
@@ -115,6 +160,16 @@
   input:
     dataset: latlon
     asset: lon_3_deg
+  steps:
+    - type: template
+      template_name: ogr2ogr_segmentize
+      kwargs:
+        # The value "1000" resulted in straned points after subset, so we went
+        # smaller. We think this is becuase the unit we segmentize is in the source
+        # srs (degrees), not the dest srs (meters).
+        segment_max_distance: 100
+        input_file: '{input_dir}/longitudes_3_degree.geojson'
+        output_file: '{output_dir}/longitudes_3_degree.gpkg'
 
     # - <<: *lon_lines
     #   id: lon_5_deg
