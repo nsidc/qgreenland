@@ -47,6 +47,9 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> No
         provenance_list=provenance_list,
         abstract=abstract,
         title=layer_cfg.title,
+        # TODO: `toProj4()` is deprecated. The QMD file format still expects a
+        # <proj4> tag, so we're going to wait until this breaks to look in to it
+        # again. Resolve by using `toProj()` instead. 
         crs_proj4_str=layer_crs.toProj4(),
         crs_srsid=layer_crs.srsid(),
         crs_postgres_srid=layer_crs.postgisSrid(),
