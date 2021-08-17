@@ -99,7 +99,8 @@ def test__load_config_copies_by_value():
 
     We want to be able to use YAML anchors/references to DRY out the config, but
     also apply independent updates to those elements without affecting other
-    elements.
+    elements. This test ensures that whatever YAML loader our code is using
+    won't have this problem.
     """
     with (
         tempfile.NamedTemporaryFile(mode='w') as conffile,

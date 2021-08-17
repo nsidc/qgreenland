@@ -35,30 +35,6 @@ logger = logging.getLogger('luigi-interface')
 DEFAULT_LAYER_MANIFEST_PATH = Path('./layers.csv')
 
 
-def _aggressive_deep_copy(thing):
-    """Like copy.deepcopy, but doesn't memoize copying of internal objects.
-
-    This allows dictionary containing shared data (i.e. copies by reference) to
-    be copied, breaking the linkage between shared data.
-
-    When reading YAML, references to anchors are loaded as the same object in
-    memory, but we never want updates to one value to be reflected in another.
-
-    WARNING: This is a hack and in the case of recursive references, will
-    trigger a RecursionError. Another valid approach is
-    `json.loads(json.dumps(thing))`, which will also fail on circular references
-    with a ValueError. Is there a less hacky way?
-    """
-
-    class SilentFrozenDict(dict):
-        """Updates to a SilentFrozenDict have no effect."""
-
-        def __setitem__(self, key, val):
-            pass
-
-    return copy.deepcopy(thing, SilentFrozenDict({}))
-
-
 def _load_config(*, config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
     """Validate config file against schema with Yamale.
 
@@ -71,7 +47,7 @@ def _load_config(*, config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
     yamale.validate(schema, config, strict=True)
 
     try:
-        return _aggressive_deep_copy(config[0][0])
+        return copy.deepcopy(config[0][0])
     except IndexError:
         # TODO: Reconsider this behavior.
         # If there is an empty file, maybe it's intentional. Ignore it.
