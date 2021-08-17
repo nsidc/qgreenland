@@ -103,7 +103,7 @@ def test__load_config_copies_by_value():
     """
     with (
         tempfile.NamedTemporaryFile(mode='w') as conffile,
-        tempfile.NamedTemporaryFile(mode='w') as schemafile
+        tempfile.NamedTemporaryFile(mode='w') as schemafile,
     ):
         schemafile.write(MOCK_SCHEMA)
         schemafile.flush()
