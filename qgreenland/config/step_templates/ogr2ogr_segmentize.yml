@@ -1,7 +1,6 @@
 kwargs:
-  - 'input_file'
-  - 'output_file'
-  - 'sql'
+  - segment_max_distance
+
 steps:
   - type: 'command'
     args:
@@ -10,7 +9,9 @@ steps:
       - 'ENCODING=UTF-8'
       - '-clipdst'
       - '{assets_dir}/latitude_shape_40_degrees.geojson'
-      - '-sql'
-      - '{sql}'
+        # - '-cliplayer'
+        # - 'latitude_shape_40_degrees'
+      - '-segmentize'
+      - '{segment_max_distance}'
       - '{output_file}'
       - '{input_file}'

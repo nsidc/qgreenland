@@ -13,7 +13,7 @@ assets:
   # Unique ID used for generating paths and uniquely identifiying an asset
   # within a dataset.
   id: str()
-  type: enum('http', 'cmr', 'manual', 'online')
+  type: enum('http', 'cmr', 'manual', 'online', 'repo')
 
   # online
   provider: str(required=False)
@@ -34,6 +34,9 @@ assets:
 
   # manual:
   access_instructions: str(required=False)
+
+  # repo:
+  filename: str(required=False)
 
 ---
 metadata:

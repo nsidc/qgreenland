@@ -1,0 +1,167 @@
+- &lat_lines
+  id: lat_0_25_deg
+  title: Latitude lines (0.25 degree)
+  description: "Lines of latitude in 0.25-degree resolution."
+  hierarchy: ['Reference', 'Latitude lines']
+  in_package: True
+  show: False
+  style: 'latlon'
+  input:
+    dataset: latlon
+    asset: lat_0_25_deg
+  steps:
+    - type: template
+      template_name: ogr2ogr_segmentize
+      kwargs:
+        foo: bar
+        # ogr2ogr_kwargs:
+        #   input_filename: 'latitudes_0_25_degree.geojson'
+        #   s_srs: 'EPSG:4326'
+        #   segmentize: 1
+
+- <<: *lat_lines
+  id: lat_0_5_deg
+  title: Latitude lines (0.5 degree)
+  description: "Lines of latitude in 0.5-degree resolution."
+  input:
+    dataset: latlon
+    asset: lat_0_5_deg
+
+- <<: *lat_lines
+  id: lat_1_deg
+  title: Latitude lines (1 degree)
+  description: "Lines of latitude in 1-degree resolution."
+  input:
+    dataset: latlon
+    asset: lat_1_deg
+
+- <<: *lat_lines
+  id: lat_2_deg
+  title: Latitude lines (2 degree)
+  description: "Lines of latitude in 2-degree resolution."
+  input:
+    dataset: latlon
+    asset: lat_2_deg
+
+    # - <<: *lat_lines
+    #   id: lat_5_deg
+    #   title: Latitude lines (5 degree)
+    #   description: "Lines of latitude in 5-degree resolution."
+    #   data_source: latlon.lat_5_deg
+    # 
+    # - <<: *lat_lines
+    #   id: lat_10_deg
+    #   title: Latitude lines (10 degree)
+    #   description: "Lines of latitude in 10-degree resolution."
+    #   data_source: latlon.lat_10_deg
+    # 
+    # - <<: *lat_lines
+    #   id: lat_15_deg
+    #   title: Latitude lines (15 degree)
+    #   description: "Lines of latitude in 15-degree resolution."
+    #   data_source: latlon.lat_15_deg
+    # 
+    # - <<: *lat_lines
+    #   id: lat_20_deg
+    #   title: Latitude lines (20 degree)
+    #   description: "Lines of latitude in 20-degree resolution."
+    #   data_source: latlon.lat_20_deg
+    # 
+    # - <<: *lat_lines
+    #   id: lat_30_deg
+    #   title: Latitude lines (30 degree)
+    #   description: "Lines of latitude in 30-degree resolution."
+    #   data_source: latlon.lat_30_deg
+
+
+  #####
+
+- &lon_lines
+  id: lon_0_5_deg
+  title: Longitude lines (0.5 degree)
+  description: "Lines of longitude in 0.5-degree resolution."
+  show: False
+  in_package: True
+  hierarchy: ['Reference', 'Longitude lines']
+  style: 'latlon'
+  input:
+    dataset: latlon
+    asset: lon_0_5_deg
+  steps:
+    - type: template
+      template_name: ogr2ogr_segmentize
+      kwargs:
+        foo: bar
+      # ogr2ogr_kwargs:
+      #   input_filename: 'longitudes_0_5_degree.geojson'
+      #   s_srs: 'EPSG:4326'
+      #   # The value "1000" resulted in straned points after subset, so we went
+      #   # smaller. We think this is becuase the unit we segmentize is in the source
+      #   # srs (degrees), not the dest srs (meters).
+      #   segmentize: 100
+
+- <<: *lon_lines
+  id: lon_1_deg
+  title: Longitude lines (1 degree)
+  description: "Lines of longitude in 1-degree resolution."
+  input:
+    dataset: latlon
+    asset: lon_1_deg
+
+- <<: *lon_lines
+  id: lon_2_deg
+  title: Longitude lines (2 degree)
+  description: "Lines of longitude in 2-degree resolution."
+  input:
+    dataset: latlon
+    asset: lon_2_deg
+
+- <<: *lon_lines
+  id: lon_3_deg
+  title: Longitude lines (3 degree)
+  description: "Lines of longitude in 3-degree resolution."
+  input:
+    dataset: latlon
+    asset: lon_3_deg
+
+    # - <<: *lon_lines
+    #   id: lon_5_deg
+    #   title: Longitude lines (5 degree)
+    #   description: "Lines of longitude in 5-degree resolution."
+    #   data_source: latlon.lon_5_deg
+    # 
+    # - <<: *lon_lines
+    #   id: lon_10_deg
+    #   title: Longitude lines (10 degree)
+    #   description: "Lines of longitude in 10-degree resolution."
+    #   data_source: latlon.lon_10_deg
+    # 
+    # - <<: *lon_lines
+    #   id: lon_15_deg
+    #   title: Longitude lines (15 degree)
+    #   description: "Lines of longitude in 15-degree resolution."
+    #   data_source: latlon.lon_15_deg
+    # 
+    # - <<: *lon_lines
+    #   id: lon_20_deg
+    #   title: Longitude lines (20 degree)
+    #   description: "Lines of longitude in 20-degree resolution."
+    #   data_source: latlon.lon_20_deg
+    # 
+    # - <<: *lon_lines
+    #   id: lon_30_deg
+    #   title: Longitude lines (30 degree)
+    #   description: "Lines of longitude in 30-degree resolution."
+    #   data_source: latlon.lon_30_deg
+    # 
+    # - <<: *lon_lines
+    #   id: lon_45_deg
+    #   title: Longitude lines (45 degree)
+    #   description: "Lines of longitude in 45-degree resolution."
+    #   data_source: latlon.lon_45_deg
+    # 
+    # - <<: *lon_lines
+    #   id: lon_90_deg
+    #   title: Longitude lines (90 degree)
+    #   description: "Lines of longitude in 90-degree resolution."
+    #   data_source: latlon.lon_90_deg

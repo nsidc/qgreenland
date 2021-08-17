@@ -1,10 +1,11 @@
 import os
 import shutil
+from pathlib import Path
 
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.constants import ASSETS_DIR, PRIVATE_ARCHIVE_DIR, TaskType
+from qgreenland.constants import PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import (
@@ -94,6 +95,7 @@ class FetchRepoDataFiles(FetchTask):
             out_path = Path(temp_path) / self.asset_cfg.filepath.name
 
             shutil.copy2(source_path, out_path)
+
 
 class FetchOgrRemoteData(FetchTask):
     def run(self):

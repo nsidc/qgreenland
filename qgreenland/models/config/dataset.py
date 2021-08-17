@@ -1,7 +1,8 @@
 from abc import ABC
+from pathlib import Path
 from typing import Dict, List, Literal, Union
 
-from pydantic import AnyUrl, Field
+from pydantic import AnyUrl, Field, validator
 
 from qgreenland._typing import QgsLayerProviderType
 from qgreenland.constants import ASSETS_DIR
@@ -53,7 +54,7 @@ class ConfigDatasetManualAsset(ConfigDatasetAsset):
 
 class ConfigDatasetRepoAsset(ConfigDatasetAsset):
     type: Literal['repo']
-    filepath: Path() = Field(..., alias='filename')
+    filepath: Path = Field(..., alias='filename')
 
     @validator('filepath', pre=True)
     @classmethod
@@ -71,6 +72,7 @@ AnyAsset = Union[
     ConfigDatasetOnlineAsset,
     ConfigDatasetCmrAsset,
     ConfigDatasetManualAsset,
+    ConfigDatasetRepoAsset,
 ]
 
 
