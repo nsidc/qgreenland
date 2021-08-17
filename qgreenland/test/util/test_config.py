@@ -1,7 +1,26 @@
+import tempfile
+from pathlib import Path
+
 from qgreenland.util.config import (
     _deref_steps,
+    _load_config,
 )
 
+
+MOCK_CONFIG = """
+a: &ref-a
+    foo: bar
+
+b:
+    <<: *ref-a
+"""
+MOCK_SCHEMA = """
+a:
+    foo: str()
+
+b:
+    foo: str()
+"""
 
 MOCK_STEPS = [
     {'type': 'command', 'args': ['foo', 'bar']},
@@ -73,3 +92,29 @@ def test__deref_steps():
     )
 
     assert expected == actual
+
+
+def test__load_config_copies_by_value():
+    """Test that YAML references don't result in object copies by reference.
+
+    We want to be able to use YAML anchors/references to DRY out the config, but
+    also apply independent updates to those elements without affecting other
+    elements.
+    """
+    with (
+        tempfile.NamedTemporaryFile(mode='w') as conffile,
+        tempfile.NamedTemporaryFile(mode='w') as schemafile
+    ):
+        schemafile.write(MOCK_SCHEMA)
+        schemafile.flush()
+        conffile.write(MOCK_CONFIG)
+        conffile.flush()
+
+        cfg = _load_config(
+            config_fp=Path(conffile.name),
+            schema_fp=Path(schemafile.name),
+        )
+        assert id(cfg['a']) != id(cfg['b'])
+
+        cfg['a']['foo'] = 'baz'
+        assert cfg['a']['foo'] != cfg['b']['foo']
