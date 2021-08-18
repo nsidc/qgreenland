@@ -29,18 +29,28 @@ manifest = {
             # Used for search or tag-based browsing.
             'tags': ['Birds', 'Nests', 'Protected areas', 'Restricted areas'],
 
-            'assets': {
-                # https://nsidc.org/qgreenland/layers/nunagis_bird_protected_areas/nunagis_bird_protected_areas.gpkg
-                'nunagis_bird_protected_areas.gpkg': {
+            'assets': [
+                {
+                    # https://nsidc.org/qgreenland/layers/nunagis_bird_protected_areas/nunagis_bird_protected_areas.gpkg
+                    'file': 'nunagis_bird_protected_areas.gpkg',
+                    'type': 'data',
                     'checksum': 'd568078f6ef14df085c2d84e2eff573e',
                     'size_bytes': 184320,
                 },
-                # https://nsidc.org/qgreenland/layers/nunagis_bird_protected_areas/nunagis_bird_protected_areas.qml
-                'nunagis_bird_protected_areas.qml': {
+                {
+                    # https://nsidc.org/qgreenland/layers/nunagis_bird_protected_areas/nunagis_bird_protected_areas.qml
+                    'file': 'nunagis_bird_protected_areas.qml',
+                    'type': 'style',
                     'checksum': 'b7c14ec6110fa820ca6b65f5aec85911',
                     'size_bytes': 1521,
                 },
-            },
+                {
+                    'file': 'nunagis_bird_protected_areas.xml',
+                    'type': 'ancillary',
+                    'checksum': 'e491b6919b9a77a9fe98a8e574214abf',
+                    'size_bytes': 2091,
+                },
+            ],
 
             # Shown in the preview window as well as the layer metadata tab
             'layer_details': """Polygons representing areas protected for birds.
