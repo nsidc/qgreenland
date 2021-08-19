@@ -10,7 +10,6 @@ def test_jsonnet():
     old_config = json.load(open(OLD_CFG, 'r'))
 
     expected_layer_config = old_config['layers']['background']
-    expected_layer_config.pop('steps')
 
     expected_config = {
         'layers': {'background': expected_layer_config},
