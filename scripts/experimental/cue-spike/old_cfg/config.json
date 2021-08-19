@@ -1,0 +1,453 @@
+{
+  "project": {
+    "crs": "EPSG:3413",
+    "boundaries": {
+      "background": {
+        "fp": "/home/mfisher/Projects/qgreenland/qgreenland/qgreenland/assets/latitude_shape_40_degrees.geojson",
+        "bbox": {
+          "min_x": -5774572.727594967,
+          "min_y": -5774572.727594967,
+          "max_x": 5774572.727594967,
+          "max_y": 5774572.727594967
+        }
+      },
+      "data": {
+        "fp": "/home/mfisher/Projects/qgreenland/qgreenland/qgreenland/assets/greenland_rectangle.geojson",
+        "bbox": {
+          "min_x": -998012.0,
+          "min_y": -3611178.0,
+          "max_x": 1228670.0,
+          "max_y": -329624.0
+        }
+      }
+    }
+  },
+  "layers": {
+    "background": {
+      "id": "background",
+      "title": "Background (500m)",
+      "description": "Stylized shaded-relief map for providing a general sense of geography.",
+      "hierarchy": [
+        "Basemaps"
+      ],
+      "show": true,
+      "style": null,
+      "input": {
+        "dataset": {
+          "id": "background",
+          "assets": {
+            "high_res": {
+              "id": "high_res",
+              "type": "http",
+              "urls": [
+                "https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip"
+              ]
+            },
+            "low_res": {
+              "id": "low_res",
+              "type": "http",
+              "urls": [
+                "https://naciscdn.org/naturalearth/10m/raster/NE2_LR_LC_SR_W.zip"
+              ]
+            }
+          },
+          "metadata": {
+            "title": "Natural Earth II with Shaded Relief and Water (1:10m)",
+            "abstract": "Natural Earth II (Public Domain)",
+            "citation": {
+              "text": "Made with Natural Earth",
+              "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
+            }
+          }
+        },
+        "asset": {
+          "id": "high_res",
+          "type": "http",
+          "urls": [
+            "https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip"
+          ]
+        }
+      },
+      "steps": [
+        {
+          "type": "command",
+          "args": [
+            "unzip",
+            "{input_dir}/*.zip",
+            "-d",
+            "{output_dir}"
+          ]
+        },
+        {
+          "type": "command",
+          "args": [
+            "gdalwarp",
+            "-t_srs",
+            "EPSG:3413",
+            "-tr",
+            "500",
+            "500",
+            "-te",
+            "-5774572.727595 -5774572.727595 5774572.727595 5774572.727595",
+            "-dstnodata",
+            "0",
+            "-wo",
+            "SOURCE_EXTRA=100",
+            "-wo",
+            "SAMPLE_GRID=YES",
+            "{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif",
+            "{output_dir}/warped.tif"
+          ]
+        },
+        {
+          "type": "command",
+          "args": [
+            "gdalwarp",
+            "-cutline",
+            "{assets_dir}/latitude_shape_40_degrees.geojson",
+            "-crop_to_cutline",
+            "-co",
+            "COMPRESS=DEFLATE",
+            "{input_dir}/warped.tif",
+            "{output_dir}/warped_and_cut.tif"
+          ]
+        },
+        {
+          "type": "command",
+          "args": [
+            "cp",
+            "{input_dir}/warped_and_cut.tif",
+            "{output_dir}/overviews.tif",
+            "&&",
+            "gdaladdo",
+            "-r",
+            "average",
+            "{output_dir}/overviews.tif",
+            "2",
+            "4",
+            "8",
+            "16"
+          ]
+        }
+      ]
+    },
+    "bedmachine_thickness": {
+      "id": "bedmachine_thickness",
+      "title": "Ice thickness (150m)",
+      "description": "Ice thickness in meters. Mass conservation source data provided by Mathieu Morlighem.",
+      "hierarchy": [
+        "Terrain models",
+        "BedMachine"
+      ],
+      "show": false,
+      "style": "bedmachine_thickness",
+      "input": {
+        "dataset": {
+          "id": "bedmachine",
+          "assets": {
+            "only": {
+              "id": "only",
+              "type": "cmr",
+              "granule_ur": "SC:IDBMG4.003:160281892",
+              "collection_concept_id": "C1584255847-NSIDC_ECS"
+            }
+          },
+          "metadata": {
+            "title": "IceBridge BedMachine Greenland, Version 3",
+            "abstract": "This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.",
+            "citation": {
+              "text": "Morlighem, M. et al. 2017, updated 2018. IceBridge BedMachine Greenland, Version 3. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/2CIX82HUV88Y. 2020/02/07.",
+              "url": "https://doi.org/10.5067/2CIX82HUV88Y"
+            }
+          }
+        },
+        "asset": {
+          "id": "only",
+          "type": "cmr",
+          "granule_ur": "SC:IDBMG4.003:160281892",
+          "collection_concept_id": "C1584255847-NSIDC_ECS"
+        }
+      },
+      "steps": [
+        {
+          "type": "command",
+          "args": [
+            "gdal_translate",
+            "NETCDF:{input_dir}/BedMachineGreenland-2017-09-20.nc:thickness",
+            "{output_dir}/thickness.tif"
+          ]
+        },
+        {
+          "type": "command",
+          "args": [
+            "gdalwarp",
+            "-t_srs",
+            "EPSG:3413",
+            "{input_dir}/thickness.tif",
+            "{output_dir}/warped.tif"
+          ]
+        },
+        {
+          "type": "command",
+          "args": [
+            "gdalwarp",
+            "-cutline",
+            "{assets_dir}/greenland_rectangle.geojson",
+            "-crop_to_cutline",
+            "-co",
+            "COMPRESS=DEFLATE",
+            "{input_dir}/warped.tif",
+            "{output_dir}/warped_and_cut.tif"
+          ]
+        },
+        {
+          "type": "command",
+          "args": [
+            "cp",
+            "{input_dir}/warped_and_cut.tif",
+            "{output_dir}/overviews.tif",
+            "&&",
+            "gdaladdo",
+            "-r",
+            "average",
+            "{output_dir}/overviews.tif",
+            "2",
+            "4",
+            "8",
+            "16"
+          ]
+        }
+      ]
+    },
+    "image_mosaic_2019": {
+      "id": "image_mosaic_2019",
+      "title": "Greenland image mosaic 2019 (10m)",
+      "description": "Sentinel-2 multispectral satellite imagery from 2019.",
+      "hierarchy": [
+        "Internet-required data"
+      ],
+      "show": false,
+      "style": "transparent_rgb",
+      "input": {
+        "dataset": {
+          "id": "image_mosaic",
+          "assets": {
+            "2019": {
+              "id": "2019",
+              "type": "online",
+              "provider": "gdal",
+              "url": "/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt"
+            },
+            "2015": {
+              "id": "2015",
+              "type": "online",
+              "provider": "gdal",
+              "url": "/vsicurl/http://its-live-data.jpl.nasa.gov.s3-us-west-2.amazonaws.com/rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt"
+            }
+          },
+          "metadata": {
+            "title": "Sentinel-2 Imagery Mosaics",
+            "abstract": "Abstract for reference publication: Each summer, surface melting of the margin of the Greenland Ice Sheet exposes a distinctive visible stratigraphy that is related to past variability in subaerial dust deposition across the accumulation zone and subsequent ice flow toward the margin. Here we map this surface stratigraphy along the northern margin of the ice sheet using mosaicked Sentinel-2 multispectral satellite imagery from the end of the 2019 melt season and finer-resolution WorldView-2/3 imagery for smaller regions of interest. We trace three distinct transitions in apparent dust concentration and the top of a darker basal layer. The three dust transitions have been identified previously as representing late-Pleistocene climatic transitions, allowing us to develop a coarse margin chronostratigraphy for northern Greenland. Substantial folding of late-Pleistocene stratigraphy is observed but uncommon. The oldest conformal surface-exposed ice in northern Greenland is likely located adjacent to Warming Land and may be up to ~55 thousand years old. Basal ice is commonly exposed hundreds of metres from the ice margin and may indicate a widespread frozen basal thermal state. We conclude that the ice margin across northern Greenland offers multiple opportunities to recover paleoclimatically distinct ice relative to previously studied regions in southwestern Greenland.\nQGreenland displays 2015 and 2019 Sentinel-2 mosaics as online-only access layers.",
+            "citation": {
+              "text": "MacGregor JA, Fahnestock MA, Colgan WT, Larsen NK, Kjeldsen KK, Welker JM (2020). The age of surface-exposed ice along the northern margin of the Greenland Ice Sheet. Journal of Glaciology 66(258), 667\u2013684. https://doi.org/10.1017/jog.2020.62",
+              "url": "https://doi.org/10.1017/jog.2020.62"
+            }
+          }
+        },
+        "asset": {
+          "id": "2019",
+          "type": "online",
+          "provider": "gdal",
+          "url": "/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt"
+        }
+      },
+      "steps": null
+    },
+    "g02135_polyline_n": {
+      "id": "g02135_polyline_n",
+      "title": "Sea Ice Index",
+      "description": "Lines representing monthly sea ice extent edges. Note that aside from 2016 to present, most of the data is missing.",
+      "hierarchy": [
+        "Internet-required data",
+        "Sea Ice"
+      ],
+      "show": false,
+      "style": "g02135_polyline_n",
+      "input": {
+        "dataset": {
+          "id": "sea_ice_index",
+          "assets": {
+            "monthly_polyline_n": {
+              "id": "monthly_polyline_n",
+              "type": "online",
+              "provider": "wfs",
+              "url": "pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:3413' typename='NSIDC:g02135_polyline_n' url='https://nsidc.org/api/mapservices/NSIDC/wfs' url='https://nsidc.org/api/mapservices/NSIDC/wfs?version=1.1.0' version='auto'"
+            }
+          },
+          "metadata": {
+            "title": "Sea Ice Index, Version 3",
+            "abstract": "The Sea Ice Index provides a quick look at Arctic- and Antarctic-wide changes in sea ice. It is a source for consistent, up-to-date sea ice extent and concentration images, in PNG format, and data values, in GeoTIFF and ASCII text files, from November 1978 to the present. Sea Ice Index images also depict trends and anomalies in ice cover calculated using a 30-year reference period of 1981 through 2010.\nThe images and data are produced in a consistent way that makes the Index time-series appropriate for use when looking at long-term trends in sea ice cover. Both monthly and daily products are available. However, monthly products are better to use for long-term trend analysis because errors in the daily product tend to be averaged out in the monthly product and because day-to-day variations are often the result of short-term weather.",
+            "citation": {
+              "text": "Fetterer, F., K. Knowles, W. N. Meier, M. Savoie, and A. K. Windnagel. 2017, updated daily. Sea Ice Index, Version 3. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.7265/N5K072F8. 2020-08-06.",
+              "url": "https://nsidc.org/data/g02135"
+            }
+          }
+        },
+        "asset": {
+          "id": "monthly_polyline_n",
+          "type": "online",
+          "provider": "wfs",
+          "url": "pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:3413' typename='NSIDC:g02135_polyline_n' url='https://nsidc.org/api/mapservices/NSIDC/wfs' url='https://nsidc.org/api/mapservices/NSIDC/wfs?version=1.1.0' version='auto'"
+        }
+      },
+      "steps": null
+    }
+  },
+  "datasets": {
+    "background": {
+      "id": "background",
+      "assets": {
+        "high_res": {
+          "id": "high_res",
+          "type": "http",
+          "urls": [
+            "https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip"
+          ]
+        },
+        "low_res": {
+          "id": "low_res",
+          "type": "http",
+          "urls": [
+            "https://naciscdn.org/naturalearth/10m/raster/NE2_LR_LC_SR_W.zip"
+          ]
+        }
+      },
+      "metadata": {
+        "title": "Natural Earth II with Shaded Relief and Water (1:10m)",
+        "abstract": "Natural Earth II (Public Domain)",
+        "citation": {
+          "text": "Made with Natural Earth",
+          "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
+        }
+      }
+    },
+    "bedmachine": {
+      "id": "bedmachine",
+      "assets": {
+        "only": {
+          "id": "only",
+          "type": "cmr",
+          "granule_ur": "SC:IDBMG4.003:160281892",
+          "collection_concept_id": "C1584255847-NSIDC_ECS"
+        }
+      },
+      "metadata": {
+        "title": "IceBridge BedMachine Greenland, Version 3",
+        "abstract": "This data set contains a bed topography/bathymetry map of Greenland based on mass conservation, multi-beam data, and other techniques. It also includes surface elevation and ice thickness data, as well as an ice/ocean/land mask.",
+        "citation": {
+          "text": "Morlighem, M. et al. 2017, updated 2018. IceBridge BedMachine Greenland, Version 3. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. doi: https://doi.org/10.5067/2CIX82HUV88Y. 2020/02/07.",
+          "url": "https://doi.org/10.5067/2CIX82HUV88Y"
+        }
+      }
+    },
+    "image_mosaic": {
+      "id": "image_mosaic",
+      "assets": {
+        "2019": {
+          "id": "2019",
+          "type": "online",
+          "provider": "gdal",
+          "url": "/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt"
+        },
+        "2015": {
+          "id": "2015",
+          "type": "online",
+          "provider": "gdal",
+          "url": "/vsicurl/http://its-live-data.jpl.nasa.gov.s3-us-west-2.amazonaws.com/rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt"
+        }
+      },
+      "metadata": {
+        "title": "Sentinel-2 Imagery Mosaics",
+        "abstract": "Abstract for reference publication: Each summer, surface melting of the margin of the Greenland Ice Sheet exposes a distinctive visible stratigraphy that is related to past variability in subaerial dust deposition across the accumulation zone and subsequent ice flow toward the margin. Here we map this surface stratigraphy along the northern margin of the ice sheet using mosaicked Sentinel-2 multispectral satellite imagery from the end of the 2019 melt season and finer-resolution WorldView-2/3 imagery for smaller regions of interest. We trace three distinct transitions in apparent dust concentration and the top of a darker basal layer. The three dust transitions have been identified previously as representing late-Pleistocene climatic transitions, allowing us to develop a coarse margin chronostratigraphy for northern Greenland. Substantial folding of late-Pleistocene stratigraphy is observed but uncommon. The oldest conformal surface-exposed ice in northern Greenland is likely located adjacent to Warming Land and may be up to ~55 thousand years old. Basal ice is commonly exposed hundreds of metres from the ice margin and may indicate a widespread frozen basal thermal state. We conclude that the ice margin across northern Greenland offers multiple opportunities to recover paleoclimatically distinct ice relative to previously studied regions in southwestern Greenland.\nQGreenland displays 2015 and 2019 Sentinel-2 mosaics as online-only access layers.",
+        "citation": {
+          "text": "MacGregor JA, Fahnestock MA, Colgan WT, Larsen NK, Kjeldsen KK, Welker JM (2020). The age of surface-exposed ice along the northern margin of the Greenland Ice Sheet. Journal of Glaciology 66(258), 667\u2013684. https://doi.org/10.1017/jog.2020.62",
+          "url": "https://doi.org/10.1017/jog.2020.62"
+        }
+      }
+    },
+    "sea_ice_index": {
+      "id": "sea_ice_index",
+      "assets": {
+        "monthly_polyline_n": {
+          "id": "monthly_polyline_n",
+          "type": "online",
+          "provider": "wfs",
+          "url": "pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:3413' typename='NSIDC:g02135_polyline_n' url='https://nsidc.org/api/mapservices/NSIDC/wfs' url='https://nsidc.org/api/mapservices/NSIDC/wfs?version=1.1.0' version='auto'"
+        }
+      },
+      "metadata": {
+        "title": "Sea Ice Index, Version 3",
+        "abstract": "The Sea Ice Index provides a quick look at Arctic- and Antarctic-wide changes in sea ice. It is a source for consistent, up-to-date sea ice extent and concentration images, in PNG format, and data values, in GeoTIFF and ASCII text files, from November 1978 to the present. Sea Ice Index images also depict trends and anomalies in ice cover calculated using a 30-year reference period of 1981 through 2010.\nThe images and data are produced in a consistent way that makes the Index time-series appropriate for use when looking at long-term trends in sea ice cover. Both monthly and daily products are available. However, monthly products are better to use for long-term trend analysis because errors in the daily product tend to be averaged out in the monthly product and because day-to-day variations are often the result of short-term weather.",
+        "citation": {
+          "text": "Fetterer, F., K. Knowles, W. N. Meier, M. Savoie, and A. K. Windnagel. 2017, updated daily. Sea Ice Index, Version 3. Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center. doi: https://doi.org/10.7265/N5K072F8. 2020-08-06.",
+          "url": "https://nsidc.org/data/g02135"
+        }
+      }
+    }
+  },
+  "hierarchy_settings": [
+    {
+      "path": [
+        "Reference"
+      ],
+      "show": true,
+      "expand": true
+    },
+    {
+      "path": [
+        "Reference",
+        "QGreenland boundaries"
+      ],
+      "show": true,
+      "expand": false
+    },
+    {
+      "path": [
+        "Reference",
+        "Borders"
+      ],
+      "show": true,
+      "expand": false
+    },
+    {
+      "path": [
+        "Places"
+      ],
+      "show": false,
+      "expand": false
+    },
+    {
+      "path": [
+        "Sea ice",
+        "Weekly age (12.5 km)"
+      ],
+      "show": false,
+      "expand": true
+    },
+    {
+      "path": [
+        "Sea ice",
+        "Monthly mean concentration (25 km)"
+      ],
+      "show": false,
+      "expand": true
+    },
+    {
+      "path": [
+        "Basemaps"
+      ],
+      "show": true,
+      "expand": true
+    }
+  ]
+}
