@@ -1,5 +1,5 @@
 local datasets = (import 'datasets.jsonnet').datasets;
-local templates = import 'templates.libsonnet';
+local steps = import 'steps.libsonnet';
 
 {
   datasets: datasets,
@@ -16,7 +16,7 @@ local templates = import 'templates.libsonnet';
         asset: datasets.background.assets.high_res,
       },
       steps: [
-        templates.CommandStep {
+        steps.CommandStep {
           args: [ 
             "unzip",
             "{input_dir}/*.zip",
@@ -24,7 +24,7 @@ local templates = import 'templates.libsonnet';
             "{output_dir}",
           ],
         },
-        templates.CommandStep {
+        steps.CommandStep {
           args: [ 
             "gdalwarp",
             "-t_srs",
@@ -44,7 +44,7 @@ local templates = import 'templates.libsonnet';
             "{output_dir}/warped.tif",
           ],
         },
-        templates.CommandStep {
+        steps.CommandStep {
           args: [ 
             "gdalwarp",
             "-cutline",
@@ -56,7 +56,7 @@ local templates = import 'templates.libsonnet';
             "{output_dir}/warped_and_cut.tif",
           ],
         },
-        templates.CommandStep {
+        steps.CommandStep {
           args: [ 
             "cp",
             "{input_dir}/warped_and_cut.tif",
