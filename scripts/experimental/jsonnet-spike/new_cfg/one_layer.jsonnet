@@ -1,5 +1,6 @@
 local datasets = (import 'datasets.jsonnet').datasets;
 local steps = import 'steps.libsonnet';
+local warpAndCut = import 'step_templates/warp_and_cut.libsonnet';
 
 {
   datasets: datasets,
@@ -23,40 +24,15 @@ local steps = import 'steps.libsonnet';
             "-d",
             "{output_dir}",
           ],
-        },
-        steps.CommandStep {
-          args: [ 
-            "gdalwarp",
-            "-t_srs",
-            "EPSG:3413",
-            "-tr",
-            "500",
-            "500",
-            "-te",
-            "-5774572.727595 -5774572.727595 5774572.727595 5774572.727595",
-            "-dstnodata",
-            "0",
-            "-wo",
-            "SOURCE_EXTRA=100",
-            "-wo",
-            "SAMPLE_GRID=YES",
-            "{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif",
-            "{output_dir}/warped.tif",
-          ],
-        },
-        steps.CommandStep {
-          args: [ 
-            "gdalwarp",
-            "-cutline",
-            "{assets_dir}/latitude_shape_40_degrees.geojson",
-            "-crop_to_cutline",
-            "-co",
-            "COMPRESS=DEFLATE",
-            "{input_dir}/warped.tif",
-            "{output_dir}/warped_and_cut.tif",
-          ],
-        },
-        steps.CommandStep {
+        }]+
+        warpAndCut.warpAndCut {
+          inputFile: "{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif",
+          outputFile: "{output_dir}/warped_and_cut.tif",
+          crs: 'EPSG:3413',
+          targetExtent: "-5774572.727595 -5774572.727595 5774572.727595 5774572.727595",
+          cutFilePath: "{assets_dir}/latitude_shape_40_degrees.geojson",
+        }.steps+
+        [steps.CommandStep {
           args: [ 
             "cp",
             "{input_dir}/warped_and_cut.tif",
