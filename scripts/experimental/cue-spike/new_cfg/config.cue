@@ -1,10 +1,7 @@
 import (
-  "nsidc.org/qgreenland:datasets"
-  "nsidc.org/qgreenland:layers"
+  "nsidc.org/qgreenland:Datasets"
+  "nsidc.org/qgreenland:Layers"
 )
-
-let Datasets = datasets
-let Layers = layers
 
 datasets: Datasets,
 layers: Layers,

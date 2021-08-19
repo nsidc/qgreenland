@@ -1,16 +1,17 @@
-package layers
+package Layers
 
-import "nsidc.org/qgreenland:datasets"
+import "nsidc.org/qgreenland:Datasets"
 // local warpAndCut = import 'step_templates/warp_and_cut.libsonnet';
 
 #Step: {
+  ...
 }
 #CommandStep: #Step & {
   args: [...string]
 }
 #Input: {
-  dataset: datasets.#Dataset
-  asset: datasets.#Asset
+  dataset: Datasets.#Dataset
+  asset: Datasets.#Asset
 }
 #Layer: {
   id: string
@@ -31,8 +32,8 @@ background: {
   description: "Stylized shaded-relief map for providing a general sense of geography.",
   show: true,
   input: {
-    dataset: datasets.background,
-    asset: datasets.background.assets.high_res,
+    dataset: Datasets.background,
+    asset: Datasets.background.assets.high_res,
   },
   steps: [
     #CommandStep & {

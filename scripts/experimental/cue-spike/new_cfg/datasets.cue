@@ -1,29 +1,4 @@
-package datasets
-
-#Citation: {
-  text: string
-  url: string
-}
-#DatasetMetadata: {
-  title: string
-  abstract: string
-  citation: #Citation
-}
-#DatasetAsset: [Id=_]: {
-  id: Id
-  type: "http" | "cmr"
-  ...
-}
-#HttpDatasetAsset: #DatasetAsset & {
-  type: "http"
-  urls: [...string]
-
-}
-#Dataset: {
-  id: string
-  assets: #DatasetAsset
-  metadata: #DatasetMetadata
-}
+package Datasets
 
 background: #Dataset & {
   id: "background",
