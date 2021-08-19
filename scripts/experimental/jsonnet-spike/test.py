@@ -2,9 +2,12 @@ import json
 
 from compile import JSONNET_DICT, THIS_DIR
 
+OLD_CFG_DIR = THIS_DIR / 'old_cfg'
+OLD_CFG = OLD_CFG_DIR / 'config.json'
+
 
 def test_jsonnet():
-    old_config = json.load(open(THIS_DIR / 'old_config.json', 'r'))
+    old_config = json.load(open(OLD_CFG, 'r'))
 
     expected_layer_config = old_config['layers']['background']
     expected_layer_config.pop('steps')
