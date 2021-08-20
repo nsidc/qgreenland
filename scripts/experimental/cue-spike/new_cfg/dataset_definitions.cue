@@ -12,7 +12,7 @@ package Datasets
 // What's wrong with this? Looks like this represents a struct like:
 // { foo: { id: ... }, bar: { id: ... }, }
 // But how do we extract the inner struct into a template?
-#DatasetAsset: [Id=_] {
+#DatasetAsset: [Id=_]: {
   id: Id
   ...
 }
