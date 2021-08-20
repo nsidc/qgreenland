@@ -12,8 +12,8 @@ package Datasets
 // What's wrong with this? Looks like this represents a struct like:
 // { foo: { id: ... }, bar: { id: ... }, }
 // But how do we extract the inner struct into a template?
-#DatasetAsset: [Id=_]: {
-  id: Id
+#DatasetAsset: {
+  id: string
   ...
 }
 #HttpDatasetAsset: #DatasetAsset & {
@@ -22,6 +22,12 @@ package Datasets
 }
 #Dataset: {
   id: string
-  assets: #DatasetAsset
+  assets: [AssetId=_]: #DatasetAsset & {
+    id: AssetId
+  }
   metadata: #DatasetMetadata
+}
+
+datasets: [DatasetId=_]: #Dataset & {
+  id: DatasetId
 }
