@@ -8,4 +8,4 @@ project = ConfigProject(
     }
 )
 
-print(project)
+print(project.json(indent=4))
