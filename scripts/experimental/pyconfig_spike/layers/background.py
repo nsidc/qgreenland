@@ -16,4 +16,4 @@ background = ConfigLayer(
     steps=[],
 )
 
-print(background)
+print(background.json(indent=4))
