@@ -4,7 +4,9 @@ from typing import Dict
 from pydantic import FilePath, validator
 import fiona
 
+import qgreenland.exceptions as exc
 from qgreenland.models.base_model import QgrBaseModel
+from scripts.experimental.pyconfig_spike.config_constants import PROJECT_CRS
 
 
 class BoundingBox(QgrBaseModel):
@@ -37,12 +39,11 @@ class ConfigBoundariesInfo(QgrBaseModel):
             )
 
         # TODO: fix.
-        # if (boundary_crs := meta['crs']['init'].lower()) \
-        #    != (project_crs := cfg['project']['crs'].lower()):
-        #     raise exc.QgrInvalidConfigError(
-        #         f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
-        #         f' match project CRS ({project_crs}).',
-        #     )
+        if (boundary_crs := meta['crs']['init'].upper()) != PROJECT_CRS.upper():
+            raise exc.QgrInvalidConfigError(
+                f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
+                f' match project CRS ({PROJECT_CRS}).',
+            )
 
         return BoundingBox(
             min_x=bbox[0],
