@@ -1,13 +1,10 @@
 package Layers
 
-import "nsidc.org/qgreenland:Datasets"
+import (
+  "nsidc.org/qgreenland:Datasets"
+  "nsidc.org/qgreenland:Steps"
+)
 
-#Step: {
-  ...
-}
-#CommandStep: #Step & {
-  args: [...string]
-}
 #Input: {
   dataset: Datasets.#Dataset
   asset: Datasets.#DatasetAsset
@@ -20,7 +17,7 @@ import "nsidc.org/qgreenland:Datasets"
   show: bool
   style?: string
   input: #Input
-  steps: [...#Step]
+  steps: [...Steps.#Step]
 
 }
 layers: [LayerId=_]: #Layer & {
