@@ -361,8 +361,10 @@ def export_config(
         dataset_cfg = layer.input.dataset
 
         report.append({
-            'Group': layer.hierarchy[0],
-            'Subgroup': ('/'.join(layer.hierarchy[1:])),
+            # 'Group': layer.hierarchy[0],
+            # 'Subgroup': ('/'.join(layer.hierarchy[1:])),
+            'Group': 'TODO',
+            'Subgroup': 'TODO',
             'Layer Title': layer.title,
             'Layer Description': layer.description,
             'Vector or Raster': layer_type,

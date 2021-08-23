@@ -17,7 +17,10 @@ background = ConfigDataset(
         'abstract': 'Natural Earth II (Public Domain)',
         'citation': {
             'text': 'Made with Natural Earth',
-            'url': 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md',
+            'url': (
+                'https://github.com/nvkelso/natural-earth-vector'
+                '/blob/master/LICENSE.md'
+            ),
         },
     },
 )

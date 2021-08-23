@@ -1,19 +1,20 @@
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from scripts.experimental.pyconfig_spike.datasets.online import (
+from qgreenland.config.datasets.online import (
     image_mosaic,
     sea_ice_index,
 )
+from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
 image_mosaic_2019 = ConfigLayer(
     id='image_mosaic_2019',
+    title='Greenland image mosaic 2019 (10m)',
     description='Sentinel-2 multispectral satellite imagery from 2019.',
     show=False,
     in_package=True,
     style='transparent_rgb',
     input=ConfigLayerInput(
-      dataset=image_mosaic,
-      asset=image_mosaic.assets['2019'],
+        dataset=image_mosaic,
+        asset=image_mosaic.assets['2019'],
     ),
 
 )
@@ -27,7 +28,7 @@ present, most of the data is missing.""",
     show=False,
     in_package=True,
     input=ConfigLayerInput(
-      dataset=sea_ice_index,
-      asset=sea_ice_index.assets['monthly_polyline_n'],
+        dataset=sea_ice_index,
+        asset=sea_ice_index.assets['monthly_polyline_n'],
     ),
 )

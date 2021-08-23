@@ -23,7 +23,7 @@ class ConfigDatasetAsset(QgrBaseModel, ABC):
 
 
 class ConfigDatasetHttpAsset(ConfigDatasetAsset):
-    type: Literal['http']
+    type: Literal['http'] = 'http'
     urls: List[AnyUrl]
 
 
@@ -31,7 +31,7 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
 # "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
 # regular layer with a URL as its path.
 class ConfigDatasetOnlineAsset(ConfigDatasetAsset):
-    type: Literal['online']
+    type: Literal['online'] = 'online'
     provider: QgsLayerProviderType
     # AnyUrl alone doesn't work because "gdal" remote layers use a
     # `/vsicurl/https://` prefix, "wms" remote layers prefix the URL with
@@ -40,13 +40,13 @@ class ConfigDatasetOnlineAsset(ConfigDatasetAsset):
 
 
 class ConfigDatasetCmrAsset(ConfigDatasetAsset):
-    type: Literal['cmr']
+    type: Literal['cmr'] = 'cmr'
     granule_ur: str = Field(..., min_length=1)
     collection_concept_id: str = Field(..., min_length=1)
 
 
 class ConfigDatasetManualAsset(ConfigDatasetAsset):
-    type: Literal['manual']
+    type: Literal['manual'] = 'manual'
     access_instructions: str = Field(..., min_length=1)
 
 

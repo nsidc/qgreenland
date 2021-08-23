@@ -1,1 +1,0 @@
-module: "nsidc.org/qgreenland"

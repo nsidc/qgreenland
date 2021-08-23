@@ -183,7 +183,8 @@ def _ensure_layer_group(
     project: qgc.QgsProject,
     layer_cfg: ConfigLayer,
 ) -> qgc.QgsLayerTreeGroup:
-    group_path: List[str] = layer_cfg.hierarchy
+    # group_path: List[str] = layer_cfg.hierarchy
+    group_path = ['TODO', 'TODO']
     return _ensure_group_exists(project, group_path)
 
 

@@ -1,8 +1,7 @@
+from qgreenland.config.datasets.natural_earth import background as background_dataset
+from qgreenland.config.step_templates.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
-
-from scripts.experimental.pyconfig_spike.datasets.natural_earth import background as background_dataset
-from scripts.experimental.pyconfig_spike.step_templates.warp_and_cut import warp_and_cut
 
 
 background = ConfigLayer(
@@ -23,8 +22,8 @@ background = ConfigLayer(
         *warp_and_cut(
             input_file='{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif',
             output_file='{output_dir}/warped_and_cut.tif',
-            xRes=500,
-            yRes=500,
+            x_res=500,
+            y_res=500,
             # TODO import project config and access correct boundary.
             target_extent='-5774572.727595 -5774572.727595 5774572.727595 5774572.727595',
             cut_file='{assets_dir}/latitude_shape_40_degrees.geojson',

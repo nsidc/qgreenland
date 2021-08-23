@@ -1,12 +1,10 @@
-from functools import cached_property
-from typing import Dict
+from typing import Any, Dict
 
-from pydantic import FilePath, validator
 import fiona
+from pydantic import FilePath, root_validator
 
 import qgreenland.exceptions as exc
 from qgreenland.models.base_model import QgrBaseModel
-from scripts.experimental.pyconfig_spike.config_constants import PROJECT_CRS
 
 
 class BoundingBox(QgrBaseModel):
@@ -18,10 +16,14 @@ class BoundingBox(QgrBaseModel):
 
 class ConfigBoundariesInfo(QgrBaseModel):
     fp: FilePath
-    bbox: BoundingBox = None
+    bbox: BoundingBox
 
-    @validator('bbox', pre=True, always=True)
-    def calculate_bbox(cls, value, values) -> BoundingBox:
+    # TODO: Do we need a root validator? A regular validator, even with
+    # `pre=True` and `always=True`, resulted in a "field not found" error for
+    # "bbox".
+    @root_validator(pre=True)
+    @classmethod
+    def calculate_bbox(cls, values) -> Dict[str, Any]:
         if 'fp' not in values or not values['fp']:
             raise RuntimeError('No u gotta')
 
@@ -34,23 +36,29 @@ class ConfigBoundariesInfo(QgrBaseModel):
 
         if (feature_count := len(features)) != 1:
             raise exc.QgrInvalidConfigError(
-                f'Configured boundary {boundary_name} contains the wrong'
+                f"Configured boundary {values['fp']} contains the wrong"
                 f' number of features. Expected 1, got {feature_count}.',
             )
 
-        # TODO: fix.
+        # NOTE: Import inside the method to avoid a cycle. The config subpackage
+        # imports from the models subpackage, so the models can't import from
+        # config.
+        from qgreenland.config.constants import PROJECT_CRS  # noqa
         if (boundary_crs := meta['crs']['init'].upper()) != PROJECT_CRS.upper():
             raise exc.QgrInvalidConfigError(
                 f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
                 f' match project CRS ({PROJECT_CRS}).',
             )
 
-        return BoundingBox(
-            min_x=bbox[0],
-            min_y=bbox[1],
-            max_x=bbox[2],
-            max_y=bbox[3],
-        )
+        return {
+            'fp': values['fp'],
+            'bbox': BoundingBox(
+                min_x=bbox[0],
+                min_y=bbox[1],
+                max_x=bbox[2],
+                max_y=bbox[3],
+            ),
+        }
 
 
 class ConfigProject(QgrBaseModel):

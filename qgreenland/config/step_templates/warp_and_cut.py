@@ -9,10 +9,10 @@ def warp_and_cut(
         # input_file, output_file.
         input_file,
         output_file,
-        xRes,
-        yRes,
+        x_res,
+        y_res,
         target_extent,
-        cut_file
+        cut_file,
 ) -> List[AnyStep]:
     reproject = ConfigLayerCommandStep(
         type='command',
@@ -22,8 +22,8 @@ def warp_and_cut(
             # TODO: Reference project SRS
             'EPSG:3413',
             '-tr',  # xRes=500, yRes=500
-            f'{xRes}',
-            f'{yRes}',
+            f'{x_res}',
+            f'{y_res}',
             '-te',
             f'{target_extent}',
             '-dstnodata',  # dstNodata
@@ -37,7 +37,7 @@ def warp_and_cut(
             # the command, this will help avoid mistakes.
             f'{input_file}',  # <--- Input
             '{output_dir}/warped.tif',  # <--- Output
-        ]
+        ],
     )
 
     clip = ConfigLayerCommandStep(
@@ -54,11 +54,10 @@ def warp_and_cut(
             'COMPRESS=DEFLATE',
             '{input_dir}/warped.tif',  # <--- Input
             f'{output_file}',  # <--- Output
-        ]
-        
+        ],
     )
 
     return [
         reproject,
-        clip
+        clip,
     ]

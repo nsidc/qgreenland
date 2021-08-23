@@ -27,7 +27,7 @@ def online_layer_cfg():
         'id': 'example_online',
         'title': 'Example online',
         'description': 'Example layer description',
-        'hierarchy': ['foo', 'bar'],
+        'in_package': True,
         'input': {
             'dataset': {
                 'id': 'baz',
@@ -51,7 +51,7 @@ def raster_layer_cfg():
         'id': 'example_raster',
         'title': 'Example raster',
         'description': 'Example layer description',
-        'hierarchy': ['group', 'subgroup'],
+        'in_package': True,
         'input': {
             'dataset': {
                 'id': 'example_dataset',
