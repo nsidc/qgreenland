@@ -31,5 +31,3 @@ background = ConfigLayer(
         ),
     ],
 )
-
-print(background.json(indent=4))
