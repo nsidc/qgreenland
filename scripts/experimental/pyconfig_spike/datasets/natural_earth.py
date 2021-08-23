@@ -1,14 +1,16 @@
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.dataset import (
+    ConfigDataset,
+    ConfigDatasetHttpAsset,
+)
 
 background = ConfigDataset(
     id='background',
     assets={
         # 'high_res': high_res_asset,
-        'high_res': {
-            'id': 'high_res',
-            'type': 'http',
-            'urls': ['https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip'],
-        }
+        'high_res': ConfigDatasetHttpAsset(
+            id='high_res',
+            urls=['https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip'],
+        ),
     },
     metadata={
         'title': 'Natural Earth II with Shaded Relief and Water (1:10m)',
@@ -16,6 +18,6 @@ background = ConfigDataset(
         'citation': {
             'text': 'Made with Natural Earth',
             'url': 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md',
-        }
-    }
+        },
+    },
 )
