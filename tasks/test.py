@@ -1,6 +1,7 @@
 import sys
 from pprint import pprint
 
+import anytree
 from invoke import task
 
 from .util import print_and_run, PROJECT_DIR
@@ -63,10 +64,14 @@ def validate(ctx, verbose=False):
     if verbose:
         print('Layers:')
         pprint(CONFIG.layers)
-        print('Hierarchy Settings:')
-        pprint(CONFIG.hierarchy_settings)
+        pprint(CONFIG.layer_tree)
+        print()
         print('Datasets:')
         pprint(CONFIG.datasets)
+        print()
+        print('Layer Tree:')
+        for pre, _, node in anytree.RenderTree(CONFIG.layer_tree):
+            print(f'{pre}{node.name}')
 
     print('🎉🦆 Configuration validation passed.')
 
