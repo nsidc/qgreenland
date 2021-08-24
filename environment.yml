@@ -14,6 +14,7 @@ dependencies:
   # Imported dependencies (and related typestubs) #
   #################################################
 
+  - anytree ~=2.8.0
   - click ~=7.1.2
   - types-click ~=7.1.2
   - fiona ~=1.8.13

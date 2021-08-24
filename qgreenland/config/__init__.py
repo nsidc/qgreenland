@@ -8,8 +8,10 @@ from qgreenland.config.project import project
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.util.tree import tree_from_dir
 
 
+THIS_DIR = Path(__file__).resolve().parent
 ModelClass = TypeVar('ModelClass')
 
 
@@ -108,10 +110,8 @@ def compile_cfg(config_dir: Path) -> Config:
         project=project,
         layers=compile_layers_cfg(config_dir),
         datasets=compile_datasets_cfg(config_dir),
-        # TODO: ...
-        hierarchy_settings=[],
+        layer_tree=tree_from_dir(THIS_DIR / 'layers'),
     )
 
 
-THIS_DIR = Path(__file__).resolve().parent
 CONFIG = compile_cfg(THIS_DIR)

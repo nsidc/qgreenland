@@ -1,5 +1,6 @@
 from typing import Dict, List
 
+import anytree
 from pydantic import BaseModel
 
 from qgreenland.models.config.dataset import ConfigDataset
@@ -14,4 +15,7 @@ class Config(BaseModel):
     project: ConfigProject
     layers: Dict[str, ConfigLayer]
     datasets: Dict[str, ConfigDataset]
-    hierarchy_settings: List[HierarchySettings]
+    layer_tree: anytree.Node
+
+    class Config:
+        arbitrary_types_allowed = True
