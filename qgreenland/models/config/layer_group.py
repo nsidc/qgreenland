@@ -16,7 +16,7 @@ class RootGroupSettings(QgrBaseModel):
 
 class LayerGroupSettings(RootGroupSettings):
     # Whether the group is expanded or collapsed in the QGIS Layers Panel
-    expanded: bool = False
+    expand: bool = False
 
     # Whether the group is shown (checked) or hidden (unchecked) in the QGIS
     # Layers Panel

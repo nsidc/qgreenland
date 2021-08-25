@@ -5,6 +5,6 @@ settings = LayerGroupSettings(
     order=[
         'background.py:background',
     ],
-    expanded=True,
+    expand=True,
     show=True,
 )
