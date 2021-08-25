@@ -278,9 +278,9 @@ def _tree_from_dir(
                 parent=root_node,
             )
         else:
-            print('wat')
-            breakpoint()
-            ...
+            raise RuntimeError(
+                'Found unexpected thing: {thing}'
+            )
             
     return root_node
 
