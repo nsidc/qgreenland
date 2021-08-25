@@ -195,7 +195,7 @@ def get_final_layer_dir(
     layer_node: LayerNode,
 ) -> Path:
     """Get the layer directory in its final pre-zip location."""
-    layer_group_path_str = '/'.join(layer_node.layer_path)
+    layer_group_path_str = '/'.join(layer_node.group_name_path)
     return (
         Path(TaskType.FINAL.value)
         / layer_group_path_str

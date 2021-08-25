@@ -11,11 +11,10 @@ from PyQt5.QtGui import QColor
 from qgreenland.config import CONFIG
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.qgis.layer import make_map_layer
+from qgreenland.util.tree import LayerNode
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
-LAYERGROUP_EXPANDED_DEFAULT = False
-LAYERGROUP_VISIBLE_DEFAULT = False
 
 
 class QgsApplicationContext:
@@ -125,14 +124,21 @@ def _ensure_layer_groups_exist(
     project: qgc.QgsProject,
     layer_node: LayerNode,
 ) -> qgc.QgsLayerTreeGroup:
+    """Get or create groups required by `layer_node` and attach to `project`."""
     # TODO: Loop over layer_node.path[1:-1] (we have a function that does this
     # slice, right?) and create all groups that don't already exist and apply
     # settings right then and there.
 
+    # Get rid of the root node (it doesn't need to be created) and the leaf node
+    # (it's a layer, not a group)
+    group_node_path = layer_node.group_node_path
+    breakpoint()
 
-    """Get or create the layer group in `project` by `group_path`."""
+    # TODO: Re-write this function to loop over group_node_path. Call
+    # `.group_name_path` on the elements.
+
     # If the group exists, just return it:
-    if group := _get_group(project, group_path):
+    if group := _get_group(project, group_namegpath):
         return group
 
     # Otherwise, create the group path from the root up; it's OK if part of the
@@ -145,9 +151,10 @@ def _ensure_layer_groups_exist(
 
         group = group.addGroup(group_name)
 
-        # Set default configuration
-        _set_group_visibility(group, LAYERGROUP_VISIBLE_DEFAULT)
-        _set_group_expanded(group, LAYERGROUP_EXPANDED_DEFAULT)
+        # Update settings from the settings object
+        if type(node.settings) is LayerGroupSettings:
+            _set_group_visibility(group, node.settings.show)
+            _set_group_expanded(group, node.settings.expanded)
 
     return group
 
@@ -202,9 +209,9 @@ def _add_layers(project: qgc.QgsProject) -> None:
 
         map_layer = make_map_layer(layer_node)
 
-        group = _ensure_group_exists(
+        group = _ensure_layer_groups_exist(
             project=project,
-            group_path=layer_node.layer_path,
+            layer_node=layer_node,
         )
 
         # TODO: Why do we have a separate object here?

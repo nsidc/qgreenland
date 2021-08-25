@@ -32,16 +32,14 @@ class LayerNode(anytree.Node):
         self.layer_cfg = layer_cfg
         super().__init__(*args, **kwargs)
 
+    # TODO: DRY. Mixin?
+    @cached_property
+    def group_node_path(self):
+        return _node_group_path(self)
 
     @cached_property
-    # TODO: rename?
-    def layer_path(self):
-        """Produce a list of group/directory names a layer lives in.
-
-        Remove the root node (named "layers" after the "layers" directory) and
-        remove the layer's id.
-        """
-        return [n.name for n in self.path[1:-1]]
+    def group_name_path(self):
+        return _node_group_name_path(self)
 
 
 class LayerGroupNode(anytree.Node):
@@ -52,8 +50,31 @@ class LayerGroupNode(anytree.Node):
         self.settings = settings
         super().__init__(*args, **kwargs)
 
+    # TODO: DRY. Mixin?
+    @cached_property
+    def group_node_path(self):
+        return _node_group_path(self)
 
-AnyNode = Union[anytree.Node, LayerNode]
+    @cached_property
+    def group_name_path(self):
+        return _node_group_name_path(self)
+
+
+AnyNode = Union[LayerGroupNode, LayerNode]
+
+
+def _node_group_path(node: AnyNode) -> tuple[AnyNode]:
+    """Produce a list of group/directory nodes a layer/group node lives in.
+
+    Omit the root node (named "layers" after the "layers" directory) and omit
+    the given node, leaving only parent group nodes.
+    """
+    return node.path[1:-1]
+
+
+def _node_group_name_path(node: AnyNode) -> tuple[str]:
+    """Produce a list of group/directory names a layer/group node lives in."""
+    return tuple(group_node.name for group_node in _node_group_path(node))
 
 
 def render_tree(tree: anytree.Node) -> str:
@@ -224,7 +245,6 @@ def _handle_layer_config_directory(
         if c.name != '__settings__.py'
     ]
     settings = settings_objects[0]
-    breakpoint()
 
     return (cleansed_directory_contents, settings)
 
