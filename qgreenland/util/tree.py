@@ -1,9 +1,8 @@
 import logging
-import pprint
 import re
 from functools import cached_property
 from pathlib import Path
-from typing import Dict, Optional, Union
+from typing import Optional, Union
 
 import anytree
 
@@ -16,7 +15,6 @@ from qgreenland.models.config.layer_group import (
 )
 from qgreenland.util.module import (
     load_objects_from_paths_by_class,
-    module_from_path,
 )
 
 
@@ -26,6 +24,7 @@ logger = logging.getLogger('luigi-interface')
 
 class LayerNode(anytree.Node):
     """A Node with a reference to a layer configuration."""
+
     layer_cfg: ConfigLayer
 
     def __init__(self, *args, layer_cfg: ConfigLayer, **kwargs):
@@ -44,6 +43,7 @@ class LayerNode(anytree.Node):
 
 class LayerGroupNode(anytree.Node):
     """A Node with layer group settings."""
+
     settings: AnyGroupSettings
 
     def __init__(self, *args, settings: AnyGroupSettings, **kwargs):
@@ -63,6 +63,7 @@ class LayerGroupNode(anytree.Node):
 AnyNode = Union[LayerGroupNode, LayerNode]
 
 
+# TODO: rename to 'parent_group_name_path' and 'parent_group_node_path'
 def _node_group_path(node: AnyNode) -> tuple[AnyNode]:
     """Produce a list of group/directory nodes a layer/group node lives in.
 
@@ -72,9 +73,12 @@ def _node_group_path(node: AnyNode) -> tuple[AnyNode]:
     return node.path[1:-1]
 
 
-def _node_group_name_path(node: AnyNode) -> tuple[str]:
+def _node_group_name_path(node: AnyNode) -> tuple[str, ...]:
     """Produce a list of group/directory names a layer/group node lives in."""
-    return tuple(group_node.name for group_node in _node_group_path(node))
+    return tuple(
+        str(group_node.name)
+        for group_node in _node_group_path(node)
+    )
 
 
 def render_tree(tree: anytree.Node) -> str:
@@ -86,7 +90,7 @@ def render_tree(tree: anytree.Node) -> str:
 
 
 def _filter_directory_contents(paths=list[Path]) -> list[Path]:
-    """Returns the contents of the directory we care about."""
+    """Return the `paths` to include only those we care about."""
     def _path_valid(p: Path) -> bool:
         return (
             (p.is_dir or p.suffix == '.py')
@@ -98,50 +102,15 @@ def _filter_directory_contents(paths=list[Path]) -> list[Path]:
         if _path_valid(p)
     ]
 
-"""
-* Input: `some_dir`, `parent_node: Optional[anytree.Node]`
-* Look at the things inside it
-    * Throw an error if __order__.py is not inside
 
-=== IMPLEMENTED ABOVE THIS LINE ===
+# TODO: Validate order against directory contents
+#   * Assert set(directory contents).pop(__settings__.py) == set(__order__
+#     file|dir references)
+#   * Assert set(module references) == set(modules in `some_dir`)
+#   * Assert set(module:ConfigLayer references) == set(ConfigLayers in modules)
+#   * Assert set(ConfigLayers in modules) == list(ConfigLayers in modules) (no
+#     Dupes)?
 
-* somedir_ordered: list[Union[Path, ConfigLayer]]
-* If `__order__.py` is not present, use a default ordering strategy to create
-  `some_dir_ordered`.
-  * Groups first, alphabetically
-  * Layers last, alphabetically by `layer.title`
-  * Emit a debug log statement "__order__.py not found in `some_dir`, using
-    default ordering."
-* If `__order__.py` is present, validate and dereference to create
-  `somedir_ordered`. Compare __order__.py contents to the directory contents to
-  ensure everything in `some_dir` is enumerated.
-    * Assert set(directory contents).pop(__order__.py) == set(__order__ file|dir references)
-    * Assert set(module references) == set(modules in `some_dir`)
-    * Assert set(module:ConfigLayer references) == set(ConfigLayers in modules)
-    * Assert set(ConfigLayers in modules) == list(ConfigLayers in modules) (no
-      dupes)?
-    * Store dereferenced ConfigLayers.
-* Iterate over `some_dir_ordered` to build a `anytree.Node` (`for element in
-  some_dir_ordered:`)
-    * Is `element` a directory?
-        * Recurse into the directory (start at the top with the new directory as
-        `some_dir`)! This returns a Node with the current node as a parent.
-    * Is element a `ConfigLayer`?
-        * Create a Node(ConfigLayer.id, parent=parent_node)
-
-
-=== OBE NOTES BELOW THIS LINE ===
-* Dereference `__order__.py` ? why not just use `imports` in these files?
-  :shrug:
-    * Ensure all `ConfigLayer`s defined in `some_dir` are enumerated in
-      `__order__.py`. I don't think Vulture can do this.
-    * Throw in error if layer not present in `__order__.py`
-    * Throw an error if reference to non-existent layer is present in
-      `__order__.py` (We get this out-of-the box if we switch from references
-      and dynamic imports to static imports)
-    * Get the `id` from each `ConfigLayer` reference
-    * Create a Node from the layer id.
-"""
 LayerDirectoryElement = Union[Path, ConfigLayer]
 
 
@@ -161,13 +130,14 @@ def _dereference_order_element(
 
         layers = load_objects_from_paths_by_class(
             [parent_dir / filename],
-            target_class=ConfigLayer
+            target_class=ConfigLayer,
         )
-        result = [l for l in layers if l.id == layer_id][0]
+        return [
+            layer for layer in layers
+            if layer.id == layer_id
+        ][0]
     else:
-        result = parent_dir / element
-
-    return result
+        return parent_dir / element
 
 
 def _default_ordering_strategy(
@@ -178,7 +148,7 @@ def _default_ordering_strategy(
     ConfigLayers are sorted by title.
     """
     # TODO: Everything!
-    return paths
+    return paths  # type: ignore
 
 
 def _manual_ordering_strategy(
@@ -200,7 +170,6 @@ def _manual_ordering_strategy(
 
     # TODO: Validate... validate what?
     return dereferenced_order
-    
 
 
 def _ordered_directory_contents(
@@ -230,9 +199,8 @@ def _handle_layer_config_directory(
         logger.debug(f'__settings__.py not found in {the_dir}')
         return (directory_contents, LayerGroupSettings())
 
-    settings_fp = settings_fp[0]
     settings_objects = load_objects_from_paths_by_class(
-        [settings_fp],
+        settings_fp,
         target_class=RootGroupSettings,
     )
     if len(settings_objects) != 1:
@@ -265,23 +233,27 @@ def _tree_from_dir(
     root_node = LayerGroupNode(the_dir.name, settings=settings, parent=parent)
 
     # Loop over things in this directory
-    for thing in ordered_directory_contents: 
+    for thing in ordered_directory_contents:
         if isinstance(thing, Path):
             if not thing.is_dir():
                 raise RuntimeError(f'Expected {thing} to be a directory!')
 
-            child_node = _tree_from_dir(thing, parent=root_node)
+            # NOTE: Since this modifies the entire tree (`root_node`), nothing
+            # needs to be assigned here.
+            _tree_from_dir(thing, parent=root_node)
         elif isinstance(thing, ConfigLayer):
-            child_node = LayerNode(
+            # NOTE: Since this modifies the entire tree (`root_node`), nothing
+            # needs to be assigned here.
+            LayerNode(
                 thing.id,
                 layer_cfg=thing,
                 parent=root_node,
             )
         else:
-            print('wat')
-            breakpoint()
-            ...
-            
+            raise RuntimeError(
+                f'Found unexpected thing: {thing}',
+            )
+
     return root_node
 
 
@@ -306,14 +278,16 @@ def leaf_lookup(
 ) -> LayerNode:
     _check_for_duplicate_leaves(tree)
 
-    matches = [l for l in tree.leaves if l.name == target_node_name]
+    matches = [
+        leaf for leaf in tree.leaves
+        if leaf.name == target_node_name
+    ]
     if len(matches) != 1:
         raise RuntimeError(
-            f'Found not-one matches: {matches}'
+            f'Found not-one matches: {matches}',
         )
 
     return matches[0]
-
 
 
 if __name__ == '__main__':
