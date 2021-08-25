@@ -5,13 +5,15 @@ import subprocess
 from typing import List, Optional
 from xml.sax.saxutils import escape
 
+import anytree
 import qgis.core as qgc
 from PyQt5.QtGui import QColor
 
 from qgreenland.config import CONFIG
 from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.layer_group import LayerGroupSettings
 from qgreenland.util.qgis.layer import make_map_layer
-from qgreenland.util.tree import LayerNode
+from qgreenland.util.tree import LayerNode, LayerGroupNode
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
@@ -74,7 +76,7 @@ def make_qgis_project_file(path: str) -> None:
 
     _add_decorations(project)
 
-    _add_layers(project)
+    _add_layers_and_groups(project, CONFIG.layer_tree)
 
     # TODO: is it normal to write multiple times?
     project.write()
@@ -117,82 +119,85 @@ def _get_group(
     return group
 
 
-def _ensure_layer_groups_exist(
-    *,
-    project: qgc.QgsProject,
-    layer_node: LayerNode,
-) -> qgc.QgsLayerTreeGroup:
-    """Get or create groups required by `layer_node` and attach to `project`."""
-    # TODO: Loop over layer_node.path[1:-1] (we have a function that does this
-    # slice, right?) and create all groups that don't already exist and apply
-    # settings right then and there.
+def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) -> None:
+    """Iterate through the layer tree and create the relevant Qgs objects."""
 
-    # Get rid of the root node (it doesn't need to be created) and the leaf node
-    # (it's a layer, not a group)
-    group_node_path = layer_node.group_node_path
-    breakpoint()
+    # `anytree.PreOrderIter` is necessary here so that the `_create_and_add_layer`
+    # function receives the correct group.
+    for node in anytree.PreOrderIter(
+            layer_tree,
+            filter_=lambda node: not node.is_root,
+    ):
+        if type(node) is LayerGroupNode:
+            current_group = _create_and_configure_group(
+                node=node,
+                project=project,
+            )
+        elif type(node) is LayerNode:
+            _create_and_add_layer(
+                node=node,
+                project=project,
+                group=current_group,
+            )
+        else:
+            raise TypeError('Unexpected `node` type: {type(node)}')
 
-    # TODO: Re-write this function to loop over group_node_path. Call
-    # `.group_name_path` on the elements.
+    logger.debug('Done adding layers.')
 
-    # If the group exists, just return it:
-    if group := _get_group(project, group_namegpath):
-        return group
 
-    # Otherwise, create the group path from the root up; it's OK if part of the
-    # path already exists:
+def _create_and_configure_group(*, node: LayerGroupNode, project: qgc.QgsProject) -> None:
+    group_path = node.group_name_path
+
+    # Starting at the root of the layer tree, climb the tree until we reach the
+    # parent of group_node.
     group = project.layerTreeRoot()
     for group_name in group_path:
-        if g := group.findGroup(group_name):
-            group = g
-            continue
+        group = group.findGroup(group_name)
+        if not group:
+            raise RuntimeError(
+                'Parent group of {node.name} not found: {group_path}'
+            )
 
-        group = group.addGroup(group_name)
+    group = group.addGroup(node.name)
 
-        # Update settings from the settings object
-        if type(node.settings) is LayerGroupSettings:
-            _set_group_visibility(group, node.settings.show)
-            _set_group_expanded(group, node.settings.expanded)
+    # Update settings from the settings object
+    if type(node.settings) is LayerGroupSettings:
+        _set_group_visibility(group, node.settings.show)
+        _set_group_expanded(group, node.settings.expanded)
 
     return group
 
 
-def _add_layers(project: qgc.QgsProject) -> None:
-    logger.debug('Adding layers...')
-    layer_tree_cfg = CONFIG.layer_tree
+def _create_and_add_layer(
+        *,
+        node: LayerNode,
+        project: qgc.QgsProject,
+        group: qgc.QgsLayerTreeGroup
+) -> None:
+    layer_id = node.name
+    logger.debug(f'Adding {layer_id}...')
+    layer_cfg = node.layer_cfg
 
-    for layer_node in layer_tree_cfg.leaves:
-        layer_id = layer_node.name
-        logger.debug(f'Adding {layer_id}...')
-        layer_cfg = layer_node.layer_cfg
+    # Remove the root node (named "layers" after the "layers" directory) and
+    # remove the layer id
 
-        # Remove the root node (named "layers" after the "layers" directory) and
-        # remove the layer id
+    map_layer = make_map_layer(node)
 
-        map_layer = make_map_layer(layer_node)
+    # TODO: Why do we have a separate object here?
+    grouped_layer = group.addLayer(map_layer)
 
-        group = _ensure_layer_groups_exist(
-            project=project,
-            layer_node=layer_node,
-        )
+    # Make the layer invisible and collapsed by default
+    grouped_layer.setItemVisibilityChecked(
+        layer_cfg.show,
+    )
 
-        # TODO: Why do we have a separate object here?
-        grouped_layer = group.addLayer(map_layer)
+    # All layers start collapsed. When expanded (the default), they show the
+    # entire colormap. This takes up a large amount of space in the table of
+    # contents.
+    grouped_layer.setExpanded(False)
 
-        # Make the layer invisible and collapsed by default
-        grouped_layer.setItemVisibilityChecked(
-            layer_cfg.show,
-        )
-
-        # All layers start collapsed. When expanded (the default), they show the
-        # entire colormap. This takes up a large amount of space in the table of
-        # contents.
-        grouped_layer.setExpanded(False)
-
-        # TODO: necessary for root group?
-        project.addMapLayer(map_layer, addToLegend=False)
-
-    logger.debug('Done adding layers.')
+    # TODO: necessary for root group?
+    project.addMapLayer(map_layer, addToLegend=False)
 
 
 def _get_qgs_prefix_path() -> str:
