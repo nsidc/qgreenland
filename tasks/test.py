@@ -12,8 +12,8 @@ from qgreenland.constants import (
     PACKAGE_DIR,
     PROJECT_DIR,
     SCRIPTS_DIR,
-    TEST_DIR
 )
+from qgreenland.test.constants import TEST_DIR
 
 
 @task(aliases=['flake8'])

@@ -25,7 +25,6 @@ RELEASES_DIR = DATA_DIR / 'release'
 WIP_DIR = DATA_DIR / 'luigi-wip'
 ANCILLARY_DIR = PACKAGE_DIR / 'ancillary'
 ASSETS_DIR = PACKAGE_DIR / 'assets'
-TEST_DIR = PACKAGE_DIR / 'test'
 SCRIPTS_DIR = PROJECT_DIR / 'scripts'
 
 # TODO: Extract to function in another module to remove constants dependency on

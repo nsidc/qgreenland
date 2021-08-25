@@ -132,6 +132,7 @@ def _dereference_order_element(
             [parent_dir / filename],
             target_class=ConfigLayer,
         )
+        # TODO: raise an error if len != 1
         return [
             layer for layer in layers
             if layer.id == layer_id
@@ -147,8 +148,24 @@ def _default_ordering_strategy(
 
     ConfigLayers are sorted by title.
     """
-    # TODO: Everything!
-    return paths  # type: ignore
+    # Get the directories first and sort alphabetically.
+    ordered_directory_elements = sorted(
+        [path for path in paths if path.is_dir()],
+        key=lambda path: path.name
+    )
+
+    # Find any python files in `paths` and
+    python_files = [path for path in paths if path.is_file() and path.suffix == '.py']
+    # Read all of the ConfigLayer objects out of them python files
+    layer_cfgs = load_objects_from_paths_by_class(python_files, target_class=ConfigLayer)
+
+    # Sort the ConfigLayer objects by title.
+    layer_cfgs.sort(key=lambda layer_cfg: layer_cfg.title)
+
+    # Extend `ordered_directory_elements` with ordered ConfigLayer objects.
+    ordered_directory_elements.extend(layer_cfgs)
+
+    return ordered_directory_elements
 
 
 def _manual_ordering_strategy(
