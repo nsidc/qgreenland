@@ -17,9 +17,7 @@ from qgreenland.util.qgis.metadata import add_layer_metadata
 from qgreenland.util.tree import LayerNode
 
 
-def make_map_layer(
-    layer_node: LayerNode,
-) -> qgc.QgsMapLayer:
+def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
     layer_path = _layer_path(
         layer_node=layer_node,
     )
