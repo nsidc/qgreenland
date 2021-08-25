@@ -3,14 +3,12 @@ import os
 from pathlib import Path
 from typing import Callable, Union
 
-import anytree
 import qgis.core as qgc
 from osgeo import gdal
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import ANCILLARY_DIR
 from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
-from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.misc import (
     get_final_layer_filepath,
     vector_or_raster,

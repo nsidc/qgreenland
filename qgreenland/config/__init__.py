@@ -3,9 +3,8 @@ from pathlib import Path
 from qgreenland.config.project import project
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDataset
-from qgreenland.models.config.layer import ConfigLayer
-from qgreenland.util.tree import layer_tree
 from qgreenland.util.module import load_objects_from_paths_by_class
+from qgreenland.util.tree import layer_tree
 
 
 THIS_DIR = Path(__file__).resolve().parent

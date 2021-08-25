@@ -7,7 +7,6 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
-from typing import Any
 
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType

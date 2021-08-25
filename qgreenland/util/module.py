@@ -30,6 +30,8 @@ def module_from_path(module_path: Path) -> ModuleType:
 
 
 T = TypeVar('T')
+
+
 # TODO: Cache!
 def load_objects_from_paths_by_class(
     module_paths: list[Path],

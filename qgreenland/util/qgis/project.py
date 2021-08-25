@@ -10,10 +10,9 @@ import qgis.core as qgc
 from PyQt5.QtGui import QColor
 
 from qgreenland.config import CONFIG
-from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.layer_group import LayerGroupSettings
 from qgreenland.util.qgis.layer import make_map_layer
-from qgreenland.util.tree import LayerNode, LayerGroupNode
+from qgreenland.util.tree import LayerGroupNode, LayerNode
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
@@ -86,7 +85,10 @@ def make_qgis_project_file(path: str) -> None:
     project.clear()
 
 
-def _apply_group_settings(group: qgc.QgsLayerTreeGroup, settings: LayerGroupSettings) -> None:
+def _apply_group_settings(
+    group: qgc.QgsLayerTreeGroup,
+    settings: LayerGroupSettings,
+) -> None:
     group.setItemVisibilityChecked(settings.visibility)
     group.setExpanded(settings.expand)
 
@@ -118,9 +120,8 @@ def _get_group(
 
 def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) -> None:
     """Iterate through the layer tree and create the relevant Qgs objects."""
-
-    # `anytree.PreOrderIter` is necessary here so that the `_create_and_add_layer`
-    # function receives the correct group.
+    # `anytree.PreOrderIter` is necessary here so that the
+    # `_create_and_add_layer` function receives the correct group.
     for node in anytree.PreOrderIter(
             layer_tree,
             filter_=lambda node: not node.is_root,
@@ -137,7 +138,7 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
                 group=current_group,
             )
         else:
-            raise TypeError('Unexpected `node` type: {type(node)}')
+            raise TypeError(f'Unexpected `node` type: {type(node)}')
 
     logger.debug('Done adding layers.')
 
@@ -152,7 +153,7 @@ def _create_and_configure_group(*, node: LayerGroupNode, project: qgc.QgsProject
         group = group.findGroup(group_name)
         if not group:
             raise RuntimeError(
-                'Parent group of {node.name} not found: {group_path}'
+                f'Parent group of {node.name} not found: {group_path}',
             )
 
     group = group.addGroup(node.name)
@@ -168,7 +169,7 @@ def _create_and_add_layer(
         *,
         node: LayerNode,
         project: qgc.QgsProject,
-        group: qgc.QgsLayerTreeGroup
+        group: qgc.QgsLayerTreeGroup,
 ) -> None:
     layer_id = node.name
     logger.debug(f'Adding {layer_id}...')
