@@ -72,11 +72,9 @@ def make_qgis_project_file(path: str) -> None:
     )
     view.setDefaultViewExtent(project_rectangle)
 
-    _add_layers(project)
-
     _add_decorations(project)
 
-    _set_groups_options(project)
+    _add_layers(project)
 
     # TODO: is it normal to write multiple times?
     project.write()
@@ -159,42 +157,6 @@ def _ensure_layer_groups_exist(
     return group
 
 
-def _set_groups_options(project: qgc.QgsProject) -> None:
-    # TODO: Re-add hierarchy_options (name it something else?
-    # layer_tree_options? include in __order__.py? i.e. as a separate "settings"
-    # object?)
-    return
-
-    logger.debug('Configuring layer groups...')
-    groups_config = CONFIG.hierarchy_settings
-
-    for group_config in groups_config:
-        group_path = group_config.path
-        group = _get_group(project, group_path)
-
-        if group is None:
-            # TODO: check for this case in config validation/linting.
-            # raise QgrInvalidConfigError(
-            logger.warning(
-                f"Encountered group '{group_path}' without reference in"
-                ' any layer configuration. Ignoring.',
-            )
-            continue
-
-        _set_group_visibility(
-            group,
-            group_config.show,
-        )
-        _set_group_expanded(
-            group,
-            group_config.expand,
-        )
-
-        logger.debug(f'{group_path} configured: {group_config}')
-
-    logger.debug('Done configuring layer groups.')
-
-
 def _add_layers(project: qgc.QgsProject) -> None:
     logger.debug('Adding layers...')
     layer_tree_cfg = CONFIG.layer_tree
@@ -267,6 +229,10 @@ def _setup_qgs_app() -> qgc.QgsApplication:
 
 
 def _add_decorations(project: qgc.QgsProject) -> None:
+    """Add "decorations" to QGIS project.
+
+    Decorations are overlaid on the QGIS viewport.
+    """
     logger.debug('Adding decorations...')
     # Add CopyrightLabel:
     project.writeEntry('CopyrightLabel', '/Enabled', True)
