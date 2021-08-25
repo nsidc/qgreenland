@@ -62,6 +62,7 @@ class LayerGroupNode(anytree.Node):
 
 AnyNode = Union[LayerGroupNode, LayerNode]
 
+# TODO: rename to 'parent_group_name_path' and 'parent_group_node_path'
 
 def _node_group_path(node: AnyNode) -> tuple[AnyNode]:
     """Produce a list of group/directory nodes a layer/group node lives in.
