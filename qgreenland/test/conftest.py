@@ -1,7 +1,16 @@
+import anytree
 import pytest
 
 from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.layer_group import (
+    LayerGroupSettings,
+    RootGroupSettings,
+)
 from qgreenland.util.qgis.project import QgsApplicationContext
+from qgreenland.util.tree import (
+    LayerNode,
+    LayerGroupNode,
+)
 
 _mock_metadata = {
     'title': 'Example Dataset',
@@ -12,6 +21,22 @@ _mock_metadata = {
     },
 }
 _mock_asset_id = 'only'
+
+
+def _layer_node(cfg: ConfigLayer) -> LayerGroupNode:
+    node = LayerGroupNode(
+        'layers',
+        settings=RootGroupSettings(),
+    )
+
+    for node_name in ['Group', 'Subgroup']:
+        node = LayerGroupNode(
+            node_name,
+            settings=LayerGroupSettings(),
+            parent=node,
+        )
+
+    return LayerNode(cfg.id, layer_cfg=cfg, parent=node)
 
 
 @pytest.fixture
@@ -79,3 +104,13 @@ def setup_teardown_qgis_app():
     """
     with QgsApplicationContext():
         yield
+
+
+@pytest.fixture
+def online_layer_node(online_layer_cfg):
+    return _layer_node(online_layer_cfg)
+
+
+@pytest.fixture
+def raster_layer_node(raster_layer_cfg):
+    return _layer_node(raster_layer_cfg)

@@ -4,15 +4,15 @@ from qgreenland.constants import TaskType
 from qgreenland.util import misc
 
 
-def test_final_layer_dir(raster_layer_cfg):
+def test_final_layer_dir(raster_layer_node):
     expected = (
         Path(TaskType.FINAL.value)
-        / 'group'
-        / 'subgroup'
+        / 'Group'
+        / 'Subgroup'
         / 'Example raster'
     )
 
-    actual = misc.get_final_layer_dir(raster_layer_cfg)
+    actual = misc.get_final_layer_dir(raster_layer_node)
 
     assert expected == actual
 
