@@ -9,6 +9,11 @@ import anytree
 
 from qgreenland.constants import CONFIG_DIR
 from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.layer_group import (
+    AnyGroupSettings,
+    LayerGroupSettings,
+    RootGroupSettings,
+)
 from qgreenland.util.module import (
     load_objects_from_paths_by_class,
     module_from_path,
@@ -20,10 +25,7 @@ logger = logging.getLogger('luigi-interface')
 
 
 class LayerNode(anytree.Node):
-    """A Node with a reference to a layer configuration.
-
-    https://anytree.readthedocs.io/en/latest/api/anytree.node.html?highlight=mixin#anytree.node.nodemixin.NodeMixin
-    """
+    """A Node with a reference to a layer configuration."""
     layer_cfg: ConfigLayer
 
     def __init__(self, *args, layer_cfg: ConfigLayer, **kwargs):
@@ -40,6 +42,15 @@ class LayerNode(anytree.Node):
         remove the layer's id.
         """
         return [n.name for n in self.path[1:-1]]
+
+
+class LayerGroupNode(anytree.Node):
+    """A Node with layer group settings."""
+    settings: AnyGroupSettings
+
+    def __init__(self, *args, settings: AnyGroupSettings, **kwargs):
+        self.settings = settings
+        super().__init__(*args, **kwargs)
 
 
 AnyNode = Union[anytree.Node, LayerNode]
@@ -143,7 +154,7 @@ def _default_ordering_strategy(
 ) -> list[LayerDirectoryElement]:
     """Sort `paths` alphabetically, directories first.
 
-    ConfigLayers sorted by title.
+    ConfigLayers are sorted by title.
     """
     # TODO: Everything!
     return paths
@@ -151,42 +162,71 @@ def _default_ordering_strategy(
 
 def _manual_ordering_strategy(
     paths: list[Path],
+    order_strings: list[str],
 ) -> list[LayerDirectoryElement]:
-    """Sort with `__order__.py` as a guide.
+    """Sort with `order_strings` as a guide.
 
     Validate that all ConfigLayers and directories in `paths` are enumerated
-    exactly once in `__order__.py`.
+    exactly once in `order_strings`.
     """
-    # TODO: Make this more readable? Extract it or walrus it in
-    # _ordered_directory_contents function?
-    order_file = [c for c in paths if c.name == '__order__.py'][0]
-    order_module = module_from_path(order_file)
-    order = order_module.order
+    # All paths are siblings, so it doesn't matter which we use to get parent:
+    parent_dir = paths[0].parent
 
     dereferenced_order = [
-        _dereference_order_element(e, parent_dir=order_file.parent)
-        for e in order
+        _dereference_order_element(e, parent_dir=parent_dir)
+        for e in order_strings
     ]
 
-    # TODO: Validate
+    # TODO: Validate... validate what?
     return dereferenced_order
     
 
 
 def _ordered_directory_contents(
     directory_contents: list[Path],
+    settings: AnyGroupSettings,
 ) -> list[LayerDirectoryElement]:
-    # Check if __order__.py is in the directory!
-    manual_order_detected = bool(
-        [c for c in directory_contents if c.name == '__order__.py']
-    )
-    if not manual_order_detected:
-        logger.debug(f'__order__.py not found in {the_dir}')
-        strategy = _default_ordering_strategy
+    if settings.order:
+        return _manual_ordering_strategy(directory_contents, settings.order)
     else:
-        strategy = _manual_ordering_strategy
+        return _default_ordering_strategy(directory_contents)
 
-    return strategy(directory_contents)
+
+def _handle_layer_config_directory(
+    the_dir: Path,
+) -> tuple[list[Path], AnyGroupSettings]:
+    """Load settings and contents from given directory path."""
+    directory_contents = _filter_directory_contents(
+        list(the_dir.iterdir()),
+    )
+    settings_fp = [
+        c for c in directory_contents
+        if c.name == '__settings__.py'
+    ]
+
+    if not settings_fp:
+        # How do we know if this is a "root" group?
+        logger.debug(f'__settings__.py not found in {the_dir}')
+        return (directory_contents, LayerGroupSettings())
+
+    settings_fp = settings_fp[0]
+    settings_objects = load_objects_from_paths_by_class(
+        [settings_fp],
+        target_class=RootGroupSettings,
+    )
+    if len(settings_objects) != 1:
+        raise RuntimeError(
+            f'Expected exactly one settings object in{settings_fp}',
+        )
+
+    cleansed_directory_contents = [
+        c for c in directory_contents
+        if c.name != '__settings__.py'
+    ]
+    settings = settings_objects[0]
+    breakpoint()
+
+    return (cleansed_directory_contents, settings)
 
 
 def _tree_from_dir(
@@ -194,15 +234,15 @@ def _tree_from_dir(
     parent: Optional[anytree.Node] = None,
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
-    directory_contents = _filter_directory_contents(
-        list(the_dir.iterdir()),
-    )
+    directory_contents, settings = _handle_layer_config_directory(the_dir)
+
     ordered_directory_contents = _ordered_directory_contents(
         directory_contents,
+        settings=settings,
     )
 
     # Create a node for this directory
-    root_node = anytree.Node(the_dir.name, parent=parent)
+    root_node = LayerGroupNode(the_dir.name, settings=settings, parent=parent)
 
     # Loop over things in this directory
     for thing in ordered_directory_contents: 

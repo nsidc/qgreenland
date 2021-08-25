@@ -120,11 +120,16 @@ def _get_group(
     return group
 
 
-def _ensure_group_exists(
+def _ensure_layer_groups_exist(
     *,
     project: qgc.QgsProject,
-    group_path: List[str],
+    layer_node: LayerNode,
 ) -> qgc.QgsLayerTreeGroup:
+    # TODO: Loop over layer_node.path[1:-1] (we have a function that does this
+    # slice, right?) and create all groups that don't already exist and apply
+    # settings right then and there.
+
+
     """Get or create the layer group in `project` by `group_path`."""
     # If the group exists, just return it:
     if group := _get_group(project, group_path):
@@ -181,15 +186,6 @@ def _set_groups_options(project: qgc.QgsProject) -> None:
         logger.debug(f'{group_path} configured: {group_config}')
 
     logger.debug('Done configuring layer groups.')
-
-
-# TODO: Name...
-def _ensure_layer_group(
-    *,
-    project: qgc.QgsProject,
-    group_path: list[str],
-) -> qgc.QgsLayerTreeGroup:
-    return _ensure_group_exists(project, group_path)
 
 
 def _add_layers(project: qgc.QgsProject) -> None:

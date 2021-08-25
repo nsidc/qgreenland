@@ -1,3 +1,0 @@
-order = [
-    'background.py:background',
-]
