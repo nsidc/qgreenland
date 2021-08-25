@@ -1,8 +1,9 @@
 import logging
 import pprint
 import re
+from functools import cached_property
 from pathlib import Path
-from typing import Optional, Union
+from typing import Dict, Optional, Union
 
 import anytree
 
@@ -16,6 +17,32 @@ from qgreenland.util.module import (
 
 LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 logger = logging.getLogger('luigi-interface')
+
+
+class LayerNode(anytree.Node):
+    """A Node with a reference to a layer configuration.
+
+    https://anytree.readthedocs.io/en/latest/api/anytree.node.html?highlight=mixin#anytree.node.nodemixin.NodeMixin
+    """
+    layer_cfg: ConfigLayer
+
+    def __init__(self, *args, layer_cfg: ConfigLayer, **kwargs):
+        self.layer_cfg = layer_cfg
+        super().__init__(*args, **kwargs)
+
+
+    @cached_property
+    # TODO: rename?
+    def layer_path(self):
+        """Produce a list of group/directory names a layer lives in.
+
+        Remove the root node (named "layers" after the "layers" directory) and
+        remove the layer's id.
+        """
+        return [n.name for n in self.path[1:-1]]
+
+
+AnyNode = Union[anytree.Node, LayerNode]
 
 
 def render_tree(tree: anytree.Node) -> str:
@@ -162,7 +189,7 @@ def _ordered_directory_contents(
     return strategy(directory_contents)
 
 
-def tree_from_dir(
+def _tree_from_dir(
     the_dir: Path,
     parent: Optional[anytree.Node] = None,
 ) -> anytree.Node:
@@ -170,7 +197,6 @@ def tree_from_dir(
     directory_contents = _filter_directory_contents(
         list(the_dir.iterdir()),
     )
-
     ordered_directory_contents = _ordered_directory_contents(
         directory_contents,
     )
@@ -178,22 +204,19 @@ def tree_from_dir(
     # Create a node for this directory
     root_node = anytree.Node(the_dir.name, parent=parent)
 
-    # TODO: re-sort `directory_contents` in the order specified by
-    # `__order__.py`
-    # TODO: remove `__order__.py` from `directory_contents`
-
     # Loop over things in this directory
     for thing in ordered_directory_contents: 
         if isinstance(thing, Path):
             if not thing.is_dir():
                 raise RuntimeError(f'Expected {thing} to be a directory!')
 
-            child_node = tree_from_dir(thing, parent=root_node)
-        # TODO: Change to else:?
+            child_node = _tree_from_dir(thing, parent=root_node)
         elif isinstance(thing, ConfigLayer):
-            # TODO: Validate the leaf node:
-            #  * All ConfigLayer objects are in __order__.py
-            child_node = anytree.Node(thing.id, parent=root_node)
+            child_node = LayerNode(
+                thing.id,
+                layer_cfg=thing,
+                parent=root_node,
+            )
         else:
             print('wat')
             breakpoint()
@@ -202,6 +225,37 @@ def tree_from_dir(
     return root_node
 
 
+def layer_tree() -> anytree.Node:
+    # TODO: Look up a layer for each leaf
+    tree = _tree_from_dir(LAYERS_CFG_DIR)
+    _check_for_duplicate_leaves(tree)
+
+    return tree
+
+
+def _check_for_duplicate_leaves(tree: anytree.Node) -> None:
+    if len(set(tree.leaves)) != len(tree.leaves):
+        # TODO: Print duplicates
+        raise RuntimeError(f'Duplicate leaves found in tree: {tree.leaves}')
+
+
+# TODO: Re-order functions
+def leaf_lookup(
+    tree: anytree.Node,
+    target_node_name: str,
+) -> LayerNode:
+    _check_for_duplicate_leaves(tree)
+
+    matches = [l for l in tree.leaves if l.name == target_node_name]
+    if len(matches) != 1:
+        raise RuntimeError(
+            f'Found not-one matches: {matches}'
+        )
+
+    return matches[0]
+
+
+
 if __name__ == '__main__':
-    tree = tree_from_dir(LAYERS_CFG_DIR)
+    tree = layer_tree()
     print(render_tree(tree))

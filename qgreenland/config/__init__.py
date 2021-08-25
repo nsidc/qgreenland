@@ -4,7 +4,7 @@ from qgreenland.config.project import project
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer
-from qgreenland.util.tree import tree_from_dir
+from qgreenland.util.tree import layer_tree
 from qgreenland.util.module import load_objects_from_paths_by_class
 
 
@@ -37,27 +37,19 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
     return {dataset.id: dataset for dataset in datasets}
 
 
-def compile_layers_cfg(config_dir: Path) -> dict[str, ConfigLayer]:
-    """Find and return all datasets in "`config_dir`/layers"."""
-    # TODO: DRY this and the above function?
-    layers_dir = config_dir / 'layers'
-    layer_fps = _get_python_module_fps(layers_dir)
-    layers = load_objects_from_paths_by_class(
-        layer_fps,
-        target_class=ConfigLayer,
-    )
-
-    return {layer.id: layer for layer in layers}
-
-
 # TODO: Accept a Path and look for expected structure at that path, then
 # dynamically load things.
 def compile_cfg(config_dir: Path) -> Config:
+    compiled_layer_tree = layer_tree()
+    layers_dict = {
+        node.layer_cfg.id: node.layer_cfg
+        for node in compiled_layer_tree.leaves
+    }
     return Config(
         project=project,
-        layers=compile_layers_cfg(config_dir),
+        layers=layers_dict,
         datasets=compile_datasets_cfg(config_dir),
-        layer_tree=tree_from_dir(THIS_DIR / 'layers'),
+        layer_tree=compiled_layer_tree,
     )
 
 

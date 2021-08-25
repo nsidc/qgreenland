@@ -18,6 +18,8 @@ from qgreenland.constants import (
 )
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
+from qgreenland.util.tree import LayerNode
+
 
 logger = logging.getLogger('luigi-interface')
 CHUNK_SIZE = 8 * 1024
@@ -185,22 +187,26 @@ def get_layer_fp(layer_dir: Path) -> Path:
     return files[0]
 
 
-def _layer_dirname_from_cfg(layer_cfg: Any) -> str:
+def _layer_dirname_from_cfg(layer_cfg: ConfigLayer) -> str:
     return layer_cfg.title
 
 
-def get_final_layer_dir(layer_cfg) -> Path:
+def get_final_layer_dir(
+    layer_node: LayerNode,
+) -> Path:
     """Get the layer directory in its final pre-zip location."""
-    layer_group_list = '/'.join(layer_cfg.hierarchy)
+    layer_group_path_str = '/'.join(layer_node.layer_path)
     return (
         Path(TaskType.FINAL.value)
-        / layer_group_list
-        / _layer_dirname_from_cfg(layer_cfg)
+        / layer_group_path_str
+        / _layer_dirname_from_cfg(layer_node.layer_cfg)
     )
 
 
-def get_final_layer_filepath(layer_cfg: ConfigLayer) -> Path:
-    d = get_final_layer_dir(layer_cfg)
+def get_final_layer_filepath(
+    layer_node: LayerNode,
+) -> Path:
+    d = get_final_layer_dir(layer_node)
     layer_fp = get_layer_fp(d)
 
     if not layer_fp.is_file():
@@ -249,11 +255,12 @@ def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
     return f'{dataset_id}.{asset_id}'
 
 
-def vector_or_raster(layer_cfg: ConfigLayer) -> QgsLayerType:
+def vector_or_raster(layer_node: LayerNode) -> QgsLayerType:
+    layer_cfg = layer_node.layer_cfg
     if layer_cfg.input.asset.type == 'online':
         return PROVIDER_LAYERTYPE_MAPPING[layer_cfg.input.asset.provider]
     else:
-        layer_path = get_final_layer_filepath(layer_cfg)
+        layer_path = get_final_layer_filepath(layer_node)
         return _vector_or_raster_from_fp(layer_path)
 
 

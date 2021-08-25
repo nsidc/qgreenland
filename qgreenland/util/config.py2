@@ -47,7 +47,7 @@ def _load_config(*, config_fp: Path, schema_fp: Path) -> Union[Dict, List]:
     yamale.validate(schema, config, strict=True)
 
     try:
-        return config[0][0]
+        return copy.deepcopy(config[0][0])
     except IndexError:
         # TODO: Reconsider this behavior.
         # If there is an empty file, maybe it's intentional. Ignore it.
@@ -104,6 +104,8 @@ def _deref_boundaries(cfg: Dict[str, Any]) -> None:
         }
 
 
+# TODO: Remove this; all variables that are not explicitly listed template
+# kwargs must be evaluated at the top level layer config
 class PartialFormatDict(dict):
     """Hack to enable partial formatting of strings with {slugs}.
 
@@ -135,6 +137,7 @@ def _interpolate_nested_values(
 
     WARNING: Mutates `thing`!
     """
+    thing = copy.deepcopy(thing)
     items: Iterable[Any]
     if isinstance(thing, dict):
         items = thing.items()
@@ -234,10 +237,10 @@ def _deref_layers(cfg: Dict[str, Any]) -> None:
             continue
 
         # Populate steps with templates where necessary
-        layer_config['steps'] = _deref_steps(
+        layer_config['steps'] = copy.deepcopy(_deref_steps(
             steps=layer_config['steps'],
             templates=cfg['step_templates'],
-        )
+        ))
 
 
 def _normalize_datasets(cfg: Dict[Any, Any]) -> None:
@@ -252,8 +255,12 @@ def _normalize_datasets(cfg: Dict[Any, Any]) -> None:
         }
 
 
-def _dereference_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
-    """Take a full configuration object, replace references with the referent."""
+def _compile_config(cfg: Dict[Any, Any]) -> Dict[Any, Any]:
+    """Compile configuration by dereferencing and interpolating parameters.
+
+    TODO: Differentiate between compile-time and run-time variables somehow?
+    `$[]` vs `$()` like Azure pipelines?
+    """
     _normalize_datasets(cfg)
     _deref_boundaries(cfg)
     _deref_layers(cfg)
@@ -344,14 +351,13 @@ def export_config(
     calculate their size on disk.
     """
     report = []
-    for layer_node in cfg.layer_tree.leaves:
-        layer_cfg = layer_node.layer_cfg
+    for layer in cfg.layers.values():
         layer_type: str
-        if layer_cfg.input.asset.type != 'online':
-            layer_fp = get_final_layer_filepath(layer_node)
+        if layer.input.asset.type != 'online':
+            layer_fp = get_final_layer_filepath(layer)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
-            layer_type = vector_or_raster(layer_node)
+            layer_type = vector_or_raster(layer)
         else:
             # TODO: Is there a better way to determine "vector or raster" here?
             # TODO: Expand the LayerType type to include "online"?
@@ -359,16 +365,13 @@ def export_config(
             # online layers have no size on disk.
             layer_size_bytes = 0
 
-        dataset_cfg = layer_cfg.input.dataset
+        dataset_cfg = layer.input.dataset
 
         report.append({
-            # TODO:
-            # 'Group': layer.hierarchy[0],
-            # 'Subgroup': ('/'.join(layer.hierarchy[1:])),
-            'Group': 'TODO',
-            'Subgroup': 'TODO',
-            'Layer Title': layer_cfg.title,
-            'Layer Description': layer_cfg.description,
+            'Group': layer.hierarchy[0],
+            'Subgroup': ('/'.join(layer.hierarchy[1:])),
+            'Layer Title': layer.title,
+            'Layer Description': layer.description,
             'Vector or Raster': layer_type,
             'Data Source Title': dataset_cfg.metadata.title,
             'Data Source Abstract': dataset_cfg.metadata.abstract,

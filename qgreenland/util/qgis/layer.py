@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 from typing import Callable, Union
 
+import anytree
 import qgis.core as qgc
 from osgeo import gdal
 
@@ -15,11 +16,16 @@ from qgreenland.util.misc import (
     vector_or_raster,
 )
 from qgreenland.util.qgis.metadata import add_layer_metadata
+from qgreenland.util.tree import LayerNode
 
 
-def make_map_layer(layer_cfg: ConfigLayer) -> qgc.QgsMapLayer:
-    layer_path = _layer_path(layer_cfg)
-    layer_type = vector_or_raster(layer_cfg)
+def make_map_layer(
+    layer_node: LayerNode,
+) -> qgc.QgsMapLayer:
+    layer_path = _layer_path(
+        layer_node=layer_node,
+    )
+    layer_type = vector_or_raster(layer_node)
     if layer_type == 'Vector':
         provider = 'ogr'
         qgs_layer_creator = qgc.QgsVectorLayer
@@ -28,6 +34,7 @@ def make_map_layer(layer_cfg: ConfigLayer) -> qgc.QgsMapLayer:
         qgs_layer_creator = qgc.QgsRasterLayer
 
     # For online layers, the provider is specified in the config.
+    layer_cfg = layer_node.layer_cfg
     if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
         provider = layer_cfg.input.asset.provider
 
@@ -39,7 +46,7 @@ def make_map_layer(layer_cfg: ConfigLayer) -> qgc.QgsMapLayer:
     )
     map_layer = _create_layer_with_side_effects(
         creator,
-        layer_cfg=layer_cfg,
+        layer_node=layer_node,
     )
 
     if not map_layer.isValid():
@@ -55,7 +62,10 @@ def make_map_layer(layer_cfg: ConfigLayer) -> qgc.QgsMapLayer:
     return map_layer
 
 
-def _layer_path(layer_cfg: ConfigLayer) -> Union[Path, str]:
+def _layer_path(
+    layer_node: LayerNode,
+) -> Union[Path, str]:
+    layer_cfg = layer_node.layer_cfg
     if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
         return f'{layer_cfg.input.asset.url}'
     else:
@@ -63,16 +73,16 @@ def _layer_path(layer_cfg: ConfigLayer) -> Union[Path, str]:
         # automatically generates the correct relative paths. Using a relative
         # path causes statistics (nodata value, min/max) to not be generated,
         # resulting in rendering a gray rectangle.
-        return get_final_layer_filepath(layer_cfg)
+        return get_final_layer_filepath(layer_node)
 
 
 def _offline_raster_side_effects(
     creator: Callable[..., qgc.QgsRasterLayer],
     *,
-    layer_cfg: ConfigLayer,
+    layer_node: LayerNode,
 ) -> qgc.QgsRasterLayer:
     """Generate raster statistics on disk and in the layer object."""
-    layer_path = _layer_path(layer_cfg)
+    layer_path = _layer_path(layer_node)
 
     # Create .aux.xml metadatafile with raster band statistics; useful
     # for styling and accurate min/max/stdev/mean in QGIS layer info
@@ -93,10 +103,11 @@ def _offline_raster_side_effects(
 def _create_layer_with_side_effects(
     creator: Callable[..., qgc.QgsMapLayer],
     *,
-    layer_cfg: ConfigLayer,
+    layer_node: LayerNode,
 ) -> qgc.QgsMapLayer:
     """Apply special steps before/after creating a layer."""
-    layer_type = vector_or_raster(layer_cfg)
+    layer_cfg = layer_node.layer_cfg
+    layer_type = vector_or_raster(layer_node)
 
     offline_raster = (
         layer_type == 'Raster'
@@ -104,7 +115,7 @@ def _create_layer_with_side_effects(
     )
 
     if offline_raster:
-        return _offline_raster_side_effects(creator, layer_cfg=layer_cfg)
+        return _offline_raster_side_effects(creator, layer_node=layer_node)
     else:
         return creator()
 

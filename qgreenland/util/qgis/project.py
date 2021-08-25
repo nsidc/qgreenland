@@ -121,6 +121,7 @@ def _get_group(
 
 
 def _ensure_group_exists(
+    *,
     project: qgc.QgsProject,
     group_path: List[str],
 ) -> qgc.QgsLayerTreeGroup:
@@ -147,6 +148,11 @@ def _ensure_group_exists(
 
 
 def _set_groups_options(project: qgc.QgsProject) -> None:
+    # TODO: Re-add hierarchy_options (name it something else?
+    # layer_tree_options? include in __order__.py? i.e. as a separate "settings"
+    # object?)
+    return
+
     logger.debug('Configuring layer groups...')
     groups_config = CONFIG.hierarchy_settings
 
@@ -181,24 +187,28 @@ def _set_groups_options(project: qgc.QgsProject) -> None:
 def _ensure_layer_group(
     *,
     project: qgc.QgsProject,
-    layer_cfg: ConfigLayer,
+    group_path: list[str],
 ) -> qgc.QgsLayerTreeGroup:
-    # group_path: List[str] = layer_cfg.hierarchy
-    group_path = ['TODO', 'TODO']
     return _ensure_group_exists(project, group_path)
 
 
 def _add_layers(project: qgc.QgsProject) -> None:
     logger.debug('Adding layers...')
-    layers_cfg = CONFIG.layers
+    layer_tree_cfg = CONFIG.layer_tree
 
-    for layer_cfg in layers_cfg.values():
-        logger.debug(f'Adding {layer_cfg.id}...')
-        map_layer = make_map_layer(layer_cfg)
+    for layer_node in layer_tree_cfg.leaves:
+        layer_id = layer_node.name
+        logger.debug(f'Adding {layer_id}...')
+        layer_cfg = layer_node.layer_cfg
 
-        group = _ensure_layer_group(
+        # Remove the root node (named "layers" after the "layers" directory) and
+        # remove the layer id
+
+        map_layer = make_map_layer(layer_node)
+
+        group = _ensure_group_exists(
             project=project,
-            layer_cfg=layer_cfg,
+            group_path=layer_node.layer_path,
         )
 
         # TODO: Why do we have a separate object here?

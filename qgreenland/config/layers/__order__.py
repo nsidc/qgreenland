@@ -1,4 +1,4 @@
 order = [
-    'Basemaps',
     'Internet-required data',
+    'Basemaps',
 ]
