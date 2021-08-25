@@ -86,12 +86,9 @@ def make_qgis_project_file(path: str) -> None:
     project.clear()
 
 
-def _set_group_visibility(group: qgc.QgsLayerTreeGroup, visibility: bool) -> None:
-    group.setItemVisibilityChecked(visibility)
-
-
-def _set_group_expanded(group: qgc.QgsLayerTreeGroup, expand: bool) -> None:
-    group.setExpanded(expand)
+def _apply_group_settings(group: qgc.QgsLayerTreeGroup, settings: LayerGroupSettings) -> None:
+    group.setItemVisibilityChecked(settings.visibility)
+    group.setExpanded(settings.expand)
 
 
 def _get_group(
@@ -162,8 +159,7 @@ def _create_and_configure_group(*, node: LayerGroupNode, project: qgc.QgsProject
 
     # Update settings from the settings object
     if type(node.settings) is LayerGroupSettings:
-        _set_group_visibility(group, node.settings.show)
-        _set_group_expanded(group, node.settings.expand)
+        _apply_group_settings(group, node.settings)
 
     return group
 
