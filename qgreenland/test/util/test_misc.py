@@ -17,5 +17,5 @@ def test_final_layer_dir(raster_layer_node):
     assert expected == actual
 
 
-def test_vector_or_raster_gdal_remote(online_layer_cfg):
-    assert misc.vector_or_raster(online_layer_cfg) == 'Raster'
+def test_vector_or_raster_gdal_remote(online_layer_node):
+    assert misc.vector_or_raster(online_layer_node) == 'Raster'
