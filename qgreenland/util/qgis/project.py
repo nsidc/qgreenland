@@ -89,7 +89,7 @@ def _apply_group_settings(
     group: qgc.QgsLayerTreeGroup,
     settings: LayerGroupSettings,
 ) -> None:
-    group.setItemVisibilityChecked(settings.visibility)
+    group.setItemVisibilityChecked(settings.show)
     group.setExpanded(settings.expand)
 
 
@@ -143,7 +143,11 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
     logger.debug('Done adding layers.')
 
 
-def _create_and_configure_group(*, node: LayerGroupNode, project: qgc.QgsProject) -> None:
+def _create_and_configure_group(
+    *,
+    node: LayerGroupNode,
+    project: qgc.QgsProject,
+) -> qgc.QgsLayerTreeGroup:
     group_path = node.group_name_path
 
     # Starting at the root of the layer tree, climb the tree until we reach the

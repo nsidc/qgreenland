@@ -73,9 +73,12 @@ def _node_group_path(node: AnyNode) -> tuple[AnyNode]:
     return node.path[1:-1]
 
 
-def _node_group_name_path(node: AnyNode) -> tuple[str]:
+def _node_group_name_path(node: AnyNode) -> tuple[str, ...]:
     """Produce a list of group/directory names a layer/group node lives in."""
-    return tuple(group_node.name for group_node in _node_group_path(node))
+    return tuple(
+        str(group_node.name)
+        for group_node in _node_group_path(node)
+    )
 
 
 def render_tree(tree: anytree.Node) -> str:
@@ -129,14 +132,12 @@ def _dereference_order_element(
             [parent_dir / filename],
             target_class=ConfigLayer,
         )
-        result = [
+        return [
             layer for layer in layers
             if layer.id == layer_id
         ][0]
     else:
-        result = parent_dir / element
-
-    return result
+        return parent_dir / element
 
 
 def _default_ordering_strategy(
@@ -147,7 +148,7 @@ def _default_ordering_strategy(
     ConfigLayers are sorted by title.
     """
     # TODO: Everything!
-    return paths
+    return paths  # type: ignore
 
 
 def _manual_ordering_strategy(
@@ -198,9 +199,8 @@ def _handle_layer_config_directory(
         logger.debug(f'__settings__.py not found in {the_dir}')
         return (directory_contents, LayerGroupSettings())
 
-    settings_fp = settings_fp[0]
     settings_objects = load_objects_from_paths_by_class(
-        [settings_fp],
+        settings_fp,
         target_class=RootGroupSettings,
     )
     if len(settings_objects) != 1:
