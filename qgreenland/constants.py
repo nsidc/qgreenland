@@ -35,7 +35,7 @@ else:
     RELEASE_DIR = RELEASES_DIR / 'dev' / version
 
 CONFIG_DIR = PACKAGE_DIR / 'config'
-CONFIG_SCHEMA_DIR = CONFIG_DIR / 'schema'
+LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?

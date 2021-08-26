@@ -1,4 +1,5 @@
 import anytree
+import pytest
 
 from qgreenland.test.constants import TEST_CONFIG_DIR
 from qgreenland.util import tree
@@ -56,3 +57,12 @@ def test__tree_from_dir():
     ]
     actual_default_ordering = [node.name for node in unordered_node.children]
     assert expected_default_ordering == actual_default_ordering
+
+
+def test_layer_tree_raises_duplicates_error():
+    """The test config dir contains duplicate layers.
+
+    This should raise an error.
+    """
+    with pytest.raises(RuntimeError):
+        tree.layer_tree(TEST_CONFIG_DIR)

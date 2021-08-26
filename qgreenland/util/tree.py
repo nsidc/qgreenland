@@ -6,7 +6,7 @@ from typing import Optional, Union
 
 import anytree
 
-from qgreenland.constants import CONFIG_DIR
+from qgreenland.constants import CONFIG_DIR, LAYERS_CFG_DIR
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.layer_group import (
     AnyGroupSettings,
@@ -18,7 +18,6 @@ from qgreenland.util.module import (
 )
 
 
-LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 logger = logging.getLogger('luigi-interface')
 
 
@@ -274,16 +273,17 @@ def _tree_from_dir(
     return root_node
 
 
-def layer_tree() -> anytree.Node:
+def layer_tree(layer_cfg_dir: Path) -> anytree.Node:
     # TODO: Look up a layer for each leaf
-    tree = _tree_from_dir(LAYERS_CFG_DIR)
+    tree = _tree_from_dir(layer_cfg_dir)
     _check_for_duplicate_leaves(tree)
 
     return tree
 
 
 def _check_for_duplicate_leaves(tree: anytree.Node) -> None:
-    if len(set(tree.leaves)) != len(tree.leaves):
+    all_layer_ids = [node.name for node in tree.leaves]
+    if len(set(all_layer_ids)) != len(all_layer_ids):
         # TODO: Print duplicates
         raise RuntimeError(f'Duplicate leaves found in tree: {tree.leaves}')
 
@@ -308,5 +308,5 @@ def leaf_lookup(
 
 
 if __name__ == '__main__':
-    tree = layer_tree()
+    tree = layer_tree(LAYERS_CFG_DIR)
     print(render_tree(tree))
