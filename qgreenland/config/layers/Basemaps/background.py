@@ -22,10 +22,14 @@ background = ConfigLayer(
         *warp_and_cut(
             input_file='{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif',
             output_file='{output_dir}/warped_and_cut.tif',
-            x_res=500,
-            y_res=500,
-            # TODO import project config and access correct boundary.
-            target_extent='-5774572.727595 -5774572.727595 5774572.727595 5774572.727595',
+            reproject_args=[
+                '-tr', '500', '500',
+                # TODO import project config and access correct boundary.
+                '-te', '-5774572.727595 -5774572.727595 5774572.727595 5774572.727595',
+                '-dstnodata', '0',
+                '-wo', 'SOURCE_EXTRA=100',
+                '-wo', 'SAMPLE_GRID=YES',
+            ],
             cut_file='{assets_dir}/latitude_shape_40_degrees.geojson',
         ),
     ],
