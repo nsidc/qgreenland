@@ -2,7 +2,7 @@ import logging
 import re
 from functools import cached_property
 from pathlib import Path
-from typing import Optional, Union
+from typing import Callable, Optional, Union
 
 import anytree
 
@@ -143,15 +143,23 @@ def _dereference_order_element(
 def _default_ordering_strategy(
     paths: list[Path],
 ) -> list[LayerDirectoryElement]:
-    """Sort `paths` alphabetically, directories first.
+    """Sort configuration elements within `paths`.
 
-    ConfigLayers are sorted by title.
+    A configuration element can be a directory (one of the `paths`), or a
+    ConfigLayer Python object contained by a Python file. A Python file (one of
+    the `paths`) can contain multiple ConfigLayer objects.
+
+    Directories first, sorted alphabetically. Then ConfigLayers, sorted
+    alphabetically by title.
     """
+    ordered_directory_elements: list[LayerDirectoryElement]
+
     # Get the directories first and sort alphabetically.
-    ordered_directory_elements = sorted(
+    sorted_directories = sorted(
         (path for path in paths if path.is_dir()),
         key=lambda path: path.name,
     )
+    ordered_directory_elements.extend(sorted_directories)
 
     # Find any python files in `paths` and
     python_files = [path for path in paths if path.is_file() and path.suffix == '.py']
