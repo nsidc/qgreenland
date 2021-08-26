@@ -10,12 +10,14 @@ def test__tree_from_dir():
     """
     TODO: more assertions.
 
-    - assert that all branch nodes are LayerGroupNode
-    - assert that all leaf nodes are LayerNode
-
     - assert that non-root branch nodes as a LayerGroupSettings
     """
     actual_tree = tree._tree_from_dir(TEST_CONFIG_DIR)
+
+    branches = anytree.search.findall(actual_tree, filter_=lambda node: not node.is_leaf)
+
+    # Assert that all branches are instances of LayerGroupNode.
+    assert all([isinstance(branch, tree.LayerGroupNode) for branch in branches])
 
     # The root of the tree should contain a `RootGroupSettings`
     assert isinstance(actual_tree.settings, RootGroupSettings)
