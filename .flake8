@@ -14,4 +14,4 @@ ignore = D1,W503
 per-file-ignores =
   qgreenland/test/util/test_config.py: FS003
   qgreenland/config/step_templates/*.py: FS003
-  qgreenland/config/layers/**/*.py: FS003
+  qgreenland/config/layers/**/*.py: FS003, E501
