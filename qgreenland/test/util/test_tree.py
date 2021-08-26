@@ -2,25 +2,24 @@ import anytree
 import pytest
 
 from qgreenland.test.constants import TEST_CONFIG_DIR
-from qgreenland.models.config.layer_group import RootGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, RootGroupSettings
 from qgreenland.util import tree
 
 
 def test__tree_from_dir():
-    """
-    TODO: more assertions.
-
-    - assert that non-root branch nodes as a LayerGroupSettings
-    """
+    """Test tree._tree_from_dir"""
     actual_tree = tree._tree_from_dir(TEST_CONFIG_DIR)
-
-    branches = anytree.search.findall(actual_tree, filter_=lambda node: not node.is_leaf)
-
-    # Assert that all branches are instances of LayerGroupNode.
-    assert all([isinstance(branch, tree.LayerGroupNode) for branch in branches])
 
     # The root of the tree should contain a `RootGroupSettings`
     assert isinstance(actual_tree.settings, RootGroupSettings)
+
+    branches = anytree.search.findall(actual_tree, filter_=lambda node: not node.is_leaf)
+    # Assert that all branches are instances of LayerGroupNode.
+    assert all([isinstance(branch, tree.LayerGroupNode) for branch in branches])
+
+    # Assert that all non-root branches have `settings` of instance `LayerGroupSettings`
+    branches_excluding_root = branches[1:]
+    assert all([isinstance(branch.settings, LayerGroupSettings) for branch in branches_excluding_root])
 
     # test that the `Subgroup` is ordered according to `__settings__.py`
     ordered_node = anytree.search.find(
