@@ -7,7 +7,15 @@ from qgreenland.util import tree
 
 
 def test__tree_from_dir():
-    """Test tree._tree_from_dir"""
+    """Test tree created from test config looks correct.
+
+    - Root node has RootGroupSettings
+    - Branch nodes are LayerGroupNodes and have LayerGroupSettings
+    - Leaf nodes are LayerNodes
+    - Test layer order is correct:
+        - Manual ordering
+        - Default ordering
+    """
     actual_tree = tree._tree_from_dir(TEST_CONFIG_DIR)
 
     # The root of the tree should contain a `RootGroupSettings`
@@ -25,6 +33,12 @@ def test__tree_from_dir():
     assert all(
         isinstance(branch.settings, LayerGroupSettings)
         for branch in branches_excluding_root
+    )
+
+    # Assert that all leaf nodes are instances of `LayerNode`.
+    assert all(
+        isinstance(node, tree.LayerNode)
+        for node in actual_tree.leaves
     )
 
     # test that the `Subgroup` is ordered according to `__settings__.py`
@@ -55,12 +69,6 @@ def test__tree_from_dir():
     ]
     actual_default_ordering = [node.name for node in unordered_node.children]
     assert expected_default_ordering == actual_default_ordering
-
-    # Assert that all leaf nodes are instances of `LayerNode`.
-    assert all(
-        isinstance(node, tree.LayerNode)
-        for node in actual_tree.leaves
-    )
 
 
 def test_layer_tree_raises_duplicates_error():
