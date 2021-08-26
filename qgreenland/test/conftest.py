@@ -1,4 +1,3 @@
-import anytree
 import pytest
 
 from qgreenland.models.config.layer import ConfigLayer
@@ -9,8 +8,8 @@ from qgreenland.models.config.layer_group import (
 from qgreenland.test.constants import TEST_CONFIG_DIR
 from qgreenland.util.qgis.project import QgsApplicationContext
 from qgreenland.util.tree import (
-    LayerNode,
     LayerGroupNode,
+    LayerNode,
 )
 
 _mock_metadata = {
@@ -70,6 +69,7 @@ mock_raster_layer_cfg = ConfigLayer(**{
     ],
 })
 
+
 def _layer_node(cfg: ConfigLayer) -> LayerGroupNode:
     node = LayerGroupNode(
         'layers',
@@ -84,6 +84,7 @@ def _layer_node(cfg: ConfigLayer) -> LayerGroupNode:
         )
 
     return LayerNode(cfg.id, layer_cfg=cfg, parent=node)
+
 
 @pytest.fixture
 def online_layer_cfg():

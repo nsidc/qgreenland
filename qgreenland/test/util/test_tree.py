@@ -1,8 +1,8 @@
 import anytree
 import pytest
 
-from qgreenland.test.constants import TEST_CONFIG_DIR
 from qgreenland.models.config.layer_group import LayerGroupSettings, RootGroupSettings
+from qgreenland.test.constants import TEST_CONFIG_DIR
 from qgreenland.util import tree
 
 

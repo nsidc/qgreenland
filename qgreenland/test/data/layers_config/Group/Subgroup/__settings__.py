@@ -1,7 +1,7 @@
 from qgreenland.models.config.layer_group import LayerGroupSettings
 
 settings = LayerGroupSettings(
-    order = [
+    order=[
         'Foo',
         'examples.py:example_online',
         'Baz',

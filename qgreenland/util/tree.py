@@ -6,7 +6,7 @@ from typing import Optional, Union
 
 import anytree
 
-from qgreenland.constants import CONFIG_DIR, LAYERS_CFG_DIR
+from qgreenland.constants import LAYERS_CFG_DIR
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.layer_group import (
     AnyGroupSettings,
@@ -149,8 +149,8 @@ def _default_ordering_strategy(
     """
     # Get the directories first and sort alphabetically.
     ordered_directory_elements = sorted(
-        [path for path in paths if path.is_dir()],
-        key=lambda path: path.name
+        (path for path in paths if path.is_dir()),
+        key=lambda path: path.name,
     )
 
     # Find any python files in `paths` and
@@ -201,7 +201,7 @@ def _ordered_directory_contents(
 def _handle_layer_config_directory(
     the_dir: Path,
     *,
-    is_root: bool
+    is_root: bool,
 ) -> tuple[list[Path], AnyGroupSettings]:
     """Load settings and contents from given directory path."""
     directory_contents = _filter_directory_contents(
@@ -247,7 +247,7 @@ def _tree_from_dir(
     """Create a Node tree for given `the_dir`, attached to `parent`."""
     directory_contents, settings = _handle_layer_config_directory(
         the_dir,
-        is_root=(not bool(parent))
+        is_root=(not bool(parent)),
     )
 
     ordered_directory_contents = _ordered_directory_contents(
