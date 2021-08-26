@@ -15,6 +15,7 @@ from qgreenland.constants import (
     REQUEST_TIMEOUT,
     TaskType,
 )
+from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
 from qgreenland.util.tree import LayerNode
@@ -256,7 +257,7 @@ def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
 
 def vector_or_raster(layer_node: LayerNode) -> QgsLayerType:
     layer_cfg = layer_node.layer_cfg
-    if layer_cfg.input.asset.type == 'online':
+    if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
         return PROVIDER_LAYERTYPE_MAPPING[layer_cfg.input.asset.provider]
     else:
         layer_path = get_final_layer_filepath(layer_node)

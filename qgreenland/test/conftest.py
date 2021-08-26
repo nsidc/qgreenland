@@ -1,5 +1,9 @@
 import pytest
 
+from qgreenland.models.config.dataset import (
+    ConfigDatasetHttpAsset,
+    ConfigDatasetOnlineAsset,
+)
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.layer_group import (
     LayerGroupSettings,
@@ -22,12 +26,11 @@ _mock_metadata = {
 }
 _mock_asset_id = 'only'
 
-_mock_online_asset_cfg = {
-    'type': 'online',
+_mock_online_asset_cfg = ConfigDatasetOnlineAsset(**{
     'id': _mock_asset_id,
     'provider': 'wms',
     'url': 'crs=EPSG:4326&format=image/png&layers=continents&styles&url=https://demo.mapserver.org/cgi-bin/wms'  # noqa
-}
+})
 mock_online_layer_cfg = ConfigLayer(**{
     'id': 'example_online',
     'title': 'Example online',
@@ -43,11 +46,10 @@ mock_online_layer_cfg = ConfigLayer(**{
     },
 })
 
-_mock_http_asset_cfg = {
-    'type': 'http',
+_mock_http_asset_cfg = ConfigDatasetHttpAsset(**{
     'id': _mock_asset_id,
     'urls': ['https://foo.bar.com/data.zip'],
-}
+})
 mock_raster_layer_cfg = ConfigLayer(**{
     'id': 'example_raster',
     'title': 'Example raster',
