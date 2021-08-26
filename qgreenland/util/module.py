@@ -58,7 +58,22 @@ def _find_in_module_by_class(
 ) -> list[T]:
     """Find all objects of class `model_class` among `module` members."""
     module_members = inspect.getmembers(module)
-    return [
+    matches = [
         m[1] for m in module_members
         if isinstance(m[1], target_class)
     ]
+
+    # Also look one level deep in iterables, facilitating list comprehensions in
+    # config
+    iterables = [
+        m[1] for m in module_members
+        if isinstance(m[1], tuple) or isinstance(m[1], list)
+    ]
+    matches_in_iterables = [
+        m for iterable in iterables
+        for m in iterable
+        if isinstance(m, target_class)
+    ]
+
+    matches.extend(matches_in_iterables)
+    return matches
