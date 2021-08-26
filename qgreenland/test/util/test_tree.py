@@ -15,11 +15,17 @@ def test__tree_from_dir():
 
     branches = anytree.search.findall(actual_tree, filter_=lambda node: not node.is_leaf)
     # Assert that all branches are instances of LayerGroupNode.
-    assert all([isinstance(branch, tree.LayerGroupNode) for branch in branches])
+    assert all(
+        isinstance(branch, tree.LayerGroupNode)
+        for branch in branches
+    )
 
     # Assert that all non-root branches have `settings` of instance `LayerGroupSettings`
     branches_excluding_root = branches[1:]
-    assert all([isinstance(branch.settings, LayerGroupSettings) for branch in branches_excluding_root])
+    assert all(
+        isinstance(branch.settings, LayerGroupSettings)
+        for branch in branches_excluding_root
+    )
 
     # test that the `Subgroup` is ordered according to `__settings__.py`
     ordered_node = anytree.search.find(
@@ -51,7 +57,10 @@ def test__tree_from_dir():
     assert expected_default_ordering == actual_default_ordering
 
     # Assert that all leaf nodes are instances of `LayerNode`.
-    assert all([isinstance(node, tree.LayerNode) for node in actual_tree.leaves])
+    assert all(
+        isinstance(node, tree.LayerNode)
+        for node in actual_tree.leaves
+    )
 
 
 def test_layer_tree_raises_duplicates_error():
