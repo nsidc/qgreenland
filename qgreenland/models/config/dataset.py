@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import Dict, List, Literal, Union
 
-from pydantic import AnyUrl, Field
+from pydantic import AnyUrl, Field, validator
 
 from qgreenland._typing import QgsLayerProviderType
 from qgreenland.models.base_model import QgrBaseModel
@@ -11,11 +11,21 @@ class ConfigDatasetCitation(QgrBaseModel):
     text: str
     url: str
 
+    @validator('text')
+    @classmethod
+    def strip_enclosing_newlines(cls, value):
+        return value.lstrip('\n').rstrip('\n')
+
 
 class ConfigDatasetMetadata(QgrBaseModel):
     title: str
     abstract: str
     citation: ConfigDatasetCitation
+
+    @validator('abstract')
+    @classmethod
+    def strip_enclosing_newlines(cls, value):
+        return value.lstrip('\n').rstrip('\n')
 
 
 class ConfigDatasetAsset(QgrBaseModel, ABC):
