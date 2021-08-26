@@ -6,7 +6,7 @@ from typing import Optional, Union
 
 import anytree
 
-from qgreenland.constants import CONFIG_DIR, LAYERS_CFG_DIR
+from qgreenland.constants import LAYERS_CFG_DIR
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.layer_group import (
     AnyGroupSettings,
@@ -143,15 +143,23 @@ def _dereference_order_element(
 def _default_ordering_strategy(
     paths: list[Path],
 ) -> list[LayerDirectoryElement]:
-    """Sort `paths` alphabetically, directories first.
+    """Sort configuration elements within `paths`.
 
-    ConfigLayers are sorted by title.
+    A configuration element can be a directory (one of the `paths`), or a
+    ConfigLayer Python object contained by a Python file. A Python file (one of
+    the `paths`) can contain multiple ConfigLayer objects.
+
+    Directories first, sorted alphabetically. Then ConfigLayers, sorted
+    alphabetically by title.
     """
+    ordered_directory_elements: list[LayerDirectoryElement] = []
+
     # Get the directories first and sort alphabetically.
-    ordered_directory_elements = sorted(
-        [path for path in paths if path.is_dir()],
-        key=lambda path: path.name
+    sorted_directories = sorted(
+        (path for path in paths if path.is_dir()),
+        key=lambda path: path.name,
     )
+    ordered_directory_elements.extend(sorted_directories)
 
     # Find any python files in `paths` and
     python_files = [path for path in paths if path.is_file() and path.suffix == '.py']
@@ -201,7 +209,7 @@ def _ordered_directory_contents(
 def _handle_layer_config_directory(
     the_dir: Path,
     *,
-    is_root: bool
+    is_root: bool,
 ) -> tuple[list[Path], AnyGroupSettings]:
     """Load settings and contents from given directory path."""
     directory_contents = _filter_directory_contents(
@@ -247,7 +255,7 @@ def _tree_from_dir(
     """Create a Node tree for given `the_dir`, attached to `parent`."""
     directory_contents, settings = _handle_layer_config_directory(
         the_dir,
-        is_root=(not bool(parent))
+        is_root=(not bool(parent)),
     )
 
     ordered_directory_contents = _ordered_directory_contents(
