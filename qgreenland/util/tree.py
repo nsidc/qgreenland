@@ -2,7 +2,7 @@ import logging
 import re
 from functools import cached_property
 from pathlib import Path
-from typing import Callable, Optional, Union
+from typing import Optional, Union
 
 import anytree
 
@@ -152,7 +152,7 @@ def _default_ordering_strategy(
     Directories first, sorted alphabetically. Then ConfigLayers, sorted
     alphabetically by title.
     """
-    ordered_directory_elements: list[LayerDirectoryElement]
+    ordered_directory_elements: list[LayerDirectoryElement] = []
 
     # Get the directories first and sort alphabetically.
     sorted_directories = sorted(
