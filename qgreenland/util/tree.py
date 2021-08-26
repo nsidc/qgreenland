@@ -200,6 +200,8 @@ def _ordered_directory_contents(
 
 def _handle_layer_config_directory(
     the_dir: Path,
+    *,
+    is_root: bool
 ) -> tuple[list[Path], AnyGroupSettings]:
     """Load settings and contents from given directory path."""
     directory_contents = _filter_directory_contents(
@@ -211,14 +213,19 @@ def _handle_layer_config_directory(
     ]
 
     if not settings_fp:
-        # How do we know if this is a "root" group?
         logger.debug(f'__settings__.py not found in {the_dir}')
-        return (directory_contents, LayerGroupSettings())
+        if is_root:
+            settings = RootGroupSettings()
+        else:
+            settings = LayerGroupSettings()
+
+        return (directory_contents, settings)
 
     settings_objects = load_objects_from_paths_by_class(
         settings_fp,
         target_class=RootGroupSettings,
     )
+
     if len(settings_objects) != 1:
         raise RuntimeError(
             f'Expected exactly one settings object in{settings_fp}',
@@ -238,7 +245,10 @@ def _tree_from_dir(
     parent: Optional[anytree.Node] = None,
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
-    directory_contents, settings = _handle_layer_config_directory(the_dir)
+    directory_contents, settings = _handle_layer_config_directory(
+        the_dir,
+        is_root=(not bool(parent))
+    )
 
     ordered_directory_contents = _ordered_directory_contents(
         directory_contents,
