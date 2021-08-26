@@ -1,6 +1,7 @@
 from typing import List
 
 from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
+from qgreenland.config.constants import PROJECT_CRS
 
 
 def warp_and_cut(
@@ -19,8 +20,7 @@ def warp_and_cut(
         args=[
             'gdalwarp',
             '-t_srs',  # dstCRS
-            # TODO: Reference project SRS
-            'EPSG:3413',
+            PROJECT_CRS,
             '-tr',  # xRes=500, yRes=500
             f'{x_res}',
             f'{y_res}',
