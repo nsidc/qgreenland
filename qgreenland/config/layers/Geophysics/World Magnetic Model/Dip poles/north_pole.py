@@ -40,9 +40,9 @@ iterative method.
 """,
         'asset_id': 'igrf_geomagnetic_north_pole',
         'partial_filename': 'NP',
-        
     },
 ]
+
 
 def _make_layer(
         *,
@@ -50,7 +50,7 @@ def _make_layer(
         title: str,
         description: str,
         asset_id: str,
-        partial_filename: str
+        partial_filename: str,
 ) -> ConfigLayer:
     return ConfigLayer(
         id=id,
@@ -89,6 +89,7 @@ def _make_layer(
             ),
         ],
     )
+
 
 geomagnetic_np_layers = [
     _make_layer(**i) for i in _layers
