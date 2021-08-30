@@ -1,7 +1,7 @@
 from typing import List
 
-from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
 from qgreenland.config.constants import PROJECT_CRS
+from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
 
 
 def warp_and_cut(
@@ -11,10 +11,10 @@ def warp_and_cut(
     input_file,
     output_file,
     cut_file,
-    reproject_args=[],
-    cut_args=[],
+    reproject_args=(),
+    cut_args=(),
 ) -> List[AnyStep]:
-    #TODO: Use fiona to get a bbox from the cutfile?
+    # TODO: Use fiona to get a bbox from the cutfile?
 
     reproject = ConfigLayerCommandStep(
         type='command',
