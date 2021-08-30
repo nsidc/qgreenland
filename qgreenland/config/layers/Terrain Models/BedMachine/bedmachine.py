@@ -1,5 +1,6 @@
 from qgreenland.config.datasets import bedmachine
-from qgreenland.config.step_templates.warp_and_cut import warp_and_cut
+from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -22,6 +23,10 @@ Morlighem.""",
                 input_file='NETCDF:{input_dir}/BedMachineGreenland-2017-09-20.nc:thickness',
                 output_file='{output_dir}/warped_and_cut.tif',
                 cut_file='{assets_dir}/greenland_rectangle.geojson',
+            ),
+            *build_overviews(
+                input_file='{input_dir}/warped_and_cut.tif',
+                output_file='{output_dir}/overviews.tif',
             ),
         ],
     ),
