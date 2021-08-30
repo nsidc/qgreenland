@@ -21,9 +21,8 @@ Morlighem.""",
             *warp_and_cut(
                 input_file='NETCDF:{input_dir}/BedMachineGreenland-2017-09-20.nc:thickness',
                 output_file='{output_dir}/warped_and_cut.tif',
-                cut_file='{assets_dir}/greenland_rectangle.geojson'
-            )
-
+                cut_file='{assets_dir}/greenland_rectangle.geojson',
+            ),
         ],
     ),
 ]
