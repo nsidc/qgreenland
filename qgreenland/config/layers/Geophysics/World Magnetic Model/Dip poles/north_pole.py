@@ -45,12 +45,12 @@ iterative method.
 
 
 def _make_layer(
-        *,
-        id: str,
-        title: str,
-        description: str,
-        asset_id: str,
-        partial_filename: str,
+    *,
+    id: str,
+    title: str,
+    description: str,
+    asset_id: str,
+    partial_filename: str,
 ) -> ConfigLayer:
     return ConfigLayer(
         id=id,
