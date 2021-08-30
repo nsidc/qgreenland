@@ -18,6 +18,12 @@ wmm = ConfigDataset(
                 'https://www.ngdc.noaa.gov/geomag/data/poles/NP.xy',
             ],
         ),
+        'geomagnetic_coordinates': ConfigDatasetHttpAsset(
+            id='geomagnetic_coordinates',
+            urls=[
+                'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020_geomagnetic_coordinate_shapefiles.zip',  # noqa:E501
+            ],
+        ),
     },
     metadata={
         'title': 'The World Magnetic Model',
