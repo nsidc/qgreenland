@@ -12,9 +12,7 @@ _layers = [
 The locations of northern hemisphere dip poles (2020-2025) from the World
 Magnetic Model (WMM) 2020 model.
 
-The geomagnetic dip poles are positions on the Earth's surface where the
-geomagnetic field is perpendicular to the ellipsoid, that is, vertical. The
-north and south dip poles do not have to be (and are not now) antipodal.
+{common_description}
 
 These model dip poles are computed from all the Gauss coefficients using an
 iterative method. In 2020.0 the north dip pole computed from WMM2020 is
@@ -31,9 +29,7 @@ dip pole at longitude 135.88°E and geodetic latitude 64.07°S.
 The locations of northern hemisphere dip poles (1590-2025) from the latest
 International Geomagnetic Reference Field (IGRF) model.
 
-The geomagnetic dip poles are positions on the Earth's surface where the
-geomagnetic field is perpendicular to the ellipsoid, that is, vertical. The
-north and south dip poles do not have to be (and are not now) antipodal.
+{common_description}
 
 These model dip poles are computed from all the Gauss coefficients using an
 iterative method.
@@ -52,10 +48,16 @@ def _make_layer(
         asset_id: str,
         partial_filename: str,
 ) -> ConfigLayer:
+    common_description = """The geomagnetic dip poles are positions on the
+Earth's surface where the geomagnetic field is perpendicular to the ellipsoid,
+that is, vertical. The north and south dip poles do not have to be (and are not
+now) antipodal.
+"""
+
     return ConfigLayer(
         id=id,
         title=title,
-        description=description,
+        description=description.format(common_description=common_description),
         in_package=True,
         show=False,
         style='geomagnetic_north_pole',
