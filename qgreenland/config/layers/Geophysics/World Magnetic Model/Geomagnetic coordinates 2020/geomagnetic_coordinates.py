@@ -39,7 +39,7 @@ the geomagnetic south pole is at 107.32°E longitude and 80.59°S geocentric
 latitude (80.65°S geodetic latitude). The axis of the dipole is currently
 inclined at 9.41° to the Earth's rotation axis. The same dipole is the basis
 for the simple geomagnetic coordinate system of geomagnetic latitude and
-longitude
+longitude.
 """,
         in_package=True,
         show=False,
