@@ -24,7 +24,7 @@ def warp_and_cut(
             PROJECT_CRS,
             *reproject_args,
             f'{input_file}',  # <--- Input
-            '{output_dir}/warped.tif',  # <--- Output  # noqa: FS003
+            '{output_dir}/warped.tif',  # <--- Output
         ],
     )
 
@@ -39,7 +39,7 @@ def warp_and_cut(
             '-co',  # creationOptions=['COMPRESS=DEFLATE']
             'COMPRESS=DEFLATE',
             *cut_args,
-            '{input_dir}/warped.tif',  # <--- Input  # noqa: FS003
+            '{input_dir}/warped.tif',  # <--- Input
             f'{output_file}',  # <--- Output
         ],
     )
