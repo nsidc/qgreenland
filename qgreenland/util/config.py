@@ -24,6 +24,7 @@ from humanize import naturalsize
 import qgreenland.exceptions as exc
 from qgreenland.constants import ASSETS_DIR
 from qgreenland.models.config import Config
+from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
 from qgreenland.util.misc import (
     directory_size_bytes,
     get_final_layer_filepath,
@@ -347,17 +348,17 @@ def export_config(
     for layer_node in cfg.layer_tree.leaves:
         layer_cfg = layer_node.layer_cfg
         layer_type: str
-        if layer_cfg.input.asset.type != 'online':
-            layer_fp = get_final_layer_filepath(layer_node)
-            layer_dir = layer_fp.parent
-            layer_size_bytes = directory_size_bytes(layer_dir)
-            layer_type = vector_or_raster(layer_node)
-        else:
+        if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
             # TODO: Is there a better way to determine "vector or raster" here?
             # TODO: Expand the LayerType type to include "online"?
             layer_type = 'online'
             # online layers have no size on disk.
             layer_size_bytes = 0
+        else:
+            layer_fp = get_final_layer_filepath(layer_node)
+            layer_dir = layer_fp.parent
+            layer_size_bytes = directory_size_bytes(layer_dir)
+            layer_type = vector_or_raster(layer_node)
 
         dataset_cfg = layer_cfg.input.dataset
 

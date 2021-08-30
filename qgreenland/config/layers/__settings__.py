@@ -5,6 +5,7 @@ from qgreenland.models.config.layer_group import RootGroupSettings
 # RootGroupSettings model for this?
 settings = RootGroupSettings(
     order=[
+        'Terrain Models',
         'Internet-required data',
         'Basemaps',
     ],

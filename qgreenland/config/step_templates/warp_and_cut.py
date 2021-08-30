@@ -1,6 +1,7 @@
 from typing import List
 
 from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
+from qgreenland.config.constants import PROJECT_CRS
 
 
 def warp_and_cut(
@@ -9,29 +10,17 @@ def warp_and_cut(
         # input_file, output_file.
         input_file,
         output_file,
-        x_res,
-        y_res,
-        target_extent,
         cut_file,
+        reproject_args=[],
+        cut_args=[],
 ) -> List[AnyStep]:
     reproject = ConfigLayerCommandStep(
         type='command',
         args=[
             'gdalwarp',
             '-t_srs',  # dstCRS
-            # TODO: Reference project SRS
-            'EPSG:3413',
-            '-tr',  # xRes=500, yRes=500
-            f'{x_res}',
-            f'{y_res}',
-            '-te',
-            f'{target_extent}',
-            '-dstnodata',  # dstNodata
-            '0',
-            '-wo',  # warpOptions=['SOURCE_EXTRA=100', 'SAMPLE_GRID=YES']
-            'SOURCE_EXTRA=100',
-            '-wo',
-            'SAMPLE_GRID=YES',
+            PROJECT_CRS,
+            *reproject_args,
             # What about using dedicated keys for `input_file` and `output_file` so
             # the command itself can reference that slug. If either is repeated in5
             # the command, this will help avoid mistakes.
@@ -40,7 +29,7 @@ def warp_and_cut(
         ],
     )
 
-    clip = ConfigLayerCommandStep(
+    cut = ConfigLayerCommandStep(
         # TODO: Do we have to spec 'command' here?
         type='command',
         args=[
@@ -52,6 +41,7 @@ def warp_and_cut(
             '-crop_to_cutline',  # CropToCutline=True
             '-co',  # creationOptions=['COMPRESS=DEFLATE']
             'COMPRESS=DEFLATE',
+            *cut_args,
             '{input_dir}/warped.tif',  # <--- Input
             f'{output_file}',  # <--- Output
         ],
@@ -59,5 +49,5 @@ def warp_and_cut(
 
     return [
         reproject,
-        clip,
+        cut,
     ]
