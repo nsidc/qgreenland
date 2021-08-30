@@ -64,6 +64,6 @@ Information. doi: 10.25921/11v3-da71, 2020, Date accessed:
 {{date_accessed}}.
 """,
             'url': 'https://doi.org/10.25921/11v3-da71',
-        }
-    }
+        },
+    },
 )

@@ -1,5 +1,5 @@
-from qgreenland.config.datasets import wmm
 from qgreenland.config.constants import PROJECT_CRS
+from qgreenland.config.datasets import wmm
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -24,7 +24,7 @@ dip pole at longitude 135.88°E and geodetic latitude 64.07°S.
     show=False,
     input=ConfigLayerInput(
         dataset=wmm.wmm,
-        asset=wmm.wmm.assets['geomagnetic_north_pole']
+        asset=wmm.wmm.assets['geomagnetic_north_pole'],
     ),
     style='geomagnetic_north_pole',
     steps=[
