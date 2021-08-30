@@ -53,3 +53,52 @@ dip pole at longitude 135.88°E and geodetic latitude 64.07°S.
         ),
     ],
 )
+
+
+igrf_geomagnetic_north_pole = ConfigLayer(
+    id='wmm_igrf_north_poles',
+    title='IGRF Geomagnetic North dip pole 1590-2025',
+    description="""
+The locations of northern hemisphere dip poles (1590-2025) from the latest
+International Geomagnetic Reference Field (IGRF) model.
+
+The geomagnetic dip poles are positions on the Earth's surface where the
+geomagnetic field is perpendicular to the ellipsoid, that is, vertical. The
+north and south dip poles do not have to be (and are not now) antipodal.
+
+These model dip poles are computed from all the Gauss coefficients using an
+iterative method.
+""",
+    in_package=True,
+    show=False,
+    input=ConfigLayerInput(
+        dataset=wmm.wmm,
+        asset=wmm.wmm.assets['igrf_geomagnetic_north_pole'],
+    ),
+    style='geomagnetic_north_pole',
+    steps=[
+        # Add a header to the downloaded txt file so that it can be processed as
+        # 'csv' by `ogr2ogr`
+        ConfigLayerCommandStep(
+            type='command',
+            args=[
+                'sed',
+                '"1i longitude latitude year"',
+                '{input_dir}/NP.xy',
+                '>', '{output_dir}/NP_with_header.xy',
+            ],
+        ),
+        ConfigLayerCommandStep(
+            type='command',
+            args=[
+                'ogr2ogr',
+                '-oo', 'X_POSSIBLE_NAMES=longitude',
+                '-oo', 'Y_POSSIBLE_NAMES=latitude',
+                '-s_srs', 'EPSG:4326',
+                '-t_srs', PROJECT_CRS,
+                '{output_dir}/geomagnetic_north_pole.gpkg',
+                'CSV:{input_dir}/NP_with_header.xy',
+            ],
+        ),
+    ],
+)

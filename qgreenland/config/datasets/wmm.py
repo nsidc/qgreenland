@@ -12,6 +12,12 @@ wmm = ConfigDataset(
                 'https://www.ngdc.noaa.gov/geomag/data/poles/WMM2020_NP.xy',
             ],
         ),
+        'igrf_geomagnetic_north_pole': ConfigDatasetHttpAsset(
+            id='igrf_geomagnetic_north_pole',
+            urls=[
+                'https://www.ngdc.noaa.gov/geomag/data/poles/NP.xy',
+            ],
+        ),
     },
     metadata={
         'title': 'The World Magnetic Model',
