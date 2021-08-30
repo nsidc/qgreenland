@@ -64,7 +64,9 @@ longitude.
                 args=[
                     'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
                     'ogr2ogr',
+                    '-lco', 'ENCODING=UTF-8',
                     '-t_srs', PROJECT_CRS,
+                    '-clipdst', '{assets_dir}/latitude_shape_40_degrees.geojson',
                     '-dialect', 'sqlite',
                     '-sql', (
                         '"Select Geometry, Contour, SIGN, \\"INDEX\\", '
