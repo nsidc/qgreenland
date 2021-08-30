@@ -2,7 +2,7 @@ from qgreenland.config.datasets import bedmachine
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+
 
 layers = [
     ConfigLayer(
@@ -91,7 +91,7 @@ Morlighem.""",
 #   style: 'bedmachine_surface'
 #   # extract_nc_dataset_kwargs:
 #   #   extract_dataset: 'surface'
-# 
+#
 # - <<: *bedmachine
 #   id: bedmachine_bed
 #   title: 'Bedrock elevation (150m)'
@@ -100,7 +100,7 @@ Morlighem.""",
 #   style: 'bedmachine_bed'
 #   # extract_nc_dataset_kwargs:
 #   #   extract_dataset: 'bed'
-# 
+#
 # - <<: *bedmachine
 #   id: bedmachine_errbed
 #   title: 'Bedrock elevation/ice thickness error (150m)'
