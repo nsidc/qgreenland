@@ -145,7 +145,7 @@ def _dereference_order_element(
             found_layers = [layer.id for layer in layers]
             raise RuntimeError(
                 f'Failed to find layer with id {layer_id}.'
-                f' Found layers with ids: {found_layers}.'
+                f' Found layers with ids: {found_layers}.',
             )
     else:
         return parent_dir / element
