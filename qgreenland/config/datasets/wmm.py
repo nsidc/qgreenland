@@ -24,6 +24,12 @@ wmm = ConfigDataset(
                 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020_geomagnetic_coordinate_shapefiles.zip',  # noqa:E501
             ],
         ),
+        'blackout_zones': ConfigDatasetHttpAsset(
+            id='blackout_zones',
+            urls=[
+                'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020-2025_BoZ_Shapefile.zip',  # noqa:E501
+            ],
+        ),
     },
     metadata={
         'title': 'The World Magnetic Model',
