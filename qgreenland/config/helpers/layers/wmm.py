@@ -245,9 +245,21 @@ def make_wmm_variable_layers_for_year(*, year: int) -> list[ConfigLayer]:
     layers = []
     variable_names = _wmm_variable_config.keys()
 
+    blackout_zones_layer = make_boz_layer(year=year)
+    layers.append(blackout_zones_layer)
+
     for variable_name in variable_names:
         layers.append(
             make_wmm_variable_layer(variable=variable_name, year=year),
         )
 
     return layers
+
+
+def wmm_layer_order(*, year: int, layer_filename: str) -> list[str]:
+    layer_order = []
+    layer_order.append(f'{layer_filename}:wmm_boz_{year}')
+    for variable_name in _wmm_variable_config.keys():
+        layer_order.append(f'{layer_filename}:wmm_{variable_name}_{year}')
+
+    return layer_order
