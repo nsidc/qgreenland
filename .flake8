@@ -13,5 +13,5 @@ ignore = D1,W503
 # FS003: f-string missing prefix. Useful for config templates.
 per-file-ignores =
   qgreenland/test/util/test_config.py: FS003
-  qgreenland/config/helpers/steps/*.py: FS003
+  qgreenland/config/helpers/**/*.py: FS003
   qgreenland/config/layers/**/*.py: FS003, E501
