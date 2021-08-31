@@ -136,10 +136,17 @@ def _dereference_order_element(
                 f'No match found for {element} in {parent_dir}.',
             )
 
-        return [
-            layer for layer in layers
-            if layer.id == layer_id
-        ][0]
+        try:
+            return [
+                layer for layer in layers
+                if layer.id == layer_id
+            ][0]
+        except IndexError:
+            found_layers = [layer.id for layer in layers]
+            raise RuntimeError(
+                f'Failed to find layer with id {layer_id}.'
+                f' Found layers with ids: {found_layers}.'
+            )
     else:
         return parent_dir / element
 
