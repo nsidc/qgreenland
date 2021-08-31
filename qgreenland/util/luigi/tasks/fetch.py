@@ -5,6 +5,7 @@ import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, PRIVATE_ARCHIVE_DIR, TaskType
+from qgreenland.models.config.dataset import ConfigDatasetCmrAsset
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import (
@@ -72,11 +73,11 @@ class FetchDataFiles(FetchTask):
         )
 
     def run(self):
-        if self.asset_cfg.type == 'cmr':
+        if isinstance(self.asset_cfg, ConfigDatasetCmrAsset):
             raise RuntimeError('Use a FetchCmrGranule task!')
 
         with temporary_path_dir(self.output()) as temp_path:
-            for url in self.asset_cfg['http']['urls']:
+            for url in self.asset_cfg.urls:
                 fetch_and_write_file(
                     url,
                     output_dir=temp_path,

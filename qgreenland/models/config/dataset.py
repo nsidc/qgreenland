@@ -33,6 +33,7 @@ class ConfigDatasetAsset(QgrBaseModel, ABC):
 
 
 class ConfigDatasetHttpAsset(ConfigDatasetAsset):
+    verify: bool = True
     urls: List[AnyUrl]
 
 
