@@ -30,6 +30,15 @@ wmm = ConfigDataset(
                 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020-2025_BoZ_Shapefile.zip',  # noqa:E501
             ],
         ),
+        **{
+            str(year): ConfigDatasetHttpAsset(
+                id=str(year),
+                urls=[
+                    f'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/{year}/WMM_{year}_all_shape_geographic.zip',  # noqa:E501
+                ],
+            )
+            for year in range(2020, 2025 + 1)
+        },
     },
     metadata={
         'title': 'The World Magnetic Model',
