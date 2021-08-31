@@ -181,7 +181,8 @@ def get_layer_fp(layer_dir: Path) -> Path:
 
     if (num_files := len(files)) != 1:
         raise exc.QgrRuntimeError(
-            f'Found {num_files} files (expected 1) in layer output directory {layer_dir}: {files}.',
+            f'Found {num_files} files (expected 1)'
+            f' in layer output directory {layer_dir}: {files}.',
         )
 
     return files[0]
