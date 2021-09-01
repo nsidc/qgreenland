@@ -233,7 +233,9 @@ def run_ogr_command(cmd_list):
     )
 
     if result.returncode != 0:
-        raise exc.QgrRuntimeError(result.stderr)
+        raise exc.QgrRuntimeError(
+            str(result.stderr, encoding='utf8'),
+        )
 
     return result
 
