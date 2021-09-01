@@ -55,6 +55,8 @@ may be degraded in this region.
     )
 
 
+# NOTE: the order of this dictionary determines the layer order produced by
+# `wmm_layer_order`
 _wmm_variable_config = {
     'd': {
         'title': 'Main field declination (D)',
@@ -193,6 +195,46 @@ Contours representing annual change (secular variation) in the down component
 WmmVariable = Literal[tuple(_wmm_variable_config.keys())]
 
 
+def unzip_and_reproject_wmm_vector(
+    *,
+    partial_filename: str,
+    contour_units: str,
+    unzip_contents_mask: str,
+    zip_filename: str,
+) -> list[ConfigLayerCommandStep]:
+    unzip = ConfigLayerCommandStep(
+        type='command',
+        args=[
+            'unzip',
+            '-j',
+            '-d', '{output_dir}',
+            '{input_dir}/' + zip_filename,
+            unzip_contents_mask,
+        ],
+    )
+
+    reproject_with_sql = ConfigLayerCommandStep(
+        type='command',
+        args=[
+            'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
+            'ogr2ogr',
+            '-lco', 'ENCODING=UTF-8',
+            '-t_srs', PROJECT_CRS,
+            '-clipdst', '{assets_dir}/latitude_shape_40_degrees.geojson',
+            '-dialect', 'sqlite',
+            '-sql', (
+                r'"Select Geometry, Contour, SIGN, \"INDEX\", '
+                fr'CAST(Contour AS TEXT) || \" {contour_units}\" as label '
+                f'FROM {partial_filename}"'
+            ),
+            '{output_dir}/' + f'{partial_filename}.gpkg',
+            '{input_dir}/' + f'{partial_filename}.shp',
+        ],
+    )
+
+    return [unzip, reproject_with_sql]
+
+
 def make_wmm_variable_layer(*, variable: WmmVariable, year: int) -> ConfigLayer:
     variable_config = _wmm_variable_config[variable]
     contour_label = variable_config['contour_units']
@@ -208,36 +250,12 @@ def make_wmm_variable_layer(*, variable: WmmVariable, year: int) -> ConfigLayer:
             dataset=wmm.wmm,
             asset=wmm.wmm.assets[str(year)],
         ),
-        steps=[
-            ConfigLayerCommandStep(
-                type='command',
-                args=[
-                    'unzip',
-                    '-j',
-                    '-d', '{output_dir}',
-                    '{input_dir}/' + f'WMM_{year}_all_shape_geographic.zip',
-                    f'"*WMM_{year}_all_shape_geographic/{variable.upper()}_{year}*"',
-                ],
-            ),
-            ConfigLayerCommandStep(
-                type='command',
-                args=[
-                    'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
-                    'ogr2ogr',
-                    '-lco', 'ENCODING=UTF-8',
-                    '-t_srs', PROJECT_CRS,
-                    '-clipdst', '{assets_dir}/latitude_shape_40_degrees.geojson',
-                    '-dialect', 'sqlite',
-                    '-sql', (
-                        r'"Select Geometry, Contour, SIGN, \"INDEX\", '
-                        fr'CAST(Contour AS TEXT) || \" {contour_label}\" as label '
-                        f'FROM {variable.upper()}_{year}"'
-                    ),
-                    '{output_dir}/' + f'{variable.upper()}_{year}.gpkg',
-                    '{input_dir}/' + f'{variable.upper()}_{year}.shp',
-                ],
-            ),
-        ],
+        steps=unzip_and_reproject_wmm_vector(
+            zip_filename=f'WMM_{year}_all_shape_geographic.zip',
+            unzip_contents_mask=f'*{variable.upper()}_{year}*',
+            partial_filename=f'{variable.upper()}_{year}',
+            contour_units=contour_label,
+        ),
     )
 
 

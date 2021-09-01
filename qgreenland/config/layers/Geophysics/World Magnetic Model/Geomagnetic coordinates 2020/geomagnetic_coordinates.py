@@ -1,7 +1,6 @@
-from qgreenland.config.constants import PROJECT_CRS
 from qgreenland.config.datasets import wmm
+from qgreenland.config.helpers.layers.wmm import unzip_and_reproject_wmm_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 _layers = [
@@ -48,36 +47,12 @@ longitude.
             dataset=wmm.wmm,
             asset=wmm.wmm.assets['geomagnetic_coordinates'],
         ),
-        steps=[
-            ConfigLayerCommandStep(
-                type='command',
-                args=[
-                    'unzip',
-                    '-j',
-                    '-d', '{output_dir}',
-                    '{input_dir}/WMM2020_geomagnetic_coordinate_shapefiles.zip',
-                    f'"*geographic_projection/*{partial_filename}*"',
-                ],
-            ),
-            ConfigLayerCommandStep(
-                type='command',
-                args=[
-                    'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
-                    'ogr2ogr',
-                    '-lco', 'ENCODING=UTF-8',
-                    '-t_srs', PROJECT_CRS,
-                    '-clipdst', '{assets_dir}/latitude_shape_40_degrees.geojson',
-                    '-dialect', 'sqlite',
-                    '-sql', (
-                        '"Select Geometry, Contour, SIGN, \\"INDEX\\", '
-                        "CAST(Contour AS TEXT) || ' °' as label "
-                        f'FROM {partial_filename}"'
-                    ),
-                    '{output_dir}/' + f'{partial_filename}.gpkg',
-                    '{input_dir}/' + f'{partial_filename}.shp',
-                ],
-            ),
-        ],
+        steps=unzip_and_reproject_wmm_vector(
+            zip_filename='WMM2020_geomagnetic_coordinate_shapefiles.zip',
+            unzip_contents_mask=f'"*geographic_projection/*{partial_filename}*"',
+            partial_filename=partial_filename,
+            contour_units='°',
+        ),
     )
 
 
