@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Dict, List, Literal, Union
+from typing import Dict, List, Union
 
 from pydantic import AnyUrl, Field, validator
 
@@ -53,8 +53,15 @@ class ConfigDatasetCmrAsset(ConfigDatasetAsset):
     collection_concept_id: str = Field(..., min_length=1)
 
 
+class ConfigDatasetRepositoryAsset(ConfigDatasetAsset):
+    """Datasets stored in this repository as "assets"."""
+
+    # TODO: Move the assets into the config directory???
+    # Path relative to ASSET_URLS location in repo.
+    filename: str = Field(..., min_length=1)
+
+
 class ConfigDatasetManualAsset(ConfigDatasetAsset):
-    type: Literal['manual'] = 'manual'
     access_instructions: str = Field(..., min_length=1)
 
 
