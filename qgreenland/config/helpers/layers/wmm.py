@@ -55,9 +55,28 @@ may be degraded in this region.
     )
 
 
+WmmVariable = Literal[
+    'd',
+    'd_sv',
+    'f',
+    'f_sv',
+    'h',
+    'h_sv',
+    'i',
+    'i_sv',
+    'x',
+    'x_sv',
+    'y',
+    'y_sv',
+    'z',
+    'z_sv',
+]
+WmmVariableParameter = Literal['title', 'description', 'contour_units']
+WmmVariableParameterDict = dict[WmmVariableParameter, str]
+WmmVariableDict = dict[WmmVariable, WmmVariableParameterDict]
 # NOTE: the order of this dictionary determines the layer order produced by
 # `wmm_layer_order`
-_wmm_variable_config = {
+_wmm_variable_config: WmmVariableDict = {
     'd': {
         'title': 'Main field declination (D)',
         'description': """
@@ -189,10 +208,7 @@ Contours representing annual change (secular variation) in the down component
 """,
         'contour_units': 'nT/y',
     },
-
 }
-
-WmmVariable = Literal[tuple(_wmm_variable_config.keys())]
 
 
 def unzip_and_reproject_wmm_vector(
@@ -235,7 +251,11 @@ def unzip_and_reproject_wmm_vector(
     return [unzip, reproject_with_sql]
 
 
-def make_wmm_variable_layer(*, variable: WmmVariable, year: int) -> ConfigLayer:
+def make_wmm_variable_layer(
+    *,
+    variable: WmmVariable,
+    year: int,
+) -> ConfigLayer:
     variable_config = _wmm_variable_config[variable]
     contour_label = variable_config['contour_units']
 
