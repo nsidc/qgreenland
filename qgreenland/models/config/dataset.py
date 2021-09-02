@@ -33,7 +33,10 @@ class ConfigDatasetAsset(QgrBaseModel, ABC):
 
 
 class ConfigDatasetHttpAsset(ConfigDatasetAsset):
-    verify: bool = True
+    # Whether or not to verify server's TLS certificate.
+    #     https://2.python-requests.org/en/master/api/#requests.Session.request
+    verify_tls: bool = True
+
     urls: List[AnyUrl]
 
 

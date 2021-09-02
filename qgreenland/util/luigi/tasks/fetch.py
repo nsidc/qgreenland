@@ -53,7 +53,7 @@ class FetchCmrGranule(FetchTask):
             granule_ur=self.asset_cfg.granule_ur,
             collection_concept_id=self.asset_cfg.collection_concept_id)
 
-        verify = self.asset_cfg.verify
+        verify = self.asset_cfg.verify_tls
         if verify is not None:
             raise RuntimeError(
                 'Ignoring TLS certificate verification is not supported for CMR'
@@ -87,7 +87,7 @@ class FetchDataFiles(FetchTask):
                 fetch_and_write_file(
                     url,
                     output_dir=temp_path,
-                    verify=self.asset_cfg.verify,
+                    verify=self.asset_cfg.verify_tls,
                 )
 
 
