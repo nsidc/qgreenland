@@ -11,8 +11,8 @@ def module_from_path(module_path: Path) -> ModuleType:
         f'_generated_module.{module_path.stem}',
         str(module_path),
     )
-    if not module_spec:
-        raise RuntimeError(f'No module found at {module_path}')
+    if not module_path.is_file() or not module_spec:
+        raise FileNotFoundError(f'No module found at {module_path}')
 
     module = importlib.util.module_from_spec(module_spec)
 

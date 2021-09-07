@@ -15,8 +15,12 @@ sample_module = TEST_CONFIG_DIR / 'Group' / 'Subgroup' / 'examples.py'
 sample_module_w_error = TEST_DATA_DIR / 'sample_module_zerodiv.py'
 
 
+def test_module_from_path_nofile_raises():
+    with pytest.raises(FileNotFoundError):
+        module_from_path(TEST_DATA_DIR / 'foo.py')
 
-def test_module_from_path_raises():
+
+def test_module_from_path_error_raises():
     with pytest.raises(ZeroDivisionError):
         module_from_path(sample_module_w_error)
 
