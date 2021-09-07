@@ -22,10 +22,8 @@ def module_from_path(module_path: Path) -> ModuleType:
             f'Module {module_path} failed to load:'
             ' (module_spec.loader=None)',
         )
-    # TODO: Put a syntax error or runtime error (1/0) in the module. What
-    # happens? Unit test this with a tempfile?
-    module_spec.loader.exec_module(module)
 
+    module_spec.loader.exec_module(module)
     return module
 
 
