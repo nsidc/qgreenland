@@ -45,6 +45,7 @@ def compile_cfg(config_dir: Path) -> Config:
         node.layer_cfg.id: node.layer_cfg
         for node in compiled_layer_tree.leaves
     }
+
     return Config(
         project=project,
         layers=layers_dict,

@@ -22,3 +22,16 @@ def test_immutable_model():
     # assignment`
     with pytest.raises(TypeError):
         CONFIG.layers['background'].description = 'override'
+
+
+def test_layer_indexes():
+    for key, layer in CONFIG.layers.items():
+        assert key == layer.id
+
+
+def test_dataset_and_asset_indexes():
+    for dataset_key, dataset in CONFIG.datasets.items():
+        assert dataset_key == dataset.id
+
+        for asset_key, asset in dataset.assets.items():
+            assert asset_key == asset.id

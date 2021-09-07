@@ -6,12 +6,8 @@ from qgreenland.models.config.dataset import (
 
 image_mosaic = ConfigDataset(
     id='image_mosaic',
-    assets={
-        # TODO: how to dedup '2019' here? represent it as a list here, then let
-        # a validator convert the assets from a list to a dict, e.g.:
-        #     @validator('assets')
-        #     def index_by_id(...): return {asset.id: asset for asset in assets}
-        '2019': ConfigDatasetOnlineAsset(
+    assets=[
+        ConfigDatasetOnlineAsset(
             id='2019',
             provider='gdal',
             url=(
@@ -19,7 +15,7 @@ image_mosaic = ConfigDataset(
                 'rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
             ),
         ),
-        '2015': ConfigDatasetOnlineAsset(
+        ConfigDatasetOnlineAsset(
             id='2015',
             provider='gdal',
             url=(
@@ -27,7 +23,7 @@ image_mosaic = ConfigDataset(
                 'rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
             ),
         ),
-    },
+    ],
     # TODO: Switch to class instantiation. Makes it easier to differentiate keys
     # from values in this big wall-of-string.
     metadata={
@@ -68,10 +64,11 @@ https://doi.org/10.1017/jog.2020.62""",
         },
     },
 )
+
 sea_ice_index = ConfigDataset(
     id='sea_ice_index',
-    assets={
-        'monthly_polyline_n': ConfigDatasetOnlineAsset(
+    assets=[
+        ConfigDatasetOnlineAsset(
             id='monthly_polyline_n',
             provider='gdal',
             # Whitespace matters most, so we use implicit string concatenation
@@ -84,7 +81,7 @@ sea_ice_index = ConfigDataset(
                 " version='auto'"
             ),
         ),
-    },
+    ],
     metadata={
         'title': 'Sea Ice Index, Version 3',
         'abstract': """

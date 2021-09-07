@@ -6,13 +6,13 @@ from qgreenland.models.config.dataset import (
 
 bedmachine = ConfigDataset(
     id='bedmachine',
-    assets={
-        'only': ConfigDatasetCmrAsset(
+    assets=[
+        ConfigDatasetCmrAsset(
             id='only',
             granule_ur='SC:IDBMG4.003:160281892',
             collection_concept_id='C1584255847-NSIDC_ECS',
         ),
-    },
+    ],
     metadata={
         'title': 'IceBridge BedMachine Greenland, Version 3',
         'abstract': """

@@ -39,7 +39,7 @@ mock_online_layer_cfg = ConfigLayer(**{
     'input': {
         'dataset': {
             'id': 'baz',
-            'assets': {_mock_asset_id: _mock_online_asset_cfg},
+            'assets': [_mock_online_asset_cfg],
             'metadata': _mock_metadata,
         },
         'asset': _mock_online_asset_cfg,
@@ -58,7 +58,7 @@ mock_raster_layer_cfg = ConfigLayer(**{
     'input': {
         'dataset': {
             'id': 'example_dataset',
-            'assets': {_mock_asset_id: _mock_http_asset_cfg},
+            'assets': [_mock_http_asset_cfg],
             'metadata': _mock_metadata,
         },
         'asset': _mock_http_asset_cfg,
