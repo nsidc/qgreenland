@@ -1,5 +1,6 @@
 import logging
 import re
+from abc import ABC
 from functools import cached_property
 from pathlib import Path
 from typing import Optional, Union
@@ -21,7 +22,39 @@ from qgreenland.util.module import (
 logger = logging.getLogger('luigi-interface')
 
 
-class LayerNode(anytree.Node):
+class QgrTreeNode(anytree.Node, ABC):
+    """Provide helpers for accessing the layer tree group path.
+
+    The Anytree documentation suggests using mixins, but this looks like it
+    works too and is maybe more straightforward.
+    """
+
+    @cached_property
+    def group_node_path(self) -> tuple['QgrTreeNode']:
+        """Produce a list of group/directory nodes a layer/group node lives in.
+
+        Omit the root node (named "layers" after the "layers" directory) and omit
+        the given node, leaving only parent group nodes.
+        """
+        return self.path[1:-1]
+
+    @cached_property
+    def group_name_path(self) -> tuple[str, ...]:
+        """Produce a list of group/directory names a layer/group node lives in."""
+        return tuple(
+            str(group_node.name)
+            for group_node in self.group_node_path
+        )
+
+    def render(self) -> str:
+        result = ''
+        for pre, _, node in anytree.RenderTree(self):
+            result += f'{pre}{node.name}\n'
+
+        return result.removesuffix('\n')
+
+
+class LayerNode(QgrTreeNode):
     """A Node with a reference to a layer configuration."""
 
     layer_cfg: ConfigLayer
@@ -30,17 +63,8 @@ class LayerNode(anytree.Node):
         self.layer_cfg = layer_cfg
         super().__init__(*args, **kwargs)
 
-    # TODO: DRY. Mixin?
-    @cached_property
-    def group_node_path(self):
-        return _node_group_path(self)
 
-    @cached_property
-    def group_name_path(self):
-        return _node_group_name_path(self)
-
-
-class LayerGroupNode(anytree.Node):
+class LayerGroupNode(QgrTreeNode):
     """A Node with layer group settings."""
 
     settings: AnyGroupSettings
@@ -48,44 +72,6 @@ class LayerGroupNode(anytree.Node):
     def __init__(self, *args, settings: AnyGroupSettings, **kwargs):
         self.settings = settings
         super().__init__(*args, **kwargs)
-
-    # TODO: DRY. Mixin?
-    @cached_property
-    def group_node_path(self):
-        return _node_group_path(self)
-
-    @cached_property
-    def group_name_path(self):
-        return _node_group_name_path(self)
-
-
-AnyNode = Union[LayerGroupNode, LayerNode]
-
-
-# TODO: rename to 'parent_group_name_path' and 'parent_group_node_path'
-def _node_group_path(node: AnyNode) -> tuple[AnyNode]:
-    """Produce a list of group/directory nodes a layer/group node lives in.
-
-    Omit the root node (named "layers" after the "layers" directory) and omit
-    the given node, leaving only parent group nodes.
-    """
-    return node.path[1:-1]
-
-
-def _node_group_name_path(node: AnyNode) -> tuple[str, ...]:
-    """Produce a list of group/directory names a layer/group node lives in."""
-    return tuple(
-        str(group_node.name)
-        for group_node in _node_group_path(node)
-    )
-
-
-def render_tree(tree: anytree.Node) -> str:
-    result = ''
-    for pre, _, node in anytree.RenderTree(tree):
-        result += f'{pre}{node.name}\n'
-
-    return result.removesuffix('\n')
 
 
 def _filter_directory_contents(paths=list[Path]) -> list[Path]:
@@ -341,4 +327,4 @@ def leaf_lookup(
 
 if __name__ == '__main__':
     tree = layer_tree(LAYERS_CFG_DIR)
-    print(render_tree(tree))
+    print(tree.render())

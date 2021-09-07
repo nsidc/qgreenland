@@ -16,7 +16,6 @@ from qgreenland.constants import (
     SCRIPTS_DIR,
 )
 from qgreenland.test.constants import TEST_DIR
-from qgreenland.util.tree import render_tree
 
 
 @task(aliases=['flake8'])
@@ -134,7 +133,7 @@ def validate(ctx, verbose=False):
         pprint(CONFIG.datasets)
         print()
         print('Layer Tree:')
-        print(render_tree(CONFIG.layer_tree))
+        print(CONFIG.layer_tree.render())
         print()
 
     print('🎉🦆 Configuration validation passed.')
