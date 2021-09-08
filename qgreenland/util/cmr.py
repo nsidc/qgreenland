@@ -37,38 +37,6 @@ def _csv_granules_to_dicts(resp_text):
 def get_cmr_granule(*, granule_ur, collection_concept_id):
     """Query CMR for a granule by Granule UR, return a `Granule`."""
 
-    def _normalize_granule(granule):
-        """Create a standardized object from a row extracted from the CMR CSV.
-
-        NOTE: The CSV module uses the first row of the response to get the
-        labels. If CMR changes their labels, we will have problems. Same would
-        be true if the field order changed, and we have no control over that.
-        NOTE: The "Online Access URLs" field can have >1 entry for
-        some collections. Currently none of them are implemented.
-        """
-        # In September 2020 or so, CMR changed the date format. Just in case of
-        # rollback... support both.
-        old_time_fmt = '%Y-%m-%dT%H:%M:%SZ'
-        new_time_fmt = '%Y-%m-%dT%H:%M:%S.%fZ'
-        url = granule['Online Access URLs']
-        try:
-            start_time = datetime.datetime.strptime(
-                granule['Start Time'],
-                new_time_fmt,
-            )
-        except ValueError as e:
-            logger.info(f'Error with date parsing: {e}. Trying old format...')
-            start_time = datetime.datetime.strptime(
-                granule['Start Time'],
-                old_time_fmt,
-            )
-
-        if not url:
-            msg = 'CMR response contains a granule without Online Access URLs:'
-            raise RuntimeError(f'{msg}: {granule}')
-
-        return Granule(urls=tuple(url.split(',')), start_time=start_time)
-
     url = (f'{CMR_GRANULES_SCROLL_URL}'
            f'&collection_concept_id[]={collection_concept_id}'
            f'&granule_ur[]={granule_ur}')
@@ -81,10 +49,45 @@ def get_cmr_granule(*, granule_ur, collection_concept_id):
 
     granules = _csv_granules_to_dicts(response.text)
 
-    if len(granules) > 1:
-        raise RuntimeError('Expecting only one granule')
+    if len(granules) != 1:
+        raise RuntimeError(
+            f'Expected exactly one granule, received: {granules}',
+        )
 
     return _normalize_granule(granules[0])
+
+
+def _normalize_granule(granule):
+    """Create a standardized object from a row extracted from the CMR CSV.
+
+    NOTE: The CSV module uses the first row of the response to get the
+    labels. If CMR changes their labels, we will have problems. Same would
+    be true if the field order changed, and we have no control over that.
+    NOTE: The "Online Access URLs" field can have >1 entry for
+    some collections. Currently none of them are implemented.
+    """
+    # In September 2020 or so, CMR changed the date format. Just in case of
+    # rollback... support both.
+    old_time_fmt = '%Y-%m-%dT%H:%M:%SZ'
+    new_time_fmt = '%Y-%m-%dT%H:%M:%S.%fZ'
+    url = granule['Online Access URLs']
+    try:
+        start_time = datetime.datetime.strptime(
+            granule['Start Time'],
+            new_time_fmt,
+        )
+    except ValueError as e:
+        logger.info(f'Error with date parsing: {e}. Trying old format...')
+        start_time = datetime.datetime.strptime(
+            granule['Start Time'],
+            old_time_fmt,
+        )
+
+    if not url:
+        msg = 'CMR response contains a granule without Online Access URLs:'
+        raise RuntimeError(f'{msg}: {granule}')
+
+    return Granule(urls=tuple(url.split(',')), start_time=start_time)
 
 
 def search_cmr_granules(*, short_name, version):
