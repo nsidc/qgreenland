@@ -10,6 +10,7 @@ from pathlib import Path
 
 from humanize import naturalsize
 
+from qgreenland._typing import QgsLayerType
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
 from qgreenland.util.misc import (
@@ -35,12 +36,10 @@ def export_config(
     report = []
     for layer_node in cfg.layer_tree.leaves:
         layer_cfg = layer_node.layer_cfg
-        layer_type: str
+        layer_type: QgsLayerType
         if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
-            # TODO: Is there a better way to determine "vector or raster" here?
-            # TODO: Expand the LayerType type to include "online"?
-            layer_type = 'online'
-            # online layers have no size on disk.
+            layer_type = 'Online'
+            # Online layers have no size on disk.
             layer_size_bytes = 0
         else:
             layer_fp = get_final_layer_filepath(layer_node)
@@ -51,11 +50,8 @@ def export_config(
         dataset_cfg = layer_cfg.input.dataset
 
         report.append({
-            # TODO:
-            # 'Group': layer.hierarchy[0],
-            # 'Subgroup': ('/'.join(layer.hierarchy[1:])),
-            'Group': 'TODO',
-            'Subgroup': 'TODO',
+            'Group': layer_node.group_name_path[0],
+            'Subgroup': '/'.join(layer_node.group_name_path[1:]),
             'Layer Title': layer_cfg.title,
             'Layer Description': layer_cfg.description,
             'Vector or Raster': layer_type,

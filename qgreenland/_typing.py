@@ -6,5 +6,5 @@ NOTE: This module is named strangely to avoid conflicts with the stdlib's
 from typing import Literal
 
 
-QgsLayerType = Literal['Vector', 'Raster']
+QgsLayerType = Literal['Vector', 'Raster', 'Online']
 QgsLayerProviderType = Literal['gdal', 'ogr', 'wms', 'wfs', 'wcs']

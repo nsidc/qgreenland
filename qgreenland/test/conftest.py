@@ -1,5 +1,8 @@
 import pytest
 
+# TODO: Refactor config module? This results in the real config being evaluated
+# (CONFIG)
+from qgreenland.config import compile_cfg
 from qgreenland.models.config.dataset import (
     ConfigDatasetHttpAsset,
     ConfigDatasetOnlineAsset,
@@ -9,7 +12,9 @@ from qgreenland.models.config.layer_group import (
     LayerGroupSettings,
     RootGroupSettings,
 )
-from qgreenland.test.constants import TEST_CONFIG_DIR
+from qgreenland.test.constants import (
+    TEST_CONFIG_DIR,
+)
 from qgreenland.util.qgis.project import QgsApplicationContext
 from qgreenland.util.tree import (
     LayerGroupNode,
@@ -100,6 +105,12 @@ def raster_layer_cfg():
     return mock_raster_layer_cfg
 
 
+@pytest.fixture
+def full_cfg():
+    """Return an example config."""
+    return compile_cfg(TEST_CONFIG_DIR)
+
+
 @pytest.fixture(scope='session')
 def setup_teardown_qgis_app():
     """Set up and teardown a QgsApplication instance ONCE.
@@ -120,15 +131,3 @@ def online_layer_node(online_layer_cfg):
 @pytest.fixture
 def raster_layer_node(raster_layer_cfg):
     return _layer_node(raster_layer_cfg)
-
-
-@pytest.fixture
-def mock_layer_config_contents():
-    ordered_dir_path = TEST_CONFIG_DIR / 'Group' / 'Subgroup'
-    return list(ordered_dir_path.iterdir())
-
-
-@pytest.fixture
-def mock_layer_config_contents_unordered():
-    unordered_dir_path = TEST_CONFIG_DIR / 'Group' / 'Subgroup without settings'
-    return list(unordered_dir_path.iterdir())

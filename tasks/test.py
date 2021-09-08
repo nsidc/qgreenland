@@ -15,7 +15,7 @@ from qgreenland.constants import (
     PROJECT_DIR,
     SCRIPTS_DIR,
 )
-from qgreenland.test.constants import TEST_DIR
+from qgreenland.test.constants import TEST_DIR, TEST_DATA_DIR
 
 
 @task(aliases=['flake8'])
@@ -53,11 +53,13 @@ def typecheck(ctx, check_config=False):
     #     https://github.com/python/mypy/issues/10428
     #     https://github.com/python/mypy/issues/4008
     config_pathmask = f'{LAYERS_CFG_DIR.relative_to(PROJECT_DIR)}/*'
+    # Skip scanning the test data for the same reason; we'll just never scan it.
+    test_data_pathmask = f'{TEST_DATA_DIR.relative_to(PROJECT_DIR)}/*'
     print_and_run(
         f'cd {PROJECT_DIR} &&'
         # TODO: If/when this issue is resolved, remove this line and below
         # conditional logic:
-        f' mypy --exclude "{config_pathmask}"'
+        f' mypy --exclude "{config_pathmask}|{test_data_pathmask}"'
         f' --config-file={PROJECT_DIR}/.mypy.ini {PACKAGE_DIR} {SCRIPTS_DIR}',
         pty=True,
     )

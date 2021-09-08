@@ -2,7 +2,7 @@ import anytree
 import pytest
 
 from qgreenland.models.config.layer_group import LayerGroupSettings, RootGroupSettings
-from qgreenland.test.constants import TEST_CONFIG_DIR
+from qgreenland.test.constants import TEST_CONFIG_W_DUPES_DIR
 from qgreenland.util import tree
 
 
@@ -16,7 +16,7 @@ def test__tree_from_dir():
         - Manual ordering
         - Default ordering
     """
-    actual_tree = tree._tree_from_dir(TEST_CONFIG_DIR)
+    actual_tree = tree._tree_from_dir(TEST_CONFIG_W_DUPES_DIR / 'layers')
 
     # The root of the tree should contain a `RootGroupSettings`
     assert isinstance(actual_tree.settings, RootGroupSettings)
@@ -77,4 +77,4 @@ def test_layer_tree_raises_duplicates_error():
     This should raise an error.
     """
     with pytest.raises(RuntimeError):
-        tree.layer_tree(TEST_CONFIG_DIR)
+        tree.layer_tree(TEST_CONFIG_W_DUPES_DIR / 'layers')

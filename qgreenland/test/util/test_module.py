@@ -11,7 +11,7 @@ from qgreenland.util.module import (
 )
 
 
-sample_module = TEST_CONFIG_DIR / 'Group' / 'Subgroup' / 'examples.py'
+sample_module = TEST_CONFIG_DIR / 'layers' / 'Group' / 'Subgroup' / 'examples.py'
 sample_module_w_error = TEST_DATA_DIR / 'sample_module_zerodiv.py'
 
 

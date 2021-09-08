@@ -1,7 +1,7 @@
+from functools import cache
 from pathlib import Path
 
 from qgreenland.config.project import project
-from qgreenland.constants import LAYERS_CFG_DIR
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.util.module import load_objects_from_paths_by_class
@@ -37,10 +37,9 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
     return {dataset.id: dataset for dataset in datasets}
 
 
-# TODO: Accept a Path and look for expected structure at that path, then
-# dynamically load things.
+@cache
 def compile_cfg(config_dir: Path) -> Config:
-    compiled_layer_tree = layer_tree(LAYERS_CFG_DIR)
+    compiled_layer_tree = layer_tree(config_dir / 'layers')
     layers_dict = {
         node.layer_cfg.id: node.layer_cfg
         for node in compiled_layer_tree.leaves
