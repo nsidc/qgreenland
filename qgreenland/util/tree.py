@@ -74,6 +74,31 @@ class LayerGroupNode(QgrTreeNode):
         super().__init__(*args, **kwargs)
 
 
+def layer_tree(layer_cfg_dir: Path) -> anytree.Node:
+    tree = _tree_from_dir(layer_cfg_dir)
+    _check_for_duplicate_leaves(tree)
+
+    return tree
+
+
+def leaf_lookup(
+    tree: anytree.Node,
+    target_node_name: str,
+) -> LayerNode:
+    _check_for_duplicate_leaves(tree)
+
+    matches = [
+        leaf for leaf in tree.leaves
+        if leaf.name == target_node_name
+    ]
+    if len(matches) != 1:
+        raise RuntimeError(
+            f'Found not-one matches: {matches}',
+        )
+
+    return matches[0]
+
+
 def _filter_directory_contents(paths=list[Path]) -> list[Path]:
     """Return the `paths` to include only those we care about."""
     def _path_valid(p: Path) -> bool:
@@ -192,7 +217,7 @@ def _manual_ordering_strategy(
         for e in order_strings
     ]
 
-    # TODO: Validate... validate what?
+    # TODO: Validate...
     return dereferenced_order
 
 
@@ -291,38 +316,11 @@ def _tree_from_dir(
     return root_node
 
 
-def layer_tree(layer_cfg_dir: Path) -> anytree.Node:
-    # TODO: Look up a layer for each leaf
-    tree = _tree_from_dir(layer_cfg_dir)
-    _check_for_duplicate_leaves(tree)
-
-    return tree
-
-
 def _check_for_duplicate_leaves(tree: anytree.Node) -> None:
     all_layer_ids = [node.name for node in tree.leaves]
     if len(set(all_layer_ids)) != len(all_layer_ids):
         # TODO: Print duplicates
         raise RuntimeError(f'Duplicate leaves found in tree: {tree.leaves}')
-
-
-# TODO: Re-order functions
-def leaf_lookup(
-    tree: anytree.Node,
-    target_node_name: str,
-) -> LayerNode:
-    _check_for_duplicate_leaves(tree)
-
-    matches = [
-        leaf for leaf in tree.leaves
-        if leaf.name == target_node_name
-    ]
-    if len(matches) != 1:
-        raise RuntimeError(
-            f'Found not-one matches: {matches}',
-        )
-
-    return matches[0]
 
 
 if __name__ == '__main__':
