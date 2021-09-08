@@ -6,6 +6,7 @@ import luigi
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.models.config.dataset import (
+    ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,
     ConfigDatasetRepositoryAsset,
@@ -49,23 +50,23 @@ class FetchCmrGranule(FetchTask):
         return luigi.LocalTarget(os.path.join(*path))
 
     def run(self):
+        if type(self.asset_cfg) is not ConfigDatasetCmrAsset:
+            raise RuntimeError(f'Expected CMR asset. Received: {self.asset_cfg}')
+
         granule = get_cmr_granule(
             granule_ur=self.asset_cfg.granule_ur,
             collection_concept_id=self.asset_cfg.collection_concept_id)
 
-        verify = self.asset_cfg.verify_tls
-        if verify is not None:
-            raise RuntimeError(
-                'Ignoring TLS certificate verification is not supported for CMR'
-                ' granules.',
-            )
-
         with temporary_path_dir(self.output()) as temp_path:
             for url in granule.urls:
                 if not self.session:
-                    self.session = make_session(hosts=[url])
+                    self.session = make_session(hosts=[url], verify=True)
 
-                fetch_and_write_file(url, output_dir=temp_path, session=self.session)
+                fetch_and_write_file(
+                    url,
+                    output_dir=temp_path,
+                    session=self.session,
+                )
 
 
 class FetchDataFiles(FetchTask):
@@ -77,10 +78,8 @@ class FetchDataFiles(FetchTask):
         )
 
     def run(self):
-        if not isinstance(self.asset_cfg, ConfigDatasetHttpAsset):
-            raise RuntimeError(
-                'FetchDataFiles only supports ConfigDatasetHttpAssets!',
-            )
+        if type(self.asset_cfg) is not ConfigDatasetHttpAsset:
+            raise RuntimeError(f'Expected HTTP asset. Received: {self.asset_cfg}')
 
         with temporary_path_dir(self.output()) as temp_path:
             for url in self.asset_cfg.urls:

@@ -180,15 +180,18 @@ def _create_and_add_layer(
     layer_cfg = node.layer_cfg
 
     map_layer = make_map_layer(node)
-    map_layer = group.addLayer(map_layer)
-    map_layer.setItemVisibilityChecked(
+
+    # Assign to a different name because this changes the type. We need to add
+    # `map_layer` to the project as the last step.
+    grouped_layer = group.addLayer(map_layer)
+    grouped_layer.setItemVisibilityChecked(
         layer_cfg.show,
     )
 
     # All layers start collapsed. When expanded (the default), they show the
     # entire colormap. This takes up a large amount of space in the QGIS table
     # of contents.
-    map_layer.setExpanded(False)
+    grouped_layer.setExpanded(False)
 
     project.addMapLayer(map_layer, addToLegend=False)
 
