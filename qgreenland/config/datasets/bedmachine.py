@@ -9,8 +9,8 @@ bedmachine = ConfigDataset(
     assets=[
         ConfigDatasetCmrAsset(
             id='only',
-            granule_ur='SC:IDBMG4.003:160281892',
-            collection_concept_id='C1584255847-NSIDC_ECS',
+            granule_ur='SC:IDBMG4.004:212126987',
+            collection_concept_id='C2050907241-NSIDC_ECS',
         ),
     ],
     metadata={
