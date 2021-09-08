@@ -179,25 +179,17 @@ def _create_and_add_layer(
     logger.debug(f'Adding {layer_id}...')
     layer_cfg = node.layer_cfg
 
-    # Remove the root node (named "layers" after the "layers" directory) and
-    # remove the layer id
-
     map_layer = make_map_layer(node)
-
-    # TODO: Why do we have a separate object here?
-    grouped_layer = group.addLayer(map_layer)
-
-    # Make the layer invisible and collapsed by default
-    grouped_layer.setItemVisibilityChecked(
+    map_layer = group.addLayer(map_layer)
+    map_layer.setItemVisibilityChecked(
         layer_cfg.show,
     )
 
     # All layers start collapsed. When expanded (the default), they show the
-    # entire colormap. This takes up a large amount of space in the table of
-    # contents.
-    grouped_layer.setExpanded(False)
+    # entire colormap. This takes up a large amount of space in the QGIS table
+    # of contents.
+    map_layer.setExpanded(False)
 
-    # TODO: necessary for root group?
     project.addMapLayer(map_layer, addToLegend=False)
 
 
