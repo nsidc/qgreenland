@@ -36,7 +36,6 @@ def _csv_granules_to_dicts(resp_text):
 
 def get_cmr_granule(*, granule_ur, collection_concept_id):
     """Query CMR for a granule by Granule UR, return a `Granule`."""
-
     url = (f'{CMR_GRANULES_SCROLL_URL}'
            f'&collection_concept_id[]={collection_concept_id}'
            f'&granule_ur[]={granule_ur}')
