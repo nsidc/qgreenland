@@ -3,17 +3,13 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  # Python 3.8.10 has a regression I accidentally triggered. At the time of
-  # this commit, 3.8.11 was not yet available on anaconda.org.
-  #     https://bugs.python.org/issue44061
-  #     https://github.com/conda-forge/python-feedstock/issues/478
-  # TODO: Update Python once newer compatible versions are available
-  - python ~=3.9.0
+  - python ~=3.9.7
 
   #################################################
   # Imported dependencies (and related typestubs) #
   #################################################
 
+  - anytree ~=2.8.0
   - click ~=7.1.2
   - types-click ~=7.1.2
   - fiona ~=1.8.13
@@ -21,16 +17,9 @@ dependencies:
   - humanize ~=2.6.0
   - luigi ~=3.0.2
   - pydantic ~=1.8
-  - pyyaml ~=5.3.1
   - qgis ~=3.16.0
-  - rasterio ~=1.1.2
   - requests ~=2.25.0
   - types-requests ~=2.25.0
-  - yamale ~=2.0.1
-  - pandas ~=1.1.4
-  - geopandas ~=0.6.2
-  - netcdf4 ~=1.5.5
-  - shapely ~=1.7
 
 
   #############################
@@ -69,4 +58,3 @@ dependencies:
     - flake8-commas ~=2.0.0
     - flake8-debugger ~=3.2
     - flake8-use-fstring ~=1.0
-    - rarfile ~=3.3

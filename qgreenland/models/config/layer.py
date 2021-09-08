@@ -22,8 +22,7 @@ class ConfigLayer(QgrBaseModel):
     # Descriptive text:
     description: str = Field(..., min_length=1)
 
-    hierarchy: List[str]
-    # in_package: bool
+    in_package: bool
 
     # Is this layer initially "checked" as visible in QGIS?:
     show: bool = False

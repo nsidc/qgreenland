@@ -1,75 +1,53 @@
-from qgreenland.util.config import (
-    _deref_steps,
+import csv
+import tempfile
+from pathlib import Path
+from unittest.mock import MagicMock, patch
+
+from qgreenland.util.config import export_config
+
+
+@patch(
+    'qgreenland.util.config.vector_or_raster',
+    new=MagicMock(return_value='Raster'),
 )
+@patch(
+    'qgreenland.util.config.get_final_layer_filepath',
+    new=MagicMock(return_value=Path('/tmp')),
+)
+@patch(
+    'qgreenland.util.config.directory_size_bytes',
+    new=MagicMock(return_value=0),
+)
+def test_export_config(full_cfg):
+    common = {
+        'Data Source Abstract': 'Example abstract',
+        'Data Source Citation': 'NSIDC 2020',
+        'Data Source Citation URL': 'https://nsidc.org',
+        'Data Source Title': 'Example Dataset',
+        'Group': 'Group',
+        'Layer Description': 'Example layer description',
+        'Layer Size': '0 Bytes',
+        'Layer Size Bytes': '0',
+        'Subgroup': 'Subgroup',
+    }
+    with tempfile.NamedTemporaryFile('r') as tf:
+        export_config(
+            full_cfg,
+            output_path=Path(tf.name),
+        )
 
+        actual = list(csv.DictReader(tf))
 
-MOCK_STEPS = [
-    {'type': 'command', 'args': ['foo', 'bar']},
-    {
-        'type': 'template',
-        'template_name': 'outer_template',
-        'kwargs': {'wibble': 'wobble', 'biz': 'baz'},
-    },
-    {'type': 'command', 'args': ['banana', 'fanana']},
-]
-MOCK_TEMPLATES = {
-    'outer_template': {
-        'kwargs': ['wibble', 'biz'],
-        'steps': [
-            {
-                'type': 'command',
-                'args': ['this', 'struct', 'is', 'getting', 'deep!', 'biz {biz}'],
-            },
-            {
-                'type': 'template',
-                'template_name': 'inner_template',
-                'kwargs': {
-                    'wowie': 'zowie',
-                    'oof': 'thathurts',
-                    'wibble': '{wibble}',
-                },
-            },
-        ],
-    },
-    'inner_template': {
-        'kwargs': ['wowie', 'oof', 'wibble'],
-        'steps': [
-            {
-                'type': 'command',
-                'args': ['wowie {wowie}', 'oof {oof}', 'wibble {wibble}'],
-            },
-            {
-                'type': 'command',
-                'args': ['deeper', 'and', 'deeper'],
-            },
-        ],
-    },
-
-
-}
-MOCK_RENDERED_STEPS = [
-    {'type': 'command', 'args': ['foo', 'bar']},
-    {
-        'type': 'command',
-        'args': ['this', 'struct', 'is', 'getting', 'deep!', 'biz baz'],
-    },
-    {
-        'type': 'command',
-        'args': ['wowie zowie', 'oof thathurts', 'wibble wobble'],
-    },
-    {
-        'type': 'command',
-        'args': ['deeper', 'and', 'deeper'],
-    },
-    {'type': 'command', 'args': ['banana', 'fanana']},
-]
-
-
-def test__deref_steps():
-    expected = MOCK_RENDERED_STEPS
-    actual = _deref_steps(
-        MOCK_STEPS,
-        templates=MOCK_TEMPLATES,
-    )
-
-    assert expected == actual
+    expected = [
+        {
+            **common,
+            'Layer Title': 'Example online',
+            'Vector or Raster': 'Online',
+        },
+        {
+            **common,
+            'Layer Title': 'Example raster',
+            'Vector or Raster': 'Raster',
+        },
+    ]
+    assert actual == expected

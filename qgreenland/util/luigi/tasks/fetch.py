@@ -5,6 +5,11 @@ import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import ASSETS_DIR, PRIVATE_ARCHIVE_DIR, TaskType
+from qgreenland.models.config.dataset import (
+    ConfigDatasetHttpAsset,
+    ConfigDatasetManualAsset,
+    ConfigDatasetRepositoryAsset,
+)
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import (
@@ -48,7 +53,7 @@ class FetchCmrGranule(FetchTask):
             granule_ur=self.asset_cfg.granule_ur,
             collection_concept_id=self.asset_cfg.collection_concept_id)
 
-        verify = self.asset_cfg.verify
+        verify = self.asset_cfg.verify_tls
         if verify is not None:
             raise RuntimeError(
                 'Ignoring TLS certificate verification is not supported for CMR'
@@ -72,15 +77,17 @@ class FetchDataFiles(FetchTask):
         )
 
     def run(self):
-        if self.asset_cfg.type == 'cmr':
-            raise RuntimeError('Use a FetchCmrGranule task!')
+        if not isinstance(self.asset_cfg, ConfigDatasetHttpAsset):
+            raise RuntimeError(
+                'FetchDataFiles only supports ConfigDatasetHttpAssets!',
+            )
 
         with temporary_path_dir(self.output()) as temp_path:
-            for url in self.asset_cfg['http']['urls']:
+            for url in self.asset_cfg.urls:
                 fetch_and_write_file(
                     url,
                     output_dir=temp_path,
-                    verify=self.asset_cfg.verify,
+                    verify=self.asset_cfg.verify_tls,
                 )
 
 
@@ -93,16 +100,15 @@ class FetchLocalDataFiles(FetchTask):
         )
 
     def run(self):
-        if self.dataset_cfg.type == 'local':
+        if isinstance(self.asset_cfg, ConfigDatasetRepositoryAsset):
             local_dir = ASSETS_DIR
             with temporary_path_dir(self.output()) as temp_path:
                 for filename in self.asset_cfg.urls:
                     source_path = os.path.join(local_dir, filename)
                     out_path = os.path.join(temp_path, os.path.basename(filename))
-
                     shutil.copy2(source_path, out_path)
 
-        elif self.dataset_cfg.type == 'manual':
+        elif isinstance(self.asset_cfg, ConfigDatasetManualAsset):
             local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg.id)
             with temporary_path_dir(self.output()) as temp_path:
                 shutil.copytree(local_dir, temp_path, dirs_exist_ok=True)
@@ -110,7 +116,7 @@ class FetchLocalDataFiles(FetchTask):
         else:
             raise RuntimeError(
                 'You selected an unsupported access_method:'
-                f' {self.dataset_cfg["access_method"]}',
+                f' {type(self.asset_cfg)}',
             )
 
 

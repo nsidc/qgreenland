@@ -9,6 +9,7 @@ from qgreenland.models.config.dataset import (
     ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,
 )
+from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.luigi.tasks.fetch import (
     FetchCmrGranule,
@@ -52,7 +53,7 @@ def generate_layer_tasks():
 
     for layer_cfg in CONFIG.layers.values():
         # Check if it's an online layer; those have no processing pipeline.
-        if layer_cfg.input.asset.type == 'online':
+        if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
             continue
 
         # Create tasks, making each task dependent on the previous task.

@@ -1,6 +1,6 @@
 from functools import cached_property
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Extra
 
 
 class QgrBaseModel(BaseModel):
@@ -11,6 +11,9 @@ class QgrBaseModel(BaseModel):
     """
 
     class Config:
+        # Throw an error if any unexpected attrs are provided. default: 'ignore'
+        extra = Extra.forbid
+
         # https://pydantic-docs.helpmanual.io/usage/models/#faux-immutability
         allow_mutation = False
 

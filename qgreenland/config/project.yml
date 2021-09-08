@@ -1,7 +1,0 @@
-# The CRS used for the output QGIS project file.
-# All layers will be reprojected to this CRS.
-crs: 'EPSG:3413'
-
-boundaries:
-  background: 'latitude_shape_40_degrees.geojson'
-  data: 'greenland_rectangle.geojson'

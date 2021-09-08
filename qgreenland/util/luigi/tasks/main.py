@@ -17,6 +17,7 @@ from qgreenland.constants import TaskType
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
+from qgreenland.util.tree import leaf_lookup
 
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
@@ -131,13 +132,19 @@ class FinalizeTask(luigi.Task):
     def cfg(self):
         return CONFIG.layers[self.layer_id]
 
+    @property
+    def node(self):
+        return leaf_lookup(CONFIG.layer_tree, target_node_name=self.layer_id)
+
     # TODO: DRY
     def requires(self):
         """Dynamically specify task this task depends on."""
         return self.requires_task
 
     def output(self):
-        return luigi.LocalTarget(get_final_layer_dir(self.cfg))
+        return luigi.LocalTarget(
+            get_final_layer_dir(self.node),
+        )
 
     def run(self):
         if not os.path.isdir(self.input().path):

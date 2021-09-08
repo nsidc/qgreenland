@@ -7,7 +7,6 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
-from typing import Any
 
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType
@@ -16,8 +15,11 @@ from qgreenland.constants import (
     REQUEST_TIMEOUT,
     TaskType,
 )
+from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
+from qgreenland.util.tree import LayerNode
+
 
 logger = logging.getLogger('luigi-interface')
 CHUNK_SIZE = 8 * 1024
@@ -177,30 +179,35 @@ def get_layer_fp(layer_dir: Path) -> Path:
     vectors = list(layer_dir.glob('*.gpkg'))
     files = rasters + vectors
 
-    if len(files) > 1:
+    if (num_files := len(files)) != 1:
         raise exc.QgrRuntimeError(
-            f'>1 file found in layer output directory: {files}',
+            f'Found {num_files} files (expected 1)'
+            f' in layer output directory {layer_dir}: {files}.',
         )
 
     return files[0]
 
 
-def _layer_dirname_from_cfg(layer_cfg: Any) -> str:
+def _layer_dirname_from_cfg(layer_cfg: ConfigLayer) -> str:
     return layer_cfg.title
 
 
-def get_final_layer_dir(layer_cfg) -> Path:
+def get_final_layer_dir(
+    layer_node: LayerNode,
+) -> Path:
     """Get the layer directory in its final pre-zip location."""
-    layer_group_list = '/'.join(layer_cfg.hierarchy)
+    layer_group_path_str = '/'.join(layer_node.group_name_path)
     return (
         Path(TaskType.FINAL.value)
-        / layer_group_list
-        / _layer_dirname_from_cfg(layer_cfg)
+        / layer_group_path_str
+        / _layer_dirname_from_cfg(layer_node.layer_cfg)
     )
 
 
-def get_final_layer_filepath(layer_cfg: ConfigLayer) -> Path:
-    d = get_final_layer_dir(layer_cfg)
+def get_final_layer_filepath(
+    layer_node: LayerNode,
+) -> Path:
+    d = get_final_layer_dir(layer_node)
     layer_fp = get_layer_fp(d)
 
     if not layer_fp.is_file():
@@ -226,7 +233,9 @@ def run_ogr_command(cmd_list):
     )
 
     if result.returncode != 0:
-        raise exc.QgrRuntimeError(result.stderr)
+        raise exc.QgrRuntimeError(
+            str(result.stderr, encoding='utf8'),
+        )
 
     return result
 
@@ -249,11 +258,12 @@ def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
     return f'{dataset_id}.{asset_id}'
 
 
-def vector_or_raster(layer_cfg: ConfigLayer) -> QgsLayerType:
-    if layer_cfg.input.asset.type == 'online':
+def vector_or_raster(layer_node: LayerNode) -> QgsLayerType:
+    layer_cfg = layer_node.layer_cfg
+    if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
         return PROVIDER_LAYERTYPE_MAPPING[layer_cfg.input.asset.provider]
     else:
-        layer_path = get_final_layer_filepath(layer_cfg)
+        layer_path = get_final_layer_filepath(layer_node)
         return _vector_or_raster_from_fp(layer_path)
 
 
