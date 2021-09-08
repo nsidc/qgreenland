@@ -18,7 +18,6 @@ def warp_and_cut(
     # project cfg)
 
     reproject = ConfigLayerCommandStep(
-        type='command',
         args=[
             'gdalwarp',
             '-t_srs',  # dstCRS
@@ -31,7 +30,6 @@ def warp_and_cut(
 
     cut = ConfigLayerCommandStep(
         # TODO: Do we have to spec 'command' here?
-        type='command',
         args=[
             'gdalwarp',
             '-cutline',  # CutlineDSName

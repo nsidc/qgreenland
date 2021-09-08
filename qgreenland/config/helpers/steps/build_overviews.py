@@ -22,7 +22,6 @@ def build_overviews(*, input_file, output_file) -> List[AnyStep]:
     ]
 
     return [ConfigLayerCommandStep(
-        type='command',
         args=[
             *copy_into_place,
             '&&',

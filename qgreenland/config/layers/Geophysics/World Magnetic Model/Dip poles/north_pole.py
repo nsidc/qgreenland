@@ -69,7 +69,6 @@ now) antipodal.
             # Add a header to the downloaded txt file so that it can be processed as
             # 'csv' by `ogr2ogr`
             ConfigLayerCommandStep(
-                type='command',
                 args=[
                     'sed',
                     '"1i longitude latitude year"',
@@ -78,7 +77,6 @@ now) antipodal.
                 ],
             ),
             ConfigLayerCommandStep(
-                type='command',
                 args=[
                     'ogr2ogr',
                     '-oo', 'X_POSSIBLE_NAMES=longitude',

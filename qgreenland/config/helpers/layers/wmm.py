@@ -31,7 +31,6 @@ may be degraded in this region.
         ),
         steps=[
             ConfigLayerCommandStep(
-                type='command',
                 args=[
                     'unzip',
                     '-j',
@@ -41,7 +40,6 @@ may be degraded in this region.
                 ],
             ),
             ConfigLayerCommandStep(
-                type='command',
                 args=[
                     'ogr2ogr',
                     '-lco', 'ENCODING=UTF-8',
@@ -219,7 +217,6 @@ def unzip_and_reproject_wmm_vector(
     zip_filename: str,
 ) -> list[ConfigLayerCommandStep]:
     unzip = ConfigLayerCommandStep(
-        type='command',
         args=[
             'unzip',
             '-j',
@@ -230,7 +227,6 @@ def unzip_and_reproject_wmm_vector(
     )
 
     reproject_with_sql = ConfigLayerCommandStep(
-        type='command',
         args=[
             'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
             'ogr2ogr',

@@ -1,5 +1,6 @@
 from typing import Literal
 
+from qgreenland.config.constants import PROJECT_CRS
 from qgreenland.config.datasets.lonlat import lonlat as dataset
 from qgreenland.models.config.dataset import ConfigDatasetAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
@@ -14,8 +15,10 @@ def _make_lonlat_layer(
 
     if asset.id.startswith('lat'):
         title_prefix = 'Latitude'
+        segment_max_distance = 1
     elif asset.id.startswith('lon'):
         title_prefix = 'Longitude'
+        segment_max_distance = 100
     else:
         raise RuntimeError(
             "Expected asset ID starting with 'lon' or 'lat'; received:"
@@ -35,10 +38,20 @@ def _make_lonlat_layer(
             asset=asset,
         ),
         steps=[
+            # TODO: Extract as ogr2ogr segmentize helper?
             ConfigLayerCommandStep(
                 args=[
                     'ogr2ogr',
-
+                    '-lco',
+                    'ENCODING=UTF-8',
+                    '-t_srs',
+                    f'{PROJECT_CRS}',
+                    '-clipdst',
+                    '{assets_dir}/latitude_shape_40_degrees.geojson',
+                    '-segmentize',
+                    f'{segment_max_distance}',
+                    '{output_dir}/' + f'{asset.filepath.stem}.gpkg',
+                    '{input_dir}/' + f'{asset.filepath.name}',
                 ]
 
             ),
