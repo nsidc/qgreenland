@@ -8,6 +8,7 @@ from qgreenland.models.config.dataset import (
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,
+    ConfigDatasetRepositoryAsset,
 )
 from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
@@ -24,8 +25,9 @@ from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 ASSET_TYPE_TASKS: Dict[Type[AnyAsset], Type[FetchTask]] = {
     ConfigDatasetHttpAsset: FetchDataFiles,
     ConfigDatasetCmrAsset: FetchCmrGranule,
-    # TODO: rename `FetchLocalDataFiles`, split in two.
+    # TODO: rename `FetchLocalDataFiles`, split in two!
     ConfigDatasetManualAsset: FetchLocalDataFiles,
+    ConfigDatasetRepositoryAsset: FetchLocalDataFiles,
 }
 
 

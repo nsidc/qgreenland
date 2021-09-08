@@ -1,5 +1,6 @@
 import os
 import shutil
+from pathlib import Path
 
 import luigi
 
@@ -91,6 +92,12 @@ class FetchDataFiles(FetchTask):
 
 
 class FetchLocalDataFiles(FetchTask):
+    """Fetch data that's already on the local installation.
+
+    e.g. "Manual" assets which are downloaded by humans, "Repository" assets
+    which are present in this git repo.
+    """
+
     def output(self):
         return luigi.LocalTarget(
             os.path.join(TaskType.FETCH.value,
@@ -100,12 +107,14 @@ class FetchLocalDataFiles(FetchTask):
 
     def run(self):
         if isinstance(self.asset_cfg, ConfigDatasetRepositoryAsset):
-            local_dir = ASSETS_DIR
             with temporary_path_dir(self.output()) as temp_path:
-                for filename in self.asset_cfg.urls:
-                    source_path = os.path.join(local_dir, filename)
-                    out_path = os.path.join(temp_path, os.path.basename(filename))
-                    shutil.copy2(source_path, out_path)
+                # TODO: Why doesn't the typchecker catch if we were to access
+                # `self.asset_cfg.urls` here? That's not available on a
+                # ConfigDatasetRepositoryAsset. Encountered a runtime error when
+                # it should have been a type error.
+
+                out_path = Path(temp_path) / self.asset_cfg.filepath.name
+                shutil.copy2(self.asset_cfg.filepath, out_path)
 
         elif isinstance(self.asset_cfg, ConfigDatasetManualAsset):
             local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg.id)

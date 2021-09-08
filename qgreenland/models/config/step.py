@@ -12,8 +12,6 @@ class ConfigLayerStep(ABC):
 
 
 class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
-    type: Literal['command']
-
     # input_file: Path
     # output_file: Path
     args: List[str]

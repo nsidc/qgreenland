@@ -42,7 +42,7 @@ longitude.
 """,
         in_package=True,
         show=False,
-        style='latlon',
+        style='lonlat',
         input=ConfigLayerInput(
             dataset=wmm.wmm,
             asset=wmm.wmm.assets['geomagnetic_coordinates'],

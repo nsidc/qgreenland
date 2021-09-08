@@ -264,7 +264,6 @@ def make_wmm_variable_layer(
         title=variable_config['title'],
         description=variable_config['description'],
         in_package=True,
-        show=False,
         style='wmm_contours',
         input=ConfigLayerInput(
             dataset=wmm.wmm,
