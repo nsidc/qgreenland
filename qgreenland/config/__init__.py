@@ -11,7 +11,7 @@ from qgreenland.util.tree import layer_tree
 THIS_DIR = Path(__file__).resolve().parent
 
 
-def _get_python_module_fps(the_dir: Path) -> list[Path]:
+def _get_python_module_filepaths(the_dir: Path) -> list[Path]:
     """Return non-dunder python modules found in `the_dir`."""
     if not the_dir.is_dir():
         raise RuntimeError(
@@ -28,7 +28,7 @@ def _get_python_module_fps(the_dir: Path) -> list[Path]:
 def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
     """Find and return all datasets in "`config_dir`/datasets"."""
     datasets_dir = config_dir / 'datasets'
-    dataset_fps = _get_python_module_fps(datasets_dir)
+    dataset_fps = _get_python_module_filepaths(datasets_dir)
     datasets = load_objects_from_paths_by_class(
         dataset_fps,
         target_class=ConfigDataset,
