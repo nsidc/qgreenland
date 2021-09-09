@@ -3,14 +3,14 @@ from typing import Dict, List, Type
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.models.config.dataset import (
+from qgreenland.models.config.asset import (
     AnyAsset,
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,
+    ConfigDatasetOnlineAsset,
     ConfigDatasetRepositoryAsset,
 )
-from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.luigi.tasks.fetch import (
     FetchCmrGranule,

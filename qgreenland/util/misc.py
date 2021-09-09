@@ -15,7 +15,7 @@ from qgreenland.constants import (
     REQUEST_TIMEOUT,
     TaskType,
 )
-from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
+from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
 from qgreenland.util.tree import LayerNode

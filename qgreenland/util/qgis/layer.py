@@ -8,7 +8,7 @@ from osgeo import gdal
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import ANCILLARY_DIR
-from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
+from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.util.misc import (
     get_final_layer_filepath,
     vector_or_raster,

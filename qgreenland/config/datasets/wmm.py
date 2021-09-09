@@ -1,7 +1,5 @@
-from qgreenland.models.config.dataset import (
-    ConfigDataset,
-    ConfigDatasetHttpAsset,
-)
+from qgreenland.models.config.asset import ConfigDatasetHttpAsset
+from qgreenland.models.config.dataset import ConfigDataset
 
 wmm = ConfigDataset(
     id='world_magnetic_model',

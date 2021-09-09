@@ -1,7 +1,5 @@
-from qgreenland.models.config.dataset import (
-    ConfigDataset,
-    ConfigDatasetCmrAsset,
-)
+from qgreenland.models.config.asset import ConfigDatasetCmrAsset
+from qgreenland.models.config.dataset import ConfigDataset
 
 
 bedmachine = ConfigDataset(

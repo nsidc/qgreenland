@@ -1,7 +1,5 @@
-from qgreenland.models.config.dataset import (
-    ConfigDataset,
-    ConfigDatasetOnlineAsset,
-)
+from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
+from qgreenland.models.config.dataset import ConfigDataset
 
 
 image_mosaic = ConfigDataset(
