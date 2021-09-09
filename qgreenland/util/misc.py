@@ -240,13 +240,17 @@ def run_ogr_command(cmd_list):
     return result
 
 
-def directory_size_bytes(dir_path):
-    """Return the size of the directory's contents in bytes."""
+def directory_contents(dir_path: Path) -> list[Path]:
     dir_path = Path(dir_path)
     if not dir_path.is_dir():
         raise exc.QgrRuntimeError(f'`dir_path` must be a directory. Got {dir_path}')
 
-    contents = dir_path.glob('**/*')
+    return list(dir_path.glob('**/*'))
+
+
+def directory_size_bytes(dir_path: Path):
+    """Return the size of the directory's contents in bytes."""
+    contents = directory_contents(dir_path)
     total_size = 0
     for content in contents:
         total_size += content.stat().st_size

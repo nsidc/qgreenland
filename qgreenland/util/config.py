@@ -4,6 +4,7 @@ ONLY the constants module should import this module.
 """
 
 import csv
+import hashlib
 import json
 import logging
 import os
@@ -15,6 +16,7 @@ from qgreenland._typing import QgsLayerType
 from qgreenland.models.config import Config
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.util.misc import (
+    directory_contents,
     directory_size_bytes,
     get_final_layer_filepath,
     vector_or_raster,
@@ -45,12 +47,16 @@ def _layer_manifest_final_assets(layer_node: LayerNode) -> list[dict[str, str]]:
             ),
         }]
     else:
+        layer_fp = get_final_layer_filepath(layer_node)
+        layer_files = directory_contents(layer_fp.parent)
+
         return [{
-            'file': '',
-            'type': '',
-            'checksum': '',
-            'size_bytes': '',
-        }]
+            'file': fp.name,
+            # TODO: Handle a QMD/QML next to the data
+            'type': 'data' if fp == layer_fp else 'ancillary',
+            'checksum': hashlib.md5(open(fp, 'rb').read()).hexdigest(),
+            'size_bytes': fp.stat().st_size,
+        } for fp in layer_files]
 
 
 def export_config_manifest(
