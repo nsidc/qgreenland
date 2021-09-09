@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import List, Literal, Union
+from typing import List, Union
 
 from qgreenland.models.base_model import QgrBaseModel
 

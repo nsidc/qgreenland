@@ -5,7 +5,7 @@ from pathlib import Path
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.constants import ASSETS_DIR, PRIVATE_ARCHIVE_DIR, TaskType
+from qgreenland.constants import PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.models.config.dataset import (
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,

@@ -1,14 +1,14 @@
-from typing import Literal
+from typing import Literal, cast
 
 from qgreenland.config.constants import PROJECT_CRS
 from qgreenland.config.datasets.lonlat import lonlat as dataset
-from qgreenland.models.config.dataset import ConfigDatasetAsset
+from qgreenland.models.config.dataset import ConfigDatasetRepositoryAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 def _make_lonlat_layer(
-    asset: ConfigDatasetAsset,
+    asset: ConfigDatasetRepositoryAsset,
 ) -> ConfigLayer:
     deg_str = asset.id.rsplit('_', maxsplit=1)[0].split('_', maxsplit=1)[1]
     deg = deg_str.replace('_', '.')
@@ -52,8 +52,7 @@ def _make_lonlat_layer(
                     f'{segment_max_distance}',
                     '{output_dir}/' + f'{asset.filepath.stem}.gpkg',
                     '{input_dir}/' + f'{asset.filepath.name}',
-                ]
-
+                ],
             ),
         ],
     )
@@ -63,7 +62,8 @@ def make_lonlat_layers(
     asset_prefix: Literal['lon', 'lat'],
 ) -> list[ConfigLayer]:
     assets = [
-        asset for asset in dataset.assets.values()
+        cast(ConfigDatasetRepositoryAsset, asset)
+        for asset in dataset.assets.values()
         if asset.id.startswith(asset_prefix)
     ]
 
