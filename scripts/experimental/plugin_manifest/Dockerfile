@@ -1,5 +1,6 @@
-FROM nginx:1.21.3
+FROM nginx:1.21.3-alpine
 
-# Add in layer files
+RUN rm /usr/share/nginx/html/*.html
+COPY ./public /usr/share/nginx/html
 
-# Add in manifest file
+COPY ./default.conf /etc/nginx/conf.d/default.conf
