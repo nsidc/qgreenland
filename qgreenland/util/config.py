@@ -4,6 +4,7 @@ ONLY the constants module should import this module.
 """
 
 import csv
+import json
 import logging
 import os
 from pathlib import Path
@@ -21,10 +22,28 @@ from qgreenland.util.misc import (
 from qgreenland.util.qgis.metadata import (
     build_layer_abstract,
 )
+from qgreenland.util.tree import LayerNode
+from qgreenland.util.version import get_build_version
 
 
 logger = logging.getLogger('luigi-interface')
 DEFAULT_LAYER_MANIFEST_PATH = Path('./layers.csv')
+
+
+def _layer_manifest_final_assets(layer_node: LayerNode) -> list[dict[str, str]]:
+    """List out all available finalized files on disk for this layer.
+
+    Not to be confused with layer dataset assets, which are input files.
+
+    TODO: Better label?
+    """
+
+    return [{
+        'file': '',
+        'type': '',
+        'checksum': '',
+        'size_bytes': '',
+    }]
 
 
 def export_config_manifest(
@@ -43,7 +62,7 @@ def export_config_manifest(
     manifest_spec_version = 'v0.1.0'
     manifest = {
         'version': manifest_spec_version,
-        'qgr_version': ...,
+        'qgr_version': get_build_version(),
         'layers': [{
             # ID first for readability
             'id': layer_node.layer_cfg.id,
@@ -51,11 +70,10 @@ def export_config_manifest(
             'tags': ['foo', 'bar', 'baz'],
             'hierarchy': layer_node.group_name_path,
             'layer_details': build_layer_abstract(layer_node.layer_cfg),
-            'assets': [], 
+            'assets': _layer_manifest_final_assets(layer_node),
         } for layer_node in cfg.layer_tree.leaves],
     }
-    breakpoint()
-    print(manifest)
+
     with open(output_path, 'w') as ofile:
         json.dump(manifest, ofile)
 

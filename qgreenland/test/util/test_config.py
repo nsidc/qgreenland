@@ -16,6 +16,8 @@ def test_export_config_manifest(full_cfg):
             output_path=Path(tf.name),
         )
 
+    assert False
+
 
 @patch(
     'qgreenland.util.config.vector_or_raster',
