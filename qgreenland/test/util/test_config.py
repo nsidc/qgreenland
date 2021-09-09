@@ -1,15 +1,19 @@
 import csv
 import tempfile
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
+from qgreenland.test.constants import MockTaskType
 from qgreenland.util.config import (
     export_config_csv,
     export_config_manifest,
 )
-from qgreenland.test.constants import MockTaskType
 
 
+@patch(
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
+)
 def test_export_config_manifest(full_cfg):
     with tempfile.NamedTemporaryFile('r') as tf:
         export_config_manifest(
