@@ -7,6 +7,7 @@ from qgreenland.util.config import (
     export_config_csv,
     export_config_manifest,
 )
+from qgreenland.test.constants import MockTaskType
 
 
 def test_export_config_manifest(full_cfg):
@@ -20,16 +21,8 @@ def test_export_config_manifest(full_cfg):
 
 
 @patch(
-    'qgreenland.util.config.vector_or_raster',
-    new=MagicMock(return_value='Raster'),
-)
-@patch(
-    'qgreenland.util.config.get_final_layer_filepath',
-    new=MagicMock(return_value=Path('/tmp')),
-)
-@patch(
-    'qgreenland.util.config.directory_size_bytes',
-    new=MagicMock(return_value=0),
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
 )
 def test_export_config_csv(full_cfg):
     common = {
@@ -61,6 +54,8 @@ def test_export_config_csv(full_cfg):
             **common,
             'Layer Title': 'Example raster',
             'Vector or Raster': 'Raster',
+            'Layer Size': '619 Bytes',
+            'Layer Size Bytes': '619',
         },
     ]
     assert actual == expected
