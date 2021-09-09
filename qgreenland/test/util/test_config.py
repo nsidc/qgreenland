@@ -50,7 +50,7 @@ https://nsidc.org""",
 
     online_asset = {
         'type': 'online',
-        **full_cfg.layers['example_online'].assets['only'].dict(
+        **full_cfg.layers['example_online'].input.asset.dict(
             include={'provider', 'url'},
         ),
     }

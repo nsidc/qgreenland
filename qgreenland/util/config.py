@@ -25,7 +25,6 @@ from qgreenland.util.qgis.metadata import (
 from qgreenland.util.tree import LayerNode
 from qgreenland.util.version import get_build_version
 
-
 logger = logging.getLogger('luigi-interface')
 DEFAULT_LAYER_MANIFEST_PATH = Path('./layers.csv')
 
@@ -37,12 +36,21 @@ def _layer_manifest_final_assets(layer_node: LayerNode) -> list[dict[str, str]]:
 
     TODO: Better label?
     """
-    return [{
-        'file': '',
-        'type': '',
-        'checksum': '',
-        'size_bytes': '',
-    }]
+    layer_cfg = layer_node.layer_cfg
+    if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
+        return [{
+            'type': 'online',
+            **layer_cfg.input.asset.dict(
+                include={'provider', 'url'},
+            ),
+        }]
+    else:
+        return [{
+            'file': '',
+            'type': '',
+            'checksum': '',
+            'size_bytes': '',
+        }]
 
 
 def export_config_manifest(
