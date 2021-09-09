@@ -40,6 +40,7 @@ mock_online_layer_cfg = ConfigLayer(**{
     'id': 'example_online',
     'title': 'Example online',
     'description': 'Example layer description',
+    'tags': ['foo', 'bar', 'baz'],
     'in_package': True,
     'input': {
         'dataset': {
@@ -59,6 +60,7 @@ mock_raster_layer_cfg = ConfigLayer(**{
     'id': 'example_raster',
     'title': 'Example raster',
     'description': 'Example layer description',
+    'tags': ['foo', 'bar', 'baz'],
     'in_package': True,
     'input': {
         'dataset': {

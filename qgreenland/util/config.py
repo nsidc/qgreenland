@@ -9,6 +9,7 @@ import json
 import logging
 import os
 from pathlib import Path
+from typing import Union
 
 from humanize import naturalsize
 
@@ -31,7 +32,10 @@ logger = logging.getLogger('luigi-interface')
 DEFAULT_LAYER_MANIFEST_PATH = Path('./layers.csv')
 
 
-def _layer_manifest_final_assets(layer_node: LayerNode) -> list[dict[str, str]]:
+# TODO: Define model for "final" assets? Come up with a better name...
+def _layer_manifest_final_assets(
+    layer_node: LayerNode,
+) -> list[dict[str, Union[str, int]]]:
     """List out all available finalized files on disk for this layer.
 
     Not to be confused with layer dataset assets, which are input files.
