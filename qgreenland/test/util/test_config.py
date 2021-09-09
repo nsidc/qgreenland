@@ -1,4 +1,5 @@
 import csv
+import json
 import tempfile
 from pathlib import Path
 from unittest.mock import patch
@@ -15,13 +16,68 @@ from qgreenland.util.config import (
     new=MockTaskType,
 )
 def test_export_config_manifest(full_cfg):
+    common = {
+        'description': 'Example layer description',
+        # TODO: Generate this with imported function? This should be tested
+        # by itself elsewhere, so there's no need to test the expected output
+        # here too.
+        'layer_details': """Example layer description
+
+=== Original Data Source ===
+Example Dataset
+
+Example abstract
+
+Citation:
+NSIDC 2020
+
+Citation URL:
+https://nsidc.org""",
+        'tags': ['foo', 'bar', 'baz'],
+        'hierarchy': ['Group', 'Subgroup'],
+    }
     with tempfile.NamedTemporaryFile('r') as tf:
         export_config_manifest(
             full_cfg,
             output_path=Path(tf.name),
         )
 
-    assert False
+        actual = json.load(tf)
+
+    assert type(actual['qgr_version']) is str
+    assert len(actual['qgr_version']) >= 6
+    del actual['qgr_version']
+
+    online_asset = {
+        'type': 'online',
+        **full_cfg.layers['example_online'].assets['only'].dict(
+            include={'provider', 'url'},
+        ),
+    }
+    expected = {
+        'version': 'v0.1.0',
+        'layers': [
+            {
+                'id': 'example_online',
+                'title': 'Example online',
+                'assets': [online_asset],
+                **common,
+            },
+            {
+                'id': 'example_raster',
+                'title': 'Example raster',
+                'assets': [{
+                    'checksum': 'a9a103f208179726038fa7178747a0a1',
+                    'file': 'example.tif',
+                    'size_bytes': '619',
+                    'type': 'data',
+                }],
+                **common,
+            },
+        ],
+    }
+
+    assert actual == expected
 
 
 @patch(
