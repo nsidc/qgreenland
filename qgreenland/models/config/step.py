@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import List, Literal, Union
+from typing import List, Union
 
 from qgreenland.models.base_model import QgrBaseModel
 
@@ -12,8 +12,7 @@ class ConfigLayerStep(ABC):
 
 
 class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
-    type: Literal['command']
-
+    type: str = 'command'
     # input_file: Path
     # output_file: Path
     args: List[str]

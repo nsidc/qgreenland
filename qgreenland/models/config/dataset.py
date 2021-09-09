@@ -1,4 +1,5 @@
 from abc import ABC
+from pathlib import Path
 from typing import Dict, List, Union
 
 from pydantic import AnyUrl, Field, validator
@@ -57,14 +58,19 @@ class ConfigDatasetCmrAsset(ConfigDatasetAsset):
 
 
 class ConfigDatasetRepositoryAsset(ConfigDatasetAsset):
-    """Datasets stored in this repository as "assets"."""
+    """Assets stored in this repository in `ASSETS_DIR`."""
 
     # TODO: Move the assets into the config directory???
-    # Path relative to ASSET_URLS location in repo.
-    filename: str = Field(..., min_length=1)
+    # TODO: Full path or relative path to ASSETS_DIR?
+    filepath: Path
 
 
 class ConfigDatasetManualAsset(ConfigDatasetAsset):
+    """Assets that must be manually accessed by a human.
+
+    e.g., requires interactive login.
+    """
+
     access_instructions: str = Field(..., min_length=1)
 
 
@@ -73,6 +79,7 @@ AnyAsset = Union[
     ConfigDatasetHttpAsset,
     ConfigDatasetOnlineAsset,
     ConfigDatasetCmrAsset,
+    ConfigDatasetRepositoryAsset,
     ConfigDatasetManualAsset,
 ]
 

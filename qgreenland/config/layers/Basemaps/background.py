@@ -17,7 +17,6 @@ background = ConfigLayer(
     ),
     steps=[
         ConfigLayerCommandStep(
-            type='command',
             args=['unzip', '{input_dir}/*.zip', '-d', '{output_dir}'],
         ),
         *warp_and_cut(

@@ -179,10 +179,10 @@ def get_layer_fp(layer_dir: Path) -> Path:
     vectors = list(layer_dir.glob('*.gpkg'))
     files = rasters + vectors
 
-    if (num_files := len(files)) != 1:
+    if len(files) != 1:
         raise exc.QgrRuntimeError(
-            f'Found {num_files} files (expected 1)'
-            f' in layer output directory {layer_dir}: {files}.',
+            'Expected exactly 1 .tif or .gpkg in layer output directory'
+            f' {layer_dir}. Found: {files}.',
         )
 
     return files[0]
