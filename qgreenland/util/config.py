@@ -79,8 +79,7 @@ def export_config_manifest(
         'layers': [{
             # ID first for readability
             'id': layer_node.layer_cfg.id,
-            **layer_node.layer_cfg.dict(include={'title', 'description'}),
-            'tags': ['foo', 'bar', 'baz'],
+            **layer_node.layer_cfg.dict(include={'title', 'description', 'tags'}),
             'hierarchy': layer_node.group_name_path,
             'layer_details': build_layer_abstract(layer_node.layer_cfg),
             'assets': _layer_manifest_final_assets(layer_node),

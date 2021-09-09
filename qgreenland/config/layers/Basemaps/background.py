@@ -9,6 +9,7 @@ background = ConfigLayer(
     id='background',
     title='Background (500m)',
     description='Stylized shaded-relief map for providing a general sense of geography.',
+    tags=['background', 'shaded-relief'],
     in_package=True,
     show=True,
     input=ConfigLayerInput(

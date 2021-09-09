@@ -31,6 +31,7 @@ def _make_lonlat_layer(
         description=(
             f'Lines of {title_prefix.lower()} in {deg}-degree resolution.'
         ),
+        tags=['reference'],
         in_package=True,
         style='lonlat',
         input=ConfigLayerInput(
