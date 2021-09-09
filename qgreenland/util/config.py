@@ -13,7 +13,7 @@ from humanize import naturalsize
 
 from qgreenland._typing import QgsLayerType
 from qgreenland.models.config import Config
-from qgreenland.models.config.dataset import ConfigDatasetOnlineAsset
+from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.util.misc import (
     directory_size_bytes,
     get_final_layer_filepath,
@@ -37,7 +37,6 @@ def _layer_manifest_final_assets(layer_node: LayerNode) -> list[dict[str, str]]:
 
     TODO: Better label?
     """
-
     return [{
         'file': '',
         'type': '',
