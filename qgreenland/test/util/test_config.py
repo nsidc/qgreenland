@@ -3,7 +3,18 @@ import tempfile
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from qgreenland.util.config import export_config
+from qgreenland.util.config import (
+    export_config_csv,
+    export_config_manifest,
+)
+
+
+def test_export_config_manifest(full_cfg):
+    with tempfile.NamedTemporaryFile('r') as tf:
+        export_config_manifest(
+            full_cfg,
+            output_path=Path(tf.name),
+        )
 
 
 @patch(
@@ -18,7 +29,7 @@ from qgreenland.util.config import export_config
     'qgreenland.util.config.directory_size_bytes',
     new=MagicMock(return_value=0),
 )
-def test_export_config(full_cfg):
+def test_export_config_csv(full_cfg):
     common = {
         'Data Source Abstract': 'Example abstract',
         'Data Source Citation': 'NSIDC 2020',
@@ -31,7 +42,7 @@ def test_export_config(full_cfg):
         'Subgroup': 'Subgroup',
     }
     with tempfile.NamedTemporaryFile('r') as tf:
-        export_config(
+        export_config_csv(
             full_cfg,
             output_path=Path(tf.name),
         )

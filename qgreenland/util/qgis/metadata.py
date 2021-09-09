@@ -113,7 +113,10 @@ def _build_layer_description(layer_cfg: ConfigLayer) -> str:
 # TODO: this could take a dataset cfg instead of a layer_cfg and be
 # cached. Sometimes multiple layers are derived from the same dataset.
 def _build_dataset_description(layer_cfg: ConfigLayer) -> str:
-    """Return a string representing the layer's dataset description."""
+    """Return a string representing the layer's dataset description.
+
+    Description includes dataset title and abstract.
+    """
     dataset_description = ''
 
     dataset_metadata = layer_cfg.input.dataset.metadata

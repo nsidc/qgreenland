@@ -18,13 +18,49 @@ from qgreenland.util.misc import (
     get_final_layer_filepath,
     vector_or_raster,
 )
+from qgreenland.util.qgis.metadata import (
+    build_layer_abstract,
+)
 
 
 logger = logging.getLogger('luigi-interface')
 DEFAULT_LAYER_MANIFEST_PATH = Path('./layers.csv')
 
 
-def export_config(
+def export_config_manifest(
+    cfg: Config,
+    output_path: Path = DEFAULT_LAYER_MANIFEST_PATH,
+) -> None:
+    """Write a machine-readable manifest to disk describing available layers.
+
+    This must be run after the layers are in their location, because we need to
+    calculate their size on disk.
+    """
+    # json.dump()?
+    # or:
+    # with open(output_path, 'w') as ofile:
+    #     json.dumps()
+    manifest_spec_version = 'v0.1.0'
+    manifest = {
+        'version': manifest_spec_version,
+        'qgr_version': ...,
+        'layers': [{
+            # ID first for readability
+            'id': layer_node.layer_cfg.id,
+            **layer_node.layer_cfg.dict(include={'title', 'description'}),
+            'tags': ['foo', 'bar', 'baz'],
+            'hierarchy': layer_node.group_name_path,
+            'layer_details': build_layer_abstract(layer_node.layer_cfg),
+            'assets': [], 
+        } for layer_node in cfg.layer_tree.leaves],
+    }
+    breakpoint()
+    print(manifest)
+    with open(output_path, 'w') as ofile:
+        json.dump(manifest, ofile)
+
+
+def export_config_csv(
     cfg: Config,
     output_path: Path = DEFAULT_LAYER_MANIFEST_PATH,
 ) -> None:

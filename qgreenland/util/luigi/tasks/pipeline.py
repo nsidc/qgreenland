@@ -6,17 +6,19 @@ from pathlib import Path
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.constants import (ANCILLARY_DIR,
-                                  ENVIRONMENT,
-                                  PROJECT,
-                                  PROJECT_DIR,
-                                  RELEASE_DIR,
-                                  TMP_DIR,
-                                  TaskType,
-                                  WIP_DIR,
-                                  ZIP_TRIGGERFILE)
+from qgreenland.constants import (
+    ANCILLARY_DIR,
+    ENVIRONMENT,
+    PROJECT,
+    PROJECT_DIR,
+    RELEASE_DIR,
+    TMP_DIR,
+    TaskType,
+    WIP_DIR,
+    ZIP_TRIGGERFILE,
+)
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
-from qgreenland.util.config import export_config
+from qgreenland.util.config import export_config_csv, export_config_manifest
 from qgreenland.util.luigi import generate_layer_tasks
 from qgreenland.util.qgis.project import (
     QgsApplicationContext,
@@ -56,6 +58,11 @@ class AncillaryFile(luigi.Task):
 
 
 class LayerList(AncillaryFile):
+    """A CSV description of layers in the package.
+
+    Intended to be viewed by humans.
+    """
+
     src_filepath = None
     dest_relative_filepath = 'layer_list.csv'
 
@@ -64,7 +71,24 @@ class LayerList(AncillaryFile):
 
     def run(self):
         with self.output().temporary_path() as temp_path:
-            export_config(CONFIG, output_path=temp_path)
+            export_config_csv(CONFIG, output_path=temp_path)
+
+
+class LayerManifest(AncillaryFile):
+    """A JSON manifest of layers available for access.
+
+    Intended to be processed by machine, e.g. QGIS plugin.
+    """
+
+    src_filepath = None
+    dest_relative_filepath = 'manifest.json'
+
+    def requires(self):
+        yield IngestAllLayers()
+
+    def run(self):
+        with self.output().temporary_path() as temp_path:
+            export_config_manifest(CONFIG, output_path=temp_path)
 
 
 class CreateQgisProjectFile(luigi.Task):
@@ -99,6 +123,7 @@ class CreateQgisProjectFile(luigi.Task):
             src_filepath=os.path.join(PROJECT_DIR, 'CHANGELOG.md'),
             dest_relative_filepath='CHANGELOG.txt',
         )
+        yield LayerManifest()
         yield LayerList()
 
     def output(self):
