@@ -245,7 +245,9 @@ def directory_contents(dir_path: Path) -> list[Path]:
     if not dir_path.is_dir():
         raise exc.QgrRuntimeError(f'`dir_path` must be a directory. Got {dir_path}')
 
-    return list(dir_path.glob('**/*'))
+    return sorted(
+        dir_path.glob('**/*'),
+    )
 
 
 def directory_size_bytes(dir_path: Path):

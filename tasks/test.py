@@ -18,9 +18,24 @@ from qgreenland.constants import (
 from qgreenland.test.constants import TEST_DIR, TEST_DATA_DIR
 
 
-@task(aliases=['flake8'])
+@task
+def shellcheck(ctx):
+    # It's unclear why, but the return code seems to be getting swallowed.
+    print_and_run(
+        f'cd {PROJECT_DIR} &&'
+        f' for file in $(find {SCRIPTS_DIR} -type f -name "*.sh"); do'
+        '    shellcheck $file;'
+        '  done;',
+        pty=True,
+    )
+
+
+@task(
+    pre=[shellcheck],
+    aliases=['flake8'],
+)
 def lint(ctx):
-    """Run flake8 linting."""
+    """Run flake8 and vulture linting."""
     print_and_run(
         f'cd {PROJECT_DIR} &&'
         f' flake8 {PACKAGE_DIR} {SCRIPTS_DIR}',
@@ -30,13 +45,6 @@ def lint(ctx):
         f'cd {PROJECT_DIR} &&'
         f' vulture --min-confidence 100 {PACKAGE_DIR} {SCRIPTS_DIR}'
         ' vulture_allowlist.py',
-        pty=True,
-    )
-    print_and_run(
-        f'cd {PROJECT_DIR} &&'
-        f' for file in $(find {SCRIPTS_DIR} -type f -name "*.sh");'
-        '    do shellcheck $file;'
-        '  done;',
         pty=True,
     )
     print('🎉🙈 Linting passed.')
