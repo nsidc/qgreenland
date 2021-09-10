@@ -152,19 +152,28 @@ def static(ctx):
 
 
 @task
-def unit(ctx):
+def unit(ctx, verbose=False):
+    verbose_str = '-vv' if verbose else ''
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' pytest -c setup.cfg --cov-config=setup.cfg {TEST_DIR}',
+        f' pytest {verbose_str} -c setup.cfg --cov-config=setup.cfg'
+        f' {TEST_DIR}',
         pty=True
     )
     print('🎉🛠️  Unit tests passed.')
 
 
 @task(
-    pre=[static, unit],
+    pre=[
+        static,
+        call(unit, verbose=True),
+    ],
     default=True,
 )
 def all(ctx):
     """Run all tasks."""
     print('🎉❤️  All tests passed!')
+
+
+# TODO: Do we want to use different `call` params for CI? Create a test.ci task
+# that works like test.all with different params?
