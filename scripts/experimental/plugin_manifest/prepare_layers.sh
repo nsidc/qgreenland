@@ -9,7 +9,7 @@ mkdir -p $DEST
 
 for layer_dir in "$SOURCE"/*; do
     layer_id=$(basename "$layer_dir")
-    final_data_dir="$layer_dir/$(find "$layer_dir" | sort | tail -n 1)"
+    final_data_dir="$(find "$layer_dir" -maxdepth 1 | sort | tail -n 1)"
 
     cp -R "$final_data_dir" "$DEST/$layer_id"
 done
