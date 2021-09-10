@@ -32,7 +32,7 @@ jobs:
           command: |
             conda env create --quiet -f environment-lock.yml
             conda init bash
-            /bin/bash --login -c "conda activate qgreenland && inv test"
+            /bin/bash --login -c "conda activate qgreenland && inv test.ci"
 
   trigger_build:
     <<: *setup

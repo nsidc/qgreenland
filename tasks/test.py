@@ -164,10 +164,7 @@ def unit(ctx, verbose=False):
 
 
 @task(
-    pre=[
-        static,
-        call(unit, verbose=True),
-    ],
+    pre=[static, unit],
     default=True,
 )
 def all(ctx):
@@ -175,5 +172,12 @@ def all(ctx):
     print('🎉❤️  All tests passed!')
 
 
-# TODO: Do we want to use different `call` params for CI? Create a test.ci task
-# that works like test.all with different params?
+@task(
+    pre=[
+        static,
+        call(unit, verbose=True),
+    ],
+)
+def all(ctx):
+    """Run all tasks with increased verbosity for CI."""
+    print('🎉❤️  All tests passed!')
