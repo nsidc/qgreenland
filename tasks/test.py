@@ -178,6 +178,6 @@ def all(ctx):
         call(unit, verbose=True),
     ],
 )
-def all(ctx):
+def ci(ctx):
     """Run all tasks with increased verbosity for CI."""
     print('🎉❤️  All tests passed!')
