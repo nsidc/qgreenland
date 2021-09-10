@@ -68,16 +68,16 @@ https://nsidc.org""",
                 'title': 'Example raster',
                 'assets': [
                     {
-                        'checksum': '22b427acc6e4ebf57052115fdd5ac450',
-                        'file': 'example.tif.aux.xml',
-                        'size_bytes': 332,
-                        'type': 'ancillary',
-                    },
-                    {
                         'checksum': 'a9a103f208179726038fa7178747a0a1',
                         'file': 'example.tif',
                         'size_bytes': 287,
                         'type': 'data',
+                    },
+                    {
+                        'checksum': '22b427acc6e4ebf57052115fdd5ac450',
+                        'file': 'example.tif.aux.xml',
+                        'size_bytes': 332,
+                        'type': 'ancillary',
                     },
                 ],
                 **common,
