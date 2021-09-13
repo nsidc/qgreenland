@@ -5,7 +5,7 @@ from pprint import pprint
 import anytree
 from invoke import call, task
 
-from .config import validate
+from .config import diff, validate
 from .util import print_and_run, PROJECT_DIR
 
 sys.path.append(str(PROJECT_DIR))
@@ -161,6 +161,7 @@ def all(ctx):
     pre=[
         static,
         call(unit, verbose=True),
+        diff,
     ],
 )
 def ci(ctx):
