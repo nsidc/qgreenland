@@ -50,7 +50,7 @@ def validate(ctx, verbose=False):
 
 def _export_json() -> dict[Any, Any]:
     from qgreenland.config import CONFIG
-    return json.dumps(CONFIG, cls=MagicJSONEncoder, indent=2)
+    return json.dumps(CONFIG, cls=MagicJSONEncoder, indent=2, sort_keys=True)
 
 
 @task
