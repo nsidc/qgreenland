@@ -1,9 +1,11 @@
+from pathlib import Path
 from typing import Any, Dict
 
 import fiona
-from pydantic import FilePath, root_validator
+from pydantic import root_validator, validator
 
 import qgreenland.exceptions as exc
+from qgreenland.constants import PROJECT_DIR
 from qgreenland.models.base_model import QgrBaseModel
 
 
@@ -15,8 +17,20 @@ class BoundingBox(QgrBaseModel):
 
 
 class ConfigBoundariesInfo(QgrBaseModel):
-    fp: FilePath
+    # Filepath relative to `PROJECT_DIR` (this allows for diffing configs across
+    # systems)
+    filepath: Path
     bbox: BoundingBox
+
+    @validator('filepath')
+    @classmethod
+    def ensure_relative_to_assets(cls, value):
+        # TODO: DRY this out? Same validator in assets module.
+        full_path = PROJECT_DIR / value
+        if not full_path.is_file():
+            raise ValueError(f'No file found at {full_path}.')
+
+        return value
 
     # TODO: Do we need a root validator? A regular validator, even with
     # `pre=True` and `always=True`, resulted in a "field not found" error for
@@ -24,10 +38,10 @@ class ConfigBoundariesInfo(QgrBaseModel):
     @root_validator(pre=True)
     @classmethod
     def calculate_bbox(cls, values) -> Dict[str, Any]:
-        if 'fp' not in values or not values['fp']:
-            raise RuntimeError('No u gotta')
+        if 'filepath' not in values or not values['filepath']:
+            raise RuntimeError('Filepath must be populated.')
 
-        fp = values['fp']
+        fp = PROJECT_DIR / values['filepath']
 
         with fiona.open(fp) as ifile:
             features = list(ifile)
@@ -36,7 +50,7 @@ class ConfigBoundariesInfo(QgrBaseModel):
 
         if (feature_count := len(features)) != 1:
             raise exc.QgrInvalidConfigError(
-                f"Configured boundary {values['fp']} contains the wrong"
+                f'Configured boundary {fp} contains the wrong'
                 f' number of features. Expected 1, got {feature_count}.',
             )
 
@@ -51,7 +65,7 @@ class ConfigBoundariesInfo(QgrBaseModel):
             )
 
         return {
-            'fp': values['fp'],
+            'filepath': values['filepath'],
             'bbox': BoundingBox(
                 min_x=bbox[0],
                 min_y=bbox[1],

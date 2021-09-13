@@ -5,7 +5,7 @@ from pathlib import Path
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.constants import PRIVATE_ARCHIVE_DIR, TaskType
+from qgreenland.constants import PRIVATE_ARCHIVE_DIR, PROJECT_DIR, TaskType
 from qgreenland.models.config.asset import (
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,
@@ -114,7 +114,10 @@ class FetchLocalDataFiles(FetchTask):
                 # it should have been a type error.
 
                 out_path = Path(temp_path) / self.asset_cfg.filepath.name
-                shutil.copy2(self.asset_cfg.filepath, out_path)
+                shutil.copy2(
+                    PROJECT_DIR / self.asset_cfg.filepath,
+                    out_path,
+                )
 
         elif isinstance(self.asset_cfg, ConfigDatasetManualAsset):
             local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg.id)
