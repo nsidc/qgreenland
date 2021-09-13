@@ -3,6 +3,8 @@ from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
+bedmachine_fn = 'BedMachineGreenland-2021-04-20.nc'
+
 
 layers = [
     ConfigLayer(
@@ -11,6 +13,7 @@ layers = [
         description="""
 Ice thickness in meters. Mass conservation source data provided by Mathieu
 Morlighem.""",
+        tags=['terrain_model'],
         show=False,
         style='bedmachine_thickness',
         in_package=True,
@@ -20,7 +23,7 @@ Morlighem.""",
         ),
         steps=[
             *warp_and_cut(
-                input_file='NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:thickness',
+                input_file='NETCDF:{input_dir}/' + f'{bedmachine_fn}:thickness',
                 output_file='{output_dir}/warped_and_cut.tif',
                 cut_file='{assets_dir}/greenland_rectangle.geojson',
             ),
@@ -32,6 +35,7 @@ Morlighem.""",
     ),
 ]
 
+# TODO: Finish bedmachine!
 """
 - &bedmachine
   id: bedmachine_thickness

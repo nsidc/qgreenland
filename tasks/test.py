@@ -18,9 +18,24 @@ from qgreenland.constants import (
 from qgreenland.test.constants import TEST_DIR, TEST_DATA_DIR
 
 
-@task(aliases=['flake8'])
+@task
+def shellcheck(ctx):
+    # It's unclear why, but the return code seems to be getting swallowed.
+    print_and_run(
+        f'cd {PROJECT_DIR} &&'
+        f' for file in $(find {SCRIPTS_DIR} -type f -name "*.sh"); do'
+        '    shellcheck $file;'
+        '  done;',
+        pty=True,
+    )
+
+
+@task(
+    pre=[shellcheck],
+    aliases=['flake8'],
+)
 def lint(ctx):
-    """Run flake8 linting."""
+    """Run flake8 and vulture linting."""
     print_and_run(
         f'cd {PROJECT_DIR} &&'
         f' flake8 {PACKAGE_DIR} {SCRIPTS_DIR}',
@@ -30,13 +45,6 @@ def lint(ctx):
         f'cd {PROJECT_DIR} &&'
         f' vulture --min-confidence 100 {PACKAGE_DIR} {SCRIPTS_DIR}'
         ' vulture_allowlist.py',
-        pty=True,
-    )
-    print_and_run(
-        f'cd {PROJECT_DIR} &&'
-        f' for file in $(find {SCRIPTS_DIR} -type f -name "*.sh");'
-        '    do shellcheck $file;'
-        '  done;',
         pty=True,
     )
     print('🎉🙈 Linting passed.')
@@ -152,10 +160,12 @@ def static(ctx):
 
 
 @task
-def unit(ctx):
+def unit(ctx, verbose=False):
+    verbose_str = '-vv' if verbose else ''
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        f' pytest -c setup.cfg --cov-config=setup.cfg {TEST_DIR}',
+        f' pytest {verbose_str} -c setup.cfg --cov-config=setup.cfg'
+        f' {TEST_DIR}',
         pty=True
     )
     print('🎉🛠️  Unit tests passed.')
@@ -167,4 +177,15 @@ def unit(ctx):
 )
 def all(ctx):
     """Run all tasks."""
+    print('🎉❤️  All tests passed!')
+
+
+@task(
+    pre=[
+        static,
+        call(unit, verbose=True),
+    ],
+)
+def ci(ctx):
+    """Run all tasks with increased verbosity for CI."""
     print('🎉❤️  All tests passed!')

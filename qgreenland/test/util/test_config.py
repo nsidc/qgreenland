@@ -1,24 +1,98 @@
 import csv
+import json
 import tempfile
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
-from qgreenland.util.config import export_config
+from qgreenland.test.constants import MockTaskType
+from qgreenland.util.config import (
+    export_config_csv,
+    export_config_manifest,
+)
 
 
 @patch(
-    'qgreenland.util.config.vector_or_raster',
-    new=MagicMock(return_value='Raster'),
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
 )
+def test_export_config_manifest(full_cfg):
+    common = {
+        'description': 'Example layer description',
+        # TODO: Generate this with imported function? This should be tested
+        # by itself elsewhere, so there's no need to test the expected output
+        # here too.
+        'layer_details': """Example layer description
+
+=== Original Data Source ===
+Example Dataset
+
+Example abstract
+
+Citation:
+NSIDC 2020
+
+Citation URL:
+https://nsidc.org""",
+        'tags': ['foo', 'bar', 'baz'],
+        'hierarchy': ['Group', 'Subgroup'],
+    }
+    with tempfile.NamedTemporaryFile('r') as tf:
+        export_config_manifest(
+            full_cfg,
+            output_path=Path(tf.name),
+        )
+
+        actual = json.load(tf)
+
+    assert type(actual['qgr_version']) is str
+    assert len(actual['qgr_version']) >= 6
+    del actual['qgr_version']
+
+    online_asset = {
+        'type': 'online',
+        **full_cfg.layers['example_online'].input.asset.dict(
+            include={'provider', 'url'},
+        ),
+    }
+    expected = {
+        'version': 'v0.1.0',
+        'layers': [
+            {
+                'id': 'example_online',
+                'title': 'Example online',
+                'assets': [online_asset],
+                **common,
+            },
+            {
+                'id': 'example_raster',
+                'title': 'Example raster',
+                'assets': [
+                    {
+                        'checksum': 'a9a103f208179726038fa7178747a0a1',
+                        'file': 'example.tif',
+                        'size_bytes': 287,
+                        'type': 'data',
+                    },
+                    {
+                        'checksum': '22b427acc6e4ebf57052115fdd5ac450',
+                        'file': 'example.tif.aux.xml',
+                        'size_bytes': 332,
+                        'type': 'ancillary',
+                    },
+                ],
+                **common,
+            },
+        ],
+    }
+
+    assert actual == expected
+
+
 @patch(
-    'qgreenland.util.config.get_final_layer_filepath',
-    new=MagicMock(return_value=Path('/tmp')),
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
 )
-@patch(
-    'qgreenland.util.config.directory_size_bytes',
-    new=MagicMock(return_value=0),
-)
-def test_export_config(full_cfg):
+def test_export_config_csv(full_cfg):
     common = {
         'Data Source Abstract': 'Example abstract',
         'Data Source Citation': 'NSIDC 2020',
@@ -31,7 +105,7 @@ def test_export_config(full_cfg):
         'Subgroup': 'Subgroup',
     }
     with tempfile.NamedTemporaryFile('r') as tf:
-        export_config(
+        export_config_csv(
             full_cfg,
             output_path=Path(tf.name),
         )
@@ -48,6 +122,8 @@ def test_export_config(full_cfg):
             **common,
             'Layer Title': 'Example raster',
             'Vector or Raster': 'Raster',
+            'Layer Size': '619 Bytes',
+            'Layer Size Bytes': '619',
         },
     ]
     assert actual == expected

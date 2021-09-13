@@ -80,7 +80,7 @@ def _validate_ambiguous_command(kwargs):
 def print_and_run(cmd, *, dry_run):
     print(cmd)
     if not dry_run:
-        subprocess.run(
+        return subprocess.run(
             cmd,
             shell=True,
             check=True,

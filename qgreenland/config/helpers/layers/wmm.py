@@ -22,6 +22,7 @@ We additionally define a “Caution Zone” (2000 nT <= H < 6000 nT) around the
 BoZ, where caution must be exercised while using a compass. Compass accuracy
 may be degraded in this region.
 """,
+        tags=['wmm'],
         in_package=True,
         show=False,
         style='blackout_zones',

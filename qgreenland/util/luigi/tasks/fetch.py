@@ -6,7 +6,7 @@ import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import PRIVATE_ARCHIVE_DIR, TaskType
-from qgreenland.models.config.dataset import (
+from qgreenland.models.config.asset import (
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,

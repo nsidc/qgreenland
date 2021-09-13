@@ -1,10 +1,8 @@
 import re
 
 from qgreenland.constants import ASSETS_DIR
-from qgreenland.models.config.dataset import (
-    ConfigDataset,
-    ConfigDatasetRepositoryAsset,
-)
+from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
+from qgreenland.models.config.dataset import ConfigDataset
 
 
 lonlat_regex = re.compile(

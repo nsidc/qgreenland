@@ -22,6 +22,10 @@ class ConfigLayer(QgrBaseModel):
     # Descriptive text:
     description: str = Field(..., min_length=1)
 
+    # Additional categories that describe this data:
+    tags: list[str] = []
+
+    # Is this layer in the final QGreenland zip file?:
     in_package: bool
 
     # Is this layer initially "checked" as visible in QGIS?:
