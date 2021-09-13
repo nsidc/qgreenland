@@ -1,7 +1,6 @@
 from typing import Dict
 
 import anytree
-from pydantic import BaseModel
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.dataset import ConfigDataset
