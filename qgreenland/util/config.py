@@ -72,10 +72,6 @@ def export_config_manifest(
     This must be run after the layers are in their location, because we need to
     calculate their size on disk.
     """
-    # json.dump()?
-    # or:
-    # with open(output_path, 'w') as ofile:
-    #     json.dumps()
     manifest_spec_version = 'v0.1.0'
     manifest = {
         'version': manifest_spec_version,
