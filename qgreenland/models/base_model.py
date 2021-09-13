@@ -1,4 +1,5 @@
 from functools import cached_property
+from typing import Any
 
 from pydantic import BaseModel, Extra
 
@@ -20,3 +21,8 @@ class QgrBaseModel(BaseModel):
         # https://github.com/samuelcolvin/pydantic/issues/1241
         # https://github.com/samuelcolvin/pydantic/issues/2763
         keep_untouched = (cached_property,)
+
+        arbitrary_types_allowed = True
+
+    def __json__(self) -> dict[Any, Any]:
+        return self.dict()
