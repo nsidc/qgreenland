@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Any
 
 import anytree
 
@@ -10,6 +10,11 @@ from qgreenland.models.config.project import ConfigProject
 
 class Config(QgrBaseModel):
     project: ConfigProject
-    layers: Dict[str, ConfigLayer]
-    datasets: Dict[str, ConfigDataset]
+    layers: dict[str, ConfigLayer]
+    datasets: dict[str, ConfigDataset]
     layer_tree: anytree.Node
+
+    def __json__(self) -> dict[Any, Any]:
+        return self.dict(
+            include={'project', 'layer_tree'},
+        )

@@ -34,6 +34,8 @@ def validate(ctx, verbose=False):
 @task
 def export(ctx):
     """Export the config as a JSON string."""
+    from qgreenland.config import CONFIG
+
     print(export_config_json(CONFIG))
 
 

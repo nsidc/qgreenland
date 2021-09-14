@@ -16,9 +16,9 @@ TODO!!! Cleanup old configuration sections.
 
 ### Lockfile
 
-Use `inv export > qgreenland/config/cfg-lock.json` to refresh this lockfile.
-This allows us to compare the results of configuration changes against the
-previous state.
+Use `inv config.export > qgreenland/config/cfg-lock.json` to refresh this
+lockfile.  This allows us to compare the results of configuration changes
+against the previous state.
 
 
 ## New configuration
