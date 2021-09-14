@@ -1,14 +1,12 @@
-from typing import List
-
 from qgreenland.constants import ANCILLARY_DIR, ASSETS_DIR
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.misc import run_ogr_command
 
 
 def interpolate_args(
-    args: List[str],
+    args: list[str],
     **kwargs,
-) -> List[str]:
+) -> list[str]:
     """Replace slugs in `args` with keys and values in `kwargs`."""
     return [arg.format(**kwargs)
             for arg in args]

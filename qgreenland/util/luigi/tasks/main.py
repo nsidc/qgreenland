@@ -8,7 +8,6 @@ import copy
 import os
 import shutil
 from pathlib import Path
-from typing import List
 
 import luigi
 
@@ -170,7 +169,7 @@ class FinalizeTask(luigi.Task):
             shutil.copy2(input_fp, output_tmp_fp)
 
 
-def steps_to_provenance_text(steps: List[AnyStep]) -> str:
+def steps_to_provenance_text(steps: list[AnyStep]) -> str:
     steps_as_text = [step.provenance for step in steps]
 
     return '\n\n'.join(steps_as_text)

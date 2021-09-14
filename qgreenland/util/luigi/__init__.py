@@ -1,4 +1,4 @@
-from typing import Dict, List, Type
+from typing import Dict, Type
 
 import luigi
 
@@ -51,7 +51,7 @@ def generate_layer_tasks():
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
-    tasks: List[luigi.Task] = []
+    tasks: list[luigi.Task] = []
 
     for layer_cfg in CONFIG.layers.values():
         # Check if it's an online layer; those have no processing pipeline.
