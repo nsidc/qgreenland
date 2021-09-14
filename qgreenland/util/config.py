@@ -142,3 +142,28 @@ def export_config_csv(
         dict_writer.writeheader()
         dict_writer.writerows(report)
         print(f'Exported: {os.path.abspath(ofile.name)}')
+
+
+def export_config_json(cfg: Config) -> str:
+    return json.dumps(
+        cfg,
+        cls=MagicJSONEncoder,
+        indent=2,
+        sort_keys=True,
+    )
+
+
+class MagicJSONEncoder(json.JSONEncoder):
+    """Call __json__ method of object for JSON serialization.
+
+    Also handle Paths.
+    """
+
+    def default(self, o):
+        if isinstance(o, Path):
+            # Not sure why Paths don't serialize out-of-the-box!
+            # https://github.com/samuelcolvin/pydantic/issues/473
+            return str(o)
+        if hasattr(o, '__json__') and callable(o.__json__):
+            return o.__json__()
+        return super(MagicJSONEncoder, self).default(o)

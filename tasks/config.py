@@ -1,27 +1,10 @@
 import difflib
-import json
 from pathlib import Path
-from typing import Any
 
 from invoke import call, task
 
 from qgreenland.constants import CONFIG_DIR
-
-
-class MagicJSONEncoder(json.JSONEncoder):
-      """Call __json__ method of object for JSON serialization.
-
-      Also handle Paths.
-      """
-
-      def default(self, o):
-          if isinstance(o, Path):
-              # Not sure why Paths don't serialize out-of-the-box!
-              # https://github.com/samuelcolvin/pydantic/issues/473
-              return str(o)
-          if hasattr(o, '__json__') and callable(o.__json__):
-              return o.__json__()
-          return super(MagicJSONEncoder, self).default(o)
+from qgreenland.util.config import export_config_json
 
 
 @task
@@ -48,15 +31,10 @@ def validate(ctx, verbose=False):
     print('🎉🦆 Configuration validation passed.')
 
 
-def _export_json() -> dict[Any, Any]:
-    from qgreenland.config import CONFIG
-    return json.dumps(CONFIG, cls=MagicJSONEncoder, indent=2, sort_keys=True)
-
-
 @task
 def export(ctx):
     """Export the config as a JSON string."""
-    print(_export_json())
+    print(export_config_json(CONFIG))
 
 
 @task
