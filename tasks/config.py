@@ -42,10 +42,12 @@ def export(ctx):
 @task
 def diff(ctx):
     """Compare the config lockfile against the current config."""
+    from qgreenland.config import CONFIG
+
     with open(CONFIG_DIR / 'cfg-lock.json', 'r') as lockfile:
         # Remove trailing newlines to match `json.dumps` behavior
         lockfile_config = lockfile.read().rstrip('\n')
-    current_config = _export_json()
+    current_config = export_config_json(CONFIG)
 
     diff = list(difflib.unified_diff(
         lockfile_config.splitlines(keepends=True),
