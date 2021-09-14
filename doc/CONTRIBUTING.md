@@ -9,6 +9,18 @@ release except releases labeled as "stable". Stable releases can be found at
 [https://qgreenland.org/explore](https://qgreenland.org/explore)!
 
 
+## NEW NEW configuration
+
+TODO!!! Cleanup old configuration sections.
+
+
+### Lockfile
+
+Use `inv config.export > qgreenland/config/cfg-lock.json` to refresh this
+lockfile.  This allows us to compare the results of configuration changes
+against the previous state.
+
+
 ## New configuration
 
 These are the types of configuration files available in

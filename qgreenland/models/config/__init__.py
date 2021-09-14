@@ -1,20 +1,20 @@
-from typing import Dict
+from typing import Any
 
 import anytree
-from pydantic import BaseModel
 
+from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.project import ConfigProject
 
 
-class Config(BaseModel):
-    """Validated and de-referenced configuration."""
-
+class Config(QgrBaseModel):
     project: ConfigProject
-    layers: Dict[str, ConfigLayer]
-    datasets: Dict[str, ConfigDataset]
+    layers: dict[str, ConfigLayer]
+    datasets: dict[str, ConfigDataset]
     layer_tree: anytree.Node
 
-    class Config:
-        arbitrary_types_allowed = True
+    def __json__(self) -> dict[Any, Any]:
+        return self.dict(
+            include={'project', 'layer_tree'},
+        )

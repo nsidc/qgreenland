@@ -5,6 +5,7 @@ from pprint import pprint
 import anytree
 from invoke import call, task
 
+from .config import diff, validate
 from .util import print_and_run, PROJECT_DIR
 
 sys.path.append(str(PROJECT_DIR))
@@ -125,30 +126,6 @@ def typecheck(ctx, check_config=False):
     print('🎉🦆 Type checking passed.')
 
 
-@task
-def validate(ctx, verbose=False):
-    """Validate the configuration files.
-
-    The validation is built-in to the code that loads the config files, and
-    this happens when assigning the CONFIG constant. Any validation errors will
-    be raised from the import statement.
-    """
-    from qgreenland.config import CONFIG
-
-    if verbose:
-        print('Layers:')
-        pprint(CONFIG.layers)
-        print()
-        print('Datasets:')
-        pprint(CONFIG.datasets)
-        print()
-        print('Layer Tree:')
-        print(CONFIG.layer_tree.render())
-        print()
-
-    print('🎉🦆 Configuration validation passed.')
-
-
 @task(pre=[
     lint,
     call(typecheck, check_config=True),
@@ -184,6 +161,7 @@ def all(ctx):
     pre=[
         static,
         call(unit, verbose=True),
+        diff,
     ],
 )
 def ci(ctx):

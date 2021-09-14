@@ -2,9 +2,10 @@ from abc import ABC
 from pathlib import Path
 from typing import List, Union
 
-from pydantic import AnyUrl, Field
+from pydantic import AnyUrl, Field, validator
 
 from qgreenland._typing import QgsLayerProviderType
+from qgreenland.constants import PROJECT_DIR
 from qgreenland.models.base_model import QgrBaseModel
 
 
@@ -40,8 +41,18 @@ class ConfigDatasetRepositoryAsset(ConfigDatasetAsset):
     """Assets stored in this repository in `ASSETS_DIR`."""
 
     # TODO: Move the assets into the config directory???
-    # TODO: Full path or relative path to ASSETS_DIR?
+    # Relative path to file in `PROJECT_DIR`. Must be relative so the config can
+    # be diffed across systems.
     filepath: Path
+
+    @validator('filepath')
+    @classmethod
+    def ensure_relative_to_assets(cls, value):
+        full_path = PROJECT_DIR / value
+        if not full_path.is_file():
+            raise ValueError(f'No file found at {full_path}.')
+
+        return value
 
 
 class ConfigDatasetManualAsset(ConfigDatasetAsset):

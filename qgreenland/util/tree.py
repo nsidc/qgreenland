@@ -3,9 +3,10 @@ import re
 from abc import ABC
 from functools import cached_property
 from pathlib import Path
-from typing import Optional, Union
+from typing import Any, Optional, Union
 
 import anytree
+from anytree.exporter import DictExporter
 
 from qgreenland.constants import LAYERS_CFG_DIR
 from qgreenland.models.config.layer import ConfigLayer
@@ -52,6 +53,11 @@ class QgrTreeNode(anytree.Node, ABC):
             result += f'{pre}{node.name}\n'
 
         return result.removesuffix('\n')
+
+    def __json__(self) -> dict[Any, Any]:
+        """Help JSONEncoder serialize the tree."""
+        exporter = DictExporter()
+        return exporter.export(self)
 
 
 class LayerNode(QgrTreeNode):
