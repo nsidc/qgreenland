@@ -1,6 +1,6 @@
 """A runner is a function which executes a certain type of step."""
 
-from typing import Any, Dict, Type
+from typing import Any, Type
 
 from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
 from qgreenland.runners.command import command_runner
@@ -8,7 +8,7 @@ from qgreenland.runners.command import command_runner
 
 # Each runner corresponds to a type of "step" available in the layer
 # configuration file.
-RUNNERS: Dict[Type[AnyStep], Any] = {
+RUNNERS: dict[Type[AnyStep], Any] = {
     ConfigLayerCommandStep: command_runner,
     # 'python': 'TODO',
 }
