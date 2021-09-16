@@ -65,9 +65,9 @@ class ConfigDatasetManualAsset(ConfigDatasetAsset):
 
 
 AnyAsset = Union[
-    ConfigDatasetHttpAsset,
-    ConfigDatasetOnlineAsset,
     ConfigDatasetCmrAsset,
-    ConfigDatasetRepositoryAsset,
+    ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,
+    ConfigDatasetOnlineAsset,
+    ConfigDatasetRepositoryAsset,
 ]
