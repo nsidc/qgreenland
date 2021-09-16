@@ -2691,7 +2691,7 @@
                     "-t_srs",
                     "EPSG:3413",
                     "-clipdst",
-                    "{assets_dir}/qgreenland/assets/greenland_rectangle.geojson",
+                    "{assets_dir}/greenland_rectangle.geojson",
                     "-makevalid",
                     "-sql",
                     "'SELECT *, \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'",
@@ -2747,7 +2747,7 @@
                     "-t_srs",
                     "EPSG:3413",
                     "-clipdst",
-                    "{assets_dir}/qgreenland/assets/greenland_rectangle.geojson",
+                    "{assets_dir}/greenland_rectangle.geojson",
                     "-makevalid",
                     "-sql",
                     "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'",
@@ -16038,7 +16038,7 @@
           "min_x": -5774572.727594967,
           "min_y": -5774572.727594967
         },
-        "filepath": "qgreenland/assets/latitude_shape_40_degrees.geojson"
+        "filepath": "{assets_dir}/latitude_shape_40_degrees.geojson"
       },
       "data": {
         "bbox": {
@@ -16047,7 +16047,7 @@
           "min_x": -998012.0,
           "min_y": -3611178.0
         },
-        "filepath": "qgreenland/assets/greenland_rectangle.geojson"
+        "filepath": "{assets_dir}/greenland_rectangle.geojson"
       }
     },
     "crs": "EPSG:3413"
