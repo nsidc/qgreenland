@@ -1,6 +1,5 @@
 from qgreenland.config.datasets.asiaq_placenames import asiaq_private_placenames
 from qgreenland.config.project import project
-from qgreenland.constants import PROJECT_DIR
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -8,7 +7,7 @@ standard_ogr2ogr_args = [
     '-lco', 'ENCODING=UTF-8',
     '-t_srs', project.crs,
     # TODO: How to avoid this type of dir-handling within configs?
-    '-clipdst', str(PROJECT_DIR / project.boundaries['data'].filepath),
+    '-clipdst', '{assets_dir}/' + str(project.boundaries['data'].filepath),
 ]
 
 towns_and_settlements = ConfigLayer(
