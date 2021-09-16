@@ -6,14 +6,10 @@ project = ConfigProject(
     crs=PROJECT_CRS,
     boundaries={
         'background': {
-            'filepath': (
-                ASSETS_DIR / 'latitude_shape_40_degrees.geojson'
-            ).relative_to(PROJECT_DIR),
+            'filepath': '{assets_dir}/latitude_shape_40_degrees.geojson',
         },
         'data': {
-            'filepath': (
-                ASSETS_DIR / 'greenland_rectangle.geojson'
-            ).relative_to(PROJECT_DIR),
+            'filepath': '{assets_dir}/greenland_rectangle.geojson',
         },
     },
 )

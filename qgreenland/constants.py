@@ -64,4 +64,4 @@ class TaskType(Enum):
     WIP = WIP_DIR / 'wip'
 
     # For processed QGreenland data in its final directory structure.
-    FINAL = WIP_DIR / f'{PROJECT}'
+    FINAL = WIP_DIR / PROJECT

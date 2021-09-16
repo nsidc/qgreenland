@@ -1,5 +1,4 @@
 import logging
-import os
 import shutil
 from pathlib import Path
 
@@ -15,7 +14,6 @@ from qgreenland.constants import (
     TMP_DIR,
     TaskType,
     WIP_DIR,
-    ZIP_TRIGGERFILE,
 )
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config import export_config_csv, export_config_manifest
@@ -49,7 +47,7 @@ class AncillaryFile(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(
-            os.path.join(TaskType.FINAL.value, self.dest_relative_filepath),
+            TaskType.FINAL.value / self.dest_relative_filepath,
         )
 
     def run(self):
@@ -96,49 +94,52 @@ class CreateQgisProjectFile(luigi.Task):
 
     def requires(self):
         yield AncillaryFile(
-            src_filepath=os.path.join(ANCILLARY_DIR, 'images', 'qgreenland.png'),
+            src_filepath=ANCILLARY_DIR / 'images' / 'qgreenland.png',
             dest_relative_filepath='qgreenland.png',
         )
         yield AncillaryFile(
-            src_filepath=os.path.join(PROJECT_DIR, 'README.md'),
+            src_filepath=PROJECT_DIR / 'README.md',
             dest_relative_filepath='README.txt',
         )
         yield AncillaryFile(
-            src_filepath=os.path.join(PROJECT_DIR, 'doc', 'CONTRIBUTING.md'),
+            src_filepath=PROJECT_DIR / 'doc' / 'CONTRIBUTING.md',
             dest_relative_filepath='CONTRIBUTING.txt',
         )
         yield AncillaryFile(
-            src_filepath=os.path.join(PROJECT_DIR, 'doc', 'QuickStartGuide.pdf'),
+            src_filepath=PROJECT_DIR / 'doc' / 'QuickStartGuide.pdf',
             dest_relative_filepath='QuickStartGuide.pdf',
         )
         yield AncillaryFile(
-            src_filepath=os.path.join(PROJECT_DIR, 'doc', 'UserGuide.pdf'),
+            src_filepath=PROJECT_DIR / 'doc' / 'UserGuide.pdf',
             dest_relative_filepath='UserGuide.pdf',
         )
         yield AncillaryFile(
-            src_filepath=os.path.join(PROJECT_DIR, 'doc', 'MakingDataQGRCompatible.pdf'),
+            src_filepath=PROJECT_DIR / 'doc' / 'MakingDataQGRCompatible.pdf',
             dest_relative_filepath='MakingDataQGRCompatible.pdf',
         )
         yield AncillaryFile(
-            src_filepath=os.path.join(PROJECT_DIR, 'CHANGELOG.md'),
+            src_filepath=PROJECT_DIR / 'CHANGELOG.md',
             dest_relative_filepath='CHANGELOG.txt',
         )
         yield LayerManifest()
         yield LayerList()
 
     def output(self):
-        return luigi.LocalTarget(ZIP_TRIGGERFILE)
+        versioned_package_name = f'{PROJECT}_{get_build_version()}'
+        return luigi.LocalTarget(WIP_DIR / versioned_package_name)
 
     def run(self):
+        """Create a symbolic link to trigger the zip."""
         # make_qgs outputs multiple files, not just one .qgs file. Similar to
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
         with QgsApplicationContext():
-            make_qgis_project_file(os.path.join(TaskType.FINAL.value, 'qgreenland.qgs'))
+            make_qgis_project_file(TaskType.FINAL.value / 'qgreenland.qgs')
 
-        # Create trigger file and don't write anything
-        with self.output().open('w'):
-            pass
+        # Create symbolic link to zip with the final versioned filename
+        # We don't _need_ a symbolic link here, but this also serves to trigger
+        # the next job.
+        TaskType.FINAL.value.symlink_to(Path(self.output().path))
 
 
 class ZipQGreenland(luigi.Task):
@@ -148,29 +149,20 @@ class ZipQGreenland(luigi.Task):
         return CreateQgisProjectFile()
 
     def output(self):
-        os.makedirs(RELEASE_DIR, exist_ok=True)
+        RELEASE_DIR.mkdir(parents=True, exist_ok=True)
         fn = f'{RELEASE_DIR}/{PROJECT}_{get_build_version()}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):
         logger.info(f'Creating {PROJECT} package: {self.output().path} ...')
 
-        # rename the FINAL package dir to include the version name for archiving
-        # purposes.
-        versioned_package_name = f'{PROJECT}_{get_build_version()}'
-        versioned_package_path = Path(WIP_DIR) / versioned_package_name
-        os.rename(TaskType.FINAL.value, versioned_package_path)
-
-        # Create the archive.
+        # Create the archive from the symlinked dir.
         tmp_name = f'{TMP_DIR}/final_archive'
-        shutil.make_archive(tmp_name, 'zip', Path(WIP_DIR), versioned_package_name)
-        os.rename(f'{tmp_name}.zip', self.output().path)
+        shutil.make_archive(tmp_name, 'zip', WIP_DIR, self.input().path)
+        Path(f'{tmp_name}.zip').rename(self.output().path)
 
-        # rename the versioned package subdir to its original name
-        os.rename(versioned_package_path, TaskType.FINAL.value)
-
-        # Remove the zip triggerfile.
-        os.remove(self.input().path)
+        # Clean up the symlink triggerfile.
+        Path(self.input().path).unlink()
 
         if ENVIRONMENT != 'dev':
             cleanup_intermediate_dirs()

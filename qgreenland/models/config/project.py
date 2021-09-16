@@ -17,9 +17,17 @@ class BoundingBox(QgrBaseModel):
 
 
 class ConfigBoundariesInfo(QgrBaseModel):
+    # TODO: Make filepath a string? relative to `ASSETS_DIR`? Multiple problems:
+    # A) We want to use project-relative paths so our config lockfile is
+    # diffable across filesystems.
+    # B) Steps may need full paths. We could use string slugs like
+    # `{assets_dir}` to abstract the path's prefix away, but still have full
+    # paths specified in steps.
+
     # Filepath relative to `PROJECT_DIR` (this allows for diffing configs across
     # systems)
     filepath: Path
+
     bbox: BoundingBox
 
     @validator('filepath')

@@ -2,6 +2,7 @@ import datetime as dt
 import logging
 import os
 import subprocess
+from pathlib import Path
 from typing import List, Optional
 from xml.sax.saxutils import escape
 
@@ -37,8 +38,7 @@ class QgsApplicationContext:
         self.qgs.exitQgis()
 
 
-# TODO: make this path a Path
-def make_qgis_project_file(path: str) -> None:
+def make_qgis_project_file(path: Path) -> None:
     """Create a QGIS project file with the correct stuff in it.
 
     path: the desired path to .qgs project file, e.g.:
@@ -50,7 +50,7 @@ def make_qgis_project_file(path: str) -> None:
     """
     # Create a new project; initializes basic structure
     project = qgc.QgsProject.instance()
-    project.write(path)
+    project.write(str(path))
 
     project_crs = qgc.QgsCoordinateReferenceSystem(CONFIG.project.crs)
     project.setCrs(project_crs)
