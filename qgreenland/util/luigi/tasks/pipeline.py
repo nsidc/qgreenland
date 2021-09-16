@@ -139,7 +139,10 @@ class CreateQgisProjectFile(luigi.Task):
         # Create symbolic link to zip with the final versioned filename
         # We don't _need_ a symbolic link here, but this also serves to trigger
         # the next job.
-        TaskType.FINAL.value.symlink_to(Path(self.output().path))
+        Path(self.output().path).symlink_to(
+            TaskType.FINAL.value,
+            target_is_directory=True,
+        )
 
 
 class ZipQGreenland(luigi.Task):
