@@ -12,15 +12,39 @@ from pathlib import Path
 import luigi
 
 from qgreenland.config import CONFIG
-from qgreenland.constants import TaskType
+from qgreenland.constants import (
+    DATA_DIR,
+    RELEASES_LAYERS_DIR,
+    TaskType,
+)
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
 from qgreenland.util.tree import leaf_lookup
 
 
+class QgrLayerTask(luigi.Task):
+    # TODO: DRY
+    requires_task = luigi.Parameter()
+    layer_id = luigi.Parameter()
+
+    def __repr__(self):
+        return (
+            f'{self.__class__.__name__}('
+            f'layer_id={self.layer_id})'
+        )
+
+    def requires(self):
+        """Dynamically specify task this task depends on."""
+        return self.requires_task
+
+    @property
+    def layer_cfg(self):
+        return CONFIG.layers[self.layer_id]
+
+
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
-class ChainableTask(luigi.Task):
+class ChainableTask(QgrLayerTask):
     """Define dependencies at instantiation-time.
 
     Each chainable task is specific to a single step in creation of a single
@@ -30,8 +54,6 @@ class ChainableTask(luigi.Task):
     from dependency-specification responsibility?
     """
 
-    requires_task = luigi.Parameter()
-    layer_id = luigi.Parameter()
     step_number = luigi.IntParameter()
 
     def __repr__(self):
@@ -39,16 +61,6 @@ class ChainableTask(luigi.Task):
             f'{self.__class__.__name__}('
             f'layer_id={self.layer_id},'
             f' step_number={self.step_number})'
-        )
-
-    def requires(self):
-        """Dynamically specify task this task depends on."""
-        return self.requires_task
-
-    @property
-    def layer_cfg(self):
-        return copy.deepcopy(
-            CONFIG.layers[self.layer_id],
         )
 
     @property
@@ -102,7 +114,7 @@ class ChainableTask(luigi.Task):
             )
 
 
-class FinalizeTask(luigi.Task):
+class FinalizeTask(QgrLayerTask):
     """Allow top-level layer tasks to lookup config from class attr layer_id.
 
     Also standardizes output directory for top-level layer tasks.
@@ -116,29 +128,9 @@ class FinalizeTask(luigi.Task):
     cases?
     """
 
-    # TODO: DRY
-    requires_task = luigi.Parameter()
-    layer_id = luigi.Parameter()
-
-    def __repr__(self):
-        return (
-            f'{self.__class__.__name__}('
-            f'layer_id={self.layer_id})'
-        )
-
-    # TODO: DRY
-    @property
-    def cfg(self):
-        return CONFIG.layers[self.layer_id]
-
     @property
     def node(self):
         return leaf_lookup(CONFIG.layer_tree, target_node_name=self.layer_id)
-
-    # TODO: DRY
-    def requires(self):
-        """Dynamically specify task this task depends on."""
-        return self.requires_task
 
     def output(self):
         return luigi.LocalTarget(
@@ -146,27 +138,54 @@ class FinalizeTask(luigi.Task):
         )
 
     def run(self):
-        if not os.path.isdir(self.input().path):
-            # TODO: better err
+        # TODO: Separate "put in layer release dir" from "symlink to compile
+        # dir"?
+        input_path = Path(self.input().path)
+        if not input_path.is_dir():
             raise RuntimeError(
-                'Expected final output to be a directory, not'
-                f' {self.input().path}!',
+                'Expected final output to be a directory. Received:'
+                f' {input_path}!',
             )
 
-        source_dir = Path(self.input().path)
+        # Find compatible layer in dir (gpkg | tif). We only expect one file to
+        # exist in the final layer dir.
+        input_fp = get_layer_fp(input_path)
 
-        # find compatible layer in dir (gpkg | tif)
-        input_fp = get_layer_fp(source_dir)
+        # Recreate final layer release directory
+        layer_final_dir = RELEASES_LAYERS_DIR / self.layer_cfg.id
+        shutil.rmtree(layer_final_dir, ignore_errors=True)
+        layer_final_dir.mkdir(parents=True)
 
-        # TODO: have `temporary_path_dir` return a `Path`.
-        with temporary_path_dir(self.output()) as temp_path:
-            with open(Path(temp_path) / 'provenance.txt', 'w') as provenance_file:
-                provenance_file.write(
-                    steps_to_provenance_text(self.cfg.steps),
-                )
+        # Copy file in there, renaming after layer id. 
+        final_fn = f'{self.layer_cfg.id}{input_fp.suffix}'
+        final_fp = layer_final_dir / final_fn
+        shutil.copy2(input_fp, final_fp)
 
-            output_tmp_fp = Path(temp_path) / f'{self.cfg.id}{input_fp.suffix}'
-            shutil.copy2(input_fp, output_tmp_fp)
+        # Create layer provenance file. This is not an "AncillaryFile" job
+        # because we need one file per layer.
+        with open(layer_final_dir / 'provenance.txt', 'w') as provenance_file:
+            provenance_file.write(
+                steps_to_provenance_text(self.layer_cfg.steps),
+            )
+
+        output_path = Path(self.output().path)
+        # Ensure output parent dir exists. The symlink will go there when we
+        # exit this context.
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Create a symbolic link to the final layer release directory inside the
+        # zip compile directory.  Relative symlink allows it to work inside and
+        # outside docker.
+        # NOTE: `Path.relative_to()` doesn't support non-subpath symlinks, so we
+        # use `os.path.relpath()` intead.
+        symlink_target = Path(os.path.relpath(
+            layer_final_dir,
+            output_path.parent,
+        ))
+        output_path.symlink_to(
+            symlink_target,
+            target_is_directory=True,
+        )
 
 
 def steps_to_provenance_text(steps: list[AnyStep]) -> str:

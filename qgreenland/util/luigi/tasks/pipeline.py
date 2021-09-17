@@ -18,6 +18,7 @@ from qgreenland.constants import (
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config import export_config_csv, export_config_manifest
 from qgreenland.util.luigi import generate_layer_tasks
+from qgreenland.util.misc import run_ogr_command
 from qgreenland.util.qgis.project import (
     QgsApplicationContext,
     make_qgis_project_file,
@@ -158,11 +159,18 @@ class ZipQGreenland(luigi.Task):
 
     def run(self):
         logger.info(f'Creating {PROJECT} package: {self.output().path} ...')
+        input_path = Path(self.input().path)
+        output_path = Path(self.output().path)
 
         # Create the archive from the symlinked dir.
-        tmp_name = f'{TMP_DIR}/final_archive'
-        shutil.make_archive(tmp_name, 'zip', WIP_DIR, self.input().path)
-        Path(f'{tmp_name}.zip').rename(self.output().path)
+        tmp_fp = TMP_DIR / 'final_archive.zip'
+        run_ogr_command([
+            'cd', str(TMP_DIR), '&&',
+            'zip', '-r',
+            str(tmp_fp),
+            f'{input_path.name}/'
+        ])
+        tmp_fp.rename(output_path)
 
         # Clean up the symlink triggerfile.
         Path(self.input().path).unlink()
@@ -179,5 +187,7 @@ class ZipQGreenland(luigi.Task):
         "Pingasoriarluni horaarutiginninneq!" For "success," you would want to
         say: "Iluatsitsilluarneq!"
         """
-        logger.info('Pingasoriarluni horaarutiginninneq!'
-                    f' Created {PROJECT} package: {self.output().path}')
+        logger.info(
+            'Pingasoriarluni horaarutiginninneq!'
+            f' Created {PROJECT} package: {self.output().path}'
+        )
