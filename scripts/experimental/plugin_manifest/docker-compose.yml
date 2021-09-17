@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   mock_server:
-    image: nsidc/qgreenland-sample-server:v0.1.0
+    image: nsidc/qgreenland-sample-server:v0.2.0
     build: .
     ports:
       - 8080:80
