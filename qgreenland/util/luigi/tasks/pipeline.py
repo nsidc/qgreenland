@@ -190,5 +190,5 @@ class ZipQGreenland(luigi.Task):
         """
         logger.info(
             'Pingasoriarluni horaarutiginninneq!'
-            f' Created {PROJECT} package: {self.output().path}'
+            f' Created {PROJECT} package: {output_path}',
         )

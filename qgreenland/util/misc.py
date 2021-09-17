@@ -7,6 +7,7 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
+from typing import Iterator
 
 import luigi
 
@@ -160,7 +161,7 @@ def find_single_file_by_ext(path, *, ext):
 
 # TODO: return a `Path`.
 @contextmanager
-def temporary_path_dir(target: luigi.Target) -> str:
+def temporary_path_dir(target: luigi.Target) -> Iterator[str]:
     """Standardizes Luigi task file output behavior.
 
     target: a Luigi.FileSystemTarget

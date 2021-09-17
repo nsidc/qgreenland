@@ -4,8 +4,6 @@ Manages input and output directories and various ways of running pipeline steps.
 Doesn't care about what files end up in the output directory, that's the
 responsibility of the step configuration.
 """
-import copy
-import os
 import shutil
 from pathlib import Path
 
@@ -13,7 +11,6 @@ import luigi
 
 from qgreenland.config import CONFIG
 from qgreenland.constants import (
-    DATA_DIR,
     RELEASES_LAYERS_DIR,
     TaskType,
 )
@@ -156,7 +153,7 @@ class FinalizeTask(QgrLayerTask):
         shutil.rmtree(layer_final_dir, ignore_errors=True)
         layer_final_dir.mkdir(parents=True)
 
-        # Copy file in there, renaming after layer id. 
+        # Copy file in there, renaming after layer id.
         final_fn = f'{self.layer_cfg.id}{input_fp.suffix}'
         final_fp = layer_final_dir / final_fn
         shutil.copy2(input_fp, final_fp)
