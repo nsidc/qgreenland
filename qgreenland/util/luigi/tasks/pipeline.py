@@ -18,7 +18,6 @@ from qgreenland.constants import (
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config import export_config_csv, export_config_manifest
 from qgreenland.util.luigi import generate_layer_tasks
-from qgreenland.util.misc import run_ogr_command
 from qgreenland.util.qgis.project import (
     QgsApplicationContext,
     make_qgis_project_file,
@@ -164,16 +163,18 @@ class ZipQGreenland(luigi.Task):
 
         # Create the archive from the symlinked dir.
         tmp_fp = TMP_DIR / 'final_archive.zip'
-        run_ogr_command([
-            'cd', str(TMP_DIR), '&&',
-            'zip', '-r',
-            str(tmp_fp),
-            f'{input_path.name}/'
-        ])
+        tmp_name = f'{tmp_fp.parent}/{tmp_fp.stem}'
+
+        shutil.make_archive(
+            tmp_name,
+            'zip',
+            WIP_DIR,
+            input_path.relative_to(WIP_DIR),
+        )
         tmp_fp.rename(output_path)
 
         # Clean up the symlink triggerfile.
-        Path(self.input().path).unlink()
+        input_path.unlink()
 
         if ENVIRONMENT != 'dev':
             cleanup_intermediate_dirs()
