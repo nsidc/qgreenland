@@ -168,24 +168,17 @@ class FinalizeTask(QgrLayerTask):
                 steps_to_provenance_text(self.layer_cfg.steps),
             )
 
-        output_path = Path(self.output().path)
-        # Ensure output parent dir exists. The symlink will go there when we
-        # exit this context.
-        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_dir = Path(self.output().path)
+        # Ensure output dir exists. The layer file symlink will go inside.
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output_fn = output_dir / final_fn
 
         # Create a symbolic link to the final layer release directory inside the
         # zip compile directory.  Relative symlink allows it to work inside and
         # outside docker.
-        # NOTE: `Path.relative_to()` doesn't support non-subpath symlinks, so we
-        # use `os.path.relpath()` intead.
-        symlink_target = Path(os.path.relpath(
-            layer_final_dir,
-            output_path.parent,
-        ))
-        output_path.symlink_to(
-            symlink_target,
-            target_is_directory=True,
-        )
+        # NOTE: Hardlink API is backwards to the symlink API...
+        #    https://docs.python.org/3/library/pathlib.html#pathlib.Path.link_to
+        final_fp.link_to(output_fn)
 
 
 def steps_to_provenance_text(steps: list[AnyStep]) -> str:
