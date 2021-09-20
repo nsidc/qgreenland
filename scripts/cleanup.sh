@@ -9,4 +9,4 @@ else
     tty_arg="-T"
 fi
 
-docker-compose exec ${tty_arg} luigi ./tasks/qgreenland/qgreenland/util/cleanup.py "$@"
+docker-compose exec ${tty_arg} luigi ./tasks/qgreenland/qgreenland/cli.py cleanup "$@"
