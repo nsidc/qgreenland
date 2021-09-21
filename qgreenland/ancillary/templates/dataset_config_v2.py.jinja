@@ -1,0 +1,32 @@
+{%- set asset_class = asset_type_map[dataset.access_method] -%}
+from qgreenland.models.config.asset import {{ asset_class }}
+from qgreenland.models.config.dataset import ConfigDataset
+
+
+{{ dataset.id }} = ConfigDataset(
+    id='{{ dataset.id }}',
+    assets=[
+        {%- for source in dataset.sources %}
+        {{ asset_class }}(
+            id='{{ source.id }}',
+            {%- if dataset.access_method == 'manual' %}
+            access_instructions="""
+                {{source.access_instructions|wordwrap(width=80-16)|indent(16)}}
+            """,
+            {%- endif %}
+        ),
+        {%- endfor %}
+    ],
+    metadata={
+        'title': '{{dataset.metadata.title}}',
+        'abstract': """
+            {{dataset.metadata.abstract|wordwrap(width=80-12)|indent(12)}}
+        """,
+        'citation': {
+            'text': """
+                {{dataset.metadata.citation.text|wordwrap(width=80-16)|indent(16)}}
+            """,
+            'url': '{{dataset.metadata.citation.url}}',
+        },
+    },
+)

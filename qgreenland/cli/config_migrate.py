@@ -3,10 +3,11 @@ import requests
 import yaml
 from funcy import lwhere
 
-BASE_URL = 'https://raw.githubusercontent.com/nsidc/qgreenland/v1.0.1'
+from qgreenland.util.template import load_template
 
-
-def _read_yaml_from_gh(url_fp: str) -> dict:
+def _load_yaml_from_gh(url_fp: str) -> dict:
+    """Load YAML from v1 tag on GitHub."""
+    BASE_URL = 'https://raw.githubusercontent.com/nsidc/qgreenland/v1.0.1'
     url = BASE_URL + url_fp
     loaded = yaml.safe_load(requests.get(url).text)
 
@@ -29,21 +30,27 @@ def config_migrate():
     ...
 
 
-
 @config_migrate.command()
 @click.argument('dataset_id')
 def dataset(dataset_id):
     """Migrate config DATASET_ID from v1 to v2."""
-    yml = _read_yaml_from_gh('/qgreenland/config/datasets.yml')
-
+    yml = _load_yaml_from_gh('/qgreenland/config/datasets.yml')
     dataset = _find_one(yml, id=dataset_id)
-    breakpoint()
-    print()
-    ...
+
+    template = load_template('dataset_config_v2.py.jinja')
+    rendered = template.render(
+        dataset=dataset,
+        asset_type_map={
+            'manual': 'ConfigDatasetManualAsset',
+        },
+    )
+    print(rendered)
 
 
 @config_migrate.command()
 @click.argument('layer_id')
 def layer(layer_id):
     """Migrate config LAYER_ID from v1 to v2."""
+    yml = _load_yaml_from_gh('/qgreenland/config/layers.yml')
+    layer = _find_one(yml, id=layer_id)
     raise NotImplementedError()
