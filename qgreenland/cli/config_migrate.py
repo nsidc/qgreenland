@@ -1,7 +1,9 @@
+from fnmatch import fnmatch
+
 import click
 import requests
 import yaml
-from funcy import lwhere
+from funcy import select
 
 from qgreenland.util.template import load_template
 
@@ -14,14 +16,15 @@ def _load_yaml_from_gh(url_fp: str) -> dict:
     return loaded
 
 
-def _find_one(mappings, **cond):
-    result = lwhere(mappings, **cond)
-    if len(result) != 1:
+def _select(mappings, pattern):
+    pred = lambda i: fnmatch(i['id'], pattern)
+    results = select(pred, mappings)
+    if len(results) == 0:
         raise RuntimeError(
-            f'Expected 1 result for ({cond}). Received: {result}',
+            f'No results found for "{pattern}".'
         )
 
-    return result[0]
+    return results
 
 
 @click.group()
@@ -31,26 +34,40 @@ def config_migrate():
 
 
 @config_migrate.command()
-@click.argument('dataset_id')
-def dataset(dataset_id):
-    """Migrate config DATASET_ID from v1 to v2."""
-    yml = _load_yaml_from_gh('/qgreenland/config/datasets.yml')
-    dataset = _find_one(yml, id=dataset_id)
+@click.argument('pattern')
+def dataset(pattern):
+    """Migrate datasets with ids matching PATTERN from v1 to v2.
 
+    Matching is done with Unix shell-style wildcards (see `fnmatch.fnmatch`).
+
+    NOTE: If multiple matches are found, the ouput will need to be manually
+    touched up to consolidate import statements.
+    """
+    yml = _load_yaml_from_gh('/qgreenland/config/datasets.yml')
+    datasets = _select(yml, pattern=pattern)
     template = load_template('dataset_config_v2.py.jinja')
-    rendered = template.render(
-        dataset=dataset,
-        asset_type_map={
-            'manual': 'ConfigDatasetManualAsset',
-        },
-    )
-    print(rendered)
+
+    for dataset in datasets:
+        rendered = template.render(
+            dataset=dataset,
+            asset_type_map={
+                'manual': 'ConfigDatasetManualAsset',
+            },
+        )
+        print(rendered)
 
 
 @config_migrate.command()
-@click.argument('layer_id')
-def layer(layer_id):
-    """Migrate config LAYER_ID from v1 to v2."""
+@click.argument('pattern')
+def layer(pattern):
+    """Migrate layers with ids matching PATTERN from v1 to v2.
+
+    Matching is done with Unix shell-style wildcards (see `fnmatch.fnmatch`).
+
+    NOTE: If multiple matches are found, the ouput will need to be manually
+    touched up to consolidate import statements.
+    """
     yml = _load_yaml_from_gh('/qgreenland/config/layers.yml')
-    layer = _find_one(yml, id=layer_id)
-    raise NotImplementedError()
+    layers = _select(yml, pattern=pattern)
+    print(f'Found: \n\n{layers}')
+    raise NotImplementedError('Layer migration is not implemented.')
