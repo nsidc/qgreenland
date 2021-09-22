@@ -7,7 +7,7 @@ standard_ogr2ogr_args = [
     '-lco', 'ENCODING=UTF-8',
     '-t_srs', project.crs,
     # TODO: How to avoid this type of dir-handling within configs?
-    '-clipdst', '{assets_dir}/' + str(project.boundaries['data'].filepath),
+    '-clipdst', project.boundaries['data'].filepath,
 ]
 
 towns_and_settlements = ConfigLayer(

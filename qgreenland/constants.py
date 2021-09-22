@@ -41,10 +41,6 @@ LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 # renaming. Make it a subdir?
 TMP_DIR = WIP_DIR
 
-# Output target file of the task just before the ZipQGreenland task.
-# Presence indicates the project is ready to be zipped for release.
-ZIP_TRIGGERFILE = WIP_DIR / 'READY_TO_ZIP'
-
 REQUEST_TIMEOUT = 20
 
 # URS stuff
@@ -68,4 +64,4 @@ class TaskType(Enum):
     WIP = WIP_DIR / 'wip'
 
     # For processed QGreenland data in its final directory structure.
-    FINAL = WIP_DIR / f'{PROJECT}'
+    FINAL = WIP_DIR / PROJECT

@@ -5,7 +5,7 @@ import fiona
 from pydantic import root_validator, validator
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import PROJECT_DIR
+from qgreenland.constants import ASSETS_DIR
 from qgreenland.models.base_model import QgrBaseModel
 
 
@@ -17,16 +17,18 @@ class BoundingBox(QgrBaseModel):
 
 
 class ConfigBoundariesInfo(QgrBaseModel):
-    # Filepath relative to `PROJECT_DIR` (this allows for diffing configs across
-    # systems)
-    filepath: Path
+    # Absolute filepath using `{assets_dir}` slug allows for diffing configs
+    # across file systems. Steps often need absolute paths that are
+    # filesystem-agnostic.
+    filepath: str
+
     bbox: BoundingBox
 
     @validator('filepath')
     @classmethod
     def ensure_relative_to_assets(cls, value):
         # TODO: DRY this out? Same validator in assets module.
-        full_path = PROJECT_DIR / value
+        full_path = Path(value.format(assets_dir=ASSETS_DIR))
         if not full_path.is_file():
             raise ValueError(f'No file found at {full_path}.')
 
@@ -41,7 +43,7 @@ class ConfigBoundariesInfo(QgrBaseModel):
         if 'filepath' not in values or not values['filepath']:
             raise RuntimeError('Filepath must be populated.')
 
-        fp = PROJECT_DIR / values['filepath']
+        fp = Path(values['filepath'].format(assets_dir=ASSETS_DIR))
 
         with fiona.open(fp) as ifile:
             features = list(ifile)
