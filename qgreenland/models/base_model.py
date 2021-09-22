@@ -4,8 +4,6 @@ from typing import Any
 
 from pydantic import BaseModel, Extra, validator
 
-from qgreenland.util.model.validate import clean_string
-
 
 class QgrBaseModel(BaseModel):
     """Implements 'faux' immutability and allows usage of `functools.cached_property`.
