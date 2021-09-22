@@ -2654,6 +2654,128 @@
       {
         "children": [
           {
+            "layer_cfg": {
+              "description": "Points representing named points of interest in Greenland.",
+              "id": "comprehensive_places",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "access_instructions": "Provided by Eva M\u00e4tzler via email as a zipped\ncollection of data '20201112_Oqaasileriffik_place-name register.zip'. See\nscripts/private-archive-preprocess/eva_placenames/README.md (at QGreenland\nGitHub: https://github.com/nsidc/qgreenland) for preprocessing steps.",
+                  "id": "only"
+                },
+                "dataset": {
+                  "assets": {
+                    "only": {
+                      "access_instructions": "Provided by Eva M\u00e4tzler via email as a zipped\ncollection of data '20201112_Oqaasileriffik_place-name register.zip'. See\nscripts/private-archive-preprocess/eva_placenames/README.md (at QGreenland\nGitHub: https://github.com/nsidc/qgreenland) for preprocessing steps.",
+                      "id": "only"
+                    }
+                  },
+                  "id": "asiaq_private_placenames",
+                  "metadata": {
+                    "abstract": "Place names as provided by Asiaq Greenland Survey,\nDecember 2020. Translation for data fields provided by Arnaq B. Johansen,\nGreenland Project Manager in Collection of Place Names (January 2021).\n\nQGreenland Team - Noted Data Issues\n\n* East Greenland: Ikkatteq (correctly spelled \u2018Ikateq\u2019) is an abandoned airstrip\nand is not populated.\n\n* Near Ittoqqortoormiit: Uunartoq and Ittaajimmiit are both abandoned.\n\n* Westcoast of Greenland, near Paamiut: Ivittuut is abandoned, Narsalik\nwas abandoned in 1997.\n\n* South Greenland: Qaqortoq is placed twice - two dots next to each other.\n\n* Near Qaanaaq: Qeqertarsuaq and Moriusaq are abandoned.\n\n* Near Upernavik: Tussaaq is an abandoned settlement.\n\n* Near Uummannaq: Illorsuit and Nuugaatsiaq are two recently abandoned\nsettlements (2017) due a massive landslide and subsequent tsunami.\n\n* Kangerlussuaq (west coast): Is not indicated on the map.\n\n* West: Aasiaat is placed twice - two dots next to each other.",
+                    "citation": {
+                      "text": "Place names, Asiaq Greenland Survey, December 2020",
+                      "url": ""
+                    },
+                    "title": "Place names"
+                  }
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/qgreenland/assets/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT *, \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/translations_joined.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [
+                "places"
+              ],
+              "title": "Place names database"
+            },
+            "name": "comprehensive_places"
+          },
+          {
+            "layer_cfg": {
+              "description": "Points representing towns and settlements in Greenland.",
+              "id": "populated_places",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "access_instructions": "Provided by Eva M\u00e4tzler via email as a zipped\ncollection of data '20201112_Oqaasileriffik_place-name register.zip'. See\nscripts/private-archive-preprocess/eva_placenames/README.md (at QGreenland\nGitHub: https://github.com/nsidc/qgreenland) for preprocessing steps.",
+                  "id": "only"
+                },
+                "dataset": {
+                  "assets": {
+                    "only": {
+                      "access_instructions": "Provided by Eva M\u00e4tzler via email as a zipped\ncollection of data '20201112_Oqaasileriffik_place-name register.zip'. See\nscripts/private-archive-preprocess/eva_placenames/README.md (at QGreenland\nGitHub: https://github.com/nsidc/qgreenland) for preprocessing steps.",
+                      "id": "only"
+                    }
+                  },
+                  "id": "asiaq_private_placenames",
+                  "metadata": {
+                    "abstract": "Place names as provided by Asiaq Greenland Survey,\nDecember 2020. Translation for data fields provided by Arnaq B. Johansen,\nGreenland Project Manager in Collection of Place Names (January 2021).\n\nQGreenland Team - Noted Data Issues\n\n* East Greenland: Ikkatteq (correctly spelled \u2018Ikateq\u2019) is an abandoned airstrip\nand is not populated.\n\n* Near Ittoqqortoormiit: Uunartoq and Ittaajimmiit are both abandoned.\n\n* Westcoast of Greenland, near Paamiut: Ivittuut is abandoned, Narsalik\nwas abandoned in 1997.\n\n* South Greenland: Qaqortoq is placed twice - two dots next to each other.\n\n* Near Qaanaaq: Qeqertarsuaq and Moriusaq are abandoned.\n\n* Near Upernavik: Tussaaq is an abandoned settlement.\n\n* Near Uummannaq: Illorsuit and Nuugaatsiaq are two recently abandoned\nsettlements (2017) due a massive landslide and subsequent tsunami.\n\n* Kangerlussuaq (west coast): Is not indicated on the map.\n\n* West: Aasiaat is placed twice - two dots next to each other.",
+                    "citation": {
+                      "text": "Place names, Asiaq Greenland Survey, December 2020",
+                      "url": ""
+                    },
+                    "title": "Place names"
+                  }
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/qgreenland/assets/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/translations_joined.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [
+                "places"
+              ],
+              "title": "Towns and settlements"
+            },
+            "name": "populated_places"
+          }
+        ],
+        "name": "Places",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
             "children": [
               {
                 "layer_cfg": {
@@ -15899,6 +16021,7 @@
     "settings": {
       "order": [
         "Reference",
+        "Places",
         "Terrain Models",
         "Geophysics",
         "Internet-required data",
