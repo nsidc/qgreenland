@@ -1,5 +1,4 @@
 import datetime as dt
-import os
 import tempfile
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -7,7 +6,6 @@ from xml.sax.saxutils import escape
 import qgis.core as qgc
 
 from qgreenland.constants import (
-    ANCILLARY_DIR,
     INPUT_DIR,
 )
 from qgreenland.models.config.layer import ConfigLayer

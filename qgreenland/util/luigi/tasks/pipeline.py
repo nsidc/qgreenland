@@ -4,7 +4,6 @@ from pathlib import Path
 
 import luigi
 
-from qgreenland.config import CONFIG
 from qgreenland.constants import (
     ANCILLARY_DIR,
     ENVIRONMENT,
@@ -18,6 +17,7 @@ from qgreenland.constants import (
 )
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config import export_config_csv, export_config_manifest
+from qgreenland.util.config.config import CONFIG
 from qgreenland.util.luigi import generate_layer_tasks
 from qgreenland.util.qgis.project import (
     QgsApplicationContext,

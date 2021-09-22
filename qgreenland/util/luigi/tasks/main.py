@@ -9,13 +9,13 @@ from pathlib import Path
 
 import luigi
 
-from qgreenland.config import CONFIG
 from qgreenland.constants import (
     RELEASES_LAYERS_DIR,
     TaskType,
 )
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
+from qgreenland.util.config.config import CONFIG
 from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
 from qgreenland.util.tree import leaf_lookup
 

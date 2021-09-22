@@ -4,7 +4,6 @@ from pathlib import Path
 
 import luigi
 
-from qgreenland.config import CONFIG
 from qgreenland.constants import PRIVATE_ARCHIVE_DIR, PROJECT_DIR, TaskType
 from qgreenland.models.config.asset import (
     ConfigDatasetCmrAsset,
@@ -13,6 +12,7 @@ from qgreenland.models.config.asset import (
     ConfigDatasetRepositoryAsset,
 )
 from qgreenland.util.cmr import get_cmr_granule
+from qgreenland.util.config.config import CONFIG
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import (
     datasource_dirname,

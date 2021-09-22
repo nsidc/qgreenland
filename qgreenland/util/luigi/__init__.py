@@ -2,7 +2,6 @@ from typing import Dict, Type
 
 import luigi
 
-from qgreenland.config import CONFIG
 from qgreenland.models.config.asset import (
     AnyAsset,
     ConfigDatasetCmrAsset,
@@ -12,6 +11,7 @@ from qgreenland.models.config.asset import (
     ConfigDatasetRepositoryAsset,
 )
 from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.util.config.config import CONFIG
 from qgreenland.util.luigi.tasks.fetch import (
     FetchCmrGranule,
     FetchDataFiles,

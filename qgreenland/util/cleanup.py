@@ -1,19 +1,12 @@
 #!/usr/bin/env python
 import os
 import shutil
-import subprocess
 import time
 
-import click
-
 from qgreenland.constants import (
-    INPUT_DIR,
-    RELEASES_DIR,
     TaskType,
     WIP_DIR,
 )
-
-
 
 
 def cleanup_intermediate_dirs():

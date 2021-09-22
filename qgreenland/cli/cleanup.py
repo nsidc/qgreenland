@@ -1,3 +1,19 @@
+import subprocess
+
+import click
+
+from qgreenland.constants import (
+    INPUT_DIR,
+    RELEASES_DIR,
+    TaskType,
+)
+from qgreenland.util.cli.validate import (
+    BOOLEAN_CHOICE,
+    validate_ambiguous_command,
+    validate_boolean_choice,
+)
+
+
 def print_and_run(cmd, *, dry_run):
     print(cmd)
     if not dry_run:
@@ -27,19 +43,19 @@ def print_and_run(cmd, *, dry_run):
               help=(
                   'Delete _ALL_ input-cached layers, ignoring LAYER_ID_PATTERN'
               ),
-              type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
+              type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='False', show_default=True)
 @click.option('delete_all_wip', '--delete-all-wip', '-W',
               help=(
                   'Delete _ALL_ WIP layers, ignoring LAYER_ID_PATTERN'
               ),
-              type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
+              type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='False', show_default=True)
 @click.option('delete_compiled', '--delete-compiled', '-C',
               help=(
                   'Delete compiled (but not zipped) QGreenland datapackage'
               ),
-              type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
+              type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='True', show_default=True)
 # TODO: delete_all_wip_tmp: Deletes dirs like `transform-luigi-tmp-4765361527/`
 #       from wip
@@ -48,7 +64,7 @@ def print_and_run(cmd, *, dry_run):
               help=(
                   'Delete all zipped QGreenland releases'
               ),
-              type=BOOLEAN_CHOICE, callback=_validate_boolean_choice,
+              type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='False', show_default=True)
 # NOTE: Complexity check (C901) is disabled because this function is just a big
 #       set of switches by design!
@@ -57,7 +73,7 @@ def cleanup_cli(**kwargs):  # noqa: C901
 
     By default, clean up the compiled (but not zipped) datapackage.
     """
-    _validate_ambiguous_command(kwargs)
+    validate_ambiguous_command(kwargs)
 
     if kwargs['dry_run']:
         print('WARNING: In DRY RUN mode. Nothing will be deleted.')

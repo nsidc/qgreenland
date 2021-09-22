@@ -1,7 +1,9 @@
 from functools import cached_property
 from typing import Any
 
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel, Extra, validator
+
+from qgreenland.util.model.validate import clean_string
 
 
 class QgrBaseModel(BaseModel):
@@ -10,6 +12,13 @@ class QgrBaseModel(BaseModel):
     Immutability is not 'strict' (e.g., dicts can be mutated) - a
     determined dev can still mutate model instances.
     """
+
+    @validator('*')
+    @classmethod
+    def clean_all_string_fields(cls, value):
+        if isinstance(value, str):
+            return clean_string(value)
+        return value
 
     class Config:
         # Throw an error if any unexpected attrs are provided. default: 'ignore'

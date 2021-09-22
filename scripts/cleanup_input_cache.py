@@ -9,7 +9,7 @@ Since this doesn't currently run in the container, it writes out a series of
 """
 import os
 
-from qgreenland.config import CONFIG
+from qgreenland.util.config.config import CONFIG
 
 INPUT_CACHE_DIR = '/share/appdata/qgreenland-input-cache/'
 DATASETS_CONFIG = 'qgreenland/config/datasets.yml'

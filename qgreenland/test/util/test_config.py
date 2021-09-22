@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from qgreenland.test.constants import MockTaskType
-from qgreenland.util.config import (
+from qgreenland.util.config.export import (
     export_config_csv,
     export_config_manifest,
 )

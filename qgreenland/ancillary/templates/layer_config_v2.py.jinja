@@ -1,0 +1,19 @@
+from qgreenland.config.datasets.XXXX import XXXX as dataset
+from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+
+
+{{ layer.id }} = ConfigLayer(
+    id='{{ layer.id }}',
+    title='{{ layer.title }}',
+    description=(
+        {{'"""%s"""'|format(layer.description)|wordwrap(width=80-8)|indent(8)}}
+    ),
+    tags=[],
+    style='XXXX',
+    input=ConfigLayerInput(
+        dataset=dataset,
+        asset=dataset.assets['XXXX'],
+    ),
+    steps=[
+    ],
+)

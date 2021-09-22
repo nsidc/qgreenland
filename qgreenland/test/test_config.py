@@ -1,6 +1,6 @@
 import pytest
 
-from qgreenland.config import CONFIG
+from qgreenland.util.config.config import CONFIG
 
 
 def test_get_layer_config_all():

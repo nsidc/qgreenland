@@ -1,7 +1,10 @@
+import click
+
+
 BOOLEAN_CHOICE = click.Choice(['True', 'False'], case_sensitive=False)
 
 
-def _validate_boolean_choice(_ctx, _param, value):
+def validate_boolean_choice(_ctx, _param, value):
     if value == 'True':
         return True
     if value == 'False':
@@ -12,7 +15,8 @@ def _validate_boolean_choice(_ctx, _param, value):
     )
 
 
-def _validate_ambiguous_command(kwargs):
+# TODO: Rename. This is specific to the cleanup cli.
+def validate_ambiguous_command(kwargs):
     """Validate for conflicting options and suggest a fix."""
     msg = (
         'Ambiguous command! You have requested both to delete all'
