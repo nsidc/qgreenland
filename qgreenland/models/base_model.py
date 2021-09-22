@@ -1,3 +1,4 @@
+import inspect
 from functools import cached_property
 from typing import Any
 
@@ -16,8 +17,13 @@ class QgrBaseModel(BaseModel):
     @validator('*')
     @classmethod
     def clean_all_string_fields(cls, value):
+        """Clean up all string fields with `cleandoc`.
+
+        This adjusts indentation and removes leading and trailing newlines, enabling
+        cleaner use of triple-quoted strings, just like docstrings.
+        """
         if isinstance(value, str):
-            return clean_string(value)
+            return inspect.cleandoc(value)
         return value
 
     class Config:
