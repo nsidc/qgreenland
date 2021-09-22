@@ -70,7 +70,7 @@ def layer(pattern):
     """
     yml = _load_yaml_from_gh('/qgreenland/config/layers.yml')
     layers = _select(yml, pattern=pattern)
-    template = load_template('layers_config_v2.py.jinja')
+    template = load_template('layer_config_v2.py.jinja')
 
     for layer in layers:
         rendered = template.render(
