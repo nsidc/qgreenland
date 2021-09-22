@@ -11,7 +11,7 @@ from qgreenland.models.config.dataset import ConfigDataset
             id='{{ source.id }}',
             {%- if dataset.access_method == 'manual' %}
             access_instructions=(
-                {{'"""%s"""'|format(source.access_instructions)|wordwrap(width=80-16)|indent(16)}}
+                {{'"""%s"""'|format(source.access_instructions)|wordwrap(width=80-16, break_on_hyphens=False)|indent(16)}}
             ),
             {%- endif %}
         ),
@@ -20,11 +20,11 @@ from qgreenland.models.config.dataset import ConfigDataset
     metadata={
         'title': '{{dataset.metadata.title}}',
         'abstract':(
-            {{'"""%s"""'|format(dataset.metadata.abstract)|wordwrap(width=80-12)|indent(12)}}
+            {{'"""%s"""'|format(dataset.metadata.abstract)|wordwrap(width=80-12, break_on_hyphens=False)|indent(12)}}
         ),
         'citation': {
             'text':(
-                {{'"""%s"""'|format(dataset.metadata.citation.text)|wordwrap(width=80-16)|indent(16)}}
+                {{'"""%s"""'|format(dataset.metadata.citation.text)|wordwrap(width=80-16, break_on_hyphens=False)|indent(16)}}
             ),
             'url': '{{dataset.metadata.citation.url}}',
         },
