@@ -7,6 +7,9 @@ import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
+from typing import Iterator
+
+import luigi
 
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType
@@ -156,8 +159,9 @@ def find_single_file_by_ext(path, *, ext):
         raise exc.QgrRuntimeError(f"No files with extension '{ext}' found at '{path}'")
 
 
+# TODO: return a `Path`.
 @contextmanager
-def temporary_path_dir(target):
+def temporary_path_dir(target: luigi.Target) -> Iterator[str]:
     """Standardizes Luigi task file output behavior.
 
     target: a Luigi.FileSystemTarget

@@ -10,6 +10,7 @@ from qgreenland.constants import (
     ENVIRONMENT,
     PROJECT,
     PROJECT_DIR,
+    RELEASES_LAYERS_DIR,
     RELEASE_DIR,
     TMP_DIR,
     TaskType,
@@ -72,14 +73,16 @@ class LayerList(AncillaryFile):
             export_config_csv(CONFIG, output_path=temp_path)
 
 
-class LayerManifest(AncillaryFile):
+class LayerManifest(luigi.Task):
     """A JSON manifest of layers available for access.
 
     Intended to be processed by machine, e.g. QGIS plugin.
     """
 
-    src_filepath = None
-    dest_relative_filepath = 'manifest.json'
+    def output(self):
+        return luigi.LocalTarget(
+            RELEASES_LAYERS_DIR / 'manifest.json',
+        )
 
     def requires(self):
         yield IngestAllLayers()
@@ -158,14 +161,23 @@ class ZipQGreenland(luigi.Task):
 
     def run(self):
         logger.info(f'Creating {PROJECT} package: {self.output().path} ...')
+        input_path = Path(self.input().path)
+        output_path = Path(self.output().path)
 
         # Create the archive from the symlinked dir.
-        tmp_name = f'{TMP_DIR}/final_archive'
-        shutil.make_archive(tmp_name, 'zip', WIP_DIR, self.input().path)
-        Path(f'{tmp_name}.zip').rename(self.output().path)
+        tmp_fp = TMP_DIR / 'final_archive.zip'
+        tmp_name = f'{tmp_fp.parent}/{tmp_fp.stem}'
+
+        shutil.make_archive(
+            tmp_name,
+            'zip',
+            WIP_DIR,
+            input_path.relative_to(WIP_DIR),
+        )
+        tmp_fp.rename(output_path)
 
         # Clean up the symlink triggerfile.
-        Path(self.input().path).unlink()
+        input_path.unlink()
 
         if ENVIRONMENT != 'dev':
             cleanup_intermediate_dirs()
@@ -179,5 +191,7 @@ class ZipQGreenland(luigi.Task):
         "Pingasoriarluni horaarutiginninneq!" For "success," you would want to
         say: "Iluatsitsilluarneq!"
         """
-        logger.info('Pingasoriarluni horaarutiginninneq!'
-                    f' Created {PROJECT} package: {self.output().path}')
+        logger.info(
+            'Pingasoriarluni horaarutiginninneq!'
+            f' Created {PROJECT} package: {output_path}',
+        )

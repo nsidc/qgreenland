@@ -22,6 +22,7 @@ INPUT_DIR = Path('/input')
 DATA_DIR = Path('/luigi/data')
 PRIVATE_ARCHIVE_DIR = Path('/private-archive')
 RELEASES_DIR = DATA_DIR / 'release'
+RELEASES_LAYERS_DIR = RELEASES_DIR / 'layers'
 WIP_DIR = DATA_DIR / 'luigi-wip'
 ANCILLARY_DIR = PACKAGE_DIR / 'ancillary'
 ASSETS_DIR = PACKAGE_DIR / 'assets'
