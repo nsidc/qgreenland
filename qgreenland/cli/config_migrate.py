@@ -18,8 +18,8 @@ def _load_yaml_from_gh(url_fp: str) -> dict:
 
 
 def _select(mappings, pattern):
-    pred = lambda i: fnmatch(i['id'], pattern)  # noqa: E731
-    results = select(pred, mappings)
+    predicate = lambda i: fnmatch(i['id'], pattern)  # noqa: E731
+    results = select(predicate, mappings)
     if len(results) == 0:
         raise RuntimeError(
             f'No results found for "{pattern}".',
