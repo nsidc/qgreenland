@@ -14,9 +14,7 @@ layers = [
 Ice thickness in meters. Mass conservation source data provided by Mathieu
 Morlighem.""",
         tags=['terrain_model'],
-        show=False,
         style='bedmachine_thickness',
-        in_package=True,
         input=ConfigLayerInput(
             dataset=bedmachine.bedmachine,
             asset=bedmachine.bedmachine.assets['only'],
@@ -44,9 +42,7 @@ Morlighem.""",
     Ice thickness in meters. Mass conservation source data provided by Mathieu
     Morlighem.
   hierarchy: ['Terrain models', 'BedMachine']
-  show: False
   style: 'bedmachine_thickness'
-  in_package: True
   input:
     dataset: bedmachine
     asset: only

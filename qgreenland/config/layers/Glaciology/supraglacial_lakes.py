@@ -1,5 +1,5 @@
 from qgreenland.config.datasets.esa_cci import (
-    supraglacial_lakes as dataset,
+    esa_cci_supraglacial_lakes as dataset,
 )
 # from qgreenland.config.helpers.steps.build_overviews import build_overviews
 # from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut

@@ -16,8 +16,8 @@ from qgreenland.constants import (
     WIP_DIR,
 )
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
-from qgreenland.util.config import export_config_csv, export_config_manifest
 from qgreenland.util.config.config import CONFIG
+from qgreenland.util.config.export import export_config_csv, export_config_manifest
 from qgreenland.util.luigi import generate_layer_tasks
 from qgreenland.util.qgis.project import (
     QgsApplicationContext,

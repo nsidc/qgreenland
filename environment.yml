@@ -21,6 +21,7 @@ dependencies:
   - requests ~=2.25.0
   - types-requests ~=2.25.0
   - pyyaml ~=5.4.1
+  - types-pyyaml ~=5.4.1
   - funcy ~=1.16
 
 
