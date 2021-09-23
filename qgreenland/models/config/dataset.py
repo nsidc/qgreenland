@@ -21,11 +21,6 @@ class ConfigDatasetMetadata(QgrBaseModel):
     abstract: str
     citation: ConfigDatasetCitation
 
-    @validator('abstract')
-    @classmethod
-    def strip_enclosing_newlines(cls, value):
-        return value.lstrip('\n').rstrip('\n')
-
 
 class ConfigDataset(QgrBaseModel):
     id: str = Field(..., min_length=1)

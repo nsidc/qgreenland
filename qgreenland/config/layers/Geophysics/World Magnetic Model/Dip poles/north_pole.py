@@ -59,8 +59,6 @@ now) antipodal.
         title=title,
         description=description.format(common_description=common_description),
         tags=['wmm'],
-        in_package=True,
-        show=False,
         style='geomagnetic_north_pole',
         input=ConfigLayerInput(
             dataset=wmm.wmm,

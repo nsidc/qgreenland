@@ -7,6 +7,7 @@ settings = RootGroupSettings(
         'Places',
         'Terrain Models',
         'Geophysics',
+        'Glaciology',
         'Internet-required data',
         'Basemaps',
     ],

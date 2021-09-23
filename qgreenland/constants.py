@@ -25,6 +25,7 @@ RELEASES_DIR = DATA_DIR / 'release'
 RELEASES_LAYERS_DIR = RELEASES_DIR / 'layers'
 WIP_DIR = DATA_DIR / 'luigi-wip'
 ANCILLARY_DIR = PACKAGE_DIR / 'ancillary'
+TEMPLATES_DIR = ANCILLARY_DIR / 'templates'
 ASSETS_DIR = PACKAGE_DIR / 'assets'
 SCRIPTS_DIR = PROJECT_DIR / 'scripts'
 

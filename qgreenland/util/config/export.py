@@ -6,7 +6,6 @@ ONLY the constants module should import this module.
 import csv
 import hashlib
 import json
-import logging
 import os
 from pathlib import Path
 from typing import Union
@@ -28,39 +27,7 @@ from qgreenland.util.qgis.metadata import (
 from qgreenland.util.tree import LayerNode
 from qgreenland.util.version import get_build_version
 
-logger = logging.getLogger('luigi-interface')
 DEFAULT_LAYER_MANIFEST_PATH = Path('./layers.csv')
-
-
-# TODO: Define model for "final" assets? Come up with a better name...
-def _layer_manifest_final_assets(
-    layer_node: LayerNode,
-) -> list[dict[str, Union[str, int]]]:
-    """List out all available finalized files on disk for this layer.
-
-    Not to be confused with layer dataset assets, which are input files.
-
-    TODO: Better label?
-    """
-    layer_cfg = layer_node.layer_cfg
-    if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
-        return [{
-            'type': 'online',
-            **layer_cfg.input.asset.dict(
-                include={'provider', 'url'},
-            ),
-        }]
-    else:
-        layer_fp = get_final_layer_filepath(layer_node)
-        layer_files = directory_contents(layer_fp.parent)
-
-        return [{
-            'file': fp.name,
-            # TODO: Handle a QMD/QML next to the data
-            'type': 'data' if fp == layer_fp else 'ancillary',
-            'checksum': hashlib.md5(open(fp, 'rb').read()).hexdigest(),
-            'size_bytes': fp.stat().st_size,
-        } for fp in layer_files]
 
 
 def export_config_manifest(
@@ -163,3 +130,34 @@ class MagicJSONEncoder(json.JSONEncoder):
         if hasattr(o, '__json__') and callable(o.__json__):
             return o.__json__()
         return super(MagicJSONEncoder, self).default(o)
+
+
+# TODO: Define model for "final" assets? Come up with a better name...
+def _layer_manifest_final_assets(
+    layer_node: LayerNode,
+) -> list[dict[str, Union[str, int]]]:
+    """List out all available finalized files on disk for this layer.
+
+    Not to be confused with layer dataset assets, which are input files.
+
+    TODO: Better label?
+    """
+    layer_cfg = layer_node.layer_cfg
+    if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
+        return [{
+            'type': 'online',
+            **layer_cfg.input.asset.dict(
+                include={'provider', 'url'},
+            ),
+        }]
+    else:
+        layer_fp = get_final_layer_filepath(layer_node)
+        layer_files = directory_contents(layer_fp.parent)
+
+        return [{
+            'file': fp.name,
+            # TODO: Handle a QMD/QML next to the data
+            'type': 'data' if fp == layer_fp else 'ancillary',
+            'checksum': hashlib.md5(open(fp, 'rb').read()).hexdigest(),
+            'size_bytes': fp.stat().st_size,
+        } for fp in layer_files]

@@ -41,6 +41,7 @@ dependencies:
   - fontconfig=2.13.1=hba837de_1005
   - freetype=2.10.4=h0708190_1
   - freexl=1.0.6=h7f98852_0
+  - funcy=1.16=pyhd8ed1ab_0
   - future=0.18.2=py39hf3d152e_3
   - gdal=3.1.4=py39h3f36f43_3
   - geos=3.8.1=he1b5a44_0
@@ -202,6 +203,7 @@ dependencies:
   - tornado=6.1=py39h3811e60_1
   - traitlets=5.1.0=pyhd8ed1ab_0
   - types-click=7.1.5=pyhd8ed1ab_0
+  - types-pyyaml=5.4.10=pyhd8ed1ab_0
   - types-requests=2.25.6=pyhd8ed1ab_0
   - typing-extensions=3.10.0.0=hd8ed1ab_0
   - typing_extensions=3.10.0.0=pyha770c72_0

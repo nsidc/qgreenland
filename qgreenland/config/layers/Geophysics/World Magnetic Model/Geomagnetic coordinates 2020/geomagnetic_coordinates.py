@@ -40,8 +40,6 @@ inclined at 9.41° to the Earth's rotation axis. The same dipole is the basis
 for the simple geomagnetic coordinate system of geomagnetic latitude and
 longitude.
 """,
-        in_package=True,
-        show=False,
         style='lonlat',
         input=ConfigLayerInput(
             dataset=wmm.wmm,

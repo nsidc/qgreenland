@@ -10,8 +10,6 @@ image_mosaic_2019 = ConfigLayer(
     title='Greenland image mosaic 2019 (10m)',
     description='Sentinel-2 multispectral satellite imagery from 2019.',
     tags=['online'],
-    show=False,
-    in_package=True,
     style='transparent_rgb',
     input=ConfigLayerInput(
         dataset=image_mosaic,
@@ -27,8 +25,6 @@ g02135_polyline_n = ConfigLayer(
 Lines representing monthly sea ice extent edges. Note that aside from 2016 to
 present, most of the data is missing.""",
     tags=['online'],
-    show=False,
-    in_package=True,
     input=ConfigLayerInput(
         dataset=sea_ice_index,
         asset=sea_ice_index.assets['monthly_polyline_n'],

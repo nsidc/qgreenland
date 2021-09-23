@@ -1,18 +1,16 @@
 import datetime as dt
-import os
 import tempfile
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc
-from jinja2 import Template
 
 from qgreenland.constants import (
-    ANCILLARY_DIR,
     INPUT_DIR,
 )
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.misc import datasource_dirname
+from qgreenland.util.template import load_template
 
 
 def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> None:
@@ -23,10 +21,7 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> No
     its `loadNamedMetadata` method. This metadata gets written to the project
     file when the layer is added to the `project`.
     """
-    # Load/render the template.
-    template_path = os.path.join(ANCILLARY_DIR, 'templates', 'metadata.jinja')
-    with open(template_path, 'r') as f:
-        qmd_template_str = ' '.join(f.readlines())
+    qmd_template = load_template('metadata.jinja')
 
     # Set the layer's tooltip
     tooltip = _build_layer_tooltip(layer_cfg)
@@ -37,7 +32,6 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> No
     layer_extent = map_layer.extent()
     layer_crs = map_layer.crs()
 
-    qmd_template = Template(qmd_template_str)
     if layer_cfg.steps:
         provenance_list = [escape(step.provenance) for step in layer_cfg.steps]
     else:

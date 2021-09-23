@@ -1,8 +1,5 @@
 import pytest
 
-# TODO: Refactor config module? This results in the real config being evaluated
-# (CONFIG)
-from qgreenland.config import compile_cfg
 from qgreenland.models.config.asset import (
     ConfigDatasetHttpAsset,
     ConfigDatasetOnlineAsset,
@@ -15,6 +12,7 @@ from qgreenland.models.config.layer_group import (
 from qgreenland.test.constants import (
     TEST_CONFIG_DIR,
 )
+from qgreenland.util.config.compile import compile_cfg
 from qgreenland.util.qgis.project import QgsApplicationContext
 from qgreenland.util.tree import (
     LayerGroupNode,

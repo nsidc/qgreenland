@@ -6,7 +6,6 @@ from qgreenland.models.config.step import ConfigLayerCommandStep
 standard_ogr2ogr_args = [
     '-lco', 'ENCODING=UTF-8',
     '-t_srs', project.crs,
-    # TODO: How to avoid this type of dir-handling within configs?
     '-clipdst', project.boundaries['data'].filepath,
 ]
 
@@ -15,8 +14,6 @@ towns_and_settlements = ConfigLayer(
     title='Towns and settlements',
     description='Points representing towns and settlements in Greenland.',
     tags=['places'],
-    in_package=True,
-    show=False,
     style='labeled_point',
     input=ConfigLayerInput(
         dataset=asiaq_private_placenames,

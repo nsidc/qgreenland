@@ -10,7 +10,6 @@ import anytree
 import qgis.core as qgc
 from PyQt5.QtGui import QColor
 
-from qgreenland.config import CONFIG
 from qgreenland.models.config.layer_group import LayerGroupSettings
 from qgreenland.util.qgis.layer import make_map_layer
 from qgreenland.util.tree import LayerGroupNode, LayerNode
@@ -48,6 +47,9 @@ def make_qgis_project_file(path: Path) -> None:
 
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
+    # Avoid "CONFIG" being imported when this module is imported
+    from qgreenland.util.config.config import CONFIG
+
     # Create a new project; initializes basic structure
     project = qgc.QgsProject.instance()
     project.write(str(path))

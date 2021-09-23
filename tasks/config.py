@@ -4,7 +4,7 @@ from pathlib import Path
 from invoke import call, task
 
 from qgreenland.constants import CONFIG_DIR
-from qgreenland.util.config import export_config_json
+from qgreenland.util.config.export import export_config_json
 
 
 @task
@@ -15,7 +15,7 @@ def validate(ctx, verbose=False):
     this happens when assigning the CONFIG constant. Any validation errors will
     be raised from the import statement.
     """
-    from qgreenland.config import CONFIG
+    from qgreenland.util.config.config import CONFIG
 
     if verbose:
         print('Layers:')
@@ -34,7 +34,7 @@ def validate(ctx, verbose=False):
 @task
 def export(ctx):
     """Export the config as a JSON string."""
-    from qgreenland.config import CONFIG
+    from qgreenland.util.config.config import CONFIG
 
     print(export_config_json(CONFIG))
 
@@ -42,7 +42,7 @@ def export(ctx):
 @task
 def diff(ctx):
     """Compare the config lockfile against the current config."""
-    from qgreenland.config import CONFIG
+    from qgreenland.util.config.config import CONFIG
 
     with open(CONFIG_DIR / 'cfg-lock.json', 'r') as lockfile:
         # Remove trailing newlines to match `json.dumps` behavior

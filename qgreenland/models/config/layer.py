@@ -26,7 +26,7 @@ class ConfigLayer(QgrBaseModel):
     tags: list[str] = []
 
     # Is this layer in the final QGreenland zip file?:
-    in_package: bool
+    in_package: bool = True
 
     # Is this layer initially "checked" as visible in QGIS?:
     show: bool = False
