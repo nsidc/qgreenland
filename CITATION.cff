@@ -1,9 +1,15 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
+- family-names: "Moon"
+  given-names: "Twila"
+  orcid: "https://orcid.org/0000-0003-0968-7008"
 - family-names: "Fisher"
   given-names: "Matt"
   orcid: "https://orcid.org/0000-0003-3260-5445"
+- family-names: "Harden"
+  given-names: "Lynne"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
 - family-names: "Stafford"
   given-names: "Trey"
   orcid: "https://orcid.org/0000-0002-5510-0055"
