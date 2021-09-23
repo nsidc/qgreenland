@@ -16,6 +16,10 @@ def test_get_layer_config_one():
     assert CONFIG.layers['background']
 
 
+# TODO: Remove all tests that act on a real config. The vision for the future is
+# to fully divorce the framework from the config.  All tests below this line can
+# be done on a mock config. All tests above this line can be deleted.
+
 def test_immutable_model():
     # Immutable models raise a TypeError on item assignment with a message like:
     # `TypeError: "ConfigLayer" is immutable and does not support item
