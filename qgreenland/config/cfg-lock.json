@@ -2779,7 +2779,7 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "\nIce thickness in meters. Mass conservation source data provided by Mathieu\nMorlighem.",
+                  "description": "Ice thickness in meters. Mass conservation source data provided by Mathieu\nMorlighem.",
                   "id": "bedmachine_thickness",
                   "in_package": true,
                   "input": {
@@ -2882,7 +2882,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "\nThe locations of northern hemisphere dip poles (2020-2025) from the World\nMagnetic Model (WMM) 2020 model.\n\nThe geomagnetic dip poles are positions on the\nEarth's surface where the geomagnetic field is perpendicular to the ellipsoid,\nthat is, vertical. The north and south dip poles do not have to be (and are not\nnow) antipodal.\n\n\nThese model dip poles are computed from all the Gauss coefficients using an\niterative method. In 2020.0 the north dip pole computed from WMM2020 is\nlocated at longitude 164.04\u00b0E and geodetic latitude 86.50\u00b0N and the south\ndip pole at longitude 135.88\u00b0E and geodetic latitude 64.07\u00b0S.\n",
+                      "description": "The locations of northern hemisphere dip poles (2020-2025) from the World\nMagnetic Model (WMM) 2020 model.\n\nThe geomagnetic dip poles are positions on the\nEarth's surface where the geomagnetic field is perpendicular to the ellipsoid,\nthat is, vertical. The north and south dip poles do not have to be (and are not\nnow) antipodal.\n\n\nThese model dip poles are computed from all the Gauss coefficients using an\niterative method. In 2020.0 the north dip pole computed from WMM2020 is\nlocated at longitude 164.04\u00b0E and geodetic latitude 86.50\u00b0N and the south\ndip pole at longitude 135.88\u00b0E and geodetic latitude 64.07\u00b0S.",
                       "id": "wmm_north_poles",
                       "in_package": true,
                       "input": {
@@ -3016,7 +3016,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nThe locations of northern hemisphere dip poles (1590-2025) from the latest\nInternational Geomagnetic Reference Field (IGRF) model.\n\nThe geomagnetic dip poles are positions on the\nEarth's surface where the geomagnetic field is perpendicular to the ellipsoid,\nthat is, vertical. The north and south dip poles do not have to be (and are not\nnow) antipodal.\n\n\nThese model dip poles are computed from all the Gauss coefficients using an\niterative method.\n",
+                      "description": "The locations of northern hemisphere dip poles (1590-2025) from the latest\nInternational Geomagnetic Reference Field (IGRF) model.\n\nThe geomagnetic dip poles are positions on the\nEarth's surface where the geomagnetic field is perpendicular to the ellipsoid,\nthat is, vertical. The north and south dip poles do not have to be (and are not\nnow) antipodal.\n\n\nThese model dip poles are computed from all the Gauss coefficients using an\niterative method.",
                       "id": "wmm_igrf_north_poles",
                       "in_package": true,
                       "input": {
@@ -3160,7 +3160,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "\nThe WMM representation of the field includes a magnetic dipole at the center\nof the Earth. This dipole defines an axis that intersects the Earth's\nsurface at two antipodal points. These points are called geomagnetic\npoles. The geomagnetic poles, otherwise known as the dipole poles, can be\ncomputed from the first three Gauss coefficients of the WMM. Based on the\nWMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68\u00b0W\nlongitude and 80.59\u00b0N geocentric latitude (80.65\u00b0N geodetic latitude), and\nthe geomagnetic south pole is at 107.32\u00b0E longitude and 80.59\u00b0S geocentric\nlatitude (80.65\u00b0S geodetic latitude). The axis of the dipole is currently\ninclined at 9.41\u00b0 to the Earth's rotation axis. The same dipole is the basis\nfor the simple geomagnetic coordinate system of geomagnetic latitude and\nlongitude.\n",
+                      "description": "The WMM representation of the field includes a magnetic dipole at the center\nof the Earth. This dipole defines an axis that intersects the Earth's\nsurface at two antipodal points. These points are called geomagnetic\npoles. The geomagnetic poles, otherwise known as the dipole poles, can be\ncomputed from the first three Gauss coefficients of the WMM. Based on the\nWMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68\u00b0W\nlongitude and 80.59\u00b0N geocentric latitude (80.65\u00b0N geodetic latitude), and\nthe geomagnetic south pole is at 107.32\u00b0E longitude and 80.59\u00b0S geocentric\nlatitude (80.65\u00b0S geodetic latitude). The axis of the dipole is currently\ninclined at 9.41\u00b0 to the Earth's rotation axis. The same dipole is the basis\nfor the simple geomagnetic coordinate system of geomagnetic latitude and\nlongitude.",
                       "id": "wmm_latitudes",
                       "in_package": true,
                       "input": {
@@ -3296,7 +3296,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nThe WMM representation of the field includes a magnetic dipole at the center\nof the Earth. This dipole defines an axis that intersects the Earth's\nsurface at two antipodal points. These points are called geomagnetic\npoles. The geomagnetic poles, otherwise known as the dipole poles, can be\ncomputed from the first three Gauss coefficients of the WMM. Based on the\nWMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68\u00b0W\nlongitude and 80.59\u00b0N geocentric latitude (80.65\u00b0N geodetic latitude), and\nthe geomagnetic south pole is at 107.32\u00b0E longitude and 80.59\u00b0S geocentric\nlatitude (80.65\u00b0S geodetic latitude). The axis of the dipole is currently\ninclined at 9.41\u00b0 to the Earth's rotation axis. The same dipole is the basis\nfor the simple geomagnetic coordinate system of geomagnetic latitude and\nlongitude.\n",
+                      "description": "The WMM representation of the field includes a magnetic dipole at the center\nof the Earth. This dipole defines an axis that intersects the Earth's\nsurface at two antipodal points. These points are called geomagnetic\npoles. The geomagnetic poles, otherwise known as the dipole poles, can be\ncomputed from the first three Gauss coefficients of the WMM. Based on the\nWMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68\u00b0W\nlongitude and 80.59\u00b0N geocentric latitude (80.65\u00b0N geodetic latitude), and\nthe geomagnetic south pole is at 107.32\u00b0E longitude and 80.59\u00b0S geocentric\nlatitude (80.65\u00b0S geodetic latitude). The axis of the dipole is currently\ninclined at 9.41\u00b0 to the Earth's rotation axis. The same dipole is the basis\nfor the simple geomagnetic coordinate system of geomagnetic latitude and\nlongitude.",
                       "id": "wmm_longitudes",
                       "in_package": true,
                       "input": {
@@ -3442,7 +3442,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "\nBased on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.\n",
+                      "description": "Based on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.",
                       "id": "wmm_boz_2020",
                       "in_package": true,
                       "input": {
@@ -3575,7 +3575,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.\n",
+                      "description": "Contours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.",
                       "id": "wmm_d_2020",
                       "in_package": true,
                       "input": {
@@ -3711,7 +3711,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2020",
                       "in_package": true,
                       "input": {
@@ -3847,7 +3847,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).\n",
+                      "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2020",
                       "in_package": true,
                       "input": {
@@ -3983,7 +3983,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2020",
                       "in_package": true,
                       "input": {
@@ -4119,7 +4119,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).\n",
+                      "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2020",
                       "in_package": true,
                       "input": {
@@ -4255,7 +4255,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2020",
                       "in_package": true,
                       "input": {
@@ -4391,7 +4391,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.\n",
+                      "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2020",
                       "in_package": true,
                       "input": {
@@ -4527,7 +4527,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2020",
                       "in_package": true,
                       "input": {
@@ -4663,7 +4663,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2020",
                       "in_package": true,
                       "input": {
@@ -4799,7 +4799,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2020",
                       "in_package": true,
                       "input": {
@@ -4935,7 +4935,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2020",
                       "in_package": true,
                       "input": {
@@ -5071,7 +5071,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.\n",
+                      "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2020",
                       "in_package": true,
                       "input": {
@@ -5207,7 +5207,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field down component (Z) in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2020",
                       "in_package": true,
                       "input": {
@@ -5343,7 +5343,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2020",
                       "in_package": true,
                       "input": {
@@ -5505,7 +5505,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "\nBased on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.\n",
+                      "description": "Based on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.",
                       "id": "wmm_boz_2021",
                       "in_package": true,
                       "input": {
@@ -5638,7 +5638,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.\n",
+                      "description": "Contours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.",
                       "id": "wmm_d_2021",
                       "in_package": true,
                       "input": {
@@ -5774,7 +5774,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2021",
                       "in_package": true,
                       "input": {
@@ -5910,7 +5910,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).\n",
+                      "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2021",
                       "in_package": true,
                       "input": {
@@ -6046,7 +6046,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2021",
                       "in_package": true,
                       "input": {
@@ -6182,7 +6182,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).\n",
+                      "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2021",
                       "in_package": true,
                       "input": {
@@ -6318,7 +6318,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2021",
                       "in_package": true,
                       "input": {
@@ -6454,7 +6454,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.\n",
+                      "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2021",
                       "in_package": true,
                       "input": {
@@ -6590,7 +6590,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2021",
                       "in_package": true,
                       "input": {
@@ -6726,7 +6726,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2021",
                       "in_package": true,
                       "input": {
@@ -6862,7 +6862,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2021",
                       "in_package": true,
                       "input": {
@@ -6998,7 +6998,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2021",
                       "in_package": true,
                       "input": {
@@ -7134,7 +7134,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.\n",
+                      "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2021",
                       "in_package": true,
                       "input": {
@@ -7270,7 +7270,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field down component (Z) in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2021",
                       "in_package": true,
                       "input": {
@@ -7406,7 +7406,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2021",
                       "in_package": true,
                       "input": {
@@ -7568,7 +7568,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "\nBased on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.\n",
+                      "description": "Based on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.",
                       "id": "wmm_boz_2022",
                       "in_package": true,
                       "input": {
@@ -7701,7 +7701,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.\n",
+                      "description": "Contours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.",
                       "id": "wmm_d_2022",
                       "in_package": true,
                       "input": {
@@ -7837,7 +7837,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2022",
                       "in_package": true,
                       "input": {
@@ -7973,7 +7973,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).\n",
+                      "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2022",
                       "in_package": true,
                       "input": {
@@ -8109,7 +8109,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2022",
                       "in_package": true,
                       "input": {
@@ -8245,7 +8245,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).\n",
+                      "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2022",
                       "in_package": true,
                       "input": {
@@ -8381,7 +8381,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2022",
                       "in_package": true,
                       "input": {
@@ -8517,7 +8517,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.\n",
+                      "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2022",
                       "in_package": true,
                       "input": {
@@ -8653,7 +8653,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2022",
                       "in_package": true,
                       "input": {
@@ -8789,7 +8789,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2022",
                       "in_package": true,
                       "input": {
@@ -8925,7 +8925,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2022",
                       "in_package": true,
                       "input": {
@@ -9061,7 +9061,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2022",
                       "in_package": true,
                       "input": {
@@ -9197,7 +9197,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.\n",
+                      "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2022",
                       "in_package": true,
                       "input": {
@@ -9333,7 +9333,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field down component (Z) in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2022",
                       "in_package": true,
                       "input": {
@@ -9469,7 +9469,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2022",
                       "in_package": true,
                       "input": {
@@ -9631,7 +9631,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "\nBased on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.\n",
+                      "description": "Based on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.",
                       "id": "wmm_boz_2023",
                       "in_package": true,
                       "input": {
@@ -9764,7 +9764,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.\n",
+                      "description": "Contours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.",
                       "id": "wmm_d_2023",
                       "in_package": true,
                       "input": {
@@ -9900,7 +9900,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2023",
                       "in_package": true,
                       "input": {
@@ -10036,7 +10036,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).\n",
+                      "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2023",
                       "in_package": true,
                       "input": {
@@ -10172,7 +10172,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2023",
                       "in_package": true,
                       "input": {
@@ -10308,7 +10308,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).\n",
+                      "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2023",
                       "in_package": true,
                       "input": {
@@ -10444,7 +10444,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2023",
                       "in_package": true,
                       "input": {
@@ -10580,7 +10580,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.\n",
+                      "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2023",
                       "in_package": true,
                       "input": {
@@ -10716,7 +10716,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2023",
                       "in_package": true,
                       "input": {
@@ -10852,7 +10852,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2023",
                       "in_package": true,
                       "input": {
@@ -10988,7 +10988,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2023",
                       "in_package": true,
                       "input": {
@@ -11124,7 +11124,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2023",
                       "in_package": true,
                       "input": {
@@ -11260,7 +11260,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.\n",
+                      "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2023",
                       "in_package": true,
                       "input": {
@@ -11396,7 +11396,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field down component (Z) in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2023",
                       "in_package": true,
                       "input": {
@@ -11532,7 +11532,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2023",
                       "in_package": true,
                       "input": {
@@ -11694,7 +11694,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "\nBased on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.\n",
+                      "description": "Based on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.",
                       "id": "wmm_boz_2024",
                       "in_package": true,
                       "input": {
@@ -11827,7 +11827,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.\n",
+                      "description": "Contours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.",
                       "id": "wmm_d_2024",
                       "in_package": true,
                       "input": {
@@ -11963,7 +11963,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2024",
                       "in_package": true,
                       "input": {
@@ -12099,7 +12099,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).\n",
+                      "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2024",
                       "in_package": true,
                       "input": {
@@ -12235,7 +12235,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2024",
                       "in_package": true,
                       "input": {
@@ -12371,7 +12371,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).\n",
+                      "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2024",
                       "in_package": true,
                       "input": {
@@ -12507,7 +12507,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2024",
                       "in_package": true,
                       "input": {
@@ -12643,7 +12643,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.\n",
+                      "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2024",
                       "in_package": true,
                       "input": {
@@ -12779,7 +12779,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2024",
                       "in_package": true,
                       "input": {
@@ -12915,7 +12915,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2024",
                       "in_package": true,
                       "input": {
@@ -13051,7 +13051,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2024",
                       "in_package": true,
                       "input": {
@@ -13187,7 +13187,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2024",
                       "in_package": true,
                       "input": {
@@ -13323,7 +13323,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.\n",
+                      "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2024",
                       "in_package": true,
                       "input": {
@@ -13459,7 +13459,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field down component (Z) in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2024",
                       "in_package": true,
                       "input": {
@@ -13595,7 +13595,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2024",
                       "in_package": true,
                       "input": {
@@ -13757,7 +13757,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "\nBased on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.\n",
+                      "description": "Based on the WMM military specification, we define \u201cBlackout Zones\u201d (BoZ)\naround the north and south magnetic poles where compass accuracy is highly\ndegraded. The BoZ are defined as regions around the north and south magnetic\npoles where the horizontal intensity of Earth\u2019s magnetic field (H) is less\nthan 2000 nT. In BoZs, WMM declination values are not accurate and compasses\nare unreliable.\n\nWe additionally define a \u201cCaution Zone\u201d (2000 nT <= H < 6000 nT) around the\nBoZ, where caution must be exercised while using a compass. Compass accuracy\nmay be degraded in this region.",
                       "id": "wmm_boz_2025",
                       "in_package": true,
                       "input": {
@@ -13890,7 +13890,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.\n",
+                      "description": "Contours representing magnetic declination (D) in degrees. D is the angle\nbetween magnetic north and true north. D is considered positive when the\nangle measured is east of true north and negative when west.",
                       "id": "wmm_d_2025",
                       "in_package": true,
                       "input": {
@@ -14026,7 +14026,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2025",
                       "in_package": true,
                       "input": {
@@ -14162,7 +14162,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).\n",
+                      "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2025",
                       "in_package": true,
                       "input": {
@@ -14298,7 +14298,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2025",
                       "in_package": true,
                       "input": {
@@ -14434,7 +14434,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).\n",
+                      "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2025",
                       "in_package": true,
                       "input": {
@@ -14570,7 +14570,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2025",
                       "in_package": true,
                       "input": {
@@ -14706,7 +14706,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.\n",
+                      "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2025",
                       "in_package": true,
                       "input": {
@@ -14842,7 +14842,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2025",
                       "in_package": true,
                       "input": {
@@ -14978,7 +14978,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2025",
                       "in_package": true,
                       "input": {
@@ -15114,7 +15114,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2025",
                       "in_package": true,
                       "input": {
@@ -15250,7 +15250,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2025",
                       "in_package": true,
                       "input": {
@@ -15386,7 +15386,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.\n",
+                      "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2025",
                       "in_package": true,
                       "input": {
@@ -15522,7 +15522,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing the main field down component (Z) in nanoTesla (nT).\n",
+                      "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2025",
                       "in_package": true,
                       "input": {
@@ -15658,7 +15658,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "\nContours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.\n",
+                      "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2025",
                       "in_package": true,
                       "input": {
@@ -15835,6 +15835,83 @@
           }
         ],
         "name": "Geophysics",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
+            "layer_cfg": {
+              "description": "Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for\n2019/05/01 and 2019/10/01 generated using Sentinel-2 satellite data.",
+              "id": "jakobshavn_supraglacial_lakes",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "access_instructions": "Dataset can be found on the European Space Agency (ESA)\nClimate Change Initiative (CCI) products website\n(http://products.esa-icesheets-cci.org). Data are free to\ndownload after simple registration requiring `first.last` name\nand `affiliation`. No password is required.",
+                  "id": "only"
+                },
+                "dataset": {
+                  "assets": {
+                    "only": {
+                      "access_instructions": "Dataset can be found on the European Space Agency (ESA)\nClimate Change Initiative (CCI) products website\n(http://products.esa-icesheets-cci.org). Data are free to\ndownload after simple registration requiring `first.last` name\nand `affiliation`. No password is required.",
+                      "id": "only"
+                    }
+                  },
+                  "id": "esa_cci_supraglacial_lakes",
+                  "metadata": {
+                    "abstract": "Supraglacial Lake vectors for select areas of interest (AOI) on\nthe Greenland Ice Sheet produced using Sentinel-2\n\nVersion 1.1 includes.\nAOI:\n* Sermeq Kujalleq (Jakobshavn Isbr\u00e6)\n\nTime-period:\n* 2019/05/01-2019/10/01\n\nFor general background information see\nhttp://esa-icesheets-greenland-cci.org",
+                    "citation": {
+                      "text": "Data are produced by Penelope How, Alexandra Messerli, and\nEva M\u00e4tzler (Department of Remote Sensing, Asiaq Greenland\nSurvey)",
+                      "url": "http://products.esa-icesheets-cci.org/products/details/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip/"
+                    },
+                    "title": "ESA Greenland Ice Sheet CCI, Supraglacial Lakes from Sentinel-2"
+                  }
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip",
+                    "\"*merged*\"",
+                    "-d",
+                    "{output_dir}"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT\n                    Geometry,\n                    id1,\n                    DATE(\n                      substr(date, 1, 4)\n                      || '-'\n                      || substr(date, 5, 2)\n                      || '-'\n                      || substr(date, 7, 2)\n                    ) as date,\n                    area1,\n                    elev,\n                    source,\n                    tile,\n                    row\n                FROM greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1\" ",
+                    "{output_dir}/selected.gpkg",
+                    "{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "supraglacial_lakes",
+              "tags": [
+                "water"
+              ],
+              "title": "Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019"
+            },
+            "name": "jakobshavn_supraglacial_lakes"
+          }
+        ],
+        "name": "Glaciology",
         "settings": {
           "expand": false,
           "order": null,
@@ -16024,6 +16101,7 @@
         "Places",
         "Terrain Models",
         "Geophysics",
+        "Glaciology",
         "Internet-required data",
         "Basemaps"
       ]
