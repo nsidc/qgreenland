@@ -6,7 +6,6 @@ from qgreenland.models.config.step import ConfigLayerCommandStep
 standard_ogr2ogr_args = [
     '-lco', 'ENCODING=UTF-8',
     '-t_srs', project.crs,
-    # TODO: How to avoid this type of dir-handling within configs?
     '-clipdst', project.boundaries['data'].filepath,
 ]
 
