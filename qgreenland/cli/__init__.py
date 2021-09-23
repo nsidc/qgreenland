@@ -1,7 +1,7 @@
 import click
 
+from qgreenland.cli.cleanup import cleanup
 from qgreenland.cli.config_migrate import config_migrate
-from qgreenland.cli.cleanup import cleanup 
 
 
 @click.group()

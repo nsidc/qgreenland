@@ -3,8 +3,8 @@ from qgreenland.config.datasets.esa_cci import (
 )
 # from qgreenland.config.helpers.steps.build_overviews import build_overviews
 # from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.config.project import project
+from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
 supraglacial_lakes = ConfigLayer(

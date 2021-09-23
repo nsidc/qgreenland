@@ -118,4 +118,4 @@ def cleanup(**kwargs):  # noqa: C901
 
 
 if __name__ == '__main__':
-    cleanup_cli()
+    cleanup()
