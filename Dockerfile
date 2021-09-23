@@ -10,9 +10,10 @@ RUN conda install mamba~=0.15.2
 # `unrar` is required for layer pipelines
 # `git` is required for analyzing the current version
 RUN apt-get update
-RUN apt-get install -y libgl1-mesa-glx \
-                       unrar \
-                       git
+RUN apt-get install -y \
+  libgl1-mesa-glx \
+  unrar \
+  git
 
 # TODO install to `qgreenland` specific environment. Activate in Dockerfile if
 # possible.
