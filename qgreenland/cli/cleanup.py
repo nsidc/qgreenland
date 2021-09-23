@@ -14,7 +14,7 @@ from qgreenland.util.cli.validate import (
 )
 
 
-def print_and_run(cmd, *, dry_run):
+def _print_and_run(cmd, *, dry_run):
     print(cmd)
     if not dry_run:
         return subprocess.run(
@@ -68,7 +68,7 @@ def print_and_run(cmd, *, dry_run):
               default='False', show_default=True)
 # NOTE: Complexity check (C901) is disabled because this function is just a big
 #       set of switches by design!
-def cleanup_cli(**kwargs):  # noqa: C901
+def cleanup(**kwargs):  # noqa: C901
     """Clean up input, WIP, and/or output data created by QGreenland.
 
     By default, clean up the compiled (but not zipped) datapackage.
@@ -81,37 +81,37 @@ def cleanup_cli(**kwargs):  # noqa: C901
 
     if wip_patterns := kwargs['delete_wips_by_pattern']:
         for p in wip_patterns:
-            print_and_run(
+            _print_and_run(
                 f'rm -rf {TaskType.WIP.value}/{p}',
                 dry_run=kwargs['dry_run'],
             )
     if inp_patterns := kwargs['delete_inputs_by_pattern']:
         for p in inp_patterns:
-            print_and_run(
+            _print_and_run(
                 f'rm -rf {INPUT_DIR}/{p}',
                 dry_run=kwargs['dry_run'],
             )
 
     if kwargs['delete_all_input']:
-        print_and_run(
+        _print_and_run(
             f'rm -rf {INPUT_DIR}/*',
             dry_run=kwargs['dry_run'],
         )
 
     if kwargs['delete_all_wip']:
-        print_and_run(
+        _print_and_run(
             f'rm -rf {TaskType.WIP.value}/*',
             dry_run=kwargs['dry_run'],
         )
 
     if kwargs['delete_compiled']:
-        print_and_run(
+        _print_and_run(
             f'rm -rf {TaskType.FINAL.value}/*',
             dry_run=kwargs['dry_run'],
         )
 
     if kwargs['delete_all_releases']:
-        print_and_run(
+        _print_and_run(
             f'rm -rf {RELEASES_DIR}/*',
             dry_run=kwargs['dry_run'],
         )
