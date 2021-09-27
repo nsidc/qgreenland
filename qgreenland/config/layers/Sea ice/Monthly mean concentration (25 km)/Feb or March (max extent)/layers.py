@@ -7,6 +7,9 @@ from qgreenland.config.helpers.layers.sea_ice_concentration import (
     CONCENTRATION_STYLE,
     CONCENTRATION_YEARS,
 )
+from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
+from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -35,8 +38,14 @@ def _layer(year) -> ConfigLayer:
                     '--outfile={output_dir}/downscaled.tif',
                 ],
             ),
-            ConfigLayerCommandStep(
-                args=['foo'],
+            *warp_and_cut(
+                input_file='{input_dir}/downscaled.tif',
+                output_file='{output_dir}/warped_and_cut.tif',
+                cut_file=project.boundaries['background'].filepath,
+            ),
+            *build_overviews(
+                input_file='{input_dir}/warped_and_cut.tif',
+                output_file='{output_dir}/overviews.tif',
             ),
         ],
     )
