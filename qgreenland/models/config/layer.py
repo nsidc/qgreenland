@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -36,4 +36,20 @@ class ConfigLayer(QgrBaseModel):
 
     input: ConfigLayerInput
 
-    steps: Optional[List[AnyStep]]
+    steps: Optional[list[AnyStep]]
+
+    def __json__(self) -> dict[Any, Any]:
+        """Limit child models that are output when dumping JSON.
+
+        When dumping a layer tree, we shouldn't include all the datasets and the
+        assets because that results in severe duplication.
+        """
+        return self.dict(
+            include={
+                **{k: ... for k in self.dict().keys() if k != 'input'},
+                'input': {
+                    'dataset': {'id'},
+                    'asset': {'id'},
+                },
+            },
+        )

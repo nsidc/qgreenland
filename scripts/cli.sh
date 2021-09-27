@@ -1,4 +1,7 @@
 #!/bin/bash
-THIS_DIR="$( readlink -f "$( dirname "${BASH_SOURCE[0]}" )")"
+set -e
 
-"$THIS_DIR"/container_cli.sh cleanup "$@"
+THIS_DIR="$( readlink -f "$( dirname "${BASH_SOURCE[0]}" )")"
+cd "$THIS_DIR"/..
+
+python qgreenland/cli/__init__.py "$@"

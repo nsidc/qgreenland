@@ -5,9 +5,10 @@ settings = RootGroupSettings(
     order=[
         'Reference',
         'Places',
-        'Terrain Models',
-        'Geophysics',
         'Glaciology',
+        'Geophysics',
+        'Sea ice',
+        'Terrain Models',
         'Internet-required data',
         'Basemaps',
     ],

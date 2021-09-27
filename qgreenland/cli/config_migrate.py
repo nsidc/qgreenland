@@ -43,6 +43,9 @@ def dataset(pattern):
 
     NOTE: If multiple matches are found, the ouput will need to be manually
     touched up to consolidate import statements.
+
+    After running a dataset migration, edit the results to use python functions
+    to dedup any repeated content and express patterns instead of rote content.
     """
     yml = _load_yaml_from_gh('/qgreenland/config/datasets.yml')
     datasets = _select(yml, pattern=pattern)
@@ -52,7 +55,12 @@ def dataset(pattern):
         rendered = template.render(
             dataset=dataset,
             asset_type_map={
+                'cmr': 'ConfigDatasetCmrAsset',
+                'gdal_remote': 'ConfigDatasetOnlineAsset',
+                'http': 'ConfigDatasetHttpAsset',
+                'local': 'ConfigDatasetRepositoryAsset',
                 'manual': 'ConfigDatasetManualAsset',
+
             },
         )
         print(rendered)
@@ -67,6 +75,10 @@ def layer(pattern):
 
     NOTE: If multiple matches are found, the ouput will need to be manually
     touched up to consolidate import statements.
+
+    After running a layer migration, the `steps` and some `import`s are left
+    marked `# TODO`. Fill those in and edit the results to use python functions
+    to dedup any repeated content and express patterns instead of rote content.
     """
     yml = _load_yaml_from_gh('/qgreenland/config/layers.yml')
     layers = _select(yml, pattern=pattern)

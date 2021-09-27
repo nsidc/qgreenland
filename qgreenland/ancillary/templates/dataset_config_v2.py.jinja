@@ -13,6 +13,12 @@ from qgreenland.models.config.dataset import ConfigDataset
             access_instructions=(
                 {{'"""%s"""'|format(source.access_instructions)|wordwrap(width=80-16, break_on_hyphens=False)|indent(16)}}
             ),
+            {%- elif dataset.access_method == 'http' %}
+            urls=[
+              {%- for url in source.urls %}
+                '{{ url }}',
+              {%- endfor %}
+            ],
             {%- endif %}
         ),
         {%- endfor %}
