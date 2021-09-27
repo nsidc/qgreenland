@@ -2,7 +2,7 @@ import calendar
 
 from qgreenland.config.datasets.seaice import seaice_index as dataset
 from qgreenland.config.helpers.layers.sea_ice_concentration import (
-    conc_max_month, 
+    conc_max_month,
     CONCENTRATION_DESCRIPTION,
     CONCENTRATION_STYLE,
     CONCENTRATION_YEARS,
@@ -16,7 +16,7 @@ def _layer(year) -> ConfigLayer:
     month_name = calendar.month_name[month]
 
     return ConfigLayer(
-        id=f'maximum_concentration_{year}',
+        id=f'seaice_maximum_concentration_{year}',
         title=f'{month_name} {year}',
         description=CONCENTRATION_DESCRIPTION,
         tags=[],
@@ -25,11 +25,18 @@ def _layer(year) -> ConfigLayer:
             dataset=dataset,
             asset=dataset.assets[f'maximum_concentration_{year}'],
         ),
+        # TODO: Extract to helper
         steps=[
             ConfigLayerCommandStep(
                 args=[
-                    'foo',
+                    'gdal_calc.py',
+                    '--calc', "'A / 10.0'",
+                    '-A', '{input_dir}/*.tif',
+                    '--outfile={output_dir}/downscaled.tif',
                 ],
+            ),
+            ConfigLayerCommandStep(
+                args=['foo'],
             ),
         ],
     )
