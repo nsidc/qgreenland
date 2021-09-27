@@ -32,7 +32,7 @@ def surface_elevation_layer(
         style = 'surface_elevation_change_errors'
 
     return ConfigLayer(
-        id=f'surface_elevation_change_{variable}_{start_year}_{end_year}',
+        id=f'surface_elevation_change_{variable.lower()}_{start_year}_{end_year}',
         title=f'Surface elevation change {start_year}-{end_year}',
         description=description,
         tags=[],
@@ -48,11 +48,11 @@ def surface_elevation_layer(
                     '-co', 'COMPRESS=DEFLATE',
                     '-array', f'name={variable},view=[:,:,{array_index}]',
                     '{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc',
-                    '{output_dir}/' + f'surf_elev_change_{start_year}_{end_year}.tif',
+                    '{output_dir}/' + f'{variable.lower()}_{start_year}_{end_year}.tif',
                 ],
             ),
             *build_overviews(
-                input_file='{input_dir}/' + f'surf_elev_change_{start_year}_{end_year}.tif',
+                input_file='{input_dir}/' + f'{variable.lower()}_{start_year}_{end_year}.tif',
                 output_file='{output_dir}/overviews.tif',
             ),
         ],
