@@ -1,33 +1,9 @@
-import calendar
-
+from qgreenland.config.helpers.layers.sea_ice_concentration import (
+    concentration_maximum_asset_for_year,
+    CONCENTRATION_YEARS,
+)
 from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 from qgreenland.models.config.dataset import ConfigDataset
-
-
-END_YEAR = 2020
-CONCENTRATION_YEARS = range(2010, END_YEAR+1)
-
-
-def _concentration_maximum_for_year(year: int) -> ConfigDatasetHttpAsset:
-    """Handle the maximum concentration "off-years".
-
-    Off-years are years where the maximum occurs in a month other than March.
-    Use `conc_max_off_years` to determine if a year is an off-year, and if so,
-    which month the maximum occurred in.
-    """
-    conc_max_off_years: Dict[int, int] = {
-        2015: 2,
-    }
-    month = conc_max_off_years.get(year, 3)
-    month_abbr = calendar.month_abbr[month]
-
-    return ConfigDatasetHttpAsset(
-        id=f'maximum_concentration_{year}',
-        urls=[(
-            'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff'
-            f'/{month:02d}_{month_abbr}/N_{year}{month:02d}_concentration_v3.0.tif'
-        )],
-    )
 
 
 seaice_index = ConfigDataset(
@@ -52,7 +28,7 @@ seaice_index = ConfigDataset(
             ) for year in CONCENTRATION_YEARS
         ],
         *[
-            _concentration_maximum_for_year(year) for year in CONCENTRATION_YEARS
+            concentration_maximum_asset_for_year(year) for year in CONCENTRATION_YEARS
         ],
     ],
     metadata={
