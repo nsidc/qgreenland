@@ -24,16 +24,19 @@ def surface_elevation_layer(
     variable: SurfaceElevVar,
 ) -> ConfigLayer:
 
+    if variable == 'SEC':
+        description = 'Rate of surface elevation change in meters per year.'
+        style = 'surface_elevation_change'
+    else:
+        description = 'Error of rate of surface elevation change in meters per year.'
+        style = 'surface_elevation_change_errors'
+
     return ConfigLayer(
         id=f'surface_elevation_change_{variable}_{start_year}_{end_year}',
         title=f'Surface elevation change {start_year}-{end_year}',
-        # TODO: description difference for obs vs errs
-        description=(
-            """Rate of surface elevation change in meters per year."""
-        ),
+        description=description,
         tags=[],
-        # TODO: style difference for obs vs errors
-        style='surface_elevation_change',
+        style=style,
         input=ConfigLayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
@@ -52,7 +55,6 @@ def surface_elevation_layer(
                 input_file='{input_dir}/' + f'surf_elev_change_{start_year}_{end_year}.tif',
                 output_file='{output_dir}/overviews.tif',
             ),
-            # TODO: compression w/ gdal_translate.
         ],
     )
 
