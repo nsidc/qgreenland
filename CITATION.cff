@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Moon"
+  given-names: "Twila"
+  orcid: "https://orcid.org/0000-0003-0968-7008"
+- family-names: "Fisher"
+  given-names: "Matt"
+  orcid: "https://orcid.org/0000-0003-3260-5445"
+- family-names: "Harden"
+  given-names: "Lynne"
+  orcid: "https://orcid.org/0000-0002-0505-6762"
+- family-names: "Stafford"
+  given-names: "Trey"
+  orcid: "https://orcid.org/0000-0002-5510-0055"
+title: "QGreenland"
+version: 1.0.1
+doi: 10.5281/zenodo.4558266
+date-released: 2021-02-23
+url: "https://github.com/nsidc/qgreenland"
