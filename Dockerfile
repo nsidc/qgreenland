@@ -9,8 +9,8 @@ RUN conda install mamba~=0.15.2
 # `libgl1-mesa-glx` is required for qgis to work
 # `unrar` is required for layer pipelines
 # `git` is required for analyzing the current version
-RUN apt-get update
-RUN apt-get install -y \
+RUN apt-get update && \
+  apt-get install -y \
   libgl1-mesa-glx \
   unrar \
   git
