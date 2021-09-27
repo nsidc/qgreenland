@@ -52,7 +52,12 @@ def dataset(pattern):
         rendered = template.render(
             dataset=dataset,
             asset_type_map={
+                'cmr': 'ConfigDatasetCmrAsset',
+                'gdal_remote': 'ConfigDatasetOnlineAsset',
+                'http': 'ConfigDatasetHttpAsset',
+                'local': 'ConfigDatasetRepositoryAsset',
                 'manual': 'ConfigDatasetManualAsset',
+
             },
         )
         print(rendered)
