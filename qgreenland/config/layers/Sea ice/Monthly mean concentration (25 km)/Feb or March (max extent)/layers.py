@@ -2,10 +2,10 @@ import calendar
 
 from qgreenland.config.datasets.seaice import seaice_index as dataset
 from qgreenland.config.helpers.layers.sea_ice_concentration import (
-    conc_max_month,
     CONCENTRATION_DESCRIPTION,
     CONCENTRATION_STYLE,
     CONCENTRATION_YEARS,
+    conc_max_month,
 )
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut

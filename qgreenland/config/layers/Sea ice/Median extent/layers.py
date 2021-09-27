@@ -30,5 +30,5 @@ layers = [
                 output_file='{output_dir}/final.gpkg',
             ),
         ],
-    ) for month in range(1, 12+1)
+    ) for month in range(1, 12 + 1)
 ]

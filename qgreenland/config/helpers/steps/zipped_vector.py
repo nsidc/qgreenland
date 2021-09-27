@@ -14,7 +14,7 @@ def zipped_vector(
     input_file: str,
     output_file: str,
 ) -> list[ConfigLayerCommandStep]:
-    """Simple unzip of standard shapefile and reproject."""
+    """Unzip standard shapefile and reproject."""
     return [
         ConfigLayerCommandStep(
             args=[

@@ -4,7 +4,7 @@ from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 
 
 END_YEAR = 2020
-CONCENTRATION_YEARS = range(2010, END_YEAR+1)
+CONCENTRATION_YEARS = range(2010, END_YEAR + 1)
 CONCENTRATION_DESCRIPTION = (
     """Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
     99.9%). Values under 15% are considered to be open water."""

@@ -1,6 +1,6 @@
 from qgreenland.config.helpers.layers.sea_ice_concentration import (
-    concentration_maximum_asset_for_year,
     CONCENTRATION_YEARS,
+    concentration_maximum_asset_for_year,
 )
 from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 from qgreenland.models.config.dataset import ConfigDataset
@@ -16,7 +16,7 @@ seaice_index = ConfigDataset(
                     'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median'
                     f'/median_extent_N_{month:02d}_1981-2010_polyline_v3.0.zip'
                 )],
-            ) for month in range(1, 12+1)
+            ) for month in range(1, 12 + 1)
         ],
         *[
             ConfigDatasetHttpAsset(

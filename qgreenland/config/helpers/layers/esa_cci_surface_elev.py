@@ -52,7 +52,10 @@ def surface_elevation_layer(
                 ],
             ),
             *build_overviews(
-                input_file='{input_dir}/' + f'{variable.lower()}_{start_year}_{end_year}.tif',
+                input_file=(
+                    '{input_dir}/'
+                    f'{variable.lower()}_{start_year}_{end_year}.tif'
+                ),
                 output_file='{output_dir}/overviews.tif',
             ),
         ],
