@@ -2,13 +2,17 @@ import calendar
 
 from qgreenland.config.datasets.seaice import seaice_index as dataset
 from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
-from qgreenland.models.config.asset import AnyAsset
+from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
-def _asset(dataset: ConfigDataset, month: int) -> AnyAsset:
-    return dataset.assets[f'median_extent_line_{month:02d}']
+def _asset(dataset: ConfigDataset, month: int) -> ConfigDatasetHttpAsset:
+    asset = dataset.assets[f'median_extent_line_{month:02d}']
+    if type(asset) is ConfigDatasetHttpAsset:
+        return asset
+    else:
+        raise RuntimeError(f'Expected HTTP asset. Received: {asset}')
 
 
 layers = [
