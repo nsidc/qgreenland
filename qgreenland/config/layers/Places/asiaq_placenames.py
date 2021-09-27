@@ -1,13 +1,10 @@
 from qgreenland.config.datasets.asiaq_placenames import asiaq_private_placenames
+from qgreenland.config.helpers.steps.ogr2ogr import (
+    STANDARD_OGR2OGR_ARGS,
+)
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
-
-standard_ogr2ogr_args = [
-    '-lco', 'ENCODING=UTF-8',
-    '-t_srs', project.crs,
-    '-clipdst', project.boundaries['data'].filepath,
-]
 
 towns_and_settlements = ConfigLayer(
     id='populated_places',
@@ -23,7 +20,8 @@ towns_and_settlements = ConfigLayer(
         ConfigLayerCommandStep(
             args=[
                 'ogr2ogr',
-                *standard_ogr2ogr_args,
+                *STANDARD_OGR2OGR_ARGS,
+                '-clipdst', project.boundaries['data'].filepath,
                 '-makevalid',
                 '-sql', (
                     "'SELECT *, \"New Greenlandic\" as label"
@@ -45,7 +43,8 @@ comprehensive_places = towns_and_settlements.copy(update={
         ConfigLayerCommandStep(
             args=[
                 'ogr2ogr',
-                *standard_ogr2ogr_args,
+                *STANDARD_OGR2OGR_ARGS,
+                '-clipdst', project.boundaries['data'].filepath,
                 '-makevalid',
                 '-sql', (
                     "'SELECT *, \"English explanation of Object designation\""
