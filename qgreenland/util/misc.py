@@ -237,8 +237,11 @@ def run_ogr_command(cmd_list):
     )
 
     if result.returncode != 0:
+        stdout = str(result.stdout, encoding='utf8')
+        stderr = str(result.stderr, encoding='utf8')
+        output = f'===STDOUT===\n{stdout}\n\n===STDERRR===\n{stderr}'
         raise exc.QgrSubprocessError(
-            str(result.stderr, encoding='utf8'),
+            f'Subprocess failed with output:\n\n{output}',
         )
 
     return result
