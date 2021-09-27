@@ -1,6 +1,6 @@
 from typing import List
 
-from qgreenland.config.constants import PROJECT_CRS
+from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
@@ -20,8 +20,7 @@ def warp_and_cut(
     reproject = ConfigLayerCommandStep(
         args=[
             'gdalwarp',
-            '-t_srs',  # dstCRS
-            PROJECT_CRS,
+            '-t_srs', project.crs,  # dstCRS
             *reproject_args,
             f'{input_file}',  # <--- Input
             '{output_dir}/warped.tif',  # <--- Output
@@ -29,14 +28,12 @@ def warp_and_cut(
     )
 
     cut = ConfigLayerCommandStep(
-        # TODO: Do we have to spec 'command' here?
         args=[
             'gdalwarp',
             '-cutline',  # CutlineDSName
             f'{cut_file}',
             '-crop_to_cutline',  # CropToCutline=True
-            '-co',  # creationOptions=['COMPRESS=DEFLATE']
-            'COMPRESS=DEFLATE',
+            '-co', 'COMPRESS=DEFLATE',  # creationOptions=['COMPRESS=DEFLATE']
             *cut_args,
             '{input_dir}/warped.tif',  # <--- Input
             f'{output_file}',  # <--- Output
