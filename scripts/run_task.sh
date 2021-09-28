@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+THIS_DIR="$( readlink -f "$( dirname "${BASH_SOURCE[0]}" )")"
+container_id="$($THIS_DIR/helpers/container_id.sh)"
+
 # TODO: --workers=$(nproc)  (or more?)
 # Currently hardcoded to 1 because increasing number of workers leads to failures:
 #
@@ -21,6 +24,5 @@ fi
 # removed/commented for prod.
 # docker-compose up -d
 # NOTE: Workers must be set to 1 for python debug breakpoints to be usable
-docker-compose exec ${tty_arg} luigi luigi --workers=1 \
+docker exec -it ${tty_arg} ${container_id} luigi --workers=1 \
   --module qgreenland.tasks.main ZipQGreenland
-# docker-compose down
