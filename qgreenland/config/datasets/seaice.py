@@ -60,3 +60,40 @@ seaice_index = ConfigDataset(
         },
     },
 )
+
+seaice_age = ConfigDataset(
+    id='seaice_age',
+    assets=[
+        ConfigDatasetHttpAsset(
+            id=str(year),
+            urls=[(
+                'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4'
+                f'/data/iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
+            )],
+        )
+        for year in range(2010, 2019 + 1)
+    ],
+    metadata={
+        'title': 'https://nsidc.org/data/nsidc-0611',
+        'abstract': (
+            """The full original data set provides weekly estimates of sea ice
+            age for the Arctic Ocean derived from remotely sensed sea ice motion
+            and sea ice extent. The temporal coverage for this data set is
+            January 1984 through December 2019. For more recent data, see the
+            Quicklook Arctic Weekly EASE-Grid Sea Ice Age data product
+            (https://nsidc.org/data/nsidc-0749). QGreenland displays a subset of
+            data to coincide with information contained in other sea ice
+            layers."""
+        ),
+        'citation': {
+            'text': (
+                """Tschudi, M., W. N. Meier, J. S. Stewart, C. Fowler, and J.
+                Maslanik. 2019. EASE-Grid Sea Ice Age, Version 4. [Indicate
+                subset used]. Boulder, Colorado USA. NASA National Snow and Ice
+                Data Center Distributed Active Archive Center. doi:
+                https://doi.org/10.5067/UTAV7490FEPB. 2021/01/05."""
+            ),
+            'url': 'https://doi.org/10.5067/UTAV7490FEPB',
+        },
+    },
+)
