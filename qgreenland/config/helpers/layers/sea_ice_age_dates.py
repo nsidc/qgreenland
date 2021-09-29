@@ -10,6 +10,7 @@ import pandas as pd
 import requests
 
 from qgreenland.constants import CONFIG_DIR, INPUT_DIR
+from qgreenland.config.datasets.seaice import seaice_age as dataset
 
 
 def _get_min_max_rankings_file():
@@ -56,7 +57,7 @@ def get_band_of_date(data_filepath: Path, target_date: dt.date):
             return band_idx, week_str
 
 
-def make_seaice_age_layers_cfg(start_year, end_year):
+def make_seaice_age_layers_cfg():
     def _get_data_from_cache(year):
         filepath = INPUT_DIR / f'seaice_age.{year}' / f'iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
 
@@ -68,7 +69,8 @@ def make_seaice_age_layers_cfg(start_year, end_year):
         return filepath
 
     layers_cfg = {}
-    for year in range(start_year, end_year + 1):
+    dataset_years = [int(year_str) for year_str in dataset.assets.keys()]
+    for year in dataset_years:
         min_date, max_date = get_min_max_for_year(year)
         data_filepath = _get_data_from_cache(year)
 
@@ -90,7 +92,7 @@ def make_seaice_age_layers_cfg(start_year, end_year):
 
 
 if __name__ == '__main__':
-    layers_cfg = make_seaice_age_layers_cfg(2010, 2019)
+    layers_cfg = make_seaice_age_layers_cfg()
     with open(CONFIG_DIR / 'helpers/layers/sea_ice_age_cfg.json', 'w') as f:
         f.write(
             json.dumps(
