@@ -15,7 +15,16 @@ from qgreenland.util.luigi.tasks.pipeline import ZipQGreenland
     default=1, show_default=True,
     help='Number of workers to use.',
 )
-def run(fetch_only, workers) -> None:
+@click.argument(
+    'pattern', required=False,
+)
+def run(fetch_only, workers, pattern) -> None:
+    """Run pipelines for layers matching PATTERN."""
+    if pattern:
+        raise NotImplementedError(f'{pattern=} not implemented.')
+    if fetch_only:
+        raise NotImplementedError(f'{fetch_only=} not implemented.')
+
     result = luigi.build(
         [ZipQGreenland()],
         workers=workers,
@@ -28,13 +37,9 @@ def run(fetch_only, workers) -> None:
     if not result.scheduling_succeeded:
         raise click.UsageError(
             (
-                'Scheduling failed. If you see an error like:\n'
+                'Scheduling failed. If you received any error like:\n'
                 "  PermissionError: [Errno 13] Permission denied: '/luigi'\n\n"
                 '...you probably need to run this command within a container,'
-                ' e.g.: `./scripts/container_cli.sh run`.'
+                ' e.g.: `./scripts/container_cli.sh run [OPTIONS]`.'
             ),
-            # exit_code=1,
         )
-
-    breakpoint()
-    print('hooray!')
