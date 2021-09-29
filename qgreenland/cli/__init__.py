@@ -2,7 +2,7 @@ import click
 
 from qgreenland.cli.cleanup import cleanup
 from qgreenland.cli.config_migrate import config_migrate
-from qgreenland.cli.fetch import fetch 
+from qgreenland.cli.fetch import fetch
 from qgreenland.cli.run import run
 
 
