@@ -1,6 +1,7 @@
 import datetime as dt
 import json
 from pathlib import Path
+from pprint import pprint
 import tempfile
 
 from cftime import num2pydate
@@ -59,6 +60,8 @@ def make_seaice_age_layers_cfg(start_year, end_year):
     def _get_data_from_cache(year):
         filepath = INPUT_DIR / f'seaice_age.{year}' / f'iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
 
+
+
         if not filepath.is_file():
             raise FileNotFoundError(f'Expected file {filepath} does not exist.')
 
@@ -89,4 +92,10 @@ def make_seaice_age_layers_cfg(start_year, end_year):
 if __name__ == '__main__':
     layers_cfg = make_seaice_age_layers_cfg(2010, 2019)
     with open(CONFIG_DIR / 'helpers/layers/sea_ice_age_cfg.json', 'w') as f:
-        f.write(json.dumps(layers_cfg))
+        f.write(
+            json.dumps(
+                layers_cfg,
+                indent=2,
+                sort_keys=True,
+            )
+        )

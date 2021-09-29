@@ -1,1 +1,102 @@
-{"2010": {"minimum": {"date_range": "September 17-23", "band_num": 38}, "maximum": {"date_range": "April 02-08", "band_num": 14}}, "2011": {"minimum": {"date_range": "September 10-16", "band_num": 37}, "maximum": {"date_range": "March 05-11", "band_num": 10}}, "2012": {"minimum": {"date_range": "September 16-22", "band_num": 38}, "maximum": {"date_range": "March 18-24", "band_num": 12}}, "2013": {"minimum": {"date_range": "September 10-16", "band_num": 37}, "maximum": {"date_range": "March 12-18", "band_num": 11}}, "2014": {"minimum": {"date_range": "September 17-23", "band_num": 38}, "maximum": {"date_range": "March 19-25", "band_num": 12}}, "2015": {"minimum": {"date_range": "September 03-09", "band_num": 36}, "maximum": {"date_range": "February 19-25", "band_num": 8}}, "2016": {"minimum": {"date_range": "September 09-15", "band_num": 37}, "maximum": {"date_range": "March 18-24", "band_num": 12}}, "2017": {"minimum": {"date_range": "September 10-16", "band_num": 37}, "maximum": {"date_range": "March 05-11", "band_num": 10}}, "2018": {"minimum": {"date_range": "September 17-23", "band_num": 38}, "maximum": {"date_range": "March 12-18", "band_num": 11}}, "2019": {"minimum": {"date_range": "September 17-23", "band_num": 38}, "maximum": {"date_range": "March 12-18", "band_num": 11}}}
+{
+  "2010": {
+    "maximum": {
+      "band_num": 14,
+      "date_range": "April 02-08"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 17-23"
+    }
+  },
+  "2011": {
+    "maximum": {
+      "band_num": 10,
+      "date_range": "March 05-11"
+    },
+    "minimum": {
+      "band_num": 37,
+      "date_range": "September 10-16"
+    }
+  },
+  "2012": {
+    "maximum": {
+      "band_num": 12,
+      "date_range": "March 18-24"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 16-22"
+    }
+  },
+  "2013": {
+    "maximum": {
+      "band_num": 11,
+      "date_range": "March 12-18"
+    },
+    "minimum": {
+      "band_num": 37,
+      "date_range": "September 10-16"
+    }
+  },
+  "2014": {
+    "maximum": {
+      "band_num": 12,
+      "date_range": "March 19-25"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 17-23"
+    }
+  },
+  "2015": {
+    "maximum": {
+      "band_num": 8,
+      "date_range": "February 19-25"
+    },
+    "minimum": {
+      "band_num": 36,
+      "date_range": "September 03-09"
+    }
+  },
+  "2016": {
+    "maximum": {
+      "band_num": 12,
+      "date_range": "March 18-24"
+    },
+    "minimum": {
+      "band_num": 37,
+      "date_range": "September 09-15"
+    }
+  },
+  "2017": {
+    "maximum": {
+      "band_num": 10,
+      "date_range": "March 05-11"
+    },
+    "minimum": {
+      "band_num": 37,
+      "date_range": "September 10-16"
+    }
+  },
+  "2018": {
+    "maximum": {
+      "band_num": 11,
+      "date_range": "March 12-18"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 17-23"
+    }
+  },
+  "2019": {
+    "maximum": {
+      "band_num": 11,
+      "date_range": "March 12-18"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 17-23"
+    }
+  }
+}
