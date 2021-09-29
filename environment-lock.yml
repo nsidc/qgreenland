@@ -19,6 +19,7 @@ dependencies:
   - certifi=2021.5.30=py39hf3d152e_0
   - cffi=1.14.6=py39h4bc2ebd_1
   - cfitsio=3.470=hce51eda_7
+  - cftime=1.5.1=py39hce5d2b2_0
   - chardet=4.0.0=py39hf3d152e_1
   - click=7.1.2=pyh9f0ad1d_0
   - click-plugins=1.1.1=py_0
@@ -127,6 +128,7 @@ dependencies:
   - mysql-common=8.0.25=ha770c72_0
   - mysql-libs=8.0.25=h935591d_0
   - ncurses=6.2=h58526e2_4
+  - netcdf4=1.5.6=nompi_py39h36800e2_102
   - nose2=0.9.2=py_0
   - nspr=4.30=h9c3ff4c_0
   - nss=3.69=hb5efdd6_0
