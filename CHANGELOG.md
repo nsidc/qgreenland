@@ -1,3 +1,8 @@
+# v2.0.0 (unreleased)
+
+- Bugfix: sea ice age layers (TODO)
+
+
 # v1.0.1 (2021-02-23)
 
 - Remove `STYLE.txt` from zip package.
