@@ -13,7 +13,12 @@ from qgreenland.util.config.config import CONFIG
 @click.argument(
     'pattern',
 )
-def fetch(pattern) -> None:
+@click.option(
+    '--workers', '-w',
+    default=4, show_default=True,
+    help='Number of workers to use.',
+)
+def fetch(pattern, workers) -> None:
     """Fetch assets for datasets matching PATTERN."""
     dataset_matches = select(
         lambda i: fnmatch(i[1].id, pattern),
