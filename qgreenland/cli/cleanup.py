@@ -25,7 +25,7 @@ def _print_and_run(cmd, *, dry_run):
         )
 
 
-@click.command(context_settings={'help_option_names': ['-h', '--help']})
+@click.command()
 @click.option('dry_run', '--dry-run', '-d',
               help="Print commands, but don't actually delete anything.",
               is_flag=True)
