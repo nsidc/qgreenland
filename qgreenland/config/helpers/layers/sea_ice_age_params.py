@@ -77,9 +77,12 @@ def get_band_info_for_date(target_date: dt.date) -> tuple[int, str]:
     raise RuntimeError('Failed to find data matching target_date.')
 
 
-def make_seaice_age_layers_cfg() -> None:
-    """Write sea_ice_age_cfg.json file containing configuration for each layer by year."""
-    layers_cfg = {}
+def make_seaice_age_layers_params() -> None:
+    """Write sea_ice_age_params.json.
+
+    sea_ice_age_params.json contains params for each layer by year.
+    """
+    layers_params = {}
     dataset_years = [int(year_str) for year_str in dataset.assets.keys()]
     for year in dataset_years:
         min_date, max_date = get_min_max_dates_for_year(year)
@@ -87,7 +90,7 @@ def make_seaice_age_layers_cfg() -> None:
         min_band, min_week_str = get_band_info_for_date(min_date)
         max_band, max_week_str = get_band_info_for_date(max_date)
 
-        layers_cfg[year] = {
+        layers_params[year] = {
             'minimum': {
                 'date_range': min_week_str,
                 'band_num': min_band,
@@ -98,10 +101,10 @@ def make_seaice_age_layers_cfg() -> None:
             },
         }
 
-    with open(CONFIG_DIR / 'helpers/layers/sea_ice_age_cfg.json', 'w') as f:
+    with open(CONFIG_DIR / 'helpers/layers/sea_ice_age_params.json', 'w') as f:
         f.write(
             json.dumps(
-                layers_cfg,
+                layers_params,
                 indent=2,
                 sort_keys=True,
             ),
@@ -109,4 +112,4 @@ def make_seaice_age_layers_cfg() -> None:
 
 
 if __name__ == '__main__':
-    make_seaice_age_layers_cfg()
+    make_seaice_age_layers_params()

@@ -10,17 +10,17 @@ from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
-def _get_layer_cfg():
-    cfg_fp = CONFIG_DIR / 'helpers/layers/sea_ice_age_cfg.json'
-    with open(cfg_fp, 'r') as f:
+def _get_layer_params():
+    params_fp = CONFIG_DIR / 'helpers/layers/sea_ice_age_params.json'
+    with open(params_fp, 'r') as f:
         return json.loads(f.read())
 
-    # TODO: check if list of years in layer cfg json file matches the list of
+    # TODO: check if list of years in layer params json file matches the list of
     # years identified by the dataset's assets. If not, run the (soon TM) code
-    # to fetch assets and then re-run the code to generate the ice age cfg json.
+    # to fetch assets and then re-run the code to generate the ice age params json.
 
 
-seaice_age_layers = _get_layer_cfg()
+seaice_age_layers = _get_layer_params()
 
 AgeType = Literal['minimum', 'maximum']
 
