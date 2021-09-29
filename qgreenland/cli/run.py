@@ -37,6 +37,8 @@ def run(pattern, dry_run, fetch_only, workers) -> None:
     else:
         tasks = [ZipQGreenland()]
 
+    # This is not useful output. TODO: List the layers for which we're running
+    # tasks, unless it's all of them?
     print('Running the following tasks:')
     print(textwrap.indent(
         '\n'.join(str(t) for t in tasks),
