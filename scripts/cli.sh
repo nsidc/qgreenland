@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-if [[ "$1" == "run" || "$1" == "cleanup" ]]; then
-    echo "The 'run' and 'cleanup' commands should be run from \`container_cli.sh\`."
+if [[ "$1" == "run" || "$1" == "fetch" || "$1" == "cleanup" ]]; then
+    echo "The 'run', 'fetch', and 'cleanup' commands should be run from \`container_cli.sh\`."
     exit 1
 fi
 

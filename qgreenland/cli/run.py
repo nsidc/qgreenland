@@ -22,11 +22,16 @@ def run(fetch_only, workers, pattern) -> None:
     """Run pipelines for layers matching PATTERN."""
     if pattern:
         raise NotImplementedError(f'{pattern=} not implemented.')
-    if fetch_only:
+    elif fetch_only:
+        # TODO!
+        # for layer in matches:
+        #    fetch_task_from_layer(...)  # ??
         raise NotImplementedError(f'{fetch_only=} not implemented.')
+    else:
+        tasks = [ZipQGreenland()]
 
     result = luigi.build(
-        [ZipQGreenland()],
+        tasks,
         workers=workers,
         # Unlike CLI, running tasks from Python does not feature an "identical
         # process lock" by default.
