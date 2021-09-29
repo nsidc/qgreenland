@@ -1,28 +1,31 @@
 import datetime as dt
+import functools
 import json
-from pathlib import Path
-from pprint import pprint
 import tempfile
+from pathlib import Path
 
-from cftime import num2pydate
-from netCDF4 import Dataset
 import pandas as pd
 import requests
+from cftime import num2pydate
+from netCDF4 import Dataset
 
-from qgreenland.constants import CONFIG_DIR, INPUT_DIR
 from qgreenland.config.datasets.seaice import seaice_age as dataset
+from qgreenland.constants import CONFIG_DIR, INPUT_DIR
 
 
-def _get_min_max_rankings_file():
-    response = requests.get(
+@functools.cache
+def _get_min_max_rankings_file() -> bytes:
+    """Fetch the Sea Ice Index Min/Max rankings spreadsheet and return its content."""
+    response = requests.get((
         'https://masie_web.apps.nsidc.org/pub/DATASETS/NOAA/G02135/'
         'seaice_analysis/Sea_Ice_Index_Min_Max_Rankings_G02135_v3.0.xlsx'
-    )
+    ))
 
     return response.content
 
 
-def get_min_max_for_year(year: int) -> tuple[dt.date, dt.date]:
+def get_min_max_dates_for_year(year: int) -> tuple[dt.date, dt.date]:
+    """Return dates of the min and max sea ice extent for a given year."""
     with tempfile.NamedTemporaryFile() as tmpf:
         tmpf.write(_get_min_max_rankings_file())
 
@@ -39,7 +42,22 @@ def get_min_max_for_year(year: int) -> tuple[dt.date, dt.date]:
     return min_date, max_date
 
 
-def get_band_of_date(data_filepath: Path, target_date: dt.date):
+def get_band_info_for_date(target_date: dt.date) -> tuple[int, str]:
+    """Return the band index and a descriptive text for the layer title."""
+
+    def _get_data_fp_from_cache(year: int) -> Path:
+        filepath = (
+            INPUT_DIR
+            / f'seaice_age.{year}'
+            / f'iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
+        )
+
+        if not filepath.is_file():
+            raise FileNotFoundError(f'Expected file {filepath} does not exist.')
+
+        return filepath
+
+    data_filepath = _get_data_fp_from_cache(target_date.year)
     ds = Dataset(data_filepath)
     time = ds.variables['time']
 
@@ -53,27 +71,21 @@ def get_band_of_date(data_filepath: Path, target_date: dt.date):
                 week_str = f'{start_date:%B} {start_date:%d}-{end_date:%d}'
             else:
                 week_str = f'{start_date:%B} {start_date:%d}-{end_date:%B}{end_date:%d}'
-                
+
             return band_idx, week_str
 
+    raise RuntimeError('Failed to find data matching target_date.')
 
-def make_seaice_age_layers_cfg():
-    def _get_data_from_cache(year):
-        filepath = INPUT_DIR / f'seaice_age.{year}' / f'iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
 
-        if not filepath.is_file():
-            raise FileNotFoundError(f'Expected file {filepath} does not exist.')
-
-        return filepath
-
+def make_seaice_age_layers_cfg() -> None:
+    """Write sea_ice_age_cfg.json file containing configuration for each layer by year."""
     layers_cfg = {}
     dataset_years = [int(year_str) for year_str in dataset.assets.keys()]
     for year in dataset_years:
-        min_date, max_date = get_min_max_for_year(year)
-        data_filepath = _get_data_from_cache(year)
+        min_date, max_date = get_min_max_dates_for_year(year)
 
-        min_band, min_week_str = get_band_of_date(data_filepath, min_date)
-        max_band, max_week_str = get_band_of_date(data_filepath, max_date)
+        min_band, min_week_str = get_band_info_for_date(min_date)
+        max_band, max_week_str = get_band_info_for_date(max_date)
 
         layers_cfg[year] = {
             'minimum': {
@@ -86,16 +98,15 @@ def make_seaice_age_layers_cfg():
             },
         }
 
-    return layers_cfg
-
-
-if __name__ == '__main__':
-    layers_cfg = make_seaice_age_layers_cfg()
     with open(CONFIG_DIR / 'helpers/layers/sea_ice_age_cfg.json', 'w') as f:
         f.write(
             json.dumps(
                 layers_cfg,
                 indent=2,
                 sort_keys=True,
-            )
+            ),
         )
+
+
+if __name__ == '__main__':
+    make_seaice_age_layers_cfg()
