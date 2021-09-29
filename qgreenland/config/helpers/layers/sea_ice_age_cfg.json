@@ -98,5 +98,15 @@
       "band_num": 38,
       "date_range": "September 17-23"
     }
+  },
+  "2020": {
+    "maximum": {
+      "band_num": 10,
+      "date_range": "March 04-10"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 16-22"
+    }
   }
 }

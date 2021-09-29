@@ -72,7 +72,7 @@ seaice_age = ConfigDataset(
             )],
         )
         # TODO: 2020 data is now available!
-        for year in range(2010, 2019 + 1)
+        for year in range(2010, 2020 + 1)
     ],
     metadata={
         'title': 'https://nsidc.org/data/nsidc-0611',
