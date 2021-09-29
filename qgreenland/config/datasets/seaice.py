@@ -61,6 +61,9 @@ seaice_index = ConfigDataset(
     },
 )
 
+SEAICE_AGE_START_YEAR = 2010
+SEAICE_AGE_END_YEAR = 2020
+
 seaice_age = ConfigDataset(
     id='seaice_age',
     assets=[
@@ -72,7 +75,7 @@ seaice_age = ConfigDataset(
             )],
         )
         # TODO: 2020 data is now available!
-        for year in range(2010, 2020 + 1)
+        for year in range(SEAICE_AGE_START_YEAR, SEAICE_AGE_END_YEAR + 1)
     ],
     metadata={
         'title': 'https://nsidc.org/data/nsidc-0611',
