@@ -15,9 +15,12 @@ def _get_layer_cfg():
     with open(cfg_fp, 'r') as f:
         return json.loads(f.read())
 
+    # TODO: check if list of years in layer cfg json file matches the list of
+    # years identified by the dataset's assets. If not, run the (soon TM) code
+    # to fetch assets and then re-run the code to generate the ice age cfg json.
+
 
 seaice_age_layers = _get_layer_cfg()
-
 
 AgeType = Literal['minimum', 'maximum']
 
