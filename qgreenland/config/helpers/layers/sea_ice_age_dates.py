@@ -61,8 +61,6 @@ def make_seaice_age_layers_cfg():
     def _get_data_from_cache(year):
         filepath = INPUT_DIR / f'seaice_age.{year}' / f'iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
 
-
-
         if not filepath.is_file():
             raise FileNotFoundError(f'Expected file {filepath} does not exist.')
 
