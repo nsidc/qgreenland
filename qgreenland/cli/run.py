@@ -1,3 +1,5 @@
+import textwrap
+
 import click
 import luigi
 
@@ -5,6 +7,11 @@ from qgreenland.util.luigi.tasks.pipeline import ZipQGreenland
 
 
 @click.command()
+@click.option(
+    '--dry-run', '-d',
+    is_flag=True,
+    help='Skip actual run, just list out tasks.',
+)
 @click.option(
     '--fetch-only', '-f',
     help='Fetch the data, but do not process it.',
@@ -18,7 +25,7 @@ from qgreenland.util.luigi.tasks.pipeline import ZipQGreenland
 @click.argument(
     'pattern', required=False,
 )
-def run(fetch_only, workers, pattern) -> None:
+def run(pattern, dry_run, fetch_only, workers) -> None:
     """Run pipelines for layers matching PATTERN."""
     if pattern:
         raise NotImplementedError(f'{pattern=} not implemented.')
@@ -29,6 +36,15 @@ def run(fetch_only, workers, pattern) -> None:
         raise NotImplementedError(f'{fetch_only=} not implemented.')
     else:
         tasks = [ZipQGreenland()]
+
+    print('Running the following tasks:')
+    print(textwrap.indent(
+        '\n'.join(str(t) for t in tasks),
+        '  - ',
+    ))
+    if dry_run:
+        print('DRY RUN enabled. Aborting run.')
+        return
 
     result = luigi.build(
         tasks,
