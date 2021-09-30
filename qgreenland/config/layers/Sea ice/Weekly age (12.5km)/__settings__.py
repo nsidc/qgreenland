@@ -3,7 +3,7 @@ from qgreenland.models.config.layer_group import LayerGroupSettings
 
 settings = LayerGroupSettings(
     order=[
-        'September (min extent)',
-        'Feb, March, or April (max extent)',
+        'September (min weekly extent)',
+        'Feb, March, or April (max weekly extent)',
     ],
 )
