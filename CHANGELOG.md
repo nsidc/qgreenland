@@ -1,3 +1,18 @@
+# v1.0.2 (2021-02-23)
+
+- Bugfixes for "Sea ice/Weekly age (12.5 km)" layers:
+
+    - Update sea ice age layer titles to correctly reflect the weekly time
+      period for each layer. Previously, layer titles indicated a period one day
+      longer than it should have been. For example, 'March 26-April 2' should
+      have read 'March 26-April 1'.
+    - Update sea ice age maximum extent layer for 2010 to use data from April
+      2-8 instead of March 26-April 1. This range corresponds to the sea ice
+      maximum achieved on April 2.
+    - Update sea ice age minimum extent layer for 2015 to use data from February
+      19-25 instead of February 12-18. This range corresponds to the sea ice
+      maximum achieved on February 25.
+
 # v1.0.1 (2021-02-23)
 
 - Remove `STYLE.txt` from zip package.
