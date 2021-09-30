@@ -2,7 +2,7 @@
   "2010": {
     "maximum": {
       "band_num": 14,
-      "date_range": "April 02-08"
+      "date_range": "April 2-8"
     },
     "minimum": {
       "band_num": 38,
@@ -12,7 +12,7 @@
   "2011": {
     "maximum": {
       "band_num": 10,
-      "date_range": "March 05-11"
+      "date_range": "March 5-11"
     },
     "minimum": {
       "band_num": 37,
@@ -56,7 +56,7 @@
     },
     "minimum": {
       "band_num": 36,
-      "date_range": "September 03-09"
+      "date_range": "September 3-9"
     }
   },
   "2016": {
@@ -66,13 +66,13 @@
     },
     "minimum": {
       "band_num": 37,
-      "date_range": "September 09-15"
+      "date_range": "September 9-15"
     }
   },
   "2017": {
     "maximum": {
       "band_num": 10,
-      "date_range": "March 05-11"
+      "date_range": "March 5-11"
     },
     "minimum": {
       "band_num": 37,
@@ -102,7 +102,7 @@
   "2020": {
     "maximum": {
       "band_num": 10,
-      "date_range": "March 04-10"
+      "date_range": "March 4-10"
     },
     "minimum": {
       "band_num": 38,
