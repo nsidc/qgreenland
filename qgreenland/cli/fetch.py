@@ -1,13 +1,12 @@
 import textwrap
 from fnmatch import fnmatch
-from typing import Any
 
 import click
 import luigi
 from funcy import lmapcat, select
 
-from qgreenland.util.luigi import fetch_tasks_from_dataset
 from qgreenland.util.config.config import CONFIG
+from qgreenland.util.luigi import fetch_tasks_from_dataset
 
 
 @click.command()
@@ -53,3 +52,13 @@ def fetch(pattern, dry_run, workers) -> None:
         no_lock=False,
         detailed_summary=True,
     )
+
+    if not result.scheduling_succeeded:
+        raise click.UsageError(
+            (
+                'Scheduling failed. If you received any error like:\n'
+                "  PermissionError: [Errno 13] Permission denied: '/luigi'\n\n"
+                '...you probably need to run this command within a container,'
+                ' e.g.: `./scripts/container_cli.sh run [OPTIONS]`.'
+            ),
+        )

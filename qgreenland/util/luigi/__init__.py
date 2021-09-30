@@ -55,7 +55,6 @@ def fetch_task_from_layer(
     return _fetch_task(dataset_cfg, asset_cfg)
 
 
-
 def fetch_tasks_from_dataset(
     dataset_cfg: ConfigDataset,
 ) -> Generator[FetchTask, None, None]:
@@ -64,8 +63,9 @@ def fetch_tasks_from_dataset(
         yield _fetch_task(dataset_cfg, asset_cfg)
 
 
-
-# Generate layer pipelines?
+# TODO: Rename? generate_layer_pipelines?
+# TODO: Accept an optional pattern?
+# TODO: Fetch-only boolean option?
 def generate_layer_tasks():
     """Generate a list of pre-configured tasks based on layer configuration.
 
