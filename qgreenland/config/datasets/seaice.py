@@ -61,6 +61,11 @@ seaice_index = ConfigDataset(
     },
 )
 
+# NOTE: when updating the assets for this dataset, the
+# `config/helpers/layers/sea_ice_age_params.py` script needs to be re-run to
+# generate the `config/helpers/layers/sea_ice_age_params.json` file. The
+# parameters contained in the `sea_ice_age_params.json` file are necessary for
+# layer creation.
 SEAICE_AGE_START_YEAR = 2010
 SEAICE_AGE_END_YEAR = 2020
 

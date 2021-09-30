@@ -15,10 +15,6 @@ def _get_layer_params():
     with open(params_fp, 'r') as f:
         return json.loads(f.read())
 
-    # TODO: check if list of years in layer params json file matches the list of
-    # years identified by the dataset's assets. If not, run the (soon TM) code
-    # to fetch assets and then re-run the code to generate the ice age params json.
-
 
 seaice_age_layers = _get_layer_params()
 
