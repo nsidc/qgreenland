@@ -13,6 +13,9 @@ from qgreenland.config.datasets.seaice import seaice_age as dataset
 from qgreenland.constants import CONFIG_DIR, INPUT_DIR
 
 
+PARAMS_FP = CONFIG_DIR / 'helpers/ancillary/sea_ice_age_params.json'
+
+
 @functools.cache
 def _get_min_max_rankings_file() -> bytes:
     """Fetch the Sea Ice Index Min/Max rankings spreadsheet and return its content."""
@@ -101,8 +104,7 @@ def make_seaice_age_layers_params() -> None:
             },
         }
 
-    params_fp = CONFIG_DIR / 'helpers/layers/sea_ice_age_params.json'
-    with open(params_fp, 'w') as f:
+    with open(PARAMS_FP, 'w') as f:
         f.write(
             json.dumps(
                 layers_params,
@@ -111,7 +113,7 @@ def make_seaice_age_layers_params() -> None:
             ),
         )
 
-    print(f'Wrote {params_fp}.')
+    print(f'Wrote {PARAMS_FP}.')
 
 
 if __name__ == '__main__':

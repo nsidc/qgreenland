@@ -2,17 +2,16 @@ import json
 from typing import Literal
 
 from qgreenland.config.datasets.seaice import seaice_age as dataset
+from qgreenland.config.helpers.layers.sea_ice_age_params import PARAMS_FP
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
-from qgreenland.constants import CONFIG_DIR
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 def _get_layer_params():
-    params_fp = CONFIG_DIR / 'helpers/layers/sea_ice_age_params.json'
-    with open(params_fp, 'r') as f:
+    with open(PARAMS_FP, 'r') as f:
         return json.loads(f.read())
 
 
