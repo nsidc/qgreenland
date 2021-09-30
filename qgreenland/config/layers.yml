@@ -5059,7 +5059,7 @@
       extent chosen based on NSDIC's Sea Ice Index 5-day average.
   visible: False
   # TODO: "September" is not correct, this is weekly data.
-  group_path: 'Sea ice/Weekly age (12.5 km)/September (min extent)'
+  group_path: 'Sea ice/Weekly age (12.5 km)/September (min weekly extent)'
   style: 'sea_ice_age'
   boundary: 'background'
   data_source: seaice_age.2010
@@ -5164,7 +5164,7 @@
       extent chosen based on NSDIC's Sea Ice Index 5-day average. Data provided
       by NSIDC.
   visible: False
-  group_path: 'Sea ice/Weekly age (12.5 km)/Feb or March (max extent)'
+  group_path: 'Sea ice/Weekly age (12.5 km)/Feb or March (max weekly extent)'
   style: 'sea_ice_age'
   boundary: 'background'
   data_source: seaice_age.2010
@@ -5267,7 +5267,7 @@
       Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
       99.9%). Values under 15% are considered to be open water.
   visible: False
-  group_path: 'Sea ice/Monthly mean concentration (25 km)/September (min extent)'
+  group_path: 'Sea ice/Monthly mean concentration (25 km)/September (min monthly extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
   data_source: seaice_index.minimum_concentration_2010
@@ -5343,7 +5343,7 @@
      Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
      99.9%). Values under 15% are considered to be open water.
   visible: False
-  group_path: 'Sea ice/Monthly mean concentration (25 km)/Feb or March (max extent)'
+  group_path: 'Sea ice/Monthly mean concentration (25 km)/Feb or March (max monthly extent)'
   style: 'sea_ice_concentration'
   boundary: 'background'
   data_source: seaice_index.maximum_concentration_2010
