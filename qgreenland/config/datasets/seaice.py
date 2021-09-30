@@ -74,7 +74,6 @@ seaice_age = ConfigDataset(
                 f'/data/iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
             )],
         )
-        # TODO: 2020 data is now available!
         for year in range(SEAICE_AGE_START_YEAR, SEAICE_AGE_END_YEAR + 1)
     ],
     metadata={
