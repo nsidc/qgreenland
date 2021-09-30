@@ -2,7 +2,7 @@ import json
 from typing import Literal
 
 from qgreenland.config.datasets.seaice import seaice_age as dataset
-from qgreenland.config.helpers.layers.sea_ice_age_params import PARAMS_FP
+from qgreenland.config.helpers.layers.make_sea_ice_age_params import PARAMS_FP
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
