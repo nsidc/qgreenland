@@ -6,5 +6,5 @@ settings = LayerGroupSettings(
         'September (min weekly extent)',
         'Feb, March, or April (max weekly extent)',
     ],
-    expanded=True,
+    expand=True,
 )
