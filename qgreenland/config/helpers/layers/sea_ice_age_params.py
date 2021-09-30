@@ -68,9 +68,9 @@ def get_band_info_for_date(target_date: dt.date) -> tuple[int, str]:
 
         if start_date <= target_date and target_date <= end_date:
             if start_date.month == end_date.month:
-                week_str = f'{start_date:%B} {start_date:%d}-{end_date:%d}'
+                week_str = f'{start_date:%B} {start_date:%-d}-{end_date:%-d}'
             else:
-                week_str = f'{start_date:%B} {start_date:%d}-{end_date:%B}{end_date:%d}'
+                week_str = f'{start_date:%B} {start_date:%-d}-{end_date:%B}{end_date:%-d}'
 
             return band_idx, week_str
 
