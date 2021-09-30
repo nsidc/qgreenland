@@ -10745,7 +10745,7 @@
                     "name": "seaice_minimum_age_2020"
                   }
                 ],
-                "name": "September (min extent)",
+                "name": "September (min weekly extent)",
                 "settings": {
                   "expand": false,
                   "order": [
@@ -11735,7 +11735,7 @@
                     "name": "seaice_maximum_age_2020"
                   }
                 ],
-                "name": "Feb, March, or April (max extent)",
+                "name": "Feb, March, or April (max weekly extent)",
                 "settings": {
                   "expand": false,
                   "order": [
@@ -11759,8 +11759,8 @@
             "settings": {
               "expand": false,
               "order": [
-                "September (min extent)",
-                "Feb, March, or April (max extent)"
+                "September (min weekly extent)",
+                "Feb, March, or April (max weekly extent)"
               ],
               "show": false
             }
@@ -12573,7 +12573,7 @@
                     "name": "seaice_maximum_concentration_2020"
                   }
                 ],
-                "name": "Feb or March (max extent)",
+                "name": "Feb or March (max monthly extent)",
                 "settings": {
                   "expand": false,
                   "order": null,
@@ -13386,7 +13386,7 @@
                     "name": "seaice_minimum_concentration_2020"
                   }
                 ],
-                "name": "September (min extent)",
+                "name": "September (min monthly extent)",
                 "settings": {
                   "expand": false,
                   "order": null,
