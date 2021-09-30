@@ -11757,7 +11757,7 @@
             ],
             "name": "Weekly age (12.5km)",
             "settings": {
-              "expand": false,
+              "expand": true,
               "order": [
                 "September (min weekly extent)",
                 "Feb, March, or April (max weekly extent)"
@@ -13396,7 +13396,7 @@
             ],
             "name": "Monthly mean concentration (25 km)",
             "settings": {
-              "expand": false,
+              "expand": true,
               "order": null,
               "show": false
             }
