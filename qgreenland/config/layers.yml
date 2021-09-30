@@ -5164,7 +5164,7 @@
       extent chosen based on NSDIC's Sea Ice Index 5-day average. Data provided
       by NSIDC.
   visible: False
-  group_path: 'Sea ice/Weekly age (12.5 km)/Feb or March (max weekly extent)'
+  group_path: 'Sea ice/Weekly age (12.5 km)/Feb, March, or April (max weekly extent)'
   style: 'sea_ice_age'
   boundary: 'background'
   data_source: seaice_age.2010
