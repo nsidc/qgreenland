@@ -1,7 +1,11 @@
+from fnmatch import fnmatch
+from functools import cache
 from typing import Generator, Type
 
 import luigi
+from funcy import select
 
+from qgreenland import exceptions as exc
 from qgreenland.models.config.asset import (
     AnyAsset,
     ConfigDatasetCmrAsset,
@@ -63,10 +67,12 @@ def fetch_tasks_from_dataset(
         yield _fetch_task(dataset_cfg, asset_cfg)
 
 
-# TODO: Rename? generate_layer_pipelines?
-# TODO: Accept an optional pattern?
-# TODO: Fetch-only boolean option?
-def generate_layer_tasks():
+@cache
+def generate_layer_pipelines(
+    *,
+    pattern: str = None,
+    fetch_only: bool = False,
+) -> list[luigi.Task]:
     """Generate a list of pre-configured tasks based on layer configuration.
 
     Instead of calling tasks now, we return a list of callables with the
@@ -74,13 +80,30 @@ def generate_layer_tasks():
     """
     tasks: list[luigi.Task] = []
 
-    for layer_cfg in CONFIG.layers.values():
-        # Check if it's an online layer; those have no processing pipeline.
+    layers = CONFIG.layers.values()
+    if pattern:
+        layers = select(
+            lambda l: fnmatch(l.id, pattern),
+            layers,
+        )
+
+    if not layers:
+        raise exc.QgrNoLayersFoundError(
+            f"No layers found matching pattern {pattern}."
+        )
+    breakpoint()
+    
+    for layer_cfg in layers:
+        # Check if it's an online layer; those have no fetching or processing
+        # pipeline.
         if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
             continue
 
         # Create tasks, making each task dependent on the previous task.
         task = fetch_task_from_layer(layer_cfg)
+        if fetch_only:
+            tasks.append(task)
+            continue
 
         # If the layer has no steps, it's just fetched and finalized.
         if layer_cfg.steps:

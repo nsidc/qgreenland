@@ -4,6 +4,12 @@ class QgrVersionError(Exception):
     pass
 
 
+class QgrNoLayersFoundError(Exception):
+    """No layers could be found."""
+
+    pass
+
+
 class QgrInvalidConfigError(Exception):
     """Something went wrong with validating/parsing/interpreting the config."""
 

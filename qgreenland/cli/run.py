@@ -3,7 +3,10 @@ import textwrap
 import click
 import luigi
 
-from qgreenland.util.luigi.tasks.pipeline import ZipQGreenland
+from qgreenland.util.luigi.tasks.pipeline import (
+    CreateQgisProjectFile,
+    ZipQGreenland,
+)
 
 
 @click.command()
@@ -27,13 +30,20 @@ from qgreenland.util.luigi.tasks.pipeline import ZipQGreenland
 )
 def run(pattern, dry_run, fetch_only, workers) -> None:
     """Run pipelines for layers matching PATTERN."""
-    if pattern:
-        raise NotImplementedError(f'{pattern=} not implemented.')
-    elif fetch_only:
-        # TODO!
-        # for layer in matches:
-        #    fetch_task_from_layer(...)  # ??
-        raise NotImplementedError(f'{fetch_only=} not implemented.')
+    get_config(pattern=pattern)
+
+
+    if fetch_only:
+        # Don't do anything except fetch the input asset for each layer.
+        tasks = [IngestAllLayers(
+            pattern=pattern,
+            fetch_only=fetch_only,
+        )]
+    elif pattern:
+        # Don't actually zip, just compile.
+        tasks = [CreateQgisProjectFile(
+            pattern=pattern,
+        )]
     else:
         tasks = [ZipQGreenland()]
 

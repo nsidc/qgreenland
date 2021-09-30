@@ -1,5 +1,6 @@
 import logging
 import shutil
+from abc import ABC
 from pathlib import Path
 
 import luigi
@@ -18,7 +19,7 @@ from qgreenland.constants import (
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config.config import CONFIG
 from qgreenland.util.config.export import export_config_csv, export_config_manifest
-from qgreenland.util.luigi import generate_layer_tasks
+from qgreenland.util.luigi import generate_layer_pipelines
 from qgreenland.util.qgis.project import (
     QgsApplicationContext,
     make_qgis_project_file,
@@ -28,11 +29,20 @@ from qgreenland.util.version import get_build_version
 logger = logging.getLogger('luigi-interface')
 
 
-class IngestAllLayers(luigi.WrapperTask):
+class TaskFilterParams(ABC):
+    pattern = luigi.OptionalParameter(default=None)
+
+
+class IngestAllLayers(luigi.WrapperTask, TaskFilterParams):
+    fetch_only = luigi.BoolParameter(default=False)
+
     def requires(self):
         """All layers (not sources) that will be added to the project."""
         # To disable layer(s), edit layers.yml
-        tasks = generate_layer_tasks()
+        tasks = generate_layer_pipelines(
+            pattern=self.pattern,
+            fetch_only=self.fetch_only,
+        )
 
         for task in tasks:
             yield task
@@ -56,7 +66,7 @@ class AncillaryFile(luigi.Task):
             shutil.copy(self.src_filepath, temp_path)
 
 
-class LayerList(AncillaryFile):
+class LayerList(AncillaryFile, TaskFilterParams):
     """A CSV description of layers in the package.
 
     Intended to be viewed by humans.
@@ -66,14 +76,14 @@ class LayerList(AncillaryFile):
     dest_relative_filepath = 'layer_list.csv'
 
     def requires(self):
-        yield IngestAllLayers()
+        yield IngestAllLayers(pattern=self.pattern)
 
     def run(self):
         with self.output().temporary_path() as temp_path:
             export_config_csv(CONFIG, output_path=temp_path)
 
 
-class LayerManifest(luigi.Task):
+class LayerManifest(luigi.Task, TaskFilterParams):
     """A JSON manifest of layers available for access.
 
     Intended to be processed by machine, e.g. QGIS plugin.
@@ -85,14 +95,14 @@ class LayerManifest(luigi.Task):
         )
 
     def requires(self):
-        yield IngestAllLayers()
+        yield IngestAllLayers(pattern=self.pattern)
 
     def run(self):
         with self.output().temporary_path() as temp_path:
             export_config_manifest(CONFIG, output_path=temp_path)
 
 
-class CreateQgisProjectFile(luigi.Task):
+class CreateQgisProjectFile(luigi.Task, TaskFilterParams):
     """Create .qgz/.qgs project file."""
 
     def requires(self):
@@ -124,8 +134,8 @@ class CreateQgisProjectFile(luigi.Task):
             src_filepath=PROJECT_DIR / 'CHANGELOG.md',
             dest_relative_filepath='CHANGELOG.txt',
         )
-        yield LayerManifest()
-        yield LayerList()
+        yield LayerManifest(pattern=self.pattern)
+        yield LayerList(pattern=self.pattern)
 
     def output(self):
         versioned_package_name = f'{PROJECT}_{get_build_version()}'
