@@ -101,7 +101,8 @@ def make_seaice_age_layers_params() -> None:
             },
         }
 
-    with open(CONFIG_DIR / 'helpers/layers/sea_ice_age_params.json', 'w') as f:
+    params_fp = CONFIG_DIR / 'helpers/layers/sea_ice_age_params.json'
+    with open(params_fp, 'w') as f:
         f.write(
             json.dumps(
                 layers_params,
@@ -109,6 +110,8 @@ def make_seaice_age_layers_params() -> None:
                 sort_keys=True,
             ),
         )
+
+    print(f'Wrote {params_fp}.')
 
 
 if __name__ == '__main__':
