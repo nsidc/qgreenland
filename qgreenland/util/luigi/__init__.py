@@ -1,4 +1,4 @@
-from typing import Dict, Type
+from typing import Generator, Type
 
 import luigi
 
@@ -10,6 +10,7 @@ from qgreenland.models.config.asset import (
     ConfigDatasetOnlineAsset,
     ConfigDatasetRepositoryAsset,
 )
+from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.config.config import CONFIG
 from qgreenland.util.luigi.tasks.fetch import (
@@ -21,8 +22,8 @@ from qgreenland.util.luigi.tasks.fetch import (
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 
-# TODO: Make "fetch" tasks into Python "steps".
-ASSET_TYPE_TASKS: Dict[Type[AnyAsset], Type[FetchTask]] = {
+# TODO: Make "fetch" tasks into Python "steps"?
+ASSET_TYPE_TASKS: dict[Type[AnyAsset], Type[FetchTask]] = {
     ConfigDatasetHttpAsset: FetchDataFiles,
     ConfigDatasetCmrAsset: FetchCmrGranule,
     # TODO: rename `FetchLocalDataFiles`, split in two!
@@ -31,11 +32,11 @@ ASSET_TYPE_TASKS: Dict[Type[AnyAsset], Type[FetchTask]] = {
 }
 
 
-# TODO: Unit test!
-def _fetch_task_getter(layer_cfg: ConfigLayer) -> FetchTask:
-    dataset_cfg = layer_cfg.input.dataset
-    asset_cfg = layer_cfg.input.asset
-
+def _fetch_task(
+    dataset_cfg: ConfigDataset,
+    asset_cfg: AnyAsset,
+) -> FetchTask:
+    # TODO: Unit test!
     fetch_task = ASSET_TYPE_TASKS[type(asset_cfg)](
         dataset_id=dataset_cfg.id,
         asset_id=asset_cfg.id,
@@ -44,7 +45,27 @@ def _fetch_task_getter(layer_cfg: ConfigLayer) -> FetchTask:
     return fetch_task
 
 
-# Generate layer pipelines?
+def fetch_task_from_layer(
+    layer_cfg: ConfigLayer,
+) -> FetchTask:
+    # TODO: Unit test!
+    dataset_cfg = layer_cfg.input.dataset
+    asset_cfg = layer_cfg.input.asset
+
+    return _fetch_task(dataset_cfg, asset_cfg)
+
+
+def fetch_tasks_from_dataset(
+    dataset_cfg: ConfigDataset,
+) -> Generator[FetchTask, None, None]:
+    # TODO: Unit test!
+    for asset_cfg in dataset_cfg.assets.values():
+        yield _fetch_task(dataset_cfg, asset_cfg)
+
+
+# TODO: Rename? generate_layer_pipelines?
+# TODO: Accept an optional pattern?
+# TODO: Fetch-only boolean option?
 def generate_layer_tasks():
     """Generate a list of pre-configured tasks based on layer configuration.
 
@@ -59,7 +80,7 @@ def generate_layer_tasks():
             continue
 
         # Create tasks, making each task dependent on the previous task.
-        task = _fetch_task_getter(layer_cfg)
+        task = fetch_task_from_layer(layer_cfg)
 
         # If the layer has no steps, it's just fetched and finalized.
         if layer_cfg.steps:
