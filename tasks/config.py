@@ -9,10 +9,7 @@ from invoke import call, task
 
 from qgreenland.constants import CONFIG_DIR
 from qgreenland.util.config.export import export_config_json
-from qgreenland.util.config.config import (
-    init_config,
-    get_config,
-)
+from qgreenland.util.config.config import get_config
 
 
 @task
@@ -23,7 +20,6 @@ def validate(ctx, verbose=False):
     happens when initializing the configuration. Any validation errors will be
     raised from the import statement.
     """
-    init_config()
     config = get_config()
 
     if verbose:
@@ -43,7 +39,6 @@ def validate(ctx, verbose=False):
 @task
 def export(ctx):
     """Export the config as a JSON string."""
-    init_config()
     config = get_config()
 
     print(export_config_json(config))
@@ -52,7 +47,6 @@ def export(ctx):
 @task
 def diff(ctx):
     """Compare the config lockfile against the current config."""
-    init_config()
     config = get_config()
 
     with open(CONFIG_DIR / 'cfg-lock.json', 'r') as lockfile:
