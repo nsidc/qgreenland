@@ -1,6 +1,7 @@
 from qgreenland.config.datasets.esa_cci import (
     esa_cci_supraglacial_lakes as dataset,
 )
+from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -30,8 +31,7 @@ supraglacial_lakes = ConfigLayer(
         ConfigLayerCommandStep(
             args=[
                 'ogr2ogr',
-                '-lco', 'ENCODING=UTF-8',
-                '-t_srs', project.crs,
+                *STANDARD_OGR2OGR_ARGS,
                 '-clipdst', project.boundaries['data'].filepath,
                 '-dialect', 'sqlite',
                 '-sql',
