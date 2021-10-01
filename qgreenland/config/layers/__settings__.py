@@ -5,6 +5,7 @@ settings = RootGroupSettings(
     order=[
         'Reference',
         'Places',
+        'Human activity',
         'Glaciology',
         'Geophysics',
         'Sea ice',

@@ -1,6 +1,7 @@
-# TODO
-from qgreenland.config.datasets.arctic_sea_routes import arctic_sea_routes as dataset
+from qgreenland.config.datasets.arctic_sea_routes import nga_arctic_sea_routes as dataset
+from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 arctic_sea_routes = ConfigLayer(
@@ -17,6 +18,20 @@ arctic_sea_routes = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
-        # TODO
+        ConfigLayerCommandStep(
+            args=[
+                'unzip',
+                '-d', '{output_dir}',
+                '{input_dir}/Shipping_and_Hydrography-shp.zip',
+            ],
+        ),
+        ConfigLayerCommandStep(
+            args=[
+                'ogr2ogr',
+                *STANDARD_OGR2OGR_ARGS,
+                '{output_dir}/arctic_sea_routes.gpkg',
+                '{input_dir}/Arctic_Sea_Routes.shp',
+            ],
+        ),
     ],
 )
