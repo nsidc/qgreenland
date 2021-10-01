@@ -128,7 +128,7 @@
         "2015": {
           "id": "2015",
           "provider": "gdal",
-          "url": "/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt"
+          "url": "/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt"
         },
         "2019": {
           "id": "2019",
@@ -237,6 +237,26 @@
           "url": ""
         },
         "title": "Longitude and Latitude Lines"
+      }
+    },
+    "nga_arctic_sea_routes": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://opendata.arcgis.com/datasets/67760a7f85614902ac19fa6ff643b9fa_0.zip?outSR=%7B%22latestWkid%22%3A102018%2C%22wkid%22%3A102018%7D"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "nga_arctic_sea_routes",
+      "metadata": {
+        "abstract": "Arctic lines of general transportation. In the case of the\nNorthern Sea Route, the route is based on the actual route used by\nRussian icebreakers and cargo ships. The Northwest Passage is based\non the channels that would be able to support large cargo ships. The\ntranspolar route is a hypothetical route that could be used either\nas a result of ice-free summers or the extensive use of icebreakers\nand ice-hardened ships.",
+        "citation": {
+          "text": "National Geospatial-Intelligence Agency (NGA)",
+          "url": "https://arctic-nga.opendata.arcgis.com/datasets/67760a7f85614902ac19fa6ff643b9fa_0"
+        },
+        "title": "Arctic Sea Routes"
       }
     },
     "sea_ice_index": {
@@ -1600,6 +1620,59 @@
           }
         ],
         "name": "Places",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
+            "layer_cfg": {
+              "description": "Lines depict the Northern Sea Route, Northwest Passate, and\nhypothetical Transpolar Route.",
+              "id": "arctic_sea_routes",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "nga_arctic_sea_routes"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "-d",
+                    "{output_dir}",
+                    "{input_dir}/Shipping_and_Hydrography-shp.zip"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "{output_dir}/arctic_sea_routes.gpkg",
+                    "{input_dir}/Arctic_Sea_Routes.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "arctic_sea_routes",
+              "tags": [],
+              "title": "Arctic sea routes"
+            },
+            "name": "arctic_sea_routes"
+          }
+        ],
+        "name": "Human activity",
         "settings": {
           "expand": false,
           "order": null,
@@ -13638,6 +13711,7 @@
       "order": [
         "Reference",
         "Places",
+        "Human activity",
         "Glaciology",
         "Geophysics",
         "Sea ice",
