@@ -18,7 +18,7 @@ image_mosaic = ConfigDataset(
             provider='gdal',
             url=(
                 '/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/'
-                'rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
+                'rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt'
             ),
         ),
     ],
