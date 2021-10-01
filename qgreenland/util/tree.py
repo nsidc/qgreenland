@@ -1,6 +1,7 @@
 import logging
 import re
 from abc import ABC
+from fnmatch import fnmatch
 from functools import cached_property
 from pathlib import Path
 from typing import Any, Optional, Union
@@ -8,6 +9,7 @@ from typing import Any, Optional, Union
 import anytree
 from anytree.exporter import DictExporter
 
+import qgreenland.exceptions as exc
 from qgreenland.constants import LAYERS_CFG_DIR
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.layer_group import (
@@ -80,8 +82,18 @@ class LayerGroupNode(QgrTreeNode):
         super().__init__(*args, **kwargs)
 
 
-def layer_tree(layer_cfg_dir: Path) -> anytree.Node:
-    tree = _tree_from_dir(layer_cfg_dir)
+def layer_tree(
+    layer_cfg_dir: Path,
+    pattern: Optional[str],
+) -> anytree.Node:
+    tree = _tree_from_dir(layer_cfg_dir, pattern=pattern)
+    _prune_tree(tree)
+
+    if len(tree.children) == 0:
+        raise exc.QgrNoLayersFoundError(
+            f'No layers found matching {pattern=}',
+        )
+
     _check_for_duplicate_leaves(tree)
 
     return tree
@@ -282,6 +294,7 @@ def _handle_layer_config_directory(
 def _tree_from_dir(
     the_dir: Path,
     parent: Optional[anytree.Node] = None,
+    pattern: Optional[str] = None,
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
     directory_contents, settings = _handle_layer_config_directory(
@@ -305,15 +318,21 @@ def _tree_from_dir(
 
             # NOTE: Since this modifies the entire tree (`root_node`), nothing
             # needs to be assigned here.
-            _tree_from_dir(thing, parent=root_node)
+            _tree_from_dir(thing, parent=root_node, pattern=pattern)
         elif isinstance(thing, ConfigLayer):
             # NOTE: Since this modifies the entire tree (`root_node`), nothing
             # needs to be assigned here.
-            LayerNode(
-                thing.id,
-                layer_cfg=thing,
-                parent=root_node,
-            )
+            if pattern and fnmatch(thing.id, pattern):
+                LayerNode(
+                    thing.id,
+                    layer_cfg=thing,
+                    parent=root_node,
+                )
+            else:
+                logger.debug(
+                    f'Layer {thing.id} does not match pattern "{pattern}"',
+                )
+
         else:
             raise RuntimeError(
                 f'Found unexpected thing: {thing}',
@@ -327,6 +346,19 @@ def _check_for_duplicate_leaves(tree: anytree.Node) -> None:
     if len(set(all_layer_ids)) != len(all_layer_ids):
         # TODO: Print duplicates
         raise RuntimeError(f'Duplicate leaves found in tree: {tree.leaves}')
+
+
+def _prune_tree(tree: anytree.Node) -> None:
+    """Remove any leaf nodes which are not LayerNodes."""
+    for node in anytree.PostOrderIter(tree):
+        if node.is_leaf and type(node) is not LayerNode:
+            # "Delete" the node by orphaning it and letting the garbage
+            # collector kill it. Yes, this is the right way :)
+            #    https://github.com/c0fec0de/anytree/issues/152
+            node_path = list(node.group_name_path) + [node.name]
+            node_name = '/'.join(node_path)
+            logger.debug(f'Removing leaf group: /{node_name}')
+            node.parent = None
 
 
 if __name__ == '__main__':

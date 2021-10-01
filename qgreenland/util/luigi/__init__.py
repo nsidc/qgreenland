@@ -1,11 +1,8 @@
-from fnmatch import fnmatch
 from functools import cache
 from typing import Generator, Type
 
 import luigi
-from funcy import select
 
-from qgreenland import exceptions as exc
 from qgreenland.models.config.asset import (
     AnyAsset,
     ConfigDatasetCmrAsset,
@@ -16,7 +13,7 @@ from qgreenland.models.config.asset import (
 )
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer
-from qgreenland.util.config.config import CONFIG
+from qgreenland.util.config.config import get_config
 from qgreenland.util.luigi.tasks.fetch import (
     FetchCmrGranule,
     FetchDataFiles,
@@ -70,7 +67,6 @@ def fetch_tasks_from_dataset(
 @cache
 def generate_layer_pipelines(
     *,
-    pattern: str = None,
     fetch_only: bool = False,
 ) -> list[luigi.Task]:
     """Generate a list of pre-configured tasks based on layer configuration.
@@ -78,21 +74,11 @@ def generate_layer_pipelines(
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
+    config = get_config()
     tasks: list[luigi.Task] = []
 
-    layers = CONFIG.layers.values()
-    if pattern:
-        layers = select(
-            lambda l: fnmatch(l.id, pattern),
-            layers,
-        )
+    layers = config.layers.values()
 
-    if not layers:
-        raise exc.QgrNoLayersFoundError(
-            f"No layers found matching pattern {pattern}."
-        )
-    breakpoint()
-    
     for layer_cfg in layers:
         # Check if it's an online layer; those have no fetching or processing
         # pipeline.

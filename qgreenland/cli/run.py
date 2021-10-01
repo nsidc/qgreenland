@@ -1,10 +1,13 @@
-import textwrap
-
 import click
 import luigi
 
+from qgreenland.util.config.config import (
+    get_config,
+    init_config,
+)
 from qgreenland.util.luigi.tasks.pipeline import (
     CreateQgisProjectFile,
+    IngestAllLayers,
     ZipQGreenland,
 )
 
@@ -30,30 +33,31 @@ from qgreenland.util.luigi.tasks.pipeline import (
 )
 def run(pattern, dry_run, fetch_only, workers) -> None:
     """Run pipelines for layers matching PATTERN."""
-    get_config(pattern=pattern)
-
+    init_config(pattern=pattern)
+    config = get_config()
 
     if fetch_only:
         # Don't do anything except fetch the input asset for each layer.
         tasks = [IngestAllLayers(
-            pattern=pattern,
             fetch_only=fetch_only,
         )]
     elif pattern:
         # Don't actually zip, just compile.
-        tasks = [CreateQgisProjectFile(
-            pattern=pattern,
-        )]
+        tasks = [CreateQgisProjectFile()]
     else:
+        # Do everything!!!
         tasks = [ZipQGreenland()]
 
-    # This is not useful output. TODO: List the layers for which we're running
-    # tasks, unless it's all of them?
-    print('Running the following tasks:')
-    print(textwrap.indent(
-        '\n'.join(str(t) for t in tasks),
-        '  - ',
-    ))
+    print(f'Running tasks: {str(tasks)}')
+    print()
+
+    if pattern:
+        action = 'Fetching data' if fetch_only else 'Running pipelines'
+        print(f'{action} for the following layers:')
+        for layer in config.layers.keys():
+            print(f'  - {layer}')
+        print()
+
     if dry_run:
         print('DRY RUN enabled. Aborting run.')
         return

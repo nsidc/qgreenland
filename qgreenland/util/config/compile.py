@@ -1,11 +1,12 @@
 from functools import cache
 from pathlib import Path
+from typing import Optional
 
 from qgreenland.config.project import project
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.util.module import load_objects_from_paths_by_class
-from qgreenland.util.tree import layer_tree
+from qgreenland.util.tree import LayerNode, layer_tree
 
 
 def _get_python_module_filepaths(the_dir: Path) -> list[Path]:
@@ -35,11 +36,22 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
 
 
 @cache
-def compile_cfg(config_dir: Path) -> Config:
-    compiled_layer_tree = layer_tree(config_dir / 'layers')
+def compile_cfg(
+    config_dir: Path,
+    pattern: Optional[str],
+) -> Config:
+    compiled_layer_tree = layer_tree(
+        config_dir / 'layers',
+        pattern=pattern,
+    )
+    leaves = compiled_layer_tree.leaves
+
+    if not all(type(leaf) is LayerNode for leaf in leaves):
+        raise RuntimeError('Error compiling config. Please debug.')
+
     layers_dict = {
         node.layer_cfg.id: node.layer_cfg
-        for node in compiled_layer_tree.leaves
+        for node in leaves
     }
 
     return Config(
