@@ -323,7 +323,7 @@ def _tree_from_dir(
         elif isinstance(thing, ConfigLayer):
             # NOTE: Since this modifies the entire tree (`root_node`), nothing
             # needs to be assigned here.
-            if pattern and fnmatch(thing.id, pattern):
+            if not pattern or fnmatch(thing.id, pattern):
                 LayerNode(
                     thing.id,
                     layer_cfg=thing,
