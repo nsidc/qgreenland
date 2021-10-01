@@ -11,6 +11,7 @@ services:
     volumes:
       # Code
       - ./:/luigi/tasks/qgreenland:ro
+      - ./:/luigi/tasks/qgreenland/config/helpers/ancillary/:rw
       # Luigi artifacts
       - ./luigi/conf:/etc/luigi:ro
       - ./luigi/state:/luigi/state:rw

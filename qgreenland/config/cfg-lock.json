@@ -257,6 +257,96 @@
         "title": "Sea Ice Index, Version 3"
       }
     },
+    "seaice_age": {
+      "assets": {
+        "2010": {
+          "id": "2010",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20100101_20101231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2011": {
+          "id": "2011",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20110101_20111231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2012": {
+          "id": "2012",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20120101_20121231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2013": {
+          "id": "2013",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20130101_20131231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2014": {
+          "id": "2014",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20140101_20141231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2015": {
+          "id": "2015",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20150101_20151231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2016": {
+          "id": "2016",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20160101_20161231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2017": {
+          "id": "2017",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20170101_20171231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2018": {
+          "id": "2018",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20180101_20181231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2019": {
+          "id": "2019",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20190101_20191231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2020": {
+          "id": "2020",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20200101_20201231_v4.1.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "seaice_age",
+      "metadata": {
+        "abstract": "The full original data set provides weekly estimates of sea ice\nage for the Arctic Ocean derived from remotely sensed sea ice motion\nand sea ice extent. The temporal coverage for this data set is\nJanuary 1984 through December 2019. For more recent data, see the\nQuicklook Arctic Weekly EASE-Grid Sea Ice Age data product\n(https://nsidc.org/data/nsidc-0749). QGreenland displays a subset of\ndata to coincide with information contained in other sea ice\nlayers.",
+        "citation": {
+          "text": "Tschudi, M., W. N. Meier, J. S. Stewart, C. Fowler, and J.\nMaslanik. 2019. EASE-Grid Sea Ice Age, Version 4. [Indicate\nsubset used]. Boulder, Colorado USA. NASA National Snow and Ice\nData Center Distributed Active Archive Center. doi:\nhttps://doi.org/10.5067/UTAV7490FEPB. 2021/01/05.",
+          "url": "https://doi.org/10.5067/UTAV7490FEPB"
+        },
+        "title": "https://nsidc.org/data/nsidc-0611"
+      }
+    },
     "seaice_index": {
       "assets": {
         "maximum_concentration_2010": {
@@ -9688,27 +9778,39 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2015",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2010",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2015"
+                          "id": "2010"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "38",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20100101_20101231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -9717,7 +9819,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -9753,35 +9858,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "February 2015"
+                      "title": "September 17-23 2010"
                     },
-                    "name": "seaice_maximum_concentration_2015"
+                    "name": "seaice_minimum_age_2010"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2010",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2011",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2010"
+                          "id": "2011"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "37",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20110101_20111231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -9790,7 +9907,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -9826,35 +9946,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2010"
+                      "title": "September 10-16 2011"
                     },
-                    "name": "seaice_maximum_concentration_2010"
+                    "name": "seaice_minimum_age_2011"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2011",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2012",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2011"
+                          "id": "2012"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "38",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20120101_20121231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -9863,7 +9995,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -9899,35 +10034,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2011"
+                      "title": "September 16-22 2012"
                     },
-                    "name": "seaice_maximum_concentration_2011"
+                    "name": "seaice_minimum_age_2012"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2012",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2013",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2012"
+                          "id": "2013"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "37",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20130101_20131231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -9936,7 +10083,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -9972,35 +10122,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2012"
+                      "title": "September 10-16 2013"
                     },
-                    "name": "seaice_maximum_concentration_2012"
+                    "name": "seaice_minimum_age_2013"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2013",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2014",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2013"
+                          "id": "2014"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "38",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20140101_20141231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -10009,7 +10171,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -10045,35 +10210,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2013"
+                      "title": "September 17-23 2014"
                     },
-                    "name": "seaice_maximum_concentration_2013"
+                    "name": "seaice_minimum_age_2014"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2014",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2015",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2014"
+                          "id": "2015"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "36",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20150101_20151231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -10082,7 +10259,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -10118,35 +10298,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2014"
+                      "title": "September 3-9 2015"
                     },
-                    "name": "seaice_maximum_concentration_2014"
+                    "name": "seaice_minimum_age_2015"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2016",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2016",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2016"
+                          "id": "2016"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "37",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20160101_20161231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -10155,7 +10347,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -10191,35 +10386,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2016"
+                      "title": "September 9-15 2016"
                     },
-                    "name": "seaice_maximum_concentration_2016"
+                    "name": "seaice_minimum_age_2016"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2017",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2017",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2017"
+                          "id": "2017"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "37",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20170101_20171231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -10228,7 +10435,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -10264,35 +10474,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2017"
+                      "title": "September 10-16 2017"
                     },
-                    "name": "seaice_maximum_concentration_2017"
+                    "name": "seaice_minimum_age_2017"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2018",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2018",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2018"
+                          "id": "2018"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "38",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20180101_20181231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -10301,7 +10523,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -10337,35 +10562,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2018"
+                      "title": "September 17-23 2018"
                     },
-                    "name": "seaice_maximum_concentration_2018"
+                    "name": "seaice_minimum_age_2018"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2019",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2019",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2019"
+                          "id": "2019"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "38",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20190101_20191231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -10374,7 +10611,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -10410,35 +10650,47 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2019"
+                      "title": "September 17-23 2019"
                     },
-                    "name": "seaice_maximum_concentration_2019"
+                    "name": "seaice_minimum_age_2019"
                   },
                   {
                     "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2020",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2020",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "maximum_concentration_2020"
+                          "id": "2020"
                         },
                         "dataset": {
-                          "id": "seaice_index"
+                          "id": "seaice_age"
                         }
                       },
                       "show": false,
                       "steps": [
                         {
                           "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
+                            "gdal_translate",
+                            "-b",
+                            "38",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20200101_20201231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
                           ],
                           "type": "command"
                         },
@@ -10447,7 +10699,10 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
-                            "{input_dir}/downscaled.tif",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"
@@ -10483,20 +10738,1035 @@
                           "type": "command"
                         }
                       ],
-                      "style": "sea_ice_concentration",
+                      "style": "sea_ice_age",
                       "tags": [],
-                      "title": "March 2020"
+                      "title": "September 16-22 2020"
                     },
-                    "name": "seaice_maximum_concentration_2020"
+                    "name": "seaice_minimum_age_2020"
                   }
                 ],
-                "name": "Feb or March (max extent)",
+                "name": "September (min weekly extent)",
                 "settings": {
                   "expand": false,
-                  "order": null,
+                  "order": [
+                    "layers.py:seaice_minimum_age_2010",
+                    "layers.py:seaice_minimum_age_2011",
+                    "layers.py:seaice_minimum_age_2012",
+                    "layers.py:seaice_minimum_age_2013",
+                    "layers.py:seaice_minimum_age_2014",
+                    "layers.py:seaice_minimum_age_2015",
+                    "layers.py:seaice_minimum_age_2016",
+                    "layers.py:seaice_minimum_age_2017",
+                    "layers.py:seaice_minimum_age_2018",
+                    "layers.py:seaice_minimum_age_2019",
+                    "layers.py:seaice_minimum_age_2020"
+                  ],
                   "show": false
                 }
               },
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2010",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2010"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "14",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20100101_20101231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "April 2-8 2010"
+                    },
+                    "name": "seaice_maximum_age_2010"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2011",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2011"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "10",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20110101_20111231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 5-11 2011"
+                    },
+                    "name": "seaice_maximum_age_2011"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2012",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2012"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "12",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20120101_20121231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 18-24 2012"
+                    },
+                    "name": "seaice_maximum_age_2012"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2013",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2013"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "11",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20130101_20131231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 12-18 2013"
+                    },
+                    "name": "seaice_maximum_age_2013"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2014",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2014"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "12",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20140101_20141231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 19-25 2014"
+                    },
+                    "name": "seaice_maximum_age_2014"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2015",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2015"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "8",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20150101_20151231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "February 19-25 2015"
+                    },
+                    "name": "seaice_maximum_age_2015"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2016",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2016"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "12",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20160101_20161231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 18-24 2016"
+                    },
+                    "name": "seaice_maximum_age_2016"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2017",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2017"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "10",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20170101_20171231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 5-11 2017"
+                    },
+                    "name": "seaice_maximum_age_2017"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2018",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2018"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "11",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20180101_20181231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 12-18 2018"
+                    },
+                    "name": "seaice_maximum_age_2018"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2019",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2019"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "11",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20190101_20191231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 12-18 2019"
+                    },
+                    "name": "seaice_maximum_age_2019"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2020",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2020"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-b",
+                            "10",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20200101_20201231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 4-10 2020"
+                    },
+                    "name": "seaice_maximum_age_2020"
+                  }
+                ],
+                "name": "Feb, March, or April (max weekly extent)",
+                "settings": {
+                  "expand": false,
+                  "order": [
+                    "layers.py:seaice_maximum_age_2010",
+                    "layers.py:seaice_maximum_age_2011",
+                    "layers.py:seaice_maximum_age_2012",
+                    "layers.py:seaice_maximum_age_2013",
+                    "layers.py:seaice_maximum_age_2014",
+                    "layers.py:seaice_maximum_age_2015",
+                    "layers.py:seaice_maximum_age_2016",
+                    "layers.py:seaice_maximum_age_2017",
+                    "layers.py:seaice_maximum_age_2018",
+                    "layers.py:seaice_maximum_age_2019",
+                    "layers.py:seaice_maximum_age_2020"
+                  ],
+                  "show": false
+                }
+              }
+            ],
+            "name": "Weekly age (12.5km)",
+            "settings": {
+              "expand": true,
+              "order": [
+                "September (min weekly extent)",
+                "Feb, March, or April (max weekly extent)"
+              ],
+              "show": false
+            }
+          },
+          {
+            "children": [
               {
                 "children": [
                   {
@@ -11303,7 +12573,820 @@
                     "name": "seaice_minimum_concentration_2020"
                   }
                 ],
-                "name": "September (min extent)",
+                "name": "September (min monthly extent)",
+                "settings": {
+                  "expand": false,
+                  "order": null,
+                  "show": false
+                }
+              },
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2015",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2015"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "February 2015"
+                    },
+                    "name": "seaice_maximum_concentration_2015"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2010",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2010"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2010"
+                    },
+                    "name": "seaice_maximum_concentration_2010"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2011",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2011"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2011"
+                    },
+                    "name": "seaice_maximum_concentration_2011"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2012",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2012"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2012"
+                    },
+                    "name": "seaice_maximum_concentration_2012"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2013",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2013"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2013"
+                    },
+                    "name": "seaice_maximum_concentration_2013"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2014",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2014"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2014"
+                    },
+                    "name": "seaice_maximum_concentration_2014"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2016",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2016"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2016"
+                    },
+                    "name": "seaice_maximum_concentration_2016"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2017",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2017"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2017"
+                    },
+                    "name": "seaice_maximum_concentration_2017"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2018",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2018"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2018"
+                    },
+                    "name": "seaice_maximum_concentration_2018"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2019",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2019"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2019"
+                    },
+                    "name": "seaice_maximum_concentration_2019"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2020",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2020"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "March 2020"
+                    },
+                    "name": "seaice_maximum_concentration_2020"
+                  }
+                ],
+                "name": "Feb or March (max monthly extent)",
                 "settings": {
                   "expand": false,
                   "order": null,
@@ -11313,8 +13396,11 @@
             ],
             "name": "Monthly mean concentration (25 km)",
             "settings": {
-              "expand": false,
-              "order": null,
+              "expand": true,
+              "order": [
+                "September (min monthly extent)",
+                "Feb or March (max monthly extent)"
+              ],
               "show": false
             }
           }
@@ -11322,7 +13408,11 @@
         "name": "Sea ice",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            "Median extent",
+            "Weekly age (12.5km)",
+            "Monthly mean concentration (25 km)"
+          ],
           "show": false
         }
       },

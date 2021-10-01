@@ -374,7 +374,7 @@ A correct QGreenland data pipeline will output data that:
 # Releasing
 
 Currently there is no automated versioning process. The manual process is to
-edit the `greenland/__init__` file with the desired version number.
+edit the `qgreenland/__init__.py` file with the desired version number.
 
 Versions should be in one of the following forms:
 
