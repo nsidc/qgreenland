@@ -11,6 +11,7 @@ import qgis.core as qgc
 from PyQt5.QtGui import QColor
 
 from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.util.config.config import get_config
 from qgreenland.util.qgis.layer import make_map_layer
 from qgreenland.util.tree import LayerGroupNode, LayerNode
 from qgreenland.util.version import get_build_version
@@ -47,14 +48,13 @@ def make_qgis_project_file(path: Path) -> None:
 
         https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
     """
-    # Avoid "CONFIG" being imported when this module is imported
-    from qgreenland.util.config.config import CONFIG
+    config = get_config()
 
     # Create a new project; initializes basic structure
     project = qgc.QgsProject.instance()
     project.write(str(path))
 
-    project_crs = qgc.QgsCoordinateReferenceSystem(CONFIG.project.crs)
+    project_crs = qgc.QgsCoordinateReferenceSystem(config.project.crs)
     project.setCrs(project_crs)
 
     # Set the map background color to be gray (same color as Quantarctica)
@@ -66,10 +66,10 @@ def make_qgis_project_file(path: Path) -> None:
 
     project_rectangle = qgc.QgsReferencedRectangle(
         qgc.QgsRectangle(
-            CONFIG.project.boundaries['data'].bbox.min_x,
-            CONFIG.project.boundaries['data'].bbox.min_y,
-            CONFIG.project.boundaries['data'].bbox.max_x,
-            CONFIG.project.boundaries['data'].bbox.max_y,
+            config.project.boundaries['data'].bbox.min_x,
+            config.project.boundaries['data'].bbox.min_y,
+            config.project.boundaries['data'].bbox.max_x,
+            config.project.boundaries['data'].bbox.max_y,
         ),
         project_crs,
     )
@@ -77,7 +77,7 @@ def make_qgis_project_file(path: Path) -> None:
 
     _add_decorations(project)
 
-    _add_layers_and_groups(project, CONFIG.layer_tree)
+    _add_layers_and_groups(project, config.layer_tree)
 
     # TODO: is it normal to write multiple times?
     project.write()

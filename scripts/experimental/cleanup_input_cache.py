@@ -9,16 +9,22 @@ Since this doesn't currently run in the container, it writes out a series of
 """
 import os
 
-from qgreenland.util.config.config import CONFIG
+from qgreenland.util.config.config import (
+    get_config,
+    init_config,
+)
 
 INPUT_CACHE_DIR = '/share/appdata/qgreenland-input-cache/'
 DATASETS_CONFIG = 'qgreenland/config/datasets.yml'
 
 
 def _get_dataset_cache_ids():
+    init_config()
+    config = get_config()
+
     dataset_configs = [
         dataset_config
-        for dataset_config in CONFIG['datasets']
+        for dataset_config in config['datasets']
         if dataset_config['access_method'] != 'gdal_remote'
     ]
 

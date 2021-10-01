@@ -1,3 +1,4 @@
+from functools import cache
 from typing import Generator, Type
 
 import luigi
@@ -12,7 +13,7 @@ from qgreenland.models.config.asset import (
 )
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer
-from qgreenland.util.config.config import CONFIG
+from qgreenland.util.config.config import get_config
 from qgreenland.util.luigi.tasks.fetch import (
     FetchCmrGranule,
     FetchDataFiles,
@@ -63,24 +64,32 @@ def fetch_tasks_from_dataset(
         yield _fetch_task(dataset_cfg, asset_cfg)
 
 
-# TODO: Rename? generate_layer_pipelines?
-# TODO: Accept an optional pattern?
-# TODO: Fetch-only boolean option?
-def generate_layer_tasks():
+@cache
+def generate_layer_pipelines(
+    *,
+    fetch_only: bool = False,
+) -> list[luigi.Task]:
     """Generate a list of pre-configured tasks based on layer configuration.
 
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
+    config = get_config()
     tasks: list[luigi.Task] = []
 
-    for layer_cfg in CONFIG.layers.values():
-        # Check if it's an online layer; those have no processing pipeline.
+    layers = config.layers.values()
+
+    for layer_cfg in layers:
+        # Check if it's an online layer; those have no fetching or processing
+        # pipeline.
         if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
             continue
 
         # Create tasks, making each task dependent on the previous task.
         task = fetch_task_from_layer(layer_cfg)
+        if fetch_only:
+            tasks.append(task)
+            continue
 
         # If the layer has no steps, it's just fetched and finalized.
         if layer_cfg.steps:

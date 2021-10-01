@@ -5,7 +5,10 @@ import click
 import luigi
 from funcy import lmapcat, select
 
-from qgreenland.util.config.config import CONFIG
+from qgreenland.util.config.config import (
+    get_config,
+    init_config,
+)
 from qgreenland.util.luigi import fetch_tasks_from_dataset
 
 
@@ -25,9 +28,12 @@ from qgreenland.util.luigi import fetch_tasks_from_dataset
 )
 def fetch(pattern, dry_run, workers) -> None:
     """Fetch assets for datasets matching PATTERN."""
+    init_config()
+    config = get_config()
+
     dataset_matches = select(
         lambda i: fnmatch(i[1].id, pattern),
-        CONFIG.datasets,
+        config.datasets,
     ).values()
 
     print('Fetching all assets for the following datasets:')

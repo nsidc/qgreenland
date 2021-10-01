@@ -16,9 +16,9 @@ from qgreenland.constants import (
     WIP_DIR,
 )
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
-from qgreenland.util.config.config import CONFIG
+from qgreenland.util.config.config import get_config
 from qgreenland.util.config.export import export_config_csv, export_config_manifest
-from qgreenland.util.luigi import generate_layer_tasks
+from qgreenland.util.luigi import generate_layer_pipelines
 from qgreenland.util.qgis.project import (
     QgsApplicationContext,
     make_qgis_project_file,
@@ -29,10 +29,14 @@ logger = logging.getLogger('luigi-interface')
 
 
 class IngestAllLayers(luigi.WrapperTask):
+    fetch_only = luigi.BoolParameter(default=False)
+
     def requires(self):
         """All layers (not sources) that will be added to the project."""
         # To disable layer(s), edit layers.yml
-        tasks = generate_layer_tasks()
+        tasks = generate_layer_pipelines(
+            fetch_only=self.fetch_only,
+        )
 
         for task in tasks:
             yield task
@@ -69,8 +73,9 @@ class LayerList(AncillaryFile):
         yield IngestAllLayers()
 
     def run(self):
+        config = get_config()
         with self.output().temporary_path() as temp_path:
-            export_config_csv(CONFIG, output_path=temp_path)
+            export_config_csv(config, output_path=temp_path)
 
 
 class LayerManifest(luigi.Task):
@@ -88,8 +93,9 @@ class LayerManifest(luigi.Task):
         yield IngestAllLayers()
 
     def run(self):
+        config = get_config()
         with self.output().temporary_path() as temp_path:
-            export_config_manifest(CONFIG, output_path=temp_path)
+            export_config_manifest(config, output_path=temp_path)
 
 
 class CreateQgisProjectFile(luigi.Task):

@@ -12,7 +12,7 @@ from qgreenland.models.config.asset import (
     ConfigDatasetRepositoryAsset,
 )
 from qgreenland.util.cmr import get_cmr_granule
-from qgreenland.util.config.config import CONFIG
+from qgreenland.util.config.config import get_config
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import (
     datasource_dirname,
@@ -36,7 +36,8 @@ class FetchTask(luigi.Task):
 
     @property
     def dataset_cfg(self):
-        return CONFIG.datasets[self.dataset_id]
+        config = get_config()
+        return config.datasets[self.dataset_id]
 
     @property
     def asset_cfg(self):

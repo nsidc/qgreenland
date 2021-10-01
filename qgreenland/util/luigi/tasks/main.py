@@ -15,7 +15,7 @@ from qgreenland.constants import (
 )
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
-from qgreenland.util.config.config import CONFIG
+from qgreenland.util.config.config import get_config
 from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
 from qgreenland.util.tree import leaf_lookup
 
@@ -37,7 +37,8 @@ class QgrLayerTask(luigi.Task):
 
     @property
     def layer_cfg(self):
-        return CONFIG.layers[self.layer_id]
+        config = get_config()
+        return config.layers[self.layer_id]
 
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
@@ -127,7 +128,8 @@ class FinalizeTask(QgrLayerTask):
 
     @property
     def node(self):
-        return leaf_lookup(CONFIG.layer_tree, target_node_name=self.layer_id)
+        config = get_config()
+        return leaf_lookup(config.layer_tree, target_node_name=self.layer_id)
 
     def output(self):
         return luigi.LocalTarget(
