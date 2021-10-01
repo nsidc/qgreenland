@@ -38,7 +38,8 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
 @cache
 def compile_cfg(
     config_dir: Path,
-    pattern: Optional[str],
+    *,
+    pattern: Optional[str] = None,
 ) -> Config:
     compiled_layer_tree = layer_tree(
         config_dir / 'layers',
