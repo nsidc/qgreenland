@@ -1,7 +1,7 @@
 from typing import Literal, cast
 
-from qgreenland.config.constants import PROJECT_CRS
 from qgreenland.config.datasets.lonlat import lonlat as dataset
+from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -43,10 +43,7 @@ def _make_lonlat_layer(
             ConfigLayerCommandStep(
                 args=[
                     'ogr2ogr',
-                    '-lco',
-                    'ENCODING=UTF-8',
-                    '-t_srs',
-                    f'{PROJECT_CRS}',
+                    *STANDARD_OGR2OGR_ARGS,
                     '-clipdst',
                     '{assets_dir}/latitude_shape_40_degrees.geojson',
                     '-segmentize',
