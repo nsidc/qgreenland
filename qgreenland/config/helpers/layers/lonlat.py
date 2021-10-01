@@ -1,8 +1,7 @@
 from typing import Literal, cast
 
-from qgreenland.config.constants import PROJECT_CRS
-from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.config.datasets.lonlat import lonlat as dataset
+from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
