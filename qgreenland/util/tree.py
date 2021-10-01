@@ -84,7 +84,8 @@ class LayerGroupNode(QgrTreeNode):
 
 def layer_tree(
     layer_cfg_dir: Path,
-    pattern: Optional[str],
+    *,
+    pattern: Optional[str] = None,
 ) -> anytree.Node:
     tree = _tree_from_dir(layer_cfg_dir, pattern=pattern)
     _prune_tree(tree)
