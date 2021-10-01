@@ -8,9 +8,9 @@ container_id="$("$THIS_DIR"/helpers/container_id.sh)"
 # will not work. In other situations, we will want the ability to attach to a
 # debugger prompt.
 if [ -t 1 ]; then
-    tty_arg=""
+    tty_arg="-t"
 else
-    tty_arg="-T"
+    tty_arg=""
 fi
 
-docker exec -it ${tty_arg} "${container_id}" python ./tasks/qgreenland/qgreenland/cli/__init__.py "$@"
+docker exec -i ${tty_arg} "${container_id}" python ./tasks/qgreenland/qgreenland/cli/__init__.py "$@"
