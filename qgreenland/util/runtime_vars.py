@@ -16,6 +16,9 @@ class EvalStr(UserString):
 
         return cls(value)
 
+    def __json__(self):
+        return str(self)
+
     def eval(
         self,
         *,
