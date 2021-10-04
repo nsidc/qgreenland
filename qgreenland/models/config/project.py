@@ -20,6 +20,9 @@ class ConfigBoundariesInfo(QgrBaseModel):
     # Absolute filepath using `{assets_dir}` slug allows for diffing configs
     # across file systems. Steps often need absolute paths that are
     # filesystem-agnostic.
+    # TODO: Create a more useful types for "runtime-evaluated paths" and
+    # "runtime-evaluated strings". Then our global validator can do things like
+    # check for existence.
     filepath: str
 
     bbox: BoundingBox
