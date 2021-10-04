@@ -1,25 +1,34 @@
+from collections import UserString
 from typing import Optional
 
-from qgreenland.constants import ANCILLARY_DIR, ASSETS_DIR
 
+class EvalStr(UserString):
+    """String with `eval` method for runtime string interpolation."""
 
-def interpolate_runtime_vars(
-    string: str,
-    *,
-    input_dir: Optional[str] = None,
-    output_dir: Optional[str] = None,
-) -> str:
-    """Interpolate runtime configuration slugs with values.
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
 
-    `{ancillary_dir}` is interpolated with the value of `constants.ANCILLARY_DIR`.
-    `{assets_dir}` is interpolated with the value of `constants.ASSETS_DIR`.
+    @classmethod
+    def validate(cls, value):
+        if not isinstance(value, str) and not isinstance(value, EvalStr):
+            raise TypeError(f'`str` or `EvalStr` requried. Got {type(value)}.')
 
-    Optionally, interpolate `{input_dir}` and `{output_dir}` with the value of
-    corresponding kwargs.
-    """
-    return string.format(
-        input_dir=input_dir,
-        output_dir=output_dir,
-        assets_dir=ASSETS_DIR,
-        ancillary_dir=ANCILLARY_DIR,
-    )
+        return cls(value)
+
+    def eval(
+        self,
+        *,
+        input_dir: Optional[str] = None,
+        output_dir: Optional[str] = None,
+    ) -> str:
+        # Circular import if we import this at module level because `_typing`
+        # imports `EvalStr` and `constants` imports `_typing`.
+        from qgreenland.constants import ANCILLARY_DIR, ASSETS_DIR
+
+        return self.format(
+            input_dir=input_dir,
+            output_dir=output_dir,
+            assets_dir=ASSETS_DIR,
+            ancillary_dir=ANCILLARY_DIR,
+        )
