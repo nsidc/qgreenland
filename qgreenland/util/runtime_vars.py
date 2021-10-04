@@ -13,8 +13,6 @@ class EvalPath(object):
 
     @classmethod
     def __get_validators__(cls):
-        # TODO: Validate that a file exists at the path?
-        # Or create a subclass of this class with that validator?
         yield cls.validate_arg
 
     @classmethod
@@ -51,28 +49,29 @@ class EvalFilePath(EvalPath):
 
     @classmethod
     def __get_validators__(cls):
-        # TODO: Validate that a file exists at the path?
-        # Or create a subclass of this class with that validator?
-        yield super().__get_validators__()
+        for v in super().__get_validators__():
+            yield v
         yield cls.validate_exists
 
-    def validate_exists(self) -> Path:
-        evaluated = self.eval()
-        self._validate_is_file(evaluated)
+    @classmethod
+    def validate_exists(cls, value) -> Path:
+        evaluated = value.eval()
+        cls._validate_is_file(evaluated)
         return value
-
-    def _validate_is_file(self, path: Path) -> None:
-        if not path.is_file():
-            raise ValueError(
-                f'No file found at evaluated path "{path}".'
-                ' NOTE: {input_dir} and {output_dir} are not supported by'
-                ' `EvalFilePath` fields. Use `EvalStr` instead.'
-            )
 
     def eval(self, **kwargs) -> Path:
         evaluated = super().eval(**kwargs)
         self._validate_is_file(evaluated)
         return evaluated
+
+    @classmethod
+    def _validate_is_file(cls, path: Path) -> None:
+        if not path.is_file():
+            raise ValueError(
+                f'No file found at evaluated path "{path}".'
+                ' NOTE: {input_dir} and {output_dir} are not supported by'
+                ' `EvalFilePath` fields. Use `EvalPath` instead.'
+            )
 
 
 class EvalStr(UserString):

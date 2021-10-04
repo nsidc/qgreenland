@@ -6,7 +6,7 @@ from pydantic import AnyUrl, Field, validator
 
 from qgreenland._typing import QgsLayerProviderType
 from qgreenland.models.base_model import QgrBaseModel
-from qgreenland.util.runtime_vars import EvalStr
+from qgreenland.util.runtime_vars import EvalFilePath
 
 
 class ConfigDatasetAsset(QgrBaseModel, ABC):
@@ -43,16 +43,7 @@ class ConfigDatasetRepositoryAsset(ConfigDatasetAsset):
     # TODO: Move the assets into the config directory???
     # String representing path with `{assets_dir}` slug so the config can be
     # diffed across systems.
-    filepath: EvalStr
-
-    @validator('filepath')
-    @classmethod
-    def ensure_relative_to_assets(cls, value):
-        interpolated_value = value.eval()
-        if not Path(interpolated_value).is_file():
-            raise ValueError(f'No file found at {interpolated_value}.')
-
-        return value
+    filepath: EvalFilePath
 
 
 class ConfigDatasetManualAsset(ConfigDatasetAsset):
