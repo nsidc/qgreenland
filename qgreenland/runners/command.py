@@ -1,3 +1,5 @@
+from typing import Sequence
+
 from qgreenland._typing import QgrStr
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.misc import run_ogr_command
@@ -5,7 +7,7 @@ from qgreenland.util.runtime_vars import EvalStr
 
 
 def _interpolate_args(
-    args: list[QgrStr],
+    args: Sequence[QgrStr],
     **kwargs,
 ) -> list[QgrStr]:
     """Replace slugs in `args` with keys and values in `kwargs`."""
