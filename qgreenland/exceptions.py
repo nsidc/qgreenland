@@ -1,3 +1,9 @@
+class QgrInterpolationError(Exception):
+    """Something went wrong interpolating runtime variables."""
+
+    pass
+
+
 class QgrVersionError(Exception):
     """Something went wrong trying to determine the current QGR version."""
 
