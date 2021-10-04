@@ -16,5 +16,5 @@ per-file-ignores =
   qgreenland/test/util/test_config.py: FS003
   qgreenland/config/helpers/**/*.py: FS003
   qgreenland/config/layers/**/*.py: FS003, E501
-  qgreenland/config/datasets/**/*.py: E501
-  qgreenland/config/datasets/*.py: E501
+  qgreenland/config/datasets/**/*.py: FS003, E501
+  qgreenland/config/datasets/*.py: FS003, E501

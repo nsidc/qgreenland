@@ -1,6 +1,6 @@
 import re
 
-from qgreenland.constants import ASSETS_DIR, PROJECT_DIR
+from qgreenland.constants import ASSETS_DIR
 from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
 from qgreenland.models.config.dataset import ConfigDataset
 
@@ -15,7 +15,7 @@ for f in geojson_files:
     if not m:
         continue
     lonlat_files[f.name] = {
-        'path': f.relative_to(PROJECT_DIR),
+        'path': '{assets_dir}/' + str(f.relative_to(ASSETS_DIR)),
         'shortname': m.groupdict()['prefix'][0:3],
         'res_id': m.groupdict()['res_id'],
     }

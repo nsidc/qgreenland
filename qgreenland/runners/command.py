@@ -1,6 +1,6 @@
-from qgreenland.constants import ANCILLARY_DIR, ASSETS_DIR
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.misc import run_ogr_command
+from qgreenland.util.runtime_vars import interpolate_runtime_vars
 
 
 def interpolate_args(
@@ -8,8 +8,7 @@ def interpolate_args(
     **kwargs,
 ) -> list[str]:
     """Replace slugs in `args` with keys and values in `kwargs`."""
-    return [arg.format(**kwargs)
-            for arg in args]
+    return [interpolate_runtime_vars(arg, **kwargs) for arg in args]
 
 
 def command_runner(
@@ -27,9 +26,6 @@ def command_runner(
         step.args,
         input_dir=input_dir,
         output_dir=output_dir,
-        # TODO: Make below kwargs all-caps to match constants??
-        assets_dir=ASSETS_DIR,
-        ancillary_dir=ANCILLARY_DIR,
     )
 
     # TODO: What's an "ogr" command? Any command will work, this just runs the

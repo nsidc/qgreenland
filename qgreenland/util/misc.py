@@ -1,3 +1,5 @@
+# TODO: consider renaming this to `io` or `fs`. All these functions related to
+# filesystem operations/file naming/etc
 import cgi
 import glob
 import logging
