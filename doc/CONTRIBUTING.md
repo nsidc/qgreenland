@@ -301,8 +301,11 @@ A correct QGreenland data pipeline will output data that:
 
 # Releasing
 
-Currently there is no automated versioning process. The manual process is to
-edit the `qgreenland/__init__.py` file with the desired version number.
+Use `bump2version` to bump the specified part of the version:
+
+```
+$ bump2version --part={major|minor|patch}
+```
 
 Versions should be in one of the following forms:
 

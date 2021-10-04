@@ -1,4 +1,4 @@
-# v1.0.2 (2021-02-23)
+# NEXT_VERSION
 
 - Bugfixes for "Sea ice/Weekly age (12.5 km)" layers:
     - Update sea ice age layer titles to correctly reflect the weekly time
