@@ -1,5 +1,45 @@
 from collections import UserString
+from pathlib import Path
 from typing import Optional
+
+
+# Make this a dataclass? :shrug:
+class EvalPath(object):
+    """Path with `eval` method for runtime string interpolation."""
+
+    val: str
+
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, value):
+        if not isinstance(value, str):
+            raise TypeError(f'`str` requried. Got {type(value)}.')
+        return cls(value)
+
+    def __init__(self, val):
+        self.val = val
+
+    def __repr__(self):
+        return f'{self.__class__}({self.val})'
+
+    def __json__(self):
+        return str(self)
+
+    def __str__(self):
+        return str(self.val)
+
+    def eval(
+        self,
+        **kwargs,
+    ) -> Path:
+        return Path(
+            EvalStr(
+                str(self),
+            ).eval(**kwargs),
+        )
 
 
 class EvalStr(UserString):
