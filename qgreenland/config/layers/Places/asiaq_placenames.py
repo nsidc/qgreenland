@@ -6,6 +6,7 @@ from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
+breakpoint()
 towns_and_settlements = ConfigLayer(
     id='populated_places',
     title='Towns and settlements',
@@ -21,6 +22,8 @@ towns_and_settlements = ConfigLayer(
             args=[
                 'ogr2ogr',
                 *STANDARD_OGR2OGR_ARGS,
+                # TODO: How to convert this to an EvalStr? Should we allow args
+                # to contain EvalPaths, EvalFilePaths, and EvalStrs?
                 '-clipdst', project.boundaries['data'].filepath,
                 '-makevalid',
                 '-sql', (

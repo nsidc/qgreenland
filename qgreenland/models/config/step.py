@@ -3,6 +3,7 @@ from functools import cached_property
 from typing import List, Union
 
 from qgreenland.models.base_model import QgrBaseModel
+from qgreenland._typing import QgrStr
 
 
 class ConfigLayerStep(ABC):
@@ -15,14 +16,13 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
     type: str = 'command'
     # input_file: Path
     # output_file: Path
-    args: List[str]
+
+    # If command:
+    args: List[QgrStr]
 
     # If template:
     # template_name: str
     # kwargs: Dict[str, Any]
-
-    # If command:
-    # args: List[str, int]
 
     # If Python:
     # kwargs: Dict[str, Any]

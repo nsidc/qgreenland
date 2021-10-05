@@ -17,15 +17,18 @@ class EvalPath(object):
 
     @classmethod
     def validate_arg(cls, value):
-        if not isinstance(value, str):
-            raise TypeError(f'`str` requried. Got {type(value)}.')
+        if not (isinstance(value, str) or issubclass(type(value), EvalPath)):
+            breakpoint()
+            raise TypeError(
+                f'`str` or `EvalPath` required. Received: `{type(value)}`.',
+            )
         return cls(value)
 
     def __init__(self, val):
         self.val = val
 
     def __repr__(self):
-        return f'{self.__class__}({self.val})'
+        return f'{self.__class__.__name__}({self.val})'
 
     def __json__(self):
         return str(self)
@@ -85,7 +88,7 @@ class EvalStr(UserString):
 
     @classmethod
     def validate(cls, value):
-        if not isinstance(value, str) and not isinstance(value, EvalStr):
+        if not (isinstance(value, str) or isinstance(value, EvalStr)):
             raise TypeError(f'`str` or `EvalStr` requried. Got {type(value)}.')
 
         return cls(value)
