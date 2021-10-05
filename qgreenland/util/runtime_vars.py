@@ -5,7 +5,8 @@ from typing import Optional
 import qgreenland.exceptions as exc
 
 
-# Make this a dataclass? :shrug:
+# TODO: Make this a dataclass? :shrug:
+# TODO: Move to _typing module/package?
 class EvalPath(object):
     """Path with `eval` method for runtime string interpolation."""
 
@@ -13,6 +14,7 @@ class EvalPath(object):
 
     @classmethod
     def __get_validators__(cls):
+        """Pydantic magic method for implicit validation and conversion."""
         yield cls.validate_arg
 
     @classmethod
@@ -45,20 +47,24 @@ class EvalPath(object):
 
 
 class EvalFilePath(EvalPath):
-    """An EvalPath that must exist on the filesystem.
-
-    WARNING: This can't be used with runtime-only slugs like {input_dir} and
-    {output_dir}. Those are populated by the Luigi context.
-    """
+    """An EvalPath that must be a real file on the filesystem."""
 
     @classmethod
     def __get_validators__(cls):
+        """Pydantic magic method for implicit validation and conversion."""
         for v in super().__get_validators__():
             yield v
         yield cls.validate_exists
 
     @classmethod
     def validate_exists(cls, value) -> Path:
+        """Check for file existence.
+
+        WARNING: This can't be used in the config with runtime-only variables
+        like {input_dir} and {output_dir}. Those are populated by the Luigi
+        context, so a file like that is _not_ expected to exist at
+        config-compilation-time.
+        """
         evaluated = value.eval()
         cls._validate_is_file(evaluated)
         return value
