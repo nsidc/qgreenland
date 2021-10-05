@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import Literal, cast
 
 from qgreenland.config.constants import PROJECT_CRS
@@ -52,10 +51,8 @@ def _make_lonlat_layer(
                     '{assets_dir}/latitude_shape_40_degrees.geojson',
                     '-segmentize',
                     f'{segment_max_distance}',
-                    # TODO: remove redundant call to `Path` and `str` on filepath attr
-                    # after subclassing for runtime var interpolation.
-                    '{output_dir}/' + f'{Path(str(asset.filepath)).stem}.gpkg',
-                    '{input_dir}/' + f'{Path(str(asset.filepath)).name}',
+                    '{output_dir}/' + f'{asset.filepath.eval().stem}.gpkg',
+                    '{input_dir}/' + f'{asset.filepath.eval().name}',
                 ],
             ),
         ],
