@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import List, Union
+from typing import cast, Union
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalStr
@@ -19,7 +19,7 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
     # output_file: Path
 
     # If command:
-    args: List[EvalStr]
+    args: list[EvalStr]
 
     # If template:
     # template_name: str
@@ -30,7 +30,7 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
 
     @cached_property
     def provenance(self) -> str:
-        return ' '.join(self.args)
+        return ' '.join(cast(list[str], self.args))
 
 
 AnyStep = Union[ConfigLayerCommandStep]
