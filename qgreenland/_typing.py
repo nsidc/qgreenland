@@ -10,5 +10,3 @@ from qgreenland.util.runtime_vars import EvalStr
 
 QgsLayerType = Literal['Vector', 'Raster', 'Online']
 QgsLayerProviderType = Literal['gdal', 'ogr', 'wms', 'wfs', 'wcs']
-
-QgrStr = Union[str, EvalStr]
