@@ -30,7 +30,7 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
 
     @cached_property
     def provenance(self) -> str:
-        return ' '.join(cast(list[str], self.args))
+        return ' '.join([str(arg) for arg in self.args])
 
 
 AnyStep = Union[ConfigLayerCommandStep]
