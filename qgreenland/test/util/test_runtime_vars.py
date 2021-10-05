@@ -27,3 +27,6 @@ def test_eval_str():
     expected = f'{ASSETS_DIR} is very cool'
 
     assert eval_str.eval() == expected
+
+    # concatenation
+    assert isinstance(EvalStr('{input_dir}/') + 'foobar.txt', EvalStr)
