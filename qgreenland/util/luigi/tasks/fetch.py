@@ -114,9 +114,9 @@ class FetchLocalDataFiles(FetchTask):
                 # ConfigDatasetRepositoryAsset. Encountered a runtime error when
                 # it should have been a type error.
 
-                out_path = Path(temp_path) / self.asset_cfg.filepath.name
+                out_path = Path(temp_path) / self.asset_cfg.filepath.eval().name
                 shutil.copy2(
-                    PROJECT_DIR / self.asset_cfg.filepath,
+                    PROJECT_DIR / self.asset_cfg.eval().filepath,
                     out_path,
                 )
 
