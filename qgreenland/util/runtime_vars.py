@@ -22,21 +22,22 @@ class EvalPath(object):
         if not (isinstance(value, str) or issubclass(type(value), EvalPath)):
             breakpoint()
             raise TypeError(
-                f'`str` or `EvalPath` required. Received: `{type(value)}`.',
+                '`str` or `EvalPath` required. Received:'
+                f' `{type(value).__name__}`',
             )
         return cls(value)
 
     def __init__(self, val):
         self.val = val
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'{self.__class__.__name__}({self.val})'
 
-    def __json__(self):
-        return str(self)
-
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.val)
+
+    def __json__(self) -> str:
+        return str(self)
 
     def eval(self, **kwargs) -> Path:
         return Path(
@@ -94,23 +95,32 @@ class EvalStr(UserString):
 
     @classmethod
     def validate(cls, value):
-        if not (isinstance(value, str) or isinstance(value, EvalStr)):
-            raise TypeError(f'`str` or `EvalStr` requried. Got {type(value)}.')
+        # Is it stringifiable?
+        try:
+            str(value)
+        except Exception as e:
+            raise type(e)(
+                'Stringifiable type expected. Received:'
+                f' `{type(value).__name__}`',
+            )
 
         return cls(value)
 
-    def __json__(self):
+    def __repr__(self) -> str:
+        return f'{self.__class__.__name__}({self})'
+
+    def __json__(self) -> str:
         return str(self)
 
     def eval(
         self,
         *,
-        # Clever.
         input_dir: Optional[str] = '{input_dir}',  # noqa:FS003
         output_dir: Optional[str] = '{output_dir}',  # noqa:FS003
     ) -> str:
         # Circular import if we import this at module level because `_typing`
         # imports `EvalStr` and `constants` imports `_typing`.
+        # TODO: Better than this.
         from qgreenland.constants import ANCILLARY_DIR, ASSETS_DIR
 
         return self.format(

@@ -6,7 +6,6 @@ from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
-breakpoint()
 towns_and_settlements = ConfigLayer(
     id='populated_places',
     title='Towns and settlements',
