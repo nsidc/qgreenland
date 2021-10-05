@@ -90,6 +90,7 @@ class EvalStr(UserString):
 
     @classmethod
     def __get_validators__(cls):
+        """Pydantic magic method for implicit validation and conversion."""
         yield cls.validate
 
     @classmethod
