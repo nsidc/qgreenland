@@ -14,6 +14,7 @@ ignore = D1,W503
 # E501: Line too long. Long strings, e.g. URLs, are common in config.
 per-file-ignores =
   qgreenland/test/util/test_config.py: FS003
+  qgreenland/test/util/test_runtime_vars.py: FS003
   qgreenland/config/helpers/**/*.py: FS003
   qgreenland/config/layers/**/*.py: FS003, E501
   qgreenland/config/datasets/**/*.py: FS003, E501
