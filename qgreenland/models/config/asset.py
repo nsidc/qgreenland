@@ -1,9 +1,11 @@
 from abc import ABC
 from typing import List, Union
 
-from pydantic import AnyUrl, Field
+from pydantic import AnyUrl, Field, validator
 
+import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerProviderType
+from qgreenland.constants import ASSETS_DIR
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalFilePath
 
@@ -40,9 +42,21 @@ class ConfigDatasetRepositoryAsset(ConfigDatasetAsset):
     """Assets stored in this repository in `ASSETS_DIR`."""
 
     # TODO: Move the assets into the config directory???
-    # String representing path with `{assets_dir}` slug so the config can be
-    # diffed across systems.
     filepath: EvalFilePath
+
+    @validator('filepath')
+    @classmethod
+    def ensure_relative_to_assets(cls, value):
+        evaluated = value.eval()
+        try:
+            evaluated.relative_to(ASSETS_DIR)
+        except Exception as e:
+            raise exc.QgrInvalidConfigError(
+                f'Expected path relative to {{assets_dir}}.'
+                f' Received: {evaluated}. ({e})',
+            )
+
+        return value
 
 
 class ConfigDatasetManualAsset(ConfigDatasetAsset):

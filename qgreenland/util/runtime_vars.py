@@ -31,7 +31,7 @@ class EvalPath(object):
         self.val = val
 
     def __repr__(self) -> str:
-        return f'{self.__class__.__name__}({self.val})'
+        return f"{self.__class__.__name__}('{self.val}')"
 
     def __str__(self) -> str:
         return str(self.val)
@@ -108,7 +108,7 @@ class EvalStr(UserString):
         return cls(value)
 
     def __repr__(self) -> str:
-        return f'{self.__class__.__name__}({self})'
+        return f"{self.__class__.__name__}('{self}')"
 
     def __json__(self) -> str:
         return str(self)
