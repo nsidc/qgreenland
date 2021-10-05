@@ -42,6 +42,7 @@ def test_eval_str():
 
     # concatenation
     assert isinstance(EvalStr('{input_dir}/') + 'foobar.txt', EvalStr)
+    assert isinstance(EvalStr('{input_dir}/') + 1, EvalStr)
 
 
 def test_config_layer_cmd_step_args_validation():
