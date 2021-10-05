@@ -1,20 +1,16 @@
 from typing import Sequence
 
-from qgreenland._typing import QgrStr
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.misc import run_ogr_command
 from qgreenland.util.runtime_vars import EvalStr
 
 
 def _interpolate_args(
-    args: Sequence[QgrStr],
+    args: Sequence[EvalStr],
     **kwargs,
-) -> list[QgrStr]:
+) -> list[str]:
     """Replace slugs in `args` with keys and values in `kwargs`."""
-    return [
-        arg.eval(**kwargs) if type(arg) is EvalStr else arg
-        for arg in args
-    ]
+    return [arg.eval(**kwargs) for arg in args]
 
 
 def command_runner(
