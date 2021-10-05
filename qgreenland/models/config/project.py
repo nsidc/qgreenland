@@ -32,10 +32,10 @@ class ConfigBoundariesInfo(QgrBaseModel):
         evaluated = value.eval()
         try:
             evaluated.relative_to(ASSETS_DIR)
-        except:
+        except Exception:
             raise exc.QgrInvalidConfigError(
                 f'Expected path relative to {{assets_dir}}.'
-                f' Received: {filepath}',
+                f' Received: {evaluated}',
             )
 
         return value

@@ -20,7 +20,6 @@ class EvalPath(object):
     @classmethod
     def validate_arg(cls, value):
         if not (isinstance(value, str) or issubclass(type(value), EvalPath)):
-            breakpoint()
             raise TypeError(
                 '`str` or `EvalPath` required. Received:'
                 f' `{type(value).__name__}`',
