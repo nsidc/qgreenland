@@ -1,6 +1,7 @@
 from typing import Literal
 
 from qgreenland.config.datasets import wmm
+from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -43,8 +44,7 @@ may be degraded in this region.
             ConfigLayerCommandStep(
                 args=[
                     'ogr2ogr',
-                    '-lco', 'ENCODING=UTF-8',
-                    '-t_srs', project.crs,
+                    *STANDARD_OGR2OGR_ARGS,
                     '-clipdst', project.boundaries['background'].filepath,
                     '{output_dir}/' + f'BOZ_{year}.gpkg',
                     '{input_dir}/' + f'BOZ_{year}.shp',
@@ -231,8 +231,7 @@ def unzip_and_reproject_wmm_vector(
         args=[
             'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
             'ogr2ogr',
-            '-lco', 'ENCODING=UTF-8',
-            '-t_srs', project.crs,
+            *STANDARD_OGR2OGR_ARGS,
             '-clipdst', project.boundaries['background'].filepath,
             '-dialect', 'sqlite',
             '-sql', (

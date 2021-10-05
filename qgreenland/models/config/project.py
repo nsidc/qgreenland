@@ -18,8 +18,8 @@ class BoundingBox(QgrBaseModel):
 
 
 class ConfigBoundariesInfo(QgrBaseModel):
-    # Absolute filepath using `{assets_dir}` slug allows for diffing configs
-    # across file systems. Steps often need absolute paths that are
+    # Absolute filepath using `{assets_dir}` runtime variable allows for diffing
+    # configs across file systems. Steps often need absolute paths that are
     # filesystem-agnostic.
     filepath: EvalFilePath
 
