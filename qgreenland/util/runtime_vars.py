@@ -45,7 +45,8 @@ class EvalFilePath(EvalPath):
     """An EvalPath that must exist on the filesystem.
 
     WARNING: This can't be used with runtime-only slugs like {input_dir} and
-    {output_dir}. Those are populated by the Luigi context."""
+    {output_dir}. Those are populated by the Luigi context.
+    """
 
     @classmethod
     def __get_validators__(cls):
@@ -67,10 +68,11 @@ class EvalFilePath(EvalPath):
     @classmethod
     def _validate_is_file(cls, path: Path) -> None:
         if not path.is_file():
-            raise ValueError(
+            raise exc.QgrInterpolationError(
                 f'No file found at evaluated path "{path}".'
-                ' NOTE: {input_dir} and {output_dir} are not supported by'
-                ' `EvalFilePath` fields. Use `EvalPath` instead.'
+                f' NOTE: {{input_dir}} and {{output_dir}} are not supported by'
+                ' `EvalFilePath` fields. If you want to use these, use'
+                ' `EvalPath` instead.',
             )
 
 
@@ -95,8 +97,8 @@ class EvalStr(UserString):
         self,
         *,
         # Clever.
-        input_dir: Optional[str] = '{input_dir}',
-        output_dir: Optional[str] = '{output_dir}',
+        input_dir: Optional[str] = '{input_dir}',  # noqa:FS003
+        output_dir: Optional[str] = '{output_dir}',  # noqa:FS003
     ) -> str:
         # Circular import if we import this at module level because `_typing`
         # imports `EvalStr` and `constants` imports `_typing`.

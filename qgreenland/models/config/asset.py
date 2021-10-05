@@ -1,8 +1,7 @@
 from abc import ABC
-from pathlib import Path
 from typing import List, Union
 
-from pydantic import AnyUrl, Field, validator
+from pydantic import AnyUrl, Field
 
 from qgreenland._typing import QgsLayerProviderType
 from qgreenland.models.base_model import QgrBaseModel
