@@ -11,7 +11,7 @@ class QgrVersionError(Exception):
 
 
 class QgrNoLayersFoundError(Exception):
-    """No layers could be found."""
+    """No layers could be found in configuration."""
 
     pass
 
