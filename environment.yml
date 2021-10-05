@@ -41,6 +41,7 @@ dependencies:
   - types-requests
   - types-click
   # other utilities
+  - bump2version
   - ipython
   - ipdb
 
