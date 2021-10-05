@@ -3,9 +3,7 @@
 NOTE: This module is named strangely to avoid conflicts with the stdlib's
 `types` module.
 """
-from typing import Literal, Union
-
-from qgreenland.util.runtime_vars import EvalStr
+from typing import Literal
 
 
 QgsLayerType = Literal['Vector', 'Raster', 'Online']

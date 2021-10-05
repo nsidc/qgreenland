@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Optional
 
 import qgreenland.exceptions as exc
+from qgreenland.constants import ANCILLARY_DIR, ASSETS_DIR
 
 
 # TODO: Make this a dataclass? :shrug:
@@ -118,10 +119,6 @@ class EvalStr(UserString):
         input_dir: Optional[str] = '{input_dir}',  # noqa:FS003
         output_dir: Optional[str] = '{output_dir}',  # noqa:FS003
     ) -> str:
-        # Circular import if we import this at module level because `_typing`
-        # imports `EvalStr` and `constants` imports `_typing`.
-        # TODO: Better than this.
-        from qgreenland.constants import ANCILLARY_DIR, ASSETS_DIR
 
         return self.format(
             input_dir=input_dir,
