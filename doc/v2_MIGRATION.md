@@ -26,7 +26,7 @@ The dataset ID is listed as `data_source` on the layer config in the format
 Run the following command to create a basic migration of dataset(s). Validate
 that it looks correct afterwards. Manual changes may or may not be required.
 
-`./scripts/cli.sh config-migrate dataset {dataset_pattern} > config/datasets/{dataset}.py`
+`./scripts/cli.sh config-migrate dataset {dataset_pattern} > qgreenland/config/datasets/{dataset}.py`
 
 * Specifically examine the whitespace in large strings like `abstract` or
   `description` fields. Blank lines may need to be added to compensate for
@@ -55,7 +55,7 @@ existing directory with a `__settings__.py`, that file may need to be updated.
 Run the following command to create a basic migration of layer(s). Validate
 that it looks correct afterwards. Manual changes _WILL_ be required.
 
-`./scripts/cli.sh config-migrate layer {layer_pattern} > config/datasets/{layer}.py`
+`./scripts/cli.sh config-migrate layer {layer_pattern} > qgreenland/config/datasets/{layer}.py`
 
 * Look for `# TODO` markers in the output and fill those in. Don't forget to
   delete to TODOs!
