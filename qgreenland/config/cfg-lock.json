@@ -639,6 +639,26 @@
         "title": "Sea Ice Index, Version 3"
       }
     },
+    "seismograph_stations": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://www.isc.ac.uk/registries/download/stations.kmz"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "seismograph_stations",
+      "metadata": {
+        "abstract": "The International Seismograph Station Registry (IR) has been\njointly maintained by the International Seismological Centre (ISC)\nand the World Data Center for Seismology (NEIC/USGS) since the\n1960s. At present there are over 26000 stations (including those\nalready closed) with globally unique codes registered in the IR.",
+        "citation": {
+          "text": "International Seismological Centre (2020), International\nSeismograph Station Registry (IR),\nhttps://doi.org/10.31905/EL3FQQ40",
+          "url": "http://www.isc.ac.uk/registries/"
+        },
+        "title": "International Registry of Seismograph Stations (IR)"
+      }
+    },
     "world_magnetic_model": {
       "assets": {
         "2020": {
@@ -1731,6 +1751,52 @@
       },
       {
         "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Location and details of Greenland seismograph stations.",
+                  "id": "seismograph_stations",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "seismograph_stations"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "{output_dir}/ogr2ogr.gpkg",
+                        "{input_dir}/stations.kmz"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seismograph_stations",
+                  "tags": [],
+                  "title": "Seismograph stations"
+                },
+                "name": "seismograph_stations"
+              }
+            ],
+            "name": "Research stations",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
           {
             "layer_cfg": {
               "description": "Lines depict the Northern Sea Route, Northwest Passate, and\nhypothetical Transpolar Route.",
