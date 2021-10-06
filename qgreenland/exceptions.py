@@ -38,3 +38,9 @@ class QgrQgsLayerError(Exception):
     """Something went wrong creating a QgsLayer."""
 
     pass
+
+
+class QgrQgsLayerTreeGroupError(Exception):
+    """Something went wrong creating a QgsLayerTreeGroup."""
+
+    pass
