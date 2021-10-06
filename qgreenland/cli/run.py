@@ -72,4 +72,4 @@ def run(pattern, dry_run, fetch_only, workers) -> None:
     )
 
     if not result.scheduling_succeeded:
-        raise RuntimeError('Scheduling failed. See log above for details.')
+        raise SystemExit('Scheduling failed. See log above for details.')
