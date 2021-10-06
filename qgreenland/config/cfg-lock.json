@@ -13753,7 +13753,7 @@
                     "SOURCE_EXTRA=100",
                     "-wo",
                     "SAMPLE_GRID=YES",
-                    "{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif",
+                    "{input_dir}/NE2_HR_LC_SR_W.tif",
                     "{output_dir}/warped.tif"
                   ],
                   "type": "command"
