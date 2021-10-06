@@ -130,7 +130,20 @@ Run a single layer like so:
 
     ./scripts/container_cli.sh run seismograph_stations
 
+NOTE: You should do a cleanup before running to ensure all the expected tasks
+are run.
+
+    ./scripts/container_cli.sh cleanup \
+      -C True -R True -w seismograph_stations -i "seismograph*"
+
 Compare the output from this job to a known good output (e.g. QGreenland
 v1.0.2) until the outputs are identical. Look at things like statistics to make
 sure that the min and max and average are the same, and may be some spot
 checking of specific pixels or points to make sure nothing sneaky happened.
+
+Every layer must be clipped to a shape. Look for the `boundary` key in the
+layers YAML to see which shape the layer should be clipped to. If the boundary
+key isn't present, I'm not sure what that means. Edit this section later if we
+figure it out. You can always check QGreenland in QGIS to see which way a layer
+was clipped. Rasters and Vectors are clipped differently (`gdalwarp` vs
+`ogr2ogr`), so use another similar layer as an example.
