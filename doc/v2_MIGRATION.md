@@ -6,7 +6,7 @@ Avoid conflicts with other developers! Create a branch called
 `migrate-{yourlayer}`.
 
 
-## Select layers and datasets
+## Select layers and datasets of interest
 
 Examine the old QGreenland config:
 
@@ -32,14 +32,33 @@ that it looks correct afterwards. Manual changes may or may not be required.
   `description` fields. Blank lines may need to be added to compensate for
 incorrect YAML in the old format. Compare against the YAML as a guide.
 
-# Run layer migration
+## Run layer migration
+
+### Prep directories
+
+Ensure that the layer's group path is represented in the `layers/config`
+directory structure. This can be found in the YAML config as, e.g.:
+
+    group_path: 'Human activity/Research stations'
+
+Please ensure that the capitalization of these directories is identical to the
+text found in the old YAML config.
+
+If layers are ordered in a special way, you may also need to create a
+`__settings__.py` file in the root of new directories you've created. Follow
+the example set in other directories. If you are adding a directory to an
+existing directory with a `__settings__.py`, that file may need to be updated.
+
+
+### Migrate
 
 Run the following command to create a basic migration of layer(s). Validate
 that it looks correct afterwards. Manual changes _WILL_ be required.
 
 `./scripts/cli.sh config-migrate layer {layer_pattern} > config/datasets/{layer}.py`
 
-* Look for `# TODO` markers in the output and fill those in.
+* Look for `# TODO` markers in the output and fill those in. Don't forget to
+  delete to TODOs!
 
 * Specifically examine the whitespace in large strings like `abstract` or
   `description` fields. Blank lines may need to be added to compensate for
