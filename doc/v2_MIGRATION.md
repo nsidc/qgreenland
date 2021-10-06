@@ -2,7 +2,8 @@
 
 ## Create a new `git` branch
 
-Avoid conflicts with other developers!
+Avoid conflicts with other developers! Create a branch called
+`migrate-{yourlayer}`.
 
 
 ## Select layers and datasets
