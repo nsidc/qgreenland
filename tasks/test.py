@@ -69,7 +69,8 @@ def typecheck(ctx, check_config=False):
         # TODO: If/when this issue is resolved, remove this line and below
         # conditional logic:
         f' mypy --exclude "{config_pathmask}|{test_data_pathmask}"'
-        f' --config-file={PROJECT_DIR}/.mypy.ini {PACKAGE_DIR} {SCRIPTS_DIR}',
+        f' --config-file={PROJECT_DIR}/.mypy.ini'
+        f' {PACKAGE_DIR} {SCRIPTS_DIR}',
         pty=True,
     )
 

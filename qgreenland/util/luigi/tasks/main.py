@@ -54,7 +54,7 @@ class ChainableTask(QgrLayerTask):
 
     step_number = luigi.IntParameter()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return (
             f'{self.__class__.__name__}('
             f'layer_id={self.layer_id},'

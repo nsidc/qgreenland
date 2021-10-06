@@ -77,9 +77,9 @@ class Parser:
             return
 
         matcher = re.compile('QGreenland_(v.+).zip')
-        try:
-            qgr_version = matcher.match(filename).groups()[0]
-        except AttributeError:
+        if match := matcher.match(filename):
+            qgr_version = match.groups()[0]
+        else:
             unusable_filename(filename)
             return
 

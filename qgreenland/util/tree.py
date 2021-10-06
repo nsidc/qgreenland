@@ -122,7 +122,7 @@ def _filter_directory_contents(paths=list[Path]) -> list[Path]:
     """Return the `paths` to include only those we care about."""
     def _path_valid(p: Path) -> bool:
         return (
-            (p.is_dir or p.suffix == '.py')
+            (p.suffix == '.py' or p.is_dir)
             and not p.name == '__pycache__'
         )
 

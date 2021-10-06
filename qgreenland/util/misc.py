@@ -86,11 +86,12 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
                 parsed = cgi.parse_header(disposition)
                 # Handle case where disposition itself (usually "attachment")
                 # isn't present (geothermal heat flux :bell:).
-                if 'filename' in parsed[0]:
-                    fn = re.match(
-                        'filename="?(.*)"?',
-                        parsed[0],
-                    ).groups()[0].strip('\'"')
+                matcher = re.compile('filename="?(.*)"?')
+                if (
+                    'filename' in parsed[0]
+                    and (match := matcher.match(parsed[0]))
+                ):
+                    fn = match.groups()[0].strip('\'"')
                 else:
                     fn = parsed[1]['filename']
             else:

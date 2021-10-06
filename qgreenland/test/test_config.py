@@ -34,7 +34,9 @@ def test_immutable_model():
     # `TypeError: "ConfigLayer" is immutable and does not support item
     # assignment`
     with pytest.raises(TypeError):
-        config.layers['background'].description = 'override'
+        # TODO: Remove type-ignore below.
+        #    https://github.com/pytest-dev/pytest/issues/8984
+        config.layers['background'].description = 'override'  # type:ignore
 
 
 def test_layer_indexes():
