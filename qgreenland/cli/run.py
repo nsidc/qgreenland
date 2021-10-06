@@ -72,11 +72,4 @@ def run(pattern, dry_run, fetch_only, workers) -> None:
     )
 
     if not result.scheduling_succeeded:
-        raise click.UsageError(
-            (
-                'Scheduling failed. If you received any error like:\n'
-                "  PermissionError: [Errno 13] Permission denied: '/luigi'\n\n"
-                '...you probably need to run this command within a container,'
-                ' e.g.: `./scripts/container_cli.sh run [OPTIONS]`.'
-            ),
-        )
+        raise SystemExit('Scheduling failed. See log above for details.')

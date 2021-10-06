@@ -1,3 +1,9 @@
+class QgrInterpolationError(Exception):
+    """Something went wrong interpolating runtime variables."""
+
+    pass
+
+
 class QgrVersionError(Exception):
     """Something went wrong trying to determine the current QGR version."""
 
@@ -5,7 +11,7 @@ class QgrVersionError(Exception):
 
 
 class QgrNoLayersFoundError(Exception):
-    """No layers could be found."""
+    """No layers could be found in configuration."""
 
     pass
 

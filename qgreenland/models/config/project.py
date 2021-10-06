@@ -7,6 +7,7 @@ from pydantic import root_validator, validator
 import qgreenland.exceptions as exc
 from qgreenland.constants import ASSETS_DIR
 from qgreenland.models.base_model import QgrBaseModel
+from qgreenland.util.runtime_vars import EvalFilePath
 
 
 class BoundingBox(QgrBaseModel):
@@ -17,13 +18,10 @@ class BoundingBox(QgrBaseModel):
 
 
 class ConfigBoundariesInfo(QgrBaseModel):
-    # Absolute filepath using `{assets_dir}` slug allows for diffing configs
-    # across file systems. Steps often need absolute paths that are
+    # Absolute filepath using `{assets_dir}` runtime variable allows for diffing
+    # configs across file systems. Steps often need absolute paths that are
     # filesystem-agnostic.
-    # TODO: Create a more useful types for "runtime-evaluated paths" and
-    # "runtime-evaluated strings". Then our global validator can do things like
-    # check for existence.
-    filepath: str
+    filepath: EvalFilePath
 
     bbox: BoundingBox
 
@@ -31,9 +29,14 @@ class ConfigBoundariesInfo(QgrBaseModel):
     @classmethod
     def ensure_relative_to_assets(cls, value):
         # TODO: DRY this out? Same validator in assets module.
-        full_path = Path(value.format(assets_dir=ASSETS_DIR))
-        if not full_path.is_file():
-            raise ValueError(f'No file found at {full_path}.')
+        evaluated = value.eval()
+        try:
+            evaluated.relative_to(ASSETS_DIR)
+        except Exception:
+            raise exc.QgrInvalidConfigError(
+                f'Expected path relative to {{assets_dir}}.'
+                f' Received: {evaluated}',
+            )
 
         return value
 

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import luigi
 
-from qgreenland.constants import PRIVATE_ARCHIVE_DIR, PROJECT_DIR, TaskType
+from qgreenland.constants import PRIVATE_ARCHIVE_DIR, TaskType
 from qgreenland.models.config.asset import (
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,
@@ -108,17 +108,12 @@ class FetchLocalDataFiles(FetchTask):
 
     def run(self):
         if isinstance(self.asset_cfg, ConfigDatasetRepositoryAsset):
-            with temporary_path_dir(self.output()) as temp_path:
-                # TODO: Why doesn't the typchecker catch if we were to access
-                # `self.asset_cfg.urls` here? That's not available on a
-                # ConfigDatasetRepositoryAsset. Encountered a runtime error when
-                # it should have been a type error.
 
-                out_path = Path(temp_path) / self.asset_cfg.filepath.name
-                shutil.copy2(
-                    PROJECT_DIR / self.asset_cfg.filepath,
-                    out_path,
-                )
+            with temporary_path_dir(self.output()) as temp_path:
+                evaluated_filepath = self.asset_cfg.filepath.eval()
+
+                out_path = Path(temp_path) / evaluated_filepath.name
+                shutil.copy2(evaluated_filepath, out_path)
 
         elif isinstance(self.asset_cfg, ConfigDatasetManualAsset):
             local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg.id)
