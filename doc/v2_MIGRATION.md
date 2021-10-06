@@ -131,4 +131,6 @@ Run a single layer like so:
     ./scripts/container_cli.sh run seismograph_stations
 
 Compare the output from this job to a known good output (e.g. QGreenland
-v1.0.2) until a match is achieved.
+v1.0.2) until the outputs are identical. Look at things like statistics to make
+sure that the min and max and average are the same, and may be some spot
+checking of specific pixels or points to make sure nothing sneaky happened.
