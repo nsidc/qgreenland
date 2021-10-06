@@ -6,5 +6,6 @@ settings = LayerGroupSettings(
         'QGreenland boundaries',
         'Latitude lines',
         'Longitude lines',
+        'timezones.py:timezones',
     ],
 )
