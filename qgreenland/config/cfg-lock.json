@@ -239,6 +239,26 @@
         "title": "Longitude and Latitude Lines"
       }
     },
+    "ne_timezones": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_time_zones.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "ne_timezones",
+      "metadata": {
+        "abstract": "Time zones primarily derive from the Central Intelligence Agency\nmap of Time Zones, downloaded from the World Factbook website May\n2012. Boundaries were adjusted to fit the Natural Earth line work at\na scale of 1:10 million and to follow twelve nautical mile\nterritorial sea boundary lines when running along coasts. Additional\nresearch was performed based on recent news to update several areas\nincluding the international dateline and time zone adjustments for\nSamoa and Tokelau and the discarding of daylight savings time in\nRussia.\n\nData attributes include time offset from Coordinated Universal Time\n(UTC, aka \u201czulu\u201d time) and map color codes for a 6-up and 8-up\nstyling.",
+        "citation": {
+          "text": "Made with Natural Earth",
+          "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
+        },
+        "title": "Timezones"
+      }
+    },
     "nga_arctic_sea_routes": {
       "assets": {
         "only": {
@@ -1644,6 +1664,52 @@
               "order": null,
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Polygons representing time zones.",
+              "id": "timezones",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "ne_timezones"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/ne_10m_time_zones.zip",
+                    "-d",
+                    "{output_dir}"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "OGR_ENABLE_PARTIAL_REPROJECTION=True",
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "{output_dir}/reprojected_and_clipped.gpkg",
+                    "{input_dir}/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "transparent_shape",
+              "tags": [],
+              "title": "Time zones"
+            },
+            "name": "timezones"
           }
         ],
         "name": "Reference",
@@ -1652,7 +1718,8 @@
           "order": [
             "QGreenland boundaries",
             "Latitude lines",
-            "Longitude lines"
+            "Longitude lines",
+            "timezones.py:timezones"
           ],
           "show": false
         }
