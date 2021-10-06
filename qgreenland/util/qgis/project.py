@@ -129,15 +129,19 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
             filter_=lambda node: not node.is_root,
     ):
         if type(node) is LayerGroupNode:
-            current_group = _create_and_configure_group(
+            _get_or_create_and_configure_group(
                 node=node,
                 project=project,
             )
         elif type(node) is LayerNode:
+            parent_group = _get_or_create_and_configure_group(
+                node=node.parent,
+                project=project,
+            )
             _create_and_add_layer(
                 node=node,
                 project=project,
-                group=current_group,
+                group=parent_group,
             )
         else:
             raise TypeError(f'Unexpected `node` type: {type(node)}')
@@ -145,7 +149,8 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
     logger.debug('Done adding layers.')
 
 
-def _create_and_configure_group(
+
+def _get_or_create_and_configure_group(
     *,
     node: LayerGroupNode,
     project: qgc.QgsProject,
@@ -161,6 +166,9 @@ def _create_and_configure_group(
             raise RuntimeError(
                 f'Parent group of {node.name} not found: {group_path}',
             )
+
+    if existing_group := group.findGroup(node.name):
+        return existing_group
 
     group = group.addGroup(node.name)
 
