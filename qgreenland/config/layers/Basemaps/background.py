@@ -20,7 +20,7 @@ background = ConfigLayer(
             args=['unzip', '{input_dir}/*.zip', '-d', '{output_dir}'],
         ),
         *warp_and_cut(
-            input_file='{input_dir}/NE2_HR_LC_SR_W/NE2_HR_LC_SR_W.tif',
+            input_file='{input_dir}/NE2_HR_LC_SR_W.tif',
             output_file='{output_dir}/warped_and_cut.tif',
             reproject_args=[
                 '-tr', '500', '500',
