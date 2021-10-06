@@ -15,11 +15,17 @@ The dataset ID is listed as `data_source` on the layer config in the format
     data_source: seismograph_stations.only
 
 
-## Run migration commands
+## Run dataset migration
 
-Run the following commands to create a basic migration of a dataset and a
-layer. These will need to be manually edited after.
+Run the following command to create a basic migration of dataset(s). Validate
+that it looks correct afterwards. Manual changes may or may not be required.
 
 `./scripts/cli.sh config-migrate dataset {dataset_pattern} > config/datasets/{dataset}.py`
+
+
+# Run layer migration
+
+Run the following command to create a basic migration of layer(s). Validate
+that it looks correct afterwards. Manual changes _WILL_ be required.
 
 `./scripts/cli.sh config-migrate layer {layer_pattern} > config/datasets/{layer}.py`
