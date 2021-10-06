@@ -151,7 +151,7 @@ def _get_or_create_and_configure_group(
 ) -> qgc.QgsLayerTreeGroup:
     group_path = node.group_name_path
     try:
-        parent_group = _get_group(  # NEW IMP
+        parent_group = _get_group(
             project=project,
             group_path=group_path,
         )
