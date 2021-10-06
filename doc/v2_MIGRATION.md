@@ -50,7 +50,7 @@ the example set in other directories. If you are adding a directory to an
 existing directory with a `__settings__.py`, that file may need to be updated.
 
 
-### Migrate
+### Migrate layer
 
 Run the following command to create a basic migration of layer(s). Validate
 that it looks correct afterwards. Manual changes _WILL_ be required.
@@ -62,4 +62,73 @@ that it looks correct afterwards. Manual changes _WILL_ be required.
 
 * Specifically examine the whitespace in large strings like `abstract` or
   `description` fields. Blank lines may need to be added to compensate for
-incorrect YAML in the old format. Compare against the YAML as a guide.
+  incorrect YAML in the old format. Compare against the YAML as a guide.
+
+
+### Manually populate steps
+
+Examine the `ingest_task` element of the YAML layer config. e.g.:
+
+    ingest_task: online_vector
+
+To find the relevant python code, look for this string in
+`qgreenland/tasks/layers/__init__.py`
+
+		# ...
+    from qgreenland.tasks.layers.online_vector import OnlineVector
+    # ...
+
+    INGEST_TASKS = {
+				# ...
+        'online_vector': OnlineVector,
+				# ...
+    }
+
+This tells you that the `online_vector` module's `OnlineVector` class
+(`LayerPipeline`) will be used to process this layer. The `requires` method of
+this pipeline class shows the tasks the pipeline is composed of. e.g.:
+
+    class OnlineVector(LayerPipeline):
+        """Download and process any vector data that ogr2ogr can read."""
+    
+        def requires(self):
+            fetch_data = FetchDataFiles(
+                dataset_cfg=self.cfg['dataset'],
+                source_cfg=self.cfg['source'],
+            )  # ->
+            return Ogr2OgrVector(
+                requires_task=fetch_data,
+                layer_id=self.layer_id
+            )
+
+
+This pipeline runs a fetch first (fetches don't count as steps in the new
+model, they're defined by the `input` section of a layer, so you probably don't
+need to worry about it).
+
+Then it runs `Ogr2OgrVector`. Examine this class and see which layer config
+elements it looks at. For example:
+
+    input_ogr2ogr_kwargs = self.layer_cfg.get('ogr2ogr_kwargs', {})
+
+This task looks at the `ogr2ogr_kwargs` key of the layer config. Reference the
+YAML:
+
+    ogr2ogr_kwargs:
+        input_filename: 'stations.kmz'
+
+This part is open-ended and fuzzy: Reference the code and the inputs provided
+by the config to translate the python code + YAML config into a resulting CLI
+command or commands, in this case `ogr2ogr`. Where possible, use existing
+helpers in `qgreenland/config/helpers/steps` or create new helpers which can be
+re-used for similar code.
+
+
+# Testing
+
+Run a single layer like so:
+
+    ./scripts/container_cli.sh run seismograph_stations
+
+Compare the output from this job to a known good output (e.g. QGreenland
+v1.0.2) until a match is achieved.
