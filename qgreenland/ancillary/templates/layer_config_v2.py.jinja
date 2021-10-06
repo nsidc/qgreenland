@@ -1,6 +1,9 @@
-# TODO
-from qgreenland.config.datasets.XXXX import XXXX as dataset
+# TODO: Replace `XXXX` with the correct package/module/object to import
+# TODO: `from qgreenland.helpers.? import ?` if needed
+# TODO: `from qgreenland.config.project import project` if needed
+from qgreenland.config.datasets.? import ? as dataset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+# TODO: Import the correct step type for steps populated below
 
 
 {{ layer.id }} = ConfigLayer(
@@ -18,6 +21,6 @@ from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
         asset=dataset.assets['{{ layer.data_source.split('.')[1] }}'],
     ),
     steps=[
-        # TODO
+        # TODO: Populate steps
     ],
 )
