@@ -28,8 +28,8 @@ that it looks correct afterwards. Manual changes may or may not be required.
 
 `./scripts/cli.sh config-migrate dataset {dataset_pattern} > config/datasets/{dataset}.py`
 
-Specifically examine the whitespace in large strings like `abstract` or
-`description` fields. Blank lines may need to be added to compensate for
+* Specifically examine the whitespace in large strings like `abstract` or
+  `description` fields. Blank lines may need to be added to compensate for
 incorrect YAML in the old format. Compare against the YAML as a guide.
 
 # Run layer migration
@@ -39,6 +39,8 @@ that it looks correct afterwards. Manual changes _WILL_ be required.
 
 `./scripts/cli.sh config-migrate layer {layer_pattern} > config/datasets/{layer}.py`
 
-Specifically examine the whitespace in large strings like `abstract` or
-`description` fields. Blank lines may need to be added to compensate for
+* Look for `# TODO` markers in the output and fill those in.
+
+* Specifically examine the whitespace in large strings like `abstract` or
+  `description` fields. Blank lines may need to be added to compensate for
 incorrect YAML in the old format. Compare against the YAML as a guide.
