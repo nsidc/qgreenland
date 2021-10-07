@@ -1,7 +1,16 @@
 #!/bin/bash
+set -e
 
 THIS_DIR="$( cd "$(dirname "$0")"; pwd -P )"
+
+set +e
 container_id="$("$THIS_DIR"/helpers/container_id.sh)"
+rc="$?"
+set -e
+if [ $rc = 1 ]; then
+    echo $container_id
+    exit $rc
+fi
 
 # Run the cleanup script if the user passes any arguments. Convenient to do
 # everything in one step.
