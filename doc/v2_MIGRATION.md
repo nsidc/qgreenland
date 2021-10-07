@@ -53,9 +53,19 @@ existing directory with a `__settings__.py`, that file may need to be updated.
 ### Migrate layer
 
 Run the following command to create a basic migration of layer(s). Validate
-that it looks correct afterwards. Manual changes _WILL_ be required.
+that it looks correct afterwards. Manual changes _WILL_ be required. Write the
+new layer file out to the new directory you just created.
 
-`./scripts/cli.sh config-migrate layer {layer_pattern} > qgreenland/config/datasets/{layer}.py`
+```
+./scripts/cli.sh config-migrate layer {layer_pattern} > \
+  qgreenland/config/layers/{group}/{dir}/{layer}.py
+```
+
+e.g.:
+```
+./scripts/cli.sh config-migrate layer seismo* > \
+  qgreenland/config/layers/Human activity/Research stations/seismograph_stations.py
+```
 
 * Look for `# TODO` markers in the output and fill those in. Don't forget to
   delete to TODOs!
