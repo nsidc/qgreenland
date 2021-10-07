@@ -6,7 +6,7 @@ if [[ "$1" == "run" || "$1" == "fetch" || "$1" == "cleanup" ]]; then
     exit 1
 fi
 
-THIS_DIR="$( readlink -f "$( dirname "${BASH_SOURCE[0]}" )")"
+THIS_DIR="$( cd "$(dirname "$0")"; pwd -P )"
 cd "$THIS_DIR"/..
 
 python qgreenland/cli/__init__.py "$@"
