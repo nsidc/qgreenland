@@ -2,8 +2,11 @@ import copy
 from unittest.mock import patch
 
 import qgis.core as qgc
+import pytest
 
+import qgreenland.exceptions as exc
 import qgreenland.util.qgis.layer as qgl
+import qgreenland.util.qgis.project as prj
 import qgreenland.util.qgis.metadata as qgm
 from qgreenland.test.constants import (
     MOCK_LAYERS_DIR,
@@ -69,6 +72,25 @@ def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
     meta_extent = mock_raster_layer.metadata().extent().spatialExtents()[0]
     # The `expected_extent` is a QgsRectangle.
     assert expected_extent == meta_extent.bounds.toRectangle()
+
+
+@patch(
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
+)
+def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):
+    # Test that _add_layers_and_groups works without error
+    project = qgc.QgsProject.instance()
+    prj._add_layers_and_groups(project, raster_layer_node.root)
+    added_layers = [layer for layer in project.mapLayers().values()]
+    assert len(added_layers) == 1
+    assert added_layers[0].name() == 'Example raster'
+    project.clear()
+
+    project = qgc.QgsProject.instance()
+    with pytest.raises(exc.QgrQgsLayerTreeGroupError):
+        prj._add_layers_and_groups(project, raster_layer_node)
+    project.clear()
 
 
 def test__build_dataset_description(raster_layer_cfg):
