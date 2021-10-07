@@ -32,6 +32,16 @@ that it looks correct afterwards. Manual changes may or may not be required.
   `description` fields. Blank lines may need to be added to compensate for
 incorrect YAML in the old format. Compare against the YAML as a guide.
 
+
+## Fetch the data if needed
+
+`./scripts/container_cli.sh fetch {dataset_pattern}
+
+This will download the input files to `/share/appdata/qgreenland-input-cache`,
+or wherever you have mounted the container `/input` directory to on your local
+machine.
+
+
 ## Run layer migration
 
 ### Prep directories
