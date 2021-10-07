@@ -1,4 +1,4 @@
 #!/bin/bash
-THIS_DIR="$( readlink -f "$( dirname "${BASH_SOURCE[0]}" )")"
+THIS_DIR="$( cd "$(dirname "$0")"; pwd -P )"
 
 "$THIS_DIR"/container_cli.sh cleanup "$@"

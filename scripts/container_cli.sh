@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-THIS_DIR="$(readlink -f "$( dirname "${BASH_SOURCE[0]}" )")"
+THIS_DIR="$( cd "$(dirname "$0")"; pwd -P )"
 container_id="$("$THIS_DIR"/helpers/container_id.sh)"
 
 # If this script is called from Jenkins, docker-compose's default TTY behavior
