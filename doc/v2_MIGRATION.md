@@ -35,7 +35,7 @@ incorrect YAML in the old format. Compare against the YAML as a guide.
 
 ## Fetch the data if needed
 
-`./scripts/container_cli.sh fetch {dataset_pattern}
+`./scripts/container_cli.sh fetch {dataset_pattern}`
 
 This will download the input files to `/share/appdata/qgreenland-input-cache`,
 or wherever you have mounted the container `/input` directory to on your local
