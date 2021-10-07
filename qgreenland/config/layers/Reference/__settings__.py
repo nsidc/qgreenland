@@ -7,5 +7,6 @@ settings = LayerGroupSettings(
         'Latitude lines',
         'Longitude lines',
         'timezones.py:timezones',
+        'utm_zones.py:utm_zones',
     ],
 )
