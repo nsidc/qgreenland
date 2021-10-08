@@ -8,8 +8,8 @@ container_id="$("$THIS_DIR"/helpers/container_id.sh)"
 rc="$?"
 set -e
 if [ $rc = 1 ]; then
-    echo $container_id
-    exit $rc
+    echo "$container_id"
+    exit "$rc"
 fi
 
 
