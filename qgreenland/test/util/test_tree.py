@@ -1,80 +1,88 @@
-import anytree
-import pytest
+from functools import partial
 
-from qgreenland.models.config.layer_group import LayerGroupSettings, RootGroupSettings
-from qgreenland.test.constants import TEST_CONFIG_W_DUPES_DIR
-from qgreenland.util import tree
+from qgreenland.util.tree import _matches_filters
 
 
-def test__tree_from_dir():
-    """Test tree created from test config looks correct.
+CANDIDATE_STRINGS = [
+    'bedmachine_error',
+    'bedmachine_thickness',
+    'background',
+    'lat_0_25_deg',
+    'lon_0_5_deg',
+    'lon_5_deg',
+]
+SELECT_MANY_PATTERNS = ('*machine*', 'backgr*')
+SELECT_ONE_PATTERNS = ('bedmachine_thickness',)
 
-    - Root node has RootGroupSettings
-    - Branch nodes are LayerGroupNodes and have LayerGroupSettings
-    - Leaf nodes are LayerNodes
-    - Test layer order is correct:
-        - Manual ordering
-        - Default ordering
+
+def test__matches_filters_no_patterns():
+    test_func = partial(
+        _matches_filters,
+        include_patterns=(),
+        exclude_patterns=(),
+    )
+    actual = [test_func(i) for i in CANDIDATE_STRINGS]
+    expected = [True] * len(CANDIDATE_STRINGS) 
+
+    assert actual == expected
+
+
+def test__matches_filter_specific_include_general_exclude():
+    """Test that the "specific include" case works as expected.
+
+    Under our current business logic, this is the fortunate case. The user
+    clearly wanted to select the inverse of the "exclusion" set and add the
+    "inclusion" set to that. This is what occurs.
     """
-    actual_tree = tree._tree_from_dir(TEST_CONFIG_W_DUPES_DIR / 'layers')
-
-    # The root of the tree should contain a `RootGroupSettings`
-    assert isinstance(actual_tree.settings, RootGroupSettings)
-
-    branches = anytree.search.findall(actual_tree, filter_=lambda node: not node.is_leaf)
-    # Assert that all branches are instances of LayerGroupNode.
-    assert all(
-        isinstance(branch, tree.LayerGroupNode)
-        for branch in branches
+    test_func = partial(
+        _matches_filters,
+        include_patterns=SELECT_ONE_PATTERNS,
+        exclude_patterns=SELECT_MANY_PATTERNS,
     )
+    actual = [test_func(i) for i in CANDIDATE_STRINGS]
+    expected = [False, True, False, True, True, True]
 
-    # Assert that all non-root branches have `settings` of instance `LayerGroupSettings`
-    branches_excluding_root = branches[1:]
-    assert all(
-        isinstance(branch.settings, LayerGroupSettings)
-        for branch in branches_excluding_root
-    )
-
-    # Assert that all leaf nodes are instances of `LayerNode`.
-    assert all(
-        isinstance(node, tree.LayerNode)
-        for node in actual_tree.leaves
-    )
-
-    # test that the `Subgroup` is ordered according to `__settings__.py`
-    ordered_node = anytree.search.find(
-        actual_tree,
-        filter_=lambda node: node.name == 'Subgroup',
-    )
-    expected_manual_ordering = [
-        'Foo',
-        'example_online',
-        'Baz',
-        'Bar',
-        'example_raster',
-    ]
-    actual_manual_ordering = [node.name for node in ordered_node.children]
-    assert expected_manual_ordering == actual_manual_ordering
-
-    unordered_node = anytree.search.find(
-        actual_tree,
-        filter_=lambda node: node.name == 'Subgroup without settings',
-    )
-    expected_default_ordering = [
-        'Bar',
-        'Baz',
-        'Foo',
-        'example_online',
-        'example_raster',
-    ]
-    actual_default_ordering = [node.name for node in unordered_node.children]
-    assert expected_default_ordering == actual_default_ordering
+    assert actual == expected
 
 
-def test_layer_tree_raises_duplicates_error():
-    """The test config dir contains duplicate layers.
+def test__matches_filters_general_include_specific_exclude():
+    """Test that the "specific exclude" case works as expected.
 
-    This should raise an error.
+    Under our current business logic, this is the unfortunate case. The user
+    clearly wanted to select the "inclusion" set and subtract the "exclusion"
+    set from that. Instead they receive the full set.
     """
-    with pytest.raises(RuntimeError):
-        tree.layer_tree(TEST_CONFIG_W_DUPES_DIR / 'layers')
+    test_func = partial(
+        _matches_filters,
+        include_patterns=SELECT_MANY_PATTERNS,
+        exclude_patterns=SELECT_ONE_PATTERNS,
+    )
+    actual = [test_func(i) for i in CANDIDATE_STRINGS]
+    expected = [True] * len(CANDIDATE_STRINGS)
+
+    assert actual == expected
+
+
+def test__matches_filters_include_only():
+    test_func = partial(
+        _matches_filters,
+        include_patterns=SELECT_MANY_PATTERNS,
+        exclude_patterns=(),
+    )
+
+    actual = [test_func(i) for i in CANDIDATE_STRINGS]
+    expected = [True, True, True, False, False, False]
+
+    assert actual == expected
+
+
+def test__matches_filters_exclude_only():
+    test_func = partial(
+        _matches_filters,
+        include_patterns=(),
+        exclude_patterns=SELECT_ONE_PATTERNS,
+    )
+    actual = [test_func(i) for i in CANDIDATE_STRINGS]
+    expected = [True, False, True, True, True, True]
+
+    assert actual == expected

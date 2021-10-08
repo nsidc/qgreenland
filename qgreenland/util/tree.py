@@ -85,14 +85,19 @@ class LayerGroupNode(QgrTreeNode):
 def layer_tree(
     layer_cfg_dir: Path,
     *,
-    pattern: Optional[str] = None,
+    include_patterns: tuple[str],
+    exclude_patterns: tuple[str],
 ) -> anytree.Node:
-    tree = _tree_from_dir(layer_cfg_dir, pattern=pattern)
+    tree = _tree_from_dir(
+        layer_cfg_dir,
+        include_patterns=include_patterns,
+        exclude_patterns=exclude_patterns,
+    )
     _prune_tree(tree)
 
     if len(tree.children) == 0:
         raise exc.QgrNoLayersFoundError(
-            f'No layers found matching {pattern=}',
+            f'No layers found matching {include_patterns=}; {exclude_patterns=}',
         )
 
     _check_for_duplicate_leaves(tree)
@@ -292,10 +297,65 @@ def _handle_layer_config_directory(
     return (cleansed_directory_contents, settings)
 
 
+def _matches_filters(
+    candidate: str,
+    *,
+    include_patterns: tuple[str],
+    exclude_patterns: tuple[str],
+) -> bool:
+    """Determine if candidate matches given filters.
+
+    Since we don't allow the user to specify the order inclusion and exclusion
+    is performed in, we chose to prioritize inclusions. e.g.:
+
+        include: bed*
+        exclude: bedmachine_thickness
+
+    Do we include or exclude bedmachine_thickness? It matches both the general
+    include and specific exclude. With prioritizing inclusions, this filter will
+    have no effect because the result is (all layers - bedmachine_thickness) +
+    all bedmachine layers.
+
+    and:
+
+        include: bedmachine_error
+        exclude: bed*
+
+    Do we include or exclude bedmachine_error? It matches both the specific
+    include and the general exclude. With prioritizing inclusions, the result is
+    the (all layers - all bedmachine layers) + bedmachine_error.
+
+    In both cases, we get different results depending on whether we prioritize
+    inclusions or exclusions. I.e.: for set of inclusions I and exclusions E,
+    this is a question of `I - E` vs. `!E + I`.
+    """
+    if not (include_patterns or exclude_patterns):
+        return True
+
+    # Does candidate match any of the include_patterns? If there are no
+    # patterns, it's included.
+    included = any(fnmatch(candidate, p) for p in include_patterns)
+    if not exclude_patterns:
+        return included
+
+    # Does candidate match any of the exclude_patterns?
+    excluded = any(fnmatch(candidate, p) for p in exclude_patterns)
+    if not include_patterns:
+        return not excluded
+    
+    # Include things which are both excluded and included.
+    result = not excluded or included
+    # Alternative strategy:
+    # result = included and not excluded
+
+    return result
+
+
 def _tree_from_dir(
     the_dir: Path,
     parent: Optional[anytree.Node] = None,
-    pattern: Optional[str] = None,
+    include_patterns: tuple[str] = (),
+    exclude_patterns: tuple[str] = (),
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
     directory_contents, settings = _handle_layer_config_directory(
@@ -319,11 +379,21 @@ def _tree_from_dir(
 
             # NOTE: Since this modifies the entire tree (`root_node`), nothing
             # needs to be assigned here.
-            _tree_from_dir(thing, parent=root_node, pattern=pattern)
+            _tree_from_dir(
+                thing,
+                parent=root_node,
+                include_patterns=include_patterns,
+                exclude_patterns=exclude_patterns,
+            )
         elif isinstance(thing, ConfigLayer):
             # NOTE: Since this modifies the entire tree (`root_node`), nothing
             # needs to be assigned here.
-            if not pattern or fnmatch(thing.id, pattern):
+            pattern_provided = include_patterns or exclude_patterns
+            if _matches_filters(
+                thing.id,
+                include_patterns=include_patterns,
+                exclude_patterns=exclude_patterns,
+            ):
                 LayerNode(
                     thing.id,
                     layer_cfg=thing,
@@ -331,7 +401,8 @@ def _tree_from_dir(
                 )
             else:
                 logger.debug(
-                    f'Layer {thing.id} does not match pattern "{pattern}"',
+                    f'Layer {thing.id} does not match patterns:'
+                    f' {include_patterns=}; {exclude_patterns=}',
                 )
 
         else:

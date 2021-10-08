@@ -39,11 +39,13 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
 def compile_cfg(
     config_dir: Path,
     *,
-    pattern: Optional[str] = None,
+    include_patterns: tuple[str] = (),
+    exclude_patterns: tuple[str] = (),
 ) -> Config:
     compiled_layer_tree = layer_tree(
         config_dir / 'layers',
-        pattern=pattern,
+        include_patterns=include_patterns,
+        exclude_patterns=exclude_patterns,
     )
     leaves = compiled_layer_tree.leaves
 

@@ -14,7 +14,9 @@ _CONFIG: Optional[Config] = None
 
 
 def init_config(
-    pattern: Optional[str] = None,
+    *,
+    include_patterns: tuple[str] = (),
+    exclude_patterns: tuple[str] = (),
 ) -> None:
     global _CONFIG
 
@@ -25,12 +27,14 @@ def init_config(
 
     _CONFIG = compile_cfg(
         CONFIG_DIR.resolve(),
-        pattern=pattern,
+        include_patterns=include_patterns,
+        exclude_patterns=exclude_patterns,
     )
 
     if not _CONFIG.layers:
         raise exc.QgrNoLayersFoundError(
-            f'No layers found matching pattern "{pattern}".',
+            'No layers found matching patterns:'
+            f' "{include_patterns=}"; "{exclude_patterns=}.',
         )
 
 
