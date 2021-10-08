@@ -148,7 +148,8 @@ re-used for similar code.
 
 Run a single layer like so:
 
-    ./scripts/container_cli.sh run seismograph_stations
+    ./scripts/container_cli.sh run \
+      --include=seismograph_stations --include=background
 
 NOTE: You should do a cleanup before running to ensure all the expected tasks
 are run.
