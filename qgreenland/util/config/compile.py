@@ -1,6 +1,5 @@
 from functools import cache
 from pathlib import Path
-from typing import Optional
 
 from qgreenland.config.project import project
 from qgreenland.models.config import Config

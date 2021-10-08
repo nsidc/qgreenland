@@ -22,7 +22,7 @@ def test__matches_filters_no_patterns():
         exclude_patterns=(),
     )
     actual = [test_func(i) for i in CANDIDATE_STRINGS]
-    expected = [True] * len(CANDIDATE_STRINGS) 
+    expected = [True] * len(CANDIDATE_STRINGS)
 
     assert actual == expected
 

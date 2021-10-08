@@ -30,14 +30,14 @@ from qgreenland.util.luigi.tasks.pipeline import (
 )
 @click.option(
     '--include', '-i',
-    help='Include layers matching PATTERN',
+    help='Include layers matching PATTERN.',
     metavar='PATTERN',
     required=False,
     multiple=True,
 )
 @click.option(
     '--exclude', '-e',
-    help='Exclude layers matching PATTERN',
+    help='Exclude layers matching PATTERN.',
     metavar='PATTERN',
     required=False,
     multiple=True,
@@ -55,7 +55,6 @@ def run(
         exclude_patterns=exclude,
     )
     config = get_config()
-
 
     if fetch_only:
         # Don't do anything except fetch the input asset for each layer.

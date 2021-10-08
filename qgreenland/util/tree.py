@@ -342,7 +342,7 @@ def _matches_filters(
     excluded = any(fnmatch(candidate, p) for p in exclude_patterns)
     if not include_patterns:
         return not excluded
-    
+
     # Include things which are both excluded and included.
     result = not excluded or included
     # Alternative strategy:
@@ -388,17 +388,12 @@ def _tree_from_dir(
         elif isinstance(thing, ConfigLayer):
             # NOTE: Since this modifies the entire tree (`root_node`), nothing
             # needs to be assigned here.
-            pattern_provided = include_patterns or exclude_patterns
             if _matches_filters(
                 thing.id,
                 include_patterns=include_patterns,
                 exclude_patterns=exclude_patterns,
             ):
-                LayerNode(
-                    thing.id,
-                    layer_cfg=thing,
-                    parent=root_node,
-                )
+                LayerNode(thing.id, layer_cfg=thing, parent=root_node)
             else:
                 logger.debug(
                     f'Layer {thing.id} does not match patterns:'
