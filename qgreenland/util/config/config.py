@@ -15,8 +15,8 @@ _CONFIG: Optional[Config] = None
 
 def init_config(
     *,
-    include_patterns: tuple[str] = (),
-    exclude_patterns: tuple[str] = (),
+    include_patterns: tuple[str, ...] = (),
+    exclude_patterns: tuple[str, ...] = (),
 ) -> None:
     global _CONFIG
 

@@ -43,8 +43,8 @@ from qgreenland.util.luigi.tasks.pipeline import (
     multiple=True,
 )
 def run(
-    include: tuple[str],
-    exclude: tuple[str],
+    include: tuple[str, ...],
+    exclude: tuple[str, ...],
     dry_run: bool,
     fetch_only: bool,
     workers: int,

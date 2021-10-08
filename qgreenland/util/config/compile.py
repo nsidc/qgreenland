@@ -38,8 +38,8 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
 def compile_cfg(
     config_dir: Path,
     *,
-    include_patterns: tuple[str] = (),
-    exclude_patterns: tuple[str] = (),
+    include_patterns: tuple[str, ...] = (),
+    exclude_patterns: tuple[str, ...] = (),
 ) -> Config:
     compiled_layer_tree = layer_tree(
         config_dir / 'layers',

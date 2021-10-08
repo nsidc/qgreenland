@@ -85,8 +85,8 @@ class LayerGroupNode(QgrTreeNode):
 def layer_tree(
     layer_cfg_dir: Path,
     *,
-    include_patterns: tuple[str],
-    exclude_patterns: tuple[str],
+    include_patterns: tuple[str, ...] = (),
+    exclude_patterns: tuple[str, ...] = (),
 ) -> anytree.Node:
     tree = _tree_from_dir(
         layer_cfg_dir,
@@ -300,8 +300,8 @@ def _handle_layer_config_directory(
 def _matches_filters(
     candidate: str,
     *,
-    include_patterns: tuple[str],
-    exclude_patterns: tuple[str],
+    include_patterns: tuple[str, ...],
+    exclude_patterns: tuple[str, ...],
 ) -> bool:
     """Determine if candidate matches given filters.
 
@@ -354,8 +354,8 @@ def _matches_filters(
 def _tree_from_dir(
     the_dir: Path,
     parent: Optional[anytree.Node] = None,
-    include_patterns: tuple[str] = (),
-    exclude_patterns: tuple[str] = (),
+    include_patterns: tuple[str, ...] = (),
+    exclude_patterns: tuple[str, ...] = (),
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
     directory_contents, settings = _handle_layer_config_directory(
