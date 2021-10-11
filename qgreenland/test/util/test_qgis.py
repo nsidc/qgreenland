@@ -74,25 +74,6 @@ def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
     assert expected_extent == meta_extent.bounds.toRectangle()
 
 
-@patch(
-    'qgreenland.util.misc.TaskType',
-    new=MockTaskType,
-)
-def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):
-    # Test that _add_layers_and_groups works without error
-    project = qgc.QgsProject.instance()
-    prj._add_layers_and_groups(project, raster_layer_node.root)
-    added_layers = [layer for layer in project.mapLayers().values()]
-    assert len(added_layers) == 1
-    assert added_layers[0].name() == 'Example raster'
-    project.clear()
-
-    project = qgc.QgsProject.instance()
-    with pytest.raises(exc.QgrQgsLayerTreeGroupError):
-        prj._add_layers_and_groups(project, raster_layer_node)
-    project.clear()
-
-
 def test__build_dataset_description(raster_layer_cfg):
     actual = qgm._build_dataset_description(raster_layer_cfg)
     expected = """Example Dataset
@@ -130,3 +111,25 @@ Citation URL:
 https://nsidc.org"""
 
     assert actual == expected
+
+
+@patch(
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
+)
+def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):
+    # Test that _add_layers_and_groups works without error
+    project = qgc.QgsProject.instance()
+    prj._add_layers_and_groups(project, raster_layer_node.root)
+    added_layers = [layer for layer in project.mapLayers().values()]
+    assert len(added_layers) == 1
+    assert added_layers[0].name() == 'Example raster'
+
+    # Clear the project for the next test...
+    project.clear()
+
+    # Test that an exception is raised when parent groups of a layer are not
+    # created first
+    with pytest.raises(exc.QgrQgsLayerTreeGroupError):
+        prj._add_layers_and_groups(project, raster_layer_node)
+    project.clear()
