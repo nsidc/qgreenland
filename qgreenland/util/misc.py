@@ -105,7 +105,7 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
             if resp.status_code != 200:
                 raise exc.QgrRuntimeError(
                     f"Received '{resp.status_code}' from {resp.request.url}."
-                    f'Content: {resp.text}',
+                    f' Content: {resp.text}',
                 )
 
             with open(fp, 'wb') as f:
