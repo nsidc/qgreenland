@@ -3,13 +3,13 @@ import logging
 import os
 import subprocess
 from pathlib import Path
-from typing import List, Optional
 from xml.sax.saxutils import escape
 
 import anytree
 import qgis.core as qgc
 from PyQt5.QtGui import QColor
 
+from qgreenland import exceptions as exc
 from qgreenland.models.config.layer_group import LayerGroupSettings
 from qgreenland.util.config.config import get_config
 from qgreenland.util.qgis.layer import make_map_layer
@@ -95,31 +95,6 @@ def _apply_group_settings(
     group.setExpanded(settings.expand)
 
 
-def _get_group(
-    project: qgc.QgsProject,
-    group_path: List[str],
-) -> Optional[qgc.QgsLayerTreeGroup]:
-    """Find a group in `project` from ordered list of group names.
-
-    e.g. group_path: `['parent', 'child', 'grandchild']`
-    """
-    group = project.layerTreeRoot()
-
-    # If the group path is an empty string, return the root layer group
-    if not group_path:
-        return group
-
-    for group_name in group_path:
-        group = group.findGroup(group_name)
-
-        # Group not found
-        if group is None:
-            # TODO: Raise instead of return None?
-            return None
-
-    return group
-
-
 def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) -> None:
     """Iterate through the layer tree and create the relevant Qgs objects."""
     # `anytree.PreOrderIter` is necessary here so that the
@@ -129,15 +104,21 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
             filter_=lambda node: not node.is_root,
     ):
         if type(node) is LayerGroupNode:
-            current_group = _create_and_configure_group(
+            _get_or_create_and_configure_group(
                 node=node,
                 project=project,
             )
         elif type(node) is LayerNode:
+            # The parent group should already exist because `preOrderIter` will
+            # return `LayerGroupNode`s first.
+            parent_group = _get_group(
+                project=project,
+                group_path=node.group_name_path,
+            )
             _create_and_add_layer(
                 node=node,
                 project=project,
-                group=current_group,
+                group=parent_group,
             )
         else:
             raise TypeError(f'Unexpected `node` type: {type(node)}')
@@ -145,30 +126,47 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
     logger.debug('Done adding layers.')
 
 
-def _create_and_configure_group(
+def _get_group(
     *,
-    node: LayerGroupNode,
     project: qgc.QgsProject,
+    group_path: tuple[str, ...],
 ) -> qgc.QgsLayerTreeGroup:
-    group_path = node.group_name_path
-
     # Starting at the root of the layer tree, climb the tree until we reach the
     # parent of group_node.
     group = project.layerTreeRoot()
     for group_name in group_path:
         group = group.findGroup(group_name)
         if not group:
-            raise RuntimeError(
-                f'Parent group of {node.name} not found: {group_path}',
+            raise exc.QgrQgsLayerTreeGroupError(
+                f'Unable to find group {group_path}.',
             )
 
-    group = group.addGroup(node.name)
+    return group
+
+
+def _get_or_create_and_configure_group(
+    *,
+    node: LayerGroupNode,
+    project: qgc.QgsProject,
+) -> qgc.QgsLayerTreeGroup:
+    group_path = node.group_name_path
+    try:
+        parent_group = _get_group(
+            project=project,
+            group_path=group_path,
+        )
+    except exc.QgrQgsLayerTreeGroupError as e:
+        raise exc.QgrQgsLayerTreeGroupError(
+            f'Parent group of {node.name} not found: {e}',
+        )
+
+    new_group = parent_group.addGroup(node.name)
 
     # Update settings from the settings object
     if type(node.settings) is LayerGroupSettings:
-        _apply_group_settings(group, node.settings)
+        _apply_group_settings(new_group, node.settings)
 
-    return group
+    return new_group
 
 
 def _create_and_add_layer(

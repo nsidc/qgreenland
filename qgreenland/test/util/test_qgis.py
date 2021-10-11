@@ -1,10 +1,13 @@
 import copy
 from unittest.mock import patch
 
+import pytest
 import qgis.core as qgc
 
+import qgreenland.exceptions as exc
 import qgreenland.util.qgis.layer as qgl
 import qgreenland.util.qgis.metadata as qgm
+import qgreenland.util.qgis.project as prj
 from qgreenland.test.constants import (
     MOCK_LAYERS_DIR,
     MockTaskType,
@@ -108,3 +111,25 @@ Citation URL:
 https://nsidc.org"""
 
     assert actual == expected
+
+
+@patch(
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
+)
+def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):
+    # Test that _add_layers_and_groups works without error
+    project = qgc.QgsProject.instance()
+    prj._add_layers_and_groups(project, raster_layer_node.root)
+    added_layers = list(project.mapLayers().values())
+    assert len(added_layers) == 1
+    assert added_layers[0].name() == 'Example raster'
+
+    # Clear the project for the next test...
+    project.clear()
+
+    # Test that an exception is raised when parent groups of a layer are not
+    # created first
+    with pytest.raises(exc.QgrQgsLayerTreeGroupError):
+        prj._add_layers_and_groups(project, raster_layer_node)
+    project.clear()
