@@ -19,7 +19,7 @@ from qgreenland.util.misc import (
     fetch_and_write_file,
     temporary_path_dir,
 )
-from qgreenland.util.vector import ogr2ogr
+from qgreenland.util.misc import run_ogr_command
 
 
 # TODO: call this 'FetchDataset'? 'FetchAsset'?
@@ -140,8 +140,11 @@ class FetchOgrRemoteData(FetchTask):
             url = self.asset_cfg.query_url
 
             ofile = os.path.join(temp_path, 'fetched.geojson')
-            ogr2ogr_kwargs = {
-                'oo': 'FEATURE_SERVER_PAGING=YES',
-            }
-
-            ogr2ogr(f'"{url}"', ofile, **ogr2ogr_kwargs)
+            run_ogr_command(
+                [
+                    'ogr2ogr',
+                    '-oo', 'FEATURE_SERVER_PAGING=YES',
+                    ofile,
+                    f'"{url}"',
+                ],
+            )

@@ -336,6 +336,23 @@
         "title": "Arctic Sea Routes"
       }
     },
+    "nunagis_pop2019_municipalities": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "query_url": "https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC"
+        }
+      },
+      "id": "nunagis_pop2019_municipalities",
+      "metadata": {
+        "abstract": "Greenland municipality boundaries. Data includes information on\n2019 municipality population and the municipality population as a\npercent of total Greenland population.",
+        "citation": {
+          "text": "NunaGIS (2020). Municipalities by population numbers in 2019,\nGreenland. Web:\n  https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e84\n78c9514208548ca5f61.\nDate accessed: {{date_accessed}}.",
+          "url": "https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61"
+        },
+        "title": "Municipalities with Population"
+      }
+    },
     "qgr_bounds": {
       "assets": {
         "background": {
@@ -1967,14 +1984,49 @@
                   "title": "Global coastlines"
                 },
                 "name": "coastlines"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing municipalities of Greenland and associated\npopulation numbers for 2019.",
+                  "id": "nunagis_municipalities_population",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_pop2019_municipalities"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "{output_dir}/nunagis_municipalities_population.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "nunagis_municipalities_population",
+                  "tags": [],
+                  "title": "Greenland municipalities and population 2019"
+                },
+                "name": "nunagis_municipalities_population"
               }
             ],
             "name": "Borders",
             "settings": {
               "expand": false,
               "order": [
-                "borders.py:bas_greenland_coastlines",
-                "borders.py:coastlines"
+                "coastlines.py:bas_greenland_coastlines",
+                "coastlines.py:coastlines",
+                "political_boundaries.py:nunagis_municipalities_population"
               ],
               "show": true
             }

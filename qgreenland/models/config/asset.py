@@ -68,10 +68,17 @@ class ConfigDatasetManualAsset(ConfigDatasetAsset):
     access_instructions: str = Field(..., min_length=1)
 
 
+class ConfigDatasetOgrRemoteAsset(ConfigDatasetAsset):
+    """Assets that are fetched via `ogr2ogr` from the given query_url."""
+
+    query_url: AnyUrl
+
+
 AnyAsset = Union[
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,
     ConfigDatasetOnlineAsset,
     ConfigDatasetRepositoryAsset,
+    ConfigDatasetOgrRemoteAsset,
 ]
