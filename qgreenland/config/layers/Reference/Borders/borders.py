@@ -1,4 +1,4 @@
-from qgreenland.config.datasets.coastlines import coastlines, bas_coastlines
+from qgreenland.config.datasets.coastlines import bas_coastlines, coastlines
 from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
@@ -11,6 +11,7 @@ bas_greenland_coastlines = ConfigLayer(
         Greenland."""
     ),
     tags=[],
+    show=True,
     style='greenland_coastline',
     input=ConfigLayerInput(
         dataset=bas_coastlines,

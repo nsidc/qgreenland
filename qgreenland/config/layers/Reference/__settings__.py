@@ -10,4 +10,6 @@ settings = LayerGroupSettings(
         'utm_zones.py:utm_zones',
         'Borders',
     ],
+    show=True,
+    expand=True,
 )
