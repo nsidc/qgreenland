@@ -1,4 +1,4 @@
-from qgreenland.config.datasets.coastlines import bas_coastlines, coastlines
+import qgreenland.config.datasets.coastlines as dataset
 from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
@@ -14,8 +14,8 @@ bas_greenland_coastlines = ConfigLayer(
     show=True,
     style='greenland_coastline',
     input=ConfigLayerInput(
-        dataset=bas_coastlines,
-        asset=bas_coastlines.assets['only'],
+        dataset=dataset.bas_coastlines,
+        asset=dataset.bas_coastlines.assets['only'],
     ),
     steps=[
         *zipped_vector(
@@ -35,8 +35,8 @@ coastlines = ConfigLayer(
     tags=[],
     style='coastline-IHOECDIS',
     input=ConfigLayerInput(
-        dataset=coastlines,
-        asset=coastlines.assets['only'],
+        dataset=dataset.coastlines,
+        asset=dataset.coastlines.assets['only'],
     ),
     steps=[
         *zipped_vector(
