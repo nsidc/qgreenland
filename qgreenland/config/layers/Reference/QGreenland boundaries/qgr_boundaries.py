@@ -41,6 +41,7 @@ qgr_boundary_background = ConfigLayer(
         data/imagery."""
     ),
     tags=[],
+    show=True,
     style='transparent_shape',
     input=ConfigLayerInput(
         dataset=dataset,
