@@ -60,7 +60,7 @@ def dataset(pattern):
                 'http': 'ConfigDatasetHttpAsset',
                 'local': 'ConfigDatasetRepositoryAsset',
                 'manual': 'ConfigDatasetManualAsset',
-
+                'ogr_remote_vector': 'ConfigDatasetOgrRemoteAsset',
             },
         )
         print(rendered)
