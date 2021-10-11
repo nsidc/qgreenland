@@ -37,6 +37,26 @@
         "title": "Natural Earth II with Shaded Relief and Water (1:10m)"
       }
     },
+    "bas_coastlines": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://ramadda.data.bas.ac.uk/repository/entry/get/Greenland_coast.zip?entryid=synth:8cecde06-8474-4b58-a9cb-b820fa4c9429:L0dyZWVubGFuZF9jb2FzdC56aXA="
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "bas_coastlines",
+      "metadata": {
+        "abstract": "A coastline of Kalaallit Nunaat/ Greenland covering all land and\nislands, produced in 2017 for the BAS map 'Greenland and the\nEuropean Arctic'. The dataset was produced by extracting the land\nmask from the Greenland BedMachine dataset and manually editing\nanomalous data. Some missing islands were added and glacier fronts\nwere updated using 2017 satellite imagery. The dataset can be used\nfor cartography, analysis and as a mask, amongst other uses. At very\nlarge scales, the data will appear angular due to the nature of\nbeing extracted from a raster with 150 m cell size, but the dataset\nshould be suitable for use at most scales and can be edited by the\nuser to exclude very small islands if required. The projection of\nthe dataset is WGS 84 NSIDC Sea Ice Polar Stereographic North, EPSG\n3413. The dataset does not promise to cover every island and\ncoastlines were digitised using the data creator's interpretation of\nthe landforms from the images.",
+        "citation": {
+          "text": "Gerrish, L. (2020). The coastline of Kalaallit Nunaat/\nGreenland available as a shapefile and geopackage, covering the\nmain land and islands, with glacier fronts updated as of 2017.\n(Version 1.0) [Data set]. UK Polar Data Centre, Natural\nEnvironment Research Council, UK Research & Innovation.",
+          "url": "https://doi.org/10.5285/8cecde06-8474-4b58-a9cb-b820fa4c9429"
+        },
+        "title": "The coastline of Kalaallit Nunaat/ Greenland available as a shapefile and geopackage, covering the main land and islands, with glacier fronts updated as of 2017."
+      }
+    },
     "bedmachine": {
       "assets": {
         "only": {
@@ -1777,6 +1797,61 @@
               "title": "Universal Transverse Mercator (UTM) zones"
             },
             "name": "utm_zones"
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "This layer should be used as the 'reference coastline' for\nGreenland.",
+                  "id": "bas_greenland_coastlines",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "bas_coastlines"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/Greenland_coast.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/greenland_coastline.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "greenland_coastline",
+                  "tags": [],
+                  "title": "Greenland coastlines 2017"
+                },
+                "name": "bas_greenland_coastlines"
+              }
+            ],
+            "name": "Borders",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
           }
         ],
         "name": "Reference",
@@ -1787,7 +1862,8 @@
             "Latitude lines",
             "Longitude lines",
             "timezones.py:timezones",
-            "utm_zones.py:utm_zones"
+            "utm_zones.py:utm_zones",
+            "Borders"
           ],
           "show": false
         }
