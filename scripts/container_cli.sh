@@ -22,4 +22,4 @@ else
     tty_arg=""
 fi
 
-docker exec -i ${tty_arg} "${container_id}" python ./tasks/qgreenland/qgreenland/cli/__init__.py "$@"
+docker exec -i "${tty_arg}" "${container_id}" python ./tasks/qgreenland/qgreenland/cli/__init__.py "$@"
