@@ -3,8 +3,9 @@ from qgreenland.models.config.layer_group import LayerGroupSettings
 
 settings = LayerGroupSettings(
     order=[
-        'borders.py:bas_greenland_coastlines',
-        'borders.py:coastlines',
+        'coastlines.py:bas_greenland_coastlines',
+        'coastlines.py:coastlines',
+        'political_boundaries.py:nunagis_municipalities_population',
     ],
     show=True,
 )
