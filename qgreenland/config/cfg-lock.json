@@ -2331,12 +2331,428 @@
                   "title": "Populated places"
                 },
                 "name": "hotosm_populated_places"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing health facilities in Greenland.",
+                  "id": "hotosm_health_facilities",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "health_facilities"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_health_facilities_points_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/health_facilities.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "health_facility_point",
+                  "tags": [],
+                  "title": "Health facilities"
+                },
+                "name": "hotosm_health_facilities"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing airports in Greenland.",
+                  "id": "hotosm_airports",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "airports"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_airports_points_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/airports.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "airport_point",
+                  "tags": [],
+                  "title": "Airports"
+                },
+                "name": "hotosm_airports"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing seaports in Greenland.",
+                  "id": "hotosm_seaports",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seaports"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_sea_ports_points_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/seaports.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seaport_point",
+                  "tags": [],
+                  "title": "Seaports"
+                },
+                "name": "hotosm_seaports"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Lines representing waterways in Greenland.",
+                  "id": "hotosm_waterways",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "waterways"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_waterways_lines_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/waterways.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Waterways"
+                },
+                "name": "hotosm_waterways"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing financial services in Greenland.",
+                  "id": "hotosm_financial_services",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "financial_services"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_financial_services_points_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/financial_services.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "financial_facility_point",
+                  "tags": [],
+                  "title": "Financial services"
+                },
+                "name": "hotosm_financial_services"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing educational facilities in Greenland.",
+                  "id": "hotosm_education_facilities",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "education_facilities"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_education_facilities_points_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/education_facilities.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "education_facility_point",
+                  "tags": [],
+                  "title": "Education facilities"
+                },
+                "name": "hotosm_education_facilities"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points of interest in Greenland.",
+                  "id": "hotosm_points_of_interest",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "points_of_interest"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_points_of_interest_points_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/points_of_interest.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Points of interest"
+                },
+                "name": "hotosm_points_of_interest"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Lines representing roads in Greenland.",
+                  "id": "hotosm_roads",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "roads"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_roads_lines_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/roads.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "roads_line",
+                  "tags": [],
+                  "title": "Roads"
+                },
+                "name": "hotosm_roads"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing buildings in Greenland.",
+                  "id": "hotosm_buildings",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "buildings"
+                    },
+                    "dataset": {
+                      "id": "hdx_hotosm"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/hotosm_grl_buildings_polygons_shp.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/buildings.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "buildings_shape",
+                  "tags": [],
+                  "title": "Buildings"
+                },
+                "name": "hotosm_buildings"
               }
             ],
             "name": "Community map (crowd-sourced)",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                "hotosm_layers.py:hotosm_populated_places",
+                "hotosm_layers.py:hotosm_health_facilities",
+                "hotosm_layers.py:hotosm_airports",
+                "hotosm_layers.py:hotosm_seaports",
+                "hotosm_layers.py:hotosm_waterways",
+                "hotosm_layers.py:hotosm_financial_services",
+                "hotosm_layers.py:hotosm_education_facilities",
+                "hotosm_layers.py:hotosm_points_of_interest",
+                "hotosm_layers.py:hotosm_roads",
+                "hotosm_layers.py:hotosm_buildings"
+              ],
               "show": false
             }
           },
