@@ -8,5 +8,6 @@ settings = LayerGroupSettings(
         'Longitude lines',
         'timezones.py:timezones',
         'utm_zones.py:utm_zones',
+        'Borders',
     ],
 )
