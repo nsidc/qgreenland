@@ -3029,6 +3029,116 @@
           {
             "children": [
               {
+                "layer_cfg": {
+                  "description": "Point locations of Common Murre colonies as surveyed in\n2010.",
+                  "id": "caff_common_murre_colonies",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "caff_murre_colonies"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/Murres_distribution.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/Distribution_Common_Murre_Colonies.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "common_murre_colonies",
+                  "tags": [],
+                  "title": "Common Murre colonies 2010"
+                },
+                "name": "caff_common_murre_colonies"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Point locations of Thickbilled Murre colonies as surveyed in\n2010.",
+                  "id": "caff_thickbilled_murre_colonies",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "caff_murre_colonies"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/Murres_distribution.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/Distribution_Thickbilled_Murre_Colonies.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "thickbilled_murre_colonies",
+                  "tags": [],
+                  "title": "Thickbilled Murre colonies 2010"
+                },
+                "name": "caff_thickbilled_murre_colonies"
+              }
+            ],
+            "name": "Birds",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          }
+        ],
+        "name": "Biology",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
                 "children": [
                   {
                     "layer_cfg": {
@@ -15249,6 +15359,7 @@
         "Reference",
         "Places",
         "Human activity",
+        "Biology",
         "Glaciology",
         "Geophysics",
         "Sea ice",
