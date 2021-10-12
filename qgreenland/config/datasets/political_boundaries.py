@@ -59,3 +59,39 @@ ne_states_provinces = ConfigDataset(
         },
     },
 )
+
+ne_countries = ConfigDataset(
+    id='ne_countries',
+    assets=[
+        ConfigDatasetHttpAsset(
+            id='only',
+            urls=[
+                'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip',
+            ],
+        ),
+    ],
+    metadata={
+        'title': 'Admin 0 – Countries',
+        'abstract': (
+            """Countries distinguish between metropolitan (homeland) and
+            independent and semi-independent portions of sovereign states. If
+            you want to see the dependent overseas regions broken out (like in
+            ISO codes, see France for example), use map units instead.
+
+            Each country is coded with a world region that roughly follows the
+            United Nations setup.
+
+            Countries are coded with standard ISO and FIPS codes. French INSEE
+            codes are also included.
+
+            Includes some thematic data from the United Nations, U.S. Central
+            Intelligence Agency, and elsewhere."""
+        ),
+        'citation': {
+            'text': (
+                """Made with Natural Earth"""
+            ),
+            'url': 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md',
+        },
+    },
+)

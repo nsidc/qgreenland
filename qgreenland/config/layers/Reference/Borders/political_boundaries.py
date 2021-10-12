@@ -52,3 +52,23 @@ ne_states_provinces = ConfigLayer(
         ),
     ],
 )
+
+ne_countries = ConfigLayer(
+    id='ne_countries',
+    title='Countries',
+    description=(
+        """Polygons representing countries."""
+    ),
+    tags=[],
+    style='countries',
+    input=ConfigLayerInput(
+        dataset=dataset.ne_countries,
+        asset=dataset.ne_countries.assets['only'],
+    ),
+    steps=[
+        *zipped_vector(
+            input_file='{input_dir}/ne_10m_admin_0_countries.zip',
+            output_file='{output_dir}/ne_countries.gpkg',
+        ),
+    ],
+)
