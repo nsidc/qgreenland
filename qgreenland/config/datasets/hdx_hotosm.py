@@ -8,61 +8,61 @@ hdx_hotosm = ConfigDataset(
         ConfigDatasetHttpAsset(
             id='roads',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_roads_lines_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_roads_lines_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='airports',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_airports_points_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_airports_points_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='seaports',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_sea_ports_points_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_sea_ports_points_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='waterways',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_waterways_lines_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_waterways_lines_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='buildings',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_buildings_polygons_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_buildings_polygons_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='financial_services',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_financial_services_points_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_financial_services_points_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='education_facilities',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_education_facilities_points_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_education_facilities_points_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='health_facilities',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_health_facilities_points_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_health_facilities_points_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='populated_places',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_populated_places_points_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_populated_places_points_shp.zip',
             ],
         ),
         ConfigDatasetHttpAsset(
             id='points_of_interest',
             urls=[
-                'http://export.hotosm.org/downloads/72e59bb5-7886-4627-b207-ed1e3ea8a42a/hotosm_grl_points_of_interest_points_shp.zip',
+                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_points_of_interest_points_shp.zip',
             ],
         ),
     ],
