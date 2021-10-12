@@ -180,6 +180,23 @@
         "title": "1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-years means"
       }
     },
+    "gem_research_stations": {
+      "assets": {
+        "only": {
+          "filepath": "{assets_dir}/gem_research_stations.geojson",
+          "id": "only"
+        }
+      },
+      "id": "gem_research_stations",
+      "metadata": {
+        "abstract": "Greenland Ecosystem Monitoring (GEM) is an integrated monitoring\nand long-term research programme on ecosystems and climate change\neffects and feedbacks in the Arctic. Since 1995 the programme has\nestablished a coherent and integrated understanding of the\nfunctioning of ecosystems in a highly variable climate, which is\nbased upon a comprehensive, long-term inter-disciplinary data\ncollection carried out by Danish and Greenlandic monitoring and\nresearch institutions.\n\nThe GEM Programme puts around 75 scientists in the field annually to\ncollect data on ecosystem and climate change in Greenland. The data\nbase currently covers data from monitoring programmes from\nZackenberg (1995-), Kobbefjord at Nuuk (2007-) and Disko (2017-).\nThe well over 1000 parameters are freely available via the GEM\nDatabase and used by GEM participants and external scientists to\nproduce scientific papers, scientific assessments, advisory reports,\netc.\n\nFull station descriptions were manually added by QGreenland from the\n'Station Link' associated with each feature.",
+        "citation": {
+          "text": "Roemer, Jonas K. (2020). Greenland Ecosystem Monitoring -\nLocation and Description of Research Stations (Version 1.0).\nZenodo. http://doi.org/10.5281/zenodo.3991670",
+          "url": "http://doi.org/10.5281/zenodo.3991670"
+        },
+        "title": "Greenland Ecosystem Monitoring - Location and Description of Research Stations"
+      }
+    },
     "image_mosaic": {
       "assets": {
         "2015": {
@@ -2275,6 +2292,45 @@
         "children": [
           {
             "children": [
+              {
+                "layer_cfg": {
+                  "description": "Location and description of Greenland Ecosystem Monitoring research\nstations.",
+                  "id": "gem_research_stations",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "gem_research_stations"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "-sql",
+                        "'SELECT *, \"Station Name\" as label\n                    FROM \"gem_research_stations\"'",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/gem_research_stations.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "labeled_point",
+                  "tags": [],
+                  "title": "GEM research stations"
+                },
+                "name": "gem_research_stations"
+              },
               {
                 "layer_cfg": {
                   "description": "Location and details of Greenland seismograph stations.",

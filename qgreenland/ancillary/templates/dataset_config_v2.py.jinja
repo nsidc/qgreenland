@@ -20,7 +20,9 @@ from qgreenland.models.config.dataset import ConfigDataset
               {%- endfor %}
             ],
             {%- elif dataset.access_method == 'ogr_remote_vector' %}
-            query_url='{{ source.query_url }}'
+            query_url='{{ source.query_url }}',
+            {%- elif dataset.access_method == 'local' %}
+            filepath='{assets_dir}/gem_research_stations.geojson',
             {%- endif %}
         ),
         {%- endfor %}
