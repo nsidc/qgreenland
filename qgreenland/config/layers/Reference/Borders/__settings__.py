@@ -6,6 +6,7 @@ settings = LayerGroupSettings(
         'coastlines.py:bas_greenland_coastlines',
         'coastlines.py:coastlines',
         'political_boundaries.py:nunagis_municipalities_population',
+        'political_boundaries.py:ne_states_provinces',
     ],
     show=True,
 )
