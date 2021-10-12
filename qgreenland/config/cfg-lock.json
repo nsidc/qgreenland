@@ -75,6 +75,26 @@
         "title": "IceBridge BedMachine Greenland, Version 3"
       }
     },
+    "coastlines": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "coastlines",
+      "metadata": {
+        "abstract": "Natural Earth Coastlines (Public Domain)",
+        "citation": {
+          "text": "Made with Natural Earth",
+          "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
+        },
+        "title": "Natural Earth Coastlines (10m)"
+      }
+    },
     "esa_cci_gravimetric_mass_balance_dtu": {
       "assets": {
         "only": {
@@ -811,40 +831,6 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Polygon representing the full boundary of QGreenland background\ndata/imagery.",
-                  "id": "qgr_boundary_background",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "background"
-                    },
-                    "dataset": {
-                      "id": "qgr_bounds"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "{output_dir}/boundary.gpkg",
-                        "{input_dir}/latitude_shape_40_degrees.geojson"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "transparent_shape",
-                  "tags": [],
-                  "title": "Background boundary"
-                },
-                "name": "qgr_boundary_background"
-              },
-              {
-                "layer_cfg": {
                   "description": "Polygon representing the tight boundary for QGreenland\ndata/imagery.",
                   "id": "qgr_boundary_data",
                   "in_package": true,
@@ -876,13 +862,50 @@
                   "title": "Greenland-focused boundary"
                 },
                 "name": "qgr_boundary_data"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygon representing the full boundary of QGreenland background\ndata/imagery.",
+                  "id": "qgr_boundary_background",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "background"
+                    },
+                    "dataset": {
+                      "id": "qgr_bounds"
+                    }
+                  },
+                  "show": true,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/latitude_shape_40_degrees.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "transparent_shape",
+                  "tags": [],
+                  "title": "Background boundary"
+                },
+                "name": "qgr_boundary_background"
               }
             ],
             "name": "QGreenland boundaries",
             "settings": {
               "expand": false,
-              "order": null,
-              "show": false
+              "order": [
+                "qgr_boundaries.py:qgr_boundary_data",
+                "qgr_boundaries.py:qgr_boundary_background"
+              ],
+              "show": true
             }
           },
           {
@@ -1813,7 +1836,7 @@
                       "id": "bas_coastlines"
                     }
                   },
-                  "show": false,
+                  "show": true,
                   "steps": [
                     {
                       "args": [
@@ -1844,19 +1867,67 @@
                   "title": "Greenland coastlines 2017"
                 },
                 "name": "bas_greenland_coastlines"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Note that the 'Greenland coastlines 2017' layer is preferred for\nGreenland.",
+                  "id": "coastlines",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "coastlines"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/ne_10m_coastline.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/global_coastline.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "coastline-IHOECDIS",
+                  "tags": [],
+                  "title": "Global coastlines"
+                },
+                "name": "coastlines"
               }
             ],
             "name": "Borders",
             "settings": {
               "expand": false,
-              "order": null,
-              "show": false
+              "order": [
+                "borders.py:bas_greenland_coastlines",
+                "borders.py:coastlines"
+              ],
+              "show": true
             }
           }
         ],
         "name": "Reference",
         "settings": {
-          "expand": false,
+          "expand": true,
           "order": [
             "QGreenland boundaries",
             "Latitude lines",
@@ -1865,7 +1936,7 @@
             "utm_zones.py:utm_zones",
             "Borders"
           ],
-          "show": false
+          "show": true
         }
       },
       {

@@ -75,7 +75,12 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
         if not session:
             session = create_earthdata_authenticated_session(hosts=[url], verify=verify)
 
-        with session.get(url, timeout=REQUEST_TIMEOUT, stream=True) as resp:
+        with session.get(
+                url,
+                timeout=REQUEST_TIMEOUT,
+                stream=True,
+                headers={'User-Agent': 'QGreenland'},
+        ) as resp:
 
             # Try to extract the filename from the `content-disposition` header
             if (
@@ -105,7 +110,7 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
             if resp.status_code != 200:
                 raise exc.QgrRuntimeError(
                     f"Received '{resp.status_code}' from {resp.request.url}."
-                    f'Content: {resp.text}',
+                    f' Content: {resp.text}',
                 )
 
             with open(fp, 'wb') as f:
