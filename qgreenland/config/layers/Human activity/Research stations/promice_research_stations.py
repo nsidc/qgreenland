@@ -50,8 +50,6 @@ layers = [
                 args=[
                     'ogr2ogr',
                     *STANDARD_OGR2OGR_ARGS,
-                    # '-clipdst', project.boundaries['data'].filepath,
-                    # '-makevalid',
                     '-s_srs', 'EPSG:4326',
                     '-oo', 'X_POSSIBLE_NAMES=lon',
                     '-oo', 'Y_POSSIBLE_NAMES=lat',
