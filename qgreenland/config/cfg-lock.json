@@ -679,6 +679,26 @@
         "title": "International Registry of Seismograph Stations (IR)"
       }
     },
+    "utm_zones": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://sandbox.idre.ucla.edu/mapshare/data/world/data/utmzone.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "utm_zones",
+      "metadata": {
+        "abstract": "World UTM Zones represents the Universal Transverse Mercator\n(UTM) zones of the world. The polygons represent the Universal\nTransverse Mercator (UTM) zones, which lie between 84 degrees North\nand 80 degrees South latitude. With few exceptions, they divide the\nworld into sixty zones, each of which is six degrees of longitude\nwide. The zones are numbered from 1 through 60 eastward from 180\ndegrees West longitude. The zone characters designate rows that are\n8 degrees of latitude high extending north and south from the\nequator with the exception of the northern-most row which is 12\ndegrees high.",
+        "citation": {
+          "text": "ESRI Data & Maps. 2015.",
+          "url": "https://apps.gis.ucla.edu/geodata/dataset/world_utm_zones"
+        },
+        "title": "World UTM Zones"
+      }
+    },
     "world_magnetic_model": {
       "assets": {
         "2020": {
@@ -1710,6 +1730,53 @@
               "title": "Time zones"
             },
             "name": "timezones"
+          },
+          {
+            "layer_cfg": {
+              "description": "Polygons representing Universal Transverse Mercator (UTM) zones.",
+              "id": "utm_zones",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "utm_zones"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/utmzone.zip",
+                    "-d",
+                    "{output_dir}"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-where",
+                    "\"\"ZONE\" != 0\"",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "{output_dir}/utm_zones.gpkg",
+                    "{input_dir}/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "utm_zones",
+              "tags": [],
+              "title": "Universal Transverse Mercator (UTM) zones"
+            },
+            "name": "utm_zones"
           }
         ],
         "name": "Reference",
@@ -1719,7 +1786,8 @@
             "QGreenland boundaries",
             "Latitude lines",
             "Longitude lines",
-            "timezones.py:timezones"
+            "timezones.py:timezones",
+            "utm_zones.py:utm_zones"
           ],
           "show": false
         }

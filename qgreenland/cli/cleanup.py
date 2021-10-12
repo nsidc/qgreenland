@@ -4,8 +4,10 @@ import click
 
 from qgreenland.constants import (
     INPUT_DIR,
+    PROJECT,
     RELEASES_DIR,
     TaskType,
+    WIP_DIR,
 )
 from qgreenland.util.cli.validate import (
     BOOLEAN_CHOICE,
@@ -106,7 +108,7 @@ def cleanup(**kwargs):  # noqa: C901
 
     if kwargs['delete_compiled']:
         _print_and_run(
-            f'rm -rf {TaskType.FINAL.value}/*',
+            f'rm -rf {WIP_DIR}/{PROJECT}*',
             dry_run=kwargs['dry_run'],
         )
 

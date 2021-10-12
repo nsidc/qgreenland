@@ -13,6 +13,7 @@ def zipped_vector(
     *,
     input_file: str,
     output_file: str,
+    ogr2ogr_args: tuple[str, ...] = (),
 ) -> list[ConfigLayerCommandStep]:
     """Unzip standard shapefile and reproject."""
     return [
@@ -27,6 +28,7 @@ def zipped_vector(
             args=[
                 'ogr2ogr',
                 *STANDARD_OGR2OGR_ARGS,
+                *ogr2ogr_args,
                 '-clipdst', project.boundaries['background'].filepath,
                 output_file,
                 '{input_dir}/*.shp',
