@@ -14054,7 +14054,135 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Ice thickness in meters. Mass conservation source data provided by Mathieu\nMorlighem.",
+                  "description": "Bedrock elevation in meters.",
+                  "id": "bedmachine_bed",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "bedmachine"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:bed",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/overviews.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/overviews.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "bedmachine_bed",
+                  "tags": [
+                    "terrain_model"
+                  ],
+                  "title": "Bedrock elevation (150m)"
+                },
+                "name": "bedmachine_bed"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Error estimate for Greenland bed elevation and ice thickness in\nmeters.",
+                  "id": "bedmachine_errbed",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "bedmachine"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:errbed",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/overviews.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/overviews.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "bedmachine_errbed",
+                  "tags": [
+                    "terrain_model"
+                  ],
+                  "title": "Bedrock elevation/ice thickness error (150m)"
+                },
+                "name": "bedmachine_errbed"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Ice thickness in meters. Mass conservation source data provided\nby Mathieu Morlighem.",
                   "id": "bedmachine_thickness",
                   "in_package": true,
                   "input": {
@@ -14115,6 +14243,70 @@
                   "title": "Ice thickness (150m)"
                 },
                 "name": "bedmachine_thickness"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Surface elevation in meters. Source is GIMP DEM v2.1\n(http://bprc.osu.edu/GDG/gimpdem.php)",
+                  "id": "bedmachine_surface",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "bedmachine"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:surface",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/overviews.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/overviews.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "bedmachine_surface",
+                  "tags": [
+                    "terrain_model"
+                  ],
+                  "title": "Surface elevation (150m)"
+                },
+                "name": "bedmachine_surface"
               }
             ],
             "name": "BedMachine",
