@@ -199,6 +199,14 @@ Earthdata Login credentials. New users to Earthdata can register here:
 https://urs.earthdata.nasa.gov/users/new
 
 
+## Set-up for local development (required for OSX)
+
+Create a [docker-compose override](https://docs.docker.com/compose/extends/#understanding-multiple-compose-files) file for `./logs` and `./appdata`.
+
+```
+ln -s docker-compose.local.yml docker-compose.override.yml
+```
+
 
 ## Starting the stack locally
 
