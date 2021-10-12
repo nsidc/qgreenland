@@ -60,11 +60,4 @@ def fetch(pattern, dry_run, workers) -> None:
     )
 
     if not result.scheduling_succeeded:
-        raise click.UsageError(
-            (
-                'Scheduling failed. If you received any error like:\n'
-                "  PermissionError: [Errno 13] Permission denied: '/luigi'\n\n"
-                '...you probably need to run this command within a container,'
-                ' e.g.: `./scripts/container_cli.sh run [OPTIONS]`.'
-            ),
-        )
+        raise click.UsageError('Scheduling failed. See error log above.')
