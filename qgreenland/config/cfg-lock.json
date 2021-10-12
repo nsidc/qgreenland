@@ -296,6 +296,26 @@
         "title": "Longitude and Latitude Lines"
       }
     },
+    "ne_states_provinces": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "ne_states_provinces",
+      "metadata": {
+        "abstract": "Internal, first-order administrative boundaries and polygons for\nall but a few tiny countries. Includes name attributes (including\ndiacritical marks), name variants, and some statistical codes (FIPS,\nISO, HASC).",
+        "citation": {
+          "text": "Made with Natural Earth",
+          "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
+        },
+        "title": "Admin 1 \u2013 States, Provinces"
+      }
+    },
     "ne_timezones": {
       "assets": {
         "only": {
@@ -2018,6 +2038,51 @@
                   "title": "Greenland municipalities and population 2019"
                 },
                 "name": "nunagis_municipalities_population"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing countries' internal administrative\nboundaries.",
+                  "id": "ne_states_provinces",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "ne_states_provinces"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/ne_10m_admin_1_states_provinces.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/ne_states_provinces.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "administrative_divisions",
+                  "tags": [],
+                  "title": "Global administrative divisions"
+                },
+                "name": "ne_states_provinces"
               }
             ],
             "name": "Borders",
@@ -2026,7 +2091,8 @@
               "order": [
                 "coastlines.py:bas_greenland_coastlines",
                 "coastlines.py:coastlines",
-                "political_boundaries.py:nunagis_municipalities_population"
+                "political_boundaries.py:nunagis_municipalities_population",
+                "political_boundaries.py:ne_states_provinces"
               ],
               "show": true
             }
