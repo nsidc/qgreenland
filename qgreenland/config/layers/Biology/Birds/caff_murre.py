@@ -33,7 +33,7 @@ layers = [
                 shapefile_name=(
                     f'Distribution_{params["name"].replace(" ", "_")}_Colonies.shp'
                 ),
-            )
+            ),
         ],
     )
     for key, params in murre_layers.items()

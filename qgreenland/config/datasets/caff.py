@@ -1,9 +1,5 @@
 from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.config.helpers.steps.ogr2ogr import (
-    STANDARD_OGR2OGR_ARGS,
-)
 from qgreenland.models.config.dataset import ConfigDataset
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 caff_murre_colonies = ConfigDataset(
@@ -41,9 +37,6 @@ caff_murre_colonies = ConfigDataset(
         },
     },
 )
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
-
 
 caff_char = ConfigDataset(
     id='caff_char',
