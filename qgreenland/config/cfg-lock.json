@@ -3279,6 +3279,65 @@
               "order": null,
               "show": false
             }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons indicating the 2010 distribution of Arctic Char\npopulations.",
+                  "id": "caff_char",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "caff_char"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/Arctic_Char_2010.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "'SELECT\n                        Geometry,\n                        SPECIES,\n                        INTRODUCED,\n                        OWNER,\n                        DATA_URL,\n                        SOURCE,\n                        CREATED,\n                        DATE(substr(MODIFIED, 7, 4) || \"-\" ||\n                          substr(MODIFIED, 4, 2) || \"-\" ||\n                          substr(MODIFIED, 1, 2)) as MODIFIED,\n                        CONTACT\n                    FROM Arctic_Char_2010'",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "semitransparent_polygon",
+                  "tags": [],
+                  "title": "Arctic Char populations 2010"
+                },
+                "name": "caff_char"
+              }
+            ],
+            "name": "Fish",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
           }
         ],
         "name": "Biology",
