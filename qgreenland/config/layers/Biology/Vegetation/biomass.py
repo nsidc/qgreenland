@@ -25,6 +25,9 @@ vegetation_biomass_2010 = ConfigLayer(
             input_file='{input_dir}/aga_circumpolar_avhrr_biomass_2010.tif',
             output_file='{output_dir}/warped.tif',
             cut_file=project.boundaries['data'].filepath,
+            warp_args=(
+                '-tr', '12400', '12400',
+            ),
         ),
     ],
 )
