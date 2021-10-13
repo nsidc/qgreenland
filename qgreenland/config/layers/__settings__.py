@@ -7,6 +7,7 @@ settings = RootGroupSettings(
         'Places',
         'Human activity',
         'Biology',
+        'Environmental management',
         'Regional climate models',
         'Glaciology',
         'Geophysics',

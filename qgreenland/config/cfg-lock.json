@@ -488,6 +488,33 @@
         "title": "Longitude and Latitude Lines"
       }
     },
+    "mineral_and_hydrocarbon_licenses": {
+      "assets": {
+        "mcas_mlsa_public_all": {
+          "id": "mcas_mlsa_public_all",
+          "urls": [
+            "https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_all"
+          ],
+          "verify_tls": true
+        },
+        "mcas_mlsa_public_historic": {
+          "id": "mcas_mlsa_public_historic",
+          "urls": [
+            "https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_historic"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "mineral_and_hydrocarbon_licenses",
+      "metadata": {
+        "abstract": "Mineral and hydrocarbon license data, including historic public\nlicenses and public licenses. License data is sourced from the\nMineral Resource Authority, Government of Greenland using their\nGeoServer version 2.14.1 (https://gis.govmin.gl/geoserver/web/).",
+        "citation": {
+          "text": "Government of Greenland/GINR",
+          "url": ""
+        },
+        "title": "Mineral and hydrocarbon licenses"
+      }
+    },
     "ne_countries": {
       "assets": {
         "only": {
@@ -3698,6 +3725,118 @@
           }
         ],
         "name": "Biology",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Historic mining licenses granted by the government of Greenland.",
+                  "id": "mcas_mlsa_public_historic",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "mcas_mlsa_public_historic"
+                    },
+                    "dataset": {
+                      "id": "mineral_and_hydrocarbon_licenses"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/*.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "mcas_mlsa_licenses",
+                  "tags": [],
+                  "title": "Historic public licenses"
+                },
+                "name": "mcas_mlsa_public_historic"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Mining licenses granted by the government of Greenland.",
+                  "id": "mcas_mlsa_public_all",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "mcas_mlsa_public_all"
+                    },
+                    "dataset": {
+                      "id": "mineral_and_hydrocarbon_licenses"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/*.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "mcas_mlsa_licenses",
+                  "tags": [],
+                  "title": "Public licenses"
+                },
+                "name": "mcas_mlsa_public_all"
+              }
+            ],
+            "name": "Mineral and hydrocarbon licenses",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          }
+        ],
+        "name": "Environmental management",
         "settings": {
           "expand": false,
           "order": null,
@@ -16063,6 +16202,7 @@
         "Places",
         "Human activity",
         "Biology",
+        "Environmental management",
         "Regional climate models",
         "Glaciology",
         "Geophysics",
