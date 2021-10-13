@@ -14,9 +14,6 @@ def warp_and_cut(
     reproject_args=(),
     cut_args=(),
 ) -> List[ConfigLayerCommandStep]:
-    # TODO: Use fiona to get a bbox from the cutfile? (We already do this in
-    # project cfg)
-
     reproject = ConfigLayerCommandStep(
         args=[
             'gdalwarp',
