@@ -1,7 +1,7 @@
 import calendar
 
 from qgreenland.config.datasets.seaice import seaice_index as dataset
-from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
@@ -29,7 +29,7 @@ layers = [
             asset=_asset(dataset, month),
         ),
         steps=[
-            *zipped_vector(
+            *compressed_vector(
                 input_file='{input_dir}/' + _asset(dataset, month).urls[0].split('/')[-1],
                 output_file='{output_dir}/final.gpkg',
             ),

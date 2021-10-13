@@ -1,7 +1,7 @@
 from qgreenland.config.datasets.mineral_and_hydrocarbon_licenses import (
     mineral_and_hydrocarbon_licenses as dataset,
 )
-from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
@@ -34,7 +34,7 @@ layers = [
             asset=dataset.assets[params['asset_id']],
         ),
         steps=[
-            *zipped_vector(
+            *compressed_vector(
                 input_file='{input_dir}/*.zip',
                 output_file='{output_dir}/final.gpkg',
             ),
