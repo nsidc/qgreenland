@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Union, cast
 
 from qgreenland.config.datasets.hdx_hotosm import hdx_hotosm as dataset
-from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
@@ -21,7 +21,7 @@ def _make_hotosm_populated_places() -> ConfigLayer:
             asset=dataset.assets['populated_places'],
         ),
         steps=[
-            *zipped_vector(
+            *compressed_vector(
                 input_file='{input_dir}/hotosm_grl_populated_places_points_shp.zip',
                 output_file='{output_dir}/hotosm_populated_places.gpkg',
                 ogr2ogr_args=(
@@ -99,7 +99,7 @@ def _make_other_hotosm_layers() -> list[ConfigLayer]:
                     asset=asset,
                 ),
                 steps=[
-                    *zipped_vector(
+                    *compressed_vector(
                         input_file=(
                             '{input_dir}/'
                             + Path(asset.urls[0]).name
