@@ -389,6 +389,26 @@
         "title": "Humanitarian OpenStreetMap Team"
       }
     },
+    "ice_cores": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "ice_cores",
+      "metadata": {
+        "abstract": "Greenland ice core locations. Ice cores can provide records of\npast temperature, precipitation, atmospheric trace gases, and other\naspects of climate and environment. Additional information is\navailable in the 'description' attribute, including an ice core\ndataset URL. Data were accessed using the Google Earth Map Search\nDataset. For details please see:\nhttp://www.ncdc.noaa.gov/paleo/icecore.html",
+        "citation": {
+          "text": "World Data Center (2020). Ice core locations. Download:\nhttp://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed:\n{{date_accessed}}.",
+          "url": "http://www.ncdc.noaa.gov/paleo/icecore.html"
+        },
+        "title": "Ice Cores"
+      }
+    },
     "image_mosaic": {
       "assets": {
         "2015": {
@@ -6707,6 +6727,45 @@
               ],
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Point locations of ice cores sampled in Greenland.",
+              "id": "ice_cores",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "ice_cores"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT *, Name as label\n                    FROM \"Ice Core\"'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/paleo_icecore.kmz"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [],
+              "title": "Ice cores"
+            },
+            "name": "ice_cores"
           },
           {
             "layer_cfg": {
