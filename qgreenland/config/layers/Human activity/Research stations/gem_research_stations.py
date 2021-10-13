@@ -38,6 +38,5 @@ gem_research_stations = ConfigLayer(
                 '{input_dir}/gem_research_stations.geojson',
             ],
         ),
-
     ],
 )
