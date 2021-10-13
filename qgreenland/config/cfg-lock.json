@@ -17,6 +17,24 @@
         "title": "Arctic Circle (66\u00b0 34' North)"
       }
     },
+    "arctic_vegetation_biomass_2010": {
+      "assets": {
+        "only": {
+          "collection_concept_id": "C1581605757-ORNL_DAAC",
+          "granule_ur": "Arctic_Vegetation_Maps.aga_circumpolar_avhrr_biomass_2010.tif",
+          "id": "only"
+        }
+      },
+      "id": "arctic_vegetation_biomass_2010",
+      "metadata": {
+        "abstract": "The broader data set provides the spatial distributions of\nvegetation types, geobotanical characteristics, and physiographic\nfeatures for the circumpolar Arctic tundra biome for the period\n1982-2003. Specific attributes include dominant vegetation,\nbioclimate subzones, floristic subprovinces, landscape types, lake\ncoverage, Arctic treeline, elevation, and substrate chemistry data.\nVegetation indices, trends, and biomass estimate products for the\ncircumpolar Arctic through 2010 are also provided. QGreenland\ndisplays the 2010 vegetation biomass in kilograms per square meter.\nUsers can look to the source information for additional data.",
+        "citation": {
+          "text": "Walker, D.A., and M.K. Raynolds. 2018. Circumpolar Arctic\nVegetation, Geobotanical, Physiographic Maps, 1982-2003. ORNL\nDAAC, Oak Ridge, Tennessee, USA.\nhttps://doi.org/10.3334/ORNLDAAC/1323",
+          "url": "https://doi.org/10.3334/ORNLDAAC/1323"
+        },
+        "title": "Circumpolar Arctic Vegetation, Geobotanical, Physiographic Maps, 1982-2003"
+      }
+    },
     "asiaq_private_placenames": {
       "assets": {
         "only": {
@@ -3531,6 +3549,112 @@
                 "nunagis_protected_areas.py:nunagis_eider_protected_areas",
                 "nunagis_protected_areas.py:nunagis_goose_protected_areas"
               ],
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons indicating the 2010 distribution of Arctic Char\npopulations.",
+                  "id": "caff_char",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "caff_char"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/Arctic_Char_2010.zip",
+                        "-d",
+                        "{output_dir}"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "'SELECT\n                        Geometry,\n                        SPECIES,\n                        INTRODUCED,\n                        OWNER,\n                        DATA_URL,\n                        SOURCE,\n                        CREATED,\n                        DATE(substr(MODIFIED, 7, 4) || \"-\" ||\n                          substr(MODIFIED, 4, 2) || \"-\" ||\n                          substr(MODIFIED, 1, 2)) as MODIFIED,\n                        CONTACT\n                    FROM Arctic_Char_2010'",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "semitransparent_polygon",
+                  "tags": [],
+                  "title": "Arctic Char populations 2010"
+                },
+                "name": "caff_char"
+              }
+            ],
+            "name": "Fish",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Estimated above ground plant biomass for the tundra biome in\nkilograms per square meter. Based on trans-Arctic field data and AVHRR\nNDVI. Data provided by ORNL DAAC.",
+                  "id": "vegetation_biomass_2010",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "arctic_vegetation_biomass_2010"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/aga_circumpolar_avhrr_biomass_2010.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "vegetation_biomass",
+                  "tags": [],
+                  "title": "Vegetation biomass 2010 (12.4km)"
+                },
+                "name": "vegetation_biomass_2010"
+              }
+            ],
+            "name": "Vegetation",
+            "settings": {
+              "expand": false,
+              "order": null,
               "show": false
             }
           }

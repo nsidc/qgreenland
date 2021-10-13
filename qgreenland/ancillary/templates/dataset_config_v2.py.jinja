@@ -9,16 +9,19 @@ from qgreenland.models.config.dataset import ConfigDataset
         {%- for source in dataset.sources %}
         {{ asset_class }}(
             id='{{ source.id }}',
-            {%- if dataset.access_method == 'manual' %}
-            access_instructions=(
-                {{'"""%s"""'|format(source.access_instructions)|wordwrap(width=80-16, break_on_hyphens=False)|indent(16)}}
-            ),
-            {%- elif dataset.access_method == 'http' %}
+            {%- if dataset.access_method == 'http' %}
             urls=[
               {%- for url in source.urls %}
                 '{{ url }}',
               {%- endfor %}
             ],
+            {%- elif dataset.access_method == 'cmr' %}
+            granule_ur='{{source.granule_ur}}',
+            collection_concept_id='{{source.collection_concept_id}}',
+            {%- elif dataset.access_method == 'manual' %}
+            access_instructions=(
+                {{'"""%s"""'|format(source.access_instructions)|wordwrap(width=80-16, break_on_hyphens=False)|indent(16)}}
+            ),
             {%- elif dataset.access_method == 'ogr_remote_vector' %}
             query_url='{{ source.query_url }}',
             {%- elif dataset.access_method == 'local' %}
