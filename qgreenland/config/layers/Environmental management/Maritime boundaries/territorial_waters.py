@@ -88,7 +88,7 @@ layers = [
                     *STANDARD_OGR2OGR_ARGS,
                     '-clipdst', project.boundaries['data'].filepath,
                     '-makevalid',
-                    '-where', f'"layer" = \'{params["layer_name"]}\'',
+                    '-where', f'"\"layer\" = \'{params["layer_name"]}\'"',
                     '{output_dir}/final.gpkg',
                     '{input_dir}/' + params['input_filename'],
                 ],
