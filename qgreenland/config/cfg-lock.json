@@ -567,6 +567,23 @@
         "title": "Municipalities with Population"
       }
     },
+    "nunagis_protected_areas": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "query_url": "https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC"
+        }
+      },
+      "id": "nunagis_protected_areas",
+      "metadata": {
+        "abstract": "The NunaGIS data server provides a range of datasets on animal\nareas of importance and protected areas. These data are used to\npopulate the following QGreenland data layers: Walrus Protected\nAreas, Goose Protected Areas, Caribou Calving Areas, Beluga Areas,\nBird Protected Areas, Thickbilled Murre Breeding Colony 5km Zones,\nSeabird Breeding Colonies, Eider Protected Areas, Murre Group 1 km\nZones, Musk Oxen Calving Areas, Narwhal Areas, and Polar Bear\nBreeding Areas.",
+        "citation": {
+          "text": "NunaGIS (2020). Date accessed: {{date_accessed}}.",
+          "url": "https://kort.nunagis.gl/server/rest/services/Hosted"
+        },
+        "title": "NunaGIS data server protected area data"
+      }
+    },
     "qgr_bounds": {
       "assets": {
         "background": {
@@ -3271,12 +3288,249 @@
                   "title": "Thickbilled Murre colonies 2010"
                 },
                 "name": "caff_thickbilled_murre_colonies"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing 5km zones protected for Thickbilled Murre\nbreeding colonies.",
+                  "id": "nunagis_thickbilled_murre_colonies",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Colonies of breeding Br\u00fcnnichs guillemots%'\" ",
+                        "{output_dir}/nunagis_thickbilled_murre_colonies.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Thickbilled Murre breeding colony 5km zones"
+                },
+                "name": "nunagis_thickbilled_murre_colonies"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing 1km zones protected for Muure groups.",
+                  "id": "nunagis_murre_group_1km_zones",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Murre%'\" ",
+                        "{output_dir}/nunagis_murre_group_1km_zones.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Murre group 1km zones"
+                },
+                "name": "nunagis_murre_group_1km_zones"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas protected for seabird breeding\ncolonies.",
+                  "id": "nunagis_seabirds_colonies",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Colonies of breeding sea birds%'\" ",
+                        "{output_dir}/nunagis_seabirds_colonies.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Seabird breeding colonies"
+                },
+                "name": "nunagis_seabirds_colonies"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas protected for birds.",
+                  "id": "nunagis_bird_protected_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type IN('Bird Protection Area', 'Important Bird Area of BirdLife International')\" ",
+                        "{output_dir}/nunagis_bird_protected_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "nunagis_bird_protected_areas",
+                  "tags": [],
+                  "title": "Bird protected areas"
+                },
+                "name": "nunagis_bird_protected_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas protected for Eiders.",
+                  "id": "nunagis_eider_protected_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Eider%'\" ",
+                        "{output_dir}/nunagis_eider_protected_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "nunagis_eider_protected_areas",
+                  "tags": [],
+                  "title": "Eider protected areas"
+                },
+                "name": "nunagis_eider_protected_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas protected for geese.",
+                  "id": "nunagis_goose_protected_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')\" ",
+                        "{output_dir}/nunagis_goose_protected_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "nunagis_goose_protected_areas",
+                  "tags": [],
+                  "title": "Goose protected areas"
+                },
+                "name": "nunagis_goose_protected_areas"
               }
             ],
             "name": "Birds",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                "caff_murre.py:caff_common_murre_colonies",
+                "caff_murre.py:caff_thickbilled_murre_colonies",
+                "nunagis_protected_areas.py:nunagis_thickbilled_murre_colonies",
+                "nunagis_protected_areas.py:nunagis_murre_group_1km_zones",
+                "nunagis_protected_areas.py:nunagis_seabirds_colonies",
+                "nunagis_protected_areas.py:nunagis_bird_protected_areas",
+                "nunagis_protected_areas.py:nunagis_eider_protected_areas",
+                "nunagis_protected_areas.py:nunagis_goose_protected_areas"
+              ],
               "show": false
             }
           }
