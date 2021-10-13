@@ -17,7 +17,7 @@ default_decompress_step_kwargs: MappingProxyType[None, None] = MappingProxyType(
 # step-generation functions?
 # TODO: Do we need to run ogr2ogr with -makevalid in some cases? Use a parameter
 # to trigger it?
-def zipped_vector(
+def compressed_vector(
     *,
     input_file: str,
     output_file: str,
