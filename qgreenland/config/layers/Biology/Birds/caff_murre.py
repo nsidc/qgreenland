@@ -30,7 +30,7 @@ layers = [
             *zipped_vector(
                 input_file='{input_dir}/Murres_distribution.zip',
                 output_file='{output_dir}/final.gpkg',
-                shapefile_name=(
+                vector_filename=(
                     f'Distribution_{params["name"].replace(" ", "_")}_Colonies.shp'
                 ),
             ),
