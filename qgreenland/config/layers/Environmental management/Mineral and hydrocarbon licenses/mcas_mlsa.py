@@ -36,8 +36,8 @@ layers = [
         steps=[
             *zipped_vector(
                 input_file='{input_dir}/*.zip',
-                output_file='{output_dir}/final.gpkg'
-            )
+                output_file='{output_dir}/final.gpkg',
+            ),
         ],
     ) for key, params in layer_params.items()
 ]
