@@ -623,6 +623,23 @@
         "title": "QGreenland boundaries"
       }
     },
+    "racmo_qgreenland_jan2021": {
+      "assets": {
+        "only": {
+          "access_instructions": "RACMO data were obtained via a private data transer by Brice\nNo\u00ebl. See the `scripts/preprocess-private-archive/racmo_qgreenla\nnd_jan2021/README.md` for additional information.",
+          "id": "only"
+        }
+      },
+      "id": "racmo_qgreenland_jan2021",
+      "metadata": {
+        "abstract": "The Regional Atmospheric Climate Model (RACMO) data included use\na new run at 5.5-km horizontal resolution of the polar (p) version\nof RACMO2.3p2 for the period 1958\u20132017. RACMO2.3p2 incorporates the\ndynamical core of the High Resolution Limited Area Model and the\nphysics from the European Centre for Medium-Range Weather\nForecasts\u2013Integrated Forecast System (ECMWF-IFS cycle CY33r1).\nRACMO2.3p2 includes a multilayer snow module that simulates melt,\nwater percolation, and retention in snow, refreezing, and runoff.\nThe model also accounts for dry snow densification, and drifting\nsnow erosion and sublimation. Snow albedo is calculated on the basis\nof snow grain size, cloud optical thickness, solar zenith angle, and\nimpurity concentration in snow. As compared to the model described\nin Noel et al. (2018) (reference below), no model physics have been\nchanged. However, increased horizontal resolution of the host model,\ni.e., 5.5 km instead of 11 km, better resolves gradients in SMB\ncomponents over the topographically complex ice sheet margins and\nneighboring peripheral glaciers and ice caps. Some data output has\nalso been downscaled to 1-km resolution. QGreenland currently\ndisplays data that describes annual mean values over 1958-2019 for\nwind speed, total precipitation, snowfall, snowmelt, runoff,\nsublication, snow drift erosion, and 2-m temperature. Input\ntopography data is also included, along with the PROMICE ice mask\nand grounded ice mask.\n\nFor a detailed description of the RACMO model and recent updates,\nrefer to: B. No\u00ebl, W. J. van de Berg, J. M. van Wessem, E. van\nMeijgaard, D. van As, J. T. M. Lenaerts, S. Lhermitte, P. Kuipers\nMunneke, C. J. P. P. Smeets, L. H. van Ulft, R. S. W. van de Wal, M.\nR. van den Broeke, Modelling the climate and surface mass balance of\npolar ice sheets using RACMO2, Part 1: Greenland (1958-2016).\nCryosphere 12, 811\u2013831 (2018).",
+        "citation": {
+          "text": "No\u00ebl, B., W. J. van de Berg, S. Lhermitte, and M. R. van den\nBroeke (2019), Rapid ablation zone expansion amplifies north\nGreenland mass loss, Science Advances, 5(9), eaaw0123.",
+          "url": "https://advances.sciencemag.org/content/5/9/eaaw0123"
+        },
+        "title": "Regional Atmospheric Climate Model (RACMO)"
+      }
+    },
     "sea_ice_index": {
       "assets": {
         "monthly_polyline_n": {
@@ -2115,7 +2132,8 @@
                     "unzip",
                     "{input_dir}/utmzone.zip",
                     "-d",
-                    "{output_dir}"
+                    "{output_dir}",
+                    ""
                   ],
                   "type": "command"
                 },
@@ -2164,7 +2182,8 @@
                         "unzip",
                         "{input_dir}/Greenland_coast.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2209,7 +2228,8 @@
                         "unzip",
                         "{input_dir}/ne_10m_coastline.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2288,7 +2308,8 @@
                         "unzip",
                         "{input_dir}/ne_10m_admin_1_states_provinces.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2333,7 +2354,8 @@
                         "unzip",
                         "{input_dir}/ne_10m_admin_0_countries.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2412,7 +2434,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_populated_places_points_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2461,7 +2484,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_health_facilities_points_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2506,7 +2530,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_airports_points_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2551,7 +2576,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_sea_ports_points_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2596,7 +2622,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_waterways_lines_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2641,7 +2668,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_financial_services_points_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2686,7 +2714,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_education_facilities_points_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2731,7 +2760,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_points_of_interest_points_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2776,7 +2806,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_roads_lines_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -2821,7 +2852,8 @@
                         "unzip",
                         "{input_dir}/hotosm_grl_buildings_polygons_shp.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -3237,7 +3269,8 @@
                         "unzip",
                         "{input_dir}/Murres_distribution.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -3282,7 +3315,8 @@
                         "unzip",
                         "{input_dir}/Murres_distribution.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -3574,7 +3608,8 @@
                         "unzip",
                         "{input_dir}/Arctic_Char_2010.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -3663,6 +3698,127 @@
           }
         ],
         "name": "Biology",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual mean wind speed in meters per second from RACMO2.3p2\nfor the period 1958-2019.",
+                  "id": "racmo_wind_speed",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "magnitudes.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "{input_dir}/magnitudes.nc",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/racmo_wind_speed.tif"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_wind_speed",
+                  "tags": [],
+                  "title": "Annual mean wind speed 1958-2019 (5km)"
+                },
+                "name": "racmo_wind_speed"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual mean wind direction in meters per second from\nRACMO2.3p2 for the period 1958-2019.",
+                  "id": "racmo_wind_vectors",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "wind_vector_points.gpkg"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "{output_dir}/racmo_wind_vectors.gpkg",
+                        "{input_dir}/wind_vector_points.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_wind_vectors",
+                  "tags": [],
+                  "title": "Annual mean wind vectors 1958-2019 (5km)"
+                },
+                "name": "racmo_wind_vectors"
+              }
+            ],
+            "name": "RACMO model output",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          }
+        ],
+        "name": "Regional climate models",
         "settings": {
           "expand": false,
           "order": null,
@@ -11307,7 +11463,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_04_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11352,7 +11509,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_08_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11397,7 +11555,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_12_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11442,7 +11601,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_02_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11487,7 +11647,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_01_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11532,7 +11693,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_07_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11577,7 +11739,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_06_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11622,7 +11785,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_03_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11667,7 +11831,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_05_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11712,7 +11877,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_11_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11757,7 +11923,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_10_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -11802,7 +11969,8 @@
                         "unzip",
                         "{input_dir}/median_extent_N_09_1981-2010_polyline_v3.0.zip",
                         "-d",
-                        "{output_dir}"
+                        "{output_dir}",
+                        ""
                       ],
                       "type": "command"
                     },
@@ -15895,6 +16063,7 @@
         "Places",
         "Human activity",
         "Biology",
+        "Regional climate models",
         "Glaciology",
         "Geophysics",
         "Sea ice",

@@ -1,5 +1,5 @@
 import qgreenland.config.datasets.coastlines as dataset
-from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
@@ -18,7 +18,7 @@ bas_greenland_coastlines = ConfigLayer(
         asset=dataset.bas_coastlines.assets['only'],
     ),
     steps=[
-        *zipped_vector(
+        *compressed_vector(
             input_file='{input_dir}/Greenland_coast.zip',
             output_file='{output_dir}/greenland_coastline.gpkg',
         ),
@@ -39,7 +39,7 @@ coastlines = ConfigLayer(
         asset=dataset.coastlines.assets['only'],
     ),
     steps=[
-        *zipped_vector(
+        *compressed_vector(
             input_file='{input_dir}/ne_10m_coastline.zip',
             output_file='{output_dir}/global_coastline.gpkg',
         ),
