@@ -505,6 +505,23 @@
         "title": "Longitude and Latitude Lines"
       }
     },
+    "machguth_etal_massbalance_obs_locations": {
+      "assets": {
+        "only": {
+          "access_instructions": "Accessed the Greenland Mass Balance database on Dec. 12, 2020\nfrom PROMICE (https://promice.org/PromiceDataPortal/api/download\n/1198f862-4afa-4862-952f-acd9129d790d/greenland_SMB_database_v20\n20/greenland_SMB_database_v2020.xlsx)\n\nSee:\n`scripts/private-archive-preprocess/machguth_etal_massbalan\nce_obs_locations/README.md` for preprocessing steps.",
+          "id": "only"
+        }
+      },
+      "id": "machguth_etal_massbalance_obs_locations",
+      "metadata": {
+        "abstract": "These are historical surface mass balance measurement locations\nfrom Greenland Ice Sheet ablation area and surrounding local\nglaciers. There are approximately 3000 unique measurements from 46\nsites. The earliest measurements are from 1892. Each measurement is\naccompanied with position and date information, as well as quality\nand source flags. Users can look to the citation URL for additional\ndata.",
+        "citation": {
+          "text": "Machgruth, H. et al (2016). Greenland surface mass-balance\nobservations from the ice-sheet ablation area and local\nglaciers. Journal of Glaciology, 62(235), 861-887.\ndoi:10.1017/jog.2016.75",
+          "url": "https://www.doi.org/10.1017/jog.2016.75"
+        },
+        "title": "Greenland surface mass-balance observations from the ice-sheet ablation area and local glaciers"
+      }
+    },
     "mineral_and_hydrocarbon_licenses": {
       "assets": {
         "mcas_mlsa_public_all": {
@@ -6707,6 +6724,47 @@
               ],
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Locations used in surface mass balance observations.",
+              "id": "machguth_massbalance_locations",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "machguth_etal_massbalance_obs_locations"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-s_srs",
+                    "EPSG:4326",
+                    "-sql",
+                    "'SELECT\n                        _ogr_geometry_,\n                        fid,\n                        glacier_id,\n                        glacier_name,\n                        glacier_type,\n                        glacier_lat,\n                        glacier_lon,\n                        time_period,\n                        sources_data,\n                        sources_background,\n                        CAST(\"#_points\" AS INTEGER) as \"#_points\",\n                        CAST(\"#_readings\" AS INTEGER) as \"#_readings\",\n                        CAST(\"#_readings_final\" AS INTEGER) as \"#_readings_final\",\n                        finished,\n                        comments,\n                        label\n                    FROM foo'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/locations.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [],
+              "title": "Mass balance glacier observation locations 1892-2020"
+            },
+            "name": "machguth_massbalance_locations"
           },
           {
             "layer_cfg": {
