@@ -1,8 +1,6 @@
-# TODO: Replace `XXXX` with the correct package/module/object to import
-from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.datasets.nafo_divisions import nafo_divisions as dataset
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-# TODO: Import the correct step type for steps populated below
 
 
 nafo_divisions = ConfigLayer(
