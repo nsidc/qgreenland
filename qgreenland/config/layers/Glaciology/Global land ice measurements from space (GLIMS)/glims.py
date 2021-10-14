@@ -38,6 +38,7 @@ layers = [
                 output_file='{output_dir}/final.gpkg',
                 boundary_filepath=project.boundaries['data'].filepath,
                 decompress_step_kwargs={
+                    'decompress_type': '7z',
                     'decompress_contents_mask': \
                         f'glims_download_82381/*_{key}.*',
                 },
