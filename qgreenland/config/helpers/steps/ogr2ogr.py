@@ -13,10 +13,15 @@ def ogr2ogr(
     output_file: str,
     boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
     ogr2ogr_args: tuple[str, ...] = (),
+    enable_partial_reprojection=False,
 ) -> List[ConfigLayerCommandStep]:
     """Warp to project CRS and do other stuff as specified in args."""
+    init_args = []
+    if enable_partial_reprojection:
+        init_args.append('OGR_ENABLE_PARTIAL_REPROJECTION=TRUE')
+
     return [ConfigLayerCommandStep(
-        args=[
+        args=init_args + [
             'ogr2ogr',
             *STANDARD_OGR2OGR_ARGS,
             '-clipdst', project.boundaries['data'].filepath,
