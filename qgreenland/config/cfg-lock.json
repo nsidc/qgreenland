@@ -569,6 +569,26 @@
         "title": "Mineral and hydrocarbon licenses"
       }
     },
+    "nafo_divisions": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.nafo.int/Portals/0/GIS/Divisions.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "nafo_divisions",
+      "metadata": {
+        "abstract": "The Northwest Atlantic Fisheries Organization (NAFO) Secretariat\nis a repository of information and meta-data related to the fishery,\nincluding catch statistics, scientific literature, fisheries\nmanagement documentation and GIS (geographic information system)\nresources. Users can find additional data at the citation URL.",
+        "citation": {
+          "text": "Northwest Atlantic Fisheries Organization Secretariat",
+          "url": "https://www.nafo.int/Data"
+        },
+        "title": "NAFO Divisions"
+      }
+    },
     "ne_countries": {
       "assets": {
         "only": {
@@ -4132,6 +4152,52 @@
               "order": null,
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "The Northwest Atlantic Fisheries Organization zones",
+              "id": "nafo_divisions",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "nafo_divisions"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/Divisions.zip",
+                    "-d",
+                    "{output_dir}",
+                    ""
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/Divisions/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "nafo_divisions",
+              "tags": [],
+              "title": "NAFO divisions"
+            },
+            "name": "nafo_divisions"
           }
         ],
         "name": "Environmental management",
