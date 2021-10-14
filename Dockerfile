@@ -20,9 +20,9 @@ RUN apt-get update && \
 COPY environment-lock.yml .
 RUN mamba env update --file environment-lock.yml --name base
 
-# Create a dedicated env for shelling out to gdal
-COPY environment.gdal.yml .
-RUN mamba env create --file environment.gdal.yml
+# Create a dedicated env for shelling out commands
+COPY environment.cmd.yml .
+RUN mamba env create --file environment.cmd.yml
 
 # Use this method to install to non-root? Need to edit luigid.sh...
 # COPY environment.yml .

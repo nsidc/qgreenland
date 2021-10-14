@@ -43,7 +43,7 @@ Layer pipelines are composed of steps. A step can be one of the following
 types:
 
 * `command`: Run a shell command in a conda environment (currently
-  `environment.gdal.yml`).
+  `environment.cmd.yml`).
 * `python`: Run a python function with the given args/kwargs.
 * `template`: Re-use a pre-written set of steps (these can also be `command`,
   `python`, or `template`). Templates can be nested!
