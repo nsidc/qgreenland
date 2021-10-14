@@ -19,7 +19,7 @@ nafo_divisions = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
-        *zipped_vector(
+        *compressed_vector(
             input_file='{input_dir}/Divisions.zip'
             output_file='{output_dir}/final.gpkg',
         ),
