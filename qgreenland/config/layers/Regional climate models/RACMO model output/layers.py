@@ -77,7 +77,7 @@ _masked_racmo_raster_params = {
             peripheral ice caps."""
         ),
     },
-    'racmo_melt': {
+    'racmo_snowmelt': {
         'title': 'Snowmelt 1958-2019 (1km)',
         'description': (
             """Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) from
@@ -122,7 +122,7 @@ _masked_racmo_raster_params = {
 def _make_masked_racmo_layers() -> list[ConfigLayer]:
     layers = []
     for layer_id, params in _masked_racmo_raster_params.items():
-        variable = layer_id.split('_')[0]
+        variable = layer_id.split('_')[1]
         layers.append(
             ConfigLayer(
                 id=layer_id,
@@ -176,3 +176,6 @@ def _make_masked_racmo_layers() -> list[ConfigLayer]:
         )
 
     return layers
+
+
+masked_racmo_layers = _make_masked_racmo_layers()
