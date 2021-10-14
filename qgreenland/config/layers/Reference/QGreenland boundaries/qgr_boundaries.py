@@ -4,7 +4,9 @@ from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
-def _ogr2ogr_step(input_fn: str) -> list[ConfigLayerCommandStep]:
+def _ogr2ogr_step(
+    input_fn: str,
+) -> list[ConfigLayerCommandStep]:
     return ogr2ogr(
         input_file='{input_dir}/' + input_fn,
         output_file='{output_dir}/boundary.gpkg',
