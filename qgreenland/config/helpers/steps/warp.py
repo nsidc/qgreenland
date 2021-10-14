@@ -17,12 +17,12 @@ def warp(
         args=[
             'gdalwarp',
             '-cutline',
-            f'{cut_file}',
+            cut_file,
             '-crop_to_cutline',
             '-t_srs', project.crs,  # dstCRS
             *warp_args,
             '-co', 'COMPRESS=DEFLATE',
-            f'{input_file}',
-            f'{output_file}',
+            input_file,
+            output_file,
         ],
     )]

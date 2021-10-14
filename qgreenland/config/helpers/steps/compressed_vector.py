@@ -1,9 +1,7 @@
 from types import MappingProxyType
 
 from qgreenland.config.helpers.steps.decompress import decompress_step
-from qgreenland.config.helpers.steps.ogr2ogr import (
-    STANDARD_OGR2OGR_ARGS,
-)
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.runtime_vars import EvalFilePath
@@ -33,14 +31,10 @@ def compressed_vector(
             input_file=input_file,
             **decompress_step_kwargs,
         ),
-        ConfigLayerCommandStep(
-            args=[
-                'ogr2ogr',
-                *STANDARD_OGR2OGR_ARGS,
-                *ogr2ogr_args,
-                '-clipdst', boundary_filepath,
-                output_file,
-                '{input_dir}/' + vector_filename,
-            ],
+        *ogr2ogr(
+            input_file='{input_dir}/' + vector_filename,
+            output_file=output_file,
+            boundary_filepath=boundary_filepath,
+            ogr2ogr_args=ogr2ogr_args,
         ),
     ]
