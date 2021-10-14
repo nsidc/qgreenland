@@ -23,10 +23,10 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
 
     # If template:
     # template_name: str
-    # kwargs: Dict[str, Any]
+    # kwargs: dict[str, Any]
 
     # If Python:
-    # kwargs: Dict[str, Any]
+    # kwargs: dict[str, Any]
 
     @cached_property
     def provenance(self) -> str:
