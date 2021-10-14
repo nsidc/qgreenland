@@ -1,3 +1,5 @@
+from typing import Any
+
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.runtime_vars import EvalFilePath
@@ -19,7 +21,7 @@ def ogr2ogr(
     enable_partial_reprojection=False,
 ) -> list[ConfigLayerCommandStep]:
     """Warp to project CRS and do other stuff as specified in args."""
-    init_args = []
+    init_args: list[Any] = []
     if enable_partial_reprojection:
         init_args.append('OGR_ENABLE_PARTIAL_REPROJECTION=TRUE')
 
@@ -27,7 +29,7 @@ def ogr2ogr(
         args=init_args + [
             'ogr2ogr',
             *STANDARD_OGR2OGR_ARGS,
-            '-clipdst', project.boundaries['data'].filepath,
+            '-clipdst', boundary_filepath,
             '-makevalid',
             *ogr2ogr_args,
             output_file,
