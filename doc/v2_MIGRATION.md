@@ -137,11 +137,15 @@ YAML:
     ogr2ogr_kwargs:
         input_filename: 'stations.kmz'
 
+:dragon:
+
 This part is open-ended and fuzzy: Reference the v1 code and the inputs
 provided by the config to translate the python code + YAML config into a
 resulting CLI command or commands, in this case `ogr2ogr`. Where possible, use
 existing helpers in `qgreenland/config/helpers/steps` or create new helpers
 which can be re-used for similar code.
+
+:dragon:
 
 
 # Testing
