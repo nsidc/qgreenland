@@ -82,7 +82,7 @@ layers = [
             *ogr2ogr(
                 input_file='{input_dir}/' + params['input_filename'],
                 output_file='{output_dir}/final.gpkg',
-                boundary_filepath=project.boundaries['data'].filepath,
+                boundary_filepath=project.boundaries['boundary'].filepath,
                 ogr2ogr_args=(
                     '-where',
                     f'"\"layer\" = \'{params["layer_name"]}\'"',
