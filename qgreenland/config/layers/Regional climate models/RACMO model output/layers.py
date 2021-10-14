@@ -208,6 +208,60 @@ masked_racmo_layers = _make_masked_racmo_layers()
 
 # TODO: place these layers in 'Supplement' subdir.
 def _make_racmo_mask_layers() -> list[ConfigLayer]:
+    layers = []
+
+    _racmo_mask_layer_params = {
+        'racmo_promicemask': {
+            'title': 'PROMICE mask (1km)',
+            'description': (
+                """Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland
+                peripheral ice caps; 0 = Ocean."""
+            ),
+            'extract_filename': 'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc',
+            'variable': 'Promicemask',
+        },
+        'racmo_grounded_ice': {
+            'title': 'Grounded ice mask (1km)',
+            'description': 'Mask of grounded ice. 1 = grounded.',
+            'extract_filename': 'Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc',
+            'variable': 'grounded_ice',
+        },
+    }
+
+    for layer_id, params in _racmo_mask_layer_params.items():
+        layers.append(
+            ConfigLayer(
+                id=layer_id,
+                title=params['title'],
+                description=params['description'],
+                tags=[],
+                style='racmo_promicemask',
+                input=ConfigLayerInput(
+                    dataset=dataset,
+                    asset=dataset.assets['only'],
+                ),
+                steps=[
+                    decompress_step(
+                        input_file='{input_dir}/RACMO_QGreenland_Jan2021.zip',
+                        decompress_contents_mask=params['extract_filename'],
+                    ),
+                    ConfigLayerCommandStep(
+                        args=[
+                            'gdal_translate',
+                            '-a_srs', project.crs,
+                            '-a_ullr', '-639456.0 -655096.0 856544.0 -3355096.0',
+                            'NETCDF:{input_dir}/' + f"{params['extract_filename']}:{params['variable']}",
+                            '{output_dir}/' + f"{params['variable']}.tif",
+                        ],
+                    ),
+                    *build_overviews(
+                        input_file='{input_dir}/' + f"{params['variable']}.tif",
+                        output_file='{output_dir}/' + f'{layer_id}.tif',
+                    ),
+                ],
+            )
+        )
+
     racmo_topography = _make_masked_racmo_layer(
         layer_id='racmo_topography',
         title='Ice surface topography (1km)',
@@ -224,7 +278,9 @@ def _make_racmo_mask_layers() -> list[ConfigLayer]:
         ],
     )
 
-    return [racmo_topography]
+    layers.append(racmo_topography)
+
+    return layers
 
 
 mask_layers = _make_racmo_mask_layers()
