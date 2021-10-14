@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 import fiona
 from pydantic import root_validator, validator
@@ -45,7 +45,7 @@ class ConfigBoundariesInfo(QgrBaseModel):
     # "bbox".
     @root_validator(pre=True)
     @classmethod
-    def calculate_bbox(cls, values) -> Dict[str, Any]:
+    def calculate_bbox(cls, values) -> dict[str, Any]:
         if 'filepath' not in values or not values['filepath']:
             raise RuntimeError('Filepath must be populated.')
 
@@ -85,4 +85,4 @@ class ConfigBoundariesInfo(QgrBaseModel):
 
 class ConfigProject(QgrBaseModel):
     crs: str
-    boundaries: Dict[str, ConfigBoundariesInfo]
+    boundaries: dict[str, ConfigBoundariesInfo]

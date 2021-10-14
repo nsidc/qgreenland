@@ -1,5 +1,3 @@
-from typing import List
-
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.runtime_vars import EvalFilePath
@@ -11,7 +9,7 @@ def warp(
     output_file: str,
     cut_file: EvalFilePath,
     warp_args: tuple[str, ...] = (),
-) -> List[ConfigLayerCommandStep]:
+) -> list[ConfigLayerCommandStep]:
 
     return [ConfigLayerCommandStep(
         args=[

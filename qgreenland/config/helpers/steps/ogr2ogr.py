@@ -16,7 +16,7 @@ def ogr2ogr(
     boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
     ogr2ogr_args: tuple[str, ...] = (),
     enable_partial_reprojection=False,
-) -> List[ConfigLayerCommandStep]:
+) -> list[ConfigLayerCommandStep]:
     """Warp to project CRS and do other stuff as specified in args."""
     init_args = []
     if enable_partial_reprojection:
