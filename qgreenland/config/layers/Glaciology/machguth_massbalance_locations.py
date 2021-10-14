@@ -1,9 +1,7 @@
 from qgreenland.config.datasets.machguth_massbalance import (
     machguth_etal_massbalance_obs_locations as dataset,
 )
-from qgreenland.config.helpers.steps.ogr2ogr import (
-    STANDARD_OGR2OGR_ARGS,
-)
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -22,12 +20,11 @@ machguth_massbalance_locations = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
-        ConfigLayerCommandStep(
-            args=[
-                'ogr2ogr',
-                *STANDARD_OGR2OGR_ARGS,
-                '-clipdst', project.boundaries['background'].filepath,
-                '-makevalid',
+        *ogr2ogr(
+            input_file='{input_dir}/locations.gpkg',
+            output_file='{output_dir}/final.gpkg',
+            boundary_filepath=project.boundaries['background'].filepath,
+            ogr2ogr_args=(
                 '-s_srs', 'EPSG:4326',
                 '-sql', (
                     """'SELECT
@@ -49,9 +46,7 @@ machguth_massbalance_locations = ConfigLayer(
                         label
                     FROM foo'"""
                 ),
-                '{output_dir}/final.gpkg',
-                '{input_dir}/locations.gpkg',
-            ],
+            ),
         ),
     ],
 )
