@@ -1,5 +1,5 @@
 from qgreenland.config.datasets.utm_zones import utm_zones as dataset
-from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
@@ -16,7 +16,7 @@ utm_zones = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
-        *zipped_vector(
+        *compressed_vector(
             ogr2ogr_args=(
                 '-where', '"\"ZONE\" != 0"',
             ),

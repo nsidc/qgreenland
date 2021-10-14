@@ -1,10 +1,7 @@
 from qgreenland.config.datasets.asiaq_placenames import asiaq_private_placenames
-from qgreenland.config.helpers.steps.ogr2ogr import (
-    STANDARD_OGR2OGR_ARGS,
-)
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 towns_and_settlements = ConfigLayer(
     id='populated_places',
@@ -17,20 +14,17 @@ towns_and_settlements = ConfigLayer(
         asset=asiaq_private_placenames.assets['only'],
     ),
     steps=[
-        ConfigLayerCommandStep(
-            args=[
-                'ogr2ogr',
-                *STANDARD_OGR2OGR_ARGS,
-                '-clipdst', project.boundaries['data'].filepath,
-                '-makevalid',
+        *ogr2ogr(
+            input_file='{input_dir}/translations_joined.gpkg',
+            output_file='{output_dir}/final.gpkg',
+            boundary_filepath=project.boundaries['data'].filepath,
+            ogr2ogr_args=(
                 '-sql', (
                     "'SELECT *, \"New Greenlandic\" as label"
                     ' FROM translations_joined'
                     " WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
                 ),
-                '{output_dir}/final.gpkg',
-                '{input_dir}/translations_joined.gpkg',
-            ],
+            ),
         ),
     ],
 )
@@ -40,20 +34,17 @@ comprehensive_places = towns_and_settlements.copy(update={
     'title': 'Place names database',
     'description': 'Points representing named points of interest in Greenland.',
     'steps': [
-        ConfigLayerCommandStep(
-            args=[
-                'ogr2ogr',
-                *STANDARD_OGR2OGR_ARGS,
-                '-clipdst', project.boundaries['data'].filepath,
-                '-makevalid',
+        *ogr2ogr(
+            input_file='{input_dir}/translations_joined.gpkg',
+            output_file='{output_dir}/final.gpkg',
+            boundary_filepath=project.boundaries['data'].filepath,
+            ogr2ogr_args=(
                 '-sql', (
                     "'SELECT *, \"English explanation of Object designation\""
                     ' || ":" || "New Greenlandic" as label'
                     " FROM translations_joined'"
                 ),
-                '{output_dir}/final.gpkg',
-                '{input_dir}/translations_joined.gpkg',
-            ],
+            ),
         ),
     ],
 })

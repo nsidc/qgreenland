@@ -1,5 +1,3 @@
-from typing import Dict
-
 from pydantic import Field, validator
 
 from qgreenland.models.base_model import QgrBaseModel
@@ -24,7 +22,7 @@ class ConfigDatasetMetadata(QgrBaseModel):
 
 class ConfigDataset(QgrBaseModel):
     id: str = Field(..., min_length=1)
-    assets: Dict[str, AnyAsset]
+    assets: dict[str, AnyAsset]
     metadata: ConfigDatasetMetadata
 
     @validator('assets', pre=True)

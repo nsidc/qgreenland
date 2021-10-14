@@ -289,6 +289,23 @@
         "title": "Greenland Ecosystem Monitoring - Location and Description of Research Stations"
       }
     },
+    "greenland_territorial_waters": {
+      "assets": {
+        "only": {
+          "access_instructions": "Dataset provided by Karl Zinglersen of the Greenland\nInstitude for Natural Resources via a private one-time FTP\ntransfer on Nov. 30, 2020. This dataset is not expected to be\npublicily archived outside of QGreenland.",
+          "id": "only"
+        }
+      },
+      "id": "greenland_territorial_waters",
+      "metadata": {
+        "abstract": "Datasets provided by the Greenland Institute for Natural\nResources (from Karl Zinglersen) via a private one-time FTP transfer\non November 30, 2020. These data are not expected to be publicly\narchived outside of QGreenland.",
+        "citation": {
+          "text": "Vector data from the Danish Geodata Agency. Attributes\nprocessed by Karl Brix Zinglersen, Greenland Institute of\nNatural Resources (2020).",
+          "url": ""
+        },
+        "title": "Greenland Territorial Waters"
+      }
+    },
     "hdx_hotosm": {
       "assets": {
         "airports": {
@@ -370,6 +387,26 @@
           "url": "https://www.hotosm.org/"
         },
         "title": "Humanitarian OpenStreetMap Team"
+      }
+    },
+    "ice_cores": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "ice_cores",
+      "metadata": {
+        "abstract": "Greenland ice core locations. Ice cores can provide records of\npast temperature, precipitation, atmospheric trace gases, and other\naspects of climate and environment. Additional information is\navailable in the 'description' attribute, including an ice core\ndataset URL. Data were accessed using the Google Earth Map Search\nDataset. For details please see:\nhttp://www.ncdc.noaa.gov/paleo/icecore.html",
+        "citation": {
+          "text": "World Data Center (2020). Ice core locations. Download:\nhttp://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed:\n{{date_accessed}}.",
+          "url": "http://www.ncdc.noaa.gov/paleo/icecore.html"
+        },
+        "title": "Ice Cores"
       }
     },
     "image_mosaic": {
@@ -486,6 +523,87 @@
           "url": ""
         },
         "title": "Longitude and Latitude Lines"
+      }
+    },
+    "macferrin_etal_firn_ice_layer_thicknesses": {
+      "assets": {
+        "only": {
+          "access_instructions": "Available via the publication website, and contained in the\nSource Data Fig. 2 file.",
+          "id": "only"
+        }
+      },
+      "id": "macferrin_etal_firn_ice_layer_thicknesses",
+      "metadata": {
+        "abstract": "Citation publication abstract: In recent decades, meltwater\nrunoff has accelerated to become the dominant mechanism for mass\nloss in the Greenland ice sheet. In Greenland\u2019s high-elevation\ninterior, porous snow and firn accumulate; these can absorb surface\nmeltwater and inhibit runoff, but this buffering effect is limited\nif enough water refreezes near the surface to restrict percolation.\nHowever, the influence of refreezing on runoff from Greenland\nremains largely unquantified. Here we use firn cores, radar\nobservations and regional climate models to show that recent\nincreases in meltwater have resulted in the formation of\nmetres-thick, low-permeability \u2018ice slabs\u2019 that have expanded the\nGreenland ice sheet\u2019s total runoff area by 26 \u00b1 3 per cent since\n2001. Although runoff from the top of ice slabs has added less than\none millimetre to global sea-level rise so far, this contribution\nwill grow substantially as ice slabs expand inland in a warming\nclimate. Runoff over ice slabs is set to contribute 7 to 33\nmillimetres and 17 to 74 millimetres to global sea-level rise by\n2100 under moderate- and high-emissions scenarios,\nrespectively\u2014approximately double the estimated runoff from\nGreenland\u2019s high-elevation interior, as predicted by surface mass\nbalance models without ice slabs. Ice slabs will have an important\nrole in enhancing surface meltwater feedback processes,\nfundamentally altering the ice sheet\u2019s present and future\nhydrology.",
+        "citation": {
+          "text": "MacFerrin, M., Machguth, H., As, D.v. et al. Rapid expansion\nof Greenland\u2019s low-permeability ice slabs. Nature 573, 403\u2013407\n(2019). https://doi.org/10.1038/s41586-019-1550-3",
+          "url": "https://doi.org/10.1038/s41586-019-1550-3"
+        },
+        "title": "Rapid expansion of Greenland\u2019s low-permeability ice slabs"
+      }
+    },
+    "machguth_etal_massbalance_obs_locations": {
+      "assets": {
+        "only": {
+          "access_instructions": "Accessed the Greenland Mass Balance database on Dec. 12, 2020\nfrom PROMICE (https://promice.org/PromiceDataPortal/api/download\n/1198f862-4afa-4862-952f-acd9129d790d/greenland_SMB_database_v20\n20/greenland_SMB_database_v2020.xlsx)\n\nSee:\n`scripts/private-archive-preprocess/machguth_etal_massbalan\nce_obs_locations/README.md` for preprocessing steps.",
+          "id": "only"
+        }
+      },
+      "id": "machguth_etal_massbalance_obs_locations",
+      "metadata": {
+        "abstract": "These are historical surface mass balance measurement locations\nfrom Greenland Ice Sheet ablation area and surrounding local\nglaciers. There are approximately 3000 unique measurements from 46\nsites. The earliest measurements are from 1892. Each measurement is\naccompanied with position and date information, as well as quality\nand source flags. Users can look to the citation URL for additional\ndata.",
+        "citation": {
+          "text": "Machgruth, H. et al (2016). Greenland surface mass-balance\nobservations from the ice-sheet ablation area and local\nglaciers. Journal of Glaciology, 62(235), 861-887.\ndoi:10.1017/jog.2016.75",
+          "url": "https://www.doi.org/10.1017/jog.2016.75"
+        },
+        "title": "Greenland surface mass-balance observations from the ice-sheet ablation area and local glaciers"
+      }
+    },
+    "mineral_and_hydrocarbon_licenses": {
+      "assets": {
+        "mcas_mlsa_public_all": {
+          "id": "mcas_mlsa_public_all",
+          "urls": [
+            "https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_all"
+          ],
+          "verify_tls": true
+        },
+        "mcas_mlsa_public_historic": {
+          "id": "mcas_mlsa_public_historic",
+          "urls": [
+            "https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_historic"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "mineral_and_hydrocarbon_licenses",
+      "metadata": {
+        "abstract": "Mineral and hydrocarbon license data, including historic public\nlicenses and public licenses. License data is sourced from the\nMineral Resource Authority, Government of Greenland using their\nGeoServer version 2.14.1 (https://gis.govmin.gl/geoserver/web/).",
+        "citation": {
+          "text": "Government of Greenland/GINR",
+          "url": ""
+        },
+        "title": "Mineral and hydrocarbon licenses"
+      }
+    },
+    "nafo_divisions": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.nafo.int/Portals/0/GIS/Divisions.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "nafo_divisions",
+      "metadata": {
+        "abstract": "The Northwest Atlantic Fisheries Organization (NAFO) Secretariat\nis a repository of information and meta-data related to the fishery,\nincluding catch statistics, scientific literature, fisheries\nmanagement documentation and GIS (geographic information system)\nresources. Users can find additional data at the citation URL.",
+        "citation": {
+          "text": "Northwest Atlantic Fisheries Organization Secretariat",
+          "url": "https://www.nafo.int/Data"
+        },
+        "title": "NAFO Divisions"
       }
     },
     "ne_countries": {
@@ -1151,6 +1269,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/boundary.gpkg",
                         "{input_dir}/greenland_rectangle.geojson"
                       ],
@@ -1185,6 +1306,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/boundary.gpkg",
                         "{input_dir}/latitude_shape_40_degrees.geojson"
                       ],
@@ -1230,6 +1354,9 @@
                     "ENCODING=UTF-8",
                     "-t_srs",
                     "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
                     "-segmentize",
                     "1",
                     "-s_srs",
@@ -1272,6 +1399,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_0_25_degree.gpkg",
@@ -1312,6 +1440,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_0_5_degree.gpkg",
@@ -1352,6 +1481,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_1_degree.gpkg",
@@ -1392,6 +1522,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_10_degree.gpkg",
@@ -1432,6 +1563,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_15_degree.gpkg",
@@ -1472,6 +1604,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_2_degree.gpkg",
@@ -1512,6 +1645,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_20_degree.gpkg",
@@ -1552,6 +1686,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_30_degree.gpkg",
@@ -1592,6 +1727,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_5_degree.gpkg",
@@ -1642,6 +1778,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_0_5_degree.gpkg",
@@ -1682,6 +1819,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_1_degree.gpkg",
@@ -1722,6 +1860,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_10_degree.gpkg",
@@ -1762,6 +1901,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_15_degree.gpkg",
@@ -1802,6 +1942,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_2_degree.gpkg",
@@ -1842,6 +1983,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_20_degree.gpkg",
@@ -1882,6 +2024,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_3_degree.gpkg",
@@ -1922,6 +2065,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_30_degree.gpkg",
@@ -1962,6 +2106,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_45_degree.gpkg",
@@ -2002,6 +2147,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_5_degree.gpkg",
@@ -2042,6 +2188,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_90_degree.gpkg",
@@ -2144,10 +2291,11 @@
                     "ENCODING=UTF-8",
                     "-t_srs",
                     "EPSG:3413",
-                    "-where",
-                    "\"\"ZONE\" != 0\"",
                     "-clipdst",
                     "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-where",
+                    "\"\"ZONE\" != 0\"",
                     "{output_dir}/utm_zones.gpkg",
                     "{input_dir}/*.shp"
                   ],
@@ -2196,6 +2344,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/greenland_coastline.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2242,6 +2391,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/global_coastline.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2276,6 +2426,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/nunagis_municipalities_population.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -2322,6 +2475,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/ne_states_provinces.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2368,6 +2522,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/ne_countries.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2446,12 +2601,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
                         "\"SELECT osm_id, is_in, source, name, place, geometry, CAST(population AS INTEGER) as population FROM hotosm_grl_populated_places_points\"",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "{output_dir}/hotosm_populated_places.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2498,6 +2654,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/health_facilities.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2544,6 +2701,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/airports.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2590,6 +2748,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/seaports.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2636,6 +2795,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/waterways.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2682,6 +2842,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/financial_services.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2728,6 +2889,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/education_facilities.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2774,6 +2936,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/points_of_interest.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2820,6 +2983,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/roads.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2866,6 +3030,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/buildings.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -3013,6 +3178,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
@@ -3053,6 +3221,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
@@ -3132,6 +3303,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
@@ -3174,6 +3348,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
                         "{output_dir}/ogr2ogr.gpkg",
                         "{input_dir}/stations.kmz"
                       ],
@@ -3225,6 +3400,9 @@
                     "ENCODING=UTF-8",
                     "-t_srs",
                     "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
                     "{output_dir}/arctic_sea_routes.gpkg",
                     "{input_dir}/Arctic_Sea_Routes.shp"
                   ],
@@ -3283,6 +3461,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/Distribution_Common_Murre_Colonies.shp"
                       ],
@@ -3329,6 +3508,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/Distribution_Thickbilled_Murre_Colonies.shp"
                       ],
@@ -3363,10 +3543,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Colonies of breeding Br\u00fcnnichs guillemots%'\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type LIKE 'Colonies of breeding Br\u00fcnnichs guillemots%'\" ",
                         "{output_dir}/nunagis_thickbilled_murre_colonies.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3401,10 +3584,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Murre%'\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type LIKE 'Murre%'\" ",
                         "{output_dir}/nunagis_murre_group_1km_zones.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3439,10 +3625,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Colonies of breeding sea birds%'\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type LIKE 'Colonies of breeding sea birds%'\" ",
                         "{output_dir}/nunagis_seabirds_colonies.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3477,10 +3666,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type IN('Bird Protection Area', 'Important Bird Area of BirdLife International')\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type IN('Bird Protection Area', 'Important Bird Area of BirdLife International')\" ",
                         "{output_dir}/nunagis_bird_protected_areas.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3515,10 +3707,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Eider%'\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type LIKE 'Eider%'\" ",
                         "{output_dir}/nunagis_eider_protected_areas.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3553,10 +3748,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')\" ",
                         "{output_dir}/nunagis_goose_protected_areas.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3620,12 +3818,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
                         "'SELECT\n                        Geometry,\n                        SPECIES,\n                        INTRODUCED,\n                        OWNER,\n                        DATA_URL,\n                        SOURCE,\n                        CREATED,\n                        DATE(substr(MODIFIED, 7, 4) || \"-\" ||\n                          substr(MODIFIED, 4, 2) || \"-\" ||\n                          substr(MODIFIED, 1, 2)) as MODIFIED,\n                        CONTACT\n                    FROM Arctic_Char_2010'",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -3698,6 +3897,411 @@
           }
         ],
         "name": "Biology",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Fishery limit. Regarding the fishery limit, reference is made to\nGreenland Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7,\n2. NM = nautical mile.",
+                  "id": "12nm_polyline",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_12NM'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "12NM (polyline)"
+                },
+                "name": "12nm_polyline"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of\nthe marine environment, paragraph 4, 2. NM = nautical mile.",
+                  "id": "3nm_polygon",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_3NM_area'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "3NM (polygon)"
+                },
+                "name": "3nm_polygon"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of\nthe marine environment, paragraph 4, 2. NM = nautical mile.",
+                  "id": "3nm_polyline",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_3NM'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "3NM (polyline)"
+                },
+                "name": "3nm_polyline"
+              },
+              {
+                "layer_cfg": {
+                  "description": "The territorial sea baseline is shown in accordance to Executive\nOrder no 1004 dated 15.10.2004.",
+                  "id": "baseline",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_basisline'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Baseline (polyline)"
+                },
+                "name": "baseline"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Exclusive Economic Zone of Greenland based on Executive Order on the\nExclusive Economic Zone at Greenland. BEK no. 1020 of 20/10/2004.\nForeign Ministry of Denmark.",
+                  "id": "exclusive_economic_zone",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_EEZ'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Exclusive economic zone (polyline)"
+                },
+                "name": "exclusive_economic_zone"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Fishery limit. Regarding the fishery limit, reference is made to\nGreenland Home Rule Parliament Act no 18 dated 31.10.1996",
+                  "id": "fishzone_boundary",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_fishzone'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Fishing zone (polygon)"
+                },
+                "name": "fishzone_boundary"
+              }
+            ],
+            "name": "Maritime boundaries",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Historic mining licenses granted by the government of Greenland.",
+                  "id": "mcas_mlsa_public_historic",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "mcas_mlsa_public_historic"
+                    },
+                    "dataset": {
+                      "id": "mineral_and_hydrocarbon_licenses"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/*.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "mcas_mlsa_licenses",
+                  "tags": [],
+                  "title": "Historic public licenses"
+                },
+                "name": "mcas_mlsa_public_historic"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Mining licenses granted by the government of Greenland.",
+                  "id": "mcas_mlsa_public_all",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "mcas_mlsa_public_all"
+                    },
+                    "dataset": {
+                      "id": "mineral_and_hydrocarbon_licenses"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/*.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "mcas_mlsa_licenses",
+                  "tags": [],
+                  "title": "Public licenses"
+                },
+                "name": "mcas_mlsa_public_all"
+              }
+            ],
+            "name": "Mineral and hydrocarbon licenses",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
+            "layer_cfg": {
+              "description": "The Northwest Atlantic Fisheries Organization zones",
+              "id": "nafo_divisions",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "nafo_divisions"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/Divisions.zip",
+                    "-d",
+                    "{output_dir}",
+                    ""
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/Divisions/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "nafo_divisions",
+              "tags": [],
+              "title": "NAFO divisions"
+            },
+            "name": "nafo_divisions"
+          }
+        ],
+        "name": "Environmental management",
         "settings": {
           "expand": false,
           "order": null,
@@ -3797,6 +4401,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/racmo_wind_vectors.gpkg",
                         "{input_dir}/wind_vector_points.gpkg"
                       ],
@@ -6310,6 +6915,86 @@
           },
           {
             "layer_cfg": {
+              "description": "Point locations of ice cores sampled in Greenland.",
+              "id": "ice_cores",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "ice_cores"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT *, Name as label\n                    FROM \"Ice Core\"'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/paleo_icecore.kmz"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [],
+              "title": "Ice cores"
+            },
+            "name": "ice_cores"
+          },
+          {
+            "layer_cfg": {
+              "description": "Locations used in surface mass balance observations.",
+              "id": "machguth_massbalance_locations",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "machguth_etal_massbalance_obs_locations"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-s_srs",
+                    "EPSG:4326",
+                    "-sql",
+                    "'SELECT\n                        _ogr_geometry_,\n                        fid,\n                        glacier_id,\n                        glacier_name,\n                        glacier_type,\n                        glacier_lat,\n                        glacier_lon,\n                        time_period,\n                        sources_data,\n                        sources_background,\n                        CAST(\"#_points\" AS INTEGER) as \"#_points\",\n                        CAST(\"#_readings\" AS INTEGER) as \"#_readings\",\n                        CAST(\"#_readings_final\" AS INTEGER) as \"#_readings_final\",\n                        finished,\n                        comments,\n                        label\n                    FROM foo'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/locations.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [],
+              "title": "Mass balance glacier observation locations 1892-2020"
+            },
+            "name": "machguth_massbalance_locations"
+          },
+          {
+            "layer_cfg": {
               "description": "Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for\n2019/05/01 and 2019/10/01 generated using Sentinel-2 satellite data.",
               "id": "jakobshavn_supraglacial_lakes",
               "in_package": true,
@@ -6342,6 +7027,7 @@
                     "EPSG:3413",
                     "-clipdst",
                     "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
                     "-dialect",
                     "sqlite",
                     "-sql",
@@ -6402,14 +7088,19 @@
                         {
                           "args": [
                             "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-clipdst",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-makevalid",
                             "-oo",
                             "X_POSSIBLE_NAMES=longitude",
                             "-oo",
                             "Y_POSSIBLE_NAMES=latitude",
                             "-s_srs",
                             "EPSG:4326",
-                            "-t_srs",
-                            "EPSG:3413",
                             "{output_dir}/geomagnetic_north_pole.gpkg",
                             "CSV:{input_dir}/WMM2020_NP_with_header.xy"
                           ],
@@ -6452,14 +7143,19 @@
                         {
                           "args": [
                             "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-clipdst",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-makevalid",
                             "-oo",
                             "X_POSSIBLE_NAMES=longitude",
                             "-oo",
                             "Y_POSSIBLE_NAMES=latitude",
                             "-s_srs",
                             "EPSG:4326",
-                            "-t_srs",
-                            "EPSG:3413",
                             "{output_dir}/geomagnetic_north_pole.gpkg",
                             "CSV:{input_dir}/NP_with_header.xy"
                           ],
@@ -11477,6 +12173,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11523,6 +12220,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11569,6 +12267,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11615,6 +12314,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11661,6 +12361,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11707,6 +12408,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11753,6 +12455,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11799,6 +12502,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11845,6 +12549,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11891,6 +12596,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11937,6 +12643,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -11983,6 +12690,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -16063,6 +16771,7 @@
         "Places",
         "Human activity",
         "Biology",
+        "Environmental management",
         "Regional climate models",
         "Glaciology",
         "Geophysics",

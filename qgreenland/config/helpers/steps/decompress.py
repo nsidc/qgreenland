@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Literal
 
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -6,8 +6,8 @@ from qgreenland.models.config.step import ConfigLayerCommandStep
 def decompress_step(
     *,
     input_file: str,
-    decompress_type: Optional[str] = 'unzip',
-    decompress_contents_mask: Optional[str] = '',
+    decompress_type: Literal['unzip'] = 'unzip',
+    decompress_contents_mask: str = '',
 ) -> ConfigLayerCommandStep:
     if decompress_type != 'unzip':
         raise NotImplementedError(

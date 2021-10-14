@@ -1,5 +1,5 @@
 from qgreenland.config.datasets.caff import caff_char as dataset
-from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
@@ -17,7 +17,7 @@ caff_char = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
-        *zipped_vector(
+        *compressed_vector(
             input_file='{input_dir}/Arctic_Char_2010.zip',
             output_file='{output_dir}/final.gpkg',
             ogr2ogr_args=(

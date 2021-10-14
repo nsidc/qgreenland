@@ -1,5 +1,3 @@
-from typing import List
-
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -13,7 +11,7 @@ def warp_and_cut(
     cut_file,
     reproject_args=(),
     cut_args=(),
-) -> List[ConfigLayerCommandStep]:
+) -> list[ConfigLayerCommandStep]:
     reproject = ConfigLayerCommandStep(
         args=[
             'gdalwarp',

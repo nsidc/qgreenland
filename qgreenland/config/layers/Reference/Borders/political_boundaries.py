@@ -1,10 +1,7 @@
 import qgreenland.config.datasets.political_boundaries as dataset
-from qgreenland.config.helpers.steps.ogr2ogr import (
-    STANDARD_OGR2OGR_ARGS,
-)
-from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 nunagis_municipalities_population = ConfigLayer(
@@ -21,13 +18,9 @@ nunagis_municipalities_population = ConfigLayer(
         asset=dataset.nunagis_pop2019_municipalities.assets['only'],
     ),
     steps=[
-        ConfigLayerCommandStep(
-            args=[
-                'ogr2ogr',
-                *STANDARD_OGR2OGR_ARGS,
-                '{output_dir}/nunagis_municipalities_population.gpkg',
-                '{input_dir}/fetched.geojson',
-            ],
+        *ogr2ogr(
+            input_file='{input_dir}/fetched.geojson',
+            output_file='{output_dir}/nunagis_municipalities_population.gpkg',
         ),
     ],
 )
@@ -46,7 +39,7 @@ ne_states_provinces = ConfigLayer(
         asset=dataset.ne_states_provinces.assets['only'],
     ),
     steps=[
-        *zipped_vector(
+        *compressed_vector(
             input_file='{input_dir}/ne_10m_admin_1_states_provinces.zip',
             output_file='{output_dir}/ne_states_provinces.gpkg',
         ),
@@ -66,7 +59,7 @@ ne_countries = ConfigLayer(
         asset=dataset.ne_countries.assets['only'],
     ),
     steps=[
-        *zipped_vector(
+        *compressed_vector(
             input_file='{input_dir}/ne_10m_admin_0_countries.zip',
             output_file='{output_dir}/ne_countries.gpkg',
         ),

@@ -1,8 +1,8 @@
 from qgreenland.config.datasets.racmo import racmo_qgreenland_jan2021 as dataset
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
-from qgreenland.config.helpers.steps.zipped_vector import zipped_vector
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -22,7 +22,7 @@ racmo_wind_vectors = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
-        *zipped_vector(
+        *compressed_vector(
             input_file='{input_dir}/RACMO_QGreenland_Jan2021.zip',
             output_file='{output_dir}/racmo_wind_vectors.gpkg',
             vector_filename='wind_vector_points.gpkg',
