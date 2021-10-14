@@ -26,7 +26,7 @@ LAYER_PARAMS = {
             Order no 1004 dated 15.10.2004."""
         ),
         'input_filename': POLYLINE_FILE,
-        'layer_name': 'Boundary_baseline',
+        'layer_name': 'Boundary_basisline',
     },
     '3nm_polyline': {
         'title': '3NM (polyline)',

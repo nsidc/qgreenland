@@ -4050,7 +4050,7 @@
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "-where",
-                        "\"\"layer\" = 'Boundary_baseline'\"",
+                        "\"\"layer\" = 'Boundary_basisline'\"",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
                       ],
