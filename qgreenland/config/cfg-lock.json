@@ -6954,6 +6954,45 @@
           },
           {
             "layer_cfg": {
+              "description": "Ice slab thickness, in meters, in the top 20 meters of firn. Only\nslabs between 1 and 16 meters are included.",
+              "id": "firn_ice_layer_thicknesses",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "macferrin_etal_firn_ice_layer_thicknesses"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT\n                        geom,\n                        fid,\n                        Track_name,\n                        CAST(Tracenumber AS INTEGER) as Tracenumber,\n                        lat,\n                        lon,\n                        CAST(alongtrack_distance_m AS REAL) as alongtrack_distance_m,\n                        CAST(\"20m_ice_content_m\" AS REAL) as \"20m_ice_content_m\"\n                    FROM Ice_Layer_Output_Thicknesses'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/Ice_Layer_Output_Thicknesses.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "firn_ice_points",
+              "tags": [],
+              "title": "Ice slab thickness in firn ice 2010-2014"
+            },
+            "name": "firn_ice_layer_thicknesses"
+          },
+          {
+            "layer_cfg": {
               "description": "Locations used in surface mass balance observations.",
               "id": "machguth_massbalance_locations",
               "in_package": true,
