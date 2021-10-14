@@ -1,10 +1,10 @@
 from typing import Literal, cast
 
 from qgreenland.config.datasets.lonlat import lonlat as dataset
-from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
+from qgreenland.config.project import project
 from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 def _make_lonlat_layer(
@@ -39,18 +39,14 @@ def _make_lonlat_layer(
             asset=asset,
         ),
         steps=[
-            # TODO: Extract as ogr2ogr segmentize helper?
-            ConfigLayerCommandStep(
-                args=[
-                    'ogr2ogr',
-                    *STANDARD_OGR2OGR_ARGS,
-                    '-clipdst',
-                    '{assets_dir}/latitude_shape_40_degrees.geojson',
+            *ogr2ogr(
+                input_file='{input_dir}/' + f'{asset.filepath.eval().name}',
+                output_file='{output_dir}/' + f'{asset.filepath.eval().stem}.gpkg',
+                boundary_filepath=project.boundaries['background'].filepath,
+                ogr2ogr_args=(
                     '-segmentize',
                     f'{segment_max_distance}',
-                    '{output_dir}/' + f'{asset.filepath.eval().stem}.gpkg',
-                    '{input_dir}/' + f'{asset.filepath.eval().name}',
-                ],
+                ),
             ),
         ],
     )

@@ -1,7 +1,6 @@
 from qgreenland.config.datasets.nunagis_protected_areas import nunagis_protected_areas
-from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 _nunagis_protected_areas_params = {
@@ -77,10 +76,10 @@ def _make_layer(
             asset=nunagis_protected_areas.assets['only'],
         ),
         steps=[
-            ConfigLayerCommandStep(
-                args=[
-                    'ogr2ogr',
-                    *STANDARD_OGR2OGR_ARGS,
+            *ogr2ogr(
+                input_file='{input_dir}/fetched.geojson',
+                output_file='{output_dir}/' + f'{layer_id}.gpkg',
+                ogr2ogr_args=(
                     '-dialect', 'sqlite',
                     '-sql',
                     f"""\"SELECT
@@ -91,11 +90,9 @@ def _make_layer(
                           CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'
                         ) as last_edited_date,
                         *
-                        FROM ESRIJSON
-                        WHERE {where_sql}\" """,
-                    '{output_dir}/' + f'{layer_id}.gpkg',
-                    '{input_dir}/fetched.geojson',
-                ],
+                    FROM ESRIJSON
+                    WHERE {where_sql}\" """,
+                ),
             ),
         ],
     )

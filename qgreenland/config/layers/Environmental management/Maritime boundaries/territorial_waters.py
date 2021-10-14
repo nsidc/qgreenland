@@ -1,12 +1,9 @@
 from qgreenland.config.datasets.greenland_territorial_waters import (
     greenland_territorial_waters as dataset,
 )
-from qgreenland.config.helpers.steps.ogr2ogr import (
-    STANDARD_OGR2OGR_ARGS,
-)
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 POLYLINE_FILE = 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
@@ -82,16 +79,14 @@ layers = [
             asset=dataset.assets['only'],
         ),
         steps=[
-            ConfigLayerCommandStep(
-                args=[
-                    'ogr2ogr',
-                    *STANDARD_OGR2OGR_ARGS,
-                    '-clipdst', project.boundaries['data'].filepath,
-                    '-makevalid',
-                    '-where', f'"\"layer\" = \'{params["layer_name"]}\'"',
-                    '{output_dir}/final.gpkg',
-                    '{input_dir}/' + params['input_filename'],
-                ],
+            *ogr2ogr(
+                input_file='{input_dir}/' + params['input_filename'],
+                output_file='{output_dir}/final.gpkg',
+                boundary_filepath=project.boundaries['background'].filepath,
+                ogr2ogr_args=(
+                    '-where',
+                    f'"\"layer\" = \'{params["layer_name"]}\'"',
+                ),
             ),
         ],
     )

@@ -228,6 +228,8 @@ def get_final_layer_filepath(
     return layer_fp
 
 
+# TODO: Rename this function and the `gdal` environment. They are generic to
+# running commands, not specific to "ogr" or "gdal".
 def run_ogr_command(cmd_list):
     cmd = ['.', 'activate', 'gdal', '&&']
     cmd.extend(cmd_list)

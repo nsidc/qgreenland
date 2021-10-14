@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import List, Union
+from typing import Union
 
 from pydantic import AnyUrl, Field, validator
 
@@ -19,7 +19,7 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
     #     https://2.python-requests.org/en/master/api/#requests.Session.request
     verify_tls: bool = True
 
-    urls: List[AnyUrl]
+    urls: list[AnyUrl]
 
 
 # TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a

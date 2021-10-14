@@ -1,5 +1,5 @@
-from qgreenland.config.constants import PROJECT_CRS
 from qgreenland.config.datasets import wmm
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -75,16 +75,14 @@ now) antipodal.
                     '>', '{output_dir}/' + f'{partial_filename}_with_header.xy',
                 ],
             ),
-            ConfigLayerCommandStep(
-                args=[
-                    'ogr2ogr',
+            *ogr2ogr(
+                input_file='CSV:{input_dir}/' + f'{partial_filename}_with_header.xy',
+                output_file='{output_dir}/geomagnetic_north_pole.gpkg',
+                ogr2ogr_args=(
                     '-oo', 'X_POSSIBLE_NAMES=longitude',
                     '-oo', 'Y_POSSIBLE_NAMES=latitude',
                     '-s_srs', 'EPSG:4326',
-                    '-t_srs', PROJECT_CRS,
-                    '{output_dir}/geomagnetic_north_pole.gpkg',
-                    'CSV:{input_dir}/' + f'{partial_filename}_with_header.xy',
-                ],
+                ),
             ),
         ],
     )
