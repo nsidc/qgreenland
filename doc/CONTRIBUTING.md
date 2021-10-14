@@ -201,11 +201,19 @@ https://urs.earthdata.nasa.gov/users/new
 
 ## Set-up for local development (required for OSX)
 
-Create a [docker-compose override](https://docs.docker.com/compose/extends/#understanding-multiple-compose-files) file for `./logs` and `./appdata`.
+Create a [docker-compose
+override](https://docs.docker.com/compose/extends/#understanding-multiple-compose-files)
+file for `./logs` and `./appdata`.
 
 ```
 ln -s docker-compose.local.yml docker-compose.override.yml
 ```
+
+WARNING: Docker Desktop for OSX has some "gotchas". Running with "Use gRPC
+FUSE for file sharing" _enabled_ is recommended. You may see indefinite hangs
+otherwise. Please reference the Docker documentation for more info:
+
+https://docs.docker.com/desktop/mac/
 
 
 ## Starting the stack locally
@@ -397,17 +405,3 @@ QGreenland package to various mirrors.
 Creating a "Release" in GitHub will trigger archival of our code in Zenodo and
 issuance of a new DOI. Do _not_ create a "Release" in GitHub until a new
 version of the package has been successfully built and pushed to mirrors.
-
-
-# Troubleshooting
-
-## QGIS won't start on OSX Catalina
-
-QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of
-this app needs to update it to work with this version of macOS. Contact the
-developer for more information.`, then, in your OSX menus, try:
-
-- "Security and Privacy"
-- "Allow apps downloaded from..."
-- "App Store and identified developers"
-- Locate QGIS here and select "Open anyway"
