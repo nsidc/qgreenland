@@ -289,6 +289,26 @@
         "title": "Greenland Ecosystem Monitoring - Location and Description of Research Stations"
       }
     },
+    "glims": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://www.glims.org/download/glims_db_20200630.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "glims",
+      "metadata": {
+        "abstract": "Global Land Ice Measurements from Space (GLIMS) is an\ninternational initiative with the goal of repeatedly surveying the\nworld's estimated 200,000 glaciers. GLIMS is characterizing and\ncategorizing the many Greenland peripheral glaciers and ice caps,\nrather than the contiguous ice sheet region.\n\nThe GLIMS initiative has created a unique glacier inventory, storing\ninformation about the extent and rates of change of all the world's\nmountain glaciers and ice caps. GLIMS uses data collected by the\nAdvanced Spaceborne Thermal Emission and Reflection Radiometer\n(ASTER) instrument aboard the Terra satellite and the LANDSAT series\nof satellites, along with historical observations. The GLIMS Glacier\nDatabase was built up from data contributions from many\nglaciological institutions, which are managed by Regional\nCoordinators, who coordinate the production of glacier mapping\nresults for their particular region. The GLIMS Glacier Database\nprovides students, educators, scientists, and the public with\nreliable glacier data from these analyses. New glacier data are\ncontinually being added to the database.",
+        "citation": {
+          "text": "GLIMS and NSIDC (2005, updated 2013): Global Land Ice\nMeasurements from Space glacier database.  Compiled and made\navailable by the international GLIMS community and the National\nSnow and Ice Data Center, Boulder CO, U.S.A.\nDOI:10.7265/N5V98602",
+          "url": "https://doi.org/10.7265/N5V98602"
+        },
+        "title": "Global Land Ice Measurements from Space glacier database"
+      }
+    },
     "greenland_territorial_waters": {
       "assets": {
         "only": {
@@ -5080,6 +5100,110 @@
           {
             "children": [
               {
+                "layer_cfg": {
+                  "description": "Points representing GLIMS glaciers and locations of interest.",
+                  "id": "glims_points",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "glims"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "7z",
+                        "x",
+                        "{input_dir}/*.zip",
+                        "-o{output_dir}",
+                        "glims_download_82381/*_points.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/glims_download_82381/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Peripherical glacier/feature locations"
+                },
+                "name": "glims_points"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons represent GLIMS features, typically glacier outlines, but\nalso including regions of glacial lakes, debris cover, rocks within the\nglacier (nunataks), and other polygonal features.",
+                  "id": "glims_polygons",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "glims"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "7z",
+                        "x",
+                        "{input_dir}/*.zip",
+                        "-o{output_dir}",
+                        "glims_download_82381/*_polygons.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/glims_download_82381/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Peripherical glacier/feature outlines"
+                },
+                "name": "glims_polygons"
+              }
+            ],
+            "name": "Global land ice measurements from space (GLIMS)",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
                 "children": [
                   {
                     "layer_cfg": {
@@ -7596,6 +7720,45 @@
               "title": "Ice cores"
             },
             "name": "ice_cores"
+          },
+          {
+            "layer_cfg": {
+              "description": "Ice slab thickness, in meters, in the top 20 meters of firn. Only\nslabs between 1 and 16 meters are included.",
+              "id": "firn_ice_layer_thicknesses",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "macferrin_etal_firn_ice_layer_thicknesses"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT\n                        geom,\n                        fid,\n                        Track_name,\n                        CAST(Tracenumber AS INTEGER) as Tracenumber,\n                        lat,\n                        lon,\n                        CAST(alongtrack_distance_m AS REAL) as alongtrack_distance_m,\n                        CAST(\"20m_ice_content_m\" AS REAL) as \"20m_ice_content_m\"\n                    FROM Ice_Layer_Output_Thicknesses'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/Ice_Layer_Output_Thicknesses.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "firn_ice_points",
+              "tags": [],
+              "title": "Ice slab thickness in firn ice 2010-2014"
+            },
+            "name": "firn_ice_layer_thicknesses"
           },
           {
             "layer_cfg": {
