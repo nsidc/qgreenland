@@ -1,7 +1,6 @@
 import os
 from enum import Enum
 from pathlib import Path
-from typing import Dict
 
 from qgreenland._typing import (
     QgsLayerProviderType,
@@ -48,7 +47,7 @@ REQUEST_TIMEOUT = 20
 # URS stuff
 URS_COOKIE = 'urs_user_already_logged'
 
-PROVIDER_LAYERTYPE_MAPPING: Dict[QgsLayerProviderType, QgsLayerType] = {
+PROVIDER_LAYERTYPE_MAPPING: dict[QgsLayerProviderType, QgsLayerType] = {
     'gdal': 'Raster',
     'wms': 'Raster',
     'wfs': 'Vector',
