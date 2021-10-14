@@ -53,6 +53,6 @@ supraglacial_lakes = ConfigLayer(
                     row
                 FROM greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1\" """,
             ),
-        )
+        ),
     ],
 )

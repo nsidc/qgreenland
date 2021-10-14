@@ -2,7 +2,6 @@ from qgreenland.config.datasets.ice_cores import ice_cores as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 ice_cores = ConfigLayer(

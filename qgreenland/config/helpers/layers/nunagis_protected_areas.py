@@ -1,7 +1,6 @@
 from qgreenland.config.datasets.nunagis_protected_areas import nunagis_protected_areas
-from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr 
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 _nunagis_protected_areas_params = {
@@ -93,7 +92,7 @@ def _make_layer(
                         *
                     FROM ESRIJSON
                     WHERE {where_sql}\" """,
-                )
+                ),
             ),
         ],
     )

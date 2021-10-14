@@ -4,7 +4,6 @@ from qgreenland.config.datasets.greenland_territorial_waters import (
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 POLYLINE_FILE = 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
@@ -87,7 +86,7 @@ layers = [
                 ogr2ogr_args=(
                     '-where',
                     f'"\"layer\" = \'{params["layer_name"]}\'"',
-                )
+                ),
             ),
         ],
     )

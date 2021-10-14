@@ -1,11 +1,10 @@
 from typing import Literal, cast
 
 from qgreenland.config.datasets.lonlat import lonlat as dataset
-from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr 
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 def _make_lonlat_layer(
