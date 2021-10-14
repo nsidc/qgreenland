@@ -136,7 +136,7 @@ def _make_masked_racmo_layer(
         decompress_contents_mask: str,
         variable: str,
         nodata: int = -9999,
-        gdal_edit_args: list[str] = [],
+        gdal_edit_args=(),
 ) -> ConfigLayer:
     return ConfigLayer(
         id=layer_id,
@@ -149,8 +149,6 @@ def _make_masked_racmo_layer(
             asset=dataset.assets['only'],
         ),
         steps=[
-            # - unzip (needs data file AND Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc
-            # TODO: make this return a list of one step like e.g., build_overviews?
             decompress_step(
                 input_file='{input_dir}/RACMO_QGreenland_Jan2021.zip',
                 decompress_contents_mask=decompress_contents_mask,
@@ -165,7 +163,10 @@ def _make_masked_racmo_layer(
                     f'--NoDataValue={nodata}',
                     '--outfile={output_dir}/' + f'{variable}.tif',
                     '-A', 'NETCDF:{input_dir}/' + f'{input_filename}:{variable}',
-                    '-B', 'NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask',
+                    '-B', (
+                        'NETCDF:{input_dir}/'
+                        'Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask'
+                    ),
                 ],
             ),
             # TODO: create a helper for gdal_edit.
@@ -215,7 +216,7 @@ def make_racmo_layers() -> list[ConfigLayer]:
     wind_speed = _make_racmo_wind_speed()
     layers = [wind_vectors, wind_speed]
     layers.extend(
-        _make_masked_racmo_layers()
+        _make_masked_racmo_layers(),
     )
 
     return layers
@@ -264,7 +265,8 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
                             'gdal_translate',
                             '-a_srs', project.crs,
                             '-a_ullr', '-639456.0 -655096.0 856544.0 -3355096.0',
-                            'NETCDF:{input_dir}/' + f"{params['extract_filename']}:{params['variable']}",
+                            ('NETCDF:{input_dir}/'
+                             + f"{params['extract_filename']}:{params['variable']}"),
                             '{output_dir}/' + f"{params['variable']}.tif",
                         ],
                     ),
@@ -273,7 +275,7 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
                         output_file='{output_dir}/' + f'{layer_id}.tif',
                     ),
                 ],
-            )
+            ),
         )
 
     racmo_topography = _make_masked_racmo_layer(
@@ -288,7 +290,7 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
         input_filename='Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc',
         variable='Topography',
         gdal_edit_args=[
-            '-a_ullr', '-639456.0 -655096.0 856544.0 -3355096.0'
+            '-a_ullr', '-639456.0 -655096.0 856544.0 -3355096.0',
         ],
     )
 
@@ -300,5 +302,5 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
 RACMO_SUPPLEMENTAL_LAYER_ORDER = [
     'racmo_promicemask',
     'racmo_grounded_ice',
-    'racmo_topography'
+    'racmo_topography',
 ]
