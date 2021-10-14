@@ -228,13 +228,15 @@ def get_final_layer_filepath(
     return layer_fp
 
 
-# TODO: Rename this function and the `gdal` environment. They are generic to
-# running commands, not specific to "ogr" or "gdal".
+# TODO: Rename this function. It is generic to running commands, not specific to
+# "ogr".
 def run_ogr_command(cmd_list):
-    cmd = ['.', 'activate', 'gdal', '&&']
+    cmd = ['.', 'activate', 'qgreenland-cmd', '&&']
     cmd.extend(cmd_list)
 
-    # Hack. The activation of the gdal environment does not work as a list.
+    # Hack. The activation of the conda environment does not work as a list.
+    # `subprocess.run(..., shell=True, ...)` enables running commands from
+    # strings.
     cmd_str = ' '.join(cmd)
 
     logger.info('Running command:')

@@ -1,4 +1,4 @@
-name: gdal
+name: qgreenland-cmd
 channels:
   - conda-forge
   - nodefaults
