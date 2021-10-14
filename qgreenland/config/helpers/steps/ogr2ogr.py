@@ -7,6 +7,8 @@ STANDARD_OGR2OGR_ARGS = [
 ]
 
 
+# TODO: Should "enable_partial_reprojection" be a generic "env" parameter?
+# Key/value mapping?
 def ogr2ogr(
     *,
     input_file: str,
