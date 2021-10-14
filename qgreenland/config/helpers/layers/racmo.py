@@ -222,6 +222,9 @@ def make_racmo_layers() -> list[ConfigLayer]:
     return layers
 
 
+RACMO_ULLR = '-639456.0 -655096.0 856544.0 -3355096.0'
+
+
 def make_racmo_supplemental_layers() -> list[ConfigLayer]:
     layers = []
 
@@ -264,7 +267,7 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
                         args=[
                             'gdal_translate',
                             '-a_srs', project.crs,
-                            '-a_ullr', '-639456.0 -655096.0 856544.0 -3355096.0',
+                            '-a_ullr', RACMO_ULLR,
                             ('NETCDF:{input_dir}/'
                              + f"{params['extract_filename']}:{params['variable']}"),
                             '{output_dir}/' + f"{params['variable']}.tif",
@@ -290,7 +293,7 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
         input_filename='Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc',
         variable='Topography',
         gdal_edit_args=[
-            '-a_ullr', '-639456.0 -655096.0 856544.0 -3355096.0',
+            '-a_ullr', RACMO_ULLR,
         ],
     )
 
