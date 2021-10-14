@@ -4314,8 +4314,8 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Averaged annual mean wind speed in meters per second from RACMO2.3p2\nfor the period 1958-2019.",
-                  "id": "racmo_wind_speed",
+                  "description": "Averaged annual total precipitation in milimeters of water equivilent\n(mm w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole\nice sheet and peripheral ice caps.",
+                  "id": "racmo_precip",
                   "in_package": true,
                   "input": {
                     "asset": {
@@ -4333,44 +4333,64 @@
                         "{input_dir}/RACMO_QGreenland_Jan2021.zip",
                         "-d",
                         "{output_dir}",
-                        "magnitudes.nc"
+                        "precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
-                        "gdalwarp",
-                        "-t_srs",
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/precip.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:precip",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/precip.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
                         "EPSG:3413",
-                        "{input_dir}/magnitudes.nc",
-                        "{output_dir}/warped.tif"
+                        "{output_dir}/edited.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/racmo_wind_speed.tif"
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_precip.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_precip.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "racmo_wind_speed",
+                  "style": "racmo_precip",
                   "tags": [],
-                  "title": "Annual mean wind speed 1958-2019 (5km)"
+                  "title": "Total precipitation 1958-2019 (1km)"
                 },
-                "name": "racmo_wind_speed"
+                "name": "racmo_precip"
               },
               {
                 "layer_cfg": {
-                  "description": "Averaged annual mean wind direction in meters per second from\nRACMO2.3p2 for the period 1958-2019.",
-                  "id": "racmo_wind_vectors",
+                  "description": "Averaged annual snowfall in milimeters of water equivilent (mm w.e.) from\nRACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and\nperipheral ice caps.",
+                  "id": "racmo_snowfall",
                   "in_package": true,
                   "input": {
                     "asset": {
@@ -4388,37 +4408,662 @@
                         "{input_dir}/RACMO_QGreenland_Jan2021.zip",
                         "-d",
                         "{output_dir}",
-                        "wind_vector_points.gpkg"
+                        "snowfall.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/snowfall.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/snowfall.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:snowfall",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/snowfall.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/racmo_wind_vectors.gpkg",
-                        "{input_dir}/wind_vector_points.gpkg"
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_snowfall.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_snowfall.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "racmo_wind_vectors",
+                  "style": "racmo_snowfall",
                   "tags": [],
-                  "title": "Annual mean wind vectors 1958-2019 (5km)"
+                  "title": "Snowfall 1958-2019 (1km)"
                 },
-                "name": "racmo_wind_vectors"
+                "name": "racmo_snowfall"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) from\nRACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and\nperipheral ice caps.",
+                  "id": "racmo_snowmelt",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "snowmelt.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/snowmelt.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/snowmelt.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:snowmelt",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/snowmelt.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_snowmelt.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_snowmelt.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_snowmelt",
+                  "tags": [],
+                  "title": "Snowmelt 1958-2019 (1km)"
+                },
+                "name": "racmo_snowmelt"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual runoff in milimeters of water equivilent (mm w.e.) from\nRACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and\nperipheral ice caps.",
+                  "id": "racmo_runoff",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "runoff.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/runoff.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/runoff.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:runoff",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/runoff.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_runoff.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_runoff.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_runoff",
+                  "tags": [],
+                  "title": "Runoff 1958-2019 (1km)"
+                },
+                "name": "racmo_runoff"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual sublimation in milimeters of water equivilent (mm w.e.)\nfrom RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and\nperipheral ice caps.",
+                  "id": "racmo_subl",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "subl.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/subl.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/subl.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:subl",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/subl.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_subl.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_subl.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_subl",
+                  "tags": [],
+                  "title": "Sublimation 1958-2019 (1km)"
+                },
+                "name": "racmo_subl"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual snow drift erosion in milimeters of water equivilent (mm\nw.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole ice\nsheet and peripheral ice caps.",
+                  "id": "racmo_sndiv",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "sndiv.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/sndiv.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/sndiv.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:sndiv",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/sndiv.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_sndiv.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_sndiv.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_sndiv",
+                  "tags": [],
+                  "title": "Snow drift erosion 1958-2019 (1km)"
+                },
+                "name": "racmo_sndiv"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual mean temperature at 2m in degrees Kelvin from RACMO2.3p2\nfor the period 1958-2019.",
+                  "id": "racmo_t2m",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "t2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/t2m.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/t2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:t2m",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/t2m.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_t2m.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_t2m.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_t2m",
+                  "tags": [],
+                  "title": "Annual mean temperature at 2m 1958-2019 (1km)"
+                },
+                "name": "racmo_t2m"
+              },
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland\nperipheral ice caps; 0 = Ocean.",
+                      "id": "racmo_promicemask",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "racmo_qgreenland_jan2021"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            "Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3413",
+                            "-a_ullr",
+                            "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask",
+                            "{output_dir}/Promicemask.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/Promicemask.tif",
+                            "{output_dir}/racmo_promicemask.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/racmo_promicemask.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "racmo_promicemask",
+                      "tags": [],
+                      "title": "PROMICE mask (1km)"
+                    },
+                    "name": "racmo_promicemask"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Mask of grounded ice. 1 = grounded.",
+                      "id": "racmo_grounded_ice",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "racmo_qgreenland_jan2021"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            "Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3413",
+                            "-a_ullr",
+                            "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc:grounded_ice",
+                            "{output_dir}/grounded_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/grounded_ice.tif",
+                            "{output_dir}/racmo_grounded_ice.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/racmo_grounded_ice.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "racmo_promicemask",
+                      "tags": [],
+                      "title": "Grounded ice mask (1km)"
+                    },
+                    "name": "racmo_grounded_ice"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Ice sheet surface elevation in meters upscaled from the Greenland Mapping\nProject (GIMP) Digital Elevation Model.",
+                      "id": "racmo_topography",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "racmo_qgreenland_jan2021"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            "Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                            "--NoDataValue=-9999",
+                            "--outfile={output_dir}/Topography.tif",
+                            "-A",
+                            "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Topography",
+                            "-B",
+                            "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/Topography.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_srs",
+                            "EPSG:3413",
+                            "-a_ullr",
+                            "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/racmo_Topography.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/racmo_Topography.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "racmo_topography",
+                      "tags": [],
+                      "title": "Ice surface topography (1km)"
+                    },
+                    "name": "racmo_topography"
+                  }
+                ],
+                "name": "Supplement",
+                "settings": {
+                  "expand": false,
+                  "order": [
+                    "layers.py:racmo_promicemask",
+                    "layers.py:racmo_grounded_ice",
+                    "layers.py:racmo_topography"
+                  ],
+                  "show": false
+                }
               }
             ],
             "name": "RACMO model output",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                "layers.py:racmo_precip",
+                "layers.py:racmo_snowfall",
+                "layers.py:racmo_snowmelt",
+                "layers.py:racmo_runoff",
+                "layers.py:racmo_subl",
+                "layers.py:racmo_sndiv",
+                "layers.py:racmo_t2m",
+                "Supplement"
+              ],
               "show": false
             }
           }
