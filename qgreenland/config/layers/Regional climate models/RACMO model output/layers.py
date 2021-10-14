@@ -83,6 +83,9 @@ racmo_precip = ConfigLayer(
                 ' Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
             ),
         ),
+        # Apply the promice mask. The `Promicemask` values are 3 = Greenland ice
+        # sheet; 2,1 = Greenland peripheral ice caps; 0 = Ocean. This step masks
+        # out the ocean as 'nodata'.
         ConfigLayerCommandStep(
             args=[
                 'gdal_calc.py',
