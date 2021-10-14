@@ -2,7 +2,6 @@ from qgreenland.config.datasets.asiaq_placenames import asiaq_private_placenames
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 towns_and_settlements = ConfigLayer(
     id='populated_places',

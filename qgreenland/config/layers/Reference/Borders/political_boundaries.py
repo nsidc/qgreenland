@@ -2,7 +2,6 @@ import qgreenland.config.datasets.political_boundaries as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 nunagis_municipalities_population = ConfigLayer(

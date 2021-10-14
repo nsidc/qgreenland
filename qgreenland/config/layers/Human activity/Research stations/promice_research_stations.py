@@ -3,7 +3,6 @@ from qgreenland.config.datasets.promice import (
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 promice_layer_params = {
     'promice_research_stations': {
@@ -53,7 +52,7 @@ layers = [
                     '-oo', 'X_POSSIBLE_NAMES=lon',
                     '-oo', 'Y_POSSIBLE_NAMES=lat',
                 ),
-            )
+            ),
         ],
     )
 

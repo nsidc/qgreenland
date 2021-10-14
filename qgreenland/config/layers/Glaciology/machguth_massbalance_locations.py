@@ -4,7 +4,6 @@ from qgreenland.config.datasets.machguth_massbalance import (
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 machguth_massbalance_locations = ConfigLayer(

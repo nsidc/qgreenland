@@ -1,7 +1,6 @@
 from qgreenland.config.datasets.arctic_circle import arctic_circle as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 arctic_circle = ConfigLayer(
@@ -26,7 +25,7 @@ arctic_circle = ConfigLayer(
             ogr2ogr_args=(
                 '-segmentize', '1',
                 '-s_srs', 'EPSG:4326',
-            )
+            ),
         ),
     ],
 )
