@@ -22,6 +22,7 @@ def compressed_vector(
     output_file: str,
     vector_filename: str = '*.shp',
     decompress_step_kwargs=default_decompress_step_kwargs,
+    # TODO: boundary_filepath, ogr2ogr_args -> ogr2ogr_kwargs?
     ogr2ogr_args: tuple[str, ...] = (),
     boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
 ) -> list[ConfigLayerCommandStep]:
