@@ -119,59 +119,84 @@ _masked_racmo_raster_params = {
 }
 
 
+def _make_masked_racmo_layer(
+        *,
+        layer_id: str,
+        title: str,
+        description: str,
+        style: str,
+        input_filename: str,
+        decompress_contents_mask: str,
+        variable: str,
+        nodata: int = -9999,
+        gdal_edit_args: list[str] = [],
+) -> ConfigLayer:
+    return ConfigLayer(
+        id=layer_id,
+        title=title,
+        description=description,
+        tags=[],
+        style=style,
+        input=ConfigLayerInput(
+            dataset=dataset,
+            asset=dataset.assets['only'],
+        ),
+        steps=[
+            # - unzip (needs data file AND Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc
+            # TODO: make this return a list of one step like e.g., build_overviews?
+            decompress_step(
+                input_file='{input_dir}/RACMO_QGreenland_Jan2021.zip',
+                decompress_contents_mask=decompress_contents_mask,
+            ),
+            # Apply the promice mask. The `Promicemask` values are 3 = Greenland ice
+            # sheet; 2,1 = Greenland peripheral ice caps; 0 = Ocean. This step masks
+            # out the ocean as 'nodata'.
+            ConfigLayerCommandStep(
+                args=[
+                    'gdal_calc.py',
+                    f'--calc="numpy.where((B != 0), A, {nodata})"',
+                    f'--NoDataValue={nodata}',
+                    '--outfile={output_dir}/' + f'{variable}.tif',
+                    '-A', 'NETCDF:{input_dir}/' + f'{input_filename}:{variable}',
+                    '-B', 'NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask',
+                ],
+            ),
+            # TODO: create a helper for gdal_edit.
+            ConfigLayerCommandStep(
+                args=[
+                    'cp', '{input_dir}/' + f'{variable}.tif', '{output_dir}/edited.tif',
+                    '&&',
+                    'gdal_edit.py',
+                    '-a_srs', project.crs,
+                    *gdal_edit_args,
+                    '{output_dir}/edited.tif',
+                ],
+            ),
+            *build_overviews(
+                input_file='{input_dir}/edited.tif',
+                output_file='{output_dir}/' + f'racmo_{variable}.tif',
+            ),
+        ],
+    )
+
+
 def _make_masked_racmo_layers() -> list[ConfigLayer]:
     layers = []
     for layer_id, params in _masked_racmo_raster_params.items():
         variable = layer_id.split('_')[1]
+        input_filename = f'{variable}.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
         layers.append(
-            ConfigLayer(
-                id=layer_id,
+            _make_masked_racmo_layer(
+                layer_id=layer_id,
                 title=params['title'],
                 description=params['description'],
-                tags=[],
                 style=layer_id,
-                input=ConfigLayerInput(
-                    dataset=dataset,
-                    asset=dataset.assets['only'],
+                decompress_contents_mask=(
+                    input_filename
+                    + ' Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
                 ),
-                steps=[
-                    # - unzip (needs data file AND Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc
-                    # TODO: make this return a list of one step like e.g., build_overviews?
-                    decompress_step(
-                        input_file='{input_dir}/RACMO_QGreenland_Jan2021.zip',
-                        decompress_contents_mask=(
-                            f'{variable}.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc'
-                            ' Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc'
-                        ),
-                    ),
-                    # Apply the promice mask. The `Promicemask` values are 3 = Greenland ice
-                    # sheet; 2,1 = Greenland peripheral ice caps; 0 = Ocean. This step masks
-                    # out the ocean as 'nodata'.
-                    ConfigLayerCommandStep(
-                        args=[
-                            'gdal_calc.py',
-                            '--calc="numpy.where((B != 0), A, -9999)"',
-                            '--NoDataValue=-9999',
-                            '--outfile={output_dir}/precip.tif',
-                            '-A', '{input_dir}/' + f'{variable}.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc',
-                            '-B', 'NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask',
-                        ],
-                    ),
-                    # TODO: create a helper for gdal_edit.
-                    ConfigLayerCommandStep(
-                        args=[
-                            'cp', '{input_dir}/precip.tif', '{output_dir}/edited.tif',
-                            '&&',
-                            'gdal_edit.py',
-                            '-a_srs', project.crs,
-                            '{output_dir}/edited.tif',
-                        ],
-                    ),
-                    *build_overviews(
-                        input_file='{input_dir}/edited.tif',
-                        output_file='{output_dir}/' + f'racmo_{variable}.tif',
-                    ),
-                ],
+                input_filename=input_filename,
+                variable=variable,
             ),
         )
 
@@ -179,3 +204,27 @@ def _make_masked_racmo_layers() -> list[ConfigLayer]:
 
 
 masked_racmo_layers = _make_masked_racmo_layers()
+
+
+# TODO: place these layers in 'Supplement' subdir.
+def _make_racmo_mask_layers() -> list[ConfigLayer]:
+    racmo_topography = _make_masked_racmo_layer(
+        layer_id='racmo_topography',
+        title='Ice surface topography (1km)',
+        description=(
+            """Ice sheet surface elevation in meters upscaled from the Greenland Mapping
+            Project (GIMP) Digital Elevation Model."""
+        ),
+        style='racmo_topography',
+        decompress_contents_mask='Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc',
+        input_filename='Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc',
+        variable='Topography',
+        gdal_edit_args=[
+            '-a_ullr', '-639456.0 -655096.0 856544.0 -3355096.0'
+        ],
+    )
+
+    return [racmo_topography]
+
+
+mask_layers = _make_racmo_mask_layers()
