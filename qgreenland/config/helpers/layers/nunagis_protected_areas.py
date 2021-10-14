@@ -94,10 +94,6 @@ def _make_layer(
                     FROM ESRIJSON
                     WHERE {where_sql}\" """,
                 )
-            )
-            ConfigLayerCommandStep(
-                args=[
-                ],
             ),
         ],
     )

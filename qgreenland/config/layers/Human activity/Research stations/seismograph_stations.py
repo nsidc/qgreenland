@@ -21,8 +21,8 @@ seismograph_stations = ConfigLayer(
     ),
     steps=[
         *ogr2ogr(
-            input_dir='{input_dir}/stations.kmz',
-            output_dir='{output_dir}/ogr2ogr.gpkg',
+            input_file='{input_dir}/stations.kmz',
+            output_file='{output_dir}/ogr2ogr.gpkg',
             boundary_filepath=project.boundaries['data'].filepath,
         ),
     ],

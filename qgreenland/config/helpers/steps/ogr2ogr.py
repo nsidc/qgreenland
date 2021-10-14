@@ -1,5 +1,6 @@
 from qgreenland.config.project import project
 from qgreenland.util.runtime_vars import EvalFilePath
+from qgreenland.models.config.step import ConfigLayerCommandStep
 
 STANDARD_OGR2OGR_ARGS = [
     '-lco', 'ENCODING=UTF-8',
