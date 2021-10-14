@@ -62,6 +62,7 @@ def _make_racmo_wind_speed() -> ConfigLayer:
         ],
     )
 
+
 # Params for racmo rasters that need to be masked via the Promicemask.
 _masked_racmo_raster_params = {
     'racmo_precip': {
@@ -120,6 +121,9 @@ _masked_racmo_raster_params = {
         ),
     },
 }
+
+
+RACMO_LAYER_ORDER = list(_masked_racmo_raster_params.keys())
 
 
 def _make_masked_racmo_layer(
@@ -291,3 +295,10 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
     layers.append(racmo_topography)
 
     return layers
+
+
+RACMO_SUPPLEMENTAL_LAYER_ORDER = [
+    'racmo_promicemask',
+    'racmo_grounded_ice',
+    'racmo_topography'
+]
