@@ -9,7 +9,7 @@ def decompress_step(
     decompress_type: Literal['unzip', '7z'] = 'unzip',
     decompress_contents_mask: str = '',
 ) -> ConfigLayerCommandStep:
-    if decompress_type == 'unzip': 
+    if decompress_type == 'unzip':
         return ConfigLayerCommandStep(
             args=[
                 'unzip',
