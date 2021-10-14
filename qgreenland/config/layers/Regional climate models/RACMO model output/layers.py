@@ -172,5 +172,7 @@ def _make_masked_racmo_layers() -> list[ConfigLayer]:
                         output_file='{output_dir}/' + f'racmo_{variable}.tif',
                     ),
                 ],
-            )
+            ),
         )
+
+    return layers
