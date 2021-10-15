@@ -289,6 +289,69 @@
         "title": "Greenland Ecosystem Monitoring - Location and Description of Research Stations"
       }
     },
+    "glacier_terminus": {
+      "assets": {
+        "2000_2001": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860172",
+          "id": "2000_2001"
+        },
+        "2005_2006": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860185",
+          "id": "2005_2006"
+        },
+        "2006_2007": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860176",
+          "id": "2006_2007"
+        },
+        "2007_2008": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860183",
+          "id": "2007_2008"
+        },
+        "2008_2009": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860171",
+          "id": "2008_2009"
+        },
+        "2012_2013": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860173",
+          "id": "2012_2013"
+        },
+        "2014_2015": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860177",
+          "id": "2014_2015"
+        },
+        "2015_2016": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860175",
+          "id": "2015_2016"
+        },
+        "2016_2017": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125860184",
+          "id": "2016_2017"
+        },
+        "glacier_ids": {
+          "collection_concept_id": "C1413880084-NSIDC_ECS",
+          "granule_ur": "SC:NSIDC-0642.001:125854253",
+          "id": "glacier_ids"
+        }
+      },
+      "id": "glacier_terminus",
+      "metadata": {
+        "abstract": "This data set, part of the NASA Making Earth System Data Records\nfor Use in Research Environments (MEaSUREs) program, provides\nGreenland outlet glacier terminus positions created from MEaSUREs\nSynthetic Aperture Radar (SAR) mosaics and Landsat 8 OLI imagery.",
+        "citation": {
+          "text": "Joughin, I., T. Moon, J. Joughin, and T. Black. 2015, 2017.\nMEaSUREs Annual Greenland Outlet Glacier Terminus Positions from\nSAR Mosaics, Version 1. [Indicate subset used]. Boulder,\nColorado USA. NASA National Snow and Ice Data Center Distributed\nActive Archive Center. doi:\nhttps://doi.org/10.5067/DC0MLBOCL3EL. 2020/02/12.",
+          "url": "https://doi.org/10.5067/DC0MLBOCL3EL"
+        },
+        "title": "MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics, Version 1"
+      }
+    },
     "greenland_territorial_waters": {
       "assets": {
         "only": {
@@ -16565,6 +16628,52 @@
         "children": [
           {
             "layer_cfg": {
+              "description": "Polygons representing the ocean.",
+              "id": "ocean",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "ocean_shape"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/ne_10m_ocean.zip",
+                    "-d",
+                    "{output_dir}",
+                    ""
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "ocean",
+              "tags": [],
+              "title": "Ocean"
+            },
+            "name": "ocean"
+          },
+          {
+            "layer_cfg": {
               "description": "Stylized shaded-relief map for providing a general sense of geography.",
               "id": "background",
               "in_package": true,
@@ -16653,6 +16762,7 @@
         "settings": {
           "expand": true,
           "order": [
+            "ocean_shape.py:ocean",
             "background.py:background"
           ],
           "show": true
