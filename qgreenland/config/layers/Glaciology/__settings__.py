@@ -10,5 +10,6 @@ settings = LayerGroupSettings(
         'Global land ice measurements from space (GLIMS)',
         'Surface elevation change',
         'Gravimetric mass balance',
+        'Ice sheet velocity',
     ],
 )
