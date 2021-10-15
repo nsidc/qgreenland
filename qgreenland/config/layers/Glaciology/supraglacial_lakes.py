@@ -1,7 +1,7 @@
 from qgreenland.config.datasets.esa_cci import (
     esa_cci_supraglacial_lakes as dataset,
 )
-from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -20,6 +20,7 @@ supraglacial_lakes = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
+        # TODO: *compressed_vector(...)??
         ConfigLayerCommandStep(
             args=[
                 'unzip',
@@ -28,11 +29,11 @@ supraglacial_lakes = ConfigLayer(
                 '-d', '{output_dir}',
             ],
         ),
-        ConfigLayerCommandStep(
-            args=[
-                'ogr2ogr',
-                *STANDARD_OGR2OGR_ARGS,
-                '-clipdst', project.boundaries['data'].filepath,
+        *ogr2ogr(
+            input_file='{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp',
+            output_file='{output_dir}/selected.gpkg',
+            boundary_filepath=project.boundaries['data'].filepath,
+            ogr2ogr_args=(
                 '-dialect', 'sqlite',
                 '-sql',
                 """\"SELECT
@@ -51,9 +52,7 @@ supraglacial_lakes = ConfigLayer(
                     tile,
                     row
                 FROM greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1\" """,
-                '{output_dir}/selected.gpkg',
-                '{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp',
-            ],
+            ),
         ),
     ],
 )

@@ -352,6 +352,26 @@
         "title": "MEaSUREs Annual Greenland Outlet Glacier Terminus Positions from SAR Mosaics, Version 1"
       }
     },
+    "glims": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://www.glims.org/download/glims_db_20200630.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "glims",
+      "metadata": {
+        "abstract": "Global Land Ice Measurements from Space (GLIMS) is an\ninternational initiative with the goal of repeatedly surveying the\nworld's estimated 200,000 glaciers. GLIMS is characterizing and\ncategorizing the many Greenland peripheral glaciers and ice caps,\nrather than the contiguous ice sheet region.\n\nThe GLIMS initiative has created a unique glacier inventory, storing\ninformation about the extent and rates of change of all the world's\nmountain glaciers and ice caps. GLIMS uses data collected by the\nAdvanced Spaceborne Thermal Emission and Reflection Radiometer\n(ASTER) instrument aboard the Terra satellite and the LANDSAT series\nof satellites, along with historical observations. The GLIMS Glacier\nDatabase was built up from data contributions from many\nglaciological institutions, which are managed by Regional\nCoordinators, who coordinate the production of glacier mapping\nresults for their particular region. The GLIMS Glacier Database\nprovides students, educators, scientists, and the public with\nreliable glacier data from these analyses. New glacier data are\ncontinually being added to the database.",
+        "citation": {
+          "text": "GLIMS and NSIDC (2005, updated 2013): Global Land Ice\nMeasurements from Space glacier database.  Compiled and made\navailable by the international GLIMS community and the National\nSnow and Ice Data Center, Boulder CO, U.S.A.\nDOI:10.7265/N5V98602",
+          "url": "https://doi.org/10.7265/N5V98602"
+        },
+        "title": "Global Land Ice Measurements from Space glacier database"
+      }
+    },
     "greenland_territorial_waters": {
       "assets": {
         "only": {
@@ -586,6 +606,23 @@
           "url": ""
         },
         "title": "Longitude and Latitude Lines"
+      }
+    },
+    "macferrin_etal_firn_ice_layer_thicknesses": {
+      "assets": {
+        "only": {
+          "access_instructions": "Available via the publication website, and contained in the\nSource Data Fig. 2 file.",
+          "id": "only"
+        }
+      },
+      "id": "macferrin_etal_firn_ice_layer_thicknesses",
+      "metadata": {
+        "abstract": "Citation publication abstract: In recent decades, meltwater\nrunoff has accelerated to become the dominant mechanism for mass\nloss in the Greenland ice sheet. In Greenland\u2019s high-elevation\ninterior, porous snow and firn accumulate; these can absorb surface\nmeltwater and inhibit runoff, but this buffering effect is limited\nif enough water refreezes near the surface to restrict percolation.\nHowever, the influence of refreezing on runoff from Greenland\nremains largely unquantified. Here we use firn cores, radar\nobservations and regional climate models to show that recent\nincreases in meltwater have resulted in the formation of\nmetres-thick, low-permeability \u2018ice slabs\u2019 that have expanded the\nGreenland ice sheet\u2019s total runoff area by 26 \u00b1 3 per cent since\n2001. Although runoff from the top of ice slabs has added less than\none millimetre to global sea-level rise so far, this contribution\nwill grow substantially as ice slabs expand inland in a warming\nclimate. Runoff over ice slabs is set to contribute 7 to 33\nmillimetres and 17 to 74 millimetres to global sea-level rise by\n2100 under moderate- and high-emissions scenarios,\nrespectively\u2014approximately double the estimated runoff from\nGreenland\u2019s high-elevation interior, as predicted by surface mass\nbalance models without ice slabs. Ice slabs will have an important\nrole in enhancing surface meltwater feedback processes,\nfundamentally altering the ice sheet\u2019s present and future\nhydrology.",
+        "citation": {
+          "text": "MacFerrin, M., Machguth, H., As, D.v. et al. Rapid expansion\nof Greenland\u2019s low-permeability ice slabs. Nature 573, 403\u2013407\n(2019). https://doi.org/10.1038/s41586-019-1550-3",
+          "url": "https://doi.org/10.1038/s41586-019-1550-3"
+        },
+        "title": "Rapid expansion of Greenland\u2019s low-permeability ice slabs"
       }
     },
     "machguth_etal_massbalance_obs_locations": {
@@ -1335,6 +1372,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/boundary.gpkg",
                         "{input_dir}/greenland_rectangle.geojson"
                       ],
@@ -1369,6 +1409,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/boundary.gpkg",
                         "{input_dir}/latitude_shape_40_degrees.geojson"
                       ],
@@ -1414,6 +1457,9 @@
                     "ENCODING=UTF-8",
                     "-t_srs",
                     "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
                     "-segmentize",
                     "1",
                     "-s_srs",
@@ -1456,6 +1502,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_0_25_degree.gpkg",
@@ -1496,6 +1543,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_0_5_degree.gpkg",
@@ -1536,6 +1584,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_1_degree.gpkg",
@@ -1576,6 +1625,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_10_degree.gpkg",
@@ -1616,6 +1666,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_15_degree.gpkg",
@@ -1656,6 +1707,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_2_degree.gpkg",
@@ -1696,6 +1748,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_20_degree.gpkg",
@@ -1736,6 +1789,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_30_degree.gpkg",
@@ -1776,6 +1830,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "1",
                         "{output_dir}/latitudes_5_degree.gpkg",
@@ -1826,6 +1881,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_0_5_degree.gpkg",
@@ -1866,6 +1922,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_1_degree.gpkg",
@@ -1906,6 +1963,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_10_degree.gpkg",
@@ -1946,6 +2004,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_15_degree.gpkg",
@@ -1986,6 +2045,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_2_degree.gpkg",
@@ -2026,6 +2086,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_20_degree.gpkg",
@@ -2066,6 +2127,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_3_degree.gpkg",
@@ -2106,6 +2168,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_30_degree.gpkg",
@@ -2146,6 +2209,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_45_degree.gpkg",
@@ -2186,6 +2250,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_5_degree.gpkg",
@@ -2226,6 +2291,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-segmentize",
                         "100",
                         "{output_dir}/longitudes_90_degree.gpkg",
@@ -2328,10 +2394,11 @@
                     "ENCODING=UTF-8",
                     "-t_srs",
                     "EPSG:3413",
-                    "-where",
-                    "\"\"ZONE\" != 0\"",
                     "-clipdst",
                     "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-where",
+                    "\"\"ZONE\" != 0\"",
                     "{output_dir}/utm_zones.gpkg",
                     "{input_dir}/*.shp"
                   ],
@@ -2380,6 +2447,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/greenland_coastline.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2426,6 +2494,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/global_coastline.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2460,6 +2529,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/nunagis_municipalities_population.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -2506,6 +2578,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/ne_states_provinces.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2552,6 +2625,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/ne_countries.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2630,12 +2704,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
                         "\"SELECT osm_id, is_in, source, name, place, geometry, CAST(population AS INTEGER) as population FROM hotosm_grl_populated_places_points\"",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "{output_dir}/hotosm_populated_places.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2682,6 +2757,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/health_facilities.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2728,6 +2804,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/airports.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2774,6 +2851,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/seaports.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2820,6 +2898,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/waterways.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2866,6 +2945,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/financial_services.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2912,6 +2992,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/education_facilities.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -2958,6 +3039,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/points_of_interest.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -3004,6 +3086,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/roads.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -3050,6 +3133,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/buildings.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -3197,6 +3281,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
@@ -3237,6 +3324,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
@@ -3316,6 +3406,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
@@ -3358,6 +3451,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
                         "{output_dir}/ogr2ogr.gpkg",
                         "{input_dir}/stations.kmz"
                       ],
@@ -3409,6 +3503,9 @@
                     "ENCODING=UTF-8",
                     "-t_srs",
                     "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
                     "{output_dir}/arctic_sea_routes.gpkg",
                     "{input_dir}/Arctic_Sea_Routes.shp"
                   ],
@@ -3467,6 +3564,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/Distribution_Common_Murre_Colonies.shp"
                       ],
@@ -3513,6 +3611,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/Distribution_Thickbilled_Murre_Colonies.shp"
                       ],
@@ -3547,10 +3646,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Colonies of breeding Br\u00fcnnichs guillemots%'\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type LIKE 'Colonies of breeding Br\u00fcnnichs guillemots%'\" ",
                         "{output_dir}/nunagis_thickbilled_murre_colonies.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3585,10 +3687,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Murre%'\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type LIKE 'Murre%'\" ",
                         "{output_dir}/nunagis_murre_group_1km_zones.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3623,10 +3728,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Colonies of breeding sea birds%'\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type LIKE 'Colonies of breeding sea birds%'\" ",
                         "{output_dir}/nunagis_seabirds_colonies.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3661,10 +3769,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type IN('Bird Protection Area', 'Important Bird Area of BirdLife International')\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type IN('Bird Protection Area', 'Important Bird Area of BirdLife International')\" ",
                         "{output_dir}/nunagis_bird_protected_areas.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3699,10 +3810,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type LIKE 'Eider%'\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type LIKE 'Eider%'\" ",
                         "{output_dir}/nunagis_eider_protected_areas.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3737,10 +3851,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                        FROM ESRIJSON\n                        WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')\" ",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')\" ",
                         "{output_dir}/nunagis_goose_protected_areas.gpkg",
                         "{input_dir}/fetched.geojson"
                       ],
@@ -3804,12 +3921,13 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "-dialect",
                         "sqlite",
                         "-sql",
                         "'SELECT\n                        Geometry,\n                        SPECIES,\n                        INTRODUCED,\n                        OWNER,\n                        DATA_URL,\n                        SOURCE,\n                        CREATED,\n                        DATE(substr(MODIFIED, 7, 4) || \"-\" ||\n                          substr(MODIFIED, 4, 2) || \"-\" ||\n                          substr(MODIFIED, 1, 2)) as MODIFIED,\n                        CONTACT\n                    FROM Arctic_Char_2010'",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -3915,7 +4033,7 @@
                         "-t_srs",
                         "EPSG:3413",
                         "-clipdst",
-                        "{assets_dir}/greenland_rectangle.geojson",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "-where",
                         "\"\"layer\" = 'Boundary_12NM'\"",
@@ -3954,7 +4072,7 @@
                         "-t_srs",
                         "EPSG:3413",
                         "-clipdst",
-                        "{assets_dir}/greenland_rectangle.geojson",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "-where",
                         "\"\"layer\" = 'Boundary_3NM_area'\"",
@@ -3993,7 +4111,7 @@
                         "-t_srs",
                         "EPSG:3413",
                         "-clipdst",
-                        "{assets_dir}/greenland_rectangle.geojson",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "-where",
                         "\"\"layer\" = 'Boundary_3NM'\"",
@@ -4032,10 +4150,10 @@
                         "-t_srs",
                         "EPSG:3413",
                         "-clipdst",
-                        "{assets_dir}/greenland_rectangle.geojson",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "-where",
-                        "\"\"layer\" = 'Boundary_baseline'\"",
+                        "\"\"layer\" = 'Boundary_basisline'\"",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
                       ],
@@ -4071,7 +4189,7 @@
                         "-t_srs",
                         "EPSG:3413",
                         "-clipdst",
-                        "{assets_dir}/greenland_rectangle.geojson",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "-where",
                         "\"\"layer\" = 'Boundary_EEZ'\"",
@@ -4110,7 +4228,7 @@
                         "-t_srs",
                         "EPSG:3413",
                         "-clipdst",
-                        "{assets_dir}/greenland_rectangle.geojson",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "-where",
                         "\"\"layer\" = 'Boundary_fishzone'\"",
@@ -4170,6 +4288,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -4216,6 +4335,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -4270,6 +4390,7 @@
                     "EPSG:3413",
                     "-clipdst",
                     "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
                     "{output_dir}/final.gpkg",
                     "{input_dir}/Divisions/*.shp"
                   ],
@@ -4296,8 +4417,8 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Averaged annual mean wind speed in meters per second from RACMO2.3p2\nfor the period 1958-2019.",
-                  "id": "racmo_wind_speed",
+                  "description": "Averaged annual total precipitation in milimeters of water equivilent\n(mm w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole\nice sheet and peripheral ice caps.",
+                  "id": "racmo_precip",
                   "in_package": true,
                   "input": {
                     "asset": {
@@ -4315,44 +4436,64 @@
                         "{input_dir}/RACMO_QGreenland_Jan2021.zip",
                         "-d",
                         "{output_dir}",
-                        "magnitudes.nc"
+                        "precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
-                        "gdalwarp",
-                        "-t_srs",
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/precip.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/precip.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:precip",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/precip.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
                         "EPSG:3413",
-                        "{input_dir}/magnitudes.nc",
-                        "{output_dir}/warped.tif"
+                        "{output_dir}/edited.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/racmo_wind_speed.tif"
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_precip.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_precip.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "racmo_wind_speed",
+                  "style": "racmo_precip",
                   "tags": [],
-                  "title": "Annual mean wind speed 1958-2019 (5km)"
+                  "title": "Total precipitation 1958-2019 (1km)"
                 },
-                "name": "racmo_wind_speed"
+                "name": "racmo_precip"
               },
               {
                 "layer_cfg": {
-                  "description": "Averaged annual mean wind direction in meters per second from\nRACMO2.3p2 for the period 1958-2019.",
-                  "id": "racmo_wind_vectors",
+                  "description": "Averaged annual snowfall in milimeters of water equivilent (mm w.e.) from\nRACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and\nperipheral ice caps.",
+                  "id": "racmo_snowfall",
                   "in_package": true,
                   "input": {
                     "asset": {
@@ -4370,36 +4511,662 @@
                         "{input_dir}/RACMO_QGreenland_Jan2021.zip",
                         "-d",
                         "{output_dir}",
-                        "wind_vector_points.gpkg"
+                        "snowfall.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/snowfall.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/snowfall.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:snowfall",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/snowfall.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "{output_dir}/racmo_wind_vectors.gpkg",
-                        "{input_dir}/wind_vector_points.gpkg"
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_snowfall.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_snowfall.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "racmo_wind_vectors",
+                  "style": "racmo_snowfall",
                   "tags": [],
-                  "title": "Annual mean wind vectors 1958-2019 (5km)"
+                  "title": "Snowfall 1958-2019 (1km)"
                 },
-                "name": "racmo_wind_vectors"
+                "name": "racmo_snowfall"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual snowmelt in milimeters of water equivilent (mm w.e.) from\nRACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and\nperipheral ice caps.",
+                  "id": "racmo_snowmelt",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "snowmelt.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/snowmelt.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/snowmelt.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:snowmelt",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/snowmelt.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_snowmelt.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_snowmelt.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_snowmelt",
+                  "tags": [],
+                  "title": "Snowmelt 1958-2019 (1km)"
+                },
+                "name": "racmo_snowmelt"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual runoff in milimeters of water equivilent (mm w.e.) from\nRACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and\nperipheral ice caps.",
+                  "id": "racmo_runoff",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "runoff.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/runoff.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/runoff.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:runoff",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/runoff.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_runoff.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_runoff.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_runoff",
+                  "tags": [],
+                  "title": "Runoff 1958-2019 (1km)"
+                },
+                "name": "racmo_runoff"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual sublimation in milimeters of water equivilent (mm w.e.)\nfrom RACMO2.3p2 for the period 1958-2019 covering the whole ice sheet and\nperipheral ice caps.",
+                  "id": "racmo_subl",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "subl.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/subl.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/subl.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:subl",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/subl.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_subl.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_subl.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_subl",
+                  "tags": [],
+                  "title": "Sublimation 1958-2019 (1km)"
+                },
+                "name": "racmo_subl"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual snow drift erosion in milimeters of water equivilent (mm\nw.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole ice\nsheet and peripheral ice caps.",
+                  "id": "racmo_sndiv",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "sndiv.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/sndiv.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/sndiv.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:sndiv",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/sndiv.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_sndiv.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_sndiv.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_sndiv",
+                  "tags": [],
+                  "title": "Snow drift erosion 1958-2019 (1km)"
+                },
+                "name": "racmo_sndiv"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual mean temperature at 2m in degrees Kelvin from RACMO2.3p2\nfor the period 1958-2019.",
+                  "id": "racmo_t2m",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "t2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                        "--NoDataValue=-9999",
+                        "--outfile={output_dir}/t2m.tif",
+                        "-A",
+                        "NETCDF:{input_dir}/t2m.1958-2019.BN_RACMO2.3p2_FGRN055_1km.YY-mean.nc:t2m",
+                        "-B",
+                        "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/t2m.tif",
+                        "{output_dir}/edited.tif",
+                        "&&",
+                        "gdal_edit.py",
+                        "-a_srs",
+                        "EPSG:3413",
+                        "{output_dir}/edited.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_t2m.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_t2m.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_t2m",
+                  "tags": [],
+                  "title": "Annual mean temperature at 2m 1958-2019 (1km)"
+                },
+                "name": "racmo_t2m"
+              },
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Mask of categorized Greenland ice. 3 = Greenland ice sheet; 2,1 = Greenland\nperipheral ice caps; 0 = Ocean.",
+                      "id": "racmo_promicemask",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "racmo_qgreenland_jan2021"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            "Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3413",
+                            "-a_ullr",
+                            "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask",
+                            "{output_dir}/Promicemask.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/Promicemask.tif",
+                            "{output_dir}/racmo_promicemask.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/racmo_promicemask.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "racmo_promicemask",
+                      "tags": [],
+                      "title": "PROMICE mask (1km)"
+                    },
+                    "name": "racmo_promicemask"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Mask of grounded ice. 1 = grounded.",
+                      "id": "racmo_grounded_ice",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "racmo_qgreenland_jan2021"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            "Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3413",
+                            "-a_ullr",
+                            "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc:grounded_ice",
+                            "{output_dir}/grounded_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/grounded_ice.tif",
+                            "{output_dir}/racmo_grounded_ice.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/racmo_grounded_ice.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "racmo_promicemask",
+                      "tags": [],
+                      "title": "Grounded ice mask (1km)"
+                    },
+                    "name": "racmo_grounded_ice"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Ice sheet surface elevation in meters upscaled from the Greenland Mapping\nProject (GIMP) Digital Elevation Model.",
+                      "id": "racmo_topography",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "racmo_qgreenland_jan2021"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            "Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc=\"numpy.where((B != 0), A, -9999)\"",
+                            "--NoDataValue=-9999",
+                            "--outfile={output_dir}/Topography.tif",
+                            "-A",
+                            "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Topography",
+                            "-B",
+                            "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/Topography.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_srs",
+                            "EPSG:3413",
+                            "-a_ullr",
+                            "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/racmo_Topography.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/racmo_Topography.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "racmo_topography",
+                      "tags": [],
+                      "title": "Ice surface topography (1km)"
+                    },
+                    "name": "racmo_topography"
+                  }
+                ],
+                "name": "Supplement",
+                "settings": {
+                  "expand": false,
+                  "order": [
+                    "layers.py:racmo_promicemask",
+                    "layers.py:racmo_grounded_ice",
+                    "layers.py:racmo_topography"
+                  ],
+                  "show": false
+                }
               }
             ],
             "name": "RACMO model output",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                "layers.py:racmo_precip",
+                "layers.py:racmo_snowfall",
+                "layers.py:racmo_snowmelt",
+                "layers.py:racmo_runoff",
+                "layers.py:racmo_subl",
+                "layers.py:racmo_sndiv",
+                "layers.py:racmo_t2m",
+                "Supplement"
+              ],
               "show": false
             }
           }
@@ -4413,6 +5180,110 @@
       },
       {
         "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Points representing GLIMS glaciers and locations of interest.",
+                  "id": "glims_points",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "glims"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "7z",
+                        "x",
+                        "{input_dir}/*.zip",
+                        "-o{output_dir}",
+                        "glims_download_82381/*_points.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/glims_download_82381/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Peripherical glacier/feature locations"
+                },
+                "name": "glims_points"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons represent GLIMS features, typically glacier outlines, but\nalso including regions of glacial lakes, debris cover, rocks within the\nglacier (nunataks), and other polygonal features.",
+                  "id": "glims_polygons",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "glims"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "7z",
+                        "x",
+                        "{input_dir}/*.zip",
+                        "-o{output_dir}",
+                        "glims_download_82381/*_polygons.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/glims_download_82381/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Peripherical glacier/feature outlines"
+                },
+                "name": "glims_polygons"
+              }
+            ],
+            "name": "Global land ice measurements from space (GLIMS)",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
           {
             "children": [
               {
@@ -6935,6 +7806,45 @@
           },
           {
             "layer_cfg": {
+              "description": "Ice slab thickness, in meters, in the top 20 meters of firn. Only\nslabs between 1 and 16 meters are included.",
+              "id": "firn_ice_layer_thicknesses",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "macferrin_etal_firn_ice_layer_thicknesses"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT\n                        geom,\n                        fid,\n                        Track_name,\n                        CAST(Tracenumber AS INTEGER) as Tracenumber,\n                        lat,\n                        lon,\n                        CAST(alongtrack_distance_m AS REAL) as alongtrack_distance_m,\n                        CAST(\"20m_ice_content_m\" AS REAL) as \"20m_ice_content_m\"\n                    FROM Ice_Layer_Output_Thicknesses'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/Ice_Layer_Output_Thicknesses.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "firn_ice_points",
+              "tags": [],
+              "title": "Ice slab thickness in firn ice 2010-2014"
+            },
+            "name": "firn_ice_layer_thicknesses"
+          },
+          {
+            "layer_cfg": {
               "description": "Locations used in surface mass balance observations.",
               "id": "machguth_massbalance_locations",
               "in_package": true,
@@ -7008,6 +7918,7 @@
                     "EPSG:3413",
                     "-clipdst",
                     "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
                     "-dialect",
                     "sqlite",
                     "-sql",
@@ -7068,14 +7979,19 @@
                         {
                           "args": [
                             "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-clipdst",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-makevalid",
                             "-oo",
                             "X_POSSIBLE_NAMES=longitude",
                             "-oo",
                             "Y_POSSIBLE_NAMES=latitude",
                             "-s_srs",
                             "EPSG:4326",
-                            "-t_srs",
-                            "EPSG:3413",
                             "{output_dir}/geomagnetic_north_pole.gpkg",
                             "CSV:{input_dir}/WMM2020_NP_with_header.xy"
                           ],
@@ -7118,14 +8034,19 @@
                         {
                           "args": [
                             "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-clipdst",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-makevalid",
                             "-oo",
                             "X_POSSIBLE_NAMES=longitude",
                             "-oo",
                             "Y_POSSIBLE_NAMES=latitude",
                             "-s_srs",
                             "EPSG:4326",
-                            "-t_srs",
-                            "EPSG:3413",
                             "{output_dir}/geomagnetic_north_pole.gpkg",
                             "CSV:{input_dir}/NP_with_header.xy"
                           ],
@@ -12143,6 +13064,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12189,6 +13111,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12235,6 +13158,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12281,6 +13205,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12327,6 +13252,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12373,6 +13299,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12419,6 +13346,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12465,6 +13393,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12511,6 +13440,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12557,6 +13487,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12603,6 +13534,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -12649,6 +13581,7 @@
                         "EPSG:3413",
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.shp"
                       ],
@@ -16660,6 +17593,7 @@
                     "EPSG:3413",
                     "-clipdst",
                     "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
                     "{output_dir}/final.gpkg",
                     "{input_dir}/*.shp"
                   ],

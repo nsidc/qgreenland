@@ -19,7 +19,7 @@ def command_runner(
     input_dir: str,
     output_dir: str,
 ) -> None:
-    """Run a shell command in the "gdal" conda environment.
+    """Run a shell command in the "qgreenland-cmd" conda environment.
 
     `kwargs` are string-interpolated for each of the command's arguments.
     """
@@ -31,7 +31,6 @@ def command_runner(
     )
 
     # TODO: What's an "ogr" command? Any command will work, this just runs the
-    # command in our special "gdal" conda environment. Rename the "gdal"
-    # environment to the "command" environment? Rename the function to
-    # "run_conda_command"? ¯\_(ツ)_/¯
+    # command in our special "qgreenland-cmd" conda environment. Rename the
+    # function to "run_conda_command"? ¯\_(ツ)_/¯
     run_ogr_command(command_args)

@@ -1,9 +1,7 @@
-from typing import List
-
 from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
 
 
-def build_overviews(*, input_file, output_file) -> List[AnyStep]:
+def build_overviews(*, input_file, output_file) -> list[AnyStep]:
     copy_into_place = [
         'cp',
         f'{input_file}',
