@@ -8673,12 +8673,169 @@
                   ],
                   "show": false
                 }
+              },
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Magnitude of horizontal ice velocity in meters per day. Data is\nnot masked to ice sheet boundary.",
+                      "id": "esa_cci_velocity_magnitude",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_ice_sheet_velocity_20191214_20200131"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3.zip",
+                            "-d",
+                            "{output_dir}",
+                            "greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "NETCDF:{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc:land_ice_surface_velocity_magnitude",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/esa_cci_velocity_magnitude.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/esa_cci_velocity_magnitude.tif",
+                            "{output_dir}/esa_cci_velocity_magnitude.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/esa_cci_velocity_magnitude.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "esa_cci_velocity",
+                      "tags": [],
+                      "title": "Land ice surface velocity 2019-2020 (250m)"
+                    },
+                    "name": "esa_cci_velocity_magnitude"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Vertical ice velocity in meters per day. Data is not masked to\nice sheet boundary.",
+                      "id": "esa_cci_velocity_vertical",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_ice_sheet_velocity_20191214_20200131"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3.zip",
+                            "-d",
+                            "{output_dir}",
+                            "greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "NETCDF:{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc:land_ice_surface_vertical_velocity",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/esa_cci_velocity_vertical.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/esa_cci_velocity_vertical.tif",
+                            "{output_dir}/esa_cci_velocity_vertical.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/esa_cci_velocity_vertical.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "vertical_velocity",
+                      "tags": [],
+                      "title": "Land ice surface vertical velocity (250m)"
+                    },
+                    "name": "esa_cci_velocity_vertical"
+                  }
+                ],
+                "name": "ESA Climate Change Initiative",
+                "settings": {
+                  "expand": false,
+                  "order": null,
+                  "show": false
+                }
               }
             ],
             "name": "Ice sheet velocity",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                "ITS_LIVE",
+                "ESA Climate Change Initiative"
+              ],
               "show": false
             }
           }
