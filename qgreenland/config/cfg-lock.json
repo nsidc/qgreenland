@@ -5206,7 +5206,7 @@
               {
                 "layer_cfg": {
                   "description": "Trend derived from the period 2003-01-01 to 2007-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
-                  "id": "esa_cci_gravimetric_mass_balance_dtu_2005",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2003_2005",
                   "in_package": true,
                   "input": {
                     "asset": {
@@ -5238,7 +5238,7 @@
                   "tags": [],
                   "title": "Mass balance trend 2003-2007"
                 },
-                "name": "esa_cci_gravimetric_mass_balance_dtu_2005"
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2003_2005"
               }
             ],
             "name": "Gravimetric mass balance",
