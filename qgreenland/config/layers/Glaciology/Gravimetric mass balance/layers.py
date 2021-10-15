@@ -4,8 +4,8 @@ from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
-esa_cci_gravimetric_mass_balance_dtu_2005 = ConfigLayer(
-    id='esa_cci_gravimetric_mass_balance_dtu_2005',
+esa_cci_gravimetric_mass_balance_dtu_2003_2005 = ConfigLayer(
+    id='esa_cci_gravimetric_mass_balance_dtu_2003_2005',
     title='Mass balance trend 2003-2007',
     description=(
         """Trend derived from the period 2003-01-01 to 2007-12-31 via gravity
