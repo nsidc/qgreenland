@@ -703,6 +703,26 @@
         "title": "NunaGIS data server protected area data"
       }
     },
+    "ocean_shape": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_ocean.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "ocean_shape",
+      "metadata": {
+        "abstract": "Natural Earth Ocean (Public Domain)",
+        "citation": {
+          "text": "Made with Natural Earth",
+          "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
+        },
+        "title": "Natural Earth Ocean (10m)"
+      }
+    },
     "qgr_bounds": {
       "assets": {
         "background": {
