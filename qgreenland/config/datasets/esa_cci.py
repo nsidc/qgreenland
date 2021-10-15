@@ -64,7 +64,10 @@ esa_cci_surface_elevation_change = ConfigDataset(
         ),
     ],
     metadata={
-        'title': '1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-years means',
+        'title': (
+            '1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT,'
+            ' Cryosat-2, and Sentinel-3 data, at 5-years means'
+        ),
         'abstract': (
             """Data are based on the European Space Agency's Ku-band radar
             satellite level-2 data products. Given the longer time span of
@@ -160,26 +163,21 @@ esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
                 download after simple registration requiring `first.last` name
                 and `affiliation`. No password is required.
 
-                Once the
-                `greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820.zip`
-                file is downloaded, use `unzip` to extract the data.
-
-                Next, the supplied
-                `scripts/esa_cci_gravimetric_mass_balance_dtu/gmb_dtu_nc_to_shp.py`
-                script is run to convert the netcdf data into shapefiles that
-                can easily ingested via the `LocalVector` layer task."""
+                Once the `greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-
+                170820.zip` file is downloaded, use `unzip` to extract the data.
+                Next, the supplied `scripts/esa_cci_gravimetric_mass_balance_dtu
+                /gmb_dtu_nc_to_gpkg.py` script is run to convert the netcdf data
+                into shapefiles that can easily ingested via the `LocalVector`
+                layer task."""
             ),
         ),
     ],
     metadata={
-        'title': (
-            """GMB products for the Greenland Ice Sheet from GRACE
-            satellite gravimetry (CSR RL06) by DTU Space."""
-        ),
+        'title': 'GMB products for the Greenland Ice Sheet from GRACE satellite gravimetry (CSR RL06) by DTU Space.',
         'abstract': (
             """From citation publication: During the last decade, the GRACE
             mission has provided valuable data for determining the mass changes
-            ofthe Greenland and Antarctic ice sheets. Yet, discrepancies still
+            ofthe Greenland and Antarctic ice sheets.  Yet, discrepancies still
             exist in the published mass balance results, and comprehensive
             analyses on the sources of errors and discrepancies are lacking.
             Here, we present monthly mass changes together with trends derived
@@ -187,16 +185,16 @@ esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
             ice sheets, and we assess the variability and errors for each of the
             possible sources of discrepancies, and we do this in an
             unprecedented systematic way, taking into account mass inference
-            methods, datasets and background models. We find a very good
+            methods, datasets and background models.  We find a very good
             agreement between the monthly mass change results derived from two
-            independent methods, which represents a cross validation. For the
+            independent methods, which represents a cross validation.  For the
             monthly solutions, we find that most of the scatter is caused by the
             use of the two different data sets rather than the two different
             methods applied. Besides the well-known GIA trend uncertainty, we
             find that the geocenter motion and the recent dealiasing corrections
             significantly impact the trends, with contributions of+13.2 Gt
             yr−1and−20 Gt yr−1, respectively, for Antarctica, which is more
-            affected by these than Greenland. We show differences between the
+            affected by these than Greenland.  We show differences between the
             use of release RL04 and the new RL05 and confirma lower noise
             content in the new release. The overall scatter of the solutions
             well exceeds the uncertainties propagated from the data errors and

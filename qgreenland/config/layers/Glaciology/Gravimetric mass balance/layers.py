@@ -1,6 +1,6 @@
 import datetime as dt
 
-from qgreenland.config.datasets.esa_cci_gravimetric_mass_balance import esa_cci_gravimetric_mass_balance_dtu as dataset
+from qgreenland.config.datasets.esa_cci import esa_cci_gravimetric_mass_balance_dtu as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
