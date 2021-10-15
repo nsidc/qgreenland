@@ -1,6 +1,6 @@
 from qgreenland.config.datasets.velocity_mosaic import velocity_mosaic as dataset
-from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -11,7 +11,7 @@ _masked_velocity_mosaic_params = {
         'title': 'Ice sheet velocity (120m)',
         'description': 'Magnitude of velocity in meters per year.',
         'variable': 'v',
-        'style': 'ice_sheet_velocity'
+        'style': 'ice_sheet_velocity',
     },
     'velocity_mosaic_error': {
         'title': 'Velocity error (120m)',
