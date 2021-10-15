@@ -92,6 +92,24 @@
         "title": "The coastline of Kalaallit Nunaat/ Greenland available as a shapefile and geopackage, covering the main land and islands, with glacier fronts updated as of 2017."
       }
     },
+    "basal_thermal_state": {
+      "assets": {
+        "only": {
+          "collection_concept_id": "C1397417110-NSIDC_ECS",
+          "granule_ur": "SC:RDBTS4.001:114194114",
+          "id": "only"
+        }
+      },
+      "id": "basal_thermal_state",
+      "metadata": {
+        "abstract": "The Likely Basal Thermal State of the Greenland Ice Sheet product\nat the National Snow and Ice Data Center contains key datasets that\nshow how the likely basal thermal state was inferred from existing\nairborne and satellite datasets and recent methods, and provides a\nsynthesis mask of the likely basal thermal state over the Greenland\nIce Sheet (MacGregor et al. 2016), which is displayed in QGreenland.\n\nMacGregor, J.A., M.A. Fahnestock, G.A. Catania, A. Aschwanden, G.D.\nClow, W.T. Colgan, S.P. Gogineni, M. Morlighem, S.M.J. Nowicki,\nJ.D. Paden, S.F. Price and H. Seroussi. 2016. A synthesis of the\nbasal thermal state of the Greenland Ice Sheet, Journal of\nGeophysical Research Earth Surface, 121:1328\u20131350,\ndoi:10.1002/2015JF003808.",
+        "citation": {
+          "text": "MacGregor, J. A., M. Fahnestock, G. Catania, J. Paden, P.\nGogineni, M. Morlighem, W. Colgan, S. M. Nowicki, G. Clow, A.\nAschwanden, S. F. Price, and H. Seroussi. 2017. Likely Basal\nThermal State of the Greenland Ice Sheet, Version 1. Boulder,\nColorado USA. NASA National Snow and Ice Data Center Distributed\nActive Archive Center. doi:\nhttps://doi.org/10.5067/R4MWDWWUWQF9.",
+          "url": "https://nsidc.org/data/rdbts4/versions/1"
+        },
+        "title": "Likely Basal Thermal State of the Greenland Ice Sheet"
+      }
+    },
     "bedmachine": {
       "assets": {
         "only": {
@@ -8838,6 +8856,72 @@
               ],
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Likely basal frozen/thawed state of the Greenland Ice Sheet.",
+              "id": "basal_thermal_state",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "basal_thermal_state"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalmdimtranslate",
+                    "-array",
+                    "name=likely_basal_thermal_state,transpose=[1,0],view=[::-1,:]",
+                    "{input_dir}/RDBTS4_Greenland_1993_2013_01_basal_thermal_state.nc",
+                    "{output_dir}/basal_thermal_state.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/basal_thermal_state.tif",
+                    "{output_dir}/basal_thermal_state.tif",
+                    "&&",
+                    "gdal_edit.py",
+                    "-a_ullr",
+                    "-632500.0 -667500.0 847500.0 -3342500.0",
+                    "-a_srs",
+                    "EPSG:3413",
+                    "-a_nodata",
+                    "3",
+                    "{output_dir}/basal_thermal_state.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/basal_thermal_state.tif",
+                    "{output_dir}/basal_thermal_state.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "nearest",
+                    "{output_dir}/basal_thermal_state.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "basal_thermal_state",
+              "tags": [],
+              "title": "Likely basal thermal state June 23 1993 - April 26 2013 (5km)"
+            },
+            "name": "basal_thermal_state"
           }
         ],
         "name": "Glaciology",
@@ -8851,7 +8935,8 @@
             "Global land ice measurements from space (GLIMS)",
             "Surface elevation change",
             "Gravimetric mass balance",
-            "Ice sheet velocity"
+            "Ice sheet velocity",
+            "basal_thermal_state.py:basal_thermal_state"
           ],
           "show": false
         }

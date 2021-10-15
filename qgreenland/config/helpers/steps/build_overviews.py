@@ -1,7 +1,29 @@
+from typing import Literal
+
 from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
 
 
-def build_overviews(*, input_file, output_file) -> list[AnyStep]:
+# https://gdal.org/programs/gdaladdo.html
+resampling_algorithm_type = Literal[
+    'nearest',
+    'average',
+    'rms',
+    'bilinear',
+    'gauss',
+    'cubic',
+    'cubicspline',
+    'lanczos',
+    'average_magphase',
+    'mode',
+]
+
+
+def build_overviews(
+        *,
+        input_file,
+        output_file,
+        resampling_algorithm: resampling_algorithm_type = 'average',
+) -> list[AnyStep]:
     copy_into_place = [
         'cp',
         f'{input_file}',
@@ -10,8 +32,7 @@ def build_overviews(*, input_file, output_file) -> list[AnyStep]:
 
     add_overviews = [
         'gdaladdo',
-        '-r',
-        'average',
+        '-r', resampling_algorithm,
         f'{output_file}',
         '2',
         '4',
