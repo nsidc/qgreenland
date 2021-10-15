@@ -17,7 +17,7 @@ esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
                 Once the `greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-
                 170820.zip` file is downloaded, use `unzip` to extract the data.
                 Next, the supplied `scripts/esa_cci_gravimetric_mass_balance_dtu
-                /gmb_dtu_nc_to_shp.py` script is run to convert the netcdf data
+                /gmb_dtu_nc_to_gpkg.py` script is run to convert the netcdf data
                 into shapefiles that can easily ingested via the `LocalVector`
                 layer task."""
             ),
