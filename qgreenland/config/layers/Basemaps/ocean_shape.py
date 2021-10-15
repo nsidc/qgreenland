@@ -1,6 +1,5 @@
-from qgreenland.config.datasets.ocean_shape import ocean_shape
-# TODO: `from qgreenland.config.helpers.? import ?` if needed
-# TODO: `from qgreenland.config.project import project` if needed
+from qgreenland.config.datasets.ocean_shape import ocean_shape as dataset
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
@@ -20,7 +19,6 @@ ocean = ConfigLayer(
         *compressed_vector(
             input_file='{input_dir}/ne_10m_ocean.zip',
             output_file='{output_dir}/final.gpkg',
-            vector_filename='ne_10m_ocean/*.shp',
         ),
     ],
 )
