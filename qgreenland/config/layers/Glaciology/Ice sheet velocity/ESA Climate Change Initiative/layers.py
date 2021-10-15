@@ -1,8 +1,8 @@
-from qgreenland.config.project import project
 from qgreenland.config.datasets.esa_cci import esa_cci_ice_sheet_velocity_20191214_20200131 as dataset
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
+from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
