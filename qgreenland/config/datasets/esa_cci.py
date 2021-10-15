@@ -177,7 +177,7 @@ esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
         'abstract': (
             """From citation publication: During the last decade, the GRACE
             mission has provided valuable data for determining the mass changes
-            ofthe Greenland and Antarctic ice sheets.  Yet, discrepancies still
+            ofthe Greenland and Antarctic ice sheets. Yet, discrepancies still
             exist in the published mass balance results, and comprehensive
             analyses on the sources of errors and discrepancies are lacking.
             Here, we present monthly mass changes together with trends derived
@@ -185,16 +185,16 @@ esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
             ice sheets, and we assess the variability and errors for each of the
             possible sources of discrepancies, and we do this in an
             unprecedented systematic way, taking into account mass inference
-            methods, datasets and background models.  We find a very good
+            methods, datasets and background models. We find a very good
             agreement between the monthly mass change results derived from two
-            independent methods, which represents a cross validation.  For the
+            independent methods, which represents a cross validation. For the
             monthly solutions, we find that most of the scatter is caused by the
             use of the two different data sets rather than the two different
             methods applied. Besides the well-known GIA trend uncertainty, we
             find that the geocenter motion and the recent dealiasing corrections
             significantly impact the trends, with contributions of+13.2 Gt
             yr−1and−20 Gt yr−1, respectively, for Antarctica, which is more
-            affected by these than Greenland.  We show differences between the
+            affected by these than Greenland. We show differences between the
             use of release RL04 and the new RL05 and confirma lower noise
             content in the new release. The overall scatter of the solutions
             well exceeds the uncertainties propagated from the data errors and
