@@ -1260,6 +1260,26 @@
         "title": "World UTM Zones"
       }
     },
+    "velocity_mosaic": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/velocity_mosaic/landsat/v00.0/static/GRE_G0120_0000.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "velocity_mosaic",
+      "metadata": {
+        "abstract": "The Inter-mission Time Series of Land Ice Velocity and Elevation\n(ITS_LIVE) project facilitates ice sheet, ice shelf and glacier\nresearch by providing a globally comprehensive and temporally dense\nmulti-sensor record of land ice velocity and elevation with low\nlatency.",
+        "citation": {
+          "text": "Velocity data generated using auto-RIFT (Gardner et al.,\n2018) and provided by the NASA MEaSUREs ITS_LIVE project\n(Gardner et al., 2019).\n\nGardner, A. S., M. A. Fahnestock, and T. A. Scambos, 2019\n[Accessed on {{date_accessed}}]: ITS_LIVE Regional Glacier and\nIce Sheet Surface Velocities. Data archived at National Snow and\nIce Data Center; doi:10.5067/6II6VW8LLWJ7.\n\nGardner, A. S., G. Moholdt, T. Scambos, M. Fahnstock, S.\nLigtenberg, M. van den Broeke, and J. Nilsson, 2018: Increased\nWest Antarctic and unchanged East Antarctic ice discharge over\nthe last 7 years, Cryosphere, 12(2): 521\u2013547,\ndoi:10.5194/tc-12-521-2018.",
+          "url": "https://its-live.jpl.nasa.gov/#documentation"
+        },
+        "title": "Regional Glacier and Ice Sheet Surface Velocities"
+      }
+    },
     "world_magnetic_model": {
       "assets": {
         "2020": {
@@ -8427,6 +8447,240 @@
               "order": null,
               "show": false
             }
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Magnitude of velocity in meters per year.",
+                      "id": "velocity_mosaic",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "velocity_mosaic"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc=\"A*B\"",
+                            "--outfile={output_dir}/masked_velocity_mosaic.tif",
+                            "-A",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:v",
+                            "-B",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:ice"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/masked_velocity_mosaic.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/velocity_mosaic.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/velocity_mosaic.tif",
+                            "{output_dir}/velocity_mosaic.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/velocity_mosaic.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "ice_sheet_velocity",
+                      "tags": [],
+                      "title": "Ice sheet velocity (120m)"
+                    },
+                    "name": "velocity_mosaic"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Magnitude of velocity error in meters per year.",
+                      "id": "velocity_mosaic_error",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "velocity_mosaic"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc=\"A*B\"",
+                            "--outfile={output_dir}/masked_velocity_mosaic_error.tif",
+                            "-A",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:v",
+                            "-B",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:ice"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/masked_velocity_mosaic_error.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/velocity_mosaic_error.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/velocity_mosaic_error.tif",
+                            "{output_dir}/velocity_mosaic_error.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/velocity_mosaic_error.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "ice_sheet_velocity_error",
+                      "tags": [],
+                      "title": "Velocity error (120m)"
+                    },
+                    "name": "velocity_mosaic_error"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Ice mask used for ITS_LIVE velocity mosiac.",
+                      "id": "velocity_mosaic_ice_mask",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "velocity_mosaic"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:ice",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/velocity_mosaic_ice_mask.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/velocity_mosaic_ice_mask.tif",
+                            "{output_dir}/velocity_mosaic_ice_mask.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/velocity_mosaic_ice_mask.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "Ice mask (120m)"
+                    },
+                    "name": "velocity_mosaic_ice_mask"
+                  }
+                ],
+                "name": "ITS_LIVE",
+                "settings": {
+                  "expand": false,
+                  "order": [
+                    "layers.py:velocity_mosaic",
+                    "layers.py:velocity_mosaic_error",
+                    "layers.py:velocity_mosaic_ice_mask"
+                  ],
+                  "show": false
+                }
+              }
+            ],
+            "name": "Ice sheet velocity",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
           }
         ],
         "name": "Glaciology",
@@ -8439,7 +8693,8 @@
             "firn_ice.py:firn_ice_layer_thicknesses",
             "Global land ice measurements from space (GLIMS)",
             "Surface elevation change",
-            "Gravimetric mass balance"
+            "Gravimetric mass balance",
+            "Ice sheet velocity"
           ],
           "show": false
         }
