@@ -55,3 +55,28 @@ masked_velocity_mosaic_layers = [
     )
     for layer_id, params in _masked_velocity_mosaic_params.items()
 ]
+
+
+velocity_mosaic_ice_mask = ConfigLayer(
+    id='velocity_mosaic_ice_mask',
+    title='Ice mask (120m)',
+    description=(
+        """Ice mask used for ITS_LIVE velocity mosiac."""
+    ),
+    tags=[],
+    input=ConfigLayerInput(
+        dataset=dataset,
+        asset=dataset.assets['only'],
+    ),
+    steps=[
+        *warp_and_cut(
+            input_file='NETCDF:{input_dir}/GRE_G0120_0000.nc:ice',
+            output_file='{output_dir}/velocity_mosaic_ice_mask.tif',
+            cut_file=project.boundaries['data'].filepath,
+        ),
+        *build_overviews(
+            input_file='{input_dir}/velocity_mosaic_ice_mask.tif',
+            output_file='{output_dir}/velocity_mosaic_ice_mask.tif',
+        ),
+    ],
+)
