@@ -18376,7 +18376,7 @@
               ],
               "style": "land",
               "tags": [],
-              "title": "land"
+              "title": "Land"
             },
             "name": "land"
           },
@@ -18423,7 +18423,7 @@
               ],
               "style": "ocean",
               "tags": [],
-              "title": "ocean"
+              "title": "Ocean"
             },
             "name": "ocean"
           },
