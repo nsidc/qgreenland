@@ -327,6 +327,26 @@
         "title": "Greenland Ecosystem Monitoring - Location and Description of Research Stations"
       }
     },
+    "geological_map": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://ftp.maps.canada.ca/pub/nrcan_rncan/publications/STPublications_PublicationsST/287/287868/as_2159.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "geological_map",
+      "metadata": {
+        "abstract": "As part of the International Polar Year (IPY) 2007-08 and 2008-09\nactivities, and related objectives of the Commission for the\nGeological Map of the World (CGMW), nations of the circumpolar\nArctic have co-operated to produce a new bedrock geology map and\nrelated digital map database at a scale of 1:5 000 000. The map,\nreleased in north polar stereographic projection using the World\nGeodetic System (WGS) 84 datum, includes complete geological and\nphysiographic coverage of all onshore and offshore bedrock areas\nnorth of latitude 60 degrees north.",
+        "citation": {
+          "text": "Harrison, J.C., St-Onge, M.R., Petrov, O.V., Strelnikov,\nS.I., Lopatin, B.G., Wilson, F.H., Tella, S., Paul, D., Lynds,\nT., Shokalsky, S.P., Hults, C.K., Bergman, S., Jepsen, H.F., and\nSolli, A., 2011. Geological map of the Arctic / Carte gologique\nde l'Arctique; Geological Survey of Canada, Map 2159A, scale 1:5\n000 000.",
+          "url": "https://doi.org/10.4095/287868"
+        },
+        "title": "Geological map of the Arctic / Carte gologique de l'Arctique"
+      }
+    },
     "glacier_terminus": {
       "assets": {
         "2000_2001": {
@@ -9249,6 +9269,110 @@
       {
         "children": [
           {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Onshore faults for the landmass and islands of Greenland.",
+                  "id": "onshore_planar_geological_map",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "geological_map"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/as_2159.zip",
+                        "-d",
+                        "{output_dir}",
+                        "data/shape/geology/Greenland_onshore_Planar.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/data/shape/geology/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "onshore_planar_geological_map",
+                  "tags": [],
+                  "title": "Faults"
+                },
+                "name": "onshore_planar_geological_map"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Geological unit polygon features for the onshore landmass and\nislands of Greenland.",
+                  "id": "onshore_geological_map",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "geological_map"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/as_2159.zip",
+                        "-d",
+                        "{output_dir}",
+                        "data/shape/geology/Greenland_onshore.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/data/shape/geology/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "geological_map_polygons",
+                  "tags": [],
+                  "title": "Rock types"
+                },
+                "name": "onshore_geological_map"
+              }
+            ],
+            "name": "Geological map",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
             "layer_cfg": {
               "description": "Location and magnitude of earthquakes.",
               "id": "earthquakes",
@@ -9322,7 +9446,7 @@
                     "-t_srs",
                     "EPSG:3413",
                     "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
                     "-makevalid",
                     "{output_dir}/final.gpkg",
                     "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/*.shp"
