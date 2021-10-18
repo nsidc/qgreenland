@@ -18795,55 +18795,6 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Lines representing undersea features.",
-                  "id": "undersea_features_multilinestring",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "undersea_features"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/features.zip",
-                        "-d",
-                        "{output_dir}",
-                        "features/features-multilinestring.*"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-makevalid",
-                        "-sql",
-                        "'SELECT *, name as label\n                        FROM \"features-multilinestring\"'",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/features/features-multilinestring.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "Undersea_Linear",
-                  "tags": [],
-                  "title": "Linear features"
-                },
-                "name": "undersea_features_multilinestring"
-              },
-              {
-                "layer_cfg": {
                   "description": "Points representing undersea features.",
                   "id": "undersea_features_point",
                   "in_package": true,
@@ -18890,6 +18841,55 @@
                   "title": "Point locations"
                 },
                 "name": "undersea_features_point"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Lines representing undersea features.",
+                  "id": "undersea_features_multilinestring",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "undersea_features"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/features.zip",
+                        "-d",
+                        "{output_dir}",
+                        "features/features-multilinestring.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "-sql",
+                        "'SELECT *, name as label\n                        FROM \"features-multilinestring\"'",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/features/features-multilinestring.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "Undersea_Linear",
+                  "tags": [],
+                  "title": "Linear features"
+                },
+                "name": "undersea_features_multilinestring"
               },
               {
                 "layer_cfg": {
@@ -18946,7 +18946,11 @@
             "name": "Undersea feature names",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                "undersea_features.py:undersea_features_point",
+                "undersea_features.py:undersea_features_multilinestring",
+                "undersea_features.py:undersea_features_multipolygon"
+              ],
               "show": false
             }
           }
