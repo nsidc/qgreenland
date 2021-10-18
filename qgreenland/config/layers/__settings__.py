@@ -10,6 +10,7 @@ settings = RootGroupSettings(
         'Environmental management',
         'Regional climate models',
         'Glaciology',
+        'Frozen ground',
         'Geophysics',
         'Sea ice',
         'Terrain Models',
