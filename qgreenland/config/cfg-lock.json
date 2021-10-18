@@ -1332,6 +1332,26 @@
         "title": "International Registry of Seismograph Stations (IR)"
       }
     },
+    "tectonic_plates": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://github.com/fraxen/tectonicplates/archive/339b0c5.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "tectonic_plates",
+      "metadata": {
+        "abstract": "As per data source - This dataset is a conversion of the dataset\noriginally published in the paper 'An updated digital model of plate\nboundaries' by Peter Bird (Geochemistry Geophysics Geosystems, 4(3),\n1027, doi:10.1029/2001GC000252\n[http://scholar.google.se/scholar?cluster=1268723667321132798],\n2003). To bring this dataset into the modern age, the original data\nhas been parsed, cleaned, and verified using ArcGIS 10.2 and\nconverted to shape files. The dataset presents tectonic plates and\ntheir boundaries, and in addition orogens and information about the\nboundaries. The data is useful for geological applications, analysis\nand education, and should be easy to use in any modern GIS software\napplication. For information on the fields and values, please refer\nto the [original](http://peterbird.name/oldFTP/PB2002/2001GC000252_r\neadme.txt) documentation and the scientific article.\n\nDataset credit should acknowledge Hugo Ahlenius, Peter Bird, and\nNordpil, with an additional suggested citation included.",
+        "citation": {
+          "text": "Ahlenius, H. (2014). World tectonic plates and boundaries.\nData available from https://github.com/fraxen/tectonicplates.",
+          "url": "https://github.com/fraxen/tectonicplates"
+        },
+        "title": "World tectonic plates and boundaries"
+      }
+    },
     "utm_zones": {
       "assets": {
         "only": {
@@ -9268,6 +9288,53 @@
               "title": "Earthquakes M above 2.5 1900-2020"
             },
             "name": "earthquakes"
+          },
+          {
+            "layer_cfg": {
+              "description": "Linestrings representing borders between tectonic plates.",
+              "id": "tectonic_plate_boundaries",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "tectonic_plates"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae.zip",
+                    "-d",
+                    "{output_dir}",
+                    "tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.*"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "tectonic_plate_boundaries",
+              "tags": [],
+              "title": "Tectonic plate boundaries"
+            },
+            "name": "tectonic_plate_boundaries"
           }
         ],
         "name": "Geology",
