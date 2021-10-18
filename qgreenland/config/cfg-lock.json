@@ -92,6 +92,24 @@
         "title": "The coastline of Kalaallit Nunaat/ Greenland available as a shapefile and geopackage, covering the main land and islands, with glacier fronts updated as of 2017."
       }
     },
+    "basal_thermal_state": {
+      "assets": {
+        "only": {
+          "collection_concept_id": "C1397417110-NSIDC_ECS",
+          "granule_ur": "SC:RDBTS4.001:114194114",
+          "id": "only"
+        }
+      },
+      "id": "basal_thermal_state",
+      "metadata": {
+        "abstract": "The Likely Basal Thermal State of the Greenland Ice Sheet product\nat the National Snow and Ice Data Center contains key datasets that\nshow how the likely basal thermal state was inferred from existing\nairborne and satellite datasets and recent methods, and provides a\nsynthesis mask of the likely basal thermal state over the Greenland\nIce Sheet (MacGregor et al. 2016), which is displayed in QGreenland.\n\nMacGregor, J.A., M.A. Fahnestock, G.A. Catania, A. Aschwanden, G.D.\nClow, W.T. Colgan, S.P. Gogineni, M. Morlighem, S.M.J. Nowicki,\nJ.D. Paden, S.F. Price and H. Seroussi. 2016. A synthesis of the\nbasal thermal state of the Greenland Ice Sheet, Journal of\nGeophysical Research Earth Surface, 121:1328\u20131350,\ndoi:10.1002/2015JF003808.",
+        "citation": {
+          "text": "MacGregor, J. A., M. Fahnestock, G. Catania, J. Paden, P.\nGogineni, M. Morlighem, W. Colgan, S. M. Nowicki, G. Clow, A.\nAschwanden, S. F. Price, and H. Seroussi. 2017. Likely Basal\nThermal State of the Greenland Ice Sheet, Version 1. Boulder,\nColorado USA. NASA National Snow and Ice Data Center Distributed\nActive Archive Center. doi:\nhttps://doi.org/10.5067/R4MWDWWUWQF9.",
+          "url": "https://nsidc.org/data/rdbts4/versions/1"
+        },
+        "title": "Likely Basal Thermal State of the Greenland Ice Sheet"
+      }
+    },
     "bedmachine": {
       "assets": {
         "only": {
@@ -8693,14 +8711,237 @@
                   ],
                   "show": false
                 }
+              },
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Magnitude of horizontal ice velocity in meters per day. Data is\nnot masked to ice sheet boundary.",
+                      "id": "esa_cci_velocity_magnitude",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_ice_sheet_velocity_20191214_20200131"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3.zip",
+                            "-d",
+                            "{output_dir}",
+                            "greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "NETCDF:{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc:land_ice_surface_velocity_magnitude",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/esa_cci_velocity_magnitude.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/esa_cci_velocity_magnitude.tif",
+                            "{output_dir}/esa_cci_velocity_magnitude.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/esa_cci_velocity_magnitude.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "esa_cci_velocity",
+                      "tags": [],
+                      "title": "Land ice surface velocity 2019-2020 (250m)"
+                    },
+                    "name": "esa_cci_velocity_magnitude"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Vertical ice velocity in meters per day. Data is not masked to\nice sheet boundary.",
+                      "id": "esa_cci_velocity_vertical",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_ice_sheet_velocity_20191214_20200131"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3.zip",
+                            "-d",
+                            "{output_dir}",
+                            "greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "NETCDF:{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc:land_ice_surface_vertical_velocity",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/esa_cci_velocity_vertical.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/esa_cci_velocity_vertical.tif",
+                            "{output_dir}/esa_cci_velocity_vertical.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/esa_cci_velocity_vertical.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "vertical_velocity",
+                      "tags": [],
+                      "title": "Land ice surface vertical velocity 2019-2020 (250m)"
+                    },
+                    "name": "esa_cci_velocity_vertical"
+                  }
+                ],
+                "name": "ESA Climate Change Initiative",
+                "settings": {
+                  "expand": false,
+                  "order": null,
+                  "show": false
+                }
               }
             ],
             "name": "Ice sheet velocity",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                "ITS_LIVE",
+                "ESA Climate Change Initiative"
+              ],
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Likely basal frozen/thawed state of the Greenland Ice Sheet.",
+              "id": "basal_thermal_state",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "basal_thermal_state"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalmdimtranslate",
+                    "-array",
+                    "name=likely_basal_thermal_state,transpose=[1,0],view=[::-1,:]",
+                    "{input_dir}/RDBTS4_Greenland_1993_2013_01_basal_thermal_state.nc",
+                    "{output_dir}/basal_thermal_state.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/basal_thermal_state.tif",
+                    "{output_dir}/basal_thermal_state.tif",
+                    "&&",
+                    "gdal_edit.py",
+                    "-a_ullr",
+                    "-632500.0 -667500.0 847500.0 -3342500.0",
+                    "-a_srs",
+                    "EPSG:3413",
+                    "-a_nodata",
+                    "3",
+                    "{output_dir}/basal_thermal_state.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/basal_thermal_state.tif",
+                    "{output_dir}/basal_thermal_state.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "nearest",
+                    "{output_dir}/basal_thermal_state.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "basal_thermal_state",
+              "tags": [],
+              "title": "Likely basal thermal state June 23 1993 - April 26 2013 (5km)"
+            },
+            "name": "basal_thermal_state"
           }
         ],
         "name": "Glaciology",
@@ -8714,7 +8955,8 @@
             "Global land ice measurements from space (GLIMS)",
             "Surface elevation change",
             "Gravimetric mass balance",
-            "Ice sheet velocity"
+            "Ice sheet velocity",
+            "basal_thermal_state.py:basal_thermal_state"
           ],
           "show": false
         }

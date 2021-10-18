@@ -11,5 +11,6 @@ settings = LayerGroupSettings(
         'Surface elevation change',
         'Gravimetric mass balance',
         'Ice sheet velocity',
+        'basal_thermal_state.py:basal_thermal_state',
     ],
 )
