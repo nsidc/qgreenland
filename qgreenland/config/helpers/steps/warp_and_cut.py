@@ -15,23 +15,23 @@ def warp_and_cut(
     reproject = ConfigLayerCommandStep(
         args=[
             'gdalwarp',
-            '-t_srs', project.crs,  # dstCRS
+            '-t_srs', project.crs,
             *reproject_args,
-            f'{input_file}',  # <--- Input
-            '{output_dir}/warped.tif',  # <--- Output
+            f'{input_file}',
+            '{output_dir}/warped.tif',
         ],
     )
 
     cut = ConfigLayerCommandStep(
         args=[
             'gdalwarp',
-            '-cutline',  # CutlineDSName
+            '-cutline',
             f'{cut_file}',
-            '-crop_to_cutline',  # CropToCutline=True
-            '-co', 'COMPRESS=DEFLATE',  # creationOptions=['COMPRESS=DEFLATE']
+            '-crop_to_cutline',
+            '-co', 'COMPRESS=DEFLATE',
             *cut_args,
-            '{input_dir}/warped.tif',  # <--- Input
-            f'{output_file}',  # <--- Output
+            '{input_dir}/warped.tif',
+            f'{output_file}',
         ],
     )
 
