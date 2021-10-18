@@ -1,4 +1,5 @@
 import datetime as dt
+from typing import Generator
 
 from qgreenland.config.datasets.esa_cci import esa_cci_gravimetric_mass_balance_dtu as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
@@ -26,7 +27,7 @@ _gravimetric_mass_balance_date_ranges = (
 )
 
 
-def _make_layers():
+def _make_layers() -> Generator[ConfigLayer, None, None]:
     for start_date, end_date in _gravimetric_mass_balance_date_ranges:
         start_year = start_date.year
         end_year = end_date.year

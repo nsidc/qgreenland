@@ -533,6 +533,26 @@
         "title": "Sentinel-2 Imagery Mosaics"
       }
     },
+    "land_shape": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_land.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "land_shape",
+      "metadata": {
+        "abstract": "Natural Earth Land (Public Domain)",
+        "citation": {
+          "text": "Made with Natural Earth",
+          "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
+        },
+        "title": "Natural Earth Land (10m)"
+      }
+    },
     "lonlat": {
       "assets": {
         "lat_0_25_deg": {
@@ -18557,6 +18577,53 @@
         "children": [
           {
             "layer_cfg": {
+              "description": "Polygons representing the land.",
+              "id": "land",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "land_shape"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/ne_10m_land.zip",
+                    "-d",
+                    "{output_dir}",
+                    ""
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "land",
+              "tags": [],
+              "title": "Land"
+            },
+            "name": "land"
+          },
+          {
+            "layer_cfg": {
               "description": "Polygons representing the ocean.",
               "id": "ocean",
               "in_package": true,
@@ -18692,7 +18759,8 @@
         "settings": {
           "expand": true,
           "order": [
-            "ocean_shape.py:ocean",
+            "land_ocean_shape.py:land",
+            "land_ocean_shape.py:ocean",
             "background.py:background"
           ],
           "show": true
