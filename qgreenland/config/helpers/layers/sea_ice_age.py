@@ -4,6 +4,7 @@ from typing import Literal
 from qgreenland.config.datasets.seaice import seaice_age as dataset
 from qgreenland.config.helpers.layers.make_sea_ice_age_params import PARAMS_FP
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
@@ -51,13 +52,11 @@ def sea_ice_age_layer(year: int, age_type: AgeType) -> ConfigLayer:
                     '{output_dir}/age_of_sea_ice.tif',
                 ],
             ),
-            ConfigLayerCommandStep(
-                args=[
-                    'cp', '{input_dir}/age_of_sea_ice.tif', '{output_dir}/edited.tif',
-                    '&&',
-                    'gdal_edit.py',
+            *gdal_edit(
+                input_file='{input_dir}/age_of_sea_ice.tif',
+                output_file='{output_dir}/edited.tif',
+                gdal_edit_args=[
                     '-a_ullr', '-4518421 4518421 4506579 -4506579',
-                    '{output_dir}/edited.tif',
                 ],
             ),
             *warp_and_cut(

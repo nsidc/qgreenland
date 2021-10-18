@@ -2,6 +2,7 @@ from qgreenland.config.datasets.racmo import racmo_qgreenland_jan2021 as dataset
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.helpers.steps.decompress import decompress_step
+from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
@@ -169,15 +170,12 @@ def _make_masked_racmo_layer(
                     ),
                 ],
             ),
-            # TODO: create a helper for gdal_edit.
-            ConfigLayerCommandStep(
-                args=[
-                    'cp', '{input_dir}/' + f'{variable}.tif', '{output_dir}/edited.tif',
-                    '&&',
-                    'gdal_edit.py',
+            *gdal_edit(
+                input_file='{input_dir}/' + f'{variable}.tif',
+                output_file='{output_dir}/edited.tif',
+                gdal_edit_args=[
                     '-a_srs', project.crs,
                     *gdal_edit_args,
-                    '{output_dir}/edited.tif',
                 ],
             ),
             *build_overviews(
