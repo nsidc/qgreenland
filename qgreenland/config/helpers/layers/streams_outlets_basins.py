@@ -11,13 +11,12 @@ _stream_selection_ogr2ogr_args: tuple[str, ...] = (
     ),
 )
 
-_layer_params = {
+_layer_params: dict[str, dict[str, str]] = {
     'ice_outlets': {
         'description': (
             'Calculated locations for subglacial hydrologic basin'
             ' ice-margin-terminating outlets.'
         ),
-        'ogr2ogr_args': (),
         'input_filename': 'outlets.gpkg',
     },
     'land_outlets': {
@@ -25,12 +24,10 @@ _layer_params = {
             'Calculated locations for terrestrial hydrologic basin'
             ' coast-terminating outlets.'
         ),
-        'ogr2ogr_args': (),
         'input_filename': 'outlets.gpkg',
     },
     'ice_streams': {
         'description': 'Calculated subglacial hydrologic stream paths.',
-        'ogr2ogr_args': _stream_selection_ogr2ogr_args,
         'input_filename': 'streams.gpkg',
     },
     'ice_basins': {
@@ -38,7 +35,6 @@ _layer_params = {
             'Calculated ice sheet hydrologic basins using regional climate'
             ' model spatial coverage.'
         ),
-        'ogr2ogr_args': (),
         'input_filename': 'basins.gpkg',
     },
     'ice_basins_filled': {
@@ -46,12 +42,10 @@ _layer_params = {
             'Calculated ice sheet hydrologic basins including areas classified'
             ' as land/ocean by regional climate models (filled).'
         ),
-        'ogr2ogr_args': (),
         'input_filename': 'basins_filled.gpkg',
     },
     'land_streams': {
         'description': 'Calculated terrestrial hydrologic stream paths.',
-        'ogr2ogr_args': _stream_selection_ogr2ogr_args,
         'input_filename': 'streams.gpkg',
     },
     'land_basins': {
@@ -59,7 +53,6 @@ _layer_params = {
             'Calculated terrestrial hydrologic basins using regional climate'
             ' model spatial coverage.'
         ),
-        'ogr2ogr_args': (),
         'input_filename': 'basins.gpkg',
     },
     'land_basins_filled': {
@@ -67,7 +60,6 @@ _layer_params = {
             'Calculated terrestrial hydrologic basins including areas classified'
             ' as ice/ocean by regional climate models (filled).'
         ),
-        'ogr2ogr_args': (),
         'input_filename': 'basins_filled.gpkg',
     },
 }
@@ -88,9 +80,11 @@ layers = [
         ),
         steps=[
             *ogr2ogr(
-                input_file='{input_dir}/' + str(params['input_filename']),
+                input_file='{input_dir}/' + params['input_filename'],
                 output_file='{output_dir}/' + f'{layer_id}.gpkg',
-                ogr2ogr_args=tuple(params['ogr2ogr_args']),
+                ogr2ogr_args=(
+                    _stream_selection_ogr2ogr_args if 'streams' in layer_id else ()
+                ),
             ),
         ],
     )
