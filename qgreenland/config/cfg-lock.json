@@ -841,6 +841,40 @@
         "title": "Natural Earth Ocean (10m)"
       }
     },
+    "pangaea_ground_temperature": {
+      "assets": {
+        "10km": {
+          "id": "10km",
+          "urls": [
+            "http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_10km.nc"
+          ],
+          "verify_tls": true
+        },
+        "25km": {
+          "id": "25km",
+          "urls": [
+            "http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_25km.nc"
+          ],
+          "verify_tls": true
+        },
+        "5km": {
+          "id": "5km",
+          "urls": [
+            "http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_5km.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "pangaea_ground_temperature",
+      "metadata": {
+        "abstract": "Original data information: The product provides modeled mean\nannual ground temperatures (MAGT) at the top of the permafrost for\nthe Northern Hemisphere at 1 km spatial resolution. Permafrost\nprobability (fraction values from 0 to 1) is assigned to each grid\ncell with MAGT < 0\u00b0C. Based on its permafrost probability each grid\ncell is classified as continuous, discontinuous and sporadic\npermafrost. The processing extent covers exposed land areas of the\nNorthern Hemisphere down to 25\u00b0 latitude. The mean MAGT was\nvalidated with GTN-P and TSP borehole ground temperature data and\nyielded a RMS of 2.0 \u00b0C. According to the results, permafrost (MAGT\n< 0 \u00b0C) covers 15 % of exposed land of the Northern Hemisphere.\n\nThe map was produced within the project ESA Data User Element\nGlobPermafrost.\n\nQGreenland displays data at 10 km resolution.\n\nDataset update: 2019-04-01",
+        "citation": {
+          "text": "Obu, Jaroslav; Westermann, Sebastian; K\u00e4\u00e4b, Andreas; Bartsch,\nAnnett (2018): Ground Temperature Map, 2000-2016, Northern\nHemisphere Permafrost. Alfred Wegener Institute, Helmholtz\nCentre for Polar and Marine Research, Bremerhaven, PANGAEA",
+          "url": "https://doi.org/10.1594/PANGAEA.888600"
+        },
+        "title": "Ground Temperature Map, 2000-2016, Northern Hemisphere Permafrost"
+      }
+    },
     "qgr_bounds": {
       "assets": {
         "background": {
