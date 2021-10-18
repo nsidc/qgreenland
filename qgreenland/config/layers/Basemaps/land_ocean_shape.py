@@ -3,42 +3,36 @@ from qgreenland.config.datasets.land_ocean_shape import ocean_shape as dataset_o
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
-land = ConfigLayer(
-    id='land',
-    title='land',
-    description=(
-        """Polygons representing the land."""
-    ),
-    tags=[],
-    style='land',
-    input=ConfigLayerInput(
-        dataset=dataset_land,
-        asset=dataset_land.assets['only'],
-    ),
-    steps=[
-        *compressed_vector(
-            input_file='{input_dir}/ne_10m_land.zip',
-            output_file='{output_dir}/final.gpkg',
-        ),
-    ],
-)
 
-ocean = ConfigLayer(
-    id='ocean',
-    title='ocean',
-    description=(
-        """Polygons representing the ocean."""
-    ),
-    tags=[],
-    style='ocean',
-    input=ConfigLayerInput(
-        dataset=dataset_ocean,
-        asset=dataset_ocean.assets['only'],
-    ),
-    steps=[
-        *compressed_vector(
-            input_file='{input_dir}/ne_10m_ocean.zip',
-            output_file='{output_dir}/final.gpkg',
+layer_params = {
+    'land': dataset_land,
+    'ocean': dataset_ocean,
+}
+
+
+def make_land_ocean_layer(layer_id: str) -> ConfigLayer:
+    return ConfigLayer(
+        id=layer_id,
+        title=layer_id.capitalize(),
+        description=(
+            f"""Polygons representing the {layer_id}."""
         ),
-    ],
-)
+        tags=[],
+        style=layer_id,
+        input=ConfigLayerInput(
+            dataset=layer_params[layer_id],
+            asset=layer_params[layer_id].assets['only'],
+        ),
+        steps=[
+            *compressed_vector(
+                input_file='{input_dir}/' + f'ne_10m_{layer_id}.zip',
+                output_file='{output_dir}/final.gpkg',
+            ),
+        ],
+    )
+
+
+layers = [
+    make_land_ocean_layer(layer_id)
+    for layer_id in layer_params.keys()
+]
