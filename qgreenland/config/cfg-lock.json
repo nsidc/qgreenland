@@ -188,6 +188,26 @@
         "title": "Natural Earth Coastlines (10m)"
       }
     },
+    "earthquakes": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1900-01-01%2000:00:00&endtime=2021-01-01%2000:00:00&maxlatitude=90&minlatitude=51.179&maxlongitude=17.578&minlongitude=-103.359&minmagnitude=2.5&orderby=time"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "earthquakes",
+      "metadata": {
+        "abstract": "United States Geological Survey earthquake data for earthquakes\noccuring during 1990-2020. Data is sourced from the ANSS\nComprehensive Earthquake Catalog (ComCat). ComCat data are produced\nby contributing seismic networks.",
+        "citation": {
+          "text": "U.S. Geological Survey (2020). ANSS Comprehensive Earthquake\nCatalog. Initial access: 2020-08-20.",
+          "url": "https://earthquake.usgs.gov/earthquakes/search/"
+        },
+        "title": "USGS Earthquakes 1990-2020"
+      }
+    },
     "esa_cci_gravimetric_mass_balance_dtu": {
       "assets": {
         "only": {
@@ -9228,6 +9248,47 @@
       },
       {
         "children": [
+          {
+            "layer_cfg": {
+              "description": "Location and magnitude of earthquakes.",
+              "id": "earthquakes",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "earthquakes"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT\n                    geometry,\n                    id,\n                    mag,\n                    place,\n                    DATETIME(time / 1000, 'unixepoch') as time,\n                    DATETIME(updated / 1000, 'unixepoch') as updated,\n                    tz,\n                    url,\n                    detail,\n                    felt,\n                    cdi,\n                    mmi,\n                    alert,\n                    tsunami,\n                    sig,\n                    net,\n                    code,\n                    ids,\n                    sources,\n                    types,\n                    nst,\n                    dmin,\n                    rms,\n                    gap,\n                    magType,\n                    type,\n                    title,\n                    title as label\n                FROM query\"",
+                    "{output_dir}/earthquakes.gpkg",
+                    "{input_dir}/query.geojson"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "earthquakes",
+              "tags": [],
+              "title": "Earthquakes M above 2.5 1900-2020"
+            },
+            "name": "earthquakes"
+          },
           {
             "layer_cfg": {
               "description": "Linestrings representing borders between tectonic plates.",
