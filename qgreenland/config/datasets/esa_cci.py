@@ -64,7 +64,10 @@ esa_cci_surface_elevation_change = ConfigDataset(
         ),
     ],
     metadata={
-        'title': '1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-years means',
+        'title': (
+            '1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT,'
+            ' Cryosat-2, and Sentinel-3 data, at 5-years means'
+        ),
         'abstract': (
             """Data are based on the European Space Agency's Ku-band radar
             satellite level-2 data products. Given the longer time span of
@@ -160,22 +163,17 @@ esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
                 download after simple registration requiring `first.last` name
                 and `affiliation`. No password is required.
 
-                Once the
-                `greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820.zip`
-                file is downloaded, use `unzip` to extract the data.
-
-                Next, the supplied
-                `scripts/esa_cci_gravimetric_mass_balance_dtu/gmb_dtu_nc_to_shp.py`
-                script is run to convert the netcdf data into shapefiles that
-                can easily ingested via the `LocalVector` layer task."""
+                Once the `greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-
+                170820.zip` file is downloaded, use `unzip` to extract the data.
+                Next, the supplied `scripts/esa_cci_gravimetric_mass_balance_dtu
+                /gmb_dtu_nc_to_gpkg.py` script is run to convert the netcdf data
+                into shapefiles that can easily ingested via the `LocalVector`
+                layer task."""
             ),
         ),
     ],
     metadata={
-        'title': (
-            """GMB products for the Greenland Ice Sheet from GRACE
-            satellite gravimetry (CSR RL06) by DTU Space."""
-        ),
+        'title': 'GMB products for the Greenland Ice Sheet from GRACE satellite gravimetry (CSR RL06) by DTU Space.',
         'abstract': (
             """From citation publication: During the last decade, the GRACE
             mission has provided valuable data for determining the mass changes

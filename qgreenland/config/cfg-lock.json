@@ -173,7 +173,7 @@
     "esa_cci_gravimetric_mass_balance_dtu": {
       "assets": {
         "only": {
-          "access_instructions": "Dataset can be found on the European Space Agency (ESA)\nClimate Change Initiative (CCI) products website\n(http://products.esa-icesheets-cci.org). Data are free to\ndownload after simple registration requiring `first.last` name\nand `affiliation`. No password is required.\n\nOnce the\n`greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820.zip`\nfile is downloaded, use `unzip` to extract the data.\n\nNext, the supplied\n`scripts/esa_cci_gravimetric_mass_balance_dtu/gmb_dtu_nc_to_shp.py`\nscript is run to convert the netcdf data into shapefiles that\ncan easily ingested via the `LocalVector` layer task.",
+          "access_instructions": "Dataset can be found on the European Space Agency (ESA)\nClimate Change Initiative (CCI) products website\n(http://products.esa-icesheets-cci.org). Data are free to\ndownload after simple registration requiring `first.last` name\nand `affiliation`. No password is required.\n\nOnce the `greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-\n170820.zip` file is downloaded, use `unzip` to extract the data.\nNext, the supplied `scripts/esa_cci_gravimetric_mass_balance_dtu\n/gmb_dtu_nc_to_gpkg.py` script is run to convert the netcdf data\ninto shapefiles that can easily ingested via the `LocalVector`\nlayer task.",
           "id": "only"
         }
       },
@@ -184,7 +184,7 @@
           "text": "Barletta, V. R., S\u00f8rensen, L. S., and Forsberg, R.: Scatter\nof mass changes estimates at basin scale for Greenland and\nAntarctica, The Cryosphere, 7, 1411-1432,\ndoi:10.5194/tc-7-1411-2013, 2013.",
           "url": "http://products.esa-icesheets-cci.org/products/details/greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820.zip/"
         },
-        "title": "GMB products for the Greenland Ice Sheet from GRACE\nsatellite gravimetry (CSR RL06) by DTU Space."
+        "title": "GMB products for the Greenland Ice Sheet from GRACE satellite gravimetry (CSR RL06) by DTU Space."
       }
     },
     "esa_cci_ice_sheet_velocity_20191214_20200131": {
@@ -1278,6 +1278,26 @@
           "url": "https://apps.gis.ucla.edu/geodata/dataset/world_utm_zones"
         },
         "title": "World UTM Zones"
+      }
+    },
+    "velocity_mosaic": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/velocity_mosaic/landsat/v00.0/static/GRE_G0120_0000.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "velocity_mosaic",
+      "metadata": {
+        "abstract": "The Inter-mission Time Series of Land Ice Velocity and Elevation\n(ITS_LIVE) project facilitates ice sheet, ice shelf and glacier\nresearch by providing a globally comprehensive and temporally dense\nmulti-sensor record of land ice velocity and elevation with low\nlatency.",
+        "citation": {
+          "text": "Velocity data generated using auto-RIFT (Gardner et al.,\n2018) and provided by the NASA MEaSUREs ITS_LIVE project\n(Gardner et al., 2019).\n\nGardner, A. S., M. A. Fahnestock, and T. A. Scambos, 2019\n[Accessed on {{date_accessed}}]: ITS_LIVE Regional Glacier and\nIce Sheet Surface Velocities. Data archived at National Snow and\nIce Data Center; doi:10.5067/6II6VW8LLWJ7.\n\nGardner, A. S., G. Moholdt, T. Scambos, M. Fahnstock, S.\nLigtenberg, M. van den Broeke, and J. Nilsson, 2018: Increased\nWest Antarctic and unchanged East Antarctic ice discharge over\nthe last 7 years, Cryosphere, 12(2): 521\u2013547,\ndoi:10.5194/tc-12-521-2018.",
+          "url": "https://its-live.jpl.nasa.gov/#documentation"
+        },
+        "title": "Regional Glacier and Ice Sheet Surface Velocities"
       }
     },
     "world_magnetic_model": {
@@ -5201,6 +5221,178 @@
       {
         "children": [
           {
+            "layer_cfg": {
+              "description": "Point locations of ice cores sampled in Greenland.",
+              "id": "ice_cores",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "ice_cores"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT *, Name as label\n                    FROM \"Ice Core\"'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/paleo_icecore.kmz"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [],
+              "title": "Ice cores"
+            },
+            "name": "ice_cores"
+          },
+          {
+            "layer_cfg": {
+              "description": "Locations used in surface mass balance observations.",
+              "id": "machguth_massbalance_locations",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "machguth_etal_massbalance_obs_locations"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-s_srs",
+                    "EPSG:4326",
+                    "-sql",
+                    "'SELECT\n                        _ogr_geometry_,\n                        fid,\n                        glacier_id,\n                        glacier_name,\n                        glacier_type,\n                        glacier_lat,\n                        glacier_lon,\n                        time_period,\n                        sources_data,\n                        sources_background,\n                        CAST(\"#_points\" AS INTEGER) as \"#_points\",\n                        CAST(\"#_readings\" AS INTEGER) as \"#_readings\",\n                        CAST(\"#_readings_final\" AS INTEGER) as \"#_readings_final\",\n                        finished,\n                        comments,\n                        label\n                    FROM foo'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/locations.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [],
+              "title": "Mass balance glacier observation locations 1892-2020"
+            },
+            "name": "machguth_massbalance_locations"
+          },
+          {
+            "layer_cfg": {
+              "description": "Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for\n2019/05/01 and 2019/10/01 generated using Sentinel-2 satellite data.",
+              "id": "jakobshavn_supraglacial_lakes",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "esa_cci_supraglacial_lakes"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip",
+                    "\"*merged*\"",
+                    "-d",
+                    "{output_dir}"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT\n                    Geometry,\n                    id1,\n                    DATE(\n                      substr(date, 1, 4)\n                      || '-'\n                      || substr(date, 5, 2)\n                      || '-'\n                      || substr(date, 7, 2)\n                    ) as date,\n                    area1,\n                    elev,\n                    source,\n                    tile,\n                    row\n                FROM greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1\" ",
+                    "{output_dir}/selected.gpkg",
+                    "{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "supraglacial_lakes",
+              "tags": [
+                "water"
+              ],
+              "title": "Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019"
+            },
+            "name": "jakobshavn_supraglacial_lakes"
+          },
+          {
+            "layer_cfg": {
+              "description": "Ice slab thickness, in meters, in the top 20 meters of firn. Only\nslabs between 1 and 16 meters are included.",
+              "id": "firn_ice_layer_thicknesses",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "macferrin_etal_firn_ice_layer_thicknesses"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT\n                        geom,\n                        fid,\n                        Track_name,\n                        CAST(Tracenumber AS INTEGER) as Tracenumber,\n                        lat,\n                        lon,\n                        CAST(alongtrack_distance_m AS REAL) as alongtrack_distance_m,\n                        CAST(\"20m_ice_content_m\" AS REAL) as \"20m_ice_content_m\"\n                    FROM Ice_Layer_Output_Thicknesses'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/Ice_Layer_Output_Thicknesses.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "firn_ice_points",
+              "tags": [],
+              "title": "Ice slab thickness in firn ice 2010-2014"
+            },
+            "name": "firn_ice_layer_thicknesses"
+          },
+          {
             "children": [
               {
                 "layer_cfg": {
@@ -7786,182 +7978,744 @@
             }
           },
           {
-            "layer_cfg": {
-              "description": "Point locations of ice cores sampled in Greenland.",
-              "id": "ice_cores",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "ice_cores"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "-sql",
-                    "'SELECT *, Name as label\n                    FROM \"Ice Core\"'",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/paleo_icecore.kmz"
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2003-01-01 to 2007-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2003_2007",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2003-01-01_2007-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2003-01-01_2007-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
-              ],
-              "style": "labeled_point",
-              "tags": [],
-              "title": "Ice cores"
-            },
-            "name": "ice_cores"
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2003-2007"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2003_2007"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2004-01-01 to 2008-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2004_2008",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2004-01-01_2008-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2004-01-01_2008-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2004-2008"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2004_2008"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2005-01-01 to 2009-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2005_2009",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2005-01-01_2009-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2005-01-01_2009-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2005-2009"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2005_2009"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2006-01-01 to 2010-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2006_2010",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2006-01-01_2010-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2006-01-01_2010-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2006-2010"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2006_2010"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2007-01-01 to 2011-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2007_2011",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2007-01-01_2011-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2007-01-01_2011-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2007-2011"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2007_2011"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2008-01-01 to 2012-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2008_2012",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2008-01-01_2012-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2008-01-01_2012-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2008-2012"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2008_2012"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2009-01-01 to 2013-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2009_2013",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2009-01-01_2013-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2009-01-01_2013-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2009-2013"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2009_2013"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2010-01-01 to 2014-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2010_2014",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2010-01-01_2014-11-30.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2010-01-01_2014-11-30.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2010-2014"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2010_2014"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2011-01-01 to 2015-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2011_2015",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2011-02-01_2015-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2011-02-01_2015-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2011-2015"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2011_2015"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2012-01-01 to 2016-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2012_2016",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2012-01-01_2016-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2012-01-01_2016-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2012-2016"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2012_2016"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2013-01-01 to 2017-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2013_2017",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2013-01-01_2017-07-01.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2013-01-01_2017-07-01.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2013-2017"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2013_2017"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2014-01-01 to 2018-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2014_2018",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2014-01-01_2018-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2014-01-01_2018-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2014-2018"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2014_2018"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Trend derived from the period 2015-01-01 to 2019-12-31 via gravity\nmeasurements. Data is on a ~50 km resolution grid (displayed as\npoints).",
+                  "id": "esa_cci_gravimetric_mass_balance_dtu_2015_2019",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "esa_cci_gravimetric_mass_balance_dtu"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "{output_dir}/points_2015-01-01_2019-12-31.gpkg",
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/points_2015-01-01_2019-12-31.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "gmb_dtu_space",
+                  "tags": [],
+                  "title": "Mass balance trend 2015-2019"
+                },
+                "name": "esa_cci_gravimetric_mass_balance_dtu_2015_2019"
+              }
+            ],
+            "name": "Gravimetric mass balance",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
           },
           {
-            "layer_cfg": {
-              "description": "Ice slab thickness, in meters, in the top 20 meters of firn. Only\nslabs between 1 and 16 meters are included.",
-              "id": "firn_ice_layer_thicknesses",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "macferrin_etal_firn_ice_layer_thicknesses"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "-sql",
-                    "'SELECT\n                        geom,\n                        fid,\n                        Track_name,\n                        CAST(Tracenumber AS INTEGER) as Tracenumber,\n                        lat,\n                        lon,\n                        CAST(alongtrack_distance_m AS REAL) as alongtrack_distance_m,\n                        CAST(\"20m_ice_content_m\" AS REAL) as \"20m_ice_content_m\"\n                    FROM Ice_Layer_Output_Thicknesses'",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/Ice_Layer_Output_Thicknesses.gpkg"
+            "children": [
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Magnitude of velocity in meters per year.",
+                      "id": "velocity_mosaic",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "velocity_mosaic"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc=\"A*B\"",
+                            "--outfile={output_dir}/masked_velocity_mosaic.tif",
+                            "-A",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:v",
+                            "-B",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:ice"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/masked_velocity_mosaic.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/velocity_mosaic.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/velocity_mosaic.tif",
+                            "{output_dir}/velocity_mosaic.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/velocity_mosaic.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "ice_sheet_velocity",
+                      "tags": [],
+                      "title": "Ice sheet velocity (120m)"
+                    },
+                    "name": "velocity_mosaic"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Magnitude of velocity error in meters per year.",
+                      "id": "velocity_mosaic_error",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "velocity_mosaic"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc=\"A*B\"",
+                            "--outfile={output_dir}/masked_velocity_mosaic_error.tif",
+                            "-A",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:v",
+                            "-B",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:ice"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "{input_dir}/masked_velocity_mosaic_error.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/velocity_mosaic_error.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/velocity_mosaic_error.tif",
+                            "{output_dir}/velocity_mosaic_error.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/velocity_mosaic_error.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "ice_sheet_velocity_error",
+                      "tags": [],
+                      "title": "Velocity error (120m)"
+                    },
+                    "name": "velocity_mosaic_error"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Ice mask used for ITS_LIVE velocity mosiac.",
+                      "id": "velocity_mosaic_ice_mask",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "velocity_mosaic"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "NETCDF:{input_dir}/GRE_G0120_0000.nc:ice",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/velocity_mosaic_ice_mask.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/velocity_mosaic_ice_mask.tif",
+                            "{output_dir}/velocity_mosaic_ice_mask.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/velocity_mosaic_ice_mask.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "Ice mask (120m)"
+                    },
+                    "name": "velocity_mosaic_ice_mask"
+                  }
+                ],
+                "name": "ITS_LIVE",
+                "settings": {
+                  "expand": false,
+                  "order": [
+                    "layers.py:velocity_mosaic",
+                    "layers.py:velocity_mosaic_error",
+                    "layers.py:velocity_mosaic_ice_mask"
                   ],
-                  "type": "command"
+                  "show": false
                 }
-              ],
-              "style": "firn_ice_points",
-              "tags": [],
-              "title": "Ice slab thickness in firn ice 2010-2014"
-            },
-            "name": "firn_ice_layer_thicknesses"
-          },
-          {
-            "layer_cfg": {
-              "description": "Locations used in surface mass balance observations.",
-              "id": "machguth_massbalance_locations",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "machguth_etal_massbalance_obs_locations"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "-s_srs",
-                    "EPSG:4326",
-                    "-sql",
-                    "'SELECT\n                        _ogr_geometry_,\n                        fid,\n                        glacier_id,\n                        glacier_name,\n                        glacier_type,\n                        glacier_lat,\n                        glacier_lon,\n                        time_period,\n                        sources_data,\n                        sources_background,\n                        CAST(\"#_points\" AS INTEGER) as \"#_points\",\n                        CAST(\"#_readings\" AS INTEGER) as \"#_readings\",\n                        CAST(\"#_readings_final\" AS INTEGER) as \"#_readings_final\",\n                        finished,\n                        comments,\n                        label\n                    FROM foo'",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/locations.gpkg"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "labeled_point",
-              "tags": [],
-              "title": "Mass balance glacier observation locations 1892-2020"
-            },
-            "name": "machguth_massbalance_locations"
-          },
-          {
-            "layer_cfg": {
-              "description": "Supraglacial lake delineation on Sermeq Kujalleq/Jakobshavn for\n2019/05/01 and 2019/10/01 generated using Sentinel-2 satellite data.",
-              "id": "jakobshavn_supraglacial_lakes",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "esa_cci_supraglacial_lakes"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "unzip",
-                    "{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip",
-                    "\"*merged*\"",
-                    "-d",
-                    "{output_dir}"
-                  ],
-                  "type": "command"
-                },
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "-dialect",
-                    "sqlite",
-                    "-sql",
-                    "\"SELECT\n                    Geometry,\n                    id1,\n                    DATE(\n                      substr(date, 1, 4)\n                      || '-'\n                      || substr(date, 5, 2)\n                      || '-'\n                      || substr(date, 7, 2)\n                    ) as date,\n                    area1,\n                    elev,\n                    source,\n                    tile,\n                    row\n                FROM greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1\" ",
-                    "{output_dir}/selected.gpkg",
-                    "{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_merged_v1_1.shp"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "supraglacial_lakes",
-              "tags": [
-                "water"
-              ],
-              "title": "Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019"
-            },
-            "name": "jakobshavn_supraglacial_lakes"
+              }
+            ],
+            "name": "Ice sheet velocity",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
           }
         ],
         "name": "Glaciology",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            "ice_cores.py:ice_cores",
+            "machguth_massbalance_locations.py:machguth_massbalance_locations",
+            "supraglacial_lakes.py:jakobshavn_supraglacial_lakes",
+            "firn_ice.py:firn_ice_layer_thicknesses",
+            "Global land ice measurements from space (GLIMS)",
+            "Surface elevation change",
+            "Gravimetric mass balance",
+            "Ice sheet velocity"
+          ],
           "show": false
         }
       },
