@@ -188,6 +188,26 @@
         "title": "Natural Earth Coastlines (10m)"
       }
     },
+    "earthquakes": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1900-01-01%2000:00:00&endtime=2021-01-01%2000:00:00&maxlatitude=90&minlatitude=51.179&maxlongitude=17.578&minlongitude=-103.359&minmagnitude=2.5&orderby=time"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "earthquakes",
+      "metadata": {
+        "abstract": "United States Geological Survey earthquake data for earthquakes\noccuring during 1990-2020. Data is sourced from the ANSS\nComprehensive Earthquake Catalog (ComCat). ComCat data are produced\nby contributing seismic networks.",
+        "citation": {
+          "text": "U.S. Geological Survey (2020). ANSS Comprehensive Earthquake\nCatalog. Initial access: 2020-08-20.",
+          "url": "https://earthquake.usgs.gov/earthquakes/search/"
+        },
+        "title": "USGS Earthquakes 1990-2020"
+      }
+    },
     "esa_cci_gravimetric_mass_balance_dtu": {
       "assets": {
         "only": {
