@@ -1,4 +1,5 @@
 from itertools import product
+
 from qgreenland.config.datasets.woa2018_temperature import (
     woa2018_temperature as dataset,
 )
@@ -64,5 +65,5 @@ layers = [
                 output_file='{output_dir}/final.tif',
             ),
         ],
-    ) for season, depth in COMBINATIONS 
+    ) for season, depth in COMBINATIONS
 ]
