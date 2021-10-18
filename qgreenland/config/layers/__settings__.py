@@ -13,6 +13,7 @@ settings = RootGroupSettings(
         'Frozen ground',
         'Geology',
         'Geophysics',
+        'Hydrology',
         'Sea ice',
         'Oceanography',
         'Terrain Models',
