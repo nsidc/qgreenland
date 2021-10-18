@@ -170,14 +170,13 @@ def _make_masked_racmo_layer(
                     ),
                 ],
             ),
-            # TODO: create a helper for gdal_edit.
             *gdal_edit(
                 input_file='{input_dir}/' + f'{variable}.tif',
                 output_file='{output_dir}/edited.tif',
                 gdal_edit_args=[
                     '-a_srs', project.crs,
                     *gdal_edit_args,
-                ]
+                ],
             ),
             *build_overviews(
                 input_file='{input_dir}/edited.tif',
