@@ -30,10 +30,10 @@ def decompress_step(
         )
     elif decompress_type == 'gzip':
         if decompress_contents_mask:
-            raise NotImplementedError(
+            raise NotImplementedError((
                 'The `decompress_contents_mask` kwarg is not supported for'
                 ' the `gzip` decompression type.'
-            )
+            ))
 
         return ConfigLayerCommandStep(
             args=[
