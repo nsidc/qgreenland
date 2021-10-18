@@ -274,6 +274,7 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
                     *build_overviews(
                         input_file='{input_dir}/' + f"{params['variable']}.tif",
                         output_file='{output_dir}/' + f'{layer_id}.tif',
+                        resampling_algorithm='nearest',
                     ),
                 ],
             ),
