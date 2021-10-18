@@ -1372,6 +1372,26 @@
         "title": "World tectonic plates and boundaries"
       }
     },
+    "undersea_features": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.ngdc.noaa.gov/gazetteer/feature/export?aoi=POLYGON%28%28-162.82882+39.14360%2C+120.79574+45.17504%2C+-1.80233+31.69553%2C+-68.42289+32.69612%2C+-162.82882+39.14360%29%29&name=&featureType=&proposerId=&discovererId=&meeting=&status=&format=shapefile"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "undersea_features",
+      "metadata": {
+        "abstract": "The General Bathymetric Chart of the Oceans (GEBCO) Sub-Committee\non Undersea Feature Names (SCUFN) maintains and makes available a\ndigital gazetteer of the names, generic feature type, and geographic\nposition of features on the seafloor. The gazetteer is available to\nview and download (http://www.ngdc.noaa.gov/gazetteer/) via a web\nmap application, hosted by the International Hydrographic\nOrganization Data Centre for Digital Bathymetry (IHO DCDB)\nco-located with the US National Centers for Environmental\nInformation (NCEI).",
+        "citation": {
+          "text": "IHO-IOC GEBCO Gazetteer of Undersea Feature Names,\nwww.gebco.net",
+          "url": "https://www.gebco.net/data_and_products/undersea_feature_names/"
+        },
+        "title": "IHO-IOC GEBCO Gazetteer of Undersea Feature Names"
+      }
+    },
     "utm_zones": {
       "assets": {
         "only": {
@@ -18775,6 +18795,175 @@
             "children": [
               {
                 "layer_cfg": {
+                  "description": "Lines representing undersea features.",
+                  "id": "undersea_features_multilinestring",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "undersea_features"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/features.zip",
+                        "-d",
+                        "{output_dir}",
+                        "features/features-multilinestring.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "-sql",
+                        "'SELECT *, name as label\n                        FROM \"features-multilinestring\"'",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/features/features-multilinestring.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "Undersea_Linear",
+                  "tags": [],
+                  "title": "Linear features"
+                },
+                "name": "undersea_features_multilinestring"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing undersea features.",
+                  "id": "undersea_features_point",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "undersea_features"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/features.zip",
+                        "-d",
+                        "{output_dir}",
+                        "features/features-point.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "-sql",
+                        "'SELECT *, name as label\n                        FROM \"features-point\"'",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/features/features-point.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "Undersea_Points",
+                  "tags": [],
+                  "title": "Point locations"
+                },
+                "name": "undersea_features_point"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing undersea features.",
+                  "id": "undersea_features_multipolygon",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "undersea_features"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/features.zip",
+                        "-d",
+                        "{output_dir}",
+                        "features/features-multipolygon.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-makevalid",
+                        "-nlt",
+                        "POLYGON",
+                        "-sql",
+                        "'SELECT *, name as label\n                        FROM \"features-multipolygon\"'",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/features/features-multipolygon.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "Undersea_Shapes",
+                  "tags": [],
+                  "title": "Shapes"
+                },
+                "name": "undersea_features_multipolygon"
+              }
+            ],
+            "name": "Undersea feature names",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          }
+        ],
+        "name": "Oceanography",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
                   "description": "Bedrock elevation in meters.",
                   "id": "bedmachine_bed",
                   "in_package": true,
@@ -19288,6 +19477,7 @@
         "Geology",
         "Geophysics",
         "Sea ice",
+        "Oceanography",
         "Terrain Models",
         "Internet-required data",
         "Basemaps"
