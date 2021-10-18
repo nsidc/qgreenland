@@ -9043,12 +9043,150 @@
               "title": "Ground temperature 2000-2016 (10km)"
             },
             "name": "ground_temperature"
+          },
+          {
+            "layer_cfg": {
+              "description": "Standard deviation of the average mean annual ground temperature\nin degrees Celsius.",
+              "id": "ground_temperature_sd",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "10km"
+                },
+                "dataset": {
+                  "id": "pangaea_ground_temperature"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-s_srs",
+                    "EPSG:3995",
+                    "-tr",
+                    "10000",
+                    "10000",
+                    "NETCDF:{input_dir}/UiO_PEX_5.0_20181127_2000_2016_10km.nc:SD",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/ground_temperature_sd.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/ground_temperature_sd.tif",
+                    "{output_dir}/ground_temperature_sd.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/ground_temperature_sd.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "ground_temperature_std",
+              "tags": [],
+              "title": "Ground temperature standard deviation (10km)"
+            },
+            "name": "ground_temperature_sd"
+          },
+          {
+            "layer_cfg": {
+              "description": "Permafrost probability (fraction values from 0 to 1) assigned to\neach grid cell with mean annual ground temperature (MAGT) < 0\u00b0C.",
+              "id": "permafrost_probability",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "10km"
+                },
+                "dataset": {
+                  "id": "pangaea_ground_temperature"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-s_srs",
+                    "EPSG:3995",
+                    "-tr",
+                    "10000",
+                    "10000",
+                    "NETCDF:{input_dir}/UiO_PEX_5.0_20181127_2000_2016_10km.nc:PerProb",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/permafrost_probability.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/permafrost_probability.tif",
+                    "{output_dir}/permafrost_probability.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/permafrost_probability.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "permafrost_probability",
+              "tags": [],
+              "title": "Permafrost probability (10km)"
+            },
+            "name": "permafrost_probability"
           }
         ],
         "name": "Frozen ground",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            "layers.py:ground_temperature",
+            "layers.py:ground_temperature_sd",
+            "layers.py:permafrost_probability"
+          ],
           "show": false
         }
       },
