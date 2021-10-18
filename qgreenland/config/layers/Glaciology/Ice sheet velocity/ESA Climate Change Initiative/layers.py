@@ -17,8 +17,7 @@ _esa_cci_velocity_params = {
         'style': 'esa_cci_velocity',
     },
     'esa_cci_velocity_vertical': {
-        # TODO: should this title aslo indicate 2019-2020?
-        'title': 'Land ice surface vertical velocity (250m)',
+        'title': 'Land ice surface vertical velocity 2019-2020 (250m)',
         'description': (
             """Vertical ice velocity in meters per day. Data is not masked to
             ice sheet boundary."""
