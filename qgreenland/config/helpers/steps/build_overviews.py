@@ -4,7 +4,7 @@ from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
 
 
 # https://gdal.org/programs/gdaladdo.html
-resampling_algorithm_type = Literal[
+ResamplingAlgorithm = Literal[
     'nearest',
     'average',
     'rms',
@@ -22,7 +22,7 @@ def build_overviews(
         *,
         input_file,
         output_file,
-        resampling_algorithm: resampling_algorithm_type = 'average',
+        resampling_algorithm: ResamplingAlgorithm = 'average',
 ) -> list[AnyStep]:
     copy_into_place = [
         'cp',
