@@ -3,7 +3,7 @@ from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
-_stream_selection_ogr2ogr_args = (
+_stream_selection_ogr2ogr_args: tuple[str, ...] = (
     '-dialect', 'sqlite',
     '-sql', (
         """\"SELECT * from streams
@@ -90,7 +90,7 @@ layers = [
             *ogr2ogr(
                 input_file='{input_dir}/' + str(params['input_filename']),
                 output_file='{output_dir}/' + f'{layer_id}.gpkg',
-                ogr2ogr_args=params['ogr2ogr_args'],
+                ogr2ogr_args=tuple(params['ogr2ogr_args']),
             ),
         ],
     )
