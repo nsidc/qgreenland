@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Sequence
 
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -17,7 +17,7 @@ def ogr2ogr(
     input_file: str,
     output_file: str,
     boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
-    ogr2ogr_args: tuple[str, ...] = (),
+    ogr2ogr_args: Sequence[str] = (),
     enable_partial_reprojection=False,
 ) -> list[ConfigLayerCommandStep]:
     """Warp to project CRS and do other stuff as specified in args."""

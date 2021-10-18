@@ -1,4 +1,4 @@
-from qgreenland.config.datasets.streams_outlets_basins import streams_outlets_basins as dataset
+from qgreenland.config.datasets.streams_outlets_basins import streams_outlets_basins as dataset  # noqa: E501
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
@@ -8,7 +8,7 @@ _stream_selection_ogr2ogr_args = (
     '-sql', (
         """\"SELECT * from streams
         WHERE GeometryType(geom) = 'LINESTRING' AND ST_NPoints(geom) > 1\""""
-    )
+    ),
 )
 
 _layer_params = {
@@ -88,7 +88,7 @@ layers = [
         ),
         steps=[
             *ogr2ogr(
-                input_file='{input_dir}/' + params['input_filename'],
+                input_file='{input_dir}/' + str(params['input_filename']),
                 output_file='{output_dir}/' + f'{layer_id}.gpkg',
                 ogr2ogr_args=params['ogr2ogr_args'],
             ),
