@@ -8978,6 +8978,83 @@
       {
         "children": [
           {
+            "layer_cfg": {
+              "description": "Average mean annual ground temperature in degrees Celsius.",
+              "id": "ground_temperature",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "10km"
+                },
+                "dataset": {
+                  "id": "pangaea_ground_temperature"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-s_srs",
+                    "EPSG:3995",
+                    "-tr",
+                    "10000",
+                    "10000",
+                    "NETCDF:{input_dir}/UiO_PEX_5.0_20181127_2000_2016_10km.nc:MAGT",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/ground_temperature.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/ground_temperature.tif",
+                    "{output_dir}/ground_temperature.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/ground_temperature.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "ground_temperature",
+              "tags": [],
+              "title": "Ground temperature 2000-2016 (10km)"
+            },
+            "name": "ground_temperature"
+          }
+        ],
+        "name": "Frozen ground",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
             "children": [
               {
                 "children": [
@@ -18743,6 +18820,7 @@
         "Environmental management",
         "Regional climate models",
         "Glaciology",
+        "Frozen ground",
         "Geophysics",
         "Sea ice",
         "Terrain Models",
