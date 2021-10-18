@@ -9202,11 +9202,7 @@
         "name": "Frozen ground",
         "settings": {
           "expand": false,
-          "order": [
-            "layers.py:ground_temperature",
-            "layers.py:ground_temperature_sd",
-            "layers.py:permafrost_probability"
-          ],
+          "order": null,
           "show": false
         }
       },
