@@ -11,6 +11,7 @@ settings = RootGroupSettings(
         'Regional climate models',
         'Glaciology',
         'Frozen ground',
+        'Geology',
         'Geophysics',
         'Sea ice',
         'Terrain Models',

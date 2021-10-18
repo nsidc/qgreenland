@@ -9229,6 +9229,57 @@
       {
         "children": [
           {
+            "layer_cfg": {
+              "description": "Location and magnitude of earthquakes.",
+              "id": "earthquakes",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "earthquakes"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT\n                    geometry,\n                    id,\n                    mag,\n                    place,\n                    DATETIME(time / 1000, 'unixepoch') as time,\n                    DATETIME(updated / 1000, 'unixepoch') as updated,\n                    tz,\n                    url,\n                    detail,\n                    felt,\n                    cdi,\n                    mmi,\n                    alert,\n                    tsunami,\n                    sig,\n                    net,\n                    code,\n                    ids,\n                    sources,\n                    types,\n                    nst,\n                    dmin,\n                    rms,\n                    gap,\n                    magType,\n                    type,\n                    title,\n                    title as label\n                FROM query\"",
+                    "{output_dir}/earthquakes.gpkg",
+                    "{input_dir}/query.geojson"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "earthquakes",
+              "tags": [],
+              "title": "Earthquakes M above 2.5 1900-2020"
+            },
+            "name": "earthquakes"
+          }
+        ],
+        "name": "Geology",
+        "settings": {
+          "expand": false,
+          "order": null,
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
             "children": [
               {
                 "children": [
@@ -19043,6 +19094,7 @@
         "Regional climate models",
         "Glaciology",
         "Frozen ground",
+        "Geology",
         "Geophysics",
         "Sea ice",
         "Terrain Models",
