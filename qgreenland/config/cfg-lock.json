@@ -1352,6 +1352,28 @@
         "title": "International Registry of Seismograph Stations (IR)"
       }
     },
+    "soil_types": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.dbf.gz",
+            "ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.shp.gz",
+            "ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.shx.gz"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "soil_types",
+      "metadata": {
+        "abstract": "The full data set consists of a circumpolar map of dominant soil\ncharacteristics, with a scale of 1:10,000,000, covering the United\nStates, Canada, Greenland, Iceland, northern Europe, Russia,\nMongolia, and Kazakhstan. The map was created using the Northern and\nMid Latitude Soil Database. The map is in ESRI Shapefile format,\nconsisting of 11 regional areas. Polygons have attributes that give\nthe percentage polygon area that is a given soil type. The map shows\nthe dominant soil of the spatial polygon unless the polygon is over\n90 percent rock or ice.  It also shows the proportion of polygon\nencompassed by the dominant soil or nonsoil. Soils include turbels,\northels, histels, histosols, mollisols, vertisols, aridisols,\nandisols, entisols, spodosols, inceptisols (and hapludolls),\nalfisols (cryalf and udalf), natric great groups, aqu-suborders,\nglaciers, and rocklands. QGreenland dispalys data for Greenland.\nUsers can look to the source information for additional data.",
+        "citation": {
+          "text": "Tarnocai, C., J. Kimble, D. Swanson, S. Goryachkin, Y. M.\nNaumov, V. Stolbovoi, B. Jakobsen, G. Broll, L. Montanarella, A.\nArnoldussen, O. Arnalds, and M. Yli-Halla. 2002. Northern\nCircumpolar Soils Map, Version 1.  Greenland. Ottawa, Canada.\nResearch Branch, Agriculture and Agri-Food Canada. doi:\nhttps://doi.org/. {{date_accessed}}.",
+          "url": "https://nsidc.org/data/GGD602/versions/1"
+        },
+        "title": "Northern Circumpolar Soils Map, Version 1"
+      }
+    },
     "tectonic_plates": {
       "assets": {
         "only": {
@@ -9412,6 +9434,57 @@
               "title": "Earthquakes M above 2.5 1900-2020"
             },
             "name": "earthquakes"
+          },
+          {
+            "layer_cfg": {
+              "description": "Polygons representing dominant soil characteristics with percentage\npolygon area for each soil type. Data coverage limited to Greenland.",
+              "id": "soil_types",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "soil_types"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/*.gz",
+                    "{output_dir}/",
+                    "&&",
+                    "gzip",
+                    "-d",
+                    "{output_dir}/*.gz"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-s_srs",
+                    "\"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0\"",
+                    "{output_dir}/soil_types.gpkg",
+                    "{input_dir}/ggd602_soils_greenland.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "soil_types",
+              "tags": [],
+              "title": "Soil characteristics"
+            },
+            "name": "soil_types"
           },
           {
             "layer_cfg": {
