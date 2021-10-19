@@ -4261,6 +4261,8 @@
                         "-cutline",
                         "{assets_dir}/greenland_rectangle.geojson",
                         "-crop_to_cutline",
+                        "-r",
+                        "bilinear",
                         "-t_srs",
                         "EPSG:3413",
                         "-tr",
@@ -8754,6 +8756,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/masked_velocity_mosaic.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -8828,6 +8832,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/masked_velocity_mosaic_error.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -8890,6 +8896,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "NETCDF:{input_dir}/GRE_G0120_0000.nc:ice",
                             "{output_dir}/warped.tif"
                           ],
@@ -8976,6 +8984,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "NETCDF:{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc:land_ice_surface_velocity_magnitude",
                             "{output_dir}/warped.tif"
                           ],
@@ -9048,6 +9058,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "NETCDF:{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc:land_ice_surface_vertical_velocity",
                             "{output_dir}/warped.tif"
                           ],
@@ -9215,6 +9227,8 @@
                     "gdalwarp",
                     "-t_srs",
                     "EPSG:3413",
+                    "-r",
+                    "bilinear",
                     "-s_srs",
                     "EPSG:3995",
                     "-tr",
@@ -9282,6 +9296,8 @@
                     "gdalwarp",
                     "-t_srs",
                     "EPSG:3413",
+                    "-r",
+                    "bilinear",
                     "-s_srs",
                     "EPSG:3995",
                     "-tr",
@@ -9349,6 +9365,8 @@
                     "gdalwarp",
                     "-t_srs",
                     "EPSG:3413",
+                    "-r",
+                    "bilinear",
                     "-s_srs",
                     "EPSG:3995",
                     "-tr",
@@ -15684,6 +15702,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -15772,6 +15792,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -15860,6 +15882,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -15948,6 +15972,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16036,6 +16062,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16124,6 +16152,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16212,6 +16242,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16300,6 +16332,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16388,6 +16422,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16476,6 +16512,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16564,6 +16602,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16674,6 +16714,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16762,6 +16804,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16850,6 +16894,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16938,6 +16984,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17026,6 +17074,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17114,6 +17164,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17202,6 +17254,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17290,6 +17344,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17378,6 +17434,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17466,6 +17524,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17554,6 +17614,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17665,6 +17727,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -17738,6 +17802,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -17811,6 +17877,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -17884,6 +17952,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -17957,6 +18027,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18030,6 +18102,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18103,6 +18177,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18176,6 +18252,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18249,6 +18327,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18322,6 +18402,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18395,6 +18477,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18478,6 +18562,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18551,6 +18637,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18624,6 +18712,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18697,6 +18787,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18770,6 +18862,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18843,6 +18937,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18916,6 +19012,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18989,6 +19087,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -19062,6 +19162,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -19135,6 +19237,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -19208,6 +19312,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -19287,83 +19393,8 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at 200m depth in \u00b0C.",
-                  "id": "woa2018_200m_temperature_summer",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_summer"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "25",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "200M, Summer"
-                },
-                "name": "woa2018_200m_temperature_summer"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 200m depth in \u00b0C.",
-                  "id": "woa2018_200m_temperature_winter",
+                  "description": "Seawater temperature at surface depth in \u00b0C.",
+                  "id": "woa2018_0m_temperature_winter",
                   "in_package": true,
                   "input": {
                     "asset": {
@@ -19379,7 +19410,7 @@
                       "args": [
                         "gdal_translate",
                         "-b",
-                        "25",
+                        "1",
                         "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
@@ -19390,9 +19421,16 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "-tr",
                         "25000",
                         "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
                         "{input_dir}/extracted.tif",
                         "{output_dir}/warped.tif"
                       ],
@@ -19431,309 +19469,9 @@
                   ],
                   "style": "seawater_temperature",
                   "tags": [],
-                  "title": "200M, Winter"
+                  "title": "Surface, Winter"
                 },
-                "name": "woa2018_200m_temperature_winter"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 500m depth in \u00b0C.",
-                  "id": "woa2018_500m_temperature_summer",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_summer"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "37",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "500M, Summer"
-                },
-                "name": "woa2018_500m_temperature_summer"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 500m depth in \u00b0C.",
-                  "id": "woa2018_500m_temperature_winter",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_winter"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "37",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "500M, Winter"
-                },
-                "name": "woa2018_500m_temperature_winter"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 50m depth in \u00b0C.",
-                  "id": "woa2018_50m_temperature_summer",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_summer"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "11",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "50M, Summer"
-                },
-                "name": "woa2018_50m_temperature_summer"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 50m depth in \u00b0C.",
-                  "id": "woa2018_50m_temperature_winter",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_winter"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "11",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "50M, Winter"
-                },
-                "name": "woa2018_50m_temperature_winter"
+                "name": "woa2018_0m_temperature_winter"
               },
               {
                 "layer_cfg": {
@@ -19765,9 +19503,16 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "-tr",
                         "25000",
                         "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
                         "{input_dir}/extracted.tif",
                         "{output_dir}/warped.tif"
                       ],
@@ -19812,8 +19557,8 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at surface depth in \u00b0C.",
-                  "id": "woa2018_0m_temperature_winter",
+                  "description": "Seawater temperature at 50m depth in \u00b0C.",
+                  "id": "woa2018_50m_temperature_winter",
                   "in_package": true,
                   "input": {
                     "asset": {
@@ -19829,7 +19574,7 @@
                       "args": [
                         "gdal_translate",
                         "-b",
-                        "1",
+                        "11",
                         "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
@@ -19840,9 +19585,16 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "-tr",
                         "25000",
                         "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
                         "{input_dir}/extracted.tif",
                         "{output_dir}/warped.tif"
                       ],
@@ -19881,15 +19633,434 @@
                   ],
                   "style": "seawater_temperature",
                   "tags": [],
-                  "title": "Surface, Winter"
+                  "title": "50m, Winter"
                 },
-                "name": "woa2018_0m_temperature_winter"
+                "name": "woa2018_50m_temperature_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 50m depth in \u00b0C.",
+                  "id": "woa2018_50m_temperature_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "11",
+                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "50m, Summer"
+                },
+                "name": "woa2018_50m_temperature_summer"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 200m depth in \u00b0C.",
+                  "id": "woa2018_200m_temperature_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "25",
+                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "200m, Winter"
+                },
+                "name": "woa2018_200m_temperature_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 200m depth in \u00b0C.",
+                  "id": "woa2018_200m_temperature_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "25",
+                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "200m, Summer"
+                },
+                "name": "woa2018_200m_temperature_summer"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 500m depth in \u00b0C.",
+                  "id": "woa2018_500m_temperature_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "37",
+                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "500m, Winter"
+                },
+                "name": "woa2018_500m_temperature_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 500m depth in \u00b0C.",
+                  "id": "woa2018_500m_temperature_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "37",
+                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "500m, Summer"
+                },
+                "name": "woa2018_500m_temperature_summer"
               }
             ],
             "name": "Seawater temperature 2018 (25km)",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                "woa2018.py:woa2018_0m_temperature_winter",
+                "woa2018.py:woa2018_0m_temperature_summer",
+                "woa2018.py:woa2018_50m_temperature_winter",
+                "woa2018.py:woa2018_50m_temperature_summer",
+                "woa2018.py:woa2018_200m_temperature_winter",
+                "woa2018.py:woa2018_200m_temperature_summer",
+                "woa2018.py:woa2018_500m_temperature_winter",
+                "woa2018.py:woa2018_500m_temperature_summer"
+              ],
               "show": false
             }
           },
@@ -20088,6 +20259,8 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:bed",
                         "{output_dir}/warped.tif"
                       ],
@@ -20152,6 +20325,8 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:errbed",
                         "{output_dir}/warped.tif"
                       ],
@@ -20216,6 +20391,8 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:thickness",
                         "{output_dir}/warped.tif"
                       ],
@@ -20280,6 +20457,8 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:surface",
                         "{output_dir}/warped.tif"
                       ],
@@ -20500,6 +20679,8 @@
                     "gdalwarp",
                     "-t_srs",
                     "EPSG:3413",
+                    "-r",
+                    "bilinear",
                     "-tr",
                     "500",
                     "500",
