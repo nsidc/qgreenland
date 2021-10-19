@@ -1,3 +1,4 @@
+from qgreenland._typing import ResamplingMethod
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -9,33 +10,32 @@ def warp_and_cut(
     input_file,
     output_file,
     cut_file,
+    resampling_method: ResamplingMethod = 'bilinear',
     reproject_args=(),
     cut_args=(),
 ) -> list[ConfigLayerCommandStep]:
     reproject = ConfigLayerCommandStep(
         args=[
             'gdalwarp',
-            '-t_srs', project.crs,  # dstCRS
+            '-t_srs', project.crs,
+            '-r', resampling_method,
             *reproject_args,
-            f'{input_file}',  # <--- Input
-            '{output_dir}/warped.tif',  # <--- Output
+            input_file,
+            '{output_dir}/warped.tif',
         ],
     )
 
     cut = ConfigLayerCommandStep(
         args=[
             'gdalwarp',
-            '-cutline',  # CutlineDSName
-            f'{cut_file}',
-            '-crop_to_cutline',  # CropToCutline=True
-            '-co', 'COMPRESS=DEFLATE',  # creationOptions=['COMPRESS=DEFLATE']
+            '-cutline',
+            cut_file,
+            '-crop_to_cutline',
+            '-co', 'COMPRESS=DEFLATE',
             *cut_args,
-            '{input_dir}/warped.tif',  # <--- Input
-            f'{output_file}',  # <--- Output
+            '{input_dir}/warped.tif',
+            output_file,
         ],
     )
 
-    return [
-        reproject,
-        cut,
-    ]
+    return [reproject, cut]
