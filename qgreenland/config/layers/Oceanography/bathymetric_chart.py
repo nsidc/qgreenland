@@ -1,5 +1,6 @@
 from qgreenland.config.datasets.bathymetric_chart import bathymetric_chart as dataset
-from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
+from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
@@ -20,15 +21,19 @@ bathymetric_chart = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
-        *warp_and_cut(
+        *warp(
             input_file='NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z',
             output_file='{output_dir}/bathymetric_chart.tif',
-            reproject_args=(
+            warp_args=(
                 '-s_srs', '"+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84"',
                 '-dstnodata', '-9999',
                 '-tr', '400', '400',
             ),
             cut_file=project.boundaries['background'].filepath,
+        ),
+        *build_overviews(
+            input_file='{input_dir}/bathymetric_chart.tif',
+            output_file='{output_dir}/bathymetric_chart.tif',
         ),
     ],
 )
