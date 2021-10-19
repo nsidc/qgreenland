@@ -1,11 +1,6 @@
 from qgreenland.config.datasets.woa2018_temperature import (
     woa2018_temperature as dataset,
 )
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
-from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
-from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.config.helpers.layers.woa2018 import (
     COMBINATIONS,
     DEPTHS_BANDS,
@@ -13,6 +8,11 @@ from qgreenland.config.helpers.layers.woa2018 import (
     depth_str,
     id_str,
 )
+from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
+from qgreenland.config.project import project
+from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 layers = [

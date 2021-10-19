@@ -22,14 +22,12 @@ DEPTHS_BANDS: dict[int, int] = {
     200: 25,
     500: 37,
 }
-COMBINATIONS = list(product(SEASONS_FNS.keys(), DEPTHS_BANDS.keys()))
+
 # Sort by season first, then by depth
-COMBINATIONS.sort(
-    key=lambda x: x[0], reverse=True,
-)
-COMBINATIONS.sort(
-    key=lambda x: x[1]
-)
+COMBINATIONS = list(product(SEASONS_FNS.keys(), DEPTHS_BANDS.keys()))
+COMBINATIONS.sort(key=lambda x: x[0], reverse=True)
+COMBINATIONS.sort(key=lambda x: x[1])
+
 WOA2018_LAYER_ORDER = [
     id_str(depth=depth, season=season)
     for (season, depth) in COMBINATIONS
