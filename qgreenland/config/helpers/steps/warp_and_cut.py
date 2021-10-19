@@ -20,7 +20,7 @@ def warp_and_cut(
             '-t_srs', project.crs,
             '-r', resampling_method,
             *reproject_args,
-            f'{input_file}',
+            input_file,
             '{output_dir}/warped.tif',
         ],
     )
