@@ -58,6 +58,16 @@ layers = [
                 cut_file=project.boundaries['data'].filepath,
                 reproject_args=(
                     '-tr', '25000', '25000',
+                    # A "target extent" bounding box is required to reproject
+                    # this correctly, or we receive an error like:
+                    #     ERROR 1: Attempt to create 0x1 dataset is
+                    #     illegal,sizes must be larger than zero.
+                    '-te', *(
+                        project.boundaries['data'].bbox.min_x,
+                        project.boundaries['data'].bbox.min_y,
+                        project.boundaries['data'].bbox.max_x,
+                        project.boundaries['data'].bbox.max_y,
+                    ),
                 ),
             ),
             *build_overviews(
