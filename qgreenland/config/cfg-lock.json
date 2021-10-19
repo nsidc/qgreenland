@@ -19504,7 +19504,10 @@
         "name": "Oceanography",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            "Undersea feature names",
+            "bathymetric_chart.py:bathymetric_chart"
+          ],
           "show": false
         }
       },
