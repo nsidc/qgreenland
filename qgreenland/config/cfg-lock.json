@@ -110,6 +110,26 @@
         "title": "Likely Basal Thermal State of the Greenland Ice Sheet"
       }
     },
+    "bathymetric_chart": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_400m_ice/cfnetcdf/"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "bathymetric_chart",
+      "metadata": {
+        "abstract": "The goal of the IBCAO initiative is to develop a digital database\nthat contains all available bathymetric data north of 64\u00b0 North, for\nuse by mapmakers, researchers, institutions, and others whose work\nrequires a detailed and accurate knowledge of the depth and the\nshape of the Arctic seabed.",
+        "citation": {
+          "text": "GEBCO Compilation Group (2020) GEBCO 2020 Grid\n(doi:10.5285/a29c5465-b138-234d-e053-6c86abc040b9)",
+          "url": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/arctic_ocean/"
+        },
+        "title": "Bathymetric Chart of the Arctic Ocean (IBCAO)"
+      }
+    },
     "bedmachine": {
       "assets": {
         "only": {
@@ -19393,681 +19413,6 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at surface depth in \u00b0C.",
-                  "id": "woa2018_0m_temperature_winter",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_winter"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "1",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "-te",
-                        "-998012.0",
-                        "-3611178.0",
-                        "1228670.0",
-                        "-329624.0",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "Surface, Winter"
-                },
-                "name": "woa2018_0m_temperature_winter"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at surface depth in \u00b0C.",
-                  "id": "woa2018_0m_temperature_summer",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_summer"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "1",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "-te",
-                        "-998012.0",
-                        "-3611178.0",
-                        "1228670.0",
-                        "-329624.0",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "Surface, Summer"
-                },
-                "name": "woa2018_0m_temperature_summer"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 50m depth in \u00b0C.",
-                  "id": "woa2018_50m_temperature_winter",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_winter"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "11",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "-te",
-                        "-998012.0",
-                        "-3611178.0",
-                        "1228670.0",
-                        "-329624.0",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "50m, Winter"
-                },
-                "name": "woa2018_50m_temperature_winter"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 50m depth in \u00b0C.",
-                  "id": "woa2018_50m_temperature_summer",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_summer"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "11",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "-te",
-                        "-998012.0",
-                        "-3611178.0",
-                        "1228670.0",
-                        "-329624.0",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "50m, Summer"
-                },
-                "name": "woa2018_50m_temperature_summer"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 200m depth in \u00b0C.",
-                  "id": "woa2018_200m_temperature_winter",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_winter"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "25",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "-te",
-                        "-998012.0",
-                        "-3611178.0",
-                        "1228670.0",
-                        "-329624.0",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "200m, Winter"
-                },
-                "name": "woa2018_200m_temperature_winter"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 200m depth in \u00b0C.",
-                  "id": "woa2018_200m_temperature_summer",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_summer"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "25",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "-te",
-                        "-998012.0",
-                        "-3611178.0",
-                        "1228670.0",
-                        "-329624.0",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "200m, Summer"
-                },
-                "name": "woa2018_200m_temperature_summer"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 500m depth in \u00b0C.",
-                  "id": "woa2018_500m_temperature_winter",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_winter"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "37",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "-te",
-                        "-998012.0",
-                        "-3611178.0",
-                        "1228670.0",
-                        "-329624.0",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "500m, Winter"
-                },
-                "name": "woa2018_500m_temperature_winter"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Seawater temperature at 500m depth in \u00b0C.",
-                  "id": "woa2018_500m_temperature_summer",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "seasonal_summer"
-                    },
-                    "dataset": {
-                      "id": "woa2018_temperature"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-b",
-                        "37",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
-                        "{output_dir}/extracted.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "-tr",
-                        "25000",
-                        "25000",
-                        "-te",
-                        "-998012.0",
-                        "-3611178.0",
-                        "1228670.0",
-                        "-329624.0",
-                        "{input_dir}/extracted.tif",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/final.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/final.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "seawater_temperature",
-                  "tags": [],
-                  "title": "500m, Summer"
-                },
-                "name": "woa2018_500m_temperature_summer"
-              }
-            ],
-            "name": "Seawater temperature 2018 (25km)",
-            "settings": {
-              "expand": false,
-              "order": [
-                "woa2018.py:woa2018_0m_temperature_winter",
-                "woa2018.py:woa2018_0m_temperature_summer",
-                "woa2018.py:woa2018_50m_temperature_winter",
-                "woa2018.py:woa2018_50m_temperature_summer",
-                "woa2018.py:woa2018_200m_temperature_winter",
-                "woa2018.py:woa2018_200m_temperature_summer",
-                "woa2018.py:woa2018_500m_temperature_winter",
-                "woa2018.py:woa2018_500m_temperature_summer"
-              ],
-              "show": false
-            }
-          },
-          {
-            "children": [
-              {
-                "layer_cfg": {
                   "description": "Points representing undersea features.",
                   "id": "undersea_features_point",
                   "in_package": true,
@@ -20226,12 +19571,78 @@
               ],
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Bathymetric elevation in meters. Elevations can be assumed to be\nrelative to mean sea level. However, in some shallow water areas, the\ngrids include data from sources having a vertical datum other than mean\nsea level.",
+              "id": "bathymetric_chart",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "bathymetric_chart"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-s_srs",
+                    "\"+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84\"",
+                    "-dstnodata",
+                    "-9999",
+                    "-tr",
+                    "400",
+                    "400",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z",
+                    "{output_dir}/bathymetric_chart.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/bathymetric_chart.tif",
+                    "{output_dir}/bathymetric_chart.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/bathymetric_chart.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "ibcao_bathymetry",
+              "tags": [],
+              "title": "Bathymetric chart of the Arctic Ocean (400m)"
+            },
+            "name": "bathymetric_chart"
           }
         ],
         "name": "Oceanography",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            "Undersea feature names",
+            "bathymetric_chart.py:bathymetric_chart"
+          ],
           "show": false
         }
       },
