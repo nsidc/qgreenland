@@ -20,8 +20,9 @@ arctic_dem = ConfigDataset(
         ConfigDatasetHttpAsset(
             id='100m',
             # This shouldn't be necessary?
+            verify_tls=False,
             urls=[
-                'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/100m/arcticdem_mosaic_100m_v3.0.tif',
+                'https://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/100m/arcticdem_mosaic_100m_v3.0.tif',
             ],
         ),
     ],
