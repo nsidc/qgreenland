@@ -1,5 +1,5 @@
 from qgreenland.config.datasets.dms_gtk import (
-    danish_agency_for_data_supply_and_efficiency_gtk_topo_map as dataset
+    danish_agency_for_data_supply_and_efficiency_gtk_topo_map as dataset,
 )
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
@@ -23,6 +23,6 @@ dms_gtk_topo = ConfigLayer(
         *build_overviews(
             input_file='{input_dir}/dms_gtk_topo.tif',
             output_file='{output_dir}/final.tif',
-        )
+        ),
     ],
 )

@@ -208,6 +208,23 @@
         "title": "Natural Earth Coastlines (10m)"
       }
     },
+    "danish_agency_for_data_supply_and_efficiency_gtk_topo_map": {
+      "assets": {
+        "only": {
+          "access_instructions": "Downloaded through the The Danish Agency for Map Supply and\nEfficiency's website on 2020-12-17. User registration is\nrequired. Once the ordered data were delivered (as a zipfile),\nthey were extracted and a mosaic was created of the 500m version\nof the data via the `scripts/danish_agency_for_data_supply_and_e\nfficiency_gtk_topo_map/preprocess.sh` script.",
+          "id": "only"
+        }
+      },
+      "id": "danish_agency_for_data_supply_and_efficiency_gtk_topo_map",
+      "metadata": {
+        "abstract": "Greenland's topographical map work is a collection of Greenland\nmaps in different dimensions. The original product contains the\nfollowing target ratios: 1:250,000, 1:500,000 and 1:2.5 million.",
+        "citation": {
+          "text": "Contains data from Styrelsen for dataforsyning og\neffektivisering. Accessed {{date_accessed}}.",
+          "url": "https://download.kortforsyningen.dk/content/gr%C3%B8nlands-topografiske-kortv%C3%A6rk"
+        },
+        "title": "Greenland's Topographical Map 1:500,000"
+      }
+    },
     "earthquakes": {
       "assets": {
         "only": {
@@ -19921,6 +19938,45 @@
               "order": null,
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Digitized and geolocated topographic map of Greenland.",
+              "id": "dms_gtk_topo",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "danish_agency_for_data_supply_and_efficiency_gtk_topo_map"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/dms_gtk_topo.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": null,
+              "tags": [],
+              "title": "Topographic map (1 to 500,000)"
+            },
+            "name": "dms_gtk_topo"
           }
         ],
         "name": "Terrain Models",
