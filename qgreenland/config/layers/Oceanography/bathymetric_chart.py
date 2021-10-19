@@ -21,7 +21,7 @@ bathymetric_chart = ConfigLayer(
     ),
     steps=[
         *warp_and_cut(
-            input_file='NETCDF:{input_dir}/IBCAO_v4_400m.nc:z',
+            input_file='NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z',
             output_file='{output_dir}/bathymetric_chart.tif',
             reproject_args=(
                 '-s_srs', '"+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84"',
