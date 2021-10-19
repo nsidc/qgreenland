@@ -1,7 +1,6 @@
 from qgreenland.config.datasets.boundaries import qgr_bounds as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 qgr_boundary_data = ConfigLayer(
