@@ -29,12 +29,12 @@ def warp_and_cut(
         args=[
             'gdalwarp',
             '-cutline',
-            f'{cut_file}',
+            cut_file,
             '-crop_to_cutline',
             '-co', 'COMPRESS=DEFLATE',
             *cut_args,
             '{input_dir}/warped.tif',
-            f'{output_file}',
+            output_file,
         ],
     )
 
