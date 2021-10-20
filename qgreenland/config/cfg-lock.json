@@ -21958,7 +21958,8 @@
                     "unzip",
                     "{input_dir}/*.zip",
                     "-d",
-                    "{output_dir}"
+                    "{output_dir}",
+                    ""
                   ],
                   "type": "command"
                 },
