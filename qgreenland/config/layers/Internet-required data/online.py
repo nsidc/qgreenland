@@ -15,8 +15,21 @@ image_mosaic_2019 = ConfigLayer(
         dataset=image_mosaic,
         asset=image_mosaic.assets['2019'],
     ),
-
 )
+
+image_mosaic_2015 = ConfigLayer(
+    id='image_mosaic_2015',
+    title='Greenland image mosaic 2015 (15m)',
+    description='Sentinel-2 multispectral satellite imagery from 2015.',
+    tags=['online'],
+    style='transparent_rgb',
+    input=ConfigLayerInput(
+        dataset=image_mosaic,
+        asset=image_mosaic.assets['2015'],
+    ),
+)
+
+
 g02135_polyline_n = ConfigLayer(
     id='g02135_polyline_n',
     title='Sea Ice Index',
