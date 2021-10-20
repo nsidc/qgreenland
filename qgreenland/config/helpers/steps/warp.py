@@ -1,3 +1,4 @@
+from qgreenland._typing import ResamplingMethod
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.runtime_vars import EvalFilePath
@@ -8,6 +9,7 @@ def warp(
     input_file: str,
     output_file: str,
     cut_file: EvalFilePath,
+    resampling_method: ResamplingMethod = 'bilinear',
     warp_args: tuple[str, ...] = (),
 ) -> list[ConfigLayerCommandStep]:
 
@@ -17,7 +19,8 @@ def warp(
             '-cutline',
             cut_file,
             '-crop_to_cutline',
-            '-t_srs', project.crs,  # dstCRS
+            '-r', resampling_method,
+            '-t_srs', project.crs,
             *warp_args,
             '-co', 'COMPRESS=DEFLATE',
             input_file,
