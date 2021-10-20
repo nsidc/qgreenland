@@ -1,4 +1,6 @@
-from qgreenland.config.helpers.layers.nunagis_protected_areas import LAYER_IDS_ORDERED_LIST
+from qgreenland.config.helpers.layers.nunagis_protected_areas import (
+    BIRDS_LAYERS,
+)
 from qgreenland.models.config.layer_group import LayerGroupSettings
 
 
@@ -8,7 +10,7 @@ settings = LayerGroupSettings(
         'caff_murre.py:caff_thickbilled_murre_colonies',
         *[
             f'nunagis_protected_areas.py:{layer_id}'
-            for layer_id in LAYER_IDS_ORDERED_LIST
+            for layer_id in BIRDS_LAYERS
         ],
     ],
 )

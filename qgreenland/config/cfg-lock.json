@@ -469,6 +469,26 @@
         "title": "Geological map of the Arctic / Carte gologique de l'Arctique"
       }
     },
+    "geothermal_heat_flux": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://ads.nipr.ac.jp/portal/kiwa/DataDownloadDownload.action?mode=single&path=ADS%3AArCS-T2%3AA20180227-001%3A2.00%3A%2FArCS-T2%2FA20180227-001%2Fv200%2Fdataset%2FGHF_Greenland_Ver2.0_GridEPSG3413_05km.nc&downloads=ADS%3AArCS-T2%3AA20180227-001%3A2.00%3A%2FArCS-T2%2FA20180227-001%2Fv200%2Fdataset%2FGHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "geothermal_heat_flux",
+      "metadata": {
+        "abstract": "The data present a distribution of the geothermal heat flux (GHF)\nfor Greenland, which is an update of two earlier versions by Greve\n(2005, Ann. Glaciol. 42) and Greve and Herzfeld (2013, Ann. Glaciol.\n54). The GHF distribution is constructed in two steps. First, the\nglobal representation by Pollack et al. (1993, Rev. Geophys. 31) is\nscaled for the area of Greenland. Second, by means of a\npaleoclimatic simulation carried out with the ice sheet model\nSICOPOLIS, the GHF values for five deep ice core locations are\nmodified such that observed and simulated basal temperatures match\nclosely. The resulting GHF distribution generally features low\nvalues in the south and the north-west, whereas elevated values\nprevail in central North Greenland and towards the north-east. The\noriginal source data are provided as NetCDF files on two different\ngrids (EPSG:3413 grid, Bamber grid) that have frequently been used\nin modelling studies of the Greenland ice sheet, and for the three\ndifferent resolutions of 5 km, 10 km and 20 km.",
+        "citation": {
+          "text": "Polar Data Journal, 3, 22-36.\nhttps://doi.org/10.20575/00000006",
+          "url": "https://doi.org/10.20575/00000006"
+        },
+        "title": "Geothermal heat flux distribution for the Greenland ice sheet, derived by combining a global representation and information from deep ice cores"
+      }
+    },
     "glacier_terminus": {
       "assets": {
         "2000_2001": {
@@ -4804,6 +4824,353 @@
             "settings": {
               "expand": false,
               "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing 5km zones protected for Thickbilled Murre\nbreeding colonies.",
+                  "id": "nunagis_unesco_treaty_zones",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type IN ('UNESCO World Heritage Site', 'Ramsar area')\" ",
+                        "{output_dir}/nunagis_unesco_treaty_zones.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "UNESCO_treaty_zones",
+                  "tags": [],
+                  "title": "UNESCO treaty zones"
+                },
+                "name": "nunagis_unesco_treaty_zones"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas that should not be entered.",
+                  "id": "nunagis_no_go_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'No Go Area'\" ",
+                        "{output_dir}/nunagis_no_go_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "No go areas"
+                },
+                "name": "nunagis_no_go_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas that are closed.",
+                  "id": "nunagis_closed_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Closed Area'\" ",
+                        "{output_dir}/nunagis_closed_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Closed areas"
+                },
+                "name": "nunagis_closed_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing 100m zones protected for salt or saline\nlakes.",
+                  "id": "nunagis_salt_or_saline_lake_100m_zones",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Salt or saline lake 100m zone'\" ",
+                        "{output_dir}/nunagis_salt_or_saline_lake_100m_zones.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Salt or saline lake 100m zones"
+                },
+                "name": "nunagis_salt_or_saline_lake_100m_zones"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing 100m zones protected for homothermic\nsprings.",
+                  "id": "nunagis_homothermic_spring_100m_zones",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Homothermic spring 100 m zone'\" ",
+                        "{output_dir}/nunagis_homothermic_spring_100m_zones.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Homothermic spring 100m zones"
+                },
+                "name": "nunagis_homothermic_spring_100m_zones"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygon representing the area protected for the national park.",
+                  "id": "nunagis_national_park",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'National Park'\" ",
+                        "{output_dir}/nunagis_national_park.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "National park"
+                },
+                "name": "nunagis_national_park"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas protected for biologically important\nareas in the national park.",
+                  "id": "nunagis_biological_important_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Biological Important Areas in the National Park'\" ",
+                        "{output_dir}/nunagis_biological_important_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Biological important areas in the national park"
+                },
+                "name": "nunagis_biological_important_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas protected for nature.",
+                  "id": "nunagis_nature_protection_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Nature Protection Area'\" ",
+                        "{output_dir}/nunagis_nature_protection_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Nature protection areas"
+                },
+                "name": "nunagis_nature_protection_areas"
+              }
+            ],
+            "name": "Protected zones",
+            "settings": {
+              "expand": false,
+              "order": [
+                "protected_zones.py:nunagis_unesco_treaty_zones",
+                "protected_zones.py:nunagis_no_go_areas",
+                "protected_zones.py:nunagis_closed_areas",
+                "protected_zones.py:nunagis_salt_or_saline_lake_100m_zones",
+                "protected_zones.py:nunagis_homothermic_spring_100m_zones",
+                "protected_zones.py:nunagis_national_park",
+                "protected_zones.py:nunagis_biological_important_areas",
+                "protected_zones.py:nunagis_nature_protection_areas"
+              ],
               "show": false
             }
           },
@@ -15204,6 +15571,72 @@
               "title": "Geoid model (2km)"
             },
             "name": "geoid"
+          },
+          {
+            "layer_cfg": {
+              "description": "Geothermal heat flux interpolated from ice core measurements in\nmiliwatts per square meter.",
+              "id": "geothermal_heat_flux",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "geothermal_heat_flux"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/A20180227-001v200.zip",
+                    "-d",
+                    "{output_dir}",
+                    "ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "NETCDF:{input_dir}/ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc:GHF",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "geothermal_heat_flux",
+              "tags": [],
+              "title": "Geothermal heat flux (5km)"
+            },
+            "name": "geothermal_heat_flux"
           }
         ],
         "name": "Geophysics",
