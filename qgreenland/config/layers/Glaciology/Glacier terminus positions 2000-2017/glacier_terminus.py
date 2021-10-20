@@ -21,7 +21,6 @@ layers = [
                 output_file='{output_dir}/boundary.gpkg',
             ),
         ],
-
     )
     for (START, END) in LAYER_YEARS
 ]
