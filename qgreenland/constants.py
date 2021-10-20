@@ -42,7 +42,7 @@ LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 # renaming. Make it a subdir?
 TMP_DIR = WIP_DIR
 
-REQUEST_TIMEOUT = 20
+REQUEST_TIMEOUT = 30
 
 # URS stuff
 URS_COOKIE = 'urs_user_already_logged'
