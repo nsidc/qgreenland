@@ -17,7 +17,7 @@ layers = [
         ),
         steps=[
             *ogr2ogr(
-                input_file='{input_dir}/glacier_terminus.' + str(START) + '_' + str(END),
+                input_file='{input_dir}/termini_*.shp',
                 output_file='{output_dir}/boundary.gpkg',
             ),
         ],

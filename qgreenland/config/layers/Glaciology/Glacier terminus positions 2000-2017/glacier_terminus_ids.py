@@ -15,7 +15,7 @@ glacier_terminus_glacier_ids = ConfigLayer(
     ),
     steps=[
         *ogr2ogr(
-            input_file='{input_dir}/glacier_terminus.glacier_ids',
+            input_file='{input_dir}/GlacierIDs_v01.2.shp',
             output_file='{output_dir}/boundary.gpkg',
         ),
     ],
