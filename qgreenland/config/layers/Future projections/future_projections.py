@@ -3,7 +3,7 @@ from decimal import Decimal
 from qgreenland.config.datasets.future_projections import (
     future_icesheet_coverage as dataset,
 )
-from qgreenland.config.helpers.steps.build_overviews import build_overviews 
+from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
