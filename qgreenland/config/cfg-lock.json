@@ -21831,13 +21831,37 @@
               "title": "Greenland image mosaic 2019 (10m)"
             },
             "name": "image_mosaic_2019"
+          },
+          {
+            "layer_cfg": {
+              "description": "Sentinel-2 multispectral satellite imagery from 2015.",
+              "id": "image_mosaic_2015",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "2015"
+                },
+                "dataset": {
+                  "id": "image_mosaic"
+                }
+              },
+              "show": false,
+              "steps": null,
+              "style": "transparent_rgb",
+              "tags": [
+                "online"
+              ],
+              "title": "Greenland image mosaic 2015 (15m)"
+            },
+            "name": "image_mosaic_2015"
           }
         ],
         "name": "Internet-required data",
         "settings": {
           "expand": false,
           "order": [
-            "online.py:image_mosaic_2019"
+            "online.py:image_mosaic_2019",
+            "online.py:image_mosaic_2015"
           ],
           "show": false
         }
