@@ -1,18 +1,8 @@
 from qgreenland.config.datasets.glacier_terminus import glacier_terminus as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
+from qgreenland.config.helpers.layers.glacier_terminus import LAYER_YEARS
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
-
-START = 2005
-END = 2017
-
-LAYER_YEARS = [
-    (2000, 2001),
-    *[
-        (START, START + 1)
-        for year in range(2005, 2017 + 1)
-    ],
-]
 
 layers = [
     ConfigLayer(

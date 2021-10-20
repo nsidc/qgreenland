@@ -1,8 +1,15 @@
-from qgreenland.config.layers.Glaciology.glacier_terminus_ import layers
-from qgreenland.config.layers.Glaciology.glacier_terminus_ import LAYER_YEARS
+START = 2005
+END = 2017
 
+LAYER_YEARS = [
+    (2000, 2001),
+    *[
+        (START, START + 1)
+        for year in range(2005, 2017 + 1)
+    ],
+]
 
-ORDER_LAYERS = [
+LAYER_IDS = [
     id_str(START, END)
     for (START, END) in LAYER_YEARS
 ]
