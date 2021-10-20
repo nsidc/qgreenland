@@ -2,7 +2,7 @@ YEARS = [
     2000,
     *list(range(2005, 2007 + 1)),
     2012,
-    *list(range(2014, 2016 + 1))
+    *list(range(2014, 2016 + 1)),
 ]
 
 LAYER_YEARS = [(year, year + 1) for year in YEARS]
