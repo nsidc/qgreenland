@@ -5235,6 +5235,110 @@
             "children": [
               {
                 "layer_cfg": {
+                  "description": "Averaged annual mean wind direction in meters per second from\nRACMO2.3p2 for the period 1958-2019.",
+                  "id": "racmo_wind_vectors",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "wind_vector_points.gpkg"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/racmo_wind_vectors.gpkg",
+                        "{input_dir}/wind_vector_points.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_wind_vectors",
+                  "tags": [],
+                  "title": "Annual mean wind vectors 1958-2019 (5km)"
+                },
+                "name": "racmo_wind_vectors"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Averaged annual mean wind speed in meters per second from RACMO2.3p2\nfor the period 1958-2019.",
+                  "id": "racmo_wind_speed",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "racmo_qgreenland_jan2021"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/RACMO_QGreenland_Jan2021.zip",
+                        "-d",
+                        "{output_dir}",
+                        "magnitudes.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "{input_dir}/magnitudes.nc",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/racmo_wind_speed.tif"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "racmo_wind_speed",
+                  "tags": [],
+                  "title": "Annual mean wind speed 1958-2019 (5km)"
+                },
+                "name": "racmo_wind_speed"
+              },
+              {
+                "layer_cfg": {
                   "description": "Averaged annual total precipitation in milimeters of water equivilent\n(mm w.e.) from RACMO2.3p2 for the period 1958-2019 covering the whole\nice sheet and peripheral ice caps.",
                   "id": "racmo_precip",
                   "in_package": true,
@@ -5976,6 +6080,8 @@
             "settings": {
               "expand": false,
               "order": [
+                "layers.py:racmo_wind_vectors",
+                "layers.py:racmo_wind_speed",
                 "layers.py:racmo_precip",
                 "layers.py:racmo_snowfall",
                 "layers.py:racmo_snowmelt",
