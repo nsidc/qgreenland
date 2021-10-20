@@ -1,8 +1,8 @@
 from qgreenland.config.datasets.natural_earth import background as background_dataset
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 background = ConfigLayer(
@@ -16,8 +16,8 @@ background = ConfigLayer(
         asset=background_dataset.assets['high_res'],
     ),
     steps=[
-        ConfigLayerCommandStep(
-            args=['unzip', '{input_dir}/*.zip', '-d', '{output_dir}'],
+        decompress_step(
+            input_file='{input_dir}/*.zip',
         ),
         *warp_and_cut(
             input_file='{input_dir}/NE2_HR_LC_SR_W.tif',
