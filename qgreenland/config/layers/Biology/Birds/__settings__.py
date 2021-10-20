@@ -10,7 +10,7 @@ settings = LayerGroupSettings(
         'caff_murre.py:caff_thickbilled_murre_colonies',
         *[
             f'nunagis_protected_areas.py:{layer_id}'
-            for layer_id in BIRDS_LAYERS 
+            for layer_id in BIRDS_LAYERS
         ],
     ],
 )
