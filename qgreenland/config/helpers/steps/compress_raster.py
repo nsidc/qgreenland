@@ -2,9 +2,9 @@ from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
 
 
 def compress_raster(
-        *,
-        input_file,
-        output_file,
+    *,
+    input_file,
+    output_file,
 ) -> list[AnyStep]:
     return [ConfigLayerCommandStep(
         args=[
