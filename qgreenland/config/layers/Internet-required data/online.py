@@ -5,29 +5,21 @@ from qgreenland.config.datasets.online import (
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
-image_mosaic_2019 = ConfigLayer(
-    id='image_mosaic_2019',
-    title='Greenland image mosaic 2019 (10m)',
-    description='Sentinel-2 multispectral satellite imagery from 2019.',
-    tags=['online'],
-    style='transparent_rgb',
-    input=ConfigLayerInput(
-        dataset=image_mosaic,
-        asset=image_mosaic.assets['2019'],
-    ),
-)
+image_mosaic_layers = [
+    ConfigLayer(
+        id=f'image_mosaic_{year}',
+        title=f'Greenland image mosaic {year} ({resolution}m)',
+        description=f'Sentinel-2 multispectral satellite imagery from {year}.',
+        tags=['online'],
+        style='transparent_rgb',
+        input=ConfigLayerInput(
+            dataset=image_mosaic,
+            asset=image_mosaic.assets[year],
+        ),
+    )
 
-image_mosaic_2015 = ConfigLayer(
-    id='image_mosaic_2015',
-    title='Greenland image mosaic 2015 (15m)',
-    description='Sentinel-2 multispectral satellite imagery from 2015.',
-    tags=['online'],
-    style='transparent_rgb',
-    input=ConfigLayerInput(
-        dataset=image_mosaic,
-        asset=image_mosaic.assets['2015'],
-    ),
-)
+    for year, resolution in (('2015', '15'), ('2019', '10'))
+]
 
 
 g02135_polyline_n = ConfigLayer(
