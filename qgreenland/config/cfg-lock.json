@@ -621,6 +621,26 @@
         "title": "Ice Cores"
       }
     },
+    "icesheet_height_and_thickness_change": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://digital.lib.washington.edu/researchworks/bitstream/handle/1773/45388/ICESat1_ICESat2_mass_change.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "icesheet_height_and_thickness_change",
+      "metadata": {
+        "abstract": "These data represent ice-column thickness-change-rate estimates\nbased on data from NASA's ICESat and ICESat-2 satellites. These data\naided the first estimates of ice-sheet mass change from these two\nmissions, spanning the 16 years from 2003 to 2019, taking advantage\nof the high vertical and horizontal resolution of the two\nsatellites' laser altimeters.",
+        "citation": {
+          "text": "Smith, Ben; Fricker, Helen; Gardner, Alex; Medley, Brooke;\nNilsson, Johan; Paolo, Fernando; Holschuh, Nicholas; Adusumilli,\nSusheel; Brunt, Kelly; Csatho, Bea; Harbeck, Kaitlin; Markus,\nThorsten; Neumann, Thomas; Siegfried, Matthew; Zwally, H. Jay;\nNASA grant numbers: NNX15AE15G, NNX15AC80G, NNX16AM01G,\nNNX17AI03G. NASA Cryospheric Sciences and MEaSUREs programs.\nhttp://hdl.handle.net/1773/45388. 2020.",
+          "url": "http://hdl.handle.net/1773/45388"
+        },
+        "title": "Ice-sheet height and thickness changes from ICESat to ICESat-2"
+      }
+    },
     "image_mosaic": {
       "assets": {
         "2015": {
@@ -5820,6 +5840,72 @@
             }
           },
           {
+            "layer_cfg": {
+              "description": "Ice column thickness-change-rate estimates in meters per year based\non data from NASA's ICESat and ICESat-2 satellites.",
+              "id": "ice_thickness_change",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "icesheet_height_and_thickness_change"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/ICESat1_ICESat2_mass_change.zip",
+                    "-d",
+                    "{output_dir}",
+                    "ICESat1_ICESat2_mass_change/gris.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/ICESat1_ICESat2_mass_change/gris.tif",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "ice_thickness_change",
+              "tags": [],
+              "title": "Ice column thickness rate of change 2003-2019 (5km)"
+            },
+            "name": "ice_thickness_change"
+          },
+          {
             "children": [
               {
                 "children": [
@@ -9268,6 +9354,7 @@
             "supraglacial_lakes.py:jakobshavn_supraglacial_lakes",
             "firn_ice.py:firn_ice_layer_thicknesses",
             "Global land ice measurements from space (GLIMS)",
+            "ice_thickness_change.py:ice_thickness_change",
             "Surface elevation change",
             "Gravimetric mass balance",
             "Ice sheet velocity",
