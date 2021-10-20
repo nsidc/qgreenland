@@ -1,6 +1,6 @@
+from qgreenland.config.helpers.layers.glacier_terminus import LAYER_YEARS
 from qgreenland.config.datasets.glacier_terminus import glacier_terminus as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.config.helpers.layers.glacier_terminus import LAYER_YEARS
 from qgreenland.config.helpers.layers.glacier_terminus import id_str
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
