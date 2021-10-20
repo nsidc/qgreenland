@@ -17,6 +17,40 @@
         "title": "Arctic Circle (66\u00b0 34' North)"
       }
     },
+    "arctic_dem": {
+      "assets": {
+        "100m": {
+          "id": "100m",
+          "urls": [
+            "https://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/100m/arcticdem_mosaic_100m_v3.0.tif"
+          ],
+          "verify_tls": false
+        },
+        "1km": {
+          "id": "1km",
+          "urls": [
+            "http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif"
+          ],
+          "verify_tls": true
+        },
+        "500m": {
+          "id": "500m",
+          "urls": [
+            "http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/500m/arcticdem_mosaic_500m_v3.0.tif"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "arctic_dem",
+      "metadata": {
+        "abstract": "ArcticDEM is an NGA-NSF public-private initiative to\nautomatically produce a high-resolution, high quality, digital\nsurface model (DSM) of the Arctic using optical stereo imagery,\nhigh-performance computing, and open source photogrammetry\nsoftware.",
+        "citation": {
+          "text": "Data provided by the Polar Geospatial Center. Porter, Claire;\nMorin, Paul; Howat, Ian; Noh, Myoung-Jon; Bates, Brian;\nPeterman, Kenneth; Keesey, Scott; Schlenk, Matthew; Gardiner,\nJudith; Tomko, Karen; Willis, Michael; Kelleher, Cole; Cloutier,\nMichael; Husby, Eric; Foga, Steven; Nakamura, Hitomi; Platson,\nMelisa; Wethington, Michael, Jr.; Williamson, Cathleen; Bauer,\nGregory; Enos, Jeremy; Arnold, Galen; Kramer, William; Becker,\nPeter; Doshi, Abhijit; D\u2019Souza, Cristelle; Cummens, Pat;\nLaurier, Fabien; Bojesen, Mikkel, 2018, \u201cArcticDEM\u201d,\nhttps://doi.org/10.7910/DVN/OHHUKH, Harvard Dataverse, V1,\n2020-01-23",
+          "url": "https://www.pgc.umn.edu/data/arcticdem/"
+        },
+        "title": "Arctic DEM (1km mosaic)"
+      }
+    },
     "arctic_vegetation_biomass_2010": {
       "assets": {
         "only": {
@@ -19778,6 +19812,99 @@
               "order": null,
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Surface elevation in meters.",
+              "id": "arctic_dem",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "100m"
+                },
+                "dataset": {
+                  "id": "arctic_dem"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/arcticdem_mosaic_100m_v3.0.tif",
+                    "{output_dir}/arctic_dem.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdal_calc.py",
+                    "--calc",
+                    "\"A * 100.0\"",
+                    "--NoDataValue",
+                    "-9999",
+                    "--type",
+                    "Int32",
+                    "-A",
+                    "{input_dir}/arctic_dem.tif",
+                    "--outfile",
+                    "{output_dir}/arctic_dem_scaled.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/arctic_dem_scaled.tif",
+                    "{output_dir}/arctic_dem.tif",
+                    "&&",
+                    "gdal_edit.py",
+                    "-scale",
+                    "0.01",
+                    "{output_dir}/arctic_dem.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/arctic_dem.tif",
+                    "{output_dir}/arctic_dem.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/arctic_dem.tif",
+                    "{output_dir}/arctic_dem.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/arctic_dem.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "arctic_dem",
+              "tags": [],
+              "title": "Arctic DEM (100m)"
+            },
+            "name": "arctic_dem"
           }
         ],
         "name": "Terrain Models",
