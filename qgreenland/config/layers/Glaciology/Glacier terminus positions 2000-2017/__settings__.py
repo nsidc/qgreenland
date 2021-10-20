@@ -9,4 +9,5 @@ settings = LayerGroupSettings(
             f'glacier_terminus.py:{layer_id}'
             for layer_id in LAYER_IDS
         ],
+    ],
 )

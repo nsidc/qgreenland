@@ -6,7 +6,7 @@ from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 glacier_terminus_glacier_ids = ConfigLayer(
     id='glacier_terminus_glacier_ids',
     title='Glacier IDs',
-    description='',
+    description=f'Glacier location for termini with matching ID.',
     tags=[],
     style='glacier_ids',
     input=ConfigLayerInput(
