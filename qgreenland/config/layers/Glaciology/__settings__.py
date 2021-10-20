@@ -7,6 +7,7 @@ settings = LayerGroupSettings(
         'machguth_massbalance_locations.py:machguth_massbalance_locations',
         'supraglacial_lakes.py:jakobshavn_supraglacial_lakes',
         'firn_ice.py:firn_ice_layer_thicknesses',
+        'Glacier terminus positions 2000-2017',
         'Global land ice measurements from space (GLIMS)',
         'ice_thickness_change.py:ice_thickness_change',
         'Surface elevation change',
