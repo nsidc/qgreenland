@@ -19,10 +19,10 @@ ResamplingAlgorithm = Literal[
 
 
 def build_overviews(
-        *,
-        input_file,
-        output_file,
-        resampling_algorithm: ResamplingAlgorithm = 'average',
+    *,
+    input_file,
+    output_file,
+    resampling_algorithm: ResamplingAlgorithm = 'average',
 ) -> list[AnyStep]:
     copy_into_place = [
         'cp',

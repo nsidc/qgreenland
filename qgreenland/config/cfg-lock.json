@@ -17,6 +17,40 @@
         "title": "Arctic Circle (66\u00b0 34' North)"
       }
     },
+    "arctic_dem": {
+      "assets": {
+        "100m": {
+          "id": "100m",
+          "urls": [
+            "https://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/100m/arcticdem_mosaic_100m_v3.0.tif"
+          ],
+          "verify_tls": false
+        },
+        "1km": {
+          "id": "1km",
+          "urls": [
+            "http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif"
+          ],
+          "verify_tls": true
+        },
+        "500m": {
+          "id": "500m",
+          "urls": [
+            "http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/500m/arcticdem_mosaic_500m_v3.0.tif"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "arctic_dem",
+      "metadata": {
+        "abstract": "ArcticDEM is an NGA-NSF public-private initiative to\nautomatically produce a high-resolution, high quality, digital\nsurface model (DSM) of the Arctic using optical stereo imagery,\nhigh-performance computing, and open source photogrammetry\nsoftware.",
+        "citation": {
+          "text": "Data provided by the Polar Geospatial Center. Porter, Claire;\nMorin, Paul; Howat, Ian; Noh, Myoung-Jon; Bates, Brian;\nPeterman, Kenneth; Keesey, Scott; Schlenk, Matthew; Gardiner,\nJudith; Tomko, Karen; Willis, Michael; Kelleher, Cole; Cloutier,\nMichael; Husby, Eric; Foga, Steven; Nakamura, Hitomi; Platson,\nMelisa; Wethington, Michael, Jr.; Williamson, Cathleen; Bauer,\nGregory; Enos, Jeremy; Arnold, Galen; Kramer, William; Becker,\nPeter; Doshi, Abhijit; D\u2019Souza, Cristelle; Cummens, Pat;\nLaurier, Fabien; Bojesen, Mikkel, 2018, \u201cArcticDEM\u201d,\nhttps://doi.org/10.7910/DVN/OHHUKH, Harvard Dataverse, V1,\n2020-01-23",
+          "url": "https://www.pgc.umn.edu/data/arcticdem/"
+        },
+        "title": "Arctic DEM (1km mosaic)"
+      }
+    },
     "arctic_vegetation_biomass_2010": {
       "assets": {
         "only": {
@@ -110,6 +144,26 @@
         "title": "Likely Basal Thermal State of the Greenland Ice Sheet"
       }
     },
+    "bathymetric_chart": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_400m_ice/cfnetcdf/"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "bathymetric_chart",
+      "metadata": {
+        "abstract": "The goal of the IBCAO initiative is to develop a digital database\nthat contains all available bathymetric data north of 64\u00b0 North, for\nuse by mapmakers, researchers, institutions, and others whose work\nrequires a detailed and accurate knowledge of the depth and the\nshape of the Arctic seabed.",
+        "citation": {
+          "text": "GEBCO Compilation Group (2020) GEBCO 2020 Grid\n(doi:10.5285/a29c5465-b138-234d-e053-6c86abc040b9)",
+          "url": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/arctic_ocean/"
+        },
+        "title": "Bathymetric Chart of the Arctic Ocean (IBCAO)"
+      }
+    },
     "bedmachine": {
       "assets": {
         "only": {
@@ -186,6 +240,23 @@
           "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
         },
         "title": "Natural Earth Coastlines (10m)"
+      }
+    },
+    "danish_agency_for_data_supply_and_efficiency_gtk_topo_map": {
+      "assets": {
+        "only": {
+          "access_instructions": "Downloaded through the The Danish Agency for Map Supply and\nEfficiency's website on 2020-12-17. User registration is\nrequired. Once the ordered data were delivered (as a zipfile),\nthey were extracted and a mosaic was created of the 500m version\nof the data via the `scripts/danish_agency_for_data_supply_and_e\nfficiency_gtk_topo_map/preprocess.sh` script.",
+          "id": "only"
+        }
+      },
+      "id": "danish_agency_for_data_supply_and_efficiency_gtk_topo_map",
+      "metadata": {
+        "abstract": "Greenland's topographical map work is a collection of Greenland\nmaps in different dimensions. The original product contains the\nfollowing target ratios: 1:250,000, 1:500,000 and 1:2.5 million.",
+        "citation": {
+          "text": "Contains data from Styrelsen for dataforsyning og\neffektivisering. Accessed {{date_accessed}}.",
+          "url": "https://download.kortforsyningen.dk/content/gr%C3%B8nlands-topografiske-kortv%C3%A6rk"
+        },
+        "title": "Greenland's Topographical Map 1:500,000"
       }
     },
     "earthquakes": {
@@ -274,6 +345,40 @@
           "url": "http://products.esa-icesheets-cci.org/products/details/cci_sec_2020.tar.gz/"
         },
         "title": "1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-years means"
+      }
+    },
+    "future_icesheet_coverage": {
+      "assets": {
+        "rcp_26": {
+          "id": "rcp_26",
+          "urls": [
+            "https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A61ff2294-4734-46ba-a0b0-845d69298131"
+          ],
+          "verify_tls": true
+        },
+        "rcp_45": {
+          "id": "rcp_45",
+          "urls": [
+            "https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3Aed2d7235-2193-4ba3-a98f-f09d871199a1"
+          ],
+          "verify_tls": true
+        },
+        "rcp_85": {
+          "id": "rcp_85",
+          "urls": [
+            "https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3Aecec7b68-a544-4575-8731-47d60b73215f"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "future_icesheet_coverage",
+      "metadata": {
+        "abstract": "Citation publication abstract: The Greenland Ice Sheet holds\naround 7.2 meters of sea-level equivalent. In recent decades rising\natmosphere and ocean temperatures have led to an acceleration in\nmass loss, adding an average of about 0.5 millimeters per year to\nglobal mean sea-level between 1991 and 2015. Current ice margin\nrecession in Greenland is led by the retreat of outlet glaciers, the\nlarge rivers of ice ending in narrow fjords that drain the ice sheet\ninterior. Recent progress in measuring ice thickness is enabling\nmodels to reproduce the complex flow patterns found in outlet\nglaciers, a key step towards realistic projections. Here we pair an\noutlet glacier resolving ice sheet model with a comprehensive\nuncertainty quantification to estimate Greenland's contribution to\nsea-level over the next millennium under different climate forcings.\nWe find that Greenland could contribute 5-33 centimeters to\nsea-level by 2100 and 11-155 centimeters by 2200, with discharge\nfrom outlet glaciers contributing 6-45% of the total mass loss. Our\nanalysis shows that uncertainties in projecting mass loss are\ndominated by uncertainties in climate scenarios and surface\nprocesses, followed by ice dynamics, whereas uncertainties in ocean\nconditions play a minor role, particularly in the long term. We\nproject that Greenland will very likely become ice-free within a\nmillennium without significant reductions in greenhouse gas\nemissions.\n\nThis dataset compilation contains the simulations for the manuscript\n\"Contribution of the Greenland Ice Sheet to sea-level over the next\nmillennium\" prepared with the Parallel Ice Sheet Model (PISM).\n\nThis dataset provides the likelihood of a pixel being ice covered at\nthe year 3007 for the RCPs (Representative Concentration Pathways)\n2.6, 4.5, and 8.5 for LES (Large Ensemble Simulations).",
+        "citation": {
+          "text": "Andy Aschwanden. 2019. Contribution of the Greenland Ice\nSheet to sea-level over the next millennium using Large Ensemble\nSimulations, spatial time series, 2008-3007. Arctic Data Center.\ndoi:10.18739/A29G5GD39.",
+          "url": "https://doi.org/10.18739/A29G5GD39"
+        },
+        "title": "Contribution of the Greenland Ice Sheet to sea-level over the next millennium using Large Ensemble Simulations, spatial time series, 2008-3007."
       }
     },
     "gc_net_promice_stations": {
@@ -548,6 +653,26 @@
           "url": "http://www.ncdc.noaa.gov/paleo/icecore.html"
         },
         "title": "Ice Cores"
+      }
+    },
+    "icesheet_height_and_thickness_change": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://digital.lib.washington.edu/researchworks/bitstream/handle/1773/45388/ICESat1_ICESat2_mass_change.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "icesheet_height_and_thickness_change",
+      "metadata": {
+        "abstract": "These data represent ice-column thickness-change-rate estimates\nbased on data from NASA's ICESat and ICESat-2 satellites. These data\naided the first estimates of ice-sheet mass change from these two\nmissions, spanning the 16 years from 2003 to 2019, taking advantage\nof the high vertical and horizontal resolution of the two\nsatellites' laser altimeters.",
+        "citation": {
+          "text": "Smith, Ben; Fricker, Helen; Gardner, Alex; Medley, Brooke;\nNilsson, Johan; Paolo, Fernando; Holschuh, Nicholas; Adusumilli,\nSusheel; Brunt, Kelly; Csatho, Bea; Harbeck, Kaitlin; Markus,\nThorsten; Neumann, Thomas; Siegfried, Matthew; Zwally, H. Jay;\nNASA grant numbers: NNX15AE15G, NNX15AC80G, NNX16AM01G,\nNNX17AI03G. NASA Cryospheric Sciences and MEaSUREs programs.\nhttp://hdl.handle.net/1773/45388. 2020.",
+          "url": "http://hdl.handle.net/1773/45388"
+        },
+        "title": "Ice-sheet height and thickness changes from ICESat to ICESat-2"
       }
     },
     "image_mosaic": {
@@ -1521,6 +1646,33 @@
           "url": "https://its-live.jpl.nasa.gov/#documentation"
         },
         "title": "Regional Glacier and Ice Sheet Surface Velocities"
+      }
+    },
+    "woa2018_temperature": {
+      "assets": {
+        "seasonal_summer": {
+          "id": "seasonal_summer",
+          "urls": [
+            "https://www.ncei.noaa.gov/thredds-ocean/fileServer/ncei/woa/temperature/decav/0.25/woa18_decav_t15_04.nc"
+          ],
+          "verify_tls": true
+        },
+        "seasonal_winter": {
+          "id": "seasonal_winter",
+          "urls": [
+            "https://www.ncei.noaa.gov/thredds-ocean/fileServer/ncei/woa/temperature/decav/0.25/woa18_decav_t13_04.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "woa2018_temperature",
+      "metadata": {
+        "abstract": "From the World Ocean Atlas: This atlas consists of a description\nof data analysis procedures and horizontal maps of climatological\ndistribution fields of temperature at selected standard depth levels\nof the World Ocean on one-degree and quarter-degree\nlatitude-longitude grids.  The aim of the maps is to illustrate\nlarge-scale characteristics of the distribution of ocean\ntemperature.  The fields used to generate these climatological maps\nwere computed by objective analysis of all scientifically\nquality-controlled historical temperature data in the World Ocean\nDatabase 2018.  Maps are presented for climatological composite\nperiods (annual, seasonal, monthly, seasonal and monthly difference\nfields from the annual mean field, and the number of observations)\nat 102 standard depths.",
+        "citation": {
+          "text": "Locarnini, R. A., A. V. Mishonov, O. K. Baranova, T. P.\nBoyer, M. M. Zweng, H. E. Garcia, J. R. Reagan, D. Seidov, K. W.\nWeathers, C. R. Paver, I.  V. Smolyar, 2019: World Ocean Atlas\n2018, Volume 1: Temperature.  A. V.  Mishonov, Technical Ed.,\nNOAA Atlas NESDIS 81",
+          "url": "https://data.nodc.noaa.gov/woa/WOA18/DOC/woa18_vol1.pdf"
+        },
+        "title": "WORLD OCEAN ATLAS 2018 Volume 1: Temperature"
       }
     },
     "world_magnetic_model": {
@@ -4234,6 +4386,8 @@
                         "-cutline",
                         "{assets_dir}/greenland_rectangle.geojson",
                         "-crop_to_cutline",
+                        "-r",
+                        "bilinear",
                         "-t_srs",
                         "EPSG:3413",
                         "-tr",
@@ -5718,6 +5872,72 @@
               "order": null,
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Ice column thickness-change-rate estimates in meters per year based\non data from NASA's ICESat and ICESat-2 satellites.",
+              "id": "ice_thickness_change",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "icesheet_height_and_thickness_change"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/ICESat1_ICESat2_mass_change.zip",
+                    "-d",
+                    "{output_dir}",
+                    "ICESat1_ICESat2_mass_change/gris.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/ICESat1_ICESat2_mass_change/gris.tif",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "ice_thickness_change",
+              "tags": [],
+              "title": "Ice column thickness rate of change 2003-2019 (5km)"
+            },
+            "name": "ice_thickness_change"
           },
           {
             "children": [
@@ -8727,6 +8947,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/masked_velocity_mosaic.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -8801,6 +9023,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/masked_velocity_mosaic_error.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -8863,6 +9087,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "NETCDF:{input_dir}/GRE_G0120_0000.nc:ice",
                             "{output_dir}/warped.tif"
                           ],
@@ -8949,6 +9175,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "NETCDF:{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc:land_ice_surface_velocity_magnitude",
                             "{output_dir}/warped.tif"
                           ],
@@ -9021,6 +9249,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "NETCDF:{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3/greenland_iv_250m_s1_20191214_20200131_v1_3.nc:land_ice_surface_vertical_velocity",
                             "{output_dir}/warped.tif"
                           ],
@@ -9158,6 +9388,7 @@
             "supraglacial_lakes.py:jakobshavn_supraglacial_lakes",
             "firn_ice.py:firn_ice_layer_thicknesses",
             "Global land ice measurements from space (GLIMS)",
+            "ice_thickness_change.py:ice_thickness_change",
             "Surface elevation change",
             "Gravimetric mass balance",
             "Ice sheet velocity",
@@ -9188,6 +9419,8 @@
                     "gdalwarp",
                     "-t_srs",
                     "EPSG:3413",
+                    "-r",
+                    "bilinear",
                     "-s_srs",
                     "EPSG:3995",
                     "-tr",
@@ -9255,6 +9488,8 @@
                     "gdalwarp",
                     "-t_srs",
                     "EPSG:3413",
+                    "-r",
+                    "bilinear",
                     "-s_srs",
                     "EPSG:3995",
                     "-tr",
@@ -9322,6 +9557,8 @@
                     "gdalwarp",
                     "-t_srs",
                     "EPSG:3413",
+                    "-r",
+                    "bilinear",
                     "-s_srs",
                     "EPSG:3995",
                     "-tr",
@@ -15657,6 +15894,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -15745,6 +15984,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -15833,6 +16074,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -15921,6 +16164,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16009,6 +16254,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16097,6 +16344,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16185,6 +16434,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16273,6 +16524,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16361,6 +16614,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16449,6 +16704,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16537,6 +16794,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16647,6 +16906,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16735,6 +16996,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16823,6 +17086,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16911,6 +17176,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -16999,6 +17266,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17087,6 +17356,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17175,6 +17446,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17263,6 +17536,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17351,6 +17626,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17439,6 +17716,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17527,6 +17806,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "-tr",
                             "12500",
                             "12500",
@@ -17638,6 +17919,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -17711,6 +17994,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -17784,6 +18069,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -17857,6 +18144,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -17930,6 +18219,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18003,6 +18294,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18076,6 +18369,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18149,6 +18444,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18222,6 +18519,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18295,6 +18594,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18368,6 +18669,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18451,6 +18754,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18524,6 +18829,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18597,6 +18904,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18670,6 +18979,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18743,6 +19054,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18816,6 +19129,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18889,6 +19204,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -18962,6 +19279,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -19035,6 +19354,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -19108,6 +19429,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -19181,6 +19504,8 @@
                             "gdalwarp",
                             "-t_srs",
                             "EPSG:3413",
+                            "-r",
+                            "bilinear",
                             "{input_dir}/downscaled.tif",
                             "{output_dir}/warped.tif"
                           ],
@@ -19418,9 +19743,944 @@
               ],
               "show": false
             }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at surface depth in \u00b0C.",
+                  "id": "woa2018_0m_temperature_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "1",
+                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "Surface, Winter"
+                },
+                "name": "woa2018_0m_temperature_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at surface depth in \u00b0C.",
+                  "id": "woa2018_0m_temperature_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "1",
+                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "Surface, Summer"
+                },
+                "name": "woa2018_0m_temperature_summer"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 50m depth in \u00b0C.",
+                  "id": "woa2018_50m_temperature_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "11",
+                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "50m, Winter"
+                },
+                "name": "woa2018_50m_temperature_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 50m depth in \u00b0C.",
+                  "id": "woa2018_50m_temperature_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "11",
+                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "50m, Summer"
+                },
+                "name": "woa2018_50m_temperature_summer"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 200m depth in \u00b0C.",
+                  "id": "woa2018_200m_temperature_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "25",
+                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "200m, Winter"
+                },
+                "name": "woa2018_200m_temperature_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 200m depth in \u00b0C.",
+                  "id": "woa2018_200m_temperature_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "25",
+                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "200m, Summer"
+                },
+                "name": "woa2018_200m_temperature_summer"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 500m depth in \u00b0C.",
+                  "id": "woa2018_500m_temperature_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "37",
+                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "500m, Winter"
+                },
+                "name": "woa2018_500m_temperature_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Seawater temperature at 500m depth in \u00b0C.",
+                  "id": "woa2018_500m_temperature_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa2018_temperature"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "37",
+                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-998012.0",
+                        "-3611178.0",
+                        "1228670.0",
+                        "-329624.0",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_temperature",
+                  "tags": [],
+                  "title": "500m, Summer"
+                },
+                "name": "woa2018_500m_temperature_summer"
+              }
+            ],
+            "name": "Seawater temperature 2018 (25km)",
+            "settings": {
+              "expand": false,
+              "order": [
+                "woa2018.py:woa2018_0m_temperature_winter",
+                "woa2018.py:woa2018_0m_temperature_summer",
+                "woa2018.py:woa2018_50m_temperature_winter",
+                "woa2018.py:woa2018_50m_temperature_summer",
+                "woa2018.py:woa2018_200m_temperature_winter",
+                "woa2018.py:woa2018_200m_temperature_summer",
+                "woa2018.py:woa2018_500m_temperature_winter",
+                "woa2018.py:woa2018_500m_temperature_summer"
+              ],
+              "show": false
+            }
+          },
+          {
+            "layer_cfg": {
+              "description": "Bathymetric elevation in meters. Elevations can be assumed to be\nrelative to mean sea level. However, in some shallow water areas, the\ngrids include data from sources having a vertical datum other than mean\nsea level.",
+              "id": "bathymetric_chart",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "bathymetric_chart"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-s_srs",
+                    "\"+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84\"",
+                    "-dstnodata",
+                    "-9999",
+                    "-tr",
+                    "400",
+                    "400",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z",
+                    "{output_dir}/bathymetric_chart.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/bathymetric_chart.tif",
+                    "{output_dir}/bathymetric_chart.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/bathymetric_chart.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "ibcao_bathymetry",
+              "tags": [],
+              "title": "Bathymetric chart of the Arctic Ocean (400m)"
+            },
+            "name": "bathymetric_chart"
           }
         ],
         "name": "Oceanography",
+        "settings": {
+          "expand": false,
+          "order": [
+            "Undersea feature names",
+            "Seawater temperature 2018 (25km)",
+            "bathymetric_chart.py:bathymetric_chart"
+          ],
+          "show": false
+        }
+      },
+      {
+        "children": [
+          {
+            "layer_cfg": {
+              "description": "Fraction of a grid cell covered by ice (grounded or floating) in\nthe year 3007. Values less than or equal to 16% are masked.",
+              "id": "future_ice_sheet_coverage_rcp_26",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "rcp_26"
+                },
+                "dataset": {
+                  "id": "future_icesheet_coverage"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-srcnodata",
+                    "0",
+                    "-tr",
+                    "1800",
+                    "1800",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "NETCDF:{input_dir}/percent_gris_g1800m_v3a_rcp_26_0_1000.nc:sftgif",
+                    "{output_dir}/extracted.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/extracted.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "future_ice_sheet_coverage",
+              "tags": [],
+              "title": "Future ice sheet coverage for RCP 2.6 scenario for the year 3007 (1.8km)"
+            },
+            "name": "future_ice_sheet_coverage_rcp_26"
+          },
+          {
+            "layer_cfg": {
+              "description": "Fraction of a grid cell covered by ice (grounded or floating) in\nthe year 3007. Values less than or equal to 16% are masked.",
+              "id": "future_ice_sheet_coverage_rcp_45",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "rcp_45"
+                },
+                "dataset": {
+                  "id": "future_icesheet_coverage"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-srcnodata",
+                    "0",
+                    "-tr",
+                    "1800",
+                    "1800",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "NETCDF:{input_dir}/percent_gris_g1800m_v3a_rcp_45_0_1000.nc:sftgif",
+                    "{output_dir}/extracted.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/extracted.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "future_ice_sheet_coverage",
+              "tags": [],
+              "title": "Future ice sheet coverage for RCP 4.5 scenario for the year 3007 (1.8km)"
+            },
+            "name": "future_ice_sheet_coverage_rcp_45"
+          },
+          {
+            "layer_cfg": {
+              "description": "Fraction of a grid cell covered by ice (grounded or floating) in\nthe year 3007. Values less than or equal to 16% are masked.",
+              "id": "future_ice_sheet_coverage_rcp_85",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "rcp_85"
+                },
+                "dataset": {
+                  "id": "future_icesheet_coverage"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-srcnodata",
+                    "0",
+                    "-tr",
+                    "1800",
+                    "1800",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "NETCDF:{input_dir}/percent_gris_g1800m_v3a_rcp_85_0_1000.nc:sftgif",
+                    "{output_dir}/extracted.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/extracted.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "future_ice_sheet_coverage",
+              "tags": [],
+              "title": "Future ice sheet coverage for RCP 8.5 scenario for the year 3007 (1.8km)"
+            },
+            "name": "future_ice_sheet_coverage_rcp_85"
+          }
+        ],
+        "name": "Future projections",
         "settings": {
           "expand": false,
           "order": null,
@@ -19451,6 +20711,8 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:bed",
                         "{output_dir}/warped.tif"
                       ],
@@ -19515,6 +20777,8 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:errbed",
                         "{output_dir}/warped.tif"
                       ],
@@ -19579,6 +20843,8 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:thickness",
                         "{output_dir}/warped.tif"
                       ],
@@ -19643,6 +20909,8 @@
                         "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
+                        "-r",
+                        "bilinear",
                         "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:surface",
                         "{output_dir}/warped.tif"
                       ],
@@ -19694,12 +20962,150 @@
               "order": null,
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Surface elevation in meters.",
+              "id": "arctic_dem",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "100m"
+                },
+                "dataset": {
+                  "id": "arctic_dem"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/arcticdem_mosaic_100m_v3.0.tif",
+                    "{output_dir}/arctic_dem.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdal_calc.py",
+                    "--calc",
+                    "\"A * 100.0\"",
+                    "--NoDataValue",
+                    "-9999",
+                    "--type",
+                    "Int32",
+                    "-A",
+                    "{input_dir}/arctic_dem.tif",
+                    "--outfile",
+                    "{output_dir}/arctic_dem_scaled.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/arctic_dem_scaled.tif",
+                    "{output_dir}/arctic_dem.tif",
+                    "&&",
+                    "gdal_edit.py",
+                    "-scale",
+                    "0.01",
+                    "{output_dir}/arctic_dem.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/arctic_dem.tif",
+                    "{output_dir}/arctic_dem.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/arctic_dem.tif",
+                    "{output_dir}/arctic_dem.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/arctic_dem.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "arctic_dem",
+              "tags": [],
+              "title": "Arctic DEM (100m)"
+            },
+            "name": "arctic_dem"
+          },
+          {
+            "layer_cfg": {
+              "description": "Digitized and geolocated topographic map of Greenland.",
+              "id": "dms_gtk_topo",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "danish_agency_for_data_supply_and_efficiency_gtk_topo_map"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/dms_gtk_topo.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": null,
+              "tags": [],
+              "title": "Topographic map (1 to 500,000)"
+            },
+            "name": "dms_gtk_topo"
           }
         ],
-        "name": "Terrain Models",
+        "name": "Terrain models",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            "BedMachine",
+            "arctic_dem.py:arctic_dem",
+            "dms_gtk_topo.py:dms_gtk_topo"
+          ],
           "show": false
         }
       },
@@ -19863,6 +21269,8 @@
                     "gdalwarp",
                     "-t_srs",
                     "EPSG:3413",
+                    "-r",
+                    "bilinear",
                     "-tr",
                     "500",
                     "500",
@@ -19948,7 +21356,8 @@
         "Hydrology",
         "Sea ice",
         "Oceanography",
-        "Terrain Models",
+        "Future projections",
+        "Terrain models",
         "Internet-required data",
         "Basemaps"
       ]
