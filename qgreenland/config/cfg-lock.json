@@ -432,6 +432,23 @@
         "title": "Greenland Ecosystem Monitoring - Location and Description of Research Stations"
       }
     },
+    "geoid": {
+      "assets": {
+        "only": {
+          "access_instructions": "These data were obtained from Rene Forsberg of DTU Space as a\nprivate data transfer on 2021-01-22.",
+          "id": "only"
+        }
+      },
+      "id": "geoid",
+      "metadata": {
+        "abstract": "GGeoid16 is the currently official gravimetric geoid model for\nGreenland, covering the area 58-85\u00b0N and 77-7\u00b0W with a grid\nresolution of 0.02\u00b0 x 0.05\u00b0 (approx. 2 km). It is based on a large\nset of land, marine, airborne and satellite gravity measurements, as\nwell as digital terrain models for land and thickness of the inland\nice.\n\nThe geoid has been shifted from the global WGS84 computation system,\nto match the mean sea level at Nuuk. The GGeoid16 model is based on\na previous preliminary model GGeoid14, with some changes in methods,\nnew improved GOCE satellite data (Release 5), new aircraft-based\ngravity data from NASA OMG (Oceans Melting Greenland) project, as\nwell as new gravity data from satellite altimetry (DTU13). The geoid\ndetermination is performed in the framework of a remove-restore\nprocedure, using the DTU-Space GRAVSOFT package. The used global\ngravity model is EIGEN-6C4 up to degree and order 360, while the\nresidual terrain correction is computed from a 500 m resolution land\nand ice thickness terrain model in Greenland.\n\nA downward continuation and gridding of all gravity field data to\nthe terrain surface is performed by block least squares collocation,\nand then residual quasi-geoid heights are derived by Stokes'\nintegration through spherical Fast Fourier Transform. After\nrestoring the terrain effect and the reference global gravity field,\nquasi geoid heights are finally converted to geoid heights. The\nresulting GGeoid16 model is used to define the GVR2016 vertical\nreference system in Greenland. The accuracy of GGEOID16 is highly\ndependent on the underlying gravity coverage and is estimated to be\n5-10 cm in areas of good gravity coverage.",
+        "citation": {
+          "text": "Forsberg R., Jensen T. (2015) New Geoid of Greenland: A Case\nStudy of Terrain and Ice Effects, GOCE and Use of Local Sea\nLevel Data. In: Jin S., Barzaghi R. (eds) IGFS 2014. Int.\nAssociation of Geodesy Symposia, vol 144.  Springer,\nhttps://doi.org/10.1007/1345_2015_50.",
+          "url": "https://doi.org/10.1007/1345_2015_50"
+        },
+        "title": "Geoid model and gravity anomalies for Greenland"
+      }
+    },
     "geological_map": {
       "assets": {
         "only": {
@@ -450,6 +467,26 @@
           "url": "https://doi.org/10.4095/287868"
         },
         "title": "Geological map of the Arctic / Carte gologique de l'Arctique"
+      }
+    },
+    "geothermal_heat_flux": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://ads.nipr.ac.jp/portal/kiwa/DataDownloadDownload.action?mode=single&path=ADS%3AArCS-T2%3AA20180227-001%3A2.00%3A%2FArCS-T2%2FA20180227-001%2Fv200%2Fdataset%2FGHF_Greenland_Ver2.0_GridEPSG3413_05km.nc&downloads=ADS%3AArCS-T2%3AA20180227-001%3A2.00%3A%2FArCS-T2%2FA20180227-001%2Fv200%2Fdataset%2FGHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "geothermal_heat_flux",
+      "metadata": {
+        "abstract": "The data present a distribution of the geothermal heat flux (GHF)\nfor Greenland, which is an update of two earlier versions by Greve\n(2005, Ann. Glaciol. 42) and Greve and Herzfeld (2013, Ann. Glaciol.\n54). The GHF distribution is constructed in two steps. First, the\nglobal representation by Pollack et al. (1993, Rev. Geophys. 31) is\nscaled for the area of Greenland. Second, by means of a\npaleoclimatic simulation carried out with the ice sheet model\nSICOPOLIS, the GHF values for five deep ice core locations are\nmodified such that observed and simulated basal temperatures match\nclosely. The resulting GHF distribution generally features low\nvalues in the south and the north-west, whereas elevated values\nprevail in central North Greenland and towards the north-east. The\noriginal source data are provided as NetCDF files on two different\ngrids (EPSG:3413 grid, Bamber grid) that have frequently been used\nin modelling studies of the Greenland ice sheet, and for the three\ndifferent resolutions of 5 km, 10 km and 20 km.",
+        "citation": {
+          "text": "Polar Data Journal, 3, 22-36.\nhttps://doi.org/10.20575/00000006",
+          "url": "https://doi.org/10.20575/00000006"
+        },
+        "title": "Geothermal heat flux distribution for the Greenland ice sheet, derived by combining a global representation and information from deep ice cores"
       }
     },
     "glacier_terminus": {
@@ -533,6 +570,23 @@
           "url": "https://doi.org/10.7265/N5V98602"
         },
         "title": "Global Land Ice Measurements from Space glacier database"
+      }
+    },
+    "gravity_anomalies": {
+      "assets": {
+        "only": {
+          "access_instructions": "These data were obtained from Rene Forsberg of DTU Space as a\nprivate data transfer on 2021-01-22.",
+          "id": "only"
+        }
+      },
+      "id": "gravity_anomalies",
+      "metadata": {
+        "abstract": "The Bouguer anomaly grid of Greenland have been derived from a\nrigorous least-squares collocation downward continuation process of\nterrain-corrected data, from the same data used to derive the geoid.\nThe Bouguer anomalies are derived for a density of 2.67 g/cm3 over\nfor rock density, and 0.92 g/cm3 for ice thickness. No Bouguer\ncorrection have been applied for marine areas, so offshore and data\nare free-air anomalies. The gravity reference system is GRS80, based\non fundamental absolute gravity network.\n\nThe gravity Faye (free-air) anomaly grid has been restored from the\nBouguer anomaly grid by the normal gravity gradient of 0.1119\nmGal/m, without terrain corrections, based on the underlying DEM of\nland and glaciers/ice sheet.",
+        "citation": {
+          "text": "Forsberg R., Jensen T. (2015) New Geoid of Greenland: A Case\nStudy of Terrain and Ice Effects, GOCE and Use of Local Sea\nLevel Data. In: Jin S., Barzaghi R. (eds) IGFS 2014. Int.\nAssociation of Geodesy Symposia, vol 144.  Springer,\nhttps://doi.org/10.1007/1345_2015_50.",
+          "url": "https://doi.org/10.1007/1345_2015_50"
+        },
+        "title": "Geoid model and gravity anomalies for Greenland"
       }
     },
     "greenland_territorial_waters": {
@@ -4770,6 +4824,353 @@
             "settings": {
               "expand": false,
               "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing 5km zones protected for Thickbilled Murre\nbreeding colonies.",
+                  "id": "nunagis_unesco_treaty_zones",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type IN ('UNESCO World Heritage Site', 'Ramsar area')\" ",
+                        "{output_dir}/nunagis_unesco_treaty_zones.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "UNESCO_treaty_zones",
+                  "tags": [],
+                  "title": "UNESCO treaty zones"
+                },
+                "name": "nunagis_unesco_treaty_zones"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas that should not be entered.",
+                  "id": "nunagis_no_go_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'No Go Area'\" ",
+                        "{output_dir}/nunagis_no_go_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "No go areas"
+                },
+                "name": "nunagis_no_go_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas that are closed.",
+                  "id": "nunagis_closed_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Closed Area'\" ",
+                        "{output_dir}/nunagis_closed_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Closed areas"
+                },
+                "name": "nunagis_closed_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing 100m zones protected for salt or saline\nlakes.",
+                  "id": "nunagis_salt_or_saline_lake_100m_zones",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Salt or saline lake 100m zone'\" ",
+                        "{output_dir}/nunagis_salt_or_saline_lake_100m_zones.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Salt or saline lake 100m zones"
+                },
+                "name": "nunagis_salt_or_saline_lake_100m_zones"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing 100m zones protected for homothermic\nsprings.",
+                  "id": "nunagis_homothermic_spring_100m_zones",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Homothermic spring 100 m zone'\" ",
+                        "{output_dir}/nunagis_homothermic_spring_100m_zones.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Homothermic spring 100m zones"
+                },
+                "name": "nunagis_homothermic_spring_100m_zones"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygon representing the area protected for the national park.",
+                  "id": "nunagis_national_park",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'National Park'\" ",
+                        "{output_dir}/nunagis_national_park.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "National park"
+                },
+                "name": "nunagis_national_park"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas protected for biologically important\nareas in the national park.",
+                  "id": "nunagis_biological_important_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Biological Important Areas in the National Park'\" ",
+                        "{output_dir}/nunagis_biological_important_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Biological important areas in the national park"
+                },
+                "name": "nunagis_biological_important_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing areas protected for nature.",
+                  "id": "nunagis_nature_protection_areas",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "nunagis_protected_areas"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Nature Protection Area'\" ",
+                        "{output_dir}/nunagis_nature_protection_areas.gpkg",
+                        "{input_dir}/fetched.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Nature protection areas"
+                },
+                "name": "nunagis_nature_protection_areas"
+              }
+            ],
+            "name": "Protected zones",
+            "settings": {
+              "expand": false,
+              "order": [
+                "protected_zones.py:nunagis_unesco_treaty_zones",
+                "protected_zones.py:nunagis_no_go_areas",
+                "protected_zones.py:nunagis_closed_areas",
+                "protected_zones.py:nunagis_salt_or_saline_lake_100m_zones",
+                "protected_zones.py:nunagis_homothermic_spring_100m_zones",
+                "protected_zones.py:nunagis_national_park",
+                "protected_zones.py:nunagis_biological_important_areas",
+                "protected_zones.py:nunagis_nature_protection_areas"
+              ],
               "show": false
             }
           },
@@ -14939,6 +15340,303 @@
               ],
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Gravity anomalies in miligals (mGal).",
+              "id": "bouguer_gravity_anomaly",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "gravity_anomalies"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/archive.zip",
+                    "-d",
+                    "{output_dir}",
+                    "bouguer_gravity_anomaly.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-r",
+                    "bilinear",
+                    "-tr",
+                    "2000",
+                    "2000",
+                    "{input_dir}/bouguer_gravity_anomaly.tif",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/bouguer_gravity_anomaly.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/bouguer_gravity_anomaly.tif",
+                    "{output_dir}/bouguer_gravity_anomaly.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/bouguer_gravity_anomaly.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "gravity_anomaly",
+              "tags": [],
+              "title": "Bouguer gravity anomaly (2km)"
+            },
+            "name": "bouguer_gravity_anomaly"
+          },
+          {
+            "layer_cfg": {
+              "description": "Gravity anomalies in miligals (mGal).",
+              "id": "faye_gravity_anomaly",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "gravity_anomalies"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/archive.zip",
+                    "-d",
+                    "{output_dir}",
+                    "faye_gravity_anomaly.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-r",
+                    "bilinear",
+                    "-tr",
+                    "2000",
+                    "2000",
+                    "{input_dir}/faye_gravity_anomaly.tif",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/faye_gravity_anomaly.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/faye_gravity_anomaly.tif",
+                    "{output_dir}/faye_gravity_anomaly.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/faye_gravity_anomaly.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "gravity_anomaly",
+              "tags": [],
+              "title": "Faye (free-air) gravity anomaly (2km)"
+            },
+            "name": "faye_gravity_anomaly"
+          },
+          {
+            "layer_cfg": {
+              "description": "Official gravimetric geoid model for Greenland in meters.",
+              "id": "geoid",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "geoid"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/archive.zip",
+                    "-d",
+                    "{output_dir}",
+                    "ggeoid16.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-r",
+                    "bilinear",
+                    "-tr",
+                    "2000",
+                    "2000",
+                    "{input_dir}/ggeoid16.tif",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/ggeoid16.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/ggeoid16.tif",
+                    "{output_dir}/ggeoid16.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/ggeoid16.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "geoid",
+              "tags": [],
+              "title": "Geoid model (2km)"
+            },
+            "name": "geoid"
+          },
+          {
+            "layer_cfg": {
+              "description": "Geothermal heat flux interpolated from ice core measurements in\nmiliwatts per square meter.",
+              "id": "geothermal_heat_flux",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "geothermal_heat_flux"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/A20180227-001v200.zip",
+                    "-d",
+                    "{output_dir}",
+                    "ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdalwarp",
+                    "-cutline",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-crop_to_cutline",
+                    "-r",
+                    "bilinear",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "NETCDF:{input_dir}/ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc:GHF",
+                    "{output_dir}/warped.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/warped.tif",
+                    "{output_dir}/final.tif",
+                    "&&",
+                    "gdaladdo",
+                    "-r",
+                    "average",
+                    "{output_dir}/final.tif",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "geothermal_heat_flux",
+              "tags": [],
+              "title": "Geothermal heat flux (5km)"
+            },
+            "name": "geothermal_heat_flux"
           }
         ],
         "name": "Geophysics",
@@ -21260,7 +21958,8 @@
                     "unzip",
                     "{input_dir}/*.zip",
                     "-d",
-                    "{output_dir}"
+                    "{output_dir}",
+                    ""
                   ],
                   "type": "command"
                 },
