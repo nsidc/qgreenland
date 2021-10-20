@@ -42,6 +42,8 @@ LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 # renaming. Make it a subdir?
 TMP_DIR = WIP_DIR
 
+# In seconds. See
+# https://2.python-requests.org/en/master/user/quickstart/#timeouts
 REQUEST_TIMEOUT = 30
 
 # URS stuff
