@@ -1156,7 +1156,7 @@
       "assets": {
         "monthly_polyline_n": {
           "id": "monthly_polyline_n",
-          "provider": "gdal",
+          "provider": "wfs",
           "url": "pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:3413' typename='NSIDC:g02135_polyline_n' url='https://nsidc.org/api/mapservices/NSIDC/wfs' url='https://nsidc.org/api/mapservices/NSIDC/wfs?version=1.1.0' version='auto'"
         }
       },
@@ -6174,6 +6174,359 @@
             "children": [
               {
                 "layer_cfg": {
+                  "description": "Glacier location for termini with matching ID.",
+                  "id": "glacier_terminus_glacier_ids",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "glacier_ids"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/GlacierIDs_v01.2.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "glacier_ids",
+                  "tags": [],
+                  "title": "Glacier IDs"
+                },
+                "name": "glacier_terminus_glacier_ids"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Glacier terminus during interval 2000 to 2001.",
+                  "id": "glacier_terminus_2000_2001",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2000_2001"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/termini_*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Glacier termini 2000 to 2001"
+                },
+                "name": "glacier_terminus_2000_2001"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Glacier terminus during interval 2005 to 2006.",
+                  "id": "glacier_terminus_2005_2006",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2005_2006"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/termini_*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Glacier termini 2005 to 2006"
+                },
+                "name": "glacier_terminus_2005_2006"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Glacier terminus during interval 2006 to 2007.",
+                  "id": "glacier_terminus_2006_2007",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2006_2007"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/termini_*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Glacier termini 2006 to 2007"
+                },
+                "name": "glacier_terminus_2006_2007"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Glacier terminus during interval 2007 to 2008.",
+                  "id": "glacier_terminus_2007_2008",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2007_2008"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/termini_*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Glacier termini 2007 to 2008"
+                },
+                "name": "glacier_terminus_2007_2008"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Glacier terminus during interval 2012 to 2013.",
+                  "id": "glacier_terminus_2012_2013",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2012_2013"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/termini_*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Glacier termini 2012 to 2013"
+                },
+                "name": "glacier_terminus_2012_2013"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Glacier terminus during interval 2014 to 2015.",
+                  "id": "glacier_terminus_2014_2015",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2014_2015"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/termini_*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Glacier termini 2014 to 2015"
+                },
+                "name": "glacier_terminus_2014_2015"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Glacier terminus during interval 2015 to 2016.",
+                  "id": "glacier_terminus_2015_2016",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2015_2016"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/termini_*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Glacier termini 2015 to 2016"
+                },
+                "name": "glacier_terminus_2015_2016"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Glacier terminus during interval 2016 to 2017.",
+                  "id": "glacier_terminus_2016_2017",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2016_2017"
+                    },
+                    "dataset": {
+                      "id": "glacier_terminus"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/boundary.gpkg",
+                        "{input_dir}/termini_*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Glacier termini 2016 to 2017"
+                },
+                "name": "glacier_terminus_2016_2017"
+              }
+            ],
+            "name": "Glacier terminus positions 2000-2017",
+            "settings": {
+              "expand": false,
+              "order": [
+                "glacier_terminus_ids.py:glacier_terminus_glacier_ids",
+                "glacier_terminus.py:glacier_terminus_2000_2001",
+                "glacier_terminus.py:glacier_terminus_2005_2006",
+                "glacier_terminus.py:glacier_terminus_2006_2007",
+                "glacier_terminus.py:glacier_terminus_2007_2008",
+                "glacier_terminus.py:glacier_terminus_2012_2013",
+                "glacier_terminus.py:glacier_terminus_2014_2015",
+                "glacier_terminus.py:glacier_terminus_2015_2016",
+                "glacier_terminus.py:glacier_terminus_2016_2017"
+              ],
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
                   "description": "Points representing GLIMS glaciers and locations of interest.",
                   "id": "glims_points",
                   "in_package": true,
@@ -9788,6 +10141,7 @@
             "machguth_massbalance_locations.py:machguth_massbalance_locations",
             "supraglacial_lakes.py:jakobshavn_supraglacial_lakes",
             "firn_ice.py:firn_ice_layer_thicknesses",
+            "Glacier terminus positions 2000-2017",
             "Global land ice measurements from space (GLIMS)",
             "ice_thickness_change.py:ice_thickness_change",
             "Surface elevation change",
@@ -21854,6 +22208,29 @@
               "title": "Greenland image mosaic 2015 (15m)"
             },
             "name": "image_mosaic_2015"
+          },
+          {
+            "layer_cfg": {
+              "description": "Lines representing monthly sea ice extent edges. Note that aside from 2016 to\npresent, most of the data is missing.",
+              "id": "g02135_polyline_n",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "monthly_polyline_n"
+                },
+                "dataset": {
+                  "id": "sea_ice_index"
+                }
+              },
+              "show": false,
+              "steps": null,
+              "style": "g02135_polyline_n",
+              "tags": [
+                "online"
+              ],
+              "title": "Sea Ice Index"
+            },
+            "name": "g02135_polyline_n"
           }
         ],
         "name": "Internet-required data",
@@ -21861,7 +22238,8 @@
           "expand": false,
           "order": [
             "online.py:image_mosaic_2019",
-            "online.py:image_mosaic_2015"
+            "online.py:image_mosaic_2015",
+            "online.py:g02135_polyline_n"
           ],
           "show": false
         }

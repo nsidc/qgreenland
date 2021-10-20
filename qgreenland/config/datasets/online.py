@@ -68,7 +68,7 @@ sea_ice_index = ConfigDataset(
     assets=[
         ConfigDatasetOnlineAsset(
             id='monthly_polyline_n',
-            provider='gdal',
+            provider='wfs',
             # Whitespace matters most, so we use implicit string concatenation
             url=(
                 "pagingEnabled='true' preferCoordinatesForWfsT11='false'"
