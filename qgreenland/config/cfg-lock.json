@@ -21101,7 +21101,11 @@
         "name": "Terrain models",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            "BedMachine",
+            "arctic_dem.py:arctic_dem",
+            "dms_gtk_topo.py:dms_gtk_topo"
+          ],
           "show": false
         }
       },
