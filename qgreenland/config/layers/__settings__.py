@@ -16,7 +16,7 @@ settings = RootGroupSettings(
         'Hydrology',
         'Sea ice',
         'Oceanography',
-        'Terrain Models',
+        'Terrain models',
         'Internet-required data',
         'Basemaps',
     ],
