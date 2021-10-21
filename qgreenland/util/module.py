@@ -30,6 +30,7 @@ def module_from_path(module_path: Path) -> ModuleType:
 T = TypeVar('T')
 
 
+# TODO: Operate on a single path
 def load_objects_from_paths_by_class(
     module_paths: list[Path],
     *,
@@ -41,7 +42,7 @@ def load_objects_from_paths_by_class(
         module = module_from_path(module_path)
 
         # TODO: Validate `id`s of each model, if present, are unique? Do that
-        # afterwards? Probably after.
+        # afterwards? At the very end, examine each leaf?
 
         models = _find_in_module_by_class(module, target_class=target_class)
         found_models.extend(models)
