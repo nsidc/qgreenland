@@ -37,6 +37,7 @@ def load_objects_from_paths_by_class(
     target_class: Type[T],
 ) -> list[T]:
     """Return all objects of class `model_class` in `module_paths`."""
+    print(module_paths)
     found_models = []
     for module_path in module_paths:
         module = module_from_path(module_path)
