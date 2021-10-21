@@ -1,4 +1,3 @@
-import inspect
 from typing import Optional, Union
 
 from qgreenland.models.base_model import QgrBaseModel
@@ -13,7 +12,6 @@ class RootGroupSettings(QgrBaseModel):
     # referenced by module and object name, e.g. 'background.py:background'. If
     # 'order' is omitted, a default sorting algorithm is applied.
     order: Optional[list[str]]
-
 
 
 class LayerGroupSettings(RootGroupSettings):
