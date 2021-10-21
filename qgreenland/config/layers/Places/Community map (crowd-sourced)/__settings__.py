@@ -4,6 +4,6 @@ from qgreenland.models.config.layer_group import LayerGroupSettings
 
 settings = LayerGroupSettings(
     order=[
-        f'hotosm_layers.py:{asset_id}' for asset_id in hotosm_layers_order()
+        f':{asset_id}' for asset_id in hotosm_layers_order()
     ],
 )

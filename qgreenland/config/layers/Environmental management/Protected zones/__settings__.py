@@ -7,7 +7,7 @@ from qgreenland.models.config.layer_group import LayerGroupSettings
 settings = LayerGroupSettings(
     order=[
         *[
-            f'protected_zones.py:{layer_id}'
+            f':{layer_id}'
             for layer_id in PROTECTED_ZONES_LAYERS
         ],
     ],
