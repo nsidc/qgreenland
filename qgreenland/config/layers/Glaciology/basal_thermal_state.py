@@ -1,5 +1,6 @@
 from qgreenland.config.datasets.basal_thermal_state import basal_thermal_state as dataset
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_raster import compress_raster
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 from qgreenland.models.config.step import ConfigLayerCommandStep
@@ -39,6 +40,10 @@ basal_thermal_state = ConfigLayer(
                 # overviews) to hang indefinitely.
                 '-a_nodata', '3',
             ],
+        ),
+        *compress_raster(
+            input_file='{input_dir}/basal_thermal_state.tif',
+            output_file='{output_dir}/basal_thermal_state.tif',
         ),
         *build_overviews(
             input_file='{input_dir}/basal_thermal_state.tif',

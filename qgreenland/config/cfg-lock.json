@@ -5329,6 +5329,23 @@
                         "{output_dir}/racmo_wind_speed.tif"
                       ],
                       "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/racmo_wind_speed.tif",
+                        "{output_dir}/racmo_wind_speed.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/racmo_wind_speed.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
                     }
                   ],
                   "style": "racmo_wind_speed",
@@ -5390,8 +5407,18 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
                         "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_precip.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/racmo_precip.tif",
                         "{output_dir}/racmo_precip.tif",
                         "&&",
                         "gdaladdo",
@@ -5465,8 +5492,18 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
                         "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_snowfall.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/racmo_snowfall.tif",
                         "{output_dir}/racmo_snowfall.tif",
                         "&&",
                         "gdaladdo",
@@ -5540,8 +5577,18 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
                         "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_snowmelt.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/racmo_snowmelt.tif",
                         "{output_dir}/racmo_snowmelt.tif",
                         "&&",
                         "gdaladdo",
@@ -5615,8 +5662,18 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
                         "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_runoff.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/racmo_runoff.tif",
                         "{output_dir}/racmo_runoff.tif",
                         "&&",
                         "gdaladdo",
@@ -5690,8 +5747,18 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
                         "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_subl.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/racmo_subl.tif",
                         "{output_dir}/racmo_subl.tif",
                         "&&",
                         "gdaladdo",
@@ -5765,8 +5832,18 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
                         "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_sndiv.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/racmo_sndiv.tif",
                         "{output_dir}/racmo_sndiv.tif",
                         "&&",
                         "gdaladdo",
@@ -5840,8 +5917,18 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
                         "{input_dir}/edited.tif",
+                        "{output_dir}/racmo_t2m.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/racmo_t2m.tif",
                         "{output_dir}/racmo_t2m.tif",
                         "&&",
                         "gdaladdo",
@@ -5903,8 +5990,18 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
                             "{input_dir}/Promicemask.tif",
+                            "{output_dir}/racmo_promicemask.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/racmo_promicemask.tif",
                             "{output_dir}/racmo_promicemask.tif",
                             "&&",
                             "gdaladdo",
@@ -5964,8 +6061,18 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
                             "{input_dir}/grounded_ice.tif",
+                            "{output_dir}/racmo_grounded_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/racmo_grounded_ice.tif",
                             "{output_dir}/racmo_grounded_ice.tif",
                             "&&",
                             "gdaladdo",
@@ -6041,8 +6148,18 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
                             "{input_dir}/edited.tif",
+                            "{output_dir}/racmo_Topography.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/racmo_Topography.tif",
                             "{output_dir}/racmo_Topography.tif",
                             "&&",
                             "gdaladdo",
@@ -10210,6 +10327,16 @@
                     "EPSG:3413",
                     "-a_nodata",
                     "3",
+                    "{output_dir}/basal_thermal_state.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "{input_dir}/basal_thermal_state.tif",
                     "{output_dir}/basal_thermal_state.tif"
                   ],
                   "type": "command"
