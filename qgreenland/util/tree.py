@@ -202,20 +202,28 @@ def _manual_ordering_strategy(
     """Sort `layers_and_groups` using `settings.order` as a guide."""
     ordered_directory_elements: list[LayerDirectoryElement] = []
 
+    if not settings.order:
+        raise RuntimeError('Order must be specified in settings.')
+
     for s in settings.order:
         try:
             if s.startswith(':'):
                 matcher = lambda x: isinstance(x, ConfigLayer) and x.id == s[1:]
+                thing_desc = f'layer id "{s[1:]}"'
             else:
                 matcher = lambda x: isinstance(x, Path) and x.name == s
+                thing_desc = f'group/directory "{s}"'
 
             matches = funcy.lfilter(matcher, layers_and_groups)
-            assert len(matches) == 1
+            if len(matches) != 1:
+                raise RuntimeError(
+                    f'Expected to find {thing_desc}. Found: {matches}'
+                )
 
             thing = matches[0]
         except Exception as e:
             raise RuntimeError(
-                f'Unhandled error processing "order" element "{s}": {e}'
+                f'Unexpected error processing `settings.order` element "{s}". {e}'
             )
 
         ordered_directory_elements.append(thing)
@@ -254,80 +262,96 @@ def _validate_ordered(
 
 
 def _ordered_layers_and_groups(
-    directory_contents: list[Path],
-    settings: AnyGroupSettings,
-) -> list[LayerDirectoryElement]:
-    """Examine `directory_contents` for layers and groups and sort them.
+    the_dir: Path,
+    *,
+    is_root: bool,
+) -> tuple[list[LayerDirectoryElement], AnyGroupSettings]:
+    """Examine `the_dir` for layers and groups and sort them.
 
     Layers are represented as `ConfigLayer` objects in Python files. Each Python
     file is converted to its internal `ConfigLayer` objects.
 
     Groups are represented as directories and are returned unchanged.
     """
-    layers_and_groups = _explode_config_layers_from_python_files(
-        directory_contents,
+    (
+        layer_and_group_paths,
+        settings,
+        settings_path,
+    ) = _handle_layer_config_directory(
+        the_dir,
+        is_root=is_root,
     )
 
-    if settings.order:
-        ordered = _manual_ordering_strategy(layers_and_groups, settings)
-        error_hint = f'Error ordering with {settings._filepath}'
-    else:
-        ordered = _default_ordering_strategy(layers_and_groups)
-        error_hint = 'Error ordering layers'
+    layers_and_groups = _explode_config_layers_from_python_files(
+        layer_and_group_paths,
+    )
 
     try:
+        if settings.order:
+            error_hint = '. Check `__settings__.py`'
+            ordered = _manual_ordering_strategy(layers_and_groups, settings)
+        else:
+            error_hint = ''
+            ordered = _default_ordering_strategy(layers_and_groups)
+
         _validate_ordered(
             layers_and_groups=layers_and_groups,
             ordered_layers_and_groups=ordered,
         )
     except Exception as e:
         raise RuntimeError(
-            f'{error_hint}: {e}'
+            f'Error ordering layers in `{the_dir}`{error_hint}. {e}'
         )
 
-    return ordered
+    return ordered, settings
 
 
 def _handle_layer_config_directory(
     the_dir: Path,
     *,
     is_root: bool,
-) -> tuple[list[Path], AnyGroupSettings]:
+) -> tuple[list[Path], AnyGroupSettings, Optional[Path]]:
     """Load settings and contents from given directory path."""
     directory_contents = _filter_directory_contents(
         list(the_dir.iterdir()),
     )
-    settings_fp = [
+    settings_fps = [
         c for c in directory_contents
         if c.name == '__settings__.py'
     ]
 
-    if not settings_fp:
+    if not settings_fps:
         logger.debug(f'__settings__.py not found in {the_dir}')
         if is_root:
             settings = RootGroupSettings()
         else:
             settings = LayerGroupSettings()
 
-        return (directory_contents, settings)
+        return (directory_contents, settings, None)
+
+    if len(settings_fps) != 1:
+        raise RuntimeError(
+            f'Expected exactly one settings file. Received: {settings_fps}'
+        )
+    settings_fp = settings_fps[0]
 
     settings_objects = load_objects_from_paths_by_class(
-        settings_fp,
+        [settings_fp],
         target_class=RootGroupSettings,
     )
 
     if len(settings_objects) != 1:
         raise RuntimeError(
-            f'Expected exactly one settings object in{settings_fp}',
+            f'Expected exactly one settings object in {settings_fp}',
         )
+    settings = settings_objects[0]
 
     layer_and_group_paths = [
         c for c in directory_contents
         if c.name != '__settings__.py'
     ]
-    settings = settings_objects[0]
 
-    return (layer_and_group_paths, settings)
+    return (layer_and_group_paths, settings, settings_fp)
 
 
 def _matches_filters(
@@ -391,14 +415,9 @@ def _tree_from_dir(
     exclude_patterns: tuple[str, ...] = (),
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
-    layer_and_group_paths, settings = _handle_layer_config_directory(
+    ordered_layers_and_groups, settings = _ordered_layers_and_groups(
         the_dir,
         is_root=(not bool(parent)),
-    )
-
-    ordered_layers_and_groups = _ordered_layers_and_groups(
-        layer_and_group_paths,
-        settings=settings,
     )
 
     # Create a node for this directory
