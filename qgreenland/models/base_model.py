@@ -1,6 +1,6 @@
 import inspect
 from functools import cached_property
-from typing import Any
+from typing import Any, Optional
 
 from pydantic import (
     BaseModel,
@@ -11,18 +11,13 @@ from pydantic import (
 )
 
 
+
 class QgrBaseModel(BaseModel):
     """Implements 'faux' immutability and allows usage of `functools.cached_property`.
 
     Immutability is not 'strict' (e.g., dicts can be mutated) - a
     determined dev can still mutate model instances.
     """
-    _filepath: FilePath = PrivateAttr()
-
-    def __init__(self, **data):
-        super().__init__(**data)
-        # Go up the stack once to get the filename of the caller
-        self._filepath = inspect.stack()[1][1]
 
     @validator('*')
     @classmethod
