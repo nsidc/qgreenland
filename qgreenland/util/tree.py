@@ -167,7 +167,7 @@ def _explode_config_layers_from_python_files(
             if not path.is_dir():
                 raise RuntimeError(
                     f'Paths in {path.parent} must be Python files or'
-                    ' directories. Found: {path}',
+                    f' directories. Found: {path}',
                 )
             result.append(path)
 
@@ -184,7 +184,6 @@ def _default_ordering_strategy(
     """
     ordered_directory_elements: list[LayerDirectoryElement] = []
 
-    # Get the directories first and sort alphabetically.
     directories = [e for e in layers_and_groups if isinstance(e, Path)]
     directories.sort(key=lambda path: path.name)
     ordered_directory_elements.extend(directories)
@@ -192,8 +191,6 @@ def _default_ordering_strategy(
     layer_cfgs = [e for e in layers_and_groups if type(e) is ConfigLayer]
     layer_cfgs.sort(key=lambda layer_cfg: layer_cfg.title)
     ordered_directory_elements.extend(layer_cfgs)
-    if len(ordered_directory_elements) != len(layers_and_groups):
-        breakpoint()
 
     return ordered_directory_elements
 
