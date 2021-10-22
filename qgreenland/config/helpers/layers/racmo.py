@@ -125,7 +125,7 @@ _masked_racmo_raster_params = {
 
 
 RACMO_LAYER_ORDER = [
-    'racmo_wind_vectors', 'racmo_wind_speed'
+    'racmo_wind_vectors', 'racmo_wind_speed',
 ] + list(_masked_racmo_raster_params.keys())
 
 

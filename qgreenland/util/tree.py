@@ -1,6 +1,5 @@
 import json
 import logging
-import re
 from abc import ABC
 from fnmatch import fnmatch
 from functools import cached_property
@@ -19,10 +18,10 @@ from qgreenland.models.config.layer_group import (
     LayerGroupSettings,
     RootGroupSettings,
 )
+from qgreenland.util.json import MagicJSONEncoder
 from qgreenland.util.module import (
     load_objects_from_paths_by_class,
 )
-from qgreenland.util.json import MagicJSONEncoder
 
 
 logger = logging.getLogger('luigi-interface')
@@ -217,18 +216,19 @@ def _manual_ordering_strategy(
             matches = funcy.lfilter(matcher, layers_and_groups)
             if len(matches) != 1:
                 raise RuntimeError(
-                    f'Expected to find {thing_desc}. Found: {matches}'
+                    f'Expected to find {thing_desc}. Found: {matches}',
                 )
 
             thing = matches[0]
         except Exception as e:
             raise RuntimeError(
-                f'Unexpected error processing `settings.order` element "{s}". {e}'
+                f'Unexpected error processing `settings.order` element "{s}".'
+                f' {e}',
             )
 
         ordered_directory_elements.append(thing)
 
-    return ordered_directory_elements 
+    return ordered_directory_elements
 
 
 def _validate_ordered(
@@ -241,14 +241,14 @@ def _validate_ordered(
     All `LayerDirectoryElement`s found in `layers_and_groups` must be present in
     `ordered_layers_and_groups`. Return any elements which are not.
     """
-    ondisk_set = set(
+    ondisk_set = {
         json.dumps(e, cls=MagicJSONEncoder, sort_keys=True)
         for e in layers_and_groups
-    )
-    ordered_set = set(
+    }
+    ordered_set = {
         json.dumps(e, cls=MagicJSONEncoder, sort_keys=True)
         for e in ordered_layers_and_groups
-    )
+    }
 
     if (diff := ondisk_set - ordered_set) != set():
         raise RuntimeError(
@@ -258,7 +258,6 @@ def _validate_ordered(
         raise RuntimeError(
             f'Found the following items in ordered set but not on disk: {diff}',
         )
-
 
 
 def _ordered_layers_and_groups(
@@ -300,7 +299,7 @@ def _ordered_layers_and_groups(
         )
     except Exception as e:
         raise RuntimeError(
-            f'Error ordering layers in `{the_dir}`{error_hint}. {e}'
+            f'Error ordering layers in `{the_dir}`{error_hint}. {e}',
         )
 
     return ordered, settings
@@ -331,7 +330,7 @@ def _handle_layer_config_directory(
 
     if len(settings_fps) != 1:
         raise RuntimeError(
-            f'Expected exactly one settings file. Received: {settings_fps}'
+            f'Expected exactly one settings file. Received: {settings_fps}',
         )
     settings_fp = settings_fps[0]
 
