@@ -134,6 +134,7 @@ def _filter_directory_contents(paths=list[Path]) -> list[Path]:
         return (
             (p.suffix == '.py' or p.is_dir)
             and not p.name == '__pycache__'
+            and not p.name.startswith('.')
         )
 
     return [
