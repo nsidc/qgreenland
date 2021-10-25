@@ -233,17 +233,17 @@ def _manual_ordering_strategy(
 
 def _validate_ordered(
     *,
-    layers_and_groups: list[LayerDirectoryElement],
+    unordered_layers_and_groups: list[LayerDirectoryElement],
     ordered_layers_and_groups: list[LayerDirectoryElement],
 ) -> None:
     """Validate that `ordered_directory_elements` is comprehensive.
 
-    All `LayerDirectoryElement`s found in `layers_and_groups` must be present in
-    `ordered_layers_and_groups`. Return any elements which are not.
+    All `LayerDirectoryElement`s found in `unordered_layers_and_groups` must be
+    present in `ordered_layers_and_groups`. Return any elements which are not.
     """
     ondisk_set = {
         json.dumps(e, cls=MagicJSONEncoder, sort_keys=True)
-        for e in layers_and_groups
+        for e in unordered_layers_and_groups
     }
     ordered_set = {
         json.dumps(e, cls=MagicJSONEncoder, sort_keys=True)
