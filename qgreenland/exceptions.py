@@ -16,6 +16,12 @@ class QgrNoLayersFoundError(Exception):
     pass
 
 
+class QgrConfigCompileError(Exception):
+    """Something went wrong with compiling the configuration."""
+
+    pass
+
+
 class QgrInvalidConfigError(Exception):
     """Something went wrong with validating/parsing/interpreting the config."""
 
