@@ -1,16 +1,6 @@
-from typing import Sequence
-
 from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.util.command import interpolate_args
 from qgreenland.util.misc import run_ogr_command
-from qgreenland.util.runtime_vars import EvalStr
-
-
-def _interpolate_args(
-    args: Sequence[EvalStr],
-    **kwargs,
-) -> list[str]:
-    """Replace slugs in `args` with keys and values in `kwargs`."""
-    return [arg.eval(**kwargs) for arg in args]
 
 
 def command_runner(
@@ -24,7 +14,7 @@ def command_runner(
     `kwargs` are string-interpolated for each of the command's arguments.
     """
     # TODO: Some better data structure; this access is confusing.
-    command_args = _interpolate_args(
+    command_args = interpolate_args(
         step.args,
         input_dir=input_dir,
         output_dir=output_dir,

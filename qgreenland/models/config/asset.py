@@ -7,7 +7,7 @@ import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerProviderType
 from qgreenland.constants import ASSETS_DIR
 from qgreenland.models.base_model import QgrBaseModel
-from qgreenland.util.runtime_vars import EvalFilePath
+from qgreenland.util.runtime_vars import EvalFilePath, EvalStr
 
 
 class ConfigDatasetAsset(QgrBaseModel, ABC):
@@ -68,6 +68,15 @@ class ConfigDatasetManualAsset(ConfigDatasetAsset):
     access_instructions: str = Field(..., min_length=1)
 
 
+class ConfigDatasetCommandAsset(ConfigDatasetAsset):
+    """Assets that are fetched via an arbitrary command.
+
+    Data is written to '{output_dir}', which _must_ be specified in the command.
+    """
+
+    args: list[EvalStr]
+
+
 class ConfigDatasetOgrRemoteAsset(ConfigDatasetAsset):
     """Assets that are fetched via `ogr2ogr` from the given query_url."""
 
@@ -76,6 +85,7 @@ class ConfigDatasetOgrRemoteAsset(ConfigDatasetAsset):
 
 AnyAsset = Union[
     ConfigDatasetCmrAsset,
+    ConfigDatasetCommandAsset,
     ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,
     ConfigDatasetOnlineAsset,
