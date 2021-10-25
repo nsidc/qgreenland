@@ -9,7 +9,7 @@ from qgreenland.models.base_model import QgrBaseModel
 class RootGroupSettings(QgrBaseModel):
     # The order in which this group's contents (including subgroups) will be
     # shown. Subgroups are referenced by name, e.g. 'Basemaps', and layers are
-    # referenced by module and object name, e.g. 'background.py:background'. If
+    # referenced by a colon followed by the layer ID, e.g. `:background`. If
     # 'order' is omitted, a default sorting algorithm is applied.
     order: Optional[list[str]]
 
