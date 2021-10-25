@@ -89,11 +89,13 @@
     "background": {
       "assets": {
         "high_res": {
-          "id": "high_res",
-          "urls": [
-            "https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip"
+          "args": [
+            "wget",
+            "https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip",
+            "-O",
+            "{output_dir}/NE2_HR_LC_SR_W.zip"
           ],
-          "verify_tls": true
+          "id": "high_res"
         }
       },
       "id": "background",
