@@ -52,7 +52,7 @@ layers = [
             *compressed_vector(
                 input_file='{input_dir}/features.zip',
                 output_file='{output_dir}/final.gpkg',
-                boundary_filepath=project.boundaries['data'].filepath,
+                boundary_filepath=project.boundaries['background'].filepath,
                 decompress_step_kwargs={
                     'decompress_contents_mask':
                         f'features/features-{key}.*',
