@@ -12,6 +12,7 @@ from qgreenland.models.config.asset import (
     ConfigDatasetRepositoryAsset,
 )
 from qgreenland.util.cmr import get_cmr_granule
+from qgreenland.util.command import interpolate_args
 from qgreenland.util.config.config import get_config
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
 from qgreenland.util.misc import (
@@ -74,8 +75,7 @@ class FetchCmrGranule(FetchTask):
 class FetchDataFiles(FetchTask):
     def output(self):
         return luigi.LocalTarget(
-            os.path.join(TaskType.FETCH.value,
-                         self.output_name),
+            TaskType.FETCH.value / self.output_name,
             format=luigi.format.Nop,
         )
 
@@ -101,8 +101,7 @@ class FetchLocalDataFiles(FetchTask):
 
     def output(self):
         return luigi.LocalTarget(
-            os.path.join(TaskType.FETCH.value,
-                         self.output_name),
+            TaskType.FETCH.value / self.output_name,
             format=luigi.format.Nop,
         )
 
@@ -116,7 +115,7 @@ class FetchLocalDataFiles(FetchTask):
                 shutil.copy2(evaluated_filepath, out_path)
 
         elif isinstance(self.asset_cfg, ConfigDatasetManualAsset):
-            local_dir = os.path.join(PRIVATE_ARCHIVE_DIR, self.dataset_cfg.id)
+            local_dir = PRIVATE_ARCHIVE_DIR / self.dataset_cfg.id
             with temporary_path_dir(self.output()) as temp_path:
                 shutil.copytree(local_dir, temp_path, dirs_exist_ok=True)
 
@@ -127,11 +126,28 @@ class FetchLocalDataFiles(FetchTask):
             )
 
 
+class FetchDataWithCommand(FetchTask):
+    """Fetch data using a command, writing to '{output_dir}'."""
+    def output(self):
+        return luigi.LocalTarget(
+            TaskType.FETCH.value / self.output_name,
+            format=luigi.format.Nop,
+        )
+
+    def run(self):
+        with temporary_path_dir(self.output()) as temp_path:
+            run_ogr_command(
+                interpolate_args(
+                    self.asset_cfg.args,
+                    output_dir=temp_path,
+                )
+            )
+
+
 class FetchOgrRemoteData(FetchTask):
     def output(self):
         return luigi.LocalTarget(
-            os.path.join(TaskType.FETCH.value,
-                         self.output_name),
+            TaskType.FETCH.value / self.output_name,
             format=luigi.format.Nop,
         )
 
@@ -139,7 +155,7 @@ class FetchOgrRemoteData(FetchTask):
         with temporary_path_dir(self.output()) as temp_path:
             url = self.asset_cfg.query_url
 
-            ofile = os.path.join(temp_path, 'fetched.geojson')
+            ofile = Path(temp_path) / 'fetched.geojson'
             run_ogr_command(
                 [
                     'ogr2ogr',
