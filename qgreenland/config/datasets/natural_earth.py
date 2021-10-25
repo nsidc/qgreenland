@@ -10,7 +10,7 @@ background = ConfigDataset(
                 'wget',
                 'https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip',
                 '-O', '{output_dir}/NE2_HR_LC_SR_W.zip',
-            ]
+            ],
         ),
     ],
     metadata={

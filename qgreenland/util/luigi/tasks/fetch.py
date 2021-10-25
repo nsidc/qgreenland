@@ -127,7 +127,8 @@ class FetchLocalDataFiles(FetchTask):
 
 
 class FetchDataWithCommand(FetchTask):
-    """Fetch data using a command, writing to '{output_dir}'."""
+    """Fetch data using a command, writing to '{output_dir}'."""  # noqa: FS003
+
     def output(self):
         return luigi.LocalTarget(
             TaskType.FETCH.value / self.output_name,
@@ -140,7 +141,7 @@ class FetchDataWithCommand(FetchTask):
                 interpolate_args(
                     self.asset_cfg.args,
                     output_dir=temp_path,
-                )
+                ),
             )
 
 
