@@ -4,7 +4,7 @@ from qgreenland.models.config.layer_group import LayerGroupSettings
 
 settings = LayerGroupSettings(
     order=[
-        f'layers.py:seaice_maximum_age_{year}'
+        f':seaice_maximum_age_{year}'
         for year in seaice_age_layers.keys()
     ],
 )

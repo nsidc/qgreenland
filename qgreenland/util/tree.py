@@ -1,5 +1,5 @@
+import json
 import logging
-import re
 from abc import ABC
 from fnmatch import fnmatch
 from functools import cached_property
@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any, Optional, Union
 
 import anytree
+import funcy
 from anytree.exporter import DictExporter
 
 import qgreenland.exceptions as exc
@@ -17,6 +18,7 @@ from qgreenland.models.config.layer_group import (
     LayerGroupSettings,
     RootGroupSettings,
 )
+from qgreenland.util.json import MagicJSONEncoder
 from qgreenland.util.module import (
     load_objects_from_paths_by_class,
 )
@@ -93,6 +95,8 @@ def layer_tree(
         include_patterns=include_patterns,
         exclude_patterns=exclude_patterns,
     )
+    # Clean up any empty layer groups. This shouldn't happen normally, but if
+    # any layers are included or excluded, it's likely.
     _prune_tree(tree)
 
     if len(tree.children) == 0:
@@ -129,6 +133,7 @@ def _filter_directory_contents(paths=list[Path]) -> list[Path]:
         return (
             (p.suffix == '.py' or p.is_dir)
             and not p.name == '__pycache__'
+            and not p.name.startswith('.')
         )
 
     return [
@@ -137,164 +142,215 @@ def _filter_directory_contents(paths=list[Path]) -> list[Path]:
     ]
 
 
-# TODO: Validate order against directory contents
-#   * Assert set(directory contents).pop(__settings__.py) == set(__order__
-#     file|dir references)
-#   * Assert set(module references) == set(modules in `some_dir`)
-#   * Assert set(module:ConfigLayer references) == set(ConfigLayers in modules)
-#   * Assert set(ConfigLayers in modules) == list(ConfigLayers in modules) (no
-#     Dupes)?
-
 LayerDirectoryElement = Union[Path, ConfigLayer]
 
 
-def _dereference_order_element(
-    element: str,
-    parent_dir: Path,
-) -> LayerDirectoryElement:
-    """Convert `element` to the thing it's referencing.
+def _explode_config_layers_from_python_files(
+    paths: list[Path],
+) -> list[LayerDirectoryElement]:
+    """Explode ConfigLayers from Python files, with directory paths intact.
 
-    `element` can reference an object in a Python file, e.g.
-    `file.py:<object_name>`, or it can reference a directory.
+    Any paths which are not Python files or directories will trigger an
+    exception.
     """
-    pattern = re.compile(r'^(?P<filename>\w+\.py):(?P<layer_id>\w+)$')
-    if match := pattern.match(element):
-        filename = match.group('filename')
-        layer_id = match.group('layer_id')
+    result: list[LayerDirectoryElement] = []
 
-        layers = load_objects_from_paths_by_class(
-            [parent_dir / filename],
-            target_class=ConfigLayer,
-        )
-        if not layers:
-            raise RuntimeError(
-                f'No match found for {element} in {parent_dir}.',
+    for path in paths:
+        if path.suffix == '.py':
+            config_layers = load_objects_from_paths_by_class(
+                [path],
+                target_class=ConfigLayer,
             )
+            result.extend(config_layers)
+        else:
+            if not path.is_dir():
+                raise RuntimeError(
+                    f'Paths in {path.parent} must be Python files or'
+                    f' directories. Found: {path}',
+                )
+            result.append(path)
 
-        try:
-            return [
-                layer for layer in layers
-                if layer.id == layer_id
-            ][0]
-        except IndexError:
-            found_layers = [layer.id for layer in layers]
-            raise RuntimeError(
-                f'Failed to find layer with id {layer_id}.'
-                f' Found layers with ids: {found_layers}.',
-            )
-    else:
-        return parent_dir / element
+    return result
 
 
 def _default_ordering_strategy(
-    paths: list[Path],
+    layers_and_groups: list[LayerDirectoryElement],
 ) -> list[LayerDirectoryElement]:
-    """Sort configuration elements within `paths`.
-
-    A configuration element can be a directory (one of the `paths`), or a
-    ConfigLayer Python object contained by a Python file. A Python file (one of
-    the `paths`) can contain multiple ConfigLayer objects.
+    """Sort configuration elements within `layers_and_groups`.
 
     Directories first, sorted alphabetically. Then ConfigLayers, sorted
     alphabetically by title.
     """
     ordered_directory_elements: list[LayerDirectoryElement] = []
 
-    # Get the directories first and sort alphabetically.
-    sorted_directories = sorted(
-        (path for path in paths if path.is_dir()),
-        key=lambda path: path.name,
-    )
-    ordered_directory_elements.extend(sorted_directories)
+    directories = [e for e in layers_and_groups if isinstance(e, Path)]
+    directories.sort(key=lambda path: path.name)
+    ordered_directory_elements.extend(directories)
 
-    # Find any python files in `paths`
-    python_files = [path for path in paths if path.is_file() and path.suffix == '.py']
-    # Read all of the ConfigLayer objects out of them python files
-    layer_cfgs = load_objects_from_paths_by_class(
-        python_files,
-        target_class=ConfigLayer,
-    )
-
-    # Sort the ConfigLayer objects by title.
+    layer_cfgs = [e for e in layers_and_groups if type(e) is ConfigLayer]
     layer_cfgs.sort(key=lambda layer_cfg: layer_cfg.title)
-
-    # Extend `ordered_directory_elements` with ordered ConfigLayer objects.
     ordered_directory_elements.extend(layer_cfgs)
 
     return ordered_directory_elements
 
 
 def _manual_ordering_strategy(
-    paths: list[Path],
-    order_strings: list[str],
-) -> list[LayerDirectoryElement]:
-    """Sort with `order_strings` as a guide.
-
-    Validate that all ConfigLayers and directories in `paths` are enumerated
-    exactly once in `order_strings`.
-    """
-    # All paths are siblings, so it doesn't matter which we use to get parent:
-    parent_dir = paths[0].parent
-
-    dereferenced_order = [
-        _dereference_order_element(e, parent_dir=parent_dir)
-        for e in order_strings
-    ]
-
-    # TODO: Validate...
-    return dereferenced_order
-
-
-def _ordered_directory_contents(
-    directory_contents: list[Path],
+    layers_and_groups: list[LayerDirectoryElement],
     settings: AnyGroupSettings,
 ) -> list[LayerDirectoryElement]:
-    if settings.order:
-        return _manual_ordering_strategy(directory_contents, settings.order)
-    else:
-        return _default_ordering_strategy(directory_contents)
+    """Sort `layers_and_groups` using `settings.order` as a guide."""
+    ordered_directory_elements: list[LayerDirectoryElement] = []
+
+    if not settings.order:
+        raise RuntimeError('Order must be specified in settings.')
+
+    for s in settings.order:
+        try:
+            if s.startswith(':'):
+                matcher = lambda x: isinstance(x, ConfigLayer) and x.id == s[1:]
+                thing_desc = f'layer id "{s[1:]}"'
+            else:
+                matcher = lambda x: isinstance(x, Path) and x.name == s
+                thing_desc = f'group/directory "{s}"'
+
+            matches = funcy.lfilter(matcher, layers_and_groups)
+            if len(matches) != 1:
+                raise RuntimeError(
+                    f'Expected to find {thing_desc}. Found: {matches}',
+                )
+
+            thing = matches[0]
+        except Exception as e:
+            raise RuntimeError(
+                f'Unexpected error processing `settings.order` element "{s}".'
+                f' {e}',
+            )
+
+        ordered_directory_elements.append(thing)
+
+    return ordered_directory_elements
+
+
+def _validate_ordered(
+    *,
+    unordered_layers_and_groups: list[LayerDirectoryElement],
+    ordered_layers_and_groups: list[LayerDirectoryElement],
+) -> None:
+    """Validate that `ordered_directory_elements` is comprehensive.
+
+    All `LayerDirectoryElement`s found in `unordered_layers_and_groups` must be
+    present in `ordered_layers_and_groups`. Return any elements which are not.
+    """
+    ondisk_set = {
+        json.dumps(e, cls=MagicJSONEncoder, sort_keys=True)
+        for e in unordered_layers_and_groups
+    }
+    ordered_set = {
+        json.dumps(e, cls=MagicJSONEncoder, sort_keys=True)
+        for e in ordered_layers_and_groups
+    }
+
+    if (diff := ondisk_set - ordered_set) != set():
+        raise RuntimeError(
+            f'Found the following items on disk but not in ordered set: {diff}',
+        )
+    if (diff := ordered_set - ondisk_set) != set():
+        raise RuntimeError(
+            f'Found the following items in ordered set but not on disk: {diff}',
+        )
+
+
+def _ordered_layers_and_groups(
+    the_dir: Path,
+    *,
+    is_root: bool,
+) -> tuple[list[LayerDirectoryElement], AnyGroupSettings]:
+    """Examine `the_dir` for layers and groups and sort them.
+
+    Layers are represented as `ConfigLayer` objects in Python files. Each Python
+    file is converted to its internal `ConfigLayer` objects.
+
+    Groups are represented as directories and are returned unchanged.
+    """
+    (
+        layer_and_group_paths,
+        settings,
+        settings_path,
+    ) = _handle_layer_config_directory(
+        the_dir,
+        is_root=is_root,
+    )
+
+    layers_and_groups = _explode_config_layers_from_python_files(
+        layer_and_group_paths,
+    )
+
+    try:
+        if settings.order:
+            error_hint = '. Check `__settings__.py`'
+            ordered = _manual_ordering_strategy(layers_and_groups, settings)
+        else:
+            error_hint = ''
+            ordered = _default_ordering_strategy(layers_and_groups)
+
+        _validate_ordered(
+            unordered_layers_and_groups=layers_and_groups,
+            ordered_layers_and_groups=ordered,
+        )
+    except Exception as e:
+        raise RuntimeError(
+            f'Error ordering layers in `{the_dir}`{error_hint}. {e}',
+        )
+
+    return ordered, settings
 
 
 def _handle_layer_config_directory(
     the_dir: Path,
     *,
     is_root: bool,
-) -> tuple[list[Path], AnyGroupSettings]:
+) -> tuple[list[Path], AnyGroupSettings, Optional[Path]]:
     """Load settings and contents from given directory path."""
     directory_contents = _filter_directory_contents(
         list(the_dir.iterdir()),
     )
-    settings_fp = [
+    settings_fps = [
         c for c in directory_contents
         if c.name == '__settings__.py'
     ]
 
-    if not settings_fp:
+    if not settings_fps:
         logger.debug(f'__settings__.py not found in {the_dir}')
         if is_root:
             settings = RootGroupSettings()
         else:
             settings = LayerGroupSettings()
 
-        return (directory_contents, settings)
+        return (directory_contents, settings, None)
+
+    if len(settings_fps) != 1:
+        raise RuntimeError(
+            f'Expected exactly one settings file. Received: {settings_fps}',
+        )
+    settings_fp = settings_fps[0]
 
     settings_objects = load_objects_from_paths_by_class(
-        settings_fp,
+        [settings_fp],
         target_class=RootGroupSettings,
     )
 
     if len(settings_objects) != 1:
         raise RuntimeError(
-            f'Expected exactly one settings object in{settings_fp}',
+            f'Expected exactly one settings object in {settings_fp}',
         )
+    settings = settings_objects[0]
 
-    cleansed_directory_contents = [
+    layer_and_group_paths = [
         c for c in directory_contents
         if c.name != '__settings__.py'
     ]
-    settings = settings_objects[0]
 
-    return (cleansed_directory_contents, settings)
+    return (layer_and_group_paths, settings, settings_fp)
 
 
 def _matches_filters(
@@ -358,21 +414,16 @@ def _tree_from_dir(
     exclude_patterns: tuple[str, ...] = (),
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
-    directory_contents, settings = _handle_layer_config_directory(
+    ordered_layers_and_groups, settings = _ordered_layers_and_groups(
         the_dir,
         is_root=(not bool(parent)),
-    )
-
-    ordered_directory_contents = _ordered_directory_contents(
-        directory_contents,
-        settings=settings,
     )
 
     # Create a node for this directory
     root_node = LayerGroupNode(the_dir.name, settings=settings, parent=parent)
 
     # Loop over things in this directory
-    for thing in ordered_directory_contents:
+    for thing in ordered_layers_and_groups:
         if isinstance(thing, Path):
             if not thing.is_dir():
                 raise RuntimeError(f'Expected {thing} to be a directory!')

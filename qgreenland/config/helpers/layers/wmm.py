@@ -289,10 +289,10 @@ def make_wmm_variable_layers_for_year(*, year: int) -> list[ConfigLayer]:
     return layers
 
 
-def wmm_layer_order(*, year: int, layer_filename: str) -> list[str]:
+def wmm_layer_order(*, year: int) -> list[str]:
     layer_order = []
-    layer_order.append(f'{layer_filename}:wmm_boz_{year}')
+    layer_order.append(f':wmm_boz_{year}')
     for variable_name in _wmm_variable_config.keys():
-        layer_order.append(f'{layer_filename}:wmm_{variable_name}_{year}')
+        layer_order.append(f':wmm_{variable_name}_{year}')
 
     return layer_order

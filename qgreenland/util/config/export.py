@@ -15,6 +15,7 @@ from humanize import naturalsize
 from qgreenland._typing import QgsLayerType
 from qgreenland.models.config import Config
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
+from qgreenland.util.json import MagicJSONEncoder
 from qgreenland.util.misc import (
     directory_contents,
     directory_size_bytes,
@@ -114,22 +115,6 @@ def export_config_json(cfg: Config) -> str:
         indent=2,
         sort_keys=True,
     )
-
-
-class MagicJSONEncoder(json.JSONEncoder):
-    """Call __json__ method of object for JSON serialization.
-
-    Also handle Paths.
-    """
-
-    def default(self, o):
-        if isinstance(o, Path):
-            # Not sure why Paths don't serialize out-of-the-box!
-            # https://github.com/samuelcolvin/pydantic/issues/473
-            return str(o)
-        if hasattr(o, '__json__') and callable(o.__json__):
-            return o.__json__()
-        return super(MagicJSONEncoder, self).default(o)
 
 
 # TODO: Define model for "final" assets? Come up with a better name...

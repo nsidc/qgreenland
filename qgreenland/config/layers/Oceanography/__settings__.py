@@ -5,6 +5,6 @@ settings = LayerGroupSettings(
     order=[
         'Undersea feature names',
         'Seawater temperature 2018 (25km)',
-        'bathymetric_chart.py:bathymetric_chart',
+        ':bathymetric_chart',
     ],
 )
