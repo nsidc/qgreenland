@@ -1898,8 +1898,8 @@
             "settings": {
               "expand": false,
               "order": [
-                "qgr_boundaries.py:qgr_boundary_data",
-                "qgr_boundaries.py:qgr_boundary_background"
+                ":qgr_boundary_data",
+                ":qgr_boundary_background"
               ],
               "show": true
             }
@@ -3112,11 +3112,11 @@
             "settings": {
               "expand": false,
               "order": [
-                "coastlines.py:bas_greenland_coastlines",
-                "coastlines.py:coastlines",
-                "political_boundaries.py:nunagis_municipalities_population",
-                "political_boundaries.py:ne_states_provinces",
-                "political_boundaries.py:ne_countries"
+                ":bas_greenland_coastlines",
+                ":coastlines",
+                ":nunagis_municipalities_population",
+                ":ne_states_provinces",
+                ":ne_countries"
               ],
               "show": true
             }
@@ -3127,11 +3127,11 @@
           "expand": true,
           "order": [
             "QGreenland boundaries",
-            "arctic_circle.py:arctic_circle",
+            ":arctic_circle",
             "Latitude lines",
             "Longitude lines",
-            "timezones.py:timezones",
-            "utm_zones.py:utm_zones",
+            ":timezones",
+            ":utm_zones",
             "Borders"
           ],
           "show": true
@@ -3620,16 +3620,16 @@
             "settings": {
               "expand": false,
               "order": [
-                "hotosm_layers.py:hotosm_populated_places",
-                "hotosm_layers.py:hotosm_health_facilities",
-                "hotosm_layers.py:hotosm_airports",
-                "hotosm_layers.py:hotosm_seaports",
-                "hotosm_layers.py:hotosm_waterways",
-                "hotosm_layers.py:hotosm_financial_services",
-                "hotosm_layers.py:hotosm_education_facilities",
-                "hotosm_layers.py:hotosm_points_of_interest",
-                "hotosm_layers.py:hotosm_roads",
-                "hotosm_layers.py:hotosm_buildings"
+                ":hotosm_populated_places",
+                ":hotosm_health_facilities",
+                ":hotosm_airports",
+                ":hotosm_seaports",
+                ":hotosm_waterways",
+                ":hotosm_financial_services",
+                ":hotosm_education_facilities",
+                ":hotosm_points_of_interest",
+                ":hotosm_roads",
+                ":hotosm_buildings"
               ],
               "show": false
             }
@@ -4344,14 +4344,14 @@
             "settings": {
               "expand": false,
               "order": [
-                "caff_murre.py:caff_common_murre_colonies",
-                "caff_murre.py:caff_thickbilled_murre_colonies",
-                "nunagis_protected_areas.py:nunagis_thickbilled_murre_colonies",
-                "nunagis_protected_areas.py:nunagis_murre_group_1km_zones",
-                "nunagis_protected_areas.py:nunagis_seabirds_colonies",
-                "nunagis_protected_areas.py:nunagis_bird_protected_areas",
-                "nunagis_protected_areas.py:nunagis_eider_protected_areas",
-                "nunagis_protected_areas.py:nunagis_goose_protected_areas"
+                ":caff_common_murre_colonies",
+                ":caff_thickbilled_murre_colonies",
+                ":nunagis_thickbilled_murre_colonies",
+                ":nunagis_murre_group_1km_zones",
+                ":nunagis_seabirds_colonies",
+                ":nunagis_bird_protected_areas",
+                ":nunagis_eider_protected_areas",
+                ":nunagis_goose_protected_areas"
               ],
               "show": false
             }
@@ -5162,14 +5162,14 @@
             "settings": {
               "expand": false,
               "order": [
-                "protected_zones.py:nunagis_unesco_treaty_zones",
-                "protected_zones.py:nunagis_no_go_areas",
-                "protected_zones.py:nunagis_closed_areas",
-                "protected_zones.py:nunagis_salt_or_saline_lake_100m_zones",
-                "protected_zones.py:nunagis_homothermic_spring_100m_zones",
-                "protected_zones.py:nunagis_national_park",
-                "protected_zones.py:nunagis_biological_important_areas",
-                "protected_zones.py:nunagis_nature_protection_areas"
+                ":nunagis_unesco_treaty_zones",
+                ":nunagis_no_go_areas",
+                ":nunagis_closed_areas",
+                ":nunagis_salt_or_saline_lake_100m_zones",
+                ":nunagis_homothermic_spring_100m_zones",
+                ":nunagis_national_park",
+                ":nunagis_biological_important_areas",
+                ":nunagis_nature_protection_areas"
               ],
               "show": false
             }
@@ -6068,9 +6068,9 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:racmo_promicemask",
-                    "layers.py:racmo_grounded_ice",
-                    "layers.py:racmo_topography"
+                    ":racmo_promicemask",
+                    ":racmo_grounded_ice",
+                    ":racmo_topography"
                   ],
                   "show": false
                 }
@@ -6080,15 +6080,15 @@
             "settings": {
               "expand": false,
               "order": [
-                "layers.py:racmo_wind_vectors",
-                "layers.py:racmo_wind_speed",
-                "layers.py:racmo_precip",
-                "layers.py:racmo_snowfall",
-                "layers.py:racmo_snowmelt",
-                "layers.py:racmo_runoff",
-                "layers.py:racmo_subl",
-                "layers.py:racmo_sndiv",
-                "layers.py:racmo_t2m",
+                ":racmo_wind_vectors",
+                ":racmo_wind_speed",
+                ":racmo_precip",
+                ":racmo_snowfall",
+                ":racmo_snowmelt",
+                ":racmo_runoff",
+                ":racmo_subl",
+                ":racmo_sndiv",
+                ":racmo_t2m",
                 "Supplement"
               ],
               "show": false
@@ -6616,15 +6616,15 @@
             "settings": {
               "expand": false,
               "order": [
-                "glacier_terminus_ids.py:glacier_terminus_glacier_ids",
-                "glacier_terminus.py:glacier_terminus_2000_2001",
-                "glacier_terminus.py:glacier_terminus_2005_2006",
-                "glacier_terminus.py:glacier_terminus_2006_2007",
-                "glacier_terminus.py:glacier_terminus_2007_2008",
-                "glacier_terminus.py:glacier_terminus_2012_2013",
-                "glacier_terminus.py:glacier_terminus_2014_2015",
-                "glacier_terminus.py:glacier_terminus_2015_2016",
-                "glacier_terminus.py:glacier_terminus_2016_2017"
+                ":glacier_terminus_glacier_ids",
+                ":glacier_terminus_2000_2001",
+                ":glacier_terminus_2005_2006",
+                ":glacier_terminus_2006_2007",
+                ":glacier_terminus_2007_2008",
+                ":glacier_terminus_2012_2013",
+                ":glacier_terminus_2014_2015",
+                ":glacier_terminus_2015_2016",
+                ":glacier_terminus_2016_2017"
               ],
               "show": false
             }
@@ -9996,9 +9996,9 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:velocity_mosaic",
-                    "layers.py:velocity_mosaic_error",
-                    "layers.py:velocity_mosaic_ice_mask"
+                    ":velocity_mosaic",
+                    ":velocity_mosaic_error",
+                    ":velocity_mosaic_ice_mask"
                   ],
                   "show": false
                 }
@@ -10243,17 +10243,17 @@
         "settings": {
           "expand": false,
           "order": [
-            "ice_cores.py:ice_cores",
-            "machguth_massbalance_locations.py:machguth_massbalance_locations",
-            "supraglacial_lakes.py:jakobshavn_supraglacial_lakes",
-            "firn_ice.py:firn_ice_layer_thicknesses",
+            ":ice_cores",
+            ":machguth_massbalance_locations",
+            ":jakobshavn_supraglacial_lakes",
+            ":firn_ice_layer_thicknesses",
             "Glacier terminus positions 2000-2017",
             "Global land ice measurements from space (GLIMS)",
-            "ice_thickness_change.py:ice_thickness_change",
+            ":ice_thickness_change",
             "Surface elevation change",
             "Gravimetric mass balance",
             "Ice sheet velocity",
-            "basal_thermal_state.py:basal_thermal_state"
+            ":basal_thermal_state"
           ],
           "show": false
         }
@@ -11750,21 +11750,21 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:wmm_boz_2020",
-                    "layers.py:wmm_d_2020",
-                    "layers.py:wmm_d_sv_2020",
-                    "layers.py:wmm_f_2020",
-                    "layers.py:wmm_f_sv_2020",
-                    "layers.py:wmm_h_2020",
-                    "layers.py:wmm_h_sv_2020",
-                    "layers.py:wmm_i_2020",
-                    "layers.py:wmm_i_sv_2020",
-                    "layers.py:wmm_x_2020",
-                    "layers.py:wmm_x_sv_2020",
-                    "layers.py:wmm_y_2020",
-                    "layers.py:wmm_y_sv_2020",
-                    "layers.py:wmm_z_2020",
-                    "layers.py:wmm_z_sv_2020"
+                    ":wmm_boz_2020",
+                    ":wmm_d_2020",
+                    ":wmm_d_sv_2020",
+                    ":wmm_f_2020",
+                    ":wmm_f_sv_2020",
+                    ":wmm_h_2020",
+                    ":wmm_h_sv_2020",
+                    ":wmm_i_2020",
+                    ":wmm_i_sv_2020",
+                    ":wmm_x_2020",
+                    ":wmm_x_sv_2020",
+                    ":wmm_y_2020",
+                    ":wmm_y_sv_2020",
+                    ":wmm_z_2020",
+                    ":wmm_z_sv_2020"
                   ],
                   "show": false
                 }
@@ -12553,21 +12553,21 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:wmm_boz_2021",
-                    "layers.py:wmm_d_2021",
-                    "layers.py:wmm_d_sv_2021",
-                    "layers.py:wmm_f_2021",
-                    "layers.py:wmm_f_sv_2021",
-                    "layers.py:wmm_h_2021",
-                    "layers.py:wmm_h_sv_2021",
-                    "layers.py:wmm_i_2021",
-                    "layers.py:wmm_i_sv_2021",
-                    "layers.py:wmm_x_2021",
-                    "layers.py:wmm_x_sv_2021",
-                    "layers.py:wmm_y_2021",
-                    "layers.py:wmm_y_sv_2021",
-                    "layers.py:wmm_z_2021",
-                    "layers.py:wmm_z_sv_2021"
+                    ":wmm_boz_2021",
+                    ":wmm_d_2021",
+                    ":wmm_d_sv_2021",
+                    ":wmm_f_2021",
+                    ":wmm_f_sv_2021",
+                    ":wmm_h_2021",
+                    ":wmm_h_sv_2021",
+                    ":wmm_i_2021",
+                    ":wmm_i_sv_2021",
+                    ":wmm_x_2021",
+                    ":wmm_x_sv_2021",
+                    ":wmm_y_2021",
+                    ":wmm_y_sv_2021",
+                    ":wmm_z_2021",
+                    ":wmm_z_sv_2021"
                   ],
                   "show": false
                 }
@@ -13356,21 +13356,21 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:wmm_boz_2022",
-                    "layers.py:wmm_d_2022",
-                    "layers.py:wmm_d_sv_2022",
-                    "layers.py:wmm_f_2022",
-                    "layers.py:wmm_f_sv_2022",
-                    "layers.py:wmm_h_2022",
-                    "layers.py:wmm_h_sv_2022",
-                    "layers.py:wmm_i_2022",
-                    "layers.py:wmm_i_sv_2022",
-                    "layers.py:wmm_x_2022",
-                    "layers.py:wmm_x_sv_2022",
-                    "layers.py:wmm_y_2022",
-                    "layers.py:wmm_y_sv_2022",
-                    "layers.py:wmm_z_2022",
-                    "layers.py:wmm_z_sv_2022"
+                    ":wmm_boz_2022",
+                    ":wmm_d_2022",
+                    ":wmm_d_sv_2022",
+                    ":wmm_f_2022",
+                    ":wmm_f_sv_2022",
+                    ":wmm_h_2022",
+                    ":wmm_h_sv_2022",
+                    ":wmm_i_2022",
+                    ":wmm_i_sv_2022",
+                    ":wmm_x_2022",
+                    ":wmm_x_sv_2022",
+                    ":wmm_y_2022",
+                    ":wmm_y_sv_2022",
+                    ":wmm_z_2022",
+                    ":wmm_z_sv_2022"
                   ],
                   "show": false
                 }
@@ -14159,21 +14159,21 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:wmm_boz_2023",
-                    "layers.py:wmm_d_2023",
-                    "layers.py:wmm_d_sv_2023",
-                    "layers.py:wmm_f_2023",
-                    "layers.py:wmm_f_sv_2023",
-                    "layers.py:wmm_h_2023",
-                    "layers.py:wmm_h_sv_2023",
-                    "layers.py:wmm_i_2023",
-                    "layers.py:wmm_i_sv_2023",
-                    "layers.py:wmm_x_2023",
-                    "layers.py:wmm_x_sv_2023",
-                    "layers.py:wmm_y_2023",
-                    "layers.py:wmm_y_sv_2023",
-                    "layers.py:wmm_z_2023",
-                    "layers.py:wmm_z_sv_2023"
+                    ":wmm_boz_2023",
+                    ":wmm_d_2023",
+                    ":wmm_d_sv_2023",
+                    ":wmm_f_2023",
+                    ":wmm_f_sv_2023",
+                    ":wmm_h_2023",
+                    ":wmm_h_sv_2023",
+                    ":wmm_i_2023",
+                    ":wmm_i_sv_2023",
+                    ":wmm_x_2023",
+                    ":wmm_x_sv_2023",
+                    ":wmm_y_2023",
+                    ":wmm_y_sv_2023",
+                    ":wmm_z_2023",
+                    ":wmm_z_sv_2023"
                   ],
                   "show": false
                 }
@@ -14962,21 +14962,21 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:wmm_boz_2024",
-                    "layers.py:wmm_d_2024",
-                    "layers.py:wmm_d_sv_2024",
-                    "layers.py:wmm_f_2024",
-                    "layers.py:wmm_f_sv_2024",
-                    "layers.py:wmm_h_2024",
-                    "layers.py:wmm_h_sv_2024",
-                    "layers.py:wmm_i_2024",
-                    "layers.py:wmm_i_sv_2024",
-                    "layers.py:wmm_x_2024",
-                    "layers.py:wmm_x_sv_2024",
-                    "layers.py:wmm_y_2024",
-                    "layers.py:wmm_y_sv_2024",
-                    "layers.py:wmm_z_2024",
-                    "layers.py:wmm_z_sv_2024"
+                    ":wmm_boz_2024",
+                    ":wmm_d_2024",
+                    ":wmm_d_sv_2024",
+                    ":wmm_f_2024",
+                    ":wmm_f_sv_2024",
+                    ":wmm_h_2024",
+                    ":wmm_h_sv_2024",
+                    ":wmm_i_2024",
+                    ":wmm_i_sv_2024",
+                    ":wmm_x_2024",
+                    ":wmm_x_sv_2024",
+                    ":wmm_y_2024",
+                    ":wmm_y_sv_2024",
+                    ":wmm_z_2024",
+                    ":wmm_z_sv_2024"
                   ],
                   "show": false
                 }
@@ -15765,21 +15765,21 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:wmm_boz_2025",
-                    "layers.py:wmm_d_2025",
-                    "layers.py:wmm_d_sv_2025",
-                    "layers.py:wmm_f_2025",
-                    "layers.py:wmm_f_sv_2025",
-                    "layers.py:wmm_h_2025",
-                    "layers.py:wmm_h_sv_2025",
-                    "layers.py:wmm_i_2025",
-                    "layers.py:wmm_i_sv_2025",
-                    "layers.py:wmm_x_2025",
-                    "layers.py:wmm_x_sv_2025",
-                    "layers.py:wmm_y_2025",
-                    "layers.py:wmm_y_sv_2025",
-                    "layers.py:wmm_z_2025",
-                    "layers.py:wmm_z_sv_2025"
+                    ":wmm_boz_2025",
+                    ":wmm_d_2025",
+                    ":wmm_d_sv_2025",
+                    ":wmm_f_2025",
+                    ":wmm_f_sv_2025",
+                    ":wmm_h_2025",
+                    ":wmm_h_sv_2025",
+                    ":wmm_i_2025",
+                    ":wmm_i_sv_2025",
+                    ":wmm_x_2025",
+                    ":wmm_x_sv_2025",
+                    ":wmm_y_2025",
+                    ":wmm_y_sv_2025",
+                    ":wmm_z_2025",
+                    ":wmm_z_sv_2025"
                   ],
                   "show": false
                 }
@@ -16417,14 +16417,14 @@
         "settings": {
           "expand": false,
           "order": [
-            "layers.py:ice_outlets",
-            "layers.py:land_outlets",
-            "layers.py:ice_streams",
-            "layers.py:ice_basins",
-            "layers.py:ice_basins_filled",
-            "layers.py:land_streams",
-            "layers.py:land_basins",
-            "layers.py:land_basins_filled"
+            ":ice_outlets",
+            ":land_outlets",
+            ":ice_streams",
+            ":ice_basins",
+            ":ice_basins_filled",
+            ":land_streams",
+            ":land_basins",
+            ":land_basins_filled"
           ],
           "show": false
         }
@@ -18004,17 +18004,17 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:seaice_minimum_age_2010",
-                    "layers.py:seaice_minimum_age_2011",
-                    "layers.py:seaice_minimum_age_2012",
-                    "layers.py:seaice_minimum_age_2013",
-                    "layers.py:seaice_minimum_age_2014",
-                    "layers.py:seaice_minimum_age_2015",
-                    "layers.py:seaice_minimum_age_2016",
-                    "layers.py:seaice_minimum_age_2017",
-                    "layers.py:seaice_minimum_age_2018",
-                    "layers.py:seaice_minimum_age_2019",
-                    "layers.py:seaice_minimum_age_2020"
+                    ":seaice_minimum_age_2010",
+                    ":seaice_minimum_age_2011",
+                    ":seaice_minimum_age_2012",
+                    ":seaice_minimum_age_2013",
+                    ":seaice_minimum_age_2014",
+                    ":seaice_minimum_age_2015",
+                    ":seaice_minimum_age_2016",
+                    ":seaice_minimum_age_2017",
+                    ":seaice_minimum_age_2018",
+                    ":seaice_minimum_age_2019",
+                    ":seaice_minimum_age_2020"
                   ],
                   "show": false
                 }
@@ -19016,17 +19016,17 @@
                 "settings": {
                   "expand": false,
                   "order": [
-                    "layers.py:seaice_maximum_age_2010",
-                    "layers.py:seaice_maximum_age_2011",
-                    "layers.py:seaice_maximum_age_2012",
-                    "layers.py:seaice_maximum_age_2013",
-                    "layers.py:seaice_maximum_age_2014",
-                    "layers.py:seaice_maximum_age_2015",
-                    "layers.py:seaice_maximum_age_2016",
-                    "layers.py:seaice_maximum_age_2017",
-                    "layers.py:seaice_maximum_age_2018",
-                    "layers.py:seaice_maximum_age_2019",
-                    "layers.py:seaice_maximum_age_2020"
+                    ":seaice_maximum_age_2010",
+                    ":seaice_maximum_age_2011",
+                    ":seaice_maximum_age_2012",
+                    ":seaice_maximum_age_2013",
+                    ":seaice_maximum_age_2014",
+                    ":seaice_maximum_age_2015",
+                    ":seaice_maximum_age_2016",
+                    ":seaice_maximum_age_2017",
+                    ":seaice_maximum_age_2018",
+                    ":seaice_maximum_age_2019",
+                    ":seaice_maximum_age_2020"
                   ],
                   "show": false
                 }
@@ -20895,9 +20895,9 @@
             "settings": {
               "expand": false,
               "order": [
-                "undersea_features.py:undersea_features_point",
-                "undersea_features.py:undersea_features_multilinestring",
-                "undersea_features.py:undersea_features_multipolygon"
+                ":undersea_features_point",
+                ":undersea_features_multilinestring",
+                ":undersea_features_multipolygon"
               ],
               "show": false
             }
@@ -21565,14 +21565,14 @@
             "settings": {
               "expand": false,
               "order": [
-                "woa2018.py:woa2018_0m_temperature_winter",
-                "woa2018.py:woa2018_0m_temperature_summer",
-                "woa2018.py:woa2018_50m_temperature_winter",
-                "woa2018.py:woa2018_50m_temperature_summer",
-                "woa2018.py:woa2018_200m_temperature_winter",
-                "woa2018.py:woa2018_200m_temperature_summer",
-                "woa2018.py:woa2018_500m_temperature_winter",
-                "woa2018.py:woa2018_500m_temperature_summer"
+                ":woa2018_0m_temperature_winter",
+                ":woa2018_0m_temperature_summer",
+                ":woa2018_50m_temperature_winter",
+                ":woa2018_50m_temperature_summer",
+                ":woa2018_200m_temperature_winter",
+                ":woa2018_200m_temperature_summer",
+                ":woa2018_500m_temperature_winter",
+                ":woa2018_500m_temperature_summer"
               ],
               "show": false
             }
@@ -21647,7 +21647,7 @@
           "order": [
             "Undersea feature names",
             "Seawater temperature 2018 (25km)",
-            "bathymetric_chart.py:bathymetric_chart"
+            ":bathymetric_chart"
           ],
           "show": false
         }
@@ -22261,8 +22261,8 @@
           "expand": false,
           "order": [
             "BedMachine",
-            "arctic_dem.py:arctic_dem",
-            "dms_gtk_topo.py:dms_gtk_topo"
+            ":arctic_dem",
+            ":dms_gtk_topo"
           ],
           "show": false
         }
@@ -22343,9 +22343,9 @@
         "settings": {
           "expand": false,
           "order": [
-            "online.py:image_mosaic_2019",
-            "online.py:image_mosaic_2015",
-            "online.py:g02135_polyline_n"
+            ":image_mosaic_2019",
+            ":image_mosaic_2015",
+            ":g02135_polyline_n"
           ],
           "show": false
         }
@@ -22539,9 +22539,9 @@
         "settings": {
           "expand": true,
           "order": [
-            "land_ocean_shape.py:land",
-            "land_ocean_shape.py:ocean",
-            "background.py:background"
+            ":land",
+            ":ocean",
+            ":background"
           ],
           "show": true
         }
