@@ -3142,6 +3142,88 @@
       {
         "children": [
           {
+            "layer_cfg": {
+              "description": "Points representing towns and settlements in Greenland.",
+              "id": "populated_places",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "asiaq_private_placenames"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/translations_joined.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [
+                "places"
+              ],
+              "title": "Towns and settlements"
+            },
+            "name": "populated_places"
+          },
+          {
+            "layer_cfg": {
+              "description": "Points representing named points of interest in Greenland.",
+              "id": "comprehensive_places",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "asiaq_private_placenames"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT *, \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/translations_joined.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [
+                "places"
+              ],
+              "title": "Place names database"
+            },
+            "name": "comprehensive_places"
+          },
+          {
             "children": [
               {
                 "layer_cfg": {
@@ -3635,94 +3717,16 @@
               ],
               "show": false
             }
-          },
-          {
-            "layer_cfg": {
-              "description": "Points representing named points of interest in Greenland.",
-              "id": "comprehensive_places",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "asiaq_private_placenames"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "-sql",
-                    "'SELECT *, \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/translations_joined.gpkg"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "labeled_point",
-              "tags": [
-                "places"
-              ],
-              "title": "Place names database"
-            },
-            "name": "comprehensive_places"
-          },
-          {
-            "layer_cfg": {
-              "description": "Points representing towns and settlements in Greenland.",
-              "id": "populated_places",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "asiaq_private_placenames"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "-sql",
-                    "'SELECT *, \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/translations_joined.gpkg"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "labeled_point",
-              "tags": [
-                "places"
-              ],
-              "title": "Towns and settlements"
-            },
-            "name": "populated_places"
           }
         ],
         "name": "Places",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            ":populated_places",
+            ":comprehensive_places",
+            "Community map (crowd-sourced)"
+          ],
           "show": false
         }
       },
@@ -3730,92 +3734,6 @@
         "children": [
           {
             "children": [
-              {
-                "layer_cfg": {
-                  "description": "Locations and details of inactive PROMICE automated weather\nstations.",
-                  "id": "promice_research_stations_former",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "promice_former"
-                    },
-                    "dataset": {
-                      "id": "gc_net_promice_stations"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-s_srs",
-                        "EPSG:4326",
-                        "-oo",
-                        "X_POSSIBLE_NAMES=lon",
-                        "-oo",
-                        "Y_POSSIBLE_NAMES=lat",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.csv"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "Former PROMICE automated weather stations"
-                },
-                "name": "promice_research_stations_former"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Location and details of GC-NET automated weather stations.",
-                  "id": "gc_net_research_stations",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "gc_net"
-                    },
-                    "dataset": {
-                      "id": "gc_net_promice_stations"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-s_srs",
-                        "EPSG:4326",
-                        "-oo",
-                        "X_POSSIBLE_NAMES=lon",
-                        "-oo",
-                        "Y_POSSIBLE_NAMES=lat",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.csv"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "GC-NET automated weather stations"
-                },
-                "name": "gc_net_research_stations"
-              },
               {
                 "layer_cfg": {
                   "description": "Location and description of Greenland Ecosystem Monitoring research\nstations.",
@@ -3886,17 +3804,109 @@
                         "X_POSSIBLE_NAMES=lon",
                         "-oo",
                         "Y_POSSIBLE_NAMES=lat",
+                        "-sql",
+                        "\"SELECT *, name as label from \\\"PROMICE_info_from_GPS_data_2017-2018\\\"\"",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.csv"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": null,
+                  "style": "labeled_point",
                   "tags": [],
                   "title": "PROMICE automated weather stations"
                 },
                 "name": "promice_research_stations"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Locations and details of inactive PROMICE automated weather\nstations.",
+                  "id": "promice_research_stations_former",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "promice_former"
+                    },
+                    "dataset": {
+                      "id": "gc_net_promice_stations"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-s_srs",
+                        "EPSG:4326",
+                        "-oo",
+                        "X_POSSIBLE_NAMES=lon",
+                        "-oo",
+                        "Y_POSSIBLE_NAMES=lat",
+                        "-sql",
+                        "\"SELECT *, name as label from \\\"PROMICE_info_from_GPS_data_2017-2018_former_sites\\\"\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.csv"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "labeled_point",
+                  "tags": [],
+                  "title": "Former PROMICE automated weather stations"
+                },
+                "name": "promice_research_stations_former"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Location and details of GC-NET automated weather stations.",
+                  "id": "gc_net_research_stations",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "gc_net"
+                    },
+                    "dataset": {
+                      "id": "gc_net_promice_stations"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-s_srs",
+                        "EPSG:4326",
+                        "-oo",
+                        "X_POSSIBLE_NAMES=lon",
+                        "-oo",
+                        "Y_POSSIBLE_NAMES=lat",
+                        "-sql",
+                        "\"SELECT *, name as label from \\\"GCN%20info%20ca.2000\\\"\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.csv"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "labeled_point",
+                  "tags": [],
+                  "title": "GC-NET automated weather stations"
+                },
+                "name": "gc_net_research_stations"
               },
               {
                 "layer_cfg": {
@@ -3939,7 +3949,13 @@
             "name": "Research stations",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                ":gem_research_stations",
+                ":promice_research_stations",
+                ":promice_research_stations_former",
+                ":gc_net_research_stations",
+                ":seismograph_stations"
+              ],
               "show": false
             }
           },
@@ -4485,19 +4501,29 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Fishery limit. Regarding the fishery limit, reference is made to\nGreenland Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7,\n2. NM = nautical mile.",
-                  "id": "12nm_polyline",
+                  "description": "Mining licenses granted by the government of Greenland.",
+                  "id": "mcas_mlsa_public_all",
                   "in_package": true,
                   "input": {
                     "asset": {
-                      "id": "only"
+                      "id": "mcas_mlsa_public_all"
                     },
                     "dataset": {
-                      "id": "greenland_territorial_waters"
+                      "id": "mineral_and_hydrocarbon_licenses"
                     }
                   },
                   "show": false,
                   "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/*.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
                     {
                       "args": [
                         "ogr2ogr",
@@ -4508,225 +4534,18 @@
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
-                        "-where",
-                        "\"\"layer\" = 'Boundary_12NM'\"",
                         "{output_dir}/final.gpkg",
-                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                        "{input_dir}/*.shp"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": null,
+                  "style": "mcas_mlsa_licenses",
                   "tags": [],
-                  "title": "12NM (polyline)"
+                  "title": "Public licenses"
                 },
-                "name": "12nm_polyline"
+                "name": "mcas_mlsa_public_all"
               },
-              {
-                "layer_cfg": {
-                  "description": "Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of\nthe marine environment, paragraph 4, 2. NM = nautical mile.",
-                  "id": "3nm_polygon",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "greenland_territorial_waters"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-where",
-                        "\"\"layer\" = 'Boundary_3NM_area'\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "3NM (polygon)"
-                },
-                "name": "3nm_polygon"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of\nthe marine environment, paragraph 4, 2. NM = nautical mile.",
-                  "id": "3nm_polyline",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "greenland_territorial_waters"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-where",
-                        "\"\"layer\" = 'Boundary_3NM'\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "3NM (polyline)"
-                },
-                "name": "3nm_polyline"
-              },
-              {
-                "layer_cfg": {
-                  "description": "The territorial sea baseline is shown in accordance to Executive\nOrder no 1004 dated 15.10.2004.",
-                  "id": "baseline",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "greenland_territorial_waters"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-where",
-                        "\"\"layer\" = 'Boundary_basisline'\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "Baseline (polyline)"
-                },
-                "name": "baseline"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Exclusive Economic Zone of Greenland based on Executive Order on the\nExclusive Economic Zone at Greenland. BEK no. 1020 of 20/10/2004.\nForeign Ministry of Denmark.",
-                  "id": "exclusive_economic_zone",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "greenland_territorial_waters"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-where",
-                        "\"\"layer\" = 'Boundary_EEZ'\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "Exclusive economic zone (polyline)"
-                },
-                "name": "exclusive_economic_zone"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Fishery limit. Regarding the fishery limit, reference is made to\nGreenland Home Rule Parliament Act no 18 dated 31.10.1996",
-                  "id": "fishzone_boundary",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "greenland_territorial_waters"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-where",
-                        "\"\"layer\" = 'Boundary_fishzone'\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "Fishing zone (polygon)"
-                },
-                "name": "fishzone_boundary"
-              }
-            ],
-            "name": "Maritime boundaries",
-            "settings": {
-              "expand": false,
-              "order": null,
-              "show": false
-            }
-          },
-          {
-            "children": [
               {
                 "layer_cfg": {
                   "description": "Historic mining licenses granted by the government of Greenland.",
@@ -4773,61 +4592,64 @@
                   "title": "Historic public licenses"
                 },
                 "name": "mcas_mlsa_public_historic"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Mining licenses granted by the government of Greenland.",
-                  "id": "mcas_mlsa_public_all",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "mcas_mlsa_public_all"
-                    },
-                    "dataset": {
-                      "id": "mineral_and_hydrocarbon_licenses"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "mcas_mlsa_licenses",
-                  "tags": [],
-                  "title": "Public licenses"
-                },
-                "name": "mcas_mlsa_public_all"
               }
             ],
             "name": "Mineral and hydrocarbon licenses",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                ":mcas_mlsa_public_all",
+                ":mcas_mlsa_public_historic"
+              ],
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "The Northwest Atlantic Fisheries Organization zones",
+              "id": "nafo_divisions",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "nafo_divisions"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/Divisions.zip",
+                    "-d",
+                    "{output_dir}",
+                    ""
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/Divisions/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "nafo_divisions",
+              "tags": [],
+              "title": "NAFO divisions"
+            },
+            "name": "nafo_divisions"
           },
           {
             "children": [
@@ -5177,57 +4999,266 @@
             }
           },
           {
-            "layer_cfg": {
-              "description": "The Northwest Atlantic Fisheries Organization zones",
-              "id": "nafo_divisions",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Exclusive Economic Zone of Greenland based on Executive Order on the\nExclusive Economic Zone at Greenland. BEK no. 1020 of 20/10/2004.\nForeign Ministry of Denmark.",
+                  "id": "exclusive_economic_zone",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_EEZ'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Exclusive economic zone (polyline)"
                 },
-                "dataset": {
-                  "id": "nafo_divisions"
-                }
+                "name": "exclusive_economic_zone"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "unzip",
-                    "{input_dir}/Divisions.zip",
-                    "-d",
-                    "{output_dir}",
-                    ""
+              {
+                "layer_cfg": {
+                  "description": "The territorial sea baseline is shown in accordance to Executive\nOrder no 1004 dated 15.10.2004.",
+                  "id": "baseline",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_basisline'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
+                  "style": null,
+                  "tags": [],
+                  "title": "Baseline (polyline)"
                 },
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/Divisions/*.shp"
+                "name": "baseline"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of\nthe marine environment, paragraph 4, 2. NM = nautical mile.",
+                  "id": "3nm_polyline",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_3NM'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
+                  "style": null,
+                  "tags": [],
+                  "title": "3NM (polyline)"
+                },
+                "name": "3nm_polyline"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Fishery limit. Regarding the fishery limit, reference is made to\nGreenland Home Rule Parliament Act no 18 dated 31.10.1996, paragraph 7,\n2. NM = nautical mile.",
+                  "id": "12nm_polyline",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_12NM'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "12NM (polyline)"
+                },
+                "name": "12nm_polyline"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Reference to Inatsisartut Act no. 15 of 18 June 2017 on protection of\nthe marine environment, paragraph 4, 2. NM = nautical mile.",
+                  "id": "3nm_polygon",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_3NM_area'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "3NM (polygon)"
+                },
+                "name": "3nm_polygon"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Fishery limit. Regarding the fishery limit, reference is made to\nGreenland Home Rule Parliament Act no 18 dated 31.10.1996",
+                  "id": "fishzone_boundary",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "greenland_territorial_waters"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-where",
+                        "\"\"layer\" = 'Boundary_fishzone'\"",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/GreenlandTerritory_Baseline_3NM_12NM_EEZ_polygons.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Fishing zone (polygon)"
+                },
+                "name": "fishzone_boundary"
+              }
+            ],
+            "name": "Maritime boundaries",
+            "settings": {
+              "expand": false,
+              "order": [
+                ":exclusive_economic_zone",
+                ":baseline",
+                ":3nm_polyline",
+                ":12nm_polyline",
+                ":3nm_polygon",
+                ":fishzone_boundary"
               ],
-              "style": "nafo_divisions",
-              "tags": [],
-              "title": "NAFO divisions"
-            },
-            "name": "nafo_divisions"
+              "show": false
+            }
           }
         ],
         "name": "Environmental management",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            "Mineral and hydrocarbon licenses",
+            ":nafo_divisions",
+            "Protected zones",
+            "Maritime boundaries"
+          ],
           "show": false
         }
       },
@@ -10607,6 +10638,145 @@
       {
         "children": [
           {
+            "layer_cfg": {
+              "description": "Location and magnitude of earthquakes.",
+              "id": "earthquakes",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "earthquakes"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT\n                    geometry,\n                    id,\n                    mag,\n                    place,\n                    DATETIME(time / 1000, 'unixepoch') as time,\n                    DATETIME(updated / 1000, 'unixepoch') as updated,\n                    tz,\n                    url,\n                    detail,\n                    felt,\n                    cdi,\n                    mmi,\n                    alert,\n                    tsunami,\n                    sig,\n                    net,\n                    code,\n                    ids,\n                    sources,\n                    types,\n                    nst,\n                    dmin,\n                    rms,\n                    gap,\n                    magType,\n                    type,\n                    title,\n                    title as label\n                FROM query\"",
+                    "{output_dir}/earthquakes.gpkg",
+                    "{input_dir}/query.geojson"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "earthquakes",
+              "tags": [],
+              "title": "Earthquakes M above 2.5 1900-2020"
+            },
+            "name": "earthquakes"
+          },
+          {
+            "layer_cfg": {
+              "description": "Linestrings representing borders between tectonic plates.",
+              "id": "tectonic_plate_boundaries",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "tectonic_plates"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae.zip",
+                    "-d",
+                    "{output_dir}",
+                    "tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.*"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "tectonic_plate_boundaries",
+              "tags": [],
+              "title": "Tectonic plate boundaries"
+            },
+            "name": "tectonic_plate_boundaries"
+          },
+          {
+            "layer_cfg": {
+              "description": "Polygons representing dominant soil characteristics with percentage\npolygon area for each soil type. Data coverage limited to Greenland.",
+              "id": "soil_types",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "soil_types"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/*.gz",
+                    "{output_dir}/",
+                    "&&",
+                    "gzip",
+                    "-d",
+                    "{output_dir}/*.gz"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-s_srs",
+                    "\"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0\"",
+                    "{output_dir}/soil_types.gpkg",
+                    "{input_dir}/ggd602_soils_greenland.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "soil_types",
+              "tags": [],
+              "title": "Soil characteristics"
+            },
+            "name": "soil_types"
+          },
+          {
             "children": [
               {
                 "layer_cfg": {
@@ -10709,151 +10879,17 @@
               "order": null,
               "show": false
             }
-          },
-          {
-            "layer_cfg": {
-              "description": "Location and magnitude of earthquakes.",
-              "id": "earthquakes",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "earthquakes"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "-dialect",
-                    "sqlite",
-                    "-sql",
-                    "\"SELECT\n                    geometry,\n                    id,\n                    mag,\n                    place,\n                    DATETIME(time / 1000, 'unixepoch') as time,\n                    DATETIME(updated / 1000, 'unixepoch') as updated,\n                    tz,\n                    url,\n                    detail,\n                    felt,\n                    cdi,\n                    mmi,\n                    alert,\n                    tsunami,\n                    sig,\n                    net,\n                    code,\n                    ids,\n                    sources,\n                    types,\n                    nst,\n                    dmin,\n                    rms,\n                    gap,\n                    magType,\n                    type,\n                    title,\n                    title as label\n                FROM query\"",
-                    "{output_dir}/earthquakes.gpkg",
-                    "{input_dir}/query.geojson"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "earthquakes",
-              "tags": [],
-              "title": "Earthquakes M above 2.5 1900-2020"
-            },
-            "name": "earthquakes"
-          },
-          {
-            "layer_cfg": {
-              "description": "Polygons representing dominant soil characteristics with percentage\npolygon area for each soil type. Data coverage limited to Greenland.",
-              "id": "soil_types",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "soil_types"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "cp",
-                    "{input_dir}/*.gz",
-                    "{output_dir}/",
-                    "&&",
-                    "gzip",
-                    "-d",
-                    "{output_dir}/*.gz"
-                  ],
-                  "type": "command"
-                },
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "-s_srs",
-                    "\"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0\"",
-                    "{output_dir}/soil_types.gpkg",
-                    "{input_dir}/ggd602_soils_greenland.shp"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "soil_types",
-              "tags": [],
-              "title": "Soil characteristics"
-            },
-            "name": "soil_types"
-          },
-          {
-            "layer_cfg": {
-              "description": "Linestrings representing borders between tectonic plates.",
-              "id": "tectonic_plate_boundaries",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "tectonic_plates"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "unzip",
-                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae.zip",
-                    "-d",
-                    "{output_dir}",
-                    "tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_boundaries.*"
-                  ],
-                  "type": "command"
-                },
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/*.shp"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "tectonic_plate_boundaries",
-              "tags": [],
-              "title": "Tectonic plate boundaries"
-            },
-            "name": "tectonic_plate_boundaries"
           }
         ],
         "name": "Geology",
         "settings": {
           "expand": false,
-          "order": null,
+          "order": [
+            ":earthquakes",
+            ":tectonic_plate_boundaries",
+            ":soil_types",
+            "Geological map"
+          ],
           "show": false
         }
       },
