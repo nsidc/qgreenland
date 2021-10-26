@@ -6,6 +6,7 @@ import luigi
 from qgreenland.models.config.asset import (
     AnyAsset,
     ConfigDatasetCmrAsset,
+    ConfigDatasetCommandAsset,
     ConfigDatasetHttpAsset,
     ConfigDatasetManualAsset,
     ConfigDatasetOgrRemoteAsset,
@@ -18,6 +19,7 @@ from qgreenland.util.config.config import get_config
 from qgreenland.util.luigi.tasks.fetch import (
     FetchCmrGranule,
     FetchDataFiles,
+    FetchDataWithCommand,
     FetchLocalDataFiles,
     FetchOgrRemoteData,
     FetchTask,
@@ -27,8 +29,9 @@ from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 # TODO: Make "fetch" tasks into Python "steps"?
 ASSET_TYPE_TASKS: dict[Type[AnyAsset], Type[FetchTask]] = {
-    ConfigDatasetHttpAsset: FetchDataFiles,
     ConfigDatasetCmrAsset: FetchCmrGranule,
+    ConfigDatasetCommandAsset: FetchDataWithCommand,
+    ConfigDatasetHttpAsset: FetchDataFiles,
     # TODO: rename `FetchLocalDataFiles`, split in two!
     ConfigDatasetManualAsset: FetchLocalDataFiles,
     ConfigDatasetRepositoryAsset: FetchLocalDataFiles,

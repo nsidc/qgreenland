@@ -1,12 +1,16 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
+from qgreenland.models.config.asset import ConfigDatasetCommandAsset
 from qgreenland.models.config.dataset import ConfigDataset
 
 background = ConfigDataset(
     id='background',
     assets=[
-        ConfigDatasetHttpAsset(
+        ConfigDatasetCommandAsset(
             id='high_res',
-            urls=['https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip'],
+            args=[
+                'wget',
+                'https://naciscdn.org/naturalearth/10m/raster/NE2_HR_LC_SR_W.zip',
+                '-O', '{output_dir}/NE2_HR_LC_SR_W.zip',
+            ],
         ),
     ],
     metadata={
