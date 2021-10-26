@@ -16601,11 +16601,11 @@
               {
                 "layer_cfg": {
                   "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
-                  "id": "seaice_median_extent_04",
+                  "id": "seaice_median_extent_01",
                   "in_package": true,
                   "input": {
                     "asset": {
-                      "id": "median_extent_line_04"
+                      "id": "median_extent_line_01"
                     },
                     "dataset": {
                       "id": "seaice_index"
@@ -16616,7 +16616,7 @@
                     {
                       "args": [
                         "unzip",
-                        "{input_dir}/median_extent_N_04_1981-2010_polyline_v3.0.zip",
+                        "{input_dir}/median_extent_N_01_1981-2010_polyline_v3.0.zip",
                         "-d",
                         "{output_dir}",
                         ""
@@ -16641,103 +16641,9 @@
                   ],
                   "style": null,
                   "tags": [],
-                  "title": "April"
+                  "title": "January"
                 },
-                "name": "seaice_median_extent_04"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
-                  "id": "seaice_median_extent_08",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "median_extent_line_08"
-                    },
-                    "dataset": {
-                      "id": "seaice_index"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/median_extent_N_08_1981-2010_polyline_v3.0.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "August"
-                },
-                "name": "seaice_median_extent_08"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
-                  "id": "seaice_median_extent_12",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "median_extent_line_12"
-                    },
-                    "dataset": {
-                      "id": "seaice_index"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/median_extent_N_12_1981-2010_polyline_v3.0.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "December"
-                },
-                "name": "seaice_median_extent_12"
+                "name": "seaice_median_extent_01"
               },
               {
                 "layer_cfg": {
@@ -16789,147 +16695,6 @@
               {
                 "layer_cfg": {
                   "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
-                  "id": "seaice_median_extent_01",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "median_extent_line_01"
-                    },
-                    "dataset": {
-                      "id": "seaice_index"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/median_extent_N_01_1981-2010_polyline_v3.0.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "January"
-                },
-                "name": "seaice_median_extent_01"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
-                  "id": "seaice_median_extent_07",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "median_extent_line_07"
-                    },
-                    "dataset": {
-                      "id": "seaice_index"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/median_extent_N_07_1981-2010_polyline_v3.0.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "July"
-                },
-                "name": "seaice_median_extent_07"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
-                  "id": "seaice_median_extent_06",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "median_extent_line_06"
-                    },
-                    "dataset": {
-                      "id": "seaice_index"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/median_extent_N_06_1981-2010_polyline_v3.0.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "June"
-                },
-                "name": "seaice_median_extent_06"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
                   "id": "seaice_median_extent_03",
                   "in_package": true,
                   "input": {
@@ -16973,6 +16738,53 @@
                   "title": "March"
                 },
                 "name": "seaice_median_extent_03"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
+                  "id": "seaice_median_extent_04",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "median_extent_line_04"
+                    },
+                    "dataset": {
+                      "id": "seaice_index"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/median_extent_N_04_1981-2010_polyline_v3.0.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "April"
+                },
+                "name": "seaice_median_extent_04"
               },
               {
                 "layer_cfg": {
@@ -17024,11 +16836,11 @@
               {
                 "layer_cfg": {
                   "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
-                  "id": "seaice_median_extent_11",
+                  "id": "seaice_median_extent_06",
                   "in_package": true,
                   "input": {
                     "asset": {
-                      "id": "median_extent_line_11"
+                      "id": "median_extent_line_06"
                     },
                     "dataset": {
                       "id": "seaice_index"
@@ -17039,7 +16851,7 @@
                     {
                       "args": [
                         "unzip",
-                        "{input_dir}/median_extent_N_11_1981-2010_polyline_v3.0.zip",
+                        "{input_dir}/median_extent_N_06_1981-2010_polyline_v3.0.zip",
                         "-d",
                         "{output_dir}",
                         ""
@@ -17064,9 +16876,150 @@
                   ],
                   "style": null,
                   "tags": [],
-                  "title": "November"
+                  "title": "June"
                 },
-                "name": "seaice_median_extent_11"
+                "name": "seaice_median_extent_06"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
+                  "id": "seaice_median_extent_07",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "median_extent_line_07"
+                    },
+                    "dataset": {
+                      "id": "seaice_index"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/median_extent_N_07_1981-2010_polyline_v3.0.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "July"
+                },
+                "name": "seaice_median_extent_07"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
+                  "id": "seaice_median_extent_08",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "median_extent_line_08"
+                    },
+                    "dataset": {
+                      "id": "seaice_index"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/median_extent_N_08_1981-2010_polyline_v3.0.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "August"
+                },
+                "name": "seaice_median_extent_08"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
+                  "id": "seaice_median_extent_09",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "median_extent_line_09"
+                    },
+                    "dataset": {
+                      "id": "seaice_index"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/median_extent_N_09_1981-2010_polyline_v3.0.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "September"
+                },
+                "name": "seaice_median_extent_09"
               },
               {
                 "layer_cfg": {
@@ -17118,11 +17071,11 @@
               {
                 "layer_cfg": {
                   "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
-                  "id": "seaice_median_extent_09",
+                  "id": "seaice_median_extent_11",
                   "in_package": true,
                   "input": {
                     "asset": {
-                      "id": "median_extent_line_09"
+                      "id": "median_extent_line_11"
                     },
                     "dataset": {
                       "id": "seaice_index"
@@ -17133,7 +17086,7 @@
                     {
                       "args": [
                         "unzip",
-                        "{input_dir}/median_extent_N_09_1981-2010_polyline_v3.0.zip",
+                        "{input_dir}/median_extent_N_11_1981-2010_polyline_v3.0.zip",
                         "-d",
                         "{output_dir}",
                         ""
@@ -17158,15 +17111,75 @@
                   ],
                   "style": null,
                   "tags": [],
-                  "title": "September"
+                  "title": "November"
                 },
-                "name": "seaice_median_extent_09"
+                "name": "seaice_median_extent_11"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Ice edge position line that is typical for a month, based on median\nextent from the period 1981 through 2010.",
+                  "id": "seaice_median_extent_12",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "median_extent_line_12"
+                    },
+                    "dataset": {
+                      "id": "seaice_index"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/median_extent_N_12_1981-2010_polyline_v3.0.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "December"
+                },
+                "name": "seaice_median_extent_12"
               }
             ],
             "name": "Median extent",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                ":seaice_median_extent_01",
+                ":seaice_median_extent_02",
+                ":seaice_median_extent_03",
+                ":seaice_median_extent_04",
+                ":seaice_median_extent_05",
+                ":seaice_median_extent_06",
+                ":seaice_median_extent_07",
+                ":seaice_median_extent_08",
+                ":seaice_median_extent_09",
+                ":seaice_median_extent_10",
+                ":seaice_median_extent_11",
+                ":seaice_median_extent_12"
+              ],
               "show": false
             }
           },
