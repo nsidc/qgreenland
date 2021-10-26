@@ -1,6 +1,6 @@
 from qgreenland.config.datasets.seaice import seaice_index as dataset
-from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.helpers.layers.seaice import layer_id, layer_title
+from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 from qgreenland.models.config.dataset import ConfigDataset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
