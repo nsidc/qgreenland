@@ -24,7 +24,7 @@ image_mosaic_layers = [
 
 g02135_polyline_n = ConfigLayer(
     id='g02135_polyline_n',
-    title='Sea Ice Index',
+    title='Monthly sea ice extent (1979 - present)',
     style='g02135_polyline_n',
     description="""
 Lines representing monthly sea ice extent edges. Note that aside from 2016 to
