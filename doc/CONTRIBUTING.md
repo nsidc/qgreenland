@@ -389,15 +389,22 @@ A correct QGreenland data pipeline will output data that:
 
 # Releasing
 
-Currently there is no automated versioning process. The manual process is to
-edit the `qgreenland/__init__.py` file with the desired version number.
+Use `bumpversion` to bump the specified part of the version:
+
+```
+$ bumpversion --part={major|minor|patch}
+```
 
 Versions should be in one of the following forms:
 
-* `vX.Y.Z`: A final release, e.g. `v1.2.3`.
+* `vX.Y.ZalphaN`: An alpha pre-release, e.g. `v1.2.3beta2`
+* `vX.Y.ZbetaN`: A beta pre-release, e.g. `v1.2.3alpha2`
 * `vX.Y.ZrcN`: A release candidate, e.g. `v1.2.3rc3`.
-* `vX.Y.Zdev`: A dev build not intended for release (should not be tagged),
-  e.g. `v1.2.3dev`.
+* `vX.Y.Z`: A final release, e.g. `v1.2.3`.
+
+NOTE: When using `bumpversion build`, ensure you've already used `bumpversion
+prerelease`. Running `bumpversion build` from a final release version number
+can result in an incorrect patch number, e.g. `v1.2.304`.
 
 Publishing a tag to GitHub will trigger an automated build and publish of the
 QGreenland package to various mirrors.
