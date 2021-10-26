@@ -11,6 +11,7 @@ promice_layer_params = {
             """Locations and details of PROMICE automated weather stations."""
         ),
         'asset_id': 'promice',
+        'table_name': 'PROMICE_info_from_GPS_data_2017-2018',
     },
     'promice_research_stations_former': {
         'title': 'Former PROMICE automated weather stations',
@@ -19,6 +20,7 @@ promice_layer_params = {
             stations."""
         ),
         'asset_id': 'promice_former',
+        'table_name': 'PROMICE_info_from_GPS_data_2017-2018_former_sites',
     },
     'gc_net_research_stations': {
         'title': 'GC-NET automated weather stations',
@@ -26,6 +28,7 @@ promice_layer_params = {
             """Location and details of GC-NET automated weather stations."""
         ),
         'asset_id': 'gc_net',
+        'table_name': 'GCN%20info%20ca.2000',
     },
 }
 
@@ -36,7 +39,7 @@ layers = [
         title=params['title'],
         description=params['description'],
         tags=[],
-        # style='labeled_point',
+        style='labeled_point',
         input=ConfigLayerInput(
             dataset=dataset,
             asset=dataset.assets[params['asset_id']],
@@ -51,6 +54,7 @@ layers = [
                     '-s_srs', 'EPSG:4326',
                     '-oo', 'X_POSSIBLE_NAMES=lon',
                     '-oo', 'Y_POSSIBLE_NAMES=lat',
+                    '-sql', fr'"SELECT *, name as label from \"{params["table_name"]}\""',
                 ),
             ),
         ],
