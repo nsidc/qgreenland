@@ -1,6 +1,5 @@
-import calendar
-
 from qgreenland.config.datasets.seaice import seaice_index as dataset
+from qgreenland.config.helpers.layers.seaice import layer_id, layer_title
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 from qgreenland.models.config.dataset import ConfigDataset
@@ -17,8 +16,8 @@ def _asset(dataset: ConfigDataset, month: int) -> ConfigDatasetHttpAsset:
 
 layers = [
     ConfigLayer(
-        id=f'seaice_median_extent_{month:02d}',
-        title=calendar.month_name[month],
+        id=layer_id(month),
+        title=layer_title(month),
         description=(
             """Ice edge position line that is typical for a month, based on median
             extent from the period 1981 through 2010."""
