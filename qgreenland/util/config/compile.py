@@ -1,6 +1,7 @@
 from functools import cache
 from pathlib import Path
 
+import qgreenland.exceptions as exc
 from qgreenland.config.project import project
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDataset
@@ -41,24 +42,27 @@ def compile_cfg(
     include_patterns: tuple[str, ...] = (),
     exclude_patterns: tuple[str, ...] = (),
 ) -> Config:
-    compiled_layer_tree = layer_tree(
-        config_dir / 'layers',
-        include_patterns=include_patterns,
-        exclude_patterns=exclude_patterns,
-    )
-    leaves = compiled_layer_tree.leaves
+    try:
+        compiled_layer_tree = layer_tree(
+            config_dir / 'layers',
+            include_patterns=include_patterns,
+            exclude_patterns=exclude_patterns,
+        )
+        leaves = compiled_layer_tree.leaves
 
-    if not all(type(leaf) is LayerNode for leaf in leaves):
-        raise RuntimeError('Error compiling config. Please debug.')
+        if not all(type(leaf) is LayerNode for leaf in leaves):
+            raise RuntimeError('Error compiling config. Please debug.')
 
-    layers_dict = {
-        node.layer_cfg.id: node.layer_cfg
-        for node in leaves
-    }
+        layers_dict = {
+            node.layer_cfg.id: node.layer_cfg
+            for node in leaves
+        }
 
-    return Config(
-        project=project,
-        layers=layers_dict,
-        datasets=compile_datasets_cfg(config_dir),
-        layer_tree=compiled_layer_tree,
-    )
+        return Config(
+            project=project,
+            layers=layers_dict,
+            datasets=compile_datasets_cfg(config_dir),
+            layer_tree=compiled_layer_tree,
+        )
+    except Exception as e:
+        raise exc.QgrConfigCompileError(f'Failed to compile config. {e}')
