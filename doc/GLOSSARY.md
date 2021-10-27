@@ -20,13 +20,9 @@ transform source data in to a standard QGreenland specification.
 
 ## Pipeline
 
-A chain of steps to build a QGIS Layer. Pipeline contributors generally create
-these using YAML (TODO: Link to YAML "About" page) to define steps as GDAL/OGR
-commands.
-
+A chain of steps to build a QGIS Layer.
 
 ## Step
 
-A unit of work for transforming a layer. Can be a Python method, a Linux shell
-command (e.g. `gdal` or `ogr2ogr`), or even a templated collection of other
-steps.
+A unit of work for transforming a layer. Must be a Linux shell command (e.g.
+`gdalwarp` or `ogr2ogr`).
