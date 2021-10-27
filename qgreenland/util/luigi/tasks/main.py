@@ -76,7 +76,7 @@ class ChainableTask(QgrLayerTask):
         last_part = (
             f'-{self.step.args[0]}'
             if self.step.type == 'command'
-            else 'TODO'
+            else self.step.type
         )
         return f'{first_part}{last_part}'
 
