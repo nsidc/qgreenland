@@ -8,8 +8,9 @@ Someone who uses QGreenland in QGIS.
 Instead of extent, which to some may imply rectangular or lon/lat-based shape,
 use the term "Boundary".
 
-TODO: Data boundary, background boundary are confusing terms. Some data is
-subset to the background boundary. Need better words.
+You can define as many boundaries as you want with arbitrary names, in addition
+to the required `data` boundary, which is used for defining the initial extent
+shown when opening QGIS.
 
 
 # Pipeline Contributor
