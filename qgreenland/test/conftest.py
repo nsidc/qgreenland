@@ -29,12 +29,12 @@ _mock_metadata = {
 }
 _mock_asset_id = 'only'
 
-_mock_online_asset_cfg = ConfigDatasetOnlineAsset(**{
+_mock_online_asset_cfg = {
     'id': _mock_asset_id,
     'provider': 'wms',
     'url': 'crs=EPSG:4326&format=image/png&layers=continents&styles&url=https://demo.mapserver.org/cgi-bin/wms'  # noqa
-})
-mock_online_layer_cfg = ConfigLayer(**{
+}
+mock_online_layer_cfg = {
     'id': 'example_online',
     'title': 'Example online',
     'description': 'Example layer description',
@@ -43,18 +43,19 @@ mock_online_layer_cfg = ConfigLayer(**{
     'input': {
         'dataset': {
             'id': 'baz',
-            'assets': [_mock_online_asset_cfg],
+            'assets': [ConfigDatasetOnlineAsset(**_mock_online_asset_cfg)],
             'metadata': _mock_metadata,
         },
-        'asset': _mock_online_asset_cfg,
+        'asset': ConfigDatasetOnlineAsset(**_mock_online_asset_cfg),
     },
-})
+}
+MockOnlineLayerConfig = ConfigLayer(**mock_online_layer_cfg)
 
-_mock_http_asset_cfg = ConfigDatasetHttpAsset(**{
+_mock_http_asset_cfg = {
     'id': _mock_asset_id,
     'urls': ['https://foo.bar.com/data.zip'],
-})
-mock_raster_layer_cfg = ConfigLayer(**{
+}
+mock_raster_layer_cfg = {
     'id': 'example_raster',
     'title': 'Example raster',
     'description': 'Example layer description',
@@ -63,10 +64,10 @@ mock_raster_layer_cfg = ConfigLayer(**{
     'input': {
         'dataset': {
             'id': 'example_dataset',
-            'assets': [_mock_http_asset_cfg],
+            'assets': [ConfigDatasetHttpAsset(**_mock_http_asset_cfg)],
             'metadata': _mock_metadata,
         },
-        'asset': _mock_http_asset_cfg,
+        'asset': ConfigDatasetHttpAsset(**_mock_http_asset_cfg),
     },
     'steps': [
         {
@@ -74,7 +75,8 @@ mock_raster_layer_cfg = ConfigLayer(**{
             'args': ['foo', 'bar'],
         },
     ],
-})
+}
+MockRasterLayerConfig = ConfigLayer(**mock_raster_layer_cfg)
 
 
 def _layer_node(cfg: ConfigLayer) -> LayerGroupNode:
@@ -96,13 +98,34 @@ def _layer_node(cfg: ConfigLayer) -> LayerGroupNode:
 @pytest.fixture
 def online_layer_cfg():
     """Return an example online layer."""
-    return mock_online_layer_cfg
+    return MockOnlineLayerConfig
+
+
+@pytest.fixture
+def layer_cfgs():
+    """Return a list of example layers."""
+    _layer_ids = [
+        'bedmachine_error',
+        'bedmachine_thickness',
+        'background',
+        'lat_0_25_deg',
+        'lon_0_5_deg',
+        'lon_5_deg',
+    ]
+    return [
+        ConfigLayer(**{
+            **mock_raster_layer_cfg,  # type: ignore[arg-type]
+            'id': s,
+            'title': 'Foo',
+            'description': 'Bar.',
+        }) for s in _layer_ids
+    ]
 
 
 @pytest.fixture
 def raster_layer_cfg():
     """Return an example local raster layer."""
-    return mock_raster_layer_cfg
+    return MockRasterLayerConfig
 
 
 @pytest.fixture

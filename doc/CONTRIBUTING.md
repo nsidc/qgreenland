@@ -228,6 +228,21 @@ testing, but the final output will not be zipped):
   --include="*my_layer_mask*"
 ```
 
+Collaborators outside NSIDC may want to run QGreenland pipeline without "manual
+access" layers that require difficult or impossible additional steps to prepare
+input data. See [Assets](#assets) documentation above to learn more about
+"manual access" assets.
+
+```
+./scripts/container_cli.sh run \
+  --exclude-manual-assets
+```
+
+Inclusion and exclusion flags can be combined arbitrarily. When `--include` and
+`--exclude` are used together, the final result is the set of layers which are
+included _or_ not excluded. This is different from the set of layers which are
+included _and_ not excluded.
+
 To cleanup outputs (compiled package and releases):
 
 ```

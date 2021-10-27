@@ -41,12 +41,14 @@ def compile_cfg(
     *,
     include_patterns: tuple[str, ...] = (),
     exclude_patterns: tuple[str, ...] = (),
+    exclude_manual_assets: bool = False,
 ) -> Config:
     try:
         compiled_layer_tree = layer_tree(
             config_dir / 'layers',
             include_patterns=include_patterns,
             exclude_patterns=exclude_patterns,
+            exclude_manual_assets=exclude_manual_assets,
         )
         leaves = compiled_layer_tree.leaves
 
