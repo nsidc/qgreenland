@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Optional
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import ANCILLARY_DIR, ASSETS_DIR
+from qgreenland.constants import ASSETS_DIR
 
 
 # TODO: Make this a dataclass? :shrug:
@@ -124,5 +124,4 @@ class EvalStr(UserString):
             input_dir=input_dir,
             output_dir=output_dir,
             assets_dir=ASSETS_DIR,
-            ancillary_dir=ANCILLARY_DIR,
         )
