@@ -15,18 +15,8 @@ class ConfigLayerStep(ABC):
 class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
     # TODO: Remove the "type" field?
     type: str = 'command'
-    # input_file: Path
-    # output_file: Path
 
-    # If command:
     args: list[EvalStr]
-
-    # If template:
-    # template_name: str
-    # kwargs: dict[str, Any]
-
-    # If Python:
-    # kwargs: dict[str, Any]
 
     @cached_property
     def provenance(self) -> str:
