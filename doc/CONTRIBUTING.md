@@ -9,177 +9,152 @@ release except releases labeled as "stable". Stable releases can be found at
 [https://qgreenland.org/explore](https://qgreenland.org/explore)!
 
 
-## NEW NEW configuration
+## Configuration
 
-TODO!!! Cleanup old configuration sections.
+The QGreenland configuration represents the work that needs to be done to
+convert source `datasets` in to final outputs ready for use by QGreenland. The
+configuration can be found at:
+
+```
+qgreenland/config
+```
+
+Within this directory, there is a subdirectory for `datasets`, `layers`, and
+`helpers`. Additionally, the `project.py` file is required in the config
+directory.  You can optionally add any number of other files, e.g.
+`constants.py`, to the configuration directory.
+
+Configuration models can be found at:
+
+```
+qgreenland/models/config
+```
+
+
+### Project config
+
+[project.py](/qgreenland/config/project.py) defines the project `crs` (EPSG) and
+any `boundaries` that will be used to clip data for this project.
+
+
+### Datasets config
+
+Dataset configurations define a unique `id`, `metadata`, and a list of
+`assets`.  
+
+[Example](../qgreenland/config/datasets/background.py)
+
+
+#### Assets
+
+An asset represents a file or files in a dataset that will be used to create a
+single layer. A layer currently cannot use more than one asset as its input.
+
+There are various types of assets. Some useful ones are:
+
+* `ConfigDatasetHttpAsset`: Downloads from a list of HTTP `urls`.
+* `ConfigDatasetCmrAsset`: Queries NASA CMR for a single `granule_ur` in a
+  given `collection_concept_id` and downloads it.
+* `ConfigDatasetCommandAsset`: Runs an arbitrary command `args` to download or
+  create data files.
+* `ConfigDatasetManualAsset`: Accesses data that has been manually downloaded
+  by a human in to the private archive. This is required for datasets which
+  can not be fetched programmatically, for example: because they're behind a
+  GUI authentication screen; because an asynchronous ordering system must be
+  used to access the data; or because the data was provided directly by a
+  scientist over e-mail and is not hosted anywhere. We prefer to avoid or
+  eventually fully eliminate the use of data in this category.
+
+You can find the full set of available asset types
+[here](../qgreenland/models/config/assets.py).
+
+
+### Layers and layer groups config
+
+Layers in `qgreenland/config/layers` are organized into a directory structure
+which mirrors the QGIS Layers Panel tree structure. Each directory may
+optionally contain a settings file which is documented below in the [Layer
+group settings](#layer-group-settings) section.
+
+Layers can be represented in python files with any name. `ConfigLayer` objects
+will be found in those python files when written either as plain named
+variables, e.g. `foo = ConfigLayer(...)` or when present in a tuple or list,
+e.g. `layers = [ConfigLayer(...) for thing in things]`.
+
+The layer's `title` will determine how the layer is displayed in the QGIS
+Layers Panel and the `description` determines the hovertext for that same layer
+in the QGIS Layers Panel.
+
+
+#### Layer steps
+
+Layers are created in a series of `steps`. The final result of the `steps` must
+be a GeoTIFF (`.tif` file) for raster layers, and a GeoPackage (`.gpkg`) for
+vector layers.
+
+Each step is a [command](../qgreenland/models/config/step.py) (e.g. `gdalwarp` or
+`ogr2ogr`) run against the output of the previous step.  The first step acts on
+the chosen `input.asset`. 
+
+Within a step configuration, "runtime variables" are used to populate values
+that are not known at configuration-time, for example the WIP directories that
+will be used to store the inputs and outputs of the step. Runtime variables are
+designated by braces `{` `}` surrounding the variable name. Only the following
+runtime variables are legal:
+
+* `{input_dir}`: The output directory of the previous step or, for the first
+  step, the layer's fetched `input.asset` location.
+* `{output_dir}`: The output directory of this step.
+* `{assets_dir}`: In this repository, `qgreenland/assets`.
+
+
+#### Layer group settings
+
+Each layer group can optionally have a `__settings__.py` file inside its
+directory which determines settings for only that group. If the file is
+omitted, defaults are used (see [here](../qgreenland/models/config/layer_group.py)
+for default values).
+
+This file is most commonly used for specifying the order in which the layer
+group's contents will be displayed in QGIS. If `order` is not specified,
+contents are displayed alphabetically with groups first.
+
+An [example](../qgreenland/config/layers/Reference/__settings__.py) settings file
+shows that layers are represented with a leading `:` to differentiate layers
+from groups in the same list.
+
+
+### Helpers
+
+Helpers are arbitrary python code to allow code-sharing between configuration
+modules. The following categories of helpers exist in subdirectories:
+
+* `layers`: Helpers and variables for generating layer configuration objects.
+* `steps`: Helpers which return a step or steps configuration objects.
+* `ancillary`: JSON data to support helpers.
 
 
 ### Lockfile
 
-Use `inv config.export > qgreenland/config/cfg-lock.json` to refresh this
-lockfile.  This allows us to compare the results of configuration changes
-against the previous state.
+Use `inv config.export > qgreenland/config/cfg-lock.json` to refresh the
+configuration lockfile. This allows us to compare the _results_ of
+configuration changes against the previous state.
 
 
-## New configuration
+# The project pipeline
 
-These are the types of configuration files available in
-QGreenland:
-
-* `config/layers/*.yml`: Layer-level metadata and the steps involved in
-  building the layer from a source dataset. Try to keep related layer
-  configurations together in the same file.
-* `config/datasets/*.yml`: Dataset-level metadata, including how to acquire
-  source dataset. Try to keep related dataset configurations together in the
-  same file.
-* `config/hierarchy_settings.yml`: Options for groups in the layer hierarchy.
-* `config/step_templates/*.yml`: Re-usable sets of layer steps.
-* `config/project.yml`: Project-level options, such as CRS.
-
-
-### Layer pipeline steps
-
-Layer pipelines are composed of steps. A step can be one of the following
-types:
-
-* `command`: Run a shell command in a conda environment (currently
-  `environment.cmd.yml`).
-* `python`: Run a python function with the given args/kwargs.
-* `template`: Re-use a pre-written set of steps (these can also be `command`,
-  `python`, or `template`). Templates can be nested!
-
-
-#### Command
-
-Run a shell command in a pre-built Conda environment. The following slugs in
-your command will be string-interpolated:
-
-* `{input_dir}`: The directory containing the previous step's output.
-* `{output_dir}`: The directory in which this step will write its output.
-* `{assets_dir}`: The `qgreenland/assets` directory in this repository.
-* ...TBD...
-
-
-#### Python
-
-Run a python function specified with the same syntax as `python -m`, e.g.:
-`package.module:function` (? I forgot.)
-
-Python steps are located at `qgreenland/steps`. TODO: Naming and directory
-structure conventions.
-
-TODO: Define a type for a Python step function. It should always receive an
-input directory and an output directory from the caller, but other args could
-be anything from the YAML.
-
-
-#### Template
-
-Templates enable re-use or encapsulation of complex steps. Templates can be
-nested arbitrarily deeply, so go wild.
-
-TODO: Template naming/directory structure conventions.
-
-
-## OLD configuration
-
-There are 3 configuration files; `layers.yml` is the important one. It references
-the others.
-
-
-### Datasets
-
-When adding a new layer, start by adding a new entry to `datasets.yml`.
-
-A dataset isn't necessarily the same thing as a "dataproduct", but it might be.
-A dataset is any collection of data representing some measurement, hosted
-anywhere. Current access methods include:
-
-* `cmr`: Access CMR-indexed data by `granule_ur`s.
-* `http`: Access online resource by `url`s.
-* `local`: Access in-repository data by `url`s. `url` is relative to
-  `qgreenland/assets/local_data`.
-* `manual`: Access by `access_instructions`. This data is either inaccessible
-  publicly or programmatically, so instructions must be followed to seed the
-  data locally.
-
-A dataset can have many sources, each with their own id, but a layer can only
-have one datasource. See the `datasource` field in `layers.yml` for more
-detail.
-
-### Layers
-
-Each element in `layers.yml` represents a QGIS layer.
-
-To disable a layer, comment out the whole list element for that layer in the
-`layers.yml` file. This is convenient for layers with `manual` access method.
-
-The `ingest_task` key defines which processing pipeline will handle data for
-this layer. Pipelines are currently defined as Python code in
-`qgreenland/tasks/layers/`. There are several other fields (typically ending in
-`_kwargs` or `_args` which can be used to parameterize these pipelines.
-
-A layer references `datasets.yml` with the `datasource` compound key composed
-as `<dataset_id>.<source_id>`.
-
-A layer references `layer_groups.yml` with the `group_path` key.
-
-
-### Layer groups
-
-Each element in `layer_groups.yml` represents a QGIS layer group in the Layers
-Panel. Keep in mind that the first layer's group will always be automatically
-selected and expanded.
-
-
-## Pipeline
-
-As of `v0.50.0`:
-
-* Build layers to WIP location:
-    * Coastlines
-        * Fetch (HTTP)
-        * Unzip
-        * `ogr2ogr`
-          * Reproject (EPSG:3413)
-          * Subset ("background" boundary)
-    * Arctic DEM
-        * Fetch (HTTP)
-        * Gdal Warp
-          * Reproject (EPSG:3413)
-          * Subset ("data" boundary)
-        * Gdal Calc & Edit
-          * Scale the data for more effective compression and update metadata
-            to represent scaling. These tasks both have to be done to produce a
-            working output.
-        * Build Raster Overviews
-    * IceBridge BedMachine
-        * Fetch (CMR)
-        * For each dataset (bed, thickness, surface):
-            * Extract dataset
-            * Gdal Warp
-              * Reproject (EPSG:3413)
-              * Resample (500m)
-    * ... and many more ...
-
-* Add ancillary files to WIP location:
-  * `qgreenland.png`: QGreenland logo
-  * `layer_list.csv`: Full layer list and associated information
-  * `CHANGELOG.txt`: Text version of `CHANGELOG.md`
-  * `CONTRIBUTING.txt`: Text version of `doc/CONTRIBUTING.md`
-  * `README.txt`: Text version of `README.md`
-  * `STYLE.txt`: Text version of `doc/STYLE.md`
-
-* Generate .qgs project file:
-  * Reference all layers in WIP dir
-  * Reference QGreenland logo
-  * Populate QGIS project metadata, e.g. copyright
-
-* Create zip file with version in filename, e.g. `QGreenland_v0.50.0.zip`
-  from data in WIP location.
+* Fetch input assets
+* Run layer pipelines, writing outputs to final layer hosting locations.
+* For layers for which `in_package` is `True`, use hardlinks to link final
+  layer ouputs to a QGreenland package compile location.
+* Create QGreenland package QGIS project file and other ancillary package
+  files.
+* Zip the QGreenland package.
 
 
 # Running the project
+
+## Starting the services
 
 This project uses Docker and `docker-compose` to run each of its components.
 https://docs.docker.com/get-started/
@@ -188,7 +163,7 @@ The docker-compose stack runs Luigi (with visualizer at port 8082) as a service
 for running tasks, as well as NGINX (port 80, 443) for hosting outputs.
 
 In order to download data behind Earthdata Login, you must `export` the
-following environment variables on the docker host:
+following environment variables on the docker host before starting the stack:
 
 * `EARTHDATA_USERNAME`
 * `EARTHDATA_PASSWORD`
@@ -199,7 +174,10 @@ Earthdata Login credentials. New users to Earthdata can register here:
 https://urs.earthdata.nasa.gov/users/new
 
 
-## Set-up for local development (required for OSX)
+### Starting the stack locally
+
+Ensure environment variables enumerated above are populated before starting the
+stack.
 
 Create a [docker-compose
 override](https://docs.docker.com/compose/extends/#understanding-multiple-compose-files)
@@ -209,54 +187,78 @@ file for `./logs` and `./appdata`.
 ln -s docker-compose.local.yml docker-compose.override.yml
 ```
 
-WARNING: Docker Desktop for OSX has some "gotchas". Running with "Use gRPC
+*WARNING*: Docker Desktop for OSX has some "gotchas". Running with "Use gRPC
 FUSE for file sharing" _enabled_ is recommended. You may see indefinite hangs
 otherwise. Please reference the Docker documentation for more info:
 
 https://docs.docker.com/desktop/mac/
 
-
-## Starting the stack locally
-
-Ensure environment variables enumerated above are populated before starting the
-stack.
+Start the stack with docker-compose:
 
 ```
 docker-compose up -d
 ```
 
-## Starting a Luigi pipeline
+
+## Running pipelines with the QGreenland CLI
+
+The primary entrypoint for the CLI is `./scripts/container_cli.sh`. This runs
+the CLI program inside the `luigi` container, allowing us to kick off pipelines
+or cleanup data from standard locations without risking destructive actions on
+the user's computer.
+
+To run the full pipeline:
 
 ```
-./scripts/run_task.sh
+./scripts/container_cli.sh run
 ```
 
-The `run_task.sh` script is built to run the entire pipeline. To run a subset
-of layers or individual layers, comment `layers.yml` as desired.
+To run in parallel:
 
-There is also a convenience script, `scripts/dev_run_task.sh` which skips the
-zip step. This saves time for development, because you will usually want to
-inspect the data pre-zip.
+```
+./scripts/container_cli.sh run --workers=4
+```
+
+To run only the layers you care about (plus the background, useful for
+testing, but the final output will not be zipped):
+
+```
+./scripts/container_cli.sh run \
+  --include="background" \
+  --include="*my_layer_mask*"
+```
+
+To cleanup outputs (compiled package and releases):
+
+```
+./scripts/container_cli.sh cleanup -C True -R True
+```
 
 See the [Luigi
 documentation](https://luigi.readthedocs.io/en/stable/running_luigi.html) for
-more information on running Luigi from the CLI if you want to do anything not
-documented here.
+more information on running Luigi if you want to do anything not documented
+here.
 
 
 ### Debugging a Luigi pipeline
 
-Simply put `breakpoint()` anywhere in the pipeline code, then use
-`scripts/dev_run_task.sh`.
+Simply put `breakpoint()` anywhere in the pipeline code, then run the pipeline
+with 1 worker (the default) and whichever layer(s) you want to debug.
 
 
 # Contributing
 
-One of the primary goals of this project is to allow for as much control by
-config as possible so data users can add layers without having to know how to
-program. While we haven't achieved this goal completely, layer styles and
-metadata (e.g. title, description, citation, abstract, etc.) can currently be
-contributed without any programming knowledge.
+One of the primary goals of this project is to allow for scientists comfortable
+with standard GIS command-line tools to contribute new layers with as little
+friction as possible.
+
+Contributing new datasets and layers requires writing simple Python objects
+containing the relevant data (metadata, download location, transformation
+steps) needed to include the layer in QGreenland.
+
+Currently, layer styles can be contributed without any programming knowledge by
+designing the style in QGIS, saving it as a `.qml`, and committing it to the
+`qgreenland/ancillary/styles` directory.
 
 You can contribute to this project even if you don't have write access by
 forking, making your change, making all CI checks pass, then opening a Pull
@@ -282,79 +284,22 @@ following process:
 * At this point, if you're uncomfortable with Git and GitHub, you can email us
   your style file at qgreenland.info@gmail.com. Otherwise, continue on...
 * Save the style to `qgreenland/assets/styles/<name>.qml` directory of this
-  repository. Keep in mind that styles can be shared between layers, so give
-  the style a generic name instead of a layer-specific name where possible.
-* Edit the `qgreenland/config/layers.yml` file and find the layer(s) you wish
-  to apply this style to. Populate the `style` key for each layer with the name
-  of the `.qml` file you saved in the previous step, excluding the file
-  extension. For example, if you saved `foo.qml`, then populate `style: 'foo'`.
+  repository or your fork. Keep in mind that styles can be shared between
+  layers, so give the style a generic name instead of a layer-specific name
+  where possible.
+* Edit the relevant layer configuration file in `qgreenland/config/layers` and
+  find the layer(s) you wish to apply this style to. Populate the `style`
+  attribute for each layer with the name of the `.qml` file you saved in the
+  previous step, excluding the file extension. For example, if you saved
+  `foo.qml`, then populate `style='foo'`.
 
 ![Style in YAML](images/style_in_yaml.png)
 
 
-## Contributing metadata
-
-Metadata for layers and datasets can be edited in the `qgreenland/config/` YAML
-files. The `datasets.yml`, for example, contains dataset-level metadata like:
-
-```
-- id: coastlines
-  access_method: http
-  sources:
-    - id: only
-      urls:
-        - 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip'
-  metadata:
-    title: 'Natural Earth Coastlines (10m)'
-    abstract: 'Natural Earth Coastlines (Public Domain)'
-    citation:
-      text: 'Made with Natural Earth'
-      url: 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md'
-```
-
-The `metadata.title`, `metadata.abstract`, and `metadata.citation` fields are
-used to populate the Layer Properties / Metadata menu in QGIS.
-
-`layer.yml` contains layer-level metadata that looks like:
-
-```
-- id: coastlines
-  title: 'Coastlines'
-  description: >-
-    Note that the 'Greenland Coastlines' layer is preferred for Greenland.
-  visible: False
-  group_path: 'Basemaps'
-  style: 'coastline-IHOECDIS'
-  boundary: 'background'
-  data_source: coastlines.only
-  ingest_task: zipped_vector
-  file_type: '.gpkg'
-  data_type: 'vector'
-```
-
-The `data_source` key here references the dataset id `coastlines` and the
-source `only` in `datasets.yml` above, allowing the QGreenland code to locate
-the data for processing.
-
-The `title` and `description` fields here are used to populate layer title and
-hover text in the QGIS Layers Panel.
-
-Some of the other keys here control layer processing and should not be modified
-unless you're comfortable reading code.
-
-
 ## Contributing new layers
 
-If no existing task meets your needs, create a new class in
-`qgreenland/tasks/layers/<yournewpipeline>.py`, and ensure that new class is
-enumerated in `qgreenland/tasks/layers/__init__.py`. Compose Luigi tasks to
-build your final QGreenland layer following the example of other layer
-pipelines in the same location.
-
-We plan to expand upon this section and make the process of contributing new
-layers easier in the future. In the meantime, please open a GitHub issue for
-assistance or additional information. If you're not comfortable with GitHub,
-you can always [email the QGreenland team](mailto:qgreenland.info@gmail.com).
+Create new layer groups as needed, and then define your new layer in a Python
+file with a descriptive name within the appropriate layer group.
 
 
 ### Layer Requirements
@@ -364,8 +309,8 @@ public archival with OGC-compliant metadata. If data is not publicly archived
 or stored in a non-standard format, maintenance of that layer takes an order of
 magnitude more effort and therefore we are unable to promise permanent
 inclusion of such data. File formats that are particularly challenging include:
-Raw binary grids, excel files, word documents. We prefer geotiffs or netcdfs
-for raster data, and geopackages or shapefiles for vector data. 
+raw binary grids, Excel files, Word documents. We prefer GeoTIFFs or NetCDFs
+for raster data, and GeoPackages or shapefiles for vector data. 
 
 A correct QGreenland data pipeline will output data that:
 
@@ -373,7 +318,7 @@ A correct QGreenland data pipeline will output data that:
   reprojection. Some exceptions may exist in the current code as a workaround,
   but they are bugs.
 
-* Is subset to one of the defined layer boundaries in `config/project.yml`.
+* Is subset to one of the defined layer boundaries in `config/project.py`.
   Existing layer tasks can do this for vector or raster data.
 
 * For raster data:
