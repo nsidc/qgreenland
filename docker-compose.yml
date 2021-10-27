@@ -10,9 +10,7 @@ services:
     container_name: luigi
     volumes:
       # Code
-      # TODO: re-consider mounting this as `rw`. Need write access for the
-      # `make_sea_ice_age_params.py` script.
-      - ./:/luigi/tasks/qgreenland:rw
+      - ./:/luigi/tasks/qgreenland:ro
       # Luigi artifacts
       - ./luigi/conf:/etc/luigi:ro
       - ./luigi/state:/luigi/state:rw
