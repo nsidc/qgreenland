@@ -1,8 +1,12 @@
 """Generate sea ice age parameters file.
 
-Must be executed when the sea ice age dataset is updated.
+Must be executed when the sea ice age dataset is updated. Ensure you've fetched
+the data first, as that is read as input to this script:
+
+    ./scripts/container_cli.sh fetch seaice_age
 
 Save the output by running the following from the repo root:
+
     OUT_PATH=$PWD/qgreenland/config/helpers/ancillary/sea_ice_age_params.json
     docker exec luigi ./scripts/data/make_sea_ice_age_params.py > $OUT_PATH
 """
