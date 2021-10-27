@@ -1,3 +1,13 @@
+# v2.0.0 (unreleased)
+
+* Minimum supported version of QGIS is now `v3.16`.
+  * New Time Controller allows visualization of time-series layers.
+* Overhaul YAML configuration to Python configuration.
+  * All processing steps are now expressed in configuration.
+* Add "Monthly sea ice extent (1978 - present)" time-series layer.
+* Add provenance information to QGIS Layer Properties "History" tab.
+
+
 # v1.0.2 (2021-02-23)
 
 - Bugfixes for "Sea ice/Weekly age (12.5 km)" layers:
@@ -18,10 +28,12 @@
   - "Feb or March (max extent)" -> "Feb or March (max monthly extent)"
   - "September (min extent)" -> "September (min monthly extent)"
 
+
 # v1.0.1 (2021-02-23)
 
 - Remove `STYLE.txt` from zip package.
 - Fix README mistakes
+
 
 # v1.0.0 (2021-02-22)
 
@@ -34,10 +46,12 @@
 - Fix various issues in layer/dataset metadata.
 - Add notes about data issues to abstracts for various datasets.
 
+
 # v1.0.0rc2 (2021-02-11)
 
 - Fixed mistake in raster processing code that resulted in GDAL unnecessarily
   requesting ~22GB of diskspace for reprojection.
+
 
 # v1.0.0rc1 (2021-02-10)
 
@@ -47,12 +61,14 @@
 - Fix pixel sizes for some rasters.
 - Add User Guide and Quick Start Guide pdfs to built package.
 
+
 # v0.55.0 (2021-02-09)
 
 - Update RACMO data:
  - New version of the Annual mean temperature at 2m 1958-2019 (1km) layer that
    fixes bad temperature values.
 - Apply style enhancements to many layers.
+
 
 # v0.54.0 (2021-02-08)
 
@@ -65,6 +81,7 @@
 - Added compression to all raster layers.
 - Only use overviews on largest raster layers.
 - Add preliminary styles for several layers.
+
 
 # v0.53.0 (2021-02-04)
 
@@ -79,6 +96,7 @@
 - Removed layers:
   - GLIMS Images
   - Geology / Onshore pattern
+
 
 # v0.52.0 (2021-01-25)
 
@@ -95,6 +113,7 @@
   - Faye (free-air) gravity anomaly
 - Add total size of each layer on disk to the `layer_list.csv`
 
+
 # v0.51.0 (2021-01-12)
 
 - Update private archive datasets to include preprocessing scripts where
@@ -108,6 +127,7 @@
 - Update GEM research station layer to include full station descriptions (source
   data have truncated descriptions).
 
+
 # v0.50.0 (2021-01-07)
 
 - New "Sea ice/NSIDC Ice Age (12.5 km)/September (min extent)" layers for each
@@ -120,11 +140,13 @@
 - Remove "Sea ice/NSIDC Concentration (25 km)/Feb or March (max extent)" layer
   for 2009.2010-2020 represents the latest decade's worth of data.
 
+
 # v0.49.0 (2021-01-05)
 
 - Remove ocean outline
 - Replace "Atmosphere/RACMO model output/5.5km" 'v10m' and 'u10m' layers with
   wind vectors layer, which shows wind speed and direction.
+
 
 
 # v0.48.0 (2020-12-18)
@@ -156,6 +178,7 @@
   - Easting
   - Northing
 
+
 # v0.47.0 (2020-12-17)
 
 - Updated "Glaciology" Mass-balance glacier observation locations (Machguth et al.) layer:
@@ -163,6 +186,7 @@
   - Layer now has all attributes from the 'overview' tab in the source database.
   - Updated access instructions in dataset configuration.
 - New "Terrain models" layer: Danish Map Supply Topographic Map (1:500,000)
+
 
 # v0.46.0 (2020-12-15)
 
@@ -178,12 +202,14 @@
 - Update "Terrain models" Arctic DEM layer to use 100m resolution source over
   1km.
 
+
 # v0.45.0 (2020-12-10)
 
 - New "Glaciology/GMB/DTU Space" layers for 2005-2017: Mass Balance Trend.
 - New "Geology & natural resources/Mineral and hydrocarbon licenses" layers:
   - Public Licenses
   - Historic Public Licenses
+
 
 # v0.44.0 (2020-12-09)
 
@@ -199,6 +225,7 @@
   - Land Ice Surface Vertical Velocity (250m)
 - ITS_LIVE velocity layers moved to "ITS_LIVE" subgroup under "Glaciology/Ice sheet velocity"
 
+
 # v0.43.0 (2020-12-08)
 
 - New "Geophysics/World Magnetic Model/202X" layers for each of the main field
@@ -208,6 +235,7 @@
 - Update "Geophysics/World Magnetic Model/202X" layers with more descriptive
   titles.
 - "Geophysics/World Magnetic Model" subgroups start collapsed.
+
 
 # v0.42.0 (2020-12-07)
 
@@ -220,6 +248,7 @@
   - Geomagnetic Latitudes
   - Geomagnetic Longitudes
 - Changed map background color from white to gray (rgb[200, 200, 200])
+
 
 # v0.41.0 (2020-12-04)
 
@@ -242,6 +271,7 @@
   - I (Geomagnetic Inclination)
   - Z (Geomagnetic main field down component)
 
+
 # v0.40.0 (2020-12-02)
 
 - New "Frozen Ground" layers:
@@ -249,6 +279,7 @@
   - Ground temperature standard deviation (10km)
   - Permafrost Probability (10km)
 - New "Basemaps" layer: Greenland Coastlines.
+
 
 # v0.39.0 (2020-12-01)
 
@@ -272,6 +303,7 @@
   - Onshore Planar
   - Onshore
 
+
 # v0.38.0 (2020-11-20)
 
 - New "Environmental management/Exclusive economic zones" layer: Exclusive
@@ -286,6 +318,7 @@
   of the Natural Earth background image. Disable land and ocean polygons by
   default.
 - New "Human Activity" layer: Arctic Sea Routes
+
 
 # v0.37.0 (2020-11-17)
 
@@ -328,6 +361,7 @@
 - Increase circular background to 40 degrees latitude
 - Increase resolution of Natural Earth "Background" layer to 500m
 
+
 # v0.36.0 (2020-11-09)
 
 - Fix: Remove extraneous `valid.shp` shapefiles from final package.
@@ -336,6 +370,7 @@
 - Support for non-rectangular boundaries. Use circular (latitude bounded)
   background boundary.
 
+
 # v0.35.0 (2020-09-02)
 
 - New files in root of repo:
@@ -343,6 +378,7 @@
   - CHANGELOG.txt: A copy of this file!
   - CONTRIBUTING.txt: A copy of QGreenland CONTRIBUTING.md
   - manifest.csv: A comma-separated values table of layers and attributes
+
 
 # v0.34.0 (2020-09-01)
 
@@ -367,6 +403,7 @@
 - Update UTM Zones with Quantarctica-inspired style including labeling and
   semi-transparency.
 
+
 # v0.33.0 (2020-08-27)
 
 - Start all layer groups as unchecked where possible, and collapsed.
@@ -374,6 +411,7 @@
 - New "Human activity/Research stations" layer: Seismograph Stations
 - New "Background" layer: Ocean shapefile
 - New "Geophysics" layer: Geothermal Heat Flux
+
 
 # v0.32.0 (2020-08-26)
 
@@ -388,6 +426,7 @@
 - New "Biology/Mammal" layer: Wild Reindeer Populations (CAFF Arctic Biodiversity Trends 2010)
 - New "Biology/Fish" layer:  Arctic Char Populations (CAFF)
 
+
 # v0.31.0 (2020-08-25)
 
 - Add new Hydrology layer: PROMICE land/ice basins, outlets, streams layers.
@@ -395,6 +434,7 @@
 - Remove "|" symbol from layer titles.
 - Update USGS Earthquakes symbology.
 - Update IBCAO Bathymetry symbology (use cmocean "deep" colormap).
+
 
 # v0.30.0 (2020-08-21)
 
@@ -405,10 +445,12 @@
   - Change Project default extent to "data" extent.
 - Add specialized "latlon" style.
 
+
 # v0.29.0 (2020-08-20)
 
 - Add new Geology & natural resrouces layer: Earthquakes.
 - Add new Geology & natural resrouces layer: plate tectonic boundaries.
+
 
 # v0.28.0 (2020-08-19)
 
@@ -428,12 +470,14 @@
 - Add layer config CSV export utility script
 - Add log analysis script: Download and byte count by QGreenland version
 
+
 # v0.27.0 (2020-08-17)
 
 - Bugfix: layers not requiring earthdata login are no longer downloaded twice.
 - Add LZW compression to all raster layers.
 - New Oceanography layer: International Bathymetric Chart of the Arctic Ocean
 - New Oceanography layer: IHO-IOC GEBCO Gazetteer of Undersea Feature Names
+
 
 # v0.26.0 (2020-08-12)
 
@@ -450,6 +494,7 @@
   sea ice concentration layers scaled values by 10 so that an internal color map
   could be used (GeoTiff files require integer-based lookup tables for color maps).
 
+
 # v0.25.0 (2020-08-06)
 
 - Replace `ArcticDEM` layer task with generic `Raster` task.
@@ -459,6 +504,7 @@
   - Sea ice min extent monthly concentrations.
   - Sea ice max extent monthly concentrations.
 
+
 # v0.24.0 (2020-08-06)
 
 - Re-organize, rename layers and layer groups to spec provided by Twila
@@ -467,11 +513,13 @@
   their entire color maps by default. This took up a significant amount of
   screen space in the table of contents.
 
+
 # v0.23.0 (2020-08-05)
 
 - Layers now have layer-specific description at the beginning of the tooltip,
   with additional dataset-level information following.
 - Add BedMachine Error layer
+
 
 # v0.22.0 (2020-08-05)
 
@@ -479,6 +527,7 @@
 - Set "Land" layer to invisible so the background layer shows by default
 - Move "Arctic DEM" layer above "Land" layer
 - Label colormap entries with correct units/descriptions.
+
 
 # v0.21.0 (2020-08-04)
 
@@ -490,16 +539,19 @@
 - Add new UngzipMany task
 - Add GGD602 layer to `Geology & natural resources` layer group.
 
+
 # v0.20.0 (2020-08-01)
 
 - Add 12.5km Circum-Arctic Map of Permafrost and Ground-Ice Conditions, Version
   2 (https://nsidc.org/data/GGD318/versions/2) layer.
+
 
 # v0.19.0 (2020-07-30)
 
 - Add ORNL "Circumpolar Arctic Vegetation Biomass layer and style
 - Add University of Washington 'Ice-sheet height and thickness changes from
   ICESat to ICESat-2' layer and style
+
 
 # v0.18.0 (2020-03-18)
 
@@ -508,21 +560,25 @@
 - New layer config key: `override_source_projection`
 - New layer task: Unrar
 
+
 # v0.17.0 (2020-03-18)
 
 - New layer: Background image (Natural Earth II 10m).
 - New layer: Land shapefile (Natural Earth Land 10m).
+
 
 # v0.16.0 (2020-03-16)
 
 - New layer: Placenames (Natural Earth Populated Places). Temporarily disabled
   until we can figure out labels.
 
+
 # v0.15.0 (2020-03-12)
 
 - New layer: Ice Sheet Velocity (500m)
 - Preserve final wip layer task output. Previously moved this output to the
   final location.
+
 
 # v0.14.0 (2020-03-10)
 
@@ -538,6 +594,7 @@
 - Adjust group names
 - Name files after the `layer_id`
 
+
 # v0.13.0 (2020-02-25)
 
 - Bugfix: Missing constant definitions
@@ -545,16 +602,19 @@
   `layers.yml` config. Groups get created as they are required when adding map
   layers.
 
+
 # v0.12.0 (2020-02-24)
 
 - Populate metadata fields in layer properties popup with metadata configured in
   layers.yml
 - Add `bumpversion` support to project as an invoke task.
 
+
 # v0.11.0 (2020-02-21)
 
 - Configure the app so that when it runs in production it runs reproducibly by
   cleaning up its intermediate files aggressively.
+
 
 # v0.10.0 (2020-02-20)
 
@@ -568,14 +628,17 @@
     will automatically expand the layer group. Set coastlines layer to be first
     in the legend to avoid this.
 
+
 # v0.9.0 (2020-02-18)
 
 * Add QGreenland logo and copyright text as QGIS decorations at bottom-left.
+
 
 # v0.8.0 (2020-02-12)
 
 * Pre-compute statistics for raster layers so that QGIS can render those layers
   with the correct min/max values.
+
 
 # v0.7.0 (2020-02-11)
 
@@ -585,28 +648,34 @@
 * Add VM configuration and update README on how to use VM to run tasks and serve
   data.
 
+
 # v0.6.0 (2020-02-07)
 
 * Add citations to each layer as tooltips. We're currently not sure how to
   populate the actual "Abstract" field in the metadata tab in QGIS using
   pyqgis.
 
+
 # v0.5.0 (2020-02-07)
 
 * Add config option for gdal warp arguments
   * Downsample BedMachine to 1km
 
+
 # v0.4.0 (2020-02-07)
 
 * New layer: IceBridge BedMachine
+
 
 # v0.3.0 (2020-02-06)
 
 * Added hillshade style to Arctic DEM layer.
 
+
 # v0.2.0 (2020-02-05)
 
 * New layer: Arctic DEM
+
 
 # v0.1.0 (2020-01-23)
 

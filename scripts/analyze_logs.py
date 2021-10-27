@@ -9,7 +9,7 @@ from humanize import naturalsize
 
 try:
     REPO_ROOT = os.path.abspath(
-        os.path.join(sys.path[0], os.pardir)
+        os.path.join(sys.path[0], os.pardir),
     )
 except Exception as e:
     raise RuntimeError(f'Failed to find script path: {e}')
@@ -77,9 +77,9 @@ class Parser:
             return
 
         matcher = re.compile('QGreenland_(v.+).zip')
-        try:
-            qgr_version = matcher.match(filename).groups()[0]
-        except AttributeError:
+        if match := matcher.match(filename):
+            qgr_version = match.groups()[0]
+        else:
             unusable_filename(filename)
             return
 

@@ -1,17 +1,32 @@
+# TODO: consider renaming this to `io` or `fs`. All these functions related to
+# filesystem operations/file naming/etc
 import cgi
 import glob
+import logging
 import os
 import re
 import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
-from typing import Any
+from typing import Iterator
 
-from qgreenland.constants import REQUEST_TIMEOUT, TaskType
-from qgreenland.exceptions import QgrRuntimeError
+import luigi
+
+import qgreenland.exceptions as exc
+from qgreenland._typing import QgsLayerType
+from qgreenland.constants import (
+    PROVIDER_LAYERTYPE_MAPPING,
+    REQUEST_TIMEOUT,
+    TaskType,
+)
+from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
+from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.edl import create_earthdata_authenticated_session
+from qgreenland.util.tree import LayerNode
 
+
+logger = logging.getLogger('luigi-interface')
 CHUNK_SIZE = 8 * 1024
 
 
@@ -49,8 +64,9 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
     """
     if url.startswith('ftp://'):
         if not verify:
-            raise RuntimeError(
-                'Ignoring TLS certificate verification is not supported for FTP sources.'
+            raise exc.QgrRuntimeError(
+                'Ignoring TLS certificate verification is not supported for FTP'
+                ' sources.',
             )
 
         _ftp_fetch_and_write(url, output_dir)
@@ -59,7 +75,12 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
         if not session:
             session = create_earthdata_authenticated_session(hosts=[url], verify=verify)
 
-        with session.get(url, timeout=REQUEST_TIMEOUT, stream=True) as resp:
+        with session.get(
+                url,
+                timeout=REQUEST_TIMEOUT,
+                stream=True,
+                headers={'User-Agent': 'QGreenland'},
+        ) as resp:
 
             # Try to extract the filename from the `content-disposition` header
             if (
@@ -70,25 +91,26 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
                 parsed = cgi.parse_header(disposition)
                 # Handle case where disposition itself (usually "attachment")
                 # isn't present (geothermal heat flux :bell:).
-                if 'filename' in parsed[0]:
-                    fn = re.match(
-                        'filename="?(.*)"?',
-                        parsed[0]
-                    ).groups()[0].strip('\'"')
+                matcher = re.compile('filename="?(.*)"?')
+                if (
+                    'filename' in parsed[0]
+                    and (match := matcher.match(parsed[0]))
+                ):
+                    fn = match.groups()[0].strip('\'"')
                 else:
                     fn = parsed[1]['filename']
             else:
                 if not (fn := _filename_from_url(url)):
-                    raise RuntimeError(
-                        f'Failed to retrieve output filename from {url}'
+                    raise exc.QgrRuntimeError(
+                        f'Failed to retrieve output filename from {url}',
                     )
 
             fp = os.path.join(output_dir, fn)
 
             if resp.status_code != 200:
-                raise RuntimeError(
+                raise exc.QgrRuntimeError(
                     f"Received '{resp.status_code}' from {resp.request.url}."
-                    f'Content: {resp.text}'
+                    f' Content: {resp.text}',
                 )
 
             with open(fp, 'wb') as f:
@@ -117,13 +139,14 @@ def find_single_file_by_name(path, *, filename):
     files = find_in_dir_by_pattern(path, pattern=filename)
     if len(files) > 1:
         raise NotImplementedError(
-            f"We're not ready to handle multiple '{filename}' files in one task yet!"
+            f"We're not ready to handle multiple '{filename}' files in one task"
+            ' yet!',
         )
 
     try:
         return files[0]
     except IndexError:
-        raise RuntimeError(f"No files with name '{filename}' found at '{path}'")
+        raise exc.QgrRuntimeError(f"No files with name '{filename}' found at '{path}'")
 
 
 def find_single_file_by_ext(path, *, ext):
@@ -134,17 +157,19 @@ def find_single_file_by_ext(path, *, ext):
     files = find_in_dir_by_pattern(path, pattern=f'*{ext}')
     if len(files) > 1:
         raise NotImplementedError(
-            f"We're not ready to handle multiple '{ext}' files in one task yet!"
+            f"We're not ready to handle multiple '{ext}' files in one task"
+            ' yet!',
         )
 
     try:
         return files[0]
     except IndexError:
-        raise RuntimeError(f"No files with extension '{ext}' found at '{path}'")
+        raise exc.QgrRuntimeError(f"No files with extension '{ext}' found at '{path}'")
 
 
+# TODO: return a `Path`.
 @contextmanager
-def temporary_path_dir(target):
+def temporary_path_dir(target: luigi.Target) -> Iterator[str]:
     """Standardizes Luigi task file output behavior.
 
     target: a Luigi.FileSystemTarget
@@ -159,68 +184,94 @@ def temporary_path_dir(target):
     return
 
 
-def get_layer_fn(layer_cfg):
-    # NOTE: "file_type" includes a leading period
-    return f"{layer_cfg['id']}{layer_cfg['file_type']}"
+def get_layer_fp(layer_dir: Path) -> Path:
+    """Look for one and only one standard file type 'gpkg' or 'tif'."""
+    # TODO: Extract standard file types into some structure
+    rasters = list(layer_dir.glob('*.tif'))
+    vectors = list(layer_dir.glob('*.gpkg'))
+    files = rasters + vectors
+
+    if len(files) != 1:
+        raise exc.QgrRuntimeError(
+            'Expected exactly 1 .tif or .gpkg in layer output directory'
+            f' {layer_dir}. Found: {files}.',
+        )
+
+    return files[0]
 
 
-def _layer_dirname_from_cfg(layer_cfg: Any) -> str:
-    return layer_cfg['title']
+def _layer_dirname_from_cfg(layer_cfg: ConfigLayer) -> str:
+    return layer_cfg.title
 
 
-# TODO: rename -> get_layer_final_dir?
-def get_layer_dir(layer_cfg):
-    layer_group_list = layer_cfg.get('group_path', '').split('/')
-    return os.path.join(TaskType.FINAL.value,
-                        *layer_group_list,
-                        _layer_dirname_from_cfg(layer_cfg))
+def get_final_layer_dir(
+    layer_node: LayerNode,
+) -> Path:
+    """Get the layer directory in its final pre-zip location."""
+    layer_group_path_str = '/'.join(layer_node.group_name_path)
+    return (
+        Path(TaskType.FINAL.value)
+        / layer_group_path_str
+        / _layer_dirname_from_cfg(layer_node.layer_cfg)
+    )
 
 
-def get_layer_path(layer_cfg):
-    if layer_cfg['dataset']['access_method'] == 'gdal_remote':
-        if (urls_count := len(layer_cfg['source']['urls'])) != 1:
-            raise RuntimeError(
-                f"The 'gdal_remote' access method requires 1 URL. Got {urls_count}."
-            )
+def get_final_layer_filepath(
+    layer_node: LayerNode,
+) -> Path:
+    d = get_final_layer_dir(layer_node)
+    layer_fp = get_layer_fp(d)
 
-        return f"{layer_cfg['source']['urls'][0]}"
+    if not layer_fp.is_file():
+        raise exc.QgrRuntimeError(f"Layer located at '{layer_fp}' does not exist.")
 
-    d = get_layer_dir(layer_cfg)
-    f = get_layer_fn(layer_cfg)
-
-    layer_path = os.path.join(d, f)
-
-    if not os.path.isfile(layer_path):
-        raise RuntimeError(f"Layer located at '{layer_path}' does not exist.")
-
-    return layer_path
+    return layer_fp
 
 
+# TODO: Rename this function. It is generic to running commands, not specific to
+# "ogr".
 def run_ogr_command(cmd_list):
-    cmd = ['.', 'activate', 'gdal', '&&']
+    cmd = ['.', 'activate', 'qgreenland-cmd', '&&']
     cmd.extend(cmd_list)
 
-    # Hack. The activation of the gdal environment does not work as a list.
+    # Hack. The activation of the conda environment does not work as a list.
+    # `subprocess.run(..., shell=True, ...)` enables running commands from
+    # strings.
     cmd_str = ' '.join(cmd)
 
-    result = subprocess.run(cmd_str,
-                            shell=True,
-                            executable='/bin/bash',
-                            capture_output=True)
+    logger.info('Running command:')
+    logger.info(cmd_str)
+    result = subprocess.run(
+        cmd_str,
+        shell=True,
+        executable='/bin/bash',
+        capture_output=True,
+    )
 
     if result.returncode != 0:
-        raise RuntimeError(result.stderr)
+        stdout = str(result.stdout, encoding='utf8')
+        stderr = str(result.stderr, encoding='utf8')
+        output = f'===STDOUT===\n{stdout}\n\n===STDERRR===\n{stderr}'
+        raise exc.QgrSubprocessError(
+            f'Subprocess failed with output:\n\n{output}',
+        )
 
     return result
 
 
-def directory_size_bytes(dir_path):
-    """Return the size of the directory's contents in bytes."""
+def directory_contents(dir_path: Path) -> list[Path]:
     dir_path = Path(dir_path)
     if not dir_path.is_dir():
-        raise QgrRuntimeError(f'`dir_path` must be a directory. Got {dir_path}')
+        raise exc.QgrRuntimeError(f'`dir_path` must be a directory. Got {dir_path}')
 
-    contents = dir_path.glob('**/*')
+    return sorted(
+        dir_path.glob('**/*'),
+    )
+
+
+def directory_size_bytes(dir_path: Path):
+    """Return the size of the directory's contents in bytes."""
+    contents = directory_contents(dir_path)
     total_size = 0
     for content in contents:
         total_size += content.stat().st_size
@@ -228,5 +279,25 @@ def directory_size_bytes(dir_path):
     return total_size
 
 
-def datasource_dirname(*, dataset_id: str, source_id: str) -> str:
-    return f'{dataset_id}.{source_id}'
+def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
+    return f'{dataset_id}.{asset_id}'
+
+
+def vector_or_raster(layer_node: LayerNode) -> QgsLayerType:
+    layer_cfg = layer_node.layer_cfg
+    if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
+        return PROVIDER_LAYERTYPE_MAPPING[layer_cfg.input.asset.provider]
+    else:
+        layer_path = get_final_layer_filepath(layer_node)
+        return _vector_or_raster_from_fp(layer_path)
+
+
+def _vector_or_raster_from_fp(fp: Path) -> QgsLayerType:
+    if fp.suffix == '.tif':
+        return 'Raster'
+    elif fp.suffix == '.gpkg':
+        return 'Vector'
+    else:
+        raise exc.QgrQgsLayerError(
+            f'Unexpected extension: {fp}. Expected .tif or .gpkg.',
+        )

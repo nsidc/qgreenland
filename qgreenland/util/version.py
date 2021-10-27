@@ -17,8 +17,7 @@ def _select_version_tags(tags):
     return [t for t in tags if VERSION_REGEX.match(t)]
 
 
-# TODO: In Python 3.9, @functools.cache() is an alias for this.
-@functools.lru_cache(maxsize=None)
+@functools.cache
 def get_build_version():
     """Generate a useful version string for a QGreenland build.
 
@@ -50,7 +49,7 @@ def get_build_version():
     version_tags = _select_version_tags(tags)
     if len(version_tags) > 1:
         raise exc.QgrVersionError(
-            f'Can not determine desired version from tags: {tags}'
+            f'Can not determine desired version from tags: {tags}',
         )
 
     if len(version_tags) == 1:

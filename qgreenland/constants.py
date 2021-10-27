@@ -1,46 +1,59 @@
 import os
 from enum import Enum
+from pathlib import Path
 
-from qgreenland.util.version import get_build_version, version_is_full_release
+from qgreenland._typing import (
+    QgsLayerProviderType,
+    QgsLayerType,
+)
+from qgreenland.util.version import (
+    get_build_version,
+    version_is_full_release,
+)
 
 PROJECT = 'QGreenland'
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 
-PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
-PROJECT_DIR = os.path.abspath(os.path.join(PACKAGE_DIR, os.pardir))
-INPUT_DIR = '/input'
-DATA_DIR = '/luigi/data'
-PRIVATE_ARCHIVE_DIR = '/private-archive'
-RELEASES_DIR = os.path.join(DATA_DIR, 'release')
-WIP_DIR = os.path.join(DATA_DIR, 'luigi-wip')
-ASSETS_DIR = os.path.join(PACKAGE_DIR, 'assets')
-LOCALDATA_DIR = os.path.join(ASSETS_DIR, 'local_data')
-TEST_DIR = os.path.join(PACKAGE_DIR, 'test')
-SCRIPTS_DIR = os.path.join(PROJECT_DIR, 'scripts')
+PACKAGE_DIR = Path(__file__).parent
+PROJECT_DIR = PACKAGE_DIR.parent
+INPUT_DIR = Path('/input')
+DATA_DIR = Path('/luigi/data')
+PRIVATE_ARCHIVE_DIR = Path('/private-archive')
+RELEASES_DIR = DATA_DIR / 'release'
+RELEASES_LAYERS_DIR = RELEASES_DIR / 'layers'
+WIP_DIR = DATA_DIR / 'luigi-wip'
+ANCILLARY_DIR = PACKAGE_DIR / 'ancillary'
+TEMPLATES_DIR = ANCILLARY_DIR / 'templates'
+ASSETS_DIR = PACKAGE_DIR / 'assets'
+SCRIPTS_DIR = PROJECT_DIR / 'scripts'
 
 # TODO: Extract to function in another module to remove constants dependency on
 # get_build_version, version_is_full_release
 if version_is_full_release(version := get_build_version()):
-    RELEASE_DIR = os.path.join(RELEASES_DIR, version)
+    RELEASE_DIR = RELEASES_DIR / version
 else:
-    RELEASE_DIR = os.path.join(RELEASES_DIR, 'dev', version)
+    RELEASE_DIR = RELEASES_DIR / 'dev' / version
 
-CONFIG_DIR = os.path.join(PACKAGE_DIR, 'config')
-CONFIG_SCHEMA_DIR = os.path.join(CONFIG_DIR, 'schema')
+CONFIG_DIR = PACKAGE_DIR / 'config'
+LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 
 # TMP_DIR is the same as WIP_DIR because os.rename doesn't allow cross-mount
 # renaming. Make it a subdir?
 TMP_DIR = WIP_DIR
 
-# Output target file of the task just before the ZipQGreenland task.
-# Presence indicates the project is ready to be zipped for release.
-ZIP_TRIGGERFILE = os.path.join(WIP_DIR, 'READY_TO_ZIP')
-
-REQUEST_TIMEOUT = 20
+# In seconds. See
+# https://2.python-requests.org/en/master/user/quickstart/#timeouts
+REQUEST_TIMEOUT = 30
 
 # URS stuff
 URS_COOKIE = 'urs_user_already_logged'
+
+PROVIDER_LAYERTYPE_MAPPING: dict[QgsLayerProviderType, QgsLayerType] = {
+    'gdal': 'Raster',
+    'wms': 'Raster',
+    'wfs': 'Vector',
+}
 
 
 class TaskType(Enum):
@@ -51,7 +64,7 @@ class TaskType(Enum):
     FETCH = INPUT_DIR
 
     # For still-processing data in temporary directory structure.
-    WIP = os.path.join(WIP_DIR, 'wip')
+    WIP = WIP_DIR / 'wip'
 
     # For processed QGreenland data in its final directory structure.
-    FINAL = os.path.join(WIP_DIR, f'{PROJECT}')
+    FINAL = WIP_DIR / PROJECT

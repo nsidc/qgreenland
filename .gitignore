@@ -6,3 +6,12 @@ qgis-data/Quantarctica*
 __pycache__
 .env
 logs/
+appdata/
+docker-compose.override.yml
+
+# Vim swapfiles
+.*.swp
+
+# Ctags
+/tags
+/tags.lock

@@ -1,70 +1,68 @@
 import copy
-import os
+from unittest.mock import patch
 
+import pytest
 import qgis.core as qgc
 
-from qgreenland.constants import PACKAGE_DIR
-from qgreenland.util import qgis
-
-mock_layer_cfg = {
-    'title': 'Example Raster',
-    'dataset': {
-        'access_method': 'http',
-        'metadata': {
-            'title': 'Example Dataset',
-            'abstract': 'Example abstract',
-            'citation': {
-                'text': 'NSIDC 2020',
-                'url': 'https://nsidc.org'
-            }
-        }
-    }
-}
+import qgreenland.exceptions as exc
+import qgreenland.util.qgis.layer as qgl
+import qgreenland.util.qgis.metadata as qgm
+import qgreenland.util.qgis.project as prj
+from qgreenland.test.constants import (
+    MOCK_LAYERS_DIR,
+    MockTaskType,
+)
 
 
-def test_create_raster_map_layer():
-    mock_raster_path = os.path.join(
-        PACKAGE_DIR,
-        'test',
-        'data',
-        'example.tif'
-    )
+def test_make_map_layer_online(setup_teardown_qgis_app, online_layer_node):
+    result = qgl.make_map_layer(online_layer_node)
 
-    result = qgis.create_raster_map_layer(mock_raster_path, mock_layer_cfg)
+    assert 'https://demo.mapserver.org' in result.source()
+    assert result.dataProvider().name() == 'wms'
+    assert result.name() == online_layer_node.layer_cfg.title
 
-    # Assert that the result is a a raster layer
+
+@patch(
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
+)
+def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
+    result = qgl.make_map_layer(raster_layer_node)
+
+    # The result is a a raster layer
     assert isinstance(result, qgc.QgsRasterLayer)
 
     # Has the expected path to the data on disk.
-    assert result.source() == mock_raster_path
+    expected_raster_path = (
+        MOCK_LAYERS_DIR / 'Group' / 'Subgroup' / 'Example raster'
+        / 'example.tif'
+    )
+    assert result.source() == str(expected_raster_path)
 
     # With the expected shape.
     result_shape = (result.dataProvider().xSize(), result.dataProvider().ySize())
     expected_shape = (2, 2)
     assert result_shape == expected_shape
 
-    # Assert that the title is correctly set.
-    assert result.name() == mock_layer_cfg['title']
+    # The title is correctly set.
+    assert result.name() == raster_layer_node.layer_cfg.title
 
 
-def test__add_layer_metadata():
-    mock_raster_path = os.path.join(
-        PACKAGE_DIR,
-        'test',
-        'data',
-        'example.tif'
-    )
+@patch(
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
+)
+def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
+    mock_raster_layer = qgl.make_map_layer(raster_layer_node)
 
-    mock_raster_layer = qgis.create_raster_map_layer(mock_raster_path, mock_layer_cfg)
-
-    qgis._add_layer_metadata(mock_raster_layer, mock_layer_cfg)
+    qgm.add_layer_metadata(mock_raster_layer, raster_layer_node.layer_cfg)
 
     # The abstract gets set with the value returned by `qgis.build_abstract`.
     assert mock_raster_layer.metadata().abstract() == \
-        qgis.build_layer_abstract(mock_layer_cfg)
+        qgm.build_layer_abstract(raster_layer_node.layer_cfg)
 
     actual_title = mock_raster_layer.metadata().title()
-    expected_title = mock_layer_cfg['title']
+    expected_title = raster_layer_node.layer_cfg.title
     assert actual_title == expected_title
 
     # Sets the spatial extent based on the the layer extent.
@@ -76,8 +74,8 @@ def test__add_layer_metadata():
     assert expected_extent == meta_extent.bounds.toRectangle()
 
 
-def test__build_dataset_description():
-    actual = qgis._build_dataset_description(mock_layer_cfg)
+def test__build_dataset_description(raster_layer_cfg):
+    actual = qgm._build_dataset_description(raster_layer_cfg)
     expected = """Example Dataset
 
 Example abstract"""
@@ -85,8 +83,8 @@ Example abstract"""
     assert actual == expected
 
 
-def __build_dataset_citation():
-    actual = qgis._build_dataset_citation(mock_layer_cfg)
+def __build_dataset_citation(raster_layer_cfg):
+    actual = qgm._build_dataset_citation(raster_layer_cfg)
     expected = """Citation:
 NSIDC 2020
 
@@ -96,25 +94,9 @@ https://nsidc.org"""
     assert actual == expected
 
 
-def test__build_layer_abstract():
-    actual = qgis.build_layer_abstract(mock_layer_cfg)
-    expected = """Example Dataset
-
-Example abstract
-
-Citation:
-NSIDC 2020
-
-Citation URL:
-https://nsidc.org"""
-
-    assert actual == expected
-
-
-def test_build_abstract_with_description():
-    mock_cfg = copy.deepcopy(mock_layer_cfg)
-    mock_cfg['description'] = 'Example layer description'
-    actual = qgis.build_layer_abstract(mock_cfg)
+def test_build_abstract(raster_layer_cfg):
+    mock_cfg = copy.deepcopy(raster_layer_cfg)
+    actual = qgm.build_layer_abstract(mock_cfg)
     expected = """Example layer description
 
 === Original Data Source ===
@@ -129,3 +111,25 @@ Citation URL:
 https://nsidc.org"""
 
     assert actual == expected
+
+
+@patch(
+    'qgreenland.util.misc.TaskType',
+    new=MockTaskType,
+)
+def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):
+    # Test that _add_layers_and_groups works without error
+    project = qgc.QgsProject.instance()
+    prj._add_layers_and_groups(project, raster_layer_node.root)
+    added_layers = list(project.mapLayers().values())
+    assert len(added_layers) == 1
+    assert added_layers[0].name() == 'Example raster'
+
+    # Clear the project for the next test...
+    project.clear()
+
+    # Test that an exception is raised when parent groups of a layer are not
+    # created first
+    with pytest.raises(exc.QgrQgsLayerTreeGroupError):
+        prj._add_layers_and_groups(project, raster_layer_node)
+    project.clear()

@@ -23,3 +23,15 @@ large value in *both* files:
 ```
 DefaultLimitNOFILE=20480
 ```
+
+
+# QGIS won't start on OSX Catalina
+
+QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of
+this app needs to update it to work with this version of macOS. Contact the
+developer for more information.`, then, in your OSX menus, try:
+
+- "Security and Privacy"
+- "Allow apps downloaded from..."
+- "App Store and identified developers"
+- Locate QGIS here and select "Open anyway"

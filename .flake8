@@ -6,6 +6,17 @@ max-complexity = 8
 application_import_names = qgreenland
 import_order_style = pycharm
 
-# D1: Ignore errors requiring docstrings on everything
+# D1: Ignore errors requiring docstrings on everything.
 # W503: Line breaks should occur after the binary operator to keep all variable names aligned.
-ignore = D1,W503
+# E731: Lambda assignments are OK, use your best judgement.
+ignore = D1,W503,E731
+
+# FS003: f-string missing prefix. Useful for config templates.
+# E501: Line too long. Long strings, e.g. URLs, are common in config.
+per-file-ignores =
+  qgreenland/test/util/test_config.py: FS003
+  qgreenland/test/util/test_runtime_vars.py: FS003
+  qgreenland/config/helpers/**/*.py: FS003
+  qgreenland/config/layers/**/*.py: FS003, E501
+  qgreenland/config/datasets/**/*.py: FS003, E501
+  qgreenland/config/datasets/*.py: FS003, E501

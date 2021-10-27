@@ -1,0 +1,44 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="3.10.1-A Coruña">
+  <identifier></identifier>
+  <parentidentifier></parentidentifier>
+  <language></language>
+  <type></type>
+  <title>{{ title }}</title>
+  <abstract>{% if abstract %}{{ abstract }}{% endif %}</abstract>
+  <contact>
+    <name></name>
+    <organization></organization>
+    <position></position>
+    <voice></voice>
+    <fax></fax>
+    <email></email>
+    <role></role>
+  </contact>
+  <links/>
+  {% for provenance_str in provenance_list -%}<history>{{ provenance_str }}</history>{%- endfor %}
+  <fees></fees>
+  <rights></rights>
+  <encoding></encoding>
+  <crs>
+    <spatialrefsys>
+      <proj4>{{ crs_proj4_str }}</proj4>
+      <srsid>{{ crs_srsid }}</srsid>
+      <srid>{{ crs_postgis_srid }}</srid>
+      <authid>{{ crs_authid }}</authid>
+      <description>{{ crs_description }}</description>
+      <projectionacronym>{{ crs_projection_acronym }}</projectionacronym>
+      <ellipsoidacronym>{{ crs_ellipsoid_acronym }}</ellipsoidacronym>
+      <geographicflag>{{ crs_is_geographic }}</geographicflag>
+    </spatialrefsys>
+  </crs>
+  <extent>
+    <spatial minx="{{ minx }}" miny="{{ miny }}" maxx="{{ maxx }}"  maxy="{{ maxy }}" dimensions="2" crs="{{ crs_authid }}" maxz="0" minz="0"/>
+    <temporal>
+      <period>
+        <start></start>
+        <end></end>
+      </period>
+    </temporal>
+  </extent>
+</qgis>

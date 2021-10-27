@@ -3,6 +3,21 @@ version: 2
 setup: &setup
   docker:
     - image: continuumio/miniconda3:4.10.3
+  environment:
+    # QGIS complains when setting up an QgsApplicatoin if `QT_QPA_PLATFORM` is not
+    # set to `offscreen`:
+    #     qt.qpa.xcb: could not connect to display
+    #     qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even
+    #     though it was found.
+    #     This application failed to start because no Qt
+    #     platform plugin could be initialized. Reinstalling the application
+    #     may fix this problem.
+    #
+    #     Available platform plugins are: eglfs, minimal, minimalegl,
+    #     offscreen, vnc, webgl, xcb.
+    #
+    #     Fatal Python error: Aborted
+    QT_QPA_PLATFORM: offscreen
   working_directory: ~/qgreenland
 
 jobs:
@@ -21,7 +36,7 @@ jobs:
           command: |
             conda env create --quiet -f environment-lock.yml
             conda init bash
-            /bin/bash --login -c "conda activate qgreenland && inv test"
+            /bin/bash --login -c "conda activate qgreenland && inv test.ci"
 
   trigger_build:
     <<: *setup

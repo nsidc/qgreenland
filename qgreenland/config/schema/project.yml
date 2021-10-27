@@ -1,4 +1,0 @@
-crs: str(required=True)
-boundaries:
-  background: str(required=True)
-  data: str(required=True)

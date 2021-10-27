@@ -1,3 +1,6 @@
 #!/bin/bash
+set -e
 
-docker-compose exec luigi ./tasks/qgreenland/qgreenland/util/cleanup.py "$@"
+THIS_DIR="$( cd "$(dirname "$0")"; pwd -P )"
+
+"$THIS_DIR"/container_cli.sh cleanup "$@"

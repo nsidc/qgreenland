@@ -1,0 +1,112 @@
+{
+  "2010": {
+    "maximum": {
+      "band_num": 14,
+      "date_range": "April 2-8"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 17-23"
+    }
+  },
+  "2011": {
+    "maximum": {
+      "band_num": 10,
+      "date_range": "March 5-11"
+    },
+    "minimum": {
+      "band_num": 37,
+      "date_range": "September 10-16"
+    }
+  },
+  "2012": {
+    "maximum": {
+      "band_num": 12,
+      "date_range": "March 18-24"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 16-22"
+    }
+  },
+  "2013": {
+    "maximum": {
+      "band_num": 11,
+      "date_range": "March 12-18"
+    },
+    "minimum": {
+      "band_num": 37,
+      "date_range": "September 10-16"
+    }
+  },
+  "2014": {
+    "maximum": {
+      "band_num": 12,
+      "date_range": "March 19-25"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 17-23"
+    }
+  },
+  "2015": {
+    "maximum": {
+      "band_num": 8,
+      "date_range": "February 19-25"
+    },
+    "minimum": {
+      "band_num": 36,
+      "date_range": "September 3-9"
+    }
+  },
+  "2016": {
+    "maximum": {
+      "band_num": 12,
+      "date_range": "March 18-24"
+    },
+    "minimum": {
+      "band_num": 37,
+      "date_range": "September 9-15"
+    }
+  },
+  "2017": {
+    "maximum": {
+      "band_num": 10,
+      "date_range": "March 5-11"
+    },
+    "minimum": {
+      "band_num": 37,
+      "date_range": "September 10-16"
+    }
+  },
+  "2018": {
+    "maximum": {
+      "band_num": 11,
+      "date_range": "March 12-18"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 17-23"
+    }
+  },
+  "2019": {
+    "maximum": {
+      "band_num": 11,
+      "date_range": "March 12-18"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 17-23"
+    }
+  },
+  "2020": {
+    "maximum": {
+      "band_num": 10,
+      "date_range": "March 4-10"
+    },
+    "minimum": {
+      "band_num": 38,
+      "date_range": "September 16-22"
+    }
+  }
+}

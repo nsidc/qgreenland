@@ -2,27 +2,31 @@
 # available for our desired version. `environment.yml` specifies the actual
 # version we use.
 FROM axiom/docker-luigi:2.8.13
+# TODO: Build image from miniforge/minimamba
+
+RUN conda install mamba~=0.15.2
 
 # `libgl1-mesa-glx` is required for qgis to work
 # `unrar` is required for layer pipelines
 # `git` is required for analyzing the current version
-RUN apt-get update
-RUN apt-get install -y libgl1-mesa-glx \
-                       unrar \
-                       git
+RUN apt-get update && \
+  apt-get install -y \
+  libgl1-mesa-glx \
+  unrar \
+  git
 
 # TODO install to `qgreenland` specific environment. Activate in Dockerfile if
 # possible.
 COPY environment-lock.yml .
-RUN conda env update --file environment-lock.yml --name base
+RUN mamba env update --file environment-lock.yml --name base
 
-# Create a dedicated env for shelling out to gdal
-COPY environment.gdal.yml .
-RUN conda env create --file environment.gdal.yml
+# Create a dedicated env for shelling out commands
+COPY environment.cmd.yml .
+RUN mamba env create --file environment.cmd.yml
 
 # Use this method to install to non-root? Need to edit luigid.sh...
 # COPY environment.yml .
-# RUN conda env create
+# RUN mamba env create
 # ENV PATH="/something/bin:$PATH"
 
 # It's probably better to use the `conda run` method if we're editing luigid.sh

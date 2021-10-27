@@ -1,9 +1,23 @@
+version: '3'
+
 services:
+
+  luigi:
+    volumes:
+      # Code
+      - ./:/luigi/tasks/qgreenland:rw
+      # Luigi artifacts
+      - ./luigi/conf:/etc/luigi:ro
+      - ./luigi/state:/luigi/state:rw
+      # Data
+      - ./appdata/qgreenland:/luigi/data:rw
+      - ./appdata/qgreenland-input-cache:/input:rw
+      - ./appdata/qgreenland-private-archive:/private-archive/:ro
 
   # Use a local log directory
   webserver:
     volumes:
-      - /share/appdata/qgreenland/release/:/usr/share/nginx/html/:ro
+      - ./appdata/qgreenland/release/:/usr/share/nginx/html/:ro
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./logs:/logs
