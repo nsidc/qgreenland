@@ -14,6 +14,7 @@ THIS_DIR = Path(__file__).resolve().parent
 CONFIG_DIR = THIS_DIR.parent.parent / 'config'
 _CONFIG: Optional[Config] = None
 
+
 def init_config(
     *,
     include_patterns: tuple[str, ...] = (),
