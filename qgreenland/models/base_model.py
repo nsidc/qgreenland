@@ -34,26 +34,17 @@ class QgrBaseModel(BaseModel):
     @validator('*')
     @classmethod
     def validate_id_fields(cls, value, field):
-        try:
-            if field.name != 'id':
-                return value
+        if field.name != 'id':
+            return value
 
-            if not value:
-                breakpoint()
-                ...
+        regex = re.compile(r'^[a-z0-9_]+$')
+        if not regex.match(value):
+            raise exc.QgrInvalidConfigError(
+                'Only lowercase alphanumeric characters or underscores are'
+                f' permitted in "id" fields. Received: {value}',
+            )
 
-            regex = re.compile(r'^[a-z0-9_]+$')
-            if '/' in value:
-                breakpoint()
-            if not regex.match(value):
-                raise exc.QgrInvalidConfigError(
-                    'Only lowercase alphanumeric characters or underscores are'
-                    f' permitted in "id" fields. Received: {value}',
-                )
-
-        except Exception as e:
-            breakpoint()
-            ...
+        return value
 
     class Config:
         # Throw an error if any unexpected attrs are provided. default: 'ignore'
