@@ -1,4 +1,4 @@
-from qgreenland.config.datasets.natural_earth import background as background_dataset
+from qgreenland.config.datasets.background import background as background_dataset
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
