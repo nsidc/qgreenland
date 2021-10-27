@@ -1,7 +1,6 @@
 import click
 
 from qgreenland.cli.cleanup import cleanup
-from qgreenland.cli.config_migrate import config_migrate
 from qgreenland.cli.fetch import fetch
 from qgreenland.cli.run import run
 
@@ -11,7 +10,6 @@ def cli():
     ...
 
 
-cli.add_command(config_migrate)
 cli.add_command(cleanup)
 cli.add_command(run)
 cli.add_command(fetch)
