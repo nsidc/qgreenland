@@ -10,24 +10,21 @@ def decompress_step(
     decompress_type: Literal['unzip', '7z', 'gzip'] = 'unzip',
     decompress_contents_mask: str = '',
 ) -> ConfigLayerCommandStep:
+    args: list[str]
     if decompress_type == 'unzip':
-        return ConfigLayerCommandStep(
-            args=[
-                'unzip',
-                input_file,
-                '-d', '{output_dir}',
-                decompress_contents_mask,
-            ],
-        )
+        args = [
+            'unzip',
+            input_file,
+            '-d', '{output_dir}',
+            decompress_contents_mask,
+        ]
     elif decompress_type == '7z':
-        return ConfigLayerCommandStep(
-            args=[
-                '7z',
-                'x', input_file,
-                '-o{output_dir}',
-                decompress_contents_mask,
-            ],
-        )
+        args = [
+            '7z',
+            'x', input_file,
+            '-o{output_dir}',
+            decompress_contents_mask,
+        ]
     elif decompress_type == 'gzip':
         if decompress_contents_mask:
             raise NotImplementedError((
@@ -35,17 +32,19 @@ def decompress_step(
                 ' the `gzip` decompression type.'
             ))
 
-        return ConfigLayerCommandStep(
-            args=[
-                'cp', input_file, '{output_dir}/',
-                '&&',
-                'gzip',
-                '-d',
-                '{output_dir}/*.gz',
-            ],
-        )
-
+        args = [
+            'cp', input_file, '{output_dir}/',
+            '&&',
+            'gzip',
+            '-d',
+            '{output_dir}/*.gz',
+        ]
     else:
         raise NotImplementedError(
             f'Unexpected decompress type: {decompress_type}.',
         )
+
+    return ConfigLayerCommandStep(
+        id=f'decompress-{decompress_type}',
+        args=args,
+    )

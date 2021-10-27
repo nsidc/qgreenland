@@ -1,19 +1,23 @@
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import Union
+from typing import Optional, Union
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalStr
 
 
 class ConfigLayerStep(ABC):
+    name: Optional[str]
+    type: str
+
     @abstractmethod
     def provenance(self) -> str:
         pass
 
 
 class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
-    type: str = 'command'
+    # TODO: Validate contains no spaces or slashes
+    id: str = 'command'
 
     args: list[EvalStr]
 

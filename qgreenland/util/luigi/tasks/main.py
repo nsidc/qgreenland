@@ -21,7 +21,6 @@ from qgreenland.util.tree import leaf_lookup
 
 
 class QgrLayerTask(luigi.Task):
-    # TODO: DRY
     requires_task = luigi.Parameter()
     layer_id = luigi.Parameter()
 
@@ -73,12 +72,16 @@ class ChainableTask(QgrLayerTask):
         does not uniquely ID a step + layer combination.
         """
         first_part = f'{self.step_number:02}-{self.step.type}'
-        last_part = (
-            f'-{self.step.args[0]}'
-            if self.step.type == 'command'
-            else 'TODO'
-        )
-        return f'{first_part}{last_part}'
+        last_part: str
+
+        if self.step.id:
+            last_part = self.step.id
+        elif self.step.type == 'command':
+            last_part = self.step.args[0]
+        else:
+            last_part = 'TODO'
+
+        return f'{first_part}-{last_part}'
 
     def output(self):
         """Define a directory for the step's behavior to write things into.
@@ -184,3 +187,7 @@ def steps_to_provenance_text(steps: list[AnyStep]) -> str:
     steps_as_text = [step.provenance for step in steps]
 
     return '\n\n'.join(steps_as_text)
+
+
+def _step_id():
+    ...
