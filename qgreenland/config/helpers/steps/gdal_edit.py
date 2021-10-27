@@ -9,7 +9,7 @@ def gdal_edit(
 ) -> list[ConfigLayerCommandStep]:
 
     return [ConfigLayerCommandStep(
-        id='gdal/edit',
+        id='gdal_edit',
         args=[
             'cp', input_file, output_file,
             '&&',

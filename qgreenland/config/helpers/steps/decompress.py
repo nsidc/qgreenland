@@ -45,6 +45,6 @@ def decompress_step(
         )
 
     return ConfigLayerCommandStep(
-        id=f'decompress-{decompress_type}',
+        id=f'decompress_{decompress_type}',
         args=args,
     )
