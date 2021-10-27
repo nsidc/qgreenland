@@ -1,3 +1,11 @@
+"""Generate sea ice age parameters file.
+
+Must be executed when the sea ice age dataset is updated.
+
+Save the output by running the following from the repo root:
+    OUT_PATH=$PWD/qgreenland/config/helpers/ancillary/sea_ice_age_params.json
+    docker exec luigi ./scripts/data/make_sea_ice_age_params.py > $OUT_PATH
+"""
 import datetime as dt
 import functools
 import json
@@ -10,10 +18,7 @@ from cftime import num2pydate
 from netCDF4 import Dataset
 
 from qgreenland.config.datasets.seaice import seaice_age as dataset
-from qgreenland.constants import CONFIG_DIR, INPUT_DIR
-
-
-PARAMS_FP = CONFIG_DIR / 'helpers/ancillary/sea_ice_age_params.json'
+from qgreenland.constants import INPUT_DIR
 
 
 @functools.cache
@@ -104,16 +109,11 @@ def make_seaice_age_layers_params() -> None:
             },
         }
 
-    with open(PARAMS_FP, 'w') as f:
-        f.write(
-            json.dumps(
-                layers_params,
-                indent=2,
-                sort_keys=True,
-            ),
-        )
-
-    print(f'Wrote {PARAMS_FP}.')
+        print(json.dumps(
+            layers_params,
+            indent=2,
+            sort_keys=True,
+        ))
 
 
 if __name__ == '__main__':
