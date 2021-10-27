@@ -17,7 +17,10 @@ class ConfigLayerStep(ABC):
 
 
 class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
+    # TODO: Why do I have to re-specify `id` when it's already defined in the
+    # ABC?
     id: Optional[str]
+
     type: str = 'command'
 
     args: list[EvalStr]
