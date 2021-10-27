@@ -13,7 +13,6 @@ class ConfigLayerStep(ABC):
 
 
 class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
-    # TODO: Remove the "type" field?
     type: str = 'command'
 
     args: list[EvalStr]
