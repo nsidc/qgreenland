@@ -393,6 +393,8 @@ def _matches_filters(
         exclude_manual_assets
         and type(candidate.input.asset) is ConfigDatasetManualAsset
     ):
+        # TODO: `included = True` instead? This would be more consistent with
+        # the "included or not excluded" behavior the patterns follow.
         return False
 
     if not (include_patterns or exclude_patterns):
