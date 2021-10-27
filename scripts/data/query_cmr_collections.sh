@@ -1,6 +1,6 @@
 #!/bin/bash
-# NOTE: the short name is part of ganule_ur: SC:RDBTS4.001:114194114
-#                                               ^^^^^^
+# NOTE: the short name is part of granule_ur: SC:RDBTS4.001:114194114
+#                                                ^^^^^^
 set -e
 
 if [ -z "$1" ]; then
