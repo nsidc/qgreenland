@@ -1,4 +1,5 @@
 import inspect
+import re
 from functools import cached_property
 from typing import Any
 
@@ -7,6 +8,8 @@ from pydantic import (
     Extra,
     validator,
 )
+
+import qgreenland.exceptions as exc
 
 
 class QgrBaseModel(BaseModel):
@@ -27,6 +30,30 @@ class QgrBaseModel(BaseModel):
         if isinstance(value, str):
             return inspect.cleandoc(value)
         return value
+
+    @validator('*')
+    @classmethod
+    def validate_id_fields(cls, value, field):
+        try:
+            if field.name != 'id':
+                return value
+
+            if not value:
+                breakpoint()
+                ...
+
+            regex = re.compile(r'^[a-z0-9_]+$')
+            if '/' in value:
+                breakpoint()
+            if not regex.match(value):
+                raise exc.QgrInvalidConfigError(
+                    'Only lowercase alphanumeric characters or underscores are'
+                    f' permitted in "id" fields. Received: {value}',
+                )
+
+        except Exception as e:
+            breakpoint()
+            ...
 
     class Config:
         # Throw an error if any unexpected attrs are provided. default: 'ignore'

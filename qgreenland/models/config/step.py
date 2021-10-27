@@ -7,7 +7,8 @@ from qgreenland.util.runtime_vars import EvalStr
 
 
 class ConfigLayerStep(ABC):
-    name: Optional[str]
+    id: Optional[str]
+
     type: str
 
     @abstractmethod
@@ -16,8 +17,8 @@ class ConfigLayerStep(ABC):
 
 
 class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
-    # TODO: Validate contains no spaces or slashes
-    id: str = 'command'
+    id: Optional[str]
+    type: str = 'command'
 
     args: list[EvalStr]
 
