@@ -1,6 +1,7 @@
 import json
 import logging
 from abc import ABC
+from collections import Counter
 from fnmatch import fnmatch
 from functools import cached_property
 from pathlib import Path
@@ -116,8 +117,6 @@ def leaf_lookup(
     tree: anytree.Node,
     target_node_name: str,
 ) -> LayerNode:
-    _check_for_duplicate_leaves(tree)
-
     matches = [
         leaf for leaf in tree.leaves
         if leaf.name == target_node_name
@@ -477,9 +476,15 @@ def _tree_from_dir(
 
 def _check_for_duplicate_leaves(tree: anytree.Node) -> None:
     all_layer_ids = [node.name for node in tree.leaves]
-    if len(set(all_layer_ids)) != len(all_layer_ids):
-        # TODO: Print duplicates
-        raise RuntimeError(f'Duplicate leaves found in tree: {tree.leaves}')
+    duplicates = [
+        i 
+        for i, count in Counter(all_layer_ids).items()
+        if count > 1
+    ]
+    if duplicates:
+        raise exc.QgrInvalidConfigError(
+            f'Duplicate layer_ids found: {duplicates}',
+        )
 
 
 def _prune_tree(tree: anytree.Node) -> None:

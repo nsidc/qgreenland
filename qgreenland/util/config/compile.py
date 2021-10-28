@@ -1,3 +1,4 @@
+from collections import Counter
 from functools import cache
 from pathlib import Path
 
@@ -23,6 +24,19 @@ def _get_python_module_filepaths(the_dir: Path) -> list[Path]:
     ]
 
 
+def _check_for_duplicate_dataset_ids(datasets: list[ConfigDataset]) -> None:
+    # TODO: DRY? Same as _check_for_duplicate_leaves
+    all_dataset_ids = [d.id for d in datasets]
+    duplicates = [
+        i for i, count in Counter(all_dataset_ids).items()
+        if count > 1
+    ]
+    if duplicates:
+        raise exc.QgrInvalidConfigError(
+            f'Duplicate dataset_ids found: {duplicates}',
+        )
+
+
 def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
     """Find and return all datasets in "`config_dir`/datasets"."""
     datasets_dir = config_dir / 'datasets'
@@ -31,6 +45,7 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
         dataset_fps,
         target_class=ConfigDataset,
     )
+    _check_for_duplicate_dataset_ids(datasets)
 
     return {dataset.id: dataset for dataset in datasets}
 
