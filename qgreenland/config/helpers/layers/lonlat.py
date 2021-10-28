@@ -43,10 +43,10 @@ def _make_lonlat_layer(
                 input_file='{input_dir}/' + f'{asset.filepath.eval().name}',
                 output_file='{output_dir}/' + f'{asset.filepath.eval().stem}.gpkg',
                 boundary_filepath=project.boundaries['background'].filepath,
-                ogr2ogr_args=(
+                ogr2ogr_args=[
                     '-segmentize',
                     f'{segment_max_distance}',
-                ),
+                ],
             ),
         ],
     )

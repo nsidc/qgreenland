@@ -11,8 +11,8 @@ def warp_and_cut(
     output_file,
     cut_file,
     resampling_method: ResamplingMethod = 'bilinear',
-    reproject_args=(),
-    cut_args=(),
+    reproject_args: list[str] = [],
+    cut_args: list[str] = [],
 ) -> list[ConfigLayerCommandStep]:
     reproject = ConfigLayerCommandStep(
         args=[

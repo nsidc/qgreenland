@@ -10,7 +10,7 @@ def warp(
     output_file: str,
     cut_file: EvalFilePath,
     resampling_method: ResamplingMethod = 'bilinear',
-    warp_args: tuple[str, ...] = (),
+    warp_args: list[str] = [],
 ) -> list[ConfigLayerCommandStep]:
 
     return [ConfigLayerCommandStep(
