@@ -37,7 +37,7 @@ _mock_online_asset_cfg = {
 mock_online_layer_cfg = {
     'id': 'example_online',
     'title': 'Example online',
-    'description': 'Example layer description',
+    'description': 'Example layer description.',
     'tags': ['foo', 'bar', 'baz'],
     'in_package': True,
     'input': {
@@ -58,7 +58,7 @@ _mock_http_asset_cfg = {
 mock_raster_layer_cfg = {
     'id': 'example_raster',
     'title': 'Example raster',
-    'description': 'Example layer description',
+    'description': 'Example layer description.',
     'tags': ['foo', 'bar', 'baz'],
     'in_package': True,
     'input': {

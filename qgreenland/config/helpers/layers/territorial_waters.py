@@ -60,7 +60,7 @@ LAYER_PARAMS = {
         'title': 'Fishing zone (polygon)',
         'description': (
             """Fishery limit. Regarding the fishery limit, reference is made to
-            Greenland Home Rule Parliament Act no 18 dated 31.10.1996"""
+            Greenland Home Rule Parliament Act no 18 dated 31.10.1996."""
         ),
         'input_filename': POLYGON_FILE,
         'layer_name': 'Boundary_fishzone',

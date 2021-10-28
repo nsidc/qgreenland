@@ -97,7 +97,7 @@ https://nsidc.org"""
 def test_build_abstract(raster_layer_cfg):
     mock_cfg = copy.deepcopy(raster_layer_cfg)
     actual = qgm.build_layer_abstract(mock_cfg)
-    expected = """Example layer description
+    expected = """Example layer description.
 
 === Original Data Source ===
 Example Dataset
