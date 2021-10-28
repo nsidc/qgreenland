@@ -20,7 +20,7 @@ from qgreenland.util.misc import (
     fetch_and_write_file,
     temporary_path_dir,
 )
-from qgreenland.util.misc import run_ogr_command
+from qgreenland.util.misc import run_qgr_command
 
 
 # TODO: call this 'FetchDataset'? 'FetchAsset'?
@@ -137,7 +137,7 @@ class FetchDataWithCommand(FetchTask):
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
-            run_ogr_command(
+            run_qgr_command(
                 interpolate_args(
                     self.asset_cfg.args,
                     output_dir=temp_path,
@@ -157,7 +157,7 @@ class FetchOgrRemoteData(FetchTask):
             url = self.asset_cfg.query_url
 
             ofile = Path(temp_path) / 'fetched.geojson'
-            run_ogr_command(
+            run_qgr_command(
                 [
                     'ogr2ogr',
                     '-oo', 'FEATURE_SERVER_PAGING=YES',

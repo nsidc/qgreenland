@@ -228,9 +228,8 @@ def get_final_layer_filepath(
     return layer_fp
 
 
-# TODO: Rename this function. It is generic to running commands, not specific to
-# "ogr".
-def run_ogr_command(cmd_list):
+def run_qgr_command(cmd_list):
+    """Execute the given `cmd_list` in the `qgreenland-cmd` conda env."""
     cmd = ['.', 'activate', 'qgreenland-cmd', '&&']
     cmd.extend(cmd_list)
 

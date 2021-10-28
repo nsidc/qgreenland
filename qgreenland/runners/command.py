@@ -1,6 +1,6 @@
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.command import interpolate_args
-from qgreenland.util.misc import run_ogr_command
+from qgreenland.util.misc import run_qgr_command
 
 
 def command_runner(
@@ -23,4 +23,4 @@ def command_runner(
     # TODO: What's an "ogr" command? Any command will work, this just runs the
     # command in our special "qgreenland-cmd" conda environment. Rename the
     # function to "run_conda_command"? ¯\_(ツ)_/¯
-    run_ogr_command(command_args)
+    run_qgr_command(command_args)
