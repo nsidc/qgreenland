@@ -1,4 +1,4 @@
-from qgreenland._typing import ResamplingMethod
+from qgreenland._typing import ResamplingMethod, StepArgs
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.runtime_vars import EvalFilePath
@@ -10,7 +10,7 @@ def warp(
     output_file: str,
     cut_file: EvalFilePath,
     resampling_method: ResamplingMethod = 'bilinear',
-    warp_args: list[str] = [],
+    warp_args: StepArgs = (),
 ) -> list[ConfigLayerCommandStep]:
 
     return [ConfigLayerCommandStep(

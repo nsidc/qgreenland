@@ -1,4 +1,4 @@
-from qgreenland._typing import ResamplingMethod
+from qgreenland._typing import ResamplingMethod, StepArgs
 from qgreenland.config.project import project
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
@@ -11,8 +11,8 @@ def warp_and_cut(
     output_file,
     cut_file,
     resampling_method: ResamplingMethod = 'bilinear',
-    reproject_args: list[str] = [],
-    cut_args: list[str] = [],
+    reproject_args: StepArgs = (),
+    cut_args: StepArgs = (),
 ) -> list[ConfigLayerCommandStep]:
     reproject = ConfigLayerCommandStep(
         args=[
