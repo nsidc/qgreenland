@@ -1,3 +1,4 @@
+from qgreenland._typing import StepArgs
 from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
@@ -5,7 +6,7 @@ def gdal_edit(
     *,
     input_file: str,
     output_file: str,
-    gdal_edit_args: list[str],
+    gdal_edit_args: StepArgs = (),
 ) -> list[ConfigLayerCommandStep]:
 
     return [ConfigLayerCommandStep(

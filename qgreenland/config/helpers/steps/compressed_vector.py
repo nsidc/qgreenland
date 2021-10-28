@@ -1,5 +1,6 @@
 from types import MappingProxyType
 
+from qgreenland._typing import StepArgs
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
@@ -22,8 +23,7 @@ def compressed_vector(
     output_file: str,
     vector_filename: str = '*.shp',
     decompress_step_kwargs=default_decompress_step_kwargs,
-    # TODO: boundary_filepath, ogr2ogr_args -> ogr2ogr_kwargs?
-    ogr2ogr_args: list[str] = [],
+    ogr2ogr_args: StepArgs = (),
     boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
 ) -> list[ConfigLayerCommandStep]:
     """Unzip a vector data file and reproject."""
