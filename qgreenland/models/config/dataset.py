@@ -2,7 +2,7 @@ from pydantic import Field, validator
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.asset import AnyAsset
-from qgreenland.models.validators import reusable_validator, validate_paragraph_text
+from qgreenland.util.model_validators import reusable_validator, validate_paragraph_text
 
 
 class ConfigDatasetCitation(QgrBaseModel):
