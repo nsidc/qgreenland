@@ -316,8 +316,21 @@ following process:
 Create new layer groups as needed, and then define your new layer in a Python
 file with a descriptive name within the appropriate layer group.
 
+It's recommended to use the CLI to create a dataset or layer template to help
+you along. In the below commands, replace filenames and paths with real ones.
 
-### Layer Requirements
+```
+./scripts/cli.sh config-template dataset > \
+  qgreenland/config/datasets/new_dataset.py
+./scripts/cli.sh config-template layer > \
+  qgreenland/config/layers/Group/Subgroup/new_layer.py
+```
+
+NOTE: You can use `./scripts/experimental/local_cli.sh` instead, which does not
+require the QGreenland docker stack to be running.
+
+
+### Layer requirements
 
 In order for a new dataset to be added to QGreenland, we strongly encourage
 public archival with OGC-compliant metadata. If data is not publicly archived
