@@ -1,6 +1,5 @@
 import datetime as dt
 import logging
-import os
 import subprocess
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -196,7 +195,7 @@ def _create_and_add_layer(
     project.addMapLayer(map_layer, addToLegend=False)
 
 
-def _get_qgs_prefix_path() -> str:
+def _get_qgs_prefix_path() -> Path:
     # The qgis prefix path is two directories above the qgis executable.
     # See:
     # https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
@@ -204,7 +203,7 @@ def _get_qgs_prefix_path() -> str:
         ['which', 'qgis'],
         stdout=subprocess.PIPE,
     ).stdout.decode('utf-8').strip('\n')
-    qgis_prefix_path = os.path.abspath(os.path.join(qgis_path, '..', '..'))
+    qgis_prefix_path = (Path(qgis_path) / '..' / '..').resolve()
 
     return qgis_prefix_path
 
@@ -224,7 +223,7 @@ def _setup_qgs_app() -> qgc.QgsApplication:
     # - Enables Qt support for fonts used in layer styles (labels)
     qgs = qgc.QgsApplication([], False)
     qgs.initQgis()
-    qgc.QgsApplication.setPrefixPath(qgis_prefix_path, True)
+    qgc.QgsApplication.setPrefixPath(str(qgis_prefix_path), True)
 
     return qgs
 
