@@ -71,17 +71,7 @@ class ChainableTask(QgrLayerTask):
         WARNING: Only uniquely identifies a _step_ in the context of a layer;
         does not uniquely ID a step + layer combination.
         """
-        first_part = f'{self.step_number:02}-{self.step.type}'
-        last_part: str
-
-        if self.step.id:
-            last_part = self.step.id
-        elif self.step.type == 'command':
-            last_part = self.step.args[0]
-        else:
-            last_part = 'TODO'
-
-        return f'{first_part}-{last_part}'
+        return f'{self.step_number:02}-{self.step.type}-{self.step.id}'
 
     def output(self):
         """Define a directory for the step's behavior to write things into.
