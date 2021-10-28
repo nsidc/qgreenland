@@ -31,6 +31,7 @@ timezones = ConfigLayer(
             ],
         ),
         ConfigLayerCommandStep(
+            id='ogr2ogr',
             args=[
                 'OGR_ENABLE_PARTIAL_REPROJECTION=True',
                 'ogr2ogr',

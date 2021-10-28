@@ -26,6 +26,7 @@ def ogr2ogr(
         init_args.append('OGR_ENABLE_PARTIAL_REPROJECTION=TRUE')
 
     return [ConfigLayerCommandStep(
+        id='ogr2ogr',
         args=init_args + [
             'ogr2ogr',
             *STANDARD_OGR2OGR_ARGS,

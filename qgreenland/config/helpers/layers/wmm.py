@@ -228,6 +228,7 @@ def unzip_and_reproject_wmm_vector(
     )
 
     reproject_with_sql = ConfigLayerCommandStep(
+        id='ogr2ogr',
         args=[
             'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
             'ogr2ogr',

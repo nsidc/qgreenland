@@ -41,6 +41,7 @@ def build_overviews(
     ]
 
     return [ConfigLayerCommandStep(
+        id='build_overviews',
         args=[
             *copy_into_place,
             '&&',

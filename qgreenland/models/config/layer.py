@@ -52,4 +52,7 @@ class ConfigLayer(QgrBaseModel):
                     'asset': {'id'},
                 },
             },
+            exclude={
+                'steps': {'__all__': {'id'}},
+            },
         )
