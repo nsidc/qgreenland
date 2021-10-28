@@ -183,8 +183,6 @@ def temporary_path_dir(target: luigi.Target) -> Iterator[str]:
         except Exception as e:
             shutil.rmtree(p)
             raise e
-        finally:
-            pass
     return
 
 
