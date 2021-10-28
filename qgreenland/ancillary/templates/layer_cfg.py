@@ -1,4 +1,6 @@
 # TODO: Cleanup all comments that aren't specific to your layer.
+# TODO: Delete the comment below:
+# type: ignore
 # TODO: Fill in and uncomment below:
 # from qgreenland.config.datasets.{your_dataset_module} import (
 #     {your_dataset_object} as dataset,
@@ -22,7 +24,7 @@ layer = ConfigLayer(
     # TODO: Fill in your layer title:
     title='Your layer title.',
     description=(
-      # TODO: Fill in your layer description:
+        # TODO: Fill in your layer description:
         """Your layer description."""
     ),
     # TODO: Fill in your layer tags:

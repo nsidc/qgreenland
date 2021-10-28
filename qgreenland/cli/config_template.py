@@ -1,9 +1,4 @@
-from fnmatch import fnmatch
-
 import click
-import requests
-import yaml
-from funcy import select
 
 from qgreenland.constants import TEMPLATES_DIR
 
