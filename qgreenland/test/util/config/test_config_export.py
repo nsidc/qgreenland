@@ -26,7 +26,7 @@ def test_export_config_manifest(full_cfg):
 === Original Data Source ===
 Example Dataset
 
-Example abstract
+Example abstract.
 
 Citation:
 NSIDC 2020
@@ -94,7 +94,7 @@ https://nsidc.org""",
 )
 def test_export_config_csv(full_cfg):
     common = {
-        'Data Source Abstract': 'Example abstract',
+        'Data Source Abstract': 'Example abstract.',
         'Data Source Citation': 'NSIDC 2020',
         'Data Source Citation URL': 'https://nsidc.org',
         'Data Source Title': 'Example Dataset',

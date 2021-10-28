@@ -44,7 +44,7 @@ pangaea_ground_temperature = ConfigDataset(
 
             QGreenland displays data at 10 km resolution.
 
-            Dataset update: 2019-04-01"""
+            Dataset update: 2019-04-01."""
         ),
         'citation': {
             'text': (

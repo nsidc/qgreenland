@@ -20,7 +20,7 @@ esa_cci_supraglacial_lakes = ConfigDataset(
         'title': 'ESA Greenland Ice Sheet CCI, Supraglacial Lakes from Sentinel-2',
         'abstract': (
             """Supraglacial Lake vectors for select areas of interest (AOI) on
-            the Greenland Ice Sheet produced using Sentinel-2
+            the Greenland Ice Sheet produced using Sentinel-2.
 
             Version 1.1 includes.
             AOI:
@@ -30,7 +30,7 @@ esa_cci_supraglacial_lakes = ConfigDataset(
             * 2019/05/01-2019/10/01
 
             For general background information see
-            http://esa-icesheets-greenland-cci.org"""
+            http://esa-icesheets-greenland-cci.org."""
         ),
         'citation': {
             'text': (
@@ -85,13 +85,13 @@ esa_cci_surface_elevation_change = ConfigDataset(
             Simonsen, S. B., and Sørensen, L. S. (2017) ‘Implications
             of changing scattering properties on Greenland ice sheet volume
             change from Cryosat-2 altimetry’, Remote Sensing of Environment.
-            Elsevier Inc., 190, pp. 207–216. DOI: 10.1016/j.rse.2016.12.012.
+            Elsevier Inc., 190, pp. 207–216. DOI: 10.1016/j.rse.2016.12.012 .
 
             Sørensen, L. S., Simonsen, S. B., Forsberg, R., Khvorostovsky, K.,
             Meister, R., and Engdahl, M. E. (2018) '25 years of elevation
             changes of the Greenland Ice Sheet from ERS, Envisat, and CryoSat-2
             radar altimetry', Earth and Planetary Science Letters, 495, pp.
-            234-241 DOI: 10.1016/j.epsl.2018.05.015"""
+            234-241 DOI: 10.1016/j.epsl.2018.05.015 ."""
         ),
         'citation': {
             'text': (

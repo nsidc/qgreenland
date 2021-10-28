@@ -3,10 +3,10 @@ from qgreenland.models.config.dataset import ConfigDatasetMetadata
 
 mock_meta = ConfigDatasetMetadata(
     title='mock',
-    abstract='mock',
+    abstract='mock.',
     citation={'text': 'mock', 'url': 'mock'},
 )
-expected = 'string content\n\nline 2\nmore'
+expected = 'string content\n\nline 2\nmore.'
 
 
 def test_indented_triple_quotes():
@@ -16,7 +16,7 @@ def test_indented_triple_quotes():
             """string content
 
             line 2
-            more"""
+            more."""
         ),
     }).abstract
 
@@ -30,7 +30,7 @@ def test_unindented_triple_quotes():
 string content
 
 line 2
-more""",
+more.""",
     }).abstract
 
     assert actual == expected
@@ -42,7 +42,7 @@ def test_weird_indented_triple_quotes():
         'abstract': """string content
 
         line 2
-        more
+        more.
         """,
     }).abstract
 

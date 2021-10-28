@@ -61,7 +61,7 @@ coastlines = ConfigDataset(
     metadata={
         'title': 'Natural Earth Coastlines (10m)',
         'abstract': (
-            """Natural Earth Coastlines (Public Domain)"""
+            """Natural Earth Coastlines (Public Domain)."""
         ),
         'citation': {
             'text': (

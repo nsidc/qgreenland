@@ -21,7 +21,7 @@ from qgreenland.util.tree import (
 
 _mock_metadata = {
     'title': 'Example Dataset',
-    'abstract': 'Example abstract',
+    'abstract': 'Example abstract.',
     'citation': {
         'text': 'NSIDC 2020',
         'url': 'https://nsidc.org',

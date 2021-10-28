@@ -2,6 +2,7 @@ from pydantic import Field, validator
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.asset import AnyAsset
+from qgreenland.models.validators import reusable_validator, validate_paragraph_text
 
 
 class ConfigDatasetCitation(QgrBaseModel):
@@ -18,6 +19,8 @@ class ConfigDatasetMetadata(QgrBaseModel):
     title: str
     abstract: str
     citation: ConfigDatasetCitation
+
+    _abstract_validator = reusable_validator('abstract', validate_paragraph_text)
 
 
 class ConfigDataset(QgrBaseModel):
