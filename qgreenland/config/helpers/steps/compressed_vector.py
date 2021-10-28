@@ -23,7 +23,7 @@ def compressed_vector(
     vector_filename: str = '*.shp',
     decompress_step_kwargs=default_decompress_step_kwargs,
     # TODO: boundary_filepath, ogr2ogr_args -> ogr2ogr_kwargs?
-    ogr2ogr_args: tuple[str, ...] = (),
+    ogr2ogr_args: list[str] = [],
     boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
 ) -> list[ConfigLayerCommandStep]:
     """Unzip a vector data file and reproject."""

@@ -24,7 +24,7 @@ def _make_hotosm_populated_places() -> ConfigLayer:
             *compressed_vector(
                 input_file='{input_dir}/hotosm_grl_populated_places_points_shp.zip',
                 output_file='{output_dir}/hotosm_populated_places.gpkg',
-                ogr2ogr_args=(
+                ogr2ogr_args=[
                     '-dialect', 'sqlite',
                     '-sql', (
                         '"SELECT'
@@ -37,7 +37,7 @@ def _make_hotosm_populated_places() -> ConfigLayer:
                         ' CAST(population AS INTEGER) as population'
                         ' FROM hotosm_grl_populated_places_points"'
                     ),
-                ),
+                ],
             ),
         ],
     )

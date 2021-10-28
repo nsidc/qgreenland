@@ -3,13 +3,13 @@ from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
-_stream_selection_ogr2ogr_args: tuple[str, ...] = (
+_stream_selection_ogr2ogr_args: list[str] = [
     '-dialect', 'sqlite',
     '-sql', (
         """\"SELECT * from streams
         WHERE GeometryType(geom) = 'LINESTRING' AND ST_NPoints(geom) > 1\""""
     ),
-)
+]
 
 _layer_params: dict[str, dict[str, str]] = {
     'ice_outlets': {
@@ -83,7 +83,7 @@ layers = [
                 input_file='{input_dir}/' + params['input_filename'],
                 output_file='{output_dir}/' + f'{layer_id}.gpkg',
                 ogr2ogr_args=(
-                    _stream_selection_ogr2ogr_args if 'streams' in layer_id else ()
+                    _stream_selection_ogr2ogr_args if 'streams' in layer_id else []
                 ),
             ),
         ],
