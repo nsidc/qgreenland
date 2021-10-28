@@ -10,7 +10,12 @@ def reusable_validator(name: str, validation_func: Callable[..., Any]) -> classm
 
 def validate_paragraph_text(text: str):
     # TODO: make this validator always run after `clean_all_string_fields`?
-    if not inspect.cleandoc(text).endswith('.'):
+    _text = inspect.cleandoc(text)
+
+    if not _text[0].isupper():
+        raise ValueError('Paragraph text must begin with an upper-case letter.')
+
+    if not _text.endswith('.'):
         raise ValueError('Paragraph text must end with a period.')
 
     return text

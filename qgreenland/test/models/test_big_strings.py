@@ -3,17 +3,17 @@ from qgreenland.models.config.dataset import ConfigDatasetMetadata
 
 mock_meta = ConfigDatasetMetadata(
     title='mock',
-    abstract='mock.',
+    abstract='Mock.',
     citation={'text': 'mock', 'url': 'mock'},
 )
-expected = 'string content\n\nline 2\nmore.'
+expected = 'String content\n\nline 2\nmore.'
 
 
 def test_indented_triple_quotes():
     actual = ConfigDatasetMetadata(**{
         **mock_meta.dict(),
         'abstract': (
-            """string content
+            """String content
 
             line 2
             more."""
@@ -27,7 +27,7 @@ def test_unindented_triple_quotes():
     actual = ConfigDatasetMetadata(**{
         **mock_meta.dict(),
         'abstract': """
-string content
+String content
 
 line 2
 more.""",
@@ -39,7 +39,7 @@ more.""",
 def test_weird_indented_triple_quotes():
     actual = ConfigDatasetMetadata(**{
         **mock_meta.dict(),
-        'abstract': """string content
+        'abstract': """String content
 
         line 2
         more.
