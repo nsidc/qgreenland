@@ -78,7 +78,7 @@ def test__build_dataset_description(raster_layer_cfg):
     actual = qgm._build_dataset_description(raster_layer_cfg)
     expected = """Example Dataset
 
-Example abstract"""
+Example abstract."""
 
     assert actual == expected
 
@@ -97,12 +97,12 @@ https://nsidc.org"""
 def test_build_abstract(raster_layer_cfg):
     mock_cfg = copy.deepcopy(raster_layer_cfg)
     actual = qgm.build_layer_abstract(mock_cfg)
-    expected = """Example layer description
+    expected = """Example layer description.
 
 === Original Data Source ===
 Example Dataset
 
-Example abstract
+Example abstract.
 
 Citation:
 NSIDC 2020

@@ -17,16 +17,16 @@ from qgreenland.util.config.export import (
 )
 def test_export_config_manifest(full_cfg):
     common = {
-        'description': 'Example layer description',
+        'description': 'Example layer description.',
         # TODO: Generate this with imported function? This should be tested
         # by itself elsewhere, so there's no need to test the expected output
         # here too.
-        'layer_details': """Example layer description
+        'layer_details': """Example layer description.
 
 === Original Data Source ===
 Example Dataset
 
-Example abstract
+Example abstract.
 
 Citation:
 NSIDC 2020
@@ -94,12 +94,12 @@ https://nsidc.org""",
 )
 def test_export_config_csv(full_cfg):
     common = {
-        'Data Source Abstract': 'Example abstract',
+        'Data Source Abstract': 'Example abstract.',
         'Data Source Citation': 'NSIDC 2020',
         'Data Source Citation URL': 'https://nsidc.org',
         'Data Source Title': 'Example Dataset',
         'Group': 'Group',
-        'Layer Description': 'Example layer description',
+        'Layer Description': 'Example layer description.',
         'Layer Size': '0 Bytes',
         'Layer Size Bytes': '0',
         'Subgroup': 'Subgroup',
@@ -126,4 +126,5 @@ def test_export_config_csv(full_cfg):
             'Layer Size Bytes': '619',
         },
     ]
+
     assert actual == expected
