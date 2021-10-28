@@ -121,54 +121,6 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
         return fp
 
 
-def find_in_dir_by_pattern(path, *, pattern):
-    """Find all files in a directory with matching pattern.
-
-    Expects an extension with the dot included, e.g. `pattern=".shp"`.
-    """
-    matches = glob.glob(os.path.join(path, '**', pattern),
-                        recursive=True)
-
-    return [os.path.abspath(os.path.join(path, f)) for f in matches]
-
-
-def find_single_file_by_name(path, *, filename):
-    """Return a single file with matching name.
-
-    Fails for any number of results except 1.
-    """
-    files = find_in_dir_by_pattern(path, pattern=filename)
-    if len(files) > 1:
-        raise NotImplementedError(
-            f"We're not ready to handle multiple '{filename}' files in one task"
-            ' yet!',
-        )
-
-    try:
-        return files[0]
-    except IndexError:
-        raise exc.QgrRuntimeError(f"No files with name '{filename}' found at '{path}'")
-
-
-def find_single_file_by_ext(path, *, ext):
-    """Return a single file with matching extension.
-
-    Fails for any number of results except 1.
-    """
-    files = find_in_dir_by_pattern(path, pattern=f'*{ext}')
-    if len(files) > 1:
-        raise NotImplementedError(
-            f"We're not ready to handle multiple '{ext}' files in one task"
-            ' yet!',
-        )
-
-    try:
-        return files[0]
-    except IndexError:
-        raise exc.QgrRuntimeError(f"No files with extension '{ext}' found at '{path}'")
-
-
-# TODO: return a `Path`.
 @contextmanager
 def temporary_path_dir(target: luigi.Target) -> Iterator[str]:
     """Standardizes Luigi task file output behavior.
