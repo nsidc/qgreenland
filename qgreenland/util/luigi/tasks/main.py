@@ -101,7 +101,7 @@ class ChainableTask(QgrLayerTask):
             step_runner(
                 self.step,
                 input_dir=self.input().path,
-                output_dir=temp_path,
+                output_dir=str(temp_path),
             )
 
 
