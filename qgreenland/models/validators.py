@@ -1,4 +1,3 @@
-import inspect
 from typing import Any, Callable
 
 from pydantic import validator
@@ -9,13 +8,10 @@ def reusable_validator(name: str, validation_func: Callable[..., Any]) -> classm
 
 
 def validate_paragraph_text(text: str):
-    # TODO: make this validator always run after `clean_all_string_fields`?
-    _text = inspect.cleandoc(text)
-
-    if not _text[0].isupper():
+    if not text[0].isupper():
         raise ValueError('Paragraph text must begin with an upper-case letter.')
 
-    if not _text.endswith('.'):
+    if not text.endswith('.'):
         raise ValueError('Paragraph text must end with a period.')
 
     return text

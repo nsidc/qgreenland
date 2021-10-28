@@ -19,7 +19,7 @@ class QgrBaseModel(BaseModel):
     determined dev can still mutate model instances.
     """
 
-    @validator('*')
+    @validator('*', pre=True)
     @classmethod
     def clean_all_string_fields(cls, value):
         """Clean up all string fields with `cleandoc`.
