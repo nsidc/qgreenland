@@ -25,7 +25,10 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
 
     args: list[EvalStr]
 
-    # Not sure why, but we can't get this to work with a regular validator.
+    # We use a root validator here because with a regular validator, we would
+    # not have access to the `args` field, because field order matters to
+    # regular validators. We didn't want to order our fields based on validator
+    # dependencies.
     @root_validator
     @classmethod
     def set_default_id(cls, values):
