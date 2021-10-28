@@ -11,7 +11,7 @@ dataset = ConfigDataset(
     assets=[
         # TODO: Your assets here. See `qgreenland/models/config/assets.py` for
         # available asset types and # their parameters. e.g.:
-        # 
+        #
         #     ConfigDatasetHttpAsset(
         #         id='only',
         #         urls=['http://example.com/example_asset.tif'],
@@ -21,7 +21,7 @@ dataset = ConfigDataset(
     metadata={
         'title': 'Your dataset title',
         'abstract': (
-          """Your dataset abstract."""
+            """Your dataset abstract."""
         ),
         'citation': {
             'text': (
