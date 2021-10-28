@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import Optional, Union
+from typing import Union
 
 from pydantic import root_validator
 
