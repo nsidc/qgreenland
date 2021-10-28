@@ -202,28 +202,28 @@ docker-compose up -d
 
 ## Running pipelines with the QGreenland CLI
 
-The primary entrypoint for the CLI is `./scripts/container_cli.sh`. This runs
-the CLI program inside the `luigi` container, allowing us to kick off pipelines
-or cleanup data from standard locations without risking destructive actions on
-the user's computer.
+The primary entrypoint for the CLI is `./scripts/cli.sh`. This runs the CLI
+program inside the `luigi` container, allowing us to kick off pipelines or
+cleanup data from standard locations without risking destructive actions on the
+user's computer.
 
 To run the full pipeline:
 
 ```
-./scripts/container_cli.sh run
+./scripts/cli.sh run
 ```
 
 To run in parallel:
 
 ```
-./scripts/container_cli.sh run --workers=4
+./scripts/cli.sh run --workers=4
 ```
 
 To run only the layers you care about (plus the background, useful for
 testing, but the final output will not be zipped):
 
 ```
-./scripts/container_cli.sh run \
+./scripts/cli.sh run \
   --include="background" \
   --include="*my_layer_mask*"
 ```
@@ -234,7 +234,7 @@ input data. See [Assets](#assets) documentation above to learn more about
 "manual access" assets.
 
 ```
-./scripts/container_cli.sh run \
+./scripts/cli.sh run \
   --exclude-manual-assets
 ```
 
@@ -246,7 +246,7 @@ included _and_ not excluded.
 To cleanup outputs (compiled package and releases):
 
 ```
-./scripts/container_cli.sh cleanup -C True -R True
+./scripts/cli.sh cleanup -C True -R True
 ```
 
 See the [Luigi
