@@ -19,7 +19,7 @@ GitHub: https://github.com/nsidc/qgreenland) for preprocessing steps.""",
 December 2020. Translation for data fields provided by Arnaq B. Johansen,
 Greenland Project Manager in Collection of Place Names (January 2021).
 
-QGreenland Team - Noted Data Issues
+QGreenland Team - Noted Data Issues:
 
 * East Greenland: Ikkatteq (correctly spelled ‘Ikateq’) is an abandoned airstrip
 and is not populated.
