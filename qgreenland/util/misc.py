@@ -5,6 +5,7 @@ import glob
 import logging
 import os
 import re
+import shutil
 import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
@@ -175,13 +176,17 @@ def temporary_path_dir(target: luigi.Target) -> Iterator[str]:
     target: a Luigi.FileSystemTarget
             https://luigi.readthedocs.io/en/stable/api/luigi.target.html#luigi.target.FileSystemTarget.temporary_path
     """
-    with target.temporary_path() as p:
-        try:
-            os.makedirs(p, exist_ok=True)
-            yield p
-        finally:
-            pass
-    return
+    try:
+        with target.temporary_path() as p:
+            try:
+                os.makedirs(p, exist_ok=True)
+                yield p
+            finally:
+                pass
+        return
+    except Exception as e:
+        shutil.rmtree(p)
+        raise e
 
 
 def get_layer_fp(layer_dir: Path) -> Path:
