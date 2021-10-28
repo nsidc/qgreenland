@@ -477,8 +477,7 @@ def _tree_from_dir(
 def _check_for_duplicate_leaves(tree: anytree.Node) -> None:
     all_layer_ids = [node.name for node in tree.leaves]
     duplicates = [
-        i 
-        for i, count in Counter(all_layer_ids).items()
+        i for i, count in Counter(all_layer_ids).items()
         if count > 1
     ]
     if duplicates:
