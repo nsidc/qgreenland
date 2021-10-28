@@ -48,8 +48,8 @@ class FetchCmrGranule(FetchTask):
     session = None
 
     def output(self):
-        path = [TaskType.FETCH.value, self.output_name]
-        return luigi.LocalTarget(os.path.join(*path))
+        path = TaskType.FETCH.value / self.output_name
+        return luigi.LocalTarget(path)
 
     def run(self):
         if type(self.asset_cfg) is not ConfigDatasetCmrAsset:
