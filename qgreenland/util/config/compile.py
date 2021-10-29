@@ -1,4 +1,3 @@
-from collections import Counter
 from functools import cache
 from pathlib import Path
 
@@ -6,6 +5,7 @@ import qgreenland.exceptions as exc
 from qgreenland.config.project import project
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.util.misc import find_duplicates
 from qgreenland.util.module import load_objects_from_paths_by_class
 from qgreenland.util.tree import LayerNode, layer_tree
 
@@ -24,19 +24,6 @@ def _get_python_module_filepaths(the_dir: Path) -> list[Path]:
     ]
 
 
-def _check_for_duplicate_dataset_ids(datasets: list[ConfigDataset]) -> None:
-    # TODO: DRY? Same as _check_for_duplicate_leaves
-    all_dataset_ids = [d.id for d in datasets]
-    duplicates = [
-        i for i, count in Counter(all_dataset_ids).items()
-        if count > 1
-    ]
-    if duplicates:
-        raise exc.QgrInvalidConfigError(
-            f'Duplicate dataset_ids found: {duplicates}',
-        )
-
-
 def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
     """Find and return all datasets in "`config_dir`/datasets"."""
     datasets_dir = config_dir / 'datasets'
@@ -45,7 +32,12 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
         dataset_fps,
         target_class=ConfigDataset,
     )
-    _check_for_duplicate_dataset_ids(datasets)
+
+    duplicates = find_duplicates(d.id for d in datasets)
+    if duplicates:
+        raise exc.QgrInvalidConfigError(
+            f'Duplicate dataset_ids found: {duplicates}',
+        )
 
     return {dataset.id: dataset for dataset in datasets}
 

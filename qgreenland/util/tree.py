@@ -1,7 +1,6 @@
 import json
 import logging
 from abc import ABC
-from collections import Counter
 from fnmatch import fnmatch
 from functools import cached_property
 from pathlib import Path
@@ -21,6 +20,7 @@ from qgreenland.models.config.layer_group import (
     RootGroupSettings,
 )
 from qgreenland.util.json import MagicJSONEncoder
+from qgreenland.util.misc import find_duplicates
 from qgreenland.util.module import (
     load_objects_from_paths_by_class,
 )
@@ -108,7 +108,11 @@ def layer_tree(
             f'No layers found matching {include_patterns=}; {exclude_patterns=}',
         )
 
-    _check_for_duplicate_leaves(tree)
+    duplicates = find_duplicates(node.name for node in tree.leaves)
+    if duplicates:
+        raise exc.QgrInvalidConfigError(
+            f'Duplicate layer_ids found: {duplicates}',
+        )
 
     return tree
 
@@ -472,18 +476,6 @@ def _tree_from_dir(
             )
 
     return root_node
-
-
-def _check_for_duplicate_leaves(tree: anytree.Node) -> None:
-    all_layer_ids = [node.name for node in tree.leaves]
-    duplicates = [
-        i for i, count in Counter(all_layer_ids).items()
-        if count > 1
-    ]
-    if duplicates:
-        raise exc.QgrInvalidConfigError(
-            f'Duplicate layer_ids found: {duplicates}',
-        )
 
 
 def _prune_tree(tree: anytree.Node) -> None:
