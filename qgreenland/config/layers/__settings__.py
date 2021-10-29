@@ -17,7 +17,7 @@ settings = RootGroupSettings(
         'Sea ice',
         'Oceanography',
         'Future projections',
-        'Terrain models',
+        'Terrain Models',
         'Internet-required data',
         'Basemaps',
     ],
