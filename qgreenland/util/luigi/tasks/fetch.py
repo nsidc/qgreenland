@@ -1,6 +1,4 @@
-import os
 import shutil
-from pathlib import Path
 
 import luigi
 
@@ -49,8 +47,8 @@ class FetchCmrGranule(FetchTask):
     session = None
 
     def output(self):
-        path = [TaskType.FETCH.value, self.output_name]
-        return luigi.LocalTarget(os.path.join(*path))
+        path = TaskType.FETCH.value / self.output_name
+        return luigi.LocalTarget(path)
 
     def run(self):
         if type(self.asset_cfg) is not ConfigDatasetCmrAsset:
@@ -111,7 +109,7 @@ class FetchLocalDataFiles(FetchTask):
             with temporary_path_dir(self.output()) as temp_path:
                 evaluated_filepath = self.asset_cfg.filepath.eval()
 
-                out_path = Path(temp_path) / evaluated_filepath.name
+                out_path = temp_path / evaluated_filepath.name
                 shutil.copy2(evaluated_filepath, out_path)
 
         elif isinstance(self.asset_cfg, ConfigDatasetManualAsset):
@@ -156,7 +154,7 @@ class FetchOgrRemoteData(FetchTask):
         with temporary_path_dir(self.output()) as temp_path:
             url = self.asset_cfg.query_url
 
-            ofile = Path(temp_path) / 'fetched.geojson'
+            ofile = temp_path / 'fetched.geojson'
             run_qgr_command(
                 [
                     'ogr2ogr',

@@ -1,16 +1,14 @@
 # TODO: consider renaming this to `io` or `fs`. All these functions related to
 # filesystem operations/file naming/etc
 import cgi
-import glob
 import logging
-import os
 import re
 import shutil
 import subprocess
 import urllib.request
 from contextlib import closing, contextmanager
 from pathlib import Path
-from typing import Iterator
+from typing import Generator
 
 import luigi
 
@@ -31,7 +29,7 @@ logger = logging.getLogger('luigi-interface')
 CHUNK_SIZE = 8 * 1024
 
 
-def _filename_from_url(url):
+def _filename_from_url(url: str) -> str:
     url_slash_index = url.rfind('/')
     fn = url[url_slash_index + 1:]
 
@@ -41,10 +39,10 @@ def _filename_from_url(url):
     return fn
 
 
-def _ftp_fetch_and_write(url, output_dir):
+def _ftp_fetch_and_write(url: str, output_dir: Path) -> None:
     # TODO support earthdata login
     fn = _filename_from_url(url)
-    fp = os.path.join(output_dir, fn)
+    fp = output_dir / fn
 
     # TODO: do we need `closing`?
     with closing(urllib.request.urlopen(url)) as r:
@@ -58,7 +56,13 @@ def _ftp_fetch_and_write(url, output_dir):
 
 # Ignore complexity rule C901
 # TODO: make this less complex!
-def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa:C901
+def fetch_and_write_file(  # noqa:C901
+    url: str,
+    *,
+    output_dir: Path,
+    session=None,
+    verify=True,
+):
     """Attempt to download and write file from url.
 
     Assumes filename from URL or content-disposition header.
@@ -106,13 +110,13 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
                         f'Failed to retrieve output filename from {url}',
                     )
 
-            fp = os.path.join(output_dir, fn)
-
             if resp.status_code != 200:
                 raise exc.QgrRuntimeError(
                     f"Received '{resp.status_code}' from {resp.request.url}."
                     f' Content: {resp.text}',
                 )
+
+            fp = output_dir / fn
 
             with open(fp, 'wb') as f:
                 for chunk in resp.iter_content(chunk_size=CHUNK_SIZE):
@@ -121,67 +125,20 @@ def fetch_and_write_file(url, *, output_dir, session=None, verify=True):  # noqa
         return fp
 
 
-def find_in_dir_by_pattern(path, *, pattern):
-    """Find all files in a directory with matching pattern.
-
-    Expects an extension with the dot included, e.g. `pattern=".shp"`.
-    """
-    matches = glob.glob(os.path.join(path, '**', pattern),
-                        recursive=True)
-
-    return [os.path.abspath(os.path.join(path, f)) for f in matches]
-
-
-def find_single_file_by_name(path, *, filename):
-    """Return a single file with matching name.
-
-    Fails for any number of results except 1.
-    """
-    files = find_in_dir_by_pattern(path, pattern=filename)
-    if len(files) > 1:
-        raise NotImplementedError(
-            f"We're not ready to handle multiple '{filename}' files in one task"
-            ' yet!',
-        )
-
-    try:
-        return files[0]
-    except IndexError:
-        raise exc.QgrRuntimeError(f"No files with name '{filename}' found at '{path}'")
-
-
-def find_single_file_by_ext(path, *, ext):
-    """Return a single file with matching extension.
-
-    Fails for any number of results except 1.
-    """
-    files = find_in_dir_by_pattern(path, pattern=f'*{ext}')
-    if len(files) > 1:
-        raise NotImplementedError(
-            f"We're not ready to handle multiple '{ext}' files in one task"
-            ' yet!',
-        )
-
-    try:
-        return files[0]
-    except IndexError:
-        raise exc.QgrRuntimeError(f"No files with extension '{ext}' found at '{path}'")
-
-
-# TODO: return a `Path`.
 @contextmanager
-def temporary_path_dir(target: luigi.Target) -> Iterator[str]:
+def temporary_path_dir(target: luigi.Target) -> Generator[Path, None, None]:
     """Standardizes Luigi task file output behavior.
 
     target: a Luigi.FileSystemTarget
             https://luigi.readthedocs.io/en/stable/api/luigi.target.html#luigi.target.FileSystemTarget.temporary_path
     """
     with target.temporary_path() as p:
+        path = Path(p)
         try:
-            os.makedirs(p, exist_ok=True)
-            yield p
+            path.mkdir(parents=True, exist_ok=True)
+            yield path
         except Exception as e:
-            shutil.rmtree(p)
+            shutil.rmtree(path)
             raise e
     return
 
