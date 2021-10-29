@@ -12,7 +12,7 @@ from qgreenland.util.config.export import (
 
 
 @patch(
-    'qgreenland.util.misc.TaskType',
+    'qgreenland.util.layer.TaskType',
     new=MockTaskType,
 )
 def test_export_config_manifest(full_cfg):
@@ -89,7 +89,7 @@ https://nsidc.org""",
 
 
 @patch(
-    'qgreenland.util.misc.TaskType',
+    'qgreenland.util.layer.TaskType',
     new=MockTaskType,
 )
 def test_export_config_csv(full_cfg):
