@@ -15,7 +15,7 @@ background = ConfigDataset(
     ],
     metadata={
         'title': 'Natural Earth II with Shaded Relief and Water (1:10m)',
-        'abstract': 'Natural Earth II (Public Domain)',
+        'abstract': 'Natural Earth II (Public Domain).',
         'citation': {
             'text': 'Made with Natural Earth',
             'url': (

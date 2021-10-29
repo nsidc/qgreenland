@@ -60,7 +60,7 @@ LAYER_PARAMS = {
         'title': 'Fishing zone (polygon)',
         'description': (
             """Fishery limit. Regarding the fishery limit, reference is made to
-            Greenland Home Rule Parliament Act no 18 dated 31.10.1996"""
+            Greenland Home Rule Parliament Act no 18 dated 31.10.1996."""
         ),
         'input_filename': POLYGON_FILE,
         'layer_name': 'Boundary_fishzone',
@@ -84,10 +84,10 @@ def make_layers() -> list[ConfigLayer]:
                     input_file='{input_dir}/' + params['input_filename'],
                     output_file='{output_dir}/final.gpkg',
                     boundary_filepath=project.boundaries['background'].filepath,
-                    ogr2ogr_args=(
+                    ogr2ogr_args=[
                         '-where',
                         f'"\"layer\" = \'{params["layer_name"]}\'"',
-                    ),
+                    ],
                 ),
             ],
         )

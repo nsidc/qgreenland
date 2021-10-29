@@ -12,6 +12,7 @@ from anytree.exporter import DictExporter
 
 import qgreenland.exceptions as exc
 from qgreenland.constants import LAYERS_CFG_DIR
+from qgreenland.models.config.asset import ConfigDatasetManualAsset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.layer_group import (
     AnyGroupSettings,
@@ -89,11 +90,13 @@ def layer_tree(
     *,
     include_patterns: tuple[str, ...] = (),
     exclude_patterns: tuple[str, ...] = (),
+    exclude_manual_assets: bool = False,
 ) -> anytree.Node:
     tree = _tree_from_dir(
         layer_cfg_dir,
         include_patterns=include_patterns,
         exclude_patterns=exclude_patterns,
+        exclude_manual_assets=exclude_manual_assets,
     )
     # Clean up any empty layer groups. This shouldn't happen normally, but if
     # any layers are included or excluded, it's likely.
@@ -354,10 +357,11 @@ def _handle_layer_config_directory(
 
 
 def _matches_filters(
-    candidate: str,
+    candidate: ConfigLayer,
     *,
     include_patterns: tuple[str, ...],
     exclude_patterns: tuple[str, ...],
+    exclude_manual_assets: bool = False,
 ) -> bool:
     """Determine if candidate matches given filters.
 
@@ -385,17 +389,25 @@ def _matches_filters(
     inclusions or exclusions. I.e.: for set of inclusions I and exclusions E,
     this is a question of `I - E` vs. `!E + I`.
     """
+    if (
+        exclude_manual_assets
+        and type(candidate.input.asset) is ConfigDatasetManualAsset
+    ):
+        # TODO: `included = True` instead? This would be more consistent with
+        # the "included or not excluded" behavior the patterns follow.
+        return False
+
     if not (include_patterns or exclude_patterns):
         return True
 
     # Does candidate match any of the include_patterns? If there are no
     # patterns, it's included.
-    included = any(fnmatch(candidate, p) for p in include_patterns)
+    included = any(fnmatch(candidate.id, p) for p in include_patterns)
     if not exclude_patterns:
         return included
 
     # Does candidate match any of the exclude_patterns?
-    excluded = any(fnmatch(candidate, p) for p in exclude_patterns)
+    excluded = any(fnmatch(candidate.id, p) for p in exclude_patterns)
     if not include_patterns:
         return not excluded
 
@@ -412,6 +424,7 @@ def _tree_from_dir(
     parent: Optional[anytree.Node] = None,
     include_patterns: tuple[str, ...] = (),
     exclude_patterns: tuple[str, ...] = (),
+    exclude_manual_assets: bool = False,
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
     ordered_layers_and_groups, settings = _ordered_layers_and_groups(
@@ -435,20 +448,23 @@ def _tree_from_dir(
                 parent=root_node,
                 include_patterns=include_patterns,
                 exclude_patterns=exclude_patterns,
+                exclude_manual_assets=exclude_manual_assets,
             )
         elif isinstance(thing, ConfigLayer):
-            # NOTE: Since this modifies the entire tree (`root_node`), nothing
-            # needs to be assigned here.
             if _matches_filters(
-                thing.id,
+                thing,
                 include_patterns=include_patterns,
                 exclude_patterns=exclude_patterns,
+                exclude_manual_assets=exclude_manual_assets,
             ):
+                # NOTE: Since this modifies the entire tree (`root_node`),
+                # nothing needs to be assigned here.
                 LayerNode(thing.id, layer_cfg=thing, parent=root_node)
             else:
                 logger.debug(
                     f'Layer {thing.id} does not match patterns:'
-                    f' {include_patterns=}; {exclude_patterns=}',
+                    f' {include_patterns=}; {exclude_patterns=};'
+                    f' {exclude_manual_assets=}',
                 )
 
         else:

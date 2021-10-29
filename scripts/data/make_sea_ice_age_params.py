@@ -3,7 +3,7 @@
 Must be executed when the sea ice age dataset is updated. Ensure you've fetched
 the data first, as that is read as input to this script:
 
-    ./scripts/container_cli.sh fetch seaice_age
+    ./scripts/cli.sh fetch seaice_age
 
 Save the output by running the following from the repo root:
 

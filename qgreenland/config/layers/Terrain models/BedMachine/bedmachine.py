@@ -18,7 +18,7 @@ bed_datasets = {
         'title': 'Surface elevation',
         'description': (
             """Surface elevation in meters. Source is GIMP DEM v2.1
-            (http://bprc.osu.edu/GDG/gimpdem.php)"""
+            (http://bprc.osu.edu/GDG/gimpdem.php)."""
         ),
     },
     'bed': {

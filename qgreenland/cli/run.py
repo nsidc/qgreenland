@@ -42,9 +42,16 @@ from qgreenland.util.luigi.tasks.pipeline import (
     required=False,
     multiple=True,
 )
+@click.option(
+    '--exclude-manual-assets',
+    is_flag=True,
+    help='Exclude all "manual access" assets.',
+    required=False,
+)
 def run(
     include: tuple[str, ...],
     exclude: tuple[str, ...],
+    exclude_manual_assets: bool,
     dry_run: bool,
     fetch_only: bool,
     workers: int,
@@ -53,6 +60,7 @@ def run(
     init_config(
         include_patterns=include,
         exclude_patterns=exclude,
+        exclude_manual_assets=exclude_manual_assets,
     )
     config = get_config()
 
@@ -71,7 +79,7 @@ def run(
     print(f'Running tasks: {str(tasks)}')
     print()
 
-    if include or exclude:
+    if include or exclude or exclude_manual_assets or dry_run:
         action = 'Fetching data' if fetch_only else 'Running pipelines'
         print(f'{action} for the following layers:')
         for layer in config.layers.keys():

@@ -13,7 +13,7 @@ arctic_circle = ConfigDataset(
     metadata={
         'title': "Arctic Circle (66° 34' North)",
         'abstract': (
-            """Arctic Circle"""
+            """Arctic Circle."""
         ),
         'citation': {
             'text': (

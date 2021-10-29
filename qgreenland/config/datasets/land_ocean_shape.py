@@ -15,7 +15,7 @@ land_shape = ConfigDataset(
     metadata={
         'title': 'Natural Earth Land (10m)',
         'abstract': (
-            """Natural Earth Land (Public Domain)"""
+            """Natural Earth Land (Public Domain)."""
         ),
         'citation': {
             'text': (
@@ -39,7 +39,7 @@ ocean_shape = ConfigDataset(
     metadata={
         'title': 'Natural Earth Ocean (10m)',
         'abstract': (
-            """Natural Earth Ocean (Public Domain)"""
+            """Natural Earth Ocean (Public Domain)."""
         ),
         'citation': {
             'text': (

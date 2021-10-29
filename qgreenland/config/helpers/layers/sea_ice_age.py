@@ -66,9 +66,9 @@ def sea_ice_age_layer(year: int, age_type: AgeType) -> ConfigLayer:
                 input_file='{input_dir}/edited.tif',
                 output_file='{output_dir}/warped_and_cut.tif',
                 cut_file=project.boundaries['background'].filepath,
-                reproject_args=(
+                reproject_args=[
                     '-tr', '12500', '12500',
-                ),
+                ],
             ),
             *build_overviews(
                 input_file='{input_dir}/warped_and_cut.tif',

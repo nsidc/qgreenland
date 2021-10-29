@@ -1,4 +1,5 @@
 import inspect
+import re
 from functools import cached_property
 from typing import Any
 
@@ -8,6 +9,8 @@ from pydantic import (
     validator,
 )
 
+import qgreenland.exceptions as exc
+
 
 class QgrBaseModel(BaseModel):
     """Implements 'faux' immutability and allows usage of `functools.cached_property`.
@@ -16,7 +19,7 @@ class QgrBaseModel(BaseModel):
     determined dev can still mutate model instances.
     """
 
-    @validator('*')
+    @validator('*', pre=True)
     @classmethod
     def clean_all_string_fields(cls, value):
         """Clean up all string fields with `cleandoc`.
@@ -26,6 +29,21 @@ class QgrBaseModel(BaseModel):
         """
         if isinstance(value, str):
             return inspect.cleandoc(value)
+        return value
+
+    @validator('*')
+    @classmethod
+    def validate_id_fields(cls, value, field):
+        if field.name != 'id':
+            return value
+
+        regex = re.compile(r'^[a-z0-9_]+$')
+        if not regex.match(value):
+            raise exc.QgrInvalidConfigError(
+                'Only lowercase alphanumeric characters or underscores are'
+                f' permitted in "id" fields. Received: {value}',
+            )
+
         return value
 
     class Config:
