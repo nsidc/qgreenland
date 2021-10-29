@@ -1,5 +1,4 @@
 import functools
-import os
 from pathlib import Path
 from typing import Callable, Union
 
@@ -117,12 +116,12 @@ def _create_layer_with_side_effects(
 
 
 def _load_qml_style(map_layer: qgc.QgsMapLayer, style_name: str) -> None:
-    style_path = os.path.join(ANCILLARY_DIR, 'styles', style_name + '.qml')
+    style_path = ANCILLARY_DIR / 'styles' / (style_name + '.qml')
     # If you pass a path to nothing, it will silently fail
-    if not os.path.isfile(style_path):
+    if not style_path.is_file():
         raise RuntimeError(f"Style '{style_path}' not found.")
 
-    msg, status = map_layer.loadNamedStyle(style_path)
+    msg, status = map_layer.loadNamedStyle(str(style_path))
 
     if not status:
         raise RuntimeError(f"Problem loading '{style_path}': '{msg}'")
