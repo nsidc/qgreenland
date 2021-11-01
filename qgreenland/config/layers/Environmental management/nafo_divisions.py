@@ -7,7 +7,7 @@ nafo_divisions = ConfigLayer(
     id='nafo_divisions',
     title='NAFO divisions',
     description=(
-        """The Northwest Atlantic Fisheries Organization zones"""
+        """The Northwest Atlantic Fisheries Organization zones."""
     ),
     tags=[],
     style='nafo_divisions',

@@ -5,6 +5,7 @@ from pydantic import Field
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.dataset import AnyAsset, ConfigDataset
 from qgreenland.models.config.step import AnyStep
+from qgreenland.util.model_validators import reusable_validator, validate_paragraph_text
 
 
 class ConfigLayerInput(QgrBaseModel):
@@ -37,6 +38,8 @@ class ConfigLayer(QgrBaseModel):
     input: ConfigLayerInput
 
     steps: Optional[list[AnyStep]]
+
+    _validate_description = reusable_validator('description', validate_paragraph_text)
 
     def __json__(self) -> dict[Any, Any]:
         """Limit child models that are output when dumping JSON.

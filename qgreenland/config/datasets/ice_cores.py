@@ -21,7 +21,7 @@ ice_cores = ConfigDataset(
             available in the 'description' attribute, including an ice core
             dataset URL. Data were accessed using the Google Earth Map Search
             Dataset. For details please see:
-            http://www.ncdc.noaa.gov/paleo/icecore.html"""
+            http://www.ncdc.noaa.gov/paleo/icecore.html."""
         ),
         'citation': {
             'text': (

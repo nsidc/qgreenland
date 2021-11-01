@@ -55,7 +55,7 @@ caff_char = ConfigDataset(
             Salvelinus alpinus, and related species.  Arctic Biodiversity
             Assessment, Chapter 6: Fishes: http://www.caff.is/assessment-series/
             10-arctic-biodiversity-assessment/211-arctic-biodiversity-assessment
-            -2013-chapter-6-fishes"""
+            -2013-chapter-6-fishes."""
         ),
         'citation': {
             'text': (

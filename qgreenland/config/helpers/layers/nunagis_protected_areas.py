@@ -169,7 +169,7 @@ def _make_layer(
             *ogr2ogr(
                 input_file='{input_dir}/fetched.geojson',
                 output_file='{output_dir}/' + f'{layer_id}.gpkg',
-                ogr2ogr_args=(
+                ogr2ogr_args=[
                     '-dialect', 'sqlite',
                     '-sql',
                     f"""\"SELECT
@@ -182,7 +182,7 @@ def _make_layer(
                         *
                     FROM ESRIJSON
                     WHERE {where_sql}\" """,
-                ),
+                ],
             ),
         ],
     )
