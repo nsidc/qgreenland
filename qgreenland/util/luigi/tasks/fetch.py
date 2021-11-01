@@ -10,15 +10,12 @@ from qgreenland.models.config.asset import (
     ConfigDatasetRepositoryAsset,
 )
 from qgreenland.util.cmr import get_cmr_granule
-from qgreenland.util.command import interpolate_args
+from qgreenland.util.command import interpolate_args, run_qgr_command
 from qgreenland.util.config.config import get_config
 from qgreenland.util.edl import create_earthdata_authenticated_session as make_session
-from qgreenland.util.misc import (
-    datasource_dirname,
-    fetch_and_write_file,
-    temporary_path_dir,
-)
-from qgreenland.util.misc import run_qgr_command
+from qgreenland.util.layer import datasource_dirname
+from qgreenland.util.luigi.target import temporary_path_dir
+from qgreenland.util.request import fetch_and_write_file
 
 
 # TODO: call this 'FetchDataset'? 'FetchAsset'?
@@ -159,7 +156,7 @@ class FetchOgrRemoteData(FetchTask):
                 [
                     'ogr2ogr',
                     '-oo', 'FEATURE_SERVER_PAGING=YES',
-                    ofile,
+                    str(ofile),
                     f'"{url}"',
                 ],
             )

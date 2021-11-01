@@ -1,6 +1,5 @@
 from qgreenland.models.config.step import ConfigLayerCommandStep
-from qgreenland.util.command import interpolate_args
-from qgreenland.util.misc import run_qgr_command
+from qgreenland.util.command import interpolate_args, run_qgr_command
 
 
 def command_runner(

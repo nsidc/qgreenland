@@ -5,6 +5,7 @@ import qgreenland.exceptions as exc
 from qgreenland.config.project import project
 from qgreenland.models.config import Config
 from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.util.misc import find_duplicates
 from qgreenland.util.module import load_objects_from_paths_by_class
 from qgreenland.util.tree import LayerNode, layer_tree
 
@@ -31,6 +32,12 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
         dataset_fps,
         target_class=ConfigDataset,
     )
+
+    duplicates = find_duplicates(d.id for d in datasets)
+    if duplicates:
+        raise exc.QgrInvalidConfigError(
+            f'Duplicate dataset_ids found: {duplicates}',
+        )
 
     return {dataset.id: dataset for dataset in datasets}
 

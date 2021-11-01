@@ -16,7 +16,8 @@ from qgreenland.constants import (
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.config.config import get_config
-from qgreenland.util.misc import get_final_layer_dir, get_layer_fp, temporary_path_dir
+from qgreenland.util.layer import get_final_layer_dir, get_layer_fp
+from qgreenland.util.luigi.target import temporary_path_dir
 from qgreenland.util.tree import leaf_lookup
 
 
