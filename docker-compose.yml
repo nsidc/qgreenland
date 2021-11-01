@@ -5,7 +5,7 @@ services:
   # Luigi runs as a service and must have jobs submitted to it
   # (`scripts/run_task.sh`)
   luigi:
-    image: nsidc/luigi:dev
+    image: nsidc/luigi:micromamba
     build: .
     container_name: luigi
     volumes:

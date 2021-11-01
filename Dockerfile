@@ -1,36 +1,23 @@
-# NOTE: We do not use this version of Luigi, because a Docker image isn't
-# available for our desired version. `environment.yml` specifies the actual
-# version we use.
-FROM axiom/docker-luigi:2.8.13
-# TODO: Build image from miniforge/minimamba
+FROM axiom/docker-luigi:2.8.13-alpine as luigi
+# Build stage only exists to grab files
 
-RUN conda install mamba~=0.15.2
+FROM mambaorg/micromamba:0.17.0
+COPY --from=luigi /bin/run /usr/local/bin/luigid
 
-# `libgl1-mesa-glx` is required for qgis to work
-# `unrar` is required for layer pipelines
 # `git` is required for analyzing the current version
-RUN apt-get update && \
-  apt-get install -y \
-  libgl1-mesa-glx \
-  unrar \
-  git
+USER root
+RUN apt-get update && apt-get install -y git
+USER micromamba
 
-# TODO install to `qgreenland` specific environment. Activate in Dockerfile if
-# possible.
-COPY environment-lock.yml .
-RUN mamba env update --file environment-lock.yml --name base
+# Create environments and cleanup
 
-# Create a dedicated env for shelling out commands
-COPY environment.cmd.yml .
-RUN mamba env create --file environment.cmd.yml
+COPY --chown=micromamba:micromamba environment-lock.yml /tmp/environment.yml
+RUN micromamba install -y -n base -f /tmp/environment.yml
 
-# Use this method to install to non-root? Need to edit luigid.sh...
-# COPY environment.yml .
-# RUN mamba env create
-# ENV PATH="/something/bin:$PATH"
+COPY --chown=micromamba:micromamba environment.cmd.yml /tmp/environment.cmd.yml
+RUN micromamba create -y -f /tmp/environment.cmd.yml
 
-# It's probably better to use the `conda run` method if we're editing luigid.sh
-# anyway.
+RUN micromamba clean --all --yes
 
 WORKDIR /luigi
 
@@ -39,3 +26,5 @@ WORKDIR /luigi
 # gets populated. Additionally, /luigi/tasks is where we expect python code to
 # be mounted.
 ENV PYTHONPATH /luigi/tasks/qgreenland:/opt/conda/share/qgis/python/plugins:/opt/conda/share/qgis/python
+
+CMD ["/usr/local/bin/luigid"]
