@@ -23,7 +23,7 @@ def test_make_map_layer_online(setup_teardown_qgis_app, online_layer_node):
 
 
 @patch(
-    'qgreenland.util.misc.TaskType',
+    'qgreenland.util.layer.TaskType',
     new=MockTaskType,
 )
 def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
@@ -49,7 +49,7 @@ def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
 
 
 @patch(
-    'qgreenland.util.misc.TaskType',
+    'qgreenland.util.layer.TaskType',
     new=MockTaskType,
 )
 def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
@@ -114,7 +114,7 @@ https://nsidc.org"""
 
 
 @patch(
-    'qgreenland.util.misc.TaskType',
+    'qgreenland.util.layer.TaskType',
     new=MockTaskType,
 )
 def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):

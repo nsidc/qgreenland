@@ -15,10 +15,12 @@ from humanize import naturalsize
 from qgreenland._typing import QgsLayerType
 from qgreenland.models.config import Config
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
-from qgreenland.util.json import MagicJSONEncoder
-from qgreenland.util.misc import (
+from qgreenland.util.fs import (
     directory_contents,
     directory_size_bytes,
+)
+from qgreenland.util.json import MagicJSONEncoder
+from qgreenland.util.layer import (
     get_final_layer_filepath,
     vector_or_raster,
 )

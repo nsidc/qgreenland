@@ -20,6 +20,7 @@ from qgreenland.models.config.layer_group import (
     RootGroupSettings,
 )
 from qgreenland.util.json import MagicJSONEncoder
+from qgreenland.util.misc import find_duplicates
 from qgreenland.util.module import (
     load_objects_from_paths_by_class,
 )
@@ -107,7 +108,11 @@ def layer_tree(
             f'No layers found matching {include_patterns=}; {exclude_patterns=}',
         )
 
-    _check_for_duplicate_leaves(tree)
+    duplicates = find_duplicates(node.name for node in tree.leaves)
+    if duplicates:
+        raise exc.QgrInvalidConfigError(
+            f'Duplicate layer_ids found: {duplicates}',
+        )
 
     return tree
 
@@ -116,8 +121,6 @@ def leaf_lookup(
     tree: anytree.Node,
     target_node_name: str,
 ) -> LayerNode:
-    _check_for_duplicate_leaves(tree)
-
     matches = [
         leaf for leaf in tree.leaves
         if leaf.name == target_node_name
@@ -473,13 +476,6 @@ def _tree_from_dir(
             )
 
     return root_node
-
-
-def _check_for_duplicate_leaves(tree: anytree.Node) -> None:
-    all_layer_ids = [node.name for node in tree.leaves]
-    if len(set(all_layer_ids)) != len(all_layer_ids):
-        # TODO: Print duplicates
-        raise RuntimeError(f'Duplicate leaves found in tree: {tree.leaves}')
 
 
 def _prune_tree(tree: anytree.Node) -> None:
