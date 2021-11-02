@@ -9,7 +9,7 @@ layers = [
     ConfigLayer(
         id=id_str(start=START, end=END),
         title=f'Glacier termini {START} to {END}',
-        description=f'Glacier terminus during interval {START} to {END}.',
+        description=f'Glacier terminus during the {START}-{END} winter season.',
         tags=[],
         input=ConfigLayerInput(
             dataset=dataset,

@@ -6487,7 +6487,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2000 to 2001.",
+                  "description": "Glacier terminus during the 2000-2001 winter season.",
                   "id": "glacier_terminus_2000_2001",
                   "in_package": true,
                   "input": {
@@ -6524,7 +6524,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2005 to 2006.",
+                  "description": "Glacier terminus during the 2005-2006 winter season.",
                   "id": "glacier_terminus_2005_2006",
                   "in_package": true,
                   "input": {
@@ -6561,7 +6561,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2006 to 2007.",
+                  "description": "Glacier terminus during the 2006-2007 winter season.",
                   "id": "glacier_terminus_2006_2007",
                   "in_package": true,
                   "input": {
@@ -6598,7 +6598,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2007 to 2008.",
+                  "description": "Glacier terminus during the 2007-2008 winter season.",
                   "id": "glacier_terminus_2007_2008",
                   "in_package": true,
                   "input": {
@@ -6635,7 +6635,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2008 to 2009.",
+                  "description": "Glacier terminus during the 2008-2009 winter season.",
                   "id": "glacier_terminus_2008_2009",
                   "in_package": true,
                   "input": {
@@ -6672,7 +6672,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2012 to 2013.",
+                  "description": "Glacier terminus during the 2012-2013 winter season.",
                   "id": "glacier_terminus_2012_2013",
                   "in_package": true,
                   "input": {
@@ -6709,7 +6709,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2014 to 2015.",
+                  "description": "Glacier terminus during the 2014-2015 winter season.",
                   "id": "glacier_terminus_2014_2015",
                   "in_package": true,
                   "input": {
@@ -6746,7 +6746,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2015 to 2016.",
+                  "description": "Glacier terminus during the 2015-2016 winter season.",
                   "id": "glacier_terminus_2015_2016",
                   "in_package": true,
                   "input": {
@@ -6783,7 +6783,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2016 to 2017.",
+                  "description": "Glacier terminus during the 2016-2017 winter season.",
                   "id": "glacier_terminus_2016_2017",
                   "in_package": true,
                   "input": {
@@ -6820,7 +6820,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2017 to 2018.",
+                  "description": "Glacier terminus during the 2017-2018 winter season.",
                   "id": "glacier_terminus_2017_2018",
                   "in_package": true,
                   "input": {
@@ -6857,7 +6857,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2018 to 2019.",
+                  "description": "Glacier terminus during the 2018-2019 winter season.",
                   "id": "glacier_terminus_2018_2019",
                   "in_package": true,
                   "input": {
@@ -6894,7 +6894,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2019 to 2020.",
+                  "description": "Glacier terminus during the 2019-2020 winter season.",
                   "id": "glacier_terminus_2019_2020",
                   "in_package": true,
                   "input": {
@@ -6931,7 +6931,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Glacier terminus during interval 2020 to 2021.",
+                  "description": "Glacier terminus during the 2020-2021 winter season.",
                   "id": "glacier_terminus_2020_2021",
                   "in_package": true,
                   "input": {
@@ -6967,7 +6967,7 @@
                 "name": "glacier_terminus_2020_2021"
               }
             ],
-            "name": "Glacier terminus positions 2000-2017",
+            "name": "Glacier terminus positions 2000-2021",
             "settings": {
               "expand": false,
               "order": [
@@ -10617,7 +10617,7 @@
             ":machguth_massbalance_locations",
             ":jakobshavn_supraglacial_lakes",
             ":firn_ice_layer_thicknesses",
-            "Glacier terminus positions 2000-2017",
+            "Glacier terminus positions 2000-2021",
             "Global land ice measurements from space (GLIMS)",
             ":ice_thickness_change",
             "Surface elevation change",
