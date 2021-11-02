@@ -1,25 +1,25 @@
-from qgreenland.config.datasets.greenland_ice import greenland_ice as greenland_ice
-from qgreenland.config.datasets.bathymetry import bathymetry as bathymetry
-from qgreenland.config.datasets.greenland_onshore import greenland_onshore as greenland_onshore
-from qgreenland.config.datasets.greenland_onshore_pattern import greenland_onshore_pattern as greenland_onshore_pattern
-from qgreenland.config.datasets.greenland_onshore_planar import greenland_onshore_planar as greenland_onshore_planar
+from qgreenland.config.datasets.greenland_ice import greenland_ice as dataset_greenland_ice
+from qgreenland.config.datasets.bathymetry import bathymetry as dataset_bathymetry
+from qgreenland.config.datasets.greenland_onshore import greenland_onshore as dataset_onshore
+from qgreenland.config.datasets.greenland_onshore_pattern import greenland_onshore_pattern as dataset_onshore_pattern
+from qgreenland.config.datasets.greenland_onshore_planar import greenland_onshore_planar as dataset_onshore_planar
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
 layer_params = {
-    'greenland_ice' = dataset_ice_isopachs,
-    'bathymetry' = dataset_bathymetry
-    'greenland_onshore_planar' = dataset_onshore_planar,
-    'greenland_onshore_pattern' = dataset_onshore_pattern,
-    'greenland_onshore' = dataset_onshore,
+    'greenland_ice': dataset_greenland_ice,
+    'bathymetry': dataset_bathymetry,
+    'greenland_onshore': dataset_onshore,
+    'greenland_onshore_pattern': dataset_onshore_pattern,
+    'greenland_onshore_planar': dataset_onshore_planar,
 }
 
 
 def make_geo_layer(layer_id:str) -> ConfigLayer:
     return ConfigLayer(
         id=layer_id,
-        title=layer_id.capitalize(),
+        title=str(layer_id).capitalize(),
         description=(
             """ """
         ),
