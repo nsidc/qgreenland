@@ -1,25 +1,21 @@
-from qgreenland.config.datasets.greenland_ice import greenland_ice as dataset_greenland_ice
-from qgreenland.config.datasets.bathymetry import bathymetry as dataset_bathymetry
-from qgreenland.config.datasets.greenland_onshore import greenland_onshore as dataset_onshore
-from qgreenland.config.datasets.greenland_onshore_pattern import greenland_onshore_pattern as dataset_onshore_pattern
-from qgreenland.config.datasets.greenland_onshore_planar import greenland_onshore_planar as dataset_onshore_planar
+from qgreenland.config.datasets.geological_map import geological_map as dataset_geo_map
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
 layer_params = {
-    'greenland_ice': dataset_greenland_ice,
-    'bathymetry': dataset_bathymetry,
-    'greenland_onshore': dataset_onshore,
-    'greenland_onshore_pattern': dataset_onshore_pattern,
-    'greenland_onshore_planar': dataset_onshore_planar,
+    'greenland_ice': dataset_geo_map,
+    'bathymetry': dataset_geo_map,
+    'greenland_onshore': dataset_geo_map,
+    'greenland_onshore_pattern': dataset_geo_map,
+    'greenland_onshore_planar': dataset_geo_map,
 }
 
 
 def make_geo_layer(layer_id:str) -> ConfigLayer:
     return ConfigLayer(
         id=layer_id,
-        title=str(layer_id).capitalize(),
+        title=layer_id.capitalize(),
         description=(
             """ """
         ),
