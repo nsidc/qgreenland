@@ -6,6 +6,8 @@
   - All processing steps are now expressed in configuration.
 - Add "Monthly sea ice extent (1978 - present)" time-series layer.
 - Add provenance information to QGIS Layer Properties "History" tab.
+- Update "Glaciology/Glacier terminus positions 2000-2021" layers to use
+  NSIDC-0642 V2 (released Oct. 2021). Add layers for 2017-2021 winter seasons.
 
 
 # v1.0.2 (2021-02-23)
