@@ -3,11 +3,13 @@ FROM axiom/docker-luigi:2.8.13-alpine AS luigi
 
 FROM mambaorg/micromamba:0.17.0 AS micromamba
 COPY --from=luigi /bin/run /usr/local/bin/luigid
-
-# `git` is required for analyzing the current version
 USER root
-RUN apt-get update && apt-get install -y git
-USER micromamba
+
+# `libgl1-mesa-glx` is required for pyqgis
+# `git` is required for analyzing the current version
+RUN apt-get update && apt-get install -y \
+  git \
+  libgl1-mesa-glx
 
 # Create environments
 RUN micromamba install -y -c conda-forge -n base conda mamba
