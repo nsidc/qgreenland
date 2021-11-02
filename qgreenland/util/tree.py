@@ -99,6 +99,7 @@ def layer_tree(
         exclude_patterns=exclude_patterns,
         exclude_manual_assets=exclude_manual_assets,
     )
+
     # Clean up any empty layer groups. This shouldn't happen normally, but if
     # any layers are included or excluded, it's likely.
     _prune_tree(tree)
@@ -487,7 +488,7 @@ def _prune_tree(tree: anytree.Node) -> None:
             #    https://github.com/c0fec0de/anytree/issues/152
             node_path = list(node.group_name_path) + [node.name]
             node_name = '/'.join(node_path)
-            logger.debug(f'Removing leaf group: /{node_name}')
+            logger.warn(f'Removing leaf group: /{node_name}')
             node.parent = None
 
 

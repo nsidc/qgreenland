@@ -23,7 +23,7 @@ def run_qgr_command(cmd_list: list[str]):
     # Hack. The activation of the conda environment does not work as a list.
     # `subprocess.run(..., shell=True, ...)` enables running commands from
     # strings.
-    cmd_str = ' '.join(cmd)
+    cmd_str = ' '.join(str(arg) for arg in cmd)
 
     logger.info('Running command:')
     logger.info(cmd_str)
