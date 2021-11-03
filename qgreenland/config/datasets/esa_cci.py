@@ -222,7 +222,7 @@ esa_cci_marginal_lakes = ConfigDataset(
         ConfigDatasetHttpAsset(
             id='only',
             urls=[
-                'https://dap.ceda.ac.uk/neodc/esacci/glaciers/data/IIML/Greenland/v1/2017//20170101-ESACCI-L3S_GLACIERS-IML-MERGED-fv1.zip?download=1',
+                'https://dap.ceda.ac.uk/neodc/esacci/glaciers/data/IIML/Greenland/v1/2017/20170101-ESACCI-L3S_GLACIERS-IML-MERGED-fv1.zip?download=1',
             ],
         ),
     ],
