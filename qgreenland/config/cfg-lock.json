@@ -11165,53 +11165,6 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Geothermal heat flow map from machine-learning algorithm (55 km\nnative resolution).",
-                      "id": "geothermal_heat_flow_map",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "55km_map"
-                        },
-                        "dataset": {
-                          "id": "geothermal_heat_flow"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-t_srs",
-                            "EPSG:3413",
-                            "-r",
-                            "bilinear",
-                            "{input_dir}/geothermal_heat_flow_map_55km.nc",
-                            "{output_dir}/warped.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-cutline",
-                            "{assets_dir}/greenland_rectangle.geojson",
-                            "-crop_to_cutline",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "{input_dir}/warped.tif",
-                            "{output_dir}/geothermal_heat_flow_map_55km.tif"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "geothermal_heat_flow_map",
-                      "tags": [],
-                      "title": "Flow from multiple observations (55km)"
-                    },
-                    "name": "geothermal_heat_flow_map"
-                  },
-                  {
-                    "layer_cfg": {
                       "description": "Heat flow measurement database used in the creation of the 'Geothermal\nheat flow map (10km)' layer.",
                       "id": "geothermal_heat_flow_measurements",
                       "in_package": true,
@@ -11256,12 +11209,62 @@
                       "title": "Flow measurement locations"
                     },
                     "name": "geothermal_heat_flow_measurements"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Geothermal heat flow map from machine-learning algorithm (55 km\nnative resolution).",
+                      "id": "geothermal_heat_flow_map",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "55km_map"
+                        },
+                        "dataset": {
+                          "id": "geothermal_heat_flow"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-r",
+                            "bilinear",
+                            "{input_dir}/geothermal_heat_flow_map_55km.nc",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/geothermal_heat_flow_map_55km.tif"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "geothermal_heat_flow_map",
+                      "tags": [],
+                      "title": "Flow from multiple observations (55km)"
+                    },
+                    "name": "geothermal_heat_flow_map"
                   }
                 ],
                 "name": "Heat flow (Colgan et al.)",
                 "settings": {
                   "expand": false,
-                  "order": null,
+                  "order": [
+                    ":geothermal_heat_flow_measurements",
+                    ":geothermal_heat_flow_map"
+                  ],
                   "show": false
                 }
               },
