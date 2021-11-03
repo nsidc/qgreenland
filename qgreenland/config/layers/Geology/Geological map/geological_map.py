@@ -76,7 +76,7 @@ layers = [
                     'decompress_contents_mask':
                         params['input_filepath'] + params['fn_mask'],
                 },
-                vector_filename=params['input_filepath'] + '*.shp',
+                vector_filename=params['input_filepath'] + '.shp',
             ),
         ],
     )
