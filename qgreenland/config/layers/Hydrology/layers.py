@@ -1,5 +1,5 @@
-from qgreenland.config.helpers.layers.streams_outlets_basins import layers  # noqa: F401
 from qgreenland.config.datasets.esa_cci import esa_cci_marginal_lakes
+from qgreenland.config.helpers.layers.streams_outlets_basins import layers  # noqa: F401
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 

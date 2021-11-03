@@ -8,6 +8,6 @@ settings = LayerGroupSettings(
         *[
             f':{layer_id}'
             for layer_id in ORDERED_LAYER_IDS
-        ]
+        ],
     ],
 )
