@@ -491,12 +491,46 @@
         "title": "Geological map of the Arctic / Carte gologique de l'Arctique"
       }
     },
+    "geothermal_heat_flow": {
+      "assets": {
+        "10km_map": {
+          "id": "10km_map",
+          "urls": [
+            "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/7WDXNF"
+          ],
+          "verify_tls": true
+        },
+        "55km_map": {
+          "id": "55km_map",
+          "urls": [
+            "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/HJ7AIM"
+          ],
+          "verify_tls": true
+        },
+        "heat_flow_measurements": {
+          "id": "heat_flow_measurements",
+          "urls": [
+            "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/JMAXKV"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "geothermal_heat_flow",
+      "metadata": {
+        "abstract": "Database of all geothermal heat flow measurements within 500 km\nof Greenland's coastline with self-consistent machine-learning\ngeothermal heat flow map over all onshore and offshore areas.\n\nRelated publication:\n\nColgan, W., A. Wansing, K. Mankoff, M. L\u00f6sing, J. Hopper, K. Louden,\nJ. Ebbing, F. Christiansen, T. Ingeman-Nielsen, L. Claesson\nLiljedahl, J. MacGregor, \u00c1. Hjartarson, S. Bernstein, N. Karlsson,\nS. Fuchs, J. Hartikainen, J. Liakka, R. Fausto, D. Dahl-Jensen,\nA. Bj\u00f8rk, J.-O. Naslund, F. M\u00f8rk, Y. Martos, N. Balling, T. Funck,\nK. Kjeldsen, D. Petersen, U. Gregersen, G. Dam, T. Nielsen, A. Khan\nand A. L\u00f8kkegaard. Greenland Geothermal Heat Flow Database and Map\n(Version 1). Earth Systems Science Data Discussions. under review.",
+        "citation": {
+          "text": "Colgan, William; Wansing, Agnes, 2021, \"Greenland Geothermal\nHeat Flow Database and Map\",\nhttps://doi.org/10.22008/FK2/F9P03L, GEUS Dataverse, V1",
+          "url": "https://doi.org/10.22008/FK2/F9P03L"
+        },
+        "title": "Greenland Geothermal Heat Flow Database and Map"
+      }
+    },
     "geothermal_heat_flux": {
       "assets": {
         "only": {
           "id": "only",
           "urls": [
-            "https://ads.nipr.ac.jp/portal/kiwa/DataDownloadDownload.action?mode=single&path=ADS%3AArCS-T2%3AA20180227-001%3A2.00%3A%2FArCS-T2%2FA20180227-001%2Fv200%2Fdataset%2FGHF_Greenland_Ver2.0_GridEPSG3413_05km.nc&downloads=ADS%3AArCS-T2%3AA20180227-001%3A2.00%3A%2FArCS-T2%2FA20180227-001%2Fv200%2Fdataset%2FGHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
+            "https://ads.nipr.ac.jp/api/v1/metadata/A20180227-001/2.00/data/DATA?path=GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
           ],
           "verify_tls": true
         }
@@ -505,8 +539,8 @@
       "metadata": {
         "abstract": "The data present a distribution of the geothermal heat flux (GHF)\nfor Greenland, which is an update of two earlier versions by Greve\n(2005, Ann. Glaciol. 42) and Greve and Herzfeld (2013, Ann. Glaciol.\n54). The GHF distribution is constructed in two steps. First, the\nglobal representation by Pollack et al. (1993, Rev. Geophys. 31) is\nscaled for the area of Greenland. Second, by means of a\npaleoclimatic simulation carried out with the ice sheet model\nSICOPOLIS, the GHF values for five deep ice core locations are\nmodified such that observed and simulated basal temperatures match\nclosely. The resulting GHF distribution generally features low\nvalues in the south and the north-west, whereas elevated values\nprevail in central North Greenland and towards the north-east. The\noriginal source data are provided as NetCDF files on two different\ngrids (EPSG:3413 grid, Bamber grid) that have frequently been used\nin modelling studies of the Greenland ice sheet, and for the three\ndifferent resolutions of 5 km, 10 km and 20 km.",
         "citation": {
-          "text": "Polar Data Journal, 3, 22-36.\nhttps://doi.org/10.20575/00000006",
-          "url": "https://doi.org/10.20575/00000006"
+          "text": "Greve, R., 2018, Geothermal heat flux distribution for the\nGreenland ice sheet, derived by combining a global\nrepresentation and information from deep ice cores, 2.00, Arctic\nData archive System (ADS), Japan,\nhttp://doi.org/10.17592/001.2018022701",
+          "url": "http://doi.org/10.17592/001.2018022701"
         },
         "title": "Geothermal heat flux distribution for the Greenland ice sheet, derived by combining a global representation and information from deep ice cores"
       }
@@ -11131,6 +11165,189 @@
                 "children": [
                   {
                     "layer_cfg": {
+                      "description": "Heat flow measurement database used in the creation of the 'Geothermal\nheat flow map (10km)' layer.",
+                      "id": "geothermal_heat_flow_measurements",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "heat_flow_measurements"
+                        },
+                        "dataset": {
+                          "id": "geothermal_heat_flow"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/Greenland_heat_flow_measurements.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-clipdst",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-makevalid",
+                            "{output_dir}/heat_flow_measurements.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "Flow measurement locations"
+                    },
+                    "name": "geothermal_heat_flow_measurements"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Geothermal heat flow map from machine-learning algorithm (55 km\nnative resolution).",
+                      "id": "geothermal_heat_flow_map",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "55km_map"
+                        },
+                        "dataset": {
+                          "id": "geothermal_heat_flow"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-r",
+                            "bilinear",
+                            "{input_dir}/geothermal_heat_flow_map_55km.nc",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/greenland_rectangle.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/geothermal_heat_flow_map_55km.tif"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "geothermal_heat_flow_map",
+                      "tags": [],
+                      "title": "Flow from multiple observations (55km)"
+                    },
+                    "name": "geothermal_heat_flow_map"
+                  }
+                ],
+                "name": "Heat flow (Colgan et al.)",
+                "settings": {
+                  "expand": false,
+                  "order": [
+                    ":geothermal_heat_flow_measurements",
+                    ":geothermal_heat_flow_map"
+                  ],
+                  "show": false
+                }
+              },
+              {
+                "layer_cfg": {
+                  "description": "Geothermal heat flux interpolated from ice core measurements in\nmiliwatts per square meter.",
+                  "id": "geothermal_heat_flux",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "geothermal_heat_flux"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/A20180227-001v200.zip",
+                        "-d",
+                        "{output_dir}",
+                        "ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-r",
+                        "bilinear",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "NETCDF:{input_dir}/ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc:GHF",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "geothermal_heat_flux",
+                  "tags": [],
+                  "title": "Flux from ice cores (Greve, R.) (5km)"
+                },
+                "name": "geothermal_heat_flux"
+              }
+            ],
+            "name": "Heat flux",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
                       "description": "The locations of northern hemisphere dip poles (2020-2025) from the World\nMagnetic Model (WMM) 2020 model.\n\nThe geomagnetic dip poles are positions on the\nEarth's surface where the geomagnetic field is perpendicular to the ellipsoid,\nthat is, vertical. The north and south dip poles do not have to be (and are not\nnow) antipodal.\n\n\nThese model dip poles are computed from all the Gauss coefficients using an\niterative method. In 2020.0 the north dip pole computed from WMM2020 is\nlocated at longitude 164.04\u00b0E and geodetic latitude 86.50\u00b0N and the south\ndip pole at longitude 135.88\u00b0E and geodetic latitude 64.07\u00b0S.",
                       "id": "wmm_north_poles",
                       "in_package": true,
@@ -16426,72 +16643,6 @@
               "title": "Geoid model (2km)"
             },
             "name": "geoid"
-          },
-          {
-            "layer_cfg": {
-              "description": "Geothermal heat flux interpolated from ice core measurements in\nmiliwatts per square meter.",
-              "id": "geothermal_heat_flux",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "geothermal_heat_flux"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "unzip",
-                    "{input_dir}/A20180227-001v200.zip",
-                    "-d",
-                    "{output_dir}",
-                    "ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
-                  ],
-                  "type": "command"
-                },
-                {
-                  "args": [
-                    "gdalwarp",
-                    "-cutline",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-crop_to_cutline",
-                    "-r",
-                    "bilinear",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-co",
-                    "COMPRESS=DEFLATE",
-                    "NETCDF:{input_dir}/ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc:GHF",
-                    "{output_dir}/warped.tif"
-                  ],
-                  "type": "command"
-                },
-                {
-                  "args": [
-                    "cp",
-                    "{input_dir}/warped.tif",
-                    "{output_dir}/final.tif",
-                    "&&",
-                    "gdaladdo",
-                    "-r",
-                    "average",
-                    "{output_dir}/final.tif",
-                    "2",
-                    "4",
-                    "8",
-                    "16"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "geothermal_heat_flux",
-              "tags": [],
-              "title": "Geothermal heat flux (5km)"
-            },
-            "name": "geothermal_heat_flux"
           }
         ],
         "name": "Geophysics",

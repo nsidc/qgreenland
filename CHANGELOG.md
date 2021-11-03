@@ -1,3 +1,11 @@
+# NEXT_VERSION
+
+- Move "Geophysics/Geothermal heat flux (5km)" layer to "Geophysics/Heat flux/Flux from
+  ice cores (Greve, R.) (5km)"
+- Add new "Geophysics/Heat flux" layers:
+  - "Flow from multiple observations (55km)"
+  - "Flow measurement locations"
+
 # v2.0.0alpha1 (2021-11-03)
 
 - Minimum supported version of QGIS is now `v3.16`.
