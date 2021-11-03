@@ -315,6 +315,26 @@
         "title": "Greenland Ice Sheet Velocity 2019/20 from SENTINEL-1 winter campaign from 2019/12/14 to 2020/01/31."
       }
     },
+    "esa_cci_marginal_lakes": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://dap.ceda.ac.uk/neodc/esacci/glaciers/data/IIML/Greenland/v1/2017/20170101-ESACCI-L3S_GLACIERS-IML-MERGED-fv1.zip?download=1"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "esa_cci_marginal_lakes",
+      "metadata": {
+        "abstract": "The IIML is a comprehensive record of all identified ice marginal\nlakes across the terrestrial margin of Greenland, detected using\nremote sensing techniques. The detected lakes are presented as\npolygon vector features in shapefile format, with coordinates\nprovided in the WGS 1984 UTM Zone 24N projected coordinate\nsystem. Ice marginal lakes were identified using three independent\nremote sensing methods: 1) multi-temporal backscatter classification\nfrom Sentinel-1 synthetic aperture radar imagery; 2) multi-spectral\nindices classification from Sentinel-2 optical imagery; and 3) sink\ndetection from the ArcticDEM (v3). All data were compiled and\nfiltered in a semi-automated approach, using a modified version of\nthe MEaSUREs GIMP ice mask\n(https://nsidc.org/data/NSIDC-0714/versions/1) to clip the dataset\nto within 1 km of the ice margin. Each detected lake was then\nverified manually. The IIML was collected to better understand the\nimpact of ice marginal lake change on the future sea level budget\nand the terrestrial and marine landscapes of Greenland, such as its\necosystems and human activities.\n\nThe IIML is a complete inventory of Greenland, with no absent data.",
+        "citation": {
+          "text": "Wiesmann, A.; Santoro, M.; Caduff, R.; How, P.; Messerli, A.;\nM\u00e4tzler, E.; Langley, K.; H\u00f8egh Bojesen, M.; Paul, F.; K\u00e4\u00e4b,\nA.M. (2021): ESA Glaciers Climate Change Initiative\n(Glaciers_cci): 2017 inventory of ice marginal lakes in\nGreenland (IIML), v1. Centre for Environmental Data Analysis, 19\nFebruary\n2021. doi:10.5285/7ea7540135f441369716ef867d217519.\nhttp://dx.doi.org/10.5285/7ea7540135f441369716ef867d217519",
+          "url": "http://dx.doi.org/10.5285/7ea7540135f441369716ef867d217519"
+        },
+        "title": "ESA Glaciers Climate Change Initiative (Glaciers_cci): 2017\ninventory of ice marginal lakes in Greenland (IIML), v1"
+      }
+    },
     "esa_cci_supraglacial_lakes": {
       "assets": {
         "only": {
@@ -16485,6 +16505,53 @@
         "children": [
           {
             "layer_cfg": {
+              "description": "Polygons representing marginal lake locations identified from remote\nsensing.",
+              "id": "marginal_lakes",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "esa_cci_marginal_lakes"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/20170101-ESACCI-L3S_GLACIERS-IML-MERGED-fv1.zip",
+                    "-d",
+                    "{output_dir}",
+                    ""
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "{output_dir}/marginal_lakes.gpkg",
+                    "{input_dir}/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": null,
+              "tags": [],
+              "title": "Inventory of ice marginal lakes, 2017"
+            },
+            "name": "marginal_lakes"
+          },
+          {
+            "layer_cfg": {
               "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
               "id": "ice_outlets",
               "in_package": true,
@@ -16792,6 +16859,7 @@
         "settings": {
           "expand": false,
           "order": [
+            ":marginal_lakes",
             ":ice_outlets",
             ":land_outlets",
             ":ice_streams",
