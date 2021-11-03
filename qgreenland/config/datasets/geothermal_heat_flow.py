@@ -2,7 +2,6 @@ from qgreenland.models.config.asset import ConfigDatasetHttpAsset
 from qgreenland.models.config.dataset import ConfigDataset
 
 
-# The name of the `dataset` variable doesn't matter here.
 geothermal_heat_flow = ConfigDataset(
     id='geothermal_heat_flow',
     assets=[
