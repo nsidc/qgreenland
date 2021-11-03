@@ -33,7 +33,7 @@ geothermal_heat_flow = ConfigLayer(
 
 geothermal_heat_flow_measurements = ConfigLayer(
     id='geothermal_heat_flow_measurements',
-    title='Geothermal heat flow measurements',
+    title='Flow measurement locations',
     description=(
         """Heat flow measurement database used in the creation of the 'Geothermal
         heat flow map (10km)' layer."""
