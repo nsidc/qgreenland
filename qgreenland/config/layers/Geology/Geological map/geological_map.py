@@ -30,6 +30,7 @@ LAYER_PARAMS = {
             """This dataset includes linear features that represent bathymetric contours recorded in metres, 
         derived from the International Bathymetric Chart of the Arctic Ocean."""
         ),
+        'style': 'bathymetry_map',
         'input_filepath': 'data/shape/base/',
         'fn_mask': 'Bathymetry.*',
     },
@@ -39,6 +40,7 @@ LAYER_PARAMS = {
             """This linear feature class contains onshore ice isopachs for the landmass of Greenland. 
         The isopochs illustrate the variation in ice thickness with a contour interval of 250 metres."""
         ),
+        'style': 'greenland_ice_map',
         'input_filepath': 'data/shape/base/',
         'fn_mask': 'Greenland_ice.*',
     },
@@ -48,6 +50,7 @@ LAYER_PARAMS = {
             """This linear feature class contains onshore ice isopachs for the landmass of Greenland. 
         The isopochs illustrate the variation in ice thickness with a contour interval of 250 metres."""
         ),
+        'style': 'onshore_pattern',
         'input_filepath': 'data/shape/geology/',
         'fn_mask': 'Greenland_onshore_pattern.*',
     },
