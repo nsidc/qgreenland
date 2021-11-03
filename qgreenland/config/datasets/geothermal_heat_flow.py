@@ -3,23 +3,25 @@ from qgreenland.models.config.dataset import ConfigDataset
 
 
 # The name of the `dataset` variable doesn't matter here.
-dataset = ConfigDataset(
-    # TODO: Fill in `your_dataset_id`. Be descriptive:
+geothermal_heat_flow = ConfigDataset(
     id='geothermal_heat_flow',
     assets=[
         # This is interpolated data.
         # TODO: is there anything special about the upsampling done here?
         ConfigDatasetHttpAsset(
             id='10km_map',
-            urls=['https://dataverse01.geus.dk/api/access/datafile/24634?gbrecs=true'],
+            urls=['https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/7WDXNF'],
         ),
         # This is the native resolution
         ConfigDatasetHttpAsset(
             id='55km_map',
-            urls=['https://dataverse01.geus.dk/api/access/datafile/24633?gbrecs=true'],
+            urls=['https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/HJ7AIM'],
+        ),
+        ConfigDatasetHttpAsset(
+            id='heat_flow_measurements',
+            urls=['https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/JMAXKV'],
         ),
     ],
-    # TODO: Fill in _all_ metadata fields below:
     metadata={
         'title': 'Greenland Geothermal Heat Flow Database and Map',
         'abstract': (
