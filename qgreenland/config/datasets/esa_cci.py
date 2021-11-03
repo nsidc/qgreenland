@@ -1,4 +1,4 @@
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
+from qgreenland.models.config.asset import ConfigDatasetHttpAsset, ConfigDatasetManualAsset
 from qgreenland.models.config.dataset import ConfigDataset
 
 
@@ -212,6 +212,59 @@ esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
                 doi:10.5194/tc-7-1411-2013, 2013."""
             ),
             'url': 'http://products.esa-icesheets-cci.org/products/details/greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820.zip/',
+        },
+    },
+)
+
+esa_cci_marginal_lakes = ConfigDataset(
+    id='esa_cci_marginal_lakes',
+    assets=[
+        ConfigDatasetHttpAsset(
+            id='only',
+            urls=[
+                'https://dap.ceda.ac.uk/neodc/esacci/glaciers/data/IIML/Greenland/v1/2017/20170101-ESACCI-L3S_GLACIERS-IML-MERGED-fv1.zip?download=1',
+            ],
+        ),
+    ],
+    metadata={
+        'title': (
+            """ESA Glaciers Climate Change Initiative (Glaciers_cci): 2017
+            inventory of ice marginal lakes in Greenland (IIML), v1"""
+        ),
+        'abstract': (
+            """The IIML is a comprehensive record of all identified ice marginal
+            lakes across the terrestrial margin of Greenland, detected using
+            remote sensing techniques. The detected lakes are presented as
+            polygon vector features in shapefile format, with coordinates
+            provided in the WGS 1984 UTM Zone 24N projected coordinate
+            system. Ice marginal lakes were identified using three independent
+            remote sensing methods: 1) multi-temporal backscatter classification
+            from Sentinel-1 synthetic aperture radar imagery; 2) multi-spectral
+            indices classification from Sentinel-2 optical imagery; and 3) sink
+            detection from the ArcticDEM (v3). All data were compiled and
+            filtered in a semi-automated approach, using a modified version of
+            the MEaSUREs GIMP ice mask
+            (https://nsidc.org/data/NSIDC-0714/versions/1) to clip the dataset
+            to within 1 km of the ice margin. Each detected lake was then
+            verified manually. The IIML was collected to better understand the
+            impact of ice marginal lake change on the future sea level budget
+            and the terrestrial and marine landscapes of Greenland, such as its
+            ecosystems and human activities.
+
+            The IIML is a complete inventory of Greenland, with no absent data."""
+        ),
+        'citation': {
+            'text': (
+                """Wiesmann, A.; Santoro, M.; Caduff, R.; How, P.; Messerli, A.;
+                Mätzler, E.; Langley, K.; Høegh Bojesen, M.; Paul, F.; Kääb,
+                A.M. (2021): ESA Glaciers Climate Change Initiative
+                (Glaciers_cci): 2017 inventory of ice marginal lakes in
+                Greenland (IIML), v1. Centre for Environmental Data Analysis, 19
+                February
+                2021. doi:10.5285/7ea7540135f441369716ef867d217519.
+                http://dx.doi.org/10.5285/7ea7540135f441369716ef867d217519"""
+            ),
+            'url': 'http://dx.doi.org/10.5285/7ea7540135f441369716ef867d217519',
         },
     },
 )
