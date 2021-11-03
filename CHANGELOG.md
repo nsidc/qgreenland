@@ -1,16 +1,13 @@
-# NEXT_VERSION (Unreleased)
-
-- Add "Hydrology/Inventory of marginal lakes" layer.
-
-
 # v2.0.0alpha1 (2021-11-03)
 
 - Minimum supported version of QGIS is now `v3.16`.
   - New Time Controller allows visualization of time-series layers.
 - Overhaul YAML configuration to Python configuration.
   - All processing steps are now expressed in configuration.
-- Add "Monthly sea ice extent (1978 - present)" time-series layer.
 - Add provenance information to QGIS Layer Properties "History" tab.
+- Added layers:
+  - "Hydrology/Inventory of marginal lakes"
+  - "Monthly sea ice extent (1978 - present)" (time-series, online-only)
 - Update "Glaciology/Glacier terminus positions 2000-2021" layers to use
   NSIDC-0642 V2 (released Oct. 2021). Add layers for 2017-2021 winter seasons.
 
