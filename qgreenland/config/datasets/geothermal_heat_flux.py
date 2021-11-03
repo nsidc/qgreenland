@@ -8,7 +8,7 @@ geothermal_heat_flux = ConfigDataset(
         ConfigDatasetHttpAsset(
             id='only',
             urls=[
-                'https://ads.nipr.ac.jp/portal/kiwa/DataDownloadDownload.action?mode=single&path=ADS%3AArCS-T2%3AA20180227-001%3A2.00%3A%2FArCS-T2%2FA20180227-001%2Fv200%2Fdataset%2FGHF_Greenland_Ver2.0_GridEPSG3413_05km.nc&downloads=ADS%3AArCS-T2%3AA20180227-001%3A2.00%3A%2FArCS-T2%2FA20180227-001%2Fv200%2Fdataset%2FGHF_Greenland_Ver2.0_GridEPSG3413_05km.nc',
+                'https://ads.nipr.ac.jp/api/v1/metadata/A20180227-001/2.00/data/DATA?path=GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc',
             ],
         ),
     ],
@@ -34,10 +34,13 @@ geothermal_heat_flux = ConfigDataset(
         ),
         'citation': {
             'text': (
-                """Polar Data Journal, 3, 22-36.
-                https://doi.org/10.20575/00000006"""
+                """Greve, R., 2018, Geothermal heat flux distribution for the
+                Greenland ice sheet, derived by combining a global
+                representation and information from deep ice cores, 2.00, Arctic
+                Data archive System (ADS), Japan,
+                http://doi.org/10.17592/001.2018022701"""
             ),
-            'url': 'https://doi.org/10.20575/00000006',
+            'url': 'http://doi.org/10.17592/001.2018022701',
         },
     },
 )
