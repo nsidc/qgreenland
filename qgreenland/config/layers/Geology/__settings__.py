@@ -7,6 +7,5 @@ settings = LayerGroupSettings(
         ':tectonic_plate_boundaries',
         ':soil_types',
         'Geological map',
-        ':ice_iso_map',
     ],
 )
