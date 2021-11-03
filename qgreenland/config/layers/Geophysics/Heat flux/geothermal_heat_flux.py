@@ -16,7 +16,7 @@ nc_dataset = 'GHF'
 
 geothermal_heat_flux = ConfigLayer(
     id='geothermal_heat_flux',
-    title='Geothermal heat flux (5km)',
+    title='Geothermal heat flux (Greve, R.) (5km)',
     description=(
         """Geothermal heat flux interpolated from ice core measurements in
         miliwatts per square meter."""

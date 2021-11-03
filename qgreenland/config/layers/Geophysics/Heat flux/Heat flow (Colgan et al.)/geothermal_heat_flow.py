@@ -12,6 +12,7 @@ from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 geothermal_heat_flow = ConfigLayer(
     id='geothermal_heat_flow_map',
     title='Geothermal heat flow (10km)',
+    style='geothermal_heat_flow_map',
     description=(
         """Geothermal heat flow map from machine-learning algorithm (55 km
         native resolution)."""
