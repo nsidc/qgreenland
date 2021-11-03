@@ -11,7 +11,7 @@ from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 # with a list comprehension as well, as long as you assign it to a variable.
 geothermal_heat_flow = ConfigLayer(
     id='geothermal_heat_flow_map',
-    title='Geothermal heat flow (10km)',
+    title='Flow from multiple observations (55km)',
     style='geothermal_heat_flow_map',
     description=(
         """Geothermal heat flow map from machine-learning algorithm (55 km
