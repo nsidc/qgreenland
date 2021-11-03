@@ -11,6 +11,7 @@ LAYER_PARAMS = {
             """Onshore faults for the landmass and islands of Greenland."""
         ),
         'style': 'onshore_planar_geological_map',
+        'input_filepath': 'data/shape/geology/',
         'fn_mask': 'Greenland_onshore_Planar.*',
     },
     'onshore_geological_map': {
@@ -20,7 +21,35 @@ LAYER_PARAMS = {
             islands of Greenland."""
         ),
         'style': 'geological_map_polygons',
+        'input_filepath': 'data/shape/geology/',
         'fn_mask': 'Greenland_onshore.*',
+    },
+    'bathymetry_map': {
+        'title': 'Bathymetry',
+        'description': (
+            """This dataset includes linear features that represent bathymetric contours recorded in metres, 
+        derived from the International Bathymetric Chart of the Arctic Ocean."""
+        ),
+        'input_filepath': 'data/shape/base/',
+        'fn_mask': 'Bathymetry.*',
+    },
+    'greenland_ice': {
+        'title': 'Ice Isopachs',
+        'description': (
+            """This linear feature class contains onshore ice isopachs for the landmass of Greenland. 
+        The isopochs illustrate the variation in ice thickness with a contour interval of 250 metres."""
+        ),
+        'input_filepath': 'data/shape/base/',
+        'fn_mask': 'Greenland_ice.*',
+    },
+    'onshore_pattern': {
+        'title': 'Rock Types',
+        'description': (
+            """This linear feature class contains onshore ice isopachs for the landmass of Greenland. 
+        The isopochs illustrate the variation in ice thickness with a contour interval of 250 metres."""
+        ),
+        'input_filepath': 'data/shape/geology/',
+        'fn_mask': 'Greenland_onshore_pattern.*',
     },
 }
 
@@ -42,9 +71,9 @@ layers = [
                 boundary_filepath=project.boundaries['background'].filepath,
                 decompress_step_kwargs={
                     'decompress_contents_mask':
-                        f'data/shape/geology/{params["fn_mask"]}',
+                        params['input_filepath'] + params['fn_mask'],
                 },
-                vector_filename='data/shape/geology/*.shp',
+                vector_filename=params['input_filepath'] + '*.shp',
             ),
         ],
     )
