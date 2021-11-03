@@ -1,3 +1,8 @@
+# NEXT_VERSION (Unreleased)
+
+- Add "Hydrology/Inventory of marginal lakes" layer.
+
+
 # v2.0.0alpha1 (2021-11-03)
 
 - Minimum supported version of QGIS is now `v3.16`.
