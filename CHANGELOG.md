@@ -1,4 +1,4 @@
-# v2.0.0 (unreleased)
+# v2.0.0alpha1 (2021-11-03)
 
 - Minimum supported version of QGIS is now `v3.16`.
   - New Time Controller allows visualization of time-series layers.
