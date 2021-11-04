@@ -60,7 +60,9 @@ def compile_cfg(
         leaves = compiled_layer_tree.leaves
 
         if not all(type(leaf) is LayerNode for leaf in leaves):
-            raise RuntimeError('Error compiling config. Please debug.')
+            raise RuntimeError(
+                'Not all leaf nodes are layer nodes. breakpoint() me.',
+            )
 
         layers_dict = {
             node.layer_cfg.id: node.layer_cfg
