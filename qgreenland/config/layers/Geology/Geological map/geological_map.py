@@ -5,15 +5,15 @@ from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
 LAYER_PARAMS = {
-    # 'onshore_planar_geological_map': {
-    #     'title': 'Faults',
-    #     'description': (
-    #         """Onshore faults for the landmass and islands of Greenland."""
-    #     ),
-    #     'style': 'onshore_planar_geological_map',
-    #     'input_filepath': 'data/shape/geology/Greenland_onshore_planar',
-    #     'fn_mask': 'Greenland_onshore_Planar.*',
-    # },
+    'onshore_planar_geological_map': {
+        'title': 'Faults',
+        'description': (
+            """Onshore faults for the landmass and islands of Greenland."""
+        ),
+        'style': 'onshore_planar_geological_map',
+        'input_filepath': 'data/shape/geology/Greenland_onshore_planar',
+        'fn_mask': 'Greenland_onshore_Planar.*',
+    },
     'onshore_geological_map': {
         'title': 'Rock types',
         'description': (
@@ -24,13 +24,13 @@ LAYER_PARAMS = {
         'input_filepath': 'data/shape/geology/Greenland_onshore',
         'fn_mask': 'Greenland_onshore.*',
     },
-    'bathymetry_map': {
-        'title': 'Bathymetry',
+    'bathymetric_contours': {
+        'title': 'Bathymetric contours',
         'description': (
             """This dataset includes linear features that represent bathymetric contours recorded in metres, 
         derived from the International Bathymetric Chart of the Arctic Ocean."""
         ),
-        'style': 'bathymetry_map',
+        'style': 'bathymetry',
         'input_filepath': 'data/shape/base/bathymetry',
         'fn_mask': 'bathymetry.*',
     },
@@ -40,19 +40,9 @@ LAYER_PARAMS = {
             """This linear feature class contains onshore ice isopachs for the landmass of Greenland. 
         The isopochs illustrate the variation in ice thickness with a contour interval of 250 metres."""
         ),
-        'style': 'greenland_ice',
+        'style': 'Greenland_ice',
         'input_filepath': 'data/shape/base/Greenland_ice',
         'fn_mask': 'Greenland_ice.*',
-    },
-    'onshore_pattern': {
-        'title': 'Rock Types',
-        'description': (
-            """Geological unit polygon features for the onshore landmass and
-            islands of Greenland."""
-        ),
-        'style': 'geological_map_polygons',
-        'input_filepath': 'data/shape/geology/Greenland_onshore_pattern',
-        'fn_mask': 'Greenland_onshore_pattern.*',
     },
 }
 
