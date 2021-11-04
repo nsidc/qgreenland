@@ -3,8 +3,9 @@ from pathlib import Path
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType
 from qgreenland.constants import (
+    PACKAGE_COMPILE_DIR,
     PROVIDER_LAYERTYPE_MAPPING,
-    TaskType,
+    RELEASES_LAYERS_DIR,
 )
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
@@ -17,17 +18,17 @@ def vector_or_raster(layer_node: LayerNode) -> QgsLayerType:
     if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
         return PROVIDER_LAYERTYPE_MAPPING[layer_cfg.input.asset.provider]
     else:
-        layer_path = get_final_layer_filepath(layer_node)
+        layer_path = get_layer_compile_filepath(layer_node)
         return _vector_or_raster_from_fp(layer_path)
 
 
-def get_final_layer_dir(
+def get_layer_compile_dir(
     layer_node: LayerNode,
 ) -> Path:
-    """Get the layer directory in its final pre-zip location."""
+    """Get the layer directory in package compilation location."""
     layer_group_path_str = '/'.join(layer_node.group_name_path)
     return (
-        Path(TaskType.FINAL.value)
+        PACKAGE_COMPILE_DIR
         / layer_group_path_str
         / _layer_dirname_from_cfg(layer_node.layer_cfg)
     )
@@ -37,16 +38,16 @@ def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
     return f'{dataset_id}.{asset_id}'
 
 
-def get_final_layer_filepath(
+def get_layer_compile_filepath(
     layer_node: LayerNode,
 ) -> Path:
-    d = get_final_layer_dir(layer_node)
-    layer_fp = get_layer_fp(d)
+    return get_layer_fp(get_layer_compile_dir(layer_node))
 
-    if not layer_fp.is_file():
-        raise exc.QgrRuntimeError(f"Layer located at '{layer_fp}' does not exist.")
 
-    return layer_fp
+def get_layer_release_filepath(
+    layer_node: LayerNode,
+) -> Path:
+    return get_layer_fp(RELEASES_LAYERS_DIR / layer_node.layer_cfg.id)
 
 
 def _layer_dirname_from_cfg(layer_cfg: ConfigLayer) -> str:

@@ -7,7 +7,7 @@ from qgreenland.util.config.config import (
 )
 from qgreenland.util.luigi.tasks.pipeline import (
     CreateQgisProjectFile,
-    IngestAllLayers,
+    LayerPipelines,
     ZipQGreenland,
 )
 
@@ -66,7 +66,7 @@ def run(
 
     if fetch_only:
         # Don't do anything except fetch the input asset for each layer.
-        tasks = [IngestAllLayers(
+        tasks = [LayerPipelines(
             fetch_only=fetch_only,
         )]
     elif include or exclude:

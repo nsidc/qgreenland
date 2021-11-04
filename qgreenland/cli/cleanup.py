@@ -4,9 +4,8 @@ import click
 
 from qgreenland.constants import (
     INPUT_DIR,
-    PROJECT,
+    PACKAGE_COMPILE_DIR,
     RELEASES_DIR,
-    TaskType,
     WIP_DIR,
 )
 from qgreenland.util.cli.validate import (
@@ -84,7 +83,7 @@ def cleanup(**kwargs):  # noqa: C901
     if wip_patterns := kwargs['delete_wips_by_pattern']:
         for p in wip_patterns:
             _print_and_run(
-                f'rm -rf {TaskType.WIP.value}/{p}',
+                f'rm -rf {WIP_DIR}/{p}',
                 dry_run=kwargs['dry_run'],
             )
     if inp_patterns := kwargs['delete_inputs_by_pattern']:
@@ -102,13 +101,13 @@ def cleanup(**kwargs):  # noqa: C901
 
     if kwargs['delete_all_wip']:
         _print_and_run(
-            f'rm -rf {TaskType.WIP.value}/*',
+            f'rm -rf {WIP_DIR}/*',
             dry_run=kwargs['dry_run'],
         )
 
     if kwargs['delete_compiled']:
         _print_and_run(
-            f'rm -rf {WIP_DIR}/{PROJECT}*',
+            f'rm -rf {PACKAGE_COMPILE_DIR}*',
             dry_run=kwargs['dry_run'],
         )
 

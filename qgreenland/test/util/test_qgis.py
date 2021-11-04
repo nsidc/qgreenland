@@ -9,8 +9,7 @@ import qgreenland.util.qgis.layer as qgl
 import qgreenland.util.qgis.metadata as qgm
 import qgreenland.util.qgis.project as prj
 from qgreenland.test.constants import (
-    MOCK_LAYERS_DIR,
-    MockTaskType,
+    MOCK_PACKAGE_COMPILE_DIR,
 )
 
 
@@ -23,8 +22,8 @@ def test_make_map_layer_online(setup_teardown_qgis_app, online_layer_node):
 
 
 @patch(
-    'qgreenland.util.layer.TaskType',
-    new=MockTaskType,
+    'qgreenland.util.layer.PACKAGE_COMPILE_DIR',
+    new=MOCK_PACKAGE_COMPILE_DIR,
 )
 def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
     result = qgl.make_map_layer(raster_layer_node)
@@ -34,8 +33,9 @@ def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
 
     # Has the expected path to the data on disk.
     expected_raster_path = (
-        MOCK_LAYERS_DIR / 'Group' / 'Subgroup' / 'Example raster'
-        / 'example.tif'
+        MOCK_PACKAGE_COMPILE_DIR
+        / 'Group' / 'Subgroup'
+        / 'Example raster' / 'example.tif'
     )
     assert result.source() == str(expected_raster_path)
 
@@ -49,8 +49,8 @@ def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
 
 
 @patch(
-    'qgreenland.util.layer.TaskType',
-    new=MockTaskType,
+    'qgreenland.util.layer.PACKAGE_COMPILE_DIR',
+    new=MOCK_PACKAGE_COMPILE_DIR,
 )
 def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
     mock_raster_layer = qgl.make_map_layer(raster_layer_node)
@@ -114,8 +114,8 @@ https://nsidc.org"""
 
 
 @patch(
-    'qgreenland.util.layer.TaskType',
-    new=MockTaskType,
+    'qgreenland.util.layer.PACKAGE_COMPILE_DIR',
+    new=MOCK_PACKAGE_COMPILE_DIR,
 )
 def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):
     # Test that _add_layers_and_groups works without error

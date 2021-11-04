@@ -9,7 +9,7 @@ import qgreenland.exceptions as exc
 from qgreenland.constants import ANCILLARY_DIR
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.util.layer import (
-    get_final_layer_filepath,
+    get_layer_compile_filepath,
     vector_or_raster,
 )
 from qgreenland.util.qgis.metadata import add_layer_metadata
@@ -68,7 +68,7 @@ def _layer_path(
         # automatically generates the correct relative paths. Using a relative
         # path causes statistics (nodata value, min/max) to not be generated,
         # resulting in rendering a gray rectangle.
-        return get_final_layer_filepath(layer_node)
+        return get_layer_compile_filepath(layer_node)
 
 
 def _offline_raster_side_effects(

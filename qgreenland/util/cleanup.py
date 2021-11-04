@@ -4,21 +4,24 @@ import shutil
 import time
 
 from qgreenland.constants import (
-    TaskType,
-    WIP_DIR,
+    INPUT_DIR,
+    OUTPUT_DIRS,
 )
 
 
 def cleanup_intermediate_dirs():
-    """Delete all intermediate data, except maybe 'fetch' dir."""
-    for task_type in TaskType:
-        if task_type != TaskType.FETCH:
-            _rmtree(task_type.value)
+    """Delete all intermediate data, except 'fetch' dir."""
+    for d in OUTPUT_DIRS:
+        if d is not INPUT_DIR:
+            _rmtree(d)
 
-    if os.path.isdir(WIP_DIR):
-        for x in os.listdir(WIP_DIR):
-            if x.startswith('tmp'):
-                _rmtree(x)
+    # TODO: Delete this block? The context manager handles cleaning up the tmp
+    # dirs, and this `x.startswith('tmp')` condition should never evaluate
+    # `True`. The real temp dirs look like `foo-luigi-tmp-#####`.
+    # if os.path.isdir(WIP_DIR):
+    #     for x in os.listdir(WIP_DIR):
+    #         if x.startswith('tmp'):
+    #             _rmtree(x)
 
 
 def _rmtree(directory, *, retries=3):

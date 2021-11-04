@@ -21,7 +21,8 @@ from qgreenland.util.fs import (
 )
 from qgreenland.util.json import MagicJSONEncoder
 from qgreenland.util.layer import (
-    get_final_layer_filepath,
+    get_layer_compile_filepath,
+    get_layer_release_filepath,
     vector_or_raster,
 )
 from qgreenland.util.qgis.metadata import (
@@ -39,8 +40,10 @@ def export_config_manifest(
 ) -> None:
     """Write a machine-readable manifest to disk describing available layers.
 
-    This must be run after the layers are in their location, because we need to
-    calculate their size on disk.
+    This includes layers for which `in_package is False`.
+
+    This must be run after the layers are in their release location, because we
+    need to calculate their size on disk.
     """
     manifest_spec_version = 'v0.1.0'
     manifest = {
@@ -64,7 +67,7 @@ def export_config_csv(
     cfg: Config,
     output_path: Path = DEFAULT_LAYER_MANIFEST_PATH,
 ) -> None:
-    """Write a report to disk containing a summary of layers in config.
+    """Write a report to disk summarizing layers in the zip package.
 
     This must be run after the layers are in their location, because we need to
     calculate their size on disk.
@@ -72,13 +75,17 @@ def export_config_csv(
     report = []
     for layer_node in cfg.layer_tree.leaves:
         layer_cfg = layer_node.layer_cfg
+
+        if not layer_cfg.in_package:
+            continue
+
         layer_type: QgsLayerType
         if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
             layer_type = 'Online'
             # Online layers have no size on disk.
             layer_size_bytes = 0
         else:
-            layer_fp = get_final_layer_filepath(layer_node)
+            layer_fp = get_layer_compile_filepath(layer_node)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
             layer_type = vector_or_raster(layer_node)
@@ -120,6 +127,7 @@ def export_config_json(cfg: Config) -> str:
 
 
 # TODO: Define model for "final" assets? Come up with a better name...
+# Call them "artifacts"?
 def _layer_manifest_final_assets(
     layer_node: LayerNode,
 ) -> list[dict[str, Union[str, int]]]:
@@ -138,7 +146,7 @@ def _layer_manifest_final_assets(
             ),
         }]
     else:
-        layer_fp = get_final_layer_filepath(layer_node)
+        layer_fp = get_layer_release_filepath(layer_node)
         layer_files = directory_contents(layer_fp.parent)
 
         return [{

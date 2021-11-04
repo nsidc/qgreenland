@@ -1,18 +1,10 @@
-from pathlib import Path
-
-from qgreenland.constants import TaskType
+from qgreenland.constants import PACKAGE_COMPILE_DIR
 from qgreenland.util import layer as layer_util
 
 
-def test_final_layer_dir(raster_layer_node):
-    expected = (
-        Path(TaskType.FINAL.value)
-        / 'Group'
-        / 'Subgroup'
-        / 'Example raster'
-    )
-
-    actual = layer_util.get_final_layer_dir(raster_layer_node)
+def test_layer_compile_dir(raster_layer_node):
+    expected = PACKAGE_COMPILE_DIR / 'Group' / 'Subgroup' / 'Example raster'
+    actual = layer_util.get_layer_compile_dir(raster_layer_node)
 
     assert expected == actual
 

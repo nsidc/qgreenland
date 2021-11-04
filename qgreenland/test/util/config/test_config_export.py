@@ -4,7 +4,10 @@ import tempfile
 from pathlib import Path
 from unittest.mock import patch
 
-from qgreenland.test.constants import MockTaskType
+from qgreenland.test.constants import (
+    MOCK_PACKAGE_COMPILE_DIR,
+    MOCK_RELEASES_LAYERS_DIR,
+)
 from qgreenland.util.config.export import (
     export_config_csv,
     export_config_manifest,
@@ -12,8 +15,8 @@ from qgreenland.util.config.export import (
 
 
 @patch(
-    'qgreenland.util.layer.TaskType',
-    new=MockTaskType,
+    'qgreenland.util.layer.RELEASES_LAYERS_DIR',
+    new=MOCK_RELEASES_LAYERS_DIR,
 )
 def test_export_config_manifest(full_cfg):
     common = {
@@ -89,8 +92,8 @@ https://nsidc.org""",
 
 
 @patch(
-    'qgreenland.util.layer.TaskType',
-    new=MockTaskType,
+    'qgreenland.util.layer.PACKAGE_COMPILE_DIR',
+    new=MOCK_PACKAGE_COMPILE_DIR,
 )
 def test_export_config_csv(full_cfg):
     common = {
