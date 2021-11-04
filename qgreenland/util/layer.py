@@ -34,6 +34,12 @@ def get_layer_compile_dir(
     )
 
 
+def get_layer_release_dir(
+    layer_node: LayerNode,
+) -> Path:
+    return RELEASES_LAYERS_DIR / layer_node.layer_cfg.id
+
+
 def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
     return f'{dataset_id}.{asset_id}'
 
@@ -47,7 +53,7 @@ def get_layer_compile_filepath(
 def get_layer_release_filepath(
     layer_node: LayerNode,
 ) -> Path:
-    return get_layer_fp(RELEASES_LAYERS_DIR / layer_node.layer_cfg.id)
+    return get_layer_fp(get_layer_release_dir(layer_node))
 
 
 def _layer_dirname_from_cfg(layer_cfg: ConfigLayer) -> str:

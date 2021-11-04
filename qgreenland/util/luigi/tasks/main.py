@@ -13,7 +13,11 @@ from qgreenland.constants import RELEASES_LAYERS_DIR, WIP_DIR
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.config.config import get_config
-from qgreenland.util.layer import get_layer_compile_dir, get_layer_fp
+from qgreenland.util.layer import (
+    get_layer_compile_dir,
+    get_layer_fp,
+    get_layer_release_dir,
+)
 from qgreenland.util.luigi.target import temporary_path_dir
 from qgreenland.util.tree import leaf_lookup
 
@@ -109,6 +113,10 @@ class LinkLayer(QgrLayerTask):
             get_layer_compile_dir(self.node),
         )
 
+    def run(self):
+        # TODO: This!
+        ...
+
 
 class FinalizeTask(QgrLayerTask):
     """Allow top-level layer tasks to lookup config from class attr layer_id.
@@ -123,8 +131,7 @@ class FinalizeTask(QgrLayerTask):
 
     def output(self):
         return luigi.LocalTarget(
-            # TODO: Something else
-            # get_final_layer_dir(self.node),
+            get_layer_release_dir(self.node),
         )
 
     def run(self):
