@@ -45,14 +45,13 @@ class LayerPipelines(luigi.WrapperTask):
 class LayersInPackage(luigi.WrapperTask):
 
     def requires(self):
-        tasks = generate_layer_pipelines(
-            fetch_only=self.fetch_only,
-        )
+        tasks = generate_layer_pipelines()
 
         for task in tasks:
             if task.layer_cfg.in_package:
                 yield LinkLayer(
                     requires_task=task,
+                    layer_id=task.layer_cfg.id,
                 )
 
 
@@ -121,6 +120,8 @@ class CreateQgisProjectFile(luigi.Task):
             src_filepath=ANCILLARY_DIR / 'images' / 'qgreenland.png',
             dest_relative_filepath='qgreenland.png',
         )
+        # TODO: Nothing below this line is really _required_ for the project
+        # file. Only required for the Zip file. Extract.
         yield AncillaryFile(
             src_filepath=PROJECT_DIR / 'README.md',
             dest_relative_filepath='README.txt',
@@ -145,7 +146,6 @@ class CreateQgisProjectFile(luigi.Task):
             src_filepath=PROJECT_DIR / 'CHANGELOG.md',
             dest_relative_filepath='CHANGELOG.txt',
         )
-        yield LayerManifest()
         yield PackageLayerList()
 
     def output(self):
@@ -216,3 +216,16 @@ class ZipQGreenland(luigi.Task):
             'Pingasoriarluni horaarutiginninneq!'
             f' Created {PROJECT} package: {output_path}',
         )
+
+
+class HostedLayers(luigi.WrapperTask):
+    def requires(self):
+        yield LayerPipelines()
+        yield LayerManifest()
+
+
+class QGreenlandAll(luigi.WrapperTask):
+
+    def requires(self):
+        yield ZipQGreenland()
+        yield HostedLayers()

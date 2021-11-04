@@ -9,7 +9,7 @@ from pathlib import Path
 
 import luigi
 
-from qgreenland.constants import RELEASES_LAYERS_DIR, WIP_DIR
+from qgreenland.constants import WIP_DIR
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.config.config import get_config
@@ -108,14 +108,20 @@ class ChainableTask(QgrLayerTask):
 
 
 class LinkLayer(QgrLayerTask):
+
     def output(self):
         return luigi.LocalTarget(
             get_layer_compile_dir(self.node),
         )
 
     def run(self):
-        # TODO: This!
-        ...
+        with temporary_path_dir(self.output()) as temp_path:
+            for inp in Path(self.input().path).glob('*'):
+                # Hard link final layer files to the zip compile directory.
+                #
+                # NOTE: Hardlink API is backwards to the symlink API...
+                # https://docs.python.org/3/library/pathlib.html#pathlib.Path.link_to
+                inp.link_to(temp_path / inp.name)
 
 
 class FinalizeTask(QgrLayerTask):
@@ -148,34 +154,17 @@ class FinalizeTask(QgrLayerTask):
         # exist in the final layer dir.
         input_fp = get_layer_fp(input_path)
 
-        # Recreate final layer release directory
-        layer_final_dir = RELEASES_LAYERS_DIR / self.layer_cfg.id
-        shutil.rmtree(layer_final_dir, ignore_errors=True)
-        layer_final_dir.mkdir(parents=True)
-
         # Copy file in there, renaming after layer id.
         final_fn = f'{self.layer_cfg.id}{input_fp.suffix}'
-        final_fp = layer_final_dir / final_fn
-        shutil.copy2(input_fp, final_fp)
+        with temporary_path_dir(self.output()) as temp_path:
+            shutil.copy2(input_fp, temp_path / final_fn)
 
-        # Create layer provenance file. This is not an "AncillaryFile" job
-        # because we need one file per layer.
-        with open(layer_final_dir / 'provenance.txt', 'w') as provenance_file:
-            provenance_file.write(
-                steps_to_provenance_text(self.layer_cfg.steps),
-            )
-
-        output_dir = Path(self.output().path)
-        # Ensure output dir exists. The layer file symlink will go inside.
-        output_dir.mkdir(parents=True, exist_ok=True)
-        output_fn = output_dir / final_fn
-
-        # Create a symbolic link to the final layer release directory inside the
-        # zip compile directory.  Relative symlink allows it to work inside and
-        # outside docker.
-        # NOTE: Hardlink API is backwards to the symlink API...
-        #    https://docs.python.org/3/library/pathlib.html#pathlib.Path.link_to
-        final_fp.link_to(output_fn)
+            # Create layer provenance file. This is not an "AncillaryFile" job
+            # because we need one file per layer.
+            with open(temp_path / 'provenance.txt', 'w') as provenance_file:
+                provenance_file.write(
+                    steps_to_provenance_text(self.layer_cfg.steps),
+                )
 
 
 def steps_to_provenance_text(steps: list[AnyStep]) -> str:
