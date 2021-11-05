@@ -61,6 +61,9 @@ class QgrTreeNode(anytree.Node, ABC):
 
         return result.removesuffix('\n')
 
+    def __repr__(self) -> str:
+        return f'{self.__class__.__name__}(name="{self.name}")'
+
     def __json__(self) -> dict[Any, Any]:
         """Help JSONEncoder serialize the tree."""
         exporter = DictExporter()
@@ -504,6 +507,8 @@ def prune_layers_not_in_package(
     """
     lt = copy.deepcopy(tree)
 
+    # We can iterate using tree.leaves here because we know all LayerNodes are
+    # leaves. Removing these leaves shouldn't create new LayerNode leaves.
     for node in lt.leaves:
         if type(node) is LayerNode and not node.layer_cfg.in_package:
             _delete_node(node, msg='Removing layer not in package')
@@ -518,8 +523,11 @@ def prune_empty_groups(
     """Remove any leaf nodes which are not LayerNodes."""
     lt = copy.deepcopy(tree)
 
-    for node in lt.leaves:
-        if type(node) is not LayerNode:
+    # NOTE: We MUST iterate using PostOrderIter(lt) instead of lt.leaves
+    # because removing a leaf group may leave its parent group newly enleafened.
+    for node in anytree.PostOrderIter(lt):
+        if node.is_leaf and type(node) is not LayerNode:
+            logger.warn(f'{node.group_name_path=}, {node.name=}')
             _delete_node(node, msg='Removing empty group')
 
     return lt

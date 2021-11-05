@@ -61,7 +61,7 @@ def compile_cfg(
 
         if not all(type(leaf) is LayerNode for leaf in leaves):
             raise RuntimeError(
-                'Not all leaf nodes are layer nodes. breakpoint() me.',
+                'Not all leaf nodes are LayerNodes. Debug me.',
             )
 
         layers_dict = {
