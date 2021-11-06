@@ -1,6 +1,7 @@
 from qgreenland.config.datasets.bathymetric_chart import bathymetric_chart as dataset
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.layers.geological_map import make_layers
+from qgreenland.config.helpers.layers.geological_map import bathymetry_layer_params
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
@@ -21,7 +22,8 @@ LAYER_PARAMS = {
     },
 }
 
-layers = [
+
+bathymetric_raster = [
     ConfigLayer(
         id=key,
         title=params['title'],
@@ -50,5 +52,7 @@ layers = [
         ],    
     )
     for key, params in LAYER_PARAMS.items()
-    #geological_layers = make_layers()
 ]
+
+for key, params in bathymetric_layer_params.items():
+    bathymetric_contours = make_layers()

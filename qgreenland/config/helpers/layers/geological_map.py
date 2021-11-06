@@ -35,6 +35,9 @@ LAYER_PARAMS = {
         'input_filepath': 'data/shape/base/Greenland_ice',
         'fn_mask': 'Greenland_ice.*',
     },
+}
+
+bathymetry_layer_params = {
     'bathymetric_contours': {
         'title': 'Bathymetric contours',
         'description': (
@@ -73,5 +76,7 @@ def make_layers() -> list[ConfigLayer]:
                 ),
             ],
         )
-        for key, params in LAYER_PARAMS.items()
     ]
+
+for key, params in LAYER_PARAMS.items():
+    layers = make_layers()
