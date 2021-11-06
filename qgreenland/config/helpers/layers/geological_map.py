@@ -44,18 +44,18 @@ LAYER_PARAMS = {
         'style': 'bathymetry',
         'input_filepath': 'data/shape/base/bathymetry',
         'fn_mask': 'bathymetry.*',
-        'dataset': dataset_geo,
+        #'dataset': dataset_geo,
     },
 }
 
 def make_layers() -> list[ConfigLayer]:
     return [
         ConfigLayer(
-            id=layer_id,
-            title=title,
-            description=description,
+            id=key,
+            title=params['title'],
+            description=params['description'],
             tags=[],
-            style=style,
+            style=params['style'],
             input=ConfigLayerInput(
                 dataset=dataset,
                 asset=dataset.assets['only'],
@@ -73,5 +73,5 @@ def make_layers() -> list[ConfigLayer]:
                 ),
             ],
         )
-        for key, params in _geoological_map_params.items()
+        for key, params in LAYER_PARAMS.items()
     ]
