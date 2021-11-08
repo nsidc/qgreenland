@@ -10799,7 +10799,7 @@
                         "{input_dir}/as_2159.zip",
                         "-d",
                         "{output_dir}",
-                        "data/shape/geology/Greenland_onshore_Planar.*"
+                        "data/shape/geology/Greenland_onshore_planar.*"
                       ],
                       "type": "command"
                     },
@@ -10814,7 +10814,7 @@
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "{output_dir}/final.gpkg",
-                        "{input_dir}/data/shape/geology/*.shp"
+                        "{input_dir}/data/shape/geology/Greenland_onshore_planar.shp"
                       ],
                       "type": "command"
                     }
@@ -10824,6 +10824,53 @@
                   "title": "Faults"
                 },
                 "name": "onshore_planar_geological_map"
+              },
+              {
+                "layer_cfg": {
+                  "description": "This linear feature class contains onshore ice isopachs for the landmass of Greenland.\nThe isopochs illustrate the variation in ice thickness\nwith a contour interval of 250 metres.",
+                  "id": "greenland_ice",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "geological_map"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/as_2159.zip",
+                        "-d",
+                        "{output_dir}",
+                        "data/shape/base/Greenland_ice.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/data/shape/base/Greenland_ice.shp"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "Greenland_ice",
+                  "tags": [],
+                  "title": "Ice thickness contours"
+                },
+                "name": "greenland_ice"
               },
               {
                 "layer_cfg": {
@@ -10861,7 +10908,7 @@
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "{output_dir}/final.gpkg",
-                        "{input_dir}/data/shape/geology/*.shp"
+                        "{input_dir}/data/shape/geology/Greenland_onshore.shp"
                       ],
                       "type": "command"
                     }
@@ -21756,67 +21803,124 @@
             }
           },
           {
-            "layer_cfg": {
-              "description": "Bathymetric elevation in meters. Elevations can be assumed to be\nrelative to mean sea level. However, in some shallow water areas, the\ngrids include data from sources having a vertical datum other than mean\nsea level.",
-              "id": "bathymetric_chart",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Bathymetric elevation in meters. Elevations can be assumed to be\nrelative to mean sea level. However, in some shallow water areas, the\ngrids include data from sources having a vertical datum other than mean\nsea level.",
+                  "id": "bathymetric_raster",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "bathymetric_chart"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-r",
+                        "bilinear",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-s_srs",
+                        "\"+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84\"",
+                        "-dstnodata",
+                        "-9999",
+                        "-tr",
+                        "400",
+                        "400",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z",
+                        "{output_dir}/bathymetric_chart.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/bathymetric_chart.tif",
+                        "{output_dir}/bathymetric_chart.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/bathymetric_chart.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "ibcao_bathymetry",
+                  "tags": [],
+                  "title": "Depth (400m)"
                 },
-                "dataset": {
-                  "id": "bathymetric_chart"
-                }
+                "name": "bathymetric_raster"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "gdalwarp",
-                    "-cutline",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-crop_to_cutline",
-                    "-r",
-                    "bilinear",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-s_srs",
-                    "\"+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84\"",
-                    "-dstnodata",
-                    "-9999",
-                    "-tr",
-                    "400",
-                    "400",
-                    "-co",
-                    "COMPRESS=DEFLATE",
-                    "NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z",
-                    "{output_dir}/bathymetric_chart.tif"
+              {
+                "layer_cfg": {
+                  "description": "This dataset includes linear features that represent\n bathymetric contours recorded in metres,\nderived from the International Bathymetric Chart of the Arctic Ocean.",
+                  "id": "bathymetric_contours",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "geological_map"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/as_2159.zip",
+                        "-d",
+                        "{output_dir}",
+                        "data/shape/base/bathymetry.*"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/data/shape/base/bathymetry.shp"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
+                  "style": "bathymetry",
+                  "tags": [],
+                  "title": "Depth contours"
                 },
-                {
-                  "args": [
-                    "cp",
-                    "{input_dir}/bathymetric_chart.tif",
-                    "{output_dir}/bathymetric_chart.tif",
-                    "&&",
-                    "gdaladdo",
-                    "-r",
-                    "average",
-                    "{output_dir}/bathymetric_chart.tif",
-                    "2",
-                    "4",
-                    "8",
-                    "16"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "ibcao_bathymetry",
-              "tags": [],
-              "title": "Bathymetric chart of the Arctic Ocean (400m)"
-            },
-            "name": "bathymetric_chart"
+                "name": "bathymetric_contours"
+              }
+            ],
+            "name": "Bathymetry",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
           }
         ],
         "name": "Oceanography",
@@ -21825,7 +21929,7 @@
           "order": [
             "Undersea feature names",
             "Seawater temperature 2018 (25km)",
-            ":bathymetric_chart"
+            "Bathymetry"
           ],
           "show": false
         }
