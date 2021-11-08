@@ -125,14 +125,11 @@ class LinkLayer(QgrLayerTask):
 
 
 class FinalizeTask(QgrLayerTask):
-    """Allow top-level layer tasks to lookup config from class attr layer_id.
+    """Move layer to the layer hosting/release location and add metadata files.
 
-    Also standardizes output directory for top-level layer tasks.
-
-    # TODO: We did this somewhere... cleanup
-    TODO: Expect a .gpkg or a .tif file in its input directory. If none (or >1?)
-    exists, throw an exception so the pipeline developer knows. If one exists,
-    create the appropriate type of QGIS Layer.
+    provenance.txt: What steps were done to create this final layer file?
+    
+    TODO: metadata.txt or metadata.json containing layer/dataset metadata?
     """
 
     def output(self):
