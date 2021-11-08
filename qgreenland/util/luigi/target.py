@@ -18,7 +18,7 @@ def temporary_path_dir(target: luigi.Target) -> Generator[Path, None, None]:
         try:
             path.mkdir(parents=True, exist_ok=True)
             yield path
-        except Exception as e:
+        except (Exception, KeyboardInterrupt) as e:
             shutil.rmtree(path)
             raise e
     return
