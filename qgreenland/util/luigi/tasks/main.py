@@ -38,16 +38,19 @@ class QgrLayerTask(luigi.Task):
 
     @property
     def layer_cfg(self):
+        """Find the config associated with this layer."""
         config = get_config()
         return config.layers[self.layer_id]
 
     @property
     def node(self):
+        """Find the corresponding LayerNode in the config tree."""
         config = get_config()
         return leaf_lookup(config.layer_tree, target_node_name=self.layer_id)
 
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
+# LayerStepTask?
 class ChainableTask(QgrLayerTask):
     """Define dependencies at instantiation-time.
 
