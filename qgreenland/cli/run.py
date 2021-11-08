@@ -7,8 +7,9 @@ from qgreenland.util.config.config import (
 )
 from qgreenland.util.luigi.tasks.pipeline import (
     CreateQgisProjectFile,
+    HostedLayers,
     LayerPipelines,
-    ZipQGreenland,
+    QGreenlandAll,
 )
 
 
@@ -71,10 +72,13 @@ def run(
         )]
     elif include or exclude:
         # Don't actually zip, just compile.
-        tasks = [CreateQgisProjectFile()]
+        tasks = [
+            HostedLayers(),
+            CreateQgisProjectFile(),
+        ]
     else:
         # Do everything!!!
-        tasks = [ZipQGreenland()]
+        tasks = [QGreenlandAll()]
 
     print(f'Running tasks: {str(tasks)}')
     print()
