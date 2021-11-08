@@ -6,12 +6,11 @@ import luigi
 
 from qgreenland.constants.paths import (
     ANCILLARY_DIR,
-    LUIGIWIP_DIR,
-    PACKAGE_COMPILE_DIR,
+    COMPILE_PACKAGE_DIR,
     PROJECT_DIR,
-    RELEASES_LAYERS_DIR,
-    RELEASE_DIR,
-    TMP_DIR,
+    RELEASE_LAYERS_DIR,
+    VERSIONED_PACKAGE_DIR,
+    WIP_PACKAGE_DIR,
 )
 from qgreenland.constants.project import (
     ENVIRONMENT,
@@ -67,7 +66,7 @@ class AncillaryFile(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(
-            PACKAGE_COMPILE_DIR / self.dest_relative_filepath,
+            COMPILE_PACKAGE_DIR / self.dest_relative_filepath,
         )
 
     def run(self):
@@ -101,7 +100,7 @@ class LayerManifest(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(
-            RELEASES_LAYERS_DIR / 'manifest.json',
+            RELEASE_LAYERS_DIR / 'manifest.json',
         )
 
     def requires(self):
@@ -152,7 +151,7 @@ class CreateQgisProjectFile(luigi.Task):
 
     def output(self):
         versioned_package_name = f'{PROJECT}_{get_build_version()}'
-        return luigi.LocalTarget(LUIGIWIP_DIR / versioned_package_name)
+        return luigi.LocalTarget(WIP_PACKAGE_DIR / versioned_package_name)
 
     def run(self):
         """Create a symbolic link to trigger the zip."""
@@ -160,13 +159,13 @@ class CreateQgisProjectFile(luigi.Task):
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
         with QgsApplicationContext():
-            make_qgis_project_file(PACKAGE_COMPILE_DIR / 'qgreenland.qgs')
+            make_qgis_project_file(COMPILE_PACKAGE_DIR / 'qgreenland.qgs')
 
         # Create symbolic link to zip with the final versioned filename
         # We don't _need_ a symbolic link here, but this also serves to trigger
         # the next job.
         Path(self.output().path).symlink_to(
-            PACKAGE_COMPILE_DIR,
+            COMPILE_PACKAGE_DIR,
             target_is_directory=True,
         )
 
@@ -178,8 +177,8 @@ class ZipQGreenland(luigi.Task):
         return CreateQgisProjectFile()
 
     def output(self):
-        RELEASE_DIR.mkdir(parents=True, exist_ok=True)
-        fn = f'{RELEASE_DIR}/{PROJECT}_{get_build_version()}.zip'
+        VERSIONED_PACKAGE_DIR.mkdir(parents=True, exist_ok=True)
+        fn = f'{VERSIONED_PACKAGE_DIR}/{PROJECT}_{get_build_version()}.zip'
         return luigi.LocalTarget(fn)
 
     def run(self):
@@ -188,14 +187,13 @@ class ZipQGreenland(luigi.Task):
         output_path = Path(self.output().path)
 
         # Create the archive from the symlinked dir.
-        tmp_fp = TMP_DIR / 'final_archive.zip'
-        tmp_name = f'{tmp_fp.parent}/{tmp_fp.stem}'
-
+        tmp_fp = WIP_PACKAGE_DIR / 'final_archive.zip'
         shutil.make_archive(
-            tmp_name,
+            # make_archive expects a file path without extension:
+            f'{tmp_fp.parent}/{tmp_fp.stem}',
             'zip',
-            LUIGIWIP_DIR,
-            input_path.relative_to(LUIGIWIP_DIR),
+            WIP_PACKAGE_DIR,
+            input_path.relative_to(WIP_PACKAGE_DIR),
         )
         tmp_fp.rename(output_path)
 

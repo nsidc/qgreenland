@@ -22,7 +22,7 @@ from cftime import num2pydate
 from netCDF4 import Dataset
 
 from qgreenland.config.datasets.seaice import seaice_age as dataset
-from qgreenland.constants import INPUT_DIR
+from qgreenland.constants.paths import FETCH_DATASETS_DIR
 
 
 @functools.cache
@@ -59,7 +59,7 @@ def get_band_info_for_date(target_date: dt.date) -> tuple[int, str]:
 
     def _get_data_fp_from_cache(year: int) -> Path:
         filepath = (
-            INPUT_DIR
+            FETCH_DATASETS_DIR
             / f'seaice_age.{year}'
             / f'iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
         )

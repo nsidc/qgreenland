@@ -5,7 +5,7 @@ from contextlib import closing
 from pathlib import Path
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import REQUEST_TIMEOUT
+from qgreenland.constants.project import REQUEST_TIMEOUT
 from qgreenland.util.edl import create_earthdata_authenticated_session
 
 CHUNK_SIZE = 8 * 1024

@@ -5,7 +5,7 @@ from xml.sax.saxutils import escape
 
 import qgis.core as qgc
 
-from qgreenland.constants.paths import INPUT_DIR
+from qgreenland.constants.paths import FETCH_DATASETS_DIR
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.layer import datasource_dirname
 from qgreenland.util.template import load_template
@@ -149,7 +149,7 @@ def _populate_date_accessed(text: str, *, layer_cfg: ConfigLayer) -> str:
         dataset_id=layer_cfg.input.dataset.id,
         asset_id=layer_cfg.input.asset.id,
     )
-    fetch_dir = Path(INPUT_DIR) / ds_dir
+    fetch_dir = Path(FETCH_DATASETS_DIR) / ds_dir
 
     # TODO: Use modified time for directory, or latest modified time for files
     # inside?

@@ -10,5 +10,5 @@ TEST_CONFIG_W_DUPES_DIR = TEST_DATA_DIR / 'config_with_duplicates'
 
 TEST_CONFIG_W_EXTRA_SETTINGS_DIR = TEST_DATA_DIR / 'config_with_extra_settings'
 TEST_CONFIG_W_MISSING_SETTINGS_DIR = TEST_DATA_DIR / 'config_with_missing_settings'
-MOCK_PACKAGE_COMPILE_DIR = TEST_DATA_DIR / 'compile'
-MOCK_RELEASES_LAYERS_DIR = TEST_DATA_DIR / 'release' / 'layers'
+MOCK_COMPILE_PACKAGE_DIR = TEST_DATA_DIR / 'compile'
+MOCK_RELEASE_LAYERS_DIR = TEST_DATA_DIR / 'release' / 'layers'

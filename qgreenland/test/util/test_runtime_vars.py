@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from qgreenland.constants import ASSETS_DIR
+from qgreenland.constants.paths import ASSETS_DIR
 from qgreenland.exceptions import QgrInterpolationError
 from qgreenland.models.config.step import ConfigLayerCommandStep
 from qgreenland.util.runtime_vars import EvalFilePath, EvalPath, EvalStr
