@@ -1,12 +1,14 @@
 luigi/state
-qgis-data/QGreenland*
-qgis-data/qgreenland
-qgis-data/Quantarctica*
 .coverage
 __pycache__
 .env
+
+
+# Local storage dirs
+data/
 logs/
-appdata/
+
+# Docker overrides
 docker-compose.override.yml
 
 # Vim swapfiles
