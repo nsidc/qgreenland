@@ -12,7 +12,11 @@ from qgreenland import exceptions as exc
 from qgreenland.models.config.layer_group import LayerGroupSettings
 from qgreenland.util.config.config import get_config
 from qgreenland.util.qgis.layer import make_map_layer
-from qgreenland.util.tree import LayerGroupNode, LayerNode
+from qgreenland.util.tree import (
+    LayerGroupNode,
+    LayerNode,
+    prune_layers_not_in_package,
+)
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger('luigi-interface')
@@ -76,7 +80,8 @@ def make_qgis_project_file(path: Path) -> None:
 
     _add_decorations(project)
 
-    _add_layers_and_groups(project, config.layer_tree)
+    package_layer_tree = prune_layers_not_in_package(config.layer_tree)
+    _add_layers_and_groups(project, package_layer_tree)
 
     # TODO: is it normal to write multiple times?
     project.write()
@@ -99,8 +104,8 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
     # `anytree.PreOrderIter` is necessary here so that the
     # `_create_and_add_layer` function receives the correct group.
     for node in anytree.PreOrderIter(
-            layer_tree,
-            filter_=lambda node: not node.is_root,
+        layer_tree,
+        filter_=lambda node: not node.is_root,
     ):
         if type(node) is LayerGroupNode:
             _get_or_create_and_configure_group(

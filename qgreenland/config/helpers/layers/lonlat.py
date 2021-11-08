@@ -32,7 +32,6 @@ def _make_lonlat_layer(
             f'Lines of {title_prefix.lower()} in {deg}-degree resolution.'
         ),
         tags=['reference'],
-        in_package=True,
         style='lonlat',
         input=ConfigLayerInput(
             dataset=dataset,

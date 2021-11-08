@@ -9,14 +9,15 @@ from pathlib import Path
 
 import luigi
 
-from qgreenland.constants import (
-    RELEASES_LAYERS_DIR,
-    TaskType,
-)
+from qgreenland.constants import WIP_DIR
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.config.config import get_config
-from qgreenland.util.layer import get_final_layer_dir, get_layer_fp
+from qgreenland.util.layer import (
+    get_layer_compile_dir,
+    get_layer_fp,
+    get_layer_release_dir,
+)
 from qgreenland.util.luigi.target import temporary_path_dir
 from qgreenland.util.tree import leaf_lookup
 
@@ -37,11 +38,19 @@ class QgrLayerTask(luigi.Task):
 
     @property
     def layer_cfg(self):
+        """Find the config associated with this layer."""
         config = get_config()
         return config.layers[self.layer_id]
 
+    @property
+    def node(self):
+        """Find the corresponding LayerNode in the config tree."""
+        config = get_config()
+        return leaf_lookup(config.layer_tree, target_node_name=self.layer_id)
+
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?
+# LayerStepTask?
 class ChainableTask(QgrLayerTask):
     """Define dependencies at instantiation-time.
 
@@ -83,12 +92,7 @@ class ChainableTask(QgrLayerTask):
         NOTE: As soon as this directory exists, Luigi will consider this Task
         complete. _Always_ wrap behaviors in a temporary directory for outputs.
         """
-        output_dir = (
-            Path(TaskType.WIP.value)
-            / self.layer_id
-            / self.step_identifier
-        )
-        return luigi.LocalTarget(output_dir)
+        return luigi.LocalTarget(WIP_DIR / self.layer_id / self.step_identifier)
 
     def run(self):
         """Execute the step with a temporary directory.
@@ -106,28 +110,34 @@ class ChainableTask(QgrLayerTask):
             )
 
 
-class FinalizeTask(QgrLayerTask):
-    """Allow top-level layer tasks to lookup config from class attr layer_id.
-
-    Also standardizes output directory for top-level layer tasks.
-
-    TODO: Expect a .gpkg or a .tif file in its input directory. If none (or >1?)
-    exists, throw an exception so the pipeline developer knows. If one exists,
-    create the appropriate type of QGIS Layer.
-
-    TODO: How to handle "extra" layers that aren't in the zip, but are exposed
-    for use with plugin? Separate "Final" step? Or make this one handle both
-    cases?
-    """
-
-    @property
-    def node(self):
-        config = get_config()
-        return leaf_lookup(config.layer_tree, target_node_name=self.layer_id)
+class LinkLayer(QgrLayerTask):
 
     def output(self):
         return luigi.LocalTarget(
-            get_final_layer_dir(self.node),
+            get_layer_compile_dir(self.node),
+        )
+
+    def run(self):
+        with temporary_path_dir(self.output()) as temp_path:
+            for inp in Path(self.input().path).glob('*'):
+                # Hard link final layer files to the zip compile directory.
+                #
+                # NOTE: Hardlink API is backwards to the symlink API...
+                # https://docs.python.org/3/library/pathlib.html#pathlib.Path.link_to
+                inp.link_to(temp_path / inp.name)
+
+
+class FinalizeTask(QgrLayerTask):
+    """Move layer to the layer hosting/release location and add metadata files.
+
+    provenance.txt: What steps were done to create this final layer file?
+
+    TODO: metadata.txt or metadata.json containing layer/dataset metadata?
+    """
+
+    def output(self):
+        return luigi.LocalTarget(
+            get_layer_release_dir(self.node),
         )
 
     def run(self):
@@ -144,34 +154,17 @@ class FinalizeTask(QgrLayerTask):
         # exist in the final layer dir.
         input_fp = get_layer_fp(input_path)
 
-        # Recreate final layer release directory
-        layer_final_dir = RELEASES_LAYERS_DIR / self.layer_cfg.id
-        shutil.rmtree(layer_final_dir, ignore_errors=True)
-        layer_final_dir.mkdir(parents=True)
-
         # Copy file in there, renaming after layer id.
         final_fn = f'{self.layer_cfg.id}{input_fp.suffix}'
-        final_fp = layer_final_dir / final_fn
-        shutil.copy2(input_fp, final_fp)
+        with temporary_path_dir(self.output()) as temp_path:
+            shutil.copy2(input_fp, temp_path / final_fn)
 
-        # Create layer provenance file. This is not an "AncillaryFile" job
-        # because we need one file per layer.
-        with open(layer_final_dir / 'provenance.txt', 'w') as provenance_file:
-            provenance_file.write(
-                steps_to_provenance_text(self.layer_cfg.steps),
-            )
-
-        output_dir = Path(self.output().path)
-        # Ensure output dir exists. The layer file symlink will go inside.
-        output_dir.mkdir(parents=True, exist_ok=True)
-        output_fn = output_dir / final_fn
-
-        # Create a symbolic link to the final layer release directory inside the
-        # zip compile directory.  Relative symlink allows it to work inside and
-        # outside docker.
-        # NOTE: Hardlink API is backwards to the symlink API...
-        #    https://docs.python.org/3/library/pathlib.html#pathlib.Path.link_to
-        final_fp.link_to(output_fn)
+            # Create layer provenance file. This is not an "AncillaryFile" job
+            # because we need one file per layer.
+            with open(temp_path / 'provenance.txt', 'w') as provenance_file:
+                provenance_file.write(
+                    steps_to_provenance_text(self.layer_cfg.steps),
+                )
 
 
 def steps_to_provenance_text(steps: list[AnyStep]) -> str:

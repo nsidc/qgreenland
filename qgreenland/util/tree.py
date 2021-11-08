@@ -1,3 +1,4 @@
+import copy
 import json
 import logging
 from abc import ABC
@@ -60,6 +61,9 @@ class QgrTreeNode(anytree.Node, ABC):
 
         return result.removesuffix('\n')
 
+    def __repr__(self) -> str:
+        return f'{self.__class__.__name__}(name="{self.name}")'
+
     def __json__(self) -> dict[Any, Any]:
         """Help JSONEncoder serialize the tree."""
         exporter = DictExporter()
@@ -102,7 +106,7 @@ def layer_tree(
 
     # Clean up any empty layer groups. This shouldn't happen normally, but if
     # any layers are included or excluded, it's likely.
-    _prune_tree(tree)
+    tree = prune_empty_groups(tree)
 
     if len(tree.children) == 0:
         raise exc.QgrNoLayersFoundError(
@@ -479,17 +483,54 @@ def _tree_from_dir(
     return root_node
 
 
-def _prune_tree(tree: anytree.Node) -> None:
+def _delete_node(
+    node: anytree.node,
+    msg: str = 'Removing node',
+) -> None:
+    """Delete (_"delete"_) the node by orphaning it and letting the GC kill it.
+
+    Yes, this is the right way :)
+        https://github.com/c0fec0de/anytree/issues/152
+    """
+    node_path = list(node.group_name_path) + [node.name]
+    node_name = '/'.join(node_path)
+    logger.warn(f'{msg}: /{node_name}')
+    node.parent = None
+
+
+def prune_layers_not_in_package(
+    tree: LayerGroupNode,
+) -> LayerGroupNode:
+    """Remove any leaf nodes that are `not in_package`.
+
+    If there are any empty groups after this, remove them too.
+    """
+    lt = copy.deepcopy(tree)
+
+    # We can iterate using tree.leaves here because we know all LayerNodes are
+    # leaves. Removing these leaves shouldn't create new LayerNode leaves.
+    for node in lt.leaves:
+        if type(node) is LayerNode and not node.layer_cfg.in_package:
+            _delete_node(node, msg='Removing layer not in package')
+
+    lt = prune_empty_groups(lt)
+    return lt
+
+
+def prune_empty_groups(
+    tree: LayerGroupNode,
+) -> LayerGroupNode:
     """Remove any leaf nodes which are not LayerNodes."""
-    for node in anytree.PostOrderIter(tree):
+    lt = copy.deepcopy(tree)
+
+    # NOTE: We MUST iterate using PostOrderIter(lt) instead of lt.leaves
+    # because removing a leaf group may leave its parent group newly enleafened.
+    for node in anytree.PostOrderIter(lt):
         if node.is_leaf and type(node) is not LayerNode:
-            # "Delete" the node by orphaning it and letting the garbage
-            # collector kill it. Yes, this is the right way :)
-            #    https://github.com/c0fec0de/anytree/issues/152
-            node_path = list(node.group_name_path) + [node.name]
-            node_name = '/'.join(node_path)
-            logger.warn(f'Removing leaf group: /{node_name}')
-            node.parent = None
+            logger.warn(f'{node.group_name_path=}, {node.name=}')
+            _delete_node(node, msg='Removing empty group')
+
+    return lt
 
 
 if __name__ == '__main__':
