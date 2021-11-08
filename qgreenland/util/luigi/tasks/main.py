@@ -131,7 +131,7 @@ class FinalizeTask(QgrLayerTask):
     """Move layer to the layer hosting/release location and add metadata files.
 
     provenance.txt: What steps were done to create this final layer file?
-    
+
     TODO: metadata.txt or metadata.json containing layer/dataset metadata?
     """
 
