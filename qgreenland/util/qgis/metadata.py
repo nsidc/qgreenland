@@ -5,9 +5,7 @@ from xml.sax.saxutils import escape
 
 import qgis.core as qgc
 
-from qgreenland.constants import (
-    INPUT_DIR,
-)
+from qgreenland.constants.paths import INPUT_DIR
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.util.layer import datasource_dirname
 from qgreenland.util.template import load_template

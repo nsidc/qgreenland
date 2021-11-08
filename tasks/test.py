@@ -10,7 +10,7 @@ from .util import print_and_run, PROJECT_DIR
 
 sys.path.append(str(PROJECT_DIR))
 
-from qgreenland.constants import (
+from qgreenland.constants.paths import (
     LAYERS_CFG_DIR,
     PACKAGE_DIR,
     PROJECT_DIR,

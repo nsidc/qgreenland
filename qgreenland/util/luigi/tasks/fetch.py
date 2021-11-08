@@ -2,7 +2,7 @@ import shutil
 
 import luigi
 
-from qgreenland.constants import INPUT_DIR, PRIVATE_ARCHIVE_DIR
+from qgreenland.constants.paths import INPUT_DIR, PRIVATE_ARCHIVE_DIR
 from qgreenland.models.config.asset import (
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,

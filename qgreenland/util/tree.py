@@ -12,7 +12,7 @@ import funcy
 from anytree.exporter import DictExporter
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import LAYERS_CFG_DIR
+from qgreenland.constants.paths import LAYERS_CFG_DIR
 from qgreenland.models.config.asset import ConfigDatasetManualAsset
 from qgreenland.models.config.layer import ConfigLayer
 from qgreenland.models.config.layer_group import (

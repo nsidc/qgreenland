@@ -2,9 +2,9 @@ from pathlib import Path
 
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType
-from qgreenland.constants import (
+from qgreenland.constants.misc import PROVIDER_LAYERTYPE_MAPPING
+from qgreenland.constants.paths import (
     PACKAGE_COMPILE_DIR,
-    PROVIDER_LAYERTYPE_MAPPING,
     RELEASES_LAYERS_DIR,
 )
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset

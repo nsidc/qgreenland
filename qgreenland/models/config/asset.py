@@ -5,7 +5,7 @@ from pydantic import AnyUrl, Field, validator
 
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerProviderType
-from qgreenland.constants import ASSETS_DIR
+from qgreenland.constants.paths import ASSETS_DIR
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalFilePath, EvalStr
 

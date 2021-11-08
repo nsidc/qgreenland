@@ -1,21 +1,17 @@
-import os
 from pathlib import Path
 
-from qgreenland._typing import (
-    QgsLayerProviderType,
-    QgsLayerType,
-)
+from qgreenland.constants.project import PROJECT
 from qgreenland.util.version import (
     get_build_version,
     version_is_full_release,
 )
 
-PROJECT = 'QGreenland'
 
-ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
-
-PACKAGE_DIR = Path(__file__).parent
+PACKAGE_DIR = Path(__file__).parent.parent
 PROJECT_DIR = PACKAGE_DIR.parent
+
+CONFIG_DIR = PACKAGE_DIR / 'config'
+LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 
 # TODO: Rename to FETCH_DIR? FETCHED_DIR? THE_FETCH_SPOT? FETCHY_MC_FETCH_FACE?
 # Something else?
@@ -40,9 +36,14 @@ SCRIPTS_DIR = PROJECT_DIR / 'scripts'
 OUTPUT_DIRS = (
     INPUT_DIR,
     WIP_DIR,
+    # RELEASES_DIR,
     RELEASES_LAYERS_DIR,
     PACKAGE_COMPILE_DIR,
 )
+
+# TMP_DIR is the same as LUIGIWIP_DIR because os.rename doesn't allow cross-mount
+# renaming. Make it a subdir?
+TMP_DIR = LUIGIWIP_DIR
 
 # TODO: Extract to function in another module to remove constants dependency on
 # get_build_version, version_is_full_release
@@ -50,23 +51,3 @@ if version_is_full_release(version := get_build_version()):
     RELEASE_DIR = RELEASES_DIR / version
 else:
     RELEASE_DIR = RELEASES_DIR / 'dev' / version
-
-CONFIG_DIR = PACKAGE_DIR / 'config'
-LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
-
-# TMP_DIR is the same as LUIGIWIP_DIR because os.rename doesn't allow cross-mount
-# renaming. Make it a subdir?
-TMP_DIR = LUIGIWIP_DIR
-
-# In seconds. See
-# https://2.python-requests.org/en/master/user/quickstart/#timeouts
-REQUEST_TIMEOUT = 30
-
-# URS stuff
-URS_COOKIE = 'urs_user_already_logged'
-
-PROVIDER_LAYERTYPE_MAPPING: dict[QgsLayerProviderType, QgsLayerType] = {
-    'gdal': 'Raster',
-    'wms': 'Raster',
-    'wfs': 'Vector',
-}

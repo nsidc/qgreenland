@@ -4,16 +4,18 @@ from pathlib import Path
 
 import luigi
 
-from qgreenland.constants import (
+from qgreenland.constants.paths import (
     ANCILLARY_DIR,
-    ENVIRONMENT,
     LUIGIWIP_DIR,
     PACKAGE_COMPILE_DIR,
-    PROJECT,
     PROJECT_DIR,
     RELEASES_LAYERS_DIR,
     RELEASE_DIR,
     TMP_DIR,
+)
+from qgreenland.constants.project import (
+    ENVIRONMENT,
+    PROJECT,
 )
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config.config import get_config

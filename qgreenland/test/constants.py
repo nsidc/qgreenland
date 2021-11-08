@@ -1,4 +1,4 @@
-from qgreenland.constants import PACKAGE_DIR
+from qgreenland.constants.paths import PACKAGE_DIR
 
 
 TEST_DIR = PACKAGE_DIR / 'test'

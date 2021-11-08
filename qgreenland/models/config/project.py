@@ -5,7 +5,7 @@ import fiona
 from pydantic import root_validator, validator
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import ASSETS_DIR
+from qgreenland.constants.paths import ASSETS_DIR
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalFilePath
 
