@@ -16,11 +16,9 @@ def _make_lonlat_layer(
     if asset.id.startswith('lat'):
         title_prefix = 'Latitude'
         segment_max_distance = 1
-        in_package = True
     elif asset.id.startswith('lon'):
         title_prefix = 'Longitude'
         segment_max_distance = 100
-        in_package = False
     else:
         raise RuntimeError(
             "Expected asset ID starting with 'lon' or 'lat'; received:"
@@ -34,7 +32,6 @@ def _make_lonlat_layer(
             f'Lines of {title_prefix.lower()} in {deg}-degree resolution.'
         ),
         tags=['reference'],
-        in_package=in_package,
         style='lonlat',
         input=ConfigLayerInput(
             dataset=dataset,
