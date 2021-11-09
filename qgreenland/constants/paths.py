@@ -31,12 +31,10 @@ TEMPLATES_DIR = ANCILLARY_DIR / 'templates'
 ASSETS_DIR = PACKAGE_DIR / 'assets'
 SCRIPTS_DIR = PROJECT_DIR / 'scripts'
 
-OUTPUT_DIRS = (
+INTERMEDIATE_DIRS = (
     FETCH_DATASETS_DIR,
     WIP_LAYERS_DIR,
     WIP_PACKAGE_DIR,
-    RELEASE_LAYERS_DIR,
-    RELEASE_PACKAGES_DIR,
 )
 
 # TODO: Extract to function in another module to remove constants dependency on
