@@ -48,7 +48,7 @@ services:
       - ./data/working-storage/release-packages:/usr/share/nginx/html/packages:ro
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./logs:/logs:rw
+      - ./data/logs:/logs:rw
     ports:
       - 80:80
       - 443:443
