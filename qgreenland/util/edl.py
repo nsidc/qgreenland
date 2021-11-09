@@ -2,7 +2,7 @@ import os
 
 import requests
 
-from qgreenland.constants import URS_COOKIE
+from qgreenland.constants.project import URS_COOKIE
 
 
 def create_earthdata_authenticated_session(s=None, *, hosts, verify):

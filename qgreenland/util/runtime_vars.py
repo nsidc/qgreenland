@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Optional
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import ASSETS_DIR
+from qgreenland.constants.paths import ASSETS_DIR
 
 
 # TODO: Make this a dataclass? :shrug:

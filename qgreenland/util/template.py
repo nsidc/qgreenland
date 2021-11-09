@@ -1,6 +1,6 @@
 from jinja2 import Template
 
-from qgreenland.constants import TEMPLATES_DIR
+from qgreenland.constants.paths import TEMPLATES_DIR
 
 
 def load_template(fn: str) -> Template:

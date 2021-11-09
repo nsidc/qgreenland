@@ -6,7 +6,7 @@ import qgis.core as qgc
 from osgeo import gdal
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import ANCILLARY_DIR
+from qgreenland.constants.paths import ANCILLARY_DIR
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.util.layer import (
     get_layer_compile_filepath,
