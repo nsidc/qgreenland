@@ -31,7 +31,7 @@ LAYER_PARAMS = {
         The isopochs illustrate the variation in ice thickness
         with a contour interval of 250 metres."""
         ),
-        'style': 'Greenland_ice',
+        'style': 'greenland_ice',
         'input_filepath': 'data/shape/base/Greenland_ice',
         'fn_mask': 'Greenland_ice.*',
     },
