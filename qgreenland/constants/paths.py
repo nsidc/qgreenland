@@ -15,13 +15,14 @@ LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 
 PRIVATE_ARCHIVE_DIR = Path('/private-archive')
 
-FETCH_DATASETS_DIR = Path('/rw/fetch-dataset')
+WORKING_STORAGE_DIR = Path('/working-storage')
+FETCH_DATASETS_DIR = WORKING_STORAGE_DIR / 'fetch-dataset'
 
-WIP_LAYERS_DIR = Path('/rw/wip-layers')
-WIP_PACKAGE_DIR = Path('/rw/wip-package')
+WIP_LAYERS_DIR = WORKING_STORAGE_DIR / 'wip-layers'
+WIP_PACKAGE_DIR = WORKING_STORAGE_DIR / 'wip-package'
 
-RELEASE_LAYERS_DIR = Path('/rw/release-layers')
-RELEASE_PACKAGES_DIR = Path('/rw/release-packages')
+RELEASE_LAYERS_DIR = WORKING_STORAGE_DIR / 'release-layers'
+RELEASE_PACKAGES_DIR = WORKING_STORAGE_DIR / 'release-packages'
 
 COMPILE_PACKAGE_DIR = WIP_PACKAGE_DIR / PROJECT
 
