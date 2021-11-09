@@ -225,7 +225,6 @@ class HostedLayers(luigi.WrapperTask):
 
 
 class QGreenlandAll(luigi.WrapperTask):
-
     def requires(self):
         yield ZipQGreenland()
         yield HostedLayers()

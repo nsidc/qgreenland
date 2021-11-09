@@ -12,7 +12,7 @@ import_order_style = pycharm
 ignore = D1,W503,E731
 
 # E501: Line too long. Long strings, e.g. URLs, are common in config.
-# F821: Undefined name. Expected in some templates.
+# F821: Undefined name. Expected in some templates and scripts.
 # FS003: f-string missing prefix. Useful for config templates.
 per-file-ignores =
   qgreenland/ancillary/templates/layer_cfg.py: F821
@@ -22,3 +22,4 @@ per-file-ignores =
   qgreenland/config/layers/**/*.py: FS003, E501
   qgreenland/test/util/test_config.py: FS003
   qgreenland/test/util/test_runtime_vars.py: FS003
+  scripts/qgis_examples/*.py: F821

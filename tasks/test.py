@@ -53,22 +53,36 @@ def lint(ctx):
 
 @task(aliases=['mypy'])
 def typecheck(ctx, check_config=False):
-    """Run mypy static type analysis."""
-    # Skip scanning the layers config. Mypy complains about "duplicate module
-    # name" for the __settings__.py files in our config. This wouldn't be a
-    # problem if those files could be in a package with __init__.py, but Python
-    # itself has a problem with that, as our directories have spaces in their
-    # names.
-    #     https://github.com/python/mypy/issues/10428
-    #     https://github.com/python/mypy/issues/4008
+    """Run mypy static type analysis.
+
+    TODO: If/when the below issues are resolved, remove exclude-pathmasks and
+    conditional calls to mypy.
+
+    Skip scanning the layers config. Mypy complains about "duplicate module
+    name" for the __settings__.py files in our config. This wouldn't be a
+    problem if those files could be in a package with __init__.py, but Python
+    itself has a problem with that, as our directories have spaces in their
+    names.
+        https://github.com/python/mypy/issues/10428
+        https://github.com/python/mypy/issues/4008
+    """
+
     config_pathmask = f'{LAYERS_CFG_DIR.relative_to(PROJECT_DIR)}/*'
     # Skip scanning the test data for the same reason; we'll just never scan it.
     test_data_pathmask = f'{TEST_DATA_DIR.relative_to(PROJECT_DIR)}/*'
+    # Skip scanning QGIS scripts
+    qgis_scripts_dir = SCRIPTS_DIR / 'qgis_examples'
+    qgis_scripts_pathmask = f'{qgis_scripts_dir.relative_to(PROJECT_DIR)}/*'
+
+    exclude_masks = (
+        f'{config_pathmask}'
+        f'|{test_data_pathmask}'
+        f'|{qgis_scripts_pathmask}'
+    )
+
     print_and_run(
         f'cd {PROJECT_DIR} &&'
-        # TODO: If/when this issue is resolved, remove this line and below
-        # conditional logic:
-        f' mypy --exclude "{config_pathmask}|{test_data_pathmask}"'
+        f' mypy --exclude "{exclude_masks}"'
         f' --config-file={PROJECT_DIR}/.mypy.ini'
         f' {PACKAGE_DIR} {SCRIPTS_DIR}',
         pty=True,

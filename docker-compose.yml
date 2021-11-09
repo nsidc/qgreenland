@@ -17,13 +17,8 @@ services:
 
       # Input (private) storage
       - ./data/private-archive:/private-archive:ro
-      # Intermediate storage
-      - ./data/fetch-dataset:/fetch-dataset:rw
-      - ./data/wip-layer:/wip-layer:rw
-      - ./data/wip-package:/wip-package:rw
-      # Final output storage
-      - ./data/release-layers:/release-layers:rw
-      - ./data/release-package:/release-package:rw
+      # Read-write storage
+      - ./data/working-storage:/working-storage:rw
     environment:
       - LUIGI_CONFIG_PARSER=toml
       - ENVIRONMENT
