@@ -11,8 +11,7 @@ LAYER_PARAMS = {
             """Onshore faults for the landmass and islands of Greenland."""
         ),
         'style': 'onshore_planar_geological_map',
-        'input_filepath': 'data/shape/geology/Greenland_onshore_planar',
-        'fn_mask': 'Greenland_onshore_Planar.*',
+        'input_filepath': 'data/shape/geology/Greenland_onshore_Planar',
     },
     'onshore_geological_map': {
         'title': 'Rock types',
@@ -22,7 +21,6 @@ LAYER_PARAMS = {
         ),
         'style': 'geological_map_polygons',
         'input_filepath': 'data/shape/geology/Greenland_onshore',
-        'fn_mask': 'Greenland_onshore.*',
     },
     'greenland_ice': {
         'title': 'Ice thickness contours',
@@ -33,7 +31,6 @@ LAYER_PARAMS = {
         ),
         'style': 'greenland_ice',
         'input_filepath': 'data/shape/base/Greenland_ice',
-        'fn_mask': 'Greenland_ice.*',
     },
 }
 
