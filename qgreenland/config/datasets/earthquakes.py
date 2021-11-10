@@ -1,24 +1,38 @@
 import datetime as dt
 
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
+from qgreenland.models.config.asset import ConfigDatasetCommandAsset
 from qgreenland.models.config.dataset import ConfigDataset
 
 
 query_start_date = dt.date(1900, 1, 1)
 query_end_date = dt.date(2021, 1, 1)
 
+def _lons():
+    start_lon = 0
+
+    while start_lon < 180:
+        end_lon = start_lon + 2
+        yield start_lon, end_lon
+        yield -end_lon, -start_lon
+        start_lon = end_lon
+
+
+
+_args = [
+    f'wget "https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime={query_start_date:%Y-%m-%d}%2000:00:00&endtime={query_end_date:%Y-%m-%d}%2000:00:00&maxlatitude=90&minlatitude=40&maxlongitude={end_lon}&minlongitude={start_lon}&minmagnitude=2.5&orderby=time" -O ' + '{output_dir}/' + f'earthquakes_{start_lon}_{end_lon}.geojson &&'
+    for start_lon, end_lon in _lons()
+]
+
+# remove the last "&&"
+_args[-1] = _args[-1].replace('&&', '')
+
+
 earthquakes = ConfigDataset(
     id='earthquakes',
     assets=[
-        ConfigDatasetHttpAsset(
+        ConfigDatasetCommandAsset(
             id='only',
-            urls=[(
-                'https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?'
-                f'starttime={query_start_date:%Y-%m-%d}%2000:00:00'
-                f'&endtime={query_end_date:%Y-%m-%d}%2000:00:00'
-                '&maxlatitude=90&minlatitude=51.179&maxlongitude=17.578'
-                '&minlongitude=-103.359&minmagnitude=2.5&orderby=time'
-            )],
+            args=_args,
         ),
     ],
     metadata={
