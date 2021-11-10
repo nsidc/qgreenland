@@ -11332,16 +11332,6 @@
                   "steps": [
                     {
                       "args": [
-                        "unzip",
-                        "{input_dir}/A20180227-001v200.zip",
-                        "-d",
-                        "{output_dir}",
-                        "ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
                         "gdalwarp",
                         "-cutline",
                         "{assets_dir}/greenland_rectangle.geojson",
@@ -11352,7 +11342,7 @@
                         "EPSG:3413",
                         "-co",
                         "COMPRESS=DEFLATE",
-                        "NETCDF:{input_dir}/ADS/ArCS-T2/A20180227-001/v200/dataset/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc:GHF",
+                        "NETCDF:{input_dir}/GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc:GHF",
                         "{output_dir}/warped.tif"
                       ],
                       "type": "command"
