@@ -1,10 +1,14 @@
 # NEXT_VERSION
 
-- Move "Geophysics/Geothermal heat flux (5km)" layer to "Geophysics/Heat flux/Flux from
-  ice cores (Greve, R.) (5km)"
-- Add new "Geophysics/Heat flux" layers:
-  - "Flow from multiple observations (55km)"
-  - "Flow measurement locations"
+- Move "Geophysics/Geothermal heat flux (5km)" layer to "Geophysics/Heat
+  flux/Flux from ice cores (Greve, R.) (5km)".
+- Move "Oceanography/Bathymetric chart of the Arctic Ocean (400m)" to
+  "Oceanography/Bathymetry/Depth (400m)"
+- Add new layers:
+  - "Geophysics/Heat flux/Flow from multiple observations (55km)"
+  - "Geophysics/Heat flux/Flow measurement locations"
+  - "Oceanography/Bathymetry/Depth contours"
+  - "Geology/Geological map/Ice thickness contours"
 
 # v2.0.0alpha1 (2021-11-03)
 
