@@ -9,6 +9,8 @@
   - "Geophysics/Heat flux/Flow measurement locations"
   - "Oceanography/Bathymetry/Depth contours"
   - "Geology/Geological map/Ice thickness contours"
+  - "Sea ice/Monthly mean concentration (25 km)/September (min monthly extent)/September 2021"
+  - "Sea ice/Monthly mean concentration (25 km)/Feb or March (max monthly extent)/March 2021"
 
 # v2.0.0alpha1 (2021-11-03)
 
