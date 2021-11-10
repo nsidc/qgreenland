@@ -1,7 +1,8 @@
 from typing import Any, Optional
 
-from pydantic import Field
+from pydantic import Field, validator
 
+from qgreenland.constants.paths import ANCILLARY_DIR
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.dataset import AnyAsset, ConfigDataset
 from qgreenland.models.config.step import AnyStep
@@ -40,6 +41,16 @@ class ConfigLayer(QgrBaseModel):
     steps: Optional[list[AnyStep]]
 
     _validate_description = reusable_validator('description', validate_paragraph_text)
+
+    @validator('style')
+    @classmethod
+    def style_file_exists(cls, value):
+        if value:
+            style_filepath = ANCILLARY_DIR / 'styles' / (value + '.qml')
+            if not style_filepath.is_file():
+                raise RuntimeError(f'Style file does not exist: {style_filepath}')
+
+        return value
 
     def __json__(self) -> dict[Any, Any]:
         """Limit child models that are output when dumping JSON.
