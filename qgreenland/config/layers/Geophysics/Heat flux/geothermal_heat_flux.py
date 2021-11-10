@@ -2,7 +2,6 @@ from qgreenland.config.datasets.geothermal_heat_flux import (
     geothermal_heat_flux as dataset,
 )
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
-from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
