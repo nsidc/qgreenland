@@ -11063,7 +11063,7 @@
                         "{input_dir}/as_2159.zip",
                         "-d",
                         "{output_dir}",
-                        "data/shape/geology/Greenland_onshore_planar.*"
+                        "data/shape/geology/Greenland_onshore_Planar.*"
                       ],
                       "type": "command"
                     },
@@ -11078,7 +11078,7 @@
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "{output_dir}/final.gpkg",
-                        "{input_dir}/data/shape/geology/Greenland_onshore_planar.shp"
+                        "{input_dir}/data/shape/geology/Greenland_onshore_Planar.shp"
                       ],
                       "type": "command"
                     }
