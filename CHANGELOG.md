@@ -15,6 +15,7 @@
   "Oceanography/Bathymetry/Depth (400m)"
 - Update "Regional climate models/RACMO model output/Runoff 1958-2019 (1km)"
   layer: change colormap, make `0` values transarent.
+- Update "Reference/Timezones" layer to include a label.
 
 
 # v2.0.0alpha1 (2021-11-03)

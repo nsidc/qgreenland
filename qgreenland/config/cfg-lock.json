@@ -2909,13 +2909,15 @@
                     "EPSG:3413",
                     "-clipdst",
                     "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-sql",
+                    "'SELECT *, name as label\n                    FROM \"ne_10m_time_zones\"'",
                     "{output_dir}/reprojected_and_clipped.gpkg",
                     "{input_dir}/*.shp"
                   ],
                   "type": "command"
                 }
               ],
-              "style": "transparent_shape",
+              "style": "transparent_labeled_shape",
               "tags": [],
               "title": "Time zones"
             },
