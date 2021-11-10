@@ -48,7 +48,9 @@ class ConfigLayer(QgrBaseModel):
         if value:
             style_filepath = ANCILLARY_DIR / 'styles' / (value + '.qml')
             if not style_filepath.is_file():
-                raise RuntimeError(f'Style file does not exist: {style_filepath}')
+                raise exc.QgrInvalidConfigError((
+                    f'Style file does not exist: {style_filepath}'
+                ))
 
         return value
 
