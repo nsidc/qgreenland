@@ -14,7 +14,7 @@ timezones = ConfigLayer(
         """Polygons representing time zones."""
     ),
     tags=[],
-    style='transparent_shape',
+    style='transparent_labeled_shape',
     input=ConfigLayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
@@ -37,6 +37,10 @@ timezones = ConfigLayer(
                 'ogr2ogr',
                 *STANDARD_OGR2OGR_ARGS,
                 '-clipdst', project.boundaries['background'].filepath,
+                '-sql', (
+                    """'SELECT *, name as label
+                    FROM "ne_10m_time_zones"'"""
+                ),
                 '{output_dir}/reprojected_and_clipped.gpkg',
                 '{input_dir}/*.shp',
             ],

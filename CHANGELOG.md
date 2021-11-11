@@ -1,16 +1,26 @@
 # NEXT_VERSION
 
-- Move "Geophysics/Geothermal heat flux (5km)" layer to "Geophysics/Heat
-  flux/Flux from ice cores (Greve, R.) (5km)".
-- Move "Oceanography/Bathymetric chart of the Arctic Ocean (400m)" to
-  "Oceanography/Bathymetry/Depth (400m)"
 - Add new layers:
   - "Geophysics/Heat flux/Flow from multiple observations (55km)"
   - "Geophysics/Heat flux/Flow measurement locations"
   - "Oceanography/Bathymetry/Depth contours"
   - "Geology/Geological map/Ice thickness contours"
-  - "Sea ice/Monthly mean concentration (25 km)/September (min monthly extent)/September 2021"
-  - "Sea ice/Monthly mean concentration (25 km)/Feb or March (max monthly extent)/March 2021"
+  - "Sea ice/Monthly mean concentration (25 km)/September (min monthly
+    extent)/September 2021"
+  - "Sea ice/Monthly mean concentration (25 km)/Feb or March (max monthly
+    extent)/March 2021"
+- Move layers:
+  - "Geophysics/Geothermal heat flux (5km)" layer to "Geophysics/Heat
+    flux/Flux from ice cores (Greve, R.) (5km)".
+  - "Oceanography/Bathymetric chart of the Arctic Ocean (400m)" to
+    "Oceanography/Bathymetry/Depth (400m)"
+- Update layers:
+  - "Regional climate models/RACMO model output/Runoff 1958-2019 (1km)": change
+    colormap, make `0` values transarent.
+  - "Reference/Timezones": add labels.
+  - "Reference/Borders/Greenland coastlines": update style to remove green
+    tint.
+
 
 # v2.0.0alpha1 (2021-11-03)
 

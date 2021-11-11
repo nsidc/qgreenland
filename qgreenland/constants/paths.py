@@ -16,7 +16,7 @@ LAYERS_CFG_DIR = CONFIG_DIR / 'layers'
 PRIVATE_ARCHIVE_DIR = Path('/private-archive')
 
 WORKING_STORAGE_DIR = Path('/working-storage')
-FETCH_DATASETS_DIR = WORKING_STORAGE_DIR / 'fetch-dataset'
+FETCH_DATASETS_DIR = WORKING_STORAGE_DIR / 'fetch-datasets'
 
 WIP_LAYERS_DIR = WORKING_STORAGE_DIR / 'wip-layers'
 WIP_PACKAGE_DIR = WORKING_STORAGE_DIR / 'wip-package'
