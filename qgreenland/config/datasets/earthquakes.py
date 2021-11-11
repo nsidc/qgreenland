@@ -18,13 +18,20 @@ def _lons():
 
 
 
-_args = [
-    f'wget "https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime={query_start_date:%Y-%m-%d}%2000:00:00&endtime={query_end_date:%Y-%m-%d}%2000:00:00&maxlatitude=90&minlatitude=40&maxlongitude={end_lon}&minlongitude={start_lon}&minmagnitude=2.5&orderby=time" -O ' + '{output_dir}/' + f'earthquakes_{start_lon}_{end_lon}.geojson &&'
+wget_cmds = [
+    (
+        'wget \\"https://earthquake.usgs.gov/fdsnws/event/1/query.geojson'
+        f'?starttime={query_start_date:%Y-%m-%d}%2000:00:00&endtime={query_end_date:%Y-%m-%d}%2000:00:00'
+        f'&minlatitude=40&maxlatitude=90'
+        f'&minlongitude={start_lon}&maxlongitude={end_lon}'
+        '&minmagnitude=2.5&orderby=time\\"'
+        ' -O {output_dir}/' + f'earthquakes_{start_lon}_{end_lon}.geojson'
+    )
     for start_lon, end_lon in _lons()
 ]
 
-# remove the last "&&"
-_args[-1] = _args[-1].replace('&&', '')
+wget_cmds_str = '\n'.join(wget_cmds)
+# breakpoint()
 
 
 earthquakes = ConfigDataset(
@@ -32,7 +39,14 @@ earthquakes = ConfigDataset(
     assets=[
         ConfigDatasetCommandAsset(
             id='only',
-            args=_args,
+            args=[
+                'echo', f'"{wget_cmds_str}"',
+                '|',
+                'xargs',
+                '-P', '4',
+                '-d', '"\n"',
+                '-I', 'QUERY', 'bash', '-c', '"QUERY"',
+            ],
         ),
     ],
     metadata={
