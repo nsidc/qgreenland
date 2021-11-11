@@ -3,16 +3,18 @@ import os
 import shutil
 import time
 
-from qgreenland.constants import (
-    INPUT_DIR,
-    OUTPUT_DIRS,
+from qgreenland.constants.paths import (
+    FETCH_DATASETS_DIR,
+    INTERMEDIATE_DIRS,
 )
 
 
 def cleanup_intermediate_dirs():
     """Delete all intermediate data, except 'fetch' dir."""
-    for d in OUTPUT_DIRS:
-        if d is not INPUT_DIR:
+    # TODO: Is this right? This looks like it would result in deleting all
+    # releases as well!
+    for d in INTERMEDIATE_DIRS:
+        if d is not FETCH_DATASETS_DIR:
             _rmtree(d)
 
     # TODO: Delete this block? The context manager handles cleaning up the tmp

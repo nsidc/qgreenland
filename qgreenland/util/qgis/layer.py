@@ -6,7 +6,6 @@ import qgis.core as qgc
 from osgeo import gdal
 
 import qgreenland.exceptions as exc
-from qgreenland.constants import ANCILLARY_DIR
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.util.layer import (
     get_layer_compile_filepath,
@@ -51,8 +50,8 @@ def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
 
     add_layer_metadata(map_layer, layer_cfg)
 
-    if style := layer_cfg.style:
-        _load_qml_style(map_layer, style)
+    if style_filepath := layer_cfg.style_filepath:
+        _load_qml_style(map_layer, style_filepath)
 
     return map_layer
 
@@ -115,12 +114,7 @@ def _create_layer_with_side_effects(
         return creator()
 
 
-def _load_qml_style(map_layer: qgc.QgsMapLayer, style_name: str) -> None:
-    style_path = ANCILLARY_DIR / 'styles' / (style_name + '.qml')
-    # If you pass a path to nothing, it will silently fail
-    if not style_path.is_file():
-        raise RuntimeError(f"Style '{style_path}' not found.")
-
+def _load_qml_style(map_layer: qgc.QgsMapLayer, style_path: Path) -> None:
     msg, status = map_layer.loadNamedStyle(str(style_path))
 
     if not status:

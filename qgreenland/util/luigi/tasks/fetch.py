@@ -2,7 +2,10 @@ import shutil
 
 import luigi
 
-from qgreenland.constants import INPUT_DIR, PRIVATE_ARCHIVE_DIR
+from qgreenland.constants.paths import (
+    FETCH_DATASETS_DIR,
+    PRIVATE_ARCHIVE_DIR,
+)
 from qgreenland.models.config.asset import (
     ConfigDatasetCmrAsset,
     ConfigDatasetHttpAsset,
@@ -44,7 +47,7 @@ class FetchCmrGranule(FetchTask):
     session = None
 
     def output(self):
-        path = INPUT_DIR / self.output_name
+        path = FETCH_DATASETS_DIR / self.output_name
         return luigi.LocalTarget(path)
 
     def run(self):
@@ -70,7 +73,7 @@ class FetchCmrGranule(FetchTask):
 class FetchDataFiles(FetchTask):
     def output(self):
         return luigi.LocalTarget(
-            INPUT_DIR / self.output_name,
+            FETCH_DATASETS_DIR / self.output_name,
             format=luigi.format.Nop,
         )
 
@@ -96,7 +99,7 @@ class FetchLocalDataFiles(FetchTask):
 
     def output(self):
         return luigi.LocalTarget(
-            INPUT_DIR / self.output_name,
+            FETCH_DATASETS_DIR / self.output_name,
             format=luigi.format.Nop,
         )
 
@@ -126,7 +129,7 @@ class FetchDataWithCommand(FetchTask):
 
     def output(self):
         return luigi.LocalTarget(
-            INPUT_DIR / self.output_name,
+            FETCH_DATASETS_DIR / self.output_name,
             format=luigi.format.Nop,
         )
 
@@ -143,7 +146,7 @@ class FetchDataWithCommand(FetchTask):
 class FetchOgrRemoteData(FetchTask):
     def output(self):
         return luigi.LocalTarget(
-            INPUT_DIR / self.output_name,
+            FETCH_DATASETS_DIR / self.output_name,
             format=luigi.format.Nop,
         )
 

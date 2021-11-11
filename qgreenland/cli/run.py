@@ -49,10 +49,17 @@ from qgreenland.util.luigi.tasks.pipeline import (
     help='Exclude all "manual access" assets.',
     required=False,
 )
+@click.option(
+    '--force-package-zip', '-z',
+    is_flag=True,
+    help='Zip the package even if `--include` or `--exclude` are true.',
+    required=False,
+)
 def run(
     include: tuple[str, ...],
     exclude: tuple[str, ...],
     exclude_manual_assets: bool,
+    force_package_zip,
     dry_run: bool,
     fetch_only: bool,
     workers: int,
@@ -70,7 +77,7 @@ def run(
         tasks = [LayerPipelines(
             fetch_only=fetch_only,
         )]
-    elif include or exclude:
+    elif (include or exclude) and not force_package_zip:
         # Don't actually zip, just compile.
         tasks = [
             HostedLayers(),

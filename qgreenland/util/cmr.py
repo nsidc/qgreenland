@@ -6,7 +6,7 @@ from collections import namedtuple
 
 import requests
 
-from qgreenland.constants import REQUEST_TIMEOUT
+from qgreenland.constants.project import REQUEST_TIMEOUT
 
 logger = logging.getLogger('luigi-interface')
 

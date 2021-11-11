@@ -54,4 +54,5 @@ Protected area polygons will use a "Line pattern fill" with rotation of 45° to
 produce a "hashed" pattern. Lines will be solid, thickness will be 0.3mm,
 spacing will be 2mm. Border and lines will be the same color.
 
-Labels displayed over the hashed polygon will have a buffer of at least 2mm with 100% opacity.
+Labels displayed over the hashed polygon will have a buffer of at least 2mm
+with 100% opacity.

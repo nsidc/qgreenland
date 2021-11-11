@@ -7,7 +7,7 @@ from pathlib import Path
 
 from invoke import call, task
 
-from qgreenland.constants import CONFIG_DIR
+from qgreenland.constants.paths import CONFIG_DIR
 from qgreenland.util.config.export import export_config_json
 from qgreenland.util.config.config import get_config, init_config
 

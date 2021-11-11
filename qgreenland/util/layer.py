@@ -2,10 +2,10 @@ from pathlib import Path
 
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType
-from qgreenland.constants import (
-    PACKAGE_COMPILE_DIR,
-    PROVIDER_LAYERTYPE_MAPPING,
-    RELEASES_LAYERS_DIR,
+from qgreenland.constants.misc import PROVIDER_LAYERTYPE_MAPPING
+from qgreenland.constants.paths import (
+    COMPILE_PACKAGE_DIR,
+    RELEASE_LAYERS_DIR,
 )
 from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
 from qgreenland.models.config.layer import ConfigLayer
@@ -28,7 +28,7 @@ def get_layer_compile_dir(
     """Get the layer directory in package compilation location."""
     layer_group_path_str = '/'.join(layer_node.group_name_path)
     return (
-        PACKAGE_COMPILE_DIR
+        COMPILE_PACKAGE_DIR
         / layer_group_path_str
         / _layer_dirname_from_cfg(layer_node.layer_cfg)
     )
@@ -37,7 +37,7 @@ def get_layer_compile_dir(
 def get_layer_release_dir(
     layer_node: LayerNode,
 ) -> Path:
-    return RELEASES_LAYERS_DIR / layer_node.layer_cfg.id
+    return RELEASE_LAYERS_DIR / layer_node.layer_cfg.id
 
 
 def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:

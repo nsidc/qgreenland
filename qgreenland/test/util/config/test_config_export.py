@@ -5,8 +5,8 @@ from pathlib import Path
 from unittest.mock import patch
 
 from qgreenland.test.constants import (
-    MOCK_PACKAGE_COMPILE_DIR,
-    MOCK_RELEASES_LAYERS_DIR,
+    MOCK_COMPILE_PACKAGE_DIR,
+    MOCK_RELEASE_LAYERS_DIR,
 )
 from qgreenland.util.config.export import (
     export_config_csv,
@@ -15,8 +15,8 @@ from qgreenland.util.config.export import (
 
 
 @patch(
-    'qgreenland.util.layer.RELEASES_LAYERS_DIR',
-    new=MOCK_RELEASES_LAYERS_DIR,
+    'qgreenland.util.layer.RELEASE_LAYERS_DIR',
+    new=MOCK_RELEASE_LAYERS_DIR,
 )
 def test_export_config_manifest(full_cfg):
     common = {
@@ -92,8 +92,8 @@ https://nsidc.org""",
 
 
 @patch(
-    'qgreenland.util.layer.PACKAGE_COMPILE_DIR',
-    new=MOCK_PACKAGE_COMPILE_DIR,
+    'qgreenland.util.layer.COMPILE_PACKAGE_DIR',
+    new=MOCK_COMPILE_PACKAGE_DIR,
 )
 def test_export_config_csv(full_cfg):
     common = {

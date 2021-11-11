@@ -2,11 +2,13 @@ import subprocess
 
 import click
 
-from qgreenland.constants import (
-    INPUT_DIR,
-    PACKAGE_COMPILE_DIR,
-    RELEASES_DIR,
-    WIP_DIR,
+from qgreenland.constants.paths import (
+    COMPILE_PACKAGE_DIR,
+    FETCH_DATASETS_DIR,
+    RELEASE_LAYERS_DIR,
+    RELEASE_PACKAGES_DIR,
+    WIP_LAYERS_DIR,
+    WIP_PACKAGE_DIR,
 )
 from qgreenland.util.cli.validate import (
     BOOLEAN_CHOICE,
@@ -58,12 +60,27 @@ def _print_and_run(cmd, *, dry_run):
               ),
               type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='True', show_default=True)
-# TODO: delete_all_wip_tmp: Deletes dirs like `transform-luigi-tmp-4765361527/`
-#       from wip
 # TODO: delete_all_dev_releases?
-@click.option('delete_all_releases', '--delete-all-releases', '-R',
+@click.option('delete_all_release_packages',
+              '--delete-all-release-packages',
+              '-R',
               help=(
-                  'Delete all zipped QGreenland releases'
+                  'Delete all released QGreenland packages'
+              ),
+              type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
+              default='False', show_default=True)
+@click.option('delete_all_dev_release_packages',
+              '--delete-all-dev-release-packages',
+              '-r',
+              help=(
+                  'Delete all released dev QGreenland packages'
+              ),
+              type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
+              default='False', show_default=True)
+@click.option('delete_all_release_layers', '--delete-all-release-layers',
+              '-L',
+              help=(
+                  'Delete all released QGreenland layers'
               ),
               type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='False', show_default=True)
@@ -81,39 +98,58 @@ def cleanup(**kwargs):  # noqa: C901
         print()
 
     if wip_patterns := kwargs['delete_wips_by_pattern']:
+        _print_and_run(
+            f'rm -rf {WIP_PACKAGE_DIR}/*',
+            dry_run=kwargs['dry_run'],
+        )
         for p in wip_patterns:
             _print_and_run(
-                f'rm -rf {WIP_DIR}/{p}',
+                f'rm -rf {WIP_LAYERS_DIR}/{p}',
                 dry_run=kwargs['dry_run'],
             )
-    if inp_patterns := kwargs['delete_inputs_by_pattern']:
-        for p in inp_patterns:
-            _print_and_run(
-                f'rm -rf {INPUT_DIR}/{p}',
-                dry_run=kwargs['dry_run'],
-            )
-
-    if kwargs['delete_all_input']:
+    if kwargs['delete_all_wip']:
         _print_and_run(
-            f'rm -rf {INPUT_DIR}/*',
+            f'rm -rf {WIP_PACKAGE_DIR}/*',
+            dry_run=kwargs['dry_run'],
+        )
+        _print_and_run(
+            f'rm -rf {WIP_LAYERS_DIR}/*',
             dry_run=kwargs['dry_run'],
         )
 
-    if kwargs['delete_all_wip']:
+    if inp_patterns := kwargs['delete_inputs_by_pattern']:
+        for p in inp_patterns:
+            _print_and_run(
+                f'rm -rf {FETCH_DATASETS_DIR}/{p}',
+                dry_run=kwargs['dry_run'],
+            )
+    if kwargs['delete_all_input']:
         _print_and_run(
-            f'rm -rf {WIP_DIR}/*',
+            f'rm -rf {FETCH_DATASETS_DIR}/*',
             dry_run=kwargs['dry_run'],
         )
 
     if kwargs['delete_compiled']:
         _print_and_run(
-            f'rm -rf {PACKAGE_COMPILE_DIR}*',
+            f'rm -rf {COMPILE_PACKAGE_DIR}*',
             dry_run=kwargs['dry_run'],
         )
 
-    if kwargs['delete_all_releases']:
+    if kwargs['delete_all_release_packages']:
         _print_and_run(
-            f'rm -rf {RELEASES_DIR}/*',
+            f'rm -rf {RELEASE_PACKAGES_DIR}/*',
+            dry_run=kwargs['dry_run'],
+        )
+
+    if kwargs['delete_all_dev_release_packages']:
+        _print_and_run(
+            f'rm -rf {RELEASE_PACKAGES_DIR}/dev/*',
+            dry_run=kwargs['dry_run'],
+        )
+
+    if kwargs['delete_all_release_layers']:
+        _print_and_run(
+            f'rm -rf {RELEASE_LAYERS_DIR}/*',
             dry_run=kwargs['dry_run'],
         )
 

@@ -1,6 +1,6 @@
 import click
 
-from qgreenland.constants import TEMPLATES_DIR
+from qgreenland.constants.paths import TEMPLATES_DIR
 
 
 def _print_template(template_fn: str) -> None:

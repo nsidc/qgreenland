@@ -9,7 +9,7 @@ from pathlib import Path
 
 import luigi
 
-from qgreenland.constants import WIP_DIR
+from qgreenland.constants.paths import WIP_LAYERS_DIR
 from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.config.config import get_config
@@ -92,7 +92,9 @@ class ChainableTask(QgrLayerTask):
         NOTE: As soon as this directory exists, Luigi will consider this Task
         complete. _Always_ wrap behaviors in a temporary directory for outputs.
         """
-        return luigi.LocalTarget(WIP_DIR / self.layer_id / self.step_identifier)
+        return luigi.LocalTarget(
+            WIP_LAYERS_DIR / self.layer_id / self.step_identifier,
+        )
 
     def run(self):
         """Execute the step with a temporary directory.
