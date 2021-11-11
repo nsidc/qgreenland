@@ -7,6 +7,12 @@ from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
+breakpoint()
+lonlat_ids_sorted = sorted(dataset.assets.keys())
+# This isn't the sort order we want.
+breakpoint()
+
+
 def _make_lonlat_layer(
     asset: ConfigDatasetRepositoryAsset,
 ) -> ConfigLayer:
@@ -52,7 +58,7 @@ def _make_lonlat_layer(
 
 
 def make_lonlat_layers(
-    asset_prefix: Literal['lon', 'lat'],
+    lon_or_lat: Literal['lon', 'lat'],
 ) -> list[ConfigLayer]:
     assets = [
         cast(ConfigDatasetRepositoryAsset, asset)
