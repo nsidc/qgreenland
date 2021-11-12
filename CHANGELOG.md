@@ -9,6 +9,7 @@
   - "Geophysics/Heat flux/Flow measurement locations"
   - "Oceanography/Bathymetry/Depth contours"
   - "Geology/Geological map/Ice thickness contours"
+- Add scalebar to map viewport in lower left corner.
 
 # v2.0.0alpha1 (2021-11-03)
 
