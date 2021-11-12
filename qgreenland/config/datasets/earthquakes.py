@@ -7,27 +7,18 @@ from qgreenland.models.config.dataset import ConfigDataset
 query_start_date = dt.date(1900, 1, 1)
 query_end_date = dt.date(2021, 1, 1)
 
-def _lons():
-    start_lon = 0
 
-    while start_lon < 180:
-        end_lon = start_lon + 2
-        yield start_lon, end_lon
-        yield -end_lon, -start_lon
-        start_lon = end_lon
-
-
-
+_longitude_step = 2
 wget_cmds = [
     (
         'wget \\"https://earthquake.usgs.gov/fdsnws/event/1/query.geojson'
         f'?starttime={query_start_date:%Y-%m-%d}%2000:00:00&endtime={query_end_date:%Y-%m-%d}%2000:00:00'
         f'&minlatitude=40&maxlatitude=90'
-        f'&minlongitude={start_lon}&maxlongitude={end_lon}'
+        f'&minlongitude={lon}&maxlongitude={lon + _longitude_step}'
         '&minmagnitude=2.5&orderby=time\\"'
-        ' -O {output_dir}/' + f'earthquakes_{start_lon}_{end_lon}.geojson'
+        ' -O {output_dir}/' + f'earthquakes_{lon}_{lon + _longitude_step}.geojson'
     )
-    for start_lon, end_lon in _lons()
+    for lon in range(-180, 180, _longitude_step)
 ]
 
 wget_cmds_str = '\n'.join(wget_cmds)
