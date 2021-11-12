@@ -20,6 +20,10 @@
   - "Reference/Timezones": add labels.
   - "Reference/Borders/Greenland coastlines": update style to remove green
     tint.
+- Update steps in lonlat.py to perform clipping 
+   and transforming steps separately to solve clipping issue on lat layers
+
+
 
 
 # v2.0.0alpha1 (2021-11-03)
