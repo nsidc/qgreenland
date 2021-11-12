@@ -1,11 +1,11 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis styleCategories="Symbology|Labeling" labelsEnabled="0" version="3.10.4-A Coruña">
-  <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
+<qgis version="3.16.3-Hannover" styleCategories="Symbology">
+  <renderer-v2 symbollevels="0" type="singleSymbol" enableorderby="0" forceraster="0">
     <symbols>
-      <symbol alpha="0.25" name="0" force_rhr="0" clip_to_extent="1" type="fill">
-        <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+      <symbol alpha="1" name="0" type="fill" clip_to_extent="1" force_rhr="0">
+        <layer enabled="1" locked="0" class="SimpleFill" pass="0">
           <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
-          <prop v="1,255,22,255" k="color"/>
+          <prop v="255,255,255,0" k="color"/>
           <prop v="bevel" k="joinstyle"/>
           <prop v="0,0" k="offset"/>
           <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>

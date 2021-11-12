@@ -22,6 +22,9 @@ utm_zones = ConfigLayer(
             ),
             input_file='{input_dir}/utmzone.zip',
             output_file='{output_dir}/utm_zones.gpkg',
+            # TODO: Use SQL to generate the label currently set in the style:
+            #       `concat(ZONE, ROW_)`
+            # ?
         ),
     ],
 )
