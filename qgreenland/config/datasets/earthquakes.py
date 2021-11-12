@@ -32,7 +32,7 @@ earthquakes = ConfigDataset(
                 'echo', f'"{wget_cmds_str}"',
                 '|',
                 'xargs',
-                '-P', '4',
+                '-P', '2',
                 '-d', '"\n"',
                 '-I', 'QUERY', 'bash', '-c', '"QUERY"',
             ],
