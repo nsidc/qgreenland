@@ -31,8 +31,6 @@ wget_cmds = [
 ]
 
 wget_cmds_str = '\n'.join(wget_cmds)
-# breakpoint()
-
 
 earthquakes = ConfigDataset(
     id='earthquakes',
