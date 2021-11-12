@@ -38,6 +38,7 @@ def _make_lonlat_layer(
             dataset=dataset,
             asset=asset,
         ),
+        # Separate steps to avoid incorrecrly clipping lattitude lines
         steps=[
             # Clip the datast
             ConfigLayerCommandStep(
@@ -46,7 +47,7 @@ def _make_lonlat_layer(
                     '-clipdst', project.boundaries['background'].filepath,
                     '-segmentize', segment_max_distance,
                     '{output_dir}/clipped.gpkg',
-                    '{input_dir}/*.gpkg',
+                    '{input_dir}/*.geojson',
                 ],
             ),
             # Reproject the dataset
