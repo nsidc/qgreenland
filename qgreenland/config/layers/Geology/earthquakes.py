@@ -2,6 +2,7 @@ from qgreenland.config.datasets.earthquakes import earthquakes as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.step import ConfigLayerCommandStep
 
 
 earthquakes = ConfigLayer(
@@ -17,14 +18,22 @@ earthquakes = ConfigLayer(
         asset=dataset.assets['only'],
     ),
     steps=[
+        ConfigLayerCommandStep(
+            args=[
+                'ogrmerge.py',
+                '-single',
+                '-o', '{output_dir}/earthquakes.gpkg',
+                '{input_dir}/*geojson',
+            ],
+        ),
         *ogr2ogr(
-            input_file='{input_dir}/query.geojson',
+            input_file='{input_dir}/earthquakes.gpkg',
             output_file='{output_dir}/earthquakes.gpkg',
-            boundary_filepath=project.boundaries['data'].filepath,
+            boundary_filepath=project.boundaries['background'].filepath,
             ogr2ogr_args=(
                 '-dialect', 'sqlite',
                 '-sql', """\"SELECT
-                    geometry,
+                    geom,
                     id,
                     mag,
                     place,
@@ -52,7 +61,7 @@ earthquakes = ConfigLayer(
                     type,
                     title,
                     title as label
-                FROM query\"""",
+                FROM merged\"""",
             ),
         ),
     ],
