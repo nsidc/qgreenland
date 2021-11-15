@@ -17,7 +17,7 @@ class BoundingBox(QgrBaseModel):
     max_y: float
 
 
-class ConfigBoundariesInfo(QgrBaseModel):
+class BoundariesInfo(QgrBaseModel):
     # Absolute filepath using `{assets_dir}` runtime variable allows for diffing
     # configs across file systems. Steps often need absolute paths that are
     # filesystem-agnostic.
@@ -83,6 +83,6 @@ class ConfigBoundariesInfo(QgrBaseModel):
         }
 
 
-class ConfigProject(QgrBaseModel):
+class Project(QgrBaseModel):
     crs: str
     boundaries: dict[str, ConfigBoundariesInfo]

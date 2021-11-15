@@ -17,7 +17,7 @@ class ConfigLayerStep(ABC):
         pass
 
 
-class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
+class CommandStep(QgrBaseModel, ConfigLayerStep):
     # TODO: Why do I have to re-specify `id` when it's already defined in the
     # ABC?
     id: Optional[str]
@@ -50,4 +50,4 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
         return ' '.join([str(arg) for arg in self.args])
 
 
-AnyStep = Union[ConfigLayerCommandStep]
+AnyStep = Union[CommandStep]

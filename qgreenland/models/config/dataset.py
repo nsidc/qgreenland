@@ -5,7 +5,7 @@ from qgreenland.models.config.asset import AnyAsset
 from qgreenland.util.model_validators import reusable_validator, validate_paragraph_text
 
 
-class ConfigDatasetCitation(QgrBaseModel):
+class DatasetCitation(QgrBaseModel):
     text: str
     url: str
 
@@ -15,7 +15,7 @@ class ConfigDatasetCitation(QgrBaseModel):
         return value.lstrip('\n').rstrip('\n')
 
 
-class ConfigDatasetMetadata(QgrBaseModel):
+class DatasetMetadata(QgrBaseModel):
     title: str
     abstract: str
     citation: ConfigDatasetCitation
@@ -23,7 +23,7 @@ class ConfigDatasetMetadata(QgrBaseModel):
     _abstract_validator = reusable_validator('abstract', validate_paragraph_text)
 
 
-class ConfigDataset(QgrBaseModel):
+class Dataset(QgrBaseModel):
     id: str = Field(..., min_length=1)
     assets: dict[str, AnyAsset]
     metadata: ConfigDatasetMetadata
