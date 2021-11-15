@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 # NOTE: This is meant to run with GNU `sed`. Use homebrew (OSX) to get GNU
 # `sed` or run this script inside a linux container if you're not a Linux user.
 
@@ -10,7 +10,7 @@ if [[ -z ${SEARCH} || -z ${REPLACE} ]]; then
     exit 1
 fi
 
-grep --color -R --include="*.py" ${SEARCH} *
+grep --color -R --include="*.py" "${SEARCH}" ./*
 echo "WARNING: Replacing \"${SEARCH}\" with \"${REPLACE}\" in the files listed above."
 read -rp "Press ENTER to continue, CTRL+C to cancel."
 echo ""
