@@ -2173,6 +2173,88 @@
               },
               {
                 "layer_cfg": {
+                  "description": "Lines of latitude in 2-degree resolution.",
+                  "id": "lat_2_deg",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "lat_2_deg"
+                    },
+                    "dataset": {
+                      "id": "lonlat"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-segmentize",
+                        "1",
+                        "{output_dir}/latitudes_2_degree.gpkg",
+                        "{input_dir}/latitudes_2_degree.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "lonlat",
+                  "tags": [
+                    "reference"
+                  ],
+                  "title": "Latitude lines (2 degree)"
+                },
+                "name": "lat_2_deg"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Lines of latitude in 5-degree resolution.",
+                  "id": "lat_5_deg",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "lat_5_deg"
+                    },
+                    "dataset": {
+                      "id": "lonlat"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-segmentize",
+                        "1",
+                        "{output_dir}/latitudes_5_degree.gpkg",
+                        "{input_dir}/latitudes_5_degree.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "lonlat",
+                  "tags": [
+                    "reference"
+                  ],
+                  "title": "Latitude lines (5 degree)"
+                },
+                "name": "lat_5_deg"
+              },
+              {
+                "layer_cfg": {
                   "description": "Lines of latitude in 10-degree resolution.",
                   "id": "lat_10_deg",
                   "in_package": true,
@@ -2255,47 +2337,6 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Lines of latitude in 2-degree resolution.",
-                  "id": "lat_2_deg",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "lat_2_deg"
-                    },
-                    "dataset": {
-                      "id": "lonlat"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-segmentize",
-                        "1",
-                        "{output_dir}/latitudes_2_degree.gpkg",
-                        "{input_dir}/latitudes_2_degree.geojson"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "lonlat",
-                  "tags": [
-                    "reference"
-                  ],
-                  "title": "Latitude lines (2 degree)"
-                },
-                "name": "lat_2_deg"
-              },
-              {
-                "layer_cfg": {
                   "description": "Lines of latitude in 20-degree resolution.",
                   "id": "lat_20_deg",
                   "in_package": true,
@@ -2375,53 +2416,22 @@
                   "title": "Latitude lines (30 degree)"
                 },
                 "name": "lat_30_deg"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Lines of latitude in 5-degree resolution.",
-                  "id": "lat_5_deg",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "lat_5_deg"
-                    },
-                    "dataset": {
-                      "id": "lonlat"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-segmentize",
-                        "1",
-                        "{output_dir}/latitudes_5_degree.gpkg",
-                        "{input_dir}/latitudes_5_degree.geojson"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "lonlat",
-                  "tags": [
-                    "reference"
-                  ],
-                  "title": "Latitude lines (5 degree)"
-                },
-                "name": "lat_5_deg"
               }
             ],
             "name": "Latitude lines",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                ":lat_0_25_deg",
+                ":lat_0_5_deg",
+                ":lat_1_deg",
+                ":lat_2_deg",
+                ":lat_5_deg",
+                ":lat_10_deg",
+                ":lat_15_deg",
+                ":lat_20_deg",
+                ":lat_30_deg"
+              ],
               "show": false
             }
           },
@@ -2511,6 +2521,129 @@
               },
               {
                 "layer_cfg": {
+                  "description": "Lines of longitude in 2-degree resolution.",
+                  "id": "lon_2_deg",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "lon_2_deg"
+                    },
+                    "dataset": {
+                      "id": "lonlat"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-segmentize",
+                        "100",
+                        "{output_dir}/longitudes_2_degree.gpkg",
+                        "{input_dir}/longitudes_2_degree.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "lonlat",
+                  "tags": [
+                    "reference"
+                  ],
+                  "title": "Longitude lines (2 degree)"
+                },
+                "name": "lon_2_deg"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Lines of longitude in 3-degree resolution.",
+                  "id": "lon_3_deg",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "lon_3_deg"
+                    },
+                    "dataset": {
+                      "id": "lonlat"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-segmentize",
+                        "100",
+                        "{output_dir}/longitudes_3_degree.gpkg",
+                        "{input_dir}/longitudes_3_degree.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "lonlat",
+                  "tags": [
+                    "reference"
+                  ],
+                  "title": "Longitude lines (3 degree)"
+                },
+                "name": "lon_3_deg"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Lines of longitude in 5-degree resolution.",
+                  "id": "lon_5_deg",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "lon_5_deg"
+                    },
+                    "dataset": {
+                      "id": "lonlat"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-segmentize",
+                        "100",
+                        "{output_dir}/longitudes_5_degree.gpkg",
+                        "{input_dir}/longitudes_5_degree.geojson"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "lonlat",
+                  "tags": [
+                    "reference"
+                  ],
+                  "title": "Longitude lines (5 degree)"
+                },
+                "name": "lon_5_deg"
+              },
+              {
+                "layer_cfg": {
                   "description": "Lines of longitude in 10-degree resolution.",
                   "id": "lon_10_deg",
                   "in_package": true,
@@ -2593,47 +2726,6 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Lines of longitude in 2-degree resolution.",
-                  "id": "lon_2_deg",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "lon_2_deg"
-                    },
-                    "dataset": {
-                      "id": "lonlat"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-segmentize",
-                        "100",
-                        "{output_dir}/longitudes_2_degree.gpkg",
-                        "{input_dir}/longitudes_2_degree.geojson"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "lonlat",
-                  "tags": [
-                    "reference"
-                  ],
-                  "title": "Longitude lines (2 degree)"
-                },
-                "name": "lon_2_deg"
-              },
-              {
-                "layer_cfg": {
                   "description": "Lines of longitude in 20-degree resolution.",
                   "id": "lon_20_deg",
                   "in_package": true,
@@ -2672,47 +2764,6 @@
                   "title": "Longitude lines (20 degree)"
                 },
                 "name": "lon_20_deg"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Lines of longitude in 3-degree resolution.",
-                  "id": "lon_3_deg",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "lon_3_deg"
-                    },
-                    "dataset": {
-                      "id": "lonlat"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-segmentize",
-                        "100",
-                        "{output_dir}/longitudes_3_degree.gpkg",
-                        "{input_dir}/longitudes_3_degree.geojson"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "lonlat",
-                  "tags": [
-                    "reference"
-                  ],
-                  "title": "Longitude lines (3 degree)"
-                },
-                "name": "lon_3_deg"
               },
               {
                 "layer_cfg": {
@@ -2798,47 +2849,6 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Lines of longitude in 5-degree resolution.",
-                  "id": "lon_5_deg",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "lon_5_deg"
-                    },
-                    "dataset": {
-                      "id": "lonlat"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-segmentize",
-                        "100",
-                        "{output_dir}/longitudes_5_degree.gpkg",
-                        "{input_dir}/longitudes_5_degree.geojson"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "lonlat",
-                  "tags": [
-                    "reference"
-                  ],
-                  "title": "Longitude lines (5 degree)"
-                },
-                "name": "lon_5_deg"
-              },
-              {
-                "layer_cfg": {
                   "description": "Lines of longitude in 90-degree resolution.",
                   "id": "lon_90_deg",
                   "in_package": true,
@@ -2882,7 +2892,19 @@
             "name": "Longitude lines",
             "settings": {
               "expand": false,
-              "order": null,
+              "order": [
+                ":lon_0_5_deg",
+                ":lon_1_deg",
+                ":lon_2_deg",
+                ":lon_3_deg",
+                ":lon_5_deg",
+                ":lon_10_deg",
+                ":lon_15_deg",
+                ":lon_20_deg",
+                ":lon_30_deg",
+                ":lon_45_deg",
+                ":lon_90_deg"
+              ],
               "show": false
             }
           },

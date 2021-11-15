@@ -7,6 +7,13 @@ from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
 from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
 
 
+lonlat_assets_sorted = sorted(
+    dataset.assets.values(),
+    key=lambda asset: float('.'.join(asset.id.split('_')[1:-1])),
+)
+lonlat_ids_sorted = [a.id for a in lonlat_assets_sorted]
+
+
 def _make_lonlat_layer(
     asset: ConfigDatasetRepositoryAsset,
 ) -> ConfigLayer:
@@ -52,12 +59,12 @@ def _make_lonlat_layer(
 
 
 def make_lonlat_layers(
-    asset_prefix: Literal['lon', 'lat'],
+    lon_or_lat: Literal['lon', 'lat'],
 ) -> list[ConfigLayer]:
     assets = [
         cast(ConfigDatasetRepositoryAsset, asset)
         for asset in dataset.assets.values()
-        if asset.id.startswith(asset_prefix)
+        if asset.id.startswith(lon_or_lat)
     ]
 
     return [_make_lonlat_layer(asset) for asset in assets]
