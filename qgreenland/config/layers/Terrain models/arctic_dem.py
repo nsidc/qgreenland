@@ -12,7 +12,7 @@ arctic_dem = ConfigLayer(
     id='arctic_dem',
     title='Arctic DEM (100m)',
     description=(
-        """Surface elevation in meters."""
+        """Surface elevation in meters using hillshade symbology."""
     ),
     tags=[],
     style='arctic_dem',

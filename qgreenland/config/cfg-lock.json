@@ -23033,7 +23033,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Surface elevation in meters.",
+              "description": "Surface elevation in meters using hillshade symbology.",
               "id": "arctic_dem",
               "in_package": true,
               "input": {
