@@ -228,3 +228,9 @@ class QGreenlandAll(luigi.WrapperTask):
     def requires(self):
         yield ZipQGreenland()
         yield HostedLayers()
+
+
+class QGreenlandNoZip(luigi.WrapperTask):
+    def requires(self):
+        yield CreateQgisProjectFile()
+        yield HostedLayers()
