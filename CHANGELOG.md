@@ -14,8 +14,10 @@
   - MOVED:
     - "Geophysics/Geothermal heat flux (5km)" layer to "Geophysics/Heat
       flux/Flux from ice cores (Greve, R.) (5km)".
-    - "Oceanography/Bathymetric chart of the Arctic Ocean (400m)" to
+    - "Oceanography/Bathymetric chart of the Arctic Ocean (400m)" layer to
       "Oceanography/Bathymetry/Depth (400m)"
+    - "Human activity/Research stations" group to "Human activity/Research
+      sites"
   - UPDATED:
     - "Regional climate models/RACMO model output/Runoff 1958-2019 (1km)":
       change colormap, make `0` values transarent.
