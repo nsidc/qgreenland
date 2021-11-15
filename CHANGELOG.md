@@ -1,6 +1,6 @@
 # NEXT_VERSION
 
-- Add scalebar to map viewport in lower left corner.
+- Add scalebar to map viewport in lower-right corner.
 - Layer changes:
   - NEW:
     - "Geophysics/Heat flux/Flow from multiple observations (55km)"
