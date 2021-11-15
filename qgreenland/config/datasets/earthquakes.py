@@ -9,6 +9,11 @@ query_end_date = dt.date(2021, 1, 1)
 
 
 _longitude_step = 2
+# The USGS site seems to be rate limited. We'll get errors (name resolution
+# error) if too much time is spent holding open connection(s) with the site.
+# Faster downloads seem to work more reliably than slower ones. Do we need to do
+# anything more, e.g. add sleeps to each `wget`, to give the server a break?
+# TODO: What error was Trey getting?
 wget_cmds = [
     (
         'wget \\"https://earthquake.usgs.gov/fdsnws/event/1/query.geojson'
@@ -28,6 +33,9 @@ earthquakes = ConfigDataset(
     assets=[
         ConfigDatasetCommandAsset(
             id='only',
+            # Use `xargs` to run lots of `wgets` in one asset.
+            # TODO: Is this the best way to do multiple downloads for creating a
+            # single layer?
             args=[
                 'echo', f'"{wget_cmds_str}"',
                 '|',
