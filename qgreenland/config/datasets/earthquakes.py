@@ -1,24 +1,49 @@
 import datetime as dt
 
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
+from qgreenland.models.config.asset import ConfigDatasetCommandAsset
 from qgreenland.models.config.dataset import ConfigDataset
 
 
 query_start_date = dt.date(1900, 1, 1)
 query_end_date = dt.date(2021, 1, 1)
 
+
+_longitude_step = 2
+# The USGS site seems to be rate limited. We'll get errors (name resolution
+# error) if too much time is spent holding open connection(s) with the site.
+# Faster downloads seem to work more reliably than slower ones. Do we need to do
+# anything more, e.g. add sleeps to each `wget`, to give the server a break?
+# TODO: What error was Trey getting?
+wget_cmds = [
+    (
+        'wget \\"https://earthquake.usgs.gov/fdsnws/event/1/query.geojson'
+        f'?starttime={query_start_date:%Y-%m-%d}%2000:00:00&endtime={query_end_date:%Y-%m-%d}%2000:00:00'
+        f'&minlatitude=40&maxlatitude=90'
+        f'&minlongitude={lon}&maxlongitude={lon + _longitude_step}'
+        '&minmagnitude=2.5&orderby=time\\"'
+        ' -O {output_dir}/' + f'earthquakes_{lon}_{lon + _longitude_step}.geojson'
+    )
+    for lon in range(-180, 180, _longitude_step)
+]
+
+wget_cmds_str = '\n'.join(wget_cmds)
+
 earthquakes = ConfigDataset(
     id='earthquakes',
     assets=[
-        ConfigDatasetHttpAsset(
+        ConfigDatasetCommandAsset(
             id='only',
-            urls=[(
-                'https://earthquake.usgs.gov/fdsnws/event/1/query.geojson?'
-                f'starttime={query_start_date:%Y-%m-%d}%2000:00:00'
-                f'&endtime={query_end_date:%Y-%m-%d}%2000:00:00'
-                '&maxlatitude=90&minlatitude=51.179&maxlongitude=17.578'
-                '&minlongitude=-103.359&minmagnitude=2.5&orderby=time'
-            )],
+            # Use `xargs` to run lots of `wgets` in one asset.
+            # TODO: Is this the best way to do multiple downloads for creating a
+            # single layer?
+            args=[
+                'echo', f'"{wget_cmds_str}"',
+                '|',
+                'xargs',
+                '-P', '2',
+                '-d', '"\n"',
+                '-I', 'QUERY', 'bash', '-c', '"QUERY"',
+            ],
         ),
     ],
     metadata={
