@@ -20,6 +20,8 @@
   - "Reference/Timezones": add labels.
   - "Reference/Borders/Greenland coastlines": update style to remove green
     tint.
+  - "Geology/Earthquakes M above 2.5 1900-2020": show all earthquakes in
+    background boundary instead of subsetting to region around Greenland.
 
 
 # v2.0.0alpha1 (2021-11-03)
