@@ -26,6 +26,8 @@
       tint.
     - "Geology/Earthquakes M above 2.5 1900-2020": show all earthquakes in
       background boundary instead of subsetting to region around Greenland.
+    - "Reference/Longitude lines": display positive degrees West instead of
+      negative.
 
 
 # v2.0.0alpha1 (2021-11-03)
