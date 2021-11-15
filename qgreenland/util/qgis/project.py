@@ -261,4 +261,9 @@ def _add_decorations(project: qgc.QgsProject) -> None:
     project.writeEntry('Image', '/Size', 24)
     project.writeEntry('Image', '/ImagePath', 'qgreenland.png')
 
+    # Enable the scalebar
+    project.writeEntry('ScaleBar', '/Enabled', True)
+    # Placement 3 corresponds to lower-right corner
+    project.writeEntry('ScaleBar', '/Placement', 3)
+
     logger.debug('Done adding decorations.')
