@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import ManualAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-greenland_territorial_waters = ConfigDataset(
+greenland_territorial_waters = Dataset(
     id='greenland_territorial_waters',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """Dataset provided by Karl Zinglersen of the Greenland

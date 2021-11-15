@@ -1,6 +1,6 @@
 import calendar
 
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
+from qgreenland.models.config.asset import HttpAsset
 
 
 END_YEAR = 2021
@@ -24,12 +24,12 @@ def conc_max_month(year: int) -> int:
     return CONC_MAX_OFF_YEARS.get(year, 3)
 
 
-def concentration_maximum_asset_for_year(year: int) -> ConfigDatasetHttpAsset:
+def concentration_maximum_asset_for_year(year: int) -> HttpAsset:
     """Handle the maximum concentration "off-years"."""
     month = conc_max_month(year)
     month_abbr = calendar.month_abbr[month]
 
-    return ConfigDatasetHttpAsset(
+    return HttpAsset(
         id=f'maximum_concentration_{year}',
         urls=[(
             'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff'

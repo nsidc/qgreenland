@@ -1,19 +1,19 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
 BASE_URL = 'https://www.ncei.noaa.gov/thredds-ocean/fileServer/ncei/woa/temperature/decav'
 
-woa2018_temperature = ConfigDataset(
+woa2018_temperature = Dataset(
     id='woa2018_temperature',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='seasonal_winter',
             urls=[
                 f'{BASE_URL}/0.25/woa18_decav_t13_04.nc',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='seasonal_summer',
             urls=[
                 f'{BASE_URL}/0.25/woa18_decav_t15_04.nc',

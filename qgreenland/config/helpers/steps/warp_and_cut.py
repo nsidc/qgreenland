@@ -1,6 +1,6 @@
 from qgreenland._typing import ResamplingMethod, StepArgs
 from qgreenland.config.project import project
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.step import CommandStep
 
 
 def warp_and_cut(
@@ -13,8 +13,8 @@ def warp_and_cut(
     resampling_method: ResamplingMethod = 'bilinear',
     reproject_args: StepArgs = (),
     cut_args: StepArgs = (),
-) -> list[ConfigLayerCommandStep]:
-    reproject = ConfigLayerCommandStep(
+) -> list[CommandStep]:
+    reproject = CommandStep(
         args=[
             'gdalwarp',
             '-t_srs', project.crs,
@@ -25,7 +25,7 @@ def warp_and_cut(
         ],
     )
 
-    cut = ConfigLayerCommandStep(
+    cut = CommandStep(
         args=[
             'gdalwarp',
             '-cutline',

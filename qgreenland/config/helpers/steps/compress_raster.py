@@ -1,4 +1,4 @@
-from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
+from qgreenland.models.config.step import AnyStep, CommandStep
 
 
 def compress_raster(
@@ -6,7 +6,7 @@ def compress_raster(
     input_file,
     output_file,
 ) -> list[AnyStep]:
-    return [ConfigLayerCommandStep(
+    return [CommandStep(
         args=[
             'gdal_translate',
             '-co', 'COMPRESS=DEFLATE',

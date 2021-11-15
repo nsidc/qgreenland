@@ -85,4 +85,4 @@ class BoundariesInfo(QgrBaseModel):
 
 class Project(QgrBaseModel):
     crs: str
-    boundaries: dict[str, ConfigBoundariesInfo]
+    boundaries: dict[str, BoundariesInfo]

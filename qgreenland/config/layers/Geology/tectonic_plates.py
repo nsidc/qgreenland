@@ -1,13 +1,13 @@
 from qgreenland.config.datasets.tectonic_plates import tectonic_plates as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 FN_HASH = '339b0c56563c118307b1f4542703047f5f698fae'
 FN = f'tectonicplates-{FN_HASH}'
 
-tectonic_plate_boundaries = ConfigLayer(
+tectonic_plate_boundaries = Layer(
     id='tectonic_plate_boundaries',
     title='Tectonic plate boundaries',
     description=(
@@ -15,7 +15,7 @@ tectonic_plate_boundaries = ConfigLayer(
     ),
     tags=[],
     style='tectonic_plate_boundaries',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

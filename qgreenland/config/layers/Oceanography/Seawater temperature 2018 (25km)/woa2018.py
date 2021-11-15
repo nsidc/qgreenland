@@ -11,12 +11,12 @@ from qgreenland.config.helpers.layers.woa2018 import (
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=id_str(depth=depth, season=season),
         title=f'{depth_str(depth)}, {season.title()}',
         description=(
@@ -24,12 +24,12 @@ layers = [
         ),
         tags=[],
         style='seawater_temperature',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets[f'seasonal_{season}'],
         ),
         steps=[
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'gdal_translate',
                     '-b', DEPTHS_BANDS[depth],

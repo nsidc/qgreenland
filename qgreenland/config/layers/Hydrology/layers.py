@@ -1,10 +1,10 @@
 from qgreenland.config.datasets.esa_cci import esa_cci_marginal_lakes
 from qgreenland.config.helpers.layers.streams_outlets_basins import layers  # noqa: F401
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-marginal_lakes = ConfigLayer(
+marginal_lakes = Layer(
     id='marginal_lakes',
     title='Inventory of ice marginal lakes, 2017',
     description=(
@@ -13,7 +13,7 @@ marginal_lakes = ConfigLayer(
     ),
     tags=[],
     style=None,
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=esa_cci_marginal_lakes,
         asset=esa_cci_marginal_lakes.assets['only'],
     ),

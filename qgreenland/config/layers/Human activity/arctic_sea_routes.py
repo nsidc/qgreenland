@@ -1,10 +1,10 @@
 from qgreenland.config.datasets.arctic_sea_routes import nga_arctic_sea_routes as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
-arctic_sea_routes = ConfigLayer(
+arctic_sea_routes = Layer(
     id='arctic_sea_routes',
     title='Arctic sea routes',
     description=(
@@ -13,13 +13,13 @@ arctic_sea_routes = ConfigLayer(
     ),
     tags=[],
     style='arctic_sea_routes',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),
     steps=[
         # TODO: *compressed_vector(...)?
-        ConfigLayerCommandStep(
+        CommandStep(
             args=[
                 'unzip',
                 '-d', '{output_dir}',

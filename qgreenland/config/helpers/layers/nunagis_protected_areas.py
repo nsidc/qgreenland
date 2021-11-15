@@ -1,6 +1,6 @@
 from qgreenland.config.datasets.nunagis_protected_areas import nunagis_protected_areas
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 _nunagis_protected_areas_params = {
@@ -154,14 +154,14 @@ def _make_layer(
     description: str,
     style: str,
     where_sql: str,
-) -> ConfigLayer:
-    return ConfigLayer(
+) -> Layer:
+    return Layer(
         id=layer_id,
         title=title,
         description=description,
         tags=[],
         style=style,
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=nunagis_protected_areas,
             asset=nunagis_protected_areas.assets['only'],
         ),
@@ -190,7 +190,7 @@ def _make_layer(
 
 def make_layers(
     layer_ids: list[str],
-) -> list[ConfigLayer]:
+) -> list[Layer]:
     return [
         _make_layer(
             layer_id=layer_id,

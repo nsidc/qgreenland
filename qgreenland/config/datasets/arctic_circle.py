@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import RepositoryAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-arctic_circle = ConfigDataset(
+arctic_circle = Dataset(
     id='arctic_circle',
     assets=[
-        ConfigDatasetRepositoryAsset(
+        RepositoryAsset(
             id='only',
             filepath='{assets_dir}/arctic_circle.geojson',
         ),

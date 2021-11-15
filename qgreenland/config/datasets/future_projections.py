@@ -1,23 +1,23 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-future_icesheet_coverage = ConfigDataset(
+future_icesheet_coverage = Dataset(
     id='future_icesheet_coverage',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='rcp_26',
             urls=[
                 'https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A61ff2294-4734-46ba-a0b0-845d69298131',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='rcp_45',
             urls=[
                 'https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3Aed2d7235-2193-4ba3-a98f-f09d871199a1',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='rcp_85',
             urls=[
                 'https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3Aecec7b68-a544-4575-8731-47d60b73215f',

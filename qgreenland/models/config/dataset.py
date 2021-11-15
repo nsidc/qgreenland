@@ -18,7 +18,7 @@ class DatasetCitation(QgrBaseModel):
 class DatasetMetadata(QgrBaseModel):
     title: str
     abstract: str
-    citation: ConfigDatasetCitation
+    citation: DatasetCitation
 
     _abstract_validator = reusable_validator('abstract', validate_paragraph_text)
 
@@ -26,7 +26,7 @@ class DatasetMetadata(QgrBaseModel):
 class Dataset(QgrBaseModel):
     id: str = Field(..., min_length=1)
     assets: dict[str, AnyAsset]
-    metadata: ConfigDatasetMetadata
+    metadata: DatasetMetadata
 
     @validator('assets', pre=True)
     @classmethod

@@ -3,12 +3,12 @@ from typing import Union, cast
 
 from qgreenland.config.datasets.hdx_hotosm import hdx_hotosm as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-def _make_hotosm_populated_places() -> ConfigLayer:
-    return ConfigLayer(
+def _make_hotosm_populated_places() -> Layer:
+    return Layer(
         id='hotosm_populated_places',
         title='Populated places',
         description=(
@@ -16,7 +16,7 @@ def _make_hotosm_populated_places() -> ConfigLayer:
         ),
         tags=[],
         style='hotosm_populated_places_point',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['populated_places'],
         ),
@@ -83,18 +83,18 @@ _other_hotosm_layer_params: dict[str, dict[str, Union[str, None]]] = {
 }
 
 
-def _make_other_hotosm_layers() -> list[ConfigLayer]:
+def _make_other_hotosm_layers() -> list[Layer]:
     layers = []
     for asset_id, params in _other_hotosm_layer_params.items():
-        asset = cast(ConfigDatasetHttpAsset, dataset.assets[asset_id])
+        asset = cast(HttpAsset, dataset.assets[asset_id])
         layers.append(
-            ConfigLayer(
+            Layer(
                 id=f'hotosm_{asset_id}',
                 title=f"{asset_id.capitalize().replace('_', ' ')}",
                 description=params['description'],
                 tags=[],
                 style=params['style'],
-                input=ConfigLayerInput(
+                input=LayerInput(
                     dataset=dataset,
                     asset=asset,
                 ),
@@ -113,7 +113,7 @@ def _make_other_hotosm_layers() -> list[ConfigLayer]:
     return layers
 
 
-def make_all_hotosm_layers() -> list[ConfigLayer]:
+def make_all_hotosm_layers() -> list[Layer]:
     layers = [_make_hotosm_populated_places()]
     layers.extend(_make_other_hotosm_layers())
 

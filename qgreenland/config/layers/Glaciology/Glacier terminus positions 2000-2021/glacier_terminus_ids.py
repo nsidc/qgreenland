@@ -1,15 +1,15 @@
 from qgreenland.config.datasets.glacier_terminus import glacier_terminus as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-glacier_terminus_glacier_ids = ConfigLayer(
+glacier_terminus_glacier_ids = Layer(
     id='glacier_terminus_glacier_ids',
     title='Glacier IDs',
     description='Glacier location for termini with matching ID.',
     tags=[],
     style='glacier_ids',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['glacier_ids'],
     ),

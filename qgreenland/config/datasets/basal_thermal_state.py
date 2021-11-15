@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetCmrAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import CmrAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-basal_thermal_state = ConfigDataset(
+basal_thermal_state = Dataset(
     id='basal_thermal_state',
     assets=[
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='only',
             granule_ur='SC:RDBTS4.001:114194114',
             collection_concept_id='C1397417110-NSIDC_ECS',

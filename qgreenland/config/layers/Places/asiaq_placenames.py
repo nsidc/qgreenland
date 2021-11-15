@@ -1,15 +1,15 @@
 from qgreenland.config.datasets.asiaq_placenames import asiaq_private_placenames
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
-towns_and_settlements = ConfigLayer(
+towns_and_settlements = Layer(
     id='populated_places',
     title='Towns and settlements',
     description='Points representing towns and settlements in Greenland.',
     tags=['places'],
     style='labeled_point',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=asiaq_private_placenames,
         asset=asiaq_private_placenames.assets['only'],
     ),

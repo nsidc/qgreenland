@@ -2,7 +2,7 @@ from typing import Any
 
 from qgreenland._typing import StepArgs
 from qgreenland.config.project import project
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.step import CommandStep
 from qgreenland.util.runtime_vars import EvalFilePath
 
 STANDARD_OGR2OGR_ARGS = [
@@ -20,13 +20,13 @@ def ogr2ogr(
     boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
     ogr2ogr_args: StepArgs = (),
     enable_partial_reprojection=False,
-) -> list[ConfigLayerCommandStep]:
+) -> list[CommandStep]:
     """Warp to project CRS and do other stuff as specified in args."""
     init_args: list[Any] = []
     if enable_partial_reprojection:
         init_args.append('OGR_ENABLE_PARTIAL_REPROJECTION=TRUE')
 
-    return [ConfigLayerCommandStep(
+    return [CommandStep(
         id='ogr2ogr',
         args=init_args + [
             'ogr2ogr',

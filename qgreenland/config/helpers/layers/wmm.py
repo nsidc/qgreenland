@@ -3,12 +3,12 @@ from typing import Literal
 from qgreenland.config.datasets import wmm
 from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
-def make_boz_layer(*, year: int) -> ConfigLayer:
-    return ConfigLayer(
+def make_boz_layer(*, year: int) -> Layer:
+    return Layer(
         id=f'wmm_boz_{year}',
         title='Blackout zones',
         description="""
@@ -27,12 +27,12 @@ may be degraded in this region.
         in_package=True,
         show=False,
         style='blackout_zones',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=wmm.wmm,
             asset=wmm.wmm.assets['blackout_zones'],
         ),
         steps=[
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'unzip',
                     '-j',
@@ -41,7 +41,7 @@ may be degraded in this region.
                     f'"*BOZ_arctic_all/BOZ_{year}*"',
                 ],
             ),
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'ogr2ogr',
                     *STANDARD_OGR2OGR_ARGS,
@@ -216,8 +216,8 @@ def unzip_and_reproject_wmm_vector(
     contour_units: str,
     unzip_contents_mask: str,
     zip_filename: str,
-) -> list[ConfigLayerCommandStep]:
-    unzip = ConfigLayerCommandStep(
+) -> list[CommandStep]:
+    unzip = CommandStep(
         args=[
             'unzip',
             '-j',
@@ -227,7 +227,7 @@ def unzip_and_reproject_wmm_vector(
         ],
     )
 
-    reproject_with_sql = ConfigLayerCommandStep(
+    reproject_with_sql = CommandStep(
         id='ogr2ogr',
         args=[
             'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
@@ -252,17 +252,17 @@ def make_wmm_variable_layer(
     *,
     variable: WmmVariable,
     year: int,
-) -> ConfigLayer:
+) -> Layer:
     variable_config = _wmm_variable_config[variable]
     contour_label = variable_config['contour_units']
 
-    return ConfigLayer(
+    return Layer(
         id=f'wmm_{variable}_{year}',
         title=variable_config['title'],
         description=variable_config['description'],
         in_package=True,
         style='wmm_contours',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=wmm.wmm,
             asset=wmm.wmm.assets[str(year)],
         ),
@@ -275,7 +275,7 @@ def make_wmm_variable_layer(
     )
 
 
-def make_wmm_variable_layers_for_year(*, year: int) -> list[ConfigLayer]:
+def make_wmm_variable_layers_for_year(*, year: int) -> list[Layer]:
     layers = []
     variable_names = _wmm_variable_config.keys()
 

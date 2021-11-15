@@ -4,8 +4,8 @@ from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
-from qgreenland.models.config.dataset import ConfigDataset
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.dataset import Dataset
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 def _make_layer(
@@ -15,15 +15,15 @@ def _make_layer(
     description: str,
     style: str,
     filename: str,
-    dataset: ConfigDataset,
-) -> ConfigLayer:
-    return ConfigLayer(
+    dataset: Dataset,
+) -> Layer:
+    return Layer(
         id=layer_id,
         title=title,
         description=description,
         tags=[],
         style=style,
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),
@@ -63,7 +63,7 @@ _gravity_anomaly_layer_params = {
 }
 
 
-def make_gravity_anomaly_layers() -> list[ConfigLayer]:
+def make_gravity_anomaly_layers() -> list[Layer]:
     return [
         _make_layer(
             layer_id=layer_id,
@@ -77,7 +77,7 @@ def make_gravity_anomaly_layers() -> list[ConfigLayer]:
     ]
 
 
-def make_geoid_layer() -> ConfigLayer:
+def make_geoid_layer() -> Layer:
     return _make_layer(
         layer_id='geoid',
         title='Geoid model (2km)',

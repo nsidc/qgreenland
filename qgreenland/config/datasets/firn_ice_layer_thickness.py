@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import ManualAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-macferrin_etal_firn_ice_layer_thicknesses = ConfigDataset(
+macferrin_etal_firn_ice_layer_thicknesses = Dataset(
     id='macferrin_etal_firn_ice_layer_thicknesses',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """Available via the publication website, and contained in the

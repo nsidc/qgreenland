@@ -6,12 +6,12 @@ from xml.sax.saxutils import escape
 import qgis.core as qgc
 
 from qgreenland.constants.paths import FETCH_DATASETS_DIR
-from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.layer import Layer
 from qgreenland.util.layer import datasource_dirname
 from qgreenland.util.template import load_template
 
 
-def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> None:
+def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: Layer) -> None:
     """Add layer metadata.
 
     Renders a jinja template to a temporary file location as a valid QGIS qmd
@@ -61,7 +61,7 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: ConfigLayer) -> No
         map_layer.loadNamedMetadata(temp_file.name)
 
 
-def _build_layer_tooltip(layer_cfg: ConfigLayer) -> str:
+def _build_layer_tooltip(layer_cfg: Layer) -> str:
     """Return a properly escaped layer tooltip text."""
     tt = _build_layer_description(layer_cfg)
     tt += (
@@ -71,7 +71,7 @@ def _build_layer_tooltip(layer_cfg: ConfigLayer) -> str:
     return escape(tt)
 
 
-def build_layer_abstract(layer_cfg: ConfigLayer) -> str:
+def build_layer_abstract(layer_cfg: Layer) -> str:
     """Return a properly escaped layer abstract text."""
     # Include the layer description first.
     abstract = _build_layer_description(layer_cfg)
@@ -92,7 +92,7 @@ def build_layer_abstract(layer_cfg: ConfigLayer) -> str:
     return escape(abstract)
 
 
-def _build_layer_description(layer_cfg: ConfigLayer) -> str:
+def _build_layer_description(layer_cfg: Layer) -> str:
     """Return a string representing the layer's description."""
     layer_description = ''
 
@@ -104,7 +104,7 @@ def _build_layer_description(layer_cfg: ConfigLayer) -> str:
 
 # TODO: this could take a dataset cfg instead of a layer_cfg and be
 # cached. Sometimes multiple layers are derived from the same dataset.
-def _build_dataset_description(layer_cfg: ConfigLayer) -> str:
+def _build_dataset_description(layer_cfg: Layer) -> str:
     """Return a string representing the layer's dataset description.
 
     Description includes dataset title and abstract.
@@ -123,7 +123,7 @@ def _build_dataset_description(layer_cfg: ConfigLayer) -> str:
 
 # TODO: this could take a dataset cfg instead of a layer_cfg and be
 # cached. Sometimes multiple layers are derived from the same dataset.
-def _build_dataset_citation(layer_cfg: ConfigLayer) -> str:
+def _build_dataset_citation(layer_cfg: Layer) -> str:
     """Return a string representing the layer's dataset citation."""
     citation = ''
 
@@ -141,7 +141,7 @@ def _build_dataset_citation(layer_cfg: ConfigLayer) -> str:
     return citation
 
 
-def _populate_date_accessed(text: str, *, layer_cfg: ConfigLayer) -> str:
+def _populate_date_accessed(text: str, *, layer_cfg: Layer) -> str:
     if '{{date_accessed}}' not in text:
         return text
 

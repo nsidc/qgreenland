@@ -1,7 +1,7 @@
 from qgreenland.config.datasets import bedmachine
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 bedmachine_fn = 'BedMachineGreenland-2021-04-20.nc'
 
@@ -35,13 +35,13 @@ bed_datasets = {
 }
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=f'bedmachine_{key}',
         title=f'{params["title"]} (150m)',
         description=params['description'],
         tags=['terrain_model'],
         style=f'bedmachine_{key}',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=bedmachine.bedmachine,
             asset=bedmachine.bedmachine.assets['only'],
         ),

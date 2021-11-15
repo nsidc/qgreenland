@@ -10,27 +10,27 @@ from qgreenland.config.helpers.layers.sea_ice_concentration import (
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
-def _layer(year) -> ConfigLayer:
+def _layer(year) -> Layer:
     month = conc_max_month(year)
     month_name = calendar.month_name[month]
 
-    return ConfigLayer(
+    return Layer(
         id=f'seaice_maximum_concentration_{year}',
         title=f'{month_name} {year}',
         description=CONCENTRATION_DESCRIPTION,
         tags=[],
         style=CONCENTRATION_STYLE,
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets[f'maximum_concentration_{year}'],
         ),
         # TODO: Extract to helper
         steps=[
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'gdal_calc.py',
                     '--calc', "'A / 10.0'",

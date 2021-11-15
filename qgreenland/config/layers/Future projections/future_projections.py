@@ -6,7 +6,7 @@ from qgreenland.config.datasets.future_projections import (
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 LAYER_RCPS = (
@@ -16,7 +16,7 @@ LAYER_RCPS = (
 )
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=f'future_ice_sheet_coverage_rcp_{rcp}',
         title=(
             f'Future ice sheet coverage for RCP {Decimal(rcp) / 10} scenario'
@@ -28,7 +28,7 @@ layers = [
         ),
         tags=[],
         style='future_ice_sheet_coverage',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets[f'rcp_{rcp}'],
         ),

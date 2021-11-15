@@ -3,8 +3,8 @@ from typing import Literal, cast
 from qgreenland.config.datasets.lonlat import lonlat as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.asset import RepositoryAsset
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 lonlat_assets_sorted = sorted(
@@ -15,8 +15,8 @@ lonlat_ids_sorted = [a.id for a in lonlat_assets_sorted]
 
 
 def _make_lonlat_layer(
-    asset: ConfigDatasetRepositoryAsset,
-) -> ConfigLayer:
+    asset: RepositoryAsset,
+) -> Layer:
     deg_str = asset.id.rsplit('_', maxsplit=1)[0].split('_', maxsplit=1)[1]
     deg = deg_str.replace('_', '.')
 
@@ -32,7 +32,7 @@ def _make_lonlat_layer(
             f' {asset.id}',
         )
 
-    return ConfigLayer(
+    return Layer(
         id=asset.id,
         title=f'{title_prefix} lines ({deg} degree)',
         description=(
@@ -40,7 +40,7 @@ def _make_lonlat_layer(
         ),
         tags=['reference'],
         style='lonlat',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=asset,
         ),
@@ -60,9 +60,9 @@ def _make_lonlat_layer(
 
 def make_lonlat_layers(
     lon_or_lat: Literal['lon', 'lat'],
-) -> list[ConfigLayer]:
+) -> list[Layer]:
     assets = [
-        cast(ConfigDatasetRepositoryAsset, asset)
+        cast(RepositoryAsset, asset)
         for asset in dataset.assets.values()
         if asset.id.startswith(lon_or_lat)
     ]

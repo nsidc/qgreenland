@@ -2,7 +2,7 @@ from qgreenland.config.datasets.promice import (
     gc_net_promice_stations as dataset,
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 promice_layer_params = {
     'promice_research_stations': {
@@ -34,13 +34,13 @@ promice_layer_params = {
 
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=id,
         title=params['title'],
         description=params['description'],
         tags=[],
         style='labeled_point',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets[params['asset_id']],
         ),

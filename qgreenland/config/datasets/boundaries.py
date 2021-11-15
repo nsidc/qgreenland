@@ -1,16 +1,16 @@
 from qgreenland.config.project import project
-from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import RepositoryAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-qgr_bounds = ConfigDataset(
+qgr_bounds = Dataset(
     id='qgr_bounds',
     assets=[
-        ConfigDatasetRepositoryAsset(
+        RepositoryAsset(
             id='data',
             filepath=project.boundaries['data'].filepath,
         ),
-        ConfigDatasetRepositoryAsset(
+        RepositoryAsset(
             id='background',
             filepath=project.boundaries['background'].filepath,
         ),

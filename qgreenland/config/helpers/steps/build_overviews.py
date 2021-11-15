@@ -1,6 +1,6 @@
 from typing import Literal
 
-from qgreenland.models.config.step import AnyStep, ConfigLayerCommandStep
+from qgreenland.models.config.step import AnyStep, CommandStep
 
 
 # https://gdal.org/programs/gdaladdo.html
@@ -40,7 +40,7 @@ def build_overviews(
         '16',
     ]
 
-    return [ConfigLayerCommandStep(
+    return [CommandStep(
         id='build_overviews',
         args=[
             *copy_into_place,

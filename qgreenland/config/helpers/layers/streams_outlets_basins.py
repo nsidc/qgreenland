@@ -1,6 +1,6 @@
 from qgreenland.config.datasets.streams_outlets_basins import streams_outlets_basins as dataset  # noqa: E501
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 _stream_selection_ogr2ogr_args: list[str] = [
@@ -65,7 +65,7 @@ _layer_params: dict[str, dict[str, str]] = {
 }
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=layer_id,
         title=layer_id.replace('_', ' ').capitalize(),
         description=(
@@ -74,7 +74,7 @@ layers = [
         ),
         tags=[],
         style=layer_id.replace('_filled', ''),
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets[layer_id],
         ),

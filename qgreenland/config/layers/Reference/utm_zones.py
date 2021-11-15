@@ -1,9 +1,9 @@
 from qgreenland.config.datasets.utm_zones import utm_zones as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-utm_zones = ConfigLayer(
+utm_zones = Layer(
     id='utm_zones',
     title='Universal Transverse Mercator (UTM) zones',
     description=(
@@ -11,7 +11,7 @@ utm_zones = ConfigLayer(
     ),
     tags=[],
     style='utm_zones',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

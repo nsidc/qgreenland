@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-undersea_features = ConfigDataset(
+undersea_features = Dataset(
     id='undersea_features',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://www.ngdc.noaa.gov/gazetteer/feature/export?aoi=POLYGON%28%28-162.82882+39.14360%2C+120.79574+45.17504%2C+-1.80233+31.69553%2C+-68.42289+32.69612%2C+-162.82882+39.14360%29%29&name=&featureType=&proposerId=&discovererId=&meeting=&status=&format=shapefile',

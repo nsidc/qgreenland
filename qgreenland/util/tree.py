@@ -13,8 +13,8 @@ from anytree.exporter import DictExporter
 
 import qgreenland.exceptions as exc
 from qgreenland.constants.paths import LAYERS_CFG_DIR
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
-from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.asset import ManualAsset
+from qgreenland.models.config.layer import Layer
 from qgreenland.models.config.layer_group import (
     AnyGroupSettings,
     LayerGroupSettings,
@@ -73,9 +73,9 @@ class QgrTreeNode(anytree.Node, ABC):
 class LayerNode(QgrTreeNode):
     """A Node with a reference to a layer configuration."""
 
-    layer_cfg: ConfigLayer
+    layer_cfg: Layer
 
-    def __init__(self, *args, layer_cfg: ConfigLayer, **kwargs):
+    def __init__(self, *args, layer_cfg: Layer, **kwargs):
         self.layer_cfg = layer_cfg
         super().__init__(*args, **kwargs)
 
@@ -153,13 +153,13 @@ def _filter_directory_contents(paths=list[Path]) -> list[Path]:
     ]
 
 
-LayerDirectoryElement = Union[Path, ConfigLayer]
+LayerDirectoryElement = Union[Path, Layer]
 
 
 def _explode_config_layers_from_python_files(
     paths: list[Path],
 ) -> list[LayerDirectoryElement]:
-    """Explode ConfigLayers from Python files, with directory paths intact.
+    """Explode Layers from Python files, with directory paths intact.
 
     Any paths which are not Python files or directories will trigger an
     exception.
@@ -170,7 +170,7 @@ def _explode_config_layers_from_python_files(
         if path.suffix == '.py':
             config_layers = load_objects_from_paths_by_class(
                 [path],
-                target_class=ConfigLayer,
+                target_class=Layer,
             )
             result.extend(config_layers)
         else:
@@ -189,7 +189,7 @@ def _default_ordering_strategy(
 ) -> list[LayerDirectoryElement]:
     """Sort configuration elements within `layers_and_groups`.
 
-    Directories first, sorted alphabetically. Then ConfigLayers, sorted
+    Directories first, sorted alphabetically. Then Layers, sorted
     alphabetically by title.
     """
     ordered_directory_elements: list[LayerDirectoryElement] = []
@@ -198,7 +198,7 @@ def _default_ordering_strategy(
     directories.sort(key=lambda path: path.name)
     ordered_directory_elements.extend(directories)
 
-    layer_cfgs = [e for e in layers_and_groups if type(e) is ConfigLayer]
+    layer_cfgs = [e for e in layers_and_groups if type(e) is Layer]
     layer_cfgs.sort(key=lambda layer_cfg: layer_cfg.title)
     ordered_directory_elements.extend(layer_cfgs)
 
@@ -218,7 +218,7 @@ def _manual_ordering_strategy(
     for s in settings.order:
         try:
             if s.startswith(':'):
-                matcher = lambda x: isinstance(x, ConfigLayer) and x.id == s[1:]
+                matcher = lambda x: isinstance(x, Layer) and x.id == s[1:]
                 thing_desc = f'layer id "{s[1:]}"'
             else:
                 matcher = lambda x: isinstance(x, Path) and x.name == s
@@ -278,8 +278,8 @@ def _ordered_layers_and_groups(
 ) -> tuple[list[LayerDirectoryElement], AnyGroupSettings]:
     """Examine `the_dir` for layers and groups and sort them.
 
-    Layers are represented as `ConfigLayer` objects in Python files. Each Python
-    file is converted to its internal `ConfigLayer` objects.
+    Layers are represented as `Layer` objects in Python files. Each Python
+    file is converted to its internal `Layer` objects.
 
     Groups are represented as directories and are returned unchanged.
     """
@@ -365,7 +365,7 @@ def _handle_layer_config_directory(
 
 
 def _matches_filters(
-    candidate: ConfigLayer,
+    candidate: Layer,
     *,
     include_patterns: tuple[str, ...],
     exclude_patterns: tuple[str, ...],
@@ -399,7 +399,7 @@ def _matches_filters(
     """
     if (
         exclude_manual_assets
-        and type(candidate.input.asset) is ConfigDatasetManualAsset
+        and type(candidate.input.asset) is ManualAsset
     ):
         # TODO: `included = True` instead? This would be more consistent with
         # the "included or not excluded" behavior the patterns follow.
@@ -458,7 +458,7 @@ def _tree_from_dir(
                 exclude_patterns=exclude_patterns,
                 exclude_manual_assets=exclude_manual_assets,
             )
-        elif isinstance(thing, ConfigLayer):
+        elif isinstance(thing, Layer):
             if _matches_filters(
                 thing,
                 include_patterns=include_patterns,

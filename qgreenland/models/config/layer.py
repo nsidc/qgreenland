@@ -6,14 +6,14 @@ from pydantic import Field, validator
 import qgreenland.exceptions as exc
 from qgreenland.constants.paths import ANCILLARY_DIR
 from qgreenland.models.base_model import QgrBaseModel
-from qgreenland.models.config.dataset import AnyAsset, ConfigDataset
+from qgreenland.models.config.dataset import AnyAsset, Dataset
 from qgreenland.models.config.step import AnyStep
 from qgreenland.util.model_validators import reusable_validator, validate_paragraph_text
 
 
 class LayerInput(QgrBaseModel):
     # TODO: just maintain ids here?
-    dataset: ConfigDataset
+    dataset: Dataset
     asset: AnyAsset
 
 
@@ -42,7 +42,7 @@ class Layer(QgrBaseModel):
     # Which style (.qml) file to use for this layer?
     style: Optional[str] = Field(None, min_length=1)
 
-    input: ConfigLayerInput
+    input: LayerInput
 
     steps: Optional[list[AnyStep]]
 

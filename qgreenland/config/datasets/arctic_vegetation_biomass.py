@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetCmrAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import CmrAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-arctic_vegetation_biomass_2010 = ConfigDataset(
+arctic_vegetation_biomass_2010 = Dataset(
     id='arctic_vegetation_biomass_2010',
     assets=[
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='only',
             granule_ur='Arctic_Vegetation_Maps.aga_circumpolar_avhrr_biomass_2010.tif',
             collection_concept_id='C1581605757-ORNL_DAAC',
