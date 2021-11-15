@@ -78,7 +78,9 @@ def _print_and_run(cmd, *, dry_run):
               ),
               type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='False', show_default=True)
-@click.option('delete_release_layers_by_pattern', '--delete-release-layers-by-pattern', '-l',
+@click.option('delete_release_layers_by_pattern',
+              '--delete-release-layers-by-pattern',
+              '-l',
               help=(
                   'Pattern used to delete released layers by layer ID'
               ), multiple=True)
@@ -129,7 +131,7 @@ def cleanup(**kwargs):  # noqa: C901
     if kwargs['delete_all_dev_release_packages']:
         print_and_run(f'rm -rf {RELEASE_PACKAGES_DIR}/dev/*')
 
-    if layer_patterns:= kwargs['delete_release_layers_by_pattern']:
+    if layer_patterns := kwargs['delete_release_layers_by_pattern']:
         for p in layer_patterns:
             print_and_run(f'rm -rf {RELEASE_LAYERS_DIR}/{p}')
 
