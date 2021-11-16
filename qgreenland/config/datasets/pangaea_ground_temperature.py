@@ -1,23 +1,23 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-pangaea_ground_temperature = ConfigDataset(
+pangaea_ground_temperature = Dataset(
     id='pangaea_ground_temperature',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='25km',
             urls=[
                 'http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_25km.nc',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='10km',
             urls=[
                 'http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_10km.nc',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='5km',
             urls=[
                 'http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_5km.nc',

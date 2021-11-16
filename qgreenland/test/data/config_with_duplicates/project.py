@@ -1,6 +1,6 @@
-from qgreenland.models.config.project import ConfigProject
+from qgreenland.models.config.project import Project
 
-project = ConfigProject(
+project = Project(
     crs='EPSG:4326',
     boundaries={},
 )

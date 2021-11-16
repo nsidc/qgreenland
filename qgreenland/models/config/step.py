@@ -8,7 +8,7 @@ from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalStr
 
 
-class ConfigLayerStep(ABC):
+class LayerStep(ABC):
     id: Optional[str]
     type: str
 
@@ -17,7 +17,7 @@ class ConfigLayerStep(ABC):
         pass
 
 
-class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
+class CommandStep(QgrBaseModel, LayerStep):
     # TODO: Why do I have to re-specify `id` when it's already defined in the
     # ABC?
     id: Optional[str]
@@ -50,4 +50,4 @@ class ConfigLayerCommandStep(QgrBaseModel, ConfigLayerStep):
         return ' '.join([str(arg) for arg in self.args])
 
 
-AnyStep = Union[ConfigLayerCommandStep]
+AnyStep = Union[CommandStep]

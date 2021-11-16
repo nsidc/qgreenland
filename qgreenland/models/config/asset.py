@@ -10,11 +10,11 @@ from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalFilePath, EvalStr
 
 
-class ConfigDatasetAsset(QgrBaseModel, ABC):
+class DatasetAsset(QgrBaseModel, ABC):
     id: str = Field(..., min_length=1)
 
 
-class ConfigDatasetHttpAsset(ConfigDatasetAsset):
+class HttpAsset(DatasetAsset):
     # Whether or not to verify server's TLS certificate.
     #     https://2.python-requests.org/en/master/api/#requests.Session.request
     verify_tls: bool = True
@@ -25,7 +25,7 @@ class ConfigDatasetHttpAsset(ConfigDatasetAsset):
 # TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
 # "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
 # regular layer with a URL as its path.
-class ConfigDatasetOnlineAsset(ConfigDatasetAsset):
+class OnlineAsset(DatasetAsset):
     provider: QgsLayerProviderType
     # AnyUrl alone doesn't work because "gdal" remote layers use a
     # `/vsicurl/https://` prefix, "wms" remote layers prefix the URL with
@@ -33,12 +33,12 @@ class ConfigDatasetOnlineAsset(ConfigDatasetAsset):
     url: Union[AnyUrl, str] = Field(..., min_length=1)
 
 
-class ConfigDatasetCmrAsset(ConfigDatasetAsset):
+class CmrAsset(DatasetAsset):
     granule_ur: str = Field(..., min_length=1)
     collection_concept_id: str = Field(..., min_length=1)
 
 
-class ConfigDatasetRepositoryAsset(ConfigDatasetAsset):
+class RepositoryAsset(DatasetAsset):
     """Assets stored in this repository in `ASSETS_DIR`."""
 
     # TODO: Move the assets into the config directory???
@@ -59,7 +59,7 @@ class ConfigDatasetRepositoryAsset(ConfigDatasetAsset):
         return value
 
 
-class ConfigDatasetManualAsset(ConfigDatasetAsset):
+class ManualAsset(DatasetAsset):
     """Assets that must be manually accessed by a human.
 
     e.g., requires interactive login.
@@ -68,7 +68,7 @@ class ConfigDatasetManualAsset(ConfigDatasetAsset):
     access_instructions: str = Field(..., min_length=1)
 
 
-class ConfigDatasetCommandAsset(ConfigDatasetAsset):
+class CommandAsset(DatasetAsset):
     """Assets that are fetched via an arbitrary command.
 
     Data is written to '{output_dir}', which _must_ be specified in the command.
@@ -77,18 +77,18 @@ class ConfigDatasetCommandAsset(ConfigDatasetAsset):
     args: list[EvalStr]
 
 
-class ConfigDatasetOgrRemoteAsset(ConfigDatasetAsset):
+class OgrRemoteAsset(DatasetAsset):
     """Assets that are fetched via `ogr2ogr` from the given query_url."""
 
     query_url: AnyUrl
 
 
 AnyAsset = Union[
-    ConfigDatasetCmrAsset,
-    ConfigDatasetCommandAsset,
-    ConfigDatasetHttpAsset,
-    ConfigDatasetManualAsset,
-    ConfigDatasetOnlineAsset,
-    ConfigDatasetRepositoryAsset,
-    ConfigDatasetOgrRemoteAsset,
+    CmrAsset,
+    CommandAsset,
+    HttpAsset,
+    ManualAsset,
+    OnlineAsset,
+    RepositoryAsset,
+    OgrRemoteAsset,
 ]

@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import OnlineAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-image_mosaic = ConfigDataset(
+image_mosaic = Dataset(
     id='image_mosaic',
     assets=[
-        ConfigDatasetOnlineAsset(
+        OnlineAsset(
             id='2019',
             provider='gdal',
             url=(
@@ -13,7 +13,7 @@ image_mosaic = ConfigDataset(
                 'rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
             ),
         ),
-        ConfigDatasetOnlineAsset(
+        OnlineAsset(
             id='2015',
             provider='gdal',
             url=(
@@ -68,10 +68,10 @@ image_mosaic = ConfigDataset(
     },
 )
 
-sea_ice_index = ConfigDataset(
+sea_ice_index = Dataset(
     id='sea_ice_index',
     assets=[
-        ConfigDatasetOnlineAsset(
+        OnlineAsset(
             id='monthly_polyline_n',
             provider='wfs',
             # Whitespace matters most, so we use implicit string concatenation

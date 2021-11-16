@@ -3,10 +3,10 @@ from qgreenland.config.datasets.seismograph_stations import (
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-seismograph_stations = ConfigLayer(
+seismograph_stations = Layer(
     id='seismograph_stations',
     title='Seismograph stations',
     description=(
@@ -14,7 +14,7 @@ seismograph_stations = ConfigLayer(
     ),
     tags=[],
     style='seismograph_stations',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

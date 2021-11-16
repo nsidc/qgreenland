@@ -1,23 +1,23 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-arctic_dem = ConfigDataset(
+arctic_dem = Dataset(
     id='arctic_dem',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='1km',
             urls=[
                 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/1km/arcticdem_mosaic_1km_v3.0.tif',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='500m',
             urls=[
                 'http://data.pgc.umn.edu/elev/dem/setsm/ArcticDEM/mosaic/v3.0/500m/arcticdem_mosaic_500m_v3.0.tif',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='100m',
             # This shouldn't be necessary?
             verify_tls=False,

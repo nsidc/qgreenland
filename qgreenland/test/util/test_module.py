@@ -1,6 +1,6 @@
 import pytest
 
-from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.layer import Layer
 from qgreenland.test.constants import (
     TEST_CONFIG_DIR,
     TEST_DATA_DIR,
@@ -28,7 +28,7 @@ def test_module_from_path_error_raises():
 def test_load_objects_from_paths_by_class():
     objs = load_objects_from_paths_by_class(
         [sample_module],
-        target_class=ConfigLayer,
+        target_class=Layer,
     )
     for obj in objs:
-        assert type(obj) is ConfigLayer
+        assert type(obj) is Layer

@@ -1,9 +1,9 @@
 from qgreenland.config.datasets.arctic_circle import arctic_circle as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-arctic_circle = ConfigLayer(
+arctic_circle = Layer(
     id='arctic_circle',
     title="Arctic Circle (66° 34' North)",
     description=(
@@ -14,7 +14,7 @@ arctic_circle = ConfigLayer(
     ),
     tags=[],
     style='arctic_circle',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

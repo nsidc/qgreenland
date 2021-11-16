@@ -1,7 +1,7 @@
 from qgreenland.config.datasets.land_ocean_shape import land_shape as dataset_land
 from qgreenland.config.datasets.land_ocean_shape import ocean_shape as dataset_ocean
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 layer_params = {
@@ -10,8 +10,8 @@ layer_params = {
 }
 
 
-def make_land_ocean_layer(layer_id: str) -> ConfigLayer:
-    return ConfigLayer(
+def make_land_ocean_layer(layer_id: str) -> Layer:
+    return Layer(
         id=layer_id,
         title=layer_id.capitalize(),
         description=(
@@ -19,7 +19,7 @@ def make_land_ocean_layer(layer_id: str) -> ConfigLayer:
         ),
         tags=[],
         style=layer_id,
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=layer_params[layer_id],
             asset=layer_params[layer_id].assets['only'],
         ),

@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-utm_zones = ConfigDataset(
+utm_zones = Dataset(
     id='utm_zones',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'http://sandbox.idre.ucla.edu/mapshare/data/world/data/utmzone.zip',

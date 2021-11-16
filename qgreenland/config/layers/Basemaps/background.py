@@ -2,16 +2,16 @@ from qgreenland.config.datasets.background import background as background_datas
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-background = ConfigLayer(
+background = Layer(
     id='background',
     title='Background (500m)',
     description='Stylized shaded-relief map for providing a general sense of geography.',
     tags=['background', 'shaded-relief'],
     show=True,
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=background_dataset,
         asset=background_dataset.assets['high_res'],
     ),

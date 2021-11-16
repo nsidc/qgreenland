@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetCmrAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import CmrAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-bedmachine = ConfigDataset(
+bedmachine = Dataset(
     id='bedmachine',
     assets=[
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='only',
             granule_ur='SC:IDBMG4.004:212126987',
             collection_concept_id='C2050907241-NSIDC_ECS',

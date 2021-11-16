@@ -2,15 +2,15 @@ from qgreenland.config.helpers.layers.sea_ice_concentration import (
     CONCENTRATION_YEARS,
     concentration_maximum_asset_for_year,
 )
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-seaice_index = ConfigDataset(
+seaice_index = Dataset(
     id='seaice_index',
     assets=[
         *[
-            ConfigDatasetHttpAsset(
+            HttpAsset(
                 id=f'median_extent_line_{month:02d}',
                 urls=[(
                     'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median'
@@ -19,7 +19,7 @@ seaice_index = ConfigDataset(
             ) for month in range(1, 12 + 1)
         ],
         *[
-            ConfigDatasetHttpAsset(
+            HttpAsset(
                 id=f'minimum_concentration_{year}',
                 urls=[(
                     'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff'
@@ -69,10 +69,10 @@ seaice_index = ConfigDataset(
 SEAICE_AGE_START_YEAR = 2010
 SEAICE_AGE_END_YEAR = 2020
 
-seaice_age = ConfigDataset(
+seaice_age = Dataset(
     id='seaice_age',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id=str(year),
             urls=[(
                 'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4'

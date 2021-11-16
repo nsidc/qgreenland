@@ -3,7 +3,7 @@ from qgreenland.config.helpers.layers.geological_map import make_layer
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 bathymetric_raster_params = {
@@ -34,13 +34,13 @@ bathymetric_contours_params = {
 }
 
 
-bathymetric_raster = ConfigLayer(
+bathymetric_raster = Layer(
     id=bathymetric_raster_params['id'],
     title=bathymetric_raster_params['title'],
     description=bathymetric_raster_params['description'],
     tags=[],
     style=bathymetric_raster_params['style'],
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=bathymetric_raster_params['dataset'],
         asset=dataset.assets['only'],
     ),

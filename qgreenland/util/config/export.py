@@ -14,7 +14,7 @@ from humanize import naturalsize
 
 from qgreenland._typing import QgsLayerType
 from qgreenland.models.config import Config
-from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
+from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.util.fs import (
     directory_contents,
     directory_size_bytes,
@@ -80,7 +80,7 @@ def export_config_csv(
             continue
 
         layer_type: QgsLayerType
-        if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
+        if isinstance(layer_cfg.input.asset, OnlineAsset):
             layer_type = 'Online'
             # Online layers have no size on disk.
             layer_size_bytes = 0
@@ -138,7 +138,7 @@ def _layer_manifest_final_assets(
     TODO: Better label?
     """
     layer_cfg = layer_node.layer_cfg
-    if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
+    if isinstance(layer_cfg.input.asset, OnlineAsset):
         return [{
             'type': 'online',
             **layer_cfg.input.asset.dict(

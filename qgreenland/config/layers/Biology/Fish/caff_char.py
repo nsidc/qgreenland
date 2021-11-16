@@ -1,9 +1,9 @@
 from qgreenland.config.datasets.caff import caff_char as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-caff_char = ConfigLayer(
+caff_char = Layer(
     id='caff_char',
     title='Arctic Char populations 2010',
     description=(
@@ -12,7 +12,7 @@ caff_char = ConfigLayer(
     ),
     tags=[],
     style='semitransparent_polygon',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

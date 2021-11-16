@@ -31,7 +31,7 @@ def test_get_layer_config_one():
 def test_immutable_model():
     config = get_config()
     # Immutable models raise a TypeError on item assignment with a message like:
-    # `TypeError: "ConfigLayer" is immutable and does not support item
+    # `TypeError: "Layer" is immutable and does not support item
     # assignment`
     with pytest.raises(TypeError):
         # TODO: Remove type-ignore below.

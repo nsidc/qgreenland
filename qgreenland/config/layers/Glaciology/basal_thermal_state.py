@@ -2,11 +2,11 @@ from qgreenland.config.datasets.basal_thermal_state import basal_thermal_state a
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.compress_raster import compress_raster
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
-basal_thermal_state = ConfigLayer(
+basal_thermal_state = Layer(
     id='basal_thermal_state',
     title='Likely basal thermal state June 23 1993 - April 26 2013 (5km)',
     description=(
@@ -14,12 +14,12 @@ basal_thermal_state = ConfigLayer(
     ),
     tags=[],
     style='basal_thermal_state',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),
     steps=[
-        ConfigLayerCommandStep(
+        CommandStep(
             args=[
                 'gdalmdimtranslate',
                 '-array', 'name=likely_basal_thermal_state,transpose=[1,0],view=[::-1,:]',

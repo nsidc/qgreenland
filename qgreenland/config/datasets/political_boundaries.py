@@ -1,14 +1,14 @@
 from qgreenland.models.config.asset import (
-    ConfigDatasetHttpAsset,
-    ConfigDatasetOgrRemoteAsset,
+    HttpAsset,
+    OgrRemoteAsset,
 )
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.dataset import Dataset
 
 
-nunagis_pop2019_municipalities = ConfigDataset(
+nunagis_pop2019_municipalities = Dataset(
     id='nunagis_pop2019_municipalities',
     assets=[
-        ConfigDatasetOgrRemoteAsset(
+        OgrRemoteAsset(
             id='only',
             query_url='https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC',
         ),
@@ -33,10 +33,10 @@ nunagis_pop2019_municipalities = ConfigDataset(
     },
 )
 
-ne_states_provinces = ConfigDataset(
+ne_states_provinces = Dataset(
     id='ne_states_provinces',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip',
@@ -60,10 +60,10 @@ ne_states_provinces = ConfigDataset(
     },
 )
 
-ne_countries = ConfigDataset(
+ne_countries = Dataset(
     id='ne_countries',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip',

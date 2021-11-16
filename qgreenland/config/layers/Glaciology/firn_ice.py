@@ -2,10 +2,10 @@ from qgreenland.config.datasets.firn_ice_layer_thickness import (
     macferrin_etal_firn_ice_layer_thicknesses as dataset,
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-firn_ice_layer_thicknesses = ConfigLayer(
+firn_ice_layer_thicknesses = Layer(
     id='firn_ice_layer_thicknesses',
     title='Ice slab thickness in firn ice 2010-2014',
     description=(
@@ -14,7 +14,7 @@ firn_ice_layer_thicknesses = ConfigLayer(
     ),
     tags=[],
     style='firn_ice_points',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

@@ -3,7 +3,7 @@ from qgreenland.config.datasets.greenland_territorial_waters import (
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 POLYLINE_FILE = 'GreenlandTerritory_Baseline_3NM_12NM_EEZ_polylines.shp'
@@ -68,14 +68,14 @@ LAYER_PARAMS = {
 }
 
 
-def make_layers() -> list[ConfigLayer]:
+def make_layers() -> list[Layer]:
     return [
-        ConfigLayer(
+        Layer(
             id=key,
             title=params['title'],
             description=params['description'],
             tags=[],
-            input=ConfigLayerInput(
+            input=LayerInput(
                 dataset=dataset,
                 asset=dataset.assets['only'],
             ),

@@ -5,16 +5,16 @@ import luigi
 
 from qgreenland.models.config.asset import (
     AnyAsset,
-    ConfigDatasetCmrAsset,
-    ConfigDatasetCommandAsset,
-    ConfigDatasetHttpAsset,
-    ConfigDatasetManualAsset,
-    ConfigDatasetOgrRemoteAsset,
-    ConfigDatasetOnlineAsset,
-    ConfigDatasetRepositoryAsset,
+    CmrAsset,
+    CommandAsset,
+    HttpAsset,
+    ManualAsset,
+    OgrRemoteAsset,
+    OnlineAsset,
+    RepositoryAsset,
 )
-from qgreenland.models.config.dataset import ConfigDataset
-from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.dataset import Dataset
+from qgreenland.models.config.layer import Layer
 from qgreenland.util.config.config import get_config
 from qgreenland.util.luigi.tasks.fetch import (
     FetchCmrGranule,
@@ -29,18 +29,18 @@ from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 # TODO: Make "fetch" tasks into Python "steps"?
 ASSET_TYPE_TASKS: dict[Type[AnyAsset], Type[FetchTask]] = {
-    ConfigDatasetCmrAsset: FetchCmrGranule,
-    ConfigDatasetCommandAsset: FetchDataWithCommand,
-    ConfigDatasetHttpAsset: FetchDataFiles,
+    CmrAsset: FetchCmrGranule,
+    CommandAsset: FetchDataWithCommand,
+    HttpAsset: FetchDataFiles,
     # TODO: rename `FetchLocalDataFiles`, split in two!
-    ConfigDatasetManualAsset: FetchLocalDataFiles,
-    ConfigDatasetRepositoryAsset: FetchLocalDataFiles,
-    ConfigDatasetOgrRemoteAsset: FetchOgrRemoteData,
+    ManualAsset: FetchLocalDataFiles,
+    RepositoryAsset: FetchLocalDataFiles,
+    OgrRemoteAsset: FetchOgrRemoteData,
 }
 
 
 def _fetch_task(
-    dataset_cfg: ConfigDataset,
+    dataset_cfg: Dataset,
     asset_cfg: AnyAsset,
 ) -> FetchTask:
     # TODO: Unit test!
@@ -53,7 +53,7 @@ def _fetch_task(
 
 
 def fetch_task_from_layer(
-    layer_cfg: ConfigLayer,
+    layer_cfg: Layer,
 ) -> FetchTask:
     # TODO: Unit test!
     dataset_cfg = layer_cfg.input.dataset
@@ -63,7 +63,7 @@ def fetch_task_from_layer(
 
 
 def fetch_tasks_from_dataset(
-    dataset_cfg: ConfigDataset,
+    dataset_cfg: Dataset,
 ) -> Generator[FetchTask, None, None]:
     # TODO: Unit test!
     for asset_cfg in dataset_cfg.assets.values():
@@ -88,7 +88,7 @@ def generate_layer_pipelines(
     for layer_cfg in layers:
         # Check if it's an online layer; those have no fetching or processing
         # pipeline.
-        if isinstance(layer_cfg.input.asset, ConfigDatasetOnlineAsset):
+        if isinstance(layer_cfg.input.asset, OnlineAsset):
             continue
 
         # Create tasks, making each task dependent on the previous task.

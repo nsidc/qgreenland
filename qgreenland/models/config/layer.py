@@ -6,14 +6,14 @@ from pydantic import Field, validator
 import qgreenland.exceptions as exc
 from qgreenland.constants.paths import ANCILLARY_DIR
 from qgreenland.models.base_model import QgrBaseModel
-from qgreenland.models.config.dataset import AnyAsset, ConfigDataset
+from qgreenland.models.config.dataset import AnyAsset, Dataset
 from qgreenland.models.config.step import AnyStep
 from qgreenland.util.model_validators import reusable_validator, validate_paragraph_text
 
 
-class ConfigLayerInput(QgrBaseModel):
+class LayerInput(QgrBaseModel):
     # TODO: just maintain ids here?
-    dataset: ConfigDataset
+    dataset: Dataset
     asset: AnyAsset
 
 
@@ -21,7 +21,7 @@ def _style_filepath(style_name: str) -> Path:
     return ANCILLARY_DIR / 'styles' / (style_name + '.qml')
 
 
-class ConfigLayer(QgrBaseModel):
+class Layer(QgrBaseModel):
     id: str
 
     # The layer name in QGIS layers panel:
@@ -42,7 +42,7 @@ class ConfigLayer(QgrBaseModel):
     # Which style (.qml) file to use for this layer?
     style: Optional[str] = Field(None, min_length=1)
 
-    input: ConfigLayerInput
+    input: LayerInput
 
     steps: Optional[list[AnyStep]]
 

@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import ManualAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-asiaq_private_placenames = ConfigDataset(
+asiaq_private_placenames = Dataset(
     id='asiaq_private_placenames',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions="""Provided by Eva Mätzler via email as a zipped
 collection of data '20201112_Oqaasileriffik_place-name register.zip'. See

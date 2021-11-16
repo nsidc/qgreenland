@@ -1,10 +1,10 @@
 import pytest
 
 from qgreenland.models.config.asset import (
-    ConfigDatasetHttpAsset,
-    ConfigDatasetOnlineAsset,
+    HttpAsset,
+    OnlineAsset,
 )
-from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.layer import Layer
 from qgreenland.models.config.layer_group import (
     LayerGroupSettings,
     RootGroupSettings,
@@ -43,13 +43,13 @@ mock_online_layer_cfg = {
     'input': {
         'dataset': {
             'id': 'baz',
-            'assets': [ConfigDatasetOnlineAsset(**_mock_online_asset_cfg)],
+            'assets': [OnlineAsset(**_mock_online_asset_cfg)],
             'metadata': _mock_metadata,
         },
-        'asset': ConfigDatasetOnlineAsset(**_mock_online_asset_cfg),
+        'asset': OnlineAsset(**_mock_online_asset_cfg),
     },
 }
-MockOnlineLayerConfig = ConfigLayer(**mock_online_layer_cfg)
+MockOnlineLayerConfig = Layer(**mock_online_layer_cfg)
 
 _mock_http_asset_cfg = {
     'id': _mock_asset_id,
@@ -64,10 +64,10 @@ mock_raster_layer_cfg = {
     'input': {
         'dataset': {
             'id': 'example_dataset',
-            'assets': [ConfigDatasetHttpAsset(**_mock_http_asset_cfg)],
+            'assets': [HttpAsset(**_mock_http_asset_cfg)],
             'metadata': _mock_metadata,
         },
-        'asset': ConfigDatasetHttpAsset(**_mock_http_asset_cfg),
+        'asset': HttpAsset(**_mock_http_asset_cfg),
     },
     'steps': [
         {
@@ -76,10 +76,10 @@ mock_raster_layer_cfg = {
         },
     ],
 }
-MockRasterLayerConfig = ConfigLayer(**mock_raster_layer_cfg)
+MockRasterLayerConfig = Layer(**mock_raster_layer_cfg)
 
 
-def _layer_node(cfg: ConfigLayer) -> LayerGroupNode:
+def _layer_node(cfg: Layer) -> LayerGroupNode:
     node = LayerGroupNode(
         'layers',
         settings=RootGroupSettings(),
@@ -113,7 +113,7 @@ def layer_cfgs():
         'lon_5_deg',
     ]
     return [
-        ConfigLayer(**{
+        Layer(**{
             **mock_raster_layer_cfg,  # type: ignore[arg-type]
             'id': s,
             'title': 'Foo',

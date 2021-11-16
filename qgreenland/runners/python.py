@@ -1,8 +1,8 @@
-from qgreenland.models.config.step import ConfigLayerStep
+from qgreenland.models.config.step import LayerStep
 
 
 def python_runner(
-    step: ConfigLayerStep,
+    step: LayerStep,
     *,
     input_dir: str,
     output_dir: str,

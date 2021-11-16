@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-soil_types = ConfigDataset(
+soil_types = Dataset(
     id='soil_types',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.dbf.gz',

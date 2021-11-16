@@ -2,10 +2,10 @@ from qgreenland.config.datasets.soil_types import soil_types as dataset
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-soil_types = ConfigLayer(
+soil_types = Layer(
     id='soil_types',
     title='Soil characteristics',
     description=(
@@ -14,7 +14,7 @@ soil_types = ConfigLayer(
     ),
     tags=[],
     style='soil_types',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

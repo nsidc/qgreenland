@@ -1,10 +1,10 @@
 from qgreenland.config.datasets.ice_cores import ice_cores as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-ice_cores = ConfigLayer(
+ice_cores = Layer(
     id='ice_cores',
     title='Ice cores',
     description=(
@@ -12,7 +12,7 @@ ice_cores = ConfigLayer(
     ),
     tags=[],
     style='labeled_point',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

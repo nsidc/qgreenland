@@ -1,21 +1,21 @@
 from qgreenland.config.datasets.seaice import seaice_index as dataset
 from qgreenland.config.helpers.layers.seaice import layer_id, layer_title
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-def _asset(dataset: ConfigDataset, month: int) -> ConfigDatasetHttpAsset:
+def _asset(dataset: Dataset, month: int) -> HttpAsset:
     asset = dataset.assets[f'median_extent_line_{month:02d}']
-    if type(asset) is ConfigDatasetHttpAsset:
+    if type(asset) is HttpAsset:
         return asset
     else:
         raise RuntimeError(f'Expected HTTP asset. Received: {asset}')
 
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=layer_id(month),
         title=layer_title(month),
         description=(
@@ -23,7 +23,7 @@ layers = [
             extent from the period 1981 through 2010."""
         ),
         tags=[],
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=_asset(dataset, month),
         ),

@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import RepositoryAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-gem_research_stations = ConfigDataset(
+gem_research_stations = Dataset(
     id='gem_research_stations',
     assets=[
-        ConfigDatasetRepositoryAsset(
+        RepositoryAsset(
             id='only',
             filepath='{assets_dir}/gem_research_stations.geojson',
         ),

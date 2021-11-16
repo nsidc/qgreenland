@@ -1,7 +1,7 @@
 from qgreenland.config.datasets.geological_map import geological_map as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 LAYER_PARAMS = {
@@ -35,14 +35,14 @@ LAYER_PARAMS = {
 }
 
 
-def make_layer(*, layer_id: str, layer_params: dict) -> ConfigLayer:
-    return ConfigLayer(
+def make_layer(*, layer_id: str, layer_params: dict) -> Layer:
+    return Layer(
         id=layer_id,
         title=layer_params['title'],
         description=layer_params['description'],
         tags=[],
         style=layer_params['style'],
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),

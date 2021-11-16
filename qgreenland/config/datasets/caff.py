@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-caff_murre_colonies = ConfigDataset(
+caff_murre_colonies = Dataset(
     id='caff_murre_colonies',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://abds.is/index.php/publications/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north/download',
@@ -38,10 +38,10 @@ caff_murre_colonies = ConfigDataset(
     },
 )
 
-caff_char = ConfigDataset(
+caff_char = Dataset(
     id='caff_char',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'http://geo.abds.is/geonetwork/srv/api/records/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce/attachments/Arctic_Char_2010.zip',

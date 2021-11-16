@@ -2,7 +2,7 @@ from qgreenland.config.datasets.mineral_and_hydrocarbon_licenses import (
     mineral_and_hydrocarbon_licenses as dataset,
 )
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 layer_params = {
@@ -23,13 +23,13 @@ layer_params = {
 }
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=key,
         title=params['title'],
         description=params['description'],
         tags=[],
         style='mcas_mlsa_licenses',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets[params['asset_id']],
         ),
