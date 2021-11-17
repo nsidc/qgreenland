@@ -64,6 +64,7 @@ velocity_mosaic_ice_mask = Layer(
     description=(
         """Ice mask used for ITS_LIVE velocity mosiac."""
     ),
+    in_package=False,
     tags=[],
     input=LayerInput(
         dataset=dataset,
