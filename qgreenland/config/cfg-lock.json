@@ -10459,7 +10459,7 @@
                     "layer_cfg": {
                       "description": "Magnitude of velocity in meters per year.",
                       "id": "velocity_mosaic",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "only"
@@ -10535,7 +10535,7 @@
                     "layer_cfg": {
                       "description": "Magnitude of velocity error in meters per year.",
                       "id": "velocity_mosaic_error",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "only"
@@ -10611,7 +10611,7 @@
                     "layer_cfg": {
                       "description": "Ice mask used for ITS_LIVE velocity mosiac.",
                       "id": "velocity_mosaic_ice_mask",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "only"
@@ -23035,7 +23035,7 @@
             "layer_cfg": {
               "description": "Surface elevation in meters using hillshade symbology.",
               "id": "arctic_dem",
-              "in_package": true,
+              "in_package": false,
               "input": {
                 "asset": {
                   "id": "100m"
