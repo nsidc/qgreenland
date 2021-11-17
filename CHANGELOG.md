@@ -28,6 +28,9 @@
       background boundary instead of subsetting to region around Greenland.
     - "Reference/Longitude lines": display positive degrees West instead of
       negative.
+  - REMOVED from QGreenland zip package; available via QGreenland plugin:
+    - "Glaciology/Ice sheet velocity/ITS_LIVE"
+    - "Terrain models/Arctic DEM"
 
 
 # v2.0.0alpha1 (2021-11-03)
