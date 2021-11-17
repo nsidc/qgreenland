@@ -11,7 +11,12 @@ release except releases labeled as "stable". Stable releases can be found at
 
 ## Storage
 
-The following storage locations are used by QGreenland:
+QGreenland storage locations are currently in the `data/` subdirectory of this
+repository. This can be overridden by creating `data/working-storage` and
+`data/private-archive` symlinks to your preferred storage locations.
+
+We plan to support storage location overrides using environment variables in
+the future.
 
 
 ### Working storage
