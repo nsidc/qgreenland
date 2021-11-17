@@ -26,6 +26,7 @@ masked_velocity_mosaic_layers = [
         id=layer_id,
         title=params['title'],
         description=params['description'],
+        in_package=False,
         tags=[],
         style=params['style'],
         input=LayerInput(
