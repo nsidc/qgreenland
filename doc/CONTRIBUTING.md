@@ -9,6 +9,66 @@ release except releases labeled as "stable". Stable releases can be found at
 [https://qgreenland.org/explore](https://qgreenland.org/explore)!
 
 
+## Storage
+
+The following storage locations are used by QGreenland:
+
+
+### Working storage
+
+```
+data/working-storage
+```
+
+All file outputs of QGreenland are written to working storage. Must be
+read-write.
+
+
+#### Dataset fetch storage
+
+```
+data/working-storage/fetch-datasets
+```
+
+Datasets are fetched for their original locations and written to this
+directory.
+
+
+#### WIP storage
+
+```
+data/working-storage/wip-layers
+data/working-storage/wip-package
+```
+
+All intermediate steps are written to these directories.
+
+
+#### Release storage
+
+```
+data/working-storage/release-layers
+data/working-storage/release-packages
+```
+
+Finalized layers and projects are stored in these directories.
+
+
+### "Private archive" storage
+
+```
+data/private-archive
+```
+
+While we prefer to only include publicly-archived data, we do have some
+privately archived data that we've sourced by e-mailing scientists or manually
+interacting with machine-unfriendly systems. These datasets have an
+`access_instructions` attribute in configuration that describes how the data
+was acquired.
+
+May be read-only.
+
+
 ## Configuration
 
 The QGreenland configuration represents the work that needs to be done to
@@ -261,7 +321,7 @@ Simply put `breakpoint()` anywhere in the pipeline code, then run the pipeline
 with 1 worker (the default) and whichever layer(s) you want to debug.
 
 
-# Contributing
+# Contributing to the project
 
 One of the primary goals of this project is to allow for scientists comfortable
 with standard GIS command-line tools to contribute new layers with as little
@@ -372,7 +432,7 @@ A correct QGreenland data pipeline will output data that:
     generic styles with labels, for example `labeled_point.qml`
 
 
-# Releasing
+# Releasing a new version of the code
 
 Use `bumpversion` to bump the specified part of the version:
 
