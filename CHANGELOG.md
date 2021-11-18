@@ -1,8 +1,7 @@
 # NEXT_VERSION
 
 - Add scalebar to map viewport in lower-right corner.
-- Update steps in lonlat.py to perform clipping 
-   and transforming steps separately to solve clipping issue on lat layers
+- Update clip step in lonlat.py to solve clipping issue on lat layers
 - Layer changes:
   - NEW:
     - "Geophysics/Heat flux/Flow from multiple observations (55km)"

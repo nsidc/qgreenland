@@ -4,7 +4,6 @@ from qgreenland.config.datasets.lonlat import lonlat as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.models.config.asset import RepositoryAsset
 from qgreenland.models.config.layer import Layer, LayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
 
 lonlat_assets_sorted = sorted(
     dataset.assets.values(),
@@ -45,7 +44,7 @@ def _make_lonlat_layer(
         ),
         steps=[
             # Clip and reproject the dataset
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'ogr2ogr',
                     *STANDARD_OGR2OGR_ARGS \
