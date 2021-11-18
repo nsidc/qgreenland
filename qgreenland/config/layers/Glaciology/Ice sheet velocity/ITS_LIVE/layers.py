@@ -2,8 +2,8 @@ from qgreenland.config.datasets.velocity_mosaic import velocity_mosaic as datase
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
 _masked_velocity_mosaic_params = {
@@ -22,18 +22,19 @@ _masked_velocity_mosaic_params = {
 }
 
 masked_velocity_mosaic_layers = [
-    ConfigLayer(
+    Layer(
         id=layer_id,
         title=params['title'],
         description=params['description'],
+        in_package=False,
         tags=[],
         style=params['style'],
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),
         steps=[
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'gdal_calc.py',
                     '--calc="A*B"',
@@ -57,14 +58,15 @@ masked_velocity_mosaic_layers = [
 ]
 
 
-velocity_mosaic_ice_mask = ConfigLayer(
+velocity_mosaic_ice_mask = Layer(
     id='velocity_mosaic_ice_mask',
     title='Ice mask (120m)',
     description=(
         """Ice mask used for ITS_LIVE velocity mosiac."""
     ),
+    in_package=False,
     tags=[],
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

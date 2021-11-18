@@ -1,6 +1,6 @@
 from qgreenland.config.datasets.caff import caff_murre_colonies as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 murre_layers = {
@@ -13,7 +13,7 @@ murre_layers = {
 }
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=f'caff_{key}_colonies',
         title=f'{params["name"]} colonies 2010',
         description=(
@@ -22,7 +22,7 @@ layers = [
         ),
         tags=[],
         style=f'{key}_colonies',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),

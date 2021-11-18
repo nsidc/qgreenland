@@ -3,7 +3,7 @@ from qgreenland.config.helpers.steps.build_overviews import build_overviews
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 _esa_cci_velocity_params = {
@@ -29,13 +29,13 @@ _esa_cci_velocity_params = {
 
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=layer_id,
         title=params['title'],
         description=params['description'],
         tags=[],
         style=params['style'],
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),

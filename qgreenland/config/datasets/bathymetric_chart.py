@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-bathymetric_chart = ConfigDataset(
+bathymetric_chart = Dataset(
     id='bathymetric_chart',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_400m_ice/cfnetcdf/',

@@ -1,8 +1,8 @@
 import re
 
 from qgreenland.constants.paths import ASSETS_DIR
-from qgreenland.models.config.asset import ConfigDatasetRepositoryAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import RepositoryAsset
+from qgreenland.models.config.dataset import Dataset
 
 
 lonlat_regex = re.compile(
@@ -20,10 +20,10 @@ for f in geojson_files:
         'res_id': m.groupdict()['res_id'],
     }
 
-lonlat = ConfigDataset(
+lonlat = Dataset(
     id='lonlat',
     assets=[
-        ConfigDatasetRepositoryAsset(
+        RepositoryAsset(
             id=f"{params['shortname']}_{params['res_id']}_deg",
             filepath=params['path'],
         ) for params in lonlat_files.values()

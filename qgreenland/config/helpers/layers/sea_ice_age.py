@@ -7,8 +7,8 @@ from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.constants.paths import CONFIG_DIR
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
 PARAMS_FP = CONFIG_DIR / 'helpers/ancillary/sea_ice_age_params.json'
@@ -24,10 +24,10 @@ seaice_age_layers = _get_layer_params()
 AgeType = Literal['minimum', 'maximum']
 
 
-def sea_ice_age_layer(year: int, age_type: AgeType) -> ConfigLayer:
+def sea_ice_age_layer(year: int, age_type: AgeType) -> Layer:
     layer_info = seaice_age_layers[year][age_type]
 
-    return ConfigLayer(
+    return Layer(
         id=f'seaice_{age_type}_age_{year}',
         title=f"{layer_info['date_range']} {year}",
         description=(
@@ -39,12 +39,12 @@ def sea_ice_age_layer(year: int, age_type: AgeType) -> ConfigLayer:
         ),
         tags=[],
         style='sea_ice_age',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets[str(year)],
         ),
         steps=[
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'gdal_translate',
                     '-b', layer_info['band_num'],
@@ -78,7 +78,7 @@ def sea_ice_age_layer(year: int, age_type: AgeType) -> ConfigLayer:
     )
 
 
-def create_sea_ice_age_layers(age_type: AgeType) -> list[ConfigLayer]:
+def create_sea_ice_age_layers(age_type: AgeType) -> list[Layer]:
     return [
         sea_ice_age_layer(year, age_type)
         for year in seaice_age_layers.keys()

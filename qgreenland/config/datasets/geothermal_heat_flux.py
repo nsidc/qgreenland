@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-geothermal_heat_flux = ConfigDataset(
+geothermal_heat_flux = Dataset(
     id='geothermal_heat_flux',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://ads.nipr.ac.jp/api/v1/metadata/A20180227-001/2.00/data/DATA?path=GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc',

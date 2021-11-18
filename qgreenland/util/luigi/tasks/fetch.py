@@ -7,10 +7,10 @@ from qgreenland.constants.paths import (
     PRIVATE_ARCHIVE_DIR,
 )
 from qgreenland.models.config.asset import (
-    ConfigDatasetCmrAsset,
-    ConfigDatasetHttpAsset,
-    ConfigDatasetManualAsset,
-    ConfigDatasetRepositoryAsset,
+    CmrAsset,
+    HttpAsset,
+    ManualAsset,
+    RepositoryAsset,
 )
 from qgreenland.util.cmr import get_cmr_granule
 from qgreenland.util.command import interpolate_args, run_qgr_command
@@ -51,7 +51,7 @@ class FetchCmrGranule(FetchTask):
         return luigi.LocalTarget(path)
 
     def run(self):
-        if type(self.asset_cfg) is not ConfigDatasetCmrAsset:
+        if type(self.asset_cfg) is not CmrAsset:
             raise RuntimeError(f'Expected CMR asset. Received: {self.asset_cfg}')
 
         granule = get_cmr_granule(
@@ -78,7 +78,7 @@ class FetchDataFiles(FetchTask):
         )
 
     def run(self):
-        if type(self.asset_cfg) is not ConfigDatasetHttpAsset:
+        if type(self.asset_cfg) is not HttpAsset:
             raise RuntimeError(f'Expected HTTP asset. Received: {self.asset_cfg}')
 
         with temporary_path_dir(self.output()) as temp_path:
@@ -104,7 +104,7 @@ class FetchLocalDataFiles(FetchTask):
         )
 
     def run(self):
-        if isinstance(self.asset_cfg, ConfigDatasetRepositoryAsset):
+        if isinstance(self.asset_cfg, RepositoryAsset):
 
             with temporary_path_dir(self.output()) as temp_path:
                 evaluated_filepath = self.asset_cfg.filepath.eval()
@@ -112,7 +112,7 @@ class FetchLocalDataFiles(FetchTask):
                 out_path = temp_path / evaluated_filepath.name
                 shutil.copy2(evaluated_filepath, out_path)
 
-        elif isinstance(self.asset_cfg, ConfigDatasetManualAsset):
+        elif isinstance(self.asset_cfg, ManualAsset):
             local_dir = PRIVATE_ARCHIVE_DIR / self.dataset_cfg.id
             with temporary_path_dir(self.output()) as temp_path:
                 shutil.copytree(local_dir, temp_path, dirs_exist_ok=True)

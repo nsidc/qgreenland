@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-glims = ConfigDataset(
+glims = Dataset(
     id='glims',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'http://www.glims.org/download/glims_db_20200630.zip',

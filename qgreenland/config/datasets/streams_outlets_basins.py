@@ -1,53 +1,53 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-streams_outlets_basins = ConfigDataset(
+streams_outlets_basins = Dataset(
     id='streams_outlets_basins',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='ice_basins',
             urls=[
                 'https://dataverse01.geus.dk/api/access/datafile/283?gbrecs=true',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='land_basins',
             urls=[
                 'https://dataverse01.geus.dk/api/access/datafile/286?gbrecs=true',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='ice_basins_filled',
             urls=[
                 'https://dataverse01.geus.dk/api/access/datafile/278?gbrecs=true',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='land_basins_filled',
             urls=[
                 'https://dataverse01.geus.dk/api/access/datafile/279?gbrecs=true',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='ice_outlets',
             urls=[
                 'https://dataverse01.geus.dk/api/access/datafile/276?gbrecs=true',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='land_outlets',
             urls=[
                 'https://dataverse01.geus.dk/api/access/datafile/285?gbrecs=true',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='ice_streams',
             urls=[
                 'https://dataverse01.geus.dk/api/access/datafile/277?gbrecs=true',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='land_streams',
             urls=[
                 'https://dataverse01.geus.dk/api/access/datafile/275?gbrecs=true',

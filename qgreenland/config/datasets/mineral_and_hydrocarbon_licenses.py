@@ -1,17 +1,17 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-mineral_and_hydrocarbon_licenses = ConfigDataset(
+mineral_and_hydrocarbon_licenses = Dataset(
     id='mineral_and_hydrocarbon_licenses',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='mcas_mlsa_public_all',
             urls=[
                 'https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_all',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='mcas_mlsa_public_historic',
             urls=[
                 'https://gis.govmin.gl/geoserver/MLSA/ows?service=WFS&version=1.0.0&request=GetFeature&outputFormat=shape-zip&typeNames=MLSA:mcas_mlsa_public_historic',

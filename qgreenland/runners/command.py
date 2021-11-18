@@ -1,9 +1,9 @@
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.step import CommandStep
 from qgreenland.util.command import interpolate_args, run_qgr_command
 
 
 def command_runner(
-    step: ConfigLayerCommandStep,
+    step: CommandStep,
     *,
     input_dir: str,
     output_dir: str,

@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import ManualAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-geoid = ConfigDataset(
+geoid = Dataset(
     id='geoid',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """These data were obtained from Rene Forsberg of DTU Space as a

@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset, ConfigDatasetManualAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset, ManualAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-esa_cci_supraglacial_lakes = ConfigDataset(
+esa_cci_supraglacial_lakes = Dataset(
     id='esa_cci_supraglacial_lakes',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """Dataset can be found on the European Space Agency (ESA)
@@ -44,10 +44,10 @@ esa_cci_supraglacial_lakes = ConfigDataset(
 )
 
 
-esa_cci_surface_elevation_change = ConfigDataset(
+esa_cci_surface_elevation_change = Dataset(
     id='esa_cci_surface_elevation_change',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """Dataset can be found on the European Space Agency (ESA)
@@ -105,10 +105,10 @@ esa_cci_surface_elevation_change = ConfigDataset(
 )
 
 
-esa_cci_ice_sheet_velocity_20191214_20200131 = ConfigDataset(
+esa_cci_ice_sheet_velocity_20191214_20200131 = Dataset(
     id='esa_cci_ice_sheet_velocity_20191214_20200131',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """Dataset can be found on the European Space Agency (ESA)
@@ -151,10 +151,10 @@ esa_cci_ice_sheet_velocity_20191214_20200131 = ConfigDataset(
 )
 
 
-esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
+esa_cci_gravimetric_mass_balance_dtu = Dataset(
     id='esa_cci_gravimetric_mass_balance_dtu',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """Dataset can be found on the European Space Agency (ESA)
@@ -216,10 +216,10 @@ esa_cci_gravimetric_mass_balance_dtu = ConfigDataset(
     },
 )
 
-esa_cci_marginal_lakes = ConfigDataset(
+esa_cci_marginal_lakes = Dataset(
     id='esa_cci_marginal_lakes',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://dap.ceda.ac.uk/neodc/esacci/glaciers/data/IIML/Greenland/v1/2017/20170101-ESACCI-L3S_GLACIERS-IML-MERGED-fv1.zip?download=1',

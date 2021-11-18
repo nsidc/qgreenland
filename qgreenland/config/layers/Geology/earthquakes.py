@@ -1,11 +1,11 @@
 from qgreenland.config.datasets.earthquakes import earthquakes as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
-earthquakes = ConfigLayer(
+earthquakes = Layer(
     id='earthquakes',
     title='Earthquakes M above 2.5 1900-2020',
     description=(
@@ -13,12 +13,12 @@ earthquakes = ConfigLayer(
     ),
     tags=[],
     style='earthquakes',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),
     steps=[
-        ConfigLayerCommandStep(
+        CommandStep(
             args=[
                 'ogrmerge.py',
                 '-single',

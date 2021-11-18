@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import ManualAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-racmo_qgreenland_jan2021 = ConfigDataset(
+racmo_qgreenland_jan2021 = Dataset(
     id='racmo_qgreenland_jan2021',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """RACMO data were obtained via a private data transer by Brice

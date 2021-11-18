@@ -11,14 +11,14 @@
 # )
 # TODO: Uncomment below if needed:
 # from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 # TODO: Uncomment below if needed:
-# from qgreenland.models.config.step import ConfigLayerCommandStep
+# from qgreenland.models.config.step import CommandStep
 
 
 # The name of the `layer` variable doesn't matter here. You may create layers
 # with a list comprehension as well, as long as you assign it to a variable.
-layer = ConfigLayer(
+layer = Layer(
     # TODO: Fill in `your_layer_id`:
     id='your_layer_id',
     # TODO: Fill in your layer title:
@@ -31,7 +31,7 @@ layer = ConfigLayer(
     tags=['your', 'layer', 'tags'],
     # TODO: Uncomment and fill in `your_style` if needed:
     # style='your_style',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         # TODO: Fill in `your_asset_id`:
         asset=dataset.assets['your_asset_id'],
@@ -50,7 +50,7 @@ layer = ConfigLayer(
         #     ),
         #     # Scale the data by multiple of 100, set the nodata value, and
         #     # change the data type to integer for improved compressibility.
-        #     ConfigLayerCommandStep(
+        #     CommandStep(
         #         args=[
         #             'gdal_calc.py',
         #             '--calc', '"A * 100.0"',

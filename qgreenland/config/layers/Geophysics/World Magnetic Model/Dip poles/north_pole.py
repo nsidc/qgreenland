@@ -1,7 +1,7 @@
 from qgreenland.config.datasets import wmm
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
 _layers = [
@@ -47,27 +47,27 @@ def _make_layer(
     description: str,
     asset_id: str,
     partial_filename: str,
-) -> ConfigLayer:
+) -> Layer:
     common_description = """The geomagnetic dip poles are positions on the
 Earth's surface where the geomagnetic field is perpendicular to the ellipsoid,
 that is, vertical. The north and south dip poles do not have to be (and are not
 now) antipodal.
 """
 
-    return ConfigLayer(
+    return Layer(
         id=id,
         title=title,
         description=description.format(common_description=common_description),
         tags=['wmm'],
         style='geomagnetic_north_pole',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=wmm.wmm,
             asset=wmm.wmm.assets[asset_id],
         ),
         steps=[
             # Add a header to the downloaded txt file so that it can be processed as
             # 'csv' by `ogr2ogr`
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'sed',
                     '"1i longitude latitude year"',

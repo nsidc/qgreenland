@@ -3,10 +3,10 @@ from qgreenland.config.datasets.arctic_vegetation_biomass import (
 )
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-vegetation_biomass_2010 = ConfigLayer(
+vegetation_biomass_2010 = Layer(
     id='vegetation_biomass_2010',
     title='Vegetation biomass 2010 (12.4km)',
     description=(
@@ -16,7 +16,7 @@ vegetation_biomass_2010 = ConfigLayer(
     ),
     tags=[],
     style='vegetation_biomass',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

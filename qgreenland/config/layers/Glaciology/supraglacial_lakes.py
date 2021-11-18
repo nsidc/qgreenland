@@ -3,10 +3,10 @@ from qgreenland.config.datasets.esa_cci import (
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
-supraglacial_lakes = ConfigLayer(
+supraglacial_lakes = Layer(
     id='jakobshavn_supraglacial_lakes',
     title='Sermeq Kujalleq/Jakobshavn supraglacial lakes 2019',
     description=(
@@ -15,13 +15,13 @@ supraglacial_lakes = ConfigLayer(
     ),
     tags=['water'],
     style='supraglacial_lakes',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),
     steps=[
         # TODO: *compressed_vector(...)??
-        ConfigLayerCommandStep(
+        CommandStep(
             args=[
                 'unzip',
                 '{input_dir}/greenland_sgl_s2_20190501_20191001_jakobshavn_v1_1.zip',

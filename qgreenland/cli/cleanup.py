@@ -1,3 +1,4 @@
+import functools
 import subprocess
 
 import click
@@ -32,22 +33,23 @@ def _print_and_run(cmd, *, dry_run):
 @click.option('dry_run', '--dry-run', '-d',
               help="Print commands, but don't actually delete anything.",
               is_flag=True)
+# TODO: Rename "fetch"
 @click.option('delete_inputs_by_pattern', '--delete-inputs-by-pattern', '-i',
               help=(
                   'Bash glob/brace pattern used to delete input datasources by'
                   ' `<dataset_id>.<source_id>`'
               ),
               multiple=True)
-@click.option('delete_wips_by_pattern', '--delete-wips-by-pattern', '-w',
-              help=(
-                  'Pattern used to delete WIP layers by layer ID'
-              ), multiple=True)
 @click.option('delete_all_input', '--delete-all-input', '-I',
               help=(
                   'Delete _ALL_ input-cached layers, ignoring LAYER_ID_PATTERN'
               ),
               type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='False', show_default=True)
+@click.option('delete_wips_by_pattern', '--delete-wips-by-pattern', '-w',
+              help=(
+                  'Pattern used to delete WIP layers by layer ID'
+              ), multiple=True)
 @click.option('delete_all_wip', '--delete-all-wip', '-W',
               help=(
                   'Delete _ALL_ WIP layers, ignoring LAYER_ID_PATTERN'
@@ -77,6 +79,12 @@ def _print_and_run(cmd, *, dry_run):
               ),
               type=BOOLEAN_CHOICE, callback=validate_boolean_choice,
               default='False', show_default=True)
+@click.option('delete_release_layers_by_pattern',
+              '--delete-release-layers-by-pattern',
+              '-l',
+              help=(
+                  'Pattern used to delete released layers by layer ID'
+              ), multiple=True)
 @click.option('delete_all_release_layers', '--delete-all-release-layers',
               '-L',
               help=(
@@ -97,61 +105,39 @@ def cleanup(**kwargs):  # noqa: C901
         print('WARNING: In DRY RUN mode. Nothing will be deleted.')
         print()
 
+    print_and_run = functools.partial(_print_and_run, dry_run=kwargs['dry_run'])
+
     if wip_patterns := kwargs['delete_wips_by_pattern']:
-        _print_and_run(
-            f'rm -rf {WIP_PACKAGE_DIR}/*',
-            dry_run=kwargs['dry_run'],
-        )
+        print_and_run(f'rm -rf {WIP_PACKAGE_DIR}/*')
         for p in wip_patterns:
-            _print_and_run(
-                f'rm -rf {WIP_LAYERS_DIR}/{p}',
-                dry_run=kwargs['dry_run'],
-            )
+            print_and_run(f'rm -rf {WIP_LAYERS_DIR}/{p}')
+
     if kwargs['delete_all_wip']:
-        _print_and_run(
-            f'rm -rf {WIP_PACKAGE_DIR}/*',
-            dry_run=kwargs['dry_run'],
-        )
-        _print_and_run(
-            f'rm -rf {WIP_LAYERS_DIR}/*',
-            dry_run=kwargs['dry_run'],
-        )
+        print_and_run(f'rm -rf {WIP_PACKAGE_DIR}/*')
+        print_and_run(f'rm -rf {WIP_LAYERS_DIR}/*')
 
     if inp_patterns := kwargs['delete_inputs_by_pattern']:
         for p in inp_patterns:
-            _print_and_run(
-                f'rm -rf {FETCH_DATASETS_DIR}/{p}',
-                dry_run=kwargs['dry_run'],
-            )
+            print_and_run(f'rm -rf {FETCH_DATASETS_DIR}/{p}')
+
     if kwargs['delete_all_input']:
-        _print_and_run(
-            f'rm -rf {FETCH_DATASETS_DIR}/*',
-            dry_run=kwargs['dry_run'],
-        )
+        print_and_run(f'rm -rf {FETCH_DATASETS_DIR}/*')
 
     if kwargs['delete_compiled']:
-        _print_and_run(
-            f'rm -rf {COMPILE_PACKAGE_DIR}*',
-            dry_run=kwargs['dry_run'],
-        )
+        print_and_run(f'rm -rf {COMPILE_PACKAGE_DIR}*')
 
     if kwargs['delete_all_release_packages']:
-        _print_and_run(
-            f'rm -rf {RELEASE_PACKAGES_DIR}/*',
-            dry_run=kwargs['dry_run'],
-        )
+        print_and_run(f'rm -rf {RELEASE_PACKAGES_DIR}/*')
 
     if kwargs['delete_all_dev_release_packages']:
-        _print_and_run(
-            f'rm -rf {RELEASE_PACKAGES_DIR}/dev/*',
-            dry_run=kwargs['dry_run'],
-        )
+        print_and_run(f'rm -rf {RELEASE_PACKAGES_DIR}/dev/*')
+
+    if layer_patterns := kwargs['delete_release_layers_by_pattern']:
+        for p in layer_patterns:
+            print_and_run(f'rm -rf {RELEASE_LAYERS_DIR}/{p}')
 
     if kwargs['delete_all_release_layers']:
-        _print_and_run(
-            f'rm -rf {RELEASE_LAYERS_DIR}/*',
-            dry_run=kwargs['dry_run'],
-        )
+        print_and_run(f'rm -rf {RELEASE_LAYERS_DIR}/*')
 
 
 if __name__ == '__main__':

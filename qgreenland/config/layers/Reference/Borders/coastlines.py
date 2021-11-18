@@ -1,9 +1,9 @@
 import qgreenland.config.datasets.coastlines as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-bas_greenland_coastlines = ConfigLayer(
+bas_greenland_coastlines = Layer(
     id='bas_greenland_coastlines',
     title='Greenland coastlines 2017',
     description=(
@@ -13,7 +13,7 @@ bas_greenland_coastlines = ConfigLayer(
     tags=[],
     show=True,
     style='greenland_coastline',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset.bas_coastlines,
         asset=dataset.bas_coastlines.assets['only'],
     ),
@@ -25,7 +25,7 @@ bas_greenland_coastlines = ConfigLayer(
     ],
 )
 
-coastlines = ConfigLayer(
+coastlines = Layer(
     id='coastlines',
     title='Global coastlines',
     description=(
@@ -34,7 +34,7 @@ coastlines = ConfigLayer(
     ),
     tags=[],
     style='coastline-IHOECDIS',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset.coastlines,
         asset=dataset.coastlines.assets['only'],
     ),

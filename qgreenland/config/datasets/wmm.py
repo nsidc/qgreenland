@@ -1,35 +1,35 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
-wmm = ConfigDataset(
+wmm = Dataset(
     id='world_magnetic_model',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='geomagnetic_north_pole',
             urls=[
                 'https://www.ngdc.noaa.gov/geomag/data/poles/WMM2020_NP.xy',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='igrf_geomagnetic_north_pole',
             urls=[
                 'https://www.ngdc.noaa.gov/geomag/data/poles/NP.xy',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='geomagnetic_coordinates',
             urls=[
                 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020_geomagnetic_coordinate_shapefiles.zip',  # noqa:E501
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='blackout_zones',
             urls=[
                 'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020-2025_BoZ_Shapefile.zip',  # noqa:E501
             ],
         ),
         *[
-            ConfigDatasetHttpAsset(
+            HttpAsset(
                 id=str(year),
                 urls=[
                     f'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/{year}/WMM_{year}_all_shape_geographic.zip',  # noqa:E501

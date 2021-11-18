@@ -1,6 +1,6 @@
 from qgreenland.config.datasets import wmm
 from qgreenland.config.helpers.layers.wmm import unzip_and_reproject_wmm_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 _layers = [
@@ -22,8 +22,8 @@ def _make_layer(
     id: str,
     title: str,
     partial_filename: str,
-) -> ConfigLayer:
-    return ConfigLayer(
+) -> Layer:
+    return Layer(
         id=id,
         title=title,
         description="""
@@ -41,7 +41,7 @@ for the simple geomagnetic coordinate system of geomagnetic latitude and
 longitude.
 """,
         style='lonlat',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=wmm.wmm,
             asset=wmm.wmm.assets['geomagnetic_coordinates'],
         ),

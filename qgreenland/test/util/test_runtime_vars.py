@@ -4,7 +4,7 @@ import pytest
 
 from qgreenland.constants.paths import ASSETS_DIR
 from qgreenland.exceptions import QgrInterpolationError
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.step import CommandStep
 from qgreenland.util.runtime_vars import EvalFilePath, EvalPath, EvalStr
 
 
@@ -46,7 +46,7 @@ def test_eval_str():
 
 
 def test_config_layer_cmd_step_args_validation():
-    command_step = ConfigLayerCommandStep(
+    command_step = CommandStep(
         args=[
             'foo',
             'bar',

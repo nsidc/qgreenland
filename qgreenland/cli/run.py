@@ -6,10 +6,9 @@ from qgreenland.util.config.config import (
     init_config,
 )
 from qgreenland.util.luigi.tasks.pipeline import (
-    CreateQgisProjectFile,
-    HostedLayers,
     LayerPipelines,
     QGreenlandAll,
+    QGreenlandNoZip,
 )
 
 
@@ -55,36 +54,41 @@ from qgreenland.util.luigi.tasks.pipeline import (
     help='Zip the package even if `--include` or `--exclude` are true.',
     required=False,
 )
+@click.option(
+    '--force-no-package-zip', '-Z',
+    is_flag=True,
+    help='DO NOT zip the package even if the whole pipeline was run.',
+    required=False,
+)
 def run(
     include: tuple[str, ...],
     exclude: tuple[str, ...],
     exclude_manual_assets: bool,
     force_package_zip,
+    force_no_package_zip,
     dry_run: bool,
     fetch_only: bool,
     workers: int,
 ) -> None:
     """Run pipelines for layers matching filters."""
+    if force_package_zip and force_no_package_zip:
+        raise RuntimeError('Can not force zip AND no zip.')
+
     init_config(
         include_patterns=include,
         exclude_patterns=exclude,
         exclude_manual_assets=exclude_manual_assets,
     )
     config = get_config()
+    filtered = include or exclude
+    skip_zip = force_no_package_zip or (filtered and not force_package_zip)
 
     if fetch_only:
         # Don't do anything except fetch the input asset for each layer.
-        tasks = [LayerPipelines(
-            fetch_only=fetch_only,
-        )]
-    elif (include or exclude) and not force_package_zip:
-        # Don't actually zip, just compile.
-        tasks = [
-            HostedLayers(),
-            CreateQgisProjectFile(),
-        ]
+        tasks = [LayerPipelines(fetch_only=fetch_only)]
+    elif skip_zip:
+        tasks = [QGreenlandNoZip()]
     else:
-        # Do everything!!!
         tasks = [QGreenlandAll()]
 
     print(f'Running tasks: {str(tasks)}')

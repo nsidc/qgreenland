@@ -2,8 +2,8 @@ from typing import Literal
 
 from qgreenland.config.datasets.esa_cci import esa_cci_surface_elevation_change as dataset
 from qgreenland.config.helpers.steps.build_overviews import build_overviews
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
 _year_ranges = [
@@ -22,7 +22,7 @@ def surface_elevation_layer(
     start_year: int,
     end_year: int,
     variable: SurfaceElevVar,
-) -> ConfigLayer:
+) -> Layer:
 
     if variable == 'SEC':
         description = 'Rate of surface elevation change in meters per year.'
@@ -31,18 +31,18 @@ def surface_elevation_layer(
         description = 'Error of rate of surface elevation change in meters per year.'
         style = 'surface_elevation_change_errors'
 
-    return ConfigLayer(
+    return Layer(
         id=f'surface_elevation_change_{variable.lower()}_{start_year}_{end_year}',
         title=f'Surface elevation change {start_year}-{end_year}',
         description=description,
         tags=[],
         style=style,
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),
         steps=[
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'gdalmdimtranslate',
                     '-co', 'COMPRESS=DEFLATE',

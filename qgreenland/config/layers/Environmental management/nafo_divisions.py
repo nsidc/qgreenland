@@ -1,9 +1,9 @@
 from qgreenland.config.datasets.nafo_divisions import nafo_divisions as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-nafo_divisions = ConfigLayer(
+nafo_divisions = Layer(
     id='nafo_divisions',
     title='NAFO divisions',
     description=(
@@ -11,7 +11,7 @@ nafo_divisions = ConfigLayer(
     ),
     tags=[],
     style='nafo_divisions',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

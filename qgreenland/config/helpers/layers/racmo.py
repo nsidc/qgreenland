@@ -6,12 +6,12 @@ from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
-def _make_racmo_wind_vectors() -> ConfigLayer:
-    return ConfigLayer(
+def _make_racmo_wind_vectors() -> Layer:
+    return Layer(
         id='racmo_wind_vectors',
         title='Annual mean wind vectors 1958-2019 (5km)',
         description=(
@@ -20,7 +20,7 @@ def _make_racmo_wind_vectors() -> ConfigLayer:
         ),
         tags=[],
         style='racmo_wind_vectors',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),
@@ -37,8 +37,8 @@ def _make_racmo_wind_vectors() -> ConfigLayer:
     )
 
 
-def _make_racmo_wind_speed() -> ConfigLayer:
-    return ConfigLayer(
+def _make_racmo_wind_speed() -> Layer:
+    return Layer(
         id='racmo_wind_speed',
         title='Annual mean wind speed 1958-2019 (5km)',
         description=(
@@ -47,7 +47,7 @@ def _make_racmo_wind_speed() -> ConfigLayer:
         ),
         tags=[],
         style='racmo_wind_speed',
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),
@@ -145,14 +145,14 @@ def _make_masked_racmo_layer(
         variable: str,
         nodata: int = -9999,
         gdal_edit_args=(),
-) -> ConfigLayer:
-    return ConfigLayer(
+) -> Layer:
+    return Layer(
         id=layer_id,
         title=title,
         description=description,
         tags=[],
         style=style,
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),
@@ -164,7 +164,7 @@ def _make_masked_racmo_layer(
             # Apply the promice mask. The `Promicemask` values are 3 = Greenland ice
             # sheet; 2,1 = Greenland peripheral ice caps; 0 = Ocean. This step masks
             # out the ocean as 'nodata'.
-            ConfigLayerCommandStep(
+            CommandStep(
                 args=[
                     'gdal_calc.py',
                     f'--calc="numpy.where((B != 0), A, {nodata})"',
@@ -197,7 +197,7 @@ def _make_masked_racmo_layer(
     )
 
 
-def _make_masked_racmo_layers() -> list[ConfigLayer]:
+def _make_masked_racmo_layers() -> list[Layer]:
     layers = []
     for layer_id, params in _masked_racmo_raster_params.items():
         variable = layer_id.split('_')[1]
@@ -220,7 +220,7 @@ def _make_masked_racmo_layers() -> list[ConfigLayer]:
     return layers
 
 
-def make_racmo_layers() -> list[ConfigLayer]:
+def make_racmo_layers() -> list[Layer]:
     wind_vectors = _make_racmo_wind_vectors()
     wind_speed = _make_racmo_wind_speed()
     layers = [wind_vectors, wind_speed]
@@ -234,7 +234,7 @@ def make_racmo_layers() -> list[ConfigLayer]:
 RACMO_ULLR = '-639456.0 -655096.0 856544.0 -3355096.0'
 
 
-def make_racmo_supplemental_layers() -> list[ConfigLayer]:
+def make_racmo_supplemental_layers() -> list[Layer]:
     layers = []
 
     _racmo_mask_layer_params = {
@@ -257,13 +257,13 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
 
     for layer_id, params in _racmo_mask_layer_params.items():
         layers.append(
-            ConfigLayer(
+            Layer(
                 id=layer_id,
                 title=params['title'],
                 description=params['description'],
                 tags=[],
                 style='racmo_promicemask',
-                input=ConfigLayerInput(
+                input=LayerInput(
                     dataset=dataset,
                     asset=dataset.assets['only'],
                 ),
@@ -272,7 +272,7 @@ def make_racmo_supplemental_layers() -> list[ConfigLayer]:
                         input_file='{input_dir}/RACMO_QGreenland_Jan2021.zip',
                         decompress_contents_mask=params['extract_filename'],
                     ),
-                    ConfigLayerCommandStep(
+                    CommandStep(
                         args=[
                             'gdal_translate',
                             '-a_srs', project.crs,

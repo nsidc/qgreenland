@@ -1,10 +1,10 @@
 import qgreenland.config.datasets.political_boundaries as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-nunagis_municipalities_population = ConfigLayer(
+nunagis_municipalities_population = Layer(
     id='nunagis_municipalities_population',
     title='Greenland municipalities and population 2019',
     description=(
@@ -13,7 +13,7 @@ nunagis_municipalities_population = ConfigLayer(
     ),
     tags=[],
     style='nunagis_municipalities_population',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset.nunagis_pop2019_municipalities,
         asset=dataset.nunagis_pop2019_municipalities.assets['only'],
     ),
@@ -25,7 +25,7 @@ nunagis_municipalities_population = ConfigLayer(
     ],
 )
 
-ne_states_provinces = ConfigLayer(
+ne_states_provinces = Layer(
     id='ne_states_provinces',
     title='Global administrative divisions',
     description=(
@@ -34,7 +34,7 @@ ne_states_provinces = ConfigLayer(
     ),
     tags=[],
     style='administrative_divisions',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset.ne_states_provinces,
         asset=dataset.ne_states_provinces.assets['only'],
     ),
@@ -46,7 +46,7 @@ ne_states_provinces = ConfigLayer(
     ],
 )
 
-ne_countries = ConfigLayer(
+ne_countries = Layer(
     id='ne_countries',
     title='Countries',
     description=(
@@ -54,7 +54,7 @@ ne_countries = ConfigLayer(
     ),
     tags=[],
     style='countries',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset.ne_countries,
         asset=dataset.ne_countries.assets['only'],
     ),

@@ -1,23 +1,23 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-gc_net_promice_stations = ConfigDataset(
+gc_net_promice_stations = Dataset(
     id='gc_net_promice_stations',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='promice',
             urls=[
                 'https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018.csv',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='promice_former',
             urls=[
                 'https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018_former_sites.csv',
             ],
         ),
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='gc_net',
             urls=[
                 'https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/GCN%20info%20ca.2000.csv',

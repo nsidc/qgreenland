@@ -4,7 +4,7 @@ from typing import Generator
 from qgreenland.config.datasets.esa_cci import esa_cci_gravimetric_mass_balance_dtu as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 # TODO: consider pulling this information from the source files themselves?
@@ -27,12 +27,12 @@ _gravimetric_mass_balance_date_ranges = (
 )
 
 
-def _make_layers() -> Generator[ConfigLayer, None, None]:
+def _make_layers() -> Generator[Layer, None, None]:
     for start_date, end_date in _gravimetric_mass_balance_date_ranges:
         start_year = start_date.year
         end_year = end_date.year
 
-        yield ConfigLayer(
+        yield Layer(
             id=f'esa_cci_gravimetric_mass_balance_dtu_{start_year}_{end_year}',
             title=f'Mass balance trend {start_year}-{end_year}',
             description=(
@@ -42,7 +42,7 @@ def _make_layers() -> Generator[ConfigLayer, None, None]:
             ),
             tags=[],
             style='gmb_dtu_space',
-            input=ConfigLayerInput(
+            input=LayerInput(
                 dataset=dataset,
                 asset=dataset.assets['only'],
             ),

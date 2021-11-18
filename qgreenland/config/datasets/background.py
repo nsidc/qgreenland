@@ -1,10 +1,10 @@
-from qgreenland.models.config.asset import ConfigDatasetCommandAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import CommandAsset
+from qgreenland.models.config.dataset import Dataset
 
-background = ConfigDataset(
+background = Dataset(
     id='background',
     assets=[
-        ConfigDatasetCommandAsset(
+        CommandAsset(
             id='high_res',
             args=[
                 'wget',

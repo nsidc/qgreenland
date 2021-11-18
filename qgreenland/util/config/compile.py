@@ -4,7 +4,7 @@ from pathlib import Path
 import qgreenland.exceptions as exc
 from qgreenland.config.project import project
 from qgreenland.models.config import Config
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.dataset import Dataset
 from qgreenland.util.misc import find_duplicates
 from qgreenland.util.module import load_objects_from_paths_by_class
 from qgreenland.util.tree import LayerNode, layer_tree
@@ -24,13 +24,13 @@ def _get_python_module_filepaths(the_dir: Path) -> list[Path]:
     ]
 
 
-def compile_datasets_cfg(config_dir: Path) -> dict[str, ConfigDataset]:
+def compile_datasets_cfg(config_dir: Path) -> dict[str, Dataset]:
     """Find and return all datasets in "`config_dir`/datasets"."""
     datasets_dir = config_dir / 'datasets'
     dataset_fps = _get_python_module_filepaths(datasets_dir)
     datasets = load_objects_from_paths_by_class(
         dataset_fps,
-        target_class=ConfigDataset,
+        target_class=Dataset,
     )
 
     duplicates = find_duplicates(d.id for d in datasets)

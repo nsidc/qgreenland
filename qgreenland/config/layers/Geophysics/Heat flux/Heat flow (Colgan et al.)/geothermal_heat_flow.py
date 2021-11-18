@@ -4,12 +4,12 @@ from qgreenland.config.datasets.geothermal_heat_flow import (
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 # The name of the `layer` variable doesn't matter here. You may create layers
 # with a list comprehension as well, as long as you assign it to a variable.
-geothermal_heat_flow = ConfigLayer(
+geothermal_heat_flow = Layer(
     id='geothermal_heat_flow_map',
     title='Flow from multiple observations (55km)',
     style='geothermal_heat_flow_map',
@@ -18,7 +18,7 @@ geothermal_heat_flow = ConfigLayer(
         native resolution)."""
     ),
     tags=[],
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['55km_map'],
     ),
@@ -31,7 +31,7 @@ geothermal_heat_flow = ConfigLayer(
     ],
 )
 
-geothermal_heat_flow_measurements = ConfigLayer(
+geothermal_heat_flow_measurements = Layer(
     id='geothermal_heat_flow_measurements',
     title='Flow measurement locations',
     description=(
@@ -39,7 +39,7 @@ geothermal_heat_flow_measurements = ConfigLayer(
         heat flow map (10km)' layer."""
     ),
     tags=[],
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['heat_flow_measurements'],
     ),

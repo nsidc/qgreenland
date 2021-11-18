@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import ManualAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-danish_agency_for_data_supply_and_efficiency_gtk_topo_map = ConfigDataset(
+danish_agency_for_data_supply_and_efficiency_gtk_topo_map = Dataset(
     id='danish_agency_for_data_supply_and_efficiency_gtk_topo_map',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """Downloaded through the The Danish Agency for Map Supply and

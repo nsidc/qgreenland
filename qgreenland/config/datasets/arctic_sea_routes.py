@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-nga_arctic_sea_routes = ConfigDataset(
+nga_arctic_sea_routes = Dataset(
     id='nga_arctic_sea_routes',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 (

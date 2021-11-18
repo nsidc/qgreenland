@@ -1,7 +1,7 @@
 """Test the three preferred forms of triple-quotation validate as expected."""
-from qgreenland.models.config.dataset import ConfigDatasetMetadata
+from qgreenland.models.config.dataset import DatasetMetadata
 
-mock_meta = ConfigDatasetMetadata(
+mock_meta = DatasetMetadata(
     title='mock',
     abstract='Mock.',
     citation={'text': 'mock', 'url': 'mock'},
@@ -10,7 +10,7 @@ expected = 'String content\n\nline 2\nmore.'
 
 
 def test_indented_triple_quotes():
-    actual = ConfigDatasetMetadata(**{
+    actual = DatasetMetadata(**{
         **mock_meta.dict(),
         'abstract': (
             """String content
@@ -24,7 +24,7 @@ def test_indented_triple_quotes():
 
 
 def test_unindented_triple_quotes():
-    actual = ConfigDatasetMetadata(**{
+    actual = DatasetMetadata(**{
         **mock_meta.dict(),
         'abstract': """
 String content
@@ -37,7 +37,7 @@ more.""",
 
 
 def test_weird_indented_triple_quotes():
-    actual = ConfigDatasetMetadata(**{
+    actual = DatasetMetadata(**{
         **mock_meta.dict(),
         'abstract': """String content
 

@@ -1,76 +1,76 @@
-from qgreenland.models.config.asset import ConfigDatasetCmrAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import CmrAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-glacier_terminus = ConfigDataset(
+glacier_terminus = Dataset(
     id='glacier_terminus',
     assets=[
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='glacier_ids',
             granule_ur='SC:NSIDC-0642.002:227146975',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2000_2001',
             granule_ur='SC:NSIDC-0642.002:227146979',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2005_2006',
             granule_ur='SC:NSIDC-0642.002:227146973',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2006_2007',
             granule_ur='SC:NSIDC-0642.002:227146977',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2007_2008',
             granule_ur='SC:NSIDC-0642.002:227146974',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2008_2009',
             granule_ur='SC:NSIDC-0642.002:227146982',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2012_2013',
             granule_ur='SC:NSIDC-0642.002:227146972',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2014_2015',
             granule_ur='SC:NSIDC-0642.002:227146970',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2015_2016',
             granule_ur='SC:NSIDC-0642.002:227146978',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2016_2017',
             granule_ur='SC:NSIDC-0642.002:227146971',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2017_2018',
             granule_ur='SC:NSIDC-0642.002:227146980',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2018_2019',
             granule_ur='SC:NSIDC-0642.002:227146976',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2019_2020',
             granule_ur='SC:NSIDC-0642.002:227146981',
             collection_concept_id='C2139015179-NSIDC_ECS',
         ),
-        ConfigDatasetCmrAsset(
+        CmrAsset(
             id='2020_2021',
             granule_ur='SC:NSIDC-0642.002:227146983',
             collection_concept_id='C2139015179-NSIDC_ECS',

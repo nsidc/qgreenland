@@ -4,7 +4,7 @@ from qgreenland._typing import StepArgs
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.step import CommandStep
 from qgreenland.util.runtime_vars import EvalFilePath
 
 
@@ -25,7 +25,7 @@ def compressed_vector(
     decompress_step_kwargs=default_decompress_step_kwargs,
     ogr2ogr_args: StepArgs = (),
     boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
-) -> list[ConfigLayerCommandStep]:
+) -> list[CommandStep]:
     """Unzip a vector data file and reproject."""
     return [
         decompress_step(

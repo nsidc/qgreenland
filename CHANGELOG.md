@@ -16,8 +16,10 @@
   - MOVED:
     - "Geophysics/Geothermal heat flux (5km)" layer to "Geophysics/Heat
       flux/Flux from ice cores (Greve, R.) (5km)".
-    - "Oceanography/Bathymetric chart of the Arctic Ocean (400m)" to
+    - "Oceanography/Bathymetric chart of the Arctic Ocean (400m)" layer to
       "Oceanography/Bathymetry/Depth (400m)"
+    - "Human activity/Research stations" group to "Human activity/Research
+      sites"
   - UPDATED:
     - "Regional climate models/RACMO model output/Runoff 1958-2019 (1km)":
       change colormap, make `0` values transarent.
@@ -26,6 +28,11 @@
       tint.
     - "Geology/Earthquakes M above 2.5 1900-2020": show all earthquakes in
       background boundary instead of subsetting to region around Greenland.
+    - "Reference/Longitude lines": display positive degrees West instead of
+      negative.
+  - REMOVED from QGreenland zip package; available via QGreenland plugin:
+    - "Glaciology/Ice sheet velocity/ITS_LIVE"
+    - "Terrain models/Arctic DEM"
 
 
 # v2.0.0alpha1 (2021-11-03)

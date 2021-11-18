@@ -1,7 +1,7 @@
 import datetime as dt
 
-from qgreenland.models.config.asset import ConfigDatasetCommandAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import CommandAsset
+from qgreenland.models.config.dataset import Dataset
 
 
 query_start_date = dt.date(1900, 1, 1)
@@ -28,10 +28,10 @@ wget_cmds = [
 
 wget_cmds_str = '\n'.join(wget_cmds)
 
-earthquakes = ConfigDataset(
+earthquakes = Dataset(
     id='earthquakes',
     assets=[
-        ConfigDatasetCommandAsset(
+        CommandAsset(
             id='only',
             # Use `xargs` to run lots of `wgets` in one asset.
             # TODO: Is this the best way to do multiple downloads for creating a

@@ -1,7 +1,7 @@
 from qgreenland.config.datasets.glims import glims as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
 LAYER_PARAMS = {
@@ -22,12 +22,12 @@ LAYER_PARAMS = {
 }
 
 layers = [
-    ConfigLayer(
+    Layer(
         id=f'glims_{key}',
         title=f'Peripherical glacier/feature {params["hint"]}',
         description=params['description'],
         tags=[],
-        input=ConfigLayerInput(
+        input=LayerInput(
             dataset=dataset,
             asset=dataset.assets['only'],
         ),

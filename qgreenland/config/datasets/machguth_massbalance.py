@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetManualAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import ManualAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-machguth_etal_massbalance_obs_locations = ConfigDataset(
+machguth_etal_massbalance_obs_locations = Dataset(
     id='machguth_etal_massbalance_obs_locations',
     assets=[
-        ConfigDatasetManualAsset(
+        ManualAsset(
             id='only',
             access_instructions=(
                 """Accessed the Greenland Mass Balance database on Dec. 12, 2020

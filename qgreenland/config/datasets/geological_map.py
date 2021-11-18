@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-geological_map = ConfigDataset(
+geological_map = Dataset(
     id='geological_map',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://ftp.maps.canada.ca/pub/nrcan_rncan/publications/STPublications_PublicationsST/287/287868/as_2159.zip',

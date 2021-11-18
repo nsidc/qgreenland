@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-tectonic_plates = ConfigDataset(
+tectonic_plates = Dataset(
     id='tectonic_plates',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://github.com/fraxen/tectonicplates/archive/339b0c5.zip',

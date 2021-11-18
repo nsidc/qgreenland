@@ -7,15 +7,15 @@ from qgreenland.constants.paths import (
     COMPILE_PACKAGE_DIR,
     RELEASE_LAYERS_DIR,
 )
-from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
-from qgreenland.models.config.layer import ConfigLayer
+from qgreenland.models.config.asset import OnlineAsset
+from qgreenland.models.config.layer import Layer
 from qgreenland.util.fs import get_layer_fp
 from qgreenland.util.tree import LayerNode
 
 
 def vector_or_raster(layer_node: LayerNode) -> QgsLayerType:
     layer_cfg = layer_node.layer_cfg
-    if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
+    if type(layer_cfg.input.asset) is OnlineAsset:
         return PROVIDER_LAYERTYPE_MAPPING[layer_cfg.input.asset.provider]
     else:
         layer_path = get_layer_compile_filepath(layer_node)
@@ -56,7 +56,7 @@ def get_layer_release_filepath(
     return get_layer_fp(get_layer_release_dir(layer_node))
 
 
-def _layer_dirname_from_cfg(layer_cfg: ConfigLayer) -> str:
+def _layer_dirname_from_cfg(layer_cfg: Layer) -> str:
     return layer_cfg.title
 
 

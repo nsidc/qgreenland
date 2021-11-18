@@ -1,7 +1,7 @@
 from qgreenland.config.constants import PROJECT_CRS
-from qgreenland.models.config.project import ConfigProject
+from qgreenland.models.config.project import Project
 
-project = ConfigProject(
+project = Project(
     crs=PROJECT_CRS,
     boundaries={
         'background': {

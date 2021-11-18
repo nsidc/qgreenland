@@ -3,10 +3,10 @@ from qgreenland.config.datasets.machguth_massbalance import (
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-machguth_massbalance_locations = ConfigLayer(
+machguth_massbalance_locations = Layer(
     id='machguth_massbalance_locations',
     title='Mass balance glacier observation locations 1892-2020',
     description=(
@@ -14,7 +14,7 @@ machguth_massbalance_locations = ConfigLayer(
     ),
     tags=[],
     style='labeled_point',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

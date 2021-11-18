@@ -4,10 +4,10 @@ from qgreenland.config.datasets.gem_research_stations import (
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-gem_research_stations = ConfigLayer(
+gem_research_stations = Layer(
     id='gem_research_stations',
     title='GEM research stations',
     description=(
@@ -16,7 +16,7 @@ gem_research_stations = ConfigLayer(
     ),
     tags=[],
     style='labeled_point',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['only'],
     ),

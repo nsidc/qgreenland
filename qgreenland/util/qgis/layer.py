@@ -6,7 +6,7 @@ import qgis.core as qgc
 from osgeo import gdal
 
 import qgreenland.exceptions as exc
-from qgreenland.models.config.asset import ConfigDatasetOnlineAsset
+from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.util.layer import (
     get_layer_compile_filepath,
     vector_or_raster,
@@ -29,7 +29,7 @@ def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
 
     # For online layers, the provider is specified in the config.
     layer_cfg = layer_node.layer_cfg
-    if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
+    if type(layer_cfg.input.asset) is OnlineAsset:
         provider = layer_cfg.input.asset.provider
 
     creator = functools.partial(
@@ -60,7 +60,7 @@ def _layer_path(
     layer_node: LayerNode,
 ) -> Union[Path, str]:
     layer_cfg = layer_node.layer_cfg
-    if type(layer_cfg.input.asset) is ConfigDatasetOnlineAsset:
+    if type(layer_cfg.input.asset) is OnlineAsset:
         return f'{layer_cfg.input.asset.url}'
     else:
         # Give the absolute path to the layer. We think project.addMapLayer()
@@ -105,7 +105,7 @@ def _create_layer_with_side_effects(
 
     offline_raster = (
         layer_type == 'Raster'
-        and type(layer_cfg.input.asset) is not ConfigDatasetOnlineAsset
+        and type(layer_cfg.input.asset) is not OnlineAsset
     )
 
     if offline_raster:

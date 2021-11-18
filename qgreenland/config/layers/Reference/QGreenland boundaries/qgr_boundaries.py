@@ -1,9 +1,9 @@
 from qgreenland.config.datasets.boundaries import qgr_bounds as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
+from qgreenland.models.config.layer import Layer, LayerInput
 
 
-qgr_boundary_data = ConfigLayer(
+qgr_boundary_data = Layer(
     id='qgr_boundary_data',
     title='Greenland-focused boundary',
     description=(
@@ -12,7 +12,7 @@ qgr_boundary_data = ConfigLayer(
     ),
     tags=[],
     style='transparent_shape',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['data'],
     ),
@@ -24,7 +24,7 @@ qgr_boundary_data = ConfigLayer(
     ],
 )
 
-qgr_boundary_background = ConfigLayer(
+qgr_boundary_background = Layer(
     id='qgr_boundary_background',
     title='Background boundary',
     description=(
@@ -34,7 +34,7 @@ qgr_boundary_background = ConfigLayer(
     tags=[],
     show=True,
     style='transparent_shape',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['background'],
     ),

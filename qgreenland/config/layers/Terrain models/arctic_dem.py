@@ -4,19 +4,18 @@ from qgreenland.config.helpers.steps.compress_raster import compress_raster
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
-from qgreenland.models.config.layer import ConfigLayer, ConfigLayerInput
-from qgreenland.models.config.step import ConfigLayerCommandStep
+from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 
-arctic_dem = ConfigLayer(
+arctic_dem = Layer(
     id='arctic_dem',
     title='Arctic DEM (100m)',
-    description=(
-        """Surface elevation in meters."""
-    ),
+    description='Surface elevation in meters using hillshade symbology.',
+    in_package=False,
     tags=[],
     style='arctic_dem',
-    input=ConfigLayerInput(
+    input=LayerInput(
         dataset=dataset,
         asset=dataset.assets['100m'],
     ),
@@ -26,7 +25,7 @@ arctic_dem = ConfigLayer(
             output_file='{output_dir}/arctic_dem.tif',
             cut_file=project.boundaries['data'].filepath,
         ),
-        ConfigLayerCommandStep(
+        CommandStep(
             args=[
                 'gdal_calc.py',
                 '--calc', '"A * 100.0"',

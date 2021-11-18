@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetHttpAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import HttpAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-icesheet_height_and_thickness_change = ConfigDataset(
+icesheet_height_and_thickness_change = Dataset(
     id='icesheet_height_and_thickness_change',
     assets=[
-        ConfigDatasetHttpAsset(
+        HttpAsset(
             id='only',
             urls=[
                 'https://digital.lib.washington.edu/researchworks/bitstream/handle/1773/45388/ICESat1_ICESat2_mass_change.zip',

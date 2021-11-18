@@ -1,11 +1,11 @@
-from qgreenland.models.config.asset import ConfigDatasetOgrRemoteAsset
-from qgreenland.models.config.dataset import ConfigDataset
+from qgreenland.models.config.asset import OgrRemoteAsset
+from qgreenland.models.config.dataset import Dataset
 
 
-nunagis_protected_areas = ConfigDataset(
+nunagis_protected_areas = Dataset(
     id='nunagis_protected_areas',
     assets=[
-        ConfigDatasetOgrRemoteAsset(
+        OgrRemoteAsset(
             id='only',
             query_url='https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC',
         ),
