@@ -4,6 +4,7 @@ from qgreenland.config.datasets.lonlat import lonlat as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.models.config.asset import RepositoryAsset
 from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.step import CommandStep
 
 lonlat_assets_sorted = sorted(
     dataset.assets.values(),
@@ -47,8 +48,8 @@ def _make_lonlat_layer(
             CommandStep(
                 args=[
                     'ogr2ogr',
-                    *STANDARD_OGR2OGR_ARGS \
-                    - 'where "wgs84Decimal >= 40"' \
+                    *STANDARD_OGR2OGR_ARGS,
+                    'where "wgs84Decimal >= 40"',
                     '{output_dir}/clipped.gpkg',
                     '{input_dir}/*.geojson',
                 ],
