@@ -44,19 +44,10 @@ def _make_lonlat_layer(
             ConfigLayerCommandStep(
                 args=[
                     'ogr2ogr',
-                    '-clipdst', project.boundaries['background'].filepath,
-                    '-segmentize', segment_max_distance,
+                    - 't_srs EPSG:3413' \
+                    - 'where "wgs84Decimal >= 40"' \
                     '{output_dir}/clipped.gpkg',
                     '{input_dir}/*.geojson',
-                ],
-            ),
-            # Reproject the dataset
-            ConfigLayerCommandStep(
-                args=[
-                    'ogr2ogr',
-                    *STANDARD_OGR2OGR_ARGS,
-                    '{output_dir}/final.gpkg',
-                    '{input_dir}/clipped.gpkg',
                 ],
             ),
         ],
