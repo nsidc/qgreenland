@@ -26,6 +26,7 @@ masked_velocity_mosaic_layers = [
         id=layer_id,
         title=params['title'],
         description=params['description'],
+        in_package=False,
         tags=[],
         style=params['style'],
         input=LayerInput(
@@ -63,6 +64,7 @@ velocity_mosaic_ice_mask = Layer(
     description=(
         """Ice mask used for ITS_LIVE velocity mosiac."""
     ),
+    in_package=False,
     tags=[],
     input=LayerInput(
         dataset=dataset,

@@ -11,9 +11,8 @@ from qgreenland.models.config.step import CommandStep
 arctic_dem = Layer(
     id='arctic_dem',
     title='Arctic DEM (100m)',
-    description=(
-        """Surface elevation in meters using hillshade symbology."""
-    ),
+    description='Surface elevation in meters using hillshade symbology.',
+    in_package=False,
     tags=[],
     style='arctic_dem',
     input=LayerInput(
