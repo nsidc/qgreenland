@@ -21,10 +21,10 @@ def _make_lonlat_layer(
 
     if asset.id.startswith('lat'):
         title_prefix = 'Latitude'
-        segment_max_distance = 1
+        # segment_max_distance = 1
     elif asset.id.startswith('lon'):
         title_prefix = 'Longitude'
-        segment_max_distance = 100
+        # segment_max_distance = 100
     else:
         raise RuntimeError(
             "Expected asset ID starting with 'lon' or 'lat'; received:"
