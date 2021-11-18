@@ -2,10 +2,9 @@ from typing import Literal, cast
 
 from qgreenland.config.datasets.lonlat import lonlat as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
-from qgreenland.config.project import project
 from qgreenland.models.config.asset import RepositoryAsset
 from qgreenland.models.config.layer import Layer, LayerInput
-
+from qgreenland.models.config.step import ConfigLayerCommandStep
 
 lonlat_assets_sorted = sorted(
     dataset.assets.values(),
@@ -44,13 +43,12 @@ def _make_lonlat_layer(
             dataset=dataset,
             asset=asset,
         ),
-        # Separate steps to avoid incorrecrly clipping lattitude lines
         steps=[
-            # Clip the datast
+            # Clip and reproject the dataset
             ConfigLayerCommandStep(
                 args=[
                     'ogr2ogr',
-                    - 't_srs EPSG:3413' \
+                    *STANDARD_OGR2OGR_ARGS \
                     - 'where "wgs84Decimal >= 40"' \
                     '{output_dir}/clipped.gpkg',
                     '{input_dir}/*.geojson',
