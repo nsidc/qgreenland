@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
   libgl1-mesa-glx
 
 # Create environments
-RUN micromamba install -y -c conda-forge -n base conda mamba
+RUN micromamba install -y -c conda-forge -n base conda mamba~=0.17.0
 
 COPY --chown=micromamba:micromamba environment-lock.yml /tmp/environment.yml
 RUN micromamba install -y -n base -f /tmp/environment.yml
