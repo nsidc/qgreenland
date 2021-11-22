@@ -73,6 +73,10 @@ configuration that describes how the data was acquired.
 
 May be read-only.
 
+NOTE: The CLI's `run` command features an argument `--exclude-manual-assets`
+flag which will exclude any layers that depend on privately-archived data. It's
+recommended to use this flag as a QGreenland contributor testing their changes.
+
 
 ## Configuration
 
