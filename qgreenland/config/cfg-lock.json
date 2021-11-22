@@ -7405,1240 +7405,6 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_1992_1996",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,0]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_1992_1996.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_1992_1996.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 1992-1996"
-                    },
-                    "name": "surface_elevation_change_sec_1992_1996"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_1993_1997",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,1]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_1993_1997.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_1993_1997.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 1993-1997"
-                    },
-                    "name": "surface_elevation_change_sec_1993_1997"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_1994_1998",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,2]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_1994_1998.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_1994_1998.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 1994-1998"
-                    },
-                    "name": "surface_elevation_change_sec_1994_1998"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_1995_1999",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,3]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_1995_1999.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_1995_1999.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 1995-1999"
-                    },
-                    "name": "surface_elevation_change_sec_1995_1999"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_1996_2000",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,4]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_1996_2000.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_1996_2000.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 1996-2000"
-                    },
-                    "name": "surface_elevation_change_sec_1996_2000"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_1997_2001",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,5]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_1997_2001.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_1997_2001.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 1997-2001"
-                    },
-                    "name": "surface_elevation_change_sec_1997_2001"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_1998_2002",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,6]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_1998_2002.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_1998_2002.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 1998-2002"
-                    },
-                    "name": "surface_elevation_change_sec_1998_2002"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_1999_2003",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,7]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_1999_2003.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_1999_2003.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 1999-2003"
-                    },
-                    "name": "surface_elevation_change_sec_1999_2003"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2000_2004",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,8]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2000_2004.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2000_2004.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2000-2004"
-                    },
-                    "name": "surface_elevation_change_sec_2000_2004"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2001_2005",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,9]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2001_2005.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2001_2005.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2001-2005"
-                    },
-                    "name": "surface_elevation_change_sec_2001_2005"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2002_2006",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,10]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2002_2006.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2002_2006.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2002-2006"
-                    },
-                    "name": "surface_elevation_change_sec_2002_2006"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2003_2007",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,11]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2003_2007.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2003_2007.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2003-2007"
-                    },
-                    "name": "surface_elevation_change_sec_2003_2007"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2004_2008",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,12]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2004_2008.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2004_2008.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2004-2008"
-                    },
-                    "name": "surface_elevation_change_sec_2004_2008"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2005_2009",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,13]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2005_2009.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2005_2009.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2005-2009"
-                    },
-                    "name": "surface_elevation_change_sec_2005_2009"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2006_2010",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,14]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2006_2010.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2006_2010.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2006-2010"
-                    },
-                    "name": "surface_elevation_change_sec_2006_2010"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2007_2011",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,15]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2007_2011.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2007_2011.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2007-2011"
-                    },
-                    "name": "surface_elevation_change_sec_2007_2011"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2008_2012",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,16]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2008_2012.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2008_2012.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2008-2012"
-                    },
-                    "name": "surface_elevation_change_sec_2008_2012"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2009_2013",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,17]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2009_2013.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2009_2013.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2009-2013"
-                    },
-                    "name": "surface_elevation_change_sec_2009_2013"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2010_2014",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,18]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2010_2014.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2010_2014.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2010-2014"
-                    },
-                    "name": "surface_elevation_change_sec_2010_2014"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2011_2015",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,19]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2011_2015.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2011_2015.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2011-2015"
-                    },
-                    "name": "surface_elevation_change_sec_2011_2015"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2012_2016",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,20]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2012_2016.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2012_2016.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2012-2016"
-                    },
-                    "name": "surface_elevation_change_sec_2012_2016"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2013_2017",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,21]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2013_2017.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2013_2017.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2013-2017"
-                    },
-                    "name": "surface_elevation_change_sec_2013_2017"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2014_2018",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,22]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2014_2018.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2014_2018.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2014-2018"
-                    },
-                    "name": "surface_elevation_change_sec_2014_2018"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
-                      "id": "surface_elevation_change_sec_2015_2019",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "esa_cci_surface_elevation_change"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdalmdimtranslate",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-array",
-                            "name=SEC,view=[:,:,23]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
-                            "{output_dir}/sec_2015_2019.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/sec_2015_2019.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "surface_elevation_change",
-                      "tags": [],
-                      "title": "Surface elevation change 2015-2019"
-                    },
-                    "name": "surface_elevation_change_sec_2015_2019"
-                  }
-                ],
-                "name": "Observations",
-                "settings": {
-                  "expand": false,
-                  "order": null,
-                  "show": false
-                }
-              },
-              {
-                "children": [
-                  {
-                    "layer_cfg": {
                       "description": "Error of rate of surface elevation change in meters per year.",
                       "id": "surface_elevation_change_secer_1992_1996",
                       "in_package": true,
@@ -9868,14 +8634,1248 @@
                   "order": null,
                   "show": false
                 }
+              },
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_1992_1996",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,0]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_1992_1996.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_1992_1996.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 1992-1996"
+                    },
+                    "name": "surface_elevation_change_sec_1992_1996"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_1993_1997",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,1]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_1993_1997.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_1993_1997.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 1993-1997"
+                    },
+                    "name": "surface_elevation_change_sec_1993_1997"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_1994_1998",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,2]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_1994_1998.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_1994_1998.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 1994-1998"
+                    },
+                    "name": "surface_elevation_change_sec_1994_1998"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_1995_1999",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,3]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_1995_1999.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_1995_1999.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 1995-1999"
+                    },
+                    "name": "surface_elevation_change_sec_1995_1999"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_1996_2000",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,4]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_1996_2000.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_1996_2000.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 1996-2000"
+                    },
+                    "name": "surface_elevation_change_sec_1996_2000"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_1997_2001",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,5]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_1997_2001.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_1997_2001.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 1997-2001"
+                    },
+                    "name": "surface_elevation_change_sec_1997_2001"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_1998_2002",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,6]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_1998_2002.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_1998_2002.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 1998-2002"
+                    },
+                    "name": "surface_elevation_change_sec_1998_2002"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_1999_2003",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,7]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_1999_2003.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_1999_2003.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 1999-2003"
+                    },
+                    "name": "surface_elevation_change_sec_1999_2003"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2000_2004",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,8]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2000_2004.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2000_2004.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2000-2004"
+                    },
+                    "name": "surface_elevation_change_sec_2000_2004"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2001_2005",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,9]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2001_2005.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2001_2005.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2001-2005"
+                    },
+                    "name": "surface_elevation_change_sec_2001_2005"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2002_2006",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,10]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2002_2006.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2002_2006.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2002-2006"
+                    },
+                    "name": "surface_elevation_change_sec_2002_2006"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2003_2007",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,11]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2003_2007.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2003_2007.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2003-2007"
+                    },
+                    "name": "surface_elevation_change_sec_2003_2007"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2004_2008",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,12]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2004_2008.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2004_2008.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2004-2008"
+                    },
+                    "name": "surface_elevation_change_sec_2004_2008"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2005_2009",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,13]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2005_2009.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2005_2009.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2005-2009"
+                    },
+                    "name": "surface_elevation_change_sec_2005_2009"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2006_2010",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,14]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2006_2010.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2006_2010.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2006-2010"
+                    },
+                    "name": "surface_elevation_change_sec_2006_2010"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2007_2011",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,15]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2007_2011.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2007_2011.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2007-2011"
+                    },
+                    "name": "surface_elevation_change_sec_2007_2011"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2008_2012",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,16]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2008_2012.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2008_2012.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2008-2012"
+                    },
+                    "name": "surface_elevation_change_sec_2008_2012"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2009_2013",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,17]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2009_2013.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2009_2013.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2009-2013"
+                    },
+                    "name": "surface_elevation_change_sec_2009_2013"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2010_2014",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,18]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2010_2014.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2010_2014.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2010-2014"
+                    },
+                    "name": "surface_elevation_change_sec_2010_2014"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2011_2015",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,19]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2011_2015.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2011_2015.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2011-2015"
+                    },
+                    "name": "surface_elevation_change_sec_2011_2015"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2012_2016",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,20]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2012_2016.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2012_2016.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2012-2016"
+                    },
+                    "name": "surface_elevation_change_sec_2012_2016"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2013_2017",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,21]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2013_2017.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2013_2017.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2013-2017"
+                    },
+                    "name": "surface_elevation_change_sec_2013_2017"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2014_2018",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,22]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2014_2018.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2014_2018.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2014-2018"
+                    },
+                    "name": "surface_elevation_change_sec_2014_2018"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.",
+                      "id": "surface_elevation_change_sec_2015_2019",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,23]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{output_dir}/sec_2015_2019.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/sec_2015_2019.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2015-2019"
+                    },
+                    "name": "surface_elevation_change_sec_2015_2019"
+                  }
+                ],
+                "name": "Observations",
+                "settings": {
+                  "expand": false,
+                  "order": null,
+                  "show": false
+                }
               }
             ],
             "name": "Surface elevation change",
             "settings": {
               "expand": false,
               "order": [
-                "Observations",
-                "Errors"
+                "Errors",
+                "Observations"
               ],
               "show": false
             }
