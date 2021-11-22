@@ -35,7 +35,7 @@ read-write.
 data/working-storage/fetch-datasets
 ```
 
-Datasets are fetched for their original locations and written to this
+Datasets are fetched from their original locations and written to this
 directory.
 
 
