@@ -65,11 +65,11 @@ Finalized layers and projects are stored in these directories.
 data/private-archive
 ```
 
-While we prefer to only include publicly-archived data, we do have some
-privately archived data that we've sourced by e-mailing scientists or manually
-interacting with machine-unfriendly systems. These datasets have an
-`access_instructions` attribute in configuration that describes how the data
-was acquired.
+While this project prefers to only include publicly-archived and
+machine-accessible data, we do have some privately-archived data that we've
+sourced by e-mailing scientists or manually interacting with machine-unfriendly
+systems. These datasets have an `access_instructions` attribute in
+configuration that describes how the data was acquired.
 
 May be read-only.
 
