@@ -13,7 +13,6 @@ bed_datasets = {
             """Ice thickness in meters. Mass conservation source data provided
             by Mathieu Morlighem."""
         ),
-        'dtype_is_float': True,
     },
     'surface': {
         'title': 'Surface elevation',
@@ -21,12 +20,10 @@ bed_datasets = {
             """Surface elevation in meters. Source is GIMP DEM v2.1
             (http://bprc.osu.edu/GDG/gimpdem.php)."""
         ),
-        'dtype_is_float': True,
     },
     'bed': {
         'title': 'Bedrock elevation',
         'description': 'Bedrock elevation in meters.',
-        'dtype_is_float': True,
     },
     'errbed': {
         'title': 'Bedrock elevation/ice thickness error',
@@ -34,7 +31,6 @@ bed_datasets = {
             """Error estimate for Greenland bed elevation and ice thickness in
             meters."""
         ),
-        'dtype_is_float': False,
     },
 }
 
@@ -58,7 +54,7 @@ layers = [
             *compress_and_add_overviews(
                 input_file='{input_dir}/warped_and_cut.tif',
                 output_file='{output_dir}/overviews.tif',
-                dtype_is_float=params['dtype_is_float'],
+                dtype_is_float=False if key == 'errbed' else True,
             ),
         ],
     )
