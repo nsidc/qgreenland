@@ -2,6 +2,7 @@
 
 - Improved raster compression.
 - Convert RACMO promice mask layers to `Byte` data type.
+- Update Bedmachine dataset metadata to reflect new v4 data.
 
 
 # v2.0.0alpha2 (2021-11-22)
