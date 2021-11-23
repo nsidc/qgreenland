@@ -70,16 +70,12 @@ layer = Layer(
         #         ],
         #     ),
         #     # Compress the data with a lossless compression algorithm.
-        #     *compress_raster(
+        #     # Add raster overviews (tile pyramids) to the data for better
+        #     # performance when zooming/panning.
+        #     *compress_and_add_overviews(
         #         input_file='{input_dir}/arctic_dem.tif',
         #         output_file='{output_dir}/arctic_dem.tif',
         #         dtype_is_float=False,
-        #     ),
-        #     # Add raster overviews (tile pyramids) to the data for better
-        #     # performance when zooming/panning.
-        #     *build_overviews(
-        #         input_file='{input_dir}/arctic_dem.tif',
-        #         output_file='{output_dir}/arctic_dem.tif',
         #     ),
     ],
 )
