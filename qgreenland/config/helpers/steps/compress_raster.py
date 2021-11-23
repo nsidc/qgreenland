@@ -6,7 +6,6 @@ def compress_raster(
     *,
     input_file: str,
     output_file: str,
-    dtype_is_float: bool,
 ) -> list[AnyStep]:
     predictor_value = 3 if dtype_is_float else 2
 
