@@ -1,6 +1,9 @@
 from qgreenland.config.datasets.arctic_vegetation_biomass import (
     arctic_vegetation_biomass_2010 as dataset,
 )
+from qgreenland.config.helpers.steps.compress_and_add_overviews import (
+    compress_and_add_overviews,
+)
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -28,6 +31,11 @@ vegetation_biomass_2010 = Layer(
             warp_args=(
                 '-tr', '12400', '12400',
             ),
+        ),
+        *compress_and_add_overviews(
+            input_file='{input_dir}/warped.tif',
+            output_file='{output_dir}/compressed.tif',
+            dtype_is_float=True,
         ),
     ],
 )

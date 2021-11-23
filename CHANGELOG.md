@@ -1,3 +1,8 @@
+# v2.0.0alpha3 (2021-11-23)
+
+- Improved raster compression.
+
+
 # v2.0.0alpha2 (2021-11-22)
 
 - Add scalebar to map viewport in lower-right corner.

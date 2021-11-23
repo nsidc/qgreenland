@@ -1,6 +1,7 @@
 from qgreenland.config.datasets.racmo import racmo_qgreenland_jan2021 as dataset
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
-from qgreenland.config.helpers.steps.compress_raster import compress_raster
+from qgreenland.config.helpers.steps.compress_and_add_overviews import (
+    compress_and_add_overviews,
+)
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
@@ -61,9 +62,10 @@ def _make_racmo_wind_speed() -> Layer:
                 output_file='{output_dir}/racmo_wind_speed.tif',
                 cut_file=project.boundaries['data'].filepath,
             ),
-            *build_overviews(
+            *compress_and_add_overviews(
                 input_file='{input_dir}/racmo_wind_speed.tif',
                 output_file='{output_dir}/racmo_wind_speed.tif',
+                dtype_is_float=True,
             ),
         ],
     )
@@ -185,13 +187,10 @@ def _make_masked_racmo_layer(
                     *gdal_edit_args,
                 ],
             ),
-            *compress_raster(
+            *compress_and_add_overviews(
                 input_file='{input_dir}/edited.tif',
                 output_file='{output_dir}/' + f'racmo_{variable}.tif',
-            ),
-            *build_overviews(
-                input_file='{input_dir}/' + f'racmo_{variable}.tif',
-                output_file='{output_dir}/' + f'racmo_{variable}.tif',
+                dtype_is_float=True,
             ),
         ],
     )
@@ -282,14 +281,10 @@ def make_racmo_supplemental_layers() -> list[Layer]:
                             '{output_dir}/' + f"{params['variable']}.tif",
                         ],
                     ),
-                    *compress_raster(
+                    *compress_and_add_overviews(
                         input_file='{input_dir}/' + f"{params['variable']}.tif",
                         output_file='{output_dir}/' + f'{layer_id}.tif',
-                    ),
-                    *build_overviews(
-                        input_file='{input_dir}/' + f'{layer_id}.tif',
-                        output_file='{output_dir}/' + f'{layer_id}.tif',
-                        resampling_algorithm='nearest',
+                        dtype_is_float=True,
                     ),
                 ],
             ),
