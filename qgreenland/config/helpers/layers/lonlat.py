@@ -48,7 +48,6 @@ def _make_lonlat_layer(
                 args=[
                     'ogr2ogr',
                     *STANDARD_OGR2OGR_ARGS,
-                    'EPSG:3413',
                     '-segmentize', segment_max_distance,
                     'where "wgs84Decimal >= 40"',
                     '{output_dir}/clipped.gpkg',
