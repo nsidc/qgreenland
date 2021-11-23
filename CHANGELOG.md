@@ -1,11 +1,7 @@
-# NEXT_VERSION
-
-- Cast RACMO promice mask layers to `Byte` data type.
-
-
 # v2.0.0alpha3 (2021-11-23)
 
 - Improved raster compression.
+- Convert RACMO promice mask layers to `Byte` data type.
 
 
 # v2.0.0alpha2 (2021-11-22)
