@@ -73,6 +73,7 @@ layer = Layer(
         #     *compress_raster(
         #         input_file='{input_dir}/arctic_dem.tif',
         #         output_file='{output_dir}/arctic_dem.tif',
+        #         dtype_is_float=False,
         #     ),
         #     # Add raster overviews (tile pyramids) to the data for better
         #     # performance when zooming/panning.
