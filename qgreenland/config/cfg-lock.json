@@ -2072,7 +2072,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2111,7 +2112,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2150,7 +2152,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2189,7 +2192,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2228,7 +2232,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2267,7 +2272,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2306,7 +2312,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2345,7 +2352,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2384,7 +2392,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "1",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2443,7 +2452,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2482,7 +2492,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2521,7 +2532,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2560,7 +2572,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2599,7 +2612,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2638,7 +2652,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2677,7 +2692,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2716,7 +2732,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2755,7 +2772,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2794,7 +2812,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
@@ -2833,7 +2852,8 @@
                         "EPSG:3413",
                         "-segmentize",
                         "100",
-                        "-where \"wgs84Decimal >= 40\"",
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
                       ],
