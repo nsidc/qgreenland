@@ -1,8 +1,11 @@
 # v2.0.0alpha3 (2021-11-23)
 
 - Improved raster compression.
-- Convert RACMO promice mask layers to `Byte` data type.
-- Update Bedmachine dataset metadata to reflect new v4 data.
+- Layer Updates:
+  - Convert RACMO promice mask layers to `Byte` data type.
+  - Update Bedmachine dataset metadata to reflect new v4 data.
+  - Convert "Likely basal thermal state June 23 1993 - April 26 2013 (5km)"
+    layer to `Int16` data type.
 
 
 # v2.0.0alpha2 (2021-11-22)
