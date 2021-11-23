@@ -1,6 +1,7 @@
 from qgreenland.config.datasets.geothermal_heat_flow import (
     geothermal_heat_flow as dataset,
 )
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
@@ -27,6 +28,11 @@ geothermal_heat_flow = Layer(
             input_file='{input_dir}/geothermal_heat_flow_map_55km.nc',
             output_file='{output_dir}/geothermal_heat_flow_map_55km.tif',
             cut_file=project.boundaries['data'].filepath,
+        ),
+        *compress_and_add_overviews(
+            input_file='{input_dir}/geothermal_heat_flow_map_55km.tif',
+            output_file='{output_dir}/geothermal_heat_flow_map_55km.tif',
+            dtype_is_float=True,
         ),
     ],
 )

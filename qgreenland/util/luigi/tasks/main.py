@@ -10,7 +10,6 @@ from pathlib import Path
 import luigi
 
 from qgreenland.constants.paths import WIP_LAYERS_DIR
-from qgreenland.models.config.step import AnyStep
 from qgreenland.runners import step_runner
 from qgreenland.util.config.config import get_config
 from qgreenland.util.layer import (
@@ -19,6 +18,7 @@ from qgreenland.util.layer import (
     get_layer_release_dir,
 )
 from qgreenland.util.luigi.target import temporary_path_dir
+from qgreenland.util.provenance import steps_to_provenance_text
 from qgreenland.util.tree import leaf_lookup
 
 
@@ -167,9 +167,3 @@ class FinalizeTask(QgrLayerTask):
                 provenance_file.write(
                     steps_to_provenance_text(self.layer_cfg.steps),
                 )
-
-
-def steps_to_provenance_text(steps: list[AnyStep]) -> str:
-    steps_as_text = [step.provenance for step in steps]
-
-    return '\n\n'.join(steps_as_text)

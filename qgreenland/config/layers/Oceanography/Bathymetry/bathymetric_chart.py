@@ -1,6 +1,6 @@
 from qgreenland.config.datasets.bathymetric_chart import bathymetric_chart as dataset
 from qgreenland.config.helpers.layers.geological_map import make_layer
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -55,9 +55,10 @@ bathymetric_raster = Layer(
             ),
             cut_file=project.boundaries['background'].filepath,
         ),
-        *build_overviews(
+        *compress_and_add_overviews(
             input_file='{input_dir}/bathymetric_chart.tif',
             output_file='{output_dir}/bathymetric_chart.tif',
+            dtype_is_float=True,
         ),
     ],
 )

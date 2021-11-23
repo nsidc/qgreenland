@@ -176,12 +176,12 @@
       },
       "id": "bedmachine",
       "metadata": {
-        "abstract": "This data set contains a bed topography/bathymetry map of Greenland based on\nmass conservation, multi-beam data, and other techniques. It also includes\nsurface elevation and ice thickness data, as well as an ice/ocean/land mask.",
+        "abstract": "This data set contains a bed topography/bathymetry map of Greenland based on\nmass conservation, multi-beam data, and other techniques. It also includes\nsurface elevation and ice thickness data, as well as an ice/ocean/land mask.\n\nAs a condition of using these data, we request that you acknowledge the\nauthor(s) of this data set by referencing the following peer-reviewed\npublication.\n\nMorlighem, M., C. Williams, E. Rignot, L. An, J. E. Arndt, J. Bamber,\nG. Catania, N. Chauch\u00e9, J. A. Dowdeswell, B. Dorschel, I. Fenty, K. Hogan,\nI. Howat, A. Hubbard, M. Jakobsson, T. M. Jordan, K. K. Kjeldsen, R. Millan,\nL. Mayer, J. Mouginot, B. No\u00ebl, C. O'Cofaigh, S. J. Palmer, S. Rysgaard,\nH. Seroussi, M. J. Siegert, P. Slabon, F. Straneo, M. R. van den Broeke,\nW. Weinrebe, M. Wood, and K. Zinglersen. 2017. BedMachine v3: Complete bed\ntopography and ocean bathymetry mapping of Greenland from multi-beam echo\nsounding combined with mass conservation, Geophysical Research\nLetters. 44. . https://doi.org/10.1002/2017GL074954 .",
         "citation": {
-          "text": "Morlighem, M. et al. 2017, updated 2018. IceBridge BedMachine Greenland, Version\n3. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice\nData Center Distributed Active Archive Center. doi:\nhttps://doi.org/10.5067/2CIX82HUV88Y. 2020/02/07.",
-          "url": "https://doi.org/10.5067/2CIX82HUV88Y"
+          "text": "Morlighem, M. et al. 2021, updated 2021. IceBridge BedMachine Greenland, Version\n4. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice\nData Center Distributed Active Archive Center. doi:\nhttps://doi.org/10.5067/VLJ5YXKCNGXO. 2021/11/23.",
+          "url": "https://doi.org/10.5067/VLJ5YXKCNGXO"
         },
-        "title": "IceBridge BedMachine Greenland, Version 3"
+        "title": "IceBridge BedMachine Greenland, Version 4"
       }
     },
     "caff_char": {
@@ -4554,6 +4554,35 @@
                         "{output_dir}/warped.tif"
                       ],
                       "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/compressed.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/compressed.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
                     }
                   ],
                   "style": "vegetation_biomass",
@@ -5448,8 +5477,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/racmo_wind_speed.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/racmo_wind_speed.tif",
                         "&&",
                         "gdaladdo",
@@ -5526,15 +5567,17 @@
                         "gdal_translate",
                         "-co",
                         "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/edited.tif",
-                        "{output_dir}/racmo_precip.tif"
+                        "{output_dir}/compressed.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
                         "cp",
-                        "{input_dir}/racmo_precip.tif",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/racmo_precip.tif",
                         "&&",
                         "gdaladdo",
@@ -5611,15 +5654,17 @@
                         "gdal_translate",
                         "-co",
                         "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/edited.tif",
-                        "{output_dir}/racmo_snowfall.tif"
+                        "{output_dir}/compressed.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
                         "cp",
-                        "{input_dir}/racmo_snowfall.tif",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/racmo_snowfall.tif",
                         "&&",
                         "gdaladdo",
@@ -5696,15 +5741,17 @@
                         "gdal_translate",
                         "-co",
                         "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/edited.tif",
-                        "{output_dir}/racmo_snowmelt.tif"
+                        "{output_dir}/compressed.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
                         "cp",
-                        "{input_dir}/racmo_snowmelt.tif",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/racmo_snowmelt.tif",
                         "&&",
                         "gdaladdo",
@@ -5781,15 +5828,17 @@
                         "gdal_translate",
                         "-co",
                         "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/edited.tif",
-                        "{output_dir}/racmo_runoff.tif"
+                        "{output_dir}/compressed.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
                         "cp",
-                        "{input_dir}/racmo_runoff.tif",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/racmo_runoff.tif",
                         "&&",
                         "gdaladdo",
@@ -5866,15 +5915,17 @@
                         "gdal_translate",
                         "-co",
                         "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/edited.tif",
-                        "{output_dir}/racmo_subl.tif"
+                        "{output_dir}/compressed.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
                         "cp",
-                        "{input_dir}/racmo_subl.tif",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/racmo_subl.tif",
                         "&&",
                         "gdaladdo",
@@ -5951,15 +6002,17 @@
                         "gdal_translate",
                         "-co",
                         "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/edited.tif",
-                        "{output_dir}/racmo_sndiv.tif"
+                        "{output_dir}/compressed.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
                         "cp",
-                        "{input_dir}/racmo_sndiv.tif",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/racmo_sndiv.tif",
                         "&&",
                         "gdaladdo",
@@ -6036,15 +6089,17 @@
                         "gdal_translate",
                         "-co",
                         "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/edited.tif",
-                        "{output_dir}/racmo_t2m.tif"
+                        "{output_dir}/compressed.tif"
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
                         "cp",
-                        "{input_dir}/racmo_t2m.tif",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/racmo_t2m.tif",
                         "&&",
                         "gdaladdo",
@@ -6099,6 +6154,10 @@
                             "EPSG:3413",
                             "-a_ullr",
                             "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "-ot",
+                            "Byte",
+                            "-a_nodata",
+                            "none",
                             "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask",
                             "{output_dir}/Promicemask.tif"
                           ],
@@ -6109,20 +6168,22 @@
                             "gdal_translate",
                             "-co",
                             "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/Promicemask.tif",
-                            "{output_dir}/racmo_promicemask.tif"
+                            "{output_dir}/compressed.tif"
                           ],
                           "type": "command"
                         },
                         {
                           "args": [
                             "cp",
-                            "{input_dir}/racmo_promicemask.tif",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/racmo_promicemask.tif",
                             "&&",
                             "gdaladdo",
                             "-r",
-                            "nearest",
+                            "average",
                             "{output_dir}/racmo_promicemask.tif",
                             "2",
                             "4",
@@ -6170,6 +6231,10 @@
                             "EPSG:3413",
                             "-a_ullr",
                             "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "-ot",
+                            "Byte",
+                            "-a_nodata",
+                            "none",
                             "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc:grounded_ice",
                             "{output_dir}/grounded_ice.tif"
                           ],
@@ -6180,20 +6245,22 @@
                             "gdal_translate",
                             "-co",
                             "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/grounded_ice.tif",
-                            "{output_dir}/racmo_grounded_ice.tif"
+                            "{output_dir}/compressed.tif"
                           ],
                           "type": "command"
                         },
                         {
                           "args": [
                             "cp",
-                            "{input_dir}/racmo_grounded_ice.tif",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/racmo_grounded_ice.tif",
                             "&&",
                             "gdaladdo",
                             "-r",
-                            "nearest",
+                            "average",
                             "{output_dir}/racmo_grounded_ice.tif",
                             "2",
                             "4",
@@ -6267,15 +6334,17 @@
                             "gdal_translate",
                             "-co",
                             "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/edited.tif",
-                            "{output_dir}/racmo_Topography.tif"
+                            "{output_dir}/compressed.tif"
                           ],
                           "type": "command"
                         },
                         {
                           "args": [
                             "cp",
-                            "{input_dir}/racmo_Topography.tif",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/racmo_Topography.tif",
                             "&&",
                             "gdaladdo",
@@ -6384,8 +6453,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/ground_temperature.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/ground_temperature.tif",
                     "&&",
                     "gdaladdo",
@@ -6453,8 +6534,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/ground_temperature_sd.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/ground_temperature_sd.tif",
                     "&&",
                     "gdaladdo",
@@ -6522,8 +6615,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/permafrost_probability.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/permafrost_probability.tif",
                     "&&",
                     "gdaladdo",
@@ -7417,8 +7522,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/warped.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/final.tif",
                     "&&",
                     "gdaladdo",
@@ -7472,8 +7589,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_1992_1996.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7523,8 +7652,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_1993_1997.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7574,8 +7715,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_1994_1998.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7625,8 +7778,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_1995_1999.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7676,8 +7841,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_1996_2000.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7727,8 +7904,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_1997_2001.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7778,8 +7967,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_1998_2002.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7829,8 +8030,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_1999_2003.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7880,8 +8093,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2000_2004.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7931,8 +8156,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2001_2005.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -7982,8 +8219,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2002_2006.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8033,8 +8282,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2003_2007.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8084,8 +8345,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2004_2008.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8135,8 +8408,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2005_2009.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8186,8 +8471,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2006_2010.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8237,8 +8534,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2007_2011.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8288,8 +8597,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2008_2012.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8339,8 +8660,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2009_2013.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8390,8 +8723,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2010_2014.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8441,8 +8786,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2011_2015.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8492,8 +8849,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2012_2016.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8543,8 +8912,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2013_2017.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8594,8 +8975,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2014_2018.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8645,8 +9038,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/secer_2015_2019.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8706,8 +9111,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_1992_1996.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8757,8 +9174,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_1993_1997.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8808,8 +9237,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_1994_1998.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8859,8 +9300,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_1995_1999.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8910,8 +9363,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_1996_2000.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -8961,8 +9426,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_1997_2001.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9012,8 +9489,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_1998_2002.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9063,8 +9552,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_1999_2003.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9114,8 +9615,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2000_2004.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9165,8 +9678,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2001_2005.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9216,8 +9741,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2002_2006.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9267,8 +9804,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2003_2007.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9318,8 +9867,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2004_2008.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9369,8 +9930,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2005_2009.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9420,8 +9993,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2006_2010.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9471,8 +10056,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2007_2011.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9522,8 +10119,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2008_2012.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9573,8 +10182,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2009_2013.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9624,8 +10245,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2010_2014.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9675,8 +10308,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2011_2015.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9726,8 +10371,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2012_2016.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9777,8 +10434,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2013_2017.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9828,8 +10497,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2014_2018.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -9879,8 +10560,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/sec_2015_2019.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -10469,8 +11162,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/velocity_mosaic.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/velocity_mosaic.tif",
                             "&&",
                             "gdaladdo",
@@ -10545,8 +11250,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/velocity_mosaic_error.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/velocity_mosaic_error.tif",
                             "&&",
                             "gdaladdo",
@@ -10609,8 +11326,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/velocity_mosaic_ice_mask.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/velocity_mosaic_ice_mask.tif",
                             "&&",
                             "gdaladdo",
@@ -10697,8 +11426,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/esa_cci_velocity_magnitude.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/esa_cci_velocity_magnitude.tif",
                             "&&",
                             "gdaladdo",
@@ -10771,8 +11512,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
                             "{input_dir}/esa_cci_velocity_vertical.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/esa_cci_velocity_vertical.tif",
                             "&&",
                             "gdaladdo",
@@ -10859,20 +11612,22 @@
                     "gdal_translate",
                     "-co",
                     "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/basal_thermal_state.tif",
-                    "{output_dir}/basal_thermal_state.tif"
+                    "{output_dir}/compressed.tif"
                   ],
                   "type": "command"
                 },
                 {
                   "args": [
                     "cp",
-                    "{input_dir}/basal_thermal_state.tif",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/basal_thermal_state.tif",
                     "&&",
                     "gdaladdo",
                     "-r",
-                    "nearest",
+                    "average",
                     "{output_dir}/basal_thermal_state.tif",
                     "2",
                     "4",
@@ -11315,6 +12070,35 @@
                             "{output_dir}/geothermal_heat_flow_map_55km.tif"
                           ],
                           "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
+                            "{input_dir}/geothermal_heat_flow_map_55km.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
+                            "{output_dir}/geothermal_heat_flow_map_55km.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/geothermal_heat_flow_map_55km.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
                         }
                       ],
                       "style": "geothermal_heat_flow_map",
@@ -11368,8 +12152,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -16524,8 +17320,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/bouguer_gravity_anomaly.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/bouguer_gravity_anomaly.tif",
                     "&&",
                     "gdaladdo",
@@ -16601,8 +17409,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/faye_gravity_anomaly.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/faye_gravity_anomaly.tif",
                     "&&",
                     "gdaladdo",
@@ -16678,8 +17498,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/ggeoid16.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/ggeoid16.tif",
                     "&&",
                     "gdaladdo",
@@ -17740,8 +18572,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -17830,8 +18674,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -17920,8 +18776,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18010,8 +18878,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18100,8 +18980,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18190,8 +19082,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18280,8 +19184,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18370,8 +19286,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18460,8 +19388,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18550,8 +19490,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18640,8 +19592,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18752,8 +19716,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18842,8 +19818,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -18932,8 +19920,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19022,8 +20022,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19112,8 +20124,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19202,8 +20226,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19292,8 +20328,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19382,8 +20430,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19472,8 +20532,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19562,8 +20634,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19652,8 +20736,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19762,8 +20858,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19837,8 +20945,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19912,8 +21032,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -19987,8 +21119,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20062,8 +21206,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20137,8 +21293,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20212,8 +21380,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20287,8 +21467,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20362,8 +21554,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20437,8 +21641,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20512,8 +21728,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20587,8 +21815,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20672,8 +21912,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20747,8 +21999,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20822,8 +22086,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20897,8 +22173,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -20972,8 +22260,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -21047,8 +22347,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -21122,8 +22434,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -21197,8 +22521,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -21272,8 +22608,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -21347,8 +22695,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -21422,8 +22782,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -21497,8 +22869,20 @@
                         },
                         {
                           "args": [
-                            "cp",
+                            "gdal_translate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
                             "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
                             "{output_dir}/overviews.tif",
                             "&&",
                             "gdaladdo",
@@ -21777,8 +23161,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -21859,8 +23255,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -21941,8 +23349,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -22023,8 +23443,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -22105,8 +23537,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -22187,8 +23631,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -22269,8 +23725,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -22351,8 +23819,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/final.tif",
                         "&&",
                         "gdaladdo",
@@ -22433,8 +23913,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/bathymetric_chart.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/bathymetric_chart.tif",
                         "&&",
                         "gdaladdo",
@@ -22563,8 +24055,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/extracted.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/final.tif",
                     "&&",
                     "gdaladdo",
@@ -22624,8 +24128,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/extracted.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/final.tif",
                     "&&",
                     "gdaladdo",
@@ -22685,8 +24201,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=3",
                     "{input_dir}/extracted.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/final.tif",
                     "&&",
                     "gdaladdo",
@@ -22761,8 +24289,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/overviews.tif",
                         "&&",
                         "gdaladdo",
@@ -22827,8 +24367,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=2",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/overviews.tif",
                         "&&",
                         "gdaladdo",
@@ -22893,8 +24445,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/overviews.tif",
                         "&&",
                         "gdaladdo",
@@ -22959,8 +24523,20 @@
                     },
                     {
                       "args": [
-                        "cp",
+                        "gdal_translate",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
                         "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
                         "{output_dir}/overviews.tif",
                         "&&",
                         "gdaladdo",
@@ -23057,15 +24633,17 @@
                     "gdal_translate",
                     "-co",
                     "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=2",
                     "{input_dir}/arctic_dem.tif",
-                    "{output_dir}/arctic_dem.tif"
+                    "{output_dir}/compressed.tif"
                   ],
                   "type": "command"
                 },
                 {
                   "args": [
                     "cp",
-                    "{input_dir}/arctic_dem.tif",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/arctic_dem.tif",
                     "&&",
                     "gdaladdo",
@@ -23103,8 +24681,20 @@
               "steps": [
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=2",
                     "{input_dir}/dms_gtk_topo.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/final.tif",
                     "&&",
                     "gdaladdo",
@@ -23379,8 +24969,20 @@
                 },
                 {
                   "args": [
-                    "cp",
+                    "gdal_translate",
+                    "-co",
+                    "COMPRESS=DEFLATE",
+                    "-co",
+                    "PREDICTOR=2",
                     "{input_dir}/warped_and_cut.tif",
+                    "{output_dir}/compressed.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "cp",
+                    "{input_dir}/compressed.tif",
                     "{output_dir}/overviews.tif",
                     "&&",
                     "gdaladdo",

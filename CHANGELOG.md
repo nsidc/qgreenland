@@ -1,4 +1,11 @@
-# NEXT_VERSION
+# v2.0.0alpha3 (2021-11-23)
+
+- Improved raster compression.
+- Convert RACMO promice mask layers to `Byte` data type.
+- Update Bedmachine dataset metadata to reflect new v4 data.
+
+
+# v2.0.0alpha2 (2021-11-22)
 
 - Add scalebar to map viewport in lower-right corner.
 - Update clip step in lonlat.py to solve clipping issue on lat layers

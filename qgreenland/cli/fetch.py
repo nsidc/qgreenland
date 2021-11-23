@@ -23,9 +23,7 @@ from qgreenland.util.luigi import fetch_tasks_from_dataset
     default=4, show_default=True,
     help='Number of workers to use.',
 )
-@click.argument(
-    'pattern',
-)
+@click.argument('pattern')
 def fetch(pattern, dry_run, workers) -> None:
     """Fetch assets for datasets matching PATTERN."""
     init_config()

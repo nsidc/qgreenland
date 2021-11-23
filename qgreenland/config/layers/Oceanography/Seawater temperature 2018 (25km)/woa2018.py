@@ -8,7 +8,9 @@ from qgreenland.config.helpers.layers.woa2018 import (
     depth_str,
     id_str,
 )
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import (
+    compress_and_add_overviews,
+)
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -55,9 +57,10 @@ layers = [
                     ),
                 ),
             ),
-            *build_overviews(
+            *compress_and_add_overviews(
                 input_file='{input_dir}/warped_and_cut.tif',
                 output_file='{output_dir}/final.tif',
+                dtype_is_float=True,
             ),
         ],
     ) for season, depth in COMBINATIONS
