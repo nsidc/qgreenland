@@ -11632,6 +11632,20 @@
                 },
                 {
                   "args": [
+                    "gdal_calc.py",
+                    "--type",
+                    "Int16",
+                    "--NoDataValue",
+                    "3",
+                    "--calc=\"nan_to_num(A, nan=3)\"",
+                    "-A",
+                    "{input_dir}/basal_thermal_state.tif",
+                    "--outfile={output_dir}/basal_thermal_state.tif"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
                     "cp",
                     "{input_dir}/basal_thermal_state.tif",
                     "{output_dir}/basal_thermal_state.tif",
@@ -11641,8 +11655,6 @@
                     "-632500.0 -667500.0 847500.0 -3342500.0",
                     "-a_srs",
                     "EPSG:3413",
-                    "-a_nodata",
-                    "3",
                     "{output_dir}/basal_thermal_state.tif"
                   ],
                   "type": "command"
@@ -11653,7 +11665,7 @@
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
-                    "PREDICTOR=3",
+                    "PREDICTOR=2",
                     "{input_dir}/basal_thermal_state.tif",
                     "{output_dir}/compressed.tif"
                   ],
