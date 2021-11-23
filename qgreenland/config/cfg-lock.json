@@ -2070,13 +2070,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_0_25_degree.gpkg",
-                        "{input_dir}/latitudes_0_25_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2111,13 +2110,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_0_5_degree.gpkg",
-                        "{input_dir}/latitudes_0_5_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2152,13 +2150,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_1_degree.gpkg",
-                        "{input_dir}/latitudes_1_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2193,13 +2190,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_2_degree.gpkg",
-                        "{input_dir}/latitudes_2_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2234,13 +2230,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_5_degree.gpkg",
-                        "{input_dir}/latitudes_5_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2275,13 +2270,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_10_degree.gpkg",
-                        "{input_dir}/latitudes_10_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2316,13 +2310,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_15_degree.gpkg",
-                        "{input_dir}/latitudes_15_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2357,13 +2350,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_20_degree.gpkg",
-                        "{input_dir}/latitudes_20_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2398,13 +2390,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "1",
-                        "{output_dir}/latitudes_30_degree.gpkg",
-                        "{input_dir}/latitudes_30_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2459,13 +2450,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_0_5_degree.gpkg",
-                        "{input_dir}/longitudes_0_5_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2500,13 +2490,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_1_degree.gpkg",
-                        "{input_dir}/longitudes_1_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2541,13 +2530,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_2_degree.gpkg",
-                        "{input_dir}/longitudes_2_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2582,13 +2570,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_3_degree.gpkg",
-                        "{input_dir}/longitudes_3_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2623,13 +2610,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_5_degree.gpkg",
-                        "{input_dir}/longitudes_5_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2664,13 +2650,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_10_degree.gpkg",
-                        "{input_dir}/longitudes_10_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2705,13 +2690,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_15_degree.gpkg",
-                        "{input_dir}/longitudes_15_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2746,13 +2730,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_20_degree.gpkg",
-                        "{input_dir}/longitudes_20_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2787,13 +2770,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_30_degree.gpkg",
-                        "{input_dir}/longitudes_30_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2828,13 +2810,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_45_degree.gpkg",
-                        "{input_dir}/longitudes_45_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }
@@ -2869,13 +2850,12 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
                         "-segmentize",
                         "100",
-                        "{output_dir}/longitudes_90_degree.gpkg",
-                        "{input_dir}/longitudes_90_degree.geojson"
+                        "-where",
+                        "\"wgs84Decimal >= 40\"",
+                        "{output_dir}/clipped.gpkg",
+                        "{input_dir}/*.geojson"
                       ],
                       "type": "command"
                     }

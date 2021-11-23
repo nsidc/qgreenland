@@ -1,3 +1,8 @@
+# NEXT_VERSION
+
+- Update clip step in lonlat.py to solve clipping issue on lat layers
+
+
 # v2.0.0alpha3 (2021-11-23)
 
 - Improved raster compression.

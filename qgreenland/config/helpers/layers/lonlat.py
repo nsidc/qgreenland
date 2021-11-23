@@ -1,11 +1,10 @@
 from typing import Literal, cast
 
 from qgreenland.config.datasets.lonlat import lonlat as dataset
-from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.config.project import project
+from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.models.config.asset import RepositoryAsset
 from qgreenland.models.config.layer import Layer, LayerInput
-
+from qgreenland.models.config.step import CommandStep
 
 lonlat_assets_sorted = sorted(
     dataset.assets.values(),
@@ -45,13 +44,14 @@ def _make_lonlat_layer(
             asset=asset,
         ),
         steps=[
-            *ogr2ogr(
-                input_file='{input_dir}/' + f'{asset.filepath.eval().name}',
-                output_file='{output_dir}/' + f'{asset.filepath.eval().stem}.gpkg',
-                boundary_filepath=project.boundaries['background'].filepath,
-                ogr2ogr_args=[
-                    '-segmentize',
-                    f'{segment_max_distance}',
+            CommandStep(
+                args=[
+                    'ogr2ogr',
+                    *STANDARD_OGR2OGR_ARGS,
+                    '-segmentize', segment_max_distance,
+                    '-where', '"wgs84Decimal >= 40"',
+                    '{output_dir}/clipped.gpkg',
+                    '{input_dir}/*.geojson',
                 ],
             ),
         ],
