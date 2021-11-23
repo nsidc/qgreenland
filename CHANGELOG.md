@@ -1,3 +1,8 @@
+# NEXT_VERSION
+
+- Update clip step in lonlat.py to solve clipping issue on lat layers
+
+
 # v2.0.0alpha3 (2021-11-23)
 
 - Improved raster compression.
@@ -8,7 +13,6 @@
 # v2.0.0alpha2 (2021-11-22)
 
 - Add scalebar to map viewport in lower-right corner.
-- Update clip step in lonlat.py to solve clipping issue on lat layers
 - Layer changes:
   - NEW:
     - "Geophysics/Heat flux/Flow from multiple observations (55km)"
