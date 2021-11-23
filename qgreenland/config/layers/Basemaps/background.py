@@ -1,5 +1,5 @@
 from qgreenland.config.datasets.background import background as background_dataset
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -32,9 +32,10 @@ background = Layer(
             ],
             cut_file='{assets_dir}/latitude_shape_40_degrees.geojson',
         ),
-        *build_overviews(
+        *compress_and_add_overviews(
             input_file='{input_dir}/warped_and_cut.tif',
             output_file='{output_dir}/overviews.tif',
+            dtype_is_float=False,
         ),
     ],
 )

@@ -1,5 +1,5 @@
 from qgreenland.config.datasets import bedmachine
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import Layer, LayerInput
 
@@ -13,6 +13,7 @@ bed_datasets = {
             """Ice thickness in meters. Mass conservation source data provided
             by Mathieu Morlighem."""
         ),
+        'dtype_is_float': True,
     },
     'surface': {
         'title': 'Surface elevation',
@@ -20,10 +21,12 @@ bed_datasets = {
             """Surface elevation in meters. Source is GIMP DEM v2.1
             (http://bprc.osu.edu/GDG/gimpdem.php)."""
         ),
+        'dtype_is_float': True,
     },
     'bed': {
         'title': 'Bedrock elevation',
         'description': 'Bedrock elevation in meters.',
+        'dtype_is_float': True,
     },
     'errbed': {
         'title': 'Bedrock elevation/ice thickness error',
@@ -31,6 +34,7 @@ bed_datasets = {
             """Error estimate for Greenland bed elevation and ice thickness in
             meters."""
         ),
+        'dtype_is_float': False,
     },
 }
 
@@ -51,9 +55,10 @@ layers = [
                 output_file='{output_dir}/warped_and_cut.tif',
                 cut_file='{assets_dir}/greenland_rectangle.geojson',
             ),
-            *build_overviews(
+            *compress_and_add_overviews(
                 input_file='{input_dir}/warped_and_cut.tif',
                 output_file='{output_dir}/overviews.tif',
+                dtype_is_float=params['dtype_is_float'],
             ),
         ],
     )

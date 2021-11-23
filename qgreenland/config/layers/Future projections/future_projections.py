@@ -3,7 +3,7 @@ from decimal import Decimal
 from qgreenland.config.datasets.future_projections import (
     future_icesheet_coverage as dataset,
 )
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -45,9 +45,10 @@ layers = [
                 ),
                 cut_file=project.boundaries['data'].filepath,
             ),
-            *build_overviews(
+            *compress_and_add_overviews(
                 input_file='{input_dir}/extracted.tif',
                 output_file='{output_dir}/final.tif',
+                dtype_is_float=True,
             ),
         ],
     ) for rcp in LAYER_RCPS
