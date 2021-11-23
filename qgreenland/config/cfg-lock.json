@@ -2070,6 +2070,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2107,6 +2110,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2144,6 +2150,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2181,6 +2190,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2218,6 +2230,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2255,6 +2270,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2292,6 +2310,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2329,6 +2350,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2366,6 +2390,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2423,6 +2450,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2460,6 +2490,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2497,6 +2530,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2534,6 +2570,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2571,6 +2610,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2608,6 +2650,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2645,6 +2690,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2682,6 +2730,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2719,6 +2770,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2756,6 +2810,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
@@ -2793,6 +2850,9 @@
                         "ENCODING=UTF-8",
                         "-t_srs",
                         "EPSG:3413",
+                        "EPSG:3413",
+                        "-segmentize",
+                        "1",
                         "where \"wgs84Decimal >= 40\"",
                         "{output_dir}/clipped.gpkg",
                         "{input_dir}/*.geojson"
