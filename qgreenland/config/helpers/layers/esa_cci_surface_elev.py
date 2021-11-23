@@ -1,7 +1,9 @@
 from typing import Literal
 
 from qgreenland.config.datasets.esa_cci import esa_cci_surface_elevation_change as dataset
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import (
+    compress_and_add_overviews,
+)
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
@@ -51,12 +53,13 @@ def surface_elevation_layer(
                     '{output_dir}/' + f'{variable.lower()}_{start_year}_{end_year}.tif',
                 ],
             ),
-            *build_overviews(
+            *compress_and_add_overviews(
                 input_file=(
                     '{input_dir}/'
                     f'{variable.lower()}_{start_year}_{end_year}.tif'
                 ),
                 output_file='{output_dir}/overviews.tif',
+                dtype_is_float=True,
             ),
         ],
     )
