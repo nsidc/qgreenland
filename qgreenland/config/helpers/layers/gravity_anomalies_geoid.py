@@ -1,6 +1,8 @@
 from qgreenland.config.datasets.geoid import geoid
 from qgreenland.config.datasets.gravity_anomalies import gravity_anomalies
-from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import (
+    compress_and_add_overviews,
+)
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project

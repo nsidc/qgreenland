@@ -2,7 +2,9 @@ import json
 from typing import Literal
 
 from qgreenland.config.datasets.seaice import seaice_age as dataset
-from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import (
+    compress_and_add_overviews,
+)
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project

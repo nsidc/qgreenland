@@ -28,7 +28,7 @@ def compress_and_add_overviews(
 
     If `dtype_is_float`, we use floating-point prediction with our compression,
     otherwise we use horizontal differencing.
-    
+
             https://gdal.org/drivers/raster/gtiff.html
     """
     predictor_value = 3 if dtype_is_float else 2
