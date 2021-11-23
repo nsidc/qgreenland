@@ -1,4 +1,4 @@
-# NEXT_VERSION
+# v2.0.0alpha3 (2021-11-23)
 
 - Improved raster compression.
 
