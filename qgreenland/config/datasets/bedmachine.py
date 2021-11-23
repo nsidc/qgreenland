@@ -30,7 +30,7 @@ H. Seroussi, M. J. Siegert, P. Slabon, F. Straneo, M. R. van den Broeke,
 W. Weinrebe, M. Wood, and K. Zinglersen. 2017. BedMachine v3: Complete bed
 topography and ocean bathymetry mapping of Greenland from multi-beam echo
 sounding combined with mass conservation, Geophysical Research
-Letters. 44. . https://doi.org/10.1002/2017GL074954
+Letters. 44. . https://doi.org/10.1002/2017GL074954 .
 """,
         'citation': {
             'text': """
