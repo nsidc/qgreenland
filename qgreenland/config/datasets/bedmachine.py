@@ -17,7 +17,7 @@ bedmachine = Dataset(
 This data set contains a bed topography/bathymetry map of Greenland based on
 mass conservation, multi-beam data, and other techniques. It also includes
 surface elevation and ice thickness data, as well as an ice/ocean/land mask.
-        
+
 As a condition of using these data, we request that you acknowledge the
 author(s) of this data set by referencing the following peer-reviewed
 publication.
