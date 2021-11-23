@@ -1,3 +1,8 @@
+# NEXT_VERSION
+
+- Improved raster compression.
+
+
 # v2.0.0alpha2 (2021-11-22)
 
 - Add scalebar to map viewport in lower-right corner.
@@ -28,7 +33,6 @@
       background boundary instead of subsetting to region around Greenland.
     - "Reference/Longitude lines": display positive degrees West instead of
       negative.
-    - Improved raster compression.
   - REMOVED from QGreenland zip package; available via QGreenland plugin:
     - "Glaciology/Ice sheet velocity/ITS_LIVE"
     - "Terrain models/Arctic DEM"
