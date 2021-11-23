@@ -24,6 +24,13 @@ def compress_and_add_overviews(
     dtype_is_float: bool,
     resampling_algorithm: ResamplingAlgorithm = 'average',
 ) -> list[AnyStep]:
+    """Compress raster and build overviews.
+
+    If `dtype_is_float`, we use floating-point prediction with our compression,
+    otherwise we use horizontal differencing.
+    
+            https://gdal.org/drivers/raster/gtiff.html
+    """
     predictor_value = 3 if dtype_is_float else 2
 
     compress = [
