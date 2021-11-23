@@ -276,6 +276,9 @@ def make_racmo_supplemental_layers() -> list[Layer]:
                             'gdal_translate',
                             '-a_srs', project.crs,
                             '-a_ullr', RACMO_ULLR,
+                            # Data is stored as Float32 but uses integers for mask values.
+                            '-ot', 'Byte',
+                            '-a_nodata', 'none',
                             ('NETCDF:{input_dir}/'
                              + f"{params['extract_filename']}:{params['variable']}"),
                             '{output_dir}/' + f"{params['variable']}.tif",
@@ -284,7 +287,7 @@ def make_racmo_supplemental_layers() -> list[Layer]:
                     *compress_and_add_overviews(
                         input_file='{input_dir}/' + f"{params['variable']}.tif",
                         output_file='{output_dir}/' + f'{layer_id}.tif',
-                        dtype_is_float=True,
+                        dtype_is_float=False,
                     ),
                 ],
             ),
