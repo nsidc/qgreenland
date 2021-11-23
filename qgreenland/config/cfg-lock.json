@@ -6194,6 +6194,10 @@
                             "EPSG:3413",
                             "-a_ullr",
                             "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "-ot",
+                            "Byte",
+                            "-a_nodata",
+                            "none",
                             "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc:Promicemask",
                             "{output_dir}/Promicemask.tif"
                           ],
@@ -6205,7 +6209,7 @@
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
-                            "PREDICTOR=3",
+                            "PREDICTOR=2",
                             "{input_dir}/Promicemask.tif",
                             "{output_dir}/compressed.tif"
                           ],
@@ -6267,6 +6271,10 @@
                             "EPSG:3413",
                             "-a_ullr",
                             "-639456.0 -655096.0 856544.0 -3355096.0",
+                            "-ot",
+                            "Byte",
+                            "-a_nodata",
+                            "none",
                             "NETCDF:{input_dir}/Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc:grounded_ice",
                             "{output_dir}/grounded_ice.tif"
                           ],
@@ -6278,7 +6286,7 @@
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
-                            "PREDICTOR=3",
+                            "PREDICTOR=2",
                             "{input_dir}/grounded_ice.tif",
                             "{output_dir}/compressed.tif"
                           ],
