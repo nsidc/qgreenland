@@ -36,6 +36,7 @@ background = Layer(
             input_file='{input_dir}/warped_and_cut.tif',
             output_file='{output_dir}/overviews.tif',
             dtype_is_float=False,
+            compression_type='JPEG',
         ),
     ],
 )
