@@ -39,7 +39,7 @@ def compress_and_add_overviews(
             https://gdal.org/drivers/raster/gtiff.html
     """
     compress_creation_options = [
-        '-co', 'TILED=yes',
+        '-co', 'TILED=YES',
         '-co', f'COMPRESS={compression_type}',
     ]
     if compression_type == 'DEFLATE':
