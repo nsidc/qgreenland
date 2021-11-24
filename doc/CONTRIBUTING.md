@@ -294,7 +294,7 @@ testing, but the final output will not be zipped):
 ```
 ./scripts/cli.sh run \
   --include="background" \
-  --include="*my_layer_mask*"
+  --include="*my_layerid_mask*"
 ```
 
 Collaborators outside NSIDC may want to run QGreenland pipeline without "manual
@@ -312,10 +312,11 @@ Inclusion and exclusion flags can be combined arbitrarily. When `--include` and
 included _or_ not excluded. This is different from the set of layers which are
 included _and_ not excluded.
 
-To cleanup outputs (compiled package and releases):
+To cleanup outputs while developing a new layer (deletes WIP and released
+layers matching mask, WIP and released packages; see `--help` for more):
 
 ```
-./scripts/cli.sh cleanup -C True -R True
+./scripts/cli.sh cleanup --dev '*my_layerid_mask*'
 ```
 
 See the [Luigi
