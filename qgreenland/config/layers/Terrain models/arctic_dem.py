@@ -1,6 +1,5 @@
 from qgreenland.config.datasets.arctic_dem import arctic_dem as dataset
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
-from qgreenland.config.helpers.steps.compress_raster import compress_raster
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.config.helpers.steps.warp import warp
 from qgreenland.config.project import project
@@ -11,9 +10,8 @@ from qgreenland.models.config.step import CommandStep
 arctic_dem = Layer(
     id='arctic_dem',
     title='Arctic DEM (100m)',
-    description=(
-        """Surface elevation in meters using hillshade symbology."""
-    ),
+    description='Surface elevation in meters using hillshade symbology.',
+    in_package=False,
     tags=[],
     style='arctic_dem',
     input=LayerInput(
@@ -43,13 +41,10 @@ arctic_dem = Layer(
                 '-scale', '0.01',
             ],
         ),
-        *compress_raster(
+        *compress_and_add_overviews(
             input_file='{input_dir}/arctic_dem.tif',
             output_file='{output_dir}/arctic_dem.tif',
-        ),
-        *build_overviews(
-            input_file='{input_dir}/arctic_dem.tif',
-            output_file='{output_dir}/arctic_dem.tif',
+            dtype_is_float=False,
         ),
     ],
 )

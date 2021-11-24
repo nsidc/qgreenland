@@ -1,6 +1,5 @@
 from qgreenland.config.datasets.basal_thermal_state import basal_thermal_state as dataset
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
-from qgreenland.config.helpers.steps.compress_raster import compress_raster
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
@@ -27,28 +26,33 @@ basal_thermal_state = Layer(
                 '{output_dir}/basal_thermal_state.tif',
             ],
         ),
+        # Convert the dataset to `Int16` data type to save a little extra space
+        # in the final output.
+        CommandStep(
+            args=[
+                'gdal_calc.py',
+                '--type', 'Int16',
+                # Set a nodata value of 3. This value does not occur in the data
+                # (valid values are -1, 0, 1).
+                '--NoDataValue', '3',
+                # This dataset contains nans. Replace them with the nodata value (3)
+                '--calc="nan_to_num(A, nan=3)"',
+                '-A', '{input_dir}/basal_thermal_state.tif',
+                '--outfile={output_dir}/basal_thermal_state.tif',
+            ],
+        ),
         *gdal_edit(
             input_file='{input_dir}/basal_thermal_state.tif',
             output_file='{output_dir}/basal_thermal_state.tif',
             gdal_edit_args=[
                 '-a_ullr', '-632500.0 -667500.0 847500.0 -3342500.0',
                 '-a_srs', 'EPSG:3413',
-                # Set a nodata value of 3. This value does not occur in the data
-                # (valid values are -1, 0, 1). There _are_ `nan` values in this
-                # data, and they show up in QGIS if nodata is unset. Setting
-                # nodata to `nan` works, but causes the next step (building
-                # overviews) to hang indefinitely.
-                '-a_nodata', '3',
             ],
         ),
-        *compress_raster(
+        *compress_and_add_overviews(
             input_file='{input_dir}/basal_thermal_state.tif',
             output_file='{output_dir}/basal_thermal_state.tif',
-        ),
-        *build_overviews(
-            input_file='{input_dir}/basal_thermal_state.tif',
-            output_file='{output_dir}/basal_thermal_state.tif',
-            resampling_algorithm='nearest',
+            dtype_is_float=False,
         ),
     ],
 )

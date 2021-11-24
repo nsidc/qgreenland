@@ -1,5 +1,20 @@
 # NEXT_VERSION
 
+- Update clip step in lonlat.py to solve clipping issue on lat layers
+
+
+# v2.0.0alpha3 (2021-11-23)
+
+- Improved raster compression.
+- Layer Updates:
+  - Convert RACMO promice mask layers to `Byte` data type.
+  - Update Bedmachine dataset metadata to reflect new v4 data.
+  - Convert "Likely basal thermal state June 23 1993 - April 26 2013 (5km)"
+    layer to `Int16` data type.
+
+
+# v2.0.0alpha2 (2021-11-22)
+
 - Add scalebar to map viewport in lower-right corner.
 - Layer changes:
   - NEW:
@@ -28,6 +43,9 @@
       background boundary instead of subsetting to region around Greenland.
     - "Reference/Longitude lines": display positive degrees West instead of
       negative.
+  - REMOVED from QGreenland zip package; available via QGreenland plugin:
+    - "Glaciology/Ice sheet velocity/ITS_LIVE"
+    - "Terrain models/Arctic DEM"
 
 
 # v2.0.0alpha1 (2021-11-03)

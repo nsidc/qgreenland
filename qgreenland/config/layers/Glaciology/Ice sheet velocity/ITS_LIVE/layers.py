@@ -1,5 +1,7 @@
 from qgreenland.config.datasets.velocity_mosaic import velocity_mosaic as dataset
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import (
+    compress_and_add_overviews,
+)
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -26,6 +28,7 @@ masked_velocity_mosaic_layers = [
         id=layer_id,
         title=params['title'],
         description=params['description'],
+        in_package=False,
         tags=[],
         style=params['style'],
         input=LayerInput(
@@ -47,9 +50,10 @@ masked_velocity_mosaic_layers = [
                 output_file='{output_dir}/' + f'{layer_id}.tif',
                 cut_file=project.boundaries['data'].filepath,
             ),
-            *build_overviews(
+            *compress_and_add_overviews(
                 input_file='{input_dir}/' + f'{layer_id}.tif',
                 output_file='{output_dir}/' + f'{layer_id}.tif',
+                dtype_is_float=True,
             ),
         ],
     )
@@ -63,6 +67,7 @@ velocity_mosaic_ice_mask = Layer(
     description=(
         """Ice mask used for ITS_LIVE velocity mosiac."""
     ),
+    in_package=False,
     tags=[],
     input=LayerInput(
         dataset=dataset,
@@ -74,9 +79,10 @@ velocity_mosaic_ice_mask = Layer(
             output_file='{output_dir}/velocity_mosaic_ice_mask.tif',
             cut_file=project.boundaries['data'].filepath,
         ),
-        *build_overviews(
+        *compress_and_add_overviews(
             input_file='{input_dir}/velocity_mosaic_ice_mask.tif',
             output_file='{output_dir}/velocity_mosaic_ice_mask.tif',
+            dtype_is_float=False,
         ),
     ],
 )

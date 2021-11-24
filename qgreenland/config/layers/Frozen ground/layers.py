@@ -1,5 +1,5 @@
 from qgreenland.config.datasets.pangaea_ground_temperature import pangaea_ground_temperature as dataset
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -61,9 +61,10 @@ layers = [
                 ],
                 cut_file=project.boundaries['data'].filepath,
             ),
-            *build_overviews(
+            *compress_and_add_overviews(
                 input_file='{input_dir}/' + f'{layer_id}.tif',
                 output_file='{output_dir}/' + f'{layer_id}.tif',
+                dtype_is_float=True,
             ),
         ],
     )

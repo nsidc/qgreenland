@@ -1,5 +1,5 @@
 from qgreenland.config.datasets.esa_cci import esa_cci_ice_sheet_velocity_20191214_20200131 as dataset
-from qgreenland.config.helpers.steps.build_overviews import build_overviews
+from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
@@ -56,9 +56,10 @@ layers = [
                 output_file='{output_dir}/' + f'{layer_id}.tif',
                 cut_file=project.boundaries['data'].filepath,
             ),
-            *build_overviews(
+            *compress_and_add_overviews(
                 input_file='{input_dir}/' + f'{layer_id}.tif',
                 output_file='{output_dir}/' + f'{layer_id}.tif',
+                dtype_is_float=True,
             ),
         ],
     )
