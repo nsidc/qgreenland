@@ -1,5 +1,6 @@
-from typing import Literal
+from typing import Literal, Optional
 
+from qgreenland._typing import StepArgs
 from qgreenland.models.config.step import AnyStep, CommandStep
 
 # https://gdal.org/programs/gdaladdo.html
@@ -15,14 +16,20 @@ ResamplingAlgorithm = Literal[
     'average_magphase',
     'mode',
 ]
+CompressionType = Literal[
+    'DEFLATE',
+    'JPEG',
+]
 
 
 def compress_and_add_overviews(
     *,
     input_file: str,
     output_file: str,
-    dtype_is_float: bool,
+    dtype_is_float: Optional[bool] = None,
     resampling_algorithm: ResamplingAlgorithm = 'average',
+    compress_type: CompressionType = 'DEFLATE',
+    compress_args: StepArgs = (),
 ) -> list[AnyStep]:
     """Compress raster and build overviews.
 
@@ -31,13 +38,29 @@ def compress_and_add_overviews(
 
             https://gdal.org/drivers/raster/gtiff.html
     """
-    predictor_value = 3 if dtype_is_float else 2
+    dtype_unexp_not_passed = compress_type == 'DEFLATE' and dtype_is_float is None
+    dtype_unexp_passed = compress_type != 'DEFLATE' and dtype_is_float is not None
+    if dtype_unexp_passed or dtype_unexp_not_passed:
+        raise RuntimeError(
+            '`dtype_is_float` may only be specified for DEFLATE compression'
+            ' type.',
+        )
+
+    compress_creation_options = [
+        '-co', 'TILED=YES',
+        '-co', f'COMPRESS={compress_type}',
+    ]
+    if compress_type == 'DEFLATE':
+        predictor_value = 3 if dtype_is_float else 2
+        compress_creation_options.extend([
+            '-co',
+            f'PREDICTOR={predictor_value}',
+        ])
 
     compress = [
         'gdal_translate',
-        '-co', 'COMPRESS=DEFLATE',
-        '-co', f'PREDICTOR={predictor_value}',
-        # TODO: `-co TILED=yes`
+        *compress_creation_options,
+        *compress_args,
         input_file,
         '{output_dir}/compressed.tif',
     ]
@@ -61,16 +84,10 @@ def compress_and_add_overviews(
     return [
         CommandStep(
             id='compress_raster',
-            args=[
-                *compress,
-            ],
+            args=compress,
         ),
         CommandStep(
             id='build_overviews',
-            args=[
-                *copy_into_place,
-                '&&',
-                *add_overviews,
-            ],
+            args=copy_into_place + ['&&'] + add_overviews,
         ),
     ]

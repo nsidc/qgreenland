@@ -35,7 +35,11 @@ background = Layer(
         *compress_and_add_overviews(
             input_file='{input_dir}/warped_and_cut.tif',
             output_file='{output_dir}/overviews.tif',
-            dtype_is_float=False,
+            compress_type='JPEG',
+            compress_args=[
+                '-co', 'JPEG_QUALITY=90',
+                '-co', 'PHOTOMETRIC=YCBCR',
+            ],
         ),
     ],
 )
