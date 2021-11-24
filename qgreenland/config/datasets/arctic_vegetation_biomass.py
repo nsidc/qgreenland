@@ -8,7 +8,7 @@ arctic_vegetation_biomass_2010 = Dataset(
         CmrAsset(
             id='only',
             granule_ur='Arctic_Vegetation_Maps.aga_circumpolar_avhrr_biomass_2010.tif',
-            collection_concept_id='C1581605757-ORNL_DAAC',
+            collection_concept_id='C2170968604-ORNL_CLOUD',
         ),
     ],
     metadata={
