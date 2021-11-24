@@ -1,12 +1,16 @@
 # v2.0.0alpha4 (Unreleased)
 
-- Resolve issue with clipping of latitude reference layers
+- Layer updates:
+  - "Reference/Latitude lines": Resolve issue with clipping of latitude
+    reference layers
+  - "Basemaps/Background (500m)": Use JPEG compression to significantly reduce
+    file size
 
 
 # v2.0.0alpha3 (2021-11-23)
 
 - Improved raster compression.
-- Layer Updates:
+- Layer updates:
   - Convert RACMO promice mask layers to `Byte` data type.
   - Update Bedmachine dataset metadata to reflect new v4 data.
   - Convert "Likely basal thermal state June 23 1993 - April 26 2013 (5km)"
