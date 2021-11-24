@@ -4579,7 +4579,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -5501,7 +5501,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -5590,7 +5590,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -5679,7 +5679,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -5768,7 +5768,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -5857,7 +5857,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -5946,7 +5946,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -6035,7 +6035,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -6124,7 +6124,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -6205,7 +6205,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -6284,7 +6284,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -6375,7 +6375,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -6499,7 +6499,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -6582,7 +6582,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -6665,7 +6665,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -7574,7 +7574,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -7643,7 +7643,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -7708,7 +7708,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -7773,7 +7773,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -7838,7 +7838,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -7903,7 +7903,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -7968,7 +7968,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8033,7 +8033,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8098,7 +8098,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8163,7 +8163,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8228,7 +8228,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8293,7 +8293,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8358,7 +8358,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8423,7 +8423,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8488,7 +8488,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8553,7 +8553,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8618,7 +8618,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8683,7 +8683,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8748,7 +8748,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8813,7 +8813,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8878,7 +8878,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -8943,7 +8943,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9008,7 +9008,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9073,7 +9073,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9138,7 +9138,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9213,7 +9213,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9278,7 +9278,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9343,7 +9343,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9408,7 +9408,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9473,7 +9473,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9538,7 +9538,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9603,7 +9603,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9668,7 +9668,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9733,7 +9733,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9798,7 +9798,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9863,7 +9863,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9928,7 +9928,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -9993,7 +9993,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10058,7 +10058,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10123,7 +10123,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10188,7 +10188,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10253,7 +10253,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10318,7 +10318,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10383,7 +10383,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10448,7 +10448,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10513,7 +10513,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10578,7 +10578,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10643,7 +10643,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -10708,7 +10708,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -11312,7 +11312,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -11402,7 +11402,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -11480,7 +11480,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -11582,7 +11582,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -11670,7 +11670,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -11781,7 +11781,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -12247,7 +12247,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -12328,7 +12328,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -17498,7 +17498,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -17589,7 +17589,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -17680,7 +17680,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -18756,7 +18756,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -18860,7 +18860,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -18964,7 +18964,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19068,7 +19068,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19172,7 +19172,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19276,7 +19276,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19380,7 +19380,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19484,7 +19484,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19588,7 +19588,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19692,7 +19692,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19796,7 +19796,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -19922,7 +19922,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20026,7 +20026,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20130,7 +20130,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20234,7 +20234,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20338,7 +20338,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20442,7 +20442,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20546,7 +20546,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20650,7 +20650,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20754,7 +20754,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20858,7 +20858,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -20962,7 +20962,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21086,7 +21086,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21175,7 +21175,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21264,7 +21264,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21353,7 +21353,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21442,7 +21442,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21531,7 +21531,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21620,7 +21620,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21709,7 +21709,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21798,7 +21798,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21887,7 +21887,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -21976,7 +21976,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22065,7 +22065,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22164,7 +22164,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22253,7 +22253,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22342,7 +22342,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22431,7 +22431,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22520,7 +22520,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22609,7 +22609,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22698,7 +22698,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22787,7 +22787,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22876,7 +22876,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -22965,7 +22965,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -23054,7 +23054,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -23143,7 +23143,7 @@
                           "args": [
                             "gdal_translate",
                             "-co",
-                            "TILED=yes",
+                            "TILED=YES",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-co",
@@ -23437,7 +23437,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -23533,7 +23533,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -23629,7 +23629,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -23725,7 +23725,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -23821,7 +23821,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -23917,7 +23917,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -24013,7 +24013,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -24109,7 +24109,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -24205,7 +24205,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -24349,7 +24349,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -24424,7 +24424,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -24499,7 +24499,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -24589,7 +24589,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -24669,7 +24669,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -24749,7 +24749,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -24829,7 +24829,7 @@
                       "args": [
                         "gdal_translate",
                         "-co",
-                        "TILED=yes",
+                        "TILED=YES",
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
@@ -24938,7 +24938,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -24991,7 +24991,7 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=DEFLATE",
                     "-co",
@@ -25281,9 +25281,13 @@
                   "args": [
                     "gdal_translate",
                     "-co",
-                    "TILED=yes",
+                    "TILED=YES",
                     "-co",
                     "COMPRESS=JPEG",
+                    "-co",
+                    "JPEG_QUALITY=90",
+                    "-co",
+                    "PHOTOMETRIC=YCBCR",
                     "{input_dir}/warped_and_cut.tif",
                     "{output_dir}/compressed.tif"
                   ],
