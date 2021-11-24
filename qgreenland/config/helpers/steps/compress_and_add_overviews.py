@@ -1,5 +1,6 @@
-from typing import Literal
+from typing import Literal, Optional
 
+from qgreenland._typing import StepArgs
 from qgreenland.models.config.step import AnyStep, CommandStep
 
 # https://gdal.org/programs/gdaladdo.html
@@ -15,7 +16,7 @@ ResamplingAlgorithm = Literal[
     'average_magphase',
     'mode',
 ]
-CompressionType = [
+CompressionType = Literal[
     'DEFLATE',
     'JPEG',
 ]
@@ -25,11 +26,10 @@ def compress_and_add_overviews(
     *,
     input_file: str,
     output_file: str,
-    # TODO: This parameter is ignored if the compression type isn't deflate.
-    # Refactor args?
-    dtype_is_float: bool,
+    dtype_is_float: Optional[bool] = None,
     resampling_algorithm: ResamplingAlgorithm = 'average',
-    compression_type: CompressionType = 'DEFLATE',
+    compress_type: CompressionType = 'DEFLATE',
+    compress_args: StepArgs = (),
 ) -> list[AnyStep]:
     """Compress raster and build overviews.
 
@@ -38,11 +38,19 @@ def compress_and_add_overviews(
 
             https://gdal.org/drivers/raster/gtiff.html
     """
+    dtype_unexp_not_passed = compress_type == 'DEFLATE' and dtype_is_float is None
+    dtype_unexp_passed = compress_type != 'DEFLATE' and dtype_is_float is not None
+    if dtype_unexp_passed or dtype_unexp_not_passed:
+        raise RuntimeError(
+            '`dtype_is_float` may only be specified for DEFLATE compression'
+            ' type.',
+        )
+
     compress_creation_options = [
         '-co', 'TILED=YES',
-        '-co', f'COMPRESS={compression_type}',
+        '-co', f'COMPRESS={compress_type}',
     ]
-    if compression_type == 'DEFLATE':
+    if compress_type == 'DEFLATE':
         predictor_value = 3 if dtype_is_float else 2
         compress_creation_options.extend([
             '-co',
@@ -52,6 +60,7 @@ def compress_and_add_overviews(
     compress = [
         'gdal_translate',
         *compress_creation_options,
+        *compress_args,
         input_file,
         '{output_dir}/compressed.tif',
     ]
