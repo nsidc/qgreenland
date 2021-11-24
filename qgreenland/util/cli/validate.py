@@ -31,6 +31,4 @@ def validate_ambiguous_command(kwargs):
     ):
         raise click.UsageError(msg.format(resource='release packages'))
 
-    # TODO: Update.
-
     return kwargs
