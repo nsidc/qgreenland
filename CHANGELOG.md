@@ -1,6 +1,6 @@
-# v2.0.0alpha4 (2021-11-24)
+# v2.0.0alpha4 (Unreleased)
 
-- Update clip step in lonlat.py to solve clipping issue on lat layers
+- Resolve issue with clipping of latitude reference layers
 
 
 # v2.0.0alpha3 (2021-11-23)
