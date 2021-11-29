@@ -18,7 +18,7 @@ from qgreenland.util.layer import (
     get_layer_release_dir,
 )
 from qgreenland.util.luigi.target import temporary_path_dir
-from qgreenland.util.provenance import steps_to_provenance_text
+from qgreenland.util.provenance import write_provenance_file
 from qgreenland.util.qgis.metadata import build_layer_abstract
 from qgreenland.util.tree import leaf_lookup
 
@@ -162,12 +162,12 @@ class FinalizeTask(QgrLayerTask):
         with temporary_path_dir(self.output()) as temp_path:
             shutil.copy2(input_fp, temp_path / final_fn)
 
-            # Create layer provenance file. This is not an "AncillaryFile" job
-            # because we need one file per layer.
-            with open(temp_path / 'provenance.txt', 'w') as provenance_file:
-                provenance_file.write(
-                    steps_to_provenance_text(self.layer_cfg.steps),
-                )
+            # Create layer provenance and metadata files. These are not
+            # "AncillaryFile" jobs because we need one file per layer.
+            write_provenance_file(
+                layer_cfg=self.layer_cfg,
+                filepath=temp_path / 'provenance.txt',
+            )
 
             with open(temp_path / 'metadata.txt', 'w') as metadata_file:
                 metadata_file.write(
