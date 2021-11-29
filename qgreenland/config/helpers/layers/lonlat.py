@@ -1,10 +1,12 @@
-from typing import Literal, cast
+from typing import List, Literal, Union, cast
 
 from qgreenland.config.datasets.lonlat import lonlat as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
+from qgreenland.config.project import project
 from qgreenland.models.config.asset import RepositoryAsset
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
+from qgreenland.util.runtime_vars import EvalFilePath
 
 lonlat_assets_sorted = sorted(
     dataset.assets.values(),
@@ -19,12 +21,19 @@ def _make_lonlat_layer(
     deg_str = asset.id.rsplit('_', maxsplit=1)[0].split('_', maxsplit=1)[1]
     deg = deg_str.replace('_', '.')
 
+    ogr2ogr_clip_args: List[Union[str, EvalFilePath]]
     if asset.id.startswith('lat'):
         title_prefix = 'Latitude'
         segment_max_distance = 1
+        ogr2ogr_clip_args = [
+            '-where', '"wgs84Decimal >= 40"',
+        ]
     elif asset.id.startswith('lon'):
         title_prefix = 'Longitude'
         segment_max_distance = 100
+        ogr2ogr_clip_args = [
+            '-clipdst', project.boundaries['background'].filepath,
+        ]
     else:
         raise RuntimeError(
             "Expected asset ID starting with 'lon' or 'lat'; received:"
@@ -49,7 +58,7 @@ def _make_lonlat_layer(
                     'ogr2ogr',
                     *STANDARD_OGR2OGR_ARGS,
                     '-segmentize', segment_max_distance,
-                    '-where', '"wgs84Decimal >= 40"',
+                    *ogr2ogr_clip_args,
                     '{output_dir}/clipped.gpkg',
                     '{input_dir}/*.geojson',
                 ],
