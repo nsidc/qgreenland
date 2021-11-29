@@ -58,6 +58,13 @@ layers = [
                     # (EPSG:3995 WGS 84)
                     '-s_srs', 'EPSG:3995',
                     '-tr', '10000', '10000',
+                    # This dataset does not contain CF-compliant fields or
+                    # geotransform array. Set
+                    # `GDAL_NETCDF_IGNORE_XY_AXIS_NAME_CHECKS` to `true` to use
+                    # the provided `x` and `y` dims as coordinate values so that
+                    # gdal can compute the transform on its own. See
+                    # https://github.com/OSGeo/gdal/issues/4075
+                    '--config', 'GDAL_NETCDF_IGNORE_XY_AXIS_NAME_CHECKS', 'true',
                 ],
                 cut_file=project.boundaries['data'].filepath,
             ),

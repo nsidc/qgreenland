@@ -8,6 +8,7 @@
 - Add metadata.txt with layer information to layer data directory. This allows
   users who are not using the QGreenland project to access e.g., the layer's
   abstract and citation information.
+- Upgrade `GDAL` version used for running layer pipelines to v3.4.0
 
 
 # v2.0.0alpha3 (2021-11-23)
