@@ -26,7 +26,7 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: Layer) -> None:
     map_layer.setAbstract(tooltip)
 
     # Render the qmd template.
-    abstract = build_layer_abstract(layer_cfg)
+    abstract = escape(build_layer_abstract(layer_cfg))
     layer_extent = map_layer.extent()
     layer_crs = map_layer.crs()
 
@@ -72,7 +72,7 @@ def _build_layer_tooltip(layer_cfg: Layer) -> str:
 
 
 def build_layer_abstract(layer_cfg: Layer) -> str:
-    """Return a properly escaped layer abstract text."""
+    """Return a layer abstract text."""
     # Include the layer description first.
     abstract = _build_layer_description(layer_cfg)
 
@@ -89,7 +89,7 @@ def build_layer_abstract(layer_cfg: Layer) -> str:
     # Add the dataset's citation
     abstract += _build_dataset_citation(layer_cfg)
 
-    return escape(abstract)
+    return abstract
 
 
 def _build_layer_description(layer_cfg: Layer) -> str:
