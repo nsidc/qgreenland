@@ -25,7 +25,7 @@ from qgreenland.util.layer import (
     get_layer_release_filepath,
     vector_or_raster,
 )
-from qgreenland.util.qgis.metadata import (
+from qgreenland.util.metadata import (
     build_layer_metadata,
 )
 from qgreenland.util.tree import LayerNode

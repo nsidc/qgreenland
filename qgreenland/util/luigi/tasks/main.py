@@ -18,8 +18,8 @@ from qgreenland.util.layer import (
     get_layer_release_dir,
 )
 from qgreenland.util.luigi.target import temporary_path_dir
+from qgreenland.util.metadata import write_metadata_file
 from qgreenland.util.provenance import write_provenance_file
-from qgreenland.util.qgis.metadata import write_metadata_file
 from qgreenland.util.tree import leaf_lookup
 
 
