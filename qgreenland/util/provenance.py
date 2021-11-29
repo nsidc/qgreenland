@@ -12,7 +12,8 @@ def steps_to_provenance_text(steps: list[AnyStep]) -> str:
 
 def write_provenance_file(*, layer_cfg: Layer, filepath: Path) -> None:
     """Write layer provenance to a text file."""
-    # TODO: default message for layers with no processing steps?
+    # TODO: default message for layers with no processing steps? Just include a
+    # string that indicates where the data were fetched from?
     txt_to_write = ''
 
     if layer_cfg.steps:
