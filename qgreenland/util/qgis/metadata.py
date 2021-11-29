@@ -92,6 +92,14 @@ def build_layer_abstract(layer_cfg: Layer) -> str:
     return abstract
 
 
+def write_metadata_file(*, layer_cfg: Layer, filepath: Path) -> None:
+    """Write layer metadata to a text file."""
+    with open(filepath, 'w') as metadata_file:
+        metadata_file.write(
+            build_layer_abstract(layer_cfg),
+        )
+
+
 def _build_layer_description(layer_cfg: Layer) -> str:
     """Return a string representing the layer's description."""
     layer_description = ''

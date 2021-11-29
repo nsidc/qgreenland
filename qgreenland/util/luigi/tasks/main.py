@@ -19,7 +19,7 @@ from qgreenland.util.layer import (
 )
 from qgreenland.util.luigi.target import temporary_path_dir
 from qgreenland.util.provenance import write_provenance_file
-from qgreenland.util.qgis.metadata import build_layer_abstract
+from qgreenland.util.qgis.metadata import write_metadata_file
 from qgreenland.util.tree import leaf_lookup
 
 
@@ -169,7 +169,7 @@ class FinalizeTask(QgrLayerTask):
                 filepath=temp_path / 'provenance.txt',
             )
 
-            with open(temp_path / 'metadata.txt', 'w') as metadata_file:
-                metadata_file.write(
-                    build_layer_abstract(self.layer_cfg),
-                )
+            write_metadata_file(
+                layer_cfg=self.layer_cfg,
+                filepath=temp_path / 'metadata.txt',
+            )
