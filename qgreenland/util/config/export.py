@@ -25,8 +25,8 @@ from qgreenland.util.layer import (
     get_layer_release_filepath,
     vector_or_raster,
 )
-from qgreenland.util.qgis.metadata import (
-    build_layer_abstract,
+from qgreenland.util.metadata import (
+    build_layer_metadata,
 )
 from qgreenland.util.tree import LayerNode
 from qgreenland.util.version import get_build_version
@@ -54,7 +54,7 @@ def export_config_manifest(
             'id': layer_node.layer_cfg.id,
             **layer_node.layer_cfg.dict(include={'title', 'description', 'tags'}),
             'hierarchy': layer_node.group_name_path,
-            'layer_details': build_layer_abstract(layer_node.layer_cfg),
+            'layer_details': build_layer_metadata(layer_node.layer_cfg),
             'assets': _layer_manifest_final_assets(layer_node),
         } for layer_node in cfg.layer_tree.leaves],
     }

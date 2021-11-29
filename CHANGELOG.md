@@ -5,6 +5,9 @@
     reference layers
   - "Basemaps/Background (500m)": Use JPEG compression to significantly reduce
     file size
+- Add metadata.txt with layer information to layer data directory. This allows
+  users who are not using the QGreenland project to access e.g., the layer's
+  abstract and citation information.
 
 
 # v2.0.0alpha3 (2021-11-23)
