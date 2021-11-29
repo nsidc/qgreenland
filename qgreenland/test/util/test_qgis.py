@@ -59,7 +59,7 @@ def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
 
     # The abstract gets set with the value returned by `qgis.build_abstract`.
     assert mock_raster_layer.metadata().abstract() == \
-        qgm.build_layer_abstract(raster_layer_node.layer_cfg)
+        qgm.build_layer_metadata(raster_layer_node.layer_cfg)
 
     actual_title = mock_raster_layer.metadata().title()
     expected_title = raster_layer_node.layer_cfg.title
@@ -96,7 +96,7 @@ https://nsidc.org"""
 
 def test_build_abstract(raster_layer_cfg):
     mock_cfg = copy.deepcopy(raster_layer_cfg)
-    actual = qgm.build_layer_abstract(mock_cfg)
+    actual = qgm.build_layer_metadata(mock_cfg)
     expected = """Example layer description.
 
 === Original Data Source ===
