@@ -1,12 +1,11 @@
-import copy
 from unittest.mock import patch
 
 import pytest
 import qgis.core as qgc
 
 import qgreenland.exceptions as exc
+import qgreenland.util.metadata as qgm
 import qgreenland.util.qgis.layer as qgl
-import qgreenland.util.qgis.metadata as qgm
 import qgreenland.util.qgis.project as prj
 from qgreenland.test.constants import (
     MOCK_COMPILE_PACKAGE_DIR,
@@ -55,11 +54,11 @@ def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
 def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
     mock_raster_layer = qgl.make_map_layer(raster_layer_node)
 
-    qgm.add_layer_metadata(mock_raster_layer, raster_layer_node.layer_cfg)
+    qgl.add_layer_metadata(mock_raster_layer, raster_layer_node.layer_cfg)
 
     # The abstract gets set with the value returned by `qgis.build_abstract`.
     assert mock_raster_layer.metadata().abstract() == \
-        qgm.build_layer_abstract(raster_layer_node.layer_cfg)
+        qgm.build_layer_metadata(raster_layer_node.layer_cfg)
 
     actual_title = mock_raster_layer.metadata().title()
     expected_title = raster_layer_node.layer_cfg.title
@@ -72,45 +71,6 @@ def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
     meta_extent = mock_raster_layer.metadata().extent().spatialExtents()[0]
     # The `expected_extent` is a QgsRectangle.
     assert expected_extent == meta_extent.bounds.toRectangle()
-
-
-def test__build_dataset_description(raster_layer_cfg):
-    actual = qgm._build_dataset_description(raster_layer_cfg)
-    expected = """Example Dataset
-
-Example abstract."""
-
-    assert actual == expected
-
-
-def __build_dataset_citation(raster_layer_cfg):
-    actual = qgm._build_dataset_citation(raster_layer_cfg)
-    expected = """Citation:
-NSIDC 2020
-
-Citation URL:
-https://nsidc.org"""
-
-    assert actual == expected
-
-
-def test_build_abstract(raster_layer_cfg):
-    mock_cfg = copy.deepcopy(raster_layer_cfg)
-    actual = qgm.build_layer_abstract(mock_cfg)
-    expected = """Example layer description.
-
-=== Original Data Source ===
-Example Dataset
-
-Example abstract.
-
-Citation:
-NSIDC 2020
-
-Citation URL:
-https://nsidc.org"""
-
-    assert actual == expected
 
 
 @patch(
