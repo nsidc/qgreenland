@@ -1,13 +1,14 @@
-from qgreenland.models.config.asset import OgrRemoteAsset
+from qgreenland.config.helpers.assets.ogr_remote import ogr_remote_asset
 from qgreenland.models.config.dataset import Dataset
 
 
 nunagis_protected_areas = Dataset(
     id='nunagis_protected_areas',
     assets=[
-        OgrRemoteAsset(
-            id='only',
-            query_url='https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC',
+        ogr_remote_asset(
+            asset_id='only',
+            output_file='{output_dir}/fetched.geojson',
+            url='https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC',
         ),
     ],
     metadata={

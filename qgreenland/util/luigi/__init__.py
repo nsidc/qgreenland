@@ -9,7 +9,6 @@ from qgreenland.models.config.asset import (
     CommandAsset,
     HttpAsset,
     ManualAsset,
-    OgrRemoteAsset,
     OnlineAsset,
     RepositoryAsset,
 )
@@ -21,7 +20,6 @@ from qgreenland.util.luigi.tasks.fetch import (
     FetchDataFiles,
     FetchDataWithCommand,
     FetchLocalDataFiles,
-    FetchOgrRemoteData,
     FetchTask,
 )
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
@@ -35,7 +33,6 @@ ASSET_TYPE_TASKS: dict[Type[AnyAsset], Type[FetchTask]] = {
     # TODO: rename `FetchLocalDataFiles`, split in two!
     ManualAsset: FetchLocalDataFiles,
     RepositoryAsset: FetchLocalDataFiles,
-    OgrRemoteAsset: FetchOgrRemoteData,
 }
 
 
