@@ -1,4 +1,5 @@
-from abc import ABC
+from abc import ABC, abstractmethod
+from functools import cached_property
 from typing import Union
 
 from pydantic import AnyUrl, Field, validator
@@ -13,6 +14,10 @@ from qgreenland.util.runtime_vars import EvalFilePath, EvalStr
 class DatasetAsset(QgrBaseModel, ABC):
     id: str = Field(..., min_length=1)
 
+    @abstractmethod
+    def provenance(self) -> str:
+        pass
+
 
 class HttpAsset(DatasetAsset):
     # Whether or not to verify server's TLS certificate.
@@ -20,6 +25,10 @@ class HttpAsset(DatasetAsset):
     verify_tls: bool = True
 
     urls: list[AnyUrl]
+
+    @cached_property
+    def provenance(self) -> str:
+        return f'Data fetched via HTTP from {self.urls}'
 
 
 # TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
@@ -32,10 +41,24 @@ class OnlineAsset(DatasetAsset):
     # parameters. Maybe "url" isn't a good name for this parameter.
     url: Union[AnyUrl, str] = Field(..., min_length=1)
 
+    @cached_property
+    def provenance(self) -> str:
+        return (
+            f'Data accessed online with QGIS Layer Provider {self.provider} at'
+            f'url {self.url}'
+        )
+
 
 class CmrAsset(DatasetAsset):
     granule_ur: str = Field(..., min_length=1)
     collection_concept_id: str = Field(..., min_length=1)
+
+    @cached_property
+    def provenance(self) -> str:
+        return (
+            f'Data discovered via CMR with granule UR {self.granule_ur} and'
+            f' collection concept ID {self.collection_concept_id}'
+        )
 
 
 class RepositoryAsset(DatasetAsset):
@@ -58,6 +81,10 @@ class RepositoryAsset(DatasetAsset):
 
         return value
 
+    @cached_property
+    def provenance(self) -> str:
+        return f'Data accessed in QGreenland repository at {self.filepath}'
+
 
 class ManualAsset(DatasetAsset):
     """Assets that must be manually accessed by a human.
@@ -67,6 +94,13 @@ class ManualAsset(DatasetAsset):
 
     access_instructions: str = Field(..., min_length=1)
 
+    @cached_property
+    def provenance(self) -> str:
+        return (
+            'Data accessed manually by a human following instructions:\n'
+            f'{self.filepath}'
+        )
+
 
 class CommandAsset(DatasetAsset):
     """Assets that are fetched via an arbitrary command.
@@ -75,6 +109,10 @@ class CommandAsset(DatasetAsset):
     """
 
     args: list[EvalStr]
+
+    @cached_property
+    def provenance(self) -> str:
+        return f'Data accessed using command:\n{self.args}'
 
 
 AnyAsset = Union[
