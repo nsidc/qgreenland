@@ -15,6 +15,7 @@ class DatasetAsset(QgrBaseModel, ABC):
     id: str = Field(..., min_length=1)
 
     @abstractmethod
+    @cached_property
     def provenance(self) -> str:
         pass
 
