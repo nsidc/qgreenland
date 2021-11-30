@@ -1116,8 +1116,14 @@
     "nunagis_pop2019_municipalities": {
       "assets": {
         "only": {
-          "id": "only",
-          "query_url": "https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC"
+          "args": [
+            "ogr2ogr",
+            "-oo",
+            "FEATURE_SERVER_PAGING=YES",
+            "{output_dir}/fetched.geojson",
+            "https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC"
+          ],
+          "id": "only"
         }
       },
       "id": "nunagis_pop2019_municipalities",
@@ -1133,8 +1139,14 @@
     "nunagis_protected_areas": {
       "assets": {
         "only": {
-          "id": "only",
-          "query_url": "https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC"
+          "args": [
+            "ogr2ogr",
+            "-oo",
+            "FEATURE_SERVER_PAGING=YES",
+            "{output_dir}/fetched.geojson",
+            "https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC"
+          ],
+          "id": "only"
         }
       },
       "id": "nunagis_protected_areas",

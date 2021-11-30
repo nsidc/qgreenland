@@ -77,12 +77,6 @@ class CommandAsset(DatasetAsset):
     args: list[EvalStr]
 
 
-class OgrRemoteAsset(DatasetAsset):
-    """Assets that are fetched via `ogr2ogr` from the given query_url."""
-
-    query_url: AnyUrl
-
-
 AnyAsset = Union[
     CmrAsset,
     CommandAsset,
@@ -90,5 +84,4 @@ AnyAsset = Union[
     ManualAsset,
     OnlineAsset,
     RepositoryAsset,
-    OgrRemoteAsset,
 ]

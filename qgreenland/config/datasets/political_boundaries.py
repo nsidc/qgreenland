@@ -1,6 +1,6 @@
 from qgreenland.models.config.asset import (
+    CommandAsset,
     HttpAsset,
-    OgrRemoteAsset,
 )
 from qgreenland.models.config.dataset import Dataset
 
@@ -8,9 +8,14 @@ from qgreenland.models.config.dataset import Dataset
 nunagis_pop2019_municipalities = Dataset(
     id='nunagis_pop2019_municipalities',
     assets=[
-        OgrRemoteAsset(
+        CommandAsset(
             id='only',
-            query_url='https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC',
+            args=[
+                'ogr2ogr',
+                '-oo', 'FEATURE_SERVER_PAGING=YES',
+                '{output_dir}/fetched.geojson',
+                'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC',
+            ],
         ),
     ],
     metadata={

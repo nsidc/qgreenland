@@ -141,25 +141,3 @@ class FetchDataWithCommand(FetchTask):
                     output_dir=temp_path,
                 ),
             )
-
-
-class FetchOgrRemoteData(FetchTask):
-    def output(self):
-        return luigi.LocalTarget(
-            FETCH_DATASETS_DIR / self.output_name,
-            format=luigi.format.Nop,
-        )
-
-    def run(self):
-        with temporary_path_dir(self.output()) as temp_path:
-            url = self.asset_cfg.query_url
-
-            ofile = temp_path / 'fetched.geojson'
-            run_qgr_command(
-                [
-                    'ogr2ogr',
-                    '-oo', 'FEATURE_SERVER_PAGING=YES',
-                    str(ofile),
-                    f'"{url}"',
-                ],
-            )
