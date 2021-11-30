@@ -6,7 +6,7 @@ from qgreenland.util.config.config import (
     get_config,
     init_config,
 )
-from qgreenland.util.provenance import steps_to_provenance_text
+from qgreenland.util.provenance import layer_provenance_text
 
 
 @click.command()
@@ -21,8 +21,4 @@ def provenance(layer_id):
         print(f'Could not find layer {layer_id}.')
         sys.exit(1)
 
-    if not layer_cfg.steps:
-        print(f'No steps associated with layer {layer_id}.')
-        sys.exit(1)
-
-    print(steps_to_provenance_text(layer_cfg.steps))
+    print(layer_provenance_text(layer_cfg))

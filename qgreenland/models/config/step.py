@@ -13,6 +13,7 @@ class LayerStep(ABC):
     type: str
 
     @abstractmethod
+    @cached_property
     def provenance(self) -> str:
         pass
 

@@ -1,13 +1,9 @@
 from pathlib import Path
+from typing import Optional
 
+from qgreenland.models.config.asset import DatasetAsset
 from qgreenland.models.config.layer import Layer
 from qgreenland.models.config.step import AnyStep
-
-
-def steps_to_provenance_text(steps: list[AnyStep]) -> str:
-    steps_as_text = [step.provenance for step in steps]
-
-    return '\n\n'.join(steps_as_text)
 
 
 def write_provenance_file(*, layer_cfg: Layer, filepath: Path) -> None:
@@ -17,9 +13,31 @@ def write_provenance_file(*, layer_cfg: Layer, filepath: Path) -> None:
     txt_to_write = ''
 
     if layer_cfg.steps:
-        txt_to_write = steps_to_provenance_text(layer_cfg.steps)
+        txt_to_write = layer_provenance_text(layer_cfg)
 
     with open(filepath, 'w') as provenance_file:
         provenance_file.write(
             txt_to_write,
         )
+
+
+def layer_provenance_text(layer_cfg: Layer) -> str:
+    provenance_text = _asset_provenance_text(layer_cfg.input.asset)
+    steps_provenance = _steps_provenance_text(layer_cfg.steps)
+    if steps_provenance:
+        provenance_text += '\n\n' + steps_provenance
+
+    return provenance_text
+
+
+def _steps_provenance_text(steps: Optional[list[AnyStep]]) -> Optional[str]:
+    if not steps:
+        return None
+
+    steps_as_text = [step.provenance for step in steps]
+
+    return '\n\n'.join(steps_as_text)
+
+
+def _asset_provenance_text(asset: DatasetAsset) -> str:
+    return asset.provenance
