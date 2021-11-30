@@ -98,7 +98,7 @@ class ManualAsset(DatasetAsset):
     def provenance(self) -> str:
         return (
             'Data accessed manually by a human following instructions:\n'
-            f'{self.filepath}'
+            f'{self.access_instructions}'
         )
 
 
