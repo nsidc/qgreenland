@@ -1251,24 +1251,6 @@
         "title": "Regional Atmospheric Climate Model (RACMO)"
       }
     },
-    "sea_ice_index": {
-      "assets": {
-        "monthly_polyline_n": {
-          "id": "monthly_polyline_n",
-          "provider": "wfs",
-          "url": "pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:3413' typename='NSIDC:g02135_polyline_n' url='https://nsidc.org/api/mapservices/NSIDC/wfs' url='https://nsidc.org/api/mapservices/NSIDC/wfs?version=1.1.0' version='auto'"
-        }
-      },
-      "id": "sea_ice_index",
-      "metadata": {
-        "abstract": "The Sea Ice Index provides a quick look at Arctic- and Antarctic-wide\nchanges in sea ice. It is a source for consistent, up-to-date sea ice\nextent and concentration images, in PNG format, and data values, in\nGeoTIFF and ASCII text files, from November 1978 to the present. Sea Ice\nIndex images also depict trends and anomalies in ice cover calculated\nusing a 30-year reference period of 1981 through 2010.\n\nThe images and data are produced in a consistent way that makes the\nIndex time-series appropriate for use when looking at long-term trends\nin sea ice cover. Both monthly and daily products are\navailable. However, monthly products are better to use for long-term\ntrend analysis because errors in the daily product tend to be averaged\nout in the monthly product and because day-to-day variations are often\nthe result of short-term weather.",
-        "citation": {
-          "text": "Fetterer, F., K. Knowles, W. N. Meier, M. Savoie, and\nA. K. Windnagel. 2017, updated daily. Sea Ice Index, Version 3. Boulder,\nColorado USA. NSIDC: National Snow and Ice Data Center. doi:\nhttps://doi.org/10.7265/N5K072F8. 2020-08-06.",
-          "url": "https://nsidc.org/data/g02135"
-        },
-        "title": "Sea Ice Index, Version 3"
-      }
-    },
     "seaice_age": {
       "assets": {
         "2010": {
@@ -25108,29 +25090,6 @@
               "title": "Greenland image mosaic 2015 (15m)"
             },
             "name": "image_mosaic_2015"
-          },
-          {
-            "layer_cfg": {
-              "description": "Lines representing monthly sea ice extent edges. Note that aside from 2016 to\npresent, most of the data is missing.",
-              "id": "g02135_polyline_n",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "monthly_polyline_n"
-                },
-                "dataset": {
-                  "id": "sea_ice_index"
-                }
-              },
-              "show": false,
-              "steps": null,
-              "style": "g02135_polyline_n",
-              "tags": [
-                "online"
-              ],
-              "title": "Monthly sea ice extent (1979 - present)"
-            },
-            "name": "g02135_polyline_n"
           }
         ],
         "name": "Internet-required data",
@@ -25138,8 +25097,7 @@
           "expand": false,
           "order": [
             ":image_mosaic_2019",
-            ":image_mosaic_2015",
-            ":g02135_polyline_n"
+            ":image_mosaic_2015"
           ],
           "show": false
         }
