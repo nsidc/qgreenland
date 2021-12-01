@@ -70,7 +70,7 @@
   NSIDC-0642 V2 (released Oct. 2021). Add layers for 2017-2021 winter seasons.
 
 
-# v1.0.2 (2021-02-23)
+# v1.0.2 (2021-11-30)
 
 - Bugfixes for "Sea ice/Weekly age (12.5 km)" layers:
     - Update sea ice age layer titles to correctly reflect the weekly time
