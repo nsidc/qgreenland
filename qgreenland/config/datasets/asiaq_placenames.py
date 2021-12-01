@@ -24,8 +24,8 @@ QGreenland Team - Noted Data Issues:
 * East Greenland: Ikkatteq (correctly spelled ‘Ikateq’) is an abandoned airstrip
 and is not populated.
 
-* Northeast coast of Greenland: Longyearbyen is incorrectly placed - 
-Longyearbyen is a town on Svalbard. 
+* Northeast coast of Greenland: Longyearbyen is incorrectly placed -
+Longyearbyen is a town on Svalbard.
 
 * Near Ittoqqortoormiit: Uunartoq and Ittaajimmiit are both abandoned.
 
