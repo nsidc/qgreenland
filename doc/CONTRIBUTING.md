@@ -39,7 +39,7 @@ https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/cr
 
 ## How-tos
 
-* [How to run QGreenland](doc/how-to/RUN_QGREENLAND.md)
-* [How to contribute styles](doc/how-to/CONTRIBUTE_STYLES.md)
-* [How to contribute new layers](doc/how-to/CONTRIBUTE_NEW_LAYERS.md)
-* [How to release a new version of Qgreenland code](doc/how-to/RELEASE_NEW_VERSION.md)
+* [How to run QGreenland](/doc/how-to/RUN_QGREENLAND.md)
+* [How to contribute styles](/doc/how-to/CONTRIBUTE_STYLES.md)
+* [How to contribute new layers](/doc/how-to/CONTRIBUTE_NEW_LAYERS.md)
+* [How to release a new version of Qgreenland code](/doc/how-to/RELEASE_NEW_VERSION.md)
