@@ -1,21 +1,15 @@
-from qgreenland.models.config.asset import (
-    CommandAsset,
-    HttpAsset,
-)
+from qgreenland.config.helpers.assets.ogr_remote import ogr_remote_asset
+from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
 
 nunagis_pop2019_municipalities = Dataset(
     id='nunagis_pop2019_municipalities',
     assets=[
-        CommandAsset(
-            id='only',
-            args=[
-                'ogr2ogr',
-                '-oo', 'FEATURE_SERVER_PAGING=YES',
-                '{output_dir}/fetched.geojson',
-                'https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC',
-            ],
+        ogr_remote_asset(
+            asset_id='only',
+            output_file='{output_dir}/fetched.geojson',
+            url='https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC',
         ),
     ],
     metadata={
