@@ -23,6 +23,3 @@ following process:
   attribute for each layer with the name of the `.qml` file you saved in the
   previous step, excluding the file extension. For example, if you saved
   `foo.qml`, then populate `style='foo'`.
-
-![Style in YAML](/doc/_images/style_in_yaml.png)
-
