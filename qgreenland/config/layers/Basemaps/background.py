@@ -44,8 +44,8 @@ background = Layer(
         ),
         # Because the background image is large, we use JPEG compression
         # (`compress_and_add_overviews` step below). To do so without JPEG
-        # artifacts around the edges of the image (appears as black pixels
-        # around the outside edges of the image), a mask band can be
+        # artifacts around the curved clip boundary the image (appears as black
+        # pixels around the outside edges of the image), a mask band can be
         # used. This step creates the mask file that will be added as a fourth
         # band to the RGB background image.
         CommandStep(
