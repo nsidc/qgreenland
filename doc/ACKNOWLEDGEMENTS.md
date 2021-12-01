@@ -19,6 +19,7 @@ environment-lock.yml file, thank you!
 * [GDAL](https://gdal.org)
 * [Docker](https://www.docker.com/)
 
+
 # Collaborators
 
 [QGreenland collaborators](https://qgreenland.org/our-team) are external
