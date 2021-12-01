@@ -9,6 +9,9 @@
   users who are not using the QGreenland project to access e.g., the layer's
   abstract and citation information.
 - Upgrade `GDAL` version used for running layer pipelines to v3.4.0
+- Removed "Monthly sea ice extent (1978 - present)" (time-series,
+  online-only). In its place, documentation will be produced on how to manually
+  add time-controlled layers.
 
 
 # v2.0.0alpha3 (2021-11-23)
