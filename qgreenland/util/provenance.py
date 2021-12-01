@@ -25,7 +25,8 @@ def layer_provenance_text(layer_cfg: Layer) -> str:
     provenance_text = _asset_provenance_text(layer_cfg.input.asset)
     steps_provenance = _steps_provenance_text(layer_cfg.steps)
     if steps_provenance:
-        provenance_text += '\n\n' + steps_provenance
+        provenance_text += '\n\n# Data processed using the following steps:\n\n'
+        provenance_text += steps_provenance
 
     return provenance_text
 

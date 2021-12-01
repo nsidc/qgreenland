@@ -29,7 +29,7 @@ class HttpAsset(DatasetAsset):
 
     @cached_property
     def provenance(self) -> str:
-        return f'Data fetched via HTTP from {self.urls}'
+        return f'# Data fetched via HTTP from {[str(u) for u in self.urls]}'
 
 
 # TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
@@ -45,8 +45,8 @@ class OnlineAsset(DatasetAsset):
     @cached_property
     def provenance(self) -> str:
         return (
-            f'Data accessed online with QGIS Layer Provider {self.provider} at'
-            f'url {self.url}'
+            f'# Data accessed online with QGIS Layer Provider {self.provider}'
+            f' at url {self.url}'
         )
 
 
@@ -57,7 +57,7 @@ class CmrAsset(DatasetAsset):
     @cached_property
     def provenance(self) -> str:
         return (
-            f'Data discovered via CMR with granule UR {self.granule_ur} and'
+            f'# Data discovered via CMR with granule UR {self.granule_ur} and'
             f' collection concept ID {self.collection_concept_id}'
         )
 
@@ -84,7 +84,7 @@ class RepositoryAsset(DatasetAsset):
 
     @cached_property
     def provenance(self) -> str:
-        return f'Data accessed in QGreenland repository at {self.filepath}'
+        return f'# Data accessed in QGreenland repository at {self.filepath}'
 
 
 class ManualAsset(DatasetAsset):
@@ -98,7 +98,7 @@ class ManualAsset(DatasetAsset):
     @cached_property
     def provenance(self) -> str:
         return (
-            'Data accessed manually by a human following instructions:\n'
+            '# Data accessed manually by a human following instructions:\n\n'
             f'{self.access_instructions}'
         )
 
@@ -113,7 +113,8 @@ class CommandAsset(DatasetAsset):
 
     @cached_property
     def provenance(self) -> str:
-        return f'Data accessed using command:\n{self.args}'
+        command = ' '.join([str(arg) for arg in self.args])
+        return f'# Data accessed using command:\n\n{command}'
 
 
 AnyAsset = Union[
