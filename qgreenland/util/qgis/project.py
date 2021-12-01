@@ -174,10 +174,10 @@ def _get_or_create_and_configure_group(
 
 
 def _create_and_add_layer(
-        *,
-        node: LayerNode,
-        project: qgc.QgsProject,
-        group: qgc.QgsLayerTreeGroup,
+    *,
+    node: LayerNode,
+    project: qgc.QgsProject,
+    group: qgc.QgsLayerTreeGroup,
 ) -> None:
     layer_id = node.name
     logger.debug(f'Adding {layer_id}...')
