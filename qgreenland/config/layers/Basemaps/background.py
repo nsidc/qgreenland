@@ -42,6 +42,12 @@ background = Layer(
             ],
             cut_file='{assets_dir}/latitude_shape_40_degrees.geojson',
         ),
+        # Because the background image is large, we use JPEG compression
+        # (`compress_and_add_overviews` step below). To do so without JPEG
+        # artifacts around the edges of the image (appears as black pixels
+        # around the outside edges of the image), a mask band can be
+        # used. This step creates the mask file that will be added as a fourth
+        # band to the RGB background image.
         CommandStep(
             id='create_mask',
             args=[
@@ -54,6 +60,14 @@ background = Layer(
                 '--A_band=1',
             ],
         ),
+        # The next step uses `gdal_merge.py` to combine the background image
+        # with the mask to create the 4 band raster. This step separates the
+        # input file's bands (R, G, B) into three separate files (b1.tif,
+        # b2.tif, b3.tif) that can be used by `gdal_merge.py`. NOTE: this step
+        # is not strictly necessary but substantially speeds up the merge
+        # operation. Without splitting into individual bands, the `gdal_merge`
+        # operation takes ~1 hour to complete vs ~40 seconds when the bands are
+        # pre-separated.
         CommandStep(
             id='separate_bands',
             args=[
@@ -66,6 +80,7 @@ background = Layer(
                 *_separate_band(3),
             ],
         ),
+        # Merge the RGB + mask geotiffs into one, 4 band raster file.
         CommandStep(
             id='merge_bands',
             args=[
@@ -79,6 +94,8 @@ background = Layer(
                 '{input_dir}/mask.tif',
             ],
         ),
+        # Finally, add compression with overviews and use the newly added band 4
+        # as a mask.
         *compress_and_add_overviews(
             input_file='{input_dir}/merged.tif',
             output_file='{output_dir}/overviews.tif',
@@ -87,6 +104,7 @@ background = Layer(
                 '-co', 'JPEG_QUALITY=90',
                 '-co', 'PHOTOMETRIC=YCBCR',
                 '-b', '1', '-b', '2', '-b', '3',
+                # The `-mask 4` option sets band 4 as the mask.
                 '-mask', '4',
                 '--config', 'GDAL_TIFF_INTERNAL_MASK', 'YES',
             ],
