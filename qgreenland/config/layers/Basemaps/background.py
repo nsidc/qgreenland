@@ -11,7 +11,7 @@ def _separate_band(idx) -> list[str]:
         'gdal_translate',
         '-b', str(idx),
         '{input_dir}/input.tif',
-        '{output_dir}/' + f'b{idx}.tif'
+        '{output_dir}/' + f'b{idx}.tif',
     ]
 
 
