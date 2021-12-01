@@ -66,13 +66,12 @@ background = Layer(
                 *_separate_band(3),
             ],
         ),
-        # TODO: consider DEFLATE compression for this step. Output is about 2
-        # GB.
         CommandStep(
             id='merge_bands',
             args=[
                 'gdal_merge.py',
                 '-o', '{output_dir}/merged.tif',
+                '-co', 'COMPRESS=DEFLATE',
                 '-separate',
                 '{input_dir}/b1.tif',
                 '{input_dir}/b2.tif',
