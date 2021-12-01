@@ -13,6 +13,6 @@ def ogr_remote_asset(
             'ogr2ogr',
             '-oo', 'FEATURE_SERVER_PAGING=YES',
             output_file,
-            url,
+            f'"{url}"',
         ],
     )
