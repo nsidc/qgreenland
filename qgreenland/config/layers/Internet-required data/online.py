@@ -1,7 +1,4 @@
-from qgreenland.config.datasets.online import (
-    image_mosaic,
-    sea_ice_index,
-)
+from qgreenland.config.datasets.online import image_mosaic
 from qgreenland.models.config.layer import Layer, LayerInput
 
 
@@ -20,18 +17,3 @@ image_mosaic_layers = [
 
     for year, resolution in (('2015', '15'), ('2019', '10'))
 ]
-
-
-g02135_polyline_n = Layer(
-    id='g02135_polyline_n',
-    title='Monthly sea ice extent (1979 - present)',
-    style='g02135_polyline_n',
-    description="""
-Lines representing monthly sea ice extent edges. Note that aside from 2016 to
-present, most of the data is missing.""",
-    tags=['online'],
-    input=LayerInput(
-        dataset=sea_ice_index,
-        asset=sea_ice_index.assets['monthly_polyline_n'],
-    ),
-)
