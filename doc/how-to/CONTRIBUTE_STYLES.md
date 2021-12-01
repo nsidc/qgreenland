@@ -10,7 +10,7 @@ following process:
 * In the lower-left corner, click the 'Style' dropdown.
 * In this menu, select 'Save Style...'
 
-![Save style](images/save_style.png)
+![Save style](/doc/_images/save_style.png)
 
 * At this point, if you're uncomfortable with Git and GitHub, you can email us
   your style file at qgreenland.info@gmail.com. Otherwise, continue on...
@@ -24,5 +24,5 @@ following process:
   previous step, excluding the file extension. For example, if you saved
   `foo.qml`, then populate `style='foo'`.
 
-![Style in YAML](images/style_in_yaml.png)
+![Style in YAML](/doc/_images/style_in_yaml.png)
 
