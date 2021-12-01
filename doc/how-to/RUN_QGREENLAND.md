@@ -72,8 +72,8 @@ testing, but the final output will not be zipped):
 
 Collaborators outside NSIDC may want to run QGreenland pipeline without "manual
 access" layers that require difficult or impossible additional steps to prepare
-input data. See [Assets](#assets) documentation above to learn more about
-"manual access" assets.
+input data. See [Assets](/doc/reference/CONFIGURATION.md#assets) documentation
+above to learn more about "manual access" assets.
 
 ```
 ./scripts/cli.sh run \
