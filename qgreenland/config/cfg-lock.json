@@ -25347,6 +25347,8 @@
                     "gdal_merge.py",
                     "-o",
                     "{output_dir}/merged.tif",
+                    "-co",
+                    "COMPRESS=DEFLATE",
                     "-separate",
                     "{input_dir}/b1.tif",
                     "{input_dir}/b2.tif",
