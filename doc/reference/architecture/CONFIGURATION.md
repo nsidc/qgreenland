@@ -53,7 +53,7 @@ There are various types of assets. Some useful ones are:
   eventually fully eliminate the use of data in this category.
 
 You can find the full set of available asset types
-[here](/qgreenland/models/config/assets.py).
+[here](/qgreenland/models/config/asset.py).
 
 
 # Layers and layer groups config
