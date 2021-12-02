@@ -29,7 +29,7 @@ any `boundaries` that will be used to clip data for this project.
 Dataset configurations define a unique `id`, `metadata`, and a list of
 `assets`.  
 
-[Example](../qgreenland/config/datasets/background.py)
+[Example](/qgreenland/config/datasets/background.py)
 
 
 ## Assets
@@ -53,7 +53,7 @@ There are various types of assets. Some useful ones are:
   eventually fully eliminate the use of data in this category.
 
 You can find the full set of available asset types
-[here](../qgreenland/models/config/assets.py).
+[here](/qgreenland/models/config/assets.py).
 
 
 # Layers and layer groups config
@@ -79,7 +79,7 @@ Layers are created in a series of `steps`. The final result of the `steps` must
 be a GeoTIFF (`.tif` file) for raster layers, and a GeoPackage (`.gpkg`) for
 vector layers.
 
-Each step is a [command](../qgreenland/models/config/step.py) (e.g. `gdalwarp` or
+Each step is a [command](/qgreenland/models/config/step.py) (e.g. `gdalwarp` or
 `ogr2ogr`) run against the output of the previous step.  The first step acts on
 the chosen `input.asset`. 
 
@@ -99,14 +99,14 @@ runtime variables are legal:
 
 Each layer group can optionally have a `__settings__.py` file inside its
 directory which determines settings for only that group. If the file is
-omitted, defaults are used (see [here](../qgreenland/models/config/layer_group.py)
-for default values).
+omitted, defaults are used (see
+[here](/qgreenland/models/config/layer_group.py) for default values).
 
 This file is most commonly used for specifying the order in which the layer
 group's contents will be displayed in QGIS. If `order` is not specified,
 contents are displayed alphabetically with groups first.
 
-An [example](../qgreenland/config/layers/Reference/__settings__.py) settings file
+An [example](/qgreenland/config/layers/Reference/__settings__.py) settings file
 shows that layers are represented with a leading `:` to differentiate layers
 from groups in the same list.
 
