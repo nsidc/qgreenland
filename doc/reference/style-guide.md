@@ -3,7 +3,13 @@
 Styles live in `qgreenland/ancillary/styles`.
 
 For more info on importing third-party colormaps in to QGIS, watch our YouTube
-video: https://www.youtube.com/watch?v=rmYehinZa1U
+video:
+
+```{raw} html
+<div style="position: relative; padding-bottom: 56.25%; margin-bottom: 2em; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+  <iframe src="https://www.youtube.com/embed/rmYehinZa1U" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div>
+```
 
 
 ## Standards
