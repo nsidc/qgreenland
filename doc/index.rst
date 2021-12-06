@@ -3,11 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to QGreenland's documentation!
-======================================
-
 .. toctree::
     :name: Main TOC
+    :hidden:
     :maxdepth: 1
 
     ACKNOWLEDGEMENTS.md
@@ -16,6 +14,7 @@ Welcome to QGreenland's documentation!
 .. toctree::
     :name: How-to
     :caption: How-to
+    :hidden:
     :maxdepth: 1
     :glob:
 
@@ -24,11 +23,17 @@ Welcome to QGreenland's documentation!
 
 .. toctree::
     :name: Reference
+    :hidden:
     :caption: Reference
     :maxdepth: 1
     :glob:
 
     reference/*
+
+Welcome to QGreenland's documentation!
+======================================
+
+Lorem ipsum.
 
 
 Indices and tables
