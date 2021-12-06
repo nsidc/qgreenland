@@ -7,9 +7,28 @@ Welcome to QGreenland's documentation!
 ======================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :name: Main TOC
+    :maxdepth: 2
 
+    ACKNOWLEDGEMENTS.md
+    CONTRIBUTING.md
+
+.. toctree::
+    :name: How-to
+    :caption: How-to
+    :maxdepth: 1
+    :glob:
+
+    how-to/*
+
+
+.. toctree::
+    :name: Reference
+    :caption: Reference
+    :maxdepth: 1
+    :glob:
+
+    reference/*
 
 
 Indices and tables
