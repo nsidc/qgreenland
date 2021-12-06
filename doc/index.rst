@@ -18,7 +18,8 @@
     :maxdepth: 1
     :glob:
 
-    how-to/*
+    user-how-to/index
+    developer-how-to/index
 
 
 .. toctree::
@@ -28,12 +29,18 @@
     :maxdepth: 1
     :glob:
 
+    reference/glossary/index
     reference/*
+
 
 Welcome to QGreenland's documentation!
 ======================================
 
 Lorem ipsum.
+
+.. admonition:: TODO
+
+    Finish the documentation intro.
 
 
 Indices and tables
