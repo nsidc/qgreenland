@@ -16,7 +16,9 @@ similar either way.
 Use the "Paired" color palette from cpt-city with 10 colors for Categorical
 data. You can use this colormap without leaving the QGIS user interface.
 
+```{tip}
 TODO: Pick a better color ramp or palette.
+```
 
 
 ### Raster Data

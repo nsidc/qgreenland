@@ -8,7 +8,7 @@ Welcome to QGreenland's documentation!
 
 .. toctree::
     :name: Main TOC
-    :maxdepth: 2
+    :maxdepth: 1
 
     ACKNOWLEDGEMENTS.md
     CONTRIBUTING.md
