@@ -29,6 +29,14 @@ dependencies:
   - funcy ~=1.16
 
 
+  ##############################
+  # Documentation dependencies #
+  ##############################
+  #
+  - sphinx ~=4.3.1
+  - myst-parser ~=0.15.2
+
+
   #############################
   # Non-imported dependencies #
   #############################
