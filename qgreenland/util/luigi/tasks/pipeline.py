@@ -132,15 +132,15 @@ class CreateQgisProjectFile(luigi.Task):
             dest_relative_filepath='CONTRIBUTING.txt',
         )
         yield AncillaryFile(
-            src_filepath=PROJECT_DIR / 'doc' / 'QuickStartGuide.pdf',
+            src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'QuickStartGuide.pdf',
             dest_relative_filepath='QuickStartGuide.pdf',
         )
         yield AncillaryFile(
-            src_filepath=PROJECT_DIR / 'doc' / 'UserGuide.pdf',
+            src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'UserGuide.pdf',
             dest_relative_filepath='UserGuide.pdf',
         )
         yield AncillaryFile(
-            src_filepath=PROJECT_DIR / 'doc' / 'MakingDataQGRCompatible.pdf',
+            src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'MakingDataQGRCompatible.pdf',
             dest_relative_filepath='MakingDataQGRCompatible.pdf',
         )
         yield AncillaryFile(
