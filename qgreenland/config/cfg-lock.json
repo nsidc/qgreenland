@@ -1121,7 +1121,7 @@
             "-oo",
             "FEATURE_SERVER_PAGING=YES",
             "{output_dir}/fetched.geojson",
-            "https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC"
+            "\"https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC\""
           ],
           "id": "only"
         }
@@ -1144,7 +1144,7 @@
             "-oo",
             "FEATURE_SERVER_PAGING=YES",
             "{output_dir}/fetched.geojson",
-            "https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC"
+            "\"https://kort.nunagis.gl/server/rest/services/Hosted/Bird_important_areas/FeatureServer/0/query?f=json&where=true&outFields=*&orderByFields=fid0+ASC\""
           ],
           "id": "only"
         }
