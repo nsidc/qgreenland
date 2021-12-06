@@ -36,6 +36,11 @@
 Project Summary
 ===============
 
+.. admonition:: TODO
+
+    Links from https://qgreenland.org/about-qgreenland
+
+
 Greenland-focused research, planning, and education crosses disciplinary
 boundaries. With QGreenland, a free data-viewing platform, anyone can explore a
 wide variety of Greenland-focused data identified by an expert team and
