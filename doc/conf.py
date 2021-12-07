@@ -72,10 +72,21 @@ autodoc_default_options = {
 # Show the full path to the object (this is the default), e.g.:
 # `qgreenland.models.config.asset.CmrAsset`
 add_module_names = True
+
 # Show the typehints in the description of each object instead of the signature.
 # We found this to be more readable.
 autodoc_typehints = 'description'
+
 # TODO: Make this work. Why doesn't it work?
 # autodoc_type_aliases = {
 #     'AnyAsset': 'qgreenland.models.config.asset.AnyAsset',
 # }
+
+# Hide pydantic model configuration from the sphinx output.
+autodoc_pydantic_model_show_config_summary = False
+
+# Hide redundant pydantic validators summary
+autodoc_pydantic_model_show_validator_summary = False
+
+# Hide redundant field summary
+autodoc_pydantic_model_show_field_summary = False
