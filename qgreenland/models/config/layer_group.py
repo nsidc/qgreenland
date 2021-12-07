@@ -3,24 +3,24 @@ from typing import Optional, Union
 from qgreenland.models.base_model import QgrBaseModel
 
 
-# TODO: We're currently breaking the convention of prefixing all config models
-# with Config. Change?
-
 class RootGroupSettings(QgrBaseModel):
-    # The order in which this group's contents (including subgroups) will be
-    # shown. Subgroups are referenced by name, e.g. 'Basemaps', and layers are
-    # referenced by a colon followed by the layer ID, e.g. `:background`. If
-    # 'order' is omitted, a default sorting algorithm is applied.
+    """Settings specific to the root group."""
+
     order: Optional[list[str]]
+    """The order in which this group's contents will be shown.
+
+    Subgroups are referenced by name, e.g. 'Basemaps', and layers are
+    referenced by a colon followed by the layer ID, e.g. `:background`. If
+    'order' is omitted, a default sorting algorithm is applied.
+    """
 
 
 class LayerGroupSettings(RootGroupSettings):
-    # Whether the group is expanded or collapsed in the QGIS Layers Panel
     expand: bool = False
+    """Whether the group is expanded or collapsed in the QGIS Layers Panel."""
 
-    # Whether the group is shown (checked) or hidden (unchecked) in the QGIS
-    # Layers Panel
     show: bool = False
+    """Whether the group is shown or hidden in the QGIS Layers Panel."""
 
 
 AnyGroupSettings = Union[RootGroupSettings, LayerGroupSettings]

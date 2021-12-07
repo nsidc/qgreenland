@@ -1,38 +1,53 @@
 # Models
 
+## Configuration
 
-## asset
+The configuration determines the final output of the processing pipelines,
+including the final QGIS project, zip package, and layers that are created.
+
 ```{eval-rst}
-.. automodule:: qgreenland.models.config.asset
+..  automodule:: qgreenland.models.config
+    :members: Config
 ```
 
-## dataset
-```{eval-rst}
-.. automodule:: qgreenland.models.config.dataset
-```
 
-## layer_group
-```{eval-rst}
-.. automodule:: qgreenland.models.config.layer_group
-```
+### Project
 
-## layer
-```{eval-rst}
-.. automodule:: qgreenland.models.config.layer
-```
-
-## project
 ```{eval-rst}
 .. automodule:: qgreenland.models.config.project
 ```
 
-## step
+
+### Layer Groups
+
+```{eval-rst}
+.. automodule:: qgreenland.models.config.layer_group
+```
+
+
+### Layers
+
+```{eval-rst}
+.. automodule:: qgreenland.models.config.layer
+```
+
+
+### Steps
+
 ```{eval-rst}
 .. automodule:: qgreenland.models.config.step
 ```
 
-## config
+
+### Datasets
+
 ```{eval-rst}
-..  automodule:: qgreenland.models.config
-    :members: Config
+.. automodule:: qgreenland.models.config.dataset
+```
+
+
+### Assets
+
+```{eval-rst}
+.. automodule:: qgreenland.models.config.asset
 ```
