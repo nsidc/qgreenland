@@ -30,6 +30,7 @@
     :glob:
 
     reference/glossary/index
+    reference/architecture/index
     reference/*
 
 
