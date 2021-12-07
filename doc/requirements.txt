@@ -1,0 +1,2 @@
+# Only for use by ReadTheDocs build system
+myst-parser==0.15.2

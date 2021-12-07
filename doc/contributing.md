@@ -1,9 +1,12 @@
+# Contributing
+
+
 This project is currently undergoing rapid development, so expect change in any
 release except releases labeled as "stable". Stable releases can be found at
 [https://qgreenland.org/explore](https://qgreenland.org/explore)!
 
 
-# The processing pipeline
+## The processing pipeline
 
 In general, a data-processing pipeline looks like this:
 
@@ -16,7 +19,7 @@ In general, a data-processing pipeline looks like this:
 * Zip the QGreenland package.
 
 
-# Contributing to the project
+## Contributing to the project
 
 One of the primary goals of this project is to allow for scientists comfortable
 with standard GIS command-line tools to contribute new layers with as little
@@ -37,9 +40,9 @@ Request. Learn more:
 https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork
 
 
-## How-tos
+### How-tos
 
-* [How to run QGreenland](/doc/how-to/RUN_QGREENLAND.md)
-* [How to contribute styles](/doc/how-to/CONTRIBUTE_STYLES.md)
-* [How to contribute new layers](/doc/how-to/CONTRIBUTE_NEW_LAYERS.md)
-* [How to release a new version of Qgreenland code](/doc/how-to/RELEASE_NEW_VERSION.md)
+* [](contributor-how-to/run-qgreenland.md)
+* [](contributor-how-to/contribute-styles.md)
+* [](contributor-how-to/contribute-layers.md)
+* [](contributor-how-to/release-new-version.md)
