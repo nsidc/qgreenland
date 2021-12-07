@@ -1,4 +1,4 @@
-# End-user Glossary
+# User Glossary
 
 Someone who uses QGreenland in QGIS.
 
