@@ -10,7 +10,7 @@ following process:
 * In the lower-left corner, click the 'Style' dropdown.
 * In this menu, select 'Save Style...'
 
-![Save style](/doc/_images/save_style.png)
+![Save style](/_images/save_style.png)
 
 * At this point, if you're uncomfortable with Git and GitHub, you can email us
   your style file at qgreenland.info@gmail.com. Otherwise, continue on...
