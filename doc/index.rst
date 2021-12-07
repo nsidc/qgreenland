@@ -35,8 +35,21 @@
     reference/*
 
 
-Project Summary
-===============
+What is QGreenland?
+===================
+
+QGreenland is a free and open-source Greenland-focused environment for data
+analysis and viewing, powered by QGIS. QGreenland is delivered in two ways:
+
+1. as a large Zip package containing a core set of data curated to serve the
+   majority of users; and
+
+2. as a QGIS plugin for downloading a custom set of data, including data which
+   isn't part of the Zip package (for example, due to filesize constraints).
+
+
+The QGreenland Project
+======================
 
 Greenland-focused research, planning, and education crosses disciplinary
 boundaries. With QGreenland, a free data-viewing platform, anyone can explore a
@@ -54,7 +67,7 @@ possible through the generous efforts of a wide range of collaborators.
 
 The QGreenland Team believes in open and accessible resources. QGreenland is
 built using free and open software, with development tools and workflows fully
-documented on our `Github site <https://github.com/nsidc/qgreenland>`_. We also
+documented on our `Github page <https://github.com/nsidc/qgreenland>`_. We also
 believe in FAIR (findable, accessible, interoperable, reproducible) data and
 strive to include clear information about original data sources and complete
 metadata. To the best of our ability, we aim to include data that are already
