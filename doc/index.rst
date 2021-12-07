@@ -38,8 +38,9 @@
 What is QGreenland?
 ===================
 
-QGreenland is a free and open-source Greenland-focused environment for data
-analysis and viewing, powered by QGIS. QGreenland is delivered in two ways:
+QGreenland is a free and open-source Greenland-focused GIS environment for data
+analysis and viewing, powered by `QGIS <https://qgis.org>`_. QGreenland is
+delivered in two ways:
 
 1. as a large Zip package containing a core set of data curated to serve the
    majority of users; and
