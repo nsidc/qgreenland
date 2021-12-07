@@ -29,6 +29,12 @@ qgreenland/models/config
 
 ## Project config
 
+```{admonition} TODO
+
+Fix links to source code. Consider using this? https://www.sphinx-doc.org/en/master/usage/extensions/linkcode.html
+```
+
+
 [project.py](/qgreenland/config/project.py) defines the project `crs` (EPSG) and
 any `boundaries` that will be used to clip data for this project.
 
