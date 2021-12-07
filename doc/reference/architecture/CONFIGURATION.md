@@ -1,3 +1,5 @@
+# Configuration
+
 The QGreenland configuration represents the processing that needs to be done to
 convert source `datasets` in to final outputs ready for use by QGreenland. The
 configuration can be found at:
@@ -18,13 +20,13 @@ qgreenland/models/config
 ```
 
 
-# Project config
+## Project config
 
 [project.py](/qgreenland/config/project.py) defines the project `crs` (EPSG) and
 any `boundaries` that will be used to clip data for this project.
 
 
-# Datasets config
+## Datasets config
 
 Dataset configurations define a unique `id`, `metadata`, and a list of
 `assets`.
@@ -32,7 +34,7 @@ Dataset configurations define a unique `id`, `metadata`, and a list of
 [Example](/qgreenland/config/datasets/background.py)
 
 
-## Assets
+### Assets
 
 An asset represents a file or files in a dataset that will be used to create a
 single layer. A layer currently cannot use more than one asset as its input.
@@ -56,7 +58,7 @@ You can find the full set of available asset types
 [here](/qgreenland/models/config/asset.py).
 
 
-# Layers and layer groups config
+## Layers and layer groups config
 
 Layers in `qgreenland/config/layers` are organized into a directory structure
 which mirrors the QGIS Layers Panel tree structure. Each directory may
@@ -73,7 +75,7 @@ Layers Panel and the `description` determines the hovertext for that same layer
 in the QGIS Layers Panel.
 
 
-## Layer steps
+### Layer steps
 
 Layers are created in a series of `steps`. The final result of the `steps` must
 be a GeoTIFF (`.tif` file) for raster layers, and a GeoPackage (`.gpkg`) for
@@ -95,7 +97,7 @@ runtime variables are legal:
 * `{assets_dir}`: In this repository, `qgreenland/assets`.
 
 
-## Layer group settings
+### Layer group settings
 
 Each layer group can optionally have a `__settings__.py` file inside its
 directory which determines settings for only that group. If the file is
@@ -111,7 +113,7 @@ shows that layers are represented with a leading `:` to differentiate layers
 from groups in the same list.
 
 
-# Helpers
+## Configuration helpers
 
 Helpers are arbitrary python code to allow code-sharing between configuration
 modules. The following categories of helpers exist in subdirectories:
@@ -121,7 +123,7 @@ modules. The following categories of helpers exist in subdirectories:
 * `ancillary`: JSON data to support helpers.
 
 
-# Lockfile
+## Configuration lockfile
 
 Use `inv config.export > qgreenland/config/cfg-lock.json` to refresh the
 configuration lockfile. This allows us to compare the _results_ of
