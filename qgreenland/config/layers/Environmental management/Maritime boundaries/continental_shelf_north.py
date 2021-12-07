@@ -1,42 +1,42 @@
-from qgreenland.config.datasets.continental_shelf_south import (
-    south_lines as lines_dataset,
-    south_points as points_dataset,
-    south_polygons as polygons_dataset,
+from qgreenland.config.datasets.continental_shelf_north import (
+    north_lines as lines_dataset,
+    north_points as points_dataset,
+    north_polygons as polygons_dataset,
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 
 
-LINE_FILE = 'Greenland_South_Lines.shp'
-POINT_FILE = 'Greenland_South_Points.shp'
-POLYGON_FILE = 'Greenland_South_Polygons.shp'
+LINE_FILE = 'Greenland_North_Lines.shp'
+POINT_FILE = 'Greenland_North_Points.shp'
+POLYGON_FILE = 'Greenland_North_Polygons.shp'
 LAYER_PARAMS = {
-    'continental_shelf_south_line': {
-        'title': 'South (polyline)',
+    'continental_shelf_north_line': {
+        'title': 'North (polyline)',
         'description': (
             """ """
         ),
         'input_filename': LINE_FILE,
-        'layer_name': 'South (polyline)',
+        'layer_name': 'North (polyline)',
         'dataset': lines_dataset,
     },
-    'continental_shelf_south_point': {
-        'title': 'South (point)',
+    'continental_shelf_north_point': {
+        'title': 'North (point)',
         'description': (
             """ """
         ),
         'input_filename': POINT_FILE,
-        'layer_name': 'South (point)',
+        'layer_name': 'North (point)',
         'dataset': points_dataset,
     },
-    'continental_shelf_south_polygon': {
-        'title': 'South (polygon)',
+    'continental_shelf_north_polygon': {
+        'title': 'North (polygon)',
         'description': (
             """ """
         ),
         'input_filename': POLYGON_FILE,
-        'layer_name': 'South (polygon)',
+        'layer_name': 'North (polygon)',
         'dataset': polygons_dataset,
     },
 }

@@ -1,14 +1,12 @@
-from qgreenland.config.datasets.continental_shelf_south import (
-    south_lines as lines_dataset,
-    south_points as points_dataset,
-    south_polygons as polygons_dataset,
+from qgreenland.config.datasets.continental_shelf import (
+    continental_shelf as dataset,
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 
 
-LINE_FILE = 'Greenland_South_Lines.shp'
+POLYLINE_FILE = 'Greenland_South_Lines.shp'
 POINT_FILE = 'Greenland_South_Points.shp'
 POLYGON_FILE = 'Greenland_South_Polygons.shp'
 LAYER_PARAMS = {
@@ -17,9 +15,8 @@ LAYER_PARAMS = {
         'description': (
             """ """
         ),
-        'input_filename': LINE_FILE,
+        'input_filename': POLYLINE_FILE,
         'layer_name': 'South (polyline)',
-        'dataset': lines_dataset,
     },
     'continental_shelf_south_point': {
         'title': 'South (point)',
@@ -28,7 +25,6 @@ LAYER_PARAMS = {
         ),
         'input_filename': POINT_FILE,
         'layer_name': 'South (point)',
-        'dataset': points_dataset,
     },
     'continental_shelf_south_polygon': {
         'title': 'South (polygon)',
@@ -37,7 +33,6 @@ LAYER_PARAMS = {
         ),
         'input_filename': POLYGON_FILE,
         'layer_name': 'South (polygon)',
-        'dataset': polygons_dataset,
     },
 }
 
@@ -50,8 +45,8 @@ def make_layers() -> list[Layer]:
             description=params['description'],
             tags=[],
             input=LayerInput(
-                dataset=params['dataset'],
-                asset=params['dataset'].assets['only'],
+                dataset=dataset,
+                asset=dataset.assets['only'],
             ),
             steps=[
                 *ogr2ogr(
