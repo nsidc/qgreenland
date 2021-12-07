@@ -1,4 +1,4 @@
-.. _user-how-to:
+.. _glossary-reference:
 
 ========
 Glossary
