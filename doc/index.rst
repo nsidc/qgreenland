@@ -18,8 +18,8 @@
     :maxdepth: 1
     :glob:
 
+    contributor-how-to/index
     user-how-to/index
-    developer-how-to/index
 
 
 .. toctree::
