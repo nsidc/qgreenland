@@ -12,20 +12,32 @@ from qgreenland.util.runtime_vars import EvalFilePath, EvalStr
 
 
 class DatasetAsset(QgrBaseModel, ABC):
+    """Actual data associated with the dataset.
+
+    Assets determine how this data is accessed.
+    """
+
     id: str = Field(..., min_length=1)
+    """Asset unique identifier. Must be unique within the dataset."""
 
     @abstractmethod
     @cached_property
     def provenance(self) -> str:
+        """How the asset was acquired."""
         pass
 
 
 class HttpAsset(DatasetAsset):
-    # Whether or not to verify server's TLS certificate.
-    #     https://2.python-requests.org/en/master/api/#requests.Session.request
+    """An asset fetched over HyperText Transfer Protocol."""
+
     verify_tls: bool = True
+    """Verify the server's TLS certificate?
+
+        https://2.python-requests.org/en/master/api/#requests.Session.request
+    """
 
     urls: list[AnyUrl]
+    """List of URLs to fetch."""
 
     @cached_property
     def provenance(self) -> str:
@@ -36,11 +48,16 @@ class HttpAsset(DatasetAsset):
 # "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
 # regular layer with a URL as its path.
 class OnlineAsset(DatasetAsset):
+    """A QGIS online layer that is not fetched, but is accessed by QGIS."""
+
     provider: QgsLayerProviderType
-    # AnyUrl alone doesn't work because "gdal" remote layers use a
+    """The Layer Provider to use when setting up this layer in QGIS."""
+
+    # NOTE: AnyUrl alone doesn't work because "gdal" remote layers use a
     # `/vsicurl/https://` prefix, "wms" remote layers prefix the URL with
     # parameters. Maybe "url" isn't a good name for this parameter.
     url: Union[AnyUrl, str] = Field(..., min_length=1)
+    """The URL to use when setting up this layer in QGIS."""
 
     @cached_property
     def provenance(self) -> str:
@@ -51,8 +68,13 @@ class OnlineAsset(DatasetAsset):
 
 
 class CmrAsset(DatasetAsset):
+    """Data fetched based on the location provided by CMR."""
+
     granule_ur: str = Field(..., min_length=1)
+    """The CMR unique granule UR identifier."""
+
     collection_concept_id: str = Field(..., min_length=1)
+    """The CMR unique collection concept identifier."""
 
     @cached_property
     def provenance(self) -> str:
@@ -63,14 +85,16 @@ class CmrAsset(DatasetAsset):
 
 
 class RepositoryAsset(DatasetAsset):
-    """Assets stored in this repository in `ASSETS_DIR`."""
+    """Data stored in this repository in `ASSETS_DIR`."""
 
     # TODO: Move the assets into the config directory???
     filepath: EvalFilePath
+    """The location of the asset, e.g. `{assets_dir}/foo.txt`."""  # noqa: FS003
 
     @validator('filepath')
     @classmethod
     def ensure_relative_to_assets(cls, value):
+        """Ensure the asset path is as expected."""
         evaluated = value.eval()
         try:
             evaluated.relative_to(ASSETS_DIR)
@@ -88,12 +112,13 @@ class RepositoryAsset(DatasetAsset):
 
 
 class ManualAsset(DatasetAsset):
-    """Assets that must be manually accessed by a human.
+    """Data that must be manually accessed by a human.
 
-    e.g., requires interactive login.
+    For example, data which require an interactive login.
     """
 
     access_instructions: str = Field(..., min_length=1)
+    """Instructions for accessing the asset."""
 
     @cached_property
     def provenance(self) -> str:
@@ -104,12 +129,16 @@ class ManualAsset(DatasetAsset):
 
 
 class CommandAsset(DatasetAsset):
-    """Assets that are fetched via an arbitrary command.
+    """Data that are fetched via an arbitrary command.
 
     Data is written to '{output_dir}', which _must_ be specified in the command.
     """
 
     args: list[EvalStr]
+    """Command arguments.
+
+    E.g.: `['echo', 'foo', '>', '{output_dir}/foo.txt']`.
+    """
 
     @cached_property
     def provenance(self) -> str:

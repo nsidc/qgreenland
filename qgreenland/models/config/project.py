@@ -22,8 +22,10 @@ class BoundariesInfo(QgrBaseModel):
     # configs across file systems. Steps often need absolute paths that are
     # filesystem-agnostic.
     filepath: EvalFilePath
+    """Path to GeoJSON boundary file."""
 
     bbox: BoundingBox
+    """Bounding box, automatically populated from the file."""
 
     @validator('filepath')
     @classmethod
@@ -84,5 +86,10 @@ class BoundariesInfo(QgrBaseModel):
 
 
 class Project(QgrBaseModel):
+    """General project-wide configuration."""
+
     crs: str
+    """The Coordinate Reference System of the project."""
+
     boundaries: dict[str, BoundariesInfo]
+    """The boundaries available for use (e.g. clipping) during layer steps."""
