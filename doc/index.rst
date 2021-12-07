@@ -8,8 +8,8 @@
     :hidden:
     :maxdepth: 1
 
-    ACKNOWLEDGEMENTS.md
-    CONTRIBUTING.md
+    acknowledgements.md
+    contributing.md
 
 .. toctree::
     :name: How-to
