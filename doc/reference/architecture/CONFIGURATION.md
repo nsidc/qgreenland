@@ -27,7 +27,7 @@ any `boundaries` that will be used to clip data for this project.
 # Datasets config
 
 Dataset configurations define a unique `id`, `metadata`, and a list of
-`assets`.  
+`assets`.
 
 [Example](/qgreenland/config/datasets/background.py)
 
@@ -81,7 +81,7 @@ vector layers.
 
 Each step is a [command](/qgreenland/models/config/step.py) (e.g. `gdalwarp` or
 `ogr2ogr`) run against the output of the previous step.  The first step acts on
-the chosen `input.asset`. 
+the chosen `input.asset`.
 
 Within a step configuration, "runtime variables" are used to populate values
 that are not known at configuration-time, for example the WIP directories that
