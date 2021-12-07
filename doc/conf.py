@@ -56,7 +56,10 @@ html_static_path = ['_static']
 
 # -- Options for autodoc output -------------------------------------------------
 autodoc_default_options = {
-    'members': None,  # Document all public members by default.
+    # Document all public members by default.
+    'members': None,
     'show-inheritance': True,
+    # If set, autodoc will also generate document for the members not having docstrings:
+    'undoc-members': True,
 }
 autodoc_typehints = 'description'
