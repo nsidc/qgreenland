@@ -1,5 +1,12 @@
 # Configuration
 
+```{admonition} TODO
+
+See if we can generate links to autodoc instead of manually documenting
+configuration concepts.
+```
+
+
 The QGreenland configuration represents the processing that needs to be done to
 convert source `datasets` in to final outputs ready for use by QGreenland. The
 configuration can be found at:

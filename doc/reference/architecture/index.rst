@@ -1,8 +1,8 @@
 .. _architecture-reference:
 
-========
+============
 Architecture
-========
+============
 
 .. toctree::
     :maxdepth: 1
