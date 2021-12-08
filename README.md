@@ -5,6 +5,8 @@
 
 www.qgreenland.org
 
+Documentation: https://qgreenland.readthedocs.io
+
 
 ## A Free GIS Package for Greenland
 
