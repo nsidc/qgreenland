@@ -29,6 +29,7 @@ release = 'v2.0.0alpha4'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+# NOTE: Order matters!
 extensions = [
     'myst_parser',
     'sphinx.ext.linkcode',
