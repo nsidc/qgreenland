@@ -230,6 +230,7 @@ dependencies:
   - tornado=6.1=py39h3811e60_2
   - traitlets=5.1.1=pyhd8ed1ab_0
   - types-click=7.1.8=pyhd8ed1ab_0
+  - types-markdown=3.3.9=pyhd8ed1ab_0
   - types-pyyaml=5.4.12=pyhd8ed1ab_0
   - types-requests=2.25.12=pyhd8ed1ab_0
   - typing-extensions=3.10.0.2=hd8ed1ab_0

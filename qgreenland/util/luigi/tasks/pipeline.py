@@ -86,7 +86,6 @@ class AncillaryMarkdownFileToHtml(AncillaryFile):
             )
 
 
-
 class PackageLayerList(AncillaryFile):
     """A CSV description of layers in the package.
 
