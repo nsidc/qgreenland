@@ -56,14 +56,14 @@ provides a visualization of Greenland ice sheet velocity. See NSIDC’s
 documentation for this dataset for more information:
 https://nsidc.org/data/nsidc-0478.
 
-Finally, click “Add”. The layer will be added to the layers panel in QGIS.
+Finally, click “Add”. The layer will be added to the Layers panel in QGIS.
 
 ![wms_layer_added](/_images/wms_layer_added.jpg)
 
 
 ```{warning}
-The added layer will be inserted below whatever layer was previously
-selected in the **Layers panel**. This may mean that the layer is ‘under’ others. If
-the layer does not show up within a few seconds, check which layers are above
-the inserted layer and reorder as needed.
+The added layer will be inserted below whatever layer was previously selected in
+the Layers panel. This may mean that the layer is covered by other layers above
+it. If the layer does not show up within a few seconds, check which layers are
+above the inserted layer and reorder as needed.
 ```
