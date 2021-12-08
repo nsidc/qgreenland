@@ -50,7 +50,7 @@ north_lines = Dataset(
     },
 )
 
-north_points = Dataset(
+north_polygons = Dataset(
     id='north_polygons',
     assets=[
         HttpAsset(
