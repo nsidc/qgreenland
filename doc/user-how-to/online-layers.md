@@ -1,4 +1,4 @@
-# How to add an online layers to QGIS
+# How to add an online layer to QGIS
 
 When access to the internet is available, QGIS is capable of connecting to
 various online map services that can provide access to additional geospatial
