@@ -96,11 +96,3 @@ Citation:
 Acknowledgement:
 
     We acknowledge the National Snow and Ice Data Center QGreenland package.
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
