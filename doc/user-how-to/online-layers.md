@@ -51,7 +51,7 @@ Use the search bar or scroll to the
 `nsidc_0478_v2_measures_greenland_ice_sheet_vel` layer and select it. This layer
 provides a visualization of Greenland ice sheet velocity. See NSIDC’s
 documentation for this dataset for more information:
-https://nsidc.org/data/nsidc-0478.
+[https://nsidc.org/data/nsidc-0478](https://nsidc.org/data/nsidc-0478).
 
 Finally, click “Add”. The layer will be added to the Layers panel in QGIS.
 
