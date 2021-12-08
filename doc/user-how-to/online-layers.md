@@ -64,3 +64,16 @@ the Layers panel. This may mean that the layer is covered by other layers above
 it. If the layer does not show up within a few seconds, check which layers are
 above the inserted layer and reorder as needed.
 ```
+
+```{note}
+Some online layers are a timeseries. QGIS will automatically detect layers
+with a time component and identify them as such with a clock icon next to the
+layer name in the Layers panel.
+
+![timeseries_layer_clock_icon](/_images/timeseries_layer_clock_icon.png)
+
+Temporal layers can be interacted with using the Temporal Controller. See the
+[qgistutorials.com](https://www.qgistutorials.com/en/docs/3/animating_time_series.html)
+tutorial on animating timeseries data for more information on how to use the
+Temporal Controller.
+```
