@@ -34,6 +34,7 @@ extensions = [
     'myst_parser',
     'sphinx.ext.linkcode',
     'sphinx.ext.autodoc',
+    'sphinx.ext.extlinks',
     # TODO: What does this do?
     # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
     'sphinxcontrib.autodoc_pydantic',
@@ -105,3 +106,9 @@ autodoc_pydantic_model_show_validator_summary = False
 
 # Hide redundant field summary
 autodoc_pydantic_model_show_field_summary = False
+
+
+# -- Options for extlinks ------------------------------------------------------
+extlinks = {
+    'github': ('https://github.com/nsidc/qgreenland/tree/main/%s', 'GitHub: %s'),
+}
