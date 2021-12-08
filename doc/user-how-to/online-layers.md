@@ -1,4 +1,4 @@
-# Adding online layers to QGIS
+# How to add an online layers to QGIS
 
 When access to the internet is available, QGIS is capable of connecting to
 various online map services that can provide access to additional geospatial
@@ -19,7 +19,7 @@ from QGIS:
 * [OGC web services user manual](https://docs.qgis.org/3.16/en/docs/user_manual/working_with_ogc/ogc_client_support.html)
 
 
-## Adding a WMS Layer
+## Add a WMS Layer
 
 First, open the “Data Source Manager” from the top menu bar (Layer >Data Source
 Manager) and select the “WMS/WMTS” option.
