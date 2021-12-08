@@ -27,6 +27,7 @@ dependencies:
   - pyyaml ~=5.4.1
   - types-pyyaml ~=5.4.1
   - funcy ~=1.16
+  - markdown ~=3.3.6
 
 
   #############################

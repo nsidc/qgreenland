@@ -1,6 +1,5 @@
 # Contributing
 
-
 This project is currently undergoing rapid development, so expect change in any
 release except releases labeled as "stable". Stable releases can be found at
 [https://qgreenland.org/explore](https://qgreenland.org/explore)!
@@ -42,7 +41,6 @@ https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/cr
 
 ### How-tos
 
-* [](contributor-how-to/run-qgreenland.md)
-* [](contributor-how-to/contribute-styles.md)
-* [](contributor-how-to/contribute-layers.md)
-* [](contributor-how-to/release-new-version.md)
+Visit [our
+documentation](https://qgreenland.readthedocs.io/en/latest/contributor-how-to/)
+for contributor-focused how-tos!
