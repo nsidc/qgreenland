@@ -31,6 +31,7 @@ release = 'v2.0.0alpha4'
 # ones.
 extensions = [
     'myst_parser',
+    'sphinx.ext.linkcode',
     'sphinx.ext.autodoc',
     # TODO: What does this do?
     # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
@@ -60,7 +61,20 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 
-# -- Options for autodoc output -------------------------------------------------
+# -- Options for linkcode behavior ---------------------------------------------
+def linkcode_resolve(domain, info):
+    # Domain could be `py`, `c`, `cpp`, `javascript`, but this is a Python
+    # project.
+    if domain != 'py':
+        return None
+    if not info['module']:
+        return None
+
+    filename = info['module'].replace('.', '/')
+    return f'https://github.com/nsidc/qgreenland/blob/main/{filename}.py'
+
+
+# -- Options for autodoc output ------------------------------------------------
 autodoc_default_options = {
     # Document all public members by default.
     'members': None,
