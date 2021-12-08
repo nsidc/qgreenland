@@ -54,12 +54,12 @@ single layer. A layer currently cannot use more than one asset as its input.
 
 There are various types of assets. Some useful ones are:
 
-* `ConfigDatasetHttpAsset`: Downloads from a list of HTTP `urls`.
-* `ConfigDatasetCmrAsset`: Queries NASA CMR for a single `granule_ur` in a
+* {class}`~qgreenland.models.config.asset.HttpAsset`: Downloads from a list of HTTP `urls`.
+* {class}`~qgreenland.models.config.asset.CmrAsset`: Queries NASA CMR for a single `granule_ur` in a
   given `collection_concept_id` and downloads it.
-* `ConfigDatasetCommandAsset`: Runs an arbitrary command `args` to download or
+* {class}`~qgreenland.models.config.asset.CommandAsset`: Runs an arbitrary command `args` to download or
   create data files.
-* `ConfigDatasetManualAsset`: Accesses data that has been manually downloaded
+* {class}`~qgreenland.models.config.asset.ManualAsset`: Accesses data that has been manually downloaded
   by a human in to the private archive. This is required for datasets which
   can not be fetched programmatically, for example: because they're behind a
   GUI authentication screen; because an asynchronous ordering system must be
