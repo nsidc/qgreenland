@@ -3,6 +3,7 @@ import shutil
 from pathlib import Path
 
 import luigi
+import markdown
 
 from qgreenland.constants.paths import (
     ANCILLARY_DIR,
@@ -74,6 +75,17 @@ class AncillaryFile(luigi.Task):
             shutil.copy(self.src_filepath, temp_path)
 
 
+class AncillaryMarkdownFileToHtml(AncillaryFile):
+    """Convert an ancillary file to HTML in the final QGreenland package."""
+
+    def run(self):
+        with self.output().temporary_path() as temp_path:
+            markdown.markdownFromFile(
+                input=str(self.src_filepath),
+                output=str(temp_path),
+            )
+
+
 class PackageLayerList(AncillaryFile):
     """A CSV description of layers in the package.
 
@@ -123,13 +135,13 @@ class CreateQgisProjectFile(luigi.Task):
         )
         # TODO: Nothing below this line is really _required_ for the project
         # file. Only required for the Zip file. Extract.
-        yield AncillaryFile(
+        yield AncillaryMarkdownFileToHtml(
             src_filepath=PROJECT_DIR / 'README.md',
-            dest_relative_filepath='README.txt',
+            dest_relative_filepath='README.html',
         )
-        yield AncillaryFile(
+        yield AncillaryMarkdownFileToHtml(
             src_filepath=PROJECT_DIR / 'doc' / 'contributing.md',
-            dest_relative_filepath='CONTRIBUTING.txt',
+            dest_relative_filepath='CONTRIBUTING.html',
         )
         yield AncillaryFile(
             src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'QuickStartGuide.pdf',
@@ -143,9 +155,9 @@ class CreateQgisProjectFile(luigi.Task):
             src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'MakingDataQGRCompatible.pdf',
             dest_relative_filepath='MakingDataQGRCompatible.pdf',
         )
-        yield AncillaryFile(
+        yield AncillaryMarkdownFileToHtml(
             src_filepath=PROJECT_DIR / 'CHANGELOG.md',
-            dest_relative_filepath='CHANGELOG.txt',
+            dest_relative_filepath='CHANGELOG.html',
         )
         yield PackageLayerList()
 
