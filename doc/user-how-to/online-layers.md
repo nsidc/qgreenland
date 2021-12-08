@@ -34,7 +34,7 @@ using the National Snow and Ice Data Center’s (NSIDC). Add a descriptive name
 (e.g., ‘NSIDC’) and add the following URL to the “URL” field:
 `https://nsidc.org/api/mapservices/NSIDC/wms?version=1.1.0.`
 
-```{admonition} Note
+```{note}
 Additional
 information about NSIDC’s web map services is available here:
 [https://nsidc.org/map-services/geospatial-map-services](https://nsidc.org/map-services/geospatial-map-services).
@@ -60,7 +60,10 @@ Finally, click “Add”. The layer will be added to the layers panel in QGIS.
 
 ![wms_layer_added](/_images/wms_layer_added.jpg)
 
-NOTE: the added layer will be inserted below whatever layer was previously
-selected in the layers panel. This may mean that the layer is ‘under’ others. If
+
+```{warning}
+The added layer will be inserted below whatever layer was previously
+selected in the **Layers panel**. This may mean that the layer is ‘under’ others. If
 the layer does not show up within a few seconds, check which layers are above
 the inserted layer and reorder as needed.
+```
