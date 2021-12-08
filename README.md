@@ -3,9 +3,8 @@
 
 # QGreenland
 
-www.qgreenland.org
-
-Documentation: https://qgreenland.readthedocs.io
+* [Our website](https://www.qgreenland.org)
+* [Documentation](https://qgreenland.readthedocs.io)
 
 
 ## A Free GIS Package for Greenland
@@ -46,8 +45,8 @@ in EPSG:3413.
 
 # Getting Started
 
-As of this writing, the oldest version of QGIS we support is 3.10.x. You can
-find downloads and instructions
+As of this writing, the oldest version of QGIS we support is 3.16.x LTR. You
+can find downloads and instructions
 [here](https://qgis.org/en/site/forusers/download.html).
 
 After installing QGIS, [download QGreenland](http://www.qgreenland.org/explore)
@@ -65,9 +64,9 @@ the package root:
 * `QuickStartGuide.pdf`: Guide for QGIS beginners.
 * `MakingDataQGRCompatible.pdf`: Data compatibility guide for data providers,
   contributors, and users.
-* `README.txt`: The README file you are currently reading.
-* `CHANGELOG.txt`: A summary of changes for each new QGreenland version.
-* `CONTRIBUTING.txt`: Instructions to users looking for help contributing to
+* `README.html`: The README file you are currently reading.
+* `CHANGELOG.html`: A summary of changes for each new QGreenland version.
+* `CONTRIBUTING.html`: Instructions to users looking for help contributing to
   this project.
 * `layer_list.csv`: Comma-separated values representing the configuration of
   layers in QGreenland. This includes limited layer metadata, including, but
@@ -81,11 +80,12 @@ educational resources, including our own QGreenland User Guide.
 
 * [QGreenland official website](https://qgreenland.org)
 * [QGreenland YouTube channel](https://www.youtube.com/channel/UCjWae_Jrbognx2ju_SHBZ2A/videos)
+* [QGreenland official documentation](https://qgreenland.readthedocs.io)
 
 
 # Contributing
 
-Please see [contributing instructions](doc/CONTRIBUTING.md) for more info. A good
+Please see [contributing instructions](doc/contributing.md) for more info. A good
 portion of this document contains technical instructions about running the
 QGreenland pipeline, but also includes less-technical instructions for
 contributing styles you have developed within QGIS. Our goal is to make it as
@@ -97,5 +97,5 @@ please do not be deterred from sharing your ideas.
 
 # Acknowledgements
 
-Please see our [acknowledgements document](doc/ACKNOWLEDGEMENTS.md) for our
+Please see our [acknowledgements document](doc/acknowledgements.md) for our
 best effort to acknowledge all of the giants upon whose shoulders we stand.
