@@ -9,7 +9,6 @@
     :maxdepth: 1
 
     acknowledgements.md
-    contributing.md
 
 .. toctree::
     :name: How-to
@@ -35,6 +34,16 @@
     reference/*
 
 
+.. toctree::
+    :name: Discussion topics
+    :hidden:
+    :caption: Discussion topics
+    :maxdepth: 1
+    :glob:
+
+    discussion/*
+
+
 What is QGreenland?
 ===================
 
@@ -49,42 +58,21 @@ delivered in two ways:
    isn't part of the Zip package (for example, due to filesize constraints).
 
 
-The QGreenland Project
-======================
+What QGreenland *is not*
+------------------------
 
-Greenland-focused research, planning, and education crosses disciplinary
-boundaries. With QGreenland, a free data-viewing platform, anyone can explore a
-wide variety of Greenland-focused data identified by an `expert team and
-Editorial Board <https://qgreenland.org/our-team>`_. 
+* The QGreenland project is not a data-production project. While we do
+  process existing data, it is only to enable efficient and effective viewing
+  in the QGreenland QGIS environment.
 
-QGreenland is a United States National Science Foundation EarthCube-funded
-effort (award #\ `1928393
-<https://nsf.gov/awardsearch/showAward?AWD_ID=1928393&HistoricalAwards=false>`_).
-Project development began in 2019, led by the `National
-Snow and Ice Data Center <https://nsidc.org/>`_, which is a part of the
-University of Colorado Boulder `Cooperative Institute for Research in
-Environmental Sciences <https://cires.colorado.edu/>`_. The project is made
-possible through the generous efforts of a wide range of collaborators.
-
-The QGreenland Team believes in open and accessible resources. QGreenland is
-built using free and open software, with development tools and workflows fully
-documented on our `Github page <https://github.com/nsidc/qgreenland>`_. We also
-believe in FAIR (findable, accessible, interoperable, reproducible) data and
-strive to include clear information about original data sources and complete
-metadata. To the best of our ability, we aim to include data that are already
-free and publicly archived.
-
-As QGreenland development continues, we will be expanding our educational
-resources, increasing optional data download options, and working to be as
-responsive as possible to user feedback. We look forward to `hearing from you
-<qgreenland.info@gmail.com>`_.
+* QGreenland is not a navigational aid.
 
 
 Citing QGreenland
 =================
 
 We request that QGreenland be cited or acknowledged when publishing a
-QGreenland-made image or map. 
+QGreenland-made image or map.
 
 
 Citation
