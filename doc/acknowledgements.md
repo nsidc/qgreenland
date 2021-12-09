@@ -32,5 +32,5 @@ QGreenland successful. Thank you!
 ## Prior art
 
 The [Quantarctica](https://www.npolar.no/en/quantarctica/) project inspired
-this one. Our innovation on this prior work is to enable open-source and
-reproducible package creation.
+QGreenland. Our innovation on this prior work is open-source and reproducible
+package creation.
