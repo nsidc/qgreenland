@@ -26,13 +26,13 @@ continental_shelf = Dataset(
         HttpAsset(
             id='northeast_points',
             urls=[
-                'http://tuvalu.grida.no/ecs/dnk_68_2013_polygons.zip',
+                'http://tuvalu.grida.no/ecs/dnk_68_2013_points.zip',
             ],
         ),
         HttpAsset(
             id='northeast_lines',
             urls=[
-                'http://tuvalu.grida.no/ecs/dnk_68_2013_polygons.zip',
+                'http://tuvalu.grida.no/ecs/dnk_68_2013_lines.zip',
             ],
         ),
         HttpAsset(
@@ -50,13 +50,13 @@ continental_shelf = Dataset(
         HttpAsset(
             id='south_lines',
             urls=[
-                'http://tuvalu.grida.no/ecs/dnk_61_2012_points.zip',
+                'http://tuvalu.grida.no/ecs/dnk_61_2012_lines.zip',
             ],
         ),
         HttpAsset(
             id='south_polygons',
             urls=[
-                'http://tuvalu.grida.no/ecs/dnk_61_2012_points.zip',
+                'http://tuvalu.grida.no/ecs/dnk_61_2012_polygons.zip',
             ],
         ),
     ],
