@@ -1,5 +1,16 @@
 # Acknowledgements
 
+The QGreenland project team acknowledges the following people, organizations,
+and projects for making our work possible and enjoyable!
+
+
+## Prior art
+
+The [Quantarctica](https://www.npolar.no/en/quantarctica/) project inspired
+QGreenland. Our innovation on this prior work is open-source and reproducible
+package creation.
+
+
 ## Editorial board
 
 The [QGreenland Editorial Board](https://qgreenland.org/our-team) made it
@@ -27,10 +38,3 @@ environment-lock.yml file, thank you!
 [QGreenland collaborators](https://qgreenland.org/our-team) are external
 organizations which provided knowledge, support, and resources that helped make
 QGreenland successful. Thank you!
-
-
-## Prior art
-
-The [Quantarctica](https://www.npolar.no/en/quantarctica/) project inspired
-QGreenland. Our innovation on this prior work is open-source and reproducible
-package creation.
