@@ -27,3 +27,10 @@ environment-lock.yml file, thank you!
 [QGreenland collaborators](https://qgreenland.org/our-team) are external
 organizations which provided knowledge, support, and resources that helped make
 QGreenland successful. Thank you!
+
+
+## Prior art
+
+The [Quantarctica](https://www.npolar.no/en/quantarctica/) project inspired
+this one. Our innovation on this prior work is to enable open-source and
+reproducible package creation.
