@@ -61,7 +61,7 @@ continental_shelf = Dataset(
         ),
     ],
     metadata={
-        'title': "Denmark - in respect of the Continental Shelf of Greenland",
+        'title': 'Denmark - in respect of the Continental Shelf of Greenland',
         'abstract': (
             """TODO: ."""
         ),
