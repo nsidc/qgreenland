@@ -8,3 +8,4 @@ sphinx-click==3.0.1
 
 # QGreenland's dependencies for autodoc. Should we mock these instead?
 anytree==2.8.0
+funcy==1.16
