@@ -10,6 +10,9 @@ build:
 
 sphinx:
   configuration: doc/conf.py
+  # There doesn't seem to be a way to turn on nitpicky mode.
+  # This is equivalent to `-W --keep-going`.
+  fail_on_warning: True
 
 formats:
   - pdf
