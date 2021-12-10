@@ -1,3 +1,12 @@
+# Configuration
+
+```{admonition} TODO
+
+See if we can generate links to autodoc instead of manually documenting
+configuration concepts.
+```
+
+
 The QGreenland configuration represents the processing that needs to be done to
 convert source `datasets` in to final outputs ready for use by QGreenland. The
 configuration can be found at:
@@ -18,33 +27,39 @@ qgreenland/models/config
 ```
 
 
-# Project config
+## Project config
 
-[project.py](/qgreenland/config/project.py) defines the project `crs` (EPSG) and
+```{admonition} TODO
+
+Fix links to source code. Consider using this? https://www.sphinx-doc.org/en/master/usage/extensions/linkcode.html
+```
+
+
+{github}`project.py <qgreenland/config/project.py>` defines the project `crs` (EPSG) and
 any `boundaries` that will be used to clip data for this project.
 
 
-# Datasets config
+## Datasets config
 
 Dataset configurations define a unique `id`, `metadata`, and a list of
-`assets`.  
+`assets`.
 
-[Example](/qgreenland/config/datasets/background.py)
+{github}`Example <qgreenland/config/datasets/background.py>`
 
 
-## Assets
+### Assets
 
 An asset represents a file or files in a dataset that will be used to create a
 single layer. A layer currently cannot use more than one asset as its input.
 
 There are various types of assets. Some useful ones are:
 
-* `ConfigDatasetHttpAsset`: Downloads from a list of HTTP `urls`.
-* `ConfigDatasetCmrAsset`: Queries NASA CMR for a single `granule_ur` in a
+* {class}`~qgreenland.models.config.asset.HttpAsset`: Downloads from a list of HTTP `urls`.
+* {class}`~qgreenland.models.config.asset.CmrAsset`: Queries NASA CMR for a single `granule_ur` in a
   given `collection_concept_id` and downloads it.
-* `ConfigDatasetCommandAsset`: Runs an arbitrary command `args` to download or
+* {class}`~qgreenland.models.config.asset.CommandAsset`: Runs an arbitrary command `args` to download or
   create data files.
-* `ConfigDatasetManualAsset`: Accesses data that has been manually downloaded
+* {class}`~qgreenland.models.config.asset.ManualAsset`: Accesses data that has been manually downloaded
   by a human in to the private archive. This is required for datasets which
   can not be fetched programmatically, for example: because they're behind a
   GUI authentication screen; because an asynchronous ordering system must be
@@ -52,11 +67,14 @@ There are various types of assets. Some useful ones are:
   scientist over e-mail and is not hosted anywhere. We prefer to avoid or
   eventually fully eliminate the use of data in this category.
 
+```{admonition} TODO
+
+Link to API docs?
+```
 You can find the full set of available asset types
-[here](/qgreenland/models/config/asset.py).
+{github}`here</qgreenland/models/config/asset.py>`.
 
-
-# Layers and layer groups config
+## Layers and layer groups config
 
 Layers in `qgreenland/config/layers` are organized into a directory structure
 which mirrors the QGIS Layers Panel tree structure. Each directory may
@@ -73,15 +91,15 @@ Layers Panel and the `description` determines the hovertext for that same layer
 in the QGIS Layers Panel.
 
 
-## Layer steps
+### Layer steps
 
 Layers are created in a series of `steps`. The final result of the `steps` must
 be a GeoTIFF (`.tif` file) for raster layers, and a GeoPackage (`.gpkg`) for
 vector layers.
 
-Each step is a [command](/qgreenland/models/config/step.py) (e.g. `gdalwarp` or
+Each step is a {github}`command </qgreenland/models/config/step.py>` (e.g. `gdalwarp` or
 `ogr2ogr`) run against the output of the previous step.  The first step acts on
-the chosen `input.asset`. 
+the chosen `input.asset`.
 
 Within a step configuration, "runtime variables" are used to populate values
 that are not known at configuration-time, for example the WIP directories that
@@ -95,23 +113,23 @@ runtime variables are legal:
 * `{assets_dir}`: In this repository, `qgreenland/assets`.
 
 
-## Layer group settings
+### Layer group settings
 
 Each layer group can optionally have a `__settings__.py` file inside its
 directory which determines settings for only that group. If the file is
 omitted, defaults are used (see
-[here](/qgreenland/models/config/layer_group.py) for default values).
+{github}`here </qgreenland/models/config/layer_group.py>` for default values).
 
 This file is most commonly used for specifying the order in which the layer
 group's contents will be displayed in QGIS. If `order` is not specified,
 contents are displayed alphabetically with groups first.
 
-An [example](/qgreenland/config/layers/Reference/__settings__.py) settings file
+An {github}`example </qgreenland/config/layers/Reference/__settings__.py>` settings file
 shows that layers are represented with a leading `:` to differentiate layers
 from groups in the same list.
 
 
-# Helpers
+## Configuration helpers
 
 Helpers are arbitrary python code to allow code-sharing between configuration
 modules. The following categories of helpers exist in subdirectories:
@@ -121,7 +139,7 @@ modules. The following categories of helpers exist in subdirectories:
 * `ancillary`: JSON data to support helpers.
 
 
-# Lockfile
+## Configuration lockfile
 
 Use `inv config.export > qgreenland/config/cfg-lock.json` to refresh the
 configuration lockfile. This allows us to compare the _results_ of

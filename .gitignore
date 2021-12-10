@@ -13,3 +13,6 @@ docker-compose.override.yml
 # Ctags
 /tags
 /tags.lock
+
+# Docs
+/doc/_build

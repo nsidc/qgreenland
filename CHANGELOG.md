@@ -5,15 +5,15 @@
     reference layers
   - "Basemaps/Background (500m)": Use JPEG compression to significantly reduce
     file size
-- Added Layers:
-  - Continental shelf points, lines, and polygons
+  - Removed "Monthly sea ice extent (1978 - present)" (time-series,
+    online-only). In its place, documentation will be produced on how to manually
+    add time-controlled layers.
 - Add metadata.txt with layer information to layer data directory. This allows
   users who are not using the QGreenland project to access e.g., the layer's
   abstract and citation information.
 - Upgrade `GDAL` version used for running layer pipelines to v3.4.0
-- Removed "Monthly sea ice extent (1978 - present)" (time-series,
-  online-only). In its place, documentation will be produced on how to manually
-  add time-controlled layers.
+- Update `.txt` documentation in the package (e.g. `README.txt`) to rich HTML
+  documentation.
 
 
 # v2.0.0alpha3 (2021-11-23)

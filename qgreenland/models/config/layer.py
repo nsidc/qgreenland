@@ -12,9 +12,14 @@ from qgreenland.util.model_validators import reusable_validator, validate_paragr
 
 
 class LayerInput(QgrBaseModel):
+    """The input(s) to a layer's processing pipeline."""
+
     # TODO: just maintain ids here?
     dataset: Dataset
+    """The dataset providing the layer's input. Important for metadata."""
+
     asset: AnyAsset
+    """The actual input asset (file or files)."""
 
 
 def _style_filepath(style_name: str) -> Path:
@@ -23,24 +28,28 @@ def _style_filepath(style_name: str) -> Path:
 
 class Layer(QgrBaseModel):
     id: str
+    """Unique identifier."""
 
-    # The layer name in QGIS layers panel:
     title: str
+    """The layer name in QGIS Layers Panel."""
 
-    # Descriptive text:
     description: str = Field(..., min_length=1)
+    """Descriptive text shown as hover-text in the QGIS Layer Panel."""
 
-    # Additional categories that describe this data:
     tags: list[str] = []
+    """Additional categories that describe this data."""
 
-    # Is this layer in the final QGreenland zip file?:
     in_package: bool = True
+    """Is this layer in the final QGreenland zip file?"""
 
-    # Is this layer initially "checked" as visible in QGIS?:
     show: bool = False
+    """Is this layer initially "checked" or visible in QGIS?"""
 
-    # Which style (.qml) file to use for this layer?
     style: Optional[str] = Field(None, min_length=1)
+    """Which style (.qml) file to use for this layer?
+
+    Omit the file extension.
+    """
 
     input: LayerInput
 
@@ -51,6 +60,7 @@ class Layer(QgrBaseModel):
     @validator('style')
     @classmethod
     def style_file_exists(cls, value):
+        """Ensure the QML style file exists in the configuration."""
         if value:
             style_filepath = _style_filepath(value)
             if not style_filepath.is_file():
@@ -62,6 +72,7 @@ class Layer(QgrBaseModel):
 
     @property
     def style_filepath(self) -> Union[Path, None]:
+        """Full filepath to the QML style file."""
         if self.style is None:
             return None
 

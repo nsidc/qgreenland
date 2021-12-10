@@ -1,4 +1,6 @@
-# "Too many open files" on Linux
+# Troubleshooting
+
+## "Too many open files" on Linux
 
 Your system may have multiple ways of limiting open files in different
 contexts. To check your limits:
@@ -25,7 +27,7 @@ DefaultLimitNOFILE=20480
 ```
 
 
-# QGIS won't start on OSX Catalina
+## QGIS won't start on OSX Catalina
 
 QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of
 this app needs to update it to work with this version of macOS. Contact the

@@ -34,6 +34,10 @@ class QgrBaseModel(BaseModel):
     @validator('*')
     @classmethod
     def validate_id_fields(cls, value, field):
+        """Ensure `id` fields have appropriate content.
+
+        Only lowercase alphanumeric characters or underscores are permitted.
+        """
         if field.name != 'id':
             return value
 

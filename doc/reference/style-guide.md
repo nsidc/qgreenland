@@ -1,14 +1,20 @@
-# About
+# Style guide
 
 Styles live in `qgreenland/ancillary/styles`.
 
 For more info on importing third-party colormaps in to QGIS, watch our YouTube
-video: https://www.youtube.com/watch?v=rmYehinZa1U
+video:
+
+```{raw} html
+<div style="position: relative; padding-bottom: 56.25%; margin-bottom: 2em; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+  <iframe src="https://www.youtube.com/embed/rmYehinZa1U" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div>
+```
 
 
-# Standards
+## Standards
 
-## Categorical Data
+### Categorical Data
 
 Categorical data can be raster or vector, but styling considerations are
 similar either way.
@@ -16,14 +22,16 @@ similar either way.
 Use the "Paired" color palette from cpt-city with 10 colors for Categorical
 data. You can use this colormap without leaving the QGIS user interface.
 
-TODO: Pick a better color ramp or palette.
+```{admonition} TODO
+Pick a better color ramp or palette.
+```
 
 
-## Raster Data
+### Raster Data
 
-### Colormaps
+#### Colormaps
 
-#### Scalar
+##### Scalar
 
 Colormaps should be limited to 11 "classes" to reduce vertical space taken in
 the Layers Panel by the legend.
@@ -33,7 +41,7 @@ median class should represent the critical value in the data, e.g. 0 for
 anomaly or "error" data.
 
 
-## Vector Data
+### Vector Data
 
 Vector data should primarily use colors from [Color
 Brewer](http://colorbrewer2.org). These colors can be imported into QGIS via
@@ -41,12 +49,12 @@ cpt-city
 [here](http://soliton.vm.bytemark.co.uk/pub/cpt-city/cb/seq/index.html).
 
 
-### Protected Areas
+#### Protected Areas
 
 Use any color from Color Brewer's `YlOrRd09` color palette.
 
 
-#### Polygon
+##### Polygon
 
 Example: "Arctic Protected Areas (CAFF 2017)" for an example.
 
