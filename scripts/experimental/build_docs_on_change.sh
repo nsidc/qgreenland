@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# TODO: How to support OSX?
+
 set -e
 
 THIS_DIR="$( cd "$(dirname "$0")"; pwd -P )"
