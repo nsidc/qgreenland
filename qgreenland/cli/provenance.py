@@ -12,6 +12,7 @@ from qgreenland.util.provenance import layer_provenance_text
 @click.command()
 @click.argument('layer_id')
 def provenance(layer_id):
+    """List steps that are taken to process layer LAYER_ID."""
     init_config()
     config = get_config()
 
