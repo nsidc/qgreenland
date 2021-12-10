@@ -32,6 +32,7 @@ projects. This is not an exhaustive list -- if your project is listed in our
 environment-lock.yml file, thank you!
 
 * [QGIS](https://www.qgis.org/)
+* [cmocean](https://github.com/matplotlib/cmocean)
 * [Python](https://www.python.org)
 * [Luigi](https://github.com/spotify/luigi)
 * [Rasterio](https://github.com/mapbox/rasterio)
