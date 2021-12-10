@@ -29,7 +29,7 @@ high quality. Thank you!
 
 QGreenland would not have been possible without the following open-source
 projects. This is not an exhaustive list -- if your project is listed in our
-environment-lock.yml file, thank you!
+`environment-lock.yml` file, thank you!
 
 * [QGIS](https://www.qgis.org/)
 * [cmocean](https://github.com/matplotlib/cmocean)
