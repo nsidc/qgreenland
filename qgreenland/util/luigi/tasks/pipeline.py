@@ -140,7 +140,7 @@ class CreateQgisProjectFile(luigi.Task):
             dest_relative_filepath='README.html',
         )
         yield AncillaryMarkdownFileToHtml(
-            src_filepath=PROJECT_DIR / 'doc' / 'contributing.md',
+            src_filepath=PROJECT_DIR / 'doc' / 'discussion' / 'contributing.md',
             dest_relative_filepath='CONTRIBUTING.html',
         )
         yield AncillaryFile(
