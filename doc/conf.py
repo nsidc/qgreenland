@@ -75,6 +75,10 @@ def linkcode_resolve(domain, info):
     return f'https://github.com/nsidc/qgreenland/blob/main/{filename}.py'
 
 
+# Show the full path to the object (this is the default), e.g.:
+# `qgreenland.models.config.asset.CmrAsset`
+add_module_names = True
+
 # -- Options for autodoc output ------------------------------------------------
 autodoc_default_options = {
     # Document all public members by default.
@@ -84,9 +88,9 @@ autodoc_default_options = {
     'undoc-members': True,
 }
 
-# Show the full path to the object (this is the default), e.g.:
-# `qgreenland.models.config.asset.CmrAsset`
-add_module_names = True
+autodoc_mock_imports = [
+    'fiona',
+]
 
 # Show the typehints in the description of each object instead of the signature.
 # We found this to be more readable.
