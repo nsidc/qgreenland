@@ -7,5 +7,6 @@ settings = LayerGroupSettings(
         ':tectonic_plate_boundaries',
         ':soil_types',
         'Geological map',
+        'Continental shelf',
     ],
 )
