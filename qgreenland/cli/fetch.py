@@ -5,12 +5,6 @@ import click
 import luigi
 from funcy import lmapcat, select
 
-from qgreenland.util.config.config import (
-    get_config,
-    init_config,
-)
-from qgreenland.util.luigi import fetch_tasks_from_dataset
-
 
 @click.command()
 @click.option(
@@ -26,6 +20,12 @@ from qgreenland.util.luigi import fetch_tasks_from_dataset
 @click.argument('pattern')
 def fetch(pattern, dry_run, workers) -> None:
     """Fetch assets for datasets matching PATTERN."""
+    from qgreenland.util.config.config import (
+        get_config,
+        init_config,
+    )
+    from qgreenland.util.luigi import fetch_tasks_from_dataset
+
     init_config()
     config = get_config()
 

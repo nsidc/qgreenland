@@ -31,6 +31,7 @@
     reference/glossary/index
     reference/architecture/index
     reference/api/index
+    reference/cli/index
     reference/*
 
 

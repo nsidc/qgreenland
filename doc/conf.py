@@ -32,6 +32,7 @@ release = 'v2.0.0alpha4'
 # NOTE: Order matters!
 extensions = [
     'myst_parser',
+    'sphinx_click',
     'sphinx.ext.linkcode',
     'sphinx.ext.extlinks',
     'sphinx.ext.autodoc',

@@ -4,10 +4,6 @@ from fnmatch import fnmatch
 import click
 from funcy import select
 
-from qgreenland.util.config.config import (
-    get_config,
-    init_config,
-)
 from qgreenland.util.json import MagicJSONEncoder
 
 Format = ['ids', 'titles', 'json']
@@ -29,6 +25,10 @@ def layers(
     format: str,
 ) -> None:
     """List available layers matching PATTERN."""
+    from qgreenland.util.config.config import (
+        get_config,
+        init_config,
+    )
     init_config()
     config = get_config()
 

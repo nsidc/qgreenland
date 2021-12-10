@@ -2,16 +2,18 @@ import sys
 
 import click
 
-from qgreenland.util.config.config import (
-    get_config,
-    init_config,
-)
 from qgreenland.util.provenance import layer_provenance_text
 
 
 @click.command()
 @click.argument('layer_id')
 def provenance(layer_id):
+    """List steps that are taken to process layer LAYER_ID."""
+    from qgreenland.util.config.config import (
+        get_config,
+        init_config,
+    )
+
     init_config()
     config = get_config()
 
