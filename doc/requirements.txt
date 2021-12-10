@@ -1,8 +1,10 @@
 # Only for use by ReadTheDocs build system
 myst-parser==0.15.2
 autodoc-pydantic ~=1.5.1
+sphinx-click==3.0.1
+
 # What is this? Do we need it?
 # sphinx-autodoc-typehints==1.12.0
 
-# QGreenland dependencies for autodoc
+# QGreenland's dependencies for autodoc. Should we mock these instead?
 anytree==2.8.0

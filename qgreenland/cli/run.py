@@ -1,16 +1,6 @@
 import click
 import luigi
 
-from qgreenland.util.config.config import (
-    get_config,
-    init_config,
-)
-from qgreenland.util.luigi.tasks.pipeline import (
-    LayerPipelines,
-    QGreenlandAll,
-    QGreenlandNoZip,
-)
-
 
 @click.command()
 @click.option(
@@ -71,6 +61,16 @@ def run(
     workers: int,
 ) -> None:
     """Run pipelines for layers matching filters."""
+    from qgreenland.util.luigi.tasks.pipeline import (
+        LayerPipelines,
+        QGreenlandAll,
+        QGreenlandNoZip,
+    )
+    from qgreenland.util.config.config import (
+        get_config,
+        init_config,
+    )
+
     if force_package_zip and force_no_package_zip:
         raise RuntimeError('Can not force zip AND no zip.')
 
