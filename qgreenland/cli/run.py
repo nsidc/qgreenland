@@ -61,6 +61,8 @@ def run(
     workers: int,
 ) -> None:
     """Run pipelines for layers matching filters."""
+    # Hack to work around issue with sphinx-click:
+    #     https://github.com/click-contrib/sphinx-click/issues/86#issuecomment-991196764
     from qgreenland.util.luigi.tasks.pipeline import (
         LayerPipelines,
         QGreenlandAll,

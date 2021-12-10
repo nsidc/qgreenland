@@ -25,6 +25,8 @@ def layers(
     format: str,
 ) -> None:
     """List available layers matching PATTERN."""
+    # Hack to work around issue with sphinx-click:
+    #     https://github.com/click-contrib/sphinx-click/issues/86#issuecomment-991196764
     from qgreenland.util.config.config import (
         get_config,
         init_config,

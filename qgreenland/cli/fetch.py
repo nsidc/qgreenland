@@ -20,6 +20,8 @@ from funcy import lmapcat, select
 @click.argument('pattern')
 def fetch(pattern, dry_run, workers) -> None:
     """Fetch assets for datasets matching PATTERN."""
+    # Hack to work around issue with sphinx-click:
+    #     https://github.com/click-contrib/sphinx-click/issues/86#issuecomment-991196764
     from qgreenland.util.config.config import (
         get_config,
         init_config,
