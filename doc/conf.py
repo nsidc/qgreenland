@@ -37,7 +37,7 @@ extensions = [
     'sphinx.ext.autodoc',
     # TODO: What does this do?
     # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
-    # 'sphinxcontrib.autodoc_pydantic',
+    'sphinxcontrib.autodoc_pydantic',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
