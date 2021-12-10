@@ -111,6 +111,9 @@ autodoc_pydantic_model_show_validator_summary = False
 # Hide redundant field summary
 autodoc_pydantic_model_show_field_summary = False
 
+# Don't warn when a field is not serializable
+autodoc_pydantic_model_show_json_error_strategy = 'coerce'
+
 
 # -- Options for extlinks ------------------------------------------------------
 extlinks = {
