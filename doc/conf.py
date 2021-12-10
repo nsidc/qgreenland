@@ -32,9 +32,9 @@ release = 'v2.0.0alpha4'
 # NOTE: Order matters!
 extensions = [
     'myst_parser',
-    # 'sphinx.ext.linkcode',
+    'sphinx.ext.linkcode',
+    'sphinx.ext.extlinks',
     'sphinx.ext.autodoc',
-    # 'sphinx.ext.extlinks',
     # TODO: What does this do?
     # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
     # 'sphinxcontrib.autodoc_pydantic',
