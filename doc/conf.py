@@ -33,12 +33,11 @@ release = 'v2.0.0alpha4'
 extensions = [
     'myst_parser',
     'sphinx.ext.linkcode',
-    'sphinx.ext.autodoc',
     'sphinx.ext.extlinks',
+    'sphinx.ext.autodoc',
     # TODO: What does this do?
     # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
     'sphinxcontrib.autodoc_pydantic',
-
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -47,7 +46,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_notes', '_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -60,7 +59,8 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+# html_static_path = ['_static']
+html_static_path = []
 
 
 # -- Options for linkcode behavior ---------------------------------------------
@@ -76,6 +76,10 @@ def linkcode_resolve(domain, info):
     return f'https://github.com/nsidc/qgreenland/blob/main/{filename}.py'
 
 
+# Show the full path to the object (this is the default), e.g.:
+# `qgreenland.models.config.asset.CmrAsset`
+add_module_names = True
+
 # -- Options for autodoc output ------------------------------------------------
 autodoc_default_options = {
     # Document all public members by default.
@@ -85,9 +89,9 @@ autodoc_default_options = {
     'undoc-members': True,
 }
 
-# Show the full path to the object (this is the default), e.g.:
-# `qgreenland.models.config.asset.CmrAsset`
-add_module_names = True
+autodoc_mock_imports = [
+    'fiona',
+]
 
 # Show the typehints in the description of each object instead of the signature.
 # We found this to be more readable.
@@ -106,6 +110,9 @@ autodoc_pydantic_model_show_validator_summary = False
 
 # Hide redundant field summary
 autodoc_pydantic_model_show_field_summary = False
+
+# Don't warn when a field is not serializable
+autodoc_pydantic_model_show_json_error_strategy = 'coerce'
 
 
 # -- Options for extlinks ------------------------------------------------------

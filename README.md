@@ -3,8 +3,9 @@
 
 # QGreenland
 
-* [Our website](https://www.qgreenland.org)
-* [Documentation](https://qgreenland.readthedocs.io)
+![QGreenland example images](/doc/_images/qgreenland-examples.jpg)
+
+[Our website](https://www.qgreenland.org) | [Documentation](https://qgreenland.readthedocs.io)
 
 
 ## A Free GIS Package for Greenland

@@ -1,5 +1,23 @@
 # Acknowledgements
 
+The QGreenland project team acknowledges the following people, organizations,
+and projects for making our work possible and enjoyable!
+
+
+## Prior art
+
+The [Quantarctica](https://www.npolar.no/en/quantarctica/) project inspired
+QGreenland. Our innovation on this prior work is open-source and reproducible
+package creation.
+
+
+## Funding
+
+The National Science Foundation [grant
+\#1928393](https://nsf.gov/awardsearch/showAward?AWD_ID=1928393) funded the
+development of QGreenland versions `1.x` and `2.x`.
+
+
 ## Editorial board
 
 The [QGreenland Editorial Board](https://qgreenland.org/our-team) made it
