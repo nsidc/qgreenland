@@ -5,7 +5,7 @@
 import difflib
 from pathlib import Path
 
-from invoke import call, task
+from invoke import task
 
 from qgreenland.constants.paths import CONFIG_DIR
 from qgreenland.util.config.export import export_config_json

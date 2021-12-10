@@ -1,7 +1,7 @@
 # How to run QGreenland
 
 This project uses Docker and `docker-compose` to run each of its components as
-services.  https://docs.docker.com/get-started/
+services.  See Docker's [Getting started guide](https://docs.docker.com/get-started/).
 
 The docker-compose stack runs Luigi (with visualizer at port 8082) as a service
 for running tasks, as well as NGINX (port 80, 443) for hosting outputs.
