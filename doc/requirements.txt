@@ -6,3 +6,4 @@ autodoc-pydantic ~=1.5.1
 
 # QGreenland dependencies
 anytree==2.8.0
+fiona==1.8.13
