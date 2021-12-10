@@ -35,7 +35,8 @@ def _print_and_run(cmd, *, dry_run):
     'dev_cleanup', '--dev', '-D',
     help=(
         'Run a dev cleanup. Includes layer WIPs matching PATTERN, package'
-        ' WIP, released layers matching PATTERN, and all released packages'
+        ' WIP, released layers matching PATTERN, and all released packages.'
+        ' If PATTERN is an empty string, no layers will be cleaned up.'
     ),
     multiple=True,
     metavar='PATTERN',
@@ -125,11 +126,17 @@ def cleanup(**kwargs):  # noqa: C901
 
     if dev_patterns := kwargs['dev_cleanup']:
         kwargs.update({
-            'delete_wip_layers_by_pattern': dev_patterns,
             'delete_wip_package': True,
-            'delete_release_layers_by_pattern': dev_patterns,
             'delete_all_release_packages': True,
         })
+        # Remove empty strings from patterns. You can pass `--dev ''` to only
+        # delete packages, not layers.
+        dev_patterns = tuple(p for p in dev_patterns if p)
+        if dev_patterns:
+            kwargs.update({
+                'delete_release_layers_by_pattern': dev_patterns,
+                'delete_wip_layers_by_pattern': dev_patterns,
+            })
 
     elif kwargs['prod_cleanup']:
         kwargs.update({
