@@ -5,6 +5,8 @@
     reference layers
   - "Basemaps/Background (500m)": Use JPEG compression to significantly reduce
     file size
+- Added Layers:
+  - Continental shelf points, lines, and polygons
 - Add metadata.txt with layer information to layer data directory. This allows
   users who are not using the QGreenland project to access e.g., the layer's
   abstract and citation information.
