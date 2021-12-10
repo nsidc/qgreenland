@@ -44,6 +44,10 @@
     discussion/*
 
 
+.. image:: _images/qgreenland-examples.jpg
+    :alt: QGreenland examples
+
+
 What is QGreenland?
 ===================
 
