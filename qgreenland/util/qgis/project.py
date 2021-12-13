@@ -44,7 +44,7 @@ class QgsApplicationContext:
 def make_qgis_project_file(path: Path) -> None:
     """Create a QGIS project file with the correct stuff in it.
 
-    path: the desired path to .qgs project file, e.g.:
+    path: the desired path to .qgs/.qgz project file, e.g.:
           /luigi/data/qgreenland/qgreenland.qgs
 
     Developed from examples:

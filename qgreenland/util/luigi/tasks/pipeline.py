@@ -140,7 +140,7 @@ class CreateQgisProjectFile(luigi.Task):
             dest_relative_filepath='README.html',
         )
         yield AncillaryMarkdownFileToHtml(
-            src_filepath=PROJECT_DIR / 'doc' / 'contributing.md',
+            src_filepath=PROJECT_DIR / 'doc' / 'discussion' / 'contributing.md',
             dest_relative_filepath='CONTRIBUTING.html',
         )
         yield AncillaryFile(
@@ -171,7 +171,7 @@ class CreateQgisProjectFile(luigi.Task):
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
         with QgsApplicationContext():
-            make_qgis_project_file(COMPILE_PACKAGE_DIR / 'qgreenland.qgs')
+            make_qgis_project_file(COMPILE_PACKAGE_DIR / 'qgreenland.qgz')
 
         # Create symbolic link to zip with the final versioned filename
         # We don't _need_ a symbolic link here, but this also serves to trigger
