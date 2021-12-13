@@ -8,55 +8,64 @@ LAYER_PARAMS = {
     'north_points': {
         'title': 'North (points)',
         'description': (
-            """Northern continental shelf of Greenland."""
+            """Points representing the boundary of the Northern extended continental shelf
+            of Greenland."""
         ),
     },
     'north_lines': {
         'title': 'North (lines)',
         'description': (
-            """Northern continental shelf of Greenland."""
+            """Lines representing the boundary of the Northern extended continental shelf of
+            Greenland."""
         ),
     },
     'north_polygons': {
         'title': 'North (poloygons)',
         'description': (
-            """Northern continental shelf of Greenland."""
+            """Polygons representing the area between the Greenland Exclusive
+            Economic Zone and the Northern Continental Shelf"""
         ),
     },
     'northeast_points': {
         'title': 'Northeast (points)',
         'description': (
-            """Northeastern continental shelf of Greenland."""
+            """Points representing the boundary of the Northeastern extended continental shelf
+            of Greenland."""
         ),
     },
     'northeast_lines': {
         'title': 'Northeast (lines)',
         'description': (
-            """Northeastern continental shelf of Greenland."""
+            """Lines representing the boundary of the Northeastern extended continental shelf
+            of Greenland."""
         ),
     },
     'northeast_polygons': {
         'title': 'Northeast (polygons)',
         'description': (
-            """Northeastern continental shelf of Greenland."""
+            """Polygons representing the area between the Greenland Exclusive
+            Economic Zone and the Northeastern Continental Shelf"""
         ),
     },
     'south_points': {
         'title': 'South (points)',
         'description': (
-            """Southern continental shelf of Greenland."""
+            """Points representing the boundary of the Southern extended continental shelf
+            of Greenland."""
         ),
     },
     'south_lines': {
         'title': 'South (lines)',
         'description': (
-            """Southern continental shelf of Greenland."""
+            """Lines representing the boundary of the Southern extended continental shelf of
+            Greenland."""
         ),
     },
     'south_polygons': {
         'title': 'South (polygons)',
         'description': (
-            """Southern continental shelf of Greenland."""
+            """Polygons representing the area between the Greenland Exclusive
+            Economic Zone and the Southern Continental Shelf"""
         ),
     },
 }
