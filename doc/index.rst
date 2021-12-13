@@ -44,6 +44,15 @@
 
     discussion/*
 
+.. toctree::
+    :name: Tutorials
+    :hidden:
+    :caption: Tutorials
+    :maxdepth: 1
+    :glob:
+
+    tutorials/*
+
 
 What is QGreenland?
 ===================
