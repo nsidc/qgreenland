@@ -71,7 +71,9 @@ continental_shelf = Dataset(
         ),
         'citation': {
             'text': (
-                """Kingdom of Denmark together with the Government of Greenland."""
+                """Continental Shelf Programme. Denmark - in respect of the continental shelf
+                of Greenland. 2012-2015. GRID-Arendal. Retrieved December 2021
+                (http://www.continentalshelf.org/onestopdatashop/6350.aspx). """
             ),
             'url': 'http://continentalshelf.org/onestopdatashop/6350.aspx',
         },

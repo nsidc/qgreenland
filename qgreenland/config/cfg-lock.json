@@ -312,12 +312,12 @@
       },
       "id": "continental_shelf",
       "metadata": {
-        "abstract": "On 15 December 2014, the Kingdom of Denmark submitted to the\nCommission on the Limits of the Continental Shelf, in accordance with Article 76, paragraph 8,\nof the Convention, information on the limits of the continental shelf beyond 200 nautical miles\nfrom the baselines from which the breadth of its territorial sea is measured in respect of\nthe Northern Continental Shelf of Greenland. It is noted that the Convention entered into force\nfor Denmark on 16 December 2004. According to the submitting State, this is a \u201cpartial submission\nof the Government of the Kingdom of Denmark together with the Government of Greenland\u201d.\nIn accordance with the Rules of Procedure of the Commission (CLCS/40/Rev.1), a communication is being\ncirculated to all Member States of the United Nations, as well as States Parties to the Convention,\nin order to make public the executive summary of the partial submission, including all charts and\ncoordinates contained in that summary. The consideration of the submission made by Denmark will be\nincluded in the provisional agenda of the thirty-eighth session of the Commission to be held in\nNew York from 20 July to 4 September 2015. Upon completion of the consideration of the submission,\nthe Commission shall make recommendations pursuant to Article 76 of the Convention.",
+        "abstract": "The Kingdom of Denmark's submission to the Commission on the Limits of the Continental\nShelf. This is in accordance with Article 76, paragraph 8 of the United Nations Convention\non the Law of the Sea of 10 December 1982, which represents information on the limits of the\ncontinental shelf beyond 200 nautical miles from the baselines from which the breadth of its\nterritorial sea is measured in respect of the Continental Shelf of Greenland.",
         "citation": {
-          "text": "Kingdom of Denmark together with the Government of Greenland.",
+          "text": "Continental Shelf Programme. Denmark - in respect of the continental shelf\nof Greenland. 2012-2015. GRID-Arendal. Retrieved December 2021\n(http://www.continentalshelf.org/onestopdatashop/6350.aspx). ",
           "url": "http://continentalshelf.org/onestopdatashop/6350.aspx"
         },
-        "title": "Denmark - in respect of the Continental Shelf of Greenland"
+        "title": "Continental Shelf Programme"
       }
     },
     "danish_agency_for_data_supply_and_efficiency_gtk_topo_map": {
@@ -5437,6 +5437,412 @@
                   "title": "Fishing zone (polygon)"
                 },
                 "name": "fishzone_boundary"
+              },
+              {
+                "children": [
+                  {
+                    "layer_cfg": {
+                      "description": "Lines representing the boundary of the Northern extended continental shelf of\nGreenland.",
+                      "id": "continental_shelf_north_lines",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "north_lines"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "North (lines)"
+                    },
+                    "name": "continental_shelf_north_lines"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Points representing the boundary of the Northern extended continental shelf\nof Greenland.",
+                      "id": "continental_shelf_north_points",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "north_points"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "North (points)"
+                    },
+                    "name": "continental_shelf_north_points"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Polygons representing the area between the Greenland Exclusive\nEconomic Zone and the Northern Continental Shelf.",
+                      "id": "continental_shelf_north_polygons",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "north_polygons"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "North (poloygons)"
+                    },
+                    "name": "continental_shelf_north_polygons"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Lines representing the boundary of the Northeastern extended continental shelf\nof Greenland.",
+                      "id": "continental_shelf_northeast_lines",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "northeast_lines"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "Northeast (lines)"
+                    },
+                    "name": "continental_shelf_northeast_lines"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Points representing the boundary of the Northeastern extended continental shelf\nof Greenland.",
+                      "id": "continental_shelf_northeast_points",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "northeast_points"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "Northeast (points)"
+                    },
+                    "name": "continental_shelf_northeast_points"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Polygons representing the area between the Greenland Exclusive\nEconomic Zone and the Northeastern Continental Shelf.",
+                      "id": "continental_shelf_northeast_polygons",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "northeast_polygons"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "Northeast (polygons)"
+                    },
+                    "name": "continental_shelf_northeast_polygons"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Lines representing the boundary of the Southern extended continental shelf of\nGreenland.",
+                      "id": "continental_shelf_south_lines",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "south_lines"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "South (lines)"
+                    },
+                    "name": "continental_shelf_south_lines"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Points representing the boundary of the Southern extended continental shelf\nof Greenland.",
+                      "id": "continental_shelf_south_points",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "south_points"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "South (points)"
+                    },
+                    "name": "continental_shelf_south_points"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Polygons representing the area between the Greenland Exclusive\nEconomic Zone and the Southern Continental Shelf.",
+                      "id": "continental_shelf_south_polygons",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "south_polygons"
+                        },
+                        "dataset": {
+                          "id": "continental_shelf"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/*.zip",
+                            "-d",
+                            "{output_dir}"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-makevalid",
+                            "{output_dir}/final.gpkg",
+                            "{input_dir}/*.shp"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": null,
+                      "tags": [],
+                      "title": "South (polygons)"
+                    },
+                    "name": "continental_shelf_south_polygons"
+                  }
+                ],
+                "name": "Continental shelf",
+                "settings": {
+                  "expand": false,
+                  "order": null,
+                  "show": false
+                }
               }
             ],
             "name": "Maritime boundaries",
@@ -5448,7 +5854,8 @@
                 ":3nm_polyline",
                 ":12nm_polyline",
                 ":3nm_polygon",
-                ":fishzone_boundary"
+                ":fishzone_boundary",
+                "Continental shelf"
               ],
               "show": false
             }
@@ -12215,412 +12622,6 @@
               "order": null,
               "show": false
             }
-          },
-          {
-            "children": [
-              {
-                "layer_cfg": {
-                  "description": "Northern continental shelf of Greenland.",
-                  "id": "continental_shelf_north_lines",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "north_lines"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "North (lines)"
-                },
-                "name": "continental_shelf_north_lines"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Northern continental shelf of Greenland.",
-                  "id": "continental_shelf_north_points",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "north_points"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "North (points)"
-                },
-                "name": "continental_shelf_north_points"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Northern continental shelf of Greenland.",
-                  "id": "continental_shelf_north_polygons",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "north_polygons"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "North (poloygons)"
-                },
-                "name": "continental_shelf_north_polygons"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Northeastern continental shelf of Greenland.",
-                  "id": "continental_shelf_northeast_lines",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "northeast_lines"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "Northeast (lines)"
-                },
-                "name": "continental_shelf_northeast_lines"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Northeastern continental shelf of Greenland.",
-                  "id": "continental_shelf_northeast_points",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "northeast_points"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "Northeast (points)"
-                },
-                "name": "continental_shelf_northeast_points"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Northeastern continental shelf of Greenland.",
-                  "id": "continental_shelf_northeast_polygons",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "northeast_polygons"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "Northeast (polygons)"
-                },
-                "name": "continental_shelf_northeast_polygons"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Southern continental shelf of Greenland.",
-                  "id": "continental_shelf_south_lines",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "south_lines"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "South (lines)"
-                },
-                "name": "continental_shelf_south_lines"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Southern continental shelf of Greenland.",
-                  "id": "continental_shelf_south_points",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "south_points"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "South (points)"
-                },
-                "name": "continental_shelf_south_points"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Southern continental shelf of Greenland.",
-                  "id": "continental_shelf_south_polygons",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "south_polygons"
-                    },
-                    "dataset": {
-                      "id": "continental_shelf"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/*.zip",
-                        "-d",
-                        "{output_dir}"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": null,
-                  "tags": [],
-                  "title": "South (polygons)"
-                },
-                "name": "continental_shelf_south_polygons"
-              }
-            ],
-            "name": "Continental shelf",
-            "settings": {
-              "expand": false,
-              "order": null,
-              "show": false
-            }
           }
         ],
         "name": "Geology",
@@ -12630,8 +12631,7 @@
             ":earthquakes",
             ":tectonic_plate_boundaries",
             ":soil_types",
-            "Geological map",
-            "Continental shelf"
+            "Geological map"
           ],
           "show": false
         }

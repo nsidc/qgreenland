@@ -23,7 +23,7 @@ LAYER_PARAMS = {
         'title': 'North (poloygons)',
         'description': (
             """Polygons representing the area between the Greenland Exclusive
-            Economic Zone and the Northern Continental Shelf"""
+            Economic Zone and the Northern Continental Shelf."""
         ),
     },
     'northeast_points': {
@@ -44,7 +44,7 @@ LAYER_PARAMS = {
         'title': 'Northeast (polygons)',
         'description': (
             """Polygons representing the area between the Greenland Exclusive
-            Economic Zone and the Northeastern Continental Shelf"""
+            Economic Zone and the Northeastern Continental Shelf."""
         ),
     },
     'south_points': {
@@ -65,7 +65,7 @@ LAYER_PARAMS = {
         'title': 'South (polygons)',
         'description': (
             """Polygons representing the area between the Greenland Exclusive
-            Economic Zone and the Southern Continental Shelf"""
+            Economic Zone and the Southern Continental Shelf."""
         ),
     },
 }
