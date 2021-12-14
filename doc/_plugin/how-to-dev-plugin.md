@@ -14,6 +14,7 @@ Next symlink the plugin repo to the plugin directory:
 ```
 ln -s $PWD '/filepath'
 ```
+# Installing the QGreenland plugin
 
 To install Qgreenland, navigate to plugins -> Installed -> Check box on Qgreenland -> OK
 
@@ -29,9 +30,11 @@ below before reloading' option. Leave the 'display' option checked, and press OK
 Navigate to Plugins -> Plugin Reloader -> Reload Plugin: qgreenland-plugin.
 You should receive a message notifying you that the plugin has been reloaded.
 
+# Configuring the plugin
 To use the Qgreenland plugin, first navigate to Web -> Qgreenland -> Configure the Server.
 Leave the default options and press OK. 
 
+# Using the plugin to download data
 To dowload data to your project, navigate to Web -> Qgreenland -> Download Data.
 In the Download Data window, select the desired layer then press Next.
 Choose a location to put the downloaded data, then press Download. 
