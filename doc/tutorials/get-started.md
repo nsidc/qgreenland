@@ -99,3 +99,21 @@ By default, the **Pan Map** tool is selected
 ![pan_map](/_images/pan_map.jpg). This tool allows the user to click and drag on
 the map view to change the extent. Try using this tool to pan around the map and
 explore the geography surrounding Greenland.
+
+The zoom tools ![zoom_in_out_icons](/_images/zoom_in_out_icons.jpg) can be used
+to zoom in and out of the map view. Select the **Zoom In** tool and use it to
+draw a box around southern Greenland to get a better look at the "Ice thickness
+(150m)" layer in that part of Greenland. Now select the **Pan Map** tool again
+and explore the layer in detail.
+
+```{note}
+The scroll wheel on your mouse or track pad can also be used to zoom in and out in the **Map view**
+```
+
+Hovering over the other map navigation tool icons will provide a tool tip
+indicating what the tool is used for. Try hovering over some of the other icons
+in the **Map Navigation Toolbar** to read their tooltips. Try out some of these
+other tools to explore the map and QGreenland's various data layers. See the
+[QGIS documentation on zooming and
+panning](https://docs.qgis.org/3.16/en/docs/user_manual/introduction/general_tools.html#zooming-and-panning)
+for more detailed information on how to effectively navigate the **Map View**.
