@@ -60,10 +60,10 @@ search bar and a button to open a Log Messages window to view log messages.
 
 
 ```{note}
-The QGIS User Manual provides a detailed and comprehensive overview of QGIS'
-core features:
-[https://docs.qgis.org/3.16/en/docs/user_manual/index.html](https://docs.qgis.org/3.16/en/docs/user_manual/index.html). Users
-who are new to Geographic Information Systems may also benefit from reviewing
-QGIS's [Gentle Introduction to
+The [QGIS User
+Manual](https://docs.qgis.org/3.16/en/docs/user_manual/index.html) provides a
+detailed and comprehensive overview of QGIS' core features. Users who are new to
+Geographic Information Systems may also benefit from reviewing QGIS's [Gentle
+Introduction to
 GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
 ```
