@@ -38,7 +38,7 @@ Re-create this image:
 * Extend 'Status Bar' box to include the search bar.
 ```
 
-![map_view](/_images/map_view.png)
+![map_view](/_images/map_view.jpg)
 
 The Menu Bar and toolbars are different ways to access most QGIS functions, such
 as opening or saving a project or analyzing the data using geoprocessing
@@ -67,3 +67,5 @@ Geographic Information Systems may also benefit from reviewing QGIS's [Gentle
 Introduction to
 GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
 ```
+
+4) Browse data in QGreenland
