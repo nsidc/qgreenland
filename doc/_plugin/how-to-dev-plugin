@@ -6,10 +6,9 @@ First, clone the plugin repo from Faunalia:
 git clone https://github.com/faunalia/qgreenland-plugin.git
 ```
 
-Use QGIS GUI to locate plugin directory by going to
+Use the QGIS GUI to locate the plugin directory by going to
 Settings -> User Profiles -> Open Active Profile Folder.
-Then, navigate to the /python/plugins directories.
-PWD and copy the full filpath. 
+Then, navigate to the /python/plugins directory, PWD and copy the full filpath. 
 
 Next symlink the plugin repo to the plugin directory:
 ```
@@ -29,5 +28,13 @@ To use the plugin, navigate to Plugin -> Configure -> Qgreenland.
 Uncheck the 'run the commands below before reloading'. Leave the 'display'
 option checked, and press OK.
 
-Navigate to Plugin Reloader and choose Reload Plugin: qgreenland-plugin.
+Navigate to Plugins -> Plugin Reloader -> Reload Plugin: qgreenland-plugin.
 You should receive a message notifying you that the plugin has been reloaded.
+
+To use the Qgreenland plugin, navigate to Web -> Qgreenland -> Download Data.
+In the Download Data window, select the desired layer then press Next.
+Choose a location to put the downloaded data, then press Download. 
+
+Once the data has finished downloading, press Next. Check the downloaded layers
+that you would like to add to your project, press Add to Project, then press Close.
+You should now see your downloaded data layers in your QGIS project. 
