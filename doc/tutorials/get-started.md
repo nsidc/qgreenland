@@ -28,17 +28,17 @@ selecting the `qgreenland.qgz` file from its saved location.
 
 ## 3) Get to know the QGIS Interface
 
-The main components of the QGIS interface are the Menu Bar, toolbars, panels,
-Map View, and Status Bar
+The main components of the QGIS interface are the **Menu bar**, toolbars, panels,
+**Map view**, and **Status bar**
 
 ![map_view](/_images/map_view.jpg)
 
-The Menu Bar and toolbars are different ways to access most QGIS functions, such
+The **Menu bar** and toolbars are different ways to access most QGIS functions, such
 as opening or saving a project or analyzing the data using geoprocessing
 tools. Panels are another way for users to interact with data layers and
 functions in QGIS.
 
-The Layers panel is where all data layers in the current project are
+The **Layers panel** is where all data layers in the current project are
 listed. Layers can be toggled on or off, which will control whether or not they
 show up in the map view. Layers are listed in the order in which they show up in
 the map view - layers at the top of the list show up on top in the map view, and
@@ -46,10 +46,10 @@ vice versa. Layers can be manually moved around in the layers panel to change
 the order in which they show up. Panels and toolbars can also be manually moved
 around the QGIS interface to fit the user’s preferences.
 
-Lastly, the Status Bar is the bar at the bottom of the QGIS window that shows
+Lastly, the **Status bar** is the bar at the bottom of the QGIS window that shows
 the current coordinate reference system of the map view, any available plugin
-updates, and the map view scale. Also included in the Status Bar is a quick
-search bar and a button to open a Log Messages window to view log messages.
+updates, and the map view scale. Also included in the **Status bar** is a quick
+search bar and a button to open a **Log Messages** window to view log messages.
 
 
 ```{note}
