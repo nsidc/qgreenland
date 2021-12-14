@@ -31,13 +31,6 @@ selecting the `qgreenland.qgz` file from its saved location.
 The main components of the QGIS interface are the Menu Bar, toolbars, panels,
 Map View, and Status Bar
 
-```{admonition} TODO
-Re-create this image:
-
-* Use default theme
-* Extend 'Status Bar' box to include the search bar.
-```
-
 ![map_view](/_images/map_view.jpg)
 
 The Menu Bar and toolbars are different ways to access most QGIS functions, such
