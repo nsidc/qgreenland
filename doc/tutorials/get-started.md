@@ -69,6 +69,8 @@ itself inside of the "Reference" group ("Background boundary/Reference").
 
 ![layer_groups](/_images/layer_groups.jpg)
 
+### Toggle layer visibility
+
 Some layers are turned on by default when opening QGreenland. In order to
 visualize another data layer (or remove an existing one), toggle the checkbox
 next to the layer in the **Layers panel**.
@@ -85,3 +87,15 @@ The search bar, located in the **Status bar**, can also be used to find layers
 in the **Layers panel**.
 ![search_bar](/_images/search_bar.jpg)
 ```
+
+### Navigate the Map View
+
+The **Map view** can be interacted with using a combination of the mouse and the
+**Map Navigation Toolbar**
+
+![map_navigation_toolbar](/_images/map_navigation_toolbar.jpg)
+
+By default, the **Pan Map** tool is selected
+![pan_map](/_images/pan_map.jpg). This tool allows the user to click and drag on
+the map view to change the extent. Try using this tool to pan around the map and
+explore the geography surrounding Greenland.
