@@ -61,4 +61,27 @@ Introduction to
 GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
 ```
 
-4) Browse data in QGreenland
+## 4) Browse data in QGreenland
+
+Layers in QGreenland are organized into layer groups by category. For example,
+the "Background boundary" layer is "QGreenland boundaries" group, which is
+itself inside of the "Reference" group ("Background boundary/Reference").
+
+![layer_groups](/_images/layer_groups.jpg)
+
+Some layers are turned on by default when opening QGreenland. In order to
+visualize another data layer (or remove an existing one), toggle the checkbox
+next to the layer in the **Layers panel**.
+
+Toggle on the "Ice thickness (150m)" layer, which is in the "Terrain
+models/Bedmachine" group. The **Map view** should now include a visualization of
+Ice thickness at a 150m spatial resolution.
+
+![ice_thickness_displayed](/_images/ice_thickness_displayed.jpg)
+
+
+```{note}
+The search bar, located in the **Status bar**, can also be used to find layers
+in the **Layers panel**.
+![search_bar](/_images/search_bar.jpg)
+```
