@@ -15,7 +15,7 @@ Next symlink the plugin repo to the plugin directory:
 ln -s $PWD '/filepath'
 ```
 
-Navigate to plugins -> Installed -> Check box on Qgreenland -> OK
+To install Qgreenland, navigate to plugins -> Installed -> Check box on Qgreenland -> OK
 
 Instead of restarting QGIS after installing Qgreenland, 
 install the plugin, Plugin Reloader. You can do this by navigating to 
@@ -24,7 +24,7 @@ search bar. Install the plugin then press OK.
 
 To use the plugin, navigate to Plugins -> Plugin Reloader -> Configure.
 Select qgreenland-plugin in the drop down. Uncheck the 'run the commands
-below before reloading'. Leave the 'display' option checked, and press OK.
+below before reloading' option. Leave the 'display' option checked, and press OK.
 
 Navigate to Plugins -> Plugin Reloader -> Reload Plugin: qgreenland-plugin.
 You should receive a message notifying you that the plugin has been reloaded.
