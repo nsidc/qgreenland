@@ -1,5 +1,6 @@
 from qgreenland.config.datasets.continental_shelf import continental_shelf as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
+from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
@@ -83,13 +84,8 @@ def make_layers() -> list[Layer]:
                 asset=dataset.assets[key],
             ),
             steps=[
-                CommandStep(
-                    args=[
-                        'unzip',
-                        '{input_dir}/*.zip',
-                        '-d',
-                        '{output_dir}',
-                    ],
+                decompress_step(
+                    input_file='{input_dir}/*.zip',
                 ),
                 CommandStep(
                     args=[
