@@ -37,6 +37,12 @@ group.
   qgreenland/config/layers/Group/Subgroup/new_layer.py
 ```
 
+Once the new_layer.py file is generated, follow the documentation within the file
+to fill out your layer configuration.
+NOTE: If the group directory where you have created your layer file has a settings.py file,
+you must add your new group to the 'order' list of this file. Make sure it is spelled 
+exactly the same as in your file structure.
+
 ## Dataset requirements
 
 In order for a new dataset to be added to QGreenland, we strongly encourage
