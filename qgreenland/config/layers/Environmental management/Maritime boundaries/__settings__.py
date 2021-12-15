@@ -1,5 +1,4 @@
 from qgreenland.config.helpers.layers.territorial_waters import LAYER_PARAMS as TERRITORIAL_WATERS_PARAMS
-# from qgreenland.config.helpers.layers.continental_shelf import LAYER_PARAMS as CONTINENTAL_SHELF_PARAMS
 from qgreenland.models.config.layer_group import LayerGroupSettings
 
 
