@@ -22,9 +22,11 @@ Test the dataset by fetching the data:
 ```
 ./scripts/cli.sh fetch new_dataset_id
 ```
-NOTE: If your fetch command results in an error, there may be issues with 
+```{note}
+If your fetch command results in an error, there may be issues with 
 the entry of your dataset. Go back to your dataset.py file and 
 make sure that all fields are filled in (abstract, title, etc.) to avoid linting errors.
+```
 
 ## Create new layer
 
@@ -39,9 +41,12 @@ group.
 
 Once the new_layer.py file is generated, follow the documentation within the file
 to fill out your layer configuration.
+
+```{note}
 NOTE: If the group directory where you have created your layer file has a settings.py file,
 you must add your new group to the 'order' list of this file. Make sure it is spelled 
 exactly the same as in your file structure.
+```
 
 ## Dataset requirements
 
