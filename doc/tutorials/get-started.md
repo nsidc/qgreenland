@@ -118,3 +118,12 @@ other tools to explore the map and QGreenland's various data layers. See the
 [QGIS documentation on zooming and
 panning](https://docs.qgis.org/3.16/en/docs/user_manual/introduction/general_tools.html#zooming-and-panning)
 for more detailed information on how to effectively navigate the **Map View**.
+
+## 5) Summary
+
+In completing this tutorial, the user has installed QGIS, downloaded and opened
+the QGreenland data package, and learned about the fundamentals of using QGIS to
+explore QGreenland. Having accomplished this, the user is prepared to explore
+the many data layers included with QGreenland. The user is now ready to approach
+more advanced topics such as performing geospatial analyses and preparing
+publication-quality maps with the data in QGreenland.
