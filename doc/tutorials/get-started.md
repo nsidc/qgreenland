@@ -107,7 +107,8 @@ draw a box around southern Greenland to get a better look at the "Ice thickness
 and explore the layer in detail.
 
 ```{note}
-The scroll wheel on your mouse or track pad can also be used to zoom in and out in the **Map view**
+The scroll wheel on your mouse or track pad can also be used to zoom in and out
+in the **Map view**
 ```
 
 Hovering over the other map navigation tool icons will provide a tool tip
