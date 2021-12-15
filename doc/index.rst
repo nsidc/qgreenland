@@ -11,6 +11,15 @@
     acknowledgements.md
 
 .. toctree::
+    :name: Tutorials
+    :hidden:
+    :caption: Tutorials
+    :maxdepth: 1
+    :glob:
+
+    tutorials/*
+
+.. toctree::
     :name: How-to
     :caption: How-to
     :hidden:
