@@ -1,5 +1,6 @@
 import logging
 import shutil
+import tempfile
 from pathlib import Path
 
 import luigi
@@ -18,6 +19,7 @@ from qgreenland.constants.project import (
     PROJECT,
 )
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
+from qgreenland.util.command import run_cmd
 from qgreenland.util.config.config import get_config
 from qgreenland.util.config.export import export_config_csv, export_config_manifest
 from qgreenland.util.luigi import generate_layer_pipelines
@@ -84,6 +86,25 @@ class AncillaryMarkdownFileToHtml(AncillaryFile):
                 input=str(self.src_filepath),
                 output=str(temp_path),
             )
+
+
+class AncillarySphinxPdfFile(AncillaryFile):
+    """Generate Sphinx docs as PDF."""
+
+    def run(self):
+        with self.output().temporary_path() as temp_path:
+            with tempfile.TemporaryDirectory() as build_dir:
+                build_path = Path(build_dir)
+                run_cmd([
+                    # Run make from the directory containing the Makefile
+                    'make', '-C', self.src_filepath.parent,
+                    'latexpdf', f'BUILDDIR={build_path}',
+                ])
+                output_file = build_path / 'latex' / 'qgreenland.pdf'
+                shutil.copy(output_file, temp_path)
+
+        # TODO: Downgrade to debug/info
+        logger.warning(f'Created PDF: {self.output().path}')
 
 
 class PackageLayerList(AncillaryFile):
@@ -158,6 +179,10 @@ class CreateQgisProjectFile(luigi.Task):
         yield AncillaryMarkdownFileToHtml(
             src_filepath=PROJECT_DIR / 'CHANGELOG.md',
             dest_relative_filepath='CHANGELOG.html',
+        )
+        yield AncillarySphinxPdfFile(
+            src_filepath=PROJECT_DIR / 'doc' / 'Makefile',
+            dest_relative_filepath='QGreenland.pdf',
         )
         yield PackageLayerList()
 
