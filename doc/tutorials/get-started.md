@@ -63,9 +63,9 @@ GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
 
 ## 4) Browse data in QGreenland
 
-Layers in QGreenland are organized into layer groups by category. For example,
-the "Background boundary" layer is "QGreenland boundaries" group, which is
-itself inside of the "Reference" group ("Background boundary/Reference").
+Layers in QGreenland are organized into groups by category. For example, the
+"Background boundary" layer is "QGreenland boundaries" group, which is itself
+inside of the "Reference" group ("Background boundary/Reference").
 
 ![layer_groups](/_images/layer_groups.jpg)
 
