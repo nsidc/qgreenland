@@ -9,6 +9,7 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use the absolute path, like shown here.
+import datetime
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path('../').resolve()))
@@ -17,8 +18,8 @@ sys.path.insert(0, str(Path('../').resolve()))
 # -- Project information -----------------------------------------------------
 
 project = 'QGreenland'
-copyright = '2021, Twila Moon, et al.'
-author = 'Twila Moon, et al.'
+copyright = f'NSIDC {datetime.date.today().year}'
+author = 'Twila Moon, Matt Fisher, Hope Simonoko, Trey Stafford'
 
 # The full version, including alpha/beta/rc tags
 release = 'v2.0.0alpha4'
