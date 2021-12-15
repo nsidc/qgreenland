@@ -29,8 +29,8 @@ dependencies:
   - click-plugins=1.1.1=py_0
   - cligj=0.7.2=pyhd8ed1ab_1
   - colorama=0.4.4=pyh9f0ad1d_0
-  - coverage=6.1.2=py39h3811e60_0
-  - cryptography=35.0.0=py39h95dcef6_2
+  - coverage=6.2=py39h3811e60_0
+  - cryptography=36.0.0=py39h95dcef6_0
   - curl=7.76.1=h979ede3_1
   - dbus=1.13.6=h48d8840_2
   - decorator=5.1.0=pyhd8ed1ab_0
@@ -56,8 +56,8 @@ dependencies:
   - geotiff=1.6.0=h5d11630_3
   - gettext=0.19.8.1=h73d1719_1008
   - giflib=5.2.1=h36c2ea0_2
-  - glib=2.70.1=h780b84a_0
-  - glib-tools=2.70.1=h780b84a_0
+  - glib=2.70.2=h780b84a_0
+  - glib-tools=2.70.2=h780b84a_0
   - gsl=2.6=he838d99_2
   - gst-plugins-base=1.14.5=h0935bb2_2
   - gstreamer=1.18.5=h9f60fe5_2
@@ -74,12 +74,13 @@ dependencies:
   - invoke=1.4.1=py_0
   - ipdb=0.13.9=pyhd8ed1ab_0
   - ipython=7.30.1=py39hf3d152e_0
-  - jedi=0.18.0=py39hf3d152e_3
+  - jedi=0.18.1=py39hf3d152e_0
   - jinja2=3.0.3=pyhd8ed1ab_0
   - jpeg=9d=h36c2ea0_0
   - json-c=0.13.1=hbfbb72e_1002
   - kealib=1.4.14=hcc255d8_2
   - krb5=1.17.2=h926e7f8_0
+  - latexmk=4.55=pl5.20.3_0
   - ld_impl_linux-64=2.36.1=hea4e1c9_2
   - libblas=3.9.0=12_linux64_openblas
   - libcblas=3.9.0=12_linux64_openblas
@@ -94,7 +95,7 @@ dependencies:
   - libgdal=3.1.4=h96b6e7a_3
   - libgfortran-ng=11.2.0=h69a702a_11
   - libgfortran5=11.2.0=h5c6108e_11
-  - libglib=2.70.1=h174f98d_0
+  - libglib=2.70.2=h174f98d_0
   - libgomp=11.2.0=h1d223b6_11
   - libiconv=1.16=h516909a_0
   - libkml=1.3.0=h238a007_1014
@@ -132,9 +133,9 @@ dependencies:
   - mccabe=0.6.1=py_1
   - mdit-py-plugins=0.2.8=pyhd8ed1ab_0
   - mock=4.0.3=py39hf3d152e_2
-  - more-itertools=8.11.0=pyhd8ed1ab_0
+  - more-itertools=8.12.0=pyhd8ed1ab_0
   - munch=2.5.0=py_0
-  - mypy=0.910=py39h3811e60_3
+  - mypy=0.910=py39h3811e60_4
   - mypy_extensions=0.4.3=py39hf3d152e_4
   - mysql-common=8.0.25=ha770c72_0
   - mysql-libs=8.0.25=h935591d_0
@@ -143,17 +144,18 @@ dependencies:
   - netcdf4=1.5.6=nompi_py39h36800e2_102
   - nose2=0.9.2=py_0
   - nspr=4.32=h9c3ff4c_1
-  - nss=3.72=hb5efdd6_0
+  - nss=3.73=hb5efdd6_0
   - numpy=1.21.4=py39hdbf815f_0
   - openjpeg=2.4.0=hb52868f_1
   - openpyxl=3.0.9=pyhd8ed1ab_0
   - openssl=1.1.1l=h7f98852_0
   - owslib=0.25.0=pyhd8ed1ab_0
-  - packaging=21.0=pyhd8ed1ab_0
-  - pandas=1.3.4=py39hde0f152_1
-  - parso=0.8.2=pyhd8ed1ab_0
+  - packaging=21.3=pyhd8ed1ab_0
+  - pandas=1.3.5=py39hde0f152_0
+  - parso=0.8.3=pyhd8ed1ab_0
   - pcre=8.45=h9c3ff4c_0
   - pep8-naming=0.9.1=py_0
+  - perl=5.20.3.1=2
   - pexpect=4.8.0=pyh9f0ad1d_2
   - pickleshare=0.7.5=py_1003
   - pip=21.3.1=pyhd8ed1ab_0
@@ -165,7 +167,7 @@ dependencies:
   - postgresql=12.3=hc2f5b80_3
   - proj=7.1.1=h966b41f_3
   - prometheus_client=0.5.0=py_0
-  - prompt-toolkit=3.0.22=pyha770c72_0
+  - prompt-toolkit=3.0.24=pyha770c72_0
   - psutil=5.8.0=py39h3811e60_2
   - psycopg2=2.8.6=py39h3da14fd_1
   - pthread-stubs=0.4=h36c2ea0_1001
@@ -208,20 +210,21 @@ dependencies:
   - qwtpolar=1.1.1=h73816c6_7
   - readline=8.1=h46c0cb4_0
   - requests=2.25.1=pyhd3deb0d_0
-  - setuptools=59.1.1=py39hf3d152e_0
+  - setuptools=59.4.0=py39hf3d152e_0
   - shapely=1.7.1=py39hcbe974e_1
   - shellcheck=0.7.2=ha770c72_1
   - six=1.16.0=pyh6c4a22f_0
-  - snowballstemmer=2.1.0=pyhd8ed1ab_0
+  - snowballstemmer=2.2.0=pyhd8ed1ab_0
   - sphinx=4.3.1=pyh6c4a22f_0
   - sphinx-autodoc-typehints=1.12.0=pyhd8ed1ab_0
+  - sphinx-click=3.0.1=pyhd8ed1ab_0
   - sphinxcontrib-applehelp=1.0.2=py_0
   - sphinxcontrib-devhelp=1.0.2=py_0
   - sphinxcontrib-htmlhelp=2.0.0=pyhd8ed1ab_0
   - sphinxcontrib-jsmath=1.0.1=py_0
   - sphinxcontrib-qthelp=1.0.3=py_0
   - sphinxcontrib-serializinghtml=1.1.5=pyhd8ed1ab_1
-  - sqlite=3.36.0=h9cd32fc_2
+  - sqlite=3.37.0=h9cd32fc_0
   - tenacity=6.3.1=pyhd8ed1ab_0
   - tiledb=2.2.9=h91fcb0e_0
   - tk=8.6.11=h27826a3_1
@@ -233,8 +236,8 @@ dependencies:
   - types-markdown=3.3.9=pyhd8ed1ab_0
   - types-pyyaml=5.4.12=pyhd8ed1ab_0
   - types-requests=2.25.12=pyhd8ed1ab_0
-  - typing-extensions=3.10.0.2=hd8ed1ab_0
-  - typing_extensions=3.10.0.2=pyha770c72_0
+  - typing-extensions=4.0.1=hd8ed1ab_0
+  - typing_extensions=4.0.1=pyha770c72_0
   - tzcode=2021e=h7f98852_0
   - tzdata=2021e=he74cb21_0
   - urllib3=1.26.7=pyhd8ed1ab_0
