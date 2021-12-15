@@ -16,14 +16,20 @@ def interpolate_args(
     return [arg.eval(**kwargs) for arg in args]
 
 
-def run_qgr_command(cmd_list: list[str]):
+def run_qgr_command(args: list[str]):
+    """Run a command in the `qgreenland-cmd` environment."""
     cmd = ['.', 'activate', 'qgreenland-cmd', '&&']
-    cmd.extend(cmd_list)
+    cmd.extend(args)
 
-    # Hack. The activation of the conda environment does not work as a list.
+    run_cmd(cmd)
+
+
+def run_cmd(args: list[str]):
+    """Run a command and log it."""
+    # Hack. The activation of a conda environment does not work as a list.
     # `subprocess.run(..., shell=True, ...)` enables running commands from
     # strings.
-    cmd_str = ' '.join(str(arg) for arg in cmd)
+    cmd_str = ' '.join(str(arg) for arg in args)
 
     logger.info('Running command:')
     logger.info(cmd_str)

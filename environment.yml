@@ -37,6 +37,7 @@ dependencies:
 
   # documentation dependencies
   - sphinx ~=4.3.1
+  - latexmk ~=4.55
   - myst-parser ~=0.15.2
   - sphinx-click ~=3.0.1
     # TODO: What does this do? Do we need it?
