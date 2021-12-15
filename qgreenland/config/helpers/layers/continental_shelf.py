@@ -1,6 +1,6 @@
 from qgreenland.config.datasets.continental_shelf import continental_shelf as dataset
-from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.config.helpers.steps.decompress import decompress_step
+from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
