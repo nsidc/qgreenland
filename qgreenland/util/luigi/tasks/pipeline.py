@@ -103,8 +103,7 @@ class AncillarySphinxPdfFile(AncillaryFile):
                 output_file = build_path / 'latex' / 'qgreenland.pdf'
                 shutil.copy(output_file, temp_path)
 
-        # TODO: Downgrade to debug/info
-        logger.warning(f'Created PDF: {self.output().path}')
+        logger.info(f'Created PDF: {self.output().path}')
 
 
 class PackageLayerList(AncillaryFile):
