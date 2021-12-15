@@ -182,7 +182,7 @@ class CreateQgisProjectFile(luigi.Task):
         )
         yield AncillarySphinxPdfFile(
             src_filepath=PROJECT_DIR / 'doc' / 'Makefile',
-            dest_relative_filepath='QGreenland.pdf',
+            dest_relative_filepath='QGreenland_Documentation.pdf',
         )
         yield PackageLayerList()
 
