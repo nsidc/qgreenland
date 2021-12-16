@@ -7,7 +7,9 @@ manual](https://docs.qgis.org/3.16/en/docs/user_manual/processing/toolbox.html)
 for complete documentation on the **Processing Toolbox**.
 
 In this tutorial, the user will utilize the **Processing Toolbox** with data in
-QGreenland to calculate the Greenland ice sheet's volume.
+QGreenland to calculate the Greenland ice sheet's volume. In doing so, the user
+will become familiar with the how to use the **Processing Toolbox** to perform
+geospatial analysis.
 
 ## 1) Open the Processing Toolbox
 
