@@ -43,7 +43,7 @@ Once the new_layer.py file is generated, follow the documentation within the fil
 to fill out your layer configuration.
 
 ```{note}
-If the group directory where you have created your layer file has a settings.py file,
+If the group directory where you have created your layer file has a __settings__.py file,
 you must add your new group to the 'order' list of this file. Make sure it is spelled 
 exactly the same as in your file structure.
 ```
