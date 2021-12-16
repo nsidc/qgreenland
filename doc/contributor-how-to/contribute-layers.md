@@ -6,6 +6,8 @@ real ones. NOTE: When generating templates, but _not_ when fetching, you can
 use `./scripts/experimental/local_cli.sh config-template <dataset|layer>` in
 place of the `cli.sh` commands.
 
+## Add a dataset
+
 If the layer does not use an existing dataset, start with a new dataset.
 
 ```
@@ -13,11 +15,20 @@ If the layer does not use an existing dataset, start with a new dataset.
   qgreenland/config/datasets/new_dataset.py
 ```
 
+## Fetch the data
+
 Test the dataset by fetching the data:
 
 ```
 ./scripts/cli.sh fetch new_dataset_id
 ```
+```{note}
+If your fetch command results in an error, there may be issues with 
+the entry of your dataset. Go back to your dataset.py file and 
+make sure that all fields are filled in (abstract, title, etc.) to avoid linting errors.
+```
+
+## Create new layer
 
 To create a layer, create new layer directories as needed, and then define your
 new layer in a Python file with a descriptive name within the appropriate layer
@@ -28,6 +39,14 @@ group.
   qgreenland/config/layers/Group/Subgroup/new_layer.py
 ```
 
+Once the new_layer.py file is generated, follow the documentation within the file
+to fill out your layer configuration.
+
+```{note}
+If the group directory where you have created your layer file has a __settings__.py file,
+you must add your new group to the 'order' list of this file. Make sure it is spelled 
+exactly the same as in your file structure.
+```
 
 ## Dataset requirements
 
