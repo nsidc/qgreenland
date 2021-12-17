@@ -65,7 +65,39 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = []
 
 
+# -- Options for LaTeX output --------------------------------------------------
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title, author, document class
+# [howto|manual], ???).
+latex_documents = [(
+    # Input file
+    'index',
+    # Output file
+    'qgreenland.tex',
+    # Title
+    'QGreenland Documentation',
+    # Authors
+    author,
+    'manual',
+    False,
+)]
+
+latex_logo = '../qgreenland/ancillary/images/qgreenland.png'
+
+latex_elements = {
+    # remove blank pages
+    'classoptions': ',openany,oneside',
+    # Set pdf-wide table-of-contents depth
+    'preamble': r'''
+      \usepackage{hyperref}
+      \setcounter{tocdepth}{3}
+    '''
+}
+
+
 # -- Options for linkcode behavior ---------------------------------------------
+
 def linkcode_resolve(domain, info):
     # Domain could be `py`, `c`, `cpp`, `javascript`, but this is a Python
     # project.
@@ -82,7 +114,9 @@ def linkcode_resolve(domain, info):
 # `qgreenland.models.config.asset.CmrAsset`
 add_module_names = True
 
+
 # -- Options for autodoc output ------------------------------------------------
+
 autodoc_default_options = {
     # Document all public members by default.
     'members': None,
