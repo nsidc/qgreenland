@@ -3,7 +3,7 @@
 ![Qgreenland examples](_images/qgreenland-examples.jpg)
 
 QGreenland is a free and open-source Greenland-focused GIS environment for data
-analysis and viewing, powered by [QGIS](https://qgis.org>). QGreenland is
+analysis and viewing, powered by [QGIS](https://qgis.org). QGreenland is
 delivered in two ways:
 
 1. as a large Zip package containing a core set of data curated to serve the
