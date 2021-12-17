@@ -85,6 +85,10 @@ latex_documents = [(
 
 latex_logo = '../qgreenland/ancillary/images/qgreenland.png'
 
+latex_show_urls = 'footnote'
+
+latex_show_pagerefs = True
+
 latex_elements = {
     # remove blank pages
     'classoptions': ',openany,oneside',
