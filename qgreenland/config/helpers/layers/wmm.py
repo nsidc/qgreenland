@@ -260,6 +260,8 @@ def make_wmm_variable_layer(
         id=f'wmm_{variable}_{year}',
         title=variable_config['title'],
         description=variable_config['description'],
+        # We keep the main field declination layers (`d`) in the core
+        # package. All other variables will only be available from the plugin.
         in_package=True if variable == 'd' else False,
         style='wmm_contours',
         input=LayerInput(
