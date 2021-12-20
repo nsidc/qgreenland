@@ -33,3 +33,37 @@ The **Processing Toolbox** can also be opened by clicking on the gear
 ![processing-icon](/_images/processing-icon.jpg) icon in the **Attributes
 toolbar** ![attributes-toolbar](/_images/attributes-toolbar.jpg).
 ```
+
+## Use the Raster Surface Volume tool
+
+In the Processing Toolbox, go to "Raster analysis > Raster surface volume". This
+is an algorithm that calculates the volume under a raster grid’s
+surface. Double-click "Raster surface volume" to open the tool's window, and
+enter the following parameters:
+
+* Input layer = Ice thickness (150 m)
+* There will only be one option for Band number
+* Base level = should already be set to 0. This is the minimum pixel value in
+  the Ice thickness layer.
+* Method = Count only above base level (since we are interested in ice thickness
+  values greater than zero)
+* Save the Surface volume report, the output for this algorithm, in a temporary file or in a
+  desired location on your computer.
+
+![raster_surface_volume](/_images/raster_surface_volume.jpg)
+
+Click "Run" and wait for the analysis to finish. The window will switch to the
+"Log" tab, which shows log messages and results for the run. A **Results
+Viewer** panel should open in a panel underneath the **Processing
+Toolbox**. Close the Raster surface volume tool's window and click on the
+"Surface volume report" entry in the **Resuls Viewer**. This will show a link to
+a results HTML page that can be opened in your broswer. Open this file and
+review the results.
+
+![results_viewer](/_images/results_viewer.jpg)
+
+The results file will contain information from the run, including which file was
+analyzed, the calculated volume, pixel count, and total area. If you have
+succuessfully run the analysis, the results should show that the Green- land ice
+sheet has a volume of 2,942,360,633,311,806 m<sup>3</sup>, or about 2.9 million
+km<sup>3</sup>.
