@@ -11,7 +11,16 @@ QGreenland to calculate the Greenland ice sheet's volume. In doing so, the user
 will become familiar with the how to use the **Processing Toolbox** to perform
 geospatial analysis.
 
-## 1) Open the Processing Toolbox
+
+```{warning}
+This tutorial assumes the user has a basic understanding of GIS and geospatial
+data models (e.g., the difference between raster and vector data). If one if new
+to GIS, it is reccomended to review QGIS' [Gentle Introduction to
+GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
+first
+```
+
+## Open the Processing Toolbox
 
 The **Processing Toolbox** can be opened from the menu bar by selecting
 "View>Panels>Processing Toolbox". This will open a new panel with a variety of
