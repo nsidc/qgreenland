@@ -36,32 +36,64 @@ YouTube](https://www.youtube.com/watch?v=t4vKPhjcMZg).
 ### Sphinx
 
 Sphinx reads documentation (written in reStructuredText or, with an extension,
-Markdown) and other content, including code with the `autodoc` extension. It
-converts this content into many output formats including HTML and PDF.
+Markdown) and other content (including code with `autodoc` or other
+extensions). It converts this content into many output formats including HTML
+and PDF.
 
-
-### reStructuredText
-
-...
+Sphinx's configuration is kept at `doc/conf.py`.
 
 
 ### Read the Docs
 
-...
+_Read the Docs_ is a documentation building and hosting service. It can use
+Sphinx or MkDocs under the hood, and we chose Sphinx. It runs automatically in
+response to changes in GitHub. It is configured by `.readthedocs.yml` at the
+root of this repository.
+
+When Read the Docs builds our documentation, it uses the Python environment
+defined by `doc/requirements.txt`.
+
+
+### reStructuredText
+
+[Start
+here](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html)
+to learn about writing reStructuredText for Sphinx documentation.
+
+
+### MyST Markdown extension
+
+[Start here](https://myst-parser.readthedocs.io) to learn about writing
+Markdown for Sphinx documentation. Markdown is supported out of the box by Read
+the Docs.
 
 
 ## How to add a new documentation page
 
-* Is this new content a [How To](TODO), a [Tutorial](TODO), [Reference
-  material](TODO), or a [Discussion topic](TODO)? 
+* Is this new content a [How To](https://diataxis.fr/how-to-guides/), a
+  [Tutorial](https://diataxis.fr/tutorials/), [Reference
+  material](https://diataxis.fr/reference/), or a [Discussion
+  topic](https://diataxis.fr/explanation/)? Ensure your document is in the
+  correct directory and written for the correct audience.
 * Write your documentation in Markdown, unless you're writing a page that must
   be majority reStructuredText, such as an `index.rst` for a new group of pages.
 * Ensure your documentation page starts with a top-level header. This is the
   title of the page.
+* Use `inv docs.watch` to build documentation on every edit and view your
+  changes in the browser.
+* Create a pull request. GitHub will trigger a build on Read the Docs which you
+  can view by clicking "details" for the Read the Docs check.
 
 
 ## How to update an existing documentation page.
 
-* Is this existing content a [How To](TODO), a [Tutorial](TODO), [Reference
-  material](TODO), or a [Discussion topic](TODO)? 
-* ...
+* Is this new content a [How To](https://diataxis.fr/how-to-guides/), a
+  [Tutorial](https://diataxis.fr/tutorials/), [Reference
+  material](https://diataxis.fr/reference/), or a [Discussion
+  topic](https://diataxis.fr/explanation/)? Ensure your document is in the
+  correct directory and written for the correct audience.
+* Ensure your new content fits appropriately with surrounding content.
+* Use `inv docs.watch` to build documentation on every edit and view your
+  changes in the browser.
+* Create a pull request. GitHub will trigger a build on Read the Docs which you
+  can view by clicking "details" for the Read the Docs check.
