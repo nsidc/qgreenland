@@ -19,7 +19,6 @@
 
     tutorials/get-started.md
     tutorials/analyze-ice-sheet-volume.md
-    tutorials/*
 
 .. toctree::
     :name: How-to
