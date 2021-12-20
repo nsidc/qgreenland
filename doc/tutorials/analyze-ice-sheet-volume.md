@@ -63,7 +63,7 @@ review the results.
 ![results_viewer](/_images/results_viewer.jpg)
 
 The results file will contain information from the run, including which file was
-analyzed, the calculated volume, pixel count, and total area. If one shave
+analyzed, the calculated volume, pixel count, and total area. If one has
 succuessfully run the analysis, the results should show that the Greenland ice
 sheet has a volume of 2,942,360,633,311,806 m<sup>3</sup>, or about 2.9 million
 km<sup>3</sup>.
