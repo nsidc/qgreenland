@@ -67,3 +67,12 @@ analyzed, the calculated volume, pixel count, and total area. If one has
 succuessfully run the analysis, the results should show that the Greenland ice
 sheet has a volume of 2,942,360,633,311,806 m<sup>3</sup>, or about 2.9 million
 km<sup>3</sup>.
+
+## Summary
+
+In completing this tutorial, the user has become familar with the **Processing
+Toolbox** and has successfully utilized the Raster Surface Volume tool with ice
+sheet thickness data included in the QGreenland core package to calculate the
+volume of the Greenland ice sheet. Having accomplished this, the user is now
+ready to explore other geospatial processing tools included in the **Processing
+Toolbox** to further analyze other QGreenland data.
