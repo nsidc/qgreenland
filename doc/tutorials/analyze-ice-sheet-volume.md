@@ -48,7 +48,7 @@ enter the following parameters:
 * Method = Count only above base level (since we are interested in ice thickness
   values greater than zero)
 * Save the Surface volume report, the output for this algorithm, in a temporary file or in a
-  desired location on your computer.
+  desired location on one's computer.
 
 ![raster_surface_volume](/_images/raster_surface_volume.jpg)
 
@@ -63,7 +63,7 @@ review the results.
 ![results_viewer](/_images/results_viewer.jpg)
 
 The results file will contain information from the run, including which file was
-analyzed, the calculated volume, pixel count, and total area. If you have
-succuessfully run the analysis, the results should show that the Green- land ice
+analyzed, the calculated volume, pixel count, and total area. If one shave
+succuessfully run the analysis, the results should show that the Greenland ice
 sheet has a volume of 2,942,360,633,311,806 m<sup>3</sup>, or about 2.9 million
 km<sup>3</sup>.
