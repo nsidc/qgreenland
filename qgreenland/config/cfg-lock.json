@@ -12993,7 +12993,7 @@
                     "layer_cfg": {
                       "description": "The WMM representation of the field includes a magnetic dipole at the center\nof the Earth. This dipole defines an axis that intersects the Earth's\nsurface at two antipodal points. These points are called geomagnetic\npoles. The geomagnetic poles, otherwise known as the dipole poles, can be\ncomputed from the first three Gauss coefficients of the WMM. Based on the\nWMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68\u00b0W\nlongitude and 80.59\u00b0N geocentric latitude (80.65\u00b0N geodetic latitude), and\nthe geomagnetic south pole is at 107.32\u00b0E longitude and 80.59\u00b0S geocentric\nlatitude (80.65\u00b0S geodetic latitude). The axis of the dipole is currently\ninclined at 9.41\u00b0 to the Earth's rotation axis. The same dipole is the basis\nfor the simple geomagnetic coordinate system of geomagnetic latitude and\nlongitude.",
                       "id": "wmm_latitudes",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "geomagnetic_coordinates"
@@ -13045,7 +13045,7 @@
                     "layer_cfg": {
                       "description": "The WMM representation of the field includes a magnetic dipole at the center\nof the Earth. This dipole defines an axis that intersects the Earth's\nsurface at two antipodal points. These points are called geomagnetic\npoles. The geomagnetic poles, otherwise known as the dipole poles, can be\ncomputed from the first three Gauss coefficients of the WMM. Based on the\nWMM2020 coefficients for 2020.0 the geomagnetic north pole is at 72.68\u00b0W\nlongitude and 80.59\u00b0N geocentric latitude (80.65\u00b0N geodetic latitude), and\nthe geomagnetic south pole is at 107.32\u00b0E longitude and 80.59\u00b0S geocentric\nlatitude (80.65\u00b0S geodetic latitude). The axis of the dipole is currently\ninclined at 9.41\u00b0 to the Earth's rotation axis. The same dipole is the basis\nfor the simple geomagnetic coordinate system of geomagnetic latitude and\nlongitude.",
                       "id": "wmm_longitudes",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "geomagnetic_coordinates"
@@ -13208,7 +13208,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13260,7 +13260,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13312,7 +13312,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13364,7 +13364,7 @@
                     "layer_cfg": {
                       "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13416,7 +13416,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13468,7 +13468,7 @@
                     "layer_cfg": {
                       "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13520,7 +13520,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13572,7 +13572,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13624,7 +13624,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13676,7 +13676,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13728,7 +13728,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13780,7 +13780,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -13832,7 +13832,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2020",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2020"
@@ -14011,7 +14011,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14063,7 +14063,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14115,7 +14115,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14167,7 +14167,7 @@
                     "layer_cfg": {
                       "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14219,7 +14219,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14271,7 +14271,7 @@
                     "layer_cfg": {
                       "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14323,7 +14323,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14375,7 +14375,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14427,7 +14427,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14479,7 +14479,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14531,7 +14531,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14583,7 +14583,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14635,7 +14635,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2021",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2021"
@@ -14814,7 +14814,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -14866,7 +14866,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -14918,7 +14918,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -14970,7 +14970,7 @@
                     "layer_cfg": {
                       "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15022,7 +15022,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15074,7 +15074,7 @@
                     "layer_cfg": {
                       "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15126,7 +15126,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15178,7 +15178,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15230,7 +15230,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15282,7 +15282,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15334,7 +15334,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15386,7 +15386,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15438,7 +15438,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2022",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2022"
@@ -15617,7 +15617,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -15669,7 +15669,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -15721,7 +15721,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -15773,7 +15773,7 @@
                     "layer_cfg": {
                       "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -15825,7 +15825,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -15877,7 +15877,7 @@
                     "layer_cfg": {
                       "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -15929,7 +15929,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -15981,7 +15981,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -16033,7 +16033,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -16085,7 +16085,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -16137,7 +16137,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -16189,7 +16189,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -16241,7 +16241,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2023",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2023"
@@ -16420,7 +16420,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16472,7 +16472,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16524,7 +16524,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16576,7 +16576,7 @@
                     "layer_cfg": {
                       "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16628,7 +16628,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16680,7 +16680,7 @@
                     "layer_cfg": {
                       "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16732,7 +16732,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16784,7 +16784,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16836,7 +16836,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16888,7 +16888,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16940,7 +16940,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -16992,7 +16992,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -17044,7 +17044,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2024",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2024"
@@ -17223,7 +17223,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the declination\n(D) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_d_sv_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17275,7 +17275,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the intensity of the total field (F) in nanoTesla\n(nT). F is described by the horizontal component (H), vertical component\n(Z), and the north (X) and east (Y) components of the horizontal\nintensity. The Earth's magnetic field intensity is roughly between 25,000 -\n65,000 nT (.25 - .65 gauss).",
                       "id": "wmm_f_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17327,7 +17327,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the total\nintensity (F) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_f_sv_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17379,7 +17379,7 @@
                     "layer_cfg": {
                       "description": "Contours representing Horizontal Intensity (H) of the geomagnetic main field\nin nanoTesla (nT).",
                       "id": "wmm_h_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17431,7 +17431,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the horizontal\nintensity (H) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_h_sv_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17483,7 +17483,7 @@
                     "layer_cfg": {
                       "description": "Contours representing magnetic inclination (I) in degrees. I is the angle\nbetween the horizontal plane and the total field vector, measured positive into\nEarth.",
                       "id": "wmm_i_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17535,7 +17535,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the magnetic\ninclination (I) of the main magnetic field in arcminutes per year.",
                       "id": "wmm_i_sv_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17587,7 +17587,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field North component (X) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_x_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17639,7 +17639,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the North\ncomponent (X) of the horizontal intensity of the main magnetic field in\nnanoTesla per year.",
                       "id": "wmm_x_sv_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17691,7 +17691,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field East component (Y) of the horizontal\nintensity in nanoTesla (nT).",
                       "id": "wmm_y_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17743,7 +17743,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the East component\n(Y) of the horizontal intensity of the main magnetic field in nanoTesla per\nyear.",
                       "id": "wmm_y_sv_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17795,7 +17795,7 @@
                     "layer_cfg": {
                       "description": "Contours representing the main field down component (Z) in nanoTesla (nT).",
                       "id": "wmm_z_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
@@ -17847,7 +17847,7 @@
                     "layer_cfg": {
                       "description": "Contours representing annual change (secular variation) in the down component\n(Z) of the main magnetic field in nanoTesla per year.",
                       "id": "wmm_z_sv_2025",
-                      "in_package": true,
+                      "in_package": false,
                       "input": {
                         "asset": {
                           "id": "2025"
