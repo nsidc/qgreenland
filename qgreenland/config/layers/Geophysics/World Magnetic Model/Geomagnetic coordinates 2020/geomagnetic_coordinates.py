@@ -26,6 +26,7 @@ def _make_layer(
     return Layer(
         id=id,
         title=title,
+        in_package=False,
         description="""
 The WMM representation of the field includes a magnetic dipole at the center
 of the Earth. This dipole defines an axis that intersects the Earth's
