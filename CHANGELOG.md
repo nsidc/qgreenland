@@ -14,6 +14,8 @@
 - Upgrade `GDAL` version used for running layer pipelines to v3.4.0
 - Update `.txt` documentation in the package (e.g. `README.txt`) to rich HTML
   documentation.
+- Remove most WMM layers from core package. Retain dip poles, main field
+  declination, and blackout zones layers.
 
 
 # v2.0.0alpha3 (2021-11-23)
