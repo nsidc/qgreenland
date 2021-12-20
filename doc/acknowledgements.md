@@ -35,8 +35,6 @@ projects. This is not an exhaustive list -- if your project is listed in our
 * [cmocean](https://github.com/matplotlib/cmocean)
 * [Python](https://www.python.org)
 * [Luigi](https://github.com/spotify/luigi)
-* [Rasterio](https://github.com/mapbox/rasterio)
-* [GeoPandas](https://geopandas.org/)
 * [GDAL](https://gdal.org)
 * [Docker](https://www.docker.com/)
 

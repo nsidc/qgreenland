@@ -65,7 +65,43 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = []
 
 
+# -- Options for LaTeX output --------------------------------------------------
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title, author, document class
+# [howto|manual], ???).
+latex_documents = [(
+    # Input file
+    'index',
+    # Output file
+    'qgreenland.tex',
+    # Title
+    'QGreenland Documentation',
+    # Authors
+    author,
+    'manual',
+    False,
+)]
+
+latex_logo = '../qgreenland/ancillary/images/qgreenland.png'
+
+latex_show_urls = 'footnote'
+
+latex_show_pagerefs = True
+
+latex_elements = {
+    # remove blank pages
+    'classoptions': ',openany,oneside',
+    # Set pdf-wide table-of-contents depth
+    'preamble': r'''
+      \usepackage{hyperref}
+      \setcounter{tocdepth}{3}
+    '''
+}
+
+
 # -- Options for linkcode behavior ---------------------------------------------
+
 def linkcode_resolve(domain, info):
     # Domain could be `py`, `c`, `cpp`, `javascript`, but this is a Python
     # project.
@@ -82,7 +118,9 @@ def linkcode_resolve(domain, info):
 # `qgreenland.models.config.asset.CmrAsset`
 add_module_names = True
 
+
 # -- Options for autodoc output ------------------------------------------------
+
 autodoc_default_options = {
     # Document all public members by default.
     'members': None,
@@ -112,6 +150,10 @@ autodoc_pydantic_model_show_validator_summary = False
 
 # Hide redundant field summary
 autodoc_pydantic_model_show_field_summary = False
+
+# Don't show collapsible JSONSchema model. It's too big for the PDF output. Is
+# there a way to enable it for HTML only and disable for PDF?
+autodoc_pydantic_model_show_json = False
 
 # Don't warn when a field is not serializable
 autodoc_pydantic_model_show_json_error_strategy = 'coerce'
