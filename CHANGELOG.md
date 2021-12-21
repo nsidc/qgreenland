@@ -1,4 +1,4 @@
-# v2.0.0alpha4 (Unreleased)
+# v2.0.0beta1 (2021-12-21) (Unreleased)
 
 - Layer updates:
   - "Reference/Latitude lines": Resolve issue with clipping of latitude
