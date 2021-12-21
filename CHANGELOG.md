@@ -3,7 +3,7 @@
 - Added new QGreenland Custom (QGIS plugin) layer: "Geophysics/World Digital
   Magnetic Anomaly Map".
 
-# v2.0.0beta1 (2021-12-21) (Unreleased)
+# v2.0.0beta1 (2021-12-21)
 
 - Layer updates:
   - "Reference/Latitude lines": Resolve issue with clipping of latitude

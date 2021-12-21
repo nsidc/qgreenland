@@ -44,8 +44,15 @@ services:
     build: ./nginx
     container_name: webserver 
     volumes:
-      - ./data/working-storage/release-layers:/usr/share/nginx/html/layers:ro
-      - ./data/working-storage/release-packages:/usr/share/nginx/html/packages:ro
+      # HACK: The ./data symbolic links are messed up to work around an issue
+      # with NFS storage.
+      # Old:
+      # - ./data/working-storage/release-layers:/usr/share/nginx/html/layers:ro
+      # - ./data/working-storage/release-packages:/usr/share/nginx/html/packages:ro
+      # New/hack:
+      - /share/appdata/qgreenland/working-storage/release-layers:/usr/share/nginx/html/layers:ro
+      - /share/appdata/qgreenland/working-storage/release-packages:/usr/share/nginx/html/packages:ro
+      # END HACK
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./data/logs:/logs:rw
