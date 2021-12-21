@@ -1873,6 +1873,28 @@
         "title": "Regional Glacier and Ice Sheet Surface Velocities"
       }
     },
+    "wdmam": {
+      "assets": {
+        "only": {
+          "args": [
+            "wget",
+            "http://wdmam.org/file/wdmam.asc",
+            "-O",
+            "{output_dir}/full_wdmam.xyz"
+          ],
+          "id": "only"
+        }
+      },
+      "id": "wdmam",
+      "metadata": {
+        "abstract": "The WDMAM (World Digital Magnetic Anomaly Map) is an\ninternational scientific project under the auspices of IAGA\n(International Association of Geomagnetism and Aeronomy) and CGMW\n(Commission for the Geological Map of the World), aiming to compile\nand make available magnetic anomalies caused by the Earth\nlithosphere, on continental and oceanic areas, in a comprehensive\nway, all over the World.\n\nThe project started in 2003 and resulted in a first version of the\nmap (Korhonen et al., 2007). A call for candidates initiated in 2010\nled to the building of a new map which, after evaluation and\ncorrection, was released at the IUGG General Assembly of Prag in\nJune 2015 as WDMAM version 2.0. This web site aims to distribute\nfreely and as widely as possible a provisional version of the map\n(in jpeg format), the full grid (in ASCII format) or parts of the\ngrid (in ASCII or GMT grd formats) to interested scientists and the\ngeneral public. A printed version of the map will be released by\nCGMW in a very near future. A paper describing the building of the\nmap will be published soon (Lesur et al., 2016, in press).",
+        "citation": {
+          "text": "Dyment, J., Lesur, V., Hamoudi, M., Choi, Y., Thebault, E.,\nCatalan, M., the WDMAM Task Force*, the WDMAM Evaluators**, and\nthe WDMAM Data Providers**, World Digital Magnetic Anomaly Map\nversion 2.0, map available at http://www.wdmam.org.",
+          "url": "http://www.wdmam.org"
+        },
+        "title": "World Digital Magnetic Anomaly Map"
+      }
+    },
     "woa2018_temperature": {
       "assets": {
         "seasonal_summer": {
@@ -18208,6 +18230,66 @@
               "title": "Geoid model (2km)"
             },
             "name": "geoid"
+          },
+          {
+            "layer_cfg": {
+              "description": "Points representing magnetic anomalies in nanoTesla (nT).\n\nThe altitude is 5 km above the WGS84 ellipsoid, except for the marine\ndata and model (indexes 11 and 44) where altitude is the sea level\n(0). Magnetic anomalies ('magnetic_anomaly') are computed with reference\nto geomagnetic field model CM4 for year 1990. During the processing,\n('index') is removed from the original data grid and replaced by\n('long_wavelength') to obtain ('magnetic_anomaly'). The original\nmagnetic anomaly data grid can therefore be restored by adding ('index')\nand removing ('long_wavelength') from ('magnetic_anomaly').",
+              "id": "wdmam",
+              "in_package": false,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "wdmam"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "sed",
+                    "-e",
+                    "\"s/^\\s\\+//g\"",
+                    "-e",
+                    "\"s/\\s\\+/,/g\"",
+                    "-e",
+                    "1i\"longitude,latitude,magnetic_anomaly,index,long_wavelength\"",
+                    "{input_dir}/full_wdmam.xyz",
+                    ">",
+                    "{output_dir}/full_wdmam.csv"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-oo",
+                    "X_POSSIBLE_NAMES=longitude",
+                    "-oo",
+                    "Y_POSSIBLE_NAMES=latitude",
+                    "-oo",
+                    "AUTODETECT_TYPE=True",
+                    "-s_srs",
+                    "EPSG:4326",
+                    "{output_dir}/wdmam_greenland.gpkg",
+                    "{input_dir}/full_wdmam.csv"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "wdmam",
+              "tags": [],
+              "title": "World Digital Magnetic Anomaly Map"
+            },
+            "name": "wdmam"
           }
         ],
         "name": "Geophysics",
