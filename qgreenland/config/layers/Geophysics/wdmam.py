@@ -31,39 +31,25 @@ layer = Layer(
     ),
     steps=[
         CommandStep(
-            id='trim_leading_whitespace',
-            args=[
-                'sed',
-                '-e',
-                r'"s/^\s\+//g"',
-                '{input_dir}/full_wdmam.xyz',
-                '>',
-                '{output_dir}/trimmed.xyz',
-            ],
-        ),
-        CommandStep(
             id='convert_to_csv',
             args=[
                 'sed',
+                # Trim leading whitespace
+                '-e',
+                r'"s/^\s\+//g"',
+                # Replace all other whitespace with ','
                 '-e',
                 r'"s/\s\+/,/g"',
-                '{input_dir}/trimmed.xyz',
+                # Add a header
+                '-e',
+                '1i"longitude,latitude,magnetic_anomaly,index,long_wavelength"',
+                '{input_dir}/full_wdmam.xyz',
                 '>',
                 '{output_dir}/full_wdmam.csv',
             ],
         ),
-        CommandStep(
-            id='add_header',
-            args=[
-                'sed',
-                '1i"longitude,latitude,magnetic_anomaly,index,long_wavelength"',
-                '{input_dir}/full_wdmam.csv',
-                '>',
-                '{output_dir}/full_wdmam_with_header.csv',
-            ],
-        ),
         *ogr2ogr(
-            input_file='{input_dir}/full_wdmam_with_header.csv',
+            input_file='{input_dir}/full_wdmam.csv',
             output_file='{output_dir}/wdmam_greenland.gpkg',
             boundary_filepath=project.boundaries['data'].filepath,
             ogr2ogr_args=[
