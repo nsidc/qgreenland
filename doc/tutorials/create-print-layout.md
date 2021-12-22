@@ -7,7 +7,7 @@ to that layout, and exporting the resulting layout as an image.
 
 See the [QGIS
 manual](https://docs.qgis.org/3.16/en/docs/training_manual/map_composer/map_composer.html)
-for complete documentation on print layouts in QGIS
+for complete documentation on print layouts in QGIS.
 
 
 ##  Creating a new print layout
