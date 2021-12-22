@@ -2,7 +2,10 @@ from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
 
-gc_net_promice_stations = Dataset(
+# TODO: How to create a layer using this data? The NETCDF files are composed of
+# daily runoff amounts predicted by a climate model for each basin in the
+# streams_outlets_basins dataset.
+promice_runoff = Dataset(
     id='promice_runoff',
     assets=[
         HttpAsset(
