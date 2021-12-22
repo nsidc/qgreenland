@@ -1,6 +1,62 @@
 # Troubleshooting
 
-## "Too many open files" on Linux
+```{contents} Contents
+:local:
+
+```
+
+
+## Difficulty opening the project
+
+If you're having trouble opening the project, first ensure you're using QGIS
+3.16 LTR or greater. If you want to move QGreenland to a different location on
+your filesystem, move the entire directory; do not attempt to move only the
+`.qgs`/`.qgz` project file.
+
+
+### QGIS won't start on OSX Catalina
+
+QGIS is currently not 'notarized' for Mac OSX. If you receive `The developer of
+this app needs to update it to work with this version of macOS. Contact the
+developer for more information.`, then, in your OSX menus, try:
+
+- 'Security and Privacy'
+- 'Allow apps downloaded from...'
+- 'App Store and identified developers'
+- Locate QGIS here and select 'Open anyway'
+
+
+### 'Unable to open' from QGIS when opening project
+
+If you opened QGreenland from the command line, ensure you got the project name
+correct. E.g., from inside the unzipped QGreenland directory:
+
+```
+qgis qgreenland.qgz
+```
+
+
+### No layers are present in the Layers Panel
+
+If you don't see layers in the layers panel, you have not correctly opened a
+project. Click 'Project' in the Menu Bar, then select 'Add Project', then
+navigate to your QGreenland directory, wherever you saved it, and open the
+`.qgs`/`.qgz` file inside.
+
+
+## Difficulty using the project
+
+### After opening QGreenland, I only see blue ocean
+
+Right click on a layer in the Layers Panel that you'd like to view, and select
+'Zoom to Layer'.
+
+If you experience this issue, please [contact
+us](mailto:qgreenland.info@gmail.com) with information about your Operating
+System and QGIS version. A small number of users have reported this issue, but
+we haven't been able to identify the cause thus far.
+
+### `Too many open files` on Linux
 
 Your system may have multiple ways of limiting open files in different
 contexts. To check your limits:
@@ -30,20 +86,37 @@ After applying these changes, you may find that new terminal windows are not
 affected. Reboot your computer to make the changes permanent.
 
 
-## I see `ERROR: Too many connections: max 64` in my terminal
+### I see `ERROR: Too many connections: max 64` in my terminal
 
 We don't think this is an issue. This started happening when we switched to
 GeoPackages for vector data, but we've observed no negative impact of this
 error message.
 
 
-## QGIS won't start on OSX Catalina
+### The QGIS interface has no buttons or toolbars
 
-QGIS is currently not "notarized" for Mac OSX. If you receive `The developer of
-this app needs to update it to work with this version of macOS. Contact the
-developer for more information.`, then, in your OSX menus, try:
+Right-click the toolbar area in the QGIS interface and check the toolbars you
+wish to turn on so that they are displayed. You can also go to 'View' ->
+'Toolbars' in the menu bar.
 
-- "Security and Privacy"
-- "Allow apps downloaded from..."
-- "App Store and identified developers"
-- Locate QGIS here and select "Open anyway"
+
+### I can't see a layer in the Map View even though it's turned on and I've zoomed to it
+
+Double-check that there is not another layer overlaying and thus obscuring the
+layer you want to see in the Map View. Remember that layer are displayed in the
+Map View in the same order that they are listed in the Layers Panel - layers
+listed at the top of the Layers Panel show up on top on the Map View. You can
+either turn off any layer that might be obscuring the layer you wish to see by
+unchecking it in the Layers Panel, or re-arrange the order of layers by
+clicking and dragging them up or down in the Layers Panel.
+
+Some QGreenland data layers are only visible at a specific map scale (see
+_QGreenland User Guide section 4.3.1: Scale-dependent rendering_ for more
+information). Try zooming in.
+
+
+## I'm having other problems. How do I contact the QGreenland team?
+
+If you have feedback on or questions about the QGreenland data package, or want
+to contribute datasets to future QGreenland releases, please contact us at
+<qgreenland.info@gmail.com>.
