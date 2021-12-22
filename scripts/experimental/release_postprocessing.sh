@@ -14,4 +14,4 @@ rsync --rsync-path="sudo rsync" -avz \
     "${SRC}/release-packages/" "${DST}/release-packages"
 
 # Clean up everything on the temp storage location except the fetch directory
-./script/cleanup.sh -RL -RP -WP -WL
+./scripts/cleanup.sh -RL -RP -WP -WL
