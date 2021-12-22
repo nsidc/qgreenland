@@ -26,6 +26,16 @@ large value in *both* files:
 DefaultLimitNOFILE=20480
 ```
 
+After applying these changes, you may find that new terminal windows are not
+affected. Reboot your computer to make the changes permanent.
+
+
+## I see `ERROR: Too many connections: max 64` in my terminal
+
+We don't think this is an issue. This started happening when we switched to
+GeoPackages for vector data, but we've observed no negative impact of this
+error message.
+
 
 ## QGIS won't start on OSX Catalina
 
