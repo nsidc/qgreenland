@@ -4,9 +4,12 @@ When access to the internet is available, QGIS is capable of connecting to
 various online map services that can provide access to additional geospatial
 data that compliments QGreenland. Common map services include:
 
-* Web Map Service (WMS): Provides image representations of geospatial data.
-* Web Coverage Service (WCS): Provides access to raster data
-* Web Feature Service (WFS): Provides access to vector data
+* [Web Map Service (WMS)](https://www.ogc.org/standards/wms): Provides image
+  representations of geospatial data.
+* [Web Coverage Service (WCS)](https://www.ogc.org/standards/wcs): Provides
+  access to raster data
+* [Web Feature Service (WFS)](https://www.ogc.org/standards/wfs): Provides
+  access to vector data
 
 This how-to guide covers creating a new connection to a WMS and adding a layer
 from that service. WCS, WFS, and other online services can be interacted with in
