@@ -32,5 +32,5 @@ for information on how to utilize these resources.
   Browse Service
   (GIBS)](https://earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/gibs)
   [WMS/WMTS] provides quick access to over 1000 satellite imagery products. For
-  instructions on how to utilize GIBS with QGIS, see the [Earthdaata Wiki on
+  instructions on how to utilize GIBS with QGIS, see the [Earthdata Wiki on
   GIBS](https://wiki.earthdata.nasa.gov/display/GIBS/Geographic+Information+System+%28GIS%29+Usage#expand-QGIS)
