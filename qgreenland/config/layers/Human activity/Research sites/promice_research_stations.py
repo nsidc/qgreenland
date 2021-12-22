@@ -1,4 +1,4 @@
-from qgreenland.config.datasets.promice import (
+from qgreenland.config.datasets.promice_stations import (
     gc_net_promice_stations as dataset,
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr

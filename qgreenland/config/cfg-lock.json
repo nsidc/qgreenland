@@ -1289,6 +1289,75 @@
         "title": "Ground Temperature Map, 2000-2016, Northern Hemisphere Permafrost"
       }
     },
+    "promice_runoff": {
+      "assets": {
+        "land_mar_2010": {
+          "id": "land_mar_2010",
+          "urls": [
+            "https://promice.org/PromiceDataPortal/api/download/0f9dc69b-2e3c-43a2-a928-36fbb88d7433/version_01/runoff/coast/runoff_land_MAR_2010.nc"
+          ],
+          "verify_tls": true
+        },
+        "land_mar_2011": {
+          "id": "land_mar_2011",
+          "urls": [
+            "https://promice.org/PromiceDataPortal/api/download/0f9dc69b-2e3c-43a2-a928-36fbb88d7433/version_01/runoff/coast/runoff_land_MAR_2011.nc"
+          ],
+          "verify_tls": true
+        },
+        "land_mar_2012": {
+          "id": "land_mar_2012",
+          "urls": [
+            "https://promice.org/PromiceDataPortal/api/download/0f9dc69b-2e3c-43a2-a928-36fbb88d7433/version_01/runoff/coast/runoff_land_MAR_2012.nc"
+          ],
+          "verify_tls": true
+        },
+        "land_mar_2013": {
+          "id": "land_mar_2013",
+          "urls": [
+            "https://promice.org/PromiceDataPortal/api/download/0f9dc69b-2e3c-43a2-a928-36fbb88d7433/version_01/runoff/coast/runoff_land_MAR_2013.nc"
+          ],
+          "verify_tls": true
+        },
+        "land_mar_2014": {
+          "id": "land_mar_2014",
+          "urls": [
+            "https://promice.org/PromiceDataPortal/api/download/0f9dc69b-2e3c-43a2-a928-36fbb88d7433/version_01/runoff/coast/runoff_land_MAR_2014.nc"
+          ],
+          "verify_tls": true
+        },
+        "land_mar_2015": {
+          "id": "land_mar_2015",
+          "urls": [
+            "https://promice.org/PromiceDataPortal/api/download/0f9dc69b-2e3c-43a2-a928-36fbb88d7433/version_01/runoff/coast/runoff_land_MAR_2015.nc"
+          ],
+          "verify_tls": true
+        },
+        "land_mar_2016": {
+          "id": "land_mar_2016",
+          "urls": [
+            "https://promice.org/PromiceDataPortal/api/download/0f9dc69b-2e3c-43a2-a928-36fbb88d7433/version_01/runoff/coast/runoff_land_MAR_2016.nc"
+          ],
+          "verify_tls": true
+        },
+        "land_mar_2017": {
+          "id": "land_mar_2017",
+          "urls": [
+            "https://promice.org/PromiceDataPortal/api/download/0f9dc69b-2e3c-43a2-a928-36fbb88d7433/version_01/runoff/coast/runoff_land_MAR_2017.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "promice_runoff",
+      "metadata": {
+        "abstract": "High resolution map of Greenland hydrologic outlets, basins, and\nstreams, and a 1979 through 2017 time series of Greenland liquid\nwater runoff for each outlet.",
+        "citation": {
+          "text": "Mankoff et al. - submitted to ESSD.",
+          "url": "https://doi.org/10.22008/promice/data/freshwater_runoff/v01"
+        },
+        "title": "Map of GC-Net and PROMICE locations"
+      }
+    },
     "qgr_bounds": {
       "assets": {
         "background": {
