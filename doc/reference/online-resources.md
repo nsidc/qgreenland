@@ -27,3 +27,10 @@ for information on how to utilize these resources.
   [WMS, WFS] provides various layers including a geological occurrence map. Note
   that GEUS requests that users of its services provide an email address as part
   of each request. Results may be limited during peak service hours.
+
+* [The National Aeronautics and Space Administration (NASA)'s Global Imagery
+  Browse Service
+  (GIBS)](https://earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/gibs)
+  [WMS/WMTS] provides quick access to over 1000 satellite imagery products. For
+  instructions on how to utilize GIBS with QGIS, see the [Earthdaata Wiki on
+  GIBS](https://wiki.earthdata.nasa.gov/display/GIBS/Geographic+Information+System+%28GIS%29+Usage#expand-QGIS)
