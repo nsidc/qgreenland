@@ -21,3 +21,9 @@ for information on how to utilize these resources.
 * The [Arctic Research Mapping Application](https://armap.org/web-services/)
   [WMS, WFS] provides a variety of reference layers such as Arctic cities and an
   Arctic base map.
+
+* The [Geological Survey of Denmark and Greenland
+  (GEUS)](http://maps.greenmin.gl/geusmap/ows/help/?mapname=greenland_portal)
+  [WMS, WFS] provides various layers including a geological occurrence map. Note
+  that GEUS requests that users of its services provide an email address as part
+  of each request. Results may be limited during peak service hours.
