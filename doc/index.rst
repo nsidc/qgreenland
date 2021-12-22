@@ -36,7 +36,7 @@ QGreenland Documentation
     :hidden:
 
     tutorials/get-started.md
-    tutorials/analyze-ice-sheet-volume.md
+    tutorials/*
 
 
 .. raw:: latex
