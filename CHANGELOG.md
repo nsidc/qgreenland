@@ -2,6 +2,9 @@
 
 - Added new QGreenland Custom (QGIS plugin) layer: "Geophysics/World Digital
   Magnetic Anomaly Map".
+- Remove online layers from the `QGreenland Custom` QGIS plugin manifest. Once
+  support for online layers is added to the plugin, online layers will be
+  re-added to the manifest file.
 
 # v2.0.0beta1 (2021-12-21)
 

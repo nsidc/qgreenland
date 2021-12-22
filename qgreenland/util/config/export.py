@@ -49,14 +49,22 @@ def export_config_manifest(
     manifest = {
         'version': manifest_spec_version,
         'qgr_version': get_build_version(),
-        'layers': [{
-            # ID first for readability
-            'id': layer_node.layer_cfg.id,
-            **layer_node.layer_cfg.dict(include={'title', 'description', 'tags'}),
-            'hierarchy': layer_node.group_name_path,
-            'layer_details': build_layer_metadata(layer_node.layer_cfg),
-            'assets': _layer_manifest_final_assets(layer_node),
-        } for layer_node in cfg.layer_tree.leaves],
+        'layers': [
+            {
+                # ID first for readability
+                'id': layer_node.layer_cfg.id,
+                **layer_node.layer_cfg.dict(include={'title', 'description', 'tags'}),
+                'hierarchy': layer_node.group_name_path,
+                'layer_details': build_layer_metadata(layer_node.layer_cfg),
+                'assets': _layer_manifest_final_assets(layer_node),
+            }
+            for layer_node in cfg.layer_tree.leaves
+            # For now, do not include online layers in the layer manifest. The
+            # `QGreenland Custom` QGIS Plugin does not currently support online
+            # layers. Once online layers are supported in the plugin, this `if`
+            # statement can be removed.
+            if not isinstance(layer_node.layer_cfg.input.asset, OnlineAsset)
+        ],
     }
 
     with open(output_path, 'w') as ofile:

@@ -51,21 +51,25 @@ https://nsidc.org""",
     assert len(actual['qgr_version']) >= 6
     del actual['qgr_version']
 
-    online_asset = {
-        'type': 'online',
-        **full_cfg.layers['example_online'].input.asset.dict(
-            include={'provider', 'url'},
-        ),
-    }
+    # For now, do not include online layers in the layer manifest. The
+    # `QGreenland Custom` QGIS Plugin does not currently support online
+    # layers. Once online layers are supported in the plugin, this commented out
+    # `online_asset` can be re-added:
+    # online_asset = {
+    #     'type': 'online',
+    #     **full_cfg.layers['example_online'].input.asset.dict(
+    #         include={'provider', 'url'},
+    #     ),
+    # }
     expected = {
         'version': 'v0.1.0',
         'layers': [
-            {
-                'id': 'example_online',
-                'title': 'Example online',
-                'assets': [online_asset],
-                **common,
-            },
+            # {
+            #     'id': 'example_online',
+            #     'title': 'Example online',
+            #     'assets': [online_asset],
+            #     **common,
+            # },
             {
                 'id': 'example_raster',
                 'title': 'Example raster',
