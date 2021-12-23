@@ -12769,7 +12769,7 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Broadband planar albedo derived from the Ocean and Land Colour\nInstrument (OLCI) on board the European Union Copernicus Sentinel-3A\nsatellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
+                  "description": "Monthly broadband planar albedo for July 2018 derived from the\nOcean and Land Colour Instrument (OLCI) on board the European Union\nCopernicus Sentinel-3A satellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
                   "id": "albedo_2018_07",
                   "in_package": true,
                   "input": {
@@ -12822,7 +12822,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Broadband planar albedo derived from the Ocean and Land Colour\nInstrument (OLCI) on board the European Union Copernicus Sentinel-3A\nsatellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
+                  "description": "Monthly broadband planar albedo for July 2019 derived from the\nOcean and Land Colour Instrument (OLCI) on board the European Union\nCopernicus Sentinel-3A satellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
                   "id": "albedo_2019_07",
                   "in_package": true,
                   "input": {
