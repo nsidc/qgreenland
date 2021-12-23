@@ -224,26 +224,6 @@
         "title": "The distribution of thick-billed and common murre colonies in the North."
       }
     },
-    "coastlines": {
-      "assets": {
-        "only": {
-          "id": "only",
-          "urls": [
-            "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip"
-          ],
-          "verify_tls": true
-        }
-      },
-      "id": "coastlines",
-      "metadata": {
-        "abstract": "Natural Earth Coastlines (Public Domain).",
-        "citation": {
-          "text": "Made with Natural Earth",
-          "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
-        },
-        "title": "Natural Earth Coastlines (10m)"
-      }
-    },
     "continental_shelf": {
       "assets": {
         "north_lines": {
@@ -767,6 +747,26 @@
           "url": ""
         },
         "title": "Greenland Territorial Waters"
+      }
+    },
+    "gshhg_coastlines": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.7.zip"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "gshhg_coastlines",
+      "metadata": {
+        "abstract": "We present a high-resolution geography data set amalgamated from\nthree data bases in the public domain:\n\n    World Vector Shorelines (WVS).\n    CIA World Data Bank II (WDBII).\n    Atlas of the Cryosphere (AC).\n\nThe WVS is our basis for shorelines except for Antarctica while the\nWDBII is the basis for lakes, although there are instances where\ndifferences in coastline representations necessitated adding WDBII\nislands to GSHHG. The WDBII source also provides all political\nborders and rivers. The addition of AC since 2.3.0 allows us to\noffer two choices for Antarctica coastlines: Ice-front or Grounding\nline. These are encoded as levels 5 and 6, respectively and users of\nGSHHG can choose which set to use. GSHHG data have undergone\nextensive processing and should be free of internal inconsistencies\nsuch as erratic points and crossing segments. The shorelines are\nconstructed entirely from hierarchically arranged closed polygons. A\nmodified version of GSHHG is used by GMT, the Generic Mapping Tools.\nStarting with version 2.2.2, GSHHG has been released under the GNU\nLesser General Public License.",
+        "citation": {
+          "text": "Wessel, P., and W. H. F. Smith, A Global Self-consistent,\nHierarchical, High-resolution Shoreline Database, J. Geophys.\nRes., 101, 8741-8743, 1996",
+          "url": "https://www.soest.hawaii.edu/pwessel/gshhg/Wessel+Smith_1996_JGR.pdf"
+        },
+        "title": "GSHHG: A Global Self-consistent, Hierarchical, High-resolution Geography Database"
       }
     },
     "hdx_hotosm": {
@@ -3232,7 +3232,7 @@
                       "id": "only"
                     },
                     "dataset": {
-                      "id": "coastlines"
+                      "id": "gshhg_coastlines"
                     }
                   },
                   "show": false,
@@ -3240,10 +3240,10 @@
                     {
                       "args": [
                         "unzip",
-                        "{input_dir}/ne_10m_coastline.zip",
+                        "{input_dir}/gshhg-shp-2.3.7.zip",
                         "-d",
                         "{output_dir}",
-                        ""
+                        "GSHHS_shp/f/GSHHS_f_L1.*"
                       ],
                       "type": "command"
                     },
@@ -3257,13 +3257,13 @@
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
-                        "{output_dir}/global_coastline.gpkg",
-                        "{input_dir}/*.shp"
+                        "{output_dir}/global_coastlines.gpkg",
+                        "{input_dir}/GSHHS_shp/f/*.shp"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "coastline-IHOECDIS",
+                  "style": "transparent_shape",
                   "tags": [],
                   "title": "Global coastlines"
                 },
