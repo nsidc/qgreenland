@@ -1089,6 +1089,33 @@
         "title": "Mineral and hydrocarbon licenses"
       }
     },
+    "monthly_albedo": {
+      "assets": {
+        "2018_07": {
+          "id": "2018_07",
+          "urls": [
+            "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/URJ2VK/XXQUSC"
+          ],
+          "verify_tls": true
+        },
+        "2019_07": {
+          "id": "2019_07",
+          "urls": [
+            "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/URJ2VK/6YZNSZ"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "monthly_albedo",
+      "metadata": {
+        "abstract": "We present a simplified atmospheric correction algorithm for\nsnow/ice albedo retrievals using single view satellite\nmeasurements. The validation of the technique is performed using\nOcean and Land Colour Instrument (OLCI) on board Copernicus\nSentinel-3 satellite and ground spectral or broadband albedo\nmeasurements from locations on the Greenland ice sheet and in the\nFrench Alps. Through comparison with independent ground\nobservations, the technique is shown to perform accurately in a\nrange of conditions from a 2100 m elevation mid-latitude location in\nthe French Alps to a network of 15 locations across a 2390 m\nelevation range in seven regions across the Greenland ice\nsheet. Retrieved broadband albedo is accurate within 5% over a wide\n(0.5) broadband albedo range of the (N = 4155) Greenland\nobservations and with no apparent bias.",
+        "citation": {
+          "text": "Kokhanovsky A, Box JE, Vandecrux B, Mankoff KD, Lamare M,\nSmirnov A and Kern M (2020) The Determination of Snow Albedo\nfrom Satellite Measurements Using Fast Atmospheric Correction\nTechnique. Remote Sensing 12(2), 234 doi: 10.3390/rs12020234\nhttps://www.mdpi.com/2072-4292/12/2/234",
+          "url": "doi.org/10.22008/FK2/URJ2VK"
+        },
+        "title": "SICE 1 km broadband albedo monthly averages and visualisations"
+      }
+    },
     "nafo_divisions": {
       "assets": {
         "only": {
@@ -12738,6 +12765,122 @@
       },
       {
         "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Average broadband planar albedo for July 2018 derived from\nthe Ocean and Land Colour Instrument (OLCI) on board the European Union\nCopernicus Sentinel-3A satellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
+                  "id": "albedo_2018_07",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2018_07"
+                    },
+                    "dataset": {
+                      "id": "monthly_albedo"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/*.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/albedo_2018_07.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/albedo_2018_07.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "albedo",
+                  "tags": [],
+                  "title": "July 2018 albedo (1km)"
+                },
+                "name": "albedo_2018_07"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Average broadband planar albedo for July 2019 derived from\nthe Ocean and Land Colour Instrument (OLCI) on board the European Union\nCopernicus Sentinel-3A satellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
+                  "id": "albedo_2019_07",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "2019_07"
+                    },
+                    "dataset": {
+                      "id": "monthly_albedo"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/*.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/albedo_2019_07.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/albedo_2019_07.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "albedo",
+                  "tags": [],
+                  "title": "July 2019 albedo (1km)"
+                },
+                "name": "albedo_2019_07"
+              }
+            ],
+            "name": "Albedo",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
           {
             "children": [
               {
