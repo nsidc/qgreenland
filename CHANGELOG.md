@@ -1,4 +1,4 @@
-# NEXT_VERSION
+# v2.0.0beta2 (2021-12-23)
 
 - New layers:
   - "Geophysics/World Digital Magnetic Anomaly Map" available in QGreenland

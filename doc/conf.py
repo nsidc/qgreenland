@@ -22,7 +22,7 @@ copyright = f'NSIDC {datetime.date.today().year}'
 author = 'Twila Moon, Matt Fisher, Hope Simonoko, Trey Stafford'
 
 # The full version, including alpha/beta/rc tags
-release = 'v2.0.0beta1'
+release = 'v2.0.0beta2'
 
 
 # -- General configuration ---------------------------------------------------

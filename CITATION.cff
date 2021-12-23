@@ -14,7 +14,7 @@ authors:
   given-names: "Trey"
   orcid: "https://orcid.org/0000-0002-5510-0055"
 title: "QGreenland"
-version: 2.0.0beta1
+version: 2.0.0beta2
 doi: 10.5281/zenodo.4558266
 date-released: 2021-02-23
 url: "https://github.com/nsidc/qgreenland"
