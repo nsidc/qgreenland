@@ -8,7 +8,7 @@ gshhg_coastlines = Dataset(
         HttpAsset(
             id='only',
             urls=[
-                f'http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.7.zip',
+                'http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.7.zip',
             ],
         ),
     ],
