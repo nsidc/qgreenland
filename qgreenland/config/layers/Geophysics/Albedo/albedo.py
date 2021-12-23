@@ -11,7 +11,7 @@ layers = [Layer(
     id=f'albedo_{year}_07',
     title=f'July {year} albedo (1km)',
     description=(
-        f"""Monthly average broadband planar albedo for July {year} derived from
+        f"""Average broadband planar albedo for July {year} derived from
         the Ocean and Land Colour Instrument (OLCI) on board the European Union
         Copernicus Sentinel-3A satellite.
 
