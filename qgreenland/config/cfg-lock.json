@@ -12769,7 +12769,7 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Monthly broadband planar albedo for July 2018 derived from the\nOcean and Land Colour Instrument (OLCI) on board the European Union\nCopernicus Sentinel-3A satellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
+                  "description": "Monthly average broadband planar albedo for July 2018 derived from\nthe Ocean and Land Colour Instrument (OLCI) on board the European Union\nCopernicus Sentinel-3A satellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
                   "id": "albedo_2018_07",
                   "in_package": true,
                   "input": {
@@ -12816,13 +12816,13 @@
                   ],
                   "style": "albedo",
                   "tags": [],
-                  "title": "Average July 2018 albedo (1km)"
+                  "title": "July 2018 albedo (1km)"
                 },
                 "name": "albedo_2018_07"
               },
               {
                 "layer_cfg": {
-                  "description": "Monthly broadband planar albedo for July 2019 derived from the\nOcean and Land Colour Instrument (OLCI) on board the European Union\nCopernicus Sentinel-3A satellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
+                  "description": "Monthly average broadband planar albedo for July 2019 derived from\nthe Ocean and Land Colour Instrument (OLCI) on board the European Union\nCopernicus Sentinel-3A satellite.\n\nAlbedo is a fractional value ranging from 0-1 representing the amount of\nincident solar radiation reflected from the surface.",
                   "id": "albedo_2019_07",
                   "in_package": true,
                   "input": {
@@ -12869,7 +12869,7 @@
                   ],
                   "style": "albedo",
                   "tags": [],
-                  "title": "Average July 2019 albedo (1km)"
+                  "title": "July 2019 albedo (1km)"
                 },
                 "name": "albedo_2019_07"
               }
