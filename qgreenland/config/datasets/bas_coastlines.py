@@ -47,27 +47,3 @@ bas_coastlines = Dataset(
         },
     },
 )
-
-coastlines = Dataset(
-    id='coastlines',
-    assets=[
-        HttpAsset(
-            id='only',
-            urls=[
-                'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_coastline.zip',
-            ],
-        ),
-    ],
-    metadata={
-        'title': 'Natural Earth Coastlines (10m)',
-        'abstract': (
-            """Natural Earth Coastlines (Public Domain)."""
-        ),
-        'citation': {
-            'text': (
-                """Made with Natural Earth"""
-            ),
-            'url': 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md',
-        },
-    },
-)

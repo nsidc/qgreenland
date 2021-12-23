@@ -1,4 +1,5 @@
-import qgreenland.config.datasets.coastlines as dataset
+from qgreenland.config.datasets.bas_coastlines import bas_coastlines
+from qgreenland.config.datasets.gshhg import gshhg_coastlines
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import Layer, LayerInput
 
@@ -14,8 +15,8 @@ bas_greenland_coastlines = Layer(
     show=True,
     style='greenland_coastline',
     input=LayerInput(
-        dataset=dataset.bas_coastlines,
-        asset=dataset.bas_coastlines.assets['only'],
+        dataset=bas_coastlines,
+        asset=bas_coastlines.assets['only'],
     ),
     steps=[
         *compressed_vector(
@@ -25,7 +26,7 @@ bas_greenland_coastlines = Layer(
     ],
 )
 
-coastlines = Layer(
+global_coastlines = Layer(
     id='coastlines',
     title='Global coastlines',
     description=(
@@ -33,15 +34,19 @@ coastlines = Layer(
         Greenland."""
     ),
     tags=[],
-    style='coastline-IHOECDIS',
+    style='transparent_shape',
     input=LayerInput(
-        dataset=dataset.coastlines,
-        asset=dataset.coastlines.assets['only'],
+        dataset=gshhg_coastlines,
+        asset=gshhg_coastlines.assets['only'],
     ),
     steps=[
         *compressed_vector(
-            input_file='{input_dir}/ne_10m_coastline.zip',
-            output_file='{output_dir}/global_coastline.gpkg',
+            input_file='{input_dir}/gshhg-shp-2.3.7.zip',
+            output_file='{output_dir}/global_coastlines.gpkg',
+            decompress_step_kwargs={
+                'decompress_contents_mask': 'GSHHS_shp/f/GSHHS_f_L1.*',
+            },
+            vector_filename='GSHHS_shp/f/*.shp',
         ),
     ],
 )
