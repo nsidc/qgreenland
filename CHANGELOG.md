@@ -5,6 +5,9 @@
 - Remove online layers from the `QGreenland Custom` QGIS plugin manifest. Once
   support for online layers is added to the plugin, online layers will be
   re-added to the manifest file.
+- New "Geophysics/Albedo" layers:
+  - July 2018 albedo (1km)
+  - July 2019 albedo (1km)
 
 # v2.0.0beta1 (2021-12-21)
 
