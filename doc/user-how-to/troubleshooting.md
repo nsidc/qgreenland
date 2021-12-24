@@ -32,7 +32,7 @@ If you opened QGreenland from the command line, ensure you got the project name
 correct. E.g., from inside the unzipped QGreenland directory:
 
 ```
-qgis qgreenland.qgz
+qgis qgreenland.qgs
 ```
 
 
