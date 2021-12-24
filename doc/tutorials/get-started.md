@@ -16,15 +16,23 @@ Download the QGreenland data package (v2.0.0) at
 [https://qgreenland.org/download](https://qgreenland.org/download).
 
 Save the zip package to a location of your choice and unzip it. Open the
-`qgreenland.qgz` file in the data package folder by double-clicking it. QGIS
+`qgreenland.qgs` file in the data package folder by double-clicking it. QGIS
 will open automatically and display the QGreenland data environment.
 
 
 ```{note}
-If QGIS is already open, one can open the `qgreenland.qgz` project file
-within QGIS by navigating to the "Project >Open..." option in the menu bar and
-selecting the `qgreenland.qgz` file from its saved location.
+Depending on your version of QGreenland, the package may be a `.qgs` or a
+`.qgz` file. They should function the same as long as you have a compatible
+version of QGIS.
 ```
+
+
+```{note}
+If QGIS is already open, one can open the `qgreenland.qgs` project file
+within QGIS by navigating to the "Project >Open..." option in the menu bar and
+selecting the `qgreenland.qgs` file from its saved location.
+```
+
 
 ## 3) Get to know the QGIS Interface
 
@@ -61,6 +69,7 @@ Introduction to
 GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
 ```
 
+
 ## 4) Browse data in QGreenland
 
 Layers in QGreenland are organized into groups by category. For example, the
@@ -87,6 +96,7 @@ The search bar, located in the **Status bar**, can also be used to find layers
 in the **Layers panel**.
 ![search_bar](/_images/search_bar.jpg)
 ```
+
 
 ### Navigate the Map View
 
@@ -118,6 +128,7 @@ other tools to explore the map and QGreenland's various data layers. See the
 [QGIS documentation on zooming and
 panning](https://docs.qgis.org/3.16/en/docs/user_manual/introduction/general_tools.html#zooming-and-panning)
 for more detailed information on how to effectively navigate the **Map View**.
+
 
 ## 5) Summary
 

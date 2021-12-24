@@ -1,3 +1,10 @@
+# v2.0.0beta3 (2021-12-24)
+
+- Switch back to `.qgs` project file from `.qgz`; There is [an
+  issue](https://github.com/qgis/QGIS/issues/42033) conveniently opening `.qgz`
+  project files in OSX for some versions of QGIS `3.16.x`.
+
+
 # v2.0.0beta2 (2021-12-23)
 
 - New layers:
