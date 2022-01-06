@@ -6,10 +6,18 @@ how to use its basic functions.
 ## Installing the plugin
 
 To get started with this guide, open a new project in QGIS. Next, by accessing the Plugin tab 
-in the top menu bar, select 'Manage and Install Plugins'. This will open the plugin pop-up window. 
-First, click the Settings tab and select the check box labeled 'Show also experimental plugins' so 
-that QGreenland will be included. Navigating to the 'All' tab in the plugin window, search for
-'Qgreenland'. Click 'Install plugin' and close. 
+in the top menu bar, select 'Manage and Install Plugins'. 
+
+![menu_bar](/_images/menu_bar.png)
+
+This will open the plugin pop-up window. First, click the Settings tab and select the check box 
+labeled 'Show also experimental plugins' so that QGreenland will be included. 
+
+![plugin_settings](/_images/plugin_settings.png)
+
+Navigating to the 'All' tab in the plugin window, search for'Qgreenland'. Click 'Install plugin' and close. 
+
+![plugin_search_window](/_images/plugin_search_window.png)
 
 ## Searching for data layers
 Now that you have the plugin installed, you can begin downloading and using data in QGreenland.
