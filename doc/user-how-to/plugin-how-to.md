@@ -1,4 +1,4 @@
-# How to install and use the QGreenland Custom
+# How to install and use QGreenland Custom
 
 QGreenland Custom is a QGIS plugin for downloading a custom set of data, including data which 
 is not part of the QGreenland Core zip package. This how-to guide walks through how to install the plugin and
