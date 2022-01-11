@@ -41,7 +41,7 @@ Next, you will be asked to select which downloaded layers you would like to add 
 project. This will be a full list of downloaded layers, so there may be more than one layer listed
 if you have used the plugin more than once or selected to download multiple layers at once. 
 
-![downloaded_layer](/_images/downloaded_layer.png)
+![downloaded_layer](/_images/downloaded_layers.png)
 
 Find your layer of interest and click the checkbox, then click 'Add to project'. Once the layer has been added, you should see the new layer in the QGIS Layer panel and in the Map View. 
 
