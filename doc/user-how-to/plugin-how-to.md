@@ -43,8 +43,4 @@ if you have used the plugin more than once or selected to download multiple laye
 
 ![downloaded_layer](/_images/downloaded_layers.png)
 
-Find your layer of interest and click the checkbox, then click 'Add to project'. Once the layer has been added, you should see the new layer in the QGIS Layer panel and in the Map View. 
-
-![layer_panel](/_images/layer_panel.png)
-
-Click 'Close' to exit the plugin.
+Find your layer of interest and click the checkbox, then click 'Add to project'. Once the layer has been added, you should see the new layer in the QGIS Layer panel and in the Map View. Click 'Close' to exit the plugin.
