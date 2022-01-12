@@ -1,4 +1,4 @@
-# How to install Qgreenland Custom as a developer
+# How to install QGreenland Custom as a developer
 
 QGreenland Custom is a QGIS plugin for downloading a custom set of data, including data which 
 is not part of the QGreenland Core zip package. This how-to guide walks through how to install the plugin as a developer.
@@ -19,9 +19,9 @@ ln -s $PWD '/filepath'
 ```
 ## Installing QGreenland Custom
 
-To install Qgreenland, navigate to plugins -> Installed -> Check box on Qgreenland -> OK
+To install QGreenland, navigate to plugins -> Installed -> Check box on QGreenland -> OK
 
-Instead of restarting QGIS after installing Qgreenland, 
+Instead of restarting QGIS after installing QGreenland, 
 install the plugin, Plugin Reloader. You can do this by navigating to 
 Plugin -> Manage and Install Plugins, then searching for Plugin Reloader in the
 search bar. Install the plugin then press OK.
@@ -32,25 +32,33 @@ below before reloading' option. Leave the 'display' option checked, and press OK
 
 ![configure_plugin](/_images/configure_plugin.png)
 
-
 Navigate to Plugins -> Plugin Reloader -> Reload Plugin: qgreenland-plugin.
 
 ![reload_plugin](/_images/reload_plugin.png)
 
 You should receive a message notifying you that the plugin has been reloaded.
 
-## Configuring the plugin
-To use the Qgreenland plugin, first navigate to Web -> Qgreenland -> Configure the Server.
+## Configuring QGreenland Custom
+To use QGreenland Custom, first navigate to Web -> QGreenland -> Configure the Server. Leave the default options and press OK. 
 
 ![configure_server](/_images/configure_server.png)
 
-Leave the default options and press OK. 
-
 ## Using the plugin to download data
-To dowload data to your project, navigate to Web -> Qgreenland -> Download Data.
+To dowload data to your project, navigate to Web -> QGreenland -> Download Data.
 In the Download Data window, select the desired layer then press Next.
-Choose a location to put the downloaded data, then press Download. 
 
-Once the data has finished downloading, press Next. Check the downloaded layers
-that you would like to add to your project, press Add to Project, then press Close.
-You should now see your downloaded data layers in your QGIS project. 
+![plugin_search_window](/_images/plugin_search_window.png)
+
+Next, you will need to choose a location to download the data. Select your location using the 
+three dot icon, and once you have chosen a location, click the 'Download' button. When the download
+is finished, you will see a blue bar at the bottom of the window showing your downloaded layer. 
+
+![download_bar](/_images/download_bar.png)
+
+Next, you will be asked to select which downloaded layers you would like to add to your QGIS 
+project. This will be a full list of downloaded layers, so there may be more than one layer listed
+if you have used the plugin more than once or selected to download multiple layers at once. 
+
+![downloaded_layer](/_images/downloaded_layers.png)
+
+Find your layer of interest and click the checkbox, then click 'Add to project'. Once the layer has been added, you should see the new layer in the QGIS Layer panel and in the Map View. Click 'Close' to exit the plugin.

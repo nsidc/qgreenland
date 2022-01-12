@@ -16,7 +16,7 @@ labeled 'Show also experimental plugins' so that QGreenland will be included.
 
 ![plugin_settings](/_images/plugin_settings.png)
 
-Navigating to the 'All' tab in the plugin window, search for 'Qgreenland'. Click 'Install plugin' and close. 
+Navigating to the 'All' tab in the plugin window, search for 'QGreenland Custom'. Click 'Install plugin' and close. 
 
 ## Searching for data layers
 Now that you have the plugin installed, you can begin downloading and using data in QGreenland.
