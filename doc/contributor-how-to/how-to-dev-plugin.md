@@ -1,4 +1,7 @@
-# How to install the Qgreenland plugin as a developer
+# How to install Qgreenland Custom as a developer
+
+QGreenland Custom is a QGIS plugin for downloading a custom set of data, including data which 
+is not part of the QGreenland Core zip package. This how-to guide walks through how to install the plugin as a developer.
 
 First, clone the plugin repo from Faunalia:
 
