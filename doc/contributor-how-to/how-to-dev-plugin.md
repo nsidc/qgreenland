@@ -17,7 +17,7 @@ Next symlink the plugin repo to the plugin directory:
 ```
 ln -s $PWD '/filepath'
 ```
-## Installing the QGreenland plugin
+## Installing QGreenland Custom
 
 To install Qgreenland, navigate to plugins -> Installed -> Check box on Qgreenland -> OK
 
@@ -30,11 +30,20 @@ To use the plugin, navigate to Plugins -> Plugin Reloader -> Configure.
 Select qgreenland-plugin in the drop down. Uncheck the 'run the commands
 below before reloading' option. Leave the 'display' option checked, and press OK.
 
+![configure_plugin](/_images/configure_plugin.png)
+
+
 Navigate to Plugins -> Plugin Reloader -> Reload Plugin: qgreenland-plugin.
+
+![reload_plugin](/_images/reload_plugin.png)
+
 You should receive a message notifying you that the plugin has been reloaded.
 
 ## Configuring the plugin
 To use the Qgreenland plugin, first navigate to Web -> Qgreenland -> Configure the Server.
+
+![configure_server](/_images/configure_server.png)
+
 Leave the default options and press OK. 
 
 ## Using the plugin to download data
