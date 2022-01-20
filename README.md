@@ -98,5 +98,5 @@ please do not be deterred from sharing your ideas.
 
 # Acknowledgements
 
-Please see our [acknowledgements document](doc/acknowledgements.md) for our
+Please see our [acknowledgements](https://qgreenland.readthedocs.io/en/latest/acknowledgements.html) for our
 best effort to acknowledge all of the giants upon whose shoulders we stand.
