@@ -30,7 +30,7 @@ delivered in two ways:
 [QGreenland](https://qgreenland.org) is a free mapping tool to support interdisciplinary
 Greenland-focused research, advanced secondary or post-secondary teaching, decision
 making, and collaboration. QGreenland consists of a curated collection of geospatial datasets
-for Greenland that is hosted on the [QGIS platform](www.qgis.org). 
+for Greenland that is hosted on the [QGIS platform](https://qgis.org). 
 
 QGIS is a free and open source Geographic Information System (GIS) licensed under 
 the GNU General Public License. QGreenland is designed to be used by a diverse user group, 
@@ -42,37 +42,6 @@ Some additional larger datasets (e.g., satellite imagery) not included with the 
 QGreenland download package are available through online access when connected.
 QGreenland was inspired by the free and open source [Quantarctica](https://www.npolar.no/en/quantarctica/) 
 GIS data package for Antarctica.
-
-
-## What is in the version 2.0.0 QGreenland Download Package?
-
-You will find the following files in the QGreenland data package:
-
-* Folders containing data layers organized by topic
-
-* The main qgreenland.qgs project file
-
-* qgreenland.png - The official QGreenland logo
-
-* layer_list.csv - A complete list of all the data layers in the QGreenland download
-  package, including information about each (data source, file size, etc.). This file can be
-  opened with Microsoft Excel, LibreOffice Calc, a text editor, or a similar program.
-
-* UserGuide.pdf - The full QGreenland User Guide
-
-* QuickStartGuide.pdf - A one-page overview guide for experienced QGIS users on how
-  to download the QGreenland data package and other information
-
-* MakingDataQGRCompatible.pdf - A short guide on how to make your datasets
-  compatible with QGreenland
-
-* STYLE.txt - Guidelines and standards for QGreenland data layer styling
-
-* CONTRIBUTING.txt - Instructions on how to contribute to the QGreenland project
-
-* README.txt - Brief description of the QGreenland data package
-
-* CHANGELOG.txt - A log of changes made to the QGreenland data package
 
 Please note that QGreenland v2.0.0 is the first stable public release version from this project.
 QGreenland version 2.0.0 will not be the final version of the QGreenland download package.
