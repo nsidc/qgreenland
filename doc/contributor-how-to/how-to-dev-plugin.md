@@ -3,13 +3,13 @@
 QGreenland Custom is a QGIS plugin for downloading a custom set of data, including data which 
 is not part of the QGreenland Core zip package. This how-to guide walks through how to install the plugin as a developer.
 
-First, clone the plugin repo from Faunalia:
+First, clone the QGreenland Custom repo from Faunalia:
 
 ```
 git clone https://github.com/faunalia/qgreenland-plugin.git
 ```
 
-Use the QGIS GUI to locate the plugin directory by going to
+Use the QGIS GUI to locate the QGreenland Custom directory by going to
 Settings -> User Profiles -> Open Active Profile Folder.
 Then, navigate to the /python/plugins directory, PWD and copy the full filpath. 
 
@@ -19,9 +19,9 @@ ln -s $PWD '/filepath'
 ```
 ## Installing QGreenland Custom
 
-To install QGreenland, navigate to plugins -> Installed -> Check box on QGreenland -> OK
+To install QGreenland Custom, navigate to plugins -> Installed -> Check box on QGreenland -> OK
 
-Instead of restarting QGIS after installing QGreenland, 
+Instead of restarting QGIS after installing QGreenland Custom, 
 install the plugin, Plugin Reloader. You can do this by navigating to 
 Plugin -> Manage and Install Plugins, then searching for Plugin Reloader in the
 search bar. Install the plugin then press OK.
