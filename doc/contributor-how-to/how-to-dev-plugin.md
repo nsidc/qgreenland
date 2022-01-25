@@ -11,9 +11,9 @@ git clone https://github.com/faunalia/qgreenland-plugin.git
 
 Use the QGIS GUI to locate the QGreenland Custom directory by going to
 Settings -> User Profiles -> Open Active Profile Folder.
-Then, navigate to the /.python/plugins directory, echo $PWD and copy the full filpath. 
+Then, navigate to the /.python/plugins directory, echo $PWD and copy the full filepath. 
 
-Next symlink the plugin repo to the plugin directory:
+Next symlink the plugin repo to the plugin directory using the filepath from the previous step:
 ```
 ln -s $PWD '/filepath'
 ```
