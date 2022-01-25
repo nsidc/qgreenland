@@ -5,17 +5,17 @@ is not part of the QGreenland Core zip package. This how-to guide walks through 
 
 ## Installing QGreenland Custom
 
-To get started with this guide, access the Plugin tab 
+To get started with this guide, access the **Plugin** tab 
 in the top menu bar, and select 'Manage and Install Plugins'. 
 
 ![menu_bar](/_images/menu_bar.png)
 
-This will open the plugin pop-up window. First, click the Settings tab and select the check box 
-labeled 'Show also experimental plugins' so that QGreenland will be included. 
+This will open the **Plugin** pop-up window. First, click the **Settings** tab and select the check box 
+labeled **Show also experimental plugins** so that QGreenland Custom will be included. 
 
 ![plugin_settings](/_images/plugin_settings.png)
 
-Navigate to the 'All' tab in the plugin window, and search for 'QGreenland Custom'. Click 'Install plugin' and close. 
+Navigate to the **All** tab in the plugin window, and search for QGreenland Custom. Click **Install plugin** and close. 
 
 ## Searching for data layers
 Now that you have the plugin installed, you can begin downloading and using data in QGreenland Custom.
@@ -31,9 +31,9 @@ Once you have located a layer of interest, click the checkbox and click next at 
 
 ## Downloading the data
 Next, you will need to choose a storage location to download the data. Select your location using the 
-three dot icon, and once you have chosen a location, click the 'Download' button. When the download
+three dot icon, and once you have chosen a location, click the **Download** button. When the download
 is finished, you will see a blue bar at the bottom of the window showing your downloaded layer. 
-Click Next.
+Click **Next**.
 
 ![download_bar](/_images/download_bar.png)
 
@@ -43,4 +43,4 @@ if you have used the plugin more than once or selected to download multiple laye
 
 ![downloaded_layer](/_images/downloaded_layers.png)
 
-Find your layer of interest and click the checkbox, then click 'Add to project'. Once the layer has been added, you should see the new layer in the QGIS Layer panel and in the Map View. Click 'Close' to exit the plugin.
+Find your layer of interest and click the checkbox, then click **Add to project**. Once the layer has been added, you should see the new layer in the QGIS **Layer Panel** and in the **Map View**. Click **Close** to exit the plugin.
