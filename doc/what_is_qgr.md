@@ -44,25 +44,24 @@ QGreenland was inspired by the free and open source [Quantarctica](https://www.n
 GIS data package for Antarctica.
 
 
-# What is in the v.1.0.0 QGreenland Download Package?
+## What is in the v.1.0.0 QGreenland Download Package?
 
-* You will find the following files in the QGreenland data package:
+You will find the following files in the QGreenland data package:
 * Folders containing data layers organized by topic
-* The main qgreenland.qgs project file
-* qgreenland.png - The official QGreenland logo
-  layer_list.csv - A complete list of all the data layers in the QGreenland download
+* The main **qgreenland.qgs** project file
+* **qgreenland.png** - The official QGreenland logo
+* **layer_list.csv** - A complete list of all the data layers in the QGreenland download
   package, including information about each (data source, file size, etc.). This file can be
   opened with Microsoft Excel, LibreOffice Calc, a text editor, or a similar program.
-  UserGuide.pdf - The full QGreenland User Guide
-* QuickStartGuide.pdf - A one-page overview guide for experienced QGIS users on how
+* **UserGuide.pdf** - The full QGreenland User Guide
+* **QuickStartGuide.pdf** - A one-page overview guide for experienced QGIS users on how
   to download the QGreenland data package and other information
-* MakingDataQGRCompatible.pdf - A short guide on how to make your datasets
+* **MakingDataQGRCompatible.pdf** - A short guide on how to make your datasets
   compatible with QGreenland
-* STYLE.txt - Guidelines and standards for QGreenland data layer styling
-* CONTRIBUTING.txt - Instructions on how to contribute to the QGreenland project
-* README.txt - Brief description of the QGreenland data package
-* CHANGELOG.txt - A log of changes made to the QGreenland data package
-
+* **STYLE.txt** - Guidelines and standards for QGreenland data layer styling
+* **CONTRIBUTING.txt** - Instructions on how to contribute to the QGreenland project
+* **README.txt** - Brief description of the QGreenland data package
+* **CHANGELOG.txt** - A log of changes made to the QGreenland data package
 
 
 Please note that QGreenland v1.0.0 is the first stable public release version from this project.
