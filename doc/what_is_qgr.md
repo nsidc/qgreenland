@@ -43,8 +43,8 @@ QGreenland download package are available through online access when connected.
 QGreenland was inspired by the free and open source [Quantarctica](https://www.npolar.no/en/quantarctica/) 
 GIS data package for Antarctica.
 
-Please note that QGreenland v2.0.0 is the first stable public release version from this project.
-QGreenland version 2.0.0 will not be the final version of the QGreenland download package.
+Please note that QGreenland v1.0.0 is the first stable public release version from this project.
+QGreenland version 1.0.0 will not be the final version of the QGreenland download package.
 There will be a version 2.0.0 released some time in 2022 that may include new and updated
 layers. Development versions along the way will continue to be available via the 
 [website](http://qgreenland.org), with code fully documented on 
