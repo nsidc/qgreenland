@@ -30,7 +30,7 @@ Once you have located a layer of interest, click the checkbox and click next at 
 ![selected_layer](/_images/selected_layer.png)
 
 ## Downloading the data
-Next, you will need to choose a location to download the data. Select your location using the 
+Next, you will need to choose a storage location to download the data. Select your location using the 
 three dot icon, and once you have chosen a location, click the 'Download' button. When the download
 is finished, you will see a blue bar at the bottom of the window showing your downloaded layer. 
 Click Next.

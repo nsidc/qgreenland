@@ -11,22 +11,33 @@ git clone https://github.com/faunalia/qgreenland-plugin.git
 
 Use the QGIS GUI to locate the QGreenland Custom directory by going to
 Settings -> User Profiles -> Open Active Profile Folder.
-Then, navigate to the /python/plugins directory, PWD and copy the full filpath. 
+Then, navigate to the /.python/plugins directory, echo $PWD and copy the full filpath. 
 
 Next symlink the plugin repo to the plugin directory:
 ```
 ln -s $PWD '/filepath'
 ```
-## Installing QGreenland Custom
+## Installing and reloading QGreenland Custom
 
-To install QGreenland Custom, navigate to plugins -> Installed -> Check box on QGreenland -> OK
+To begin installing QGreenland Custom, access the Plugin tab 
+in the top menu bar, and select 'Manage and Install Plugins'. 
+
+![menu_bar](/_images/menu_bar.png)
+
+This will open the plugin pop-up window. First, click the Settings tab and select the check box 
+labeled 'Show also experimental plugins' so that QGreenland will be included. 
+
+![plugin_settings](/_images/plugin_settings.png)
+
+Navigate to the 'Installed' tab in the plugin window, and check the box for 'QGreenland Custom'. 
 
 Instead of restarting QGIS after installing QGreenland Custom, 
-install the plugin, Plugin Reloader. You can do this by navigating to 
+install the plugin, Plugin Reloader. Plugin Reloader will allow you to immediately
+see your changes instead of needing to restart QGIS. You can do this by navigating to 
 Plugin -> Manage and Install Plugins, then searching for Plugin Reloader in the
 search bar. Install the plugin then press OK.
 
-To use the plugin, navigate to Plugins -> Plugin Reloader -> Configure.
+To use the plugin, navigate to the Menu Bar and select Plugins -> Plugin Reloader -> Configure.
 Select qgreenland-plugin in the drop down. Uncheck the 'run the commands
 below before reloading' option. Leave the 'display' option checked, and press OK.
 
