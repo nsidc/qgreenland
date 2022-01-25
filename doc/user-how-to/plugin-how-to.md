@@ -6,7 +6,7 @@ is not part of the QGreenland Core zip package. This how-to guide walks through 
 ## Installing QGreenland Custom
 
 To get started with this guide, access the **Plugin** tab 
-in the top menu bar, and select 'Manage and Install Plugins'. 
+in the top menu bar, and select **Manage and Install Plugins**. 
 
 ![menu_bar](/_images/menu_bar.png)
 
@@ -25,7 +25,7 @@ open the plugin. Initially, you should see a list of layer directories.
 ![plugin_search_window](/_images/plugin_search_window.png)
 
 Using the top search bar, type in a layer or keyword, such as 'towns' or 'earthquakes'. 
-Once you have located a layer of interest, click the checkbox and click next at the bottom of the window. 
+Once you have located a layer of interest, click the checkbox and click **Next** at the bottom of the window. 
 
 ![selected_layer](/_images/selected_layer.png)
 
