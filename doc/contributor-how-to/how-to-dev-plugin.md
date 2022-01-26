@@ -53,22 +53,5 @@ To use QGreenland Custom, first navigate to **Web -> QGreenland -> Configure the
 
 ![configure_server](/_images/configure_server.png)
 
-## Using the plugin to download data
-To dowload data to your project, navigate to Web -> QGreenland -> Download Data.
-In the Download Data window, select the desired layer then press Next.
-
-![plugin_search_window](/_images/plugin_search_window.png)
-
-Next, you will need to choose a location to download the data. Select your location using the 
-three dot icon, and once you have chosen a location, click the 'Download' button. When the download
-is finished, you will see a blue bar at the bottom of the window showing your downloaded layer. 
-
-![download_bar](/_images/download_bar.png)
-
-Next, you will be asked to select which downloaded layers you would like to add to your QGIS 
-project. This will be a full list of downloaded layers, so there may be more than one layer listed
-if you have used the plugin more than once or selected to download multiple layers at once. 
-
-![downloaded_layer](/_images/downloaded_layers.png)
-
-Find your layer of interest and click the checkbox, then click 'Add to project'. Once the layer has been added, you should see the new layer in the QGIS Layer panel and in the Map View. Click 'Close' to exit the plugin.
+After configuring the server, you are all set to begin using QGreenland Custom. Reference the user guide,
+**How to install and use QGreenland Custom**, to get started.

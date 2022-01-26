@@ -25,12 +25,7 @@ delivered in two ways:
 * QGreenland is not a navigational aid.
 
 
-# About the project
-
-[QGreenland](https://qgreenland.org) is a free mapping tool to support interdisciplinary
-Greenland-focused research, advanced secondary or post-secondary teaching, decision
-making, and collaboration. QGreenland consists of a curated collection of geospatial datasets
-for Greenland that is hosted on the [QGIS platform](https://qgis.org). 
+# About QGIS
 
 QGIS is a free and open source Geographic Information System (GIS) licensed under 
 the GNU General Public License. QGreenland is designed to be used by a diverse user group, 
@@ -44,7 +39,7 @@ QGreenland was inspired by the free and open source [Quantarctica](https://www.n
 GIS data package for Antarctica.
 
 
-## What is in the v.1.0.0 QGreenland Download Package?
+# What is in the v.1.0.0 QGreenland Download Package?
 
 You will find the following files in the QGreenland data package:
 * Folders containing data layers organized by topic

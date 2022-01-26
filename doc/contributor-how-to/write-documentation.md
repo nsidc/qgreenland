@@ -85,7 +85,17 @@ the Docs.
   can view by clicking "details" for the Read the Docs check.
 
 
-## How to update an existing documentation page.
+## Documentation styles
+
+We have created the following styles to use when referring to QGIS elements:
+* Any reference to a QGIS user interface element will be bolded. e.g.: "Navigate to 
+  **Settings -> User Profiles -> Open Active Profile Folder** to get the directory path" or 
+  "Use the **Layers Panel** to change the order of the layers".
+
+* Menu paths are delimited by ->, e.g.: Settings -> User Profiles -> Open Active Profile Folder
+
+
+## How to update an existing documentation page
 
 * Is this new content a [How To](https://diataxis.fr/how-to-guides/), a
   [Tutorial](https://diataxis.fr/tutorials/), [Reference
