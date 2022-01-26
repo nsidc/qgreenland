@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
-# TODO: How to support OSX?
-
 set -e
 
 if [[ $OSTYPE == 'darwin'* ]]; then
     open_cmd='open'
-    inotify_cmd='fswatch ./'
+    watch_cmd='fswatch -r -o ./'
 else
     open_cmd='xdg-open'
-    inotify_cmd='inotifywait -e delete -e create -e close_write -r ./'
+    watch_cmd='inotifywait -e delete -e create -e close_write -r ./'
 fi
 
 THIS_DIR="$( cd "$(dirname "$0")"; pwd -P )"
@@ -22,7 +20,7 @@ make html
 $open_cmd "${HTML_PATH}"
 set -e
 
-while $inotify_cmd; do
+while $watch_cmd; do
     make clean
 
     set +e
