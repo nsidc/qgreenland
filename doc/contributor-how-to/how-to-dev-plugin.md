@@ -48,10 +48,5 @@ Navigate to **Plugins -> Plugin Reloader -> Reload Plugin: qgreenland-plugin**.
 
 You should receive a message notifying you that the plugin has been reloaded.
 
-## Configuring QGreenland Custom
-To use QGreenland Custom, first navigate to **Web -> QGreenland -> Configure the Server**. Leave the default options and press OK. 
-
-![configure_server](/_images/configure_server.png)
-
-After configuring the server, you are all set to begin using QGreenland Custom. Reference the user guide,
+After reloading the plugin, you are all set to begin using QGreenland Custom. Reference the user guide,
 **How to install and use QGreenland Custom**, to get started.

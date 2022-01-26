@@ -17,8 +17,13 @@ labeled **Show also experimental plugins** so that QGreenland Custom will be inc
 
 Navigate to the **All** tab in the plugin window, and search for QGreenland Custom. Click **Install plugin** and close. 
 
+## Configuring QGreenland Custom
+To use QGreenland Custom, first navigate to **Web -> QGreenland -> Configure the Server**. Leave the default options and press OK. 
+
+![configure_server](/_images/configure_server.png)
+
 ## Searching for data layers
-Now that you have the plugin installed, you can begin downloading and using data in QGreenland Custom.
+Now that you have the plugin installed and configured, you can begin downloading and using data in QGreenland Custom.
 To access the plugin, find the QGreenland logo in the menu bar. Clicking on this icon will
 open the plugin. Initially, you should see a list of layer directories. 
 
