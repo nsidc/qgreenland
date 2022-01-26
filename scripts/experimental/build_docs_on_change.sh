@@ -3,7 +3,7 @@ set -e
 
 if [[ $OSTYPE == 'darwin'* ]]; then
     open_cmd='open'
-    watch_cmd='fswatch -r -o ./'
+    watch_cmd='fswatch --batch-marker=EOF -r ./'
 else
     open_cmd='xdg-open'
     watch_cmd='inotifywait -e delete -e create -e close_write -r ./'
