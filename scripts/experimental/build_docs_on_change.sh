@@ -3,10 +3,12 @@ set -e
 
 if [[ $OSTYPE == 'darwin'* ]]; then
     open_cmd='open'
-    watch_cmd='fswatch --batch-marker=EOF -r ./'
+    # NOTE: fswatch exits with 0 even when it receives SIGINT, so you would
+    # need to hit CTRL+C a few times to exit
+    watch_cmd='fswatch -e '\\.swp$' --event-flags --monitor poll_monitor --one-event --recursive ./'
 else
     open_cmd='xdg-open'
-    watch_cmd='inotifywait -e delete -e create -e close_write -r ./'
+    watch_cmd='inotifywait -e delete -e create -e close_write --recursive ./'
 fi
 
 THIS_DIR="$( cd "$(dirname "$0")"; pwd -P )"
