@@ -1,6 +1,6 @@
 # Citing QGreenland
 
-We  request that QGreenland be cited or acknowledged when publishing a
+We request that QGreenland be cited or acknowledged when publishing a
 QGreenland-made image or map.
 
 QGreenland development is open source and available on [GitHub](github.com/nsidc/qgreenland). 
@@ -32,3 +32,5 @@ National Snow and Ice Data Center Available from the [QGreenland Website](https:
 ## Acknowledgement
 
 We acknowledge the National Snow and Ice Data Center QGreenland package.
+
+Test
