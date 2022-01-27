@@ -86,7 +86,7 @@ educational resources, including our own QGreenland User Guide.
 
 # Contributing
 
-Please see [contributing instructions](doc/contributing.md) for more info. A good
+Please see [contributing instructions](https://qgreenland.readthedocs.io/en/latest/contributor-how-to/contribute-layers.html) for more info. A good
 portion of this document contains technical instructions about running the
 QGreenland pipeline, but also includes less-technical instructions for
 contributing styles you have developed within QGIS. Our goal is to make it as
@@ -98,5 +98,5 @@ please do not be deterred from sharing your ideas.
 
 # Acknowledgements
 
-Please see our [acknowledgements document](doc/acknowledgements.md) for our
+Please see our [acknowledgements](https://qgreenland.readthedocs.io/en/latest/acknowledgements.html) for our
 best effort to acknowledge all of the giants upon whose shoulders we stand.

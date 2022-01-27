@@ -14,10 +14,13 @@ If the layer does not use an existing dataset, start with a new dataset.
 ./scripts/cli.sh config-template dataset > \
   qgreenland/config/datasets/new_dataset.py
 ```
+After running the command above, a new_dataset.py file will 
+be populated with dataset information that is needed to create 
+a layer. Make sure that the abstract and title are filled out.
 
 ## Fetch the data
-
-Test the dataset by fetching the data:
+Once you are finished filling in the dataset information, you can try 
+testing the dataset by fetching the data:
 
 ```
 ./scripts/cli.sh fetch new_dataset_id
@@ -30,17 +33,18 @@ make sure that all fields are filled in (abstract, title, etc.) to avoid linting
 
 ## Create new layer
 
-To create a layer, create new layer directories as needed, and then define your
-new layer in a Python file with a descriptive name within the appropriate layer
-group.
+The next step is to create the new data layer. To do this, create new layer 
+directories as needed, and then define your new layer in a Python file with 
+a descriptive name within the appropriate layer group.
 
+You can do this by running this command:
 ```
 ./scripts/cli.sh config-template layer > \
   qgreenland/config/layers/Group/Subgroup/new_layer.py
 ```
 
-Once the new_layer.py file is generated, follow the documentation within the file
-to fill out your layer configuration.
+The above command generates a new_layer.py file. Once you see this file,
+follow the documentation within the file to fill out your layer configuration.
 
 ```{note}
 If the group directory where you have created your layer file has a __settings__.py file,
