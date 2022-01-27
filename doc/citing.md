@@ -32,5 +32,3 @@ National Snow and Ice Data Center Available from the [QGreenland Website](https:
 ## Acknowledgement
 
 We acknowledge the National Snow and Ice Data Center QGreenland package.
-
-Test
