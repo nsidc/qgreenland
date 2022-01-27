@@ -3,7 +3,7 @@
 We request that QGreenland be cited or acknowledged when publishing a
 QGreenland-made image or map.
 
-QGreenland development is open source and available on [GitHub](github.com/nsidc/qgreenland). 
+QGreenland development is open source and available on [GitHub](https://github.com/nsidc/qgreenland). 
 This means that users are free to create their own customized QGreenland
 package with different and new styles, layers, and data. Users who wish to contribute to the
 QGreenland project will find instructions on how to do this in the **CONTRIBUTING.html** file
