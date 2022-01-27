@@ -29,6 +29,9 @@ layer = Layer(
     ),
     # TODO: Fill in your layer tags:
     tags=['your', 'layer', 'tags'],
+    # TODO: Set in_package` to `False` to make layer only appear in the QGreenland 
+    # Custom plugin and not the QGreenland Core zip package:
+    in_package=True
     # TODO: Uncomment and fill in `your_style` if needed:
     # style='your_style',
     input=LayerInput(
