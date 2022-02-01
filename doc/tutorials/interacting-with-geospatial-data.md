@@ -71,8 +71,8 @@ Each QGreenland data layer comes with a predefined symbology (how the layer is v
 in the **Map View**).
 
 To modify a layer’s symbology:
-1. Open the Layer Properties dialog window for the layer you want to edit.
-2. Go to the ‘Symbology’ section and modify the layer symbology as desired.
+1. Open the **Layer Properties** dialog window for the layer you want to edit.
+2. Go to the **Symbology** section and modify the layer symbology as desired.
    a) For a vector layer, you can choose from a built-in set of QGIS symbols, and/
       or can change individual characteristics of the layer’s symbology such as
       symbol shape, weight, color, size, opacity, and more.
@@ -92,7 +92,7 @@ layer statistics. The **Processing Toolbox** can be opened in a new panel to the
 view by clicking on the gear icon in the **Attributes Toolbar** or by going to 
 **View -> Panels -> Processing Toolbox Panel** in the menu bar.
 
-For more in-depth information about the Processing Toolbox see: https://docs.qgis.org/3.10/
+For more in-depth information about the Processing Toolbox see: https://docs.qgis.org/3.16/
 en/docs/user_manual/processing/toolbox.html
 
 ## Spatial Querying
@@ -105,7 +105,7 @@ learn through experience that there is very often more than one way to complete 
 task in the QGIS platform. We will describe several query and analysis methodologies that
 use the QGIS **Processing Toolbox**.
 
-**Example 1: Selecting from Vector Layers for Specific Features**
+#### Example 1: Selecting from Vector Layers for Specific Features
 Which populated regions in Greenland have more than 5000 people?
 
 1. Open the **Processing Toolbox** and go to **Vector selection -> Select by attribute**.
@@ -124,15 +124,14 @@ There are a couple of ways to view the selected data points, populated places in
 with more than 5000 people. First, you should see the places that meet this parameter
 highlighted in the map view (make sure the Populated places layer is toggled on). You can
 also open the Populated places layer Attribute Table and select ‘Show Selected Features’ in
-the bottom left corner. This will hide all records in the layer Attribute Table except for the ones
+the bottom left corner. This will hide all records in the **Layer Attribute Table** except for the ones
 you selected, the locations with populations greater than 5000 people.
-
 If you want to create an entirely new layer based on this feature selection (population>5000),
 you can do so by either 1) right-clicking on the layer you have just selected from and
 choosing **Export -> Save selected features as...**, or by 2) selecting **Extract by attribute**
 under **Vector selection** in the **Processing Toolbox**.
 
-**Example 2: Vector Layer Statistics**
+#### Example 2: Vector Layer Statistics
 What is the total number of people in Greenland’s populated areas?
 What is the average size of Greenland’s populated areas?
 
@@ -150,13 +149,13 @@ total number of people in Greenland’s metropolitan areas (48,492 people).
 
 ![vector_layer_stats](/_images/vector_layer_stats.png)
 
-**Example 3: Simple Raster Analysis**
+#### Example 3: Simple Raster Analysis
 What is a good estimate of the Greenland ice sheet’s volume?
 
 1. In the **Processing Toolbox**, go to **Raster analysis -> Raster surface volume**. This
    is an algorithm that calculates the volume under a raster grid’s surface.
 2. Fill in the following parameters:
-   -Input layer = Ice thickness (500 m)
+   -Input layer = Ice thickness (150 m)
    -There will only be one option for Band number
    -Base level = should already be set to 0 This is the minimum pixel value in the Ice
    thickness layer.
@@ -165,15 +164,15 @@ What is a good estimate of the Greenland ice sheet’s volume?
    -Save the Surface volume report, the output for this algorithm, in a temporary file or in a
    desired location on your computer.
 3. Click **Run** and close the Raster surface volume window.
-4. You should now see a panel underneath the **Processing Toolbox** called **Results Viewer*** (Fig. 9), 
+4. You should now see a panel underneath the **Processing Toolbox** called **Results Viewer** (Fig. 9), 
    which will direct you to the location of the results html file for
    this calculation. Open the file.
 
 The results file should contain three numbers: volume, pixel count, and area. The volume is
 the volume of the Greenland ice sheet in units of m3. The results should show that the Green-
-land ice sheet has a volume of 2,947,732,015,000,000 m3, or about 2.9 million km3.
+land ice sheet has a volume of 2,942,360,633,311,806 m3, or about 2.9 million km3.
 
-**Example 4: Using the Raster Calculator**
+#### Example 4: Using the Raster Calculator
 How does the maximum sea ice concentration (%) around Greenland and
 the surrounding land masses in 2020 compare to the maximum sea ice
 concentration a decade earlier (2010)?
@@ -187,10 +186,10 @@ Raster calculator that can be accessed in the menu bar by going to
 **Processing Toolbox** used in this example:
 1. In the **Processing Toolbox**, go to **Raster analysis -> Raster calculator**.
 2. In the window that appears, you are going to build a mathematical expression
-   using the layers and operators in the Expression box:
+   using the layers and operators in the **Expression Box**:
    a) In the **Layers** box, scroll down and double click on the March2020@1 layer (this
        is the layer for the NSIDC’s sea ice concentration data from March 2020). You
-       should see it show up in the Expression box in quotations (“ “).
+       should see it show up in the **Expression Box** in quotations (“ “).
    b) Either type in the minus (-) symbol or click on it under Operators. It should show
        up after the layer you just chose.
    c) In the **Layers** box, scroll to and double click on the March2010@1 layer. It should
@@ -203,7 +202,7 @@ Raster calculator that can be accessed in the menu bar by going to
 
 ![raster_calc](/_images/raster_calc.png)
 
-The output layer will appear in the layers panel (likely named ‘Output’). You can right click on
+The output layer will appear in the **Layers Panel** (likely named **Output**). You can right click on
 it and rename it if you like. The values next to the colored boxes below the output file (likely
 black and white boxes) will tell you the minimum and maximum values of the resulting raster
 layer. In this case, the numbers will be the difference in the maximum sea ice concentration
