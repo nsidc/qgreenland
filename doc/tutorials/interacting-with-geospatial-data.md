@@ -105,7 +105,7 @@ learn through experience that there is very often more than one way to complete 
 task in the QGIS platform. We will describe several query and analysis methodologies that
 use the QGIS **Processing Toolbox**.
 
-#### Example 1: Selecting from Vector Layers for Specific Features
+### Example 1: Selecting from Vector Layers for Specific Features
 Which populated regions in Greenland have more than 5000 people?
 
 1. Open the **Processing Toolbox** and go to **Vector selection -> Select by attribute**.
@@ -131,7 +131,7 @@ you can do so by either 1) right-clicking on the layer you have just selected fr
 choosing **Export -> Save selected features as...**, or by 2) selecting **Extract by attribute**
 under **Vector selection** in the **Processing Toolbox**.
 
-#### Example 2: Vector Layer Statistics
+### Example 2: Vector Layer Statistics
 What is the total number of people in Greenland’s populated areas?
 What is the average size of Greenland’s populated areas?
 
@@ -149,7 +149,7 @@ total number of people in Greenland’s metropolitan areas (48,492 people).
 
 ![vector_layer_stats](/_images/vector_layer_stats.png)
 
-#### Example 3: Simple Raster Analysis
+### Example 3: Simple Raster Analysis
 What is a good estimate of the Greenland ice sheet’s volume?
 
 1. In the **Processing Toolbox**, go to **Raster analysis -> Raster surface volume**. This
@@ -172,7 +172,7 @@ The results file should contain three numbers: volume, pixel count, and area. Th
 the volume of the Greenland ice sheet in units of m3. The results should show that the Green-
 land ice sheet has a volume of 2,942,360,633,311,806 m3, or about 2.9 million km3.
 
-#### Example 4: Using the Raster Calculator
+### Example 4: Using the Raster Calculator
 How does the maximum sea ice concentration (%) around Greenland and
 the surrounding land masses in 2020 compare to the maximum sea ice
 concentration a decade earlier (2010)?
