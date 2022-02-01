@@ -39,9 +39,9 @@ To use the measuring tool:
    measurements assume a flat Earth. For small distances, these numbers will be
    very similar, but for very large distances they can be very different.
 3. Clicking first on one point on the map and then another will draw a line
-   segment whose length will be indicated in the ‘Segments’ box. You can draw
+   segment whose length will be indicated in the **Segments** box. You can draw
    and measure multiple line segments.
-4. To clear the segments you’ve drawn, click on ‘New’.
+4. To clear the segments you’ve drawn, click on **New**.
 5. To measure an area instead of a line with the measuring tool, you will follow
    essentially the same steps for measuring a line distance, except you will click
    and map out an area on the map instead of drawing line segments.
@@ -123,7 +123,7 @@ Which populated regions in Greenland have more than 5000 people?
 There are a couple of ways to view the selected data points, populated places in Greenland
 with more than 5000 people. First, you should see the places that meet this parameter
 highlighted in the map view (make sure the Populated places layer is toggled on). You can
-also open the Populated places layer Attribute Table and select ‘Show Selected Features’ in
+also open the Populated places **Layer Attribute Table** and select **Show Selected Features** in
 the bottom left corner. This will hide all records in the **Layer Attribute Table** except for the ones
 you selected, the locations with populations greater than 5000 people.
 If you want to create an entirely new layer based on this feature selection (population>5000),
@@ -142,7 +142,7 @@ What is the average size of Greenland’s populated areas?
    -Statistics = Save to temporary file (or whatever your preference is)
 3. Click **Run**.
 
-The vector analysis window should automatically switch to a view of the Log where you will
+The **Vector Analysis** window should automatically switch to a view of the Log where you will
 see the results for the population basic statistics (Fig. 8). The value ‘MEAN’ will tell you the
 average size of Greenland’s populated places (1102 people). The value ‘SUM’ will tell you the
 total number of people in Greenland’s metropolitan areas (48,492 people).
