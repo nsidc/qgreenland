@@ -148,6 +148,7 @@ average size of Greenland’s populated places (1102 people). The value ‘SUM�
 total number of people in Greenland’s metropolitan areas (48,492 people).
 
 ![vector_layer_stats](/_images/vector_layer_stats.png)
+Fig. 8: Results of Example 2: Vector Layer Statistics
 
 ### Example 3: Simple Raster Analysis
 What is a good estimate of the Greenland ice sheet’s volume?
@@ -200,7 +201,12 @@ Raster calculator that can be accessed in the menu bar by going to
       name.
 3. Click **Run** and close the window.
 
+![results_viewer](/_images/results_viewer.png)
+Fig. 9: To view the results of the raster surface volume analysis, click on the link
+next to ‘File path’ in the **Results Viewer Panel** below the **Processing Toolbox**.
+
 ![raster_calc](/_images/raster_calc.png)
+Fig. 10: The **Raster Calculator** expression for Example 4.
 
 The output layer will appear in the **Layers Panel** (likely named **Output**). You can right click on
 it and rename it if you like. The values next to the colored boxes below the output file (likely
