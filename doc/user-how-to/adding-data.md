@@ -9,14 +9,6 @@ downloaded QGreenland package or adding data from elsewhere on your computer.
 
 ## Uploading New Layers to QGreenland
 
-## Selecting for Greenland-Specific Data
-
-Because the geographic extent of some QGreenland data layers extends beyond the
-geographic and political border of Greenland to include the surrounding water bodies
-and land masses, it might sometimes be necessary to filter out certain data if one is only
-interested in data within Greenland’s geographic boundary. You can do this using the
-Greenland coastlines 2017 polygon layer.
-
 To add new data layers to QGreenland:
 1. In the **Menu Bar**, go to **Layer -> Add Layer**, and choose the layer type you
    want to add. Alternatively, you can either click on the desired add layer button
@@ -150,24 +142,22 @@ the plugin list. If it is already checked, don’t change anything.
 
 You can import GPS data either directly from a GPS device that is connected to your
 computer, or from a file on your computer. Note that QGIS uses the GPX file format for GPS
-data, although you can import GPS data that is not GPX (see #2c below).
+data, although you can import GPS data that is not GPX (see section below).
 
 To import GPS or GNSS data using the **GPS Plugin**:
 1. Go to **Vector -> GPS Tools** in the **Menu Bar**.
 2. In the window that pops up, click on the tab most appropriate for the data you
    want to import.
-   a) If you are importing GPS data from a file on your computer, click on the **Load GPX file** 
+   -If you are importing GPS data from a file on your computer, click on the **Load GPX file** 
       tab and navigate to the file on your computer. Indicate which feature
       types you want to load from the file (waypoints, routes or tracks), then click **Ok**.
       Each feature type you selected will be loaded in a separate layer.
-   b) If you want to import data directly from a GPS device, click on the **Download from GPS** tab.
-       i) Select the GPS device you are importing from, the port the device is
-          connected to, and what feature types you want to download.
-       ii) Give the data a layer name, which is what it will show up as in the
-          **Layers Panel**.
-       iii) The output file is where the downloaded data from your device will
-         be stored on your computer. Click **Ok**. The data should appear as a
-         new layer in the **Layers Panel**.
-   c) To import GPS data that is not in the GPX file format, click on the 
+   -If you want to import data directly from a GPS device, click on the **Download from GPS** tab.
+      Select the GPS device you are importing from, the port the device is
+      connected to, and what feature types you want to download.
+      Give the data a layer name, which is what it will show up as in the **Layers Panel**.
+      The output file is where the downloaded data from your device will
+      be stored on your computer. Click **Ok**. The data should appear as a
+      new layer in the **Layers Panel**.
+   -To import GPS data that is not in the GPX file format, click on the 
       **Import other file** tab and fill in the relevant information.
-
