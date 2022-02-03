@@ -148,16 +148,16 @@ To import GPS or GNSS data using the **GPS Plugin**:
 1. Go to **Vector -> GPS Tools** in the **Menu Bar**.
 2. In the window that pops up, click on the tab most appropriate for the data you
    want to import.
-   -If you are importing GPS data from a file on your computer, click on the **Load GPX file** 
+   * If you are importing GPS data from a file on your computer, click on the **Load GPX file** 
       tab and navigate to the file on your computer. Indicate which feature
       types you want to load from the file (waypoints, routes or tracks), then click **Ok**.
       Each feature type you selected will be loaded in a separate layer.
-   -If you want to import data directly from a GPS device, click on the **Download from GPS** tab.
+   * If you want to import data directly from a GPS device, click on the **Download from GPS** tab.
       Select the GPS device you are importing from, the port the device is
       connected to, and what feature types you want to download.
       Give the data a layer name, which is what it will show up as in the **Layers Panel**.
       The output file is where the downloaded data from your device will
       be stored on your computer. Click **Ok**. The data should appear as a
       new layer in the **Layers Panel**.
-   -To import GPS data that is not in the GPX file format, click on the 
+   * To import GPS data that is not in the GPX file format, click on the 
       **Import other file** tab and fill in the relevant information.
