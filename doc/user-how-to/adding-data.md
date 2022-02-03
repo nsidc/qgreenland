@@ -31,14 +31,14 @@ To filter out data outside of Greenland:
    selected/highlighted in the **Layers** panel.
 2. Open the Processing Toolbox and go to **Vector selection -> Extract by location**.
 3. Fill in the following parameters:
-   -Extract features from = the data layer you want to filter, for example, Ice cores
-   -Where the features (geometric predicate) = are within (you can also check intersect and
-   others to capture data that might be located along the Greenland coastline)
-   -By comparing to the features from = Greenland coastlines 2017
-   -Extracted (location) = You can either save the file output from this as a temporary layer
-   or as a permanent layer somewhere on your computer or within your QGreenland data
-   package. Note: If you try to save the file as a GeoPackage layer (GPKG) and receive an
-   error, try again and save it as a Shapefile (SHP) instead.
+   * Extract features from = the data layer you want to filter, for example, Ice cores
+   * Where the features (geometric predicate) = are within (you can also check intersect and
+     others to capture data that might be located along the Greenland coastline)
+   * By comparing to the features from = Greenland coastlines 2017
+   * Extracted (location) = You can either save the file output from this as a temporary layer
+     or as a permanent layer somewhere on your computer or within your QGreenland data
+     package. Note: If you try to save the file as a GeoPackage layer (GPKG) and receive an
+     error, try again and save it as a Shapefile (SHP) instead.
 4. Click **Run** and close the window.
 
 The filtered data will show up in the **Layers** panel within the group you had selected and likely
@@ -84,7 +84,7 @@ a point shapefile of potential study sites for for your research in Greenland. T
 layer from scratch, you can either create a new shapefile or a new GeoPackage.
 
 To create a new shapefile layer:
-1. Go to **Layer’ -> Create Layer -> New Shapefile Layer** in the **Menu Bar** or click
+1. Go to **Layer -> Create Layer -> New Shapefile Layer** in the **Menu Bar** or click
 on the New Shapefile **Layer** button in the **Data Source Manager** toolbar.
 2. In the new window, specify the properties of your new layer, including giving it
 a name, specifying its geometry (point, line, polygon) and coordinate reference
@@ -109,13 +109,13 @@ toolbar.
 2. A GeoPackage is a GIS file format that allows you to save multiple layers in one
 file; thus, you will actually be creating a new GeoPackage database that your
 new GeoPackage layer will live in. In the new window:
-   -Name your new Database
-   -Name the new GeoPackage layer you are creating - this is the **Table name**
-   -Specify the geometry of the new GeoPackage layer (point, line, etc.)
-   -Specify the layer coordinate reference system
-   -Create the fields that will be in the layer’s **Attribute Table** by giving them a
-      name and indicating their type (text data, integer, etc.) under **New Field**. When
-      you click on **Add to Fields List**, the new field will show up in the Fields List box.
+   * Name your new Database
+   * Name the new GeoPackage layer you are creating - this is the **Table name**
+   * Specify the geometry of the new GeoPackage layer (point, line, etc.)
+   * Specify the layer coordinate reference system
+   * Create the fields that will be in the layer’s **Attribute Table** by giving them a
+     name and indicating their type (text data, integer, etc.) under **New Field**. When
+     you click on **Add to Fields List**, the new field will show up in the Fields List box.
 3. Click **Ok**. Your new layer will appear in the **Layers** panel. If it is within another
 Group you do not want it in, right click on it and select **Move Out of Group**.
 You can also drag and drop your layer into the location you want it.
