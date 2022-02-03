@@ -18,7 +18,7 @@ To use the **Identify Features** button:
    view. The record for the object selected will show up in a new **Identify Results Panel** 
    to the right of the map display (Fig. 7).
 4. You can choose what information the **Identify** tool is showing you and how it is
-   displayed by toggling the Mode and View options at the bottom of the **Identify Results Panel**.
+   displayed by toggling the **Mode** and **View** options at the bottom of the **Identify Results Panel**.
 
 ![identify_results_panel](/_images/identify_results_panel.png)
 Fig. 7: The **Identify Results Panel** that shows results from the **Identify Features** tool.
@@ -61,9 +61,9 @@ To use the text annotation tool:
 3. Double click on the box to open a new window where you can write your
    annotation and choose the font you want to use, among other things (e.g., you
    can link the annotation to a specific layer).
-4. When you’re done, click ‘Apply’ and then ‘Ok’ to close the window.
+4. When you’re done, click **Apply** and then **Ok** to close the window.
 5. To delete an annotation, double click on it to open the dialog window, then
-   click ‘Delete’.
+   click **Delete**.
 
 ## Editing Layer Symbology
 
@@ -78,7 +78,7 @@ To modify a layer’s symbology:
       symbol shape, weight, color, size, opacity, and more.
    b) For a raster layer, you can change the color properties of the grid cells, as
       well as characteristics like brightness and contrast. The opacity/transparency of
-      a raster layer can be changed in the Transparency tab of the Layer Properties
+      a raster layer can be changed in the **Transparency** tab of the **Layer Properties**
       dialog window.
 
 ## Processing Toolbox
@@ -90,7 +90,7 @@ tools for identifying features in a vector layer that fulfill certain criteria, 
 features from a vector layer and saving them as a new layer, and calculating vector and raster
 layer statistics. The **Processing Toolbox** can be opened in a new panel to the right of the map
 view by clicking on the gear icon in the **Attributes Toolbar** or by going to 
-**View -> Panels -> Processing Toolbox Panel** in the menu bar.
+**View -> Panels -> Processing Toolbox Panel** in the **Menu Bar**.
 
 For more in-depth information about the Processing Toolbox see the 
 [QGIS User Manual](https://docs.qgis.org/3.16/en/docs/user_manual/processing/toolbox.html)
@@ -182,7 +182,7 @@ The **Raster Calculator** is a tool that allows you to perform calculations on o
 more raster layers. For example, if you wanted to convert a raster layer that is in
 km2 to mi2, you could use the raster calculator. In this example, we’re going to use
 the raster calculator to subtract one layer from another. Note: There is a different
-Raster calculator that can be accessed in the menu bar by going to 
+**Raster Calculator** that can be accessed in the **Menu Bar** by going to 
 **Raster -> Raster Calculator**. This calculator is different from the one in the 
 **Processing Toolbox** used in this example:
 1. In the **Processing Toolbox**, go to **Raster analysis -> Raster calculator**.
@@ -191,7 +191,7 @@ Raster calculator that can be accessed in the menu bar by going to
    a) In the **Layers** box, scroll down and double click on the March2020@1 layer (this
        is the layer for the NSIDC’s sea ice concentration data from March 2020). You
        should see it show up in the **Expression Box** in quotations (“ “).
-   b) Either type in the minus (-) symbol or click on it under Operators. It should show
+   b) Either type in the minus (-) symbol or click on it under **Operators**. It should show
        up after the layer you just chose.
    c) In the **Layers** box, scroll to and double click on the March2010@1 layer. It should
       show up after the minus sign, again in quotations (Fig. 10).
