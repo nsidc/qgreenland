@@ -65,9 +65,9 @@ To edit a vector layer:
    **Toggle Editing** button in the **Digitizing** toolbar.
 3. With **Editing** on, you will have access to new editing buttons in the **Digitizing**
    toolbar:
-   **Add new points to a point vector layer**
-   **Add new lines to a line vector layer**
-   **Add new polygons to a polygon vector layer**
+   * **Add new points to a point vector layer**
+   * **Add new lines to a line vector layer**
+   * **Add new polygons to a polygon vector layer**
 4. Whenever you create any new vector feature, you will be prompted to enter
    attribute information for the new feature for its record in the layer’s **Attribute
    Table**.
