@@ -144,13 +144,13 @@ publication-quality maps with the data in QGreenland.
 ## System Requirements
 Before downloading the QGreenland data package, be sure that QGIS is installed on your
 computer: [https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS is available on
-Windows, macOS, Linux and Android. Note that QGIS version 3.10 is the oldest version
+Windows, macOS, Linux and Android. Note that QGIS version 3.16 is the oldest version
 supported by QGreenland.
 
 ## Downloading and Installing QGreenland
 
-The QGreenland data package is available for download at [https://qgreenland.org/](https://qgreenland.org/)
-download. After downloading, unzip and save the folder in a location of your choice. Select
+The QGreenland data package is available for download at [https://qgreenland.org/](https://qgreenland.org/
+download). After downloading, unzip and save the folder in a location of your choice. Select
 the qgreenland.qgz file to open the full QGreenland data package. Files with a ‘.qgs’ or
 ‘.qgz’ extension are QGIS project files. When you open qgreenland.qgz, QGIS will open
 automatically and display the QGreenland data environment. Alternatively, you can open the
