@@ -40,6 +40,7 @@ projects. This is not an exhaustive list -- if your project is listed in our
 
 
 ## 1.3 Project Collaborators
+
 QGreenland is developed by researchers, software developers, and education specialists
 at the National Snow and Ice Data Center and Cooperative Institute for Research in
 Environmental Sciences at the University of Colorado Boulder. The QGreenland project is
