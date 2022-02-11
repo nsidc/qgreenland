@@ -39,7 +39,7 @@ projects. This is not an exhaustive list -- if your project is listed in our
 * [Docker](https://www.docker.com/)
 
 
-## 1.3 Project Collaborators
+## Project Collaborators
 
 QGreenland is developed by researchers, software developers, and education specialists
 at the National Snow and Ice Data Center and Cooperative Institute for Research in

@@ -4,6 +4,12 @@ By completing this tutorial, the user will install QGIS, download and open the
 QGreenland data package, become familiar with the QGIS interface, and browse
 some data included in QGreenland.
 
+## System Requirements
+Before downloading the QGreenland data package, be sure that QGIS is installed on your
+computer: [https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS is available on
+Windows, macOS, Linux and Android. Note that QGIS version 3.16 is the oldest version
+supported by QGreenland.
+
 ## 1) Download and Install QGIS
 
 Go to [qgis.org](https://qgis.org) and download the free QGIS software,
