@@ -4,6 +4,12 @@ By completing this tutorial, the user will install QGIS, download and open the
 QGreenland data package, become familiar with the QGIS interface, and browse
 some data included in QGreenland.
 
+## System Requirements
+Before downloading the QGreenland data package, be sure that QGIS is installed on your
+computer: [https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS is available on
+Windows, macOS, Linux and Android. Note that QGIS version 3.16 is the oldest version
+supported by QGreenland.
+
 ## 1) Download and Install QGIS
 
 Go to [qgis.org](https://qgis.org) and download the free QGIS software,
@@ -138,24 +144,3 @@ explore QGreenland. Having accomplished this, the user is prepared to explore
 the many data layers included with QGreenland. The user is now ready to approach
 more advanced topics such as performing geospatial analyses and preparing
 publication-quality maps with the data in QGreenland.
-
-# Getting Started
-
-## System Requirements
-Before downloading the QGreenland data package, be sure that QGIS is installed on your
-computer: [https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS is available on
-Windows, macOS, Linux and Android. Note that QGIS version 3.16 is the oldest version
-supported by QGreenland.
-
-## Downloading and Installing QGreenland
-
-The QGreenland data package is available for download at [https://qgreenland.org/](https://qgreenland.org/
-download). After downloading, unzip and save the folder in a location of your choice. Select
-the qgreenland.qgz file to open the full QGreenland data package. Files with a ‘.qgs’ or
-‘.qgz’ extension are QGIS project files. When you open qgreenland.qgz, QGIS will open
-automatically and display the QGreenland data environment. Alternatively, you can open the
-QGIS software first, then go to ‘Project’ -> ‘Open’ and navigate to the qgreenland.qgz project
-file on your computer.
-Note: Any changes that are made to the qgreenland.qgz project that are saved will overwrite
-the original file; therefore, it is recommended that you save each QGreenland project that you
-work on with a new and unique filename (‘File’ -> ’Save as...’).
