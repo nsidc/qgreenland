@@ -42,6 +42,11 @@ Click **Next**.
 
 ![download_bar](/_images/download_bar.png)
 
+```{note}
+Note that the beta version of the QGreenland Custom plugin currently functions separately from
+the QGreenland Core package in regards to storing and adding data, which means that the QGreenland Custom plugin does not access and read the QGreenland Core downloaded data. To add a data layer to a new project, that layer needs to be downloaded within QGreenland Custom to be accessible within it.
+```
+
 Next, you will be asked to select which downloaded layers you would like to add to your QGIS 
 project. This will be a full list of downloaded layers, so there may be more than one layer listed
 if you have used the plugin more than once or selected to download multiple layers at once. 
