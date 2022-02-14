@@ -47,24 +47,19 @@ The screenshots in this guide were generated from QGIS version 3.16 running on a
 Catalina operating system; thus, depending on the operating system and QGIS version you
 are using, your QGIS interface may look slightly different.
 
-The main components of the QGIS interface are the **Menu bar**, **Toolbars**, **Layers panel**,
-**Map view**, and **Status bar**
+The main components of the QGIS interface are the **Map view**, **Status bar**, **Layers panel**, 
+**Toolbars**, and the **Menu bar**. 
 
 ![map_view](/_images/map_view.jpg)
 
-The **Menu bar** and toolbars are different ways to access most QGIS functions, such
-as opening or saving a project or analyzing the data using geoprocessing
-tools. Panels are another way for users to interact with data layers and
-functions in QGIS. You can fully customize the look and layout of your QGIS interface by going to ‘View’ in the menu bar and selecting the panels, toolbars, etc. that you would like visible.
+The **Map View** is the main part of the QGIS/QGreenland interface where the data layers are
+displayed. A GIS ‘layer’ refers to a geospatial dataset along with the symbols and labels used
+to portray it in a GIS environment.
 
-The **Toolbars** contain buttons that allow the user to interact with the map view. For example, the hand button (Fig. 2 (b)) in the Map Navigation toolbar lets the user grab and drag the map view around. The magnifying glass buttons (Fig. 2 (c)) allow the user to zoom in and out or to a particular feature or
-selection in the map view. More information about a toolbar button’s function can be obtained by hovering one’s mouse
-over the button. Toolbars can be moved around the QGIS workspace by clicking and dragging. To toggle a toolbar on or off, simple right click on a toolbar and check or uncheck the
-desired boxes. (Fig. 3).
-
-If data layers are toggled on but not visible in the map view, the magnifying glass with three arrows (‘Zoom Full’) button (Fig. 2 (d)) will bring all visible layers back into the map view.
-Right clicking on a layer in the Layers panel and selecting ‘Zoom to Layer’ or clicking on the magnifying glass over a
-square button (Fig. 2 (e)) in the Map Navigation toolbar will also bring a desired layer into view in the map view.
+The **Status bar** is the bar at the bottom of the QGIS window that shows
+the current coordinate reference system of the map view, any available plugin
+updates, and the map view scale. Also included in the **Status bar** is a quick
+search bar and a button to open a **Log Messages** window to view log messages.
 
 The **Layers panel** is where all data layers in the current project are
 listed. Layers can be toggled on or off, which will control whether or not they
@@ -79,14 +74,23 @@ collapse all layers at once, click on the respective buttons (Fig. 2 (a)) right 
 be moved around the interface by clicking and dragging, and can be removed by clicking on
 the ‘X’ box in the upper righthand corner.
 
-The **Map View** is the main part of the QGIS/QGreenland interface where the data layers are
-displayed. A GIS ‘layer’ refers to a geospatial dataset along with the symbols and labels used
-to portray it in a GIS environment.
+![QGIS_figure2](/_images/QGIS_figure2.png)
 
-Lastly, the **Status bar** is the bar at the bottom of the QGIS window that shows
-the current coordinate reference system of the map view, any available plugin
-updates, and the map view scale. Also included in the **Status bar** is a quick
-search bar and a button to open a **Log Messages** window to view log messages.
+The **Toolbars** contain buttons that allow the user to interact with the map view. For example, the hand button (Fig. 2 (b)) in the Map Navigation toolbar lets the user grab and drag the map view around. The magnifying glass buttons (Fig. 2 (c)) allow the user to zoom in and out or to a particular feature or
+selection in the map view. More information about a toolbar button’s function can be obtained by hovering one’s mouse
+over the button. Toolbars can be moved around the QGIS workspace by clicking and dragging. To toggle a toolbar on or off, simple right click on a toolbar and check or uncheck the
+desired boxes. (Fig. 3).
+
+If data layers are toggled on but not visible in the map view, the magnifying glass with three arrows (‘Zoom Full’) button (Fig. 2 (d)) will bring all visible layers back into the map view.
+Right clicking on a layer in the Layers panel and selecting ‘Zoom to Layer’ or clicking on the magnifying glass over a
+square button (Fig. 2 (e)) in the Map Navigation toolbar will also bring a desired layer into view in the map view.
+
+![QGIS_figure3](/_images/QGIS_figure3.png)
+
+Lastly, the **Menu bar** and toolbars are different ways to access most QGIS functions, such
+as opening or saving a project or analyzing the data using geoprocessing
+tools. Panels are another way for users to interact with data layers and
+functions in QGIS. You can fully customize the look and layout of your QGIS interface by going to ‘View’ in the menu bar and selecting the panels, toolbars, etc. that you would like visible.
 
 
 ```{note}
