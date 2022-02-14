@@ -118,6 +118,7 @@ information). Try zooming in.
 If you are opening QGIS using a terminal or using the QGIS Python console, it is possible you
 might see one of a few different error messages while using QGIS that the QGreenland team
 has determined can be ignored:
+
    -**Warning: Logged warning: Creating Warped VRT**
    This error message is likely triggered by a raster layer in the QGreenland project but
    should not have any impact on the data layers or project usability.
