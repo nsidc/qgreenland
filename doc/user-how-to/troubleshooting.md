@@ -38,8 +38,8 @@ qgis qgreenland.qgs
 
 ### No layers are present in the Layers Panel
 
-If you don't see layers in the layers panel, you have not correctly opened a
-project. Click 'Project' in the Menu Bar, then select 'Add Project', then
+If you don't see layers in the **Layers Panel**, you have not correctly opened a
+project. Click **Project** in the **Menu Bar**, then select **Add Project**, then
 navigate to your QGreenland directory, wherever you saved it, and open the
 `.qgs`/`.qgz` file inside.
 
@@ -48,8 +48,8 @@ navigate to your QGreenland directory, wherever you saved it, and open the
 
 ### After opening QGreenland, I only see blue ocean
 
-Right click on a layer in the Layers Panel that you'd like to view, and select
-'Zoom to Layer'.
+Right click on a layer in the **Layers Panel** that you'd like to view, and select
+**Zoom to Layer**.
 
 If you experience this issue, please [contact
 us](mailto:qgreenland.info@gmail.com) with information about your Operating
@@ -96,23 +96,36 @@ error message.
 ### The QGIS interface has no buttons or toolbars
 
 Right-click the toolbar area in the QGIS interface and check the toolbars you
-wish to turn on so that they are displayed. You can also go to 'View' ->
-'Toolbars' in the menu bar.
+wish to turn on so that they are displayed. You can also go to 
+**View -> Toolbars** in the **Menu Bar**.
 
 
 ### I can't see a layer in the Map View even though it's turned on and I've zoomed to it
 
 Double-check that there is not another layer overlaying and thus obscuring the
-layer you want to see in the Map View. Remember that layer are displayed in the
-Map View in the same order that they are listed in the Layers Panel - layers
-listed at the top of the Layers Panel show up on top on the Map View. You can
+layer you want to see in the **Map View**. Remember that layer are displayed in the
+**Map View** in the same order that they are listed in the **Layers Panel - layers**
+listed at the top of the **Layers Panel** show up on top on the **Map View**. You can
 either turn off any layer that might be obscuring the layer you wish to see by
-unchecking it in the Layers Panel, or re-arrange the order of layers by
-clicking and dragging them up or down in the Layers Panel.
+unchecking it in the **Layers Panel**, or re-arrange the order of layers by
+clicking and dragging them up or down in the **Layers Panel**.
 
 Some QGreenland data layers are only visible at a specific map scale (see
 _QGreenland User Guide section 4.3.1: Scale-dependent rendering_ for more
 information). Try zooming in.
+
+### Navigating QGIS errors
+If you are opening QGIS using a terminal or using the QGIS Python console, it is possible you
+might see one of a few different error messages while using QGIS that the QGreenland team
+has determined can be ignored:
+
+   -**Warning: Logged warning: Creating Warped VRT**
+   This error message is likely triggered by a raster layer in the QGreenland project but
+   should not have any impact on the data layers or project usability.
+
+   -**ERROR: Too many connections: max 64**
+   This error is thought to be related to the GeoPackage file format but should not have any
+   impact on the layers themselves or the project usability.
 
 
 ## I'm having other problems. How do I contact the QGreenland team?
