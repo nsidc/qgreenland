@@ -26,8 +26,9 @@ Snow and Ice Data Center in your work.
 
 ## Citation
 
+#Suggested citation for QGreenland:
 Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2021). QGreenland (v2.0.0) [software],
-National Snow and Ice Data Center Available from the [QGreenland Website](https://qgreenland.org/).
+[National Snow and Ice Data Center](https://qgreenland.org/).
 
 ## Acknowledgement
 
