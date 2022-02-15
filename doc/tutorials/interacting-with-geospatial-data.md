@@ -11,6 +11,7 @@ GeoPackage (.gpkg) files. A GeoPackage is just a platform-independent file type 
 geospatial data.
 
 ![vector_data](/_images/vector_data.png)
+
 Fig. 4: Examples of vector data layers in QGreenland: Points (towns and settlements), lines
 (median January sea ice extent), and polygons (country boundaries).
 
@@ -37,6 +38,7 @@ layers in QGreenland are all GeoTIFF files, which are images with geographic fea
 as geospatial metadata and overviews/tile pyramids.
 
 ![raster_data](/_images/raster_data.png)
+
 Fig. 5: Example of a raster data layer in QGreenland, ice sheet velocity, where
 each grid cell in the raster is 500 m x 500 m and is color-coded by a velocity
 
@@ -69,6 +71,7 @@ and settlements’ and the ‘Community map (crowdsourced)’ layers. Regardless
 makes no guarantees about the accuracy and validity of data contained in QGreenland.
 
 ![layer_properties](/_images/layer_properties.png)
+
 Fig. 6: The Layer Properties dialog window for the QGreenland ‘Earthquakes’ data layer
 
 ### Data Projections
@@ -118,6 +121,7 @@ To use the **Identify Features** button:
    displayed by toggling the **Mode** and **View** options at the bottom of the **Identify Results Panel**.
 
 ![identify_results_panel](/_images/identify_results_panel.png)
+
 Fig. 7: The **Identify Results Panel** that shows results from the **Identify Features** tool.
 
 ## Measuring Distances, Areas, and Angles
