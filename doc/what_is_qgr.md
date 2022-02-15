@@ -15,6 +15,7 @@ delivered in two ways:
    (for example, due to filesize constraints). QGreenland Custom has its own
    [documentation](https://qgreenland-plugin.readthedocs.io).
 
+Return to [QGreenland website](https://qgreenland.org)
 
 # What QGreenland *is not*
 
