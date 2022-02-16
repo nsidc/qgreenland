@@ -23,7 +23,7 @@ first
 ## Open the Processing Toolbox
 
 The **Processing Toolbox** can be opened from the menu bar by selecting
-"View>Panels>Processing Toolbox". This will open a new panel with a variety of
+**"View>Panels>Processing Toolbox"**. This will open a new panel with a variety of
 processing tools organized into groups.
 
 ![processing_toolbox](/_images/processing_toolbox.jpg)
@@ -31,12 +31,12 @@ processing tools organized into groups.
 ```{note}
 The **Processing Toolbox** can also be opened by clicking on the gear
 ![processing-icon](/_images/processing-icon.jpg) icon in the **Attributes
-toolbar** ![attributes-toolbar](/_images/attributes-toolbar.jpg).
+Toolbar** ![attributes-toolbar](/_images/attributes-toolbar.jpg).
 ```
 
 ## Use the Raster Surface Volume tool
 
-In the Processing Toolbox, go to "Raster analysis > Raster surface volume". This
+In the **Processing Toolbox**, go to "Raster analysis > Raster surface volume". This
 is an algorithm that calculates the volume under a raster grid’s
 surface. Double-click "Raster surface volume" to open the tool's window, and
 enter the following parameters:
