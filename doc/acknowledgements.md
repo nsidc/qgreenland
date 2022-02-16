@@ -3,7 +3,6 @@
 The QGreenland project team acknowledges the following people, organizations,
 and projects for making our work possible and enjoyable.
 
-
 ## Prior art
 
 The [Quantarctica](https://www.npolar.no/en/quantarctica/) project inspired
