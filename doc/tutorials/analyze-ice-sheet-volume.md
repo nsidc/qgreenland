@@ -56,7 +56,7 @@ Click "Run" and wait for the analysis to finish. The window will switch to the
 "Log" tab, which shows log messages and results for the run. A **Results
 Viewer** panel should open in a panel underneath the **Processing
 Toolbox**. Close the Raster surface volume tool's window and click on the
-"Surface volume report" entry in the **Resuls Viewer**. This will show a link to
+"Surface volume report" entry in the **Results Viewer**. This will show a link to
 a results HTML page that can be opened in your broswer. Open this file and
 review the results.
 
