@@ -43,7 +43,7 @@ Properties** panel on the right side of the screen.
 
 The print layout will allow you to add features to your map such as a title,
 legend, north arrow, scale bar, pictures, etc by interacting with the buttons in
-the Toolbar on the left of the screen.
+the **Toolbar** on the left of the screen.
 
 To add a map to your layout, click on the **Add Map** button
 ![print_add_map](/_images/print_add_map.jpg). Click and drag to create a box
