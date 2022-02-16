@@ -1,4 +1,4 @@
-# Making Datasets QGreenland-Compatible
+# QGreenland Dataset Compatibility Guide
 
 While QGreenland provides a curated base package of data on a variety of topics, the options for adding additional data are nearly unlimited. We offer different guidelines for data compatibility depending on what your goals are:
 
