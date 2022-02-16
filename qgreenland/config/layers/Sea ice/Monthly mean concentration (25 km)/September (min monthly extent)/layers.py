@@ -2,7 +2,7 @@ from qgreenland.config.datasets.seaice import seaice_index as dataset
 from qgreenland.config.helpers.layers.sea_ice_concentration import (
     CONCENTRATION_DESCRIPTION,
     CONCENTRATION_STYLE,
-    CONCENTRATION_YEARS,
+    MIN_CONCENTRATION_YEARS,
 )
 from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
@@ -42,5 +42,5 @@ layers = [
                 dtype_is_float=False,
             ),
         ],
-    ) for year in CONCENTRATION_YEARS
+    ) for year in MIN_CONCENTRATION_YEARS
 ]
