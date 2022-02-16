@@ -1,3 +1,103 @@
+# Spatial Data Overview
+
+There are two main basic kinds of GIS data layers: vector and raster.
+
+## Vector Data
+
+**Vector** data are composed of points, lines, and polygons and represent discrete features.
+Examples of vector data are cities (points), roads and highways (lines), and geographic
+boundaries like country borders (polygons) (Fig. 4). All of the vector layers in QGreenland are
+GeoPackage (.gpkg) files. A GeoPackage is just a platform-independent file type for storing
+geospatial data.
+
+![vector_data](/_images/vector_data.png)
+
+Fig. 4: Examples of vector data layers in QGreenland: Points (towns and settlements), lines
+(median January sea ice extent), and polygons (country boundaries).
+
+### Vector Data Attributes
+
+All QGIS vector data layers have associated attributes, or characteristics of the discrete
+features. Attributes can be almost anything: city name, road type (highway, paved, unpaved,
+etc.), land elevation value, population density, date, etc. The attributes of a data layer can be
+viewed in tabular form by right clicking on the layer in the Layers panel and selecting ‘Open
+Attribute Table’ from the menu options, or by clicking on the layer in the Layers panel and
+then clicking on the Open Attribute Table button in the Attributes toolbar. This opens
+up an Attribute Table, where the columns are the various fields, or attributes, and the rows
+are individual features. Clicking on and highlighting records in the Attribute Table will also
+highlight those specific points, lines, or polygons in the map view. Right-click any cell to
+‘Zoom to feature’, ‘Pan to feature’, or ‘Flash feature’.
+
+## 4.2 Raster Data
+
+Raster data are composed of grid cells or pixels, where each grid cell has its own value.
+Rasters represent continuous data, such as land elevation, surface temperature, land cover,
+etc. (Fig. 5). The resolution, which is the length of the grid cell sides of each raster dataset in
+QGreenland, is indicated in the name of the dataset, e.g.: “Ice Sheet Velocity (500 m)”. Raster
+layers in QGreenland are all GeoTIFF files, which are images with geographic features, such
+as geospatial metadata and overviews/tile pyramids.
+
+![raster_data](/_images/raster_data.png)
+
+Fig. 5: Example of a raster data layer in QGreenland, ice sheet velocity, where
+each grid cell in the raster is 500 m x 500 m and is color-coded by a velocity
+
+## Layer Properties
+
+Right clicking on a data layer in the Layers panel and selecting ‘Properties’, or simply double
+clicking on a layer in the Layers panel will bring up the Layer Properties dialog window,
+which contains a variety of information about a layer (Fig. 6). The information is organized
+into sections (or tabs) that can be accessed by clicking on an individual tab (e.g., Symbology)
+in the left sidebar of the window. The tabs listed in a vector Layer Properties dialog window
+differ slightly from those listed for a raster layer. The tabs most relevant to a novice QGIS user
+and that exist for both vector and raster layers are:
+
+* **Information**: This section summarizes information about a layer, including its name, coordinate
+reference system, spatial extent (geographic boundaries), description (abstract), and more.
+* **Symbology**: Every QGreenland data layer has a predefined symbology, or visual representation
+in the map view. See section 5.4: Editing Layer Symbology for instructions on how to modify or
+customize a layer’s symbology.
+* **Metadata**: Metadata is essentially “data about data”. In QGIS, layer metadata is information about
+the data in the layer, including its name, description, citation, and link to the source that the data
+was retrieved from. As outlined in section 1.2: Licensing, Citing, and Contributing, published
+works produced using QGreenland are required to cite each dataset used in the work. Users can
+thus simply copy a layer’s citation directly from its metadata. An abbreviated version of a layer’s
+metadata can also be viewed by selecting a layer in the Layers panel and hovering your mouse
+over the layer name.
+
+**Note**: The QGreenland team has in a few instances included comments on ‘Noted Data Issues’.
+Read about ‘Noted Data Issues’ in the layer metadata. These are currently noted for the ‘Towns
+and settlements’ and the ‘Community map (crowdsourced)’ layers. Regardless, QGreenland
+makes no guarantees about the accuracy and validity of data contained in QGreenland.
+
+![layer_properties](/_images/layer_properties.png)
+
+Fig. 6: The Layer Properties dialog window for the QGreenland ‘Earthquakes’ data layer
+
+### Data Projections
+
+Data projections, or Coordinate Reference Systems (CRS), define the coordinate system for
+a QGIS project and data layers. The CRS for the current map view is indicated on the right
+side of the QGIS status bar. For QGreenland, the current CRS should be identified as ‘EPSG:
+3413,’ which is the identifier for the NSIDC Sea Ice Polar Stereographic North on a WGS 84
+Ellipsoid CRS. Changing the CRS of the map view will not change the underlying data, though QGIS will do on-the-fly reprojection of layers not in the selected CRS. It is possible to reproject a layer into a new CRS;
+however, this transforms the data and can introduce artifacts. Therefore, it is recommended
+that to reproject data, the user do so from the source data and not the data contained in the
+QGreenland package.
+
+### Scale-Dependent Rendering
+Scale-dependent rendering refers to the scale at which a particular data layer will be visible in
+the QGIS map display. This can make it easier to zoom in and out for certain data layers. The
+user can turn on scale-dependent rendering for any layer by going to the layer ‘Properties’ ->
+‘Rendering’, checking the box for Scale Dependent Visibility, and then setting the minimum
+and maximum scale dependent visibility. For scale reference, refer to the scale indicated at
+the bottom of the QGIS interface in the Status Bar.
+
+## QGreenland Data Layers
+A complete list of all QGreenland data layers and their metadata, including information about
+their original data source, can be found in the layer_list.csv file included in the QGreenland
+download package.
+
 # Interacting with Geospatial Data in QGreenland
 
 ## Identifying Features in Layers
@@ -21,6 +121,7 @@ To use the **Identify Features** button:
    displayed by toggling the **Mode** and **View** options at the bottom of the **Identify Results Panel**.
 
 ![identify_results_panel](/_images/identify_results_panel.png)
+
 Fig. 7: The **Identify Results Panel** that shows results from the **Identify Features** tool.
 
 ## Measuring Distances, Areas, and Angles
