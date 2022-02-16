@@ -76,3 +76,4 @@ sheet thickness data included in the QGreenland core package to calculate the
 volume of the Greenland ice sheet. Having accomplished this, the user is now
 ready to explore other geospatial processing tools included in the **Processing
 Toolbox** to further analyze other QGreenland data.
+
