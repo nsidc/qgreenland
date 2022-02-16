@@ -1,8 +1,10 @@
-# Spatial Data Overview
+# Interacting with Geospatial Data in QGreenland
+
+## Spatial Data Overview
 
 There are two main basic kinds of GIS data layers: vector and raster.
 
-## Vector Data
+### Vector Data
 
 **Vector** data are composed of points, lines, and polygons and represent discrete features.
 Examples of vector data are cities (points), roads and highways (lines), and geographic
@@ -28,7 +30,7 @@ are individual features. Clicking on and highlighting records in the Attribute T
 highlight those specific points, lines, or polygons in the map view. Right-click any cell to
 ‘Zoom to feature’, ‘Pan to feature’, or ‘Flash feature’.
 
-## 4.2 Raster Data
+### Raster Data
 
 Raster data are composed of grid cells or pixels, where each grid cell has its own value.
 Rasters represent continuous data, such as land elevation, surface temperature, land cover,
@@ -74,7 +76,7 @@ makes no guarantees about the accuracy and validity of data contained in QGreenl
 
 Fig. 6: The Layer Properties dialog window for the QGreenland ‘Earthquakes’ data layer
 
-### Data Projections
+## Data Projections
 
 Data projections, or Coordinate Reference Systems (CRS), define the coordinate system for
 a QGIS project and data layers. The CRS for the current map view is indicated on the right
@@ -93,12 +95,11 @@ user can turn on scale-dependent rendering for any layer by going to the layer �
 and maximum scale dependent visibility. For scale reference, refer to the scale indicated at
 the bottom of the QGIS interface in the Status Bar.
 
-## QGreenland Data Layers
+### QGreenland Data Layers
 A complete list of all QGreenland data layers and their metadata, including information about
 their original data source, can be found in the layer_list.csv file included in the QGreenland
 download package.
 
-# Interacting with Geospatial Data in QGreenland
 
 ## Identifying Features in Layers
 
