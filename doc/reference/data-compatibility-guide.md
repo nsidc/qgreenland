@@ -3,6 +3,7 @@
 While QGreenland provides a curated base package of data on a variety of topics, the options for adding additional data are nearly unlimited. We offer different guidelines for data compatibility depending on what your goals are:
 
 **1. Guidelines for publishing previously unpublished data so it is compatible with QGreenland**:
+
 To ensure that your own original research datasets will be easy to work with in QGreenland, either in your own individual QGreenland project or as an addition to the public QGreenland data package, please note the following:
 
    * Make sure your data are produced in a standard format with appropriate spatial metadata. For example, your dataset should have   clearly defined projection metadata (as an EPSG code, proj4 params, OGC-compliant well-known-text, etc.) and should be formatted in a way that gdal/ogr tools can read and understand. Double check that your data can be opened in QGIS and appropriately geolocated.
