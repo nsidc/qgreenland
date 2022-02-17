@@ -40,9 +40,9 @@ QGreenland was inspired by the free and open source [Quantarctica](https://www.n
 GIS data package for Antarctica.
 
 
-# What is in the v.1.0.0 QGreenland Download Package?
+# QGreenland Core Download Package
 
-You will find the following files in the QGreenland data package:
+You will find the following files in the v2.0.0 QGreenland Core data package:
 * Folders containing data layers organized by topic
 * The main **qgreenland.qgs** project file
 * **qgreenland.png** - The official QGreenland logo
@@ -52,10 +52,7 @@ You will find the following files in the QGreenland data package:
 * **UserGuide.pdf** - The full QGreenland User Guide
 * **QuickStartGuide.pdf** - A one-page overview guide for experienced QGIS users on how
   to download the QGreenland data package and other information
-* **MakingDataQGRCompatible.pdf** - A short guide on how to make your datasets
-  compatible with QGreenland
 * **STYLE.txt** - Guidelines and standards for QGreenland data layer styling
-* **CONTRIBUTING.txt** - Instructions on how to contribute to the QGreenland project
 * **README.txt** - Brief description of the QGreenland data package
 * **CHANGELOG.txt** - A log of changes made to the QGreenland data package
 
