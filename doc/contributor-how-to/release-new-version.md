@@ -1,4 +1,4 @@
-# How to release a new version of QGreenland code
+# How to release a new version of QGreenland Core code
 
 Use `bumpversion` to bump the specified part of the version:
 

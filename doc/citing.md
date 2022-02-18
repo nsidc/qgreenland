@@ -1,6 +1,6 @@
-# Citing QGreenland
+# Citing QGreenland Core and Custom
 
-We request that QGreenland be cited or acknowledged when publishing a
+We request that the QGreenland project be cited or acknowledged when publishing a
 QGreenland-made image or map.
 
 QGreenland development is open source and available on [GitHub](https://github.com/nsidc/qgreenland). 

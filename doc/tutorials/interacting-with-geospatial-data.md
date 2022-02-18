@@ -1,4 +1,4 @@
-# Interacting with Geospatial Data in QGreenland
+# Interacting with Geospatial Data in QGreenland Core
 
 ## Spatial Data Overview
 

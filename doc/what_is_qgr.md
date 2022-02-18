@@ -46,19 +46,19 @@ You will find the following files in the v2.0.0 QGreenland Core data package:
 * Folders containing data layers organized by topic
 * The main **qgreenland.qgs** project file
 * **qgreenland.png** - The official QGreenland logo
-* **layer_list.csv** - A complete list of all the data layers in the QGreenland download
+* **layer_list.csv** - A complete list of all the data layers in the QGreenland Core download
   package, including information about each (data source, file size, etc.). This file can be
   opened with Microsoft Excel, LibreOffice Calc, a text editor, or a similar program.
-* **UserGuide.pdf** - The full QGreenland User Guide
+* **UserGuide.pdf** - The full QGreenland Core User Guide
 * **QuickStartGuide.pdf** - A one-page overview guide for experienced QGIS users on how
-  to download the QGreenland data package and other information
+  to download the QGreenland Core data package and other information
 * **STYLE.txt** - Guidelines and standards for QGreenland data layer styling
 * **README.txt** - Brief description of the QGreenland data package
 * **CHANGELOG.txt** - A log of changes made to the QGreenland data package
 
 
-Please note that QGreenland v1.0.0 is the first stable public release version from this project.
-QGreenland version 1.0.0 will not be the final version of the QGreenland download package.
+Please note that QGreenland Core v1.0.0 is the first stable public release version from this project.
+QGreenland Core version 1.0.0 will not be the final version of the QGreenland Core download package.
 There will be a version 2.0.0 released some time in 2022 that may include new and updated
 layers. Development versions along the way will continue to be available via the 
 [website](http://qgreenland.org), with code fully documented on 
