@@ -26,7 +26,7 @@ acknowledge or cite QGreenland and the National Snow and Ice Data Center in your
 
 ## Citation
 
-Suggested citation for QGreenland:
+Suggested citations for QGreenland:
 
 Version 1.0:
 Moon, T., Fisher, M., Harden, L., and T. Stafford (2021). QGreenland (v1.0.0) [software],
