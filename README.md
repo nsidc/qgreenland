@@ -55,7 +55,7 @@ and unzip it with your unzip tool of choice if you haven not already done so.
 Finally, open the `qgreenland.qgs` file contained inside with QGIS.
 
 
-## What's Inside?
+## What's Inside the v2.0.0 download package?
 
 At the root of the package, you will find scientific discipline-specific
 directories containing data. Additionally, the following files are present at
@@ -63,12 +63,8 @@ the package root:
 
 * `UserGuide.pdf`: Detailed user-guide.
 * `QuickStartGuide.pdf`: Guide for QGIS beginners.
-* `MakingDataQGRCompatible.pdf`: Data compatibility guide for data providers,
-  contributors, and users.
 * `README.html`: The README file you are currently reading.
 * `CHANGELOG.html`: A summary of changes for each new QGreenland version.
-* `CONTRIBUTING.html`: Instructions to users looking for help contributing to
-  this project.
 * `layer_list.csv`: Comma-separated values representing the configuration of
   layers in QGreenland. This includes limited layer metadata, including, but
   not limited to: title, description, abstract, and citation.
