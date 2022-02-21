@@ -54,4 +54,4 @@ Institute (Dansmarks Meteorologiske Institut), Asiaq - Greenland Survey, Norwegi
 Institute (Norsk Polarinstitutt), Arctic Data Committee, International Arctic Science Committee,
 WWF-Danmark, U.S. Polar Geospatial Center, Greenland Ice Sheet Ocean Science Network,
 N.S.F. Polar Computing RCN, and Isaafik. More information about the QGreenland team and
-collaborators is available at the website [http://qgreenland.org](http://qgreenland.org).
+collaborators is available at the website [http://qgreenland.org](http://qgreenland.org). 
