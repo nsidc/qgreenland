@@ -24,8 +24,8 @@ from QGIS:
 
 ## Add a WMS Layer
 
-First, open the “Data Source Manager” from the top menu bar (Layer >Data Source
-Manager) and select the “WMS/WMTS” option.
+First, open the “Data Source Manager” from the top **Menu Bar** **(Layer >Data Source
+Manager)** and select the “WMS/WMTS” option.
 
 ![wms_data_management_screen](/_images/wms_data_management_screen.jpg)
 
@@ -59,14 +59,14 @@ provides a visualization of Greenland ice sheet velocity. See NSIDC’s
 documentation for this dataset for more information:
 [https://nsidc.org/data/nsidc-0478](https://nsidc.org/data/nsidc-0478).
 
-Finally, click “Add”. The layer will be added to the Layers panel in QGIS.
+Finally, click “Add”. The layer will be added to the **Layers Panel** in QGIS.
 
 ![wms_layer_added](/_images/wms_layer_added.jpg)
 
 
 ```{warning}
 The added layer will be inserted below whatever layer was previously selected in
-the Layers panel. This may mean that the layer is covered by other layers above
+the **Layers Panel**. This may mean that the layer is covered by other layers above
 it. If the layer does not show up within a few seconds, check which layers are
 above the inserted layer and reorder as needed.
 ```
@@ -74,11 +74,11 @@ above the inserted layer and reorder as needed.
 ```{note}
 Some online layers are a timeseries. QGIS will automatically detect layers
 with a time component and identify them as such with a clock icon next to the
-layer name in the Layers panel.
+layer name in the **Layers Panel**.
 
 ![timeseries_layer_clock_icon](/_images/timeseries_layer_clock_icon.png)
 
-Temporal layers can be interacted with using the Temporal Controller. See the
+**Temporal Layers** can be interacted with using the Temporal Controller. See the
 [qgistutorials.com](https://www.qgistutorials.com/en/docs/3/animating_time_series.html)
 tutorial on animating timeseries data for more information on how to use the
 Temporal Controller.
