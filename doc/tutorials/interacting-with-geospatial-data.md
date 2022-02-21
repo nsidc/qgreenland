@@ -61,7 +61,7 @@ in the map view. See section 5.4: Editing Layer Symbology for instructions on ho
 customize a layer’s symbology.
 * **Metadata**: Metadata is essentially “data about data”. In QGIS, layer metadata is information about
 the data in the layer, including its name, description, citation, and link to the source that the data
-was retrieved from. As outlined in section 1.2: Licensing, Citing, and Contributing, published
+was retrieved from. As outlined in Licensing, Citing, and Contributing, published
 works produced using QGreenland are required to cite each dataset used in the work. Users can
 thus simply copy a layer’s citation directly from its metadata. An abbreviated version of a layer’s
 metadata can also be viewed by selecting a layer in the Layers panel and hovering your mouse

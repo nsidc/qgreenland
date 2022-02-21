@@ -36,18 +36,18 @@ Toolbar** ![attributes-toolbar](/_images/attributes-toolbar.jpg).
 
 ## Use the Raster Surface Volume tool
 
-In the **Processing Toolbox**, go to "Raster analysis > Raster surface volume". This
+In the **Processing Toolbox**, go to **"Raster analysis > Raster surface volume"**. This
 is an algorithm that calculates the volume under a raster grid’s
-surface. Double-click "Raster surface volume" to open the tool's window, and
+surface. Double-click **"Raster surface volume"** to open the tool's window, and
 enter the following parameters:
 
-* Input layer = Ice thickness (150 m)
-* There will only be one option for Band number
-* Base level = should already be set to 0. This is the minimum pixel value in
+* **Input layer** = Ice thickness (150 m)
+* There will only be one option for **Band number**
+* **Base level** = should already be set to 0. This is the minimum pixel value in
   the Ice thickness layer.
-* Method = Count only above base level (since we are interested in ice thickness
+* **Method** = Count only above base level (since we are interested in ice thickness
   values greater than zero)
-* Save the Surface volume report, the output for this algorithm, in a temporary file or in a
+* Save the **Surface volume report**, the output for this algorithm, in a temporary file or in a
   desired location on one's computer.
 
 ![raster_surface_volume](/_images/raster_surface_volume.jpg)
@@ -62,7 +62,7 @@ review the results.
 
 ![results_viewer](/_images/results_viewer.jpg)
 
-The results file will contain information from the run, including which file was
+The **results file** will contain information from the run, including which file was
 analyzed, the calculated volume, pixel count, and total area. If one has
 succuessfully run the analysis, the results should show that the Greenland ice
 sheet has a volume of 2,942,360,633,311,806 m<sup>3</sup>, or about 2.9 million
