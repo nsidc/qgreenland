@@ -16,7 +16,7 @@ Go to [qgis.org](https://qgis.org) and download the free QGIS software,
 available on Windows, macOS, Linux and Android. It is recommended to download
 the long term release (3.16 or later) version.
 
-## 2) Download and open the QGreenland package
+## 2) Download and open the QGreenland Core package
 
 Download the QGreenland Core data package (v2.0.0) at
 [https://qgreenland.org/download](https://qgreenland.org/download).
@@ -164,8 +164,8 @@ for more detailed information on how to effectively navigate the **Map View**.
 ## 5) Summary
 
 In completing this tutorial, the user has installed QGIS, downloaded and opened
-the QGreenland data package, and learned about the fundamentals of using QGIS to
+the QGreenland Core data package, and learned about the fundamentals of using QGIS to
 explore QGreenland. Having accomplished this, the user is prepared to explore
-the many data layers included with QGreenland. The user is now ready to approach
+the many data layers included with QGreenland Core. The user is now ready to approach
 more advanced topics such as performing geospatial analyses and preparing
-publication-quality maps with the data in QGreenland.
+publication-quality maps with the data in QGreenland Core.

@@ -1,4 +1,4 @@
-# How to run QGreenland
+# How to run QGreenland Core
 
 This project uses Docker and `docker-compose` to run each of its components as
 services.  See Docker's [Getting started guide](https://docs.docker.com/get-started/).

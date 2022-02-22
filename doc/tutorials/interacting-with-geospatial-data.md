@@ -14,7 +14,7 @@ geospatial data.
 
 ![vector_data](/_images/vector_data.png)
 
-Fig. 4: Examples of **Vector** data layers in QGreenland: Points (towns and settlements), lines
+Fig. 4: Examples of **Vector** data layers in QGreenland Core: Points (towns and settlements), lines
 (median January sea ice extent), and polygons (country boundaries).
 
 ### Vector Data Attributes
