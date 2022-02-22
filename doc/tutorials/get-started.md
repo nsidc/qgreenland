@@ -1,11 +1,12 @@
-# Get started with QGreenland
+# Get started with QGreenland Core
 
 By completing this tutorial, the user will install QGIS, download and open the
-QGreenland data package, become familiar with the QGIS interface, and browse
+QGreenland Core data package, become familiar with the QGIS interface, and browse
 some data included in QGreenland.
 
 ## System Requirements
-Before downloading the QGreenland data package, be sure that QGIS is installed on your
+
+Before downloading the QGreenland Core data package, be sure that QGIS is installed on your
 computer: [https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS is available on Windows, macOS, Linux and Android. Note that QGIS version 3.16 is the oldest version
 supported by QGreenland.
 
@@ -15,18 +16,18 @@ Go to [qgis.org](https://qgis.org) and download the free QGIS software,
 available on Windows, macOS, Linux and Android. It is recommended to download
 the long term release (3.16 or later) version.
 
-## 2) Download and open the QGreenland package
+## 2) Download and open the QGreenland Core package
 
-Download the QGreenland data package (v2.0.0) at
+Download the QGreenland Core data package (v2.0.0) at
 [https://qgreenland.org/download](https://qgreenland.org/download).
 
 Save the zip package to a location of your choice and unzip it. Open the
 `qgreenland.qgs` file in the data package folder by double-clicking it. QGIS
-will open automatically and display the QGreenland data environment.
+will open automatically and display the QGreenland Core data environment.
 
 
 ```{note}
-Depending on your version of QGreenland, the package may be a `.qgs` or a
+Depending on your version of QGreenland Core, the package may be a `.qgs` or a
 `.qgz` file. They should function the same as long as you have a compatible
 version of QGIS.
 ```
@@ -41,7 +42,7 @@ selecting the `qgreenland.qgs` file from its saved location.
 
 ## 3) Get to know the QGIS Interface
 
-In this user guide you will see various screenshots of the QGreenland and QGIS interface.
+In this user guide you will see various screenshots of the QGreenland Core and QGIS interface.
 The screenshots in this guide were generated from QGIS version 3.16 running on a macOS
 Catalina operating system; thus, depending on the operating system and QGIS version you
 are using, your QGIS interface may look slightly different.
@@ -52,7 +53,7 @@ The main components of the QGIS interface are the **Map view**, **Status bar**, 
 ![map_view](/_images/map_view.jpg)
 Fig. 1: Main components of the QGIS/QGreenland interface
 
-The **Map View** is the main part of the QGIS/QGreenland interface where the data layers are
+The **Map View** is the main part of the QGIS/QGreenland Core interface where the data layers are
 displayed. A GIS ‘layer’ refers to a geospatial dataset along with the symbols and labels used
 to portray it in a GIS environment.
 
@@ -69,7 +70,7 @@ vice versa. Layers can be manually moved around in the **Layers Panel** to chang
 the order in which they show up. **Panels** and **Toolbars** can also be manually moved
 around the QGIS interface to fit the user’s preferences. 
 
-When you first open the QGreenland data package, two reference layers will be automatically toggled on: Greenland coastlines 2017 and the QGreenland Basemap. Layers can be rearranged by clicking and dragging up or down. Layer groups can be expanded or collapsed by clicking on the arrow to the left of the checkbox. To expand or collapse all layers at once, click on the respective buttons (Fig. 2 (a)) right above the layers list in the **Layers Panel**. In addition to the **Layers Panel**, there are a variety of other panels that can be displayed on the QGIS interface. For example, the Browser panel provides a shortcut for accessing other data layers or project files on your computer or another location. Panels can be moved around the interface by clicking and dragging, and can be removed by clicking on the ‘X’ box in the upper righthand corner.
+When you first open the QGreenland Core data package, two reference layers will be automatically toggled on: Greenland coastlines 2017 and the QGreenland Basemap. Layers can be rearranged by clicking and dragging up or down. Layer groups can be expanded or collapsed by clicking on the arrow to the left of the checkbox. To expand or collapse all layers at once, click on the respective buttons (Fig. 2 (a)) right above the layers list in the **Layers Panel**. In addition to the **Layers Panel**, there are a variety of other panels that can be displayed on the QGIS interface. For example, the Browser panel provides a shortcut for accessing other data layers or project files on your computer or another location. Panels can be moved around the interface by clicking and dragging, and can be removed by clicking on the ‘X’ box in the upper righthand corner.
 
 ![QGIS_fig2](/_images/QGIS_fig2.png)
 
@@ -100,9 +101,9 @@ GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
 ```
 
 
-## 4) Browse data in QGreenland
+## 4) Browse data in the QGreenland project
 
-Layers in QGreenland are organized into groups by category. For example, the
+Layers in QGreenland Core are organized into groups by category. For example, the
 "Background boundary" layer is "QGreenland boundaries" group, which is itself
 inside of the "Reference" group ("Background boundary/Reference").
 
@@ -110,7 +111,7 @@ inside of the "Reference" group ("Background boundary/Reference").
 
 ### Toggle layer visibility
 
-Some layers are turned on by default when opening QGreenland. In order to
+Some layers are turned on by default when opening the QGreenland Core project. In order to
 visualize another data layer (or remove an existing one), toggle the checkbox
 next to the layer in the **Layers panel**.
 
@@ -163,8 +164,8 @@ for more detailed information on how to effectively navigate the **Map View**.
 ## 5) Summary
 
 In completing this tutorial, the user has installed QGIS, downloaded and opened
-the QGreenland data package, and learned about the fundamentals of using QGIS to
+the QGreenland Core data package, and learned about the fundamentals of using QGIS to
 explore QGreenland. Having accomplished this, the user is prepared to explore
-the many data layers included with QGreenland. The user is now ready to approach
+the many data layers included with QGreenland Core. The user is now ready to approach
 more advanced topics such as performing geospatial analyses and preparing
-publication-quality maps with the data in QGreenland.
+publication-quality maps with the data in QGreenland Core.

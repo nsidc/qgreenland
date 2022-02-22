@@ -1,4 +1,4 @@
-# How to release a new version of QGreenland code
+# How to release a new version of QGreenland Core code
 
 Use `bumpversion` to bump the specified part of the version:
 
@@ -18,7 +18,7 @@ prerelease`. Running `bumpversion build` from a final release version number
 can result in an incorrect patch number, e.g. `v1.2.304`.
 
 Publishing a tag to GitHub will trigger an automated build and publish of the
-QGreenland package to various mirrors.
+QGreenland Core package to various mirrors.
 
 Creating a "Release" in GitHub will trigger archival of our code in Zenodo and
 issuance of a new DOI. Do _not_ create a "Release" in GitHub until a new
