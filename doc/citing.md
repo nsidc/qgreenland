@@ -38,4 +38,4 @@ Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2022). QGreenla
 
 ## Acknowledgement
 
-We acknowledge the National Snow and Ice Data Center QGreenland package.
+We acknowledge the National Snow and Ice Data Center QGreenland package. 

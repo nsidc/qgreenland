@@ -35,7 +35,7 @@ version of QGIS.
 
 ```{note}
 If QGIS is already open, one can open the `qgreenland.qgs` project file
-within QGIS by navigating to the "Project >Open..." option in the menu bar and
+within QGIS by navigating to the **"Project >Open..."** option in the menu bar and
 selecting the `qgreenland.qgs` file from its saved location.
 ```
 
