@@ -28,8 +28,8 @@ Greenland coastlines 2017 polygon layer.
 
 To filter out data outside of Greenland:
 1. Make sure that the group you want the filtered/extracted data to be added to is
-   selected/highlighted in the **Layers** panel.
-2. Open the Processing Toolbox and go to **Vector selection -> Extract by location**.
+   selected/highlighted in the **Layers Panel**.
+2. Open the **Processing Toolbox** and go to **Vector selection -> Extract by location**.
 3. Fill in the following parameters:
    * Extract features from = the data layer you want to filter, for example, Ice cores
    * Where the features (geometric predicate) = are within (you can also check intersect and
@@ -41,7 +41,7 @@ To filter out data outside of Greenland:
      error, try again and save it as a Shapefile (SHP) instead.
 4. Click **Run** and close the window.
 
-The filtered data will show up in the **Layers** panel within the group you had selected and likely
+The filtered data will show up in the **Layers Panel** within the group you had selected and likely
 named **Extracted (location)**. You can rename the layer by right clicking on it and selecting
 **Rename Layer**.
 
@@ -58,10 +58,10 @@ How do you add or delete points, line segments, or polygons to/in an existing ve
 your QGreenland project?
 
 To edit a vector layer:
-1. Select the layer you want to edit in the **Layers** panel (click on it so that it is
+1. Select the layer you want to edit in the **Layers Panel** (click on it so that it is
    highlighted).
 2. Toggle into editing mode by either right clicking on the vector layer you are
-   editing in the **Layers** panel and selecting **Toggle Editing** or by clicking on the
+   editing in the **Layers Panel** and selecting **Toggle Editing** or by clicking on the
    **Toggle Editing** button in the **Digitizing** toolbar.
 3. With **Editing** on, you will have access to new editing buttons in the **Digitizing**
    toolbar:
