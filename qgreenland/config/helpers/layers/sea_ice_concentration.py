@@ -3,8 +3,9 @@ import calendar
 from qgreenland.models.config.asset import HttpAsset
 
 
-END_YEAR = 2021
-CONCENTRATION_YEARS = range(2010, END_YEAR + 1)
+CONCENTRATION_START_YEAR = 2010
+MAX_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2022 + 1)
+MIN_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2021 + 1)
 CONCENTRATION_DESCRIPTION = (
     """Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
     99.9%). Values under 15% are considered to be open water."""

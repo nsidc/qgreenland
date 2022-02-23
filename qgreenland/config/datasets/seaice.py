@@ -1,5 +1,6 @@
 from qgreenland.config.helpers.layers.sea_ice_concentration import (
-    CONCENTRATION_YEARS,
+    MAX_CONCENTRATION_YEARS,
+    MIN_CONCENTRATION_YEARS,
     concentration_maximum_asset_for_year,
 )
 from qgreenland.models.config.asset import HttpAsset
@@ -25,10 +26,10 @@ seaice_index = Dataset(
                     'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff'
                     f'/09_Sep/N_{year}09_concentration_v3.0.tif'
                 )],
-            ) for year in CONCENTRATION_YEARS
+            ) for year in MIN_CONCENTRATION_YEARS
         ],
         *[
-            concentration_maximum_asset_for_year(year) for year in CONCENTRATION_YEARS
+            concentration_maximum_asset_for_year(year) for year in MAX_CONCENTRATION_YEARS
         ],
     ],
     metadata={

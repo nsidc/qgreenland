@@ -4,7 +4,7 @@ from qgreenland.config.datasets.seaice import seaice_index as dataset
 from qgreenland.config.helpers.layers.sea_ice_concentration import (
     CONCENTRATION_DESCRIPTION,
     CONCENTRATION_STYLE,
-    CONCENTRATION_YEARS,
+    MAX_CONCENTRATION_YEARS,
     conc_max_month,
 )
 from qgreenland.config.helpers.steps.compress_and_add_overviews import compress_and_add_overviews
@@ -52,4 +52,4 @@ def _layer(year) -> Layer:
     )
 
 
-layers = [_layer(year) for year in CONCENTRATION_YEARS]
+layers = [_layer(year) for year in MAX_CONCENTRATION_YEARS]
