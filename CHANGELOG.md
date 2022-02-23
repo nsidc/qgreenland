@@ -1,7 +1,13 @@
+# NEXT_VERSION
+
+- Improve documentation
+
+
 # v2.0.0beta4 (2022-02-07)
 
 - Updated layers:
   - "Earthquakes" updated to include 2021 data
+
 
 # v2.0.0beta3 (2021-12-24)
 
