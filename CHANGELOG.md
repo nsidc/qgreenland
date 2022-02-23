@@ -7,7 +7,8 @@
 
 - Updated layers:
   - "Earthquakes" updated to include 2021 data
-  - "Monthly Mean Concentration (25km)" updated to include 2021 data
+  - "Monthly Mean Concentration (25km) Feb or March (max monthly extent)" 
+    updated to include 2021 data
 
 
 # v2.0.0beta3 (2021-12-24)
