@@ -1,4 +1,4 @@
-# NEXT_VERSION
+# v2.0.0rc1 (2022-02-23)
 
 - Improve documentation
 

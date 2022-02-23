@@ -1,1 +1,1 @@
-__version__ = 'v2.0.0beta3'
+__version__ = 'v2.0.0rc1'
