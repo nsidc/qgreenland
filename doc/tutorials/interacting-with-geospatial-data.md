@@ -1,12 +1,113 @@
-# Interacting with Geospatial Data in QGreenland
+# Interacting with Geospatial Data in QGreenland Core
+
+## Spatial Data Overview
+
+There are two main basic kinds of GIS data layers: vector and raster.
+
+### Vector Data
+
+**Vector** data are composed of points, lines, and polygons and represent discrete features.
+Examples of vector data are cities (points), roads and highways (lines), and geographic
+boundaries like country borders (polygons) (Fig. 4). All of the vector layers in QGreenland are
+GeoPackage (.gpkg) files. A GeoPackage is just a platform-independent file type for storing
+geospatial data.
+
+![vector_data](/_images/vector_data.png)
+
+Fig. 4: Examples of **Vector** data layers in QGreenland Core: Points (towns and settlements), lines
+(median January sea ice extent), and polygons (country boundaries).
+
+### Vector Data Attributes
+
+All QGIS vector data layers have associated attributes, or characteristics of the discrete
+features. Attributes can be almost anything: city name, road type (highway, paved, unpaved,
+etc.), land elevation value, population density, date, etc. The attributes of a data layer can be
+viewed in tabular form by right clicking on the layer in the **Layers Panel** and selecting ‘Open
+Attribute Table’ from the menu options, or by clicking on the layer in the **Layers Panel** and
+then clicking on the Open Attribute Table button in the **Attributes Toolbar**. This opens
+up an **Attribute Table**, where the columns are the various fields, or attributes, and the rows
+are individual features. Clicking on and highlighting records in the **Attribute Table** will also
+highlight those specific points, lines, or polygons in the **Map View**. Right-click any cell to
+‘Zoom to feature’, ‘Pan to feature’, or ‘Flash feature’.
+
+### Raster Data
+
+**Raster** data are composed of grid cells or pixels, where each grid cell has its own value.
+Rasters represent continuous data, such as land elevation, surface temperature, land cover,
+etc. (Fig. 5). The resolution, which is the length of the grid cell sides of each raster dataset in
+QGreenland, is indicated in the name of the dataset, e.g.: “Ice Sheet Velocity (500 m)”. **Raster**
+layers in QGreenland are all GeoTIFF files, which are images with geographic features, such
+as geospatial metadata and overviews/tile pyramids.
+
+![raster_data](/_images/raster_data.png)
+
+Fig. 5: Example of a **Raster** data layer in QGreenland, ice sheet velocity, where
+each grid cell in the raster is 500 m x 500 m and is color-coded by a velocity
+
+## Layer Properties
+
+Right clicking on a data layer in the **Layers Panel** and selecting ‘Properties’, or simply double
+clicking on a layer in the Layers panel will bring up the **Layer Properties** dialog window,
+which contains a variety of information about a layer (Fig. 6). The information is organized
+into sections (or tabs) that can be accessed by clicking on an individual tab (e.g., Symbology)
+in the left sidebar of the window. The tabs listed in a vector **Layer Properties** dialog window
+differ slightly from those listed for a **Raster** layer. The tabs most relevant to a novice QGIS user
+and that exist for both **Vector** and **Raster** layers are:
+
+* **Information**: This section summarizes information about a layer, including its name, coordinate
+reference system, spatial extent (geographic boundaries), description (abstract), and more.
+* **Symbology**: Every QGreenland data layer has a predefined symbology, or visual representation
+in the map view. See section 5.4: Editing Layer Symbology for instructions on how to modify or
+customize a layer’s symbology.
+* **Metadata**: Metadata is essentially “data about data”. In QGIS, layer metadata is information about
+the data in the layer, including its name, description, citation, and link to the source that the data
+was retrieved from. As outlined in Licensing, Citing, and Contributing, published
+works produced using QGreenland are required to cite each dataset used in the work. Users can
+thus simply copy a layer’s citation directly from its metadata. An abbreviated version of a layer’s
+metadata can also be viewed by selecting a layer in the Layers panel and hovering your mouse
+over the layer name.
+
+**Note**: The QGreenland team has in a few instances included comments on ‘Noted Data Issues’.
+Read about ‘Noted Data Issues’ in the layer metadata. These are currently noted for the ‘Towns
+and settlements’ and the ‘Community map (crowdsourced)’ layers. Regardless, QGreenland
+makes no guarantees about the accuracy and validity of data contained in QGreenland.
+
+![layer_properties](/_images/layer_properties.png)
+
+Fig. 6: The **Layer Properties** dialog window for the QGreenland ‘Earthquakes’ data layer
+
+## Data Projections
+
+Data projections, or Coordinate Reference Systems (CRS), define the coordinate system for
+a QGIS project and data layers. The CRS for the current **Map View** is indicated on the right
+side of the QGIS status bar. For QGreenland, the current CRS should be identified as ‘EPSG:
+3413,’ which is the identifier for the NSIDC Sea Ice Polar Stereographic North on a WGS 84
+Ellipsoid CRS. Changing the CRS of the **Map View** will not change the underlying data, though QGIS will do on-the-fly reprojection of layers not in the selected CRS. It is possible to reproject a layer into a new CRS;
+however, this transforms the data and can introduce artifacts. Therefore, it is recommended
+that to reproject data, the user do so from the source data and not the data contained in the
+QGreenland package.
+
+### Scale-Dependent Rendering
+Scale-dependent rendering refers to the scale at which a particular data layer will be visible in
+the QGIS map display. This can make it easier to zoom in and out for certain data layers. The
+user can turn on scale-dependent rendering for any layer by going to the layer **‘Properties’ ->
+‘Rendering’**, checking the box for Scale Dependent Visibility, and then setting the minimum
+and maximum scale dependent visibility. For scale reference, refer to the scale indicated at
+the bottom of the QGIS interface in the **Status Bar**.
+
+### QGreenland Data Layers
+A complete list of all QGreenland data layers and their metadata, including information about
+their original data source, can be found in the layer_list.csv file included in the QGreenland
+download package.
+
 
 ## Identifying Features in Layers
 
 One of the most basic ways to interact with data in QGIS is to use the **Identify Features**
 button in the **Attributes Toolbar** to quickly view the attributes of an individual record (i.e., a
-single point, line, or polygon in a vector layer or a single cell in a raster layer). **Note**: If you do
-not see this button in any of your toolbars, then you need to toggle on the **Attributes Toolbar**.
-Either right click anywhere in the toolbar area and check the box next to **Attributes Toolbar**,
+single point, line, or polygon in a **Vector Layer** or a single cell in a **Raster Layer**). **Note**: If you do
+not see this button in any of your **Toolbars**, then you need to toggle on the **Attributes Toolbar**.
+Either right click anywhere in the **Toolbar** area and check the box next to **Attributes Toolbar**,
 or go to **View -> Toolbars** in the **Menu Bar**.
 
 To use the **Identify Features** button:
@@ -21,16 +122,17 @@ To use the **Identify Features** button:
    displayed by toggling the **Mode** and **View** options at the bottom of the **Identify Results Panel**.
 
 ![identify_results_panel](/_images/identify_results_panel.png)
+
 Fig. 7: The **Identify Results Panel** that shows results from the **Identify Features** tool.
 
 ## Measuring Distances, Areas, and Angles
 
-Another useful basic tool in the **Attributes Toolbar** is the measuring tool. The measuring
-tool is a quick and easy way to measure distances between two points or along a line, area of
+Another useful basic tool in the **Attributes Toolbar** is the **Measuring Tool**. The **Measuring Tool**
+is a quick and easy way to measure distances between two points or along a line, area of
 a polygon, or angles between geographic features or locations.
 
-To use the measuring tool:
-1. Click on the arrow to the right of the measuring tool button and choose if you
+To use the **Measuring Tool**:
+1. Click on the arrow to the right of the **Measuring Tool** button and choose if you
    want to measure a line, area, or angle. Regardless of which one you choose, a
    small window will appear.
 2. If you are measuring a line distance, first choose your desired units (e.g.
@@ -42,7 +144,7 @@ To use the measuring tool:
    segment whose length will be indicated in the **Segments** box. You can draw
    and measure multiple line segments.
 4. To clear the segments you’ve drawn, click on **New**.
-5. To measure an area instead of a line with the measuring tool, you will follow
+5. To measure an area instead of a line with the **Measuring Tool**, you will follow
    essentially the same steps for measuring a line distance, except you will click
    and map out an area on the map instead of drawing line segments.
 6. To measure the angle created by three points on the map, click on each of the
@@ -51,10 +153,10 @@ To use the measuring tool:
 
 ## Adding Text Annotations to the Map View
 
-You can add a text annotation anywhere in the map view using the text annotation tool
+You can add a text annotation anywhere in the **Map View** using the text annotation tool
 in the **Attributes Toolbar**.
 
-To use the text annotation tool:
+To use the **Text Annotation Tool**:
 1. Click on the text annotation button in the **Attributes Toolbar**.
 2. Click on the place on the map where you want the text annotation to go. A
    small white box will appear.
@@ -73,10 +175,10 @@ in the **Map View**).
 To modify a layer’s symbology:
 1. Open the **Layer Properties** dialog window for the layer you want to edit.
 2. Go to the **Symbology** section and modify the layer symbology as desired.
-   a) For a vector layer, you can choose from a built-in set of QGIS symbols, and/
+   a) For a **Vector Layer**, you can choose from a built-in set of QGIS symbols, and/
       or can change individual characteristics of the layer’s symbology such as
       symbol shape, weight, color, size, opacity, and more.
-   b) For a raster layer, you can change the color properties of the grid cells, as
+   b) For a **Raster Layer**, you can change the color properties of the grid cells, as
       well as characteristics like brightness and contrast. The opacity/transparency of
       a raster layer can be changed in the **Transparency** tab of the **Layer Properties**
       dialog window.
@@ -85,8 +187,8 @@ To modify a layer’s symbology:
 
 The **Processing Toolbox** is what makes the QGIS platform a powerful spatial data analysis tool.
 The **Toolbox** is a collection of tools and prewritten algorithms that allow the user to perform a
-wide variety of raster and vector data analyses. For example, the **Processing Toolbox** contains
-tools for identifying features in a vector layer that fulfill certain criteria, extracting selected
+wide variety of **Raster and Vector** data analyses. For example, the **Processing Toolbox** contains
+tools for identifying features in a **Vector Layer** that fulfill certain criteria, extracting selected
 features from a vector layer and saving them as a new layer, and calculating vector and raster
 layer statistics. The **Processing Toolbox** can be opened in a new panel to the right of the map
 view by clicking on the gear icon in the **Attributes Toolbar** or by going to 
@@ -122,7 +224,7 @@ Which populated regions in Greenland have more than 5000 people?
 
 There are a couple of ways to view the selected data points, populated places in Greenland
 with more than 5000 people. First, you should see the places that meet this parameter
-highlighted in the map view (make sure the Populated places layer is toggled on). You can
+highlighted in the map view (make sure the **Populated Places Layer** is toggled on). You can
 also open the Populated places **Layer Attribute Table** and select **Show Selected Features** in
 the bottom left corner. This will hide all records in the **Layer Attribute Table** except for the ones
 you selected, the locations with populations greater than 5000 people.
@@ -164,7 +266,7 @@ What is a good estimate of the Greenland ice sheet’s volume?
    greater than zero)
    -Save the Surface volume report, the output for this algorithm, in a temporary file or in a
    desired location on your computer.
-3. Click **Run** and close the Raster surface volume window.
+3. Click **Run** and close the **Raster** surface volume window.
 4. You should now see a panel underneath the **Processing Toolbox** called **Results Viewer** (Fig. 9), 
    which will direct you to the location of the results html file for
    this calculation. Open the file.
@@ -202,7 +304,7 @@ the raster calculator to subtract one layer from another. Note: There is a diffe
 3. Click **Run** and close the window.
 
 ![results_viewer](/_images/results_viewer.png)
-Fig. 9: To view the results of the raster surface volume analysis, click on the link
+Fig. 9: To view the results of the **Raster** surface volume analysis, click on the link
 next to ‘File path’ in the **Results Viewer Panel** below the **Processing Toolbox**.
 
 ![raster_calc](/_images/raster_calc.png)

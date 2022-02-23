@@ -132,4 +132,4 @@ has determined can be ignored:
 
 If you have feedback on or questions about the QGreenland data package, or want
 to contribute datasets to future QGreenland releases, please contact us at
-<qgreenland.info@gmail.com>.
+<qgreenland.info@gmail.com>. 

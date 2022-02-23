@@ -1,4 +1,4 @@
-# How to install and use QGreenland Custom
+# Install and use QGreenland Custom
 
 QGreenland Custom is a QGIS plugin for downloading a custom set of data, including data which 
 is not part of the QGreenland Core zip package. This how-to guide walks through how to install the plugin and how to use its basic functions.
@@ -6,7 +6,7 @@ is not part of the QGreenland Core zip package. This how-to guide walks through 
 ## Installing QGreenland Custom
 
 To get started with this guide, access the **Plugin** tab 
-in the top menu bar, and select **Manage and Install Plugins**. 
+in the top *Menu Bar**, and select **Manage and Install Plugins**. 
 
 ![menu_bar](/_images/menu_bar.png)
 
@@ -24,7 +24,7 @@ To use QGreenland Custom, first navigate to **Web -> QGreenland -> Configure the
 
 ## Searching for data layers
 Now that you have the plugin installed and configured, you can begin downloading and using data in QGreenland Custom.
-To access the plugin, find the QGreenland logo in the menu bar. Clicking on this icon will
+To access the plugin, find the QGreenland logo in the **Menu Bar**. Clicking on this icon will
 open the plugin. Initially, you should see a list of layer directories. 
 
 ![plugin_search_window](/_images/plugin_search_window.png)
