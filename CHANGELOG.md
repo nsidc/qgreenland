@@ -7,7 +7,7 @@
 
 - Updated layers:
   - "Earthquakes" updated to include 2021 data
-  - "Monthly Mean Concentration (25km) Feb or March (max monthly extent)" 
+  - "Sea ice / Monthly Mean Concentration (25km) / Feb or March (max monthly extent)" 
     updated to include 2021 data
 
 
