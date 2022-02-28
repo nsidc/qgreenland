@@ -1,4 +1,4 @@
-# NEXT_VERSION
+# v2.0.0rc2 (2022-02-28)
 
 - Remove UserGuide.pdf and MakingDataQGRCompatible.pdf in core zip package, 
   information in these documents is now represented in QGreenland_Documentation.pdf
