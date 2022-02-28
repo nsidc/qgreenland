@@ -167,14 +167,6 @@ class CreateQgisProjectFile(luigi.Task):
             src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'QuickStartGuide.pdf',
             dest_relative_filepath='QuickStartGuide.pdf',
         )
-        yield AncillaryFile(
-            src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'UserGuide.pdf',
-            dest_relative_filepath='UserGuide.pdf',
-        )
-        yield AncillaryFile(
-            src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'MakingDataQGRCompatible.pdf',
-            dest_relative_filepath='MakingDataQGRCompatible.pdf',
-        )
         yield AncillaryMarkdownFileToHtml(
             src_filepath=PROJECT_DIR / 'CHANGELOG.md',
             dest_relative_filepath='CHANGELOG.html',
