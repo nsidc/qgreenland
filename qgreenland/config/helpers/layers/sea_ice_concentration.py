@@ -4,7 +4,7 @@ from qgreenland.models.config.asset import HttpAsset
 
 
 CONCENTRATION_START_YEAR = 2010
-MAX_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2022 + 1)
+MAX_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2021 + 1)
 MIN_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2021 + 1)
 CONCENTRATION_DESCRIPTION = (
     """Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
