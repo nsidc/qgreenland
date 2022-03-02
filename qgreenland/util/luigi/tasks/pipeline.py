@@ -159,10 +159,6 @@ class CreateQgisProjectFile(luigi.Task):
             src_filepath=PROJECT_DIR / 'README.md',
             dest_relative_filepath='README.html',
         )
-        yield AncillaryMarkdownFileToHtml(
-            src_filepath=PROJECT_DIR / 'doc' / 'discussion' / 'contributing.md',
-            dest_relative_filepath='CONTRIBUTING.html',
-        )
         yield AncillaryFile(
             src_filepath=PROJECT_DIR / 'doc' / '_pdf' / 'QuickStartGuide.pdf',
             dest_relative_filepath='QuickStartGuide.pdf',
@@ -173,7 +169,7 @@ class CreateQgisProjectFile(luigi.Task):
         )
         yield AncillarySphinxPdfFile(
             src_filepath=PROJECT_DIR / 'doc' / 'Makefile',
-            dest_relative_filepath='QGreenland_Documentation.pdf',
+            dest_relative_filepath='UserGuide.pdf',
         )
         yield PackageLayerList()
 
