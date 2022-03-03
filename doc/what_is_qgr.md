@@ -58,8 +58,11 @@ You will find the following files in the v2.0.0 QGreenland Core data package:
 
 
 Please note that QGreenland Core v1.0.0 is the first stable public release version from this project.
-QGreenland Core version 1.0.0 will not be the final version of the QGreenland Core download package.
-There will be a version 2.0.0 released some time in 2022 that may include new and updated
-layers. Development versions along the way will continue to be available via the 
+The QGreenland Core v2.0.0 download package was released in March 2022.
+Development versions along the way will continue to be available via the 
 [website](http://qgreenland.org), with code fully documented on 
 [GitHub](https://github.com/nsidc/qgreenland).
+
+Although the v2.0.0 download package contains a full User Guide, updates and additions are constantly
+being made to our documentation as we continue to develop QGreenland.
+The most recent version of QGreenland documentation will always be available here on Read the Docs. 

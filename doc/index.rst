@@ -50,8 +50,8 @@ QGreenland Documentation
     :maxdepth: 1
     :hidden:
 
-    contributor-how-to/index
     user-how-to/index
+    contributor-how-to/index
 
 
 .. raw:: latex
@@ -67,6 +67,8 @@ QGreenland Documentation
     :hidden:
 
     reference/glossary/index
+    reference/data-compatibility-guide.md
+    reference/online-resources.md
     reference/architecture/index
     reference/api/index
     reference/cli/index

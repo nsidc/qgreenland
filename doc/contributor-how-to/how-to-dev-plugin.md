@@ -24,11 +24,6 @@ in the top **Menu Bar**, and select **Manage and Install Plugins**.
 
 ![menu_bar](/_images/menu_bar.png)
 
-This will open the plugin pop-up window. First, click the **Settings** tab and select the check box 
-labeled **Show also experimental plugins** so that QGreenland will be included. 
-
-![plugin_settings](/_images/plugin_settings.png)
-
 Navigate to the **Installed** tab in the **Plugin** window, and check the box for QGreenland Custom. 
 
 Instead of restarting QGIS after installing QGreenland Custom, 
