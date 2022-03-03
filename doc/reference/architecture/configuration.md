@@ -1,11 +1,5 @@
 # Configuration
 
-```{admonition} TODO
-
-See if we can generate links to autodoc instead of manually documenting
-configuration concepts.
-```
-
 
 The QGreenland configuration represents the processing that needs to be done to
 convert source `datasets` in to final outputs ready for use by QGreenland. The
@@ -28,11 +22,6 @@ qgreenland/models/config
 
 
 ## Project config
-
-```{admonition} TODO
-
-Fix links to source code. Consider using this? https://www.sphinx-doc.org/en/master/usage/extensions/linkcode.html
-```
 
 
 {github}`project.py <qgreenland/config/project.py>` defines the project `crs` (EPSG) and
