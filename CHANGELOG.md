@@ -1,3 +1,8 @@
+# NEXT_VERSION
+
+- Update documentation for v2.0.0
+
+
 # v2.0.0rc2 (2022-02-28)
 
 - Remove UserGuide.pdf and MakingDataQGRCompatible.pdf in core zip package, 
