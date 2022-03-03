@@ -63,6 +63,6 @@ Development versions along the way will continue to be available via the
 [website](http://qgreenland.org), with code fully documented on 
 [GitHub](https://github.com/nsidc/qgreenland).
 
-Although the v2.0.0 download package cobntains the full User Guide, updates and additions are constantly
+Although the v2.0.0 download package contains a full User Guide, updates and additions are constantly
 being made to our documentation as we continue to develop QGreenland.
 The most recent version of QGreenland documentation will always be available here on Read the Docs. 
