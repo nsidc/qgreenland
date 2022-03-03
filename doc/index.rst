@@ -67,6 +67,8 @@ QGreenland Documentation
     :hidden:
 
     reference/glossary/index
+    reference/data-compatibility-guide.md
+    reference/online-resources.md
     reference/architecture/index
     reference/api/index
     reference/cli/index
