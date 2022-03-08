@@ -4,12 +4,11 @@ from .util import print_and_run, PROJECT_DIR
 
 
 @task
-def build(ctx):
+def build(ctx, pdf=False):
     docs_dir = PROJECT_DIR / 'doc'
+    command = f'make html{" && make latexpdf" if pdf else ""}'
     print_and_run(
-        f'cd {docs_dir} &&'
-        ' make clean &&'
-        ' make html',
+        f'cd {docs_dir} && make clean && {command}',
         pty=True,
     )
 
