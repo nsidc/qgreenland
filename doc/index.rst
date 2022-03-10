@@ -59,20 +59,30 @@ QGreenland Documentation
     \part{Reference}
 
 
-.. toctree::
-    :name: Reference
-    :caption: Reference
-    :maxdepth: 1
-    :glob:
-    :hidden:
+.. only:: latex
 
-    reference/glossary/index
-    reference/data-compatibility-guide.md
-    reference/online-resources.md
-    reference/architecture/index
-    reference/api/index
-    reference/cli/index
-    reference/*
+  .. toctree::
+      :name: User_Reference
+      :caption: User Reference
+      :maxdepth: 1
+      :hidden:
+  
+      reference/glossary/index
+      reference/data-compatibility-guide.md
+      reference/online-resources.md
+
+.. only:: not latex
+
+  .. toctree::
+      :name: Contributor_Reference
+      :caption: Contributor Reference
+      :maxdepth: 1
+      :hidden:
+  
+      reference/architecture/index
+      reference/api/index
+      reference/cli/index
+      reference/style-guide.md
 
 
 .. raw:: latex
