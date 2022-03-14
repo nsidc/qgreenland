@@ -59,17 +59,16 @@ QGreenland Documentation
     \part{Reference}
 
 
-.. only:: latex
+.. toctree::
+    :name: User_Reference
+    :caption: User Reference
+    :maxdepth: 1
+    :hidden:
 
-  .. toctree::
-      :name: User_Reference
-      :caption: User Reference
-      :maxdepth: 1
-      :hidden:
-  
-      reference/glossary/index
-      reference/data-compatibility-guide.md
-      reference/online-resources.md
+    reference/glossary/index
+    reference/data-compatibility-guide.md
+    reference/online-resources.md
+
 
 .. only:: not latex
 
