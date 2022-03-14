@@ -12954,7 +12954,7 @@
                             "EPSG:3413",
                             "-r",
                             "bilinear",
-                            "{input_dir}/geothermal_heat_flow_map_55km.nc",
+                            "{input_dir}/geothermal_heat_flow_map_55km_without_NGRIP.nc",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"

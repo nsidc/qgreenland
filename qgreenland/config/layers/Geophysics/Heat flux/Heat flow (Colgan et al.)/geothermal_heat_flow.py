@@ -25,7 +25,7 @@ geothermal_heat_flow = Layer(
     ),
     steps=[
         *warp_and_cut(
-            input_file='{input_dir}/geothermal_heat_flow_map_55km.nc',
+            input_file='{input_dir}/geothermal_heat_flow_map_55km_without_NGRIP.nc',
             output_file='{output_dir}/geothermal_heat_flow_map_55km.tif',
             cut_file=project.boundaries['data'].filepath,
         ),
