@@ -1,3 +1,85 @@
+# v2.0.0 (2022-03-17)
+
+- New layers:
+  - "Geophysics/World Digital Magnetic Anomaly Map" available in QGreenland
+    Custom (QGIS plugin)
+  - "Geophysics/Albedo":
+    - July 2018 albedo (1km)
+    - July 2019 albedo (1km)
+  - "Geophysics/Heat flux/Flow from multiple observations (55km)"
+  - "Geophysics/Heat flux/Flow measurement locations"
+  - "Oceanography/Bathymetry/Depth contours"
+  - "Geology/Geological map/Ice thickness contours"
+  - "Sea ice/Monthly mean concentration (25 km)/September (min monthly
+    extent)/September 2021"
+  - "Sea ice/Monthly mean concentration (25 km)/Feb or March (max monthly
+    extent)/March 2021"  
+- Updated layers:
+  - "Earthquakes" updated to include 2021 data
+  - "Sea ice / Monthly Mean Concentration (25km) / Feb or March (max monthly extent)" 
+    updated to include 2021 data
+  - "Reference/Borders/Global coastlines" updated to use GSHHG dataset instead
+    of Natural Earth.
+  - "Reference/Latitude lines": Resolve issue with clipping of latitude
+    reference layers
+  - "Basemaps/Background (500m)": Use JPEG compression to significantly reduce
+    file size
+  - Removed "Monthly sea ice extent (1978 - present)" (time-series,
+    online-only). In its place, documentation will be produced on how to manually
+    add time-controlled layers.
+  - Convert RACMO promice mask layers to `Byte` data type.
+  - Update Bedmachine dataset metadata to reflect new v4 data.
+  - Convert "Likely basal thermal state June 23 1993 - April 26 2013 (5km)"
+    layer to `Int16` data type.
+  - "Regional climate models/RACMO model output/Runoff 1958-2019 (1km)":
+    change colormap, make `0` values transarent.
+  - "Reference/Timezones": add labels.
+  - "Reference/Borders/Greenland coastlines": update style to remove green
+    tint.
+  - "Geology/Earthquakes M above 2.5 1900-2020": show all earthquakes in
+    background boundary instead of subsetting to region around Greenland.
+  - "Reference/Longitude lines": display positive degrees West instead of
+    negative.
+  - "Hydrology/Inventory of marginal lakes"
+  - "Monthly sea ice extent (1978 - present)" (time-series, online-only)
+  - "Glaciology/Glacier terminus positions 2000-2021" layers to use
+    NSIDC-0642 V2 (released Oct. 2021). Add layers for 2017-2021 winter seasons.
+- Moved layers:
+  - "Geophysics/Geothermal heat flux (5km)" layer to "Geophysics/Heat
+    flux/Flux from ice cores (Greve, R.) (5km)".
+  - "Oceanography/Bathymetric chart of the Arctic Ocean (400m)" layer to
+    "Oceanography/Bathymetry/Depth (400m)"
+  - "Human activity/Research stations" group to "Human activity/Research
+    sites"
+  - REMOVED from QGreenland zip package; available via QGreenland plugin:
+    - "Glaciology/Ice sheet velocity/ITS_LIVE"
+    - "Terrain models/Arctic DEM"
+- Remove online layers from the `QGreenland Custom` QGIS plugin manifest. Once
+  support for online layers is added to the plugin, online layers will be
+  re-added to the manifest file.
+- Add metadata.txt with layer information to layer data directory. This allows
+  users who are not using the QGreenland project to access e.g., the layer's
+  abstract and citation information.
+- Upgrade `GDAL` version used for running layer pipelines to v3.4.0
+- Update `.txt` documentation in the package (e.g. `README.txt`) to rich HTML
+  documentation.
+- Remove most WMM layers from core package. Retain dip poles, main field
+  declination, and blackout zones layers.
+- Improved raster compression.
+- Add scalebar to map viewport in lower-right corner.
+- Minimum supported version of QGIS is now `v3.16`.
+  - New Time Controller allows visualization of time-series layers.
+- Overhaul YAML configuration to Python configuration.
+  - All processing steps are now expressed in configuration.
+- Add provenance information to QGIS Layer Properties "History" tab.
+- Update and improve documentation for v2.0.0
+- Remove UserGuide.pdf and MakingDataQGRCompatible.pdf in core zip package, 
+  information in these documents is now represented in UserGuide.pdf
+- Switch back to `.qgs` project file from `.qgz`; There is [an
+  issue](https://github.com/qgis/QGIS/issues/42033) conveniently opening `.qgz`
+  project files in OSX for some versions of QGIS `3.16.x`.
+
+
 # v2.0.0rc6 (2022-03-17)
 
 - Update User Guide with manual edits
