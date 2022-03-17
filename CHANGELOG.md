@@ -1,3 +1,6 @@
+# NEXT_VERSION
+
+
 # v2.0.0rc3 (2022-03-03)
 
 - Update documentation for v2.0.0
