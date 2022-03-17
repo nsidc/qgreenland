@@ -1,4 +1,6 @@
-# NEXT_VERSION
+# v2.0.0rc6 (2022-03-17)
+
+- Update User Guide with manual edits
 
 
 # v2.0.0rc3 (2022-03-03)
