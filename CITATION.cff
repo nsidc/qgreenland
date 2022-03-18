@@ -7,14 +7,14 @@ authors:
 - family-names: "Fisher"
   given-names: "Matt"
   orcid: "https://orcid.org/0000-0003-3260-5445"
-- family-names: "Harden"
-  given-names: "Lynne"
-  orcid: "https://orcid.org/0000-0002-0505-6762"
+- family-names: "Simonoko"
+  given-names: "Hope"
+  orcid: "https://orcid.org/0000-0002-8013-226X"
 - family-names: "Stafford"
   given-names: "Trey"
   orcid: "https://orcid.org/0000-0002-5510-0055"
 title: "QGreenland"
 version: 2.0.0
 doi: 10.5281/zenodo.4558266
-date-released: 2021-02-23
+date-released: 2021-03-17
 url: "https://github.com/nsidc/qgreenland"
