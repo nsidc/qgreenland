@@ -1,4 +1,4 @@
-# Adding the Arctic DEM (100m) via the QGreenland Custom Plugin
+# Downloading the Arctic DEM (100m) layer via the QGreenland Custom Plugin
 
 As of version 2.0.0 of QGreenland Core, the Arctic DEM (100m) data layer has been removed from the 
 QGreenland Core base package due to filesize. Now, this layer is available via the QGreenland Custom
