@@ -2,18 +2,19 @@
 
 As of version 2.0.0 of QGreenland Core, the Arctic DEM (100m) data layer has been removed from the 
 QGreenland Core base package due to filesize. Now, this layer is available via the QGreenland Custom
-QGIS plugin. To learn about how to install and configure the plugin, visit the QGreenland Custom documentation
+QGIS plugin. To learn about how to install and configure the plugin, visit the 
+[QGreenland Custom documentation](https://qgreenland-plugin.readthedocs.io/en/latest/)
 on Read the Docs. This how-to will show you how to add the Arctic DEM (100m) layer to your QGIS project
 using the QGreenland Custom plugin.
 
-First open a project in QGIS and open the plugin window via the QGIS **Menu Bar**. 
+First, open a project in QGIS and open the plugin window via the QGIS **Menu Bar**. 
 You will see a set of directories of data layers underneath a search bar. 
 
 ![plugin_search](/_images/plugin_search.jpg)
 
 To find the Arctic DEM, search 'DEM' in the search bar. Once located, click the checkbox next to the layer name. 
 Next, you will need to choose a download location for this layer. Select a file location using the three-dot icon,
-and when you are finished, click the **Download** button. Once the download is complete, you will see a blue 
+and when you are finished, click the Download button. Once the download is complete, you will see a blue 
 progress bar showing the layer filesize. Click Next. 
 
 ![plugin_download](/_images/plugin_download.jpg)
