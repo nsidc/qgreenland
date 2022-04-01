@@ -1,4 +1,4 @@
-# Downloading the Arctic DEM (100m) layer via the QGreenland Custom Plugin
+# Downloading Arctic DEM (100m) via the QGreenland Custom Plugin
 
 As of version 2.0.0 of QGreenland Core, the Arctic DEM (100m) data layer has been removed from the 
 QGreenland Core base package due to filesize. Now, this layer is available via the QGreenland Custom
@@ -9,7 +9,7 @@ using the QGreenland Custom plugin.
 
 ```{note}
 The Polar Geospatial Center also provides a custom Greenland 32m resolution Arctic DEM for added detail.
-To dowload this package, visit qgreenland.org/download and scroll to the Additional Data for QGreenland section.
+To dowload this package, visit [qgreenland.org/download] and scroll to the Additional Data for QGreenland section.
 ```
 
 First, open a project in QGIS and open the plugin window via the QGIS **Menu Bar**. 
