@@ -7,6 +7,10 @@ QGIS plugin. To learn about how to install and configure the plugin, visit the
 on Read the Docs. This how-to will show you how to add the Arctic DEM (100m) layer to your QGIS project
 using the QGreenland Custom plugin.
 
+```{note}
+The Polar Geospatial Center also provides a custom Greenland 32-m resolution ArcticDEM for added detail.
+To dowload this package, visit qgreenland.org/download and scroll to the Additional Data for QGreenland section.
+
 First, open a project in QGIS and open the plugin window via the QGIS **Menu Bar**. 
 You will see a set of directories of data layers underneath a search bar. 
 
@@ -29,3 +33,5 @@ Add to Project, then click Close.
 Now you have successfully used the QGreenland Custom plugin to download and add the Arctic DEM (100m) data layer to 
 your QGIS project. Over in the QGIS **Layers Panel**, make sure the Arctic DEM (100m) layer is toggled on in order 
 to see the layer in the **Map View**.
+
+![arctic_dem](/_images/arctic_dem.jpg)
