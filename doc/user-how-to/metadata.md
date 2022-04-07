@@ -44,3 +44,6 @@ up that directory. In the layer directory, you should see 2 text files, 1 **prov
 information on how the data was process, and 1 **metadata.txt**. Open up **metadata.txt**.
 
 ![layer_dir.png](/_images/layer_dir.png)
+
+You have just learned 2 ways in which you can locate and access QGreenland layer metadata. For more
+information on layer properties and metadata, read our **Interacting with Geospatial Data in QGreenland Core** [documentation](https://qgreenland.readthedocs.io/en/latest/tutorials/interacting-with-geospatial-data.html).
