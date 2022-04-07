@@ -35,7 +35,7 @@ First you will need download the layer of interest if you do not already have it
 Access the plugin via the **Web** tab in the top **Menu Bar**, and select the **Manage Data** option.
 This will open a window showing any layers you have downloaded via the plugin. 
 
-![add_to_project_plugin.png](/_images/add_to_project_plugin.png)
+![add_to_project_plugin.jpg](/_images/add_to_project_plugin.jpg)
 
 Click the **Explore files** button at the bottom left. This will open up a window to the download location
 which you selected when downloading data via the plugin. If you have only downloaded 1 layer via the plugin,
