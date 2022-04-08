@@ -13,16 +13,15 @@ downloaded the QGreenland Core base package. You can download QGreenland Core
 
 If you have the QGreenland Core base package downloaded, you can easily locate
 and view layer metadata within QGIS. First, open the **qgreenland.qgs** file that was included
-in the QGreenland Core download package. Next, locate your layer of interest in **Layer Panel**.
+in the QGreenland Core download package. Next, locate your layer of interest in the **Layer Panel**.
 The **Layer Panel** is a panel on the left side of the **Map View** containing a list of layers 
 that are in your QGIS project.
 
 ![layer_panel_2.png](/_images/layer_panel_2.png)
 
-Then, right click on the layer and select the **Properties** option. This will open a window.
+Right click on the layer and select the **Properties** option. This will open a window.
 Next, find the metadata tab on the left side panel. This will show any available information
-that is associate with the data layer, including but not limited to title, abstract, description,
-etc.
+that is associate with the data layer, including but not limited to title and abstract.
 
 ![metadata.png](/_images/metadata.png)
 
