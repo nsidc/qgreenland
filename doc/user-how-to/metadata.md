@@ -41,7 +41,7 @@ Click the **Explore files** button at the bottom left. This will open up a windo
 which you selected when downloading data via the plugin. If you have only downloaded 1 layer via the plugin,
 you will only see 1 file directory here, otherwise, scroll through to find your layer of interest and open
 up that directory. In the layer directory, you should see 2 text files, 1 **provenance.txt**, which includes
-information on how the data was process, and 1 **metadata.txt**. Open up **metadata.txt**.
+information on how the data is processed, and 1 **metadata.txt**. Open up **metadata.txt**.
 
 ![layer_dir.png](/_images/layer_dir.png)
 
