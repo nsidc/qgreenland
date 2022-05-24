@@ -36,6 +36,7 @@ QGreenland Documentation
     :hidden:
 
     tutorials/get-started.md
+    tutorials/video-series-overview.md
     tutorials/*
 
 

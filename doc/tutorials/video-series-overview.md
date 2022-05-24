@@ -1,4 +1,4 @@
-# QGreenland Beginner’s Tutorial Video Series Overview:
+# Beginner Video Series:
 
 Welcome to the QGreenland Beginner’s Tutorial Series. In this series, you will become familiar with QGIS, download and browse the QGreenland Core data package, and be introduced to the processing toolbox for basic geospatial data analysis.
 
@@ -6,14 +6,14 @@ This tutorial requires that QGIS is installed on your computer. Go to [qgis.org]
 
 You can download the QGreenland Core data package at [https://qgreenland.org/download](https://qgreenland.org/download). Go to [Getting started with QGreenland Core](https://qgreenland.readthedocs.io/en/latest/tutorials/get-started.html) for a tutorial and more information.
 
-## The tutorial series contains 7 sessions. The goals of each session are as follows:
+The tutorial series contains 7 sessions. The goals of each session are as follows:
 
-### Session 1: Introduction to QGreenland
+## Session 1: Introduction to QGreenland
 - Understand what geospatial data is
 
-Link to Youtube video: [Session 1](https://www.youtube.com/watch?v=gD0vkP5JUmA&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=1)
+Link to video: [Session 1](https://www.youtube.com/watch?v=gD0vkP5JUmA&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=1)
 
-### Session 2: Introduction to QGIS and QGreenland Core Package
+## Session 2: Introduction to QGIS and QGreenland Core Package
 
 - How to download QGIS and QGreenland Core package
 - Obtain a general understanding of what GIS and QGreenland are
@@ -21,7 +21,7 @@ Link to Youtube video: [Session 1](https://www.youtube.com/watch?v=gD0vkP5JUmA&l
 
 Link to video: [Session 2](https://www.youtube.com/watch?v=u8exrxhwme4&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=2)
 
-### Session 3: Navigating the Core package
+## Session 3: Navigating the Core package
 
 - Navigate the QGIS interface
 - Toggle panels on and off
@@ -29,7 +29,7 @@ Link to video: [Session 2](https://www.youtube.com/watch?v=u8exrxhwme4&list=PLSR
 
 Link to video: [Session 3](https://www.youtube.com/watch?v=WhboP5u5HqE&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=3)
 
-### Session 4: Layers and Properties
+## Session 4: Layers and Properties
 
 - Access properties, attributes, and metadata of layers
 - Know the difference between vector and raster layers
@@ -38,7 +38,7 @@ Link to video: [Session 3](https://www.youtube.com/watch?v=WhboP5u5HqE&list=PLSR
 
 Link to video: [Session 4](https://www.youtube.com/watch?v=hAMw-_dFWng&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=4)
 
-### Session 5: Processing Toolbox and Data Analysis
+## Session 5: Processing Toolbox and Data Analysis
 
 - Locate and open the processing toolbox
 - Select by attribute in a vector layer
@@ -47,7 +47,7 @@ Link to video: [Session 4](https://www.youtube.com/watch?v=hAMw-_dFWng&list=PLSR
 
 Link to video: [Session 5](https://www.youtube.com/watch?v=znKeiV3-Amo&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=5)
 
-### Session 6: Editing Existing and New Layers
+## Session 6: Editing Existing and New Layers
 
 - Edit existing layers in the QGreenland Core Package
 - Create a new Vector layer
@@ -55,7 +55,7 @@ Link to video: [Session 5](https://www.youtube.com/watch?v=znKeiV3-Amo&list=PLSR
 
 Link to video: [Session 6](https://www.youtube.com/watch?v=98nF6YJAnns&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=6)
 
-### Session 7: Preparing Map for Export and Publication
+## Session 7: Preparing Map for Export and Publication
 
 - Export a QGreenland Map for publication
 
