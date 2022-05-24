@@ -4,7 +4,7 @@ Welcome to the QGreenland Beginner’s Tutorial Series. In this series, you will
 
 This tutorial requires that QGIS is installed on your computer. Go to [qgis.org](https://www.qgis.org/) and download the free QGIS software. QGIS version 3.16 is the oldest version supported by QGreenland.
 
-You can download the QGreenland Core data package at [https://qgreenland.org/download](https://qgreenland.org/download). Go to [Getting started with QGreenland Core](https://qgreenland.readthedocs.io/en/latest/tutorials/get-started.html) for a tutorial and more information.
+You can download the QGreenland Core data package at [https://qgreenland.org/download](https://qgreenland.org/download). Go to [Get started with QGreenland](https://qgreenland.readthedocs.io/en/latest/tutorials/get-started.html) for a tutorial and more information.
 
 The tutorial series contains 7 sessions. The goals of each session are as follows:
 
