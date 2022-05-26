@@ -1,4 +1,4 @@
-# Beginner Video Series:
+# Beginner Video Series
 
 Welcome to the QGreenland Beginner’s Tutorial Series. In this series, you will become familiar with QGIS, download and browse the QGreenland Core data package, and be introduced to the processing toolbox for basic geospatial data analysis.
 
