@@ -6,86 +6,44 @@ This tutorial requires that QGIS is installed on your computer. Go to [qgis.org]
 
 You can download the QGreenland Core data package at [https://qgreenland.org/download](https://qgreenland.org/download). Go to [Get started with QGreenland](https://qgreenland.readthedocs.io/en/latest/tutorials/get-started.html) for a tutorial and more information.
 
-The tutorial series contains 7 sessions. The goals of each session are as follows:
+The tutorial series contains 7 sessions. Click on a session's title to watch the tutorial videos. The goals of each session are as follows:
 
-## Session 1: Introduction to QGreenland
+## [Session 1: Introduction to QGreenland](https://www.youtube.com/watch?v=gD0vkP5JUmA&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=1)
 
 - Understand what geospatial data is
 
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/gD0vkP5JUmA" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-
-## Session 2: Introduction to QGIS and QGreenland Core Package
+## [Session 2: Introduction to QGIS and QGreenland Core Package](https://www.youtube.com/watch?v=u8exrxhwme4&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=2)
 
 - How to download QGIS and QGreenland Core package
 - Obtain a general understanding of what GIS and QGreenland are
 - Explore the QGreenland Core package folders
 
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/u8exrxhwme4" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-
-## Session 3: Navigating the Core package
+## [Session 3: Navigating the Core package](https://www.youtube.com/watch?v=WhboP5u5HqE&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=3)
 
 - Navigate the QGIS interface
 - Toggle panels on and off
 - Turn toolbars on and off
 
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/WhboP5u5HqE" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-
-## Session 4: Layers and Properties
+## [Session 4: Layers and Properties](https://www.youtube.com/watch?v=hAMw-_dFWng&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=4)
 
 - Access properties, attributes, and metadata of layers
 - Know the difference between vector and raster layers
 - Identify different layer types in Layers Panel
 - Change display or symbology of layers
 
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/hAMw-_dFWng" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-
-## Session 5: Processing Toolbox and Data Analysis
+## [Session 5: Processing Toolbox and Data Analysis](https://www.youtube.com/watch?v=znKeiV3-Amo&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=5)
 
 - Locate and open the processing toolbox
 - Select by attribute in a vector layer
 - Run basic statistics on a vector attribute field including sum, mean, and range
 - Calculate the surface volume area of a raster layer
 
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/znKeiV3-Amo" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-
-## Session 6: Editing Existing and New Layers
+## [Session 6: Editing Existing and New Layers](https://www.youtube.com/watch?v=98nF6YJAnns&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=6)
 
 - Edit existing layers in the QGreenland Core Package
 - Create a new Vector layer
 - Manage layer locations and removal of layers
 
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/98nF6YJAnns" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-
-## Session 7: Preparing Map for Export and Publication
+## [Session 7: Preparing Map for Export and Publication](https://www.youtube.com/watch?v=6YG_Jc7HcOo&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=7)
 
 - Export a QGreenland Map for publication
-
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/6YG_Jc7HcOo" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
