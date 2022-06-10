@@ -4,7 +4,7 @@ While QGreenland provides a curated base package of data on a variety of topics,
 the options for adding additional data are nearly unlimited. We offer different
 guidelines for data compatibility depending on what your goals are:
 
-## Guidelines for publishing previously unpublished data so it is compatible with QGreenland
+## Publishing previously unpublished data so it is compatible with QGreenland
 
 To ensure that your own original research datasets will be easy to work with in
 QGreenland, either in your own individual QGreenland project or as an addition
@@ -28,7 +28,7 @@ to the public QGreenland data package, please note the following:
      used for producing the data (e.g., scientific paper, document that
      describes the algorithm/data collection procedures used, etc.).
 
-# Guidelines for contributing datasets to QGreenland via GitHub for inclusion in future releases
+## Contributing datasets to QGreenland via GitHub for inclusion in future releases
 
 Follow the instructions found in our [contributing
 guidelines](https://qgreenland.readthedocs.io/en/latest/discussion/contributing.html). The
@@ -59,11 +59,11 @@ language](https://en.wikipedia.org/wiki/YAML), which is simple to learn.
      automatically format this information and add it to the correct interfaces
      (metadata tab) in QGIS.
 
-##  Guidelines for adding datasets to your QGreenland project for personal use only
+##  Adding datasets to your QGreenland project for personal use only
 
    * Refer to the QGreenland User Guide Section 6: Adding New Datasets to
      QGreenland for instructions on how to add new data layers to your
-     QGreenland project (go to https:// qgreenland.org/learn-and-teach to
+     QGreenland project (go to https://qgreenland.org/learn-and-teach to
      download the User Guide directly or locate it in the QGreenland download
      package).
 
