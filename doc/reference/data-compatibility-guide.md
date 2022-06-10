@@ -41,11 +41,9 @@ layer, and when their changes are ready, submit a [Pull
 Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
 to contribute valuable changes back to the QGreenland project.
 
-We strive to support extensive customization of the QGreenland processing
-pipelines without any coding knowledge. As of QGreenland v2.0.0, we support
-editing of dataset metadata, QGIS styles, and various processing parameters
-(such as X and Y resolution) via configuration in the [YAML configuration
-language](https://en.wikipedia.org/wiki/YAML), which is simple to learn.
+As of QGreenland v2.0.0, we support editing of dataset metadata, QGIS styles,
+and data processing steps via simple Python-based configuration that is easy to
+learn.
 
    * Ensure that all outputs of QGreenland processing pipelines are in EPSG:3413
      coordinate reference system.
