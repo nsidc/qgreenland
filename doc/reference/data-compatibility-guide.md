@@ -43,7 +43,8 @@ to contribute valuable changes back to the QGreenland project.
 
 As of QGreenland v2.0.0, we support editing of dataset metadata, QGIS styles,
 and data processing steps via simple Python-based configuration that is easy to
-learn.
+learn. See the {doc}`/reference/architecture/configuration` reference page for
+more information.
 
    * Ensure that all outputs of QGreenland processing pipelines are in EPSG:3413
      coordinate reference system.
