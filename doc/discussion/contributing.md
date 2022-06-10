@@ -2,7 +2,7 @@
 
 This project is currently undergoing rapid development, so expect change in any
 release except releases labeled as "stable". Stable releases can be found at
-[https://qgreenland.org/explore](https://qgreenland.org/explore)!
+[https://qgreenland.org/download](https://qgreenland.org/download)!
 
 
 ## The processing pipeline
