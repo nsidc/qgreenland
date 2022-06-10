@@ -30,14 +30,13 @@ to the public QGreenland data package, please note the following:
 
 ## Contributing datasets to QGreenland via GitHub for inclusion in future releases
 
-Follow the instructions found in our [contributing
-guidelines](https://qgreenland.readthedocs.io/en/latest/discussion/contributing.html). The
-QGreenland source code defines “processing pipelines”, which, when executed on a
-server or a user’s computer, fetch data from its original source location,
-transform it (reproject, reformat, subset, resample, etc.) as needed, and
-finally compile these data into a zipped QGreenland QGIS project. Contributors
-may customize, re-use, or add to our processing pipelines to support their new
-layer, and when their changes are ready, submit a [Pull
+Follow the instructions found in our {doc}`/discussion/contributing`
+guidelines. The QGreenland source code defines “processing pipelines”, which,
+when executed on a server or a user’s computer, fetch data from its original
+source location, transform it (reproject, reformat, subset, resample, etc.) as
+needed, and finally compile these data into a zipped QGreenland QGIS
+project. Contributors may customize, re-use, or add to our processing pipelines
+to support their new layer, and when their changes are ready, submit a [Pull
 Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
 to contribute valuable changes back to the QGreenland project.
 
@@ -62,8 +61,9 @@ more information.
 
    * Refer to the QGreenland User Guide Section 6: Adding New Datasets to
      QGreenland for instructions on how to add new data layers to your
-     QGreenland project (go to https://qgreenland.org/learn-and-teach to
-     download the User Guide directly or locate it in the QGreenland download
+     QGreenland project (go to
+     [https://qgreenland.org/learn-and-teach](https://qgreenland.org/learn-and-teach)
+     to download the User Guide directly or locate it in the QGreenland download
      package).
 
    * Note that the QGreenland data package is in the EPSG:3413 coordinate

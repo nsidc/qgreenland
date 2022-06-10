@@ -36,7 +36,7 @@ You can contribute to this project even if you don't have write access by
 forking, making your change, making all CI checks pass, then opening a Pull
 Request. Learn more:
 
-https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork
+[https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork)
 
 
 ### How-tos
