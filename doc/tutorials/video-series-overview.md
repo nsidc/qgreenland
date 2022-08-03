@@ -38,6 +38,13 @@ The tutorial series contains 7 sessions. Click on a session's title to watch the
 - Run basic statistics on a vector attribute field including sum, mean, and range
 - Calculate the surface volume area of a raster layer
 
+```{note}
+In our example, ‘select by attribute’ for a population greater than 5000 would only work on an integer field. In v2.0,  the
+population size field is a text string and you will first need to use the field calculator to convert the population field into an integer. To do so:
+1. Open up the attribute table, and click the ‘Open field calculator’ icon.
+![open_field_calculator](/_images/open_field_calculator.png)
+```
+
 ## [Session 6: Editing Existing and New Layers](https://www.youtube.com/watch?v=98nF6YJAnns&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=6)
 
 - Edit existing layers in the QGreenland Core Package
