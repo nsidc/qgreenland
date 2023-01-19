@@ -5,7 +5,7 @@ channels:
 dependencies:
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=2_gnu
-  - alabaster=0.7.12=py_0
+  - alabaster=0.7.13=pyhd8ed1ab_0
   - alsa-lib=1.2.3.2=h166bdaf_0
   - anytree=2.8.0=pyh9f0ad1d_0
   - asttokens=2.2.1=pyhd8ed1ab_0
@@ -38,7 +38,7 @@ dependencies:
   - docutils=0.17.1=py39hf3d152e_3
   - et_xmlfile=1.0.1=py_1001
   - executing=1.2.0=pyhd8ed1ab_0
-  - exiv2=0.27.5=h848de5d_0
+  - exiv2=0.27.6=hb9a316c_0
   - expat=2.5.0=h27087fc_0
   - fiona=1.8.18=py39h3573629_0
   - flake8=3.8.4=py_0
@@ -52,7 +52,7 @@ dependencies:
   - freetype=2.12.1=hca18f0e_1
   - freexl=1.0.6=h166bdaf_1
   - funcy=1.17=pyhd8ed1ab_0
-  - future=0.18.2=pyhd8ed1ab_6
+  - future=0.18.3=pyhd8ed1ab_0
   - gdal=3.1.4=py39h3f36f43_3
   - geos=3.8.1=he1b5a44_0
   - geotiff=1.6.0=h5d11630_3
@@ -131,13 +131,13 @@ dependencies:
   - lz4-c=1.9.3=h9c3ff4c_1
   - markdown=3.3.7=pyhd8ed1ab_0
   - markdown-it-py=1.1.0=pyhd8ed1ab_0
-  - markupsafe=2.1.1=py39hb9d737c_2
+  - markupsafe=2.1.2=py39h72bdee0_0
   - matplotlib-inline=0.1.6=pyhd8ed1ab_0
   - mccabe=0.6.1=py_1
   - mdit-py-plugins=0.2.8=pyhd8ed1ab_0
   - mock=5.0.1=pyhd8ed1ab_0
   - munch=2.5.0=py_0
-  - mypy=0.991=py39hb9d737c_0
+  - mypy=0.990=py39hb9d737c_3
   - mypy_extensions=0.4.3=py39hf3d152e_6
   - mysql-common=8.0.25=ha770c72_0
   - mysql-libs=8.0.25=h935591d_0
@@ -153,7 +153,7 @@ dependencies:
   - openssl=1.1.1s=h0b41bf4_1
   - owslib=0.27.2=pyhd8ed1ab_1
   - packaging=23.0=pyhd8ed1ab_0
-  - pandas=1.5.2=py39h2ad29b5_2
+  - pandas=1.5.3=py39h2ad29b5_0
   - parso=0.8.3=pyhd8ed1ab_0
   - pcre=8.45=h9c3ff4c_0
   - pcre2=10.40=hc3806b6_0
@@ -163,7 +163,7 @@ dependencies:
   - pickleshare=0.7.5=py_1003
   - pip=22.3.1=pyhd8ed1ab_0
   - pixman=0.40.0=h36c2ea0_0
-  - plotly=5.11.0=pyhd8ed1ab_1
+  - plotly=5.12.0=pyhd8ed1ab_1
   - pluggy=1.0.0=pyhd8ed1ab_5
   - poppler=0.89.0=h2de54a5_5
   - poppler-data=0.4.11=hd8ed1ab_0
@@ -180,7 +180,7 @@ dependencies:
   - pycodestyle=2.6.0=pyh9f0ad1d_0
   - pycparser=2.21=pyhd8ed1ab_0
   - pydantic=1.10.4=py39h72bdee0_1
-  - pydocstyle=6.2.2=pyhd8ed1ab_0
+  - pydocstyle=6.3.0=pyhd8ed1ab_0
   - pyflakes=2.2.0=pyh9f0ad1d_0
   - pygments=2.14.0=pyhd8ed1ab_0
   - pyopenssl=23.0.0=pyhd8ed1ab_0
@@ -199,7 +199,7 @@ dependencies:
   - python-daemon=2.3.2=pyhd8ed1ab_0
   - python-dateutil=2.8.2=pyhd8ed1ab_0
   - python_abi=3.9=3_cp39
-  - pytz=2022.7=pyhd8ed1ab_0
+  - pytz=2022.7.1=pyhd8ed1ab_0
   - pyyaml=5.4.1=py39hb9d737c_4
   - qca=2.2.1=h73816c6_3
   - qgis=3.16.3=py39hf039efd_4
@@ -214,7 +214,7 @@ dependencies:
   - qwtpolar=1.1.1=h73816c6_7
   - readline=8.1.2=h0f457ee_0
   - requests=2.25.1=pyhd3deb0d_0
-  - setuptools=65.6.3=pyhd8ed1ab_0
+  - setuptools=66.0.0=pyhd8ed1ab_0
   - shapely=1.7.1=py39hcbe974e_1
   - shellcheck=0.7.2=ha770c72_1
   - six=1.16.0=pyh6c4a22f_0
@@ -246,7 +246,7 @@ dependencies:
   - tzdata=2022g=h191b570_0
   - urllib3=1.26.14=pyhd8ed1ab_0
   - vulture=1.6=pyh9f0ad1d_0
-  - wcwidth=0.2.5=pyh9f0ad1d_2
+  - wcwidth=0.2.6=pyhd8ed1ab_0
   - wheel=0.38.4=pyhd8ed1ab_0
   - xerces-c=3.2.3=h9d8b166_3
   - xorg-kbproto=1.0.7=h7f98852_1002
