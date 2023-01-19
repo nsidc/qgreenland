@@ -1,7 +1,7 @@
 FROM axiom/docker-luigi:2.8.13-alpine AS luigi
 # This build stage only exists to grab files
 
-FROM mambaorg/micromamba:0.17.0 AS micromamba
+FROM mambaorg/micromamba:1.2.0 AS micromamba
 COPY --from=luigi /bin/run /usr/local/bin/luigid
 USER root
 
@@ -16,17 +16,16 @@ RUN apt-get update && apt-get install -y \
   texlive-latex-extra
 
 # Create environments
-RUN micromamba install -y -c conda-forge -n base conda mamba~=0.17.0
+RUN micromamba install -y -c conda-forge -n base conda mamba~=1.2.0
 
-COPY --chown=micromamba:micromamba environment-lock.yml /tmp/environment.yml
+COPY --chown=mambauser:mambauser environment-lock.yml /tmp/environment.yml
 RUN micromamba install -y -n base -f /tmp/environment.yml
 
-COPY --chown=micromamba:micromamba environment.cmd.yml /tmp/environment.cmd.yml
+COPY --chown=mambauser:mambauser environment.cmd.yml /tmp/environment.cmd.yml
 RUN micromamba create -y -f /tmp/environment.cmd.yml
 
 # Cleanup
 RUN micromamba clean --all --yes
-RUN conda clean -afy
 
 WORKDIR /luigi
 
