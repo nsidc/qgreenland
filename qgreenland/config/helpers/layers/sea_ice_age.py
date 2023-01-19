@@ -49,6 +49,7 @@ def sea_ice_age_layer(year: int, age_type: AgeType) -> Layer:
             CommandStep(
                 args=[
                     'gdal_translate',
+                    '-a_srs', 'EPSG:3408',
                     '-b', layer_info['band_num'],
                     (
                         'NETCDF:{input_dir}/'
