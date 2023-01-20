@@ -22,8 +22,11 @@ else
     tty_arg=""
 fi
 
-ARGS="$@"
+# We want the args as a string that gets added to the python command passed to
+# bash.
+# shellcheck disable=SC2124
+ARGS_STR=$@
 
 # `tty_arg` should not be quoted.
 # shellcheck disable=SC2086
-docker exec -i ${tty_arg} "${container_id}" bash -lc "python ./tasks/qgreenland/qgreenland/cli/__init__.py $ARGS"
+docker exec -i ${tty_arg} "${container_id}" bash -lc "python ./tasks/qgreenland/qgreenland/cli/__init__.py $ARGS_STR"
