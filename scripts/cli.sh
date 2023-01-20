@@ -22,6 +22,8 @@ else
     tty_arg=""
 fi
 
+ARGS="$@"
+
 # `tty_arg` should not be quoted.
 # shellcheck disable=SC2086
-docker exec -i ${tty_arg} "${container_id}" python ./tasks/qgreenland/qgreenland/cli/__init__.py "$@"
+docker exec -i ${tty_arg} "${container_id}" bash -lc "python ./tasks/qgreenland/qgreenland/cli/__init__.py $ARGS"
