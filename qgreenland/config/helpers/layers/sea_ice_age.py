@@ -49,6 +49,15 @@ def sea_ice_age_layer(year: int, age_type: AgeType) -> Layer:
             CommandStep(
                 args=[
                     'gdal_translate',
+                    # Override the source SRS, which is not recognized by gdal
+                    # >=3.5.0. Previous versions of gdal identified the
+                    # coordinate system but did so incorrectly. Instead of
+                    # identifying the CRS as the legacy EASE projection
+                    # (EPSG:3408) it identifies it as EASE2 (EPSG:6091). This is
+                    # because EPSG:3408 is deprecated in favor of
+                    # EPSG:6091. This association is NOT correct - they each
+                    # have different datums and should not be treated as
+                    # interchangeable.
                     '-a_srs', (
                         '"+proj=laea +lat_0=90 +lon_0=0 +x_0=0'
                         ' +y_0=0 +a=6371228 +b=6371228 +units=m +no_defs"'
