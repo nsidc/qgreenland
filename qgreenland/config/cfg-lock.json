@@ -19493,6 +19493,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "38",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20100101_20101231_v4.1.nc:age_of_sea_ice",
@@ -19597,6 +19599,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "37",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20110101_20111231_v4.1.nc:age_of_sea_ice",
@@ -19701,6 +19705,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "38",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20120101_20121231_v4.1.nc:age_of_sea_ice",
@@ -19805,6 +19811,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "37",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20130101_20131231_v4.1.nc:age_of_sea_ice",
@@ -19909,6 +19917,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "38",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20140101_20141231_v4.1.nc:age_of_sea_ice",
@@ -20013,6 +20023,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "36",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20150101_20151231_v4.1.nc:age_of_sea_ice",
@@ -20117,6 +20129,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "37",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20160101_20161231_v4.1.nc:age_of_sea_ice",
@@ -20221,6 +20235,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "37",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20170101_20171231_v4.1.nc:age_of_sea_ice",
@@ -20325,6 +20341,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "38",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20180101_20181231_v4.1.nc:age_of_sea_ice",
@@ -20429,6 +20447,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "38",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20190101_20191231_v4.1.nc:age_of_sea_ice",
@@ -20533,6 +20553,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "38",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20200101_20201231_v4.1.nc:age_of_sea_ice",
@@ -20659,6 +20681,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "14",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20100101_20101231_v4.1.nc:age_of_sea_ice",
@@ -20763,6 +20787,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "10",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20110101_20111231_v4.1.nc:age_of_sea_ice",
@@ -20867,6 +20893,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "12",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20120101_20121231_v4.1.nc:age_of_sea_ice",
@@ -20971,6 +20999,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "11",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20130101_20131231_v4.1.nc:age_of_sea_ice",
@@ -21075,6 +21105,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "12",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20140101_20141231_v4.1.nc:age_of_sea_ice",
@@ -21179,6 +21211,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "8",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20150101_20151231_v4.1.nc:age_of_sea_ice",
@@ -21283,6 +21317,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "12",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20160101_20161231_v4.1.nc:age_of_sea_ice",
@@ -21387,6 +21423,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "10",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20170101_20171231_v4.1.nc:age_of_sea_ice",
@@ -21491,6 +21529,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "11",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20180101_20181231_v4.1.nc:age_of_sea_ice",
@@ -21595,6 +21635,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "11",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20190101_20191231_v4.1.nc:age_of_sea_ice",
@@ -21699,6 +21741,8 @@
                         {
                           "args": [
                             "gdal_translate",
+                            "-a_srs",
+                            "EPSG:3408",
                             "-b",
                             "10",
                             "NETCDF:{input_dir}/iceage_nh_12.5km_20200101_20201231_v4.1.nc:age_of_sea_ice",
