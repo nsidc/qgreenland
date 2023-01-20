@@ -10,8 +10,7 @@ dependencies:
   ################################################################
 
   - anytree ~=2.8.0
-  - click ~=7.1.2
-  - types-click ~=7.1.2
+  - click ~=8.0
   - fiona ~=1.8.13
   - gdal ~=3.6.0
   - humanize ~=2.6.0
@@ -71,6 +70,8 @@ dependencies:
   - ipython
   - ipdb
   - pip
+  - black ~=22.0
+  - isort ~=5.0
 
 
   # Pip dependencies could be imported or non-imported :(
