@@ -2,9 +2,8 @@ from functools import partial
 
 from qgreenland.util.tree import _matches_filters
 
-
-SELECT_MANY_PATTERNS = ('*machine*', 'backgr*')
-SELECT_ONE_PATTERNS = ('bedmachine_thickness',)
+SELECT_MANY_PATTERNS = ("*machine*", "backgr*")
+SELECT_ONE_PATTERNS = ("bedmachine_thickness",)
 
 
 def test__matches_filters_no_patterns(layer_cfgs):

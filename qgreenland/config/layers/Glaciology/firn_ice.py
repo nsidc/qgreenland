@@ -4,26 +4,26 @@ from qgreenland.config.datasets.firn_ice_layer_thickness import (
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import Layer, LayerInput
 
-
 firn_ice_layer_thicknesses = Layer(
-    id='firn_ice_layer_thicknesses',
-    title='Ice slab thickness in firn ice 2010-2014',
+    id="firn_ice_layer_thicknesses",
+    title="Ice slab thickness in firn ice 2010-2014",
     description=(
         """Ice slab thickness, in meters, in the top 20 meters of firn. Only
         slabs between 1 and 16 meters are included."""
     ),
     tags=[],
-    style='firn_ice_points',
+    style="firn_ice_points",
     input=LayerInput(
         dataset=dataset,
-        asset=dataset.assets['only'],
+        asset=dataset.assets["only"],
     ),
     steps=[
         *ogr2ogr(
-            input_file='{input_dir}/Ice_Layer_Output_Thicknesses.gpkg',
-            output_file='{output_dir}/final.gpkg',
+            input_file="{input_dir}/Ice_Layer_Output_Thicknesses.gpkg",
+            output_file="{output_dir}/final.gpkg",
             ogr2ogr_args=(
-                '-sql', (
+                "-sql",
+                (
                     """'SELECT
                         geom,
                         fid,

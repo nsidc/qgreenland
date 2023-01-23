@@ -7,11 +7,11 @@ from qgreenland import exceptions as exc
 from qgreenland.models.config import Config
 from qgreenland.util.config.compile import compile_cfg
 
-logger = logging.getLogger('luigi-interface')
+logger = logging.getLogger("luigi-interface")
 
 # Figure out the config dir locally to avoid importing anything unnecessary
 THIS_DIR = Path(__file__).resolve().parent
-CONFIG_DIR = THIS_DIR.parent.parent / 'config'
+CONFIG_DIR = THIS_DIR.parent.parent / "config"
 _CONFIG: Optional[Config] = None
 
 
@@ -24,7 +24,7 @@ def init_config(
     global _CONFIG
 
     if _CONFIG is not None:
-        logging.warning('Config already initialized.')
+        logging.warning("Config already initialized.")
         return
 
     _CONFIG = compile_cfg(
@@ -36,7 +36,7 @@ def init_config(
 
     if not _CONFIG.layers:
         raise exc.QgrNoLayersFoundError(
-            'No layers found matching patterns:'
+            "No layers found matching patterns:"
             f' "{include_patterns=}"; "{exclude_patterns=}.',
         )
 
@@ -44,6 +44,6 @@ def init_config(
 @cache
 def get_config() -> Config:
     if _CONFIG is None:
-        raise RuntimeError('Config not initialized. Run `init_config` first!')
+        raise RuntimeError("Config not initialized. Run `init_config` first!")
 
     return _CONFIG

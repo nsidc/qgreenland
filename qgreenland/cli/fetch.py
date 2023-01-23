@@ -2,30 +2,31 @@ import textwrap
 from fnmatch import fnmatch
 
 import click
-import luigi
 from funcy import lmapcat, select
+
+import luigi
 
 
 @click.command()
 @click.option(
-    '--dry-run', '-d',
+    "--dry-run",
+    "-d",
     is_flag=True,
-    help='Skip actual fetch, just list out dataset matches.',
+    help="Skip actual fetch, just list out dataset matches.",
 )
 @click.option(
-    '--workers', '-w',
-    default=4, show_default=True,
-    help='Number of workers to use.',
+    "--workers",
+    "-w",
+    default=4,
+    show_default=True,
+    help="Number of workers to use.",
 )
-@click.argument('pattern')
+@click.argument("pattern")
 def fetch(pattern, dry_run, workers) -> None:
     """Fetch assets for datasets matching PATTERN."""
     # Hack to work around issue with sphinx-click:
     #     https://github.com/click-contrib/sphinx-click/issues/86#issuecomment-991196764
-    from qgreenland.util.config.config import (
-        get_config,
-        init_config,
-    )
+    from qgreenland.util.config.config import get_config, init_config
     from qgreenland.util.luigi import fetch_tasks_from_dataset
 
     init_config()
@@ -36,13 +37,15 @@ def fetch(pattern, dry_run, workers) -> None:
         config.datasets,
     ).values()
 
-    print('Fetching all assets for the following datasets:')
-    print(textwrap.indent(
-        '\n'.join([d.id for d in dataset_matches]),
-        '  - ',
-    ))
+    print("Fetching all assets for the following datasets:")
+    print(
+        textwrap.indent(
+            "\n".join([d.id for d in dataset_matches]),
+            "  - ",
+        )
+    )
     if dry_run:
-        print('DRY RUN enabled. Aborting fetch.')
+        print("DRY RUN enabled. Aborting fetch.")
         return
 
     fetch_tasks = lmapcat(
@@ -60,4 +63,4 @@ def fetch(pattern, dry_run, workers) -> None:
     )
 
     if not result.scheduling_succeeded:
-        raise click.UsageError('Scheduling failed. See error log above.')
+        raise click.UsageError("Scheduling failed. See error log above.")

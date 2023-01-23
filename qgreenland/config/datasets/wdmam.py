@@ -1,22 +1,22 @@
 from qgreenland.models.config.asset import CommandAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 wdmam = Dataset(
-    id='wdmam',
+    id="wdmam",
     assets=[
         CommandAsset(
-            id='only',
+            id="only",
             args=[
-                'wget',
-                'http://wdmam.org/file/wdmam.asc',
-                '-O', '{output_dir}/full_wdmam.xyz',
+                "wget",
+                "http://wdmam.org/file/wdmam.asc",
+                "-O",
+                "{output_dir}/full_wdmam.xyz",
             ],
         ),
     ],
     metadata={
-        'title': 'World Digital Magnetic Anomaly Map',
-        'abstract': (
+        "title": "World Digital Magnetic Anomaly Map",
+        "abstract": (
             """The WDMAM (World Digital Magnetic Anomaly Map) is an
             international scientific project under the auspices of IAGA
             (International Association of Geomagnetism and Aeronomy) and CGMW
@@ -37,14 +37,14 @@ wdmam = Dataset(
             CGMW in a very near future. A paper describing the building of the
             map will be published soon (Lesur et al., 2016, in press)."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Dyment, J., Lesur, V., Hamoudi, M., Choi, Y., Thebault, E.,
                 Catalan, M., the WDMAM Task Force*, the WDMAM Evaluators**, and
                 the WDMAM Data Providers**, World Digital Magnetic Anomaly Map
                 version 2.0, map available at http://www.wdmam.org."""
             ),
-            'url': 'http://www.wdmam.org',
+            "url": "http://www.wdmam.org",
         },
     },
 )

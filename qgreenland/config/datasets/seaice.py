@@ -6,35 +6,41 @@ from qgreenland.config.helpers.layers.sea_ice_concentration import (
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 seaice_index = Dataset(
-    id='seaice_index',
+    id="seaice_index",
     assets=[
         *[
             HttpAsset(
-                id=f'median_extent_line_{month:02d}',
-                urls=[(
-                    'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median'
-                    f'/median_extent_N_{month:02d}_1981-2010_polyline_v3.0.zip'
-                )],
-            ) for month in range(1, 12 + 1)
+                id=f"median_extent_line_{month:02d}",
+                urls=[
+                    (
+                        "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/shapefiles/shp_median"
+                        f"/median_extent_N_{month:02d}_1981-2010_polyline_v3.0.zip"
+                    )
+                ],
+            )
+            for month in range(1, 12 + 1)
         ],
         *[
             HttpAsset(
-                id=f'minimum_concentration_{year}',
-                urls=[(
-                    'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff'
-                    f'/09_Sep/N_{year}09_concentration_v3.0.tif'
-                )],
-            ) for year in MIN_CONCENTRATION_YEARS
+                id=f"minimum_concentration_{year}",
+                urls=[
+                    (
+                        "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff"
+                        f"/09_Sep/N_{year}09_concentration_v3.0.tif"
+                    )
+                ],
+            )
+            for year in MIN_CONCENTRATION_YEARS
         ],
         *[
-            concentration_maximum_asset_for_year(year) for year in MAX_CONCENTRATION_YEARS
+            concentration_maximum_asset_for_year(year)
+            for year in MAX_CONCENTRATION_YEARS
         ],
     ],
     metadata={
-        'title': 'Sea Ice Index, Version 3',
-        'abstract': (
+        "title": "Sea Ice Index, Version 3",
+        "abstract": (
             """The Sea Ice Index provides a quick look at Arctic- and
             Antarctic-wide changes in sea ice. It is a source for consistent,
             up-to-date sea ice extent and concentration images, in PNG format,
@@ -50,14 +56,14 @@ seaice_index = Dataset(
             averaged out in the monthly product and because day-to-day
             variations are often the result of short-term weather."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Fetterer, F., K. Knowles, W. N. Meier, M. Savoie, and A. K.
                 Windnagel. 2017, updated daily. Sea Ice Index, Version 3.
                 Boulder, Colorado USA. NSIDC: National Snow and Ice Data Center.
                 doi: https://doi.org/10.7265/N5K072F8. 2020-08-06."""
             ),
-            'url': 'https://nsidc.org/data/g02135',
+            "url": "https://nsidc.org/data/g02135",
         },
     },
 )
@@ -71,20 +77,22 @@ SEAICE_AGE_START_YEAR = 2010
 SEAICE_AGE_END_YEAR = 2020
 
 seaice_age = Dataset(
-    id='seaice_age',
+    id="seaice_age",
     assets=[
         HttpAsset(
             id=str(year),
-            urls=[(
-                'https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4'
-                f'/data/iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc'
-            )],
+            urls=[
+                (
+                    "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4"
+                    f"/data/iceage_nh_12.5km_{year}0101_{year}1231_v4.1.nc"
+                )
+            ],
         )
         for year in range(SEAICE_AGE_START_YEAR, SEAICE_AGE_END_YEAR + 1)
     ],
     metadata={
-        'title': 'https://nsidc.org/data/nsidc-0611',
-        'abstract': (
+        "title": "https://nsidc.org/data/nsidc-0611",
+        "abstract": (
             """The full original data set provides weekly estimates of sea ice
             age for the Arctic Ocean derived from remotely sensed sea ice motion
             and sea ice extent. The temporal coverage for this data set is
@@ -94,15 +102,15 @@ seaice_age = Dataset(
             data to coincide with information contained in other sea ice
             layers."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Tschudi, M., W. N. Meier, J. S. Stewart, C. Fowler, and J.
                 Maslanik. 2019. EASE-Grid Sea Ice Age, Version 4. [Indicate
                 subset used]. Boulder, Colorado USA. NASA National Snow and Ice
                 Data Center Distributed Active Archive Center. doi:
                 https://doi.org/10.5067/UTAV7490FEPB. 2021/01/05."""
             ),
-            'url': 'https://doi.org/10.5067/UTAV7490FEPB',
+            "url": "https://doi.org/10.5067/UTAV7490FEPB",
         },
     },
 )

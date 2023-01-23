@@ -1,20 +1,19 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 ne_timezones = Dataset(
-    id='ne_timezones',
+    id="ne_timezones",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_time_zones.zip',
+                "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_time_zones.zip",
             ],
         ),
     ],
     metadata={
-        'title': 'Timezones',
-        'abstract': (
+        "title": "Timezones",
+        "abstract": (
             """Time zones primarily derive from the Central Intelligence Agency
             map of Time Zones, downloaded from the World Factbook website May
             2012. Boundaries were adjusted to fit the Natural Earth line work at
@@ -29,11 +28,9 @@ ne_timezones = Dataset(
             (UTC, aka “zulu” time) and map color codes for a 6-up and 8-up
             styling."""
         ),
-        'citation': {
-            'text': (
-                """Made with Natural Earth"""
-            ),
-            'url': 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md',
+        "citation": {
+            "text": ("""Made with Natural Earth"""),
+            "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md",
         },
     },
 )

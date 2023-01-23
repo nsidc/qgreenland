@@ -1,33 +1,32 @@
 from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 image_mosaic = Dataset(
-    id='image_mosaic',
+    id="image_mosaic",
     assets=[
         OnlineAsset(
-            id='2019',
-            provider='gdal',
+            id="2019",
+            provider="gdal",
             url=(
-                '/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/'
-                'rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt'
+                "/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/"
+                "rgb_mosaics/GRE2/Greenlandmedian_Aug_2019.vrt"
             ),
         ),
         OnlineAsset(
-            id='2015',
-            provider='gdal',
+            id="2015",
+            provider="gdal",
             url=(
-                '/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/'
-                'rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt'
+                "/vsicurl/http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/"
+                "rgb_mosaics/GRE/GRE_L8_Aug_2015_on_S3.vrt"
             ),
         ),
     ],
     # TODO: Switch to class instantiation. Makes it easier to differentiate keys
     # from values in this big wall-of-string.
     metadata={
-        'title': 'Sentinel-2 Imagery Mosaics',
+        "title": "Sentinel-2 Imagery Mosaics",
         # Editability matters most, so we use """triple-quote strings""".
-        'abstract': (
+        "abstract": (
             """Abstract for reference publication: Each summer, surface melting
             of the margin of the Greenland Ice Sheet exposes a distinctive
             visible stratigraphy that is related to past variability in
@@ -54,8 +53,8 @@ image_mosaic = Dataset(
             QGreenland displays 2015 and 2019 Sentinel-2 mosaics as online-only
             access layers."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """MacGregor JA, Fahnestock MA, Colgan WT, Larsen NK, Kjeldsen
                 KK, Welker JM (2020). The age of surface-exposed ice along the
                 northern margin of the Greenland Ice Sheet. Journal of
@@ -63,7 +62,7 @@ image_mosaic = Dataset(
 
                 https://doi.org/10.1017/jog.2020.62"""
             ),
-            'url': 'https://doi.org/10.1017/jog.2020.62',
+            "url": "https://doi.org/10.1017/jog.2020.62",
         },
     },
 )

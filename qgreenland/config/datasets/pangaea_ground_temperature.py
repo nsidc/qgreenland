@@ -1,32 +1,31 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 pangaea_ground_temperature = Dataset(
-    id='pangaea_ground_temperature',
+    id="pangaea_ground_temperature",
     assets=[
         HttpAsset(
-            id='25km',
+            id="25km",
             urls=[
-                'http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_25km.nc',
+                "http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_25km.nc",
             ],
         ),
         HttpAsset(
-            id='10km',
+            id="10km",
             urls=[
-                'http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_10km.nc',
+                "http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_10km.nc",
             ],
         ),
         HttpAsset(
-            id='5km',
+            id="5km",
             urls=[
-                'http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_5km.nc',
+                "http://store.pangaea.de/Publications/ObuJ-etal_2018/UiO_PEX_5.0_20181127_2000_2016_5km.nc",
             ],
         ),
     ],
     metadata={
-        'title': 'Ground Temperature Map, 2000-2016, Northern Hemisphere Permafrost',
-        'abstract': (
+        "title": "Ground Temperature Map, 2000-2016, Northern Hemisphere Permafrost",
+        "abstract": (
             """Original data information: The product provides modeled mean
             annual ground temperatures (MAGT) at the top of the permafrost for
             the Northern Hemisphere at 1 km spatial resolution. Permafrost
@@ -46,14 +45,14 @@ pangaea_ground_temperature = Dataset(
 
             Dataset update: 2019-04-01."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Obu, Jaroslav; Westermann, Sebastian; Kääb, Andreas; Bartsch,
                 Annett (2018): Ground Temperature Map, 2000-2016, Northern
                 Hemisphere Permafrost. Alfred Wegener Institute, Helmholtz
                 Centre for Polar and Marine Research, Bremerhaven, PANGAEA"""
             ),
-            'url': 'https://doi.org/10.1594/PANGAEA.888600',
+            "url": "https://doi.org/10.1594/PANGAEA.888600",
         },
     },
 )

@@ -1,32 +1,31 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 gc_net_promice_stations = Dataset(
-    id='gc_net_promice_stations',
+    id="gc_net_promice_stations",
     assets=[
         HttpAsset(
-            id='promice',
+            id="promice",
             urls=[
-                'https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018.csv',
+                "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018.csv",
             ],
         ),
         HttpAsset(
-            id='promice_former',
+            id="promice_former",
             urls=[
-                'https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018_former_sites.csv',
+                "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018_former_sites.csv",
             ],
         ),
         HttpAsset(
-            id='gc_net',
+            id="gc_net",
             urls=[
-                'https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/GCN%20info%20ca.2000.csv',
+                "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/GCN%20info%20ca.2000.csv",
             ],
         ),
     ],
     metadata={
-        'title': 'Map of GC-Net and PROMICE locations',
-        'abstract': (
+        "title": "Map of GC-Net and PROMICE locations",
+        "abstract": (
             """GitHub data description (creator: jasonebox): For PROMICE, I use
             a 2017-2018 average of station GPS data. I added an updated position
             for THU-U2. An improvement would be to have the .kml add the
@@ -43,13 +42,13 @@ gc_net_promice_stations = Dataset(
             2017-2018 and GC-NET GPS data from 2000. See note from data creator
             above."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """PROMICE, (2020). Map of GC-Net and PROMICE station locations.
                 Web: https://github.com/GEUS-PROMICE. Date accessed:
                 {{date_accessed}}."""
             ),
-            'url': 'https://github.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/tree/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92',
+            "url": "https://github.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/tree/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92",
         },
     },
 )

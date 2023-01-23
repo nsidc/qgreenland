@@ -1,11 +1,7 @@
 import shutil
 
 import luigi
-
-from qgreenland.constants.paths import (
-    FETCH_DATASETS_DIR,
-    PRIVATE_ARCHIVE_DIR,
-)
+from qgreenland.constants.paths import FETCH_DATASETS_DIR, PRIVATE_ARCHIVE_DIR
 from qgreenland.models.config.asset import (
     CmrAsset,
     HttpAsset,
@@ -52,11 +48,12 @@ class FetchCmrGranule(FetchTask):
 
     def run(self):
         if type(self.asset_cfg) is not CmrAsset:
-            raise RuntimeError(f'Expected CMR asset. Received: {self.asset_cfg}')
+            raise RuntimeError(f"Expected CMR asset. Received: {self.asset_cfg}")
 
         granule = get_cmr_granule(
             granule_ur=self.asset_cfg.granule_ur,
-            collection_concept_id=self.asset_cfg.collection_concept_id)
+            collection_concept_id=self.asset_cfg.collection_concept_id,
+        )
 
         with temporary_path_dir(self.output()) as temp_path:
             for url in granule.urls:
@@ -79,7 +76,7 @@ class FetchDataFiles(FetchTask):
 
     def run(self):
         if type(self.asset_cfg) is not HttpAsset:
-            raise RuntimeError(f'Expected HTTP asset. Received: {self.asset_cfg}')
+            raise RuntimeError(f"Expected HTTP asset. Received: {self.asset_cfg}")
 
         with temporary_path_dir(self.output()) as temp_path:
             for url in self.asset_cfg.urls:
@@ -119,8 +116,7 @@ class FetchLocalDataFiles(FetchTask):
 
         else:
             raise RuntimeError(
-                'You selected an unsupported access_method:'
-                f' {type(self.asset_cfg)}',
+                "You selected an unsupported access_method:" f" {type(self.asset_cfg)}",
             )
 
 

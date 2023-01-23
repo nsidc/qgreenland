@@ -1,20 +1,19 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 utm_zones = Dataset(
-    id='utm_zones',
+    id="utm_zones",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'http://sandbox.idre.ucla.edu/mapshare/data/world/data/utmzone.zip',
+                "http://sandbox.idre.ucla.edu/mapshare/data/world/data/utmzone.zip",
             ],
         ),
     ],
     metadata={
-        'title': 'World UTM Zones',
-        'abstract': (
+        "title": "World UTM Zones",
+        "abstract": (
             """World UTM Zones represents the Universal Transverse Mercator
             (UTM) zones of the world. The polygons represent the Universal
             Transverse Mercator (UTM) zones, which lie between 84 degrees North
@@ -27,11 +26,9 @@ utm_zones = Dataset(
             degrees high."""
         ),
         # Is this citation good enough? Find another source?
-        'citation': {
-            'text': (
-                """ESRI Data & Maps. 2015."""
-            ),
-            'url': 'https://apps.gis.ucla.edu/geodata/dataset/world_utm_zones',
+        "citation": {
+            "text": ("""ESRI Data & Maps. 2015."""),
+            "url": "https://apps.gis.ucla.edu/geodata/dataset/world_utm_zones",
         },
     },
 )

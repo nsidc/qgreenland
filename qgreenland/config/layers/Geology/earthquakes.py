@@ -4,35 +4,35 @@ from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
-
 earthquakes = Layer(
-    id='earthquakes',
-    title='Earthquakes M above 2.5 1900-2020',
-    description=(
-        """Location and magnitude of earthquakes."""
-    ),
+    id="earthquakes",
+    title="Earthquakes M above 2.5 1900-2020",
+    description=("""Location and magnitude of earthquakes."""),
     tags=[],
-    style='earthquakes',
+    style="earthquakes",
     input=LayerInput(
         dataset=dataset,
-        asset=dataset.assets['only'],
+        asset=dataset.assets["only"],
     ),
     steps=[
         CommandStep(
             args=[
-                'ogrmerge.py',
-                '-single',
-                '-o', '{output_dir}/earthquakes.gpkg',
-                '{input_dir}/*geojson',
+                "ogrmerge.py",
+                "-single",
+                "-o",
+                "{output_dir}/earthquakes.gpkg",
+                "{input_dir}/*geojson",
             ],
         ),
         *ogr2ogr(
-            input_file='{input_dir}/earthquakes.gpkg',
-            output_file='{output_dir}/earthquakes.gpkg',
-            boundary_filepath=project.boundaries['background'].filepath,
+            input_file="{input_dir}/earthquakes.gpkg",
+            output_file="{output_dir}/earthquakes.gpkg",
+            boundary_filepath=project.boundaries["background"].filepath,
             ogr2ogr_args=(
-                '-dialect', 'sqlite',
-                '-sql', """\"SELECT
+                "-dialect",
+                "sqlite",
+                "-sql",
+                """\"SELECT
                     geom,
                     id,
                     mag,

@@ -1,15 +1,12 @@
-from qgreenland.config.datasets.wdmam import (
-    wdmam as dataset,
-)
+from qgreenland.config.datasets.wdmam import wdmam as dataset
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
-
 layer = Layer(
-    id='wdmam',
-    title='World Digital Magnetic Anomaly Map',
+    id="wdmam",
+    title="World Digital Magnetic Anomaly Map",
     description=(
         """Points representing magnetic anomalies in nanoTesla (nT).
 
@@ -24,39 +21,43 @@ layer = Layer(
     ),
     tags=[],
     in_package=False,
-    style='wdmam',
+    style="wdmam",
     input=LayerInput(
         dataset=dataset,
-        asset=dataset.assets['only'],
+        asset=dataset.assets["only"],
     ),
     steps=[
         CommandStep(
-            id='convert_to_csv',
+            id="convert_to_csv",
             args=[
-                'sed',
+                "sed",
                 # Trim leading whitespace
-                '-e',
+                "-e",
                 r'"s/^\s\+//g"',
                 # Replace all other whitespace with ','
-                '-e',
+                "-e",
                 r'"s/\s\+/,/g"',
                 # Add a header
-                '-e',
+                "-e",
                 '1i"longitude,latitude,magnetic_anomaly,index,long_wavelength"',
-                '{input_dir}/full_wdmam.xyz',
-                '>',
-                '{output_dir}/full_wdmam.csv',
+                "{input_dir}/full_wdmam.xyz",
+                ">",
+                "{output_dir}/full_wdmam.csv",
             ],
         ),
         *ogr2ogr(
-            input_file='{input_dir}/full_wdmam.csv',
-            output_file='{output_dir}/wdmam_greenland.gpkg',
-            boundary_filepath=project.boundaries['data'].filepath,
+            input_file="{input_dir}/full_wdmam.csv",
+            output_file="{output_dir}/wdmam_greenland.gpkg",
+            boundary_filepath=project.boundaries["data"].filepath,
             ogr2ogr_args=[
-                '-oo', 'X_POSSIBLE_NAMES=longitude',
-                '-oo', 'Y_POSSIBLE_NAMES=latitude',
-                '-oo', 'AUTODETECT_TYPE=True',
-                '-s_srs', 'EPSG:4326',
+                "-oo",
+                "X_POSSIBLE_NAMES=longitude",
+                "-oo",
+                "Y_POSSIBLE_NAMES=latitude",
+                "-oo",
+                "AUTODETECT_TYPE=True",
+                "-s_srs",
+                "EPSG:4326",
             ],
         ),
     ],

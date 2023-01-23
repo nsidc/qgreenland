@@ -5,8 +5,8 @@ import geopandas
 import numpy
 from shapely.geometry import LineString
 
-OUT_DIR = './out'
-degrees_template = '{deg}° {min}\' {sec}"'  # noqa: FS003
+OUT_DIR = "./out"
+degrees_template = "{deg}° {min}' {sec}\""  # noqa: FS003
 
 
 def _decimal_degrees_to_dms(decimal, *, lat_or_lon, include_secs=True):
@@ -14,10 +14,10 @@ def _decimal_degrees_to_dms(decimal, *, lat_or_lon, include_secs=True):
 
     There are 60 minutes in a degree, and 60 seconds in a minute.
     """
-    if lat_or_lon == 'lat':
-        cardinal = 'S' if decimal < 0 else 'N'
-    elif lat_or_lon == 'lon':
-        cardinal = 'W' if decimal < 0 else 'E'
+    if lat_or_lon == "lat":
+        cardinal = "S" if decimal < 0 else "N"
+    elif lat_or_lon == "lon":
+        cardinal = "W" if decimal < 0 else "E"
     else:
         raise RuntimeError(f"{lat_or_lon} is not 'lat' or 'lon'")
 
@@ -43,16 +43,18 @@ def latitudes(*, increment=1):
     lats = []
 
     for lat in numpy.arange(degrees_range[0], degrees_range[1], increment):
-        lats.append({
-            'wgs84Degrees': _decimal_degrees_to_dms(lat, lat_or_lon='lat'),
-            'wgs84Decimal': float(lat),
-            'label': _decimal_degrees_to_dms(
-                lat,
-                lat_or_lon='lat',
-                include_secs=False,
-            ),
-            'geometry': LineString([(-180, lat), (180, lat)]),
-        })
+        lats.append(
+            {
+                "wgs84Degrees": _decimal_degrees_to_dms(lat, lat_or_lon="lat"),
+                "wgs84Decimal": float(lat),
+                "label": _decimal_degrees_to_dms(
+                    lat,
+                    lat_or_lon="lat",
+                    include_secs=False,
+                ),
+                "geometry": LineString([(-180, lat), (180, lat)]),
+            }
+        )
 
     return geopandas.GeoDataFrame(lats)
 
@@ -66,16 +68,18 @@ def longitudes(*, increment=1):
     lons = []
 
     for lon in numpy.arange(degrees_range[0], degrees_range[1], increment):
-        lons.append({
-            'wgs84Degrees': _decimal_degrees_to_dms(lon, lat_or_lon='lon'),
-            'wgs84Decimal': float(lon),
-            'label': _decimal_degrees_to_dms(
-                lon,
-                lat_or_lon='lon',
-                include_secs=False,
-            ),
-            'geometry': LineString([(lon, -90), (lon, 90)]),
-        })
+        lons.append(
+            {
+                "wgs84Degrees": _decimal_degrees_to_dms(lon, lat_or_lon="lon"),
+                "wgs84Decimal": float(lon),
+                "label": _decimal_degrees_to_dms(
+                    lon,
+                    lat_or_lon="lon",
+                    include_secs=False,
+                ),
+                "geometry": LineString([(lon, -90), (lon, 90)]),
+            }
+        )
 
     return geopandas.GeoDataFrame(lons)
 
@@ -83,12 +87,12 @@ def longitudes(*, increment=1):
 def write_geojson(generator, **kwargs):
     """Write a GeoJSON file with the data returned by generator(**kwargs)."""
     lat_or_lon = generator.__name__
-    increment_str = str(kwargs['increment']).replace('.', '_')
+    increment_str = str(kwargs["increment"]).replace(".", "_")
 
-    fn = f'{lat_or_lon}_{increment_str}_degree.geojson'
+    fn = f"{lat_or_lon}_{increment_str}_degree.geojson"
 
     gdf = generator(**kwargs)
-    gdf.to_file(os.path.join(OUT_DIR, fn), driver='GeoJSON')
+    gdf.to_file(os.path.join(OUT_DIR, fn), driver="GeoJSON")
 
 
 def main():
@@ -102,6 +106,6 @@ def main():
         write_geojson(longitudes, increment=increment)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-    print(f'Outputs created at: {os.path.abspath(OUT_DIR)}')
+    print(f"Outputs created at: {os.path.abspath(OUT_DIR)}")

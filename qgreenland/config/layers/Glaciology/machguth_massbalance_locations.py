@@ -5,27 +5,26 @@ from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 
-
 machguth_massbalance_locations = Layer(
-    id='machguth_massbalance_locations',
-    title='Mass balance glacier observation locations 1892-2020',
-    description=(
-        """Locations used in surface mass balance observations."""
-    ),
+    id="machguth_massbalance_locations",
+    title="Mass balance glacier observation locations 1892-2020",
+    description=("""Locations used in surface mass balance observations."""),
     tags=[],
-    style='labeled_point',
+    style="labeled_point",
     input=LayerInput(
         dataset=dataset,
-        asset=dataset.assets['only'],
+        asset=dataset.assets["only"],
     ),
     steps=[
         *ogr2ogr(
-            input_file='{input_dir}/locations.gpkg',
-            output_file='{output_dir}/final.gpkg',
-            boundary_filepath=project.boundaries['background'].filepath,
+            input_file="{input_dir}/locations.gpkg",
+            output_file="{output_dir}/final.gpkg",
+            boundary_filepath=project.boundaries["background"].filepath,
             ogr2ogr_args=(
-                '-s_srs', 'EPSG:4326',
-                '-sql', (
+                "-s_srs",
+                "EPSG:4326",
+                "-sql",
+                (
                     """'SELECT
                         _ogr_geometry_,
                         fid,

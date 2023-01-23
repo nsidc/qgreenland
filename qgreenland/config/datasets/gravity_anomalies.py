@@ -1,12 +1,11 @@
 from qgreenland.models.config.asset import ManualAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 gravity_anomalies = Dataset(
-    id='gravity_anomalies',
+    id="gravity_anomalies",
     assets=[
         ManualAsset(
-            id='only',
+            id="only",
             access_instructions=(
                 """These data were obtained from Rene Forsberg of DTU Space as a
                 private data transfer on 2021-01-22."""
@@ -14,8 +13,8 @@ gravity_anomalies = Dataset(
         ),
     ],
     metadata={
-        'title': 'Geoid model and gravity anomalies for Greenland',
-        'abstract': (
+        "title": "Geoid model and gravity anomalies for Greenland",
+        "abstract": (
             """The Bouguer anomaly grid of Greenland have been derived from a
             rigorous least-squares collocation downward continuation process of
             terrain-corrected data, from the same data used to derive the geoid.
@@ -30,15 +29,15 @@ gravity_anomalies = Dataset(
             mGal/m, without terrain corrections, based on the underlying DEM of
             land and glaciers/ice sheet."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Forsberg R., Jensen T. (2015) New Geoid of Greenland: A Case
                 Study of Terrain and Ice Effects, GOCE and Use of Local Sea
                 Level Data. In: Jin S., Barzaghi R. (eds) IGFS 2014. Int.
                 Association of Geodesy Symposia, vol 144.  Springer,
                 https://doi.org/10.1007/1345_2015_50."""
             ),
-            'url': 'https://doi.org/10.1007/1345_2015_50',
+            "url": "https://doi.org/10.1007/1345_2015_50",
         },
     },
 )

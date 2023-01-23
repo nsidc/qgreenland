@@ -1,20 +1,19 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 glims = Dataset(
-    id='glims',
+    id="glims",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'http://www.glims.org/download/glims_db_20200630.zip',
+                "http://www.glims.org/download/glims_db_20200630.zip",
             ],
         ),
     ],
     metadata={
-        'title': 'Global Land Ice Measurements from Space glacier database',
-        'abstract': (
+        "title": "Global Land Ice Measurements from Space glacier database",
+        "abstract": (
             """Global Land Ice Measurements from Space (GLIMS) is an
             international initiative with the goal of repeatedly surveying the
             world's estimated 200,000 glaciers. GLIMS is characterizing and
@@ -35,15 +34,15 @@ glims = Dataset(
             reliable glacier data from these analyses. New glacier data are
             continually being added to the database."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """GLIMS and NSIDC (2005, updated 2013): Global Land Ice
                 Measurements from Space glacier database.  Compiled and made
                 available by the international GLIMS community and the National
                 Snow and Ice Data Center, Boulder CO, U.S.A.
                 DOI:10.7265/N5V98602"""
             ),
-            'url': 'https://doi.org/10.7265/N5V98602',
+            "url": "https://doi.org/10.7265/N5V98602",
         },
     },
 )

@@ -8,26 +8,25 @@ from typing import Type, TypeVar
 def module_from_path(module_path: Path) -> ModuleType:
     module_spec = importlib.util.spec_from_file_location(
         # TODO: Maybe `split` on `os.path.sep`?
-        f'_generated_module.{module_path.stem}',
+        f"_generated_module.{module_path.stem}",
         str(module_path),
     )
     if not module_path.is_file() or not module_spec:
-        raise FileNotFoundError(f'No module found at {module_path}')
+        raise FileNotFoundError(f"No module found at {module_path}")
 
     module = importlib.util.module_from_spec(module_spec)
 
     # https://github.com/python/typeshed/issues/2793
     if not isinstance(module_spec.loader, importlib.abc.Loader):
         raise RuntimeError(
-            f'Module {module_path} failed to load:'
-            ' (module_spec.loader=None)',
+            f"Module {module_path} failed to load:" " (module_spec.loader=None)",
         )
 
     module_spec.loader.exec_module(module)
     return module
 
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 # TODO: Operate on a single path
@@ -56,21 +55,17 @@ def _find_in_module_by_class(
 ) -> list[T]:
     """Find all objects of class `model_class` among `module` members."""
     module_members = inspect.getmembers(module)
-    matches = [
-        m[1] for m in module_members
-        if isinstance(m[1], target_class)
-    ]
+    matches = [m[1] for m in module_members if isinstance(m[1], target_class)]
 
     # Also look one level deep in iterables, facilitating list comprehensions in
     # config
     iterables = [
-        m[1] for m in module_members
+        m[1]
+        for m in module_members
         if isinstance(m[1], tuple) or isinstance(m[1], list)
     ]
     matches_in_iterables = [
-        m for iterable in iterables
-        for m in iterable
-        if isinstance(m, target_class)
+        m for iterable in iterables for m in iterable if isinstance(m, target_class)
     ]
 
     matches.extend(matches_in_iterables)

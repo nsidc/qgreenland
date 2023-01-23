@@ -4,47 +4,51 @@ from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 
 towns_and_settlements = Layer(
-    id='populated_places',
-    title='Towns and settlements',
-    description='Points representing towns and settlements in Greenland.',
-    tags=['places'],
-    style='labeled_point',
+    id="populated_places",
+    title="Towns and settlements",
+    description="Points representing towns and settlements in Greenland.",
+    tags=["places"],
+    style="labeled_point",
     input=LayerInput(
         dataset=asiaq_private_placenames,
-        asset=asiaq_private_placenames.assets['only'],
+        asset=asiaq_private_placenames.assets["only"],
     ),
     steps=[
         *ogr2ogr(
-            input_file='{input_dir}/translations_joined.gpkg',
-            output_file='{output_dir}/final.gpkg',
-            boundary_filepath=project.boundaries['data'].filepath,
+            input_file="{input_dir}/translations_joined.gpkg",
+            output_file="{output_dir}/final.gpkg",
+            boundary_filepath=project.boundaries["data"].filepath,
             ogr2ogr_args=(
-                '-sql', (
-                    "'SELECT *, \"New Greenlandic\" as label"
-                    ' FROM translations_joined'
-                    " WHERE \"Object designation\" IN (\"BY\", \"BYGD\")'"
+                "-sql",
+                (
+                    '\'SELECT *, "New Greenlandic" as label'
+                    " FROM translations_joined"
+                    ' WHERE "Object designation" IN ("BY", "BYGD")\''
                 ),
             ),
         ),
     ],
 )
 
-comprehensive_places = towns_and_settlements.copy(update={
-    'id': 'comprehensive_places',
-    'title': 'Place names database',
-    'description': 'Points representing named points of interest in Greenland.',
-    'steps': [
-        *ogr2ogr(
-            input_file='{input_dir}/translations_joined.gpkg',
-            output_file='{output_dir}/final.gpkg',
-            boundary_filepath=project.boundaries['data'].filepath,
-            ogr2ogr_args=(
-                '-sql', (
-                    "'SELECT *, \"English explanation of Object designation\""
-                    ' || ":" || "New Greenlandic" as label'
-                    " FROM translations_joined'"
+comprehensive_places = towns_and_settlements.copy(
+    update={
+        "id": "comprehensive_places",
+        "title": "Place names database",
+        "description": "Points representing named points of interest in Greenland.",
+        "steps": [
+            *ogr2ogr(
+                input_file="{input_dir}/translations_joined.gpkg",
+                output_file="{output_dir}/final.gpkg",
+                boundary_filepath=project.boundaries["data"].filepath,
+                ogr2ogr_args=(
+                    "-sql",
+                    (
+                        '\'SELECT *, "English explanation of Object designation"'
+                        ' || ":" || "New Greenlandic" as label'
+                        " FROM translations_joined'"
+                    ),
                 ),
             ),
-        ),
-    ],
-})
+        ],
+    }
+)

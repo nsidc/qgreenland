@@ -8,19 +8,19 @@ import requests
 
 from qgreenland.constants.project import REQUEST_TIMEOUT
 
-logger = logging.getLogger('luigi-interface')
+logger = logging.getLogger("luigi-interface")
 
-CMR_CLIENT_ID_HEADER = {'Client-Id': 'nsidc-qgreenland'}
-CMR_BASE_URL = 'https://cmr.earthdata.nasa.gov'
-CMR_GRANULES_URL = f'{CMR_BASE_URL}/search/granules.csv'
+CMR_CLIENT_ID_HEADER = {"Client-Id": "nsidc-qgreenland"}
+CMR_BASE_URL = "https://cmr.earthdata.nasa.gov"
+CMR_GRANULES_URL = f"{CMR_BASE_URL}/search/granules.csv"
 
 CMR_GRANULES_SCROLL_URL = (
     CMR_GRANULES_URL
-    + '?scroll=true&page_size=2000&'
-    + 'sort_key[]=%2Bstart_date&online_only=true'
+    + "?scroll=true&page_size=2000&"
+    + "sort_key[]=%2Bstart_date&online_only=true"
 )
 
-Granule = namedtuple('Granule', ['urls', 'start_time'])
+Granule = namedtuple("Granule", ["urls", "start_time"])
 
 
 def _clean_granules_csv(granules):
@@ -29,28 +29,28 @@ def _clean_granules_csv(granules):
 
 
 def _csv_granules_to_dicts(resp_text):
-    granules_csv = _clean_granules_csv(resp_text.split('\n'))
+    granules_csv = _clean_granules_csv(resp_text.split("\n"))
 
     return list(csv.DictReader(granules_csv))
 
 
 def get_cmr_granule(*, granule_ur, collection_concept_id):
     """Query CMR for a granule by Granule UR, return a `Granule`."""
-    url = (f'{CMR_GRANULES_SCROLL_URL}'
-           f'&collection_concept_id[]={collection_concept_id}'
-           f'&granule_ur[]={granule_ur}')
-    response = requests.get(url,
-                            headers=CMR_CLIENT_ID_HEADER,
-                            timeout=REQUEST_TIMEOUT)
+    url = (
+        f"{CMR_GRANULES_SCROLL_URL}"
+        f"&collection_concept_id[]={collection_concept_id}"
+        f"&granule_ur[]={granule_ur}"
+    )
+    response = requests.get(url, headers=CMR_CLIENT_ID_HEADER, timeout=REQUEST_TIMEOUT)
 
     if not response.ok:
-        raise RuntimeError(f'Error from CMR: {response.text}')
+        raise RuntimeError(f"Error from CMR: {response.text}")
 
     granules = _csv_granules_to_dicts(response.text)
 
     if len(granules) != 1:
         raise RuntimeError(
-            f'Expected exactly one granule, received: {granules}',
+            f"Expected exactly one granule, received: {granules}",
         )
 
     return _normalize_granule(granules[0])
@@ -67,26 +67,26 @@ def _normalize_granule(granule):
     """
     # In September 2020 or so, CMR changed the date format. Just in case of
     # rollback... support both.
-    old_time_fmt = '%Y-%m-%dT%H:%M:%SZ'
-    new_time_fmt = '%Y-%m-%dT%H:%M:%S.%fZ'
-    url = granule['Online Access URLs']
+    old_time_fmt = "%Y-%m-%dT%H:%M:%SZ"
+    new_time_fmt = "%Y-%m-%dT%H:%M:%S.%fZ"
+    url = granule["Online Access URLs"]
     try:
         start_time = datetime.datetime.strptime(
-            granule['Start Time'],
+            granule["Start Time"],
             new_time_fmt,
         )
     except ValueError as e:
-        logger.info(f'Error with date parsing: {e}. Trying old format...')
+        logger.info(f"Error with date parsing: {e}. Trying old format...")
         start_time = datetime.datetime.strptime(
-            granule['Start Time'],
+            granule["Start Time"],
             old_time_fmt,
         )
 
     if not url:
-        msg = 'CMR response contains a granule without Online Access URLs:'
-        raise RuntimeError(f'{msg}: {granule}')
+        msg = "CMR response contains a granule without Online Access URLs:"
+        raise RuntimeError(f"{msg}: {granule}")
 
-    return Granule(urls=tuple(url.split(',')), start_time=start_time)
+    return Granule(urls=tuple(url.split(",")), start_time=start_time)
 
 
 def search_cmr_granules(*, short_name, version):
@@ -96,18 +96,18 @@ def search_cmr_granules(*, short_name, version):
         max_pad_length = 3
         versions_needed = (max_pad_length - len(str(version))) + 1
         versions = [version.zfill(n + 1) for n in range(versions_needed)]
-        return ''.join([f'&version={v}' for v in versions])
+        return "".join([f"&version={v}" for v in versions])
 
-    url = (f'{CMR_GRANULES_SCROLL_URL}'
-           f'&short_name={short_name}'
-           f'{_version_query_string(version)}')
+    url = (
+        f"{CMR_GRANULES_SCROLL_URL}"
+        f"&short_name={short_name}"
+        f"{_version_query_string(version)}"
+    )
 
-    response = requests.get(url,
-                            headers=CMR_CLIENT_ID_HEADER,
-                            timeout=REQUEST_TIMEOUT)
+    response = requests.get(url, headers=CMR_CLIENT_ID_HEADER, timeout=REQUEST_TIMEOUT)
 
     if not response.ok:
-        raise RuntimeError(f'Error from CMR: {response.text}')
+        raise RuntimeError(f"Error from CMR: {response.text}")
 
     return _csv_granules_to_dicts(response.text)
 

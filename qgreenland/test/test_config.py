@@ -1,9 +1,6 @@
 import pytest
 
-from qgreenland.util.config.config import (
-    get_config,
-    init_config,
-)
+from qgreenland.util.config.config import get_config, init_config
 
 # TODO: Fixture?
 init_config()
@@ -21,12 +18,13 @@ def test_get_layer_config_one():
     config = get_config()
     # If the layer does not exist, an exception will be raised and pytest will
     # appropriately fail.
-    assert config.layers['background']
+    assert config.layers["background"]
 
 
 # TODO: Remove all tests that act on a real config. The vision for the future is
 # to fully divorce the framework from the config.  All tests below this line can
 # be done on a mock config. All tests above this line can be deleted.
+
 
 def test_immutable_model():
     config = get_config()
@@ -36,7 +34,7 @@ def test_immutable_model():
     with pytest.raises(TypeError):
         # TODO: Remove type-ignore below.
         #    https://github.com/pytest-dev/pytest/issues/8984
-        config.layers['background'].description = 'override'  # type:ignore
+        config.layers["background"].description = "override"  # type:ignore
 
 
 def test_layer_indexes():

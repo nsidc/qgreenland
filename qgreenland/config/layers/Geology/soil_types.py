@@ -4,31 +4,30 @@ from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 
-
 soil_types = Layer(
-    id='soil_types',
-    title='Soil characteristics',
+    id="soil_types",
+    title="Soil characteristics",
     description=(
         """Polygons representing dominant soil characteristics with percentage
         polygon area for each soil type. Data coverage limited to Greenland."""
     ),
     tags=[],
-    style='soil_types',
+    style="soil_types",
     input=LayerInput(
         dataset=dataset,
-        asset=dataset.assets['only'],
+        asset=dataset.assets["only"],
     ),
     steps=[
         decompress_step(
-            decompress_type='gzip',
-            input_file='{input_dir}/*.gz',
+            decompress_type="gzip",
+            input_file="{input_dir}/*.gz",
         ),
         *ogr2ogr(
-            input_file='{input_dir}/ggd602_soils_greenland.shp',
-            output_file='{output_dir}/soil_types.gpkg',
-            boundary_filepath=project.boundaries['data'].filepath,
+            input_file="{input_dir}/ggd602_soils_greenland.shp",
+            output_file="{output_dir}/soil_types.gpkg",
+            boundary_filepath=project.boundaries["data"].filepath,
             ogr2ogr_args=(
-                '-s_srs',
+                "-s_srs",
                 '"+proj=laea +a=6370997.00 +b=6370997.00 +lat_0=90 +lon_0=180 +x_0=0 +y_0=0"',
             ),
         ),

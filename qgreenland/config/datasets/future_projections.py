@@ -1,32 +1,31 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 future_icesheet_coverage = Dataset(
-    id='future_icesheet_coverage',
+    id="future_icesheet_coverage",
     assets=[
         HttpAsset(
-            id='rcp_26',
+            id="rcp_26",
             urls=[
-                'https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A61ff2294-4734-46ba-a0b0-845d69298131',
+                "https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A61ff2294-4734-46ba-a0b0-845d69298131",
             ],
         ),
         HttpAsset(
-            id='rcp_45',
+            id="rcp_45",
             urls=[
-                'https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3Aed2d7235-2193-4ba3-a98f-f09d871199a1',
+                "https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3Aed2d7235-2193-4ba3-a98f-f09d871199a1",
             ],
         ),
         HttpAsset(
-            id='rcp_85',
+            id="rcp_85",
             urls=[
-                'https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3Aecec7b68-a544-4575-8731-47d60b73215f',
+                "https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3Aecec7b68-a544-4575-8731-47d60b73215f",
             ],
         ),
     ],
     metadata={
-        'title': 'Contribution of the Greenland Ice Sheet to sea-level over the next millennium using Large Ensemble Simulations, spatial time series, 2008-3007.',
-        'abstract': (
+        "title": "Contribution of the Greenland Ice Sheet to sea-level over the next millennium using Large Ensemble Simulations, spatial time series, 2008-3007.",
+        "abstract": (
             """Citation publication abstract: The Greenland Ice Sheet holds
             around 7.2 meters of sea-level equivalent. In recent decades rising
             atmosphere and ocean temperatures have led to an acceleration in
@@ -59,14 +58,14 @@ future_icesheet_coverage = Dataset(
             the year 3007 for the RCPs (Representative Concentration Pathways)
             2.6, 4.5, and 8.5 for LES (Large Ensemble Simulations)."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Andy Aschwanden. 2019. Contribution of the Greenland Ice
                 Sheet to sea-level over the next millennium using Large Ensemble
                 Simulations, spatial time series, 2008-3007. Arctic Data Center.
                 doi:10.18739/A29G5GD39."""
             ),
-            'url': 'https://doi.org/10.18739/A29G5GD39',
+            "url": "https://doi.org/10.18739/A29G5GD39",
         },
     },
 )

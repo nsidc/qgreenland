@@ -2,17 +2,16 @@ from qgreenland.config.datasets import wmm
 from qgreenland.config.helpers.layers.wmm import unzip_and_reproject_wmm_vector
 from qgreenland.models.config.layer import Layer, LayerInput
 
-
 _layers = [
     {
-        'id': 'wmm_latitudes',
-        'title': 'Geomagnetic latitudes',
-        'partial_filename': 'GeomagLatitude_2020',
+        "id": "wmm_latitudes",
+        "title": "Geomagnetic latitudes",
+        "partial_filename": "GeomagLatitude_2020",
     },
     {
-        'id': 'wmm_longitudes',
-        'title': 'Geomagnetic longitudes',
-        'partial_filename': 'GeomagLongitude_2020',
+        "id": "wmm_longitudes",
+        "title": "Geomagnetic longitudes",
+        "partial_filename": "GeomagLongitude_2020",
     },
 ]
 
@@ -41,20 +40,18 @@ inclined at 9.41° to the Earth's rotation axis. The same dipole is the basis
 for the simple geomagnetic coordinate system of geomagnetic latitude and
 longitude.
 """,
-        style='lonlat',
+        style="lonlat",
         input=LayerInput(
             dataset=wmm.wmm,
-            asset=wmm.wmm.assets['geomagnetic_coordinates'],
+            asset=wmm.wmm.assets["geomagnetic_coordinates"],
         ),
         steps=unzip_and_reproject_wmm_vector(
-            zip_filename='WMM2020_geomagnetic_coordinate_shapefiles.zip',
+            zip_filename="WMM2020_geomagnetic_coordinate_shapefiles.zip",
             unzip_contents_mask=f'"*geographic_projection/*{partial_filename}*"',
             partial_filename=partial_filename,
-            contour_units='°',
+            contour_units="°",
         ),
     )
 
 
-geomagnetic_coordinates_layers = [
-    _make_layer(**i) for i in _layers
-]
+geomagnetic_coordinates_layers = [_make_layer(**i) for i in _layers]

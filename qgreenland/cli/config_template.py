@@ -4,7 +4,7 @@ from qgreenland.constants.paths import TEMPLATES_DIR
 
 
 def _print_template(template_fn: str) -> None:
-    contents = open(TEMPLATES_DIR / template_fn, 'r').read()
+    contents = open(TEMPLATES_DIR / template_fn, "r").read()
 
     # Don't print the extra newline, so the contents can be redirected without
     # change.
@@ -20,10 +20,10 @@ def config_template():
 @config_template.command()
 def dataset():
     """Generate a dataset configuration template."""
-    _print_template('dataset_cfg.py')
+    _print_template("dataset_cfg.py")
 
 
 @config_template.command()
 def layer():
     """Generate a layer configuration template."""
-    _print_template('layer_cfg.py')
+    _print_template("layer_cfg.py")

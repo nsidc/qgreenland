@@ -32,5 +32,5 @@ class Config(QgrBaseModel):
 
     def __json__(self) -> dict[Any, Any]:
         return self.dict(
-            include={'project', 'datasets', 'layer_tree'},
+            include={"project", "datasets", "layer_tree"},
         )

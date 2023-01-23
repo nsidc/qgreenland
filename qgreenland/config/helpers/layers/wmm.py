@@ -9,8 +9,8 @@ from qgreenland.models.config.step import CommandStep
 
 def make_boz_layer(*, year: int) -> Layer:
     return Layer(
-        id=f'wmm_boz_{year}',
-        title='Blackout zones',
+        id=f"wmm_boz_{year}",
+        title="Blackout zones",
         description="""
 Based on the WMM military specification, we define “Blackout Zones” (BoZ)
 around the north and south magnetic poles where compass accuracy is highly
@@ -23,31 +23,33 @@ We additionally define a “Caution Zone” (2000 nT <= H < 6000 nT) around the
 BoZ, where caution must be exercised while using a compass. Compass accuracy
 may be degraded in this region.
 """,
-        tags=['wmm'],
+        tags=["wmm"],
         in_package=True,
         show=False,
-        style='blackout_zones',
+        style="blackout_zones",
         input=LayerInput(
             dataset=wmm.wmm,
-            asset=wmm.wmm.assets['blackout_zones'],
+            asset=wmm.wmm.assets["blackout_zones"],
         ),
         steps=[
             CommandStep(
                 args=[
-                    'unzip',
-                    '-j',
-                    '-d', '{output_dir}',
-                    '{input_dir}/WMM2020-2025_BoZ_Shapefile.zip',
+                    "unzip",
+                    "-j",
+                    "-d",
+                    "{output_dir}",
+                    "{input_dir}/WMM2020-2025_BoZ_Shapefile.zip",
                     f'"*BOZ_arctic_all/BOZ_{year}*"',
                 ],
             ),
             CommandStep(
                 args=[
-                    'ogr2ogr',
+                    "ogr2ogr",
                     *STANDARD_OGR2OGR_ARGS,
-                    '-clipdst', project.boundaries['background'].filepath,
-                    '{output_dir}/' + f'BOZ_{year}.gpkg',
-                    '{input_dir}/' + f'BOZ_{year}.shp',
+                    "-clipdst",
+                    project.boundaries["background"].filepath,
+                    "{output_dir}/" + f"BOZ_{year}.gpkg",
+                    "{input_dir}/" + f"BOZ_{year}.shp",
                 ],
             ),
         ],
@@ -55,157 +57,144 @@ may be degraded in this region.
 
 
 WmmVariable = Literal[
-    'd',
-    'd_sv',
-    'f',
-    'f_sv',
-    'h',
-    'h_sv',
-    'i',
-    'i_sv',
-    'x',
-    'x_sv',
-    'y',
-    'y_sv',
-    'z',
-    'z_sv',
+    "d",
+    "d_sv",
+    "f",
+    "f_sv",
+    "h",
+    "h_sv",
+    "i",
+    "i_sv",
+    "x",
+    "x_sv",
+    "y",
+    "y_sv",
+    "z",
+    "z_sv",
 ]
-WmmVariableParameter = Literal['title', 'description', 'contour_units']
+WmmVariableParameter = Literal["title", "description", "contour_units"]
 WmmVariableParameterDict = dict[WmmVariableParameter, str]
 WmmVariableDict = dict[WmmVariable, WmmVariableParameterDict]
 # NOTE: the order of this dictionary determines the layer order produced by
 # `wmm_layer_order`
 _wmm_variable_config: WmmVariableDict = {
-    'd': {
-        'title': 'Main field declination (D)',
-        'description': """
+    "d": {
+        "title": "Main field declination (D)",
+        "description": """
 Contours representing magnetic declination (D) in degrees. D is the angle
 between magnetic north and true north. D is considered positive when the
 angle measured is east of true north and negative when west.
 """,
-        'contour_units': '°',
+        "contour_units": "°",
     },
-
-    'd_sv': {
-        'title': 'Annual change declination (D_SV)',
-        'description': """
+    "d_sv": {
+        "title": "Annual change declination (D_SV)",
+        "description": """
 Contours representing annual change (secular variation) in the declination
 (D) of the main magnetic field in arcminutes per year.
 """,
-        'contour_units': "''/y",
+        "contour_units": "''/y",
     },
-
-    'f': {
-        'title': 'Main field total intensity (F)',
-        'description': """
+    "f": {
+        "title": "Main field total intensity (F)",
+        "description": """
 Contours representing the intensity of the total field (F) in nanoTesla
 (nT). F is described by the horizontal component (H), vertical component
 (Z), and the north (X) and east (Y) components of the horizontal
 intensity. The Earth's magnetic field intensity is roughly between 25,000 -
 65,000 nT (.25 - .65 gauss).
 """,
-        'contour_units': 'nT',
+        "contour_units": "nT",
     },
-
-    'f_sv': {
-        'title': 'Annual change total intensity (F_SV)',
-        'description': """
+    "f_sv": {
+        "title": "Annual change total intensity (F_SV)",
+        "description": """
 Contours representing annual change (secular variation) in the total
 intensity (F) of the main magnetic field in nanoTesla per year.
 """,
-        'contour_units': 'nT/y',
+        "contour_units": "nT/y",
     },
-
-    'h': {
-        'title': 'Main field horizontal intensity (H)',
-        'description': """
+    "h": {
+        "title": "Main field horizontal intensity (H)",
+        "description": """
 Contours representing Horizontal Intensity (H) of the geomagnetic main field
 in nanoTesla (nT).
 """,
-        'contour_units': 'nT',
+        "contour_units": "nT",
     },
-
-    'h_sv': {
-        'title': 'Annual change horizontal intensity (H_SV)',
-        'description': """
+    "h_sv": {
+        "title": "Annual change horizontal intensity (H_SV)",
+        "description": """
 Contours representing annual change (secular variation) in the horizontal
 intensity (H) of the main magnetic field in nanoTesla per year.
 """,
-        'contour_units': 'nT/y',
+        "contour_units": "nT/y",
     },
-
-    'i': {
-        'title': 'Main field inclination (I)',
-        'description': """
+    "i": {
+        "title": "Main field inclination (I)",
+        "description": """
 Contours representing magnetic inclination (I) in degrees. I is the angle
 between the horizontal plane and the total field vector, measured positive into
 Earth.
 """,
-        'contour_units': '°',
+        "contour_units": "°",
     },
-
-    'i_sv': {
-        'title': 'Annual change inclination (I_SV)',
-        'description': """
+    "i_sv": {
+        "title": "Annual change inclination (I_SV)",
+        "description": """
 Contours representing annual change (secular variation) in the magnetic
 inclination (I) of the main magnetic field in arcminutes per year.
 """,
-        'contour_units': "''/y",
+        "contour_units": "''/y",
     },
-
-    'x': {
-        'title': 'Main field North component (X)',
-        'description': """
+    "x": {
+        "title": "Main field North component (X)",
+        "description": """
 Contours representing the main field North component (X) of the horizontal
 intensity in nanoTesla (nT).
 """,
-        'contour_units': 'nT',
+        "contour_units": "nT",
     },
-
-    'x_sv': {
-        'title': 'Annual change North component (X_SV)',
-        'description': """
+    "x_sv": {
+        "title": "Annual change North component (X_SV)",
+        "description": """
 Contours representing annual change (secular variation) in the North
 component (X) of the horizontal intensity of the main magnetic field in
 nanoTesla per year.
 """,
-        'contour_units': 'nT/y',
+        "contour_units": "nT/y",
     },
-
-    'y': {
-        'title': 'Main field East component (Y)',
-        'description': """
+    "y": {
+        "title": "Main field East component (Y)",
+        "description": """
 Contours representing the main field East component (Y) of the horizontal
 intensity in nanoTesla (nT).
 """,
-        'contour_units': 'nT',
+        "contour_units": "nT",
     },
-
-    'y_sv': {
-        'title': 'Annual change East component (Y_SV)',
-        'description': """
+    "y_sv": {
+        "title": "Annual change East component (Y_SV)",
+        "description": """
 Contours representing annual change (secular variation) in the East component
 (Y) of the horizontal intensity of the main magnetic field in nanoTesla per
 year.
 """,
-        'contour_units': 'nT/y',
+        "contour_units": "nT/y",
     },
-
-    'z': {
-        'title': 'Main field down component (Z)',
-        'description': """
+    "z": {
+        "title": "Main field down component (Z)",
+        "description": """
 Contours representing the main field down component (Z) in nanoTesla (nT).
 """,
-        'contour_units': 'nT',
+        "contour_units": "nT",
     },
-
-    'z_sv': {
-        'title': 'Annual change down component (Z_SV)',
-        'description': """
+    "z_sv": {
+        "title": "Annual change down component (Z_SV)",
+        "description": """
 Contours representing annual change (secular variation) in the down component
 (Z) of the main magnetic field in nanoTesla per year.
 """,
-        'contour_units': 'nT/y',
+        "contour_units": "nT/y",
     },
 }
 
@@ -219,29 +208,33 @@ def unzip_and_reproject_wmm_vector(
 ) -> list[CommandStep]:
     unzip = CommandStep(
         args=[
-            'unzip',
-            '-j',
-            '-d', '{output_dir}',
-            '{input_dir}/' + zip_filename,
+            "unzip",
+            "-j",
+            "-d",
+            "{output_dir}",
+            "{input_dir}/" + zip_filename,
             unzip_contents_mask,
         ],
     )
 
     reproject_with_sql = CommandStep(
-        id='ogr2ogr',
+        id="ogr2ogr",
         args=[
-            'OGR_ENABLE_PARTIAL_REPROJECTION=TRUE',
-            'ogr2ogr',
+            "OGR_ENABLE_PARTIAL_REPROJECTION=TRUE",
+            "ogr2ogr",
             *STANDARD_OGR2OGR_ARGS,
-            '-clipdst', project.boundaries['background'].filepath,
-            '-dialect', 'sqlite',
-            '-sql', (
+            "-clipdst",
+            project.boundaries["background"].filepath,
+            "-dialect",
+            "sqlite",
+            "-sql",
+            (
                 r'"Select Geometry, Contour, SIGN, \"INDEX\", '
-                fr'CAST(Contour AS TEXT) || \" {contour_units}\" as label '
+                rf"CAST(Contour AS TEXT) || \" {contour_units}\" as label "
                 f'FROM {partial_filename}"'
             ),
-            '{output_dir}/' + f'{partial_filename}.gpkg',
-            '{input_dir}/' + f'{partial_filename}.shp',
+            "{output_dir}/" + f"{partial_filename}.gpkg",
+            "{input_dir}/" + f"{partial_filename}.shp",
         ],
     )
 
@@ -254,24 +247,24 @@ def make_wmm_variable_layer(
     year: int,
 ) -> Layer:
     variable_config = _wmm_variable_config[variable]
-    contour_label = variable_config['contour_units']
+    contour_label = variable_config["contour_units"]
 
     return Layer(
-        id=f'wmm_{variable}_{year}',
-        title=variable_config['title'],
-        description=variable_config['description'],
+        id=f"wmm_{variable}_{year}",
+        title=variable_config["title"],
+        description=variable_config["description"],
         # We keep the main field declination layers (`d`) in the core
         # package. All other variables will only be available from the plugin.
-        in_package=True if variable == 'd' else False,
-        style='wmm_contours',
+        in_package=True if variable == "d" else False,
+        style="wmm_contours",
         input=LayerInput(
             dataset=wmm.wmm,
             asset=wmm.wmm.assets[str(year)],
         ),
         steps=unzip_and_reproject_wmm_vector(
-            zip_filename=f'WMM_{year}_all_shape_geographic.zip',
-            unzip_contents_mask=f'*{variable.upper()}_{year}*',
-            partial_filename=f'{variable.upper()}_{year}',
+            zip_filename=f"WMM_{year}_all_shape_geographic.zip",
+            unzip_contents_mask=f"*{variable.upper()}_{year}*",
+            partial_filename=f"{variable.upper()}_{year}",
             contour_units=contour_label,
         ),
     )
@@ -294,8 +287,8 @@ def make_wmm_variable_layers_for_year(*, year: int) -> list[Layer]:
 
 def wmm_layer_order(*, year: int) -> list[str]:
     layer_order = []
-    layer_order.append(f':wmm_boz_{year}')
+    layer_order.append(f":wmm_boz_{year}")
     for variable_name in _wmm_variable_config.keys():
-        layer_order.append(f':wmm_{variable_name}_{year}')
+        layer_order.append(f":wmm_{variable_name}_{year}")
 
     return layer_order
