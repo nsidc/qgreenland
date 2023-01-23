@@ -247,10 +247,10 @@ dependencies:
   - qt-main=5.15.6=h7acdfc8_2
   - qtkeychain=0.13.2=h7ba989a_1
   - qtwebkit=5.212=h3e5094c_7
-  - qwt=6.2.0=h1d9fb53_4
+  - qwt=6.2.0=hc45b483_5
   - readline=8.1.2=h0f457ee_0
   - requests=2.25.1=pyhd3deb0d_0
-  - setuptools=66.1.0=pyhd8ed1ab_0
+  - setuptools=66.1.1=pyhd8ed1ab_0
   - shapely=2.0.0=py310h8b84c32_0
   - shellcheck=0.7.2=ha770c72_1
   - sip=6.7.5=py310hd8f1fbe_0
@@ -259,7 +259,7 @@ dependencies:
   - snowballstemmer=2.2.0=pyhd8ed1ab_0
   - sphinx=4.3.2=pyh6c4a22f_0
   - sphinx-click=3.0.3=pyhd8ed1ab_0
-  - sphinxcontrib-applehelp=1.0.2=py_0
+  - sphinxcontrib-applehelp=1.0.4=pyhd8ed1ab_0
   - sphinxcontrib-devhelp=1.0.2=py_0
   - sphinxcontrib-htmlhelp=2.0.0=pyhd8ed1ab_0
   - sphinxcontrib-jsmath=1.0.1=py_0
@@ -309,7 +309,6 @@ dependencies:
   - zstd=1.5.2=h3eb15da_6
   - pip:
       - autodoc-pydantic==1.5.1
-      - flake8-commas==2.0.0
       - flake8-debugger==3.2.1
       - flake8-use-fstring==1.4
       - sphinx-rtd-theme==1.0.0
