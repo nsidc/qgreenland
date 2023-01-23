@@ -64,7 +64,7 @@ dependencies:
     # SEE PIP DEPENDENCIES FOR MORE
 
   # typechecking
-  - mypy ~=0.910
+  - mypy ==0.990
 
   # other utilities
   - bump2version
