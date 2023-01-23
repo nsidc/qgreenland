@@ -213,9 +213,9 @@ class ZipQGreenland(luigi.Task):
         shutil.make_archive(
             # make_archive expects a file path without extension:
             f"{tmp_fp.parent}/{tmp_fp.stem}",
-            "zip",
-            WIP_PACKAGE_DIR,
-            input_path.relative_to(WIP_PACKAGE_DIR),
+            format="zip",
+            root_dir=WIP_PACKAGE_DIR,
+            base_dir=input_path.relative_to(WIP_PACKAGE_DIR),
         )
         tmp_fp.rename(output_path)
 
