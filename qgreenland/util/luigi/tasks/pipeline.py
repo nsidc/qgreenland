@@ -3,9 +3,9 @@ import shutil
 import tempfile
 from pathlib import Path
 
+import luigi
 import markdown
 
-import luigi
 from qgreenland.constants.paths import (
     ANCILLARY_DIR,
     COMPILE_PACKAGE_DIR,

@@ -3,3 +3,4 @@ target-version = ['py310']
 
 [tool.isort]
 profile = "black"
+known_third_party = "luigi"
