@@ -16,17 +16,17 @@ def lock(ctx):
     with open(ENV_LOCKFILE, "w") as f:
         for line in lines:
             # The prefix line contains machine-specific directory
-            if line.startswith('prefix: '):
+            if line.startswith("prefix: "):
                 continue
 
             # We don't want to use the NSIDC conda channel
-            if '- nsidc' in line:
+            if "- nsidc" in line:
                 continue
 
             # We want to replace the "defaults" channel with "nodefaults" so conda-forge
             # is used for everything.
-            if '- defaults' in line:
-                f.write(line.replace('- defaults', '- nodefaults'))
+            if "- defaults" in line:
+                f.write(line.replace("- defaults", "- nodefaults"))
                 continue
 
             f.write(line)

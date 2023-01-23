@@ -12,14 +12,10 @@ from qgreenland import exceptions as exc
 from qgreenland.models.config.layer_group import LayerGroupSettings
 from qgreenland.util.config.config import get_config
 from qgreenland.util.qgis.layer import make_map_layer
-from qgreenland.util.tree import (
-    LayerGroupNode,
-    LayerNode,
-    prune_layers_not_in_package,
-)
+from qgreenland.util.tree import LayerGroupNode, LayerNode, prune_layers_not_in_package
 from qgreenland.util.version import get_build_version
 
-logger = logging.getLogger('luigi-interface')
+logger = logging.getLogger("luigi-interface")
 
 
 class QgsApplicationContext:
@@ -69,10 +65,10 @@ def make_qgis_project_file(path: Path) -> None:
 
     project_rectangle = qgc.QgsReferencedRectangle(
         qgc.QgsRectangle(
-            config.project.boundaries['data'].bbox.min_x,
-            config.project.boundaries['data'].bbox.min_y,
-            config.project.boundaries['data'].bbox.max_x,
-            config.project.boundaries['data'].bbox.max_y,
+            config.project.boundaries["data"].bbox.min_x,
+            config.project.boundaries["data"].bbox.min_y,
+            config.project.boundaries["data"].bbox.max_x,
+            config.project.boundaries["data"].bbox.max_y,
         ),
         project_crs,
     )
@@ -125,9 +121,9 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
                 group=parent_group,
             )
         else:
-            raise TypeError(f'Unexpected `node` type: {type(node)}')
+            raise TypeError(f"Unexpected `node` type: {type(node)}")
 
-    logger.debug('Done adding layers.')
+    logger.debug("Done adding layers.")
 
 
 def _get_group(
@@ -142,7 +138,7 @@ def _get_group(
         group = group.findGroup(group_name)
         if not group:
             raise exc.QgrQgsLayerTreeGroupError(
-                f'Unable to find group {group_path}.',
+                f"Unable to find group {group_path}.",
             )
 
     return group
@@ -161,7 +157,7 @@ def _get_or_create_and_configure_group(
         )
     except exc.QgrQgsLayerTreeGroupError as e:
         raise exc.QgrQgsLayerTreeGroupError(
-            f'Parent group of {node.name} not found: {e}',
+            f"Parent group of {node.name} not found: {e}",
         )
 
     new_group = parent_group.addGroup(node.name)
@@ -180,7 +176,7 @@ def _create_and_add_layer(
     group: qgc.QgsLayerTreeGroup,
 ) -> None:
     layer_id = node.name
-    logger.debug(f'Adding {layer_id}...')
+    logger.debug(f"Adding {layer_id}...")
     layer_cfg = node.layer_cfg
 
     map_layer = make_map_layer(node)
@@ -204,11 +200,15 @@ def _get_qgs_prefix_path() -> Path:
     # The qgis prefix path is two directories above the qgis executable.
     # See:
     # https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-standalone-scripts
-    qgis_path = subprocess.run(
-        ['which', 'qgis'],
-        stdout=subprocess.PIPE,
-    ).stdout.decode('utf-8').strip('\n')
-    qgis_prefix_path = (Path(qgis_path) / '..' / '..').resolve()
+    qgis_path = (
+        subprocess.run(
+            ["which", "qgis"],
+            stdout=subprocess.PIPE,
+        )
+        .stdout.decode("utf-8")
+        .strip("\n")
+    )
+    qgis_prefix_path = (Path(qgis_path) / ".." / "..").resolve()
 
     return qgis_prefix_path
 
@@ -238,32 +238,32 @@ def _add_decorations(project: qgc.QgsProject) -> None:
 
     Decorations are overlaid on the QGIS viewport.
     """
-    logger.debug('Adding decorations...')
+    logger.debug("Adding decorations...")
     # Add CopyrightLabel:
-    project.writeEntry('CopyrightLabel', '/Enabled', True)
+    project.writeEntry("CopyrightLabel", "/Enabled", True)
     # project.writeEntry('CopyrightLabel', '/FontName', 'Sans Serif')
     # NOTE: Does the copyright symbol work this way or should we use HTML codes?
     year = dt.date.today().year
     copyright_label = escape(
-        f'QGreenland {get_build_version()} © NSIDC {year}'
-        '\nhttps://qgreenland.org | https://github.com/nsidc/qgreenland/',
+        f"QGreenland {get_build_version()} © NSIDC {year}"
+        "\nhttps://qgreenland.org | https://github.com/nsidc/qgreenland/",
     )
-    project.writeEntry('CopyrightLabel', '/Label', copyright_label)
-    project.writeEntry('CopyrightLabel', '/Placement', 0)
-    project.writeEntry('CopyrightLabel', '/MarginH', 0)
-    project.writeEntry('CopyrightLabel', '/MarginV', 0)
+    project.writeEntry("CopyrightLabel", "/Label", copyright_label)
+    project.writeEntry("CopyrightLabel", "/Placement", 0)
+    project.writeEntry("CopyrightLabel", "/MarginH", 0)
+    project.writeEntry("CopyrightLabel", "/MarginV", 0)
 
     # Add Image (QGreenland logo):
-    project.writeEntry('Image', '/Enabled', True)
-    project.writeEntry('Image', '/Placement', 0)
-    project.writeEntry('Image', '/MarginH', 4)
-    project.writeEntry('Image', '/MarginV', 8)
-    project.writeEntry('Image', '/Size', 24)
-    project.writeEntry('Image', '/ImagePath', 'qgreenland.png')
+    project.writeEntry("Image", "/Enabled", True)
+    project.writeEntry("Image", "/Placement", 0)
+    project.writeEntry("Image", "/MarginH", 4)
+    project.writeEntry("Image", "/MarginV", 8)
+    project.writeEntry("Image", "/Size", 24)
+    project.writeEntry("Image", "/ImagePath", "qgreenland.png")
 
     # Enable the scalebar
-    project.writeEntry('ScaleBar', '/Enabled', True)
+    project.writeEntry("ScaleBar", "/Enabled", True)
     # Placement 3 corresponds to lower-right corner
-    project.writeEntry('ScaleBar', '/Placement', 3)
+    project.writeEntry("ScaleBar", "/Placement", 3)
 
-    logger.debug('Done adding decorations.')
+    logger.debug("Done adding decorations.")

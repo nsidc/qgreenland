@@ -28,10 +28,7 @@ class QgrLayerTask(luigi.Task):
     layer_id = luigi.Parameter()
 
     def __repr__(self):
-        return (
-            f'{self.__class__.__name__}('
-            f'layer_id={self.layer_id})'
-        )
+        return f"{self.__class__.__name__}(" f"layer_id={self.layer_id})"
 
     def requires(self):
         """Dynamically specify task this task depends on."""
@@ -66,9 +63,9 @@ class ChainableTask(QgrLayerTask):
 
     def __repr__(self) -> str:
         return (
-            f'{self.__class__.__name__}('
-            f'layer_id={self.layer_id},'
-            f' step_number={self.step_number})'
+            f"{self.__class__.__name__}("
+            f"layer_id={self.layer_id},"
+            f" step_number={self.step_number})"
         )
 
     @property
@@ -82,7 +79,7 @@ class ChainableTask(QgrLayerTask):
         WARNING: Only uniquely identifies a _step_ in the context of a layer;
         does not uniquely ID a step + layer combination.
         """
-        return f'{self.step_number:02}-{self.step.type}-{self.step.id}'
+        return f"{self.step_number:02}-{self.step.type}-{self.step.id}"
 
     def output(self):
         """Define a directory for the step's behavior to write things into.
@@ -114,7 +111,6 @@ class ChainableTask(QgrLayerTask):
 
 
 class LinkLayer(QgrLayerTask):
-
     def output(self):
         return luigi.LocalTarget(
             get_layer_compile_dir(self.node),
@@ -122,7 +118,7 @@ class LinkLayer(QgrLayerTask):
 
     def run(self):
         with temporary_path_dir(self.output()) as temp_path:
-            for inp in Path(self.input().path).glob('*'):
+            for inp in Path(self.input().path).glob("*"):
                 # Hard link final layer files to the zip compile directory.
                 #
                 # NOTE: Hardlink API is backwards to the symlink API...
@@ -149,8 +145,7 @@ class FinalizeTask(QgrLayerTask):
         input_path = Path(self.input().path)
         if not input_path.is_dir():
             raise RuntimeError(
-                'Expected final output to be a directory. Received:'
-                f' {input_path}!',
+                "Expected final output to be a directory. Received:" f" {input_path}!",
             )
 
         # Find compatible layer in dir (gpkg | tif). We only expect one file to
@@ -158,7 +153,7 @@ class FinalizeTask(QgrLayerTask):
         input_fp = get_layer_fp(input_path)
 
         # Copy file in there, renaming after layer id.
-        final_fn = f'{self.layer_cfg.id}{input_fp.suffix}'
+        final_fn = f"{self.layer_cfg.id}{input_fp.suffix}"
         with temporary_path_dir(self.output()) as temp_path:
             shutil.copy2(input_fp, temp_path / final_fn)
 
@@ -166,10 +161,10 @@ class FinalizeTask(QgrLayerTask):
             # "AncillaryFile" jobs because we need one file per layer.
             write_provenance_file(
                 layer_cfg=self.layer_cfg,
-                filepath=temp_path / 'provenance.txt',
+                filepath=temp_path / "provenance.txt",
             )
 
             write_metadata_file(
                 layer_cfg=self.layer_cfg,
-                filepath=temp_path / 'metadata.txt',
+                filepath=temp_path / "metadata.txt",
             )

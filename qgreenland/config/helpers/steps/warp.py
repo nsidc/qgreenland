@@ -9,21 +9,26 @@ def warp(
     input_file: str,
     output_file: str,
     cut_file: EvalFilePath,
-    resampling_method: ResamplingMethod = 'bilinear',
+    resampling_method: ResamplingMethod = "bilinear",
     warp_args: StepArgs = (),
 ) -> list[CommandStep]:
 
-    return [CommandStep(
-        args=[
-            'gdalwarp',
-            '-cutline',
-            cut_file,
-            '-crop_to_cutline',
-            '-r', resampling_method,
-            '-t_srs', project.crs,
-            *warp_args,
-            '-co', 'COMPRESS=DEFLATE',
-            input_file,
-            output_file,
-        ],
-    )]
+    return [
+        CommandStep(
+            args=[
+                "gdalwarp",
+                "-cutline",
+                cut_file,
+                "-crop_to_cutline",
+                "-r",
+                resampling_method,
+                "-t_srs",
+                project.crs,
+                *warp_args,
+                "-co",
+                "COMPRESS=DEFLATE",
+                input_file,
+                output_file,
+            ],
+        )
+    ]

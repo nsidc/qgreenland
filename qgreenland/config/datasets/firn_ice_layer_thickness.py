@@ -1,12 +1,11 @@
 from qgreenland.models.config.asset import ManualAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 macferrin_etal_firn_ice_layer_thicknesses = Dataset(
-    id='macferrin_etal_firn_ice_layer_thicknesses',
+    id="macferrin_etal_firn_ice_layer_thicknesses",
     assets=[
         ManualAsset(
-            id='only',
+            id="only",
             access_instructions=(
                 """Available via the publication website, and contained in the
                 Source Data Fig. 2 file."""
@@ -14,8 +13,8 @@ macferrin_etal_firn_ice_layer_thicknesses = Dataset(
         ),
     ],
     metadata={
-        'title': 'Rapid expansion of Greenland’s low-permeability ice slabs',
-        'abstract': (
+        "title": "Rapid expansion of Greenland’s low-permeability ice slabs",
+        "abstract": (
             """Citation publication abstract: In recent decades, meltwater
             runoff has accelerated to become the dominant mechanism for mass
             loss in the Greenland ice sheet. In Greenland’s high-elevation
@@ -41,13 +40,13 @@ macferrin_etal_firn_ice_layer_thicknesses = Dataset(
             fundamentally altering the ice sheet’s present and future
             hydrology."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """MacFerrin, M., Machguth, H., As, D.v. et al. Rapid expansion
                 of Greenland’s low-permeability ice slabs. Nature 573, 403–407
                 (2019). https://doi.org/10.1038/s41586-019-1550-3"""
             ),
-            'url': 'https://doi.org/10.1038/s41586-019-1550-3',
+            "url": "https://doi.org/10.1038/s41586-019-1550-3",
         },
     },
 )

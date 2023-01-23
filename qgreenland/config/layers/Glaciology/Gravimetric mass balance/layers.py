@@ -1,11 +1,12 @@
 import datetime as dt
 from typing import Generator
 
-from qgreenland.config.datasets.esa_cci import esa_cci_gravimetric_mass_balance_dtu as dataset
+from qgreenland.config.datasets.esa_cci import (
+    esa_cci_gravimetric_mass_balance_dtu as dataset,
+)
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
-
 
 # TODO: consider pulling this information from the source files themselves?
 # Could look in the private repo location for list of files and parse start/end
@@ -33,30 +34,30 @@ def _make_layers() -> Generator[Layer, None, None]:
         end_year = end_date.year
 
         yield Layer(
-            id=f'esa_cci_gravimetric_mass_balance_dtu_{start_year}_{end_year}',
-            title=f'Mass balance trend {start_year}-{end_year}',
+            id=f"esa_cci_gravimetric_mass_balance_dtu_{start_year}_{end_year}",
+            title=f"Mass balance trend {start_year}-{end_year}",
             description=(
                 f"""Trend derived from the period {start_year}-01-01 to {end_year}-12-31 via gravity
                 measurements. Data is on a ~50 km resolution grid (displayed as
                 points)."""
             ),
             tags=[],
-            style='gmb_dtu_space',
+            style="gmb_dtu_space",
             input=LayerInput(
                 dataset=dataset,
-                asset=dataset.assets['only'],
+                asset=dataset.assets["only"],
             ),
             steps=[
                 *ogr2ogr(
                     input_file=(
-                        '{input_dir}/QGREENLAND_GEOPACKAGES/'
-                        f'points_{start_date:%Y-%m-%d}_{end_date:%Y-%m-%d}.gpkg'
+                        "{input_dir}/QGREENLAND_GEOPACKAGES/"
+                        f"points_{start_date:%Y-%m-%d}_{end_date:%Y-%m-%d}.gpkg"
                     ),
                     output_file=(
-                        '{output_dir}/'
-                        f'points_{start_date:%Y-%m-%d}_{end_date:%Y-%m-%d}.gpkg'
+                        "{output_dir}/"
+                        f"points_{start_date:%Y-%m-%d}_{end_date:%Y-%m-%d}.gpkg"
                     ),
-                    boundary_filepath=project.boundaries['data'].filepath,
+                    boundary_filepath=project.boundaries["data"].filepath,
                 ),
             ],
         )

@@ -1,20 +1,19 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 tectonic_plates = Dataset(
-    id='tectonic_plates',
+    id="tectonic_plates",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'https://github.com/fraxen/tectonicplates/archive/339b0c5.zip',
+                "https://github.com/fraxen/tectonicplates/archive/339b0c5.zip",
             ],
         ),
     ],
     metadata={
-        'title': 'World tectonic plates and boundaries',
-        'abstract': (
+        "title": "World tectonic plates and boundaries",
+        "abstract": (
             """As per data source - This dataset is a conversion of the dataset
             originally published in the paper 'An updated digital model of plate
             boundaries' by Peter Bird (Geochemistry Geophysics Geosystems, 4(3),
@@ -33,12 +32,12 @@ tectonic_plates = Dataset(
             Dataset credit should acknowledge Hugo Ahlenius, Peter Bird, and
             Nordpil, with an additional suggested citation included."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Ahlenius, H. (2014). World tectonic plates and boundaries.
                 Data available from https://github.com/fraxen/tectonicplates."""
             ),
-            'url': 'https://github.com/fraxen/tectonicplates',
+            "url": "https://github.com/fraxen/tectonicplates",
         },
     },
 )

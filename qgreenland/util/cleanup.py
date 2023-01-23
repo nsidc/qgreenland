@@ -3,10 +3,7 @@ import os
 import shutil
 import time
 
-from qgreenland.constants.paths import (
-    FETCH_DATASETS_DIR,
-    INTERMEDIATE_DIRS,
-)
+from qgreenland.constants.paths import FETCH_DATASETS_DIR, INTERMEDIATE_DIRS
 
 
 def cleanup_intermediate_dirs():
@@ -37,9 +34,9 @@ def _rmtree(directory, *, retries=3):
                 shutil.rmtree(directory)
                 return
             except OSError as e:
-                print(f'WARNING: shutil.rmtee failed for path: {directory}')
-                print(f'Exception: {e}')
-                print(f'Retrying in {i} seconds...')
+                print(f"WARNING: shutil.rmtee failed for path: {directory}")
+                print(f"Exception: {e}")
+                print(f"Retrying in {i} seconds...")
                 time.sleep(i)
 
         # Allow caller to receive exceptions raised on the final try

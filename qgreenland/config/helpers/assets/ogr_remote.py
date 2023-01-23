@@ -10,8 +10,9 @@ def ogr_remote_asset(
     return CommandAsset(
         id=asset_id,
         args=[
-            'ogr2ogr',
-            '-oo', 'FEATURE_SERVER_PAGING=YES',
+            "ogr2ogr",
+            "-oo",
+            "FEATURE_SERVER_PAGING=YES",
             output_file,
             f'"{url}"',
         ],

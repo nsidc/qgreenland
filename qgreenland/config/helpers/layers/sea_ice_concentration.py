@@ -2,15 +2,12 @@ import calendar
 
 from qgreenland.models.config.asset import HttpAsset
 
-
 CONCENTRATION_START_YEAR = 2010
 MAX_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2021 + 1)
 MIN_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2021 + 1)
-CONCENTRATION_DESCRIPTION = (
-    """Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
+CONCENTRATION_DESCRIPTION = """Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
     99.9%). Values under 15% are considered to be open water."""
-)
-CONCENTRATION_STYLE = 'sea_ice_concentration'
+CONCENTRATION_STYLE = "sea_ice_concentration"
 
 # Off-years are years where the maximum occurs in a month other than March. This
 # mapping defines years which are off-years and which month the maximum occurred
@@ -31,9 +28,11 @@ def concentration_maximum_asset_for_year(year: int) -> HttpAsset:
     month_abbr = calendar.month_abbr[month]
 
     return HttpAsset(
-        id=f'maximum_concentration_{year}',
-        urls=[(
-            'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff'
-            f'/{month:02d}_{month_abbr}/N_{year}{month:02d}_concentration_v3.0.tif'
-        )],
+        id=f"maximum_concentration_{year}",
+        urls=[
+            (
+                "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff"
+                f"/{month:02d}_{month_abbr}/N_{year}{month:02d}_concentration_v3.0.tif"
+            )
+        ],
     )

@@ -1,74 +1,73 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 hdx_hotosm = Dataset(
-    id='hdx_hotosm',
+    id="hdx_hotosm",
     assets=[
         HttpAsset(
-            id='roads',
+            id="roads",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_roads_lines_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_roads_lines_shp.zip",
             ],
         ),
         HttpAsset(
-            id='airports',
+            id="airports",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_airports_points_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_airports_points_shp.zip",
             ],
         ),
         HttpAsset(
-            id='seaports',
+            id="seaports",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_sea_ports_points_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_sea_ports_points_shp.zip",
             ],
         ),
         HttpAsset(
-            id='waterways',
+            id="waterways",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_waterways_lines_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_waterways_lines_shp.zip",
             ],
         ),
         HttpAsset(
-            id='buildings',
+            id="buildings",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_buildings_polygons_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_buildings_polygons_shp.zip",
             ],
         ),
         HttpAsset(
-            id='financial_services',
+            id="financial_services",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_financial_services_points_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_financial_services_points_shp.zip",
             ],
         ),
         HttpAsset(
-            id='education_facilities',
+            id="education_facilities",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_education_facilities_points_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_education_facilities_points_shp.zip",
             ],
         ),
         HttpAsset(
-            id='health_facilities',
+            id="health_facilities",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_health_facilities_points_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_health_facilities_points_shp.zip",
             ],
         ),
         HttpAsset(
-            id='populated_places',
+            id="populated_places",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_populated_places_points_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_populated_places_points_shp.zip",
             ],
         ),
         HttpAsset(
-            id='points_of_interest',
+            id="points_of_interest",
             urls=[
-                'https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_points_of_interest_points_shp.zip',
+                "https://export.hotosm.org/downloads/99fc438f-23a0-4342-bbe9-54c5c3c37863/hotosm_grl_points_of_interest_points_shp.zip",
             ],
         ),
     ],
     metadata={
-        'title': 'Humanitarian OpenStreetMap Team',
-        'abstract': (
+        "title": "Humanitarian OpenStreetMap Team",
+        "abstract": (
             """Humanitarian OpenStreetMap Team (HOT) is an international team
             dedicated to humanitarian action and community development through
             open mapping. HOT works together to provide map data which
@@ -204,13 +203,13 @@ hdx_hotosm = Dataset(
             settlement in Greenland. Note that Nuuk includes six schools,
             Sisimiut two schools, and Ilulissat two schools."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Humanitarian OpenStreetMap Team (2020). Web:
                 https://export.hotosm.org/en/v3/. Date accessed:
                 {{date_accessed}}."""
             ),
-            'url': 'https://www.hotosm.org/',
+            "url": "https://www.hotosm.org/",
         },
     },
 )

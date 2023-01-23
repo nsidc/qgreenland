@@ -4,50 +4,58 @@ import luigi
 
 @click.command()
 @click.option(
-    '--dry-run', '-d',
+    "--dry-run",
+    "-d",
     is_flag=True,
-    help='Skip actual run, just list out tasks.',
+    help="Skip actual run, just list out tasks.",
 )
 @click.option(
-    '--fetch-only', '-f',
-    help='Fetch the data, but do not process it.',
+    "--fetch-only",
+    "-f",
+    help="Fetch the data, but do not process it.",
     is_flag=True,
 )
 @click.option(
-    '--workers', '-w',
-    default=1, show_default=True,
-    help='Number of workers to use.',
+    "--workers",
+    "-w",
+    default=1,
+    show_default=True,
+    help="Number of workers to use.",
 )
 @click.option(
-    '--include', '-i',
-    help='Include layers matching PATTERN.',
-    metavar='PATTERN',
+    "--include",
+    "-i",
+    help="Include layers matching PATTERN.",
+    metavar="PATTERN",
     required=False,
     multiple=True,
 )
 @click.option(
-    '--exclude', '-e',
-    help='Exclude layers matching PATTERN.',
-    metavar='PATTERN',
+    "--exclude",
+    "-e",
+    help="Exclude layers matching PATTERN.",
+    metavar="PATTERN",
     required=False,
     multiple=True,
 )
 @click.option(
-    '--exclude-manual-assets',
+    "--exclude-manual-assets",
     is_flag=True,
     help='Exclude all "manual access" assets.',
     required=False,
 )
 @click.option(
-    '--force-package-zip', '-z',
+    "--force-package-zip",
+    "-z",
     is_flag=True,
-    help='Zip the package even if `--include` or `--exclude` are true.',
+    help="Zip the package even if `--include` or `--exclude` are true.",
     required=False,
 )
 @click.option(
-    '--force-no-package-zip', '-Z',
+    "--force-no-package-zip",
+    "-Z",
     is_flag=True,
-    help='DO NOT zip the package even if the whole pipeline was run.',
+    help="DO NOT zip the package even if the whole pipeline was run.",
     required=False,
 )
 def run(
@@ -63,18 +71,15 @@ def run(
     """Run pipelines for layers matching filters."""
     # Hack to work around issue with sphinx-click:
     #     https://github.com/click-contrib/sphinx-click/issues/86#issuecomment-991196764
+    from qgreenland.util.config.config import get_config, init_config
     from qgreenland.util.luigi.tasks.pipeline import (
         LayerPipelines,
         QGreenlandAll,
         QGreenlandNoZip,
     )
-    from qgreenland.util.config.config import (
-        get_config,
-        init_config,
-    )
 
     if force_package_zip and force_no_package_zip:
-        raise RuntimeError('Can not force zip AND no zip.')
+        raise RuntimeError("Can not force zip AND no zip.")
 
     init_config(
         include_patterns=include,
@@ -93,18 +98,18 @@ def run(
     else:
         tasks = [QGreenlandAll()]
 
-    print(f'Running tasks: {str(tasks)}')
+    print(f"Running tasks: {str(tasks)}")
     print()
 
     if include or exclude or exclude_manual_assets or dry_run:
-        action = 'Fetching data' if fetch_only else 'Running pipelines'
-        print(f'{action} for the following layers:')
+        action = "Fetching data" if fetch_only else "Running pipelines"
+        print(f"{action} for the following layers:")
         for layer in config.layers.keys():
-            print(f'  - {layer}')
+            print(f"  - {layer}")
         print()
 
     if dry_run:
-        print('DRY RUN enabled. Aborting run.')
+        print("DRY RUN enabled. Aborting run.")
         return
 
     result = luigi.build(
@@ -117,4 +122,4 @@ def run(
     )
 
     if not result.scheduling_succeeded:
-        raise SystemExit('Scheduling failed. See log above for details.')
+        raise SystemExit("Scheduling failed. See log above for details.")

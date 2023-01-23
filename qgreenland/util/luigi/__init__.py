@@ -24,7 +24,6 @@ from qgreenland.util.luigi.tasks.fetch import (
 )
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
-
 # TODO: Make "fetch" tasks into Python "steps"?
 ASSET_TYPE_TASKS: dict[Type[AnyAsset], Type[FetchTask]] = {
     CmrAsset: FetchCmrGranule,

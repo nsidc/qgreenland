@@ -7,7 +7,6 @@ from qgreenland.config.project import project
 from qgreenland.models.config.step import CommandStep
 from qgreenland.util.runtime_vars import EvalFilePath
 
-
 # Create an immutable dict for the decompress step kwargs default value (flake8
 # B006 and B008)
 default_decompress_step_kwargs: MappingProxyType[None, None] = MappingProxyType({})
@@ -21,10 +20,10 @@ def compressed_vector(
     *,
     input_file: str,
     output_file: str,
-    vector_filename: str = '*.shp',
+    vector_filename: str = "*.shp",
     decompress_step_kwargs=default_decompress_step_kwargs,
     ogr2ogr_args: StepArgs = (),
-    boundary_filepath: EvalFilePath = project.boundaries['background'].filepath,
+    boundary_filepath: EvalFilePath = project.boundaries["background"].filepath,
 ) -> list[CommandStep]:
     """Unzip a vector data file and reproject."""
     return [
@@ -33,7 +32,7 @@ def compressed_vector(
             **decompress_step_kwargs,
         ),
         *ogr2ogr(
-            input_file='{input_dir}/' + vector_filename,
+            input_file="{input_dir}/" + vector_filename,
             output_file=output_file,
             boundary_filepath=boundary_filepath,
             ogr2ogr_args=ogr2ogr_args,

@@ -1,12 +1,11 @@
 from qgreenland.models.config.asset import ManualAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 geoid = Dataset(
-    id='geoid',
+    id="geoid",
     assets=[
         ManualAsset(
-            id='only',
+            id="only",
             access_instructions=(
                 """These data were obtained from Rene Forsberg of DTU Space as a
                 private data transfer on 2021-01-22."""
@@ -14,8 +13,8 @@ geoid = Dataset(
         ),
     ],
     metadata={
-        'title': 'Geoid model and gravity anomalies for Greenland',
-        'abstract': (
+        "title": "Geoid model and gravity anomalies for Greenland",
+        "abstract": (
             """GGeoid16 is the currently official gravimetric geoid model for
             Greenland, covering the area 58-85°N and 77-7°W with a grid
             resolution of 0.02° x 0.05° (approx. 2 km). It is based on a large
@@ -46,15 +45,15 @@ geoid = Dataset(
             dependent on the underlying gravity coverage and is estimated to be
             5-10 cm in areas of good gravity coverage."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Forsberg R., Jensen T. (2015) New Geoid of Greenland: A Case
                 Study of Terrain and Ice Effects, GOCE and Use of Local Sea
                 Level Data. In: Jin S., Barzaghi R. (eds) IGFS 2014. Int.
                 Association of Geodesy Symposia, vol 144.  Springer,
                 https://doi.org/10.1007/1345_2015_50."""
             ),
-            'url': 'https://doi.org/10.1007/1345_2015_50',
+            "url": "https://doi.org/10.1007/1345_2015_50",
         },
     },
 )

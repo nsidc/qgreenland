@@ -1,12 +1,11 @@
 from qgreenland.models.config.asset import ManualAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 racmo_qgreenland_jan2021 = Dataset(
-    id='racmo_qgreenland_jan2021',
+    id="racmo_qgreenland_jan2021",
     assets=[
         ManualAsset(
-            id='only',
+            id="only",
             access_instructions=(
                 """RACMO data were obtained via a private data transer by Brice
                 Noël. See the `scripts/preprocess-private-archive/racmo_qgreenla
@@ -15,8 +14,8 @@ racmo_qgreenland_jan2021 = Dataset(
         ),
     ],
     metadata={
-        'title': 'Regional Atmospheric Climate Model (RACMO)',
-        'abstract': (
+        "title": "Regional Atmospheric Climate Model (RACMO)",
+        "abstract": (
             """The Regional Atmospheric Climate Model (RACMO) data included use
             a new run at 5.5-km horizontal resolution of the polar (p) version
             of RACMO2.3p2 for the period 1958–2017. RACMO2.3p2 incorporates the
@@ -49,13 +48,13 @@ racmo_qgreenland_jan2021 = Dataset(
             polar ice sheets using RACMO2, Part 1: Greenland (1958-2016).
             Cryosphere 12, 811–831 (2018)."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Noël, B., W. J. van de Berg, S. Lhermitte, and M. R. van den
                 Broeke (2019), Rapid ablation zone expansion amplifies north
                 Greenland mass loss, Science Advances, 5(9), eaaw0123."""
             ),
-            'url': 'https://advances.sciencemag.org/content/5/9/eaaw0123',
+            "url": "https://advances.sciencemag.org/content/5/9/eaaw0123",
         },
     },
 )

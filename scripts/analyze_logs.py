@@ -12,7 +12,7 @@ try:
         os.path.join(sys.path[0], os.pardir),
     )
 except Exception as e:
-    raise RuntimeError(f'Failed to find script path: {e}')
+    raise RuntimeError(f"Failed to find script path: {e}")
 
 
 def logs_file_path(cmdl_args):
@@ -21,10 +21,10 @@ def logs_file_path(cmdl_args):
     If the user passed a path as positional argument, use that. Otherwise, if
     the NFS location is available, use it. Otherwise, use the local location.
     """
-    expected_fn = 'zip_access.log'
-    local_logs_dir = os.path.join(REPO_ROOT, 'logs')
+    expected_fn = "zip_access.log"
+    local_logs_dir = os.path.join(REPO_ROOT, "logs")
     local_logs_file = os.path.join(local_logs_dir, expected_fn)
-    nfs_logs_file = os.path.join('/share/logs/qgreenland', expected_fn)
+    nfs_logs_file = os.path.join("/share/logs/qgreenland", expected_fn)
 
     if os.path.isfile(local_logs_file):
         logs_file = local_logs_file
@@ -44,7 +44,7 @@ def logs_file_path(cmdl_args):
 
 def unusable_filename(fn):
     """TODO: Switch to logging.debug to hide spam."""
-    print(f'WARNING: Unusable filename: {fn}')
+    print(f"WARNING: Unusable filename: {fn}")
 
 
 class Parser:
@@ -62,8 +62,8 @@ class Parser:
         self.state = {}
 
     def parse(self, line):
-        line = line.strip('\n')
-        ip, timestamp, status_code, num_bytes, filepath = line.split('|')
+        line = line.strip("\n")
+        ip, timestamp, status_code, num_bytes, filepath = line.split("|")
         timestamp = datetime.fromisoformat(timestamp)
         status_code = int(status_code)
         num_bytes = int(num_bytes)
@@ -72,11 +72,11 @@ class Parser:
         if status_code != 200:
             return
 
-        if 'QGreenland' not in filename:
+        if "QGreenland" not in filename:
             unusable_filename(filename)
             return
 
-        matcher = re.compile('QGreenland_(v.+).zip')
+        matcher = re.compile("QGreenland_(v.+).zip")
         if match := matcher.match(filename):
             qgr_version = match.groups()[0]
         else:
@@ -84,11 +84,10 @@ class Parser:
             return
 
         if qgr_version in self.state:
-            self.state[qgr_version]['downloads'] += 1
-            self.state[qgr_version]['bytes'] += num_bytes
+            self.state[qgr_version]["downloads"] += 1
+            self.state[qgr_version]["bytes"] += num_bytes
         else:
-            self.state[qgr_version] = {'downloads': 1,
-                                       'bytes': num_bytes}
+            self.state[qgr_version] = {"downloads": 1, "bytes": num_bytes}
 
     def report(self):
         """Print a human-readable report.
@@ -97,21 +96,21 @@ class Parser:
         """
         for key, val in self.state.items():
             print()
-            print(f'== {key} ==')
+            print(f"== {key} ==")
             print(f"  Download count: {val['downloads']}")
             print(f"  Total size: {naturalsize(val['bytes'])}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     logs_fp = logs_file_path(sys.argv)
     parser = Parser()
 
-    with open(logs_fp, 'r') as logs_file:
-        print(f'Parsing log file: {logs_fp}...')
+    with open(logs_fp, "r") as logs_file:
+        print(f"Parsing log file: {logs_fp}...")
         lines = logs_file.readlines()
 
         if len(lines) == 0:
-            print('Log file is empty.')
+            print("Log file is empty.")
             sys.exit(0)
 
         for line in lines:

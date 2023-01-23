@@ -2,45 +2,45 @@ from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
 wmm = Dataset(
-    id='world_magnetic_model',
+    id="world_magnetic_model",
     assets=[
         HttpAsset(
-            id='geomagnetic_north_pole',
+            id="geomagnetic_north_pole",
             urls=[
-                'https://www.ngdc.noaa.gov/geomag/data/poles/WMM2020_NP.xy',
+                "https://www.ngdc.noaa.gov/geomag/data/poles/WMM2020_NP.xy",
             ],
         ),
         HttpAsset(
-            id='igrf_geomagnetic_north_pole',
+            id="igrf_geomagnetic_north_pole",
             urls=[
-                'https://www.ngdc.noaa.gov/geomag/data/poles/NP.xy',
+                "https://www.ngdc.noaa.gov/geomag/data/poles/NP.xy",
             ],
         ),
         HttpAsset(
-            id='geomagnetic_coordinates',
+            id="geomagnetic_coordinates",
             urls=[
-                'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020_geomagnetic_coordinate_shapefiles.zip',  # noqa:E501
+                "ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020_geomagnetic_coordinate_shapefiles.zip",  # noqa:E501
             ],
         ),
         HttpAsset(
-            id='blackout_zones',
+            id="blackout_zones",
             urls=[
-                'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020-2025_BoZ_Shapefile.zip',  # noqa:E501
+                "ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020-2025_BoZ_Shapefile.zip",  # noqa:E501
             ],
         ),
         *[
             HttpAsset(
                 id=str(year),
                 urls=[
-                    f'ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/{year}/WMM_{year}_all_shape_geographic.zip',  # noqa:E501
+                    f"ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/{year}/WMM_{year}_all_shape_geographic.zip",  # noqa:E501
                 ],
             )
             for year in range(2020, 2025 + 1)
         ],
     ],
     metadata={
-        'title': 'The World Magnetic Model',
-        'abstract': """
+        "title": "The World Magnetic Model",
+        "abstract": """
 The World Magnetic Model (WMM) is a joint product of the United States’
 National Geospatial-Intelligence Agency (NGA) and the United Kingdom’s
 Defence Geographic Centre (DGC). The WMM was developed jointly by the
@@ -81,14 +81,14 @@ degrees. Anomalies of this magnitude are not common but they do
 exist. Declination anomalies of the order of 3 or 4 degrees are not
 uncommon but are usually of small spatial extent.
 """,
-        'citation': {
-            'text': """
+        "citation": {
+            "text": """
 NCEI Geomagnetic Modeling Team and British Geological Survey. 2019.
 World Magnetic Model 2020. NOAA National Centers for Environmental
 Information. doi: 10.25921/11v3-da71, 2020, Date accessed:
 {{date_accessed}}.
 """,
-            'url': 'https://doi.org/10.25921/11v3-da71',
+            "url": "https://doi.org/10.25921/11v3-da71",
         },
     },
 )
