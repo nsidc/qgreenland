@@ -141,8 +141,18 @@ def typecheck(ctx, check_config=False):
     print('🎉🦆 Type checking passed.')
 
 
+@task
+def formatcheck(ctx):
+    """Check that the code conforms to formatting standards."""
+    print_and_run(f"isort --check-only {PROJECT_DIR}")
+    print_and_run(f"black --check {PROJECT_DIR}")
+
+    print("🎉🙈 Format check passed.")
+
+
 @task(pre=[
     lint,
+    formatcheck,
     call(typecheck, check_config=True),
     validate,
 ])
