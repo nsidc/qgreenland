@@ -101,9 +101,22 @@ the Docs.
 
 ## Documentation styles
 
+### QGIS elements and menu paths
+
 We have created the following styles to use when referring to QGIS elements and menu paths:
 * Any reference to a QGIS user interface element will be bolded. e.g.: "Navigate to 
   **Settings -> User Profiles -> Open Active Profile Folder** to get the directory path" or 
   "Use the **Layers Panel** to change the order of the layers".
 
 * Menu paths are delimited by ->, e.g.: Settings -> User Profiles -> Open Active Profile Folder
+
+### Screenshots and videos of the QGIS interface
+
+Screenshots and videos displaying the QGIS interface should use the default
+theme (i.e., not the 'dark theme') so that the interface looks as close as
+possible to what a new user is likely to see when opening QGIS for the first
+time.
+
+Moreover, QGIS's 'dark theme' tends to make some elements difficult to read /
+see on the screen. For example, **Layers Panel** checkboxes are not clearly
+distinguishable.

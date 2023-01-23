@@ -50,7 +50,7 @@ As of this writing, the oldest version of QGIS we support is 3.16.x LTR. You
 can find downloads and instructions
 [here](https://qgis.org/en/site/forusers/download.html).
 
-After installing QGIS, [download QGreenland](http://www.qgreenland.org/explore)
+After installing QGIS, [download QGreenland](https://qgreenland.org/download)
 and unzip it with your unzip tool of choice if you haven not already done so.
 Finally, open the `qgreenland.qgs` file contained inside with QGIS.
 

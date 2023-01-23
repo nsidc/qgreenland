@@ -25,7 +25,7 @@ fi
 # We want the args as a string that gets added to the python command passed to
 # bash.
 # shellcheck disable=SC2124
-ARGS_STR=$@
+ARGS_STR="$@"
 
 # `tty_arg` should not be quoted.
 # shellcheck disable=SC2086
