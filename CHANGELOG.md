@@ -1,3 +1,8 @@
+# NEXT_VERSION
+
+- Minimum supported version of QGIS is now `v3.22`.
+
+
 # v2.0.0rc3 (2022-03-03)
 
 - Update documentation for v2.0.0
