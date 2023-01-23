@@ -2,76 +2,73 @@ from qgreenland.config.helpers.assets.ogr_remote import ogr_remote_asset
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 nunagis_pop2019_municipalities = Dataset(
-    id='nunagis_pop2019_municipalities',
+    id="nunagis_pop2019_municipalities",
     assets=[
         ogr_remote_asset(
-            asset_id='only',
-            output_file='{output_dir}/fetched.geojson',
-            url='https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC',
+            asset_id="only",
+            output_file="{output_dir}/fetched.geojson",
+            url="https://kort.nunagis.gl/server/rest/services/Hosted/POP2019_Municipalities/FeatureServer/0/query/?f=json&where=true&outFields=*&orderByFields=pop_municipality_2019_objectid+ASC",
         ),
     ],
     metadata={
-        'title': 'Municipalities with Population',
-        'abstract': (
+        "title": "Municipalities with Population",
+        "abstract": (
             """Greenland municipality boundaries. Data includes information on
             2019 municipality population and the municipality population as a
             percent of total Greenland population."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """NunaGIS (2020). Municipalities by population numbers in 2019,
                 Greenland. Web:
                   https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e84
                 78c9514208548ca5f61.
                 Date accessed: {{date_accessed}}."""
             ),
-            'url': 'https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61',
+            "url": "https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61",
         },
     },
 )
 
 ne_states_provinces = Dataset(
-    id='ne_states_provinces',
+    id="ne_states_provinces",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip',
+                "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip",
             ],
         ),
     ],
     metadata={
-        'title': 'Admin 1 – States, Provinces',
-        'abstract': (
+        "title": "Admin 1 – States, Provinces",
+        "abstract": (
             """Internal, first-order administrative boundaries and polygons for
             all but a few tiny countries. Includes name attributes (including
             diacritical marks), name variants, and some statistical codes (FIPS,
             ISO, HASC)."""
         ),
-        'citation': {
-            'text': (
-                """Made with Natural Earth"""
-            ),
-            'url': 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md',
+        "citation": {
+            "text": ("""Made with Natural Earth"""),
+            "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md",
         },
     },
 )
 
 ne_countries = Dataset(
-    id='ne_countries',
+    id="ne_countries",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip',
+                "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip",
             ],
         ),
     ],
     metadata={
-        'title': 'Admin 0 – Countries',
-        'abstract': (
+        "title": "Admin 0 – Countries",
+        "abstract": (
             """Countries distinguish between metropolitan (homeland) and
             independent and semi-independent portions of sovereign states. If
             you want to see the dependent overseas regions broken out (like in
@@ -86,11 +83,9 @@ ne_countries = Dataset(
             Includes some thematic data from the United Nations, U.S. Central
             Intelligence Agency, and elsewhere."""
         ),
-        'citation': {
-            'text': (
-                """Made with Natural Earth"""
-            ),
-            'url': 'https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md',
+        "citation": {
+            "text": ("""Made with Natural Earth"""),
+            "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md",
         },
     },
 )

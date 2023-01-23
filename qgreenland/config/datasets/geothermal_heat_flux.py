@@ -1,20 +1,19 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 geothermal_heat_flux = Dataset(
-    id='geothermal_heat_flux',
+    id="geothermal_heat_flux",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'https://ads.nipr.ac.jp/api/v1/metadata/A20180227-001/2.00/data/DATA?path=GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc',
+                "https://ads.nipr.ac.jp/api/v1/metadata/A20180227-001/2.00/data/DATA?path=GHF_Greenland_Ver2.0_GridEPSG3413_05km.nc",
             ],
         ),
     ],
     metadata={
-        'title': 'Geothermal heat flux distribution for the Greenland ice sheet, derived by combining a global representation and information from deep ice cores',
-        'abstract': (
+        "title": "Geothermal heat flux distribution for the Greenland ice sheet, derived by combining a global representation and information from deep ice cores",
+        "abstract": (
             """The data present a distribution of the geothermal heat flux (GHF)
             for Greenland, which is an update of two earlier versions by Greve
             (2005, Ann. Glaciol. 42) and Greve and Herzfeld (2013, Ann. Glaciol.
@@ -32,15 +31,15 @@ geothermal_heat_flux = Dataset(
             in modelling studies of the Greenland ice sheet, and for the three
             different resolutions of 5 km, 10 km and 20 km."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Greve, R., 2018, Geothermal heat flux distribution for the
                 Greenland ice sheet, derived by combining a global
                 representation and information from deep ice cores, 2.00, Arctic
                 Data archive System (ADS), Japan,
                 http://doi.org/10.17592/001.2018022701"""
             ),
-            'url': 'http://doi.org/10.17592/001.2018022701',
+            "url": "http://doi.org/10.17592/001.2018022701",
         },
     },
 )

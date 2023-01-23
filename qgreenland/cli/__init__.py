@@ -8,7 +8,7 @@ from qgreenland.cli.provenance import provenance
 from qgreenland.cli.run import run
 
 
-@click.group(context_settings={'help_option_names': ['-h', '--help']})
+@click.group(context_settings={"help_option_names": ["-h", "--help"]})
 def cli():
     ...
 
@@ -21,5 +21,5 @@ cli.add_command(provenance)
 cli.add_command(run)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()

@@ -14,19 +14,19 @@ def _get_python_module_filepaths(the_dir: Path) -> list[Path]:
     """Return non-dunder python modules found in `the_dir`."""
     if not the_dir.is_dir():
         raise RuntimeError(
-            f'Given path {the_dir} is not a directory.',
+            f"Given path {the_dir} is not a directory.",
         )
 
     return [
         f
-        for f in list(the_dir.glob('**/*.py'))
-        if not (f.stem.startswith('__') and f.stem.endswith('__'))
+        for f in list(the_dir.glob("**/*.py"))
+        if not (f.stem.startswith("__") and f.stem.endswith("__"))
     ]
 
 
 def compile_datasets_cfg(config_dir: Path) -> dict[str, Dataset]:
     """Find and return all datasets in "`config_dir`/datasets"."""
-    datasets_dir = config_dir / 'datasets'
+    datasets_dir = config_dir / "datasets"
     dataset_fps = _get_python_module_filepaths(datasets_dir)
     datasets = load_objects_from_paths_by_class(
         dataset_fps,
@@ -36,7 +36,7 @@ def compile_datasets_cfg(config_dir: Path) -> dict[str, Dataset]:
     duplicates = find_duplicates(d.id for d in datasets)
     if duplicates:
         raise exc.QgrInvalidConfigError(
-            f'Duplicate dataset_ids found: {duplicates}',
+            f"Duplicate dataset_ids found: {duplicates}",
         )
 
     return {dataset.id: dataset for dataset in datasets}
@@ -52,7 +52,7 @@ def compile_cfg(
 ) -> Config:
     try:
         compiled_layer_tree = layer_tree(
-            config_dir / 'layers',
+            config_dir / "layers",
             include_patterns=include_patterns,
             exclude_patterns=exclude_patterns,
             exclude_manual_assets=exclude_manual_assets,
@@ -61,13 +61,10 @@ def compile_cfg(
 
         if not all(type(leaf) is LayerNode for leaf in leaves):
             raise RuntimeError(
-                'Not all leaf nodes are LayerNodes. Debug me.',
+                "Not all leaf nodes are LayerNodes. Debug me.",
             )
 
-        layers_dict = {
-            node.layer_cfg.id: node.layer_cfg
-            for node in leaves
-        }
+        layers_dict = {node.layer_cfg.id: node.layer_cfg for node in leaves}
 
         return Config(
             project=project,
@@ -76,4 +73,4 @@ def compile_cfg(
             layer_tree=compiled_layer_tree,
         )
     except Exception as e:
-        raise exc.QgrConfigCompileError(f'Failed to compile config. {e}') from e
+        raise exc.QgrConfigCompileError(f"Failed to compile config. {e}") from e

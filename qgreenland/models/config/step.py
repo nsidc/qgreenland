@@ -30,7 +30,7 @@ class CommandStep(QgrBaseModel, LayerStep):
     id: Optional[str]
 
     # TODO: How to prevent this from being overridden at instantiation time?
-    type: Literal['command'] = 'command'
+    type: Literal["command"] = "command"
 
     args: list[EvalStr]
     """The command arguments, e.g. ['cat', '{input_dir}/foo.txt']."""  # noqa:FS003
@@ -43,22 +43,22 @@ class CommandStep(QgrBaseModel, LayerStep):
     @classmethod
     def set_default_id(cls, values):
         """Generate an identifier from `args` if one is not provided."""
-        if 'id' in values and values['id'] is not None:
+        if "id" in values and values["id"] is not None:
             return values
 
-        text = values['args'][0].lower()
+        text = values["args"][0].lower()
 
-        symbols = [' ', '-', '=', '\\', '.']
+        symbols = [" ", "-", "=", "\\", "."]
         for symbol in symbols:
             if symbol in text:
-                text = text.replace(symbol, '_')
+                text = text.replace(symbol, "_")
 
-        values['id'] = text
+        values["id"] = text
         return values
 
     @cached_property
     def provenance(self) -> str:
-        return ' '.join([str(arg) for arg in self.args])
+        return " ".join([str(arg) for arg in self.args])
 
 
 AnyStep = Union[CommandStep]

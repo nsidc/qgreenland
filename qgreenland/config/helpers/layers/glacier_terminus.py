@@ -9,10 +9,7 @@ LAYER_YEARS = [(year, year + 1) for year in YEARS]
 
 
 def id_str(*, start: int, end: int) -> str:
-    return f'glacier_terminus_{start}_{end}'
+    return f"glacier_terminus_{start}_{end}"
 
 
-LAYER_IDS = [
-    id_str(start=START, end=END)
-    for (START, END) in LAYER_YEARS
-]
+LAYER_IDS = [id_str(start=START, end=END) for (START, END) in LAYER_YEARS]

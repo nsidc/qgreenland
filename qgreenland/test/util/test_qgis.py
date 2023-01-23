@@ -7,21 +7,19 @@ import qgreenland.exceptions as exc
 import qgreenland.util.metadata as qgm
 import qgreenland.util.qgis.layer as qgl
 import qgreenland.util.qgis.project as prj
-from qgreenland.test.constants import (
-    MOCK_COMPILE_PACKAGE_DIR,
-)
+from qgreenland.test.constants import MOCK_COMPILE_PACKAGE_DIR
 
 
 def test_make_map_layer_online(setup_teardown_qgis_app, online_layer_node):
     result = qgl.make_map_layer(online_layer_node)
 
-    assert 'https://demo.mapserver.org' in result.source()
-    assert result.dataProvider().name() == 'wms'
+    assert "https://demo.mapserver.org" in result.source()
+    assert result.dataProvider().name() == "wms"
     assert result.name() == online_layer_node.layer_cfg.title
 
 
 @patch(
-    'qgreenland.util.layer.COMPILE_PACKAGE_DIR',
+    "qgreenland.util.layer.COMPILE_PACKAGE_DIR",
     new=MOCK_COMPILE_PACKAGE_DIR,
 )
 def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
@@ -33,8 +31,10 @@ def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
     # Has the expected path to the data on disk.
     expected_raster_path = (
         MOCK_COMPILE_PACKAGE_DIR
-        / 'Group' / 'Subgroup'
-        / 'Example raster' / 'example.tif'
+        / "Group"
+        / "Subgroup"
+        / "Example raster"
+        / "example.tif"
     )
     assert result.source() == str(expected_raster_path)
 
@@ -48,7 +48,7 @@ def test_make_map_layer_raster(setup_teardown_qgis_app, raster_layer_node):
 
 
 @patch(
-    'qgreenland.util.layer.COMPILE_PACKAGE_DIR',
+    "qgreenland.util.layer.COMPILE_PACKAGE_DIR",
     new=MOCK_COMPILE_PACKAGE_DIR,
 )
 def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
@@ -57,8 +57,9 @@ def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
     qgl.add_layer_metadata(mock_raster_layer, raster_layer_node.layer_cfg)
 
     # The abstract gets set with the value returned by `qgis.build_abstract`.
-    assert mock_raster_layer.metadata().abstract() == \
-        qgm.build_layer_metadata(raster_layer_node.layer_cfg)
+    assert mock_raster_layer.metadata().abstract() == qgm.build_layer_metadata(
+        raster_layer_node.layer_cfg
+    )
 
     actual_title = mock_raster_layer.metadata().title()
     expected_title = raster_layer_node.layer_cfg.title
@@ -74,7 +75,7 @@ def test_add_layer_metadata(setup_teardown_qgis_app, raster_layer_node):
 
 
 @patch(
-    'qgreenland.util.layer.COMPILE_PACKAGE_DIR',
+    "qgreenland.util.layer.COMPILE_PACKAGE_DIR",
     new=MOCK_COMPILE_PACKAGE_DIR,
 )
 def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):
@@ -83,7 +84,7 @@ def test__add_layers_and_groups(setup_teardown_qgis_app, raster_layer_node):
     prj._add_layers_and_groups(project, raster_layer_node.root)
     added_layers = list(project.mapLayers().values())
     assert len(added_layers) == 1
-    assert added_layers[0].name() == 'Example raster'
+    assert added_layers[0].name() == "Example raster"
 
     # Clear the project for the next test...
     project.clear()

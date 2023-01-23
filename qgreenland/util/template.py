@@ -17,7 +17,7 @@ def load_template(fn: str) -> Template:
     """
     template_path = TEMPLATES_DIR / fn
 
-    with open(template_path, 'r') as f:
-        template_str = ''.join(f.readlines())
+    with open(template_path, "r") as f:
+        template_str = "".join(f.readlines())
 
     return Template(template_str)

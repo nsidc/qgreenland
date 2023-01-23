@@ -6,15 +6,12 @@ from qgreenland.util.provenance import layer_provenance_text
 
 
 @click.command()
-@click.argument('layer_id')
+@click.argument("layer_id")
 def provenance(layer_id):
     """List steps that are taken to process layer LAYER_ID."""
     # Hack to work around issue with sphinx-click:
     #     https://github.com/click-contrib/sphinx-click/issues/86#issuecomment-991196764
-    from qgreenland.util.config.config import (
-        get_config,
-        init_config,
-    )
+    from qgreenland.util.config.config import get_config, init_config
 
     init_config()
     config = get_config()
@@ -22,7 +19,7 @@ def provenance(layer_id):
     try:
         layer_cfg = config.layers[layer_id]
     except KeyError:
-        print(f'Could not find layer {layer_id}.')
+        print(f"Could not find layer {layer_id}.")
         sys.exit(1)
 
     print(layer_provenance_text(layer_cfg))

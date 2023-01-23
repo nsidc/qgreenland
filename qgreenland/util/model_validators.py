@@ -18,12 +18,12 @@ def validate_paragraph_text(text: str):
     must end with a period.
     """
     if not text:
-        raise ValueError('Paragraph text must not be empty.')
+        raise ValueError("Paragraph text must not be empty.")
 
     if not text[0].isupper():
-        raise ValueError('Paragraph text must begin with an upper-case letter.')
+        raise ValueError("Paragraph text must begin with an upper-case letter.")
 
-    if not text.endswith('.'):
-        raise ValueError('Paragraph text must end with a period.')
+    if not text.endswith("."):
+        raise ValueError("Paragraph text must end with a period.")
 
     return text

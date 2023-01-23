@@ -1,22 +1,25 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 monthly_albedo = Dataset(
-    id='monthly_albedo',
+    id="monthly_albedo",
     assets=[
         HttpAsset(
-            id='2018_07',
-            urls=['https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/URJ2VK/XXQUSC'],
+            id="2018_07",
+            urls=[
+                "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/URJ2VK/XXQUSC"
+            ],
         ),
         HttpAsset(
-            id='2019_07',
-            urls=['https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/URJ2VK/6YZNSZ'],
+            id="2019_07",
+            urls=[
+                "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/URJ2VK/6YZNSZ"
+            ],
         ),
     ],
     metadata={
-        'title': 'SICE 1 km broadband albedo monthly averages and visualisations',
-        'abstract': (
+        "title": "SICE 1 km broadband albedo monthly averages and visualisations",
+        "abstract": (
             """We present a simplified atmospheric correction algorithm for
             snow/ice albedo retrievals using single view satellite
             measurements. The validation of the technique is performed using
@@ -32,15 +35,15 @@ monthly_albedo = Dataset(
             (0.5) broadband albedo range of the (N = 4155) Greenland
             observations and with no apparent bias."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Kokhanovsky A, Box JE, Vandecrux B, Mankoff KD, Lamare M,
                 Smirnov A and Kern M (2020) The Determination of Snow Albedo
                 from Satellite Measurements Using Fast Atmospheric Correction
                 Technique. Remote Sensing 12(2), 234 doi: 10.3390/rs12020234
                 https://www.mdpi.com/2072-4292/12/2/234"""
             ),
-            'url': 'doi.org/10.22008/FK2/URJ2VK',
+            "url": "doi.org/10.22008/FK2/URJ2VK",
         },
     },
 )

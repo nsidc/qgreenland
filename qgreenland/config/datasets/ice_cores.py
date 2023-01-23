@@ -1,20 +1,19 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 ice_cores = Dataset(
-    id='ice_cores',
+    id="ice_cores",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz',
+                "http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz",
             ],
         ),
     ],
     metadata={
-        'title': 'Ice Cores',
-        'abstract': (
+        "title": "Ice Cores",
+        "abstract": (
             """Greenland ice core locations. Ice cores can provide records of
             past temperature, precipitation, atmospheric trace gases, and other
             aspects of climate and environment. Additional information is
@@ -23,13 +22,13 @@ ice_cores = Dataset(
             Dataset. For details please see:
             http://www.ncdc.noaa.gov/paleo/icecore.html."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """World Data Center (2020). Ice core locations. Download:
                 http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed:
                 {{date_accessed}}."""
             ),
-            'url': 'http://www.ncdc.noaa.gov/paleo/icecore.html',
+            "url": "http://www.ncdc.noaa.gov/paleo/icecore.html",
         },
     },
 )

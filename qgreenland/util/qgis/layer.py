@@ -10,10 +10,7 @@ from osgeo import gdal
 import qgreenland.exceptions as exc
 from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.models.config.layer import Layer
-from qgreenland.util.layer import (
-    get_layer_compile_filepath,
-    vector_or_raster,
-)
+from qgreenland.util.layer import get_layer_compile_filepath, vector_or_raster
 from qgreenland.util.metadata import build_layer_description, build_layer_metadata
 from qgreenland.util.template import load_template
 from qgreenland.util.tree import LayerNode
@@ -23,8 +20,7 @@ def _build_layer_tooltip(layer_cfg: Layer) -> str:
     """Return a properly escaped layer tooltip text."""
     tt = build_layer_description(layer_cfg)
     tt += (
-        '\n\n'
-        'Open Layer Properties and select the Metadata tab for more information.'
+        "\n\n" "Open Layer Properties and select the Metadata tab for more information."
     )
     return escape(tt)
 
@@ -37,7 +33,7 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: Layer) -> None:
     its `loadNamedMetadata` method. This metadata gets written to the project
     file when the layer is added to the `project`.
     """
-    qmd_template = load_template('metadata.jinja')
+    qmd_template = load_template("metadata.jinja")
 
     # Set the layer's tooltip
     tooltip = _build_layer_tooltip(layer_cfg)
@@ -73,7 +69,7 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: Layer) -> None:
     # Write the rendered tempalte to a temporary file
     # location. `map_layer.loadNamedMetadata` expects a string URI corresponding
     # to a file on disk.
-    with tempfile.NamedTemporaryFile('w') as temp_file:
+    with tempfile.NamedTemporaryFile("w") as temp_file:
         temp_file.write(rendered_qmd)
         temp_file.flush()
         map_layer.loadNamedMetadata(temp_file.name)
@@ -84,11 +80,11 @@ def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
         layer_node=layer_node,
     )
     layer_type = vector_or_raster(layer_node)
-    if layer_type == 'Vector':
-        provider = 'ogr'
+    if layer_type == "Vector":
+        provider = "ogr"
         qgs_layer_creator = qgc.QgsVectorLayer
-    elif layer_type == 'Raster':
-        provider = 'gdal'
+    elif layer_type == "Raster":
+        provider = "gdal"
         qgs_layer_creator = qgc.QgsRasterLayer
 
     # For online layers, the provider is specified in the config.
@@ -109,7 +105,7 @@ def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
 
     if not map_layer.isValid():
         raise exc.QgrRuntimeError(
-            f'Invalid QgsMapLayer created for layer {layer_cfg.id}',
+            f"Invalid QgsMapLayer created for layer {layer_cfg.id}",
         )
 
     add_layer_metadata(map_layer, layer_cfg)
@@ -125,7 +121,7 @@ def _layer_path(
 ) -> Union[Path, str]:
     layer_cfg = layer_node.layer_cfg
     if type(layer_cfg.input.asset) is OnlineAsset:
-        return f'{layer_cfg.input.asset.url}'
+        return f"{layer_cfg.input.asset.url}"
     else:
         # Give the absolute path to the layer. We think project.addMapLayer()
         # automatically generates the correct relative paths. Using a relative
@@ -168,8 +164,7 @@ def _create_layer_with_side_effects(
     layer_type = vector_or_raster(layer_node)
 
     offline_raster = (
-        layer_type == 'Raster'
-        and type(layer_cfg.input.asset) is not OnlineAsset
+        layer_type == "Raster" and type(layer_cfg.input.asset) is not OnlineAsset
     )
 
     if offline_raster:

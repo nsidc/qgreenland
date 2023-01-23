@@ -22,8 +22,7 @@ class EvalPath(object):
     def validate_arg(cls, value):
         if not (isinstance(value, str) or issubclass(type(value), EvalPath)):
             raise TypeError(
-                '`str` or `EvalPath` required. Received:'
-                f' `{type(value).__name__}`',
+                "`str` or `EvalPath` required. Received:" f" `{type(value).__name__}`",
             )
         return cls(value)
 
@@ -80,9 +79,9 @@ class EvalFilePath(EvalPath):
         if not path.is_file():
             raise exc.QgrInterpolationError(
                 f'No file found at evaluated path "{path}".'
-                f' NOTE: {{input_dir}} and {{output_dir}} are not supported by'
-                ' `EvalFilePath` fields. If you want to use these, use'
-                ' `EvalPath` instead.',
+                f" NOTE: {{input_dir}} and {{output_dir}} are not supported by"
+                " `EvalFilePath` fields. If you want to use these, use"
+                " `EvalPath` instead.",
             )
 
 
@@ -101,8 +100,7 @@ class EvalStr(UserString):
             str(value)
         except Exception as e:
             raise type(e)(
-                'Stringifiable type expected. Received:'
-                f' `{type(value).__name__}`',
+                "Stringifiable type expected. Received:" f" `{type(value).__name__}`",
             )
 
         return cls(value)
@@ -116,8 +114,8 @@ class EvalStr(UserString):
     def eval(
         self,
         *,
-        input_dir: Optional[str] = '{input_dir}',  # noqa:FS003
-        output_dir: Optional[str] = '{output_dir}',  # noqa:FS003
+        input_dir: Optional[str] = "{input_dir}",  # noqa:FS003
+        output_dir: Optional[str] = "{output_dir}",  # noqa:FS003
     ) -> str:
 
         return self.format(

@@ -1,12 +1,11 @@
 from qgreenland.models.config.asset import ManualAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 machguth_etal_massbalance_obs_locations = Dataset(
-    id='machguth_etal_massbalance_obs_locations',
+    id="machguth_etal_massbalance_obs_locations",
     assets=[
         ManualAsset(
-            id='only',
+            id="only",
             access_instructions=(
                 """Accessed the Greenland Mass Balance database on Dec. 12, 2020
                 from PROMICE (https://promice.org/PromiceDataPortal/api/download
@@ -20,8 +19,8 @@ machguth_etal_massbalance_obs_locations = Dataset(
         ),
     ],
     metadata={
-        'title': 'Greenland surface mass-balance observations from the ice-sheet ablation area and local glaciers',
-        'abstract': (
+        "title": "Greenland surface mass-balance observations from the ice-sheet ablation area and local glaciers",
+        "abstract": (
             """These are historical surface mass balance measurement locations
             from Greenland Ice Sheet ablation area and surrounding local
             glaciers. There are approximately 3000 unique measurements from 46
@@ -30,14 +29,14 @@ machguth_etal_massbalance_obs_locations = Dataset(
             and source flags. Users can look to the citation URL for additional
             data."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Machgruth, H. et al (2016). Greenland surface mass-balance
                 observations from the ice-sheet ablation area and local
                 glaciers. Journal of Glaciology, 62(235), 861-887.
                 doi:10.1017/jog.2016.75"""
             ),
-            'url': 'https://www.doi.org/10.1017/jog.2016.75',
+            "url": "https://www.doi.org/10.1017/jog.2016.75",
         },
     },
 )

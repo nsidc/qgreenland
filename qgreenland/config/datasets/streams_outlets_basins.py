@@ -1,62 +1,61 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 streams_outlets_basins = Dataset(
-    id='streams_outlets_basins',
+    id="streams_outlets_basins",
     assets=[
         HttpAsset(
-            id='ice_basins',
+            id="ice_basins",
             urls=[
-                'https://dataverse01.geus.dk/api/access/datafile/283?gbrecs=true',
+                "https://dataverse01.geus.dk/api/access/datafile/283?gbrecs=true",
             ],
         ),
         HttpAsset(
-            id='land_basins',
+            id="land_basins",
             urls=[
-                'https://dataverse01.geus.dk/api/access/datafile/286?gbrecs=true',
+                "https://dataverse01.geus.dk/api/access/datafile/286?gbrecs=true",
             ],
         ),
         HttpAsset(
-            id='ice_basins_filled',
+            id="ice_basins_filled",
             urls=[
-                'https://dataverse01.geus.dk/api/access/datafile/278?gbrecs=true',
+                "https://dataverse01.geus.dk/api/access/datafile/278?gbrecs=true",
             ],
         ),
         HttpAsset(
-            id='land_basins_filled',
+            id="land_basins_filled",
             urls=[
-                'https://dataverse01.geus.dk/api/access/datafile/279?gbrecs=true',
+                "https://dataverse01.geus.dk/api/access/datafile/279?gbrecs=true",
             ],
         ),
         HttpAsset(
-            id='ice_outlets',
+            id="ice_outlets",
             urls=[
-                'https://dataverse01.geus.dk/api/access/datafile/276?gbrecs=true',
+                "https://dataverse01.geus.dk/api/access/datafile/276?gbrecs=true",
             ],
         ),
         HttpAsset(
-            id='land_outlets',
+            id="land_outlets",
             urls=[
-                'https://dataverse01.geus.dk/api/access/datafile/285?gbrecs=true',
+                "https://dataverse01.geus.dk/api/access/datafile/285?gbrecs=true",
             ],
         ),
         HttpAsset(
-            id='ice_streams',
+            id="ice_streams",
             urls=[
-                'https://dataverse01.geus.dk/api/access/datafile/277?gbrecs=true',
+                "https://dataverse01.geus.dk/api/access/datafile/277?gbrecs=true",
             ],
         ),
         HttpAsset(
-            id='land_streams',
+            id="land_streams",
             urls=[
-                'https://dataverse01.geus.dk/api/access/datafile/275?gbrecs=true',
+                "https://dataverse01.geus.dk/api/access/datafile/275?gbrecs=true",
             ],
         ),
     ],
     metadata={
-        'title': 'Streams, Outlets, and Basins [k=1.0]',
-        'abstract': (
+        "title": "Streams, Outlets, and Basins [k=1.0]",
+        "abstract": (
             """Greenland land and ice sheet streams, outlets, and basins.
             Routing assumes k = 1.0 for subglacial routing algorithm. Further
             details from citation publication: The static products (streams,
@@ -74,13 +73,13 @@ streams_outlets_basins = Dataset(
             2017b; Howat et al., 2014). Full references available in linked
             publication."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Mankoff, Ken, 2020, "Streams, Outlets, and Basins [k=1.0]",
                 https://doi.org/10.22008/FK2/XKQVL7, GEUS, V1,
                 UNF:6:SweJ3D918I+g+OYxdPDa4g== [fileUNF] """
             ),
-            'url': 'https://doi.org/10.22008/FK2/XKQVL7',
+            "url": "https://doi.org/10.22008/FK2/XKQVL7",
         },
     },
 )

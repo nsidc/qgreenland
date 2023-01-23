@@ -1,18 +1,17 @@
 from qgreenland.models.config.asset import RepositoryAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 gem_research_stations = Dataset(
-    id='gem_research_stations',
+    id="gem_research_stations",
     assets=[
         RepositoryAsset(
-            id='only',
-            filepath='{assets_dir}/gem_research_stations.geojson',
+            id="only",
+            filepath="{assets_dir}/gem_research_stations.geojson",
         ),
     ],
     metadata={
-        'title': 'Greenland Ecosystem Monitoring - Location and Description of Research Stations',
-        'abstract': (
+        "title": "Greenland Ecosystem Monitoring - Location and Description of Research Stations",
+        "abstract": (
             """Greenland Ecosystem Monitoring (GEM) is an integrated monitoring
             and long-term research programme on ecosystems and climate change
             effects and feedbacks in the Arctic. Since 1995 the programme has
@@ -34,13 +33,13 @@ gem_research_stations = Dataset(
             Full station descriptions were manually added by QGreenland from the
             'Station Link' associated with each feature."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Roemer, Jonas K. (2020). Greenland Ecosystem Monitoring -
                 Location and Description of Research Stations (Version 1.0).
                 Zenodo. http://doi.org/10.5281/zenodo.3991670"""
             ),
-            'url': 'http://doi.org/10.5281/zenodo.3991670',
+            "url": "http://doi.org/10.5281/zenodo.3991670",
         },
     },
 )

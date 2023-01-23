@@ -3,10 +3,7 @@ from pathlib import Path
 import qgreenland.exceptions as exc
 from qgreenland._typing import QgsLayerType
 from qgreenland.constants.misc import PROVIDER_LAYERTYPE_MAPPING
-from qgreenland.constants.paths import (
-    COMPILE_PACKAGE_DIR,
-    RELEASE_LAYERS_DIR,
-)
+from qgreenland.constants.paths import COMPILE_PACKAGE_DIR, RELEASE_LAYERS_DIR
 from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.models.config.layer import Layer
 from qgreenland.util.fs import get_layer_fp
@@ -26,7 +23,7 @@ def get_layer_compile_dir(
     layer_node: LayerNode,
 ) -> Path:
     """Get the layer directory in package compilation location."""
-    layer_group_path_str = '/'.join(layer_node.group_name_path)
+    layer_group_path_str = "/".join(layer_node.group_name_path)
     return (
         COMPILE_PACKAGE_DIR
         / layer_group_path_str
@@ -41,7 +38,7 @@ def get_layer_release_dir(
 
 
 def datasource_dirname(*, dataset_id: str, asset_id: str) -> str:
-    return f'{dataset_id}.{asset_id}'
+    return f"{dataset_id}.{asset_id}"
 
 
 def get_layer_compile_filepath(
@@ -61,11 +58,11 @@ def _layer_dirname_from_cfg(layer_cfg: Layer) -> str:
 
 
 def _vector_or_raster_from_fp(fp: Path) -> QgsLayerType:
-    if fp.suffix == '.tif':
-        return 'Raster'
-    elif fp.suffix == '.gpkg':
-        return 'Vector'
+    if fp.suffix == ".tif":
+        return "Raster"
+    elif fp.suffix == ".gpkg":
+        return "Vector"
     else:
         raise exc.QgrQgsLayerError(
-            f'Unexpected extension: {fp}. Expected .tif or .gpkg.',
+            f"Unexpected extension: {fp}. Expected .tif or .gpkg.",
         )

@@ -1,23 +1,22 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 gshhg_coastlines = Dataset(
-    id='gshhg_coastlines',
+    id="gshhg_coastlines",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.7.zip',
+                "http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.7.zip",
             ],
         ),
     ],
     metadata={
-        'title': (
-            'GSHHG: A Global Self-consistent, Hierarchical, High-resolution'
-            ' Geography Database'
+        "title": (
+            "GSHHG: A Global Self-consistent, Hierarchical, High-resolution"
+            " Geography Database"
         ),
-        'abstract': (
+        "abstract": (
             """We present a high-resolution geography data set amalgamated from
             three data bases in the public domain:
 
@@ -40,15 +39,15 @@ gshhg_coastlines = Dataset(
             Starting with version 2.2.2, GSHHG has been released under the GNU
             Lesser General Public License."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Wessel, P., and W. H. F. Smith, A Global Self-consistent,
                 Hierarchical, High-resolution Shoreline Database, J. Geophys.
                 Res., 101, 8741-8743, 1996"""
             ),
-            'url': (
-                'https://www.soest.hawaii.edu/pwessel/gshhg/'
-                'Wessel+Smith_1996_JGR.pdf'
+            "url": (
+                "https://www.soest.hawaii.edu/pwessel/gshhg/"
+                "Wessel+Smith_1996_JGR.pdf"
             ),
         },
     },

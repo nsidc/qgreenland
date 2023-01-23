@@ -1,28 +1,27 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 velocity_mosaic = Dataset(
-    id='velocity_mosaic',
+    id="velocity_mosaic",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/velocity_mosaic/landsat/v00.0/static/GRE_G0120_0000.nc',
+                "http://its-live-data.jpl.nasa.gov.s3.amazonaws.com/velocity_mosaic/landsat/v00.0/static/GRE_G0120_0000.nc",
             ],
         ),
     ],
     metadata={
-        'title': 'Regional Glacier and Ice Sheet Surface Velocities',
-        'abstract': (
+        "title": "Regional Glacier and Ice Sheet Surface Velocities",
+        "abstract": (
             """The Inter-mission Time Series of Land Ice Velocity and Elevation
             (ITS_LIVE) project facilitates ice sheet, ice shelf and glacier
             research by providing a globally comprehensive and temporally dense
             multi-sensor record of land ice velocity and elevation with low
             latency."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Velocity data generated using auto-RIFT (Gardner et al.,
                 2018) and provided by the NASA MEaSUREs ITS_LIVE project
                 (Gardner et al., 2019).
@@ -38,7 +37,7 @@ velocity_mosaic = Dataset(
                 the last 7 years, Cryosphere, 12(2): 521–547,
                 doi:10.5194/tc-12-521-2018."""
             ),
-            'url': 'https://its-live.jpl.nasa.gov/#documentation',
+            "url": "https://its-live.jpl.nasa.gov/#documentation",
         },
     },
 )

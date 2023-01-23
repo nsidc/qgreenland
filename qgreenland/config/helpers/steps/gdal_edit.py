@@ -9,13 +9,17 @@ def gdal_edit(
     gdal_edit_args: StepArgs = (),
 ) -> list[CommandStep]:
 
-    return [CommandStep(
-        id='gdal_edit',
-        args=[
-            'cp', input_file, output_file,
-            '&&',
-            'gdal_edit.py',
-            *gdal_edit_args,
-            output_file,
-        ],
-    )]
+    return [
+        CommandStep(
+            id="gdal_edit",
+            args=[
+                "cp",
+                input_file,
+                output_file,
+                "&&",
+                "gdal_edit.py",
+                *gdal_edit_args,
+                output_file,
+            ],
+        )
+    ]

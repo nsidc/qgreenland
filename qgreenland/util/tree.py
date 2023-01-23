@@ -22,12 +22,9 @@ from qgreenland.models.config.layer_group import (
 )
 from qgreenland.util.json import MagicJSONEncoder
 from qgreenland.util.misc import find_duplicates
-from qgreenland.util.module import (
-    load_objects_from_paths_by_class,
-)
+from qgreenland.util.module import load_objects_from_paths_by_class
 
-
-logger = logging.getLogger('luigi-interface')
+logger = logging.getLogger("luigi-interface")
 
 
 class QgrTreeNode(anytree.Node, ABC):
@@ -38,7 +35,7 @@ class QgrTreeNode(anytree.Node, ABC):
     """
 
     @cached_property
-    def group_node_path(self) -> tuple['QgrTreeNode']:
+    def group_node_path(self) -> tuple["QgrTreeNode"]:
         """Produce a list of group/directory nodes a layer/group node lives in.
 
         Omit the root node (named "layers" after the "layers" directory) and omit
@@ -49,17 +46,14 @@ class QgrTreeNode(anytree.Node, ABC):
     @cached_property
     def group_name_path(self) -> tuple[str, ...]:
         """Produce a list of group/directory names a layer/group node lives in."""
-        return tuple(
-            str(group_node.name)
-            for group_node in self.group_node_path
-        )
+        return tuple(str(group_node.name) for group_node in self.group_node_path)
 
     def render(self) -> str:
-        result = ''
+        result = ""
         for pre, _, node in anytree.RenderTree(self):
-            result += f'{pre}{node.name}\n'
+            result += f"{pre}{node.name}\n"
 
-        return result.removesuffix('\n')
+        return result.removesuffix("\n")
 
     def __repr__(self) -> str:
         return f'{self.__class__.__name__}(name="{self.name}")'
@@ -110,13 +104,13 @@ def layer_tree(
 
     if len(tree.children) == 0:
         raise exc.QgrNoLayersFoundError(
-            f'No layers found matching {include_patterns=}; {exclude_patterns=}',
+            f"No layers found matching {include_patterns=}; {exclude_patterns=}",
         )
 
     duplicates = find_duplicates(node.name for node in tree.leaves)
     if duplicates:
         raise exc.QgrInvalidConfigError(
-            f'Duplicate layer_ids found: {duplicates}',
+            f"Duplicate layer_ids found: {duplicates}",
         )
 
     return tree
@@ -126,13 +120,10 @@ def leaf_lookup(
     tree: anytree.Node,
     target_node_name: str,
 ) -> LayerNode:
-    matches = [
-        leaf for leaf in tree.leaves
-        if leaf.name == target_node_name
-    ]
+    matches = [leaf for leaf in tree.leaves if leaf.name == target_node_name]
     if len(matches) != 1:
         raise RuntimeError(
-            f'Found not-one matches: {matches}',
+            f"Found not-one matches: {matches}",
         )
 
     return matches[0]
@@ -140,17 +131,15 @@ def leaf_lookup(
 
 def _filter_directory_contents(paths=list[Path]) -> list[Path]:
     """Return the `paths` to include only those we care about."""
+
     def _path_valid(p: Path) -> bool:
         return (
-            (p.suffix == '.py' or p.is_dir)
-            and not p.name == '__pycache__'
-            and not p.name.startswith('.')
+            (p.suffix == ".py" or p.is_dir)
+            and not p.name == "__pycache__"
+            and not p.name.startswith(".")
         )
 
-    return [
-        p for p in paths
-        if _path_valid(p)
-    ]
+    return [p for p in paths if _path_valid(p)]
 
 
 LayerDirectoryElement = Union[Path, Layer]
@@ -167,7 +156,7 @@ def _explode_config_layers_from_python_files(
     result: list[LayerDirectoryElement] = []
 
     for path in paths:
-        if path.suffix == '.py':
+        if path.suffix == ".py":
             config_layers = load_objects_from_paths_by_class(
                 [path],
                 target_class=Layer,
@@ -176,8 +165,8 @@ def _explode_config_layers_from_python_files(
         else:
             if not path.is_dir():
                 raise RuntimeError(
-                    f'Paths in {path.parent} must be Python files or'
-                    f' directories. Found: {path}',
+                    f"Paths in {path.parent} must be Python files or"
+                    f" directories. Found: {path}",
                 )
             result.append(path)
 
@@ -213,11 +202,11 @@ def _manual_ordering_strategy(
     ordered_directory_elements: list[LayerDirectoryElement] = []
 
     if not settings.order:
-        raise RuntimeError('Order must be specified in settings.')
+        raise RuntimeError("Order must be specified in settings.")
 
     for s in settings.order:
         try:
-            if s.startswith(':'):
+            if s.startswith(":"):
                 matcher = lambda x: isinstance(x, Layer) and x.id == s[1:]
                 thing_desc = f'layer id "{s[1:]}"'
             else:
@@ -227,14 +216,13 @@ def _manual_ordering_strategy(
             matches = funcy.lfilter(matcher, layers_and_groups)
             if len(matches) != 1:
                 raise RuntimeError(
-                    f'Expected to find {thing_desc}. Found: {matches}',
+                    f"Expected to find {thing_desc}. Found: {matches}",
                 )
 
             thing = matches[0]
         except Exception as e:
             raise RuntimeError(
-                f'Unexpected error processing `settings.order` element "{s}".'
-                f' {e}',
+                f'Unexpected error processing `settings.order` element "{s}".' f" {e}",
             )
 
         ordered_directory_elements.append(thing)
@@ -263,11 +251,11 @@ def _validate_ordered(
 
     if (diff := ondisk_set - ordered_set) != set():
         raise RuntimeError(
-            f'Found the following items on disk but not in ordered set: {diff}',
+            f"Found the following items on disk but not in ordered set: {diff}",
         )
     if (diff := ordered_set - ondisk_set) != set():
         raise RuntimeError(
-            f'Found the following items in ordered set but not on disk: {diff}',
+            f"Found the following items in ordered set but not on disk: {diff}",
         )
 
 
@@ -283,11 +271,7 @@ def _ordered_layers_and_groups(
 
     Groups are represented as directories and are returned unchanged.
     """
-    (
-        layer_and_group_paths,
-        settings,
-        settings_path,
-    ) = _handle_layer_config_directory(
+    (layer_and_group_paths, settings, settings_path,) = _handle_layer_config_directory(
         the_dir,
         is_root=is_root,
     )
@@ -298,10 +282,10 @@ def _ordered_layers_and_groups(
 
     try:
         if settings.order:
-            error_hint = '. Check `__settings__.py`'
+            error_hint = ". Check `__settings__.py`"
             ordered = _manual_ordering_strategy(layers_and_groups, settings)
         else:
-            error_hint = ''
+            error_hint = ""
             ordered = _default_ordering_strategy(layers_and_groups)
 
         _validate_ordered(
@@ -310,7 +294,7 @@ def _ordered_layers_and_groups(
         )
     except Exception as e:
         raise RuntimeError(
-            f'Error ordering layers in `{the_dir}`{error_hint}. {e}',
+            f"Error ordering layers in `{the_dir}`{error_hint}. {e}",
         )
 
     return ordered, settings
@@ -325,13 +309,10 @@ def _handle_layer_config_directory(
     directory_contents = _filter_directory_contents(
         list(the_dir.iterdir()),
     )
-    settings_fps = [
-        c for c in directory_contents
-        if c.name == '__settings__.py'
-    ]
+    settings_fps = [c for c in directory_contents if c.name == "__settings__.py"]
 
     if not settings_fps:
-        logger.debug(f'__settings__.py not found in {the_dir}')
+        logger.debug(f"__settings__.py not found in {the_dir}")
         if is_root:
             settings = RootGroupSettings()
         else:
@@ -341,7 +322,7 @@ def _handle_layer_config_directory(
 
     if len(settings_fps) != 1:
         raise RuntimeError(
-            f'Expected exactly one settings file. Received: {settings_fps}',
+            f"Expected exactly one settings file. Received: {settings_fps}",
         )
     settings_fp = settings_fps[0]
 
@@ -352,13 +333,12 @@ def _handle_layer_config_directory(
 
     if len(settings_objects) != 1:
         raise RuntimeError(
-            f'Expected exactly one settings object in {settings_fp}',
+            f"Expected exactly one settings object in {settings_fp}",
         )
     settings = settings_objects[0]
 
     layer_and_group_paths = [
-        c for c in directory_contents
-        if c.name != '__settings__.py'
+        c for c in directory_contents if c.name != "__settings__.py"
     ]
 
     return (layer_and_group_paths, settings, settings_fp)
@@ -397,10 +377,7 @@ def _matches_filters(
     inclusions or exclusions. I.e.: for set of inclusions I and exclusions E,
     this is a question of `I - E` vs. `!E + I`.
     """
-    if (
-        exclude_manual_assets
-        and type(candidate.input.asset) is ManualAsset
-    ):
+    if exclude_manual_assets and type(candidate.input.asset) is ManualAsset:
         # TODO: `included = True` instead? This would be more consistent with
         # the "included or not excluded" behavior the patterns follow.
         return False
@@ -447,7 +424,7 @@ def _tree_from_dir(
     for thing in ordered_layers_and_groups:
         if isinstance(thing, Path):
             if not thing.is_dir():
-                raise RuntimeError(f'Expected {thing} to be a directory!')
+                raise RuntimeError(f"Expected {thing} to be a directory!")
 
             # NOTE: Since this modifies the entire tree (`root_node`), nothing
             # needs to be assigned here.
@@ -470,14 +447,14 @@ def _tree_from_dir(
                 LayerNode(thing.id, layer_cfg=thing, parent=root_node)
             else:
                 logger.debug(
-                    f'Layer {thing.id} does not match patterns:'
-                    f' {include_patterns=}; {exclude_patterns=};'
-                    f' {exclude_manual_assets=}',
+                    f"Layer {thing.id} does not match patterns:"
+                    f" {include_patterns=}; {exclude_patterns=};"
+                    f" {exclude_manual_assets=}",
                 )
 
         else:
             raise RuntimeError(
-                f'Found unexpected thing: {thing}',
+                f"Found unexpected thing: {thing}",
             )
 
     return root_node
@@ -485,7 +462,7 @@ def _tree_from_dir(
 
 def _delete_node(
     node: anytree.node,
-    msg: str = 'Removing node',
+    msg: str = "Removing node",
 ) -> None:
     """Delete (_"delete"_) the node by orphaning it and letting the GC kill it.
 
@@ -493,8 +470,8 @@ def _delete_node(
         https://github.com/c0fec0de/anytree/issues/152
     """
     node_path = list(node.group_name_path) + [node.name]
-    node_name = '/'.join(node_path)
-    logger.warn(f'{msg}: /{node_name}')
+    node_name = "/".join(node_path)
+    logger.warn(f"{msg}: /{node_name}")
     node.parent = None
 
 
@@ -511,7 +488,7 @@ def prune_layers_not_in_package(
     # leaves. Removing these leaves shouldn't create new LayerNode leaves.
     for node in lt.leaves:
         if type(node) is LayerNode and not node.layer_cfg.in_package:
-            _delete_node(node, msg='Removing layer not in package')
+            _delete_node(node, msg="Removing layer not in package")
 
     lt = prune_empty_groups(lt)
     return lt
@@ -527,12 +504,12 @@ def prune_empty_groups(
     # because removing a leaf group may leave its parent group newly enleafened.
     for node in anytree.PostOrderIter(lt):
         if node.is_leaf and type(node) is not LayerNode:
-            logger.warn(f'{node.group_name_path=}, {node.name=}')
-            _delete_node(node, msg='Removing empty group')
+            logger.warn(f"{node.group_name_path=}, {node.name=}")
+            _delete_node(node, msg="Removing empty group")
 
     return lt
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     tree = layer_tree(LAYERS_CFG_DIR)
     print(tree.render())

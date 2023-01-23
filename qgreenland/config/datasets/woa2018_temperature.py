@@ -1,28 +1,29 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
-BASE_URL = 'https://www.ncei.noaa.gov/thredds-ocean/fileServer/ncei/woa/temperature/decav'
+BASE_URL = (
+    "https://www.ncei.noaa.gov/thredds-ocean/fileServer/ncei/woa/temperature/decav"
+)
 
 woa2018_temperature = Dataset(
-    id='woa2018_temperature',
+    id="woa2018_temperature",
     assets=[
         HttpAsset(
-            id='seasonal_winter',
+            id="seasonal_winter",
             urls=[
-                f'{BASE_URL}/0.25/woa18_decav_t13_04.nc',
+                f"{BASE_URL}/0.25/woa18_decav_t13_04.nc",
             ],
         ),
         HttpAsset(
-            id='seasonal_summer',
+            id="seasonal_summer",
             urls=[
-                f'{BASE_URL}/0.25/woa18_decav_t15_04.nc',
+                f"{BASE_URL}/0.25/woa18_decav_t15_04.nc",
             ],
         ),
     ],
     metadata={
-        'title': 'WORLD OCEAN ATLAS 2018 Volume 1: Temperature',
-        'abstract': (
+        "title": "WORLD OCEAN ATLAS 2018 Volume 1: Temperature",
+        "abstract": (
             """From the World Ocean Atlas: This atlas consists of a description
             of data analysis procedures and horizontal maps of climatological
             distribution fields of temperature at selected standard depth levels
@@ -37,15 +38,15 @@ woa2018_temperature = Dataset(
             fields from the annual mean field, and the number of observations)
             at 102 standard depths."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Locarnini, R. A., A. V. Mishonov, O. K. Baranova, T. P.
                 Boyer, M. M. Zweng, H. E. Garcia, J. R. Reagan, D. Seidov, K. W.
                 Weathers, C. R. Paver, I.  V. Smolyar, 2019: World Ocean Atlas
                 2018, Volume 1: Temperature.  A. V.  Mishonov, Technical Ed.,
                 NOAA Atlas NESDIS 81"""
             ),
-            'url': 'https://data.nodc.noaa.gov/woa/WOA18/DOC/woa18_vol1.pdf',
+            "url": "https://data.nodc.noaa.gov/woa/WOA18/DOC/woa18_vol1.pdf",
         },
     },
 )

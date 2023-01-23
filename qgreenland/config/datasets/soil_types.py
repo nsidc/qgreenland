@@ -1,22 +1,21 @@
 from qgreenland.models.config.asset import HttpAsset
 from qgreenland.models.config.dataset import Dataset
 
-
 soil_types = Dataset(
-    id='soil_types',
+    id="soil_types",
     assets=[
         HttpAsset(
-            id='only',
+            id="only",
             urls=[
-                'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.dbf.gz',
-                'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.shp.gz',
-                'ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.shx.gz',
+                "ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.dbf.gz",
+                "ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.shp.gz",
+                "ftp://sidads.colorado.edu/pub/DATASETS/fgdc/ggd602_map_cryosols/ggd602_soils_greenland.shx.gz",
             ],
         ),
     ],
     metadata={
-        'title': 'Northern Circumpolar Soils Map, Version 1',
-        'abstract': (
+        "title": "Northern Circumpolar Soils Map, Version 1",
+        "abstract": (
             """The full data set consists of a circumpolar map of dominant soil
             characteristics, with a scale of 1:10,000,000, covering the United
             States, Canada, Greenland, Iceland, northern Europe, Russia,
@@ -33,8 +32,8 @@ soil_types = Dataset(
             glaciers, and rocklands. QGreenland dispalys data for Greenland.
             Users can look to the source information for additional data."""
         ),
-        'citation': {
-            'text': (
+        "citation": {
+            "text": (
                 """Tarnocai, C., J. Kimble, D. Swanson, S. Goryachkin, Y. M.
                 Naumov, V. Stolbovoi, B. Jakobsen, G. Broll, L. Montanarella, A.
                 Arnoldussen, O. Arnalds, and M. Yli-Halla. 2002. Northern
@@ -42,7 +41,7 @@ soil_types = Dataset(
                 Research Branch, Agriculture and Agri-Food Canada. doi:
                 https://doi.org/. {{date_accessed}}."""
             ),
-            'url': 'https://nsidc.org/data/GGD602/versions/1',
+            "url": "https://nsidc.org/data/GGD602/versions/1",
         },
     },
 )

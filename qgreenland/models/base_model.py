@@ -3,11 +3,7 @@ import re
 from functools import cached_property
 from typing import Any
 
-from pydantic import (
-    BaseModel,
-    Extra,
-    validator,
-)
+from pydantic import BaseModel, Extra, validator
 
 import qgreenland.exceptions as exc
 
@@ -19,7 +15,7 @@ class QgrBaseModel(BaseModel):
     determined dev can still mutate model instances.
     """
 
-    @validator('*', pre=True)
+    @validator("*", pre=True)
     @classmethod
     def clean_all_string_fields(cls, value):
         """Clean up all string fields with `cleandoc`.
@@ -31,20 +27,20 @@ class QgrBaseModel(BaseModel):
             return inspect.cleandoc(value)
         return value
 
-    @validator('*')
+    @validator("*")
     @classmethod
     def validate_id_fields(cls, value, field):
         """Ensure `id` fields have appropriate content.
 
         Only lowercase alphanumeric characters or underscores are permitted.
         """
-        if field.name != 'id':
+        if field.name != "id":
             return value
 
-        regex = re.compile(r'^[a-z0-9_]+$')
+        regex = re.compile(r"^[a-z0-9_]+$")
         if not regex.match(value):
             raise exc.QgrInvalidConfigError(
-                'Only lowercase alphanumeric characters or underscores are'
+                "Only lowercase alphanumeric characters or underscores are"
                 f' permitted in "id" fields. Received: {value}',
             )
 

@@ -10,30 +10,33 @@ def warp_and_cut(
     input_file,
     output_file,
     cut_file,
-    resampling_method: ResamplingMethod = 'bilinear',
+    resampling_method: ResamplingMethod = "bilinear",
     reproject_args: StepArgs = (),
     cut_args: StepArgs = (),
 ) -> list[CommandStep]:
     reproject = CommandStep(
         args=[
-            'gdalwarp',
-            '-t_srs', project.crs,
-            '-r', resampling_method,
+            "gdalwarp",
+            "-t_srs",
+            project.crs,
+            "-r",
+            resampling_method,
             *reproject_args,
             input_file,
-            '{output_dir}/warped.tif',
+            "{output_dir}/warped.tif",
         ],
     )
 
     cut = CommandStep(
         args=[
-            'gdalwarp',
-            '-cutline',
+            "gdalwarp",
+            "-cutline",
             cut_file,
-            '-crop_to_cutline',
-            '-co', 'COMPRESS=DEFLATE',
+            "-crop_to_cutline",
+            "-co",
+            "COMPRESS=DEFLATE",
             *cut_args,
-            '{input_dir}/warped.tif',
+            "{input_dir}/warped.tif",
             output_file,
         ],
     )

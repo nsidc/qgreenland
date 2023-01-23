@@ -23,7 +23,7 @@ class LayerInput(QgrBaseModel):
 
 
 def _style_filepath(style_name: str) -> Path:
-    return ANCILLARY_DIR / 'styles' / (style_name + '.qml')
+    return ANCILLARY_DIR / "styles" / (style_name + ".qml")
 
 
 class Layer(QgrBaseModel):
@@ -55,18 +55,18 @@ class Layer(QgrBaseModel):
 
     steps: Optional[list[AnyStep]]
 
-    _validate_description = reusable_validator('description', validate_paragraph_text)
+    _validate_description = reusable_validator("description", validate_paragraph_text)
 
-    @validator('style')
+    @validator("style")
     @classmethod
     def style_file_exists(cls, value):
         """Ensure the QML style file exists in the configuration."""
         if value:
             style_filepath = _style_filepath(value)
             if not style_filepath.is_file():
-                raise exc.QgrInvalidConfigError((
-                    f'Style file does not exist: {style_filepath}'
-                ))
+                raise exc.QgrInvalidConfigError(
+                    (f"Style file does not exist: {style_filepath}")
+                )
 
         return value
 
@@ -86,13 +86,13 @@ class Layer(QgrBaseModel):
         """
         return self.dict(
             include={
-                **{k: ... for k in self.dict().keys() if k != 'input'},
-                'input': {
-                    'dataset': {'id'},
-                    'asset': {'id'},
+                **{k: ... for k in self.dict().keys() if k != "input"},
+                "input": {
+                    "dataset": {"id"},
+                    "asset": {"id"},
                 },
             },
             exclude={
-                'steps': {'__all__': {'id'}},
+                "steps": {"__all__": {"id"}},
             },
         )

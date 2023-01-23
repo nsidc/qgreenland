@@ -13,6 +13,6 @@ class MagicJSONEncoder(json.JSONEncoder):
             # Not sure why Paths don't serialize out-of-the-box!
             # https://github.com/samuelcolvin/pydantic/issues/473
             return str(o)
-        if hasattr(o, '__json__') and callable(o.__json__):
+        if hasattr(o, "__json__") and callable(o.__json__):
             return o.__json__()
         return super(MagicJSONEncoder, self).default(o)

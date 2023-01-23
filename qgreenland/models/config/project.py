@@ -27,7 +27,7 @@ class BoundariesInfo(QgrBaseModel):
     bbox: BoundingBox
     """Bounding box, automatically populated from the file."""
 
-    @validator('filepath')
+    @validator("filepath")
     @classmethod
     def ensure_relative_to_assets(cls, value):
         # TODO: DRY this out? Same validator in assets module.
@@ -36,8 +36,7 @@ class BoundariesInfo(QgrBaseModel):
             evaluated.relative_to(ASSETS_DIR)
         except Exception:
             raise exc.QgrInvalidConfigError(
-                f'Expected path relative to {{assets_dir}}.'
-                f' Received: {evaluated}',
+                f"Expected path relative to {{assets_dir}}." f" Received: {evaluated}",
             )
 
         return value
@@ -48,10 +47,10 @@ class BoundariesInfo(QgrBaseModel):
     @root_validator(pre=True)
     @classmethod
     def calculate_bbox(cls, values) -> dict[str, Any]:
-        if 'filepath' not in values or not values['filepath']:
-            raise RuntimeError('Filepath must be populated.')
+        if "filepath" not in values or not values["filepath"]:
+            raise RuntimeError("Filepath must be populated.")
 
-        fp = Path(values['filepath'].format(assets_dir=ASSETS_DIR))
+        fp = Path(values["filepath"].format(assets_dir=ASSETS_DIR))
 
         with fiona.open(fp) as ifile:
             features = list(ifile)
@@ -60,23 +59,24 @@ class BoundariesInfo(QgrBaseModel):
 
         if (feature_count := len(features)) != 1:
             raise exc.QgrInvalidConfigError(
-                f'Configured boundary {fp} contains the wrong'
-                f' number of features. Expected 1, got {feature_count}.',
+                f"Configured boundary {fp} contains the wrong"
+                f" number of features. Expected 1, got {feature_count}.",
             )
 
         # NOTE: Import inside the method to avoid a cycle. The config subpackage
         # imports from the models subpackage, so the models can't import from
         # config.
         from qgreenland.config.constants import PROJECT_CRS  # noqa
-        if (boundary_crs := meta['crs']['init'].upper()) != PROJECT_CRS.upper():
+
+        if (boundary_crs := meta["crs"]["init"].upper()) != PROJECT_CRS.upper():
             raise exc.QgrInvalidConfigError(
-                f'Expected CRS of boundary file {fp} ({boundary_crs}) to'
-                f' match project CRS ({PROJECT_CRS}).',
+                f"Expected CRS of boundary file {fp} ({boundary_crs}) to"
+                f" match project CRS ({PROJECT_CRS}).",
             )
 
         return {
-            'filepath': values['filepath'],
-            'bbox': BoundingBox(
+            "filepath": values["filepath"],
+            "bbox": BoundingBox(
                 min_x=bbox[0],
                 min_y=bbox[1],
                 max_x=bbox[2],

@@ -12,6 +12,7 @@
 # TODO: Uncomment below if needed:
 # from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
+
 # TODO: Uncomment below if needed:
 # from qgreenland.models.config.step import CommandStep
 
@@ -20,15 +21,15 @@ from qgreenland.models.config.layer import Layer, LayerInput
 # with a list comprehension as well, as long as you assign it to a variable.
 layer = Layer(
     # TODO: Fill in `your_layer_id`:
-    id='your_layer_id',
+    id="your_layer_id",
     # TODO: Fill in your layer title:
-    title='Your layer title.',
+    title="Your layer title.",
     description=(
         # TODO: Fill in your layer description:
         """Your layer description."""
     ),
     # TODO: Fill in your layer tags:
-    tags=['your', 'layer', 'tags'],
+    tags=["your", "layer", "tags"],
     # TODO: Set `in_package` to `False` to make layer only appear in the QGreenland
     # Custom plugin and not the QGreenland Core zip package:
     in_package=True,
@@ -37,7 +38,7 @@ layer = Layer(
     input=LayerInput(
         dataset=dataset,
         # TODO: Fill in `your_asset_id`:
-        asset=dataset.assets['your_asset_id'],
+        asset=dataset.assets["your_asset_id"],
     ),
     steps=[
         # TODO: Your steps here. How should the layer be processed into the

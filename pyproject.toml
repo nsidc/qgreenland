@@ -1,2 +1,7 @@
+[tool.black]
+target-version = ['py310']
+
 [tool.isort]
 profile = "black"
+known_third_party = "luigi"
+known_first_party = "qgreenland"
