@@ -121,6 +121,11 @@ add_module_names = True
 
 # -- Options for autodoc output ------------------------------------------------
 
+# FIXME: This hack causes warnings at `automodule` directives. Consider alternatives,
+# e.g. templating the index with jinja2, and/or re-organizing the content structure to
+# more easily conditionally exclude contributor docs.
+#     .. automodule:: qgreenland.models.config.asset
+#     /home/mfisher/Projects/qgreenland/qgreenland/doc/reference/api/utilities.md:6: WARNING: Unknown directive type "automodule".
 # HACK: Only use autodoc for the website (not the PDF we build that becomes the
 # user guide included in the QGreenland core package). This avoids adding a
 # python module index at the back of the pdf document which may be confusing to
