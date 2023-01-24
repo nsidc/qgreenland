@@ -25,7 +25,6 @@ author = "Twila Moon, Matt Fisher, Hope Simonoko, Trey Stafford"
 # The full version, including alpha/beta/rc tags
 release = "v2.0.0rc3"
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -37,11 +36,10 @@ extensions = [
     "sphinx_click",
     "sphinx.ext.linkcode",
     "sphinx.ext.extlinks",
-    "sphinx.ext.autodoc",
-    # TODO: What does this do?
-    # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
-    "sphinxcontrib.autodoc_pydantic",
 ]
+
+
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -125,42 +123,50 @@ add_module_names = True
 
 # -- Options for autodoc output ------------------------------------------------
 
-autodoc_default_options = {
-    # Document all public members by default.
-    "members": None,
-    "show-inheritance": True,
-    # If set, autodoc will also generate document for the members not having docstrings:
-    "undoc-members": True,
-}
+if 'latexpdf' not in sys.argv:
+    extensions.extend([
+        "sphinx.ext.autodoc",
+        # TODO: What does this do?
+        # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
+        "sphinxcontrib.autodoc_pydantic",
+    ])
 
-autodoc_mock_imports = [
-    "fiona",
-]
+    autodoc_default_options = {
+        # Document all public members by default.
+        "members": None,
+        "show-inheritance": True,
+        # If set, autodoc will also generate document for the members not having docstrings:
+        "undoc-members": True,
+    }
 
-# Show the typehints in the description of each object instead of the signature.
-# We found this to be more readable.
-autodoc_typehints = "description"
+    autodoc_mock_imports = [
+        "fiona",
+    ]
 
-# TODO: Make this work. Why doesn't it work?
-# autodoc_type_aliases = {
-#     'AnyAsset': 'qgreenland.models.config.asset.AnyAsset',
-# }
+    # Show the typehints in the description of each object instead of the signature.
+    # We found this to be more readable.
+    autodoc_typehints = "description"
 
-# Hide pydantic model configuration from the sphinx output.
-autodoc_pydantic_model_show_config_summary = False
+    # TODO: Make this work. Why doesn't it work?
+    # autodoc_type_aliases = {
+    #     'AnyAsset': 'qgreenland.models.config.asset.AnyAsset',
+    # }
 
-# Hide redundant pydantic validators summary
-autodoc_pydantic_model_show_validator_summary = False
+    # Hide pydantic model configuration from the sphinx output.
+    autodoc_pydantic_model_show_config_summary = False
 
-# Hide redundant field summary
-autodoc_pydantic_model_show_field_summary = False
+    # Hide redundant pydantic validators summary
+    autodoc_pydantic_model_show_validator_summary = False
 
-# Don't show collapsible JSONSchema model. It's too big for the PDF output. Is
-# there a way to enable it for HTML only and disable for PDF?
-autodoc_pydantic_model_show_json = False
+    # Hide redundant field summary
+    autodoc_pydantic_model_show_field_summary = False
 
-# Don't warn when a field is not serializable
-autodoc_pydantic_model_show_json_error_strategy = "coerce"
+    # Don't show collapsible JSONSchema model. It's too big for the PDF output. Is
+    # there a way to enable it for HTML only and disable for PDF?
+    autodoc_pydantic_model_show_json = False
+
+    # Don't warn when a field is not serializable
+    autodoc_pydantic_model_show_json_error_strategy = "coerce"
 
 
 # -- Options for extlinks ------------------------------------------------------

@@ -110,11 +110,6 @@ QGreenland Documentation
     discussion/*
 
 
-.. raw:: latex
-
-    \part{Appendix}
-
-
 .. only:: builder_html
 
     .. include:: what_is_qgr.md
