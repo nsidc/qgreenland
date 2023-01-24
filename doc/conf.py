@@ -39,8 +39,6 @@ extensions = [
 ]
 
 
-
-
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
@@ -123,13 +121,15 @@ add_module_names = True
 
 # -- Options for autodoc output ------------------------------------------------
 
-if 'latexpdf' not in sys.argv:
-    extensions.extend([
-        "sphinx.ext.autodoc",
-        # TODO: What does this do?
-        # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
-        "sphinxcontrib.autodoc_pydantic",
-    ])
+if "latexpdf" not in sys.argv:
+    extensions.extend(
+        [
+            "sphinx.ext.autodoc",
+            # TODO: What does this do?
+            # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
+            "sphinxcontrib.autodoc_pydantic",
+        ]
+    )
 
     autodoc_default_options = {
         # Document all public members by default.
