@@ -46,13 +46,23 @@ QGreenland Documentation
 
 
 .. toctree::
-    :name: How-to
-    :caption: How-to
+    :name: User_How_to
+    :caption: User How-to
     :maxdepth: 1
     :hidden:
 
     user-how-to/index
-    contributor-how-to/index
+
+
+.. only:: not latex
+
+  .. toctree::
+      :name: Contributor_How_to
+      :caption: Contributor How-to
+      :maxdepth: 1
+      :hidden:
+
+      contributor-how-to/index
 
 
 .. raw:: latex
