@@ -121,6 +121,13 @@ add_module_names = True
 
 # -- Options for autodoc output ------------------------------------------------
 
+# HACK: Only use autodoc for the website (not the PDF we build that becomes the
+# user guide included in the QGreenland core package). This avoids adding a
+# python module index at the back of the pdf document which may be confusing to
+# users who do not know anything about programming.
+# TODO: can we do this differently, perhaps by re-organizing our docs and
+# config? Perhaps we can tag some content for the user guide and only include
+# that in the pdf? Or some other option?
 if "latexpdf" not in sys.argv:
     extensions.extend(
         [
