@@ -2,9 +2,8 @@ import textwrap
 from fnmatch import fnmatch
 
 import click
-from funcy import lmapcat, select
-
 import luigi
+from funcy import lmapcat, select
 
 
 @click.command()

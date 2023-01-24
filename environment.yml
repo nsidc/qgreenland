@@ -76,7 +76,6 @@ dependencies:
 
   # Pip dependencies could be imported or non-imported :(
   - pip:
-    - flake8-commas ~=2.0.0
     - flake8-debugger ~=3.2
     - flake8-use-fstring ~=1.0
     - sphinx-rtd-theme ~=1.0.0

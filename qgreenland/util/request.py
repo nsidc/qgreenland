@@ -94,8 +94,8 @@ def _ftp_fetch_and_write(url: str, output_dir: Path) -> None:
 
 
 def _filename_from_url(url: str) -> str:
-    url_slash_index = url.rfind("/")
-    fn = url[url_slash_index + 1 :]
+    url_after_slash_index = url.rfind("/") + 1
+    fn = url[url_after_slash_index:]
 
     if "?" in fn:
         fn = fn.split("?", 1)[0]

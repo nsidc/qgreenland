@@ -2,6 +2,7 @@ from functools import cache
 from typing import Generator, Type
 
 import luigi
+
 from qgreenland.models.config.asset import (
     AnyAsset,
     CmrAsset,

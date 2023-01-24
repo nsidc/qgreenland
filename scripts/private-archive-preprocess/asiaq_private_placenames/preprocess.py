@@ -8,8 +8,8 @@ ARCHIVE_PATH = Path(
 )
 DATA_PATH = (
     ARCHIVE_PATH
-    / "20201112_Oqaasileriffik_place-name register/20201112_Oqaasileriffik_place-name register.TAB"
-)  # noqa
+    / "20201112_Oqaasileriffik_place-name register/20201112_Oqaasileriffik_place-name register.TAB"  # noqa
+)
 TRANSLATION_PATH = (
     ARCHIVE_PATH / "2021 0119_Oqaasileriffik_place-name categories_ENG.csv"
 )
@@ -23,7 +23,7 @@ translated_ds = pd.read_csv(TRANSLATION_PATH)
 translated_ds = translated_ds.rename(
     columns={
         "Danish abbreviation\n\nNaalisaat": data_join_column,
-        "Danish explanation on what \nthe abbreviation stands for\n\nSuussuseq qallunaatut": (
+        "Danish explanation on what \nthe abbreviation stands for\n\nSuussuseq qallunaatut": (  # noqa
             "Danish explanation of Object designation"
         ),
         "Greenlandic explanation on what \nthe abbreviation stands for\n\nSuussuseq kalaallisut": (  # noqa
