@@ -49,9 +49,10 @@ QGreenland Documentation
     :name: User_How_to
     :caption: User How-to
     :maxdepth: 1
+    :glob:
     :hidden:
 
-    user-how-to/index
+    user-how-to/*
 
 
 .. only:: not latex
@@ -60,9 +61,10 @@ QGreenland Documentation
       :name: Contributor_How_to
       :caption: Contributor How-to
       :maxdepth: 1
+      :glob:
       :hidden:
 
-      contributor-how-to/index
+      contributor-how-to/*
 
 
 .. raw:: latex
