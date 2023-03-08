@@ -52,10 +52,9 @@ class Parser:
     """Read log lines and build up stats for reporting.
 
     Example:
-        {'v0.1.2': { 'downloads': 0,
-                      'bytes': 0 }
-         'v0.23.0dev': { 'downloads': 131,
-                         'bytes': 31549151 }
+        {
+            'v0.1.2': { 'downloads': 0, 'bytes': 0}
+            'v0.23.0dev': { 'downloads': 131, 'bytes': 31549151}
         }
     """
 
@@ -94,27 +93,28 @@ class Parser:
         """Detect unique major versions (e.g. v0, v1, v2) present in log data."""
         major_versions = [k[0:2] for k in self.state.keys()]
         problems = [
-            v for v in major_versions
-            if not v.startswith('v') or not v[1].isnumeric()
+            v for v in major_versions if not v.startswith("v") or not v[1].isnumeric()
         ]
         if problems:
-            raise RuntimeError(f'Found problematic major versions: {problems}')
+            raise RuntimeError(f"Found problematic major versions: {problems}")
 
         return set(major_versions)
 
     def aggregate_major_version(self, major_version: str):
         """Sum all values for given major version."""
-        filtered_entries = {k: v for k, v in self.state.items() if k.startswith(major_version)}
+        filtered_entries = {
+            k: v for k, v in self.state.items() if k.startswith(major_version)
+        }
 
         return {
-            'release_count': len(filtered_entries), 
-            'downloads': reduce(
-                lambda total, current: total + current['downloads'],
+            "release_count": len(filtered_entries),
+            "downloads": reduce(
+                lambda total, current: total + current["downloads"],
                 filtered_entries.values(),
                 0,
             ),
-            'bytes': reduce(
-                lambda total, current: total + current['bytes'],
+            "bytes": reduce(
+                lambda total, current: total + current["bytes"],
                 filtered_entries.values(),
                 0,
             ),
@@ -132,7 +132,7 @@ class Parser:
         for major_version in self.major_versions():
             agg = self.aggregate_major_version(major_version)
             print()
-            print(f'=== Major version {major_version} total ===')
+            print(f"=== Major version {major_version} total ===")
             print(f"  Number of releases: {agg['release_count']}")
             print(f"  Download count: {agg['downloads']}")
             print(f"  Total size: {naturalsize(agg['bytes'])}")
