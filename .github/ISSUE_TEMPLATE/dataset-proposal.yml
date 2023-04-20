@@ -7,16 +7,10 @@ body:
 
   - type: "markdown"
     attributes:
-      value: >-
-        Thanks for taking the time to propose a dataset to QGreenland. Please
-        keep in mind that the _QGreenland Core_ package must maintain a
-        reasonable file size, so we have to be selective.
+      value: |-
+        Thanks for taking the time to propose a dataset to QGreenland. Please keep in mind that the _QGreenland Core_ package must maintain a reasonable file size, so we have to be selective. The best thing you can do to prepare for future development is to ingest your data into DataONE.
 
-        The best thing you can do to prepare for future development is to
-        ingest your data into DataONE.
-
-        Please also keep in mind that it may take on the order of months for
-        our team to respond to your proposal!
+        Please also keep in mind that it may take on the order of months for our team to respond to your proposal!
 
   - type: "input"
     id: "dataset-url"
