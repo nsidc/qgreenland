@@ -1,6 +1,6 @@
 name: "🐞 Bug"
 description: |
-  Suggest a dataset for inclusion to QGreenland.
+  Report an issue you're experiencing with QGreenland.
 title: "[Bug]: "
 labels: ["Bug"]
 body:
