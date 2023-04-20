@@ -1,5 +1,5 @@
 name: "🐞 Bug"
-description: |
+description: >-
   Report an issue you're experiencing with QGreenland.
 title: "[Bug]: "
 labels: ["Bug"]
@@ -8,7 +8,7 @@ body:
     id: "description"
     attributes:
       label: "Issue description"
-      description: |
+      description: >-
         What symptoms are you observing? Please include screenshots if
         possible.
     validations:
@@ -18,10 +18,15 @@ body:
     id: "system-info"
     attributes:
       label: "System information"
-      description: |
+      description: >-
         Please provide information about the system on which you're
-        experiencing the error.
-      placeholder: |
+        experiencing the error. For example\:
+
+        * Operating system:
+        * Operating system version:
+        * QGIS version:
+        * QGreenland version:
+      placeholder: >-
         * Operating system:
         * Operating system version:
         * QGIS version:

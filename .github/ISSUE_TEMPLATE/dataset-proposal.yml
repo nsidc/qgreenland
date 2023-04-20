@@ -1,5 +1,5 @@
 name: "📡 Dataset proposal"
-description: |
+description: >-
   Suggest a dataset for inclusion to QGreenland.
 title: "[Dataset]: "
 labels: ["Dataset: proposal"]
@@ -7,7 +7,7 @@ body:
 
   - type: "markdown"
     attributes:
-      value: |
+      value: >-
         Thanks for taking the time to propose a dataset to QGreenland. Please
         keep in mind that the _QGreenland Core_ package must maintain a
         reasonable file size, so we have to be selective.
@@ -30,7 +30,7 @@ body:
     id: "rationale"
     attributes:
       label: "Rationale"
-      description: |
+      description: >-
         Please explain how you feel this dataset would benefit QGreenland. For
         example, does it provide data from a scientific discipline or
         environmental aspect that's currently not covered?
