@@ -12,6 +12,8 @@ body:
 
         Please also keep in mind that it may take on the order of months for our team to respond to your proposal!
 
+        Finally, please review our [dataset compatibility guide](https://qgreenland.readthedocs.io/en/latest/reference/data-compatibility-guide.html) for ideas for improving your dataset's compatibility with our project.
+
   - type: "input"
     id: "dataset-url"
     attributes:
