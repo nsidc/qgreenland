@@ -18,18 +18,17 @@ body:
     id: "system-info"
     attributes:
       label: "System information"
-      description: >-
-        Please provide information about the system on which you're
-        experiencing the error. For example\:
+      description: |-
+        Please provide information about the system on which you're experiencing the error. For example:
 
-        * Operating system:
-        * Operating system version:
-        * QGIS version:
-        * QGreenland version:
-      placeholder: >-
-        * Operating system:
-        * Operating system version:
-        * QGIS version:
-        * QGreenland version:
+        * Operating system: ...
+        * Operating system version: ...
+        * QGIS version: ...
+        * QGreenland version: ...
+      placeholder: |-
+        * Operating system: ...
+        * Operating system version: ...
+        * QGIS version: ...
+        * QGreenland version: ...
     validations:
       required: true
