@@ -44,11 +44,9 @@ jobs:
       - run:
           name: 'Trigger Jenkins to build production package'
           command: |
-            JENKINS_URL="http://ci.qgreenland.apps.nsidc.org"
             REF="${CIRCLE_TAG}"
-            JOB_NAME="qgreenland_C3_Production_Build_QGreenland_Package"
+            REQ_URL="${JENKINS_PROD_BUILD_JOB_URL}/buildWithParameters?ref=${REF}&delay=5sec"
 
-            REQ_URL="${JENKINS_URL}/job/${JOB_NAME}/buildWithParameters?ref=${REF}&delay=5sec"
             wget "$REQ_URL"
 
 workflows:

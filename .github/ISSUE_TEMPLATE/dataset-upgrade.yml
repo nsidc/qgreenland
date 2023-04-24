@@ -1,0 +1,29 @@
+name: "⏩ Dataset upgrade"
+description: >-
+  Request upgrading a dataset which already existing in QGreenland.
+title: "[Dataset upgrade]: "
+labels: ["Dataset: upgrade"]
+body:
+
+  - type: "markdown"
+    attributes:
+      value: |-
+        Is a QGreenland dataset out-of-date? This is the correct place to
+        request an upgrade. Thank you for taking the time to contribute to this
+        project!
+
+  - type: "input"
+    id: "dataset-url"
+    attributes:
+      label: "Dataset URL"
+      description: "Please provide a landing page URL for the new dataset version."
+    validations:
+      required: false
+
+  - type: "textarea"
+    id: "more-info"
+    attributes:
+      label: "More info"
+      description: "Please provide any additional information you think might be useful."
+    validations:
+      required: false

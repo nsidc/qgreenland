@@ -1,0 +1,34 @@
+name: "🐞 Bug"
+description: >-
+  Report an issue you're experiencing with QGreenland.
+title: "[Bug]: "
+labels: ["Bug"]
+body:
+  - type: "textarea"
+    id: "description"
+    attributes:
+      label: "Issue description"
+      description: >-
+        What symptoms are you observing? Please include screenshots if
+        possible.
+    validations:
+      required: true
+
+  - type: "textarea"
+    id: "system-info"
+    attributes:
+      label: "System information"
+      description: |-
+        Please provide information about the system on which you're experiencing the error. For example:
+
+        * Operating system: ...
+        * Operating system version: ...
+        * QGIS version: ...
+        * QGreenland version: ...
+      placeholder: |-
+        * Operating system: ...
+        * Operating system version: ...
+        * QGIS version: ...
+        * QGreenland version: ...
+    validations:
+      required: true
