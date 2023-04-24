@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python ~=3.10.0
+  - python ~=3.10.10
 
   ################################################################
   # Imported dependencies and extensions (and related typestubs) #
@@ -63,7 +63,7 @@ dependencies:
     # SEE PIP DEPENDENCIES FOR MORE
 
   # typechecking
-  - mypy ==0.990
+  - mypy ~=1.2.0
 
   # other utilities
   - bump2version
