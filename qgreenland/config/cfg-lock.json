@@ -25383,6 +25383,86 @@
             "children": [
               {
                 "layer_cfg": {
+                  "description": "Error estimate for Greenland bed elevation and ice thickness in\nmeters.",
+                  "id": "bedmachine_errbed",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "bedmachine"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:errbed",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/greenland_rectangle.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=2",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/overviews.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/overviews.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "bedmachine_errbed",
+                  "tags": [
+                    "terrain_model"
+                  ],
+                  "title": "Bed topography and ice thickness error (150m)"
+                },
+                "name": "bedmachine_errbed"
+              },
+              {
+                "layer_cfg": {
                   "description": "Bedrock elevation in meters.",
                   "id": "bedmachine_bed",
                   "in_package": true,
@@ -25460,86 +25540,6 @@
                   "title": "Bedrock elevation (150m)"
                 },
                 "name": "bedmachine_bed"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Error estimate for Greenland bed elevation and ice thickness in\nmeters.",
-                  "id": "bedmachine_errbed",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "bedmachine"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-r",
-                        "bilinear",
-                        "NETCDF:{input_dir}/BedMachineGreenland-2021-04-20.nc:errbed",
-                        "{output_dir}/warped.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdalwarp",
-                        "-cutline",
-                        "{assets_dir}/greenland_rectangle.geojson",
-                        "-crop_to_cutline",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "{input_dir}/warped.tif",
-                        "{output_dir}/warped_and_cut.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "gdal_translate",
-                        "-co",
-                        "TILED=YES",
-                        "-co",
-                        "COMPRESS=DEFLATE",
-                        "-co",
-                        "PREDICTOR=2",
-                        "{input_dir}/warped_and_cut.tif",
-                        "{output_dir}/compressed.tif"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp",
-                        "{input_dir}/compressed.tif",
-                        "{output_dir}/overviews.tif",
-                        "&&",
-                        "gdaladdo",
-                        "-r",
-                        "average",
-                        "{output_dir}/overviews.tif",
-                        "2",
-                        "4",
-                        "8",
-                        "16"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "bedmachine_errbed",
-                  "tags": [
-                    "terrain_model"
-                  ],
-                  "title": "Bedrock elevation/ice thickness error (150m)"
-                },
-                "name": "bedmachine_errbed"
               },
               {
                 "layer_cfg": {
