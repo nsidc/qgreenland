@@ -1,4 +1,4 @@
-name: "📡 Dataset upgrade"
+name: "⏩ Dataset upgrade"
 description: >-
   Request upgrading a dataset which already existing in QGreenland.
 title: "[Dataset upgrade]: "
@@ -9,7 +9,7 @@ body:
     attributes:
       value: |-
         Is a QGreenland dataset out-of-date? This is the correct place to
-        propose an upgrade. Thank you for taking the time to contribute to this
+        request an upgrade. Thank you for taking the time to contribute to this
         project!
 
   - type: "input"
