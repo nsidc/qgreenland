@@ -28,7 +28,7 @@ bed_datasets = {
         "description": "Bedrock elevation in meters.",
     },
     "errbed": {
-        "title": "Ice thickness error",
+        "title": "Bed topography and ice thickness error",
         "description": (
             """Error estimate for Greenland bed elevation and ice thickness in
             meters."""
