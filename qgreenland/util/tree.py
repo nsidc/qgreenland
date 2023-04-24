@@ -134,7 +134,7 @@ def _filter_directory_contents(paths=list[Path]) -> list[Path]:
 
     def _path_valid(p: Path) -> bool:
         return (
-            (p.suffix == ".py" or p.is_dir)
+            (p.suffix == ".py" or p.is_dir())
             and not p.name == "__pycache__"
             and not p.name.startswith(".")
         )
