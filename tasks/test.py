@@ -79,7 +79,7 @@ def typecheck(ctx, check_config=False):
 
     print_and_run(
         f"cd {PROJECT_DIR} &&"
-        f' mypy'
+        f" mypy"
         f' --exclude "{exclude_masks}"'
         f" --config-file={PROJECT_DIR}/.mypy.ini"
         f" {PACKAGE_DIR} {SCRIPTS_DIR}",
