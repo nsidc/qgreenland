@@ -9,6 +9,17 @@ for running tasks, as well as NGINX (port 80, 443) for hosting outputs.
 
 ## How to start the service stack
 
+```{caution}
+Docker Desktop for OSX has some "gotchas". Running with "Use gRPC FUSE for file sharing"
+_enabled_ is recommended. You may see indefinite hangs otherwise. Please reference the
+Docker documentation for more info:
+
+https://docs.docker.com/desktop/mac/
+```
+
+
+### Envvars
+
 In order to download data behind Earthdata Login, you must `export` the
 following environment variables on the docker host before starting the stack:
 
@@ -21,19 +32,19 @@ Earthdata Login credentials. New users to Earthdata can register here:
 https://urs.earthdata.nasa.gov/users/new
 
 
-Create a [docker-compose
-override](https://docs.docker.com/compose/extends/#understanding-multiple-compose-files)
-file for `./logs` and `./appdata`.
+### Directory set up
 
-```
-ln -s docker-compose.local.yml docker-compose.override.yml
-```
+If you prefer not to store data alongside the source code, set up symlinks from the
+following locations to your desired location:
 
-*WARNING*: Docker Desktop for OSX has some "gotchas". Running with "Use gRPC
-FUSE for file sharing" _enabled_ is recommended. You may see indefinite hangs
-otherwise. Please reference the Docker documentation for more info:
+* `./data/private-archive`
+* `./data/working-storage`
 
-https://docs.docker.com/desktop/mac/
+Visit our [storage architecture reference
+documentation](/doc/reference/architecture/storage.md) to learn more.
+
+
+### Go!
 
 Start the stack with docker-compose:
 
