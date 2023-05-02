@@ -22,6 +22,11 @@ RUN apt-get update && apt-get install -y \
   libgl1-mesa-glx \
   texlive-latex-extra
 
+# Enable our code (which runs git commands) to run as a different user than the
+# current user on the host machine (who will be the owner of the mounted git
+# repository)
+RUN git config --global --add safe.directory "${TASKS_MOUNT_DIR}"
+
 # Create environments
 RUN micromamba install -y -c conda-forge -n base conda mamba~=1.4.2
 
