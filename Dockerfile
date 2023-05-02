@@ -1,9 +1,16 @@
-FROM axiom/docker-luigi:2.8.13-alpine AS luigi
-# This build stage only exists to grab files
+# This docker image simply runs luigi's centralized scheduler with the needed
+# dependencies installed into a conda environment. It's expected that task code
+# will always be mounted in using volumes!
 
-FROM mambaorg/micromamba:1.2.0 AS micromamba
+FROM axiom/docker-luigi:3.0.3-alpine AS luigi
+# This build stage only exists to grab the luigi run script. Luigi dependency
+# itself is specified in `environment.yml`
+
+FROM mambaorg/micromamba:1.4.2 AS micromamba
 COPY --from=luigi /bin/run /usr/local/bin/luigid
 USER root
+
+ENV TASKS_MOUNT_DIR=/luigi/tasks/qgreenland
 
 # `libgl1-mesa-glx` is required for pyqgis
 # `git` is required for analyzing the current version
@@ -16,12 +23,12 @@ RUN apt-get update && apt-get install -y \
   texlive-latex-extra
 
 # Create environments
-RUN micromamba install -y -c conda-forge -n base conda mamba~=1.2.0
+RUN micromamba install -y -c conda-forge -n base conda mamba~=1.4.2
 
-COPY --chown=mambauser:mambauser environment-lock.yml /tmp/environment.yml
+COPY --chown=$MAMBA_USER:$MAMBA_USER environment-lock.yml /tmp/environment.yml
 RUN micromamba install -y -n base -f /tmp/environment.yml
 
-COPY --chown=mambauser:mambauser environment.cmd.yml /tmp/environment.cmd.yml
+COPY --chown=$MAMBA_USER:$MAMBA_USER environment.cmd.yml /tmp/environment.cmd.yml
 RUN micromamba create -y -f /tmp/environment.cmd.yml
 
 # Cleanup
@@ -33,7 +40,8 @@ WORKDIR /luigi
 # doesn't activate the env automatically, which is how the PYTHONPATH normally
 # gets populated. Additionally, /luigi/tasks is where we expect python code to
 # be mounted.
-ENV PYTHONPATH /luigi/tasks/qgreenland:/opt/conda/share/qgis/python/plugins:/opt/conda/share/qgis/python
-ENV PATH /opt/conda/bin:$PATH
+# TODO: With modern micromamba, can we clean this up?
+ENV PYTHONPATH "${TASKS_MOUNT_DIR}:/opt/conda/share/qgis/python/plugins:/opt/conda/share/qgis/python"
+ENV PATH "/opt/conda/bin:${PATH}"
 
 CMD ["/usr/local/bin/luigid"]
