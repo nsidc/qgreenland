@@ -1,6 +1,7 @@
 # v3.0.0 (Unreleased)
 
-- Minimum supported version of QGIS is now `v3.22`.
+- Minimum supported version of QGIS is now `v3.28`.
+- Resolve `Font "Helvetica" font not available on system` warnings.
 
 
 # v2.0.0 (2022-03-17)
