@@ -41,7 +41,7 @@ following locations to your desired location:
 * `./data/working-storage`
 
 Visit our [storage architecture reference
-documentation](/doc/reference/architecture/storage.md) to learn more.
+documentation](../reference/architecture/storage.md) to learn more.
 
 
 ### Go!
@@ -83,7 +83,7 @@ testing, but the final output will not be zipped):
 
 Collaborators outside NSIDC may want to run QGreenland pipeline without "manual
 access" layers that require difficult or impossible additional steps to prepare
-input data. See [Assets](/doc/reference/architecture/CONFIGURATION.md#assets)
+input data. See [Assets](../reference/architecture/configuration.md#assets)
 documentation to learn more about "manual access" assets.
 
 ```
