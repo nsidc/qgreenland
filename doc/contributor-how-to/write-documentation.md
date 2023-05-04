@@ -1,11 +1,11 @@
-# How to write documentation
+# How to write QGreenland documentation
 
 Our documentation is written in
 [reStructuredText](https://docutils.sourceforge.io/rst.html) and
 [Markdown](https://daringfireball.net/projects/markdown/) for the
 [Sphinx](https://www.sphinx-doc.org/en/master/) documentation generator. The
-[documentation website](https://qgreenland.readthedocs.io/) is built by and
-hosted on [Read the Docs](https://readthedocs.org/).
+[documentation website](https://qgreenland.readthedocs.io/) is built by and hosted on
+[Read the Docs](https://readthedocs.org/).
 
 We follow a conceptual framework called [Diátaxis](https://diataxis.fr/) to
 write high quality, easy-to-use documentation.
@@ -35,10 +35,9 @@ YouTube](https://www.youtube.com/watch?v=t4vKPhjcMZg).
 
 ### Sphinx
 
-Sphinx reads documentation (written in reStructuredText or, with an extension,
-Markdown) and other content (including code with `autodoc` or other
-extensions). It converts this content into many output formats including HTML
-and PDF.
+Sphinx reads documentation (written in reStructuredText or, with an extension, Markdown)
+and other content (including code with `autodoc` or other extensions). It converts this
+content into many output formats including HTML and PDF.
 
 Sphinx's configuration is kept at `doc/conf.py`.
 
@@ -68,7 +67,18 @@ Markdown for Sphinx documentation. Markdown is supported out of the box by Read
 the Docs.
 
 
-## How to add a new documentation page
+## Contributing to documentation
+
+```{attention}
+You'll need to have TeX Live installed if you want to render PDF documentation. On
+Debian-based systems, you can install it with `sudo apt install texlive-latex-extra`.
+
+We attempted to include this dependency via the `conda` package `texlive-core`, but
+there are [issues](https://github.com/conda-forge/texlive-core-feedstock/issues/19) with
+it.
+```
+
+### How to add a new documentation page
 
 * Is this new content a [How To](https://diataxis.fr/how-to-guides/), a
   [Tutorial](https://diataxis.fr/tutorials/), [Reference
@@ -85,7 +95,7 @@ the Docs.
   can view by clicking "details" for the Read the Docs check.
 
 
-## How to update an existing documentation page
+### How to update an existing documentation page
 
 * Is this new content a [How To](https://diataxis.fr/how-to-guides/), a
   [Tutorial](https://diataxis.fr/tutorials/), [Reference
