@@ -41,7 +41,7 @@ Note that some data were transformed from their native data formats,
 projections, and resolutions for inclusion within QGreenland. The included
 metadata (>Layer Properties >Metadata >History) contains provenance information
 on any transformations. All QGreenland geopackages and geotiffs are projected
-in EPSG:3413.
+in `EPSG:3413`.
 
 
 # Getting Started
