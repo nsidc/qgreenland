@@ -49,7 +49,7 @@ in `EPSG:3413`.
 As of this writing, the oldest version of QGIS we support is 3.16.x LTR. You
 can find downloads and instructions
 [here](https://qgis.org/en/site/forusers/download.html). When QGreenland 3.x is
-released, we will only support 3.28.x LTR and later.
+released, we will support 3.28.x LTR and later.
 
 After installing QGIS, [download QGreenland](https://qgreenland.org/download)
 and unzip it with your unzip tool of choice if you haven not already done so.
