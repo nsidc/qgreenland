@@ -66,6 +66,7 @@ dependencies:
   - mypy ~=1.2.0
 
   # other utilities
+  - jinja2 ~=3.1.2
   - bump2version
   - ipython
   - ipdb

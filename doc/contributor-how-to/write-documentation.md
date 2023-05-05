@@ -42,6 +42,14 @@ content into many output formats including HTML and PDF.
 Sphinx's configuration is kept at `doc/conf.py`.
 
 
+#### Our templating hack
+
+We're using Jinja2 templating to enable us to build a subset of the full documentation
+(by excluding contributor docs) to generate the User Guide PDF. Our `invoke` tasks take
+care of template rendering. The only thing that's templated is the root index page
+`index.rst.j2`.
+
+
 ### Read the Docs
 
 _Read the Docs_ is a documentation building and hosting service. It can use

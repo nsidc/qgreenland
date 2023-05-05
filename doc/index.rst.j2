@@ -52,7 +52,7 @@ QGreenland Documentation
     :hidden:
 
     user-how-to/index
-    contributor-how-to/index
+    {% if not pdf %}contributor-how-to/index{% endif %}
 
 
 .. raw:: latex
@@ -71,18 +71,18 @@ QGreenland Documentation
     reference/online-resources.md
 
 
-.. only:: not latex
+{% if not pdf %}
+.. toctree::
+    :name: Contributor_Reference
+    :caption: Contributor Reference
+    :maxdepth: 1
+    :hidden:
 
-  .. toctree::
-      :name: Contributor_Reference
-      :caption: Contributor Reference
-      :maxdepth: 1
-      :hidden:
-  
-      reference/architecture/index
-      reference/api/index
-      reference/cli/index
-      reference/style-guide.md
+    reference/architecture/index
+    reference/api/index
+    reference/cli/index
+    reference/style-guide.md
+{% endif %}
 
 
 .. raw:: latex
