@@ -2,7 +2,6 @@ from invoke import call, task
 
 from .util import PROJECT_DIR, print_and_run, rendered_doc_index_file
 
-
 DOCS_DIR = PROJECT_DIR / "doc"
 BUILD_HTML_CMD = "make html"
 # SPHINXOPTS default value enables conversion of warnings to errors. We expect there to
@@ -46,6 +45,7 @@ def build(ctx, pdf=False):
                 f"cd {DOCS_DIR} && {BUILD_PDF_CMD}",
                 pty=True,
             )
+
 
 @task
 def watch(ctx):

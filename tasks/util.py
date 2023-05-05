@@ -1,16 +1,16 @@
 import inspect
 import os
-from pathlib import Path
 from contextlib import contextmanager
+from pathlib import Path
 from typing import Generator
 
 import jinja2
 from invoke import run
 
 PROJECT_DIR = Path(__file__).parent.parent
-DOC_DIR = PROJECT_DIR / 'doc'
-INDEX_FILEPATH = DOC_DIR / 'index.rst'
-INDEX_TEMPLATE_FILEPATH = INDEX_FILEPATH.parent / f'{INDEX_FILEPATH.name}.j2'
+DOC_DIR = PROJECT_DIR / "doc"
+INDEX_FILEPATH = DOC_DIR / "index.rst"
+INDEX_TEMPLATE_FILEPATH = INDEX_FILEPATH.parent / f"{INDEX_FILEPATH.name}.j2"
 
 
 def print_and_run(cmd, **run_kwargs):
@@ -34,7 +34,7 @@ def rendered_doc_index_file(pdf: bool = False) -> Generator[Path, None, None]:
     filled = template.render(pdf=pdf)
 
     INDEX_FILEPATH.unlink(missing_ok=True)
-    with open(INDEX_FILEPATH, 'w') as index_file:
+    with open(INDEX_FILEPATH, "w") as index_file:
         index_file.write(filled)
         index_file.flush()
         yield index_file
