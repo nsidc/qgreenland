@@ -1,4 +1,7 @@
-"""Support a `toctree-only` directive which enables filtering a toctree on tags.
+"""Support a `toctree-select-builder` directive.
+
+This new directive enables a special type of toctree which is filtered based on the
+current builder.
 
 Inspired by / based on <https://stackoverflow.com/a/46600038>.
 """
