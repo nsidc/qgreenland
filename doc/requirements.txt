@@ -2,6 +2,7 @@
 myst-parser==0.15.2
 autodoc-pydantic ~=1.5.1
 sphinx-click==3.0.1
+sphinx-selective-exclude ~=1.0.3
 
 # What is this? Do we need it?
 # sphinx-autodoc-typehints==1.12.0

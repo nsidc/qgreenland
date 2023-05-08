@@ -6,13 +6,3 @@ __pycache__
 
 # Docker overrides
 docker-compose.override.yml
-
-# Vim swapfiles
-.*.swp
-
-# Ctags
-/tags
-/tags.lock
-
-# Docs
-/doc/_build

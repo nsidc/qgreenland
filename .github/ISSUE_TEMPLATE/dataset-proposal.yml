@@ -7,12 +7,24 @@ body:
 
   - type: "markdown"
     attributes:
-      value: |-
-        Thanks for taking the time to propose a dataset to QGreenland. Please keep in mind that the _QGreenland Core_ package must maintain a reasonable file size, so we have to be selective. The best thing you can do to prepare for future development is to ingest your data into DataONE.
+      value: >-
+        Thanks for taking the time to propose a dataset to QGreenland. Please
+        keep in mind that:
 
-        Please also keep in mind that it may take on the order of months for our team to respond to your proposal!
 
-        Finally, please review our [dataset compatibility guide](https://qgreenland.readthedocs.io/en/latest/reference/data-compatibility-guide.html) for ideas for improving your dataset's compatibility with our project.
+        * The _QGreenland Core_ package is designed to represent many different
+          data topics and must maintain a reasonable file size, so we have to
+          be selective. The best thing you can do to prepare for future
+          development is to ingest your data into DataONE.
+
+        * Since QGreenland does not have permanently funded staff, it may take
+          weeks to months for our team to respond to your proposal. Thank you
+          for your understanding!
+
+
+        Finally, please review our [dataset compatibility
+        guide](https://qgreenland.readthedocs.io/en/latest/reference/data-compatibility-guide.html)
+        for ideas for improving your dataset's compatibility with our project.
 
   - type: "input"
     id: "dataset-url"

@@ -35,7 +35,8 @@ INTERMEDIATE_DIRS = (
 
 # TODO: Extract to function in another module to remove constants dependency on
 # get_build_version, version_is_full_release
-if version_is_full_release(version := get_build_version()):
-    VERSIONED_PACKAGE_DIR = RELEASE_PACKAGES_DIR / version
+PACKAGE_VERSION = get_build_version()
+if version_is_full_release(PACKAGE_VERSION):
+    VERSIONED_PACKAGE_DIR = RELEASE_PACKAGES_DIR / PACKAGE_VERSION
 else:
-    VERSIONED_PACKAGE_DIR = RELEASE_PACKAGES_DIR / "dev" / version
+    VERSIONED_PACKAGE_DIR = RELEASE_PACKAGES_DIR / "dev" / PACKAGE_VERSION

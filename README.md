@@ -40,14 +40,20 @@ reference layer for geolocating Greenland's coastline.
 Note that some data were transformed from their native data formats,
 projections, and resolutions for inclusion within QGreenland. The included
 metadata (>Layer Properties >Metadata >History) contains provenance information
-on any transformations. All QGreenland geopackages and geotiffs are projected
-in EPSG:3413.
+on any transformations. All QGreenland GeoPackages and GeoTIFFs are projected
+in `EPSG:3413`.
 
 
 # Getting Started
 
-As of this writing, the oldest version of QGIS we support is 3.16.x LTR. You
-can find downloads and instructions
+As of this writing, the oldest version of QGIS we support for the QGreenland release
+series are:
+
+* QGreenland `1.x`: QGIS `3.16.x LTR`
+* QGreenland `2.x`: QGIS `3.16.x LTR`
+* QGreenland `3.x`: QGIS `3.28.x LTR`
+
+You can find downloads and instructions
 [here](https://qgis.org/en/site/forusers/download.html).
 
 After installing QGIS, [download QGreenland](https://qgreenland.org/download)
@@ -82,17 +88,19 @@ educational resources, including our own QGreenland User Guide.
 
 # Contributing
 
-Please see [contributing instructions](https://qgreenland.readthedocs.io/en/latest/contributor-how-to/contribute-layers.html) for more info. A good
-portion of this document contains technical instructions about running the
-QGreenland pipeline, but also includes less-technical instructions for
-contributing styles you have developed within QGIS. Our goal is to make it as
-easy as possible for any user of QGreenland to contribute to the project, so
-please do not be deterred from sharing your ideas.
+Please see [contributing
+instructions](https://qgreenland.readthedocs.io/en/latest/contributor-how-to/contribute-layers.html)
+for more info. A good portion of this document contains technical instructions about
+running the QGreenland pipeline, but also includes less-technical instructions for
+contributing styles you have developed within QGIS. Our goal is to make it as easy as
+possible for any user of QGreenland to contribute to the project, so please do not be
+deterred from sharing your ideas.
 
 **If all else fails, please [email us](mailto:qgreenland.info@gmail.com)!**
 
 
 # Acknowledgements
 
-Please see our [acknowledgements](https://qgreenland.readthedocs.io/en/latest/acknowledgements.html) for our
-best effort to acknowledge all of the giants upon whose shoulders we stand.
+Please see our
+[acknowledgements](https://qgreenland.readthedocs.io/en/latest/acknowledgements.html)
+for our best effort to acknowledge all of the giants upon whose shoulders we stand.
