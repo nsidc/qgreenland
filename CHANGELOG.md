@@ -3,6 +3,11 @@
 - Minimum supported version of QGIS is now `v3.22`.
 
 
+## Layer fixes
+
+- Fix title of BedMachine "ice thickness error" layer (remove `/`)
+
+
 # v2.0.0 (2022-03-17)
 
 - New layers:
