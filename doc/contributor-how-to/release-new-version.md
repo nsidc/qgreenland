@@ -13,9 +13,11 @@ Versions should be in one of the following forms:
 * `vX.Y.ZrcN`: A release candidate, e.g. `v1.2.3rc3`.
 * `vX.Y.Z`: A final release, e.g. `v1.2.3`.
 
-NOTE: When using `bumpversion build`, ensure you've already used `bumpversion
+```{caution}
+When using `bumpversion build`, ensure you've already used `bumpversion
 prerelease`. Running `bumpversion build` from a final release version number
 can result in an incorrect patch number, e.g. `v1.2.304`.
+```
 
 Publishing a tag to GitHub will trigger an automated build and publish of the
 QGreenland Core package to various mirrors.
