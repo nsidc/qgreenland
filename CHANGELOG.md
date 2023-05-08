@@ -1,4 +1,4 @@
-# v3.0.0 (Unreleased)
+# v3.0.0alpha1 (2023-05-08)
 
 - Minimum supported version of QGIS is now `v3.28`.
 
@@ -102,13 +102,13 @@
 
 # v2.0.0rc3 (2022-03-03)
 
-- Update documentation for v2.0.0
+- Update documentation for `v2.0.0`
 
 
 # v2.0.0rc2 (2022-02-28)
 
 - Remove UserGuide.pdf and MakingDataQGRCompatible.pdf in core zip package,
-  information in these documents is now represented in QGreenland_Documentation.pdf
+  information in these documents is now represented in `QGreenland_Documentation.pdf`
 
 
 # v2.0.0rc1 (2022-02-23)
