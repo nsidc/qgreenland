@@ -34,6 +34,7 @@ class LayersInPackage(luigi.WrapperTask):
 
     Only layers with the `in_package` attribute set to `True` will be hard linked.
     """
+
     def requires(self):
         tasks = generate_layer_pipelines()
 
@@ -65,6 +66,7 @@ class PackageLayerList(AncillaryFile):
 
 class LayerPipelines(luigi.WrapperTask):
     """Build all the layers."""
+
     fetch_only = luigi.BoolParameter(default=False)
 
     def requires(self):
