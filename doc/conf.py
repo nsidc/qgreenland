@@ -10,10 +10,13 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use the absolute path, like shown here.
 import datetime
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path("../").resolve()))
+# Register our local extensions directory on the path
+sys.path.append(os.path.abspath("./sphinx-ext/"))
 
 
 # -- Project information -----------------------------------------------------
@@ -23,7 +26,7 @@ copyright = f"NSIDC {datetime.date.today().year}"
 author = "Twila Moon, Matt Fisher, Hope Simonoko, Trey Stafford"
 
 # The full version, including alpha/beta/rc tags
-release = "v2.0.0"
+release = "v3.0.0alpha1"
 
 
 # -- General configuration ---------------------------------------------------
@@ -41,6 +44,10 @@ extensions = [
     # TODO: What does this do?
     # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
     "sphinxcontrib.autodoc_pydantic",
+    "sphinx_selective_exclude.eager_only",
+    "sphinx_selective_exclude.search_auto_exclude",
+    "sphinx_selective_exclude.modindex_exclude",
+    "toctree_select_builder",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -50,6 +57,10 @@ templates_path = ["_templates"]
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ["_notes", "_build", "Thumbs.db", ".DS_Store", "_plugin"]
+
+# TODO: Enable Nitpicky mode. Do we need to use `nitpick_ignore` to get a passing build
+# in that case?
+# nitpicky = True
 
 # -- MyST options -------------------------------------------------
 

@@ -45,14 +45,14 @@ QGreenland Documentation
     \part{How-to}
 
 
-.. toctree::
+.. toctree-select-builder::
     :name: How-to
     :caption: How-to
     :maxdepth: 1
     :hidden:
 
     user-how-to/index
-    contributor-how-to/index
+    :html:contributor-how-to/index
 
 
 .. raw:: latex
@@ -71,18 +71,18 @@ QGreenland Documentation
     reference/online-resources.md
 
 
-.. only:: not latex
+.. only:: html
 
-  .. toctree::
-      :name: Contributor_Reference
-      :caption: Contributor Reference
-      :maxdepth: 1
-      :hidden:
-  
-      reference/architecture/index
-      reference/api/index
-      reference/cli/index
-      reference/style-guide.md
+    .. toctree::
+        :name: Contributor_Reference
+        :caption: Contributor Reference
+        :maxdepth: 1
+        :hidden:
+
+        reference/architecture/index
+        reference/api/index
+        reference/cli/index
+        reference/style-guide.md
 
 
 .. raw:: latex
@@ -100,12 +100,7 @@ QGreenland Documentation
     discussion/*
 
 
-.. raw:: latex
-
-    \part{Appendix}
-
-
-.. only:: builder_html
+.. only:: html
 
     .. include:: what_is_qgr.md
         :parser: myst_parser.sphinx_

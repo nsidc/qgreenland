@@ -8,6 +8,11 @@
 - Resolve `Font "Helvetica" font not available on system` warnings.
 
 
+## Layer fixes
+
+- Fix title of BedMachine "ice thickness error" layer (remove `/`)
+
+
 # v2.0.0 (2022-03-17)
 
 - New layers:
