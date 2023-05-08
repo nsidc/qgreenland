@@ -331,3 +331,4 @@ dependencies:
       - flake8-debugger==3.2.1
       - flake8-use-fstring==1.4
       - sphinx-rtd-theme==1.0.0
+      - sphinx-selective-exclude==1.0.3

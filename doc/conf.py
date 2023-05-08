@@ -10,10 +10,13 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use the absolute path, like shown here.
 import datetime
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path("../").resolve()))
+# Register our local extensions directory on the path
+sys.path.append(os.path.abspath('./sphinx-ext/'))
 
 
 # -- Project information -----------------------------------------------------
@@ -41,6 +44,10 @@ extensions = [
     # TODO: What does this do?
     # 'sphinx_autodoc_typehints',  # MUST be after 'sphinx.ext.autodoc'.
     "sphinxcontrib.autodoc_pydantic",
+    "sphinx_selective_exclude.eager_only",
+    "sphinx_selective_exclude.search_auto_exclude",
+    "sphinx_selective_exclude.modindex_exclude",
+    "toctree_select_builder",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

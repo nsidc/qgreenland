@@ -42,12 +42,38 @@ content into many output formats including HTML and PDF.
 Sphinx's configuration is kept at `doc/conf.py`.
 
 
-#### Our templating hack
+#### PDF vs HTML format
 
-We're using Jinja2 templating to enable us to build a subset of the full documentation
-(by excluding contributor docs) to generate the User Guide PDF. Our `invoke` tasks take
-care of template rendering. The only thing that's templated is the root index page
-`index.rst.j2`.
+Our PDF doc is intended to be user-focused, but our HTML docs serve users and
+contributors (i.e. PDF docs are a subset of HTML docs). Most of the docs end up in both
+formats, so we want to use the same content to create both.
+
+Sphinx offers the `.. only::` directive for conditional content, but it does not work as
+one might intuitively expect. Specifically, it isn't capable of creating conditional or
+filtered `toctrees`. Because of this insufficiency, we're employing two nonstandard
+methods in `doc/index.rst` to deselect items from PDF docs:
+
+* Our custom `.. toctree-select-builder::` directive, defined in
+  `doc/sphinx-ext/toctree_select_builder.py`, is a customized `toctree` directive which
+  enables filtering its contents based on prefix. E.g., if the builder is `html`, a
+  `toctree` element named `foo` would be included, `:html:bar` would be included, and
+  `:latex:baz` would be excluded.
+* The package
+  [sphinx-selective-exclude](https://pypi.org/project/sphinx-selective-exclude/)
+  enhances the behavior of `.. only::` to more intuitively select content during the
+  parsing phrase, enabling entire `toctrees` to be deselected. For example, the
+  following `toctree` would be omitted if the builder is `latex`:
+
+  ```rst
+  .. only:: html
+
+      .. toctree::
+          :name: HTML only
+          :caption: HTML only
+
+          some/document
+          another/document
+  ```
 
 
 ### Read the Docs
