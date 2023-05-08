@@ -35,7 +35,7 @@ class TocTreeSelectBuilder(TocTree):
 
         Prefixes are removed in the process.
         """
-        valid_prefixes = ['html', 'latex']
+        valid_prefixes = ["html", "latex"]
         builder_name = self.env.app.builder.name
 
         selected = []
