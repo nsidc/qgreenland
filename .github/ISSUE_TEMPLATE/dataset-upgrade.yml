@@ -9,8 +9,8 @@ body:
     attributes:
       value: |-
         Is a QGreenland dataset out-of-date? This is the correct place to
-        request an upgrade. Thank you for taking the time to contribute to this
-        project!
+        request an upgrade. Thank you for taking the time to contribute to
+        QGreenland!
 
   - type: "input"
     id: "dataset-url"
