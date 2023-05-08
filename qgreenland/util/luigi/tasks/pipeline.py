@@ -1,10 +1,8 @@
 import logging
 import shutil
-import tempfile
 from pathlib import Path
 
 import luigi
-import markdown
 
 from qgreenland.constants.paths import (
     ANCILLARY_DIR,
@@ -16,10 +14,14 @@ from qgreenland.constants.paths import (
 )
 from qgreenland.constants.project import ENVIRONMENT, PROJECT
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
-from qgreenland.util.command import run_cmd
 from qgreenland.util.config.config import get_config
 from qgreenland.util.config.export import export_config_csv, export_config_manifest
 from qgreenland.util.luigi import generate_layer_pipelines
+from qgreenland.util.luigi.tasks.ancillary import (
+    AncillaryFile,
+    AncillaryMarkdownFileToHtml,
+    AncillarySphinxPdfFile,
+)
 from qgreenland.util.luigi.tasks.main import LinkLayer
 from qgreenland.util.qgis.project import QgsApplicationContext, make_qgis_project_file
 from qgreenland.util.version import get_build_version
@@ -27,20 +29,11 @@ from qgreenland.util.version import get_build_version
 logger = logging.getLogger("luigi-interface")
 
 
-class LayerPipelines(luigi.WrapperTask):
-    fetch_only = luigi.BoolParameter(default=False)
-
-    def requires(self):
-        """All layers that will be added to the project."""
-        tasks = generate_layer_pipelines(
-            fetch_only=self.fetch_only,
-        )
-
-        for task in tasks:
-            yield task
-
-
 class LayersInPackage(luigi.WrapperTask):
+    """Hard link layers in to the packaging location.
+
+    Only layers with the `in_package` attribute set to `True` will be hard linked.
+    """
     def requires(self):
         tasks = generate_layer_pipelines()
 
@@ -50,58 +43,6 @@ class LayersInPackage(luigi.WrapperTask):
                     requires_task=task,
                     layer_id=task.layer_cfg.id,
                 )
-
-
-class AncillaryFile(luigi.Task):
-    """Copy an ancillary file in to the final QGreenland package."""
-
-    # Absolute path
-    src_filepath = luigi.Parameter()
-    # Relative to the root of QGreenland
-    dest_relative_filepath = luigi.Parameter()
-
-    def output(self):
-        return luigi.LocalTarget(
-            COMPILE_PACKAGE_DIR / self.dest_relative_filepath,
-        )
-
-    def run(self):
-        with self.output().temporary_path() as temp_path:
-            shutil.copy(self.src_filepath, temp_path)
-
-
-class AncillaryMarkdownFileToHtml(AncillaryFile):
-    """Convert an ancillary file to HTML in the final QGreenland package."""
-
-    def run(self):
-        with self.output().temporary_path() as temp_path:
-            markdown.markdownFromFile(
-                input=str(self.src_filepath),
-                output=str(temp_path),
-            )
-
-
-class AncillarySphinxPdfFile(AncillaryFile):
-    """Generate Sphinx docs as PDF."""
-
-    def run(self):
-        with self.output().temporary_path() as temp_path:
-            with tempfile.TemporaryDirectory() as build_dir:
-                build_path = Path(build_dir)
-                run_cmd(
-                    [
-                        # Run make from the directory containing the Makefile
-                        "make",
-                        "-C",
-                        self.src_filepath.parent,
-                        "latexpdf",
-                        f"BUILDDIR={build_path}",
-                    ]
-                )
-                output_file = build_path / "latex" / "qgreenland.pdf"
-                shutil.copy(output_file, temp_path)
-
-        logger.info(f"Created PDF: {self.output().path}")
 
 
 class PackageLayerList(AncillaryFile):
@@ -120,6 +61,20 @@ class PackageLayerList(AncillaryFile):
         config = get_config()
         with self.output().temporary_path() as temp_path:
             export_config_csv(config, output_path=temp_path)
+
+
+class LayerPipelines(luigi.WrapperTask):
+    """Build all the layers."""
+    fetch_only = luigi.BoolParameter(default=False)
+
+    def requires(self):
+        """All layers that will be added to the project."""
+        tasks = generate_layer_pipelines(
+            fetch_only=self.fetch_only,
+        )
+
+        for task in tasks:
+            yield task
 
 
 class LayerManifest(luigi.Task):
