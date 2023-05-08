@@ -16,7 +16,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path("../").resolve()))
 # Register our local extensions directory on the path
-sys.path.append(os.path.abspath('./sphinx-ext/'))
+sys.path.append(os.path.abspath("./sphinx-ext/"))
 
 
 # -- Project information -----------------------------------------------------

@@ -11,8 +11,8 @@ logger = logging.getLogger(__name__)
 
 
 def setup(app):
-    app.add_directive('toctree-select-builder', TocTreeSelectBuilder)
-    return {'version': '1.0.0'}
+    app.add_directive("toctree-select-builder", TocTreeSelectBuilder)
+    return {"version": "1.0.0"}
 
 
 class TocTreeSelectBuilder(TocTree):
@@ -28,7 +28,7 @@ class TocTreeSelectBuilder(TocTree):
     * `:baz:qux`: excluded because the prefix mismatches the builder name
     """
 
-    prefixPattern = re.compile('^\s*:(.+):(.+)$')
+    prefixPattern = re.compile("^\s*:(.+):(.+)$")
 
     def filter_entries(self, entries):
         """Discard entries whose prefix mismatches the current builder.
@@ -59,7 +59,6 @@ class TocTreeSelectBuilder(TocTree):
                     f"Discarding entry '{e}' from toc named '{self.options['name']}':"
                     f" {prefix=} does not match {builder_name=}"
                 )
-
 
         return selected
 
