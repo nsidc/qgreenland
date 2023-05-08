@@ -35,6 +35,7 @@ class TocTreeSelectBuilder(TocTree):
 
         Prefixes are removed in the process.
         """
+        valid_prefixes = ['html', 'latex']
         builder_name = self.env.app.builder.name
 
         selected = []
@@ -48,6 +49,14 @@ class TocTreeSelectBuilder(TocTree):
 
             prefix = m.groups()[0]
             value = m.groups()[1]
+
+            if prefix not in valid_prefixes:
+                msg = (
+                    f"Entry '{e}' from toc named '{self.options['name']}'"
+                    f" has invalid {prefix=}; must be one of {valid_prefixes=} "
+                )
+                logger.error(msg)
+                raise RuntimeError(msg)
 
             # If there's a prefix, keep only if it matches builder name
             if prefix == builder_name:
