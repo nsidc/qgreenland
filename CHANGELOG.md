@@ -1,16 +1,13 @@
+# v3.0.0alpha2 (2023-05-09)
+
+- Resolve `Font "Helvetica" font not available on system` warning for bathymetry style
+
+
 # v3.0.0alpha1 (2023-05-08)
 
 - Minimum supported version of QGIS is now `v3.28`.
-
-
-## Bugfixes
-
 - Resolve `Font "Helvetica" font not available on system` warnings (requires QGIS >=
   `v3.28`).
-
-
-## Layer fixes
-
 - Fix title of BedMachine "ice thickness error" layer (remove `/`)
 
 
