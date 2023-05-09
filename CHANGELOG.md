@@ -5,7 +5,8 @@
 
 ## Bugfixes
 
-- Resolve `Font "Helvetica" font not available on system` warnings.
+- Resolve `Font "Helvetica" font not available on system` warnings (requires QGIS >=
+  `v3.28`).
 
 
 ## Layer fixes
