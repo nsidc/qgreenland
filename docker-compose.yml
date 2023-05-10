@@ -18,7 +18,10 @@ services:
       # Input (private) storage
       - "${DATA_PRIVATE_ARCHIVE:-./data/private-archive}:/private-archive:ro"
       # Read-write storage
-      - "${DATA_WORKING_STORAGE:-./data/working-storage}:/working-storage:rw"
+      # HACK: Should use ${DATA_WORKING_STORAGE}, but we were having issues
+      # with our NFS appliance some time ago, started using two working storage
+      # locations temporarily, and we haven't re-tested yet.
+      - "${DATA_WORKING_STORAGE_TMP:-./data/working-storage}:/working-storage:rw"
     environment:
       - "LUIGI_CONFIG_PARSER=toml"
       - "ENVIRONMENT"
