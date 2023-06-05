@@ -1,5 +1,5 @@
 from collections import Counter
-from typing import Iterator
+from collections.abc import Iterator
 
 
 def find_duplicates(items: Iterator[str]) -> list[str]:

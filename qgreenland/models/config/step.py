@@ -33,7 +33,7 @@ class CommandStep(QgrBaseModel, LayerStep):
     type: Literal["command"] = "command"
 
     args: list[EvalStr]
-    """The command arguments, e.g. ['cat', '{input_dir}/foo.txt']."""  # noqa:FS003
+    """The command arguments, e.g. ['cat', '{input_dir}/foo.txt']."""
 
     # We use a root validator here because with a regular validator, we would
     # not have access to the `args` field, because field order matters to

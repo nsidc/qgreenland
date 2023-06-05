@@ -16,7 +16,7 @@ PARAMS_FP = CONFIG_DIR / "helpers/ancillary/sea_ice_age_params.json"
 
 
 def _get_layer_params():
-    with open(PARAMS_FP, "r") as f:
+    with open(PARAMS_FP) as f:
         return json.loads(f.read())
 
 

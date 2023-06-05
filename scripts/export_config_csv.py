@@ -1,7 +1,7 @@
 """Exports layer configuration as a CSV file."""
 
 # Hack to import from qgreenland
-import os  # noqa: E401
+import os
 import sys
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))

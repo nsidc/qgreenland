@@ -75,8 +75,7 @@ class LayerPipelines(luigi.WrapperTask):
             fetch_only=self.fetch_only,
         )
 
-        for task in tasks:
-            yield task
+        yield from tasks
 
 
 class LayerManifest(luigi.Task):

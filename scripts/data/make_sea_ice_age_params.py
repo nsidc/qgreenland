@@ -29,10 +29,8 @@ from qgreenland.constants.paths import FETCH_DATASETS_DIR
 def _get_min_max_rankings_file() -> bytes:
     """Fetch the Sea Ice Index Min/Max rankings spreadsheet and return its content."""
     response = requests.get(
-        (
-            "https://masie_web.apps.nsidc.org/pub/DATASETS/NOAA/G02135/"
-            "seaice_analysis/Sea_Ice_Index_Min_Max_Rankings_G02135_v3.0.xlsx"
-        )
+        "https://masie_web.apps.nsidc.org/pub/DATASETS/NOAA/G02135/"
+        "seaice_analysis/Sea_Ice_Index_Min_Max_Rankings_G02135_v3.0.xlsx"
     )
 
     return response.content

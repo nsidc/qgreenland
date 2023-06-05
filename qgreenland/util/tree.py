@@ -207,10 +207,10 @@ def _manual_ordering_strategy(
     for s in settings.order:
         try:
             if s.startswith(":"):
-                matcher = lambda x: isinstance(x, Layer) and x.id == s[1:]
+                matcher = lambda x, s=s: isinstance(x, Layer) and x.id == s[1:]
                 thing_desc = f'layer id "{s[1:]}"'
             else:
-                matcher = lambda x: isinstance(x, Path) and x.name == s
+                matcher = lambda x, s=s: isinstance(x, Path) and x.name == s
                 thing_desc = f'group/directory "{s}"'
 
             matches = funcy.lfilter(matcher, layers_and_groups)
@@ -271,7 +271,11 @@ def _ordered_layers_and_groups(
 
     Groups are represented as directories and are returned unchanged.
     """
-    (layer_and_group_paths, settings, settings_path,) = _handle_layer_config_directory(
+    (
+        layer_and_group_paths,
+        settings,
+        settings_path,
+    ) = _handle_layer_config_directory(
         the_dir,
         is_root=is_root,
     )
@@ -469,7 +473,7 @@ def _delete_node(
     Yes, this is the right way :)
         https://github.com/c0fec0de/anytree/issues/152
     """
-    node_path = list(node.group_name_path) + [node.name]
+    node_path = [*list(node.group_name_path), node.name]
     node_name = "/".join(node_path)
     logger.warn(f"{msg}: /{node_name}")
     node.parent = None

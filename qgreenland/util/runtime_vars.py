@@ -8,7 +8,7 @@ from qgreenland.constants.paths import ASSETS_DIR
 
 # TODO: Make this a dataclass? :shrug:
 # TODO: Move to _typing module/package?
-class EvalPath(object):
+class EvalPath:
     """Path with `eval` method for runtime string interpolation."""
 
     val: str
@@ -52,8 +52,7 @@ class EvalFilePath(EvalPath):
     @classmethod
     def __get_validators__(cls):
         """Pydantic magic method for implicit validation and conversion."""
-        for v in super().__get_validators__():
-            yield v
+        yield from super().__get_validators__()
         yield cls.validate_exists
 
     @classmethod
@@ -114,10 +113,9 @@ class EvalStr(UserString):
     def eval(
         self,
         *,
-        input_dir: Optional[str] = "{input_dir}",  # noqa:FS003
-        output_dir: Optional[str] = "{output_dir}",  # noqa:FS003
+        input_dir: Optional[str] = "{input_dir}",
+        output_dir: Optional[str] = "{output_dir}",
     ) -> str:
-
         return self.format(
             input_dir=input_dir,
             output_dir=output_dir,

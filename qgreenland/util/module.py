@@ -2,7 +2,7 @@ import importlib
 import inspect
 from pathlib import Path
 from types import ModuleType
-from typing import Type, TypeVar
+from typing import TypeVar
 
 
 def module_from_path(module_path: Path) -> ModuleType:
@@ -33,7 +33,7 @@ T = TypeVar("T")
 def load_objects_from_paths_by_class(
     module_paths: list[Path],
     *,
-    target_class: Type[T],
+    target_class: type[T],
 ) -> list[T]:
     """Return all objects of class `model_class` in `module_paths`."""
     found_models = []
@@ -51,7 +51,7 @@ def load_objects_from_paths_by_class(
 
 def _find_in_module_by_class(
     module: ModuleType,
-    target_class: Type[T],
+    target_class: type[T],
 ) -> list[T]:
     """Find all objects of class `model_class` among `module` members."""
     module_members = inspect.getmembers(module)

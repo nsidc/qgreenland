@@ -1,7 +1,8 @@
 import functools
 import tempfile
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable, Union
+from typing import Union
 from xml.sax.saxutils import escape
 
 import qgis.core as qgc

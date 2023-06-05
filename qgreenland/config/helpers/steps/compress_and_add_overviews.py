@@ -92,6 +92,6 @@ def compress_and_add_overviews(
         ),
         CommandStep(
             id="build_overviews",
-            args=copy_into_place + ["&&"] + add_overviews,
+            args=[*copy_into_place, "&&", *add_overviews],
         ),
     ]

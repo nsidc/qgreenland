@@ -31,8 +31,8 @@ def ogr2ogr(
     return [
         CommandStep(
             id="ogr2ogr",
-            args=init_args
-            + [
+            args=[
+                *init_args,
                 "ogr2ogr",
                 *STANDARD_OGR2OGR_ARGS,
                 "-clipdst",

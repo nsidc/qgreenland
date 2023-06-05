@@ -1,7 +1,7 @@
 import shutil
+from collections.abc import Generator
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Generator
 
 import luigi
 

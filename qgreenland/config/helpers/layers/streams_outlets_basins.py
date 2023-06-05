@@ -1,4 +1,4 @@
-from qgreenland.config.datasets.streams_outlets_basins import (  # noqa: E501
+from qgreenland.config.datasets.streams_outlets_basins import (
     streams_outlets_basins as dataset,
 )
 from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr

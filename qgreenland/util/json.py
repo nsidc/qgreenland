@@ -15,4 +15,4 @@ class MagicJSONEncoder(json.JSONEncoder):
             return str(o)
         if hasattr(o, "__json__") and callable(o.__json__):
             return o.__json__()
-        return super(MagicJSONEncoder, self).default(o)
+        return super().default(o)

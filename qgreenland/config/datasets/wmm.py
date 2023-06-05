@@ -19,20 +19,20 @@ wmm = Dataset(
         HttpAsset(
             id="geomagnetic_coordinates",
             urls=[
-                "ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020_geomagnetic_coordinate_shapefiles.zip",  # noqa:E501
+                "ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020_geomagnetic_coordinate_shapefiles.zip",
             ],
         ),
         HttpAsset(
             id="blackout_zones",
             urls=[
-                "ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020-2025_BoZ_Shapefile.zip",  # noqa:E501
+                "ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/WMM2020-2025_BoZ_Shapefile.zip",
             ],
         ),
         *[
             HttpAsset(
                 id=str(year),
                 urls=[
-                    f"ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/{year}/WMM_{year}_all_shape_geographic.zip",  # noqa:E501
+                    f"ftp://ftp.ngdc.noaa.gov/geomag/wmm/wmm2020/shapefiles/{year}/WMM_{year}_all_shape_geographic.zip",
                 ],
             )
             for year in range(2020, 2025 + 1)

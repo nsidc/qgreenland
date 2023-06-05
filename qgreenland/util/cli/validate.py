@@ -6,7 +6,7 @@ def validate_ambiguous_command(kwargs):
     """Validate for conflicting options and suggest a fix."""
     msg = (
         "Ambiguous command! You have requested both to delete all"
-        " {resource}s _and_ to delete {resource}s"  # noqa: FS003
+        " {resource}s _and_ to delete {resource}s"
         " by PATTERN. Please choose only one."
     )
 
