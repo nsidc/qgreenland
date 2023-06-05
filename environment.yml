@@ -39,9 +39,9 @@ dependencies:
   - latexmk ~=4.55
   - myst-parser ~=0.15.2
   - sphinx-click ~=3.0.1
-    # TODO: What does this do? Do we need it?
-    # - sphinx-autodoc-typehints ~=1.12.0
-    # SEE PIP DEPENDENCIES FOR MORE
+  # TODO: What does this do? Do we need it?
+  # - sphinx-autodoc-typehints ~=1.12.0
+  # SEE PIP DEPENDENCIES FOR MORE
 
   # task-runners
   - invoke ~=1.4.0
@@ -50,17 +50,8 @@ dependencies:
   - pytest ~=6.2
   - pytest-cov ~=2.12
 
-  # static analysis
-  - flake8 ~=3.8.3
-  - flake8-bugbear ~=21.9.2
-  - flake8-comprehensions ~=3.2.2
-  - flake8-docstrings ~=1.5.0
-  - flake8-import-order ~=0.18.1
-  - flake8-quotes ~=2.1.1
-  - pep8-naming ~=0.9.1
-  - vulture ~=1.0
-  - shellcheck ~=0.7.1
-    # SEE PIP DEPENDENCIES FOR MORE
+  # linting
+  - pre-commit
 
   # typechecking
   - mypy ~=1.2.0
@@ -69,15 +60,11 @@ dependencies:
   - bump2version
   - ipython
   - ipdb
-  - pip
-  - black ~=22.0
-  - isort ~=5.0
 
+  - pip
 
   # Pip dependencies could be imported or non-imported :(
   - pip:
-    - flake8-debugger ~=3.2
-    - flake8-use-fstring ~=1.0
     - sphinx-rtd-theme ~=1.0.0
     - autodoc-pydantic ~=1.5.1
     - sphinx-selective-exclude ~=1.0.3
