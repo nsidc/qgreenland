@@ -65,7 +65,7 @@ class Layer(QgrBaseModel):
             style_filepath = _style_filepath(value)
             if not style_filepath.is_file():
                 raise exc.QgrInvalidConfigError(
-                    (f"Style file does not exist: {style_filepath}")
+                    f"Style file does not exist: {style_filepath}"
                 )
 
         return value

@@ -5,10 +5,10 @@ project = Project(
     crs=PROJECT_CRS,
     boundaries={
         "background": {
-            "filepath": "{assets_dir}/latitude_shape_40_degrees.geojson",  # noqa: FS003
+            "filepath": "{assets_dir}/latitude_shape_40_degrees.geojson",
         },
         "data": {
-            "filepath": "{assets_dir}/greenland_rectangle.geojson",  # noqa: FS003
+            "filepath": "{assets_dir}/greenland_rectangle.geojson",
         },
     },
 )

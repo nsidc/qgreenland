@@ -66,10 +66,7 @@ def _print_and_run(cmd, *, dry_run):
     "delete_fetch_by_pattern",
     "--delete-fetch-by-pattern",
     "-f",
-    help=(
-        "Delete fetched dataset assets matching PATTERN"
-        " (`{dataset_id}.{asset_id}`)"  # noqa: FS003
-    ),
+    help="Delete fetched dataset assets matching PATTERN (`{dataset_id}.{asset_id}`)",
     multiple=True,
     metavar="PATTERN",
 )

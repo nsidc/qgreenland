@@ -1,5 +1,5 @@
 import datetime as dt
-from typing import Generator
+from collections.abc import Generator
 
 from qgreenland.config.datasets.esa_cci import (
     esa_cci_gravimetric_mass_balance_dtu as dataset,

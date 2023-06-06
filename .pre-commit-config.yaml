@@ -1,0 +1,44 @@
+default_language_version:
+  python: "python3.10"
+
+
+repos:
+
+  - repo: "https://github.com/pre-commit/pre-commit-hooks"
+    rev: "v4.4.0"
+    hooks:
+      - id: "check-added-large-files"
+      - id: "check-vcs-permalinks"
+      - id: "end-of-file-fixer"
+
+  - repo: "https://github.com/charliermarsh/ruff-pre-commit"
+    rev: "v0.0.269"
+    hooks:
+      - id: "ruff"
+        # NOTE: "--exit-non-zero-on-fix" is important for CI to function
+        # correctly!
+        args: ["--fix", "--exit-non-zero-on-fix"]
+
+  - repo: "https://github.com/psf/black"
+    rev: "23.3.0"
+    hooks:
+      - id: "black"
+
+  - repo: "https://github.com/jendrikseipp/vulture"
+    rev: "v2.7"
+    hooks:
+      - id: "vulture"
+
+  # Commented because it requires Docker, which is not available in all CI
+  # runners. Works on GitHub actions but not CircleCI.
+  # - repo: "https://github.com/koalaman/shellcheck-precommit"
+  #   rev: "v0.9.0"
+  #   hooks:
+  #     - id: "shellcheck"
+  #       # args: ["--severity=warning"]  # Optionally only show errors and warnings
+  #
+
+  - repo: "https://github.com/shellcheck-py/shellcheck-py"
+    rev: "v0.9.0.5"
+    hooks:
+      - id: "shellcheck"

@@ -66,7 +66,7 @@ class BoundariesInfo(QgrBaseModel):
         # NOTE: Import inside the method to avoid a cycle. The config subpackage
         # imports from the models subpackage, so the models can't import from
         # config.
-        from qgreenland.config.constants import PROJECT_CRS  # noqa
+        from qgreenland.config.constants import PROJECT_CRS
 
         if (boundary_crs := meta["crs"]["init"].upper()) != PROJECT_CRS.upper():
             raise exc.QgrInvalidConfigError(

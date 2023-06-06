@@ -12,7 +12,6 @@ def warp(
     resampling_method: ResamplingMethod = "bilinear",
     warp_args: StepArgs = (),
 ) -> list[CommandStep]:
-
     return [
         CommandStep(
             args=[

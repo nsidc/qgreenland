@@ -25,7 +25,6 @@ def surface_elevation_layer(
     end_year: int,
     variable: SurfaceElevVar,
 ) -> Layer:
-
     if variable == "SEC":
         description = "Rate of surface elevation change in meters per year."
         style = "surface_elevation_change"

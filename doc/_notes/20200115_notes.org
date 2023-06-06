@@ -58,4 +58,3 @@
   - Place names
   - DEMs
   - Contour lines
-

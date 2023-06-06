@@ -4,7 +4,7 @@ from qgreenland.constants.paths import TEMPLATES_DIR
 
 
 def _print_template(template_fn: str) -> None:
-    contents = open(TEMPLATES_DIR / template_fn, "r").read()
+    contents = open(TEMPLATES_DIR / template_fn).read()
 
     # Don't print the extra newline, so the contents can be redirected without
     # change.

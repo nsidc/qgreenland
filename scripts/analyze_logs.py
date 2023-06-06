@@ -52,6 +52,7 @@ class Parser:
     """Read log lines and build up stats for reporting.
 
     Example:
+    -------
         {
             'v0.1.2': { 'downloads': 0, 'bytes': 0}
             'v0.23.0dev': { 'downloads': 131, 'bytes': 31549151}
@@ -142,7 +143,7 @@ if __name__ == "__main__":
     logs_fp = logs_file_path(sys.argv)
     parser = Parser()
 
-    with open(logs_fp, "r") as logs_file:
+    with open(logs_fp) as logs_file:
         print(f"Parsing log file: {logs_fp}...")
         lines = logs_file.readlines()
 

@@ -1,5 +1,5 @@
+from collections.abc import Generator
 from functools import cache
-from typing import Generator, Type
 
 import luigi
 
@@ -25,7 +25,7 @@ from qgreenland.util.luigi.tasks.fetch import (
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
 # TODO: Make "fetch" tasks into Python "steps"?
-ASSET_TYPE_TASKS: dict[Type[AnyAsset], Type[FetchTask]] = {
+ASSET_TYPE_TASKS: dict[type[AnyAsset], type[FetchTask]] = {
     CmrAsset: FetchCmrGranule,
     CommandAsset: FetchDataWithCommand,
     HttpAsset: FetchDataFiles,

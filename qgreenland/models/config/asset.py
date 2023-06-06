@@ -89,7 +89,7 @@ class RepositoryAsset(DatasetAsset):
 
     # TODO: Move the assets into the config directory???
     filepath: EvalFilePath
-    """The location of the asset, e.g. `{assets_dir}/foo.txt`."""  # noqa: FS003
+    """The location of the asset, e.g. `{assets_dir}/foo.txt`."""
 
     @validator("filepath")
     @classmethod

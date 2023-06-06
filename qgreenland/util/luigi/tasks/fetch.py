@@ -103,7 +103,6 @@ class FetchLocalDataFiles(FetchTask):
 
     def run(self):
         if isinstance(self.asset_cfg, RepositoryAsset):
-
             with temporary_path_dir(self.output()) as temp_path:
                 evaluated_filepath = self.asset_cfg.filepath.eval()
 
@@ -122,7 +121,7 @@ class FetchLocalDataFiles(FetchTask):
 
 
 class FetchDataWithCommand(FetchTask):
-    """Fetch data using a command, writing to '{output_dir}'."""  # noqa: FS003
+    """Fetch data using a command, writing to '{output_dir}'."""
 
     def output(self):
         return luigi.LocalTarget(

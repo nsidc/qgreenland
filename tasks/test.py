@@ -20,31 +20,10 @@ from qgreenland.test.constants import TEST_DATA_DIR, TEST_DIR
 
 
 @task
-def shellcheck(ctx):
-    # It's unclear why, but the return code seems to be getting swallowed.
-    print_and_run(
-        f"cd {PROJECT_DIR} &&"
-        f' for file in $(find {SCRIPTS_DIR} -type f -name "*.sh"); do'
-        "    shellcheck $file;"
-        "  done;",
-        pty=True,
-    )
-
-
-@task(
-    pre=[shellcheck],
-    aliases=["flake8"],
-)
 def lint(ctx):
-    """Run flake8 and vulture linting."""
+    """Run linting: ruff, black, vulture, shellcheck via pre-commit."""
     print_and_run(
-        f"cd {PROJECT_DIR} &&" f" flake8 {PACKAGE_DIR} {SCRIPTS_DIR}",
-        pty=True,
-    )
-    print_and_run(
-        f"cd {PROJECT_DIR} &&"
-        f" vulture --min-confidence 100 {PACKAGE_DIR} {SCRIPTS_DIR}"
-        " vulture_allowlist.py",
+        f"cd {PROJECT_DIR} && pre-commit run --all-files",
         pty=True,
     )
     print("🎉🙈 Linting passed.")
@@ -136,19 +115,9 @@ def typecheck(ctx, check_config=False):
     print("🎉🦆 Type checking passed.")
 
 
-@task
-def formatcheck(ctx):
-    """Check that the code conforms to formatting standards."""
-    print_and_run(f"isort --check-only {PROJECT_DIR}")
-    print_and_run(f"black --check {PROJECT_DIR}")
-
-    print("🎉🙈 Format check passed.")
-
-
 @task(
     pre=[
         lint,
-        formatcheck,
         call(typecheck, check_config=True),
         validate,
     ]

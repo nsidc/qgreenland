@@ -1,7 +1,78 @@
 [tool.black]
-target-version = ['py310']
+target-version = ["py310"]
 
-[tool.isort]
-profile = "black"
-known_third_party = "luigi"
-known_first_party = "qgreenland"
+
+[tool.vulture]
+paths = ["qgreenland", "scripts"]
+min_confidence = 80
+
+
+[tool.ruff]
+target-version = "py310"
+select = [
+  "F",
+  "E",
+  "W",
+  "C4",
+  "C90",
+  "I",
+  "N",
+  "D",
+  "UP",
+  "YTT",
+  "B",
+  "A",
+  "C4",
+  "T10",
+  "RUF",
+]
+
+ignore = [
+  # D1: Ignore errors requiring docstrings on everything.
+  # D203: "1 blank line required before class docstring"
+  # D213: "Multi-line docstring summary should start at the second line"
+  # E731: Lambda assignments are OK, use your best judgement.
+  # RUF010: !a, !r, !s are too magical for me.
+  "D1", "D203", "D213", "E731", "RUF010",
+
+  # Rules ignored on switch to `ruff`
+  # TODO: re-enable and fix these!
+  # A0: All rules related to names shadowing python built-ins
+  # B904: Within an `except` clause, raise exceptions with `raise ... from err`
+  #       or `raise ... from None` to distinguish them from errors in exception
+  #       handling.
+  # B905: `zip()` without an explicit `strict=` parameter
+  # N806: Variable name should be lowercase
+  # RUF001: String contains ambiguous unicode character `’`
+  # UP007: Use `X | Y` for type annotations
+  "A0", "B904", "B905", "N806", "RUF001", "UP007",
+
+]
+exclude = [
+  "vulture_allowlist.py",
+  # TODO: Remove tasks/docs excludes:
+  "tasks/*",
+  "doc/*",
+]
+
+[tool.ruff.per-file-ignores]
+# E402: Module level import not at top of file
+# E501: Line too long. Long strings, e.g. URLs, are common in config.
+# F821: Undefined name. Expected in some templates and scripts.
+"scripts/qgis_examples/*.py" = ["F821"]
+"tasks/test.py" = ["E402"]
+"qgreenland/ancillary/templates/layer_cfg.py" = ["F821"]
+"qgreenland/config/datasets/**/*.py" = ["E501"]
+"qgreenland/config/datasets/*.py" = ["E501"]
+"qgreenland/config/layers/**/*.py" = ["E501"]
+"qgreenland/config/helpers/**/*.py" = ["E501"]
+
+[tool.ruff.isort]
+known-first-party = ["qgreenland"]
+known-third-party = ["luigi"]
+
+[tool.ruff.mccabe]
+max-complexity = 8
+
+[tool.ruff.flake8-quotes]
+inline-quotes = "double"

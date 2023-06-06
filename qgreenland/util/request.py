@@ -43,7 +43,6 @@ def fetch_and_write_file(  # noqa:C901
             stream=True,
             headers={"User-Agent": "QGreenland"},
         ) as resp:
-
             # Try to extract the filename from the `content-disposition` header
             if (
                 disposition := resp.headers.get("content-disposition")

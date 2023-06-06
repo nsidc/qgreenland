@@ -1,6 +1,6 @@
 import logging
 import subprocess
-from typing import Sequence
+from collections.abc import Sequence
 
 import qgreenland.exceptions as exc
 from qgreenland.util.runtime_vars import EvalStr

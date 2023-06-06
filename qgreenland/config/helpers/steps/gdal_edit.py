@@ -8,7 +8,6 @@ def gdal_edit(
     output_file: str,
     gdal_edit_args: StepArgs = (),
 ) -> list[CommandStep]:
-
     return [
         CommandStep(
             id="gdal_edit",
