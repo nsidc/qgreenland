@@ -1,6 +1,9 @@
 name: "Test and (if tag) build"
 
 on:
+  # TODO: We currently get double workflows when pushing to pull request
+  # branches. Set this to only run on pushes to `main` and pull requests
+  # instead?
   push:
       branches:
         - "*"
@@ -30,16 +33,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgl1-mesa-glx
 
-      # Rename lock file; mamba expects files ending in `-lock.yml` to have a different format :(
-      # https://github.com/mamba-org/mamba/issues/1209#issuecomment-1447546266
-      - name: "HACK: Rename lockfile"
-        run: "mv environment-lock.yml environment-ci.yml"
-
       - name: "Install Conda environment"
-        uses: "mamba-org/setup-micromamba@v1.4.1"
+        uses: "mamba-org/setup-micromamba@v1"
         with:
-          environment-file: "environment-ci.yml"
+          micromamba-version: "1.4.2-2"
+          environment-file: "conda-lock.yml"
+          # When using a lock-file, we have to set an environment name.
+          environment-name: "qgreenland-ci"
           cache-environment: true
+          # Increase this key to trigger cache invalidation
+          cache-environment-key: 1
 
       - name: "Run tests"
         run: "inv test.ci"

@@ -57,6 +57,7 @@ dependencies:
   - mypy ~=1.2.0
 
   # other utilities
+  - conda-lock
   - bump2version
   - ipython
   - ipdb
