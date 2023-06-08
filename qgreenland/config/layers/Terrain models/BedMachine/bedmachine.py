@@ -5,7 +5,7 @@ from qgreenland.config.helpers.steps.compress_and_add_overviews import (
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import Layer, LayerInput
 
-bedmachine_fn = "BedMachineGreenland-2021-04-20.nc"
+bedmachine_fn = "BedMachineGreenland-v5.nc"
 
 
 bed_datasets = {
@@ -20,12 +20,12 @@ bed_datasets = {
         "title": "Surface elevation",
         "description": (
             """Surface elevation in meters. Source is GIMP DEM v2.1
-            (http://bprc.osu.edu/GDG/gimpdem.php)."""
+            (https://byrd.osu.edu/research/groups/glacier-dynamics/data/gimpdem)."""
         ),
     },
     "bed": {
         "title": "Bedrock elevation",
-        "description": "Bedrock elevation in meters.",
+        "description": "Bedrock elevation in meters. Mass conservation source data provided by Mathieu Morlighem.",
     },
     "errbed": {
         "title": "Bed topography and ice thickness error",

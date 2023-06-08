@@ -3,6 +3,8 @@
 - Remove Humanitarian Open Street Map (HOTOSM) layers ("Places/Community map
   (crowd-sourced)"). These layers had innaccuracies and missing locations that
   we received feedback on. These layers were not considered usable.
+- Update the BedMachine dataset ("Terrain models/BedMachine") to v5, which was
+  released in September 2022.
 
 # v3.0.0alpha2 (2023-05-09)
 
