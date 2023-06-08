@@ -4,6 +4,5 @@ settings = LayerGroupSettings(
     order=[
         ":populated_places",
         ":comprehensive_places",
-        "Community map (crowd-sourced)",
     ],
 )

@@ -67,10 +67,11 @@ thus simply copy a layer’s citation directly from its metadata. An abbreviated
 metadata can also be viewed by selecting a layer in the Layers panel and hovering your mouse
 over the layer name.
 
-**Note**: The QGreenland team has in a few instances included comments on ‘Noted Data Issues’.
-Read about ‘Noted Data Issues’ in the layer metadata. These are currently noted for the ‘Towns
-and settlements’ and the ‘Community map (crowdsourced)’ layers. Regardless, QGreenland
-makes no guarantees about the accuracy and validity of data contained in QGreenland.
+**Note**: The QGreenland team has in a few instances included comments on ‘Noted
+Data Issues’.  Read about ‘Noted Data Issues’ in the layer metadata. These are
+currently noted for the ‘Towns and settlements’ layer. Regardless, QGreenland
+makes no guarantees about the accuracy and validity of data contained in
+QGreenland.
 
 ![layer_properties](/_images/layer_properties.png)
 
