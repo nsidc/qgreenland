@@ -6,12 +6,12 @@ bedmachine = Dataset(
     assets=[
         CmrAsset(
             id="only",
-            granule_ur="SC:IDBMG4.004:212126987",
-            collection_concept_id="C2050907241-NSIDC_ECS",
+            granule_ur="SC:IDBMG4.005:244470242",
+            collection_concept_id="C2420522159-NSIDC_ECS",
         ),
     ],
     metadata={
-        "title": "IceBridge BedMachine Greenland, Version 4",
+        "title": "IceBridge BedMachine Greenland, Version 5",
         "abstract": """
 This data set contains a bed topography/bathymetry map of Greenland based on
 mass conservation, multi-beam data, and other techniques. It also includes
@@ -33,12 +33,12 @@ Letters. 44. . https://doi.org/10.1002/2017GL074954 .
 """,
         "citation": {
             "text": """
-Morlighem, M. et al. 2021, updated 2021. IceBridge BedMachine Greenland, Version
-4. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice
-Data Center Distributed Active Archive Center. doi:
-https://doi.org/10.5067/VLJ5YXKCNGXO. 2021/11/23.
+Morlighem, M. et al. (2022). IceBridge BedMachine Greenland, Version 5 [Data
+Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed
+Active Archive Center. https://doi.org/10.5067/GMEVBWFLWA7X. Date Accessed
+06-08-2023.
 """,
-            "url": "https://doi.org/10.5067/VLJ5YXKCNGXO",
+            "url": "https://doi.org/10.5067/GMEVBWFLWA7X",
         },
     },
 )
