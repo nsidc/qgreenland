@@ -1,3 +1,9 @@
+# NEXT_VERSION
+
+- Remove Humanitarian Open Street Map (HOTOSM) layers ("Places/Community map
+  (crowd-sourced)"). These layers had innaccuracies and missing locations that
+  we received feedback on. These layers were not considered usable.
+
 # v3.0.0alpha2 (2023-05-09)
 
 - Resolve `Font "Helvetica" font not available on system` warning for bathymetry style
