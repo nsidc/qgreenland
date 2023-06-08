@@ -33,7 +33,7 @@ Letters. 44. . https://doi.org/10.1002/2017GL074954 .
 """,
         "citation": {
             "text": """
-Morlighem, M.  et al. (2022). IceBridge BedMachine Greenland, Version 5 [Data
+Morlighem, M. et al. (2022). IceBridge BedMachine Greenland, Version 5 [Data
 Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed
 Active Archive Center. https://doi.org/10.5067/GMEVBWFLWA7X. Date Accessed
 06-08-2023.
