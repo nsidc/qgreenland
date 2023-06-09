@@ -73,8 +73,8 @@ seaice_index = Dataset(
 # generate the `config/helpers/ancillary/sea_ice_age_params.json` file. The
 # parameters contained in the `sea_ice_age_params.json` file are necessary for
 # layer creation.
-SEAICE_AGE_START_YEAR = 2010
-SEAICE_AGE_END_YEAR = 2020
+SEAICE_AGE_START_YEAR = 2011
+SEAICE_AGE_END_YEAR = 2021
 
 seaice_age = Dataset(
     id="seaice_age",

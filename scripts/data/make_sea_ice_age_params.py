@@ -7,8 +7,11 @@ the data first, as that is read as input to this script:
 
 Save the output by running the following from the repo root:
 
-    OUT_PATH=$PWD/qgreenland/config/helpers/ancillary/sea_ice_age_params.json
-    docker exec luigi ./scripts/data/make_sea_ice_age_params.py > $OUT_PATH
+```
+OUT_PATH=$PWD/qgreenland/config/helpers/ancillary/sea_ice_age_params.json
+docker exec luigi \
+python /luigi/tasks/qgreenland/scripts/data/make_sea_ice_age_params.py > $OUT_PATH
+```
 """
 import datetime as dt
 import functools
@@ -117,13 +120,13 @@ def make_seaice_age_layers_params() -> None:
             },
         }
 
-        print(
-            json.dumps(
-                layers_params,
-                indent=2,
-                sort_keys=True,
-            )
+    print(
+        json.dumps(
+            layers_params,
+            indent=2,
+            sort_keys=True,
         )
+    )
 
 
 if __name__ == "__main__":

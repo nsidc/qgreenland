@@ -7,6 +7,7 @@
   released in September 2022.
 - Update the geothermal heat flow dataset ("Geophysics/Heat flow (Colgan et
   al.)" layers) to v2.
+- Update "Sea ice/Weekly age (12.5km)" layers (2010-2020 -> 2011-2021)
 
 # v3.0.0alpha2 (2023-05-09)
 

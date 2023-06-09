@@ -1335,13 +1335,6 @@
     },
     "seaice_age": {
       "assets": {
-        "2010": {
-          "id": "2010",
-          "urls": [
-            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20100101_20101231_v4.1.nc"
-          ],
-          "verify_tls": true
-        },
         "2011": {
           "id": "2011",
           "urls": [
@@ -1409,6 +1402,13 @@
           "id": "2020",
           "urls": [
             "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20200101_20201231_v4.1.nc"
+          ],
+          "verify_tls": true
+        },
+        "2021": {
+          "id": "2021",
+          "urls": [
+            "https://daacdata.apps.nsidc.org/pub/DATASETS/nsidc0611_seaice_age_v4/data/iceage_nh_12.5km_20210101_20211231_v4.1.nc"
           ],
           "verify_tls": true
         }
@@ -18892,112 +18892,6 @@
                   {
                     "layer_cfg": {
                       "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
-                      "id": "seaice_minimum_age_2010",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "2010"
-                        },
-                        "dataset": {
-                          "id": "seaice_age"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdal_translate",
-                            "-a_srs",
-                            "\"+proj=laea +lat_0=90 +lon_0=0 +x_0=0 +y_0=0 +a=6371228 +b=6371228 +units=m +no_defs\"",
-                            "-b",
-                            "38",
-                            "NETCDF:{input_dir}/iceage_nh_12.5km_20100101_20101231_v4.1.nc:age_of_sea_ice",
-                            "{output_dir}/age_of_sea_ice.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/age_of_sea_ice.tif",
-                            "{output_dir}/edited.tif",
-                            "&&",
-                            "gdal_edit.py",
-                            "-a_ullr",
-                            "-4518421 4518421 4506579 -4506579",
-                            "{output_dir}/edited.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-t_srs",
-                            "EPSG:3413",
-                            "-r",
-                            "bilinear",
-                            "-tr",
-                            "12500",
-                            "12500",
-                            "{input_dir}/edited.tif",
-                            "{output_dir}/warped.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-cutline",
-                            "{assets_dir}/latitude_shape_40_degrees.geojson",
-                            "-crop_to_cutline",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "{input_dir}/warped.tif",
-                            "{output_dir}/warped_and_cut.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdal_translate",
-                            "-co",
-                            "TILED=YES",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-co",
-                            "PREDICTOR=2",
-                            "{input_dir}/warped_and_cut.tif",
-                            "{output_dir}/compressed.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/compressed.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "sea_ice_age",
-                      "tags": [],
-                      "title": "September 17-23 2010"
-                    },
-                    "name": "seaice_minimum_age_2010"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
                       "id": "seaice_minimum_age_2011",
                       "in_package": true,
                       "input": {
@@ -20054,37 +19948,15 @@
                       "title": "September 16-22 2020"
                     },
                     "name": "seaice_minimum_age_2020"
-                  }
-                ],
-                "name": "September (min weekly extent)",
-                "settings": {
-                  "expand": false,
-                  "order": [
-                    ":seaice_minimum_age_2010",
-                    ":seaice_minimum_age_2011",
-                    ":seaice_minimum_age_2012",
-                    ":seaice_minimum_age_2013",
-                    ":seaice_minimum_age_2014",
-                    ":seaice_minimum_age_2015",
-                    ":seaice_minimum_age_2016",
-                    ":seaice_minimum_age_2017",
-                    ":seaice_minimum_age_2018",
-                    ":seaice_minimum_age_2019",
-                    ":seaice_minimum_age_2020"
-                  ],
-                  "show": false
-                }
-              },
-              {
-                "children": [
+                  },
                   {
                     "layer_cfg": {
-                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
-                      "id": "seaice_maximum_age_2010",
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof minimum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_minimum_age_2021",
                       "in_package": true,
                       "input": {
                         "asset": {
-                          "id": "2010"
+                          "id": "2021"
                         },
                         "dataset": {
                           "id": "seaice_age"
@@ -20098,8 +19970,8 @@
                             "-a_srs",
                             "\"+proj=laea +lat_0=90 +lon_0=0 +x_0=0 +y_0=0 +a=6371228 +b=6371228 +units=m +no_defs\"",
                             "-b",
-                            "14",
-                            "NETCDF:{input_dir}/iceage_nh_12.5km_20100101_20101231_v4.1.nc:age_of_sea_ice",
+                            "37",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20210101_20211231_v4.1.nc:age_of_sea_ice",
                             "{output_dir}/age_of_sea_ice.tif"
                           ],
                           "type": "command"
@@ -20179,10 +20051,32 @@
                       ],
                       "style": "sea_ice_age",
                       "tags": [],
-                      "title": "April 2-8 2010"
+                      "title": "September 10-16 2021"
                     },
-                    "name": "seaice_maximum_age_2010"
-                  },
+                    "name": "seaice_minimum_age_2021"
+                  }
+                ],
+                "name": "September (min weekly extent)",
+                "settings": {
+                  "expand": false,
+                  "order": [
+                    ":seaice_minimum_age_2011",
+                    ":seaice_minimum_age_2012",
+                    ":seaice_minimum_age_2013",
+                    ":seaice_minimum_age_2014",
+                    ":seaice_minimum_age_2015",
+                    ":seaice_minimum_age_2016",
+                    ":seaice_minimum_age_2017",
+                    ":seaice_minimum_age_2018",
+                    ":seaice_minimum_age_2019",
+                    ":seaice_minimum_age_2020",
+                    ":seaice_minimum_age_2021"
+                  ],
+                  "show": false
+                }
+              },
+              {
+                "children": [
                   {
                     "layer_cfg": {
                       "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
@@ -21242,13 +21136,118 @@
                       "title": "March 4-10 2020"
                     },
                     "name": "seaice_maximum_age_2020"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Age of sea ice derived from weekly averaged ice motion vectors. A\nvalue of N indicates ice aged N-1 to N years. A value of 20 represents\nland; 21 represents ocean cells where ice age was not calculated. Week\nof maximum extent chosen based on NSDIC's Sea Ice Index 5-day\naverage.",
+                      "id": "seaice_maximum_age_2021",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "2021"
+                        },
+                        "dataset": {
+                          "id": "seaice_age"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-a_srs",
+                            "\"+proj=laea +lat_0=90 +lon_0=0 +x_0=0 +y_0=0 +a=6371228 +b=6371228 +units=m +no_defs\"",
+                            "-b",
+                            "11",
+                            "NETCDF:{input_dir}/iceage_nh_12.5km_20210101_20211231_v4.1.nc:age_of_sea_ice",
+                            "{output_dir}/age_of_sea_ice.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/age_of_sea_ice.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-a_ullr",
+                            "-4518421 4518421 4506579 -4506579",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-r",
+                            "bilinear",
+                            "-tr",
+                            "12500",
+                            "12500",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-co",
+                            "TILED=YES",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_age",
+                      "tags": [],
+                      "title": "March 12-18 2021"
+                    },
+                    "name": "seaice_maximum_age_2021"
                   }
                 ],
                 "name": "Feb, March, or April (max weekly extent)",
                 "settings": {
                   "expand": false,
                   "order": [
-                    ":seaice_maximum_age_2010",
                     ":seaice_maximum_age_2011",
                     ":seaice_maximum_age_2012",
                     ":seaice_maximum_age_2013",
@@ -21258,7 +21257,8 @@
                     ":seaice_maximum_age_2017",
                     ":seaice_maximum_age_2018",
                     ":seaice_maximum_age_2019",
-                    ":seaice_maximum_age_2020"
+                    ":seaice_maximum_age_2020",
+                    ":seaice_maximum_age_2021"
                   ],
                   "show": false
                 }
