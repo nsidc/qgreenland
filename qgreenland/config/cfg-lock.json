@@ -560,33 +560,26 @@
     },
     "geothermal_heat_flow": {
       "assets": {
-        "10km_map": {
-          "id": "10km_map",
-          "urls": [
-            "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/7WDXNF"
-          ],
-          "verify_tls": true
-        },
         "55km_map": {
           "id": "55km_map",
           "urls": [
-            "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/HJ7AIM"
+            "https://dataverse.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/FYNXIL"
           ],
           "verify_tls": true
         },
         "heat_flow_measurements": {
           "id": "heat_flow_measurements",
           "urls": [
-            "https://dataverse01.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/JMAXKV"
+            "https://dataverse.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/F9P03L/V1IMQX"
           ],
           "verify_tls": true
         }
       },
       "id": "geothermal_heat_flow",
       "metadata": {
-        "abstract": "Database of all geothermal heat flow measurements within 500 km\nof Greenland's coastline with self-consistent machine-learning\ngeothermal heat flow map over all onshore and offshore areas.\n\nRelated publication:\n\nColgan, W., A. Wansing, K. Mankoff, M. L\u00f6sing, J. Hopper, K. Louden,\nJ. Ebbing, F. Christiansen, T. Ingeman-Nielsen, L. Claesson\nLiljedahl, J. MacGregor, \u00c1. Hjartarson, S. Bernstein, N. Karlsson,\nS. Fuchs, J. Hartikainen, J. Liakka, R. Fausto, D. Dahl-Jensen,\nA. Bj\u00f8rk, J.-O. Naslund, F. M\u00f8rk, Y. Martos, N. Balling, T. Funck,\nK. Kjeldsen, D. Petersen, U. Gregersen, G. Dam, T. Nielsen, A. Khan\nand A. L\u00f8kkegaard. Greenland Geothermal Heat Flow Database and Map\n(Version 1). Earth Systems Science Data Discussions. under review.",
+        "abstract": "Database of all geothermal heat flow measurements within 500 km\nof Greenland's coastline with self-consistent machine-learning\ngeothermal heat flow map over all onshore and offshore areas.\n\nRelated publication:\n\nColgan, W., A. Wansing, K. Mankoff, M. L\u00f6sing, J. Hopper, K. Louden,\nJ. Ebbing, F. Christiansen, T. Ingeman-Nielsen, L. Claesson\nLiljedahl, J. MacGregor, \u00c1. Hjartarson, S. Bernstein, N. Karlsson,\nS. Fuchs, J. Hartikainen, J. Liakka, R. Fausto, D. Dahl-Jensen,\nA. Bj\u00f8rk, J.-O. Naslund, F. M\u00f8rk, Y. Martos, N. Balling, T. Funck,\nK. Kjeldsen, D. Petersen, U. Gregersen, G. Dam, T. Nielsen, S. Khan\nand A. L\u00f8kkegaard. Greenland Geothermal Heat Flow Database and Map\n(Version 1). 2022. Earth Systems Science Data. 14: 2209\u20132238. doi:\n10.5194/essd-14-2209-2022.",
         "citation": {
-          "text": "Colgan, William; Wansing, Agnes, 2021, \"Greenland Geothermal\nHeat Flow Database and Map\",\nhttps://doi.org/10.22008/FK2/F9P03L, GEUS Dataverse, V1",
+          "text": "Colgan, William; Wansing, Agnes, 2021, \"Greenland Geothermal\nHeat Flow Database and Map\",\nhttps://doi.org/10.22008/FK2/F9P03L, GEUS Dataverse, V2",
           "url": "https://doi.org/10.22008/FK2/F9P03L"
         },
         "title": "Greenland Geothermal Heat Flow Database and Map"
@@ -12308,7 +12301,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Heat flow measurement database used in the creation of the 'Geothermal\nheat flow map (10km)' layer.",
+                      "description": "Heat flow measurement database used in the creation of the 'Flow from\nmultiple observations (55km)' layer.",
                       "id": "geothermal_heat_flow_measurements",
                       "in_package": true,
                       "input": {
@@ -12375,7 +12368,7 @@
                             "EPSG:3413",
                             "-r",
                             "bilinear",
-                            "{input_dir}/geothermal_heat_flow_map_55km_without_NGRIP.nc",
+                            "{input_dir}/geothermal_heat_flow_map_55km.nc",
                             "{output_dir}/warped.tif"
                           ],
                           "type": "command"

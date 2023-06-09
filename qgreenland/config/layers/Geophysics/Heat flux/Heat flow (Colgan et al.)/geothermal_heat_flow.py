@@ -26,7 +26,7 @@ geothermal_heat_flow = Layer(
     ),
     steps=[
         *warp_and_cut(
-            input_file="{input_dir}/geothermal_heat_flow_map_55km_without_NGRIP.nc",
+            input_file="{input_dir}/geothermal_heat_flow_map_55km.nc",
             output_file="{output_dir}/geothermal_heat_flow_map_55km.tif",
             cut_file=project.boundaries["data"].filepath,
         ),
@@ -42,8 +42,8 @@ geothermal_heat_flow_measurements = Layer(
     id="geothermal_heat_flow_measurements",
     title="Flow measurement locations",
     description=(
-        """Heat flow measurement database used in the creation of the 'Geothermal
-        heat flow map (10km)' layer."""
+        """Heat flow measurement database used in the creation of the 'Flow from
+        multiple observations (55km)' layer."""
     ),
     tags=[],
     input=LayerInput(

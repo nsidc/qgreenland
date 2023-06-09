@@ -5,6 +5,8 @@
   we received feedback on. These layers were not considered usable.
 - Update the BedMachine dataset ("Terrain models/BedMachine") to v5, which was
   released in September 2022.
+- Update the geothermal heat flow dataset ("Geophysics/Heat flow (Colgan et
+  al.)" layers) to v2.
 
 # v3.0.0alpha2 (2023-05-09)
 
