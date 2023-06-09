@@ -27,12 +27,12 @@ RUN apt-get update && apt-get install -y \
 # repository)
 RUN git config --global --add safe.directory "${TASKS_MOUNT_DIR}"
 
-# Create environments
-RUN micromamba install -y -c conda-forge -n base conda mamba~=1.4.2
-
-# Why are we copying these files to /tmp?
+# TODO: Why are we copying these files to /tmp?
 COPY --chown=$MAMBA_USER:$MAMBA_USER conda-lock.yml /tmp/conda-lock.yml
 RUN micromamba install -y -n base -f /tmp/conda-lock.yml
+
+# Install mamba. It is missing after installing `conda-lock.yml`
+RUN micromamba install -y -c conda-forge -n base conda mamba~=1.4.2
 
 COPY --chown=$MAMBA_USER:$MAMBA_USER environment.cmd.yml /tmp/environment.cmd.yml
 RUN micromamba create -y -f /tmp/environment.cmd.yml
