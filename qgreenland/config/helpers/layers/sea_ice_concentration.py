@@ -2,9 +2,10 @@ import calendar
 
 from qgreenland.models.config.asset import HttpAsset
 
-CONCENTRATION_START_YEAR = 2010
-MAX_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2021 + 1)
-MIN_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, 2021 + 1)
+CONCENTRATION_START_YEAR = 2011
+CONCENTRATION_END_YEAR = 2022
+MAX_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, CONCENTRATION_END_YEAR + 1)
+MIN_CONCENTRATION_YEARS = range(CONCENTRATION_START_YEAR, CONCENTRATION_END_YEAR + 1)
 CONCENTRATION_DESCRIPTION = """Monthly average of sea ice concentration as a percentage (e.g., 99.9 =
     99.9%). Values under 15% are considered to be open water."""
 CONCENTRATION_STYLE = "sea_ice_concentration"
@@ -13,7 +14,8 @@ CONCENTRATION_STYLE = "sea_ice_concentration"
 # mapping defines years which are off-years and which month the maximum occurred
 # in that year.
 CONC_MAX_OFF_YEARS: dict[int, int] = {
-    2015: 2,
+    2015: 2,  # Max day was 2015-02-25
+    2022: 2,  # Max day was 2022-02-25
 }
 
 
