@@ -56,7 +56,7 @@ layers = [
             *warp_and_cut(
                 input_file="{input_dir}/extracted.tif",
                 output_file="{output_dir}/warped_and_cut.tif",
-                cut_file=project.boundaries["data"].filepath,
+                cut_file=project.boundaries["background"].filepath,
                 reproject_args=(
                     "-tr",
                     "25000",
@@ -67,10 +67,10 @@ layers = [
                     #     illegal,sizes must be larger than zero.
                     "-te",
                     *(
-                        project.boundaries["data"].bbox.min_x,
-                        project.boundaries["data"].bbox.min_y,
-                        project.boundaries["data"].bbox.max_x,
-                        project.boundaries["data"].bbox.max_y,
+                        project.boundaries["background"].bbox.min_x,
+                        project.boundaries["background"].bbox.min_y,
+                        project.boundaries["background"].bbox.max_x,
+                        project.boundaries["background"].bbox.max_y,
                     ),
                 ),
             ),
