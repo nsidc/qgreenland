@@ -1901,31 +1901,31 @@
         "title": "World Digital Magnetic Anomaly Map"
       }
     },
-    "woa2018_temperature": {
+    "woa_temperature": {
       "assets": {
         "seasonal_summer": {
           "id": "seasonal_summer",
           "urls": [
-            "https://www.ncei.noaa.gov/thredds-ocean/fileServer/ncei/woa/temperature/decav/0.25/woa18_decav_t15_04.nc"
+            "https://www.ncei.noaa.gov/thredds-ocean/fileServer/woa23/DATA/temperature/netcdf/decav91C0/0.25/woa23_decav91C0_t15_04.nc"
           ],
           "verify_tls": true
         },
         "seasonal_winter": {
           "id": "seasonal_winter",
           "urls": [
-            "https://www.ncei.noaa.gov/thredds-ocean/fileServer/ncei/woa/temperature/decav/0.25/woa18_decav_t13_04.nc"
+            "https://www.ncei.noaa.gov/thredds-ocean/fileServer/woa23/DATA/temperature/netcdf/decav91C0/0.25/woa23_decav91C0_t13_04.nc"
           ],
           "verify_tls": true
         }
       },
-      "id": "woa2018_temperature",
+      "id": "woa_temperature",
       "metadata": {
-        "abstract": "From the World Ocean Atlas: This atlas consists of a description\nof data analysis procedures and horizontal maps of climatological\ndistribution fields of temperature at selected standard depth levels\nof the World Ocean on one-degree and quarter-degree\nlatitude-longitude grids.  The aim of the maps is to illustrate\nlarge-scale characteristics of the distribution of ocean\ntemperature.  The fields used to generate these climatological maps\nwere computed by objective analysis of all scientifically\nquality-controlled historical temperature data in the World Ocean\nDatabase 2018.  Maps are presented for climatological composite\nperiods (annual, seasonal, monthly, seasonal and monthly difference\nfields from the annual mean field, and the number of observations)\nat 102 standard depths.",
+        "abstract": "The World Ocean Atlas (WOA) is a collection of objectively\nanalyzed, quality controlled temperature, salinity, oxygen,\nphosphate, silicate, and nitrate means based on profile data from\nthe World Ocean Database (WOD). It can be used to create boundary\nand/or initial conditions for a variety of ocean models, verify\nnumerical simulations of the ocean, and corroborate satellite\ndata.",
         "citation": {
-          "text": "Locarnini, R. A., A. V. Mishonov, O. K. Baranova, T. P.\nBoyer, M. M. Zweng, H. E. Garcia, J. R. Reagan, D. Seidov, K. W.\nWeathers, C. R. Paver, I.  V. Smolyar, 2019: World Ocean Atlas\n2018, Volume 1: Temperature.  A. V.  Mishonov, Technical Ed.,\nNOAA Atlas NESDIS 81",
-          "url": "https://data.nodc.noaa.gov/woa/WOA18/DOC/woa18_vol1.pdf"
+          "text": "Locarnini, R. A., O. K. Baranova, A. V. Mishonov,\nT. P. Boyer, J. R. Reagan, D. Dukhovskoy, D. Seidov,\nH. E. Garcia, C. Bouchard, S. Cross, C. R. Paver, and Z. Wang,\n2023. World Ocean Atlas 2023, Volume 1: Temperature. A. Mishonov\nTechnical Ed. NOAA Atlas NESDIS (in preparation).",
+          "url": "https://www.ncei.noaa.gov/products/world-ocean-atlas"
         },
-        "title": "WORLD OCEAN ATLAS 2018 Volume 1: Temperature"
+        "title": "World Ocean Atlas 2023, Volume 1: Temperature."
       }
     },
     "world_magnetic_model": {
@@ -23637,15 +23637,15 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at surface depth in \u00b0C.",
-                  "id": "woa2018_0m_temperature_winter",
+                  "description": "Average Seawater temperature at surface depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_0m_temperature_winter",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "seasonal_winter"
                     },
                     "dataset": {
-                      "id": "woa2018_temperature"
+                      "id": "woa_temperature"
                     }
                   },
                   "show": false,
@@ -23655,7 +23655,7 @@
                         "gdal_translate",
                         "-b",
                         "1",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "NETCDF:{input_dir}/woa23_decav91C0_t13_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
                       "type": "command"
@@ -23729,19 +23729,19 @@
                   "tags": [],
                   "title": "Surface, Winter"
                 },
-                "name": "woa2018_0m_temperature_winter"
+                "name": "woa_0m_temperature_winter"
               },
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at surface depth in \u00b0C.",
-                  "id": "woa2018_0m_temperature_summer",
+                  "description": "Average Seawater temperature at surface depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_0m_temperature_summer",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "seasonal_summer"
                     },
                     "dataset": {
-                      "id": "woa2018_temperature"
+                      "id": "woa_temperature"
                     }
                   },
                   "show": false,
@@ -23751,7 +23751,7 @@
                         "gdal_translate",
                         "-b",
                         "1",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "NETCDF:{input_dir}/woa23_decav91C0_t15_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
                       "type": "command"
@@ -23825,19 +23825,19 @@
                   "tags": [],
                   "title": "Surface, Summer"
                 },
-                "name": "woa2018_0m_temperature_summer"
+                "name": "woa_0m_temperature_summer"
               },
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at 50m depth in \u00b0C.",
-                  "id": "woa2018_50m_temperature_winter",
+                  "description": "Average Seawater temperature at 50m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_50m_temperature_winter",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "seasonal_winter"
                     },
                     "dataset": {
-                      "id": "woa2018_temperature"
+                      "id": "woa_temperature"
                     }
                   },
                   "show": false,
@@ -23847,7 +23847,7 @@
                         "gdal_translate",
                         "-b",
                         "11",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "NETCDF:{input_dir}/woa23_decav91C0_t13_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
                       "type": "command"
@@ -23921,19 +23921,19 @@
                   "tags": [],
                   "title": "50m, Winter"
                 },
-                "name": "woa2018_50m_temperature_winter"
+                "name": "woa_50m_temperature_winter"
               },
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at 50m depth in \u00b0C.",
-                  "id": "woa2018_50m_temperature_summer",
+                  "description": "Average Seawater temperature at 50m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_50m_temperature_summer",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "seasonal_summer"
                     },
                     "dataset": {
-                      "id": "woa2018_temperature"
+                      "id": "woa_temperature"
                     }
                   },
                   "show": false,
@@ -23943,7 +23943,7 @@
                         "gdal_translate",
                         "-b",
                         "11",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "NETCDF:{input_dir}/woa23_decav91C0_t15_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
                       "type": "command"
@@ -24017,19 +24017,19 @@
                   "tags": [],
                   "title": "50m, Summer"
                 },
-                "name": "woa2018_50m_temperature_summer"
+                "name": "woa_50m_temperature_summer"
               },
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at 200m depth in \u00b0C.",
-                  "id": "woa2018_200m_temperature_winter",
+                  "description": "Average Seawater temperature at 200m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_200m_temperature_winter",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "seasonal_winter"
                     },
                     "dataset": {
-                      "id": "woa2018_temperature"
+                      "id": "woa_temperature"
                     }
                   },
                   "show": false,
@@ -24039,7 +24039,7 @@
                         "gdal_translate",
                         "-b",
                         "25",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "NETCDF:{input_dir}/woa23_decav91C0_t13_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
                       "type": "command"
@@ -24113,19 +24113,19 @@
                   "tags": [],
                   "title": "200m, Winter"
                 },
-                "name": "woa2018_200m_temperature_winter"
+                "name": "woa_200m_temperature_winter"
               },
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at 200m depth in \u00b0C.",
-                  "id": "woa2018_200m_temperature_summer",
+                  "description": "Average Seawater temperature at 200m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_200m_temperature_summer",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "seasonal_summer"
                     },
                     "dataset": {
-                      "id": "woa2018_temperature"
+                      "id": "woa_temperature"
                     }
                   },
                   "show": false,
@@ -24135,7 +24135,7 @@
                         "gdal_translate",
                         "-b",
                         "25",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "NETCDF:{input_dir}/woa23_decav91C0_t15_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
                       "type": "command"
@@ -24209,19 +24209,19 @@
                   "tags": [],
                   "title": "200m, Summer"
                 },
-                "name": "woa2018_200m_temperature_summer"
+                "name": "woa_200m_temperature_summer"
               },
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at 500m depth in \u00b0C.",
-                  "id": "woa2018_500m_temperature_winter",
+                  "description": "Average Seawater temperature at 500m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_500m_temperature_winter",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "seasonal_winter"
                     },
                     "dataset": {
-                      "id": "woa2018_temperature"
+                      "id": "woa_temperature"
                     }
                   },
                   "show": false,
@@ -24231,7 +24231,7 @@
                         "gdal_translate",
                         "-b",
                         "37",
-                        "NETCDF:{input_dir}/woa18_decav_t13_04.nc:t_an",
+                        "NETCDF:{input_dir}/woa23_decav91C0_t13_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
                       "type": "command"
@@ -24305,19 +24305,19 @@
                   "tags": [],
                   "title": "500m, Winter"
                 },
-                "name": "woa2018_500m_temperature_winter"
+                "name": "woa_500m_temperature_winter"
               },
               {
                 "layer_cfg": {
-                  "description": "Seawater temperature at 500m depth in \u00b0C.",
-                  "id": "woa2018_500m_temperature_summer",
+                  "description": "Average Seawater temperature at 500m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_500m_temperature_summer",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "seasonal_summer"
                     },
                     "dataset": {
-                      "id": "woa2018_temperature"
+                      "id": "woa_temperature"
                     }
                   },
                   "show": false,
@@ -24327,7 +24327,7 @@
                         "gdal_translate",
                         "-b",
                         "37",
-                        "NETCDF:{input_dir}/woa18_decav_t15_04.nc:t_an",
+                        "NETCDF:{input_dir}/woa23_decav91C0_t15_04.nc:t_an",
                         "{output_dir}/extracted.tif"
                       ],
                       "type": "command"
@@ -24401,21 +24401,21 @@
                   "tags": [],
                   "title": "500m, Summer"
                 },
-                "name": "woa2018_500m_temperature_summer"
+                "name": "woa_500m_temperature_summer"
               }
             ],
-            "name": "Seawater temperature 2018 (25km)",
+            "name": "Seawater temperature (25km)",
             "settings": {
               "expand": false,
               "order": [
-                ":woa2018_0m_temperature_winter",
-                ":woa2018_0m_temperature_summer",
-                ":woa2018_50m_temperature_winter",
-                ":woa2018_50m_temperature_summer",
-                ":woa2018_200m_temperature_winter",
-                ":woa2018_200m_temperature_summer",
-                ":woa2018_500m_temperature_winter",
-                ":woa2018_500m_temperature_summer"
+                ":woa_0m_temperature_winter",
+                ":woa_0m_temperature_summer",
+                ":woa_50m_temperature_winter",
+                ":woa_50m_temperature_summer",
+                ":woa_200m_temperature_winter",
+                ":woa_200m_temperature_summer",
+                ":woa_500m_temperature_winter",
+                ":woa_500m_temperature_summer"
               ],
               "show": false
             }
@@ -24563,7 +24563,7 @@
           "expand": false,
           "order": [
             "Undersea feature names",
-            "Seawater temperature 2018 (25km)",
+            "Seawater temperature (25km)",
             "Bathymetry"
           ],
           "show": false

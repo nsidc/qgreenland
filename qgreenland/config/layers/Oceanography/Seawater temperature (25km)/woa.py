@@ -1,7 +1,7 @@
-from qgreenland.config.datasets.woa2018_temperature import (
-    woa2018_temperature as dataset,
+from qgreenland.config.datasets.woa_temperature import (
+    woa_temperature as dataset,
 )
-from qgreenland.config.helpers.layers.woa2018 import (
+from qgreenland.config.helpers.layers.woa import (
     COMBINATIONS,
     DEPTHS_BANDS,
     SEASONS_FNS,
@@ -21,7 +21,21 @@ layers = [
         id=id_str(depth=depth, season=season),
         title=f"{depth_str(depth)}, {season.title()}",
         description=(
-            f"Seawater temperature at {depth_str(depth).lower()} depth in °C."
+            f"""Average Seawater temperature at {depth_str(depth).lower()} depth
+            in °C for the 1991 - 2020 climate normal period.
+
+            Climate normals, defined as 30-year averages of data by the World
+            Meteorological Organization (WMO), provide long-term means for
+            initializing models, environmental studies, checking in situ
+            observations, etc.
+
+            Comparing new observations to the most recent climate normal allows
+            one to assess whether or not current observations are within the
+            statistical norm in the context of the most recent 30-year
+            climatological background. Additional applications, such as
+            initializing boundary conditions for climate models or assessing
+            remotely sensed observations, also require a more recent
+            climatology."""
         ),
         tags=[],
         style="seawater_temperature",
