@@ -1425,13 +1425,6 @@
     },
     "seaice_index": {
       "assets": {
-        "maximum_concentration_2010": {
-          "id": "maximum_concentration_2010",
-          "urls": [
-            "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/03_Mar/N_201003_concentration_v3.0.tif"
-          ],
-          "verify_tls": true
-        },
         "maximum_concentration_2011": {
           "id": "maximum_concentration_2011",
           "urls": [
@@ -1506,6 +1499,13 @@
           "id": "maximum_concentration_2021",
           "urls": [
             "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/03_Mar/N_202103_concentration_v3.0.tif"
+          ],
+          "verify_tls": true
+        },
+        "maximum_concentration_2022": {
+          "id": "maximum_concentration_2022",
+          "urls": [
+            "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/02_Feb/N_202202_concentration_v3.0.tif"
           ],
           "verify_tls": true
         },
@@ -1593,13 +1593,6 @@
           ],
           "verify_tls": true
         },
-        "minimum_concentration_2010": {
-          "id": "minimum_concentration_2010",
-          "urls": [
-            "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_201009_concentration_v3.0.tif"
-          ],
-          "verify_tls": true
-        },
         "minimum_concentration_2011": {
           "id": "minimum_concentration_2011",
           "urls": [
@@ -1674,6 +1667,13 @@
           "id": "minimum_concentration_2021",
           "urls": [
             "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_202109_concentration_v3.0.tif"
+          ],
+          "verify_tls": true
+        },
+        "minimum_concentration_2022": {
+          "id": "minimum_concentration_2022",
+          "urls": [
+            "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/geotiff/09_Sep/N_202209_concentration_v3.0.tif"
           ],
           "verify_tls": true
         }
@@ -21281,95 +21281,6 @@
                   {
                     "layer_cfg": {
                       "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_minimum_concentration_2010",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "minimum_concentration_2010"
-                        },
-                        "dataset": {
-                          "id": "seaice_index"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-t_srs",
-                            "EPSG:3413",
-                            "-r",
-                            "bilinear",
-                            "{input_dir}/downscaled.tif",
-                            "{output_dir}/warped.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-cutline",
-                            "{assets_dir}/latitude_shape_40_degrees.geojson",
-                            "-crop_to_cutline",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "{input_dir}/warped.tif",
-                            "{output_dir}/warped_and_cut.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdal_translate",
-                            "-co",
-                            "TILED=YES",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-co",
-                            "PREDICTOR=2",
-                            "{input_dir}/warped_and_cut.tif",
-                            "{output_dir}/compressed.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/compressed.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "sea_ice_concentration",
-                      "tags": [],
-                      "title": "September 2010"
-                    },
-                    "name": "seaice_minimum_concentration_2010"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
                       "id": "seaice_minimum_concentration_2011",
                       "in_package": true,
                       "input": {
@@ -22345,6 +22256,95 @@
                       "title": "September 2021"
                     },
                     "name": "seaice_minimum_concentration_2021"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_minimum_concentration_2022",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "minimum_concentration_2022"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-r",
+                            "bilinear",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-co",
+                            "TILED=YES",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "September 2022"
+                    },
+                    "name": "seaice_minimum_concentration_2022"
                   }
                 ],
                 "name": "September (min monthly extent)",
@@ -22356,184 +22356,6 @@
               },
               {
                 "children": [
-                  {
-                    "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2015",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "maximum_concentration_2015"
-                        },
-                        "dataset": {
-                          "id": "seaice_index"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-t_srs",
-                            "EPSG:3413",
-                            "-r",
-                            "bilinear",
-                            "{input_dir}/downscaled.tif",
-                            "{output_dir}/warped.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-cutline",
-                            "{assets_dir}/latitude_shape_40_degrees.geojson",
-                            "-crop_to_cutline",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "{input_dir}/warped.tif",
-                            "{output_dir}/warped_and_cut.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdal_translate",
-                            "-co",
-                            "TILED=YES",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-co",
-                            "PREDICTOR=2",
-                            "{input_dir}/warped_and_cut.tif",
-                            "{output_dir}/compressed.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/compressed.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "sea_ice_concentration",
-                      "tags": [],
-                      "title": "February 2015"
-                    },
-                    "name": "seaice_maximum_concentration_2015"
-                  },
-                  {
-                    "layer_cfg": {
-                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
-                      "id": "seaice_maximum_concentration_2010",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "maximum_concentration_2010"
-                        },
-                        "dataset": {
-                          "id": "seaice_index"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "'A / 10.0'",
-                            "-A",
-                            "{input_dir}/*.tif",
-                            "--outfile={output_dir}/downscaled.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-t_srs",
-                            "EPSG:3413",
-                            "-r",
-                            "bilinear",
-                            "{input_dir}/downscaled.tif",
-                            "{output_dir}/warped.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdalwarp",
-                            "-cutline",
-                            "{assets_dir}/latitude_shape_40_degrees.geojson",
-                            "-crop_to_cutline",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "{input_dir}/warped.tif",
-                            "{output_dir}/warped_and_cut.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdal_translate",
-                            "-co",
-                            "TILED=YES",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-co",
-                            "PREDICTOR=2",
-                            "{input_dir}/warped_and_cut.tif",
-                            "{output_dir}/compressed.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/compressed.tif",
-                            "{output_dir}/overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "sea_ice_concentration",
-                      "tags": [],
-                      "title": "March 2010"
-                    },
-                    "name": "seaice_maximum_concentration_2010"
-                  },
                   {
                     "layer_cfg": {
                       "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
@@ -22889,6 +22711,95 @@
                       "title": "March 2014"
                     },
                     "name": "seaice_maximum_concentration_2014"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2015",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2015"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-r",
+                            "bilinear",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-co",
+                            "TILED=YES",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "February 2015"
+                    },
+                    "name": "seaice_maximum_concentration_2015"
                   },
                   {
                     "layer_cfg": {
@@ -23423,12 +23334,114 @@
                       "title": "March 2021"
                     },
                     "name": "seaice_maximum_concentration_2021"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Monthly average of sea ice concentration as a percentage (e.g., 99.9 =\n99.9%). Values under 15% are considered to be open water.",
+                      "id": "seaice_maximum_concentration_2022",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "maximum_concentration_2022"
+                        },
+                        "dataset": {
+                          "id": "seaice_index"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "'A / 10.0'",
+                            "-A",
+                            "{input_dir}/*.tif",
+                            "--outfile={output_dir}/downscaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-r",
+                            "bilinear",
+                            "{input_dir}/downscaled.tif",
+                            "{output_dir}/warped.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-cutline",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-crop_to_cutline",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "{input_dir}/warped.tif",
+                            "{output_dir}/warped_and_cut.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-co",
+                            "TILED=YES",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
+                            "{input_dir}/warped_and_cut.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "sea_ice_concentration",
+                      "tags": [],
+                      "title": "February 2022"
+                    },
+                    "name": "seaice_maximum_concentration_2022"
                   }
                 ],
                 "name": "Feb or March (max monthly extent)",
                 "settings": {
                   "expand": false,
-                  "order": null,
+                  "order": [
+                    ":seaice_maximum_concentration_2011",
+                    ":seaice_maximum_concentration_2012",
+                    ":seaice_maximum_concentration_2013",
+                    ":seaice_maximum_concentration_2014",
+                    ":seaice_maximum_concentration_2015",
+                    ":seaice_maximum_concentration_2016",
+                    ":seaice_maximum_concentration_2017",
+                    ":seaice_maximum_concentration_2018",
+                    ":seaice_maximum_concentration_2019",
+                    ":seaice_maximum_concentration_2020",
+                    ":seaice_maximum_concentration_2021",
+                    ":seaice_maximum_concentration_2022"
+                  ],
                   "show": false
                 }
               }
