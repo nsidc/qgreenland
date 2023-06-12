@@ -9,6 +9,13 @@
   al.)" layers) to v2.
 - Update "Sea ice/Weekly age (12.5km)" layers (2010-2020 -> 2011-2021)
 - Update "Sea ice/Monthly mean concentration (25km)" layers (2010-2021 -> 2011-2022)
+- Update the "Oceanography/Seawater temperature 2018 (25km)" layers:
+  - Use the World Ocean Atlas 2023 Temperature data. These new layers are
+    climatological averages between 1991-2020. Previous input data (WOA 2018)
+    was an average for the years 1955-2017.
+  - Update layer group name to remove "2018" ("Oceanography/Seawater Temperature
+    2018 (25km)" -> "Oceanography/Seawater Temperature (25km))"
+  - Improve layer descriptions
 
 # v3.0.0alpha2 (2023-05-09)
 
