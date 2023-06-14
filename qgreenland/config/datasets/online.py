@@ -1,6 +1,8 @@
 from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.models.config.dataset import Dataset, DatasetMetadata
 
+# TODO: combine SDFI topo and satellite photos into one dataset with multiple
+# assets? Better citation for these two?
 sdfi_topo_map = Dataset(
     id="sdfi_topo_map",
     assets=[
@@ -30,16 +32,60 @@ sdfi_topo_map = Dataset(
             peaks in Greenland (more than 100 m). We are investigating the
             extent and possibilities of correcting the errors. If you have
             questions or notice an error, please send an email to
-            support@sdfi.dk."""
+            support@sdfi.dk.
+
+            NOTE: https://dataforsyningen.dk includes other datasets of
+            Greenland that may be of interest to users of QGreenland. In order
+            to access these datasets, account registration is
+            required. Additionally, the website is in Danish and does not
+            include an English translation. Google Translate can be used to
+            provide such a translation."""
         ),
         citation={
             "text": (
-                """Data was prepared on the basis of data from the Agency for
-                Data Supply and Infrastructure and the following other
-                institutions: Asiaq, the Geodata Agency, Landsplan,
-                Nukissiorfiit, Oqaasileriffik and Tusass"""
+                """Web service wms/gl_aabent_land has been prepared on the basis
+                  of data from the Agency for Data Supply and Infrastructure and
+                  the following other institutions: Asiaq, the Geodata Agency,
+                  Landsplan, Nukissiorfiit, Oqaasileriffik and Tusass"""
             ),
             "url": "https://dataforsyningen.dk/data/4771",
+        },
+    ),
+)
+
+sdfi_satellite_orthophotos = Dataset(
+    id="sdfi_satellite_photo",
+    assets=[
+        OnlineAsset(
+            id="only",
+            provider="wms",
+            url="contextualWMSLegend=0&crs=EPSG:32624&dpiMode=7&featureCount=10&format=image/jpeg&layers=ortofoto&styles&url=https://api.dataforsyningen.dk/wms/gl_satellitfoto?token%3D363159825b13ad4543a99cde905d1adc",
+        ),
+    ],
+    metadata=DatasetMetadata(
+        title="Satellite Photo Greenland",
+        abstract=(
+            """The web service consists of orthophotos from several satellite
+                and aerial sources; recorded in different time periods and degrees
+                of resolution; from 10m pixels to 0.2m pixels. The photos are
+                supplemented in the web service by e.g. elevations (elevations and
+                curves), place names and grid.
+
+                NOTE: https://dataforsyningen.dk includes other datasets of
+                Greenland that may be of interest to users of QGreenland. In order
+                to access these datasets, account registration is
+                required. Additionally, the website is in Danish and does not
+                include an English translation. Google Translate can be used to
+                provide such a translation."""
+        ),
+        citation={
+            "text": (
+                """Web service wms/gl_satellitfoto has been prepared on the
+                basis of data from the Data Supply and Infrastructure Agency and the following
+                other institutions: Asiaq, the Geodata Agency, Landsplan, Nukissiorfiit,
+                Oqaasileriffik and Tusass"""
+            ),
+            "url": "https://dataforsyningen.dk/data/4783",
         },
     ),
 )
