@@ -54,7 +54,7 @@ sdfi_satellite_orthophotos_layer = Layer(
     title="Satellite orthophoto mosaic (10-0.2m)",
     description=(
         """Orthophoto mosaic from Sentinel2 (10m), Spot (1.6m), and Asiaq
-        (0.2m). Displayed data depends on availability zoom level.
+        (0.2m). Displayed data depends on availability and zoom level.
 
         Sentinel2 (10m): The Sentinel 2 satellites record images for approx. 10
         m resolution. The images are ortho-created. For the orthorectification
