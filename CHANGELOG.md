@@ -21,6 +21,9 @@
   (SDFI):
   - "Internet-required data/Topographic map of Greenland"
   - "Internet-required data/Satellite orthophoto mosaic (10-0.2m)"
+- Remove outdated "Terrain Models/Topographic map (1 to 500,000)" layer from the
+  Danish Agency for Data Supply and Infrastructure (SDFI). Replaced by above
+  mentioned "Internet-required data/Topographic map of Greenland" WMS layer.
 
 
 # v3.0.0alpha2 (2023-05-09)
