@@ -3,11 +3,6 @@ from qgreenland.models.config.dataset import Dataset, DatasetMetadata
 
 # TODO: combine SDFI topo and satellite photos into one dataset with multiple
 # assets? Better citation for these two?
-_sdfi_data_access_note = """NOTE: https://dataforsyningen.dk includes other datasets of Greenland
-        that may be of interest to users of QGreenland. In order to access these
-        datasets, account registration is required. Additionally, the website is
-        in Danish and does not include an English translation. Google Translate
-        can be used to provide such a translation."""
 sdfi_topo_map = Dataset(
     id="sdfi_topo_map",
     assets=[
@@ -20,7 +15,7 @@ sdfi_topo_map = Dataset(
     metadata=DatasetMetadata(
         title="Open Country Greenland",
         abstract=(
-            f"""The web service consists of vector data covering the entire
+            """The web service consists of vector data covering the entire
             ice-free area. Vector data is supplemented with place names, curves,
             elevations and hillshade, as well as other relevant data, obtained
             from external data owners.
@@ -39,7 +34,12 @@ sdfi_topo_map = Dataset(
             questions or notice an error, please send an email to
             support@sdfi.dk.
 
-            {_sdfi_data_access_note}"""
+            NOTE: https://dataforsyningen.dk includes other datasets of
+            Greenland that may be of interest to users of QGreenland. In order
+            to access these datasets, account registration is
+            required. Additionally, the website is in Danish and does not
+            include an English translation. Google Translate can be used to
+            provide such a translation."""
         ),
         citation={
             "text": (
@@ -65,13 +65,18 @@ sdfi_satellite_orthophotos = Dataset(
     metadata=DatasetMetadata(
         title="Satellite Photo Greenland",
         abstract=(
-            f"""The web service consists of orthophotos from several satellite
-            and aerial sources; recorded in different time periods and degrees
-            of resolution; from 10m pixels to 0.2m pixels. The photos are
-            supplemented in the web service by e.g. elevations (elevations and
-            curves), place names and grid.
+            """The web service consists of orthophotos from several satellite
+                and aerial sources; recorded in different time periods and degrees
+                of resolution; from 10m pixels to 0.2m pixels. The photos are
+                supplemented in the web service by e.g. elevations (elevations and
+                curves), place names and grid.
 
-            {_sdfi_data_access_note}"""
+                NOTE: https://dataforsyningen.dk includes other datasets of
+                Greenland that may be of interest to users of QGreenland. In order
+                to access these datasets, account registration is
+                required. Additionally, the website is in Danish and does not
+                include an English translation. Google Translate can be used to
+                provide such a translation."""
         ),
         citation={
             "text": (
