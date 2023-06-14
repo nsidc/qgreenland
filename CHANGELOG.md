@@ -17,6 +17,8 @@
     2018 (25km)" -> "Oceanography/Seawater Temperature (25km))"
   - Improve layer descriptions
   - Expand layer extent to QGreenland 'background' boundary.
+- Add new WMS layer: "Internet-required data/Topographic map of Greenland" from the
+  Danish Agency for Data Supply and Infrastructure (SDFI).
 
 # v3.0.0alpha2 (2023-05-09)
 

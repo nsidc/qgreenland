@@ -1333,6 +1333,24 @@
         "title": "Regional Atmospheric Climate Model (RACMO)"
       }
     },
+    "sdfi_topo_map": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "provider": "wms",
+          "url": "contextualWMSLegend=0&crs=EPSG:3183&dpiMode=7&featureCount=10&format=image/png&layers=gl_aabent_land&styles&url=https://api.dataforsyningen.dk/wms/gl_aabent_land?token%3D363159825b13ad4543a99cde905d1adc"
+        }
+      },
+      "id": "sdfi_topo_map",
+      "metadata": {
+        "abstract": "The web service consists of vector data covering the entire\nice-free area. Vector data is supplemented with place names, curves,\nelevations and hillshade, as well as other relevant data, obtained\nfrom external data owners.\n\nOpen Country Greenland can be used to plan a stay in the open\ncountry, thus helping, for example, hunters, anglers and tourists\nwho need to hike and find their way around the landscape.\n\nEmergency services, police and defence, which have to carry out\nemergency operations and rescue operations in the open country, are\nalso expected to be able to find good use of the service.\n\nErrors have been found in the height model for some steep mountain\npeaks in Greenland (more than 100 m). We are investigating the\nextent and possibilities of correcting the errors. If you have\nquestions or notice an error, please send an email to\nsupport@sdfi.dk.",
+        "citation": {
+          "text": "Data was prepared on the basis of data from the Agency for\nData Supply and Infrastructure and the following other\ninstitutions: Asiaq, the Geodata Agency, Landsplan,\nNukissiorfiit, Oqaasileriffik and Tusass",
+          "url": "https://dataforsyningen.dk/data/4771"
+        },
+        "title": "Open Country Greenland"
+      }
+    },
     "seaice_age": {
       "assets": {
         "2011": {
@@ -25347,6 +25365,29 @@
               "title": "Greenland image mosaic 2015 (15m)"
             },
             "name": "image_mosaic_2015"
+          },
+          {
+            "layer_cfg": {
+              "description": "The Greenland vector data is based on commercial satellite images\nwith a resolution of 0.5 m. The images are primarily from the summer\nmonths in the period from 2017 to 2021. Data is produced and quality\nassured according to ISO standards.\n\nVector data from East Greenland (blocks 10 and 12-15 in the figure ) are not\nfinally approved, and you will therefore be able to see, for example, sharp\ndemarcations between different terrain forms. The data will be updated\ncontinuously, first half of 2023.\n\nGreenlandic place names:\nThe Language Secretariat (Oqaasileriffik) in Nuuk is the responsible authority\nfor place names. It is also the Language Secretariat that has been responsible\nfor the correct placement of the approx. 33,000 place names.  The\nSelf-Government at Landsplan is the responsible authority for place names for\ncities and residences.",
+              "id": "sdfi_topo_map",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "sdfi_topo_map"
+                }
+              },
+              "show": false,
+              "steps": null,
+              "style": null,
+              "tags": [
+                "online"
+              ],
+              "title": "Topographic map of Greenland"
+            },
+            "name": "sdfi_topo_map"
           }
         ],
         "name": "Internet-required data",
@@ -25354,7 +25395,8 @@
           "expand": false,
           "order": [
             ":image_mosaic_2019",
-            ":image_mosaic_2015"
+            ":image_mosaic_2015",
+            ":sdfi_topo_map"
           ],
           "show": false
         }

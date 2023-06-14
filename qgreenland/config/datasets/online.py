@@ -1,5 +1,48 @@
 from qgreenland.models.config.asset import OnlineAsset
-from qgreenland.models.config.dataset import Dataset
+from qgreenland.models.config.dataset import Dataset, DatasetMetadata
+
+sdfi_topo_map = Dataset(
+    id="sdfi_topo_map",
+    assets=[
+        OnlineAsset(
+            id="only",
+            provider="wms",
+            url="contextualWMSLegend=0&crs=EPSG:3183&dpiMode=7&featureCount=10&format=image/png&layers=gl_aabent_land&styles&url=https://api.dataforsyningen.dk/wms/gl_aabent_land?token%3D363159825b13ad4543a99cde905d1adc",
+        ),
+    ],
+    metadata=DatasetMetadata(
+        title="Open Country Greenland",
+        abstract=(
+            """The web service consists of vector data covering the entire
+            ice-free area. Vector data is supplemented with place names, curves,
+            elevations and hillshade, as well as other relevant data, obtained
+            from external data owners.
+
+            Open Country Greenland can be used to plan a stay in the open
+            country, thus helping, for example, hunters, anglers and tourists
+            who need to hike and find their way around the landscape.
+
+            Emergency services, police and defence, which have to carry out
+            emergency operations and rescue operations in the open country, are
+            also expected to be able to find good use of the service.
+
+            Errors have been found in the height model for some steep mountain
+            peaks in Greenland (more than 100 m). We are investigating the
+            extent and possibilities of correcting the errors. If you have
+            questions or notice an error, please send an email to
+            support@sdfi.dk."""
+        ),
+        citation={
+            "text": (
+                """Data was prepared on the basis of data from the Agency for
+                Data Supply and Infrastructure and the following other
+                institutions: Asiaq, the Geodata Agency, Landsplan,
+                Nukissiorfiit, Oqaasileriffik and Tusass"""
+            ),
+            "url": "https://dataforsyningen.dk/data/4771",
+        },
+    ),
+)
 
 image_mosaic = Dataset(
     id="image_mosaic",

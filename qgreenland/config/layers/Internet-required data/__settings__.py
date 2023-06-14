@@ -4,5 +4,6 @@ settings = LayerGroupSettings(
     order=[
         ":image_mosaic_2019",
         ":image_mosaic_2015",
+        ":sdfi_topo_map",
     ],
 )
