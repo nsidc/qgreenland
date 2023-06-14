@@ -4,6 +4,5 @@ settings = LayerGroupSettings(
     order=[
         "BedMachine",
         ":arctic_dem",
-        ":dms_gtk_topo",
     ],
 )
