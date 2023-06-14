@@ -1,4 +1,8 @@
-from qgreenland.config.datasets.online import image_mosaic, sdfi_topo_map
+from qgreenland.config.datasets.online import (
+    image_mosaic,
+    sdfi_satellite_orthophotos,
+    sdfi_topo_map,
+)
 from qgreenland.models.config.layer import Layer, LayerInput
 
 image_mosaic_layers = [
@@ -16,7 +20,7 @@ image_mosaic_layers = [
     for year, resolution in (("2015", "15"), ("2019", "10"))
 ]
 
-topo_map_layer = Layer(
+sdfi_topo_map_layer = Layer(
     id="sdfi_topo_map",
     title="Topographic map of Greenland",
     description=(
@@ -41,5 +45,28 @@ topo_map_layer = Layer(
     input=LayerInput(
         dataset=sdfi_topo_map,
         asset=sdfi_topo_map.assets["only"],
+    ),
+)
+
+
+sdfi_satellite_orthophotos_layer = Layer(
+    id="sdfi_satellite_orthophotos",
+    title="Satellite orthophoto mosaic (10-0.2m)",
+    description=(
+        """Orthophoto mosaic from Sentinel2 (10m), Spot (1.6m), and Asiaq
+        (0.2m), depending on zoom level.
+
+        Orthophotos calculated from Sentinel 2 satellite images. The Sentinel
+        2 satellites record images for approx. 10 m resolution. The images are
+        ortho-created. For the orthorectification of the images, either the height model
+        GLOBE (1km) or SRTM (30 m) is used. The image material consists of images taken
+        in August 2019 and 2020.  The geometric accuracy is within 1-2 pixels (10-20
+        m). In some places, offsets of up to 10 pixels (100 m) can occur.
+        """
+    ),
+    tags=["online"],
+    input=LayerInput(
+        dataset=sdfi_satellite_orthophotos,
+        asset=sdfi_satellite_orthophotos.assets["only"],
     ),
 )
