@@ -300,23 +300,6 @@
         "title": "Continental Shelf Programme"
       }
     },
-    "danish_agency_for_data_supply_and_efficiency_gtk_topo_map": {
-      "assets": {
-        "only": {
-          "access_instructions": "Downloaded through the The Danish Agency for Map Supply and\nEfficiency's website on 2020-12-17. User registration is\nrequired. Once the ordered data were delivered (as a zipfile),\nthey were extracted and a mosaic was created of the 500m version\nof the data via the `scripts/danish_agency_for_data_supply_and_e\nfficiency_gtk_topo_map/preprocess.sh` script.",
-          "id": "only"
-        }
-      },
-      "id": "danish_agency_for_data_supply_and_efficiency_gtk_topo_map",
-      "metadata": {
-        "abstract": "Greenland's topographical map work is a collection of Greenland\nmaps in different dimensions. The original product contains the\nfollowing target ratios: 1:250,000, 1:500,000 and 1:2.5 million.",
-        "citation": {
-          "text": "Contains data from Styrelsen for dataforsyning og\neffektivisering. Accessed {{date_accessed}}.",
-          "url": "https://download.kortforsyningen.dk/content/gr%C3%B8nlands-topografiske-kortv%C3%A6rk"
-        },
-        "title": "Greenland's Topographical Map 1:500,000"
-      }
-    },
     "earthquakes": {
       "assets": {
         "only": {
@@ -1331,6 +1314,42 @@
           "url": "https://advances.sciencemag.org/content/5/9/eaaw0123"
         },
         "title": "Regional Atmospheric Climate Model (RACMO)"
+      }
+    },
+    "sdfi_satellite_photo": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "provider": "wms",
+          "url": "contextualWMSLegend=0&crs=EPSG:32624&dpiMode=7&featureCount=10&format=image/jpeg&layers=ortofoto&styles&url=https://api.dataforsyningen.dk/wms/gl_satellitfoto?token%3D363159825b13ad4543a99cde905d1adc"
+        }
+      },
+      "id": "sdfi_satellite_photo",
+      "metadata": {
+        "abstract": "The web service consists of orthophotos from several satellite\nand aerial sources; recorded in different time periods and degrees\nof resolution; from 10m pixels to 0.2m pixels. The photos are\nsupplemented in the web service by e.g. elevations (elevations and\ncurves), place names and grid.\n\nNOTE: https://dataforsyningen.dk includes other datasets of\nGreenland that may be of interest to users of QGreenland. In order\nto access these datasets, account registration is\nrequired. Additionally, the website is in Danish and does not\ninclude an English translation. Google Translate can be used to\nprovide such a translation.",
+        "citation": {
+          "text": "Web service wms/gl_satellitfoto has been prepared on the\nbasis of data from the Data Supply and Infrastructure Agency and the following\nother institutions: Asiaq, the Geodata Agency, Landsplan, Nukissiorfiit,\nOqaasileriffik and Tusass",
+          "url": "https://dataforsyningen.dk/data/4783"
+        },
+        "title": "Satellite Photo Greenland"
+      }
+    },
+    "sdfi_topo_map": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "provider": "wms",
+          "url": "contextualWMSLegend=0&crs=EPSG:3183&dpiMode=7&featureCount=10&format=image/png&layers=gl_aabent_land&styles&url=https://api.dataforsyningen.dk/wms/gl_aabent_land?token%3D363159825b13ad4543a99cde905d1adc"
+        }
+      },
+      "id": "sdfi_topo_map",
+      "metadata": {
+        "abstract": "The web service consists of vector data covering the entire\nice-free area. Vector data is supplemented with place names, curves,\nelevations and hillshade, as well as other relevant data, obtained\nfrom external data owners.\n\nOpen Country Greenland can be used to plan a stay in the open\ncountry, thus helping, for example, hunters, anglers and tourists\nwho need to hike and find their way around the landscape.\n\nEmergency services, police and defence, which have to carry out\nemergency operations and rescue operations in the open country, are\nalso expected to be able to find good use of the service.\n\nErrors have been found in the height model for some steep mountain\npeaks in Greenland (more than 100 m). We are investigating the\nextent and possibilities of correcting the errors. If you have\nquestions or notice an error, please send an email to\nsupport@sdfi.dk.\n\nNOTE: https://dataforsyningen.dk includes other datasets of\nGreenland that may be of interest to users of QGreenland. In order\nto access these datasets, account registration is\nrequired. Additionally, the website is in Danish and does not\ninclude an English translation. Google Translate can be used to\nprovide such a translation.",
+        "citation": {
+          "text": "Web service wms/gl_aabent_land has been prepared on the basis\nof data from the Agency for Data Supply and Infrastructure and\nthe following other institutions: Asiaq, the Geodata Agency,\nLandsplan, Nukissiorfiit, Oqaasileriffik and Tusass",
+          "url": "https://dataforsyningen.dk/data/4771"
+        },
+        "title": "Open Country Greenland"
       }
     },
     "seaice_age": {
@@ -25234,59 +25253,6 @@
               "title": "Arctic DEM (100m)"
             },
             "name": "arctic_dem"
-          },
-          {
-            "layer_cfg": {
-              "description": "Digitized and geolocated topographic map of Greenland.",
-              "id": "dms_gtk_topo",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "danish_agency_for_data_supply_and_efficiency_gtk_topo_map"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "gdal_translate",
-                    "-co",
-                    "TILED=YES",
-                    "-co",
-                    "COMPRESS=DEFLATE",
-                    "-co",
-                    "PREDICTOR=2",
-                    "{input_dir}/dms_gtk_topo.tif",
-                    "{output_dir}/compressed.tif"
-                  ],
-                  "type": "command"
-                },
-                {
-                  "args": [
-                    "cp",
-                    "{input_dir}/compressed.tif",
-                    "{output_dir}/final.tif",
-                    "&&",
-                    "gdaladdo",
-                    "-r",
-                    "average",
-                    "{output_dir}/final.tif",
-                    "2",
-                    "4",
-                    "8",
-                    "16"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": null,
-              "tags": [],
-              "title": "Topographic map (1 to 500,000)"
-            },
-            "name": "dms_gtk_topo"
           }
         ],
         "name": "Terrain models",
@@ -25294,8 +25260,7 @@
           "expand": false,
           "order": [
             "BedMachine",
-            ":arctic_dem",
-            ":dms_gtk_topo"
+            ":arctic_dem"
           ],
           "show": false
         }
@@ -25347,6 +25312,52 @@
               "title": "Greenland image mosaic 2015 (15m)"
             },
             "name": "image_mosaic_2015"
+          },
+          {
+            "layer_cfg": {
+              "description": "Orthophoto mosaic from Sentinel2 (10m), Spot (1.6m), and Asiaq\n(0.2m). Displayed data depends on availability and zoom level.\n\nSentinel2 (10m): The Sentinel 2 satellites record images for approx. 10\nm resolution. The images are ortho-created. For the orthorectification\nof the images, either the height model GLOBE (1km) or SRTM (30 m) is\nused. The image material consists of images taken in August 2019 and\n2020.  The geometric accuracy is within 1-2 pixels (10-20 m). In some\nplaces, offsets of up to 10 pixels (100 m) can occur.\n\nSpot (1.6m): Orthophotos calculated from SPOT6/7 satellite images. The\nSPOT satellites record images for approx. 1.5 m resolution. The images\nare orthorectified so that they are accurate and resampled to 1.6 m. The\nheight model WorldDEM4ortho (Airbus' own DEM) is used for the\northorectification of the images. The image material consists of\napprox. 75% of the coverage of images taken in the summer of 2020. About\n25% of the coverage dates to 2016, while some recordings are from 2013\nand 2014.  The geometric accuracy is expected to be better than 10\npixels, which corresponds to 16 m.\n\nAsiaq (0.2m): orthophoto from residences calculated from aerial #\nphotography.  The images are recorded images in approx. 20cm\nresolution. Some areas in 10cm.  For additional facts about origin and\ndata quality, refer to Asiaq [https://www.asiaq-greenlandsurvey.gl/],\nwho was responsible for the collection.",
+              "id": "sdfi_satellite_orthophotos",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "sdfi_satellite_photo"
+                }
+              },
+              "show": false,
+              "steps": null,
+              "style": null,
+              "tags": [
+                "online"
+              ],
+              "title": "Satellite orthophoto mosaic (10-0.2m)"
+            },
+            "name": "sdfi_satellite_orthophotos"
+          },
+          {
+            "layer_cfg": {
+              "description": "The Greenland vector data is based on commercial satellite images\nwith a resolution of 0.5 m. The images are primarily from the summer\nmonths in the period from 2017 to 2021. Data is produced and quality\nassured according to ISO standards.\n\nVector data from East Greenland (blocks 10 and 12-15 in the figure ) are not\nfinally approved, and you will therefore be able to see, for example, sharp\ndemarcations between different terrain forms. The data will be updated\ncontinuously, first half of 2023.\n\nGreenlandic place names:\nThe Language Secretariat (Oqaasileriffik) in Nuuk is the responsible authority\nfor place names. It is also the Language Secretariat that has been responsible\nfor the correct placement of the approx. 33,000 place names.  The\nSelf-Government at Landsplan is the responsible authority for place names for\ncities and residences.",
+              "id": "sdfi_topo_map",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "sdfi_topo_map"
+                }
+              },
+              "show": false,
+              "steps": null,
+              "style": null,
+              "tags": [
+                "online"
+              ],
+              "title": "Topographic map of Greenland"
+            },
+            "name": "sdfi_topo_map"
           }
         ],
         "name": "Internet-required data",
@@ -25354,7 +25365,9 @@
           "expand": false,
           "order": [
             ":image_mosaic_2019",
-            ":image_mosaic_2015"
+            ":image_mosaic_2015",
+            ":sdfi_satellite_orthophotos",
+            ":sdfi_topo_map"
           ],
           "show": false
         }
