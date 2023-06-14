@@ -34,3 +34,10 @@ for information on how to utilize these resources.
   [WMS/WMTS] provides quick access to over 1000 satellite imagery products. For
   instructions on how to utilize GIBS with QGIS, see the [Earthdata Wiki on
   GIBS](https://wiki.earthdata.nasa.gov/display/GIBS/Geographic+Information+System+%28GIS%29+Usage#expand-QGIS)
+
+* The [https://dataforsyningen.dk/data](https://dataforsyningen.dk/data)[WMS,
+  WMTS, WFS, WCS] provides reference data from the Danish Agency for Data Supply
+  and Infrastructure Data Portal (SDFI) and other partner insutitions. Users
+  must register an account before accessing data. Note that the website is in
+  Danish and can be translated to English via [Google
+  Translate](https://translate.google.com/).
