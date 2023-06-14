@@ -3,9 +3,6 @@ from qgreenland.models.config.dataset import Dataset, DatasetMetadata
 
 # TODO: combine SDFI topo and satellite photos into one dataset with multiple
 # assets? Better citation for these two?
-# TODO: note about how to access data/directing users to the
-# https://dataforsyningen.dk site to find additional data with their own
-# accounts.
 sdfi_topo_map = Dataset(
     id="sdfi_topo_map",
     assets=[
