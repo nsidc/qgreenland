@@ -1,6 +1,36 @@
 from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.models.config.dataset import Dataset, DatasetMetadata
 
+gibs = Dataset(
+    id="gibs",
+    assets=[
+        OnlineAsset(
+            id="only",
+            provider="wms",
+            url="contextualWMSLegend=0&crs=EPSG:3413&dpiMode=7&featureCount=10&format=image/png&layers=BlueMarble_ShadedRelief_Bathymetry&styles&url=https://gibs.earthdata.nasa.gov/wms/epsg3413/best/wms.cgi?VERSION%3D1.3.0",
+        ),
+    ],
+    metadata=DatasetMetadata(
+        title="Global Imagery Browse Services (GIBS)",
+        abstract=(
+            """NASA GIBS provides full-resolution visual representations of NASA
+            Earth science data in a free, open, and interoperable
+            manner. Through responsive and highly available web services, it
+            enables interactive exploration of data to support a wide range of
+            applications including scientific research, applied sciences,
+            natural hazard monitoring, and outreach."""
+        ),
+        citation={
+            "text": (
+                """We acknowledge the use of imagery provided by services from
+                NASA's Global Imagery Browse Services (GIBS), part of NASA's
+                Earth Observing System Data and Information System (EOSDIS)."""
+            ),
+            "url": "https://www.earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/gibs",
+        },
+    ),
+)
+
 # TODO: combine SDFI topo and satellite photos into one dataset with multiple
 # assets? Better citation for these two?
 sdfi_topo_map = Dataset(
