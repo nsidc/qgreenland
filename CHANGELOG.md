@@ -24,6 +24,8 @@
 - Remove outdated "Terrain Models/Topographic map (1 to 500,000)" layer from the
   Danish Agency for Data Supply and Infrastructure (SDFI). Replaced by above
   mentioned "Internet-required data/Topographic map of Greenland" WMS layer.
+- Add new "Internet-required data/Blue Marble shaded relief and Bathymetry
+  (500m)" WMS layer from NASA Global Imagery Browse Services (GIBS)
 
 
 # v3.0.0alpha2 (2023-05-09)

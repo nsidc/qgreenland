@@ -588,6 +588,24 @@
         "title": "Geothermal heat flux distribution for the Greenland ice sheet, derived by combining a global representation and information from deep ice cores"
       }
     },
+    "gibs": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "provider": "wms",
+          "url": "contextualWMSLegend=0&crs=EPSG:3413&dpiMode=7&featureCount=10&format=image/png&layers=BlueMarble_ShadedRelief_Bathymetry&styles&url=https://gibs.earthdata.nasa.gov/wms/epsg3413/best/wms.cgi?VERSION%3D1.3.0"
+        }
+      },
+      "id": "gibs",
+      "metadata": {
+        "abstract": "NASA GIBS provides full-resolution visual representations of NASA\nEarth science data in a free, open, and interoperable\nmanner. Through responsive and highly available web services, it\nenables interactive exploration of data to support a wide range of\napplications including scientific research, applied sciences,\nnatural hazard monitoring, and outreach.",
+        "citation": {
+          "text": "We acknowledge the use of imagery provided by services from\nNASA's Global Imagery Browse Services (GIBS), part of NASA's\nEarth Observing System Data and Information System (EOSDIS).",
+          "url": "https://www.earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/gibs"
+        },
+        "title": "Global Imagery Browse Services (GIBS)"
+      }
+    },
     "glacier_terminus": {
       "assets": {
         "2000_2001": {
@@ -25358,6 +25376,29 @@
               "title": "Topographic map of Greenland"
             },
             "name": "sdfi_topo_map"
+          },
+          {
+            "layer_cfg": {
+              "description": "Blue Marble (August 2004, Shaded Relief and Bathymetry).\n\nThe MODIS Blue Marble, Next Generation layer with Shaded Relief and\nBathymetry is a cloud free, true color composite of MODIS imagery from\nAugust 2004 including shaded relief and bathymetry in the water bodies.\n\nThe MODIS Blue Marble, Next Generation is a static product created with data\nfrom 2004 from the MODIS instrument on board the Terra satellite. The image\nresolution is 500 m. It can be viewed in Worldview/Global Imagery Browse\nServices (GIBS). Images for January \u2013 December 2004 can be downloaded from\nNASA\u2019s Visible Earth.\n\nReferences: NASA Earth Observatory - Blue Marble\n[https://earthobservatory.nasa.gov/features/BlueMarble]; NASA Earth\nObservations - Blue Marble\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB]; NASA\nEarth Observations - Blue Marble: Next Generation+Topography and\nBathymetry\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB].",
+              "id": "blue_marble_shaded_relif_bathymetry",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "gibs"
+                }
+              },
+              "show": false,
+              "steps": null,
+              "style": null,
+              "tags": [
+                "online"
+              ],
+              "title": "Blue Marble shaded relief and Bathymetry (500m)"
+            },
+            "name": "blue_marble_shaded_relif_bathymetry"
           }
         ],
         "name": "Internet-required data",
@@ -25367,7 +25408,8 @@
             ":image_mosaic_2019",
             ":image_mosaic_2015",
             ":sdfi_satellite_orthophotos",
-            ":sdfi_topo_map"
+            ":sdfi_topo_map",
+            ":blue_marble_shaded_relif_bathymetry"
           ],
           "show": false
         }
