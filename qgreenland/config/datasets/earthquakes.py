@@ -4,7 +4,7 @@ from qgreenland.models.config.asset import CommandAsset
 from qgreenland.models.config.dataset import Dataset
 
 query_start_date = dt.date(1900, 1, 1)
-query_end_date = dt.date(2022, 1, 1)
+query_end_date = dt.date(2023, 1, 1)
 
 
 _longitude_step = 2
