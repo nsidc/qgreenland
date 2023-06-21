@@ -80,6 +80,16 @@
             "\"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Kortportal_TekniskGrundkort/MapServer/82/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC\""
           ],
           "id": "buildings"
+        },
+        "roads": {
+          "args": [
+            "ogr2ogr",
+            "-oo",
+            "FEATURE_SERVER_PAGING=YES",
+            "{output_dir}/fetched.geojson",
+            "\"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Kortportal_TekniskGrundkort/MapServer/38/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC\""
+          ],
+          "id": "roads"
         }
       },
       "id": "asiaq_nunagis",
@@ -3522,6 +3532,45 @@
               "title": "Buildings"
             },
             "name": "buildings"
+          },
+          {
+            "layer_cfg": {
+              "description": "Lines representing roads in Greenland.",
+              "id": "roads",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "roads"
+                },
+                "dataset": {
+                  "id": "asiaq_nunagis"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/fetched.geojson"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": null,
+              "tags": [
+                "places"
+              ],
+              "title": "Roads"
+            },
+            "name": "roads"
           }
         ],
         "name": "Places",
@@ -3530,7 +3579,8 @@
           "order": [
             ":populated_places",
             ":comprehensive_places",
-            ":buildings"
+            ":buildings",
+            ":roads"
           ],
           "show": false
         }
