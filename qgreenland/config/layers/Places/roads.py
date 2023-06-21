@@ -6,7 +6,7 @@ from qgreenland.models.config.layer import Layer, LayerInput
 roads = Layer(
     id="roads",
     title="Roads",
-    # style=None,
+    style="roads_line",
     description="""Lines representing roads in Greenland.""",
     tags=["places"],
     input=LayerInput(
