@@ -15,6 +15,16 @@ asiaq_nunagis = Dataset(
             output_file="{output_dir}/fetched.geojson",
             url="https://kort.nunagis.gl/refserver/rest/services/Kortportal/Kortportal_TekniskGrundkort/MapServer/38/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC",
         ),
+        ogr_remote_asset(
+            asset_id="settlements",
+            output_file="{output_dir}/fetched.geojson",
+            url="https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/0/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC",
+        ),
+        ogr_remote_asset(
+            asset_id="cities",
+            output_file="{output_dir}/fetched.geojson",
+            url="https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/1/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC",
+        ),
     ],
     metadata={
         "title": "Asiaq Map Portal Techincal Basemap",
