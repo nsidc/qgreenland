@@ -5,5 +5,6 @@ settings = LayerGroupSettings(
         ":populated_places",
         ":comprehensive_places",
         ":buildings",
+        ":roads",
     ],
 )
