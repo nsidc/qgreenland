@@ -3564,7 +3564,7 @@
                   "type": "command"
                 }
               ],
-              "style": null,
+              "style": "roads_line",
               "tags": [
                 "places"
               ],
