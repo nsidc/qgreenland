@@ -4,5 +4,7 @@ settings = LayerGroupSettings(
     order=[
         ":populated_places",
         ":comprehensive_places",
+        ":buildings",
+        ":roads",
     ],
 )

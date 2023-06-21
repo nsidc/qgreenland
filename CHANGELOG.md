@@ -26,6 +26,9 @@
   mentioned "Internet-required data/Topographic map of Greenland" WMS layer.
 - Add new "Internet-required data/Blue Marble shaded relief and Bathymetry
   (500m)" WMS layer from NASA Global Imagery Browse Services (GIBS)
+- Add new "Places/" layers from Asiaq/NunaGIS:
+  - Buildings
+  - Roads
 
 
 # v3.0.0alpha2 (2023-05-09)
