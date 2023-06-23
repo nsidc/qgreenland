@@ -13408,7 +13408,7 @@
                     "name": "wmm_igrf_north_poles"
                   }
                 ],
-                "name": "Dip poles",
+                "name": "Geomagnetic north pole",
                 "settings": {
                   "expand": false,
                   "order": null,
@@ -18352,7 +18352,7 @@
             "settings": {
               "expand": false,
               "order": [
-                "Dip poles",
+                "Geomagnetic north pole",
                 "Geomagnetic coordinates 2020",
                 "2020",
                 "2021",
