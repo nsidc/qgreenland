@@ -53,52 +53,65 @@ esa_cci_surface_elevation_change = Dataset(
                 Climate Change Initiative (CCI) products website
                 (http://products.esa-icesheets-cci.org). Data are free to
                 download after simple registration requiring `first.last` name
-                and `affiliation`. No password is required.
-
-                Once the `cci_sec_2020.tar.gz` file is downloaded, use the
-                supplied
-                `scripts/esa_cci_surface_elevation_change/preprocess.sh` script
-                to uncompress the data."""
+                and `affiliation`. No password is required."""
             ),
         ),
     ],
     metadata={
         "title": (
-            "1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT,"
-            " Cryosat-2, and Sentinel-3 data, at 5-years means"
+            "1992-2021 Greenland elevation change from multiple altimetric mission"
         ),
         "abstract": (
-            """Data are based on the European Space Agency's Ku-band radar
-            satellite level-2 data products. Given the longer time span of
-            operation of the satellites, the data are provided at a five-year
-            mean.
+            """The 2021 CCI Surface Elevation Change (SEC) release contains two
+            data sets and the release product contains two different types of
+            data files:
+            I) png plots of the surface elevation changes and errors.
+            II) NetCDF files containing the surface elevation changes and
+            their associated errors:
 
-            The algorithms used to derive the product are explained in detail in
-            Simonsen and Sørensen (2017), and Sørensen et al. (2018). The
-            approach used here is the most optimal combination of the XO-, TR-,
-            and PF-algorithm; the data are corrected for both backscatter and
-            leading-edge width, and solved at 1 km grid resolution and averaged
-            in the post-processing to 5 km grid resolution by ordinary kriging.
+            The two datasets are as follows:
+            1) The Long time series of 5-year mean SEC from ESAs Ku-band
+            radar satellite level-2 data products. This data continues the
+            times-series of previous releases, and this current release is
+            data version 3.0. Data are based on ESAs Ku-band radar satellite
+            level-2 data products.
+            Given the longer time span of operation of the satellites, the
+            data are provided at a five-year mean. The algorithms used to
+            derive the product are explained in detail in Simonsen and
+            Sørensen (2017), and Sørensen et al. (2018). The approach used
+            here is the most optimal combination of the XO-, TR-, and
+            PF-algorithm; the data are corrected for both backscatter and
+            leading-edge width, and solved at 1 km grid resolution, and
+            averaged in the post-processing to 5 km grid resolution by
+            ordinary kriging.
+
+            2) An experimental 2-year SEC dataset from ICESat-2. This
+            release contains the first version of this product (vers
+            1.0). The data are provided at a two-year mean. The TR
+            algorithms presented in Sørensen et al. (2018) are used to
+            derive the product, and 1 km grid resolution, and averaged in
+            the post-processing to 5 km grid resolution by ordinary kriging.
 
             Reference:
-            Simonsen, S. B., and Sørensen, L. S. (2017) ‘Implications
-            of changing scattering properties on Greenland ice sheet volume
-            change from Cryosat-2 altimetry’, Remote Sensing of Environment.
-            Elsevier Inc., 190, pp. 207–216. DOI: 10.1016/j.rse.2016.12.012 .
+            Simonsen, S. B., and Sørensen, L. S. (2017) ‘Implications of
+            changing scattering properties on Greenland ice sheet volume
+            change from Cryosat-2 altimetry’, Remote Sensing of
+            Environment. Elsevier Inc., 190, pp. 207–216. DOI:
+            10.1016/j.rse.2016.12.012.
 
-            Sørensen, L. S., Simonsen, S. B., Forsberg, R., Khvorostovsky, K.,
-            Meister, R., and Engdahl, M. E. (2018) '25 years of elevation
-            changes of the Greenland Ice Sheet from ERS, Envisat, and CryoSat-2
-            radar altimetry', Earth and Planetary Science Letters, 495, pp.
-            234-241 DOI: 10.1016/j.epsl.2018.05.015 ."""
+            Sørensen, L. S., Simonsen, S. B., Forsberg, R., Khvorostovsky,
+            K., Meister, R., and Engdahl, M. E. (2018) '25 years of
+            elevation changes of the Greenland Ice Sheet from ERS, Envisat,
+            and CryoSat-2 radar altimetry', Earth and Planetary Science
+            Letters, 495, pp. 234-241 DOI: 10.1016/j.epsl.2018.05.015."""
         ),
         "citation": {
             "text": (
-                """ESA. (2020) 1992-2020 Greenland SEC from ERS-1, ERS-2,
-                ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-year means.
-                Greenland Ice Sheet CCI Products."""
+                """ESA. (2021) 1992-2021 Greenland elevation change from
+                multiple altimetric mission.  Greenland Ice Sheet CCI
+                Products."""
             ),
-            "url": "http://products.esa-icesheets-cci.org/products/details/cci_sec_2020.tar.gz/",
+            "url": "http://products.esa-icesheets-cci.org/products/download/cci_sec_2021.zip",
         },
     },
 )

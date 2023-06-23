@@ -29,6 +29,10 @@
 - Add new "Places/" layers from Asiaq/NunaGIS:
   - Buildings
   - Roads
+- Update the "Glaciology/Surface elevation change" layers to the latest version
+  (v3) of the Climate Change Initiative (CCI) Surface Elevation Change dataset
+  from the European Space Agency (ESA). This extends the timeseries to include a
+  surface elevation change layer for 2016-2020.
 
 
 # v3.0.0alpha2 (2023-05-09)
