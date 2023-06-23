@@ -33,6 +33,8 @@
   (v3) of the Climate Change Initiative (CCI) Surface Elevation Change dataset
   from the European Space Agency (ESA). This extends the timeseries to include a
   surface elevation change layer for 2016-2020.
+- Rename "Geophysics/World Magnetic Model/Dip poles" layer group ->
+  "Geophysics/World Magnetic Model/Geomagnetic north pole"
 
 
 # v3.0.0alpha2 (2023-05-09)
