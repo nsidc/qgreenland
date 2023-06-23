@@ -19645,7 +19645,7 @@
                 "name": "seaice_median_extent_12"
               }
             ],
-            "name": "Median extent",
+            "name": "Median extent (1981-2010)",
             "settings": {
               "expand": false,
               "order": [
@@ -24241,7 +24241,7 @@
         "settings": {
           "expand": false,
           "order": [
-            "Median extent",
+            "Median extent (1981-2010)",
             "Weekly age (12.5km)",
             "Monthly mean concentration (25 km)"
           ],

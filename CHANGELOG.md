@@ -35,6 +35,8 @@
   surface elevation change layer for 2016-2020.
 - Rename "Geophysics/World Magnetic Model/Dip poles" layer group ->
   "Geophysics/World Magnetic Model/Geomagnetic north pole"
+- Rename "Sea ice/Median extent" layer group -> "Sea ice/Median extent
+  (1981-2010)"
 
 
 # v3.0.0alpha2 (2023-05-09)
