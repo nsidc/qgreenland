@@ -35,6 +35,9 @@ gebco_bathymetric_raster = Layer(
             reproject_args=(
                 "-te",
                 f"{_background_bbox.min_x} {_background_bbox.min_y} {_background_bbox.max_x} {_background_bbox.max_y}",
+                "-tr",
+                "400",
+                "400",
             ),
             cut_file=project.boundaries["background"].filepath,
         ),
