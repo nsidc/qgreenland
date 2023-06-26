@@ -1,9 +1,12 @@
 from qgreenland.config.datasets.bathymetric_chart import bathymetric_chart as dataset
+from qgreenland.config.datasets.bathymetric_chart import gebco_bathymetric_chart
 from qgreenland.config.helpers.layers.geological_map import make_layer
 from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
+from qgreenland.config.helpers.steps.decompress import decompress_step
 from qgreenland.config.helpers.steps.warp import warp
+from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 
@@ -75,6 +78,43 @@ bathymetric_raster = Layer(
             input_file="{input_dir}/bathymetric_chart.tif",
             output_file="{output_dir}/bathymetric_chart.tif",
             dtype_is_float=True,
+        ),
+    ],
+)
+
+
+_background_boundary = project.boundaries["background"]
+_background_bbox = _background_boundary.bbox
+gebco_bathymetric_raster = Layer(
+    id="gebco_bathymetric_raster",
+    title="GEBCO depth",
+    description=bathymetric_raster_params["description"],
+    tags=[],
+    style=bathymetric_raster_params["style"],
+    input=LayerInput(
+        dataset=gebco_bathymetric_chart,
+        asset=gebco_bathymetric_chart.assets["only"],
+    ),
+    steps=[
+        decompress_step(input_file="{input_dir}/gebco_2023.zip"),
+        *warp_and_cut(
+            input_file="NETCDF:{input_dir}/GEBCO_2023.nc:elevation",
+            output_file="{output_dir}/bathymetric_chart.tif",
+            reproject_args=(
+                "-te",
+                f"{_background_bbox.min_x} {_background_bbox.min_y} {_background_bbox.max_x} {_background_bbox.max_y}",
+                "-dstnodata",
+                "-9999",
+                "-tr",
+                "400",
+                "400",
+            ),
+            cut_file=project.boundaries["background"].filepath,
+        ),
+        *compress_and_add_overviews(
+            input_file="{input_dir}/bathymetric_chart.tif",
+            output_file="{output_dir}/bathymetric_chart.tif",
+            dtype_is_float=False,
         ),
     ],
 )
