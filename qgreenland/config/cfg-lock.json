@@ -25291,7 +25291,7 @@
                   ],
                   "style": "gebco_bathymetry",
                   "tags": [],
-                  "title": "Dept (400m)"
+                  "title": "Depth (400m)"
                 },
                 "name": "gebco_bathymetric_raster"
               },
