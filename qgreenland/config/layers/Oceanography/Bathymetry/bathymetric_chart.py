@@ -11,10 +11,12 @@ bathymetric_raster_params = {
     "id": "bathymetric_raster",
     "title": "Depth (400m)",
     "description": (
-        """Bathymetric elevation in meters. Elevations can be assumed to be
-    relative to mean sea level. However, in some shallow water areas, the
-    grids include data from sources having a vertical datum other than mean
-    sea level."""
+        """Bathymetric elevation in meters.
+
+        Elevations can be assumed to be relative to mean sea level. However,
+        note that there may be differences in the vertical datum (the basis for
+        elevations) for some older data from which this bathymetry dataset was
+        derived."""
     ),
     "style": "ibcao_bathymetry",
     "dataset": dataset,
@@ -47,7 +49,7 @@ bathymetric_raster = Layer(
     ),
     steps=[
         *warp(
-            input_file="NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z",
+            input_file="NETCDF:{input_dir}/IBCAO_v4_2_400m_ice.nc:z",
             output_file="{output_dir}/bathymetric_chart.tif",
             warp_args=(
                 "-s_srs",

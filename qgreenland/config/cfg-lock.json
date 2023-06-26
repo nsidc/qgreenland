@@ -184,19 +184,19 @@
         "only": {
           "id": "only",
           "urls": [
-            "https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_400m_ice/cfnetcdf/"
+            "https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_2_400m_ice/cfnetcdf/"
           ],
           "verify_tls": true
         }
       },
       "id": "bathymetric_chart",
       "metadata": {
-        "abstract": "The goal of the IBCAO initiative is to develop a digital database\nthat contains all available bathymetric data north of 64\u00b0 North, for\nuse by mapmakers, researchers, institutions, and others whose work\nrequires a detailed and accurate knowledge of the depth and the\nshape of the Arctic seabed.",
+        "abstract": "The goal of the IBCAO initiative is to develop a digital database\nthat contains all available bathymetric data north of 64\u00b0 North, for\nuse by mapmakers, researchers, institutions, and others whose work\nrequires a detailed and accurate knowledge of the depth and the\nshape of the Arctic seabed.\n\nThe IBCAO data set is included, as a regional compilation, in the\nglobal GEBCO grid\n[https://www.gebco.net/data_and_products/gridded_bathymetry_data/].\n\nDisclaimer information:\n\nThe IBCAO V4.2 Grid, should NOT be used for navigation or for any\nother purpose involving safety at sea.\n\nThe IBCAO V4.2 Grid is made available 'as is'. While every effort\nhas been made to ensure reliability within the limits of present\nknowledge, the accuracy and completeness of The IBCAO V4.2 Grid\ncannot be guaranteed.\n\nNo responsibility can be accepted by those involved in its creation\nor publication for any consequential loss, injury or damage arising\nfrom its use or for determining the fitness of The IBCAO V4.2 Grid\nfor any particular use.\n\nThe IBCAO V4.2 Grid is based on bathymetric data from many different\nsources of varying quality and coverage.\n\nAs The IBCAO V4.2 Grid is an information product created by\ninterpolation of measured data, the resolution of the IBCAO V4.2\nGrid may be significantly different to that of the resolution of the\nunderlying measured data.",
         "citation": {
-          "text": "GEBCO Compilation Group (2020) GEBCO 2020 Grid\n(doi:10.5285/a29c5465-b138-234d-e053-6c86abc040b9)",
+          "text": "GEBCO Compilation Group (2023) GEBCO 2023 Grid\n(doi:10.5285/f98b053b-0cbc-6c23-e053-6c86abc0af7b)",
           "url": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/arctic_ocean/"
         },
-        "title": "Bathymetric Chart of the Arctic Ocean (IBCAO)"
+        "title": "Bathymetric Chart of the Arctic Ocean (IBCAO) V4.2"
       }
     },
     "bedmachine": {
@@ -25204,7 +25204,7 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Bathymetric elevation in meters. Elevations can be assumed to be\nrelative to mean sea level. However, in some shallow water areas, the\ngrids include data from sources having a vertical datum other than mean\nsea level.",
+                  "description": "Bathymetric elevation in meters. \n\nElevations can be assumed to be relative to mean sea level. However,\nnote that there may be differences in the vertical datum (the basis for\nelevations) for some older data from which this bathymetry dataset was\nderived.",
                   "id": "bathymetric_raster",
                   "in_package": true,
                   "input": {
@@ -25239,7 +25239,7 @@
                         "true",
                         "-co",
                         "COMPRESS=DEFLATE",
-                        "NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z",
+                        "NETCDF:{input_dir}/IBCAO_v4_2_400m_ice.nc:z",
                         "{output_dir}/bathymetric_chart.tif"
                       ],
                       "type": "command"
