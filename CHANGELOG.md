@@ -43,7 +43,11 @@
   grid. This update includes the most recent data and expands the spatial extent
   of this layer to the QGreenland background boundary to make it consistent with
   other ocenaography layers.
-
+- Update "Oceanography/Bathymetry/Depth contours" layer to be derived from the
+  General Bathymetric Chart of the Oceans (GEBCO) Grid 2023, replacing the
+  contours obtained from the Geological map of the Arctic / Carte gologique de
+  l'Arctique (2011) dataset, which was based on the Bathymetric Chart of the
+  Arctic Ocean (IBCAO).
 
 # v3.0.0alpha2 (2023-05-09)
 
