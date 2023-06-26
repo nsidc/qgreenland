@@ -37,8 +37,12 @@
   "Geophysics/World Magnetic Model/Geomagnetic north pole"
 - Rename "Sea ice/Median extent" layer group -> "Sea ice/Median extent
   (1981-2010)"
-- Update "Bathymetry/Depth (400m)" layer to use new v4.2 International
-  Bathymetric Chart of the Arctic Ocean (IBCAO) dataset.
+- Update "Oceanography/Bathymetry/Depth (400m)" layer to use the General
+  Bathymetric Chart of the Oceans (GEBCO) Grid 2023, replacing the Bathymetric
+  Chart of the Arctic Ocean (IBCAO) dataset. The GEBCO grid includes the IBCAO
+  grid. This update includes the most recent data and expands the spatial extent
+  of this layer to the QGreenland background boundary to make it consistent with
+  other ocenaography layers.
 
 
 # v3.0.0alpha2 (2023-05-09)
