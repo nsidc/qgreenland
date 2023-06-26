@@ -12,7 +12,7 @@ _background_boundary = project.boundaries["background"]
 _background_bbox = _background_boundary.bbox
 gebco_bathymetric_raster = Layer(
     id="gebco_bathymetric_raster",
-    title="Dept (400m)",
+    title="Depth (400m)",
     description=(
         """Bathymetric elevation in meters.
 
