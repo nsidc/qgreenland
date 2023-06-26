@@ -37,6 +37,8 @@
   "Geophysics/World Magnetic Model/Geomagnetic north pole"
 - Rename "Sea ice/Median extent" layer group -> "Sea ice/Median extent
   (1981-2010)"
+- Update "Bathymetry/Depth (400m)" layer to use new v4.2 International
+  Bathymetric Chart of the Arctic Ocean (IBCAO) dataset.
 
 
 # v3.0.0alpha2 (2023-05-09)
