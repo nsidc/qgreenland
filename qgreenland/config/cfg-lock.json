@@ -179,26 +179,6 @@
         "title": "Likely Basal Thermal State of the Greenland Ice Sheet"
       }
     },
-    "bathymetric_chart": {
-      "assets": {
-        "only": {
-          "id": "only",
-          "urls": [
-            "https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_400m_ice/cfnetcdf/"
-          ],
-          "verify_tls": true
-        }
-      },
-      "id": "bathymetric_chart",
-      "metadata": {
-        "abstract": "The goal of the IBCAO initiative is to develop a digital database\nthat contains all available bathymetric data north of 64\u00b0 North, for\nuse by mapmakers, researchers, institutions, and others whose work\nrequires a detailed and accurate knowledge of the depth and the\nshape of the Arctic seabed.",
-        "citation": {
-          "text": "GEBCO Compilation Group (2020) GEBCO 2020 Grid\n(doi:10.5285/a29c5465-b138-234d-e053-6c86abc040b9)",
-          "url": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/arctic_ocean/"
-        },
-        "title": "Bathymetric Chart of the Arctic Ocean (IBCAO)"
-      }
-    },
     "bedmachine": {
       "assets": {
         "only": {
@@ -518,6 +498,26 @@
           "url": "https://github.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/tree/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92"
         },
         "title": "Map of GC-Net and PROMICE locations"
+      }
+    },
+    "gebco_bathymetric_chart": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.bodc.ac.uk/data/open_download/gebco/gebco_2023/zip/"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "gebco_bathymetric_chart",
+      "metadata": {
+        "abstract": "The GEBCO_2023 Grid is a global terrain model for ocean and land,\nproviding elevation data, in meters, on a 15 arc-second interval\ngrid of 43200 rows x 86400 columns, giving 3,732,480,000 data\npoints. The data values are pixel-centre registered i.e. they refer\nto elevations, in meters, at the centre of grid cells.\n\nThe grid was published in April 2023 and is the fifth GEBCO grid\ndeveloped through The Nippon Foundation-GEBCO Seabed 2030\nProject. This is a collaborative project between the Nippon\nFoundation of Japan and GEBCO. The Seabed 2030 Project aims to bring\ntogether all available bathymetric data to produce the definitive\nmap of the world ocean floor and make it available to all.",
+        "citation": {
+          "text": "GEBCO Compilation Group (2023) GEBCO 2023 Grid\n(doi:10.5285/f98b053b-0cbc-6c23-e053-6c86abc0af7b)",
+          "url": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/"
+        },
+        "title": "General Bathymetric Chart of the Oceans (GEBCO) Grid 2023"
       }
     },
     "gem_research_stations": {
@@ -25204,42 +25204,55 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Bathymetric elevation in meters. Elevations can be assumed to be\nrelative to mean sea level. However, in some shallow water areas, the\ngrids include data from sources having a vertical datum other than mean\nsea level.",
-                  "id": "bathymetric_raster",
+                  "description": "Bathymetric elevation in meters.\n\nElevations can be assumed to be relative to mean sea level. However, in\nsome shallow water areas, the grids include data from sources having a\nvertical datum other than mean sea level. We are working to understand\nhow best to fully assimilate these data.",
+                  "id": "gebco_bathymetric_raster",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "only"
                     },
                     "dataset": {
-                      "id": "bathymetric_chart"
+                      "id": "gebco_bathymetric_chart"
                     }
                   },
                   "show": false,
                   "steps": [
                     {
                       "args": [
+                        "unzip",
+                        "{input_dir}/gebco_2023.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-te",
+                        "-5774572.727594967 -5774572.727594967 5774572.727594967 5774572.727594967",
+                        "-tr",
+                        "400",
+                        "400",
+                        "NETCDF:{input_dir}/GEBCO_2023.nc:elevation",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
                         "gdalwarp",
                         "-cutline",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-crop_to_cutline",
-                        "-r",
-                        "bilinear",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-s_srs",
-                        "\"+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84\"",
-                        "-dstnodata",
-                        "-9999",
-                        "-tr",
-                        "400",
-                        "400",
-                        "--config",
-                        "GDAL_NETCDF_IGNORE_XY_AXIS_NAME_CHECKS",
-                        "true",
                         "-co",
                         "COMPRESS=DEFLATE",
-                        "NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z",
+                        "{input_dir}/warped.tif",
                         "{output_dir}/bathymetric_chart.tif"
                       ],
                       "type": "command"
@@ -25252,7 +25265,7 @@
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
-                        "PREDICTOR=3",
+                        "PREDICTOR=2",
                         "{input_dir}/bathymetric_chart.tif",
                         "{output_dir}/compressed.tif"
                       ],
@@ -25276,11 +25289,11 @@
                       "type": "command"
                     }
                   ],
-                  "style": "ibcao_bathymetry",
+                  "style": "gebco_bathymetry",
                   "tags": [],
                   "title": "Depth (400m)"
                 },
-                "name": "bathymetric_raster"
+                "name": "gebco_bathymetric_raster"
               },
               {
                 "layer_cfg": {
