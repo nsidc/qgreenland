@@ -196,7 +196,7 @@
           "text": "GEBCO Compilation Group (2023) GEBCO 2023 Grid\n(doi:10.5285/f98b053b-0cbc-6c23-e053-6c86abc0af7b)",
           "url": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/arctic_ocean/"
         },
-        "title": "Bathymetric Chart of the Arctic Ocean (IBCAO) V4.2"
+        "title": "International Bathymetric Chart of the Arctic Ocean (IBCAO) V4.2"
       }
     },
     "bedmachine": {
@@ -25204,7 +25204,7 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Bathymetric elevation in meters. \n\nElevations can be assumed to be relative to mean sea level. However,\nnote that there may be differences in the vertical datum (the basis for\nelevations) for some older data from which this bathymetry dataset was\nderived.",
+                  "description": "Bathymetric elevation in meters.\n\nElevations can be assumed to be relative to mean sea level. However,\nnote that there may be differences in the vertical datum (the basis for\nelevations) for some older data from which this bathymetry dataset was\nderived.",
                   "id": "bathymetric_raster",
                   "in_package": true,
                   "input": {

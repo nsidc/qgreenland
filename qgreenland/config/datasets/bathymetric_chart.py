@@ -12,7 +12,7 @@ bathymetric_chart = Dataset(
         ),
     ],
     metadata={
-        "title": "Bathymetric Chart of the Arctic Ocean (IBCAO) V4.2",
+        "title": "International Bathymetric Chart of the Arctic Ocean (IBCAO) V4.2",
         "abstract": (
             """The goal of the IBCAO initiative is to develop a digital database
             that contains all available bathymetric data north of 64° North, for
