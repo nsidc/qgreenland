@@ -6,6 +6,6 @@ settings = LayerGroupSettings(
         ":image_mosaic_2015",
         ":sdfi_satellite_orthophotos",
         ":sdfi_topo_map",
-        ":blue_marble_shaded_relif_bathymetry",
+        ":blue_marble_shaded_relief_bathymetry",
     ],
 )
