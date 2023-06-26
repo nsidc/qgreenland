@@ -26136,7 +26136,7 @@
           {
             "layer_cfg": {
               "description": "Blue Marble (August 2004, Shaded Relief and Bathymetry).\n\nThe MODIS Blue Marble, Next Generation layer with Shaded Relief and\nBathymetry is a cloud free, true color composite of MODIS imagery from\nAugust 2004 including shaded relief and bathymetry in the water bodies.\n\nThe MODIS Blue Marble, Next Generation is a static product created with data\nfrom 2004 from the MODIS instrument on board the Terra satellite. The image\nresolution is 500 m. It can be viewed in Worldview/Global Imagery Browse\nServices (GIBS). Images for January \u2013 December 2004 can be downloaded from\nNASA\u2019s Visible Earth.\n\nReferences: NASA Earth Observatory - Blue Marble\n[https://earthobservatory.nasa.gov/features/BlueMarble]; NASA Earth\nObservations - Blue Marble\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB]; NASA\nEarth Observations - Blue Marble: Next Generation+Topography and\nBathymetry\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB].",
-              "id": "blue_marble_shaded_relif_bathymetry",
+              "id": "blue_marble_shaded_relief_bathymetry",
               "in_package": true,
               "input": {
                 "asset": {
@@ -26154,7 +26154,7 @@
               ],
               "title": "Blue Marble shaded relief and Bathymetry (500m)"
             },
-            "name": "blue_marble_shaded_relif_bathymetry"
+            "name": "blue_marble_shaded_relief_bathymetry"
           }
         ],
         "name": "Internet-required data",
@@ -26165,7 +26165,7 @@
             ":image_mosaic_2015",
             ":sdfi_satellite_orthophotos",
             ":sdfi_topo_map",
-            ":blue_marble_shaded_relif_bathymetry"
+            ":blue_marble_shaded_relief_bathymetry"
           ],
           "show": false
         }

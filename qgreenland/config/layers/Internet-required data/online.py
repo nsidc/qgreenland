@@ -7,7 +7,7 @@ from qgreenland.config.datasets.online import (
 from qgreenland.models.config.layer import Layer, LayerInput
 
 blue_marble_layer = Layer(
-    id="blue_marble_shaded_relif_bathymetry",
+    id="blue_marble_shaded_relief_bathymetry",
     title="Blue Marble shaded relief and Bathymetry (500m)",
     description=(
         """Blue Marble (August 2004, Shaded Relief and Bathymetry).
