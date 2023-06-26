@@ -25204,7 +25204,7 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Bathymetric elevation in meters.\n\nElevations can be assumed to be relative to mean sea level. However, in\nsome shallow water areas, the grids include data from sources having a\nvertical datum other than mean sea level. We are working to understand\nhow best to fully assimilate these data.",
+                  "description": "Bathymetric elevation in meters.\n\nNegative values represent bathymetric depths and positive values are\ntopographic heights.\n\nElevations can be assumed to be relative to mean sea level. However, in\nsome shallow water areas, the grids include data from sources having a\nvertical datum other than mean sea level. We are working to understand\nhow best to fully assimilate these data.",
                   "id": "gebco_bathymetric_raster",
                   "in_package": true,
                   "input": {
@@ -25297,15 +25297,15 @@
               },
               {
                 "layer_cfg": {
-                  "description": "This dataset includes linear features that represent\n bathymetric contours recorded in metres,\nderived from the International Bathymetric Chart of the Arctic Ocean.",
-                  "id": "bathymetric_contours",
+                  "description": "Bathymetric elevation contours in meters.\n\nContour interval is 100m and was derived from the \"Depth (400m)\" layer.\n\nElevations can be assumed to be relative to mean sea level. However, in\nsome shallow water areas, the grids include data from sources having a\nvertical datum other than mean sea level. We are working to understand\nhow best to fully assimilate these data.",
+                  "id": "gebco_bathymetric_contours",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "only"
                     },
                     "dataset": {
-                      "id": "geological_map"
+                      "id": "gebco_bathymetric_chart"
                     }
                   },
                   "show": false,
@@ -25313,25 +25313,65 @@
                     {
                       "args": [
                         "unzip",
-                        "{input_dir}/as_2159.zip",
+                        "{input_dir}/gebco_2023.zip",
                         "-d",
                         "{output_dir}",
-                        "data/shape/base/bathymetry.*"
+                        ""
                       ],
                       "type": "command"
                     },
                     {
                       "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
+                        "gdalwarp",
                         "-t_srs",
                         "EPSG:3413",
-                        "-clipdst",
+                        "-r",
+                        "bilinear",
+                        "-te",
+                        "-5774572.727594967 -5774572.727594967 5774572.727594967 5774572.727594967",
+                        "-tr",
+                        "400",
+                        "400",
+                        "NETCDF:{input_dir}/GEBCO_2023.nc:elevation",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/data/shape/base/bathymetry.shp"
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/bathymetric_chart.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_calc.py",
+                        "--calc=\"where(A < 0, absolute(A), nan)\"",
+                        "--A_band=1",
+                        "-A",
+                        "{input_dir}/bathymetric_chart.tif",
+                        "--outfile={output_dir}/positive_depths.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_contour",
+                        "-a",
+                        "DEPTH",
+                        "-i",
+                        "500",
+                        "-nln",
+                        "bathymetry",
+                        "{input_dir}/positive_depths.tif",
+                        "{output_dir}/bathymetric_chart.gpkg"
                       ],
                       "type": "command"
                     }
@@ -25340,7 +25380,7 @@
                   "tags": [],
                   "title": "Depth contours"
                 },
-                "name": "bathymetric_contours"
+                "name": "gebco_bathymetric_contours"
               }
             ],
             "name": "Bathymetry",
