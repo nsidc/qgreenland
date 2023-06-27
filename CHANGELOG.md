@@ -43,7 +43,15 @@
   grid. This update includes the most recent data and expands the spatial extent
   of this layer to the QGreenland background boundary to make it consistent with
   other ocenaography layers.
-
+- Remove "Oceanography/Bathymetry/Depth contours" layer. This layer was pulled
+  from the "Geological map of the Arctic / Carte gologique de l'Arctique"
+  (Harrison et al., 2011) dataset and was provided with the geological data for
+  additional context. It was derived from the (IBCAO) grid. Comparing this with
+  the current IBCAO and GEBCO grids, these contours seem outdated. They also
+  only cover a portion of QGreenland's background extent. Users can produce
+  their own custom contour layer from the included
+  "Oceanography/Bathymetry/Depth (400m)" layer using the Processing Toolbox
+  (GDAL -> Raster extraction -> Contour).
 
 # v3.0.0alpha2 (2023-05-09)
 
