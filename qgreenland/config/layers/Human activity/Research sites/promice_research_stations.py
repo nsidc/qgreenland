@@ -6,7 +6,7 @@ from qgreenland.models.config.layer import Layer, LayerInput
 
 layer = Layer(
     id="promice_gc_net_stations",
-    title="PROMICE and GC-NET automated weather stations",
+    title="PROMICE and GC-Net automated weather stations",
     description="""Automated weather station locations for the PROMICE,
         GC-Net, Glaciobasis (GEM), and other programs.
 

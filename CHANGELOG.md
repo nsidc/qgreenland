@@ -45,7 +45,7 @@
   other ocenaography layers.
 - Replace "Human Activity/Research sites/" layers related to PROMICE and GC-Net
   ("PROMICE automated weather stations", "Former PROMICE automated weather
-  stations", "GC-NET automated weather stations") with one layer ("PROMICE and
+  stations", "GC-Net automated weather stations") with one layer ("PROMICE and
   GC-Net automated weather stations") from a more up-to-date dataset provided by
   GEUS.
 
