@@ -43,7 +43,11 @@
   grid. This update includes the most recent data and expands the spatial extent
   of this layer to the QGreenland background boundary to make it consistent with
   other ocenaography layers.
-
+- Replace "Human Activity/Research sites/" layers related to PROMICE and GC-Net
+  ("PROMICE automated weather stations", "Former PROMICE automated weather
+  stations", "GC-NET automated weather stations") with one layer ("PROMICE and
+  GC-Net automated weather stations") from a more up-to-date dataset provided by
+  GEUS.
 
 # v3.0.0alpha2 (2023-05-09)
 
