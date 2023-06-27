@@ -468,36 +468,22 @@
     },
     "gc_net_promice_stations": {
       "assets": {
-        "gc_net": {
-          "id": "gc_net",
+        "only": {
+          "id": "only",
           "urls": [
-            "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/GCN%20info%20ca.2000.csv"
-          ],
-          "verify_tls": true
-        },
-        "promice": {
-          "id": "promice",
-          "urls": [
-            "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018.csv"
-          ],
-          "verify_tls": true
-        },
-        "promice_former": {
-          "id": "promice_former",
-          "urls": [
-            "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018_former_sites.csv"
+            "https://dataverse.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/IW73UU/AQMRYQ"
           ],
           "verify_tls": true
         }
       },
       "id": "gc_net_promice_stations",
       "metadata": {
-        "abstract": "GitHub data description (creator: jasonebox): For PROMICE, I use\na 2017-2018 average of station GPS data. I added an updated position\nfor THU-U2. An improvement would be to have the .kml add the\nposition date to the description and how it was obtained. For\nGC-Net, I use a table from Konrad Steffen. I added an updated\nposition for PET ELA from 2016.\n\nAccuracy of positions is very important to avoid arriving in the\nfield at an old location. In no cases, do I transcribe positions by\nhand as that can cause expensive problems not finding stations\nbecause of bad coordinates.\n\nQGreenland team notes - Source file indicating PROMICE GPS data from\n2017-2018 and GC-NET GPS data from 2000. See note from data creator\nabove.",
+        "abstract": "In 2007, Denmark launched the Programme for Monitoring of the\nGreenland Ice Sheet (PROMICE) to assess changes in the mass balance\nof the ice sheet. The two major contributors to the ice sheet mass\nloss are surface melt and a larger production of icebergs through\nfaster ice flow. PROMICE is focused on both processes. Ice movement\nand discharge is tracked by satellites and GPSs. The surface mass\nbalance is monitored by a network of weather stations in the melt\nzone of the ice sheet, providing ground truth data to calibrate mass\nbudget models.\n\nThe Greenland Climate Network (GC-Net) was established in 1995 by\nProf. Konrad Steffen at CIRES, to obtain knowledge of the mass gain\nand climatology of the ice sheet. The programme was funded by the\nUSA until 2020, at which point Denmark assumed responsibility for\nthe operation and maintenance of the weather station network. The\nsnowfall and climatology are monitored by a network of weather\nstations in the accumulation zone of the ice sheet, supplemented by\nsatellite-derived data products.\n\nTogether, the two monitoring programmes deliver data about the mass\nbalance of the Greenland ice sheet in near real-time.\n\nData from the Programme for Monitoring of the Greenland Ice Sheet\n(PROMICE) are provided by the Geological Survey of Denmark and\nGreenland (GEUS) at http://www.promice.dk. They include sites\nfinancially supported by the Glaciobasis programme as part of\nGreenland Ecosystem Monitoring (https://g-e-m.dk/), maintained by\nGEUS (ZAK, LYN) and by Asiaq Greenland Survey (NUK_K). The WEG\nstations are paid for and maintained by the University of Graz.\n\nSee https://github.com/GEUS-Glaciology-and-Climate/pypromice for how\nwe make the data product.\n\nRelated publication:\n\nFausto, R. S., van As, D., Mankoff, K. D., Vandecrux, B., Citterio,\nM., Ahlstr\u00f8m, A. P., Andersen, S. B., Colgan, W., Karlsson, N. B.,\nKjeldsen, K. K., Korsgaard, N. J., Larsen, S. H., Nielsen, S.,\nPedersen, A. \u00d8., Shields, C. L., Solgaard, A. M., and Box, J. E.:\nProgramme for Monitoring of the Greenland Ice Sheet (PROMICE)\nautomatic weather station data, Earth Syst. Sci. Data, 13,\n3819\u20133845, https://doi.org/10.5194/essd-13-3819-2021, 2021.\n\nAdditional data:\n\nTo download data related to PROMICE and GC-Net, including historical\nweather station data, see\nhttps://dataverse.geus.dk/dataverse/PROMICE.",
         "citation": {
-          "text": "PROMICE, (2020). Map of GC-Net and PROMICE station locations.\nWeb: https://github.com/GEUS-PROMICE. Date accessed:\n{{date_accessed}}.",
-          "url": "https://github.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/tree/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92"
+          "text": "How, P., Abermann, J., Ahlstr\u00f8m, A.P., Andersen, S.B., Box,\nJ.E., Citterio, M., Colgan, W.T., Fausto, R., Karlsson, N.B., Jakobsen, J.,\nLangley, K., Larsen, S.H., Mankoff, K.D., Pedersen, A.\u00d8., Rutishauser, A.,\nShields, C.L., Solgaard, A.M., van As, D., Vandecrux, B., Wright, P.J., 2022,\n\"PROMICE and GC-Net automated weather station data in Greenland\",\nhttps://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse.\n\nDate accessed: {{date_accessed}}.",
+          "url": "https://dataverse.geus.dk/dataset.xhtml?persistentId=doi:10.22008/FK2/IW73UU"
         },
-        "title": "Map of GC-Net and PROMICE locations"
+        "title": "PROMICE and GC-Net automated weather station data in Greenland"
       }
     },
     "gebco_bathymetric_chart": {
@@ -3630,12 +3616,12 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Locations and details of PROMICE automated weather stations.",
-                  "id": "promice_research_stations",
+                  "description": "Automated weather station locations for the PROMICE,\nGC-Net, Glaciobasis (GEM), and other programs.\n\nStation locations, installation (if necessary, decommission) date,\nlocation type (tundra, ice sheet, local glacier), station type (one or\ntwo levels of measurements) are available as attributes.",
+                  "id": "promice_gc_net_stations",
                   "in_package": true,
                   "input": {
                     "asset": {
-                      "id": "promice"
+                      "id": "only"
                     },
                     "dataset": {
                       "id": "gc_net_promice_stations"
@@ -3656,11 +3642,11 @@
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
-                        "X_POSSIBLE_NAMES=lon",
+                        "X_POSSIBLE_NAMES=lon_installation",
                         "-oo",
-                        "Y_POSSIBLE_NAMES=lat",
+                        "Y_POSSIBLE_NAMES=lat_installation",
                         "-sql",
-                        "\"SELECT *, name as label from \\\"PROMICE_info_from_GPS_data_2017-2018\\\"\"",
+                        "\"SELECT *, stid as label from \\\"AWS_metadata\\\"\"",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.csv"
                       ],
@@ -3669,99 +3655,9 @@
                   ],
                   "style": "labeled_point",
                   "tags": [],
-                  "title": "PROMICE automated weather stations"
+                  "title": "PROMICE and GC-Net automated weather stations"
                 },
-                "name": "promice_research_stations"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Locations and details of inactive PROMICE automated weather\nstations.",
-                  "id": "promice_research_stations_former",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "promice_former"
-                    },
-                    "dataset": {
-                      "id": "gc_net_promice_stations"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-s_srs",
-                        "EPSG:4326",
-                        "-oo",
-                        "X_POSSIBLE_NAMES=lon",
-                        "-oo",
-                        "Y_POSSIBLE_NAMES=lat",
-                        "-sql",
-                        "\"SELECT *, name as label from \\\"PROMICE_info_from_GPS_data_2017-2018_former_sites\\\"\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.csv"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "labeled_point",
-                  "tags": [],
-                  "title": "Former PROMICE automated weather stations"
-                },
-                "name": "promice_research_stations_former"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Location and details of GC-NET automated weather stations.",
-                  "id": "gc_net_research_stations",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "gc_net"
-                    },
-                    "dataset": {
-                      "id": "gc_net_promice_stations"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-s_srs",
-                        "EPSG:4326",
-                        "-oo",
-                        "X_POSSIBLE_NAMES=lon",
-                        "-oo",
-                        "Y_POSSIBLE_NAMES=lat",
-                        "-sql",
-                        "\"SELECT *, name as label from \\\"GCN%20info%20ca.2000\\\"\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.csv"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "labeled_point",
-                  "tags": [],
-                  "title": "GC-NET automated weather stations"
-                },
-                "name": "gc_net_research_stations"
+                "name": "promice_gc_net_stations"
               },
               {
                 "layer_cfg": {
@@ -3806,9 +3702,7 @@
               "expand": false,
               "order": [
                 ":gem_research_stations",
-                ":promice_research_stations",
-                ":promice_research_stations_former",
-                ":gc_net_research_stations",
+                ":promice_gc_net_stations",
                 ":seismograph_stations"
               ],
               "show": false

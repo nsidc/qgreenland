@@ -52,6 +52,11 @@
   their own custom contour layer from the included
   "Oceanography/Bathymetry/Depth (400m)" layer using the Processing Toolbox
   (GDAL -> Raster extraction -> Contour).
+- Replace "Human Activity/Research sites/" layers related to PROMICE and GC-Net
+  ("PROMICE automated weather stations", "Former PROMICE automated weather
+  stations", "GC-Net automated weather stations") with one layer ("PROMICE and
+  GC-Net automated weather stations") from a more up-to-date dataset provided by
+  GEUS.
 
 # v3.0.0alpha2 (2023-05-09)
 
