@@ -1,5 +1,4 @@
 from qgreenland.config.datasets.bathymetric_chart import gebco_bathymetric_chart
-from qgreenland.config.helpers.layers.geological_map import make_layer
 from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
@@ -47,23 +46,4 @@ gebco_bathymetric_raster = Layer(
             dtype_is_float=False,
         ),
     ],
-)
-
-
-bathymetric_contours_params = {
-    "id": "bathymetric_contours",
-    "title": "Depth contours",
-    "description": (
-        """This dataset includes linear features that represent
-         bathymetric contours recorded in metres,
-        derived from the International Bathymetric Chart of the Arctic Ocean."""
-    ),
-    "style": "bathymetry",
-    "input_filepath": "data/shape/base/bathymetry",
-    "fn_mask": "bathymetry.*",
-}
-
-bathymetric_contours = make_layer(
-    layer_id=bathymetric_contours_params["id"],
-    layer_params=bathymetric_contours_params,
 )
