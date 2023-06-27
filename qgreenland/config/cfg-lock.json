@@ -25188,53 +25188,6 @@
                   "title": "Depth (400m)"
                 },
                 "name": "gebco_bathymetric_raster"
-              },
-              {
-                "layer_cfg": {
-                  "description": "This dataset includes linear features that represent\n bathymetric contours recorded in metres,\nderived from the International Bathymetric Chart of the Arctic Ocean.",
-                  "id": "bathymetric_contours",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "geological_map"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/as_2159.zip",
-                        "-d",
-                        "{output_dir}",
-                        "data/shape/base/bathymetry.*"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/data/shape/base/bathymetry.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "bathymetry",
-                  "tags": [],
-                  "title": "Depth contours"
-                },
-                "name": "bathymetric_contours"
               }
             ],
             "name": "Bathymetry",
