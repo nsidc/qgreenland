@@ -4346,7 +4346,7 @@
                         "&&",
                         "gdaladdo",
                         "-r",
-                        "average",
+                        "mode",
                         "{output_dir}/compressed.tif",
                         "2",
                         "4",
