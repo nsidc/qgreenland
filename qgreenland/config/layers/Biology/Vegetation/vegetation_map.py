@@ -67,6 +67,7 @@ circumpolar_arctic_vegetation_map_layer = Layer(
             input_file="{input_dir}/raster_cavm_v1.tif",
             output_file="{output_dir}/warped.tif",
             cut_file=project.boundaries["background"].filepath,
+            resampling_method="nearest",
             warp_args=(
                 "-tr",
                 "1000",
