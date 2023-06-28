@@ -77,6 +77,7 @@ circumpolar_arctic_vegetation_map_layer = Layer(
         *compress_and_add_overviews(
             input_file="{input_dir}/warped.tif",
             output_file="{output_dir}/compressed.tif",
+            resampling_algorithm="mode",
             dtype_is_float=False,
         ),
     ],
