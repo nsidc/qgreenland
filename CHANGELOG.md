@@ -57,6 +57,9 @@
   stations", "GC-Net automated weather stations") with one layer ("PROMICE and
   GC-Net automated weather stations") from a more up-to-date dataset provided by
   GEUS.
+- Add new "Biology/Vegetation/Vegetation classification map (1km)" layer from
+  the Raster Circumpolar Arctic Vegetation Map produced by Raynolds et al.,
+  2019.
 
 # v3.0.0alpha2 (2023-05-09)
 
