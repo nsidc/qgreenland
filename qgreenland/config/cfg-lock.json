@@ -4311,7 +4311,7 @@
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-crop_to_cutline",
                         "-r",
-                        "bilinear",
+                        "nearest",
                         "-t_srs",
                         "EPSG:3413",
                         "-tr",
