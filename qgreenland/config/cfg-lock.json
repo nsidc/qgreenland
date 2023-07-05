@@ -237,6 +237,26 @@
         "title": "The distribution of thick-billed and common murre colonies in the North."
       }
     },
+    "circumpolar_arctic_vegetation_map": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://data.mendeley.com/public-files/datasets/c4xj5rv6kv/files/5223c414-234a-498c-ae08-3100cb38510f/file_downloaded"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "circumpolar_arctic_vegetation_map",
+      "metadata": {
+        "abstract": "Land cover maps are the basic data layer required for\nunderstanding and modeling ecological patterns and processes. The\nCircumpolar Arctic Vegetation Map (CAVM), produced in 2003, has been\nwidely used as a base map for studies in the arctic tundra\nbiome. However, the relatively coarse resolution and vector format\nof the map were not compatible with many other data sets. We present\na new version of the CAVM, building on the strengths of the original\nmap, while providing a finer spatial resolution, raster format, and\nimproved mapping. The Raster CAVM uses the legend, extent and\nprojection of the original CAVM. The legend has 16 vegetation types,\nglacier, saline water, freshwater, and non-arctic land. The Raster\nCAVM divides the original rock-water-vegetation complex map unit\nthat mapped the Canadian Shield into two map units, distinguishing\nbetween areas with lichen- and shrub-dominated vegetation. In\ncontrast to the original hand-drawn CAVM, the new map is based on\nunsupervised classifications of seventeen geographic/floristic\nsub-sections of the Arctic, using AVHRR and MODIS data (reflectance\nand NDVI) and elevation data. The units resulting from the\nclassification were modeled to the CAVM types using a wide variety\nof ancillary data. The map was reviewed by experts familiar with\ntheir particular region, including many of the original authors of\nthe CAVM from Canada, Greenland (Denmark), Iceland, Norway\n(including Svalbard), Russia, and the U.S. The analysis presented\nhere summarizes the area, geographical distribution, elevation,\nsummer temperatures, and NDVI of the map units. The greater spatial\nresolution of the Raster CAVM allowed more detailed mapping of\nwater-bodies and mountainous areas. It portrays coastal-inland\ngradients, and better reflects the heterogeneity of vegetation type\ndistribution than the original CAVM. Accuracy assessment of random\n1-km pixels interpreted from 6 Landsat scenes showed an average of\n70 % accuracy, up from 39 % for the original CAVM. The distribution\nof shrub-dominated types changed the most, with more prostrate shrub\ntundra mapped in mountainous areas, and less low shrub tundra in\nlowland areas. This improved mapping is important for quantifying\nexisting and potential changes to land cover, a key environmental\nindicator for modeling and monitoring ecosystems.\n\nRelated Publication:\n\nMartha K. Raynolds, Donald A. Walker, Andrew Balser, Christian Bay,\nMitch Campbell, Mikhail M. Cherosov, Fred J.A. Dani\u00ebls, Pernille\nBronken Eidesen, Ksenia A. Ermokhina, Gerald V. Frost, Birgit\nJedrzejek, M. Torre Jorgenson, Blair E. Kennedy, Sergei S. Kholod,\nIgor A. Lavrinenko, Olga V. Lavrinenko, Borg\u00fe\u00f3r Magn\u00fasson, Nadezhda\nV. Matveyeva, Sigmar Met\u00fasalemsson, Lennart Nilsen, Ian Olthof, Igor\nN. Pospelov, Elena B. Pospelova, Darren Pouliot, Vladimir Razzhivin,\nGabriela Schaepman-Strub, Jozef \u0160ib\u00edk, Mikhail Yu. Telyatnikov,\nElena Troeva, A raster version of the Circumpolar Arctic Vegetation\nMap (CAVM), Remote Sensing of Environment, Volume 232, 2019, 111297,\nISSN 0034-4257,\nhttps://doi.org/10.1016/j.rse.2019.111297. (https://www.sciencedirect.com/science/article/pii/S0034425719303165).",
+        "citation": {
+          "text": "Raynolds, Martha; Walker, Donald (2022), 'Raster Circumpolar\nArctic Vegetation Map', Mendeley Data, V2, doi:\n10.17632/c4xj5rv6kv.2",
+          "url": "https://data.mendeley.com/datasets/c4xj5rv6kv/2"
+        },
+        "title": "Raster Circumpolar Arctic Vegetation Map"
+      }
+    },
     "continental_shelf": {
       "assets": {
         "north_lines": {
@@ -4258,6 +4278,89 @@
                   "title": "Vegetation biomass 2010 (12.4km)"
                 },
                 "name": "vegetation_biomass_2010"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Arctic vegetation classification raster.\n\nIndividual raster values are mapped to vegetation types as follows:\n\n'Raster Code': 'Vegetation Unit' - 'Short Description'\n1: B1 - Cryptogam, herb barren\n2: B2a - Cryptogam, barren complex\n3: B3 - Non-carbonate mountain complex\n4: B4 - Carbonate mountain complex\n5: B2b - Cryptogam, barren, dwarf-shrub complex\n21: G1 - Graminoid, forb, cryptogam tundra\n22: G2 - Graminoid, prostrate dwarf-shrub, forb, moss tundra\n23: G3 - Non-tussock sedge, dwarf-shrub, moss tundra\n24: G4 - Tussock-sedge, dwarf-shrub, moss tundra\n31: P1 - Prostrate dwarf-shrub, herb, lichen tundra\n32: P2 - Prostrate/hemi-prostrate dwarf-shrub, lichen tundra\n33: S1 - Erect dwarf-shrub, moss tundra\n34: S2 - Low-shrub, moss tundra\n41: W1 - Sedge/grass, moss wetland complex\n42: W2 - Sedge, moss, dwarf-shrub wetland complex\n43: W3 - Sedge, moss, low-shrub wetland complex\n91: FW - Fresh water\n92: SW - Saline water\n93: GL - Glacier\n99: NA - Non-Arctic\n\n Environmental and climatic conditions are\nextreme, with a short growing season and low summer temperatures. The\nregion support plants such as dwarf shrubs, herbs, lichens and mosses,\nwhich grow close to the ground. As one moves southward (outward from\nmap's center in all directions), the amount of warmth available for\nplant growth increases considerably, allowing the size, abundance, and\nvariety of plants to increase as well. Climate and other environmental\ncontrols, such as landscape, topography, soil chemistry, soil moisture,\nand the available plants that historically colonized an area, also\ninfluence the distribution of plant communities.\n\nFor more information, visit:\nhttps://www.geobotany.uaf.edu/cavm/abstract.php.",
+                  "id": "circumpolar_arctic_vegetation_map",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "circumpolar_arctic_vegetation_map"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/Raster\\ CAVM\\ GIS\\ data.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-r",
+                        "nearest",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-tr",
+                        "1000",
+                        "1000",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/raster_cavm_v1.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=2",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/compressed.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "mode",
+                        "{output_dir}/compressed.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "arctic_vegetation",
+                  "tags": [],
+                  "title": "Vegetation classification map (1km)"
+                },
+                "name": "circumpolar_arctic_vegetation_map"
               }
             ],
             "name": "Vegetation",
