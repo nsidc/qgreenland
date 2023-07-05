@@ -1,4 +1,4 @@
-# NEXT_VERSION
+# v3.0.0alpha3 (2023-07-05)
 
 - Remove Humanitarian Open Street Map (HOTOSM) layers ("Places/Community map
   (crowd-sourced)"). These layers had innaccuracies and missing locations that
