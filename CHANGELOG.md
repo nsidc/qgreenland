@@ -1,3 +1,8 @@
+# NEXT_RELEASE
+
+* Remove "Biology/Fish/Arctic Char" layer
+
+
 # v3.0.0alpha3 (2023-07-05)
 
 - Remove Humanitarian Open Street Map (HOTOSM) layers ("Places/Community map

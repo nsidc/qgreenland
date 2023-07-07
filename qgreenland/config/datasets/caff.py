@@ -36,32 +36,3 @@ caff_murre_colonies = Dataset(
         },
     },
 )
-
-caff_char = Dataset(
-    id="caff_char",
-    assets=[
-        HttpAsset(
-            id="only",
-            urls=[
-                "http://geo.abds.is/geonetwork/srv/api/records/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce/attachments/Arctic_Char_2010.zip",
-            ],
-        ),
-    ],
-    metadata={
-        "title": "Circumpolar distribution of arctic char species complex Salvelinus alpinus, and related species",
-        "abstract": (
-            """Circumpolar distribution of Arctic Char species complex
-            Salvelinus alpinus, and related species.  Arctic Biodiversity
-            Assessment, Chapter 6: Fishes: http://www.caff.is/assessment-series/
-            10-arctic-biodiversity-assessment/211-arctic-biodiversity-assessment
-            -2013-chapter-6-fishes."""
-        ),
-        "citation": {
-            "text": (
-                """Conservation of Arctic Flora and Fauna (CAFF www.caff.is)
-                working group of the Arctic Council"""
-            ),
-            "url": "http://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce",
-        },
-    },
-)
