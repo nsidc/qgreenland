@@ -16,7 +16,8 @@ delivered in two ways:
    [documentation](https://qgreenland-plugin.readthedocs.io).
 
    ```{attention}
-   QGreenland Custom is no longer supported.
+   QGreenland Custom is no longer supported. This was an experiment, and we decided to
+   go in a different direction. It shouldn't be expected to work.
    ```
 
 
