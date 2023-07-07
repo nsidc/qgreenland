@@ -197,26 +197,6 @@
         "title": "IceBridge BedMachine Greenland, Version 5"
       }
     },
-    "caff_char": {
-      "assets": {
-        "only": {
-          "id": "only",
-          "urls": [
-            "http://geo.abds.is/geonetwork/srv/api/records/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce/attachments/Arctic_Char_2010.zip"
-          ],
-          "verify_tls": true
-        }
-      },
-      "id": "caff_char",
-      "metadata": {
-        "abstract": "Circumpolar distribution of Arctic Char species complex\nSalvelinus alpinus, and related species.  Arctic Biodiversity\nAssessment, Chapter 6: Fishes: http://www.caff.is/assessment-series/\n10-arctic-biodiversity-assessment/211-arctic-biodiversity-assessment\n-2013-chapter-6-fishes.",
-        "citation": {
-          "text": "Conservation of Arctic Flora and Fauna (CAFF www.caff.is)\nworking group of the Arctic Council",
-          "url": "http://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce"
-        },
-        "title": "Circumpolar distribution of arctic char species complex Salvelinus alpinus, and related species"
-      }
-    },
     "caff_murre_colonies": {
       "assets": {
         "only": {
@@ -4140,67 +4120,6 @@
                 ":nunagis_eider_protected_areas",
                 ":nunagis_goose_protected_areas"
               ],
-              "show": false
-            }
-          },
-          {
-            "children": [
-              {
-                "layer_cfg": {
-                  "description": "Polygons indicating the 2010 distribution of Arctic Char\npopulations.",
-                  "id": "caff_char",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "caff_char"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/Arctic_Char_2010.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "'SELECT\n                        Geometry,\n                        SPECIES,\n                        INTRODUCED,\n                        OWNER,\n                        DATA_URL,\n                        SOURCE,\n                        CREATED,\n                        DATE(substr(MODIFIED, 7, 4) || \"-\" ||\n                          substr(MODIFIED, 4, 2) || \"-\" ||\n                          substr(MODIFIED, 1, 2)) as MODIFIED,\n                        CONTACT\n                    FROM Arctic_Char_2010'",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "semitransparent_polygon",
-                  "tags": [],
-                  "title": "Arctic Char populations 2010"
-                },
-                "name": "caff_char"
-              }
-            ],
-            "name": "Fish",
-            "settings": {
-              "expand": false,
-              "order": null,
               "show": false
             }
           },
