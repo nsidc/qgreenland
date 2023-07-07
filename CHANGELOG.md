@@ -1,6 +1,7 @@
 # NEXT_RELEASE
 
-* Remove "Biology/Fish/Arctic Char" layer
+* QGreenland Custom is no longer supported.
+* Remove "Biology/Fish/Arctic Char" layer.
 
 
 # v3.0.0alpha3 (2023-07-05)
