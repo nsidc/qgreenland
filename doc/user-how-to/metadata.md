@@ -27,6 +27,10 @@ that is associate with the data layer, including but not limited to title and ab
 
 ## Using the QGreenland Custom plugin
 
+```{attention}
+QGreenland Custom is no longer supported.
+```
+
 If you have the QGreenland Custom QGIS plugin, you can access QGreenland layer metadata through the plugin.
 First you will need download the layer of interest if you do not already have it downloaded. If you need help installing or downloading data using QGreenland Custom, please follow 
 [this how-to guide](https://qgreenland-plugin.readthedocs.io/en/latest/user-how-to/plugin-how-to.html) first. 
