@@ -1,9 +1,14 @@
+from qgreenland.config.datasets.circumpolar_active_layer_monitoring import (
+    circumpolar_layer_monitoring,
+)
 from qgreenland.config.datasets.pangaea_ground_temperature import (
     pangaea_ground_temperature as dataset,
 )
 from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
+from qgreenland.config.helpers.steps.decompress import decompress_step
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -36,7 +41,7 @@ _layer_params = {
 }
 
 
-layers = [
+pangaea_layers = [
     Layer(
         id=layer_id,
         title=params["title"],
@@ -85,3 +90,28 @@ layers = [
     )
     for layer_id, params in _layer_params.items()
 ]
+
+
+calm_layer = Layer(
+    id="calm_network_sites",
+    title="CALM network sites",
+    description="""TODO...""",
+    tags=[],
+    style=None,
+    input=LayerInput(
+        dataset=circumpolar_layer_monitoring,
+        asset=circumpolar_layer_monitoring.assets["only"],
+    ),
+    steps=[
+        decompress_step(
+            input_file="{input_dir}/CALM_Sites_wData.7z", decompress_type="7z"
+        ),
+        *ogr2ogr(
+            input_file="{input_dir}/CALM_SitesData.shp",
+            output_file="{output_dir}/calm_sites_data.gpkg",
+            # Some features fall outside of our project CRS so an error is
+            # raised without `skipfailures`.
+            ogr2ogr_args=("-skipfailures",),
+        ),
+    ],
+)
