@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+
+  luigi:
+    image: "nsidc/luigi:dev"
+    build: "."
+    volumes:
+      # Code
+      - "./:/luigi/tasks/qgreenland:ro"
