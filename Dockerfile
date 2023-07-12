@@ -4,7 +4,7 @@
 
 FROM axiom/docker-luigi:3.0.3-alpine AS luigi
 # This build stage only exists to grab the luigi run script. Luigi dependency
-# itself is specified in `environment.yml`
+# itself is specified in our conda environment.
 # TODO: Why is this necessary? Does `luigid` not come along with the conda package?
 
 FROM mambaorg/micromamba:1.4.2 AS micromamba
@@ -15,7 +15,6 @@ USER root
 # `git` is required for analyzing the current version
 # `make` is required for building sphinx docs
 # `texlive-latex-extra` is required for pdf doc builds
-# TODO: Remove `make`
 RUN apt-get update && apt-get install -y \
   git \
   make \
@@ -32,9 +31,9 @@ COPY --chown=$MAMBA_USER:$MAMBA_USER . .
 # tolerate this user mismatch.
 RUN git config --global --add safe.directory "${TASKS_DIR}"
 
-# Set up the Luigi task environment and the command environment
-RUN micromamba install -y -n base -f conda-lock.yml
-RUN micromamba create -y -f environment.cmd.yml
+# Set up the main environment and the command environment
+RUN micromamba install --yes --name "base" --file "environments/main/conda-lock.yml"
+RUN micromamba create --yes --name "qgreenland-cmd" --file "environments/command/conda-lock.yml"
 
 # Cleanup
 RUN micromamba clean --all --yes

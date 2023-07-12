@@ -1,4 +1,6 @@
 name: qgreenland
+platforms:
+  - linux-64
 channels:
   - conda-forge
   - nodefaults
