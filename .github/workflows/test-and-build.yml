@@ -71,6 +71,11 @@ jobs:
     needs: ["test"]
     env:
       IMAGE_NAME: "nsidc/qgreenland"
+      # GitHub Actions expressions don't have great conditional support, so
+      # writing a ternary expression looks a lot like bash. In Python, this
+      # would read as:
+      #     'latest' if github.ref_type == 'branch' else github.ref_name
+      #     https://docs.github.com/en/actions/learn-github-actions/expressions
       IMAGE_TAG: "${{ github.ref_type == 'branch' && 'latest' || github.ref_name }}"
     steps:
       - name: "Check out repository"
