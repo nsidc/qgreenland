@@ -46,7 +46,7 @@ tectonic_plate_polygons = Layer(
             input_file="{input_dir}/" + f"{FN}.zip",
             output_file="{output_dir}/final.gpkg",
             ogr2ogr_args=(
-                "-nln",
+                "-nlt",
                 "MULTIPOLYGON",
                 "-spat",
                 "-180 40 180 90",
