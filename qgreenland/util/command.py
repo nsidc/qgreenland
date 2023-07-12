@@ -3,6 +3,7 @@ import subprocess
 from collections.abc import Sequence
 
 import qgreenland.exceptions as exc
+from qgreenland.constants.project import ENV_MANAGER
 from qgreenland.util.runtime_vars import EvalStr
 
 logger = logging.getLogger("luigi-interface")
@@ -16,19 +17,33 @@ def interpolate_args(
     return [arg.eval(**kwargs) for arg in args]
 
 
-def run_qgr_command(args: list[str]):
+def run_qgr_command(args: list[str]) -> None:
     """Run a command in the `qgreenland-cmd` environment."""
-    cmd = [".", "activate", "qgreenland-cmd", "&&"]
-    cmd.extend(args)
+    conda_env_name = "qgreenland-cmd"
+    # With conda or mamba, `. activate myenv` works as expected, but with micromamba, we
+    # need something a little different.
+    if ENV_MANAGER == "micromamba":
+        cmd = [
+            "eval",
+            '"$(micromamba shell hook -s posix)"',
+            "&&",
+            "micromamba",
+            "activate",
+            conda_env_name,
+            "&&",
+            *args,
+        ]
+
+    else:
+        cmd = [".", "activate", conda_env_name, "&&", *args]
 
     run_cmd(cmd)
+    return
 
 
-def run_cmd(args: list[str]):
+def run_cmd(args: list[str]) -> subprocess.CompletedProcess:
     """Run a command and log it."""
-    # Hack. The activation of a conda environment does not work as a list.
-    # `subprocess.run(..., shell=True, ...)` enables running commands from
-    # strings.
+    # Hack. The activation of a conda environment does not work without `shell=True`.
     cmd_str = " ".join(str(arg) for arg in args)
 
     logger.info("Running command:")

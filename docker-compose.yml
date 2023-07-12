@@ -5,8 +5,7 @@ services:
   # Luigi runs as a service and must have jobs submitted to it
   # (`scripts/run.sh`)
   luigi:
-    image: "nsidc/luigi:dev"
-    build: "."
+    image: "nsidc/luigi:local"
     container_name: "luigi"
     volumes:
       # Code
@@ -23,10 +22,12 @@ services:
       # locations temporarily, and we haven't re-tested yet.
       - "${DATA_WORKING_STORAGE_TMP:-./data/working-storage}:/working-storage:rw"
     environment:
-      - "LUIGI_CONFIG_PARSER=toml"
       - "ENVIRONMENT"
       - "EARTHDATA_USERNAME"
       - "EARTHDATA_PASSWORD"
+      - "QGREENLAND_ENV_MANAGER=micromamba"
+      # Configure Luigi to find its config in luigi/conf/luigi.toml
+      - "LUIGI_CONFIG_PARSER=toml"
       # Set `export PYTHONBREAKPOINT=ipdb.set_trace` to use `ipdb` by default
       # instead of `pdb`.
       - "PYTHONBREAKPOINT"
