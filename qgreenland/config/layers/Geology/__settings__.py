@@ -4,6 +4,7 @@ settings = LayerGroupSettings(
     order=[
         ":earthquakes",
         ":tectonic_plate_boundaries",
+        ":tectonic_plate_polygons",
         ":soil_types",
         "Geological map",
     ],
