@@ -1,4 +1,6 @@
 name: qgreenland
+platforms:
+  - linux-64
 channels:
   - conda-forge
   - nodefaults
@@ -10,7 +12,11 @@ dependencies:
   ################################################################
 
   - anytree ~=2.8.0
-  - click ~=8.0
+  # HACK: Click 8.1.4 introduces typechecking issues. Remove restriction after
+  # fixes are merged.
+  # https://github.com/pallets/click/issues/2558
+  # https://github.com/pallets/click/pull/2562/files
+  - click ~=8.0, <8.1.4
   - fiona ~=1.8.13
   - gdal ~=3.6.0
   - humanize ~=2.6.0
