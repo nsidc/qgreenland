@@ -13,7 +13,7 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: 71a7ea52b5937a81fdfc011b848ffc500aad75c949b547219cb7f7043733c0aa
+    linux-64: bde33209900a9e90365ec95c92a4e08d8beedebaebc51b0a80a5b18cfd84e989
   channels:
   - url: conda-forge
     used_env_vars: []
@@ -1822,16 +1822,16 @@ package:
   category: main
   optional: false
 - name: click
-  version: 8.1.4
+  version: 8.1.3
   manager: conda
   platform: linux-64
   dependencies:
     __unix: ''
     python: '>=3.8'
-  url: https://conda.anaconda.org/conda-forge/noarch/click-8.1.4-unix_pyh707e725_0.conda
+  url: https://conda.anaconda.org/conda-forge/noarch/click-8.1.3-unix_pyhd8ed1ab_2.tar.bz2
   hash:
-    md5: fcae73fbdce7981fd500c626bb1ba6ab
-    sha256: 63f2b103488ba80b274f25bade66394fdd02344024fce45ab44e45861931c61d
+    md5: 20e4087407c7cb04a40817114b333dbf
+    sha256: 23676470b591b100393bb0f6c46fe10624dcbefc696a6a9f42932ed8816ef0ea
   category: main
   optional: false
 - name: colorama
