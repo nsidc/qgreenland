@@ -48,16 +48,17 @@ tectonic_plate_polygons = Layer(
             ogr2ogr_args=(
                 "-nlt",
                 "MULTIPOLYGON",
-                "-spat",
-                "-180 40 180 90",
-                # using the background boundary extent does not work. It leads
-                # to the Juan de Fuca plate being excluded.
-                # project.boundaries["background"].bbox.min_x,
-                # project.boundaries["background"].bbox.min_y,
-                # project.boundaries["background"].bbox.max_x,
-                # project.boundaries["background"].bbox.max_y,
-                # '-spat_srs',
-                # project.crs,
+                # Use SQL to exclude Antarctica. Without this exclusion,
+                # Antarctica gets included in the output, despite being clipped
+                # to the background boundary. We think this has something to do
+                # with reprojection causing verticies of Antarctica to be
+                # outside of the project projection's valid coordinate space
+                # (the edge where the polygon meets the dateline extends into
+                # infinity).
+                "-dialect",
+                "sqlite",
+                "-sql",
+                "\"SELECT * FROM PB2002_plates where PlateName != 'Antarctica'\"",
             ),
             boundary_filepath=project.boundaries["background"].filepath,
             decompress_step_kwargs={
