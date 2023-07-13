@@ -35,8 +35,7 @@ tectonic_plate_polygons = Layer(
     title="Tectonic plates",
     description=("""Polygons representing tectonic plates."""),
     tags=[],
-    # TODO
-    style=None,
+    style="tectonic_plate_polygons",
     input=LayerInput(
         dataset=dataset,
         asset=dataset.assets["only"],
