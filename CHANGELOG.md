@@ -5,6 +5,7 @@
 * Add "Geology/Tectonic plates" polygon layer. This layer accompanies the
   existing "Geology/Tectonic plate boundaries" polyline layer from the same
   dataset.
+* Fix descriptions of "Hydrology" outlets and basins layers.
 
 
 # v3.0.0alpha3 (2023-07-05)

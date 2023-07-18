@@ -71,10 +71,7 @@ layers = [
     Layer(
         id=layer_id,
         title=layer_id.replace("_", " ").capitalize(),
-        description=(
-            """Calculated locations for subglacial hydrologic basin
-            ice-margin-terminating outlets."""
-        ),
+        description=params["description"],
         tags=[],
         style=layer_id.replace("_filled", ""),
         input=LayerInput(
