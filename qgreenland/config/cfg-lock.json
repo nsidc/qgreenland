@@ -18672,7 +18672,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated locations for subglacial hydrologic basin ice-margin-terminating outlets.",
               "id": "ice_outlets",
               "in_package": true,
               "input": {
@@ -18709,7 +18709,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated locations for terrestrial hydrologic basin coast-terminating outlets.",
               "id": "land_outlets",
               "in_package": true,
               "input": {
@@ -18746,7 +18746,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated subglacial hydrologic stream paths.",
               "id": "ice_streams",
               "in_package": true,
               "input": {
@@ -18787,7 +18787,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated ice sheet hydrologic basins using regional climate model spatial coverage.",
               "id": "ice_basins",
               "in_package": true,
               "input": {
@@ -18824,7 +18824,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated ice sheet hydrologic basins including areas classified as land/ocean by regional climate models (filled).",
               "id": "ice_basins_filled",
               "in_package": true,
               "input": {
@@ -18861,7 +18861,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated terrestrial hydrologic stream paths.",
               "id": "land_streams",
               "in_package": true,
               "input": {
@@ -18902,7 +18902,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated terrestrial hydrologic basins using regional climate model spatial coverage.",
               "id": "land_basins",
               "in_package": true,
               "input": {
@@ -18939,7 +18939,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated terrestrial hydrologic basins including areas classified as ice/ocean by regional climate models (filled).",
               "id": "land_basins_filled",
               "in_package": true,
               "input": {
