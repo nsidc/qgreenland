@@ -2,6 +2,9 @@
 
 * QGreenland Custom is no longer supported.
 * Remove "Biology/Fish/Arctic Char" layer.
+* Add "Geology/Tectonic plates" polygon layer. This layer accompanies the
+  existing "Geology/Tectonic plate boundaries" polyline layer from the same
+  dataset.
 
 
 # v3.0.0alpha3 (2023-07-05)

@@ -28,3 +28,42 @@ tectonic_plate_boundaries = Layer(
         ),
     ],
 )
+
+
+tectonic_plate_polygons = Layer(
+    id="tectonic_plate_polygons",
+    title="Tectonic plates",
+    description=("""Polygons representing tectonic plates."""),
+    tags=[],
+    style="tectonic_plate_polygons",
+    input=LayerInput(
+        dataset=dataset,
+        asset=dataset.assets["only"],
+    ),
+    steps=[
+        *compressed_vector(
+            input_file="{input_dir}/" + f"{FN}.zip",
+            output_file="{output_dir}/final.gpkg",
+            ogr2ogr_args=(
+                "-nlt",
+                "MULTIPOLYGON",
+                # Use SQL to exclude Antarctica. Without this exclusion,
+                # Antarctica gets included in the output, despite being clipped
+                # to the background boundary. We think this has something to do
+                # with reprojection causing verticies of Antarctica to be
+                # outside of the project projection's valid coordinate space
+                # (the edge where the polygon meets the dateline extends into
+                # infinity).
+                "-dialect",
+                "sqlite",
+                "-sql",
+                "\"SELECT * FROM PB2002_plates where PlateName != 'Antarctica'\"",
+            ),
+            boundary_filepath=project.boundaries["background"].filepath,
+            decompress_step_kwargs={
+                "decompress_contents_mask": f"{FN}/PB2002_plates.*",
+            },
+            vector_filename=f"{FN}/*.shp",
+        ),
+    ],
+)
