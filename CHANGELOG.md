@@ -2,6 +2,7 @@
 
 * QGreenland Custom is no longer supported.
 * Remove "Biology/Fish/Arctic Char" layer.
+* Fix descriptions of "Hydrology" outlets and basins layers.
 
 
 # v3.0.0alpha3 (2023-07-05)
