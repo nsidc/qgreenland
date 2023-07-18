@@ -12660,6 +12660,59 @@
           },
           {
             "layer_cfg": {
+              "description": "Polygons representing tectonic plates.",
+              "id": "tectonic_plate_polygons",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "tectonic_plates"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae.zip",
+                    "-d",
+                    "{output_dir}",
+                    "tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.*"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-nlt",
+                    "MULTIPOLYGON",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT * FROM PB2002_plates where PlateName != 'Antarctica'\"",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "tectonic_plate_polygons",
+              "tags": [],
+              "title": "Tectonic plates"
+            },
+            "name": "tectonic_plate_polygons"
+          },
+          {
+            "layer_cfg": {
               "description": "Polygons representing dominant soil characteristics with percentage\npolygon area for each soil type. Data coverage limited to Greenland.",
               "id": "soil_types",
               "in_package": true,
@@ -12867,6 +12920,7 @@
           "order": [
             ":earthquakes",
             ":tectonic_plate_boundaries",
+            ":tectonic_plate_polygons",
             ":soil_types",
             "Geological map"
           ],
