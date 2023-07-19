@@ -8,7 +8,7 @@ layers = [
         id=layer_id,
         title=layer_id.capitalize(),
         style="labeled_point",
-        description=f"Points representing {layer_id} in Greenland.",
+        description=params["description"],
         tags=["places"],
         input=LayerInput(
             dataset=asiaq_nunagis,
@@ -30,5 +30,33 @@ layers = [
             ),
         ],
     )
-    for layer_id in ("cities", "settlements")
+    for layer_id, params in {
+        "cities": {
+            "description": (
+                """Points representing cities in Greenland.
+
+QGreenland Team - Noted Data Issues:
+
+* West coast of Greenland, near Paamiut: Ivittuut is abandoned."""
+            ),
+        },
+        "settlements": {
+            "description": (
+                """Points representing settlements in Greenland.
+
+QGreenland Team - Noted Data Issues:
+
+* East Greenland: Ikkatteq is an abandoned airstrip and is not populated.
+
+* Near Ittoqqortoormiit: Uunartoq is abandoned.
+
+* Near Qaanaaq: Qeqertarsuaq and Moriusaq are abandoned.
+
+* Near Upernavik: Tussaaq is abandoned.
+
+* Near Uummannaq: Illorsuit and Nuugaatsiaq are two recently abandoned
+  settlements (2017) due a massive landslide and subsequent tsunami."""
+            ),
+        },
+    }.items()
 ]
