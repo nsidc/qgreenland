@@ -1,9 +1,11 @@
+from qgreenland.config.datasets.gtn_permafrost import gtn_permafrost
 from qgreenland.config.datasets.pangaea_ground_temperature import (
-    pangaea_ground_temperature as dataset,
+    pangaea_ground_temperature as pangaea_dataset,
 )
 from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -36,7 +38,7 @@ _layer_params = {
 }
 
 
-layers = [
+pangaea_layers = [
     Layer(
         id=layer_id,
         title=params["title"],
@@ -44,8 +46,8 @@ layers = [
         tags=[],
         style=params["style"],
         input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["10km"],
+            dataset=pangaea_dataset,
+            asset=pangaea_dataset.assets["10km"],
         ),
         steps=[
             *warp_and_cut(
@@ -84,4 +86,62 @@ layers = [
         ],
     )
     for layer_id, params in _layer_params.items()
+]
+
+gtn_permafrost_layers = [
+    Layer(
+        id=layer_id,
+        title=params["title"],
+        description=params["description"],
+        tags=[],
+        style=params["style"],
+        input=LayerInput(
+            dataset=gtn_permafrost,
+            asset=gtn_permafrost.assets[params["asset"]],
+        ),
+        steps=[
+            *ogr2ogr(
+                input_file="{input_dir}/*.csv",
+                output_file="{output_dir}/final.gpkg",
+                ogr2ogr_args=(
+                    "-s_srs",
+                    "EPSG:4326",
+                    # The geometry is encoded as a WKT `Point`
+                    "-oo",
+                    "GEOM_POSSIBLE_NAMES=geom_ref",
+                    "-oo",
+                    "AUTODETECT_TYPE=YES",
+                    *params["ogr2ogr_args"],
+                ),
+            ),
+        ],
+    )
+    for layer_id, params in {
+        "boreholes": {
+            "title": "Thermal State of Permafrost (TSP) monitoring sites",
+            "description": (
+                """The maps of boreholes display the location of all
+                Thermal State of Permafrost (TSP) monitoring sites contained in
+                the GTN-P database.
+
+                """
+            ),
+            "style": None,
+            "asset": "boreholes",
+            "ogr2ogr_args": (),
+        },
+        "calm_sites": {
+            "title": "Active Layer Monitoring sites",
+            "description": "The maps of Circumpolar Active Layer Thickness Monitoring (CALM) sites display the location of all monitoring sites contained in the GTN-P database.",
+            "style": None,
+            "asset": "calm_sites",
+            "ogr2ogr_args": (
+                # Layer creation option: Use "ID" as a FID column instead of
+                # the existing "FID", which is a string. `ogr2ogr` complains
+                # that this is an invalid type for the FID column otherwise.
+                "-lco",
+                "FID=ID",
+            ),
+        },
+    }.items()
 ]
