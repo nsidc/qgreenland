@@ -31,9 +31,9 @@ layers = [
         ],
     )
     for layer_id, params in {
-        "cities": {
+        "towns": {
             "description": (
-                """Points representing cities in Greenland.
+                """Points representing towns/cities in Greenland.
 
 QGreenland Team - Noted Data Issues:
 

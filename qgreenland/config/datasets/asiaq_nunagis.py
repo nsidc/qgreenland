@@ -21,7 +21,7 @@ asiaq_nunagis = Dataset(
             url="https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/0/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC",
         ),
         ogr_remote_asset(
-            asset_id="cities",
+            asset_id="towns",
             output_file="{output_dir}/fetched.geojson",
             url="https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/1/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC",
         ),

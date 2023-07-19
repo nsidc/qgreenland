@@ -6,11 +6,11 @@
   existing "Geology/Tectonic plate boundaries" polyline layer from the same
   dataset.
 * Fix descriptions of "Hydrology" outlets and basins layers.
-* Add new "Places" layers: "Cities" and "Settlements". These layers replace the
+* Add new "Places" layers: "Towns" and "Settlements". These layers replace the
   previously removed "Towns and settlements" layer.
 * Rename "Places/Place names database" -> "Places/Points of interest". Towns and
   settlements are now excluded from this layer (in favor of the more-up-to-date
-  "Cities" and "Settlements" layers.
+  "Towns" and "Settlements" layers.
 
 
 # v3.0.0alpha3 (2023-07-05)

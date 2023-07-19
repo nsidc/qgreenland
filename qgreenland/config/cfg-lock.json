@@ -81,16 +81,6 @@
           ],
           "id": "buildings"
         },
-        "cities": {
-          "args": [
-            "ogr2ogr",
-            "-oo",
-            "FEATURE_SERVER_PAGING=YES",
-            "{output_dir}/fetched.geojson",
-            "\"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/1/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC\""
-          ],
-          "id": "cities"
-        },
         "roads": {
           "args": [
             "ogr2ogr",
@@ -110,6 +100,16 @@
             "\"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/0/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC\""
           ],
           "id": "settlements"
+        },
+        "towns": {
+          "args": [
+            "ogr2ogr",
+            "-oo",
+            "FEATURE_SERVER_PAGING=YES",
+            "{output_dir}/fetched.geojson",
+            "\"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/1/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC\""
+          ],
+          "id": "towns"
         }
       },
       "id": "asiaq_nunagis",
@@ -3420,12 +3420,12 @@
         "children": [
           {
             "layer_cfg": {
-              "description": "Points representing cities in Greenland.\n\nQGreenland Team - Noted Data Issues:\n\n* West coast of Greenland, near Paamiut: Ivittuut is abandoned.",
-              "id": "cities",
+              "description": "Points representing towns/cities in Greenland.\n\nQGreenland Team - Noted Data Issues:\n\n* West coast of Greenland, near Paamiut: Ivittuut is abandoned.",
+              "id": "towns",
               "in_package": true,
               "input": {
                 "asset": {
-                  "id": "cities"
+                  "id": "towns"
                 },
                 "dataset": {
                   "id": "asiaq_nunagis"
@@ -3444,7 +3444,7 @@
                     "{assets_dir}/greenland_rectangle.geojson",
                     "-makevalid",
                     "-nln",
-                    "cities",
+                    "towns",
                     "-dialect",
                     "sqlite",
                     "-sql",
@@ -3459,9 +3459,9 @@
               "tags": [
                 "places"
               ],
-              "title": "Cities"
+              "title": "Towns"
             },
-            "name": "cities"
+            "name": "towns"
           },
           {
             "layer_cfg": {
@@ -3632,7 +3632,7 @@
         "settings": {
           "expand": false,
           "order": [
-            ":cities",
+            ":towns",
             ":settlements",
             ":points_of_interest",
             ":roads",
