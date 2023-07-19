@@ -18,6 +18,12 @@ cities = Layer(
             input_file="{input_dir}/fetched.geojson",
             output_file="{output_dir}/final.gpkg",
             boundary_filepath=project.boundaries["data"].filepath,
+            ogr2ogr_args=(
+                "-dialect",
+                "sqlite",
+                "-sql",
+                "\"SELECT geometry, Ny_grønlandsk as 'New Greenlandic', Gammel_grønlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM ESRIJSON\"",
+            ),
         ),
     ],
 )
@@ -37,6 +43,12 @@ settlements = Layer(
             input_file="{input_dir}/fetched.geojson",
             output_file="{output_dir}/final.gpkg",
             boundary_filepath=project.boundaries["data"].filepath,
+            ogr2ogr_args=(
+                "-dialect",
+                "sqlite",
+                "-sql",
+                "\"SELECT geometry, Ny_grønlandsk as 'New Greenlandic', Gammel_grønlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM ESRIJSON\"",
+            ),
         ),
     ],
 )
