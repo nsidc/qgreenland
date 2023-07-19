@@ -3612,7 +3612,7 @@
                     "{assets_dir}/greenland_rectangle.geojson",
                     "-makevalid",
                     "-sql",
-                    "'SELECT *, \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'",
+                    "'SELECT *, \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined WHERE \"Object designation\" NOT IN (\"BY\", \"BYGD\")'",
                     "{output_dir}/final.gpkg",
                     "{input_dir}/translations_joined.gpkg"
                   ],
