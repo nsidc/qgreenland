@@ -3420,47 +3420,6 @@
         "children": [
           {
             "layer_cfg": {
-              "description": "Points representing named points of interest in Greenland.",
-              "id": "comprehensive_places",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "asiaq_private_placenames"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "-sql",
-                    "'SELECT *, \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/translations_joined.gpkg"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "labeled_point",
-              "tags": [
-                "places"
-              ],
-              "title": "Place names database"
-            },
-            "name": "comprehensive_places"
-          },
-          {
-            "layer_cfg": {
               "description": "Polygons representing buildings in Greenland.\n\nThe attribute containing building use is called \u2018Info\u2019 and is provided in Danish.",
               "id": "buildings",
               "in_package": true,
@@ -3539,7 +3498,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Points representing cities in Greenland.",
+              "description": "Points representing cities in Greenland.\n\nQGreenland Team - Noted Data Issues:\n\n* West coast of Greenland, near Paamiut: Ivittuut is abandoned.",
               "id": "cities",
               "in_package": true,
               "input": {
@@ -3584,7 +3543,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Points representing settlements in Greenland.",
+              "description": "Points representing settlements in Greenland.\n\nQGreenland Team - Noted Data Issues:\n\n* East Greenland: Ikkatteq is an abandoned airstrip and is not populated.\n\n* Near Ittoqqortoormiit: Uunartoq is abandoned.\n\n* Near Qaanaaq: Qeqertarsuaq and Moriusaq are abandoned.\n\n* Near Upernavik: Tussaaq is abandoned.\n\n* Near Uummannaq: Illorsuit and Nuugaatsiaq are two recently abandoned\n  settlements (2017) due a massive landslide and subsequent tsunami.",
               "id": "settlements",
               "in_package": true,
               "input": {
@@ -3626,17 +3585,58 @@
               "title": "Settlements"
             },
             "name": "settlements"
+          },
+          {
+            "layer_cfg": {
+              "description": "Points representing named points of interest in Greenland.",
+              "id": "comprehensive_places",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "asiaq_private_placenames"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-sql",
+                    "'SELECT *, \"English explanation of Object designation\" || \":\" || \"New Greenlandic\" as label FROM translations_joined'",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/translations_joined.gpkg"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [
+                "places"
+              ],
+              "title": "Place names database"
+            },
+            "name": "comprehensive_places"
           }
         ],
         "name": "Places",
         "settings": {
           "expand": false,
           "order": [
-            ":comprehensive_places",
             ":buildings",
             ":roads",
             ":cities",
-            ":settlements"
+            ":settlements",
+            ":comprehensive_places"
           ],
           "show": false
         }
