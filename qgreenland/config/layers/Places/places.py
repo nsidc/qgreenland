@@ -6,7 +6,7 @@ from qgreenland.models.config.layer import Layer, LayerInput
 cities = Layer(
     id="cities",
     title="Cities",
-    # style=None,
+    style="labeled_point",
     description="""Lines representing roads in Greenland.""",
     tags=["places"],
     input=LayerInput(
@@ -19,10 +19,12 @@ cities = Layer(
             output_file="{output_dir}/final.gpkg",
             boundary_filepath=project.boundaries["data"].filepath,
             ogr2ogr_args=(
+                "-nln",
+                "cities",
                 "-dialect",
                 "sqlite",
                 "-sql",
-                "\"SELECT geometry, Ny_grønlandsk as 'New Greenlandic', Gammel_grønlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM ESRIJSON\"",
+                "\"SELECT geometry, Ny_grønlandsk as 'New Greenlandic', Ny_grønlandsk as 'label', Gammel_grønlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM ESRIJSON\"",
             ),
         ),
     ],
@@ -31,7 +33,7 @@ cities = Layer(
 settlements = Layer(
     id="settlements",
     title="Settlements",
-    # style=None,
+    style="labeled_point",
     description="""Lines representing roads in Greenland.""",
     tags=["places"],
     input=LayerInput(
@@ -44,10 +46,12 @@ settlements = Layer(
             output_file="{output_dir}/final.gpkg",
             boundary_filepath=project.boundaries["data"].filepath,
             ogr2ogr_args=(
+                "-nln",
+                "settlements",
                 "-dialect",
                 "sqlite",
                 "-sql",
-                "\"SELECT geometry, Ny_grønlandsk as 'New Greenlandic', Gammel_grønlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM ESRIJSON\"",
+                "\"SELECT geometry, Ny_grønlandsk as 'New Greenlandic', Ny_grønlandsk as 'label', Gammel_grønlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM ESRIJSON\"",
             ),
         ),
     ],
