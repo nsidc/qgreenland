@@ -3420,84 +3420,6 @@
         "children": [
           {
             "layer_cfg": {
-              "description": "Polygons representing buildings in Greenland.\n\nThe attribute containing building use is called \u2018Info\u2019 and is provided in Danish.",
-              "id": "buildings",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "buildings"
-                },
-                "dataset": {
-                  "id": "asiaq_nunagis"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/fetched.geojson"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "buildings_shape",
-              "tags": [
-                "places"
-              ],
-              "title": "Buildings"
-            },
-            "name": "buildings"
-          },
-          {
-            "layer_cfg": {
-              "description": "Lines representing roads in Greenland.",
-              "id": "roads",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "roads"
-                },
-                "dataset": {
-                  "id": "asiaq_nunagis"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/greenland_rectangle.geojson",
-                    "-makevalid",
-                    "{output_dir}/final.gpkg",
-                    "{input_dir}/fetched.geojson"
-                  ],
-                  "type": "command"
-                }
-              ],
-              "style": "roads_line",
-              "tags": [
-                "places"
-              ],
-              "title": "Roads"
-            },
-            "name": "roads"
-          },
-          {
-            "layer_cfg": {
               "description": "Points representing cities in Greenland.\n\nQGreenland Team - Noted Data Issues:\n\n* West coast of Greenland, near Paamiut: Ivittuut is abandoned.",
               "id": "cities",
               "in_package": true,
@@ -3589,7 +3511,7 @@
           {
             "layer_cfg": {
               "description": "Points representing named points of interest in Greenland.",
-              "id": "comprehensive_places",
+              "id": "points_of_interest",
               "in_package": true,
               "input": {
                 "asset": {
@@ -3623,20 +3545,98 @@
               "tags": [
                 "places"
               ],
-              "title": "Place names database"
+              "title": "Points of interest"
             },
-            "name": "comprehensive_places"
+            "name": "points_of_interest"
+          },
+          {
+            "layer_cfg": {
+              "description": "Lines representing roads in Greenland.",
+              "id": "roads",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "roads"
+                },
+                "dataset": {
+                  "id": "asiaq_nunagis"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/fetched.geojson"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "roads_line",
+              "tags": [
+                "places"
+              ],
+              "title": "Roads"
+            },
+            "name": "roads"
+          },
+          {
+            "layer_cfg": {
+              "description": "Polygons representing buildings in Greenland.\n\nThe attribute containing building use is called \u2018Info\u2019 and is provided in Danish.",
+              "id": "buildings",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "buildings"
+                },
+                "dataset": {
+                  "id": "asiaq_nunagis"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/fetched.geojson"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "buildings_shape",
+              "tags": [
+                "places"
+              ],
+              "title": "Buildings"
+            },
+            "name": "buildings"
           }
         ],
         "name": "Places",
         "settings": {
           "expand": false,
           "order": [
-            ":buildings",
-            ":roads",
             ":cities",
             ":settlements",
-            ":comprehensive_places"
+            ":points_of_interest",
+            ":roads",
+            ":buildings"
           ],
           "show": false
         }

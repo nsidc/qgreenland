@@ -3,9 +3,9 @@ from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 
-comprehensive_places = Layer(
-    id="comprehensive_places",
-    title="Place names database",
+points_of_interest = Layer(
+    id="points_of_interest",
+    title="Points of interest",
     description="Points representing named points of interest in Greenland.",
     tags=["places"],
     style="labeled_point",
