@@ -81,6 +81,16 @@
           ],
           "id": "buildings"
         },
+        "cities": {
+          "args": [
+            "ogr2ogr",
+            "-oo",
+            "FEATURE_SERVER_PAGING=YES",
+            "{output_dir}/fetched.geojson",
+            "\"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/1/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC\""
+          ],
+          "id": "cities"
+        },
         "roads": {
           "args": [
             "ogr2ogr",
@@ -90,6 +100,16 @@
             "\"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Kortportal_TekniskGrundkort/MapServer/38/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC\""
           ],
           "id": "roads"
+        },
+        "settlements": {
+          "args": [
+            "ogr2ogr",
+            "-oo",
+            "FEATURE_SERVER_PAGING=YES",
+            "{output_dir}/fetched.geojson",
+            "\"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/0/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC\""
+          ],
+          "id": "settlements"
         }
       },
       "id": "asiaq_nunagis",
@@ -3557,6 +3577,96 @@
               "title": "Roads"
             },
             "name": "roads"
+          },
+          {
+            "layer_cfg": {
+              "description": "Points representing cities in Greenland.",
+              "id": "cities",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "cities"
+                },
+                "dataset": {
+                  "id": "asiaq_nunagis"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-nln",
+                    "cities",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT geometry, Ny_gr\u00f8nlandsk as 'New Greenlandic', Ny_gr\u00f8nlandsk as 'label', Gammel_gr\u00f8nlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM ESRIJSON\"",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/fetched.geojson"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [
+                "places"
+              ],
+              "title": "Cities"
+            },
+            "name": "cities"
+          },
+          {
+            "layer_cfg": {
+              "description": "Points representing settlements in Greenland.",
+              "id": "settlements",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "settlements"
+                },
+                "dataset": {
+                  "id": "asiaq_nunagis"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/greenland_rectangle.geojson",
+                    "-makevalid",
+                    "-nln",
+                    "settlements",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT geometry, Ny_gr\u00f8nlandsk as 'New Greenlandic', Ny_gr\u00f8nlandsk as 'label', Gammel_gr\u00f8nlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM ESRIJSON\"",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/fetched.geojson"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "labeled_point",
+              "tags": [
+                "places"
+              ],
+              "title": "Settlements"
+            },
+            "name": "settlements"
           }
         ],
         "name": "Places",
@@ -3566,7 +3676,9 @@
             ":populated_places",
             ":comprehensive_places",
             ":buildings",
-            ":roads"
+            ":roads",
+            ":cities",
+            ":settlements"
           ],
           "show": false
         }
