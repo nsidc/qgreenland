@@ -23,7 +23,8 @@ comprehensive_places = Layer(
                 (
                     '\'SELECT *, "English explanation of Object designation"'
                     ' || ":" || "New Greenlandic" as label'
-                    " FROM translations_joined'"
+                    " FROM translations_joined"
+                    ' WHERE "Object designation" NOT IN ("BY", "BYGD")\''
                 ),
             ),
         ),
