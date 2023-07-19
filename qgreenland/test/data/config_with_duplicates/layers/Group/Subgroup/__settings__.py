@@ -1,11 +1,15 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+    LayerIdentifier,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "Foo",
-        ":example_online",
-        "Baz",
-        "Bar",
-        ":example_raster",
+        LayerGroupIdentifier("Foo"),
+        LayerIdentifier("example_online"),
+        LayerGroupIdentifier("Baz"),
+        LayerGroupIdentifier("Bar"),
+        LayerIdentifier("example_raster"),
     ],
 )

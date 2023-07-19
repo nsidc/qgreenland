@@ -1,8 +1,8 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
 
 settings = LayerGroupSettings(
     order=[
-        ":example_online",
-        ":example_raster",
+        LayerIdentifier("example_online"),
+        LayerIdentifier("example_raster"),
     ],
 )

@@ -17,7 +17,9 @@ from qgreenland.models.config.asset import ManualAsset
 from qgreenland.models.config.layer import Layer
 from qgreenland.models.config.layer_group import (
     AnyGroupSettings,
+    LayerGroupIdentifier,
     LayerGroupSettings,
+    LayerIdentifier,
     RootGroupSettings,
 )
 from qgreenland.util.json import MagicJSONEncoder
@@ -206,12 +208,14 @@ def _manual_ordering_strategy(
 
     for s in settings.order:
         try:
-            if s.startswith(":"):
-                matcher = lambda x, s=s: isinstance(x, Layer) and x.id == s[1:]
-                thing_desc = f'layer id "{s[1:]}"'
-            else:
-                matcher = lambda x, s=s: isinstance(x, Path) and x.name == s
+            if isinstance(s, LayerIdentifier):
+                matcher = lambda x, s=s: isinstance(x, Layer) and x.id == str(s)
+                thing_desc = f'layer id "{s}"'
+            elif isinstance(s, LayerGroupIdentifier):
+                matcher = lambda x, s=s: isinstance(x, Path) and x.name == str(s)
                 thing_desc = f'group/directory "{s}"'
+            else:
+                raise TypeError("This should never happen")
 
             matches = funcy.lfilter(matcher, layers_and_groups)
             if len(matches) != 1:
