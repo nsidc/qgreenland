@@ -94,12 +94,12 @@
       },
       "id": "asiaq_nunagis",
       "metadata": {
-        "abstract": "The NunaGIS data server provides data for the the Asiaq Map\nPortal Technical Basemap, which includes a variety of datasets.",
+        "abstract": "ASIAQ Greenland Survey undertakes surveys and research projects,\nbased on non-living physical data from the environment in\nGreenland. Our data are derived from; mapping of cities and\nnon-urban areas, measuring of water resources, climate monitoring,\nsoil testing, surveying and stakeouts at construction projects. All\nthese, provides a unique knowledge of the arctic climate, soil\nconditions, water resources and topography of Greenland, which makes\npossible for the Greenlandic society, partners, and costumers to\nplan and exploit the physical environment and resources.\n\nAsiaq is 100% owned by the Greenlandic Government and had surveyed\nall around in Greenland for more than 60 years.\n\nData were retreived from the NunaGIS data server, which provides\ndata for the the Asiaq Map Portal\n(https://kort.nunagis.gl/refserver/rest/services/Kortportal/). To\nlearn more about NunaGIS, see: https://nunagis-asiaq.hub.arcgis.com/.",
         "citation": {
-          "text": "NunaGIS (2023). Date accessed: {{date_accessed}}.",
-          "url": "https://kort.nunagis.gl/refserver/rest/services/Kortportal/Kortportal_TekniskGrundkort/MapServer"
+          "text": "ASIAQ Greenland Survey (2023). Date accessed: {{date_accessed}}.",
+          "url": "https://www.asiaq-greenlandsurvey.gl/"
         },
-        "title": "Asiaq Map Portal Techincal Basemap"
+        "title": "Asiaq Map Portal"
       }
     },
     "asiaq_private_placenames": {
@@ -179,26 +179,6 @@
         "title": "Likely Basal Thermal State of the Greenland Ice Sheet"
       }
     },
-    "bathymetric_chart": {
-      "assets": {
-        "only": {
-          "id": "only",
-          "urls": [
-            "https://www.bodc.ac.uk/data/open_download/ibcao/ibcao_v4_400m_ice/cfnetcdf/"
-          ],
-          "verify_tls": true
-        }
-      },
-      "id": "bathymetric_chart",
-      "metadata": {
-        "abstract": "The goal of the IBCAO initiative is to develop a digital database\nthat contains all available bathymetric data north of 64\u00b0 North, for\nuse by mapmakers, researchers, institutions, and others whose work\nrequires a detailed and accurate knowledge of the depth and the\nshape of the Arctic seabed.",
-        "citation": {
-          "text": "GEBCO Compilation Group (2020) GEBCO 2020 Grid\n(doi:10.5285/a29c5465-b138-234d-e053-6c86abc040b9)",
-          "url": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/arctic_ocean/"
-        },
-        "title": "Bathymetric Chart of the Arctic Ocean (IBCAO)"
-      }
-    },
     "bedmachine": {
       "assets": {
         "only": {
@@ -215,26 +195,6 @@
           "url": "https://doi.org/10.5067/GMEVBWFLWA7X"
         },
         "title": "IceBridge BedMachine Greenland, Version 5"
-      }
-    },
-    "caff_char": {
-      "assets": {
-        "only": {
-          "id": "only",
-          "urls": [
-            "http://geo.abds.is/geonetwork/srv/api/records/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce/attachments/Arctic_Char_2010.zip"
-          ],
-          "verify_tls": true
-        }
-      },
-      "id": "caff_char",
-      "metadata": {
-        "abstract": "Circumpolar distribution of Arctic Char species complex\nSalvelinus alpinus, and related species.  Arctic Biodiversity\nAssessment, Chapter 6: Fishes: http://www.caff.is/assessment-series/\n10-arctic-biodiversity-assessment/211-arctic-biodiversity-assessment\n-2013-chapter-6-fishes.",
-        "citation": {
-          "text": "Conservation of Arctic Flora and Fauna (CAFF www.caff.is)\nworking group of the Arctic Council",
-          "url": "http://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/4dc7f9b6-b553-445a-a8a3-a0ece574e8ce"
-        },
-        "title": "Circumpolar distribution of arctic char species complex Salvelinus alpinus, and related species"
       }
     },
     "caff_murre_colonies": {
@@ -255,6 +215,26 @@
           "url": "https://abds.is/index.php/publications/species/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north"
         },
         "title": "The distribution of thick-billed and common murre colonies in the North."
+      }
+    },
+    "circumpolar_arctic_vegetation_map": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://data.mendeley.com/public-files/datasets/c4xj5rv6kv/files/5223c414-234a-498c-ae08-3100cb38510f/file_downloaded"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "circumpolar_arctic_vegetation_map",
+      "metadata": {
+        "abstract": "Land cover maps are the basic data layer required for\nunderstanding and modeling ecological patterns and processes. The\nCircumpolar Arctic Vegetation Map (CAVM), produced in 2003, has been\nwidely used as a base map for studies in the arctic tundra\nbiome. However, the relatively coarse resolution and vector format\nof the map were not compatible with many other data sets. We present\na new version of the CAVM, building on the strengths of the original\nmap, while providing a finer spatial resolution, raster format, and\nimproved mapping. The Raster CAVM uses the legend, extent and\nprojection of the original CAVM. The legend has 16 vegetation types,\nglacier, saline water, freshwater, and non-arctic land. The Raster\nCAVM divides the original rock-water-vegetation complex map unit\nthat mapped the Canadian Shield into two map units, distinguishing\nbetween areas with lichen- and shrub-dominated vegetation. In\ncontrast to the original hand-drawn CAVM, the new map is based on\nunsupervised classifications of seventeen geographic/floristic\nsub-sections of the Arctic, using AVHRR and MODIS data (reflectance\nand NDVI) and elevation data. The units resulting from the\nclassification were modeled to the CAVM types using a wide variety\nof ancillary data. The map was reviewed by experts familiar with\ntheir particular region, including many of the original authors of\nthe CAVM from Canada, Greenland (Denmark), Iceland, Norway\n(including Svalbard), Russia, and the U.S. The analysis presented\nhere summarizes the area, geographical distribution, elevation,\nsummer temperatures, and NDVI of the map units. The greater spatial\nresolution of the Raster CAVM allowed more detailed mapping of\nwater-bodies and mountainous areas. It portrays coastal-inland\ngradients, and better reflects the heterogeneity of vegetation type\ndistribution than the original CAVM. Accuracy assessment of random\n1-km pixels interpreted from 6 Landsat scenes showed an average of\n70 % accuracy, up from 39 % for the original CAVM. The distribution\nof shrub-dominated types changed the most, with more prostrate shrub\ntundra mapped in mountainous areas, and less low shrub tundra in\nlowland areas. This improved mapping is important for quantifying\nexisting and potential changes to land cover, a key environmental\nindicator for modeling and monitoring ecosystems.\n\nRelated Publication:\n\nMartha K. Raynolds, Donald A. Walker, Andrew Balser, Christian Bay,\nMitch Campbell, Mikhail M. Cherosov, Fred J.A. Dani\u00ebls, Pernille\nBronken Eidesen, Ksenia A. Ermokhina, Gerald V. Frost, Birgit\nJedrzejek, M. Torre Jorgenson, Blair E. Kennedy, Sergei S. Kholod,\nIgor A. Lavrinenko, Olga V. Lavrinenko, Borg\u00fe\u00f3r Magn\u00fasson, Nadezhda\nV. Matveyeva, Sigmar Met\u00fasalemsson, Lennart Nilsen, Ian Olthof, Igor\nN. Pospelov, Elena B. Pospelova, Darren Pouliot, Vladimir Razzhivin,\nGabriela Schaepman-Strub, Jozef \u0160ib\u00edk, Mikhail Yu. Telyatnikov,\nElena Troeva, A raster version of the Circumpolar Arctic Vegetation\nMap (CAVM), Remote Sensing of Environment, Volume 232, 2019, 111297,\nISSN 0034-4257,\nhttps://doi.org/10.1016/j.rse.2019.111297. (https://www.sciencedirect.com/science/article/pii/S0034425719303165).",
+        "citation": {
+          "text": "Raynolds, Martha; Walker, Donald (2022), 'Raster Circumpolar\nArctic Vegetation Map', Mendeley Data, V2, doi:\n10.17632/c4xj5rv6kv.2",
+          "url": "https://data.mendeley.com/datasets/c4xj5rv6kv/2"
+        },
+        "title": "Raster Circumpolar Arctic Vegetation Map"
       }
     },
     "continental_shelf": {
@@ -438,18 +418,18 @@
     "esa_cci_surface_elevation_change": {
       "assets": {
         "only": {
-          "access_instructions": "Dataset can be found on the European Space Agency (ESA)\nClimate Change Initiative (CCI) products website\n(http://products.esa-icesheets-cci.org). Data are free to\ndownload after simple registration requiring `first.last` name\nand `affiliation`. No password is required.\n\nOnce the `cci_sec_2020.tar.gz` file is downloaded, use the\nsupplied\n`scripts/esa_cci_surface_elevation_change/preprocess.sh` script\nto uncompress the data.",
+          "access_instructions": "Dataset can be found on the European Space Agency (ESA)\nClimate Change Initiative (CCI) products website\n(http://products.esa-icesheets-cci.org). Data are free to\ndownload after simple registration requiring `first.last` name\nand `affiliation`. No password is required.",
           "id": "only"
         }
       },
       "id": "esa_cci_surface_elevation_change",
       "metadata": {
-        "abstract": "Data are based on the European Space Agency's Ku-band radar\nsatellite level-2 data products. Given the longer time span of\noperation of the satellites, the data are provided at a five-year\nmean.\n\nThe algorithms used to derive the product are explained in detail in\nSimonsen and S\u00f8rensen (2017), and S\u00f8rensen et al. (2018). The\napproach used here is the most optimal combination of the XO-, TR-,\nand PF-algorithm; the data are corrected for both backscatter and\nleading-edge width, and solved at 1 km grid resolution and averaged\nin the post-processing to 5 km grid resolution by ordinary kriging.\n\nReference:\nSimonsen, S. B., and S\u00f8rensen, L. S. (2017) \u2018Implications\nof changing scattering properties on Greenland ice sheet volume\nchange from Cryosat-2 altimetry\u2019, Remote Sensing of Environment.\nElsevier Inc., 190, pp. 207\u2013216. DOI: 10.1016/j.rse.2016.12.012 .\n\nS\u00f8rensen, L. S., Simonsen, S. B., Forsberg, R., Khvorostovsky, K.,\nMeister, R., and Engdahl, M. E. (2018) '25 years of elevation\nchanges of the Greenland Ice Sheet from ERS, Envisat, and CryoSat-2\nradar altimetry', Earth and Planetary Science Letters, 495, pp.\n234-241 DOI: 10.1016/j.epsl.2018.05.015 .",
+        "abstract": "The 2021 CCI Surface Elevation Change (SEC) release contains two\ndata sets and the release product contains two different types of\ndata files:\nI) png plots of the surface elevation changes and errors.\nII) NetCDF files containing the surface elevation changes and\ntheir associated errors:\n\nThe two datasets are as follows:\n1) The Long time series of 5-year mean SEC from ESAs Ku-band\nradar satellite level-2 data products. This data continues the\ntimes-series of previous releases, and this current release is\ndata version 3.0. Data are based on ESAs Ku-band radar satellite\nlevel-2 data products.\nGiven the longer time span of operation of the satellites, the\ndata are provided at a five-year mean. The algorithms used to\nderive the product are explained in detail in Simonsen and\nS\u00f8rensen (2017), and S\u00f8rensen et al. (2018). The approach used\nhere is the most optimal combination of the XO-, TR-, and\nPF-algorithm; the data are corrected for both backscatter and\nleading-edge width, and solved at 1 km grid resolution, and\naveraged in the post-processing to 5 km grid resolution by\nordinary kriging.\n\n2) An experimental 2-year SEC dataset from ICESat-2. This\nrelease contains the first version of this product (vers\n1.0). The data are provided at a two-year mean. The TR\nalgorithms presented in S\u00f8rensen et al. (2018) are used to\nderive the product, and 1 km grid resolution, and averaged in\nthe post-processing to 5 km grid resolution by ordinary kriging.\n\nReference:\nSimonsen, S. B., and S\u00f8rensen, L. S. (2017) \u2018Implications of\nchanging scattering properties on Greenland ice sheet volume\nchange from Cryosat-2 altimetry\u2019, Remote Sensing of\nEnvironment. Elsevier Inc., 190, pp. 207\u2013216. DOI:\n10.1016/j.rse.2016.12.012.\n\nS\u00f8rensen, L. S., Simonsen, S. B., Forsberg, R., Khvorostovsky,\nK., Meister, R., and Engdahl, M. E. (2018) '25 years of\nelevation changes of the Greenland Ice Sheet from ERS, Envisat,\nand CryoSat-2 radar altimetry', Earth and Planetary Science\nLetters, 495, pp. 234-241 DOI: 10.1016/j.epsl.2018.05.015.",
         "citation": {
-          "text": "ESA. (2020) 1992-2020 Greenland SEC from ERS-1, ERS-2,\nENVISAT, Cryosat-2, and Sentinel-3 data, at 5-year means.\nGreenland Ice Sheet CCI Products.",
-          "url": "http://products.esa-icesheets-cci.org/products/details/cci_sec_2020.tar.gz/"
+          "text": "ESA. (2021) 1992-2021 Greenland elevation change from\nmultiple altimetric mission.  Greenland Ice Sheet CCI\nProducts.",
+          "url": "http://products.esa-icesheets-cci.org/products/download/cci_sec_2021.zip"
         },
-        "title": "1992-2020 Greenland surface elevation change from ERS-1, ERS-2, ENVISAT, Cryosat-2, and Sentinel-3 data, at 5-years means"
+        "title": "1992-2021 Greenland elevation change from multiple altimetric mission"
       }
     },
     "future_icesheet_coverage": {
@@ -488,36 +468,42 @@
     },
     "gc_net_promice_stations": {
       "assets": {
-        "gc_net": {
-          "id": "gc_net",
+        "only": {
+          "id": "only",
           "urls": [
-            "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/GCN%20info%20ca.2000.csv"
-          ],
-          "verify_tls": true
-        },
-        "promice": {
-          "id": "promice",
-          "urls": [
-            "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018.csv"
-          ],
-          "verify_tls": true
-        },
-        "promice_former": {
-          "id": "promice_former",
-          "urls": [
-            "https://raw.githubusercontent.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92/input_data/PROMICE_info_from_GPS_data_2017-2018_former_sites.csv"
+            "https://dataverse.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/IW73UU/AQMRYQ"
           ],
           "verify_tls": true
         }
       },
       "id": "gc_net_promice_stations",
       "metadata": {
-        "abstract": "GitHub data description (creator: jasonebox): For PROMICE, I use\na 2017-2018 average of station GPS data. I added an updated position\nfor THU-U2. An improvement would be to have the .kml add the\nposition date to the description and how it was obtained. For\nGC-Net, I use a table from Konrad Steffen. I added an updated\nposition for PET ELA from 2016.\n\nAccuracy of positions is very important to avoid arriving in the\nfield at an old location. In no cases, do I transcribe positions by\nhand as that can cause expensive problems not finding stations\nbecause of bad coordinates.\n\nQGreenland team notes - Source file indicating PROMICE GPS data from\n2017-2018 and GC-NET GPS data from 2000. See note from data creator\nabove.",
+        "abstract": "In 2007, Denmark launched the Programme for Monitoring of the\nGreenland Ice Sheet (PROMICE) to assess changes in the mass balance\nof the ice sheet. The two major contributors to the ice sheet mass\nloss are surface melt and a larger production of icebergs through\nfaster ice flow. PROMICE is focused on both processes. Ice movement\nand discharge is tracked by satellites and GPSs. The surface mass\nbalance is monitored by a network of weather stations in the melt\nzone of the ice sheet, providing ground truth data to calibrate mass\nbudget models.\n\nThe Greenland Climate Network (GC-Net) was established in 1995 by\nProf. Konrad Steffen at CIRES, to obtain knowledge of the mass gain\nand climatology of the ice sheet. The programme was funded by the\nUSA until 2020, at which point Denmark assumed responsibility for\nthe operation and maintenance of the weather station network. The\nsnowfall and climatology are monitored by a network of weather\nstations in the accumulation zone of the ice sheet, supplemented by\nsatellite-derived data products.\n\nTogether, the two monitoring programmes deliver data about the mass\nbalance of the Greenland ice sheet in near real-time.\n\nData from the Programme for Monitoring of the Greenland Ice Sheet\n(PROMICE) are provided by the Geological Survey of Denmark and\nGreenland (GEUS) at http://www.promice.dk. They include sites\nfinancially supported by the Glaciobasis programme as part of\nGreenland Ecosystem Monitoring (https://g-e-m.dk/), maintained by\nGEUS (ZAK, LYN) and by Asiaq Greenland Survey (NUK_K). The WEG\nstations are paid for and maintained by the University of Graz.\n\nSee https://github.com/GEUS-Glaciology-and-Climate/pypromice for how\nwe make the data product.\n\nRelated publication:\n\nFausto, R. S., van As, D., Mankoff, K. D., Vandecrux, B., Citterio,\nM., Ahlstr\u00f8m, A. P., Andersen, S. B., Colgan, W., Karlsson, N. B.,\nKjeldsen, K. K., Korsgaard, N. J., Larsen, S. H., Nielsen, S.,\nPedersen, A. \u00d8., Shields, C. L., Solgaard, A. M., and Box, J. E.:\nProgramme for Monitoring of the Greenland Ice Sheet (PROMICE)\nautomatic weather station data, Earth Syst. Sci. Data, 13,\n3819\u20133845, https://doi.org/10.5194/essd-13-3819-2021, 2021.\n\nAdditional data:\n\nTo download data related to PROMICE and GC-Net, including historical\nweather station data, see\nhttps://dataverse.geus.dk/dataverse/PROMICE.",
         "citation": {
-          "text": "PROMICE, (2020). Map of GC-Net and PROMICE station locations.\nWeb: https://github.com/GEUS-PROMICE. Date accessed:\n{{date_accessed}}.",
-          "url": "https://github.com/GEUS-PROMICE/map_GC-Net_PROMICE_kml/tree/59455ddb50f7eeb1b8c5a5fdd7f80bfd548a0c92"
+          "text": "How, P., Abermann, J., Ahlstr\u00f8m, A.P., Andersen, S.B., Box,\nJ.E., Citterio, M., Colgan, W.T., Fausto, R., Karlsson, N.B., Jakobsen, J.,\nLangley, K., Larsen, S.H., Mankoff, K.D., Pedersen, A.\u00d8., Rutishauser, A.,\nShields, C.L., Solgaard, A.M., van As, D., Vandecrux, B., Wright, P.J., 2022,\n\"PROMICE and GC-Net automated weather station data in Greenland\",\nhttps://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse.\n\nDate accessed: {{date_accessed}}.",
+          "url": "https://dataverse.geus.dk/dataset.xhtml?persistentId=doi:10.22008/FK2/IW73UU"
         },
-        "title": "Map of GC-Net and PROMICE locations"
+        "title": "PROMICE and GC-Net automated weather station data in Greenland"
+      }
+    },
+    "gebco_bathymetric_chart": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "urls": [
+            "https://www.bodc.ac.uk/data/open_download/gebco/gebco_2023/zip/"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "gebco_bathymetric_chart",
+      "metadata": {
+        "abstract": "The GEBCO_2023 Grid is a global terrain model for ocean and land,\nproviding elevation data, in meters, on a 15 arc-second interval\ngrid of 43200 rows x 86400 columns, giving 3,732,480,000 data\npoints. The data values are pixel-centre registered i.e. they refer\nto elevations, in meters, at the centre of grid cells.\n\nThe grid was published in April 2023 and is the fifth GEBCO grid\ndeveloped through The Nippon Foundation-GEBCO Seabed 2030\nProject. This is a collaborative project between the Nippon\nFoundation of Japan and GEBCO. The Seabed 2030 Project aims to bring\ntogether all available bathymetric data to produce the definitive\nmap of the world ocean floor and make it available to all.",
+        "citation": {
+          "text": "GEBCO Compilation Group (2023) GEBCO 2023 Grid\n(doi:10.5285/f98b053b-0cbc-6c23-e053-6c86abc0af7b)",
+          "url": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/"
+        },
+        "title": "General Bathymetric Chart of the Oceans (GEBCO) Grid 2023"
       }
     },
     "gem_research_stations": {
@@ -3630,12 +3616,12 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Locations and details of PROMICE automated weather stations.",
-                  "id": "promice_research_stations",
+                  "description": "Automated weather station locations for the PROMICE,\nGC-Net, Glaciobasis (GEM), and other programs.\n\nStation locations, installation (if necessary, decommission) date,\nlocation type (tundra, ice sheet, local glacier), station type (one or\ntwo levels of measurements) are available as attributes.",
+                  "id": "promice_gc_net_stations",
                   "in_package": true,
                   "input": {
                     "asset": {
-                      "id": "promice"
+                      "id": "only"
                     },
                     "dataset": {
                       "id": "gc_net_promice_stations"
@@ -3656,11 +3642,11 @@
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
-                        "X_POSSIBLE_NAMES=lon",
+                        "X_POSSIBLE_NAMES=lon_installation",
                         "-oo",
-                        "Y_POSSIBLE_NAMES=lat",
+                        "Y_POSSIBLE_NAMES=lat_installation",
                         "-sql",
-                        "\"SELECT *, name as label from \\\"PROMICE_info_from_GPS_data_2017-2018\\\"\"",
+                        "\"SELECT *, stid as label from \\\"AWS_metadata\\\"\"",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.csv"
                       ],
@@ -3669,99 +3655,9 @@
                   ],
                   "style": "labeled_point",
                   "tags": [],
-                  "title": "PROMICE automated weather stations"
+                  "title": "PROMICE and GC-Net automated weather stations"
                 },
-                "name": "promice_research_stations"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Locations and details of inactive PROMICE automated weather\nstations.",
-                  "id": "promice_research_stations_former",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "promice_former"
-                    },
-                    "dataset": {
-                      "id": "gc_net_promice_stations"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-s_srs",
-                        "EPSG:4326",
-                        "-oo",
-                        "X_POSSIBLE_NAMES=lon",
-                        "-oo",
-                        "Y_POSSIBLE_NAMES=lat",
-                        "-sql",
-                        "\"SELECT *, name as label from \\\"PROMICE_info_from_GPS_data_2017-2018_former_sites\\\"\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.csv"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "labeled_point",
-                  "tags": [],
-                  "title": "Former PROMICE automated weather stations"
-                },
-                "name": "promice_research_stations_former"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Location and details of GC-NET automated weather stations.",
-                  "id": "gc_net_research_stations",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "gc_net"
-                    },
-                    "dataset": {
-                      "id": "gc_net_promice_stations"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-s_srs",
-                        "EPSG:4326",
-                        "-oo",
-                        "X_POSSIBLE_NAMES=lon",
-                        "-oo",
-                        "Y_POSSIBLE_NAMES=lat",
-                        "-sql",
-                        "\"SELECT *, name as label from \\\"GCN%20info%20ca.2000\\\"\"",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.csv"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "labeled_point",
-                  "tags": [],
-                  "title": "GC-NET automated weather stations"
-                },
-                "name": "gc_net_research_stations"
+                "name": "promice_gc_net_stations"
               },
               {
                 "layer_cfg": {
@@ -3806,9 +3702,7 @@
               "expand": false,
               "order": [
                 ":gem_research_stations",
-                ":promice_research_stations",
-                ":promice_research_stations_former",
-                ":gc_net_research_stations",
+                ":promice_gc_net_stations",
                 ":seismograph_stations"
               ],
               "show": false
@@ -4233,67 +4127,6 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Polygons indicating the 2010 distribution of Arctic Char\npopulations.",
-                  "id": "caff_char",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "caff_char"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/Arctic_Char_2010.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "'SELECT\n                        Geometry,\n                        SPECIES,\n                        INTRODUCED,\n                        OWNER,\n                        DATA_URL,\n                        SOURCE,\n                        CREATED,\n                        DATE(substr(MODIFIED, 7, 4) || \"-\" ||\n                          substr(MODIFIED, 4, 2) || \"-\" ||\n                          substr(MODIFIED, 1, 2)) as MODIFIED,\n                        CONTACT\n                    FROM Arctic_Char_2010'",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/*.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "semitransparent_polygon",
-                  "tags": [],
-                  "title": "Arctic Char populations 2010"
-                },
-                "name": "caff_char"
-              }
-            ],
-            "name": "Fish",
-            "settings": {
-              "expand": false,
-              "order": null,
-              "show": false
-            }
-          },
-          {
-            "children": [
-              {
-                "layer_cfg": {
                   "description": "Estimated above ground plant biomass for the tundra biome in\nkilograms per square meter. Based on trans-Arctic field data and AVHRR\nNDVI. Data provided by ORNL DAAC.",
                   "id": "vegetation_biomass_2010",
                   "in_package": true,
@@ -4364,6 +4197,89 @@
                   "title": "Vegetation biomass 2010 (12.4km)"
                 },
                 "name": "vegetation_biomass_2010"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Arctic vegetation classification raster.\n\nIndividual raster values are mapped to vegetation types as follows:\n\n'Raster Code': 'Vegetation Unit' - 'Short Description'\n1: B1 - Cryptogam, herb barren\n2: B2a - Cryptogam, barren complex\n3: B3 - Non-carbonate mountain complex\n4: B4 - Carbonate mountain complex\n5: B2b - Cryptogam, barren, dwarf-shrub complex\n21: G1 - Graminoid, forb, cryptogam tundra\n22: G2 - Graminoid, prostrate dwarf-shrub, forb, moss tundra\n23: G3 - Non-tussock sedge, dwarf-shrub, moss tundra\n24: G4 - Tussock-sedge, dwarf-shrub, moss tundra\n31: P1 - Prostrate dwarf-shrub, herb, lichen tundra\n32: P2 - Prostrate/hemi-prostrate dwarf-shrub, lichen tundra\n33: S1 - Erect dwarf-shrub, moss tundra\n34: S2 - Low-shrub, moss tundra\n41: W1 - Sedge/grass, moss wetland complex\n42: W2 - Sedge, moss, dwarf-shrub wetland complex\n43: W3 - Sedge, moss, low-shrub wetland complex\n91: FW - Fresh water\n92: SW - Saline water\n93: GL - Glacier\n99: NA - Non-Arctic\n\n Environmental and climatic conditions are\nextreme, with a short growing season and low summer temperatures. The\nregion support plants such as dwarf shrubs, herbs, lichens and mosses,\nwhich grow close to the ground. As one moves southward (outward from\nmap's center in all directions), the amount of warmth available for\nplant growth increases considerably, allowing the size, abundance, and\nvariety of plants to increase as well. Climate and other environmental\ncontrols, such as landscape, topography, soil chemistry, soil moisture,\nand the available plants that historically colonized an area, also\ninfluence the distribution of plant communities.\n\nFor more information, visit:\nhttps://www.geobotany.uaf.edu/cavm/abstract.php.",
+                  "id": "circumpolar_arctic_vegetation_map",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "circumpolar_arctic_vegetation_map"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "unzip",
+                        "{input_dir}/Raster\\ CAVM\\ GIS\\ data.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-r",
+                        "nearest",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-tr",
+                        "1000",
+                        "1000",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/raster_cavm_v1.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=2",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/compressed.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "mode",
+                        "{output_dir}/compressed.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "arctic_vegetation",
+                  "tags": [],
+                  "title": "Vegetation classification map (1km)"
+                },
+                "name": "circumpolar_arctic_vegetation_map"
               }
             ],
             "name": "Vegetation",
@@ -7791,7 +7707,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_1992_1996",
                       "in_package": true,
                       "input": {
@@ -7806,12 +7722,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,0]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_1992_1996.tif"
                           ],
                           "type": "command"
@@ -7856,7 +7782,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_1993_1997",
                       "in_package": true,
                       "input": {
@@ -7871,12 +7797,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,1]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_1993_1997.tif"
                           ],
                           "type": "command"
@@ -7921,7 +7857,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_1994_1998",
                       "in_package": true,
                       "input": {
@@ -7936,12 +7872,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,2]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_1994_1998.tif"
                           ],
                           "type": "command"
@@ -7986,7 +7932,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_1995_1999",
                       "in_package": true,
                       "input": {
@@ -8001,12 +7947,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,3]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_1995_1999.tif"
                           ],
                           "type": "command"
@@ -8051,7 +8007,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_1996_2000",
                       "in_package": true,
                       "input": {
@@ -8066,12 +8022,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,4]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_1996_2000.tif"
                           ],
                           "type": "command"
@@ -8116,7 +8082,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_1997_2001",
                       "in_package": true,
                       "input": {
@@ -8131,12 +8097,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,5]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_1997_2001.tif"
                           ],
                           "type": "command"
@@ -8181,7 +8157,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_1998_2002",
                       "in_package": true,
                       "input": {
@@ -8196,12 +8172,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,6]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_1998_2002.tif"
                           ],
                           "type": "command"
@@ -8246,7 +8232,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_1999_2003",
                       "in_package": true,
                       "input": {
@@ -8261,12 +8247,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,7]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_1999_2003.tif"
                           ],
                           "type": "command"
@@ -8311,7 +8307,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2000_2004",
                       "in_package": true,
                       "input": {
@@ -8326,12 +8322,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,8]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2000_2004.tif"
                           ],
                           "type": "command"
@@ -8376,7 +8382,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2001_2005",
                       "in_package": true,
                       "input": {
@@ -8391,12 +8397,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,9]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2001_2005.tif"
                           ],
                           "type": "command"
@@ -8441,7 +8457,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2002_2006",
                       "in_package": true,
                       "input": {
@@ -8456,12 +8472,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,10]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2002_2006.tif"
                           ],
                           "type": "command"
@@ -8506,7 +8532,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2003_2007",
                       "in_package": true,
                       "input": {
@@ -8521,12 +8547,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,11]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2003_2007.tif"
                           ],
                           "type": "command"
@@ -8571,7 +8607,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2004_2008",
                       "in_package": true,
                       "input": {
@@ -8586,12 +8622,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,12]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2004_2008.tif"
                           ],
                           "type": "command"
@@ -8636,7 +8682,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2005_2009",
                       "in_package": true,
                       "input": {
@@ -8651,12 +8697,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,13]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2005_2009.tif"
                           ],
                           "type": "command"
@@ -8701,7 +8757,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2006_2010",
                       "in_package": true,
                       "input": {
@@ -8716,12 +8772,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,14]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2006_2010.tif"
                           ],
                           "type": "command"
@@ -8766,7 +8832,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2007_2011",
                       "in_package": true,
                       "input": {
@@ -8781,12 +8847,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,15]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2007_2011.tif"
                           ],
                           "type": "command"
@@ -8831,7 +8907,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2008_2012",
                       "in_package": true,
                       "input": {
@@ -8846,12 +8922,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,16]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2008_2012.tif"
                           ],
                           "type": "command"
@@ -8896,7 +8982,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2009_2013",
                       "in_package": true,
                       "input": {
@@ -8911,12 +8997,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,17]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2009_2013.tif"
                           ],
                           "type": "command"
@@ -8961,7 +9057,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2010_2014",
                       "in_package": true,
                       "input": {
@@ -8976,12 +9072,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,18]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2010_2014.tif"
                           ],
                           "type": "command"
@@ -9026,7 +9132,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2011_2015",
                       "in_package": true,
                       "input": {
@@ -9041,12 +9147,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,19]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2011_2015.tif"
                           ],
                           "type": "command"
@@ -9091,7 +9207,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2012_2016",
                       "in_package": true,
                       "input": {
@@ -9106,12 +9222,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,20]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2012_2016.tif"
                           ],
                           "type": "command"
@@ -9156,7 +9282,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2013_2017",
                       "in_package": true,
                       "input": {
@@ -9171,12 +9297,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,21]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2013_2017.tif"
                           ],
                           "type": "command"
@@ -9221,7 +9357,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2014_2018",
                       "in_package": true,
                       "input": {
@@ -9236,12 +9372,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,22]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2014_2018.tif"
                           ],
                           "type": "command"
@@ -9286,7 +9432,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Error of rate of surface elevation change in meters per year.",
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_secer_2015_2019",
                       "in_package": true,
                       "input": {
@@ -9301,12 +9447,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SECer,view=[:,:,23]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/secer_2015_2019.tif"
                           ],
                           "type": "command"
@@ -9348,6 +9504,81 @@
                       "title": "Surface elevation change 2015-2019"
                     },
                     "name": "surface_elevation_change_secer_2015_2019"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Error of rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
+                      "id": "surface_elevation_change_secer_2016_2020",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SECer,view=[:,:,24]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
+                            "{output_dir}/secer_2016_2020.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-co",
+                            "TILED=YES",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
+                            "{input_dir}/secer_2016_2020.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change_errors",
+                      "tags": [],
+                      "title": "Surface elevation change 2016-2020"
+                    },
+                    "name": "surface_elevation_change_secer_2016_2020"
                   }
                 ],
                 "name": "Errors",
@@ -9361,7 +9592,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_1992_1996",
                       "in_package": true,
                       "input": {
@@ -9376,12 +9607,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,0]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_1992_1996.tif"
                           ],
                           "type": "command"
@@ -9426,7 +9667,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_1993_1997",
                       "in_package": true,
                       "input": {
@@ -9441,12 +9682,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,1]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_1993_1997.tif"
                           ],
                           "type": "command"
@@ -9491,7 +9742,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_1994_1998",
                       "in_package": true,
                       "input": {
@@ -9506,12 +9757,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,2]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_1994_1998.tif"
                           ],
                           "type": "command"
@@ -9556,7 +9817,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_1995_1999",
                       "in_package": true,
                       "input": {
@@ -9571,12 +9832,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,3]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_1995_1999.tif"
                           ],
                           "type": "command"
@@ -9621,7 +9892,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_1996_2000",
                       "in_package": true,
                       "input": {
@@ -9636,12 +9907,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,4]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_1996_2000.tif"
                           ],
                           "type": "command"
@@ -9686,7 +9967,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_1997_2001",
                       "in_package": true,
                       "input": {
@@ -9701,12 +9982,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,5]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_1997_2001.tif"
                           ],
                           "type": "command"
@@ -9751,7 +10042,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_1998_2002",
                       "in_package": true,
                       "input": {
@@ -9766,12 +10057,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,6]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_1998_2002.tif"
                           ],
                           "type": "command"
@@ -9816,7 +10117,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_1999_2003",
                       "in_package": true,
                       "input": {
@@ -9831,12 +10132,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,7]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_1999_2003.tif"
                           ],
                           "type": "command"
@@ -9881,7 +10192,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2000_2004",
                       "in_package": true,
                       "input": {
@@ -9896,12 +10207,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,8]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2000_2004.tif"
                           ],
                           "type": "command"
@@ -9946,7 +10267,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2001_2005",
                       "in_package": true,
                       "input": {
@@ -9961,12 +10282,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,9]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2001_2005.tif"
                           ],
                           "type": "command"
@@ -10011,7 +10342,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2002_2006",
                       "in_package": true,
                       "input": {
@@ -10026,12 +10357,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,10]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2002_2006.tif"
                           ],
                           "type": "command"
@@ -10076,7 +10417,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2003_2007",
                       "in_package": true,
                       "input": {
@@ -10091,12 +10432,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,11]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2003_2007.tif"
                           ],
                           "type": "command"
@@ -10141,7 +10492,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2004_2008",
                       "in_package": true,
                       "input": {
@@ -10156,12 +10507,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,12]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2004_2008.tif"
                           ],
                           "type": "command"
@@ -10206,7 +10567,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2005_2009",
                       "in_package": true,
                       "input": {
@@ -10221,12 +10582,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,13]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2005_2009.tif"
                           ],
                           "type": "command"
@@ -10271,7 +10642,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2006_2010",
                       "in_package": true,
                       "input": {
@@ -10286,12 +10657,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,14]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2006_2010.tif"
                           ],
                           "type": "command"
@@ -10336,7 +10717,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2007_2011",
                       "in_package": true,
                       "input": {
@@ -10351,12 +10732,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,15]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2007_2011.tif"
                           ],
                           "type": "command"
@@ -10401,7 +10792,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2008_2012",
                       "in_package": true,
                       "input": {
@@ -10416,12 +10807,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,16]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2008_2012.tif"
                           ],
                           "type": "command"
@@ -10466,7 +10867,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2009_2013",
                       "in_package": true,
                       "input": {
@@ -10481,12 +10882,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,17]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2009_2013.tif"
                           ],
                           "type": "command"
@@ -10531,7 +10942,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2010_2014",
                       "in_package": true,
                       "input": {
@@ -10546,12 +10957,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,18]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2010_2014.tif"
                           ],
                           "type": "command"
@@ -10596,7 +11017,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2011_2015",
                       "in_package": true,
                       "input": {
@@ -10611,12 +11032,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,19]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2011_2015.tif"
                           ],
                           "type": "command"
@@ -10661,7 +11092,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2012_2016",
                       "in_package": true,
                       "input": {
@@ -10676,12 +11107,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,20]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2012_2016.tif"
                           ],
                           "type": "command"
@@ -10726,7 +11167,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2013_2017",
                       "in_package": true,
                       "input": {
@@ -10741,12 +11182,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,21]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2013_2017.tif"
                           ],
                           "type": "command"
@@ -10791,7 +11242,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2014_2018",
                       "in_package": true,
                       "input": {
@@ -10806,12 +11257,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,22]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2014_2018.tif"
                           ],
                           "type": "command"
@@ -10856,7 +11317,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Rate of surface elevation change in meters per year.",
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
                       "id": "surface_elevation_change_sec_2015_2019",
                       "in_package": true,
                       "input": {
@@ -10871,12 +11332,22 @@
                       "steps": [
                         {
                           "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
                             "gdalmdimtranslate",
                             "-co",
                             "COMPRESS=DEFLATE",
                             "-array",
                             "name=SEC,view=[:,:,23]",
-                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers2.0_2020-08-26.nc",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
                             "{output_dir}/sec_2015_2019.tif"
                           ],
                           "type": "command"
@@ -10918,6 +11389,81 @@
                       "title": "Surface elevation change 2015-2019"
                     },
                     "name": "surface_elevation_change_sec_2015_2019"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Rate of surface elevation change in meters per year.\n\nData are based on ESAs Ku-band radar satellite level-2 data\nproducts.",
+                      "id": "surface_elevation_change_sec_2016_2020",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "esa_cci_surface_elevation_change"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "unzip",
+                            "{input_dir}/cci_sec_2021.zip",
+                            "-d",
+                            "{output_dir}",
+                            ""
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalmdimtranslate",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-array",
+                            "name=SEC,view=[:,:,24]",
+                            "{input_dir}/Release/CCI_GrIS_RA_SEC_5km_Vers3.0_2021-08-09.nc",
+                            "{output_dir}/sec_2016_2020.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-co",
+                            "TILED=YES",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=3",
+                            "{input_dir}/sec_2016_2020.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
+                            "{output_dir}/overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "surface_elevation_change",
+                      "tags": [],
+                      "title": "Surface elevation change 2016-2020"
+                    },
+                    "name": "surface_elevation_change_sec_2016_2020"
                   }
                 ],
                 "name": "Observations",
@@ -12114,6 +12660,59 @@
           },
           {
             "layer_cfg": {
+              "description": "Polygons representing tectonic plates.",
+              "id": "tectonic_plate_polygons",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "tectonic_plates"
+                }
+              },
+              "show": false,
+              "steps": [
+                {
+                  "args": [
+                    "unzip",
+                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae.zip",
+                    "-d",
+                    "{output_dir}",
+                    "tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/PB2002_plates.*"
+                  ],
+                  "type": "command"
+                },
+                {
+                  "args": [
+                    "ogr2ogr",
+                    "-lco",
+                    "ENCODING=UTF-8",
+                    "-t_srs",
+                    "EPSG:3413",
+                    "-clipdst",
+                    "{assets_dir}/latitude_shape_40_degrees.geojson",
+                    "-makevalid",
+                    "-nlt",
+                    "MULTIPOLYGON",
+                    "-dialect",
+                    "sqlite",
+                    "-sql",
+                    "\"SELECT * FROM PB2002_plates where PlateName != 'Antarctica'\"",
+                    "{output_dir}/final.gpkg",
+                    "{input_dir}/tectonicplates-339b0c56563c118307b1f4542703047f5f698fae/*.shp"
+                  ],
+                  "type": "command"
+                }
+              ],
+              "style": "tectonic_plate_polygons",
+              "tags": [],
+              "title": "Tectonic plates"
+            },
+            "name": "tectonic_plate_polygons"
+          },
+          {
+            "layer_cfg": {
               "description": "Polygons representing dominant soil characteristics with percentage\npolygon area for each soil type. Data coverage limited to Greenland.",
               "id": "soil_types",
               "in_package": true,
@@ -12321,6 +12920,7 @@
           "order": [
             ":earthquakes",
             ":tectonic_plate_boundaries",
+            ":tectonic_plate_polygons",
             ":soil_types",
             "Geological map"
           ],
@@ -12778,7 +13378,7 @@
                     "name": "wmm_igrf_north_poles"
                   }
                 ],
-                "name": "Dip poles",
+                "name": "Geomagnetic north pole",
                 "settings": {
                   "expand": false,
                   "order": null,
@@ -17722,7 +18322,7 @@
             "settings": {
               "expand": false,
               "order": [
-                "Dip poles",
+                "Geomagnetic north pole",
                 "Geomagnetic coordinates 2020",
                 "2020",
                 "2021",
@@ -18126,7 +18726,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated locations for subglacial hydrologic basin ice-margin-terminating outlets.",
               "id": "ice_outlets",
               "in_package": true,
               "input": {
@@ -18163,7 +18763,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated locations for terrestrial hydrologic basin coast-terminating outlets.",
               "id": "land_outlets",
               "in_package": true,
               "input": {
@@ -18200,7 +18800,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated subglacial hydrologic stream paths.",
               "id": "ice_streams",
               "in_package": true,
               "input": {
@@ -18241,7 +18841,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated ice sheet hydrologic basins using regional climate model spatial coverage.",
               "id": "ice_basins",
               "in_package": true,
               "input": {
@@ -18278,7 +18878,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated ice sheet hydrologic basins including areas classified as land/ocean by regional climate models (filled).",
               "id": "ice_basins_filled",
               "in_package": true,
               "input": {
@@ -18315,7 +18915,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated terrestrial hydrologic stream paths.",
               "id": "land_streams",
               "in_package": true,
               "input": {
@@ -18356,7 +18956,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated terrestrial hydrologic basins using regional climate model spatial coverage.",
               "id": "land_basins",
               "in_package": true,
               "input": {
@@ -18393,7 +18993,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin\nice-margin-terminating outlets.",
+              "description": "Calculated terrestrial hydrologic basins including areas classified as ice/ocean by regional climate models (filled).",
               "id": "land_basins_filled",
               "in_package": true,
               "input": {
@@ -19015,7 +19615,7 @@
                 "name": "seaice_median_extent_12"
               }
             ],
-            "name": "Median extent",
+            "name": "Median extent (1981-2010)",
             "settings": {
               "expand": false,
               "order": [
@@ -23611,7 +24211,7 @@
         "settings": {
           "expand": false,
           "order": [
-            "Median extent",
+            "Median extent (1981-2010)",
             "Weekly age (12.5km)",
             "Monthly mean concentration (25 km)"
           ],
@@ -24574,42 +25174,55 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Bathymetric elevation in meters. Elevations can be assumed to be\nrelative to mean sea level. However, in some shallow water areas, the\ngrids include data from sources having a vertical datum other than mean\nsea level.",
-                  "id": "bathymetric_raster",
+                  "description": "Bathymetric elevation in meters.\n\nElevations can be assumed to be relative to mean sea level. However, in\nsome shallow water areas, the grids include data from sources having a\nvertical datum other than mean sea level. We are working to understand\nhow best to fully assimilate these data.",
+                  "id": "gebco_bathymetric_raster",
                   "in_package": true,
                   "input": {
                     "asset": {
                       "id": "only"
                     },
                     "dataset": {
-                      "id": "bathymetric_chart"
+                      "id": "gebco_bathymetric_chart"
                     }
                   },
                   "show": false,
                   "steps": [
                     {
                       "args": [
+                        "unzip",
+                        "{input_dir}/gebco_2023.zip",
+                        "-d",
+                        "{output_dir}",
+                        ""
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-te",
+                        "-5774572.727594967 -5774572.727594967 5774572.727594967 5774572.727594967",
+                        "-tr",
+                        "400",
+                        "400",
+                        "NETCDF:{input_dir}/GEBCO_2023.nc:elevation",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
                         "gdalwarp",
                         "-cutline",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-crop_to_cutline",
-                        "-r",
-                        "bilinear",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-s_srs",
-                        "\"+proj=stere +lat_0=90 +lat_ts=75 +datum=WGS84\"",
-                        "-dstnodata",
-                        "-9999",
-                        "-tr",
-                        "400",
-                        "400",
-                        "--config",
-                        "GDAL_NETCDF_IGNORE_XY_AXIS_NAME_CHECKS",
-                        "true",
                         "-co",
                         "COMPRESS=DEFLATE",
-                        "NETCDF:{input_dir}/IBCAO_v4_400m_ice.nc:z",
+                        "{input_dir}/warped.tif",
                         "{output_dir}/bathymetric_chart.tif"
                       ],
                       "type": "command"
@@ -24622,7 +25235,7 @@
                         "-co",
                         "COMPRESS=DEFLATE",
                         "-co",
-                        "PREDICTOR=3",
+                        "PREDICTOR=2",
                         "{input_dir}/bathymetric_chart.tif",
                         "{output_dir}/compressed.tif"
                       ],
@@ -24646,58 +25259,11 @@
                       "type": "command"
                     }
                   ],
-                  "style": "ibcao_bathymetry",
+                  "style": "gebco_bathymetry",
                   "tags": [],
                   "title": "Depth (400m)"
                 },
-                "name": "bathymetric_raster"
-              },
-              {
-                "layer_cfg": {
-                  "description": "This dataset includes linear features that represent\n bathymetric contours recorded in metres,\nderived from the International Bathymetric Chart of the Arctic Ocean.",
-                  "id": "bathymetric_contours",
-                  "in_package": true,
-                  "input": {
-                    "asset": {
-                      "id": "only"
-                    },
-                    "dataset": {
-                      "id": "geological_map"
-                    }
-                  },
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/as_2159.zip",
-                        "-d",
-                        "{output_dir}",
-                        "data/shape/base/bathymetry.*"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/data/shape/base/bathymetry.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "bathymetry",
-                  "tags": [],
-                  "title": "Depth contours"
-                },
-                "name": "bathymetric_contours"
+                "name": "gebco_bathymetric_raster"
               }
             ],
             "name": "Bathymetry",
@@ -25493,7 +26059,7 @@
           {
             "layer_cfg": {
               "description": "Blue Marble (August 2004, Shaded Relief and Bathymetry).\n\nThe MODIS Blue Marble, Next Generation layer with Shaded Relief and\nBathymetry is a cloud free, true color composite of MODIS imagery from\nAugust 2004 including shaded relief and bathymetry in the water bodies.\n\nThe MODIS Blue Marble, Next Generation is a static product created with data\nfrom 2004 from the MODIS instrument on board the Terra satellite. The image\nresolution is 500 m. It can be viewed in Worldview/Global Imagery Browse\nServices (GIBS). Images for January \u2013 December 2004 can be downloaded from\nNASA\u2019s Visible Earth.\n\nReferences: NASA Earth Observatory - Blue Marble\n[https://earthobservatory.nasa.gov/features/BlueMarble]; NASA Earth\nObservations - Blue Marble\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB]; NASA\nEarth Observations - Blue Marble: Next Generation+Topography and\nBathymetry\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB].",
-              "id": "blue_marble_shaded_relif_bathymetry",
+              "id": "blue_marble_shaded_relief_bathymetry",
               "in_package": true,
               "input": {
                 "asset": {
@@ -25511,7 +26077,7 @@
               ],
               "title": "Blue Marble shaded relief and Bathymetry (500m)"
             },
-            "name": "blue_marble_shaded_relif_bathymetry"
+            "name": "blue_marble_shaded_relief_bathymetry"
           }
         ],
         "name": "Internet-required data",
@@ -25522,7 +26088,7 @@
             ":image_mosaic_2015",
             ":sdfi_satellite_orthophotos",
             ":sdfi_topo_map",
-            ":blue_marble_shaded_relif_bathymetry"
+            ":blue_marble_shaded_relief_bathymetry"
           ],
           "show": false
         }

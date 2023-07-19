@@ -27,14 +27,32 @@ asiaq_nunagis = Dataset(
         ),
     ],
     metadata={
-        "title": "Asiaq Map Portal Techincal Basemap",
+        "title": "Asiaq Map Portal",
         "abstract": (
-            """The NunaGIS data server provides data for the the Asiaq Map
-            Portal Technical Basemap, which includes a variety of datasets."""
+            """ASIAQ Greenland Survey undertakes surveys and research projects,
+            based on non-living physical data from the environment in
+            Greenland. Our data are derived from; mapping of cities and
+            non-urban areas, measuring of water resources, climate monitoring,
+            soil testing, surveying and stakeouts at construction projects. All
+            these, provides a unique knowledge of the arctic climate, soil
+            conditions, water resources and topography of Greenland, which makes
+            possible for the Greenlandic society, partners, and costumers to
+            plan and exploit the physical environment and resources.
+
+            Asiaq is 100% owned by the Greenlandic Government and had surveyed
+            all around in Greenland for more than 60 years.
+
+            Data were retreived from the NunaGIS data server, which provides
+            data for the the Asiaq Map Portal
+            (https://kort.nunagis.gl/refserver/rest/services/Kortportal/). To
+            learn more about NunaGIS, see: https://nunagis-asiaq.hub.arcgis.com/.
+            """
         ),
         "citation": {
-            "text": ("""NunaGIS (2023). Date accessed: {{date_accessed}}."""),
-            "url": "https://kort.nunagis.gl/refserver/rest/services/Kortportal/Kortportal_TekniskGrundkort/MapServer",
+            "text": (
+                """ASIAQ Greenland Survey (2023). Date accessed: {{date_accessed}}."""
+            ),
+            "url": "https://www.asiaq-greenlandsurvey.gl/",
         },
     },
 )

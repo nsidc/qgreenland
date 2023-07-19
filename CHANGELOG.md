@@ -1,4 +1,14 @@
-# NEXT_VERSION
+# NEXT_RELEASE
+
+* QGreenland Custom is no longer supported.
+* Remove "Biology/Fish/Arctic Char" layer.
+* Add "Geology/Tectonic plates" polygon layer. This layer accompanies the
+  existing "Geology/Tectonic plate boundaries" polyline layer from the same
+  dataset.
+* Fix descriptions of "Hydrology" outlets and basins layers.
+
+
+# v3.0.0alpha3 (2023-07-05)
 
 - Remove Humanitarian Open Street Map (HOTOSM) layers ("Places/Community map
   (crowd-sourced)"). These layers had innaccuracies and missing locations that
@@ -29,7 +39,37 @@
 - Add new "Places/" layers from Asiaq/NunaGIS:
   - Buildings
   - Roads
-
+- Update the "Glaciology/Surface elevation change" layers to the latest version
+  (v3) of the Climate Change Initiative (CCI) Surface Elevation Change dataset
+  from the European Space Agency (ESA). This extends the timeseries to include a
+  surface elevation change layer for 2016-2020.
+- Rename "Geophysics/World Magnetic Model/Dip poles" layer group ->
+  "Geophysics/World Magnetic Model/Geomagnetic north pole"
+- Rename "Sea ice/Median extent" layer group -> "Sea ice/Median extent
+  (1981-2010)"
+- Update "Oceanography/Bathymetry/Depth (400m)" layer to use the General
+  Bathymetric Chart of the Oceans (GEBCO) Grid 2023, replacing the Bathymetric
+  Chart of the Arctic Ocean (IBCAO) dataset. The GEBCO grid includes the IBCAO
+  grid. This update includes the most recent data and expands the spatial extent
+  of this layer to the QGreenland background boundary to make it consistent with
+  other ocenaography layers.
+- Remove "Oceanography/Bathymetry/Depth contours" layer. This layer was pulled
+  from the "Geological map of the Arctic / Carte gologique de l'Arctique"
+  (Harrison et al., 2011) dataset and was provided with the geological data for
+  additional context. It was derived from the (IBCAO) grid. Comparing this with
+  the current IBCAO and GEBCO grids, these contours seem outdated. They also
+  only cover a portion of QGreenland's background extent. Users can produce
+  their own custom contour layer from the included
+  "Oceanography/Bathymetry/Depth (400m)" layer using the Processing Toolbox
+  (GDAL -> Raster extraction -> Contour).
+- Replace "Human Activity/Research sites/" layers related to PROMICE and GC-Net
+  ("PROMICE automated weather stations", "Former PROMICE automated weather
+  stations", "GC-Net automated weather stations") with one layer ("PROMICE and
+  GC-Net automated weather stations") from a more up-to-date dataset provided by
+  GEUS.
+- Add new "Biology/Vegetation/Vegetation classification map (1km)" layer from
+  the Raster Circumpolar Arctic Vegetation Map produced by Raynolds et al.,
+  2019.
 
 # v3.0.0alpha2 (2023-05-09)
 

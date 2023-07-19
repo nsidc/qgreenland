@@ -11,6 +11,10 @@ disciplines within a reasonable file size.
 
 ## QGreenland Custom
 
+```{attention}
+QGreenland Custom is no longer supported.
+```
+
 QGreenland Custom is a QGIS plugin that enables users to download and use only
 the QGreenland layers they are interested in.
 

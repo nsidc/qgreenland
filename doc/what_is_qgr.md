@@ -15,6 +15,12 @@ delivered in two ways:
    (for example, due to filesize constraints). QGreenland Custom has its own
    [documentation](https://qgreenland-plugin.readthedocs.io).
 
+   ```{attention}
+   QGreenland Custom is no longer supported. This was an experiment, and we decided to
+   go in a different direction. It shouldn't be expected to work.
+   ```
+
+
 Return to [QGreenland website](https://qgreenland.org)
 
 # What QGreenland *is not*

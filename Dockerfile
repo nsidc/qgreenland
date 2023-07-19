@@ -1,16 +1,15 @@
 # This docker image simply runs luigi's centralized scheduler with the needed
-# dependencies installed into a conda environment. It's expected that task code
-# will always be mounted in using volumes!
+# dependencies installed into a conda environment. All QGreenland tasks are
+# available at `TASKS_DIR`.
 
 FROM axiom/docker-luigi:3.0.3-alpine AS luigi
 # This build stage only exists to grab the luigi run script. Luigi dependency
-# itself is specified in `environment.yml`
+# itself is specified in our conda environment.
+# TODO: Why is this necessary? Does `luigid` not come along with the conda package?
 
 FROM mambaorg/micromamba:1.4.2 AS micromamba
 COPY --from=luigi /bin/run /usr/local/bin/luigid
 USER root
-
-ENV TASKS_MOUNT_DIR=/luigi/tasks/qgreenland
 
 # `libgl1-mesa-glx` is required for pyqgis
 # `git` is required for analyzing the current version
@@ -22,20 +21,19 @@ RUN apt-get update && apt-get install -y \
   libgl1-mesa-glx \
   texlive-latex-extra
 
-# Enable our code (which runs git commands) to run as a different user than the
-# current user on the host machine (who will be the owner of the mounted git
-# repository)
-RUN git config --global --add safe.directory "${TASKS_MOUNT_DIR}"
+ENV TASKS_DIR=/luigi/tasks/qgreenland
+WORKDIR "${TASKS_DIR}"
+COPY --chown=$MAMBA_USER:$MAMBA_USER . .
 
-# TODO: Why are we copying these files to /tmp?
-COPY --chown=$MAMBA_USER:$MAMBA_USER conda-lock.yml /tmp/conda-lock.yml
-RUN micromamba install -y -n base -f /tmp/conda-lock.yml
+# Our code needs to run git commands (for example, to determine a full version
+# string), but if tasks  repo is mounted from the host machine, the owner of
+# the repo won't match the container user. A "safe directory" allows Git to
+# tolerate this user mismatch.
+RUN git config --global --add safe.directory "${TASKS_DIR}"
 
-# Install mamba. It is missing after installing `conda-lock.yml`
-RUN micromamba install -y -c conda-forge -n base conda mamba~=1.4.2
-
-COPY --chown=$MAMBA_USER:$MAMBA_USER environment.cmd.yml /tmp/environment.cmd.yml
-RUN micromamba create -y -f /tmp/environment.cmd.yml
+# Set up the main environment and the command environment
+RUN micromamba install --yes --name "base" --file "environments/main/conda-lock.yml"
+RUN micromamba create --yes --name "qgreenland-cmd" --file "environments/command/conda-lock.yml"
 
 # Cleanup
 RUN micromamba clean --all --yes
@@ -47,7 +45,7 @@ WORKDIR /luigi
 # gets populated. Additionally, /luigi/tasks is where we expect python code to
 # be mounted.
 # TODO: With modern micromamba, can we clean this up?
-ENV PYTHONPATH "${TASKS_MOUNT_DIR}:/opt/conda/share/qgis/python/plugins:/opt/conda/share/qgis/python"
+ENV PYTHONPATH "${TASKS_DIR}:/opt/conda/share/qgis/python/plugins:/opt/conda/share/qgis/python"
 ENV PATH "/opt/conda/bin:${PATH}"
 
 CMD ["/usr/local/bin/luigid"]

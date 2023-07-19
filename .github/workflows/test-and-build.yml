@@ -1,4 +1,4 @@
-name: "Test and (if tag) build"
+name: "Test, release, and build"
 
 on:
   # TODO: We currently get double workflows when pushing to pull request
@@ -6,7 +6,7 @@ on:
   # instead?
   push:
       branches:
-        - "*"
+        - "main"
       tags:
         - "v[0-9]+.[0-9]+.[0-9]+*"
   pull_request:
@@ -21,6 +21,7 @@ defaults:
 
 jobs:
   test:
+    name: "Run tests"
     runs-on: "ubuntu-latest"
     steps:
       - name: "Check out repository"
@@ -36,8 +37,7 @@ jobs:
       - name: "Install Conda environment"
         uses: "mamba-org/setup-micromamba@v1"
         with:
-          micromamba-version: "1.4.2-2"
-          environment-file: "conda-lock.yml"
+          environment-file: "environments/main/conda-lock.yml"
           # When using a lock-file, we have to set an environment name.
           environment-name: "qgreenland-ci"
           cache-environment: true
@@ -63,9 +63,56 @@ jobs:
           QT_QPA_PLATFORM: offscreen
 
 
-  build:
+  # TODO: Consider extracting everything below this line to a separate workflow
+  # which is triggered by pushes to the default branch and GitHub releases.
+  build-and-release-image:
+    name: "Build and (if `main` or tag) release container image"
     runs-on: "ubuntu-latest"
     needs: ["test"]
+    env:
+      IMAGE_NAME: "nsidc/qgreenland"
+      # GitHub Actions expressions don't have great conditional support, so
+      # writing a ternary expression looks a lot like bash. In Python, this
+      # would read as:
+      #     'latest' if github.ref_type == 'branch' else github.ref_name
+      #     https://docs.github.com/en/actions/learn-github-actions/expressions
+      IMAGE_TAG: "${{ github.ref_type == 'branch' && 'latest' || github.ref_name }}"
+    steps:
+      - name: "Check out repository"
+        uses: "actions/checkout@v3"
+
+      - name: "Build Docker image"
+        run: |
+          docker build -t "${IMAGE_NAME}:${IMAGE_TAG}" .
+
+      - name: "DockerHub login (if `main` or tag)"
+        if: "github.event_name == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
+        uses: "docker/login-action@v2"
+        with:
+          username: "${{secrets.DOCKER_USER}}"
+          password: "${{secrets.DOCKER_PASS}}"
+
+      - name: "GHCR login (if `main` or tag)"
+        if: "github.event_name == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
+        uses: "docker/login-action@v2"
+        with:
+          registry: "ghcr.io"
+          username: "${{ github.repository_owner }}"
+          password: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: "Release to DockerHub and GHCR (if `main` or tag)"
+        if: "github.event_name == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
+        run: |
+          docker push "${IMAGE_NAME}:${IMAGE_TAG}"
+
+          docker tag "${IMAGE_NAME}:${IMAGE_TAG}" "ghcr.io/${IMAGE_NAME}:${IMAGE_TAG}"
+          docker push "ghcr.io/${IMAGE_NAME}:${IMAGE_TAG}"
+
+
+  build-package:
+    name: "Build QGreenland project (if tag)"
+    runs-on: "ubuntu-latest"
+    needs: ["build-and-release-image"]
     if: "github.ref_type == 'tag'"
     steps:
       - name: "Trigger Jenkins to build QGreenland Core"
