@@ -2,9 +2,10 @@ from qgreenland.models.config.layer_group import LayerGroupSettings
 
 settings = LayerGroupSettings(
     order=[
-        ":populated_places",
-        ":comprehensive_places",
-        ":buildings",
+        ":towns",
+        ":settlements",
+        ":points_of_interest",
         ":roads",
+        ":buildings",
     ],
 )
