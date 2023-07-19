@@ -53,7 +53,7 @@ def typecheck(ctx, check_config=False):
     qgis_scripts_pathmask = f"{qgis_scripts_dir.relative_to(PROJECT_DIR)}/*"
 
     exclude_masks = (
-        f"{config_pathmask}" f"|{test_data_pathmask}" f"|{qgis_scripts_pathmask}"
+        f"{config_pathmask}|{test_data_pathmask}|{qgis_scripts_pathmask}"
     )
 
     print_and_run(
