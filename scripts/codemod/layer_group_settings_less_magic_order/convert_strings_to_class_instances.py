@@ -43,8 +43,12 @@ class ConvertStringsToClassInstances(VisitorBasedCodemodCommand):
         self,
         original_node: cst.SimpleString,
         updated_node: cst.SimpleString,
-    ) -> cst.Name:
+    ) -> cst.Call | cst.SimpleString:
         """Call this function for every simple string in the CST."""
+        # Help the typechecker. This should always be populated in this context, but the
+        # typechecker doesn't know that.
+        assert self.context.filename
+
         # Only operate on `__settings__.py` files
         file = Path(self.context.filename)
         if file.name != "__settings__.py":
@@ -55,7 +59,7 @@ class ConvertStringsToClassInstances(VisitorBasedCodemodCommand):
             raise cst.codemod.SkipFile
 
         # Get the ancestor node 3 levels above this string
-        arg_node = original_node
+        arg_node: cst.CSTNode = original_node
         for _ in range(3):
             arg_node = self.get_metadata(cst.metadata.ParentNodeProvider, arg_node)
 
@@ -66,8 +70,10 @@ class ConvertStringsToClassInstances(VisitorBasedCodemodCommand):
         # containing this node.
         is_what_we_looking_for = (
             isinstance(arg_node, cst.Arg)
+            and arg_node.keyword
             and arg_node.keyword.value == "order"
             and isinstance(arg_node_parent, cst.Call)
+            and isinstance(arg_node_parent.func, cst.Name)
             and arg_node_parent.func.value
             in [
                 "LayerGroupSettings",
@@ -79,7 +85,7 @@ class ConvertStringsToClassInstances(VisitorBasedCodemodCommand):
         if not is_what_we_looking_for:
             return updated_node
 
-        if updated_node.evaluated_value.startswith(":"):
+        if updated_node.raw_value.startswith(":"):
             # Handle layer: Wrap the string in a call and remove leading colon
             AddImportsVisitor.add_needed_import(
                 self.context,
@@ -91,7 +97,7 @@ class ConvertStringsToClassInstances(VisitorBasedCodemodCommand):
                 args=[
                     cst.Arg(
                         cst.SimpleString(
-                            f'"{updated_node.evaluated_value[1:]}"',
+                            f'"{updated_node.raw_value[1:]}"',
                         )
                     )
                 ],
