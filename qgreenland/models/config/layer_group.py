@@ -3,8 +3,8 @@ from typing import Optional, Union
 
 from qgreenland.models.base_model import QgrBaseModel
 
-layer_identifier_regex = re.compile(r"[a-z_]*")
-layer_group_identifier_regex = re.compile(r"[a-zA-Z0-9][a-zA-Z0-9 ]*")
+layer_identifier_regex = re.compile(r"[a-z0-9_]*")
+layer_group_identifier_regex = re.compile(r"[a-zA-Z0-9][a-zA-Z0-9() ,._-]*")
 
 
 class LayerIdentifier(str):
@@ -27,7 +27,7 @@ class LayerIdentifier(str):
             raise TypeError(f"Must be explicitly initialized with {cls.__name__}()")
         m = layer_identifier_regex.fullmatch(v)
         if not m:
-            raise ValueError("Invalid layer identifier format")
+            raise ValueError(f'Invalid layer identifier format "{v}"')
 
         return v
 
@@ -64,20 +64,12 @@ class LayerGroupIdentifier(str):
             raise TypeError(f"Must be explicitly initialized with {cls.__name__}()")
         m = layer_group_identifier_regex.fullmatch(v)
         if not m:
-            raise ValueError("Invalid layer identifier format")
+            raise ValueError(f'Invalid layer group identifier format "{v}"')
 
         return v
 
     def __repr__(self):
         return f"{self.__class__.__name__}({super().__repr__()})"
-
-
-class NotString:
-    def startswith(self, thing: str):
-        return False
-
-    def __getitem__(self, key):
-        return "a"
 
 
 class RootGroupSettings(QgrBaseModel):

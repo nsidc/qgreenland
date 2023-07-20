@@ -73,4 +73,7 @@ def compile_cfg(
             layer_tree=compiled_layer_tree,
         )
     except Exception as e:
-        raise exc.QgrConfigCompileError(f"Failed to compile config at '{config_dir}'. {e}") from e
+        raise exc.QgrConfigCompileError(
+            f"Failed to compile config at '{config_dir}'. NOTE: Follow the traceback up"
+            f" to find the file at fault.\n{e}"
+        ) from e
