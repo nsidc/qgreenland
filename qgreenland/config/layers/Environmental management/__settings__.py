@@ -1,10 +1,14 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+    LayerIdentifier,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "Mineral and hydrocarbon licenses",
-        ":nafo_divisions",
-        "Protected zones",
-        "Maritime boundaries",
+        LayerGroupIdentifier("Mineral and hydrocarbon licenses"),
+        LayerIdentifier("nafo_divisions"),
+        LayerGroupIdentifier("Protected zones"),
+        LayerGroupIdentifier("Maritime boundaries"),
     ],
 )

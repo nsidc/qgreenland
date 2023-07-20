@@ -1,11 +1,15 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+    LayerIdentifier,
+)
 
 settings = LayerGroupSettings(
     order=[
-        ":earthquakes",
-        ":tectonic_plate_boundaries",
-        ":tectonic_plate_polygons",
-        ":soil_types",
-        "Geological map",
+        LayerIdentifier("earthquakes"),
+        LayerIdentifier("tectonic_plate_boundaries"),
+        LayerIdentifier("tectonic_plate_polygons"),
+        LayerIdentifier("soil_types"),
+        LayerGroupIdentifier("Geological map"),
     ],
 )

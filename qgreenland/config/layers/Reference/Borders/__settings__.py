@@ -1,12 +1,12 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
 
 settings = LayerGroupSettings(
     order=[
-        ":bas_greenland_coastlines",
-        ":coastlines",
-        ":nunagis_municipalities_population",
-        ":ne_states_provinces",
-        ":ne_countries",
+        LayerIdentifier("bas_greenland_coastlines"),
+        LayerIdentifier("coastlines"),
+        LayerIdentifier("nunagis_municipalities_population"),
+        LayerIdentifier("ne_states_provinces"),
+        LayerIdentifier("ne_countries"),
     ],
     show=True,
 )

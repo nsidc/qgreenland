@@ -1,8 +1,8 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
 
 settings = LayerGroupSettings(
     order=[
-        ":mcas_mlsa_public_all",
-        ":mcas_mlsa_public_historic",
+        LayerIdentifier("mcas_mlsa_public_all"),
+        LayerIdentifier("mcas_mlsa_public_historic"),
     ],
 )

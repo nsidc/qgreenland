@@ -1,11 +1,11 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
 
 settings = LayerGroupSettings(
     order=[
-        ":image_mosaic_2019",
-        ":image_mosaic_2015",
-        ":sdfi_satellite_orthophotos",
-        ":sdfi_topo_map",
-        ":blue_marble_shaded_relief_bathymetry",
+        LayerIdentifier("image_mosaic_2019"),
+        LayerIdentifier("image_mosaic_2015"),
+        LayerIdentifier("sdfi_satellite_orthophotos"),
+        LayerIdentifier("sdfi_topo_map"),
+        LayerIdentifier("blue_marble_shaded_relief_bathymetry"),
     ],
 )

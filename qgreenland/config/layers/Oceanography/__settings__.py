@@ -1,9 +1,12 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "Undersea feature names",
-        "Seawater temperature (25km)",
-        "Bathymetry",
+        LayerGroupIdentifier("Undersea feature names"),
+        LayerGroupIdentifier("Seawater temperature (25km)"),
+        LayerGroupIdentifier("Bathymetry"),
     ],
 )

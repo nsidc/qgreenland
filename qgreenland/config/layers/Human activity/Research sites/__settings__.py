@@ -1,9 +1,9 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
 
 settings = LayerGroupSettings(
     order=[
-        ":gem_research_stations",
-        ":promice_gc_net_stations",
-        ":seismograph_stations",
+        LayerIdentifier("gem_research_stations"),
+        LayerIdentifier("promice_gc_net_stations"),
+        LayerIdentifier("seismograph_stations"),
     ],
 )
