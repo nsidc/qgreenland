@@ -4,6 +4,6 @@ from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdenti
 settings = LayerGroupSettings(
     order=[
         LayerIdentifier("marginal_lakes"),
-        *[f":{layer_id}" for layer_id in ORDERED_LAYER_IDS],
+        *[LayerIdentifier(layer_id) for layer_id in ORDERED_LAYER_IDS],
     ],
 )

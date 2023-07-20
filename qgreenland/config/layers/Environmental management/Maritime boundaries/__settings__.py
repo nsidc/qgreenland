@@ -4,11 +4,12 @@ from qgreenland.config.helpers.layers.territorial_waters import (
 from qgreenland.models.config.layer_group import (
     LayerGroupIdentifier,
     LayerGroupSettings,
+    LayerIdentifier,
 )
 
 settings = LayerGroupSettings(
     order=[
-        *[f":{layer_id}" for layer_id in TERRITORIAL_WATERS_PARAMS.keys()],
+        *[LayerIdentifier(layer_id) for layer_id in TERRITORIAL_WATERS_PARAMS.keys()],
         LayerGroupIdentifier("Continental shelf"),
     ],
 )
