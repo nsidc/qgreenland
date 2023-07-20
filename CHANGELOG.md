@@ -11,6 +11,8 @@
 * Rename "Places/Place names database" -> "Places/Points of interest". Towns and
   settlements are now excluded from this layer (in favor of the more-up-to-date
   "Towns" and "Settlements" layers.
+* Establish a more explicit/readable pattern for defining the order of QGreenland's
+  layers and groups in the Layers Panel
 
 
 # v3.0.0alpha3 (2023-07-05)

@@ -1,0 +1,11 @@
+name: qgreenland-codemod
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - libcst
+  - black
+
+  - pip
+  - pip:
+    - remote_pdb

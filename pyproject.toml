@@ -59,6 +59,8 @@ exclude = [
 # E402: Module level import not at top of file
 # E501: Line too long. Long strings, e.g. URLs, are common in config.
 # F821: Undefined name. Expected in some templates and scripts.
+# N802: Invalid function name. Expected in codemods.
+"scripts/codemod/**/*.py" = ["N802"]
 "scripts/qgis_examples/*.py" = ["F821"]
 "tasks/test.py" = ["E402"]
 "qgreenland/ancillary/templates/layer_cfg.py" = ["F821"]
