@@ -1,13 +1,14 @@
 import re
+from collections import UserString
 from typing import Optional, Union
 
 from qgreenland.models.base_model import QgrBaseModel
 
 layer_identifier_regex = re.compile(r"[a-z0-9_]*")
-layer_group_identifier_regex = re.compile(r"[a-zA-Z0-9][a-zA-Z0-9() ,._-]*")
+layer_group_identifier_regex = re.compile(r"[A-Z0-9][a-zA-Z0-9() ,._-]*")
 
 
-class LayerIdentifier(str):
+class LayerIdentifier(UserString):
     """A string uniquely identifying a layer.
 
     Based on docs: https://docs.pydantic.dev/1.10/usage/types/#classes-with-__get_validators__
@@ -33,6 +34,10 @@ class LayerIdentifier(str):
 
     def __repr__(self):
         return f"{self.__class__.__name__}({super().__repr__()})"
+
+    def __json__(self):
+        """When exporting to JSON to create a "lock" file, maintain back-compat."""
+        return f":{self}"
 
 
 class LayerGroupIdentifier(str):
@@ -71,6 +76,10 @@ class LayerGroupIdentifier(str):
     def __repr__(self):
         return f"{self.__class__.__name__}({super().__repr__()})"
 
+    def __json__(self):
+        """When exporting to JSON to create a "lock" file, maintain back-compat."""
+        return str(self)
+
 
 class RootGroupSettings(QgrBaseModel):
     """Settings specific to the root group."""
@@ -82,6 +91,13 @@ class RootGroupSettings(QgrBaseModel):
     referenced by a colon followed by the layer ID, e.g. `:background`. If
     'order' is omitted, a default sorting algorithm is applied.
     """
+
+    # Without this setting, Pydantic will try and convert LayerGroupIdentifiers into
+    # LayerIdentifiers because they look compatible and LayerIdentifier is first in the
+    # union. This is slower. This is less of an issue in Pydantic v2.
+    # https://docs.pydantic.dev/1.10/usage/model_config/#smart-union
+    class Config:
+        smart_union = True
 
 
 class LayerGroupSettings(RootGroupSettings):

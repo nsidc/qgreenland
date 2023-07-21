@@ -99,7 +99,7 @@ class EvalStr(UserString):
             str(value)
         except Exception as e:
             raise type(e)(
-                "Stringifiable type expected. Received:" f" `{type(value).__name__}`",
+                f"Stringifiable type expected. Received: `{type(value).__name__}`",
             )
 
         return cls(value)
