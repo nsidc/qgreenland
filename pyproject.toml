@@ -61,6 +61,7 @@ exclude = [
 # F821: Undefined name. Expected in some templates and scripts.
 # N802: Invalid function name. Expected in codemods.
 "scripts/codemod/**/*.py" = ["N802"]
+"scripts/codemod/test/*.py" = ["E501"]
 "scripts/qgis_examples/*.py" = ["F821"]
 "tasks/test.py" = ["E402"]
 "qgreenland/ancillary/templates/layer_cfg.py" = ["F821"]

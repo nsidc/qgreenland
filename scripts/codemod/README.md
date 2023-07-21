@@ -12,3 +12,13 @@ python -m libcst.tool list
 
 You shouldn't need to use these except in extreme cases! `ruff` and `black` meet our
 day-to-day code transformation needs.
+
+
+## Testing
+
+```
+pytest .
+```
+
+> :warning: These tests are not run in CI. They were to validate correctness during
+> development.

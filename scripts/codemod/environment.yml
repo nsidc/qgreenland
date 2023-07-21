@@ -5,6 +5,7 @@ channels:
 dependencies:
   - libcst
   - black
+  - pytest
 
   - pip
   - pip:

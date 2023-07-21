@@ -58,12 +58,19 @@ class ConvertStringsToClassInstances(VisitorBasedCodemodCommand):
         if "/qgreenland/test/" in str(file):
             raise cst.codemod.SkipFile
 
-        # Get the ancestor node 3 levels above this string
-        arg_node: cst.CSTNode = original_node
-        for _ in range(3):
-            arg_node = self.get_metadata(cst.metadata.ParentNodeProvider, arg_node)
+        try:
+            # Get the ancestor node 3 levels above this string
+            arg_node: cst.CSTNode = original_node
+            for _ in range(3):
+                arg_node = self.get_metadata(cst.metadata.ParentNodeProvider, arg_node)
 
-        arg_node_parent = self.get_metadata(cst.metadata.ParentNodeProvider, arg_node)
+            arg_node_parent = self.get_metadata(
+                cst.metadata.ParentNodeProvider,
+                arg_node,
+            )
+        except KeyError:
+            # The expected parents weren't found
+            return updated_node
 
         # We're looking for a call to "LayerGroupSettings" or "RootGroupSettings"
         # containing an `order` arg. That `order` arg's value should be a list
