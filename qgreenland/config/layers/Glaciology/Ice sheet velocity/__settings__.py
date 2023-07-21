@@ -1,8 +1,11 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "ITS_LIVE",
-        "ESA Climate Change Initiative",
+        LayerGroupIdentifier("ITS_LIVE"),
+        LayerGroupIdentifier("ESA Climate Change Initiative"),
     ],
 )

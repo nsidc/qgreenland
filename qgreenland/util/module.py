@@ -1,8 +1,11 @@
 import importlib
 import inspect
+import logging
 from pathlib import Path
 from types import ModuleType
 from typing import TypeVar
+
+logger = logging.getLogger(__name__)
 
 
 def module_from_path(module_path: Path) -> ModuleType:
@@ -38,6 +41,7 @@ def load_objects_from_paths_by_class(
     """Return all objects of class `model_class` in `module_paths`."""
     found_models = []
     for module_path in module_paths:
+        logger.debug(f"Loading instances of {target_class=} from {module_path=}...")
         module = module_from_path(module_path)
 
         # TODO: Validate `id`s of each model, if present, are unique? Do that

@@ -1,9 +1,9 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
 
 settings = LayerGroupSettings(
     order=[
-        ":undersea_features_point",
-        ":undersea_features_multilinestring",
-        ":undersea_features_multipolygon",
+        LayerIdentifier("undersea_features_point"),
+        LayerIdentifier("undersea_features_multilinestring"),
+        LayerIdentifier("undersea_features_multipolygon"),
     ],
 )

@@ -1,9 +1,12 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "September (min weekly extent)",
-        "Feb, March, or April (max weekly extent)",
+        LayerGroupIdentifier("September (min weekly extent)"),
+        LayerGroupIdentifier("Feb, March, or April (max weekly extent)"),
     ],
     expand=True,
 )

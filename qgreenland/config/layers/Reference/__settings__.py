@@ -1,14 +1,18 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+    LayerIdentifier,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "QGreenland boundaries",
-        ":arctic_circle",
-        "Latitude lines",
-        "Longitude lines",
-        ":timezones",
-        ":utm_zones",
-        "Borders",
+        LayerGroupIdentifier("QGreenland boundaries"),
+        LayerIdentifier("arctic_circle"),
+        LayerGroupIdentifier("Latitude lines"),
+        LayerGroupIdentifier("Longitude lines"),
+        LayerIdentifier("timezones"),
+        LayerIdentifier("utm_zones"),
+        LayerGroupIdentifier("Borders"),
     ],
     show=True,
     expand=True,

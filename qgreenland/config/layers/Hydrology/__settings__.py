@@ -1,9 +1,9 @@
 from qgreenland.config.helpers.layers.streams_outlets_basins import ORDERED_LAYER_IDS
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
 
 settings = LayerGroupSettings(
     order=[
-        ":marginal_lakes",
-        *[f":{layer_id}" for layer_id in ORDERED_LAYER_IDS],
+        LayerIdentifier("marginal_lakes"),
+        *[LayerIdentifier(layer_id) for layer_id in ORDERED_LAYER_IDS],
     ],
 )

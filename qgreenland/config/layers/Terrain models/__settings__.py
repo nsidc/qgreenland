@@ -1,8 +1,12 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+    LayerIdentifier,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "BedMachine",
-        ":arctic_dem",
+        LayerGroupIdentifier("BedMachine"),
+        LayerIdentifier("arctic_dem"),
     ],
 )

@@ -1,9 +1,9 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
 
 settings = LayerGroupSettings(
     order=[
-        ":qgr_boundary_data",
-        ":qgr_boundary_background",
+        LayerIdentifier("qgr_boundary_data"),
+        LayerIdentifier("qgr_boundary_background"),
     ],
     show=True,
 )

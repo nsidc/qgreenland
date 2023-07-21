@@ -1,9 +1,13 @@
-from qgreenland.models.config.layer_group import RootGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerIdentifier,
+    RootGroupSettings,
+)
 
 settings = RootGroupSettings(
     order=[
-        "Group",
-        ":extra_layer",
-        "Extra group",
+        LayerGroupIdentifier("Group"),
+        LayerIdentifier("extra_layer"),
+        LayerGroupIdentifier("Extra group"),
     ],
 )

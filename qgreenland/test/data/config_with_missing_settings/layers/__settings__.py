@@ -1,7 +1,10 @@
-from qgreenland.models.config.layer_group import RootGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    RootGroupSettings,
+)
 
 settings = RootGroupSettings(
     order=[
-        "Group",
+        LayerGroupIdentifier("Group"),
     ],
 )

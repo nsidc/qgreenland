@@ -1,9 +1,12 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "Median extent (1981-2010)",
-        "Weekly age (12.5km)",
-        "Monthly mean concentration (25 km)",
+        LayerGroupIdentifier("Median extent (1981-2010)"),
+        LayerGroupIdentifier("Weekly age (12.5km)"),
+        LayerGroupIdentifier("Monthly mean concentration (25 km)"),
     ],
 )

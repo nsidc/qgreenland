@@ -1,17 +1,21 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+    LayerIdentifier,
+)
 
 settings = LayerGroupSettings(
     order=[
-        ":ice_cores",
-        ":machguth_massbalance_locations",
-        ":jakobshavn_supraglacial_lakes",
-        ":firn_ice_layer_thicknesses",
-        "Glacier terminus positions 2000-2021",
-        "Global land ice measurements from space (GLIMS)",
-        ":ice_thickness_change",
-        "Surface elevation change",
-        "Gravimetric mass balance",
-        "Ice sheet velocity",
-        ":basal_thermal_state",
+        LayerIdentifier("ice_cores"),
+        LayerIdentifier("machguth_massbalance_locations"),
+        LayerIdentifier("jakobshavn_supraglacial_lakes"),
+        LayerIdentifier("firn_ice_layer_thicknesses"),
+        LayerGroupIdentifier("Glacier terminus positions 2000-2021"),
+        LayerGroupIdentifier("Global land ice measurements from space (GLIMS)"),
+        LayerIdentifier("ice_thickness_change"),
+        LayerGroupIdentifier("Surface elevation change"),
+        LayerGroupIdentifier("Gravimetric mass balance"),
+        LayerGroupIdentifier("Ice sheet velocity"),
+        LayerIdentifier("basal_thermal_state"),
     ],
 )

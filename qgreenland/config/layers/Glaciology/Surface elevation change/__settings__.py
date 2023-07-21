@@ -1,8 +1,11 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+)
 
 settings = LayerGroupSettings(
     order=[
-        "Errors",
-        "Observations",
+        LayerGroupIdentifier("Errors"),
+        LayerGroupIdentifier("Observations"),
     ],
 )

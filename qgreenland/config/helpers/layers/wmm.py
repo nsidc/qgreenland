@@ -4,6 +4,7 @@ from qgreenland.config.datasets import wmm
 from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.layer_group import LayerIdentifier
 from qgreenland.models.config.step import CommandStep
 
 
@@ -285,10 +286,10 @@ def make_wmm_variable_layers_for_year(*, year: int) -> list[Layer]:
     return layers
 
 
-def wmm_layer_order(*, year: int) -> list[str]:
+def wmm_layer_order(*, year: int) -> list[LayerIdentifier]:
     layer_order = []
-    layer_order.append(f":wmm_boz_{year}")
+    layer_order.append(LayerIdentifier(f"wmm_boz_{year}"))
     for variable_name in _wmm_variable_config.keys():
-        layer_order.append(f":wmm_{variable_name}_{year}")
+        layer_order.append(LayerIdentifier(f"wmm_{variable_name}_{year}"))
 
     return layer_order

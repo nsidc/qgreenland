@@ -21,7 +21,7 @@ dependencies:
   - gdal ~=3.6.0
   - humanize ~=2.6.0
   - luigi ~=3.0.2
-  - pydantic ~=1.8
+  - pydantic ~=1.10
   - qgis ~=3.28.6
   - requests ~=2.25.0
   - types-requests ~=2.25.0
