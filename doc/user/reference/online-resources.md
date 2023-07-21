@@ -7,7 +7,7 @@ Map Service (WMS)](https://www.ogc.org/standards/wms), [Web Feature Service
 potentially useful resources that QGIS can connect to to provide layers via the
 internet.
 
-See the [How to add an online layer to QGIS](/user-how-to/online-layers.md) page
+See the [How to add an online layer to QGIS](/user/how-to/online-layers.md) page
 for information on how to utilize these resources.
 
 * [The National Snow and Ice Data Center

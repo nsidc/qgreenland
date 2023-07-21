@@ -23,87 +23,33 @@ QGreenland Documentation
     acknowledgements.md
 
 
-.. raw:: latex
-
-    \part{Tutorials}
-
-
 .. toctree::
-    :name: Tutorials
-    :caption: Tutorials
-    :maxdepth: 1
-    :glob:
+    :name: User_Documentation
+    :caption: User Documentation
     :hidden:
 
-    tutorials/get-started.md
-    tutorials/video-series-overview.md
-    tutorials/*
-
-
-.. raw:: latex
-
-    \part{How-to}
-
-
-.. toctree-select-builder::
-    :name: How-to
-    :caption: How-to
-    :maxdepth: 1
-    :hidden:
-
-    user-how-to/index
-    :html:contributor-how-to/index
-
-
-.. raw:: latex
-
-    \part{Reference}
-
-
-.. toctree::
-    :name: User_Reference
-    :caption: User Reference
-    :maxdepth: 1
-    :hidden:
-
-    reference/glossary/index
-    reference/data-compatibility-guide.md
-    reference/online-resources.md
+    user/tutorials/index
+    user/how-to/index
+    user/reference/index
+    user/discussion/index
 
 
 .. only:: html
 
     .. toctree::
-        :name: Contributor_Reference
-        :caption: Contributor Reference
+        :name: Contributor_Documentation
+        :caption: Contributor Documentation
         :maxdepth: 1
         :hidden:
 
-        reference/architecture/index
-        reference/api/index
-        reference/cli/index
-        reference/style-guide.md
+        contributor/how-to/index
+        contributor/reference/index
+        contributor/discussion/index
 
-
-.. raw:: latex
-
-    \part{Discussion topics}
-
-
-.. toctree::
-    :name: Discussion topics
-    :caption: Discussion topics
-    :maxdepth: 1
-    :glob:
-    :hidden:
-
-    discussion/*
-
-
-.. only:: html
 
     .. include:: what_is_qgr.md
         :parser: myst_parser.sphinx_
+
 
     .. include:: citing.md
         :parser: myst_parser.sphinx_

@@ -1,4 +1,4 @@
-# User Glossary
+# Glossary
 
 A "user" is someone who uses QGreenland in QGIS.
 
