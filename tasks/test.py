@@ -48,7 +48,7 @@ def typecheck(ctx, check_config=False):
     qgis_scripts_dir = SCRIPTS_DIR / "qgis_examples"
     qgis_scripts_pathmask = f"{qgis_scripts_dir.relative_to(PROJECT_DIR)}/*"
     # Codemods require libcst which is not included in the main environment.
-    codemods_dir = SCRIPTS_DIR / "codemods"
+    codemods_dir = SCRIPTS_DIR / "codemod"
     codemods_pathmask = f"{codemods_dir.relative_to(PROJECT_DIR)}/*"
 
     exclude_masks = (
