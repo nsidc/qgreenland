@@ -40,7 +40,7 @@ information about NSIDC’s web map services is available here:
 [https://nsidc.org/map-services/geospatial-map-services](https://nsidc.org/map-services/geospatial-map-services).
 
 For additional online resources, see the [Online layers
-reference](/reference/online-resources.md) page.
+reference](/user/reference/online-resources.md) page.
 ```
 
 ![wms_connection_details](/_images/wms_connection_details.png)

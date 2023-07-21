@@ -53,21 +53,6 @@ one might intuitively expect. Specifically, it isn't capable of creating conditi
 filtered `toctrees`. Because of this insufficiency, we're employing two nonstandard
 methods in `doc/index.rst` to deselect items from PDF docs:
 
-* Our custom `.. toctree-select-builder::` directive, defined in
-  `doc/sphinx-ext/toctree_select_builder.py`, is a customized `toctree` directive which
-  enables filtering its contents. If a prefix is present, that entry will only be kept
-  if the prefix matches the name of the current builder.
-
-  ```rst
-  .. toctree-select-builder::
-      :name: Mixed content
-      :caption: Mixed content
-
-      always/shown/document
-      :html:html/only/document
-      :latex:pdf/only/document
-  ```
-
 * The package
   [sphinx-selective-exclude](https://pypi.org/project/sphinx-selective-exclude/)
   enhances the behavior of `.. only::` to more intuitively select content during the

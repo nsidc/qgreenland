@@ -47,7 +47,6 @@ extensions = [
     "sphinx_selective_exclude.eager_only",
     "sphinx_selective_exclude.search_auto_exclude",
     "sphinx_selective_exclude.modindex_exclude",
-    "toctree_select_builder",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
