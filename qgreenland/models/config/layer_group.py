@@ -4,43 +4,50 @@ from typing import Optional, Union
 
 from qgreenland.models.base_model import QgrBaseModel
 
-layer_identifier_regex = re.compile(r"[a-z0-9_]*")
-layer_group_identifier_regex = re.compile(r"[A-Z0-9][a-zA-Z0-9() ,._-]*")
 
-
-class LayerIdentifier(UserString):
-    """A string uniquely identifying a layer.
+class LayerIdentifierBase(UserString):
+    """A base class for special strings meant to be distinguished by type.
 
     Based on docs: https://docs.pydantic.dev/1.10/usage/types/#classes-with-__get_validators__
 
     TODO: The doc above specifies a `__modify_schema__` method which we're not using.
     Should we be?
-    TODO: Update other models to replace string layer identifiers with this class?
     """
+
+    regex: re.Pattern
 
     @classmethod
     def __get_validators__(cls):
         yield cls.validate
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
     @classmethod
     def validate(cls, v):
         if not isinstance(v, cls):
             raise TypeError(f"Must be explicitly initialized with {cls.__name__}()")
-        m = layer_identifier_regex.fullmatch(str(v))
+        m = cls.regex.fullmatch(str(v))
         if not m:
-            raise ValueError(f'Invalid layer identifier format "{v}"')
+            raise ValueError(f'Invalid {cls.__name__} format "{v}"')
 
         return v
 
-    def __repr__(self):
-        return f"{self.__class__.__name__}({super().__repr__()})"
+
+class LayerIdentifier(LayerIdentifierBase):
+    """A string uniquely identifying a layer.
+
+    TODO: Update other models to replace string layer identifiers with this class?
+    """
+
+    regex = re.compile(r"[a-z0-9_]*")
 
     def __json__(self):
         """When exporting to JSON to create a "lock" file, maintain back-compat."""
         return f":{self}"
 
 
-class LayerGroupIdentifier(str):
+class LayerGroupIdentifier(LayerIdentifierBase):
     """A string corresponding with a single layer group/directory name.
 
     This is not expected to be globally unique, only locally within their parent group.
@@ -54,25 +61,9 @@ class LayerGroupIdentifier(str):
 
     TODO: Update other models to replace string layer group identifiers with lists of
     this class?
-    TODO: Dedup methods
     """
 
-    @classmethod
-    def __get_validators__(cls):
-        yield cls.validate
-
-    @classmethod
-    def validate(cls, v):
-        if not isinstance(v, cls):
-            raise TypeError(f"Must be explicitly initialized with {cls.__name__}()")
-        m = layer_group_identifier_regex.fullmatch(str(v))
-        if not m:
-            raise ValueError(f'Invalid layer group identifier format "{v}"')
-
-        return v
-
-    def __repr__(self):
-        return f"{self.__class__.__name__}({super().__repr__()})"
+    regex = re.compile(r"[A-Z0-9][a-zA-Z0-9() ,._-]*")
 
     def __json__(self):
         """When exporting to JSON to create a "lock" file, maintain back-compat."""
