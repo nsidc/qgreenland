@@ -13,14 +13,14 @@ class LayerIdentifier(UserString):
 
     Based on docs: https://docs.pydantic.dev/1.10/usage/types/#classes-with-__get_validators__
 
+    TODO: The doc above specifies a `__modify_schema__` method which we're not using.
+    Should we be?
     TODO: Update other models to replace string layer identifiers with this class?
     """
 
     @classmethod
     def __get_validators__(cls):
         yield cls.validate
-
-    # TODO: __modify_schema__?
 
     @classmethod
     def validate(cls, v):
@@ -60,8 +60,6 @@ class LayerGroupIdentifier(str):
     @classmethod
     def __get_validators__(cls):
         yield cls.validate
-
-    # TODO: __modify_schema__?
 
     @classmethod
     def validate(cls, v):
