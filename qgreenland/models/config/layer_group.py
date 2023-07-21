@@ -26,7 +26,7 @@ class LayerIdentifier(UserString):
     def validate(cls, v):
         if not isinstance(v, cls):
             raise TypeError(f"Must be explicitly initialized with {cls.__name__}()")
-        m = layer_identifier_regex.fullmatch(v)
+        m = layer_identifier_regex.fullmatch(str(v))
         if not m:
             raise ValueError(f'Invalid layer identifier format "{v}"')
 
@@ -67,7 +67,7 @@ class LayerGroupIdentifier(str):
     def validate(cls, v):
         if not isinstance(v, cls):
             raise TypeError(f"Must be explicitly initialized with {cls.__name__}()")
-        m = layer_group_identifier_regex.fullmatch(v)
+        m = layer_group_identifier_regex.fullmatch(str(v))
         if not m:
             raise ValueError(f'Invalid layer group identifier format "{v}"')
 
