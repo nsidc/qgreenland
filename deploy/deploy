@@ -3,16 +3,9 @@
 # environment. It needs to be genericized!
 set -euo pipefail
 
-ref="${1:-}"
-
-if [ -z "${ref}" ]; then
-    echo "ERROR: A Git ref must be provided as an argument."
-    exit 1
-fi
-
-# Restart the luigi container, leaving the webserver up
 source VERSION.env
 
+# Restart the luigi container, leaving the webserver up
 docker-compose rm -sf luigi
 docker system prune -af
 docker-compose up --build -d
