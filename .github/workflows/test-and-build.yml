@@ -86,14 +86,14 @@ jobs:
           docker build -t "${IMAGE_NAME}:${IMAGE_TAG}" .
 
       - name: "DockerHub login (if `main` or tag)"
-        if: "github.event_name == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
+        if: "github.ref_type == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
         uses: "docker/login-action@v2"
         with:
           username: "${{secrets.DOCKER_USER}}"
           password: "${{secrets.DOCKER_PASS}}"
 
       - name: "GHCR login (if `main` or tag)"
-        if: "github.event_name == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
+        if: "github.ref_type == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
         uses: "docker/login-action@v2"
         with:
           registry: "ghcr.io"
@@ -101,7 +101,7 @@ jobs:
           password: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: "Release to DockerHub and GHCR (if `main` or tag)"
-        if: "github.event_name == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
+        if: "github.ref_type == 'tag' || (github.event_name == 'push' && github.ref_name == github.event.repository.default_branch)"
         run: |
           docker push "${IMAGE_NAME}:${IMAGE_TAG}"
 
