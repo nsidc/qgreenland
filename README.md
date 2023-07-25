@@ -7,6 +7,11 @@
 
 [Our website](https://www.qgreenland.org) | [Documentation](https://qgreenland.readthedocs.io)
 
+> :tada: QGreenland v3 development is well underway. We're looking for testers to
+> provide feedback by **August 6, 2023**. Please see our [full
+> announcement](https://github.com/nsidc/qgreenland/discussions/694) for more details,
+> including highlights of this release.
+
 
 ## A Free GIS Package for Greenland
 
