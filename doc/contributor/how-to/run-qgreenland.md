@@ -62,9 +62,6 @@ The source code looks at these envvars, if set:
 
 #### Mandatory Docker Compose envvars
 
-* `QGREENLAND_VERSION`: The `nsidc/qgreenland` docker image tag to use.
-
-
 #### Optional Docker Compose envvars
 
 Our source code expects to run in a container and has hard-coded path constants. We
@@ -72,9 +69,15 @@ should move these envvars and defaults into the source code, but for now they're
 configuring the compose stack to route directories on the host to the hard-coded
 container locations.
 
+* `QGREENLAND_VERSION`: The `nsidc/qgreenland` docker image tag to use. Defaults to
+  `latest`.
 * `QGREENLAND_DATA_WORKING_STORAGE`: defaults to `./data/working-storage`
 * `QGREENLAND_DATA_PRIVATE_ARCHIVE`: defaults to `./data/private-archive`
 * `QGREENLAND_DATA_LOGS`: defaults to `./data/logs`
+
+Visit our [storage architecture reference
+documentation](../reference/architecture/storage.md) to learn more about storage
+locations.
 
 
 ## How to start the service stack

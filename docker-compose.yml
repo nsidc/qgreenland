@@ -5,7 +5,7 @@ services:
   # Luigi runs as a service and must have jobs submitted to it
   # (`scripts/run.sh`)
   luigi:
-    image: "nsidc/qgreenland:${QGREENLAND_VERSION:?QGREENLAND_VERSION must be set}"
+    image: "nsidc/qgreenland:${QGREENLAND_VERSION:-latest}"
     container_name: "luigi"
     volumes:
       # Code
