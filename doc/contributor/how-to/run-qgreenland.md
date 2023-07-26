@@ -60,8 +60,6 @@ The source code looks at these envvars, if set:
 * `QGREENLAND_ENV_MANAGER`: defaults to `conda`
 
 
-#### Mandatory Docker Compose envvars
-
 #### Optional Docker Compose envvars
 
 Our source code expects to run in a container and has hard-coded path constants. We
