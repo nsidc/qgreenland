@@ -1,13 +1,10 @@
 # How to run QGreenland Core
 
-This project uses Docker and `docker-compose` to run each of its components as
-services.  See Docker's [Getting started guide](https://docs.docker.com/get-started/).
+This project uses Docker and `docker-compose` to run each of its components as services.
+See Docker's [Getting started guide](https://docs.docker.com/get-started/).
 
-The docker-compose stack runs Luigi (with visualizer at port 8082) as a service
-for running tasks, as well as NGINX (port 80, 443) for hosting outputs.
-
-
-## How to start the service stack
+The `docker-compose` stack runs Luigi (with visualizer at port 8082) as a service for
+running tasks, as well as NGINX (port 80, 443) for hosting outputs.
 
 ```{caution}
 Docker Desktop for OSX has some "gotchas". Running with "Use gRPC FUSE for file sharing"
@@ -18,9 +15,30 @@ https://docs.docker.com/desktop/mac/
 ```
 
 
+## How to configure the service stack
+
+### Development overrides
+
+Development overrides enable:
+
+* Build the Docker image from local source instead of using a versioned Docker image
+* Mount the source code into the Docker container, so the container doesn't need to be
+  re-built on each change
+
+To set up development overrides on your machine:
+
+```
+ln -s docker-compose.dev.yml docker-compose.override.yml
+```
+
+
 ### Envvars
 
-### Earthdata Login
+Some envvars are used by the source code, others are used by the `docker-compose`
+config.
+
+
+#### Mandatory envvars
 
 In order to download data behind Earthdata Login, you must `export` the
 following environment variables:
@@ -34,7 +52,7 @@ Earthdata Login credentials. New users to Earthdata can register here:
 https://urs.earthdata.nasa.gov/users/new
 
 
-#### Optional envvars
+##### Optional envvars
 
 The source code looks at these envvars, if set:
 
@@ -42,12 +60,12 @@ The source code looks at these envvars, if set:
 * `QGREENLAND_ENV_MANAGER`: defaults to `conda`
 
 
-### Mandatory Docker Compose envvars
+#### Mandatory Docker Compose envvars
 
 * `QGREENLAND_VERSION`: The `nsidc/qgreenland` docker image tag to use.
 
 
-### Optional Docker Compose envvars
+#### Optional Docker Compose envvars
 
 Our source code expects to run in a container and has hard-coded path constants. We
 should move these envvars and defaults into the source code, but for now they're for
@@ -59,7 +77,7 @@ container locations.
 * `QGREENLAND_DATA_LOGS`: defaults to `./data/logs`
 
 
-### Go!
+## How to start the service stack
 
 Start the stack with docker-compose:
 
