@@ -8,4 +8,4 @@ source VERSION.env
 # Restart the luigi container, leaving the webserver up
 docker-compose rm -sf luigi
 docker system prune -af
-docker-compose up --build -d
+docker-compose up -d
