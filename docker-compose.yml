@@ -15,16 +15,16 @@ services:
       - "./luigi/state:/luigi/state:rw"
 
       # Input (private) storage
-      - "${DATA_PRIVATE_ARCHIVE:-./data/private-archive}:/private-archive:ro"
+      - "${QGREENLAND_DATA_PRIVATE_ARCHIVE:-./data/private-archive}:/private-archive:ro"
       # Read-write storage
-      # HACK: Should use ${DATA_WORKING_STORAGE}, but we were having issues
-      # with our NFS appliance some time ago, started using two working storage
-      # locations temporarily, and we haven't re-tested yet.
-      - "${DATA_WORKING_STORAGE_TMP:-./data/working-storage}:/working-storage:rw"
+      # HACK: Should use ${QGREENLAND_DATA_WORKING_STORAGE}, but we were having
+      # issues with our storage appliance some time ago, started using two
+      # working storage locations temporarily, and we haven't re-tested yet.
+      - "${QGREENLAND_DATA_WORKING_STORAGE_TMP:-./data/working-storage}:/working-storage:rw"
     environment:
-      - "ENVIRONMENT"
-      - "EARTHDATA_USERNAME"
-      - "EARTHDATA_PASSWORD"
+      - "QGREENLAND_EARTHDATA_USERNAME=${QGREENLAND_EARTHDATA_USERNAME:?QGREENLAND_EARTHDATA_USERNAME must be set}"
+      - "QGREENLAND_EARTHDATA_PASSWORD=${QGREENLAND_EARTHDATA_PASSWORD:?QGREENLAND_EARTHDATA_PASSWORD must be set}"
+      - "QGREENLAND_ENVIRONMENT"
       - "QGREENLAND_ENV_MANAGER=micromamba"
       # Configure Luigi to find its config in luigi/conf/luigi.toml
       - "LUIGI_CONFIG_PARSER=toml"
@@ -50,9 +50,9 @@ services:
     volumes:
       - "./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro"
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
-      - "${DATA_WORKING_STORAGE:-./data/working-storage}/release-layers:/usr/share/nginx/html/layers:ro"
-      - "${DATA_WORKING_STORAGE:-./data/working-storage}/release-packages:/usr/share/nginx/html/packages:ro"
-      - "${DATA_LOGS:-./data/logs}:/logs:rw"
+      - "${QGREENLAND_DATA_WORKING_STORAGE:-./data/working-storage}/release-layers:/usr/share/nginx/html/layers:ro"
+      - "${QGREENLAND_DATA_WORKING_STORAGE:-./data/working-storage}/release-packages:/usr/share/nginx/html/packages:ro"
+      - "${QGREENLAND_DATA_LOGS:-./data/logs}:/logs:rw"
     ports:
       - "80:80"
       - "443:443"

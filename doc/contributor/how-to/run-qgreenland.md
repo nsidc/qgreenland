@@ -20,11 +20,13 @@ https://docs.docker.com/desktop/mac/
 
 ### Envvars
 
-In order to download data behind Earthdata Login, you must `export` the
-following environment variables on the docker host before starting the stack:
+### Earthdata Login
 
-* `EARTHDATA_USERNAME`
-* `EARTHDATA_PASSWORD`
+In order to download data behind Earthdata Login, you must `export` the
+following environment variables:
+
+* `QGREENLAND_EARTHDATA_USERNAME`
+* `QGREENLAND_EARTHDATA_PASSWORD`
 
 Developers at NSIDC may use the values stored in Vault at the following path:
 `nsidc/apps/qgreenland`. Those outside of NSIDC must use their personal
@@ -32,16 +34,29 @@ Earthdata Login credentials. New users to Earthdata can register here:
 https://urs.earthdata.nasa.gov/users/new
 
 
-### Directory set up
+#### Optional envvars
 
-If you prefer not to store data alongside the source code, set up symlinks from the
-following locations to your desired location:
+The source code looks at these envvars, if set:
 
-* `./data/private-archive`
-* `./data/working-storage`
+* `QGREENLAND_ENVIRONMENT`: defaults to `dev`
+* `QGREENLAND_ENV_MANAGER`: defaults to `conda`
 
-Visit our [storage architecture reference
-documentation](../reference/architecture/storage.md) to learn more.
+
+### Mandatory Docker Compose envvars
+
+* `QGREENLAND_VERSION`: The `nsidc/qgreenland` docker image tag to use.
+
+
+### Optional Docker Compose envvars
+
+Our source code expects to run in a container and has hard-coded path constants. We
+should move these envvars and defaults into the source code, but for now they're for
+configuring the compose stack to route directories on the host to the hard-coded
+container locations.
+
+* `QGREENLAND_DATA_WORKING_STORAGE`: defaults to `./data/working-storage`
+* `QGREENLAND_DATA_PRIVATE_ARCHIVE`: defaults to `./data/private-archive`
+* `QGREENLAND_DATA_LOGS`: defaults to `./data/logs`
 
 
 ### Go!

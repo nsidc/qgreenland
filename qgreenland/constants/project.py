@@ -1,7 +1,7 @@
 import os
 
 PROJECT = "QGreenland"
-ENVIRONMENT = os.environ.get("ENVIRONMENT", "dev")
+ENVIRONMENT = os.environ.get("QGREENLAND_ENVIRONMENT", "dev")
 ENV_MANAGER = os.environ.get("QGREENLAND_ENV_MANAGER", "conda")
 
 # In seconds. See

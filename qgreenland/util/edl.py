@@ -49,9 +49,16 @@ def create_earthdata_authenticated_session(s=None, *, hosts, verify):
 
 
 def _get_earthdata_creds():
-    if not os.environ.get("EARTHDATA_USERNAME"):
-        raise RuntimeError("Environment variable EARTHDATA_USERNAME must be defined.")
-    if not os.environ.get("EARTHDATA_PASSWORD"):
-        raise RuntimeError("Environment variable EARTHDATA_PASSWORD must be defined.")
+    if not os.environ.get("QGREENLAND_EARTHDATA_USERNAME"):
+        raise RuntimeError(
+            "Environment variable QGREENLAND_EARTHDATA_USERNAME must be defined."
+        )
+    if not os.environ.get("QGREENLAND_EARTHDATA_PASSWORD"):
+        raise RuntimeError(
+            "Environment variable QGREENLAND_EARTHDATA_PASSWORD must be defined."
+        )
 
-    return (os.environ["EARTHDATA_USERNAME"], os.environ["EARTHDATA_PASSWORD"])
+    return (
+        os.environ["QGREENLAND_EARTHDATA_USERNAME"],
+        os.environ["QGREENLAND_EARTHDATA_PASSWORD"],
+    )
