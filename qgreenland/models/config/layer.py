@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import Any, Optional, Union
+from xml.etree import ElementTree
 
 from pydantic import Field, validator
 
@@ -56,6 +57,24 @@ class Layer(QgrBaseModel):
     steps: Optional[list[AnyStep]]
 
     _validate_description = reusable_validator("description", validate_paragraph_text)
+
+    @validator("style")
+    @classmethod
+    def style_file_does_not_contain_blocked_fonts(cls, value):
+        blocked_fonts = ["Cantarell", "Sans Serif"]
+        if value:
+            style_filepath = _style_filepath(value)
+            tree = ElementTree.parse(style_filepath)
+            for elem in tree.getroot().iter():
+                if font_family := elem.attrib.get("fontFamily", False):
+                    if font_family in blocked_fonts:
+                        raise exc.QgrInvalidConfigError(
+                            f"Style {style_filepath} contains blocked font:"
+                            f" '{font_family}'."
+                            f" When in doubt, use 'Open Sans'."
+                        )
+
+        return value
 
     @validator("style")
     @classmethod
