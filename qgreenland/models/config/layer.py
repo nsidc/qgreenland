@@ -60,18 +60,18 @@ class Layer(QgrBaseModel):
 
     @validator("style")
     @classmethod
-    def style_file_does_not_contain_blocked_fonts(cls, value):
-        blocked_fonts = ["Cantarell", "Sans Serif"]
+    def style_file_only_contains_allowed_fonts(cls, value):
+        allowed_fonts = ["Open Sans"]
         if value:
             style_filepath = _style_filepath(value)
             tree = ElementTree.parse(style_filepath)
             for elem in tree.getroot().iter():
                 if font_family := elem.attrib.get("fontFamily", False):
-                    if font_family in blocked_fonts:
+                    if font_family not in allowed_fonts:
                         raise exc.QgrInvalidConfigError(
-                            f"Style {style_filepath} contains blocked font:"
+                            f"Style {style_filepath} contains disallowed font:"
                             f" '{font_family}'."
-                            f" When in doubt, use 'Open Sans'."
+                            f" Only the following fonts are allowed: {allowed_fonts}."
                         )
 
         return value
