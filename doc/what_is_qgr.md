@@ -21,8 +21,8 @@ delivered in two ways:
    different direction. It shouldn't be expected to work.
    ```
 
-
 Return to [QGreenland website](https://qgreenland.org)
+
 
 # What QGreenland *is not*
 
@@ -49,9 +49,10 @@ GIS data package for Antarctica.
 
 # QGreenland Core Download Package
 
-You will find the following files in the v2.0.0 QGreenland Core data package:
-* Folders containing data layers organized by topic
-* The main **qgreenland.qgs** project file
+You will find the following files in the QGreenland Core data package:
+* Folders containing data layers organized by topic. Each data layer is represented as a
+  GeoTIFF or GeoPackage.
+* **qgreenland.qgs** - The main QGreenland project file for QGIS
 * **qgreenland.png** - The official QGreenland logo
 * **layer_list.csv** - A complete list of all the data layers in the QGreenland Core download
   package, including information about each (data source, file size, etc.). This file can be
@@ -63,13 +64,14 @@ You will find the following files in the v2.0.0 QGreenland Core data package:
 * **README.txt** - Brief description of the QGreenland data package
 * **CHANGELOG.txt** - A log of changes made to the QGreenland data package
 
-
-Please note that QGreenland Core v1.0.0 is the first stable public release version from this project.
-The QGreenland Core v2.0.0 download package was released in March 2022.
-Development versions along the way will continue to be available via the 
-[website](http://qgreenland.org), with code fully documented on 
+Please note that QGreenland Core v1.0.0 is the first stable public release version from
+this project. The QGreenland Core v2.0.0 download package was released in March 2022.
+The QGreenland Core v3.0.0 download package was released in August 2023. Development
+versions along the way will continue to be available via the
+[website](http://qgreenland.org), with code fully documented on
 [GitHub](https://github.com/nsidc/qgreenland).
 
-Although the v2.0.0 download package contains a full User Guide, updates and additions are constantly
-being made to our documentation as we continue to develop QGreenland.
-The most recent version of QGreenland documentation will always be available here on Read the Docs. 
+Although the v3.0.0 download package contains a full User Guide, updates and additions
+are constantly being made to our documentation as we continue to develop QGreenland.
+The most recent version of QGreenland documentation will always be available here on
+Read the Docs. 
