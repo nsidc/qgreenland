@@ -61,6 +61,14 @@ class Layer(QgrBaseModel):
     @validator("style")
     @classmethod
     def style_file_only_contains_allowed_fonts(cls, value):
+        """Ensure only fonts that can be downloaded by QGIS are in our style files.
+
+        This ensures we don't re-trigger an old issue:
+            https://github.com/nsidc/qgreenland/issues/515
+        """
+        # TODO: Is the full list of supported fonts available in PyQGIS' API? I think
+        # this is the complete list, but haven't found it in the Python API yet:
+        #     https://github.com/qgis/QGIS/blob/a7b31c7db29328fc44966a854d22c452f58c77c1/src/core/textrenderer/qgsfontmanager.cpp#L203-L925
         allowed_fonts = ["Open Sans"]
         if value:
             style_filepath = _style_filepath(value)
