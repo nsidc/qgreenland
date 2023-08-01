@@ -214,14 +214,13 @@ Which populated regions in Greenland have more than 5000 people?
 1. Open the **Processing Toolbox** and go to **Vector selection -> Select by attribute**.
 2. Fill in the following parameters:
    -Input layer = Populated places
-   -Selection attribute = population
+   -Selection attribute = Population 2016
    -Operator = ‘>’
    -Value = type in ‘5000’
    -Modify current selection by = creating new selection
    These parameters are telling the program to identify all of the populated places in
    Greenland that have a population greater than 5000.
-3. Click on **Run**. The window will automatically close when processing is
-   complete.
+3. Click on **Run**. Close the window when processing is complete.
 
 There are a couple of ways to view the selected data points, populated places in Greenland
 with more than 5000 people. First, you should see the places that meet this parameter
@@ -229,7 +228,7 @@ highlighted in the map view (make sure the **Populated Places Layer** is toggled
 also open the Populated places **Layer Attribute Table** and select **Show Selected Features** in
 the bottom left corner. This will hide all records in the **Layer Attribute Table** except for the ones
 you selected, the locations with populations greater than 5000 people.
-If you want to create an entirely new layer based on this feature selection (population>5000),
+If you want to create an entirely new layer based on this feature selection (Population 2016 > 5000),
 you can do so by either 1) right-clicking on the layer you have just selected from and
 choosing **Export -> Save selected features as...**, or by 2) selecting **Extract by attribute**
 under **Vector selection** in the **Processing Toolbox**.
@@ -241,14 +240,15 @@ What is the average size of Greenland’s populated areas?
 1. Open the **Processing Toolbox** and go to **Vector analysis -> Basic statistics for fields**.
 2. Fill in the following parameters:
    -Input layer = Populated places
-   -Field to calculate statistics on = population
+   -Field to calculate statistics on = Population 2016
    -Statistics = Save to temporary file (or whatever your preference is)
 3. Click **Run**.
 
-The **Vector Analysis** window should automatically switch to a view of the Log where you will
-see the results for the population basic statistics (Fig. 8). The value ‘MEAN’ will tell you the
-average size of Greenland’s populated places (1102 people). The value ‘SUM’ will tell you the
-total number of people in Greenland’s metropolitan areas (48,492 people).
+The **Basic statistics for fields** window should automatically switch to a view
+of the Log where you will see the results for the population basic statistics
+(Fig. 8). The value ‘MEAN’ will tell you the average size of Greenland’s
+populated places (702 people). The value ‘SUM’ will tell you the total number
+of people in Greenland’s metropolitan areas (55,494 people).
 
 ![vector_layer_stats](/_images/vector_layer_stats.png)
 Fig. 8: Results of Example 2: Vector Layer Statistics
