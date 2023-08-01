@@ -43,7 +43,7 @@ Suggested citations for QGreenland:
 
 ### Version 3.0
 
-> Moon, T., Fisher, M., Thurber, A., and T. Stafford (2023). QGreenland (v3.0.0) [software],
+> Moon, T., Fisher, M., Stafford, T., and A. Thurber (2023). QGreenland (v3.0.0) [software],
 > [National Snow and Ice Data Center](https://qgreenland.org/).
 
 
