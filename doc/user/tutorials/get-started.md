@@ -18,7 +18,7 @@ the long term release (3.16 or later) version.
 
 ## 2) Download and open the QGreenland Core package
 
-Download the QGreenland Core data package (v2.0.0) at
+Download the QGreenland Core data package (v3.0.0) at
 [https://qgreenland.org/download](https://qgreenland.org/download).
 
 Save the zip package to a location of your choice and unzip it. Open the
