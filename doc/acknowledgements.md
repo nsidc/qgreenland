@@ -14,7 +14,7 @@ package creation. Thank you!
 
 The U.S. National Science Foundation [grant
 \#1928393](https://nsf.gov/awardsearch/showAward?AWD_ID=1928393) funded the
-development of QGreenland versions `1.x` and `2.x`. Thank you!
+development of QGreenland versions `1.x`, `2.x`, and `3.x`. Thank you!
 
 
 ## Editorial board

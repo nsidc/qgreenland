@@ -28,14 +28,25 @@ acknowledge or cite QGreenland and the National Snow and Ice Data Center in your
 
 Suggested citations for QGreenland:
 
-Version 1.0:
-Moon, T., Fisher, M., Harden, L., and T. Stafford (2021). QGreenland (v1.0.0) [software],
-[National Snow and Ice Data Center](https://qgreenland.org/).
 
-Version 2.0: 
-Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2022). QGreenland (v2.0.0) [software],
-[National Snow and Ice Data Center](https://qgreenland.org/).
+### Version 1.0
+
+> Moon, T., Fisher, M., Harden, L., and T. Stafford (2021). QGreenland (v1.0.0) [software],
+> [National Snow and Ice Data Center](https://qgreenland.org/).
+
+
+### Version 2.0
+
+> Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2022). QGreenland (v2.0.0) [software],
+> [National Snow and Ice Data Center](https://qgreenland.org/).
+
+
+### Version 3.0
+
+> Moon, T. A., M. Fisher, T. Stafford, and A. Thurber (2023). QGreenland (v3.0.0) [software],
+> [National Snow and Ice Data Center](https://qgreenland.org/).
+
 
 ## Acknowledgement
 
-We acknowledge the National Snow and Ice Data Center QGreenland package. 
+> We acknowledge the National Snow and Ice Data Center QGreenland package. 
