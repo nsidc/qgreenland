@@ -62,7 +62,13 @@ You can find downloads and instructions
 
 After installing QGIS, [download QGreenland](https://qgreenland.org/download)
 and unzip it with your unzip tool of choice if you haven not already done so.
-Finally, open the `qgreenland.qgs` file contained inside with QGIS.
+
+> :warning: Ensure QGreenland is _actually_ unzipped; some operating systems will only
+> "explore" a zip file when you double-click it without actually extracting it to disk.
+> In Windows, please right-click and select `Extract all...`.
+
+Finally double-click on (or use QGIS open) the `qgreenland.qgs` file that was just
+extracted from the zip.
 
 
 ## What's inside the QGreenland Core zip package?
