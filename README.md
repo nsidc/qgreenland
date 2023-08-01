@@ -65,9 +65,9 @@ and unzip it with your unzip tool of choice if you haven not already done so.
 Finally, open the `qgreenland.qgs` file contained inside with QGIS.
 
 
-## What's inside the download package?
+## What's inside the QGreenland Core zip package?
 
-At the root of the package, you will find scientific discipline-specific directories
+At the root of the zip file, you will find scientific discipline-specific directories
 containing data (GeoTIFFs and GeoPackages). Additionally, the following files are
 present at the package root:
 
