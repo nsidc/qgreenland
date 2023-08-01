@@ -3414,7 +3414,7 @@
         "children": [
           {
             "layer_cfg": {
-              "description": "Points representing populated places in Greenland.\n\nQGreenland Team - Noted Data Issues:\n\n* West coast of Greenland, near Paamiut: Ivittuut is abandoned.\n\nQGreenland Team - Noted Data Issues:\n\n* East Greenland: Ikkatteq is an abandoned airstrip and is not populated.\n\n* Near Ittoqqortoormiit: Uunartoq is abandoned.\n\n* Near Qaanaaq: Qeqertarsuaq and Moriusaq are abandoned.\n\n* Near Upernavik: Tussaaq is abandoned.\n\n* Near Uummannaq: Illorsuit and Nuugaatsiaq are two recently abandoned\n  settlements (2017) due a massive landslide and subsequent tsunami.",
+              "description": "Points representing populated places in Greenland.\n\nQGreenland Team - Noted Data Issues:\n\n* West coast of Greenland, near Paamiut: Ivittuut is abandoned.\n\n* East Greenland: Ikkatteq is an abandoned airstrip and is not populated.\n\n* Near Ittoqqortoormiit: Uunartoq is abandoned.\n\n* Near Qaanaaq: Qeqertarsuaq and Moriusaq are abandoned.\n\n* Near Upernavik: Tussaaq is abandoned.\n\n* Near Uummannaq: Illorsuit and Nuugaatsiaq are two recently abandoned\n  settlements (2017) due a massive landslide and subsequent tsunami.",
               "id": "populated_places",
               "in_package": true,
               "input": {
