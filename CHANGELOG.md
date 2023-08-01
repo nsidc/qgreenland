@@ -1,3 +1,9 @@
+# NEXT_VERSION
+
+* Merge "Places/Towns" and "Places/Settlements" layers into one "Populated
+  places" layer.
+
+
 # v3.0.0alpha4 (2023-07-21)
 
 * QGreenland Custom is no longer supported.

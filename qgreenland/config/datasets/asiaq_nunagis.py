@@ -1,4 +1,5 @@
 from qgreenland.config.helpers.assets.ogr_remote import ogr_remote_asset
+from qgreenland.models.config.asset import CommandAsset
 from qgreenland.models.config.dataset import Dataset
 
 asiaq_nunagis = Dataset(
@@ -15,15 +16,19 @@ asiaq_nunagis = Dataset(
             output_file="{output_dir}/fetched.geojson",
             url="https://kort.nunagis.gl/refserver/rest/services/Kortportal/Kortportal_TekniskGrundkort/MapServer/38/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC",
         ),
-        ogr_remote_asset(
-            asset_id="settlements",
-            output_file="{output_dir}/fetched.geojson",
-            url="https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/0/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC",
-        ),
-        ogr_remote_asset(
-            asset_id="towns",
-            output_file="{output_dir}/fetched.geojson",
-            url="https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/1/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC",
+        CommandAsset(
+            id="populated_places",
+            args=[
+                "wget",
+                "-O",
+                "{output_dir}/settlements.geojson",
+                '"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/0/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC"',
+                "&&",
+                "wget",
+                "-O",
+                "{output_dir}/towns.geojson",
+                '"https://kort.nunagis.gl/refserver/rest/services/Kortportal/Byer_og_bygder/MapServer/1/query/?f=json&where=OBJECTID+is+not+null&outFields=*&orderByFields=OBJECTID+ASC"',
+            ],
         ),
     ],
     metadata={

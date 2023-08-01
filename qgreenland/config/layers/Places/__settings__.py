@@ -2,8 +2,7 @@ from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdenti
 
 settings = LayerGroupSettings(
     order=[
-        LayerIdentifier("towns"),
-        LayerIdentifier("settlements"),
+        LayerIdentifier("populated_places"),
         LayerIdentifier("points_of_interest"),
         LayerIdentifier("roads"),
         LayerIdentifier("buildings"),
