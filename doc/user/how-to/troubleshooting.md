@@ -117,9 +117,8 @@ information). Try zooming in.
 
 ### When I open QGreenland, I get the warning `Font "Helvetica" not available on system`
 
-This warning indicates that a layer's style requires a font you don't have. This
-shouldn't affect your use of QGreenland, as another font will be automatically
-substituted.
+This warning indicates that a layer's style requires a font you do not have. This should
+not affect your use of QGreenland, as another font will be automatically substituted.
 
 This warning is resolved in QGreenland v3. If you still experience this warning in
 QGreenland v3, you need to update QGIS to the minimum supported version 3.28, which is
