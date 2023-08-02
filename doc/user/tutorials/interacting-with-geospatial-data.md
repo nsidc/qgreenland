@@ -69,7 +69,7 @@ over the layer name.
 
 **Note**: The QGreenland team has in a few instances included comments on ‘Noted
 Data Issues’.  Read about ‘Noted Data Issues’ in the layer metadata. These are
-currently noted for the ‘Towns and settlements’ layer. Regardless, QGreenland
+currently noted for the ‘Populated places’ layer. Regardless, QGreenland
 makes no guarantees about the accuracy and validity of data contained in
 QGreenland.
 
