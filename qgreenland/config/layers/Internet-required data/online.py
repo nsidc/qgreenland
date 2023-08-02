@@ -33,7 +33,7 @@ blue_marble_layer = Layer(
     tags=["online"],
     input=LayerInput(
         dataset=gibs,
-        asset=gibs.assets["only"],
+        asset=gibs.assets["blue_marble"],
     ),
 )
 

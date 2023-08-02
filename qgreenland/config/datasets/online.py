@@ -5,9 +5,19 @@ gibs = Dataset(
     id="gibs",
     assets=[
         OnlineAsset(
-            id="only",
+            id="blue_marble",
             provider="wms",
             url="contextualWMSLegend=0&crs=EPSG:3413&dpiMode=7&featureCount=10&format=image/png&layers=BlueMarble_ShadedRelief_Bathymetry&styles&url=https://gibs.earthdata.nasa.gov/wms/epsg3413/best/wms.cgi?VERSION%3D1.3.0",
+        ),
+        OnlineAsset(
+            id="modis_terra_true_color",
+            provider="wms",
+            url="allowTemporalUpdates=true&contextualWMSLegend=0&crs=EPSG:3413&dpiMode=7&featureCount=10&format=image/png&layers=MODIS_Terra_CorrectedReflectance_TrueColor&styles&temporalSource=provider&timeDimensionExtent=2000-02-24/2023-08-02/P1D&type=wmst&url=https://gibs.earthdata.nasa.gov/wms/epsg3413/best/wms.cgi?VERSION%3D1.3.0",
+        ),
+        OnlineAsset(
+            id="modis_aqua_true_color",
+            provider="wms",
+            url="allowTemporalUpdates=true&contextualWMSLegend=0&crs=EPSG:3413&dpiMode=7&featureCount=10&format=image/png&layers=MODIS_Aqua_CorrectedReflectance_TrueColor&styles&temporalSource=provider&timeDimensionExtent=2002-07-03/2023-08-02/P1D&type=wmst&url=https://gibs.earthdata.nasa.gov/wms/epsg3413/best/wms.cgi?VERSION%3D1.3.0",
         ),
     ],
     metadata=DatasetMetadata(
