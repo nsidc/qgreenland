@@ -1,7 +1,7 @@
 from qgreenland.config.datasets.online import gibs
 from qgreenland.models.config.layer import Layer, LayerInput
 
-timeseries_usage_description = """This is a Temporal Layer and can be used with QGIS' Temporal Controller panel. See this webpage for more information: https://docs.qgis.org/3.28/en/docs/user_manual/map_views/map_view.html#maptimecontrol"""
+timeseries_usage_description = """This is a Temporal Layer and can be used with QGIS' Temporal Controller panel. See this webpage for more information: https://docs.qgis.org/3.28/en/docs/user_manual/map_views/map_view.html#maptimecontrol ."""
 
 modis_true_color_layers = [
     Layer(
