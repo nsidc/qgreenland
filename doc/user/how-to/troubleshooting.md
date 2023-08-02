@@ -137,7 +137,7 @@ This project file was created by a newer version of QGIS (3.28.8-Firenze) and co
 be completely loaded.
 ```
 
-We haven't observed any adverse effects from this warning. If you want to get rid of the
+We have not observed any adverse effects from this warning. If you want to get rid of the
 message permanently, update to the latest release of a supported QGIS version.
 
 
