@@ -128,6 +128,19 @@ For more context, see the [GitHub
 issue](https://github.com/nsidc/qgreenland/issues/515).
 
 
+### When I open QGreenland, I get the warning `This project file was created by a newer version of QGIS`
+
+For example:
+
+```
+This project file was created by a newer version of QGIS (3.28.8-Firenze) and could not
+be completely loaded.
+```
+
+We have not observed any adverse effects from this warning. If you want to get rid of the
+message permanently, update to the latest release of a supported QGIS version.
+
+
 ### Navigating QGIS errors
 
 If you are opening QGIS using a terminal or using the QGIS Python console, it is possible you
