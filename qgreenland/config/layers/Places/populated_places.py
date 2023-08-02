@@ -7,7 +7,7 @@ from qgreenland.models.config.step import CommandStep
 populated_places = Layer(
     id="populated_places",
     title="Populated places",
-    style="labeled_point",
+    style="populated_places",
     description=(
         """Points representing populated places in Greenland.
 

@@ -3459,7 +3459,7 @@
                   "type": "command"
                 }
               ],
-              "style": "labeled_point",
+              "style": "populated_places",
               "tags": [
                 "places"
               ],

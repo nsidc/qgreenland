@@ -1,7 +1,7 @@
 # NEXT_VERSION
 
 * Merge "Places/Towns" and "Places/Settlements" layers into one "Populated
-  places" layer.
+  places" layer. Scale point markers for this layer by population.
 
 
 # v3.0.0alpha4 (2023-07-21)
