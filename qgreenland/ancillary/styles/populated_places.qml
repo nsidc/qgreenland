@@ -38,7 +38,7 @@
               <Option type="Map" name="properties">
                 <Option type="Map" name="size">
                   <Option type="bool" name="active" value="true"/>
-                  <Option type="QString" name="expression" value="(((4-1)*(&quot;Population 2016&quot; - 0)) / (17592 - 0)) + 1"/>
+                  <Option type="QString" name="expression" value="CASE&#xa;  WHEN &quot;Population 2016&quot; IS NULL THEN 1&#xa;  ELSE (((4-1)*(&quot;Population 2016&quot; - 0)) / (17592 - 0)) + 1&#xa;END"/>
                   <Option type="int" name="type" value="3"/>
                 </Option>
               </Option>
