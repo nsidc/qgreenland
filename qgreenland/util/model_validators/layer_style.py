@@ -43,7 +43,7 @@ def validate_style_file_only_contains_allowed_fonts(style_name: str):
     return style_name
 
 
-def validate_style_file_unit_suffixes(style_name: str):
+def validate_style_file_unit_suffixes(style_name: str):  # noqa: C901
     """Ensure common errors in style configuration of unit suffixes are avoided.
 
     For example, the "Label unit suffix" field in the QGIS Layer Symbology menu seems
@@ -79,9 +79,16 @@ def validate_style_file_unit_suffixes(style_name: str):
             # Color ramp is empty anyway... should this be a validation error?
             return style_name
 
-        unit_suffix = first_item.attrib["label"].removeprefix(
-            first_item.attrib["value"]
-        )
+        first_value = first_item.attrib["value"]
+        first_label = first_item.attrib["label"]
+
+        # If the label is rounded, we have to round the value before subtracting.
+        if (
+            label_precision := colorrampshader.attrib.get("labelPrecision", "0")
+        ) != "0":
+            first_value = f"{float(first_value):.{label_precision}f}"
+
+        unit_suffix = first_label.removeprefix(first_value)
 
         if not unit_suffix:
             # The first colorrampitem's label does not contain a suffix set by the
