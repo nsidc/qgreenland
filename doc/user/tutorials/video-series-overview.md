@@ -57,6 +57,13 @@ If you are not familiar with geographic information systems (GIS) and geospatial
 - Run basic statistics on a vector attribute field including sum, mean, and range
 - Calculate the surface volume area of a raster layer
 
+```{note}
+The "Populated places" layer referred to in this video has been updated and moved from "Places/Community map
+(crowd-sourced)" to the root of the "Places/" layer group in QGreenland v3.
+
+This updated "Populated places" layer has a "Population 2016" attribute that should be used instead of the "population" attribute indicated in the video.
+```
+
 ## [Session 6: Editing Existing and New Layers](https://www.youtube.com/watch?v=98nF6YJAnns&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=6)
 
 - Edit existing layers in the QGreenland Core Package
