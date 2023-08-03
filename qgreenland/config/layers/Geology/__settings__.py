@@ -6,6 +6,7 @@ from qgreenland.models.config.layer_group import (
 
 settings = LayerGroupSettings(
     order=[
+        LayerIdentifier("cryo_seismic_events"),
         LayerIdentifier("earthquakes"),
         LayerIdentifier("tectonic_plate_boundaries"),
         LayerIdentifier("tectonic_plate_polygons"),
