@@ -1,5 +1,7 @@
 from xml.etree import ElementTree
 
+from qgis.core import QgsRendererRangeLabelFormat
+
 import qgreenland.exceptions as exc
 from qgreenland.util.layer_style import get_style_filepath
 
@@ -43,7 +45,7 @@ def validate_style_file_only_contains_allowed_fonts(style_name: str):
     return style_name
 
 
-def validate_style_file_unit_suffixes(style_name: str):  # noqa: C901
+def validate_style_file_unit_suffixes(style_name: str):
     """Ensure common errors in style configuration of unit suffixes are avoided.
 
     For example, the "Label unit suffix" field in the QGIS Layer Symbology menu seems
@@ -82,13 +84,12 @@ def validate_style_file_unit_suffixes(style_name: str):  # noqa: C901
         first_value = first_item.attrib["value"]
         first_label = first_item.attrib["label"]
 
-        # If the label is rounded, we have to round the value before subtracting.
-        if (
-            label_precision := colorrampshader.attrib.get("labelPrecision", "0")
-        ) != "0":
-            first_value = f"{float(first_value):.{label_precision}f}"
-
-        unit_suffix = first_label.removeprefix(first_value)
+        label_precision = colorrampshader.attrib.get("labelPrecision", "0")
+        unit_suffix = _get_unit_suffix(
+            value=first_value,
+            label=first_label,
+            label_precision=label_precision,
+        )
 
         if not unit_suffix:
             # The first colorrampitem's label does not contain a suffix set by the
@@ -121,3 +122,27 @@ def validate_style_file_unit_suffixes(style_name: str):  # noqa: C901
             ' menu and ensure that the "Label unit suffix" exactly matches the "suffix"'
             ' field in the "Legend Settings" menu.'
         )
+
+
+def _get_unit_suffix(*, label: str, value: str, label_precision: int = 0) -> str | None:
+    """Calculate the unit suffix for a QGIS colormap entry.
+
+    A QGIS style has a `<colorrampshader>` with a `labelPrecision` setting. Each
+    `<item>`  has a `label` and a `value` attribute. In order to calculate the suffix
+    from the `label`, we need to calculate the non-suffix part of the `label` based on
+    `value`. Then we can difference the calculated label (sans suffix) and the real
+    label to get the suffix.
+    """
+    # expected_label = _label_generation_emulator(
+    #     value,
+    #     label_precision=label_precision,
+    # )
+
+    formatter = QgsRendererRangeLabelFormat()
+    formatter.setTrimTrailingZeroes(True)
+    formatter.setPrecision(label_precision)
+
+    # This doesn't handle the case:
+    # value: "-0.0936000000000003" -> label: "-0.093600"
+    formatted_value = formatter.formatNumber(float(value))
+    return label.removeprefix(formatted_value)
