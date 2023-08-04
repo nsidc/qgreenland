@@ -1,0 +1,32 @@
+name: "Build and publish container image, then (if tag) trigger QGreenland Core build"
+# When a push to the default branch occurs, build and release a "latest" image
+# When a tag `vX.Y.Z` push occurs, build and release an image with that tag
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+
+jobs:
+
+  build-and-release-image:
+    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@main"
+    secrets: "inherit"
+
+
+  build-package:
+    name: "Build QGreenland project (if tag)"
+    runs-on: "ubuntu-latest"
+    needs: ["build-and-release-image"]
+    if: "github.ref_type == 'tag'"
+    steps:
+      - name: "Trigger Jenkins to build QGreenland Core"
+        run: |
+          JOB_NAME="qgreenland_C3_Production_Build_QGreenland_Package"
+          JOB_URL="${{ secrets.JENKINS_URL }}/job/${JOB_NAME}"
+          JOB_BUILD_URL="${JOB_URL}/buildWithParameters?ref=${{ github.ref_name }}&delay=5sec"
+
+          wget "$JOB_BUILD_URL"
