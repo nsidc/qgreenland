@@ -84,7 +84,7 @@ def validate_style_file_unit_suffixes(style_name: str):
         first_value = first_item.attrib["value"]
         first_label = first_item.attrib["label"]
 
-        label_precision = colorrampshader.attrib.get("labelPrecision", "0")
+        label_precision = int(colorrampshader.attrib.get("labelPrecision", "0"))
         unit_suffix = _get_unit_suffix(
             value=first_value,
             label=first_label,
@@ -115,34 +115,41 @@ def validate_style_file_unit_suffixes(style_name: str):
             # This style's suffixes and orientation are set up correctly!
             return style_name
 
+        # QGIS can be really finicky with the "Label unit suffix" field because its
+        # value is not saved into the XML as a dedicated field like one would expect.
+        # Instead, the labels are pre-calculated to add prefixes and suffixes, then
+        # saved in whole to the XML. This means that for QGIS to display a "Label unit
+        # suffix" field in the GUI, it has to calculate the suffixes and prefixes from
+        # the labels in the XML. Strange errors can be introduced during this process,
+        # like seemingly-random numbers being prepended to the "Label unit suffix" value
+        # in the GUI, and then propagating to all labels in the XML.
         raise exc.QgrInvalidConfigError(
             f"{error_prefix}\n"
             f"    {continuous_legend_suffix=} != {unit_suffix=}\n"
             f"In QGIS >=3.28, edit this style ({style_filepath}) in the layer symbology"
             ' menu and ensure that the "Label unit suffix" exactly matches the "suffix"'
-            ' field in the "Legend Settings" menu.'
+            ' field in the "Legend Settings" menu. If the suffixes reported in this'
+            ' error message look wrong to you, you may need to re-check the "Label unit'
+            ' suffix" and press the "Classify"  button and re-save the style to correct'
+            " errors."
         )
 
 
 def _get_unit_suffix(*, label: str, value: str, label_precision: int = 0) -> str | None:
     """Calculate the unit suffix for a QGIS colormap entry.
 
-    A QGIS style has a `<colorrampshader>` with a `labelPrecision` setting. Each
-    `<item>`  has a `label` and a `value` attribute. In order to calculate the suffix
-    from the `label`, we need to calculate the non-suffix part of the `label` based on
-    `value`. Then we can difference the calculated label (sans suffix) and the real
+    A QGIS style's `<colorrampshader>` has a `labelPrecision` attribute. Each `<item>`
+    within has a `label` and a `value` attribute. In order to calculate the suffix from
+    the `label`, we need to calculate the non-suffix part of the `label` based on
+    `value`.  Then we can difference the calculated label (sans suffix) and the real
     label to get the suffix.
-    """
-    # expected_label = _label_generation_emulator(
-    #     value,
-    #     label_precision=label_precision,
-    # )
 
+    TODO: Support a "clip" argument (originates in `<colorrampshader>` element)? Not
+    sure how that's set in the GUI but seems to usually be 0.
+    """
     formatter = QgsRendererRangeLabelFormat()
-    formatter.setTrimTrailingZeroes(True)
+    formatter.setTrimTrailingZeroes(False)  # Does this setting correspond with "clip"?
     formatter.setPrecision(label_precision)
 
-    # This doesn't handle the case:
-    # value: "-0.0936000000000003" -> label: "-0.093600"
     formatted_value = formatter.formatNumber(float(value))
     return label.removeprefix(formatted_value)
