@@ -60,6 +60,9 @@ jobs:
 
   test-build-container-image:
     name: "Test container image build"
+    # The build will happen for real on pushes to the main branch, so only do
+    # the test on PRs.
+    if: "github.event_name == 'pull_request'"
     runs-on: "ubuntu-latest"
     needs: ["test"]
     steps:
