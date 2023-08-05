@@ -146,6 +146,11 @@ def _get_unit_suffix(*, label: str, value: str, label_precision: int = 0) -> str
 
     TODO: Support a "clip" argument (originates in `<colorrampshader>` element)? Not
     sure how that's set in the GUI but seems to usually be 0.
+
+    TODO: Does not support large numbers well, adds commas where the QGIS symbology menu
+    does not.
+            formatter.formatNumber(float(-9902))
+            >>> '-9,902'
     """
     formatter = QgsRendererRangeLabelFormat()
     formatter.setTrimTrailingZeroes(False)  # Does this setting correspond with "clip"?
