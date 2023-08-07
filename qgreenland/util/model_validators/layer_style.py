@@ -1,7 +1,5 @@
 from xml.etree import ElementTree
 
-from qgis.core import QgsRendererRangeLabelFormat
-
 import qgreenland.exceptions as exc
 from qgreenland.util.layer_style import get_style_filepath
 
@@ -45,116 +43,76 @@ def validate_style_file_only_contains_allowed_fonts(style_name: str):
     return style_name
 
 
-def validate_style_file_unit_suffixes(style_name: str):
-    """Ensure common errors in style configuration of unit suffixes are avoided.
+def validate_style_file_continuous_legend(style_name: str):
+    """Ensure common errors in continuous style configuration are avoided.
 
-    For example, the "Label unit suffix" field in the QGIS Layer Symbology menu seems
-    like the only place to populate this data, but if the displayed color ramp legend is
-    continuous (new feature in 3.18), then the "suffix" field in the "Legend Settings"
-    menu will be used. If the former is populated, ensure the latter matches.
-
-    Also ensures that continuous legends are horizontal.
+    * Ensures continuous legends are horizontal.
+    * Ensures a "Suffix" is populated in the "Legend Settings" menu.
     """
+    if not style_name:
+        return style_name
+
+    style_filepath = get_style_filepath(style_name)
+    tree = ElementTree.parse(style_filepath)
+
+    errors = []
     error_prefix = (
         f"Style '{style_name}' has a continuous legend that is incorrectly"
         f" configured:"
     )
+    error_suffix = (
+        f"In QGIS >=3.28, edit this style ({style_filepath}) in the layer symbology"
+        ' menu and configure the continuous legend in the "Legend Settings" submenu.'
+    )
 
-    if style_name:
-        style_filepath = get_style_filepath(style_name)
-        tree = ElementTree.parse(style_filepath)
+    colorrampshader = tree.find(".//colorrampshader")
+    if colorrampshader is None:
+        # This style is not using a colorramp, so there is no "Label unit suffix"
+        # setting to be concerned with.
+        return style_name
 
-        colorrampshader = tree.find(".//colorrampshader")
-        if colorrampshader is None:
-            # This style is not using a colorramp, so there is no "Label unit suffix"
-            # setting to be concerned with.
-            return style_name
+    if colorrampshader.attrib["classificationMode"] != "1":
+        # This colorramp is not continuous, so the  "Label unit suffix" will be
+        # used if specified.
+        return style_name
 
-        if colorrampshader.attrib["classificationMode"] != "1":
-            # This colorramp is not continuous, so the  "Label unit suffix" will be
-            # used if specified.
-            return style_name
-
-        first_item = colorrampshader.find(".//item")
-
-        if first_item is None:
-            # Color ramp is empty anyway... should this be a validation error?
-            return style_name
-
-        first_value = first_item.attrib["value"]
-        first_label = first_item.attrib["label"]
-
-        label_precision = int(colorrampshader.attrib.get("labelPrecision", "0"))
-        unit_suffix = _get_unit_suffix(
-            value=first_value,
-            label=first_label,
-            label_precision=label_precision,
-        )
-
-        if not unit_suffix:
-            # The first colorrampitem's label does not contain a suffix set by the
-            # "Label unit suffix" field in QGIS. We can assume the style is set up as
-            # the user intended.
-            return style_name
-
-        rampLegendSettings = colorrampshader.find(".//rampLegendSettings")
-        continuous_legend_suffix = (
-            rampLegendSettings.attrib["suffix"] if rampLegendSettings else None
-        )
-
-        if continuous_legend_suffix == unit_suffix:
-            if rampLegendSettings and rampLegendSettings.attrib["orientation"] != "1":
-                raise exc.QgrInvalidConfigError(
-                    f"{error_prefix}\n"
-                    "    Continuous legend orientation must be horizontal.\n"
-                    f"In QGIS >=3.28, edit this style ({style_filepath}) in"
-                    " the layer symbology menu and set the orientation in the"
-                    ' "Legend Settings" menu.'
-                )
-
-            # This style's suffixes and orientation are set up correctly!
-            return style_name
-
-        # QGIS can be really finicky with the "Label unit suffix" field because its
-        # value is not saved into the XML as a dedicated field like one would expect.
-        # Instead, the labels are pre-calculated to add prefixes and suffixes, then
-        # saved in whole to the XML. This means that for QGIS to display a "Label unit
-        # suffix" field in the GUI, it has to calculate the suffixes and prefixes from
-        # the labels in the XML. Strange errors can be introduced during this process,
-        # like seemingly-random numbers being prepended to the "Label unit suffix" value
-        # in the GUI, and then propagating to all labels in the XML.
+    rampLegendSettings = colorrampshader.find(".//rampLegendSettings")
+    if not rampLegendSettings:
         raise exc.QgrInvalidConfigError(
             f"{error_prefix}\n"
-            f"    {continuous_legend_suffix=} != {unit_suffix=}\n"
-            f"In QGIS >=3.28, edit this style ({style_filepath}) in the layer symbology"
-            ' menu and ensure that the "Label unit suffix" exactly matches the "suffix"'
-            ' field in the "Legend Settings" menu. If the suffixes reported in this'
-            ' error message look wrong to you, you may need to re-check the "Label unit'
-            ' suffix" and press the "Classify"  button and re-save the style to correct'
-            " errors."
+            "  * Continuous colorramps must be re-configured with a newer version"
+            " of QGIS to support gradient-style legends. Please ensure that the"
+            ' unit of measurement is populated in the "Suffix" field, and that the'
+            ' "Orientation" field is set to "Horizontal".\n'
+            f"{error_suffix}"
         )
 
+    if (orientation := rampLegendSettings.attrib["orientation"]) != "1":
+        errors.append(
+            f'"Orientation" must be horizontal ("1"). Is currently "{orientation}"'
+        )
 
-def _get_unit_suffix(*, label: str, value: str, label_precision: int = 0) -> str | None:
-    """Calculate the unit suffix for a QGIS colormap entry.
+    if not (suffix := rampLegendSettings.attrib["suffix"]):
+        # Populating " " is a workaround for the rare case a layer with a continuous
+        # legend has no unit of measurement. Validating the Suffix matches the
+        # "Layer unit suffix" may be a more thorough check, but it's much more
+        # difficult because QGIS doesn't store "Layer unit suffix" in any particular
+        # field. It's calculated on-the-fly in an unreliable way, depending on QGIS
+        # version.
+        errors.append(
+            f'"Suffix" must contain a unit of measurement. Is currently "{suffix}".'
+            " If this layer truly has no unit of measurement (e.g. NDVI or a count),"
+            ' populate a space (" ") to silence this error'
+        )
 
-    A QGIS style's `<colorrampshader>` has a `labelPrecision` attribute. Each `<item>`
-    within has a `label` and a `value` attribute. In order to calculate the suffix from
-    the `label`, we need to calculate the non-suffix part of the `label` based on
-    `value`.  Then we can difference the calculated label (sans suffix) and the real
-    label to get the suffix.
+    if errors:
+        # NOTE: chr(92) is a backslash to work around "f-string expression part
+        # cannot include a backslash" and still put a newline in there.
+        newline = "\n"
+        raise exc.QgrInvalidConfigError(
+            f"{error_prefix}\n"
+            f"{newline.join(f'  * {err}' for err in errors)}\n"
+            f"{error_suffix}"
+        )
 
-    TODO: Support a "clip" argument (originates in `<colorrampshader>` element)? Not
-    sure how that's set in the GUI but seems to usually be 0.
-
-    TODO: Does not support large numbers well, adds commas where the QGIS symbology menu
-    does not.
-            formatter.formatNumber(float(-9902))
-            >>> '-9,902'
-    """
-    formatter = QgsRendererRangeLabelFormat()
-    formatter.setTrimTrailingZeroes(False)  # Does this setting correspond with "clip"?
-    formatter.setPrecision(label_precision)
-
-    formatted_value = formatter.formatNumber(float(value))
-    return label.removeprefix(formatted_value)
+    return style_name

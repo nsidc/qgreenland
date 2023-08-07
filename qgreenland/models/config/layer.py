@@ -9,9 +9,9 @@ from qgreenland.models.config.step import AnyStep
 from qgreenland.util.layer_style import get_style_filepath
 from qgreenland.util.model_validators import reusable_validator, validate_paragraph_text
 from qgreenland.util.model_validators.layer_style import (
+    validate_style_file_continuous_legend,
     validate_style_file_exists,
     validate_style_file_only_contains_allowed_fonts,
-    validate_style_file_unit_suffixes,
 )
 
 
@@ -64,9 +64,9 @@ class Layer(QgrBaseModel):
         "style",
         validate_style_file_only_contains_allowed_fonts,
     )
-    _validate_style_file_unit_suffixes = reusable_validator(
+    _validate_style_file_continuous_legend = reusable_validator(
         "style",
-        validate_style_file_unit_suffixes,
+        validate_style_file_continuous_legend,
     )
 
     @property
