@@ -48,5 +48,7 @@ information on how the data is processed, and one **metadata.txt**. Open up **me
 
 ![layer_dir.png](/_images/layer_dir.png)
 
-You have just learned 2 ways in which you can locate and access QGreenland layer metadata. For more
-information on layer properties and metadata, read our **Interacting with Geospatial Data in QGreenland Core** [documentation](https://qgreenland.readthedocs.io/en/latest/tutorials/interacting-with-geospatial-data.html).
+You have just learned 2 ways in which you can locate and access QGreenland layer
+metadata. For more information on layer properties and metadata, read our
+**Interacting with Geospatial Data in QGreenland Core**
+[documentation](/user/tutorials/interacting-with-geospatial-data.md).
