@@ -21,7 +21,7 @@ QGIS
 
 In order to get the most out of this series, we recommend the following:
 * Install QGIS on your computer. Go to [qgis.org](https://www.qgis.org/) and download the free QGIS software. QGIS version 3.16 is the oldest version supported by QGreenland.
-* Download the QGreenland Core data package at [https://qgreenland.org/download](https://qgreenland.org/download). Go to [Get started with QGreenland](https://qgreenland.readthedocs.io/en/latest/tutorials/get-started.html) for more information.
+* Download the QGreenland Core data package at [https://qgreenland.org/download](https://qgreenland.org/download). Go to [Get started with QGreenland](/user/tutorials/get-started.md) for more information.
 * When watching the videos, click on the settings icon to adjust the subtitles (in Englishor other languages) and adjust the playback speed
 * Take time to engage in the practice tasks and take notes
 
