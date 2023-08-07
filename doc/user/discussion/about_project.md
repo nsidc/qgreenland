@@ -3,7 +3,7 @@
 Greenland-focused research, planning, and education crosses disciplinary
 boundaries. With QGreenland, a free data-viewing platform, anyone can explore a
 wide variety of Greenland-focused data identified by an [expert team and
-Editorial Board](https://qgreenland.org/our-team>).
+Editorial Board](https://qgreenland.org/our-team).
 
 QGreenland is a United States National Science Foundation EarthCube-funded
 effort (award
