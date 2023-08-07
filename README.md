@@ -99,17 +99,13 @@ tutorial is a good starting point for new users.
 
 ## What's inside the QGreenland Core zip package?
 
-At the root of the zip file, you will find scientific discipline-specific directories
-containing data (GeoTIFFs and GeoPackages). Additionally, the following files are
-present at the package root:
+At the root of the zip file, you will find useful files such as a
+`UserGuide.pdf`, the `qgreenland.qgs` QGIS project file and scientific
+discipline-specific directories containing data (GeoTIFFs and GeoPackages). 
 
-* `UserGuide.pdf`: Detailed user-guide.
-* `QuickStartGuide.pdf`: Guide for QGIS beginners.
-* `README.html`: The README file you are currently reading.
-* `CHANGELOG.html`: A summary of changes for each new QGreenland version.
-* `layer_list.csv`: Comma-separated values representing the configuration of
-  layers in QGreenland. This includes limited layer metadata, including, but not limited
-  to: title, description, abstract, and citation.
+For more detailed information, see our documentation on the [QGreenland Core
+Download
+Package](https://qgreenland.readthedocs.io/en/latest/what_is_qgr.html#qgreenland-core-download-package).
 
 
 ## Educational resources
