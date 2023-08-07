@@ -68,12 +68,11 @@ contact nsidc@nsidc.org for more information.
 
 # Requirements
 
-As of this writing, the oldest version of QGIS we support for the QGreenland release
-series are:
+WIP:
 
-* QGreenland `1.x`: QGIS `3.16.x LTR`
-* QGreenland `2.x`: QGIS `3.16.x LTR`
-* QGreenland `3.x`: QGIS `3.28.x LTR`
+* docker
+* docker-compose
+* conda/miniconda
 
 
 # Installation

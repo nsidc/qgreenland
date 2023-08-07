@@ -6,9 +6,18 @@ some data included in QGreenland.
 
 ## System Requirements
 
-Before downloading the QGreenland Core data package, be sure that QGIS is installed on your
-computer: [https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS is available on Windows, macOS, Linux and Android. Note that QGIS version 3.16 is the oldest version
-supported by QGreenland.
+Before downloading the QGreenland Core data package, be sure that QGIS is
+installed on your computer:
+[https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS
+is available on Windows, macOS, Linux and Android.
+
+As of this writing, the oldest version of QGIS we support for the QGreenland release
+series are:
+
+* QGreenland `1.x`: QGIS `3.16.x LTR`
+* QGreenland `2.x`: QGIS `3.16.x LTR`
+* QGreenland `3.x`: QGIS `3.28.x LTR`
+
 
 ## 1) Download and Install QGIS
 
