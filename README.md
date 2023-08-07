@@ -34,10 +34,10 @@ QGreenland?](https://qgreenland.readthedocs.io/en/latest/what_is_qgr.html)
 
 ## Disclaimer
 
-QGreenland should not be used as a sole navigational aid while performing
-remote research activities in Greenland. Always bring appropriate safety and
-navigational aids (including hard-copies of topographic maps) when visiting the
-field.
+QGreenland should not be used as a sole navigational aid while performing remote
+research activities in Greenland or elsewhere. Always bring appropriate safety
+and navigational aids (including hard-copies of topographic maps) when visiting
+the field.
 
 QGreenland is a data-viewing and analysis platform, and the QGreenland Team does
 not create new data. QGreenland's layers may contain errors from the original
