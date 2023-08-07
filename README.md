@@ -20,14 +20,16 @@
 
 ## A Free GIS package for Greenland
 
-QGreenland is a free mapping tool to support interdisciplinary
-Greenland-focused research, teaching, decision making, and collaboration.
-
-Combines key datasets into a unified, all-in-one GIS analysis and visualization
-environment for offline and online use.
+QGreenland is a free mapping tool to support interdisciplinary Greenland-focused
+research, teaching, decision making, and collaboration. It combines key datasets
+into a unified, all-in-one GIS analysis and visualization environment for
+offline and online use.
 
 An international Editorial Board and Project Collaborators connects the
 QGreenland Team to data and user communities.
+
+Learn more about [What is
+QGreenland?](https://qgreenland.readthedocs.io/en/latest/what_is_qgr.html)
 
 
 ## Disclaimer
