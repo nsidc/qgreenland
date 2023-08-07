@@ -57,8 +57,8 @@ in `EPSG:3413`.
 
 This repository is fully supported by NSIDC. If you discover any problems or
 bugs, please submit an [Issue](https://github.com/nsidc/qgreenland/issues). If
-you would like to contribute to this repository, you may fork the repository and
-submit a pull request.
+you would like to contribute to this repository, please see the section on
+[Contributing](#Contributing).
 
 See the [LICENSE](LICENSE) for details on permissions and warranties. Please
 contact nsidc@nsidc.org for more information.
