@@ -1,0 +1,74 @@
+name: "Test"
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+
+
+# Default to bash in login mode; key to activating conda environment
+# https://github.com/mamba-org/provision-with-micromamba#IMPORTANT
+defaults:
+  run:
+    shell: "bash -l {0}"
+
+
+jobs:
+  test:
+    name: "Run tests"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Check out repository"
+        uses: "actions/checkout@v3"
+
+      - name: "Apt install libgl1-mesa-glx"
+        run: |
+          # Install libgl1-mesa-glx. Import errors occur otherwise.
+          # See: https://app.circleci.com/jobs/github/nsidc/qgreenland/72/parallel-runs/0/steps/0-102
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-glx
+
+      - name: "Install Conda environment"
+        uses: "mamba-org/setup-micromamba@v1"
+        with:
+          environment-file: "environments/main/conda-lock.yml"
+          # When using a lock-file, we have to set an environment name.
+          environment-name: "qgreenland-ci"
+          cache-environment: true
+          # Increase this key to trigger cache invalidation
+          cache-environment-key: 1
+
+      - name: "Run tests"
+        run: "inv test.ci"
+        env:
+          # QGIS complains when setting up an QgsApplicatoin if `QT_QPA_PLATFORM` is not
+          # set to `offscreen`:
+          #     qt.qpa.xcb: could not connect to display
+          #     qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even
+          #     though it was found.
+          #     This application failed to start because no Qt
+          #     platform plugin could be initialized. Reinstalling the application
+          #     may fix this problem.
+          #
+          #     Available platform plugins are: eglfs, minimal, minimalegl,
+          #     offscreen, vnc, webgl, xcb.
+          #
+          #     Fatal Python error: Aborted
+          QT_QPA_PLATFORM: offscreen
+
+
+  test-build-container-image:
+    name: "Test container image build"
+    # The build will happen for real on pushes to the main branch, so only do
+    # the test on PRs.
+    if: "github.event_name == 'pull_request'"
+    runs-on: "ubuntu-latest"
+    needs: ["test"]
+    steps:
+      - name: "Check out repository"
+        uses: "actions/checkout@v3"
+
+      - name: "Build container image"
+        run: |
+          docker build  .
