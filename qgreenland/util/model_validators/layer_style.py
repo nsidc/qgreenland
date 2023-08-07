@@ -44,8 +44,9 @@ def validate_style_file_only_contains_allowed_fonts(style_name: str):
 
 
 def validate_style_file_continuous_legend(style_name: str):
-    """Ensure common errors in continuous style configuration are avoided.
+    """Ensure common errors in continuous legend configuration are avoided.
 
+    * Ensures continuous legend is enabled for "linear" interpolated colorramps.
     * Ensures continuous legends are horizontal.
     * Ensures a "Suffix" is populated in the "Legend Settings" menu.
     """
@@ -71,19 +72,19 @@ def validate_style_file_continuous_legend(style_name: str):
         # setting to be concerned with.
         return style_name
 
-    if colorrampshader.attrib["classificationMode"] != "1":
-        # This colorramp is not continuous, so the  "Label unit suffix" will be
-        # used if specified.
+    if colorrampshader.attrib["colorRampType"] != "INTERPOLATED":
+        # This colorramp should not have a continuous legend, so the  "Label unit
+        # suffix" will be used if specified.
         return style_name
 
     rampLegendSettings = colorrampshader.find(".//rampLegendSettings")
     if not rampLegendSettings:
         raise exc.QgrInvalidConfigError(
             f"{error_prefix}\n"
-            "  * Continuous colorramps must be re-configured with a newer version"
-            " of QGIS to support gradient-style legends. Please ensure that the"
-            ' unit of measurement is populated in the "Suffix" field, and that the'
-            ' "Orientation" field is set to "Horizontal".\n'
+            "  * Continuous (i.e. linearly interpolated) colorramps must be"
+            " re-configured with a newer version of QGIS to support continuous legends."
+            ' Please ensure that the unit of measurement is populated in the "Suffix"'
+            ' field, and that the "Orientation" field is set to "Horizontal".\n'
             f"{error_suffix}"
         )
 
