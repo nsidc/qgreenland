@@ -30,7 +30,8 @@ Return to [QGreenland website](https://qgreenland.org)
   process existing data, it is only to enable efficient and effective viewing
   in the QGreenland QGIS environment.
 
-* QGreenland is not a navigational aid.
+* QGreenland is not a navigational aid. Please see our
+  [Disclaimer](/disclaimer.md).
 
 
 # About QGIS
