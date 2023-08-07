@@ -53,7 +53,17 @@ on any transformations. All QGreenland GeoPackages and GeoTIFFs are projected
 in `EPSG:3413`.
 
 
-# Getting started
+# Level of Support
+
+This repository is fully supported by NSIDC. If you discover any problems or
+bugs, please submit an Issue. If you would like to contribute to this
+repository, you may fork the repository and submit a pull request.
+
+See the [LICENSE](LICENSE) for details on permissions and warranties. Please
+contact nsidc@nsidc.org for more information.
+
+
+# Requirements
 
 As of this writing, the oldest version of QGIS we support for the QGreenland release
 series are:
@@ -62,7 +72,10 @@ series are:
 * QGreenland `2.x`: QGIS `3.16.x LTR`
 * QGreenland `3.x`: QGIS `3.28.x LTR`
 
-You can find downloads and instructions
+
+# Installation
+
+You can find downloads and instructions for downloading QGIS
 [here](https://qgis.org/en/site/forusers/download.html).
 
 After installing QGIS, [download QGreenland](https://qgreenland.org/download)
@@ -75,6 +88,8 @@ and unzip it with your unzip tool of choice if you haven not already done so.
 Finally double-click on (or use QGIS open) the `qgreenland.qgs` file that was just
 extracted from the zip.
 
+
+# Usage
 
 ## What's inside the QGreenland Core zip package?
 
@@ -91,7 +106,7 @@ present at the package root:
   to: title, description, abstract, and citation.
 
 
-# Educational resources
+## Educational resources
 
 We keep the QGreenland official website up-to-date with links to helpful
 educational resources, including our own QGreenland User Guide.
@@ -99,6 +114,12 @@ educational resources, including our own QGreenland User Guide.
 * [QGreenland official website](https://qgreenland.org)
 * [QGreenland YouTube channel](https://www.youtube.com/channel/UCjWae_Jrbognx2ju_SHBZ2A/videos)
 * [QGreenland official documentation](https://qgreenland.readthedocs.io)
+
+
+# Troubleshooting
+
+See our user troubleshooting guide
+[here](https://qgreenland.readthedocs.io/en/latest/user/how-to/troubleshooting.html).
 
 
 # Contributing
