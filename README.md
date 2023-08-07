@@ -91,6 +91,11 @@ extracted from the zip.
 
 # Usage
 
+Please see our [documentation](https://qgreenland.readthedocs.io) for detailed
+usage instructions. The [Get started with QGreenland
+Core](https://qgreenland.readthedocs.io/en/latest/user/tutorials/get-started.html)
+tutorial is a good starting point for new users.
+
 ## What's inside the QGreenland Core zip package?
 
 At the root of the zip file, you will find scientific discipline-specific directories
