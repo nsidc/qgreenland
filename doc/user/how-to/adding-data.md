@@ -1,22 +1,30 @@
 # Adding New Datasets to QGreenland
 
-Once the QGreenland package is downloaded onto a user’s computer, it is fully customizable
-by the user. One can add new data, delete layers within QGreenland, or make changes.
-Saving the project will update the qgreenland.qgs project file. If you don’t want to overwrite
-the original project version, simply save your updated project using a new filename via ‘Save
-As...’ You can create as many different projects as you like, adding or removing data from the
-downloaded QGreenland package or adding data from elsewhere on your computer.
+Once the QGreenland Core package is downloaded and extracted onto a user’s
+computer, it is fully customizable by the user. One can add new data, delete
+layers within QGreenland, or make changes.  Saving the project will update the
+qgreenland.qgs project file. If you do not want to overwrite the original project
+version, simply save your updated project using a new filename via ‘Save As...’
+You can create as many different projects as you like, adding or removing data
+from the downloaded QGreenland package or adding data from elsewhere on your
+computer.
 
-## Uploading New Layers to QGreenland
+## Adding New Layers in QGIS
 
-To add new data layers to QGreenland:
-1. In the **Menu Bar**, go to **Layer -> Add Layer**, and choose the layer type you
-   want to add. Alternatively, you can either click on the desired add layer button
-   in the toolbar, or click on the **Data Source Manager** button in the **Data Source Manager** toolbar.
+To add new data layers to QGreenland in QGIS:
+1. In the **Menu Bar**, go to **Layer -> Add Layer**, and choose the layer type
+   you want to add. Alternatively, you can either click on the desired add layer
+   button in the toolbar, or click on the **Data Source Manager** button in the
+   **Data Source Manager** toolbar.
 2. Any option you choose will open the same **Data Source Manager** window. On
    the right side of the window, you can double check that the layer type you want
    to add is highlighted.
 3. Navigate to the data file that you want to add as a layer, then click **Add**.
+
+To learn about adding online-access layers (e.g, WMS, WFS, WCS), see our
+documentaiton on [How to add an online layer to
+QGIS](/user/how-to/online-layers.md)!
+
 
 ## Selecting for Greenland-Specific Data
 
