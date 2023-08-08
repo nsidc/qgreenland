@@ -177,6 +177,11 @@
 - Switch back to `.qgs` project file from `.qgz`; There is [an
   issue](https://github.com/qgis/QGIS/issues/42033) conveniently opening `.qgz`
   project files in OSX for some versions of QGIS `3.16.x`.
+- Fix issue with "Geophysics/" layers displaying nodata values at some zoom
+  levels:
+  - "Bouguer gravity anomaly (2km)"
+  - "Faye (free-air) gravity anomaly (2km)"
+  - "Geoid model (2km)"
 
 
 # v2.0.0rc6 (2022-03-17)
