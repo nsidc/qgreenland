@@ -59,11 +59,10 @@ def validate_style_file_continuous_legend(style_name: str):
     errors = []
     error_prefix = (
         f"Style '{style_name}' has a continuous legend that is incorrectly"
-        f" configured:"
-    )
-    error_suffix = (
-        f"In QGIS >=3.28, edit this style ({style_filepath}) in the layer symbology"
-        ' menu and configure the continuous legend in the "Legend Settings" submenu.'
+        " configured."
+        f" In QGIS >=3.28, edit this style ({style_filepath}) in the layer symbology"
+        ' menu and configure the continuous legend in the "Legend Settings" submenu to'
+        " resolve the following:"
     )
 
     colorrampshader = tree.find(".//colorrampshader")
@@ -85,7 +84,6 @@ def validate_style_file_continuous_legend(style_name: str):
             " re-configured with a newer version of QGIS to support continuous legends."
             ' Please ensure that the unit of measurement is populated in the "Suffix"'
             ' field, and that the "Orientation" field is set to "Horizontal".\n'
-            f"{error_suffix}"
         )
 
     if (orientation := rampLegendSettings.attrib["orientation"]) != "1":
@@ -111,9 +109,7 @@ def validate_style_file_continuous_legend(style_name: str):
         # cannot include a backslash" and still put a newline in there.
         newline = "\n"
         raise exc.QgrInvalidConfigError(
-            f"{error_prefix}\n"
-            f"{newline.join(f'  * {err}' for err in errors)}\n"
-            f"{error_suffix}"
+            f"{error_prefix}\n" f"{newline.join(f'  * {err}' for err in errors)}\n"
         )
 
     return style_name
