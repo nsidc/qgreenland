@@ -6,7 +6,7 @@ the basics of creating a new print layout in QGIS, adding a map and map elements
 to that layout, and exporting the resulting layout as an image.
 
 See the [QGIS
-manual](https://docs.qgis.org/3.16/en/docs/training_manual/map_composer/map_composer.html)
+manual](https://docs.qgis.org/3.28/en/docs/training_manual/map_composer/map_composer.html)
 for complete documentation on print layouts in QGIS.
 
 

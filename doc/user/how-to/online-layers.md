@@ -18,8 +18,8 @@ a similar way.
 For more information about adding online layers, see the following resources
 from QGIS:
 
-* [Online resources tutorial](https://docs.qgis.org/3.16/en/docs/training_manual/online_resources/index.html)
-* [OGC web services user manual](https://docs.qgis.org/3.16/en/docs/user_manual/working_with_ogc/ogc_client_support.html)
+* [Online resources tutorial](https://docs.qgis.org/3.28/en/docs/training_manual/online_resources/index.html)
+* [OGC web services user manual](https://docs.qgis.org/3.28/en/docs/user_manual/working_with_ogc/ogc_client_support.html)
 
 
 ## Add a WMS Layer

@@ -102,11 +102,11 @@ functions in QGIS. You can fully customize the look and layout of your QGIS inte
 
 ```{note}
 The [QGIS User
-Manual](https://docs.qgis.org/3.16/en/docs/user_manual/index.html) provides a
+Manual](https://docs.qgis.org/3.28/en/docs/user_manual/index.html) provides a
 detailed and comprehensive overview of QGIS' core features. Users who are new to
 Geographic Information Systems may also benefit from reviewing QGIS's [Gentle
 Introduction to
-GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
+GIS](https://docs.qgis.org/3.28/en/docs/gentle_gis_introduction/index.html)
 ```
 
 
@@ -166,7 +166,7 @@ indicating what the tool is used for. Try hovering over some of the other icons
 in the **Map Navigation Toolbar** to read their tooltips. Try out some of these
 other tools to explore the map and QGreenland's various data layers. See the
 [QGIS documentation on zooming and
-panning](https://docs.qgis.org/3.16/en/docs/user_manual/introduction/general_tools.html#zooming-and-panning)
+panning](https://docs.qgis.org/3.28/en/docs/user_manual/introduction/general_tools.html#zooming-and-panning)
 for more detailed information on how to effectively navigate the **Map View**.
 
 
