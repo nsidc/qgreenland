@@ -40,7 +40,8 @@ def _make_layer(
                 reproject_args=[
                     # The source nodata value is 1.70141e+38. This value is not
                     # correctly set in the overviews (added in the step below),
-                    # so override it here as -9999.
+                    # so override it here as -9999. See
+                    # https://github.com/OSGeo/gdal/issues/8187.
                     "-dstnodata",
                     "-9999",
                     # Source data is 0.02x-0.02 degrees resolution. Rene noted in
