@@ -78,8 +78,6 @@ layer name in the **Layers Panel**.
 
 ![timeseries_layer_clock_icon](/_images/timeseries_layer_clock_icon.png)
 
-
-
 **Temporal Layers** can be interacted with using the **Temporal Controller** panel. See the
 [QGIS documentation](https://docs.qgis.org/3.28/en/docs/user_manual/map_views/map_view.html#maptimecontrol) for more information about time-based control of the map canvas.
 ```
