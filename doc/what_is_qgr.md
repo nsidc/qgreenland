@@ -3,25 +3,18 @@
 ![QGreenland examples](_images/qgreenland-examples.jpg)
 
 QGreenland is a free and open-source Greenland-focused GIS environment for data
-analysis and viewing, powered by [QGIS](https://qgis.org). QGreenland is
-delivered in two ways:
+analysis and viewing, powered by [QGIS](https://qgis.org). QGreenland is delivered as a Zip package containing a core set of data curated to serve the majority of users. This package is referred to as **QGreenland Core**.
 
-1. **QGreenland Core**: a large Zip package containing a core set of data
-   curated to serve the majority of users. This documentation page is about
-   QGreenland Core.
+See our tutorial on how to get started with QGreenland Core
+[here](/user/tutorials/get-started.md)!
 
-2. **QGreenland Custom (beta)**: a QGIS plugin for downloading a custom set of
-   data, including data which is not part of the QGreenland Core zip package
-   (for example, due to filesize constraints). QGreenland Custom has its own
-   [documentation](https://qgreenland-plugin.readthedocs.io).
+```{attention}
+The QGIS Plugin **[QGreenland Custom](https://plugins.qgis.org/plugins/qgreenland/)
+(beta)** is no longer supported. This was an experiment, and we decided to go in a
+different direction. It shouldn't be expected to work.
+```
 
-   ```{attention}
-   While **QGreenland Core** is still under active development, **QGreenland Custom
-   (beta)** is no longer supported. This was an experiment, and we decided to go in a
-   different direction. It shouldn't be expected to work.
-   ```
-
-Return to [QGreenland website](https://qgreenland.org)
+Visit the [QGreenland website](https://qgreenland.org)
 
 
 # What QGreenland *is not*
