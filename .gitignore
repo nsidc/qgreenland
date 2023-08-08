@@ -1,8 +1,15 @@
-luigi/state
-.coverage
-__pycache__
 .env
 
 
-# Docker overrides
+# Python
+.coverage
+__pycache__
+.ipynb_checkpoints
+
+
+# Luigi
+luigi/state
+
+
+# Docker
 docker-compose.override.yml
