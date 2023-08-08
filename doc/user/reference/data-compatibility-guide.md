@@ -59,12 +59,10 @@ information.
 
 ##  Adding datasets to your QGreenland project for personal use only
 
-   * Refer to the QGreenland User Guide Section 6: Adding New Datasets to
-     QGreenland for instructions on how to add new data layers to your
-     QGreenland project (go to
-     [https://qgreenland.org/learn-and-teach](https://qgreenland.org/learn-and-teach)
-     to download the User Guide directly or locate it in the QGreenland download
-     package).
+   * Refer to our documentation page on [Adding New Datasets to
+     QGreenland](/user/how-to/adding-data.md) for instructions on how to add new
+     data layers to your QGreenland project. Note that this section is also
+     incldued in the `UserGuide.pdf` included in the QGreenland Core package.
 
    * Note that the QGreenland data package is in the EPSG:3413 coordinate
      reference system and all pre-loaded layers are either GeoTIFF (raster) or
