@@ -38,6 +38,11 @@ def _make_layer(
                 input_file="{input_dir}/" + filename,
                 output_file="{output_dir}/" + filename,
                 reproject_args=[
+                    # The source nodata value is 1.70141e+38. This value is not
+                    # correctly set in the overviews (added in the step below),
+                    # so override it here as -9999.
+                    "-dstnodata",
+                    "-9999",
                     # Source data is 0.02x-0.02 degrees resolution. Rene noted in
                     # his email to QGreenland on 2021-01-22 that the geoid and
                     # gravity anomaly grids are 2km resolution.
