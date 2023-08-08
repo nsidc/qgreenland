@@ -30,9 +30,17 @@ the long term release (3.16 or later) version.
 Download the QGreenland Core data package (v3.0.0) at
 [https://qgreenland.org/download](https://qgreenland.org/download).
 
-Save the zip package to a location of your choice and unzip it. Open the
-`qgreenland.qgs` file in the data package folder by double-clicking it. QGIS
-will open automatically and display the QGreenland Core data environment.
+Save the zip package to a location of your choice and unzip it. 
+
+```{warning}
+Ensure QGreenland is _actually_ unzipped; some operating systems will only
+"explore" a zip file when you double-click it without actually extracting it to disk.
+In Windows, please right-click and select `Extract all...`.
+```
+
+Open the `qgreenland.qgs` file in the data package folder by double-clicking
+it. QGIS will open automatically and display the QGreenland Core data
+environment.
 
 
 ```{note}

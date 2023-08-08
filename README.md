@@ -54,18 +54,9 @@ WIP:
 
 # Installation
 
-You can find downloads and instructions for downloading QGIS
-[here](https://qgis.org/en/site/forusers/download.html).
+WIP:
 
-After installing QGIS, [download QGreenland](https://qgreenland.org/download)
-and unzip it with your unzip tool of choice if you haven not already done so.
-
-> :warning: Ensure QGreenland is _actually_ unzipped; some operating systems will only
-> "explore" a zip file when you double-click it without actually extracting it to disk.
-> In Windows, please right-click and select `Extract all...`.
-
-Finally double-click on (or use QGIS open) the `qgreenland.qgs` file that was just
-extracted from the zip.
+* Creating a dev envionment from env file
 
 
 # Usage
