@@ -53,14 +53,6 @@ The filtered data will show up in the **Layers Panel** within the group you had 
 named **Extracted (location)**. You can rename the layer by right clicking on it and selecting
 **Rename Layer**.
 
-## Creating a Custom Clipping Boundary Polygon
-You can create your own custom boundary polygon layer to extract features from. Follow the
-instructions in section, **Creating New Shapefiles and GeoPackage Layers from Scratch**
-to draw a polygon layer from scratch. Then, follow the instructions in section 6.2 Selecting
-for Greenland-Specific Data to extract features from your custom polygon boundary layer;
-however, instead of comparing features from the Greenland coastlines 2017 layer, you will
-instead select the new custom boundary layer.
-
 ## Editing Vector Data Layers
 How do you add or delete points, line segments, or polygons to/in an existing vector layer in
 your QGreenland project?
@@ -131,6 +123,18 @@ You can also drag and drop your layer into the location you want it.
 In addition to shapefiles and GeoPackages, there are additional new layer types that can be
 created also, such as **SpatialLite Layer** and **Virtual Layer**. Descriptions for all layer types can be
 found in the **Reference** tab.
+
+
+## Creating a Custom Clipping Boundary Polygon
+
+You can create your own custom boundary polygon layer to extract features
+from. Follow the instructions above on [Creating New Shapefiles and GeoPackage
+Layers from
+Scratch](#Creating-New-Shapefiles-and-GeoPackage-Layers-from-Scratch) to draw a
+polygon layer from scratch. Then, follow the instructions on [Selecting for
+Greenland-Specific Vector Data](Selecting-for-Greenland-Specific-Vector-Data) to
+extract features from vector layers using the custom polygon boundary layer
+instead of the "Greenland coastlines 2017" layer.
 
 ## Importing GPS and other GNSS Data Using the GPS Plugin
 
