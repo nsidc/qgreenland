@@ -6,7 +6,7 @@ keywords to link any related issues that will auto-close when this PR merges.
 
 ## Checklist
 
-If an item on this list is done _or not needed_, simply check it with `[x]` or click the
+If an item on this list is done _or not needed_, check it with `[x]` or click the
 checkbox.
 
 - [ ] The PR description links to issues that it resolves with `closes #{issue_number}`
