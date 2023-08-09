@@ -42,7 +42,7 @@ Request. Learn more:
 ### How-tos
 
 see our [Contributor "How-to" guides
-](/contributor/how-to/index.html) for
+](/contributor/how-to/index.rst) for
 how-tos on topics such as:
 
 * [How to run QGreenland core](/contributor/how-to/run-qgreenland.md)
