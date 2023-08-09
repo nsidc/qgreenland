@@ -77,38 +77,36 @@ To edit a vector layer:
 6. When you’re finished, click on the **Toggle Editing** button again in the toolbar to
    disable editing.
 
-## Creating New Shapefiles and GeoPackage Layers from Scratch
+## Creating New Vector Layers from Scratch
 
-In your QGreenland project, you may want to create a new vector layer from scratch, such as
-a point shapefile of potential study sites for for your research in Greenland. To draw a new vector
-layer from scratch, you can either create a new shapefile or a new GeoPackage.
+In your QGreenland project, you may want to create a new vector layer from
+scratch, such as a point layer of potential study sites for for your research in
+Greenland. 
 
-To create a new shapefile layer:
-1. Go to **Layer -> Create Layer -> New Shapefile Layer** in the **Menu Bar** or click
-on the New Shapefile **Layer** button in the **Data Source Manager** toolbar.
-2. In the new window, specify the properties of your new layer, including giving it
-a name, specifying its geometry (point, line, polygon) and coordinate reference
-system (the coordinate reference system for all QGreenland data layers is
-EPSG: 3413).
-3. In the same window, create each field for your new layer’s **Attribute Table** under
-**New Field**. You will need to specify whether the new field will contain text data
-(string), whole number data (integer), decimal number data (real), or a date.
-When you click **Add to Fields List**, the new field will show up in the **Field List**
-below.
-4. If you have a layer group highlighted in the Layers panel when you create
-the new layer, the new layer will be automatically nested into the highlighted
-group. You can move it out of the group by right clicking on the new layer and
-selecting **Move Out of Group**.
-5. Once the new layer has been created, add new features to it using the
-processes described in section **Editing vector data layers**.
+To draw a new vector layer from scratch, use the **Layer -> Create Layer** menu
+and select one of the following options:
 
-To create a new GeoPackage layer:
-1. In the **Menu Bar**, go to **Layer -> Create Layer -> New GeoPackage Layer** or
-click on the **New GeoPackage Layer** button in the **Data Source Manager**
-toolbar.
-2. A GeoPackage is a GIS file format that allows you to save multiple layers in one
-file; thus, you will actually be creating a new GeoPackage database that your
-new GeoPackage layer will live in. In the new window:
+* New GeoPackage Layer (reccomended)
+* New Shapefile Layer (not reccomended, see
+  [switchfromshapefile.org](http://switchfromshapefile.org/)).
+* New Spatiallite Layer
+* New Temporary Scratch Layer (will not persist data to disk!)
+
+In the new window that opens after selecting one of these options, fill out the
+given options (each will be slightly different). For detailed instructions on
+how to add vector layers, see the [QGIS
+documentation](https://docs.qgis.org/3.28/en/docs/user_manual/managing_data_source/create_layers.html#creating-new-vector-layers).
+
+
+### Creating a GeoPackage layer
+
+1. In the **Menu Bar**, go to **Layer -> Create Layer -> New GeoPackage Layer**
+   or click on the **New GeoPackage Layer** button in the **Data Source
+   Manager** toolbar.
+2. A [GeoPackage](http://www.geopackage.org/) is a GIS file format that allows
+   you to save multiple layers in one file; thus, you will actually be creating
+   a new GeoPackage database that your new GeoPackage layer will live in. In the
+   new window:
    * Name your new Database
    * Name the new GeoPackage layer you are creating - this is the **Table name**
    * Specify the geometry of the new GeoPackage layer (point, line, etc.)
@@ -116,21 +114,18 @@ new GeoPackage layer will live in. In the new window:
    * Create the fields that will be in the layer’s **Attribute Table** by giving them a
      name and indicating their type (text data, integer, etc.) under **New Field**. When
      you click on **Add to Fields List**, the new field will show up in the Fields List box.
-3. Click **Ok**. Your new layer will appear in the **Layers** panel. If it is within another
-Group you do not want it in, right click on it and select **Move Out of Group**.
-You can also drag and drop your layer into the location you want it.
-
-In addition to shapefiles and GeoPackages, there are additional new layer types that can be
-created also, such as **SpatialLite Layer** and **Virtual Layer**. Descriptions for all layer types can be
-found in the **Reference** tab.
+3. Click **Ok**. Your new layer will appear in the **Layers** panel. If it is
+   within another Group you do not want it in, right click on it and select
+   **Move Out of Group**.  You can also drag and drop your layer into the
+   location you want it.
 
 
 ## Creating a Custom Clipping Boundary Polygon
 
 You can create your own custom boundary polygon layer to extract features
-from. Follow the instructions above on [Creating New Shapefiles and GeoPackage
+from. Follow the instructions above on [Creating New Vector 
 Layers from
-Scratch](#Creating-New-Shapefiles-and-GeoPackage-Layers-from-Scratch) to draw a
+Scratch](#Creating-New-Vector-Layers-from-Scratch) to draw a
 polygon layer from scratch. Then, follow the instructions on [Selecting for
 Greenland-Specific Vector Data](Selecting-for-Greenland-Specific-Vector-Data) to
 extract features from vector layers using the custom polygon boundary layer
