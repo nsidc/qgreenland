@@ -32,7 +32,7 @@ Currently, layer styles can be contributed without any programming knowledge by
 designing the style in QGIS, saving it as a `.qml`, and committing it to the
 `qgreenland/ancillary/styles` directory.
 
-You can contribute to this project even if you don't have write access by
+You can contribute to this project even if you do not have write access by
 forking, making your change, making all CI checks pass, then opening a Pull
 Request. Learn more:
 

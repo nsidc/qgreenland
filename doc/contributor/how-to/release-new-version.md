@@ -14,7 +14,7 @@ Versions should be in one of the following forms:
 * `vX.Y.Z`: A final release, e.g. `v1.2.3`.
 
 ```{caution}
-When using `bumpversion build`, ensure you've already used `bumpversion
+When using `bumpversion build`, ensure you have already used `bumpversion
 prerelease`. Running `bumpversion build` from a final release version number
 can result in an incorrect patch number, e.g. `v1.2.304`.
 ```

@@ -12,7 +12,7 @@ following process:
 
 ![Save style](/_images/save_style.png)
 
-* At this point, if you're uncomfortable with Git and GitHub, you can email us
+* At this point, if you are uncomfortable with Git and GitHub, you can email us
   your style file at qgreenland.info@gmail.com. Otherwise, continue on...
 * Save the style to `qgreenland/assets/styles/<name>.qml` directory of this
   repository or your fork. Keep in mind that styles can be shared between

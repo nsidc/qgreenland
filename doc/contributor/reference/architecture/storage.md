@@ -55,10 +55,10 @@ data/private-archive
 ```
 
 While this project prefers to only include publicly-archived and
-machine-accessible data, we do have some privately-archived data that we've
+machine-accessible data, we do have some privately-archived data that we have
 sourced by e-mailing scientists or manually interacting with machine-unfriendly
-systems. These datasets have an `access_instructions` attribute in
-configuration that describes how the data was acquired.
+systems. These datasets have an `access_instructions` attribute in configuration
+that describes how the data was acquired.
 
 May be read-only.
 

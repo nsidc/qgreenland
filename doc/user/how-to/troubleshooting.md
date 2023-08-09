@@ -8,13 +8,13 @@
 
 ## Difficulty opening the project
 
-If you're having trouble opening the project, first ensure you're using QGIS
+If you are having trouble opening the project, first ensure you are using QGIS
 3.16 LTR or greater. If you want to move QGreenland to a different location on
 your filesystem, move the entire directory; do not attempt to move only the
 `.qgs`/`.qgz` project file.
 
 
-### QGIS won't start on OSX Catalina
+### QGIS will not start on OSX Catalina
 
 QGIS is currently not 'notarized' for Mac OSX. If you receive `The developer of
 this app needs to update it to work with this version of macOS. Contact the
@@ -38,9 +38,9 @@ qgis qgreenland.qgs
 
 ### No layers are present in the Layers Panel
 
-If you don't see layers in the **Layers Panel**, you have not correctly opened a
-project. Click **Project** in the **Menu Bar**, then select **Add Project**, then
-navigate to your QGreenland directory, wherever you saved it, and open the
+If you do not see layers in the **Layers Panel**, you have not correctly opened
+a project. Click **Project** in the **Menu Bar**, then select **Add Project**,
+then navigate to your QGreenland directory, wherever you saved it, and open the
 `.qgs`/`.qgz` file inside.
 
 
@@ -48,8 +48,8 @@ navigate to your QGreenland directory, wherever you saved it, and open the
 
 ### After opening QGreenland, I only see blue ocean
 
-Right click on a layer in the **Layers Panel** that you'd like to view, and select
-**Zoom to Layer**.
+Right click on a layer in the **Layers Panel** that you would like to view, and
+select **Zoom to Layer**.
 
 If you experience this issue, please [contact
 us](mailto:qgreenland.info@gmail.com) with information about your Operating
@@ -88,9 +88,9 @@ affected. Reboot your computer to make the changes permanent.
 
 ### I see `ERROR: Too many connections: max 64` in my terminal
 
-We don't think this is an issue. This started happening when we switched to
-GeoPackages for vector data, but we've observed no negative impact of this
-error message.
+We do not think this is an issue. This started happening when we switched to
+GeoPackages for vector data, but we have observed no negative impact of this error
+message.
 
 
 ### The QGIS interface has no buttons or toolbars
@@ -100,7 +100,7 @@ wish to turn on so that they are displayed. You can also go to
 **View -> Toolbars** in the **Menu Bar**.
 
 
-### I can't see a layer in the Map View even though it's turned on and I've zoomed to it
+### I cannot see a layer in the Map View even though it is turned on and I have zoomed to it
 
 Double-check that there is not another layer overlaying and thus obscuring the
 layer you want to see in the **Map View**. Remember that layer are displayed in the
@@ -156,7 +156,7 @@ has determined can be ignored:
    impact on the layers themselves or the project usability.
 
 
-## I'm having other problems. How do I contact the QGreenland team?
+## I am having other problems. How do I contact the QGreenland team?
 
 If you have feedback on or questions about the QGreenland data package, or want
 to contribute datasets to future QGreenland releases, please contact us at

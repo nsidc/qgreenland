@@ -73,7 +73,7 @@ To edit a vector layer:
    Table**.
 5. If you just want to edit a record in a vector layer’s **Attribute Table**, you can open
    the **Attribute Table** and click on the **Toggle Editing** icon in the table toolbar. Be
-   sure to save the layer edits after you’re done making edits.
+   sure to save the layer edits after you are done making edits.
 6. When you’re finished, click on the **Toggle Editing** button again in the toolbar to
    disable editing.
 
@@ -132,10 +132,11 @@ extract features from vector layers using the custom polygon boundary layer
 instead of the "Greenland coastlines 2017" layer.
 
 ## Importing GPS and other GNSS Data Using the GPS Plugin
+<TODO: this section outdated, see: https://docs.qgis.org/3.28/en/docs/user_manual/working_with_gps/plugins_gps.html>
 
 Importing GPS (Global Positioning System) or other GNSS (Global Navigation Satellite
 System) data into QGIS requires an internal plugin. A plugin is just a new feature or function
-that you can add to QGIS that does something one of the built-in tools doesn’t do. Many
+that you can add to QGIS that does something one of the built-in tools does not do. Many
 plugins are ‘external’ meaning they are not developed and maintained by the QGIS
 development team. Some plugins, however, are ‘core’ meaning they are maintained by the
 QGIS team. The **GPS Plugin** is a core plugin and should already be installed in your version of
@@ -144,7 +145,7 @@ QGIS.
 To turn on the **GPS Plugin**:
 1. Go to **Plugins -> Manage and Install Plugins** in the **Menu Bar**.
 2. Click on **Installed** in the left sidebar, then check the box next to **GPS Tools** in
-the plugin list. If it is already checked, don’t change anything.
+the plugin list. If it is already checked, do not change anything.
 3. Click **Close**.
 
 You can import GPS data either directly from a GPS device that is connected to your

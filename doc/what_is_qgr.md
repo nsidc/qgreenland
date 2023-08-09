@@ -13,7 +13,7 @@ See our tutorial on how to get started with QGreenland Core
 ```{attention}
 The QGIS Plugin **[QGreenland Custom](https://plugins.qgis.org/plugins/qgreenland/)
 (beta)** is no longer supported. This was an experiment, and we decided to go in a
-different direction. It shouldn't be expected to work.
+different direction. It should not be expected to work.
 ```
 
 Visit the [QGreenland website](https://qgreenland.org)

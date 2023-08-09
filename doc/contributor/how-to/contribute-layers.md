@@ -1,7 +1,7 @@
 # How to contribute new layers
 
 ```{note}
-We can't promise that your layer will be added, so please [open an
+We cannot promise that your layer will be added, so please [open an
 issue](https://github.com/nsidc/qgreenland/issues/new/choose) and start a
 discussion before developing a processing pipeline for a new layer. 
 ```
