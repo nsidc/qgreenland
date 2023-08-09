@@ -113,7 +113,7 @@ A correct QGreenland data pipeline will output data that:
 - Interpolation algorithm OK? (almost everything is currently bilinear, see notes
   for exceptions)
 - Grid resolution in layer title or group (incl. units)?
-- Target resolution specified (see notes for exceptions)
+- When reprojecting (e.g., via `gdalwarp`), ensure that the target resolution is specified (see notes for exceptions)
 
 
 ### Vector layers
