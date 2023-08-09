@@ -131,41 +131,16 @@ Greenland-Specific Vector Data](#selecting-for-greenland-specific-vector-data) t
 extract features from vector layers using the custom polygon boundary layer
 instead of the "Greenland coastlines 2017" layer.
 
-## Importing GPS and other GNSS Data Using the GPS Plugin
-<TODO: this section outdated, see: https://docs.qgis.org/3.28/en/docs/user_manual/working_with_gps/plugins_gps.html>
+## Importing GPS and other GNSS Data
 
-Importing GPS (Global Positioning System) or other GNSS (Global Navigation Satellite
-System) data into QGIS requires an internal plugin. A plugin is just a new feature or function
-that you can add to QGIS that does something one of the built-in tools does not do. Many
-plugins are ‘external’ meaning they are not developed and maintained by the QGIS
-development team. Some plugins, however, are ‘core’ meaning they are maintained by the
-QGIS team. The **GPS Plugin** is a core plugin and should already be installed in your version of
-QGIS.
 
-To turn on the **GPS Plugin**:
-1. Go to **Plugins -> Manage and Install Plugins** in the **Menu Bar**.
-2. Click on **Installed** in the left sidebar, then check the box next to **GPS Tools** in
-the plugin list. If it is already checked, do not change anything.
-3. Click **Close**.
+QGIS supports importing Global Positioning System (GPS) and other Global
+Navigation Satellite System (GNSS) data from GPS Exchange Format (GPX)
+datasets. In the **Menu Bar**, go to **Layer -> Add Layer -> Add GPX Layer**.
 
-You can import GPS data either directly from a GPS device that is connected to your
-computer, or from a file on your computer. Note that QGIS uses the GPX file format for GPS
-data, although you can import GPS data that is not GPX (see section below).
+QGIS can also interface with a GPS device to download data directly and provide
+live tracking.
 
-To import GPS or GNSS data using the **GPS Plugin**:
-1. Go to **Vector -> GPS Tools** in the **Menu Bar**.
-2. In the window that pops up, click on the tab most appropriate for the data you
-   want to import.
-   * If you are importing GPS data from a file on your computer, click on the **Load GPX file**
-      tab and navigate to the file on your computer. Indicate which feature
-      types you want to load from the file (waypoints, routes or tracks), then click **Ok**.
-      Each feature type you selected will be loaded in a separate layer.
-   * If you want to import data directly from a GPS device, click on the **Download from GPS** tab.
-      Select the GPS device you are importing from, the port the device is
-      connected to, and what feature types you want to download.
-      Give the data a layer name, which is what it will show up as in the **Layers Panel**.
-      The output file is where the downloaded data from your device will
-      be stored on your computer. Click **Ok**. The data should appear as a
-      new layer in the **Layers Panel**.
-   * To import GPS data that is not in the GPX file format, click on the
-      **Import other file** tab and fill in the relevant information.
+Please see the QGIS documentation on [Working with GPS
+Data](https://docs.qgis.org/3.28/en/docs/user_manual/working_with_gps/index.html)
+for more information.
