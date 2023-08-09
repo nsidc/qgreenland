@@ -37,3 +37,14 @@ forking, making your change, making all CI checks pass, then opening a Pull
 Request. Learn more:
 
 [https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork)
+
+
+### How-tos
+
+see our [Contributor "How-to" guides
+](/contributor/how-to/index.html) for
+how-tos on topics such as:
+
+* [How to run QGreenland core](/contributor/how-to/run-qgreenland.md)
+* [How to contributing new layers](/contributor/how-to/contribute-layers.md)
+* [How to contribute styles](/contributor/how-to/contribute-styles.md)

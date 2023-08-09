@@ -43,30 +43,22 @@ See the [LICENSE](LICENSE) for details on permissions and warranties. Please
 contact nsidc@nsidc.org for more information.
 
 
-# Requirements
-
-WIP:
-
-* docker
-* docker-compose
-* conda/miniconda
-
-
-# Installation
-
-WIP:
-
-* Creating a dev envionment from env file
-
-
 # Usage
 
-Please see our [documentation](https://qgreenland.readthedocs.io) for detailed
-usage instructions. The [Get started with QGreenland
-Core](https://qgreenland.readthedocs.io/en/latest/user/tutorials/get-started.html)
-tutorial is a good starting point for new users.
+## For contributors
 
-## What's inside the QGreenland Core zip package?
+Those wishing to utilize the `qgreenland` code to create their own QGreenland
+data package should see the contributor [How to run QGreenland
+Core](https://qgreenland.readthedocs.io/en/latest/contributor/how-to/run-qgreenland.html)
+guide.
+
+## For users of the QGreenland Core data package
+
+See our [Get started with QGreenland
+Core](https://qgreenland.readthedocs.io/en/latest/user/tutorials/get-started.html)
+tutorial!
+
+### What's inside the QGreenland Core zip package?
 
 At the root of the zip file, you will find useful files such as a
 `UserGuide.pdf`, the `qgreenland.qgs` QGIS project file and scientific
@@ -77,7 +69,7 @@ Download
 Package](https://qgreenland.readthedocs.io/en/latest/what_is_qgr.html#qgreenland-core-download-package).
 
 
-## Educational resources
+### Educational resources
 
 We keep the QGreenland official website up-to-date with links to helpful
 educational resources, including our own QGreenland User Guide.
@@ -86,25 +78,26 @@ educational resources, including our own QGreenland User Guide.
 * [QGreenland YouTube channel](https://www.youtube.com/channel/UCjWae_Jrbognx2ju_SHBZ2A/videos)
 * [QGreenland official documentation](https://qgreenland.readthedocs.io)
 
-
-# Troubleshooting
+### Troubleshooting
 
 See our user troubleshooting guide
 [here](https://qgreenland.readthedocs.io/en/latest/user/how-to/troubleshooting.html).
 
-
 # Contributing
 
-Please see [contributing
-instructions](https://qgreenland.readthedocs.io/en/latest/contributor-how-to/contribute-layers.html)
-for more info. A good portion of this document contains technical instructions about
-running the QGreenland pipeline, but also includes less-technical instructions for
-contributing styles you have developed within QGIS. Our goal is to make it as easy as
-possible for any user of QGreenland to contribute to the project, so please do not be
-deterred from sharing your ideas.
+See our [discusson page on
+contributing](https://qgreenland.readthedocs.io/en/latest/contributor/discussion/contributing.html)
+to get started!
+
+Contributor documentation contains technical instructions about running the
+QGreenland pipeline code, but we also strive to describe everything clearly.
+Our goal is to make it as easy as possible for any user of QGreenland to
+contribute to the project, so please do not be deterred from sharing your ideas.
+
+If you have an idea for a new feature or have a bug to report, please submit an
+[Issue](https://github.com/nsidc/qgreenland/issues)!
 
 **If all else fails, please [email us](mailto:qgreenland.info@gmail.com)!**
-
 
 # Acknowledgements
 
