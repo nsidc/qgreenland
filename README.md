@@ -58,7 +58,7 @@ See our [Get started with QGreenland
 Core](https://qgreenland.readthedocs.io/en/latest/user/tutorials/get-started.html)
 tutorial!
 
-### What's inside the QGreenland Core zip package?
+### What is inside the QGreenland Core zip package?
 
 At the root of the zip file, you will find useful files such as a
 `UserGuide.pdf`, the `qgreenland.qgs` QGIS project file and scientific
