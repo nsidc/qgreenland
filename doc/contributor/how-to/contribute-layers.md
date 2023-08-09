@@ -86,3 +86,38 @@ A correct QGreenland data pipeline will output data that:
   * In GeoPackage (`.gpkg`) format.
   * Uses the `label` attribute name for pre-calculated labels when using
     generic styles with labels, for example `labeled_point.qml`
+
+
+## Layer quality checklist
+
+
+### All layers
+
+- Abstract populated
+- Citation populated
+- Layer descriptions populated
+- Layer description excludes data provider
+- Layers'/groups' title follows date standard
+- Layers'/groups' title follows capitalization standard
+- Layers'/groups' title excludes data provider (see notes for exceptions)
+- No fields are populated with "TBD" or "TODO"
+- All layers have style
+- Any known issues with data quality are listed in "Description"
+- Datastore's data is in final state
+- Layers not in unneccessary group
+- PO approves citation
+- PO approves description
+
+
+### Raster layers
+
+- Interpolation algorithm OK? (almost everything is currently bilinear, see notes
+  for exceptions)
+- Grid resolution in layer title or group (incl. units)?
+- Target resolution specified (see notes for exceptions)
+
+
+### Vector layers
+
+- Polygon labels inside polygons
+- All attributes have reasonable types
