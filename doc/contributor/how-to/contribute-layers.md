@@ -90,7 +90,6 @@ A correct QGreenland data pipeline will output data that:
 
 ## Layer quality checklist
 
-
 ### All layers
 
 - Abstract populated
@@ -105,8 +104,8 @@ A correct QGreenland data pipeline will output data that:
 - Any known issues with data quality are listed in "Description"
 - Datastore's data is in final state
 - Layers not in unneccessary group
-- PO approves citation
-- PO approves description
+- Stakeholders approve citation
+- Stakeholders approve description
 
 
 ### Raster layers
