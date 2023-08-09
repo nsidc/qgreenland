@@ -81,7 +81,7 @@ To edit a vector layer:
 
 In your QGreenland project, you may want to create a new vector layer from
 scratch, such as a point layer of potential study sites for for your research in
-Greenland. 
+Greenland.
 
 To draw a new vector layer from scratch, use the **Layer -> Create Layer** menu
 and select one of the following options:
@@ -123,7 +123,7 @@ documentation](https://docs.qgis.org/3.28/en/docs/user_manual/managing_data_sour
 ## Creating a Custom Clipping Boundary Polygon
 
 You can create your own custom boundary polygon layer to extract features
-from. Follow the instructions above on [Creating New Vector 
+from. Follow the instructions above on [Creating New Vector
 Layers from
 Scratch](#Creating-New-Vector-Layers-from-Scratch) to draw a
 polygon layer from scratch. Then, follow the instructions on [Selecting for
@@ -155,7 +155,7 @@ To import GPS or GNSS data using the **GPS Plugin**:
 1. Go to **Vector -> GPS Tools** in the **Menu Bar**.
 2. In the window that pops up, click on the tab most appropriate for the data you
    want to import.
-   * If you are importing GPS data from a file on your computer, click on the **Load GPX file** 
+   * If you are importing GPS data from a file on your computer, click on the **Load GPX file**
       tab and navigate to the file on your computer. Indicate which feature
       types you want to load from the file (waypoints, routes or tracks), then click **Ok**.
       Each feature type you selected will be loaded in a separate layer.
@@ -166,5 +166,5 @@ To import GPS or GNSS data using the **GPS Plugin**:
       The output file is where the downloaded data from your device will
       be stored on your computer. Click **Ok**. The data should appear as a
       new layer in the **Layers Panel**.
-   * To import GPS data that is not in the GPX file format, click on the 
+   * To import GPS data that is not in the GPX file format, click on the
       **Import other file** tab and fill in the relevant information.
