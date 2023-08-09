@@ -33,6 +33,6 @@ e.g. `Font "Helvetica" font not available on system`.
 
 See [this GitHub issue](https://github.com/nsidc/qgreenland/issues/515) for more. For
 example it's possible your style `qml` file contains `fontFamily="Sans Serif"` and
-that's being automatically converted by PyQGIS to a value like `Helvetica` (a
+that is being automatically converted by PyQGIS to a value like `Helvetica` (a
 proprietary font) when writing the final project file. Try `fontFamily="Open Sans"`
 instead!

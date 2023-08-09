@@ -18,7 +18,7 @@ to the public QGreenland data package, please note the following:
      and appropriately geolocated.
 
    * If your data are not already in the QGreenland project coordinate reference
-     system (EPSG:3413), that’s OK. The QGreenland project includes all the
+     system (EPSG:3413), that is OK. The QGreenland project includes all the
      tooling necessary to reproject your data, as long as the data meet the
      metadata requirements. A contributor to the QGreenland open source project
      can take it from here to ensure consistent and compatible results (see
