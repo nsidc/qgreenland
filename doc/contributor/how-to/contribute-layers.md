@@ -6,7 +6,7 @@ issue](https://github.com/nsidc/qgreenland/issues/new/choose) and start a
 discussion before developing a processing pipeline for a new layer. 
 ```
 
-It's recommended to use the CLI to create a dataset and/or layer template to
+It is recommended to use the CLI to create a dataset and/or layer template to
 help you along. In the below commands, replace filenames, paths, and ids with
 real ones. NOTE: When generating templates, but _not_ when fetching, you can
 use `./scripts/experimental/local_cli.sh config-template <dataset|layer>` in
