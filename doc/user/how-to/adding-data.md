@@ -9,6 +9,16 @@ You can create as many different projects as you like, adding or removing data
 from the downloaded QGreenland package or adding data from elsewhere on your
 computer.
 
+
+```{note}
+The QGreenland project uses the EPSG:3413 coordinate reference system (CRS) and all
+pre-loaded layers are either GeoTIFF (raster) or GeoPackage (vector)
+files. Datasets in different CRSs or data formats can
+still be added to QGreenland, but may undero ["on the fly
+reprojection"](https://docs.qgis.org/3.28/en/docs/training_manual/vector_analysis/reproject_transform.html#basic-fa-on-the-fly-reprojection).
+```
+
+
 ## Adding New Layers in QGIS
 
 To add new data layers to QGreenland in QGIS:
