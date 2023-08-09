@@ -26,15 +26,15 @@ documentaiton on [How to add an online layer to
 QGIS](/user/how-to/online-layers.md)!
 
 
-## Selecting for Greenland-Specific Data
+## Selecting for Greenland-Specific Vector Data
 
 Because the geographic extent of some QGreenland data layers extends beyond the
 geographic and political border of Greenland to include the surrounding water bodies
 and land masses, it might sometimes be necessary to filter out certain data if one is only
 interested in data within Greenland’s geographic boundary. You can do this using the
-Greenland coastlines 2017 polygon layer.
+"Greenland coastlines 2017" polygon layer.
 
-To filter out data outside of Greenland:
+To filter for data inside of Greenland:
 1. Make sure that the group you want the filtered/extracted data to be added to is
    selected/highlighted in the **Layers Panel**.
 2. Open the **Processing Toolbox** and go to **Vector selection -> Extract by location**.
