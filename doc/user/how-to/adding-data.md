@@ -125,9 +125,9 @@ documentation](https://docs.qgis.org/3.28/en/docs/user_manual/managing_data_sour
 You can create your own custom boundary polygon layer to extract features
 from. Follow the instructions above on [Creating New Vector
 Layers from
-Scratch](#Creating-New-Vector-Layers-from-Scratch) to draw a
+Scratch](#creating-new-vector-layers-from-scratch) to draw a
 polygon layer from scratch. Then, follow the instructions on [Selecting for
-Greenland-Specific Vector Data](Selecting-for-Greenland-Specific-Vector-Data) to
+Greenland-Specific Vector Data](#selecting-for-greenland-specific-vector-data) to
 extract features from vector layers using the custom polygon boundary layer
 instead of the "Greenland coastlines 2017" layer.
 
