@@ -131,8 +131,8 @@ Greenland-Specific Vector Data](#selecting-for-greenland-specific-vector-data) t
 extract features from vector layers using the custom polygon boundary layer
 instead of the "Greenland coastlines 2017" layer.
 
-## Importing GPS and other GNSS Data
 
+## Importing GPS and other GNSS Data
 
 QGIS supports importing Global Positioning System (GPS) and other Global
 Navigation Satellite System (GNSS) data from GPS Exchange Format (GPX)
