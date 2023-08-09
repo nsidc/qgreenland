@@ -37,10 +37,3 @@ forking, making your change, making all CI checks pass, then opening a Pull
 Request. Learn more:
 
 [https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork)
-
-
-### How-tos
-
-Visit [our
-documentation](https://qgreenland.readthedocs.io/en/latest/contributor-how-to/)
-for contributor-focused how-tos!
