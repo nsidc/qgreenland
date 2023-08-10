@@ -3,10 +3,9 @@
   <img alt="NSF logo" src="https://nsidc.org/sites/default/files/images/Logo/NSF.svg" width="150" height="150" />
 </p>
 
+# QGreenland
 [![NSF-1928393](https://img.shields.io/badge/NSF-1928393-red.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1928393)
 [![DOI](https://zenodo.org/badge/241453043.svg)](https://zenodo.org/badge/latestdoi/241453043)
-
-# QGreenland
 
 This repository is responsible for the code and configuration for creating the
 QGreenland Core zip package. To download the package and learn more about
