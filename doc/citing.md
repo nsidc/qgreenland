@@ -26,25 +26,41 @@ acknowledge or cite QGreenland and the National Snow and Ice Data Center in your
 
 ## Citation
 
-Suggested citations for QGreenland:
+Please note that QGreenland currently has two citable components:
+
+* The QGreenland QGIS data package is cited as `[dataset]` and used by researchers and
+  educators.
+* The software used to generate the QGIS data package from source data is cited as
+  `[software]` and used by software developers.
+
+Please choose the appropriate citation depending on which you use.
 
 
 ### Version 1.0
 
-> Moon, T., Fisher, M., Harden, L., and T. Stafford (2021). QGreenland (v1.0.0) [software],
-> [National Snow and Ice Data Center](https://qgreenland.org/).
+> Moon, T., Fisher, M., Harden, L., and T. Stafford (2021). QGreenland (v1.0.0)
+> [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+
+> Authors (2021). QGreenland (v1.0.0) [software], [National Snow and Ice Data
+> Center](https://github.com/nsidc/qgreenland)
 
 
 ### Version 2.0
 
-> Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2022). QGreenland (v2.0.0) [software],
-> [National Snow and Ice Data Center](https://qgreenland.org/).
+> Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2022). QGreenland
+> (v2.0.0) [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+
+> Authors (2022). QGreenland (v2.0.0) [software], [National Snow and Ice Data
+> Center](https://github.com/nsidc/qgreenland)
 
 
 ### Version 3.0
 
-> Moon, T. A., M. Fisher, T. Stafford, and A. Thurber (2023). QGreenland (v3.0.0) [software],
-> [National Snow and Ice Data Center](https://qgreenland.org/).
+> Moon, T. A., M. Fisher, T. Stafford, and A. Thurber (2023). QGreenland (v3.0.0)
+> [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+
+> Authors (2023). QGreenland (v3.0.0) [software], [National Snow and Ice Data
+> Center](https://github.com/nsidc/qgreenland)
 
 
 ## Acknowledgement
