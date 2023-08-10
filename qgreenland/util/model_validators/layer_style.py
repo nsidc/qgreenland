@@ -64,6 +64,11 @@ def validate_style_file_continuous_legend(style_name: str):
         ' menu and configure the continuous legend in the "Legend Settings" submenu to'
         " resolve the following:"
     )
+    error_suffix = (
+        "Please see our documentation:"
+        " <https://qgreenland.readthedocs.io/en/latest/contributor/how-to"
+        "/contribute-styles.html#continuous-colormap-considerations>"
+    )
 
     colorrampshader = tree.find(".//colorrampshader")
     if colorrampshader is None:
@@ -84,6 +89,7 @@ def validate_style_file_continuous_legend(style_name: str):
             " re-configured with a newer version of QGIS to support continuous legends."
             ' Please ensure that the unit of measurement is populated in the "Suffix"'
             ' field, and that the "Orientation" field is set to "Horizontal".\n'
+            f"{error_suffix}"
         )
 
     if (orientation := rampLegendSettings.attrib["orientation"]) != "1":
@@ -109,7 +115,9 @@ def validate_style_file_continuous_legend(style_name: str):
         # cannot include a backslash" and still put a newline in there.
         newline = "\n"
         raise exc.QgrInvalidConfigError(
-            f"{error_prefix}\n" f"{newline.join(f'  * {err}' for err in errors)}\n"
+            f"{error_prefix}\n"
+            f"{newline.join(f'  * {err}' for err in errors)}\n"
+            f"{error_suffix}"
         )
 
     return style_name
