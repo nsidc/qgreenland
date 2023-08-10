@@ -45,6 +45,6 @@ See our [Contributor "How-to" guides
 ](/contributor/how-to/index.rst) for
 how-tos on topics such as:
 
-* [How to run QGreenland core](/contributor/how-to/run-qgreenland.md)
+* [How to build QGreenland Core](/contributor/how-to/run-qgreenland.md)
 * [How to contributing new layers](/contributor/how-to/contribute-layers.md)
 * [How to contribute styles](/contributor/how-to/contribute-styles.md)
