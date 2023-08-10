@@ -136,4 +136,4 @@ A correct QGreenland data pipeline will output data that:
 ### Vector layers
 
 - Polygon labels inside polygons
-- All attributes have reasonable types
+- All attributes have reasonable types (e.g,. a `population` attribute should be an integer type, not string)
