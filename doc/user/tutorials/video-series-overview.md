@@ -4,7 +4,7 @@
 
 In this video series (~1 hour total), you will become familiar with QGIS,
 download and browse the QGreenland Core data package, and explore the basic
-geospatial data anlysis tools that make QGreenland a powerful tool for research,
+geospatial data anlysis tools that make QGIS and QGreenland powerful tools for research,
 education, and local decision making. The video tutorial series contains 7 short
 video sessions.
 
