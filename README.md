@@ -95,7 +95,7 @@ Our goal is to make it as easy as possible for any user of QGreenland to
 contribute to the project, so please do not be deterred from sharing your ideas.
 
 If you have an idea for a new feature or have a bug to report, please submit an
-[Issue](https://github.com/nsidc/qgreenland/issues)!
+[Issue](https://github.com/nsidc/qgreenland/issues).
 
 **If all else fails, please [email us](mailto:qgreenland.info@gmail.com)!**
 
