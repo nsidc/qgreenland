@@ -41,7 +41,7 @@ Request. Learn more:
 
 ### How-tos
 
-see our [Contributor "How-to" guides
+See our [Contributor "How-to" guides
 ](/contributor/how-to/index.rst) for
 how-tos on topics such as:
 
