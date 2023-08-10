@@ -48,7 +48,7 @@ contact nsidc@nsidc.org for more information.
 ## For contributors
 
 Those wishing to utilize the `qgreenland` code to create their own QGreenland
-data package should see the contributor [How to run QGreenland
+data package should see the contributor [How to build QGreenland
 Core](https://qgreenland.readthedocs.io/en/latest/contributor/how-to/run-qgreenland.html)
 guide.
 
