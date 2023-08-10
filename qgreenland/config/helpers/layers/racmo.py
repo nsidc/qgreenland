@@ -250,12 +250,14 @@ def make_racmo_supplemental_layers() -> list[Layer]:
             ),
             "extract_filename": "Icemask_Topo_Iceclasses_lon_lat_average_1km_GrIS.nc",
             "variable": "Promicemask",
+            "style": "racmo_promicemask",
         },
         "racmo_grounded_ice": {
             "title": "Grounded ice mask (1km)",
             "description": "Mask of grounded ice. 1 = grounded.",
             "extract_filename": "Icemask_Topo_Iceclasses_lon_lat_average_1km_Aug2020.nc",
             "variable": "grounded_ice",
+            "style": "racmo_grounded_ice",
         },
     }
 
@@ -266,7 +268,7 @@ def make_racmo_supplemental_layers() -> list[Layer]:
                 title=params["title"],
                 description=params["description"],
                 tags=[],
-                style="racmo_promicemask",
+                style=params["style"],
                 input=LayerInput(
                     dataset=dataset,
                     asset=dataset.assets["only"],

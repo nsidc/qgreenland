@@ -134,9 +134,7 @@
       </minMaxOrigin>
       <colorPalette>
         <paletteEntry color="#2b83ba" label="Ocean" value="0" alpha="255"/>
-        <paletteEntry color="#abdda4" label="Peripheral ice caps" value="1" alpha="255"/>
-        <paletteEntry color="#fdae61" label="Peripheral ice caps" value="2" alpha="255"/>
-        <paletteEntry color="#d7191c" label="Ice sheet" value="3" alpha="255"/>
+        <paletteEntry color="#abdda4" label="Grounded ice" value="1" alpha="255"/>
       </colorPalette>
       <colorramp type="colorbrewer" name="[source]">
         <Option type="Map">

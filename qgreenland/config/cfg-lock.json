@@ -6424,7 +6424,7 @@
                           "type": "command"
                         }
                       ],
-                      "style": "racmo_promicemask",
+                      "style": "racmo_grounded_ice",
                       "tags": [],
                       "title": "Grounded ice mask (1km)"
                     },
