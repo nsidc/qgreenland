@@ -1,15 +1,18 @@
 from pathlib import Path
 from typing import Any, Optional, Union
-from xml.etree import ElementTree
 
-from pydantic import Field, validator
+from pydantic import Field
 
-import qgreenland.exceptions as exc
-from qgreenland.constants.paths import ANCILLARY_DIR
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.models.config.dataset import AnyAsset, Dataset
 from qgreenland.models.config.step import AnyStep
+from qgreenland.util.layer_style import get_style_filepath
 from qgreenland.util.model_validators import reusable_validator, validate_paragraph_text
+from qgreenland.util.model_validators.layer_style import (
+    validate_style_file_continuous_legend,
+    validate_style_file_exists,
+    validate_style_file_only_contains_allowed_fonts,
+)
 
 
 class LayerInput(QgrBaseModel):
@@ -21,10 +24,6 @@ class LayerInput(QgrBaseModel):
 
     asset: AnyAsset
     """The actual input asset (file or files)."""
-
-
-def _style_filepath(style_name: str) -> Path:
-    return ANCILLARY_DIR / "styles" / (style_name + ".qml")
 
 
 class Layer(QgrBaseModel):
@@ -57,45 +56,18 @@ class Layer(QgrBaseModel):
     steps: Optional[list[AnyStep]]
 
     _validate_description = reusable_validator("description", validate_paragraph_text)
-
-    @validator("style")
-    @classmethod
-    def style_file_only_contains_allowed_fonts(cls, value):
-        """Ensure only fonts that can be downloaded by QGIS are in our style files.
-
-        This ensures we don't re-trigger an old issue:
-            https://github.com/nsidc/qgreenland/issues/515
-        """
-        # TODO: Is the full list of supported fonts available in PyQGIS' API? I think
-        # this is the complete list, but haven't found it in the Python API yet:
-        #     https://github.com/qgis/QGIS/blob/a7b31c7db29328fc44966a854d22c452f58c77c1/src/core/textrenderer/qgsfontmanager.cpp#L203-L925
-        allowed_fonts = ["Open Sans"]
-        if value:
-            style_filepath = _style_filepath(value)
-            tree = ElementTree.parse(style_filepath)
-            for elem in tree.getroot().iter():
-                if font_family := elem.attrib.get("fontFamily", False):
-                    if font_family not in allowed_fonts:
-                        raise exc.QgrInvalidConfigError(
-                            f"Style {style_filepath} contains disallowed font:"
-                            f" '{font_family}'."
-                            f" Only the following fonts are allowed: {allowed_fonts}."
-                        )
-
-        return value
-
-    @validator("style")
-    @classmethod
-    def style_file_exists(cls, value):
-        """Ensure the QML style file exists in the configuration."""
-        if value:
-            style_filepath = _style_filepath(value)
-            if not style_filepath.is_file():
-                raise exc.QgrInvalidConfigError(
-                    f"Style file does not exist: {style_filepath}"
-                )
-
-        return value
+    _validate_style_file_exists = reusable_validator(
+        "style",
+        validate_style_file_exists,
+    )
+    _validate_style_file_only_contains_allowed_fonts = reusable_validator(
+        "style",
+        validate_style_file_only_contains_allowed_fonts,
+    )
+    _validate_style_file_continuous_legend = reusable_validator(
+        "style",
+        validate_style_file_continuous_legend,
+    )
 
     @property
     def style_filepath(self) -> Union[Path, None]:
@@ -103,7 +75,7 @@ class Layer(QgrBaseModel):
         if self.style is None:
             return None
 
-        return _style_filepath(self.style)
+        return get_style_filepath(self.style)
 
     def __json__(self) -> dict[Any, Any]:
         """Limit child models that are output when dumping JSON.

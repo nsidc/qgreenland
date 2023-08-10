@@ -5,7 +5,7 @@ following process:
 
 * Download (or build) and open the most recent version of the project in QGIS.
 * In the 'Layers' menu, double click on the layer you wish to edit.
-* Open the 'symbology' tab.
+* Open the 'Symbology' tab.
 * Make your desired style changes.
 * In the lower-left corner, click the 'Style' dropdown.
 * In this menu, select 'Save Style...'
@@ -23,6 +23,27 @@ following process:
   attribute for each layer with the name of the `.qml` file you saved in the
   previous step, excluding the file extension. For example, if you saved
   `foo.qml`, then populate `style='foo'`.
+
+
+## Continuous colormap considerations
+
+Continuous colormaps, since QGIS 3.18, support displaying a gradient legend.
+
+A colormap is continuous if its interpolation mode is set to "Linear" (in the QML, the
+value is `"INTERPOLATE"`).
+
+!["Linear" interpolation selected in the QGIS symbology
+menu](/_images/qgis_symbology_linear_interpolation.png)
+
+These continuous legends will not display the units we populated in the "Label unit suffix"
+field for QGreenland v2, so some extra effort has to be taken to display them in the new
+continuous legend. In the "Legend Settings" menu, ensure:
+
+* Any units are populated in the "Suffix" field
+* "Orientation" is set to "Horizontal"
+
+![QGIS "Legend Settings" menu with "Suffix" set to "m/s" and "Orientation" set to
+"Horizontal"](/_images/qgis_symbology_legend_settings.png)
 
 
 ## Troubleshooting
