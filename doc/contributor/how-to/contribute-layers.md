@@ -114,7 +114,8 @@ A correct QGreenland data pipeline will output data that:
 - All layers have style
 - Any known issues with data quality are listed in "Description": This should not
   include spatial mismatch issues, this is covered by our [Disclaimer](/disclaimer.md).
-- Datastore's data is in final state
+- Datastore's data is the latest: Some layers get updated perioidically e.g.,
+  earthquakes.
 - Layers not in unneccessary group
 - Stakeholders approve citation
 - Stakeholders approve description
