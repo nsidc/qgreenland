@@ -33,7 +33,7 @@ To add new data layers to QGreenland in QGIS:
 
 To learn about adding online-access layers (e.g, WMS, WFS, WCS), see our
 documentaiton on [How to add an online layer to
-QGIS](/user/how-to/online-layers.md)!
+QGIS](/user/how-to/online-layers.md).
 
 
 ## Selecting for Greenland-Specific Vector Data
