@@ -123,9 +123,11 @@ A correct QGreenland data pipeline will output data that:
 
 ### Raster layers
 
-- Interpolation algorithm follows standard: Bilinear for continuous values (i.e. real),
-  e.g. temperatures, height. By default, everything is bilinear. Nearest neighbor for
-  discrete (i.e. integer) values, e.g. age of sea ice.
+- When reprojecting (e.g. via `gdalwarp` or adding overviews (e.g. via `gdaladdo`),
+  ensure the interpolation algorithm follows standard:
+    - Bilinear for continuous values (i.e. real), e.g. temperatures, height. By default,
+      everything is bilinear.
+    - Nearest neighbor for discrete (i.e. integer) values, e.g. population.
 - Grid resolution in layer title or group (incl. units), e.g. `My layer (1km)`
 - When a layer is reprojected (e.g., via `gdalwarp`), ensure that the
   target resolution is explicitly specified. Sometimes when the output resolution is not
