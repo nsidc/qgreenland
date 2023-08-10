@@ -8,9 +8,13 @@
 
 # QGreenland
 
-![QGreenland example images](/doc/_images/qgreenland-examples.jpg)
+This repository is responsible for the code and configuration for creating the
+QGreenland Core zip package. To download the package and learn more about
+QGreenland, visit our [our website](https://www.qgreenland.org).
 
-[Our website](https://www.qgreenland.org) | [Documentation](https://qgreenland.readthedocs.io)
+For more detailed information about using the QGreenland Core zip package and on
+how to contribute to QGreenland, see our
+[Documentation](https://qgreenland.readthedocs.io)
 
 > :tada: QGreenland v3 development is well underway. We're looking for testers to
 > provide feedback by **August 6, 2023**. Please see our
@@ -19,6 +23,8 @@
 
 
 ## A Free GIS package for Greenland
+
+![QGreenland example images](/doc/_images/qgreenland-examples.jpg)
 
 QGreenland is a free mapping tool to support interdisciplinary Greenland-focused
 research, teaching, decision making, and collaboration. It combines key datasets
