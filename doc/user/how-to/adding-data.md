@@ -14,7 +14,7 @@ computer.
 The QGreenland project uses the EPSG:3413 coordinate reference system (CRS) and all
 pre-loaded layers are either GeoTIFF (raster) or GeoPackage (vector)
 files. Datasets in different CRSs or data formats can
-still be added to QGreenland, but may undero ["on the fly
+still be added to QGreenland, but may undergo ["on the fly
 reprojection"](https://docs.qgis.org/3.28/en/docs/training_manual/vector_analysis/reproject_transform.html#basic-fa-on-the-fly-reprojection).
 ```
 
