@@ -4,14 +4,10 @@ Metadata refers to the general information about a data file, and the
 metadata for QGreenland GIS data files can be accessed in two ways. 
 
 ```{note}
-Locating and viewing QGreenland layer metadata is easiest when you have already 
-downloaded the QGreenland Core base package. You can download QGreenland Core
-[here](https://qgreenland.org/download).
-```
-
 For more information on layer properties and metadata, see our Tutorial on
 [Interacting with Geospatial Data in QGreenland
 Core](/user/tutorials/interacting-with-geospatial-data.md).
+```
 
 ## Via QGIS Layer Properties
 
