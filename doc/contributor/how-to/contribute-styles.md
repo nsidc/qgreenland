@@ -35,7 +35,7 @@ value is `"INTERPOLATE"`).
 !["Linear" interpolation selected in the QGIS symbology
 menu](/_images/qgis_symbology_linear_interpolation.png)
 
-These continuous legends won't display the units we populated in the "Label unit suffix"
+These continuous legends will not display the units we populated in the "Label unit suffix"
 field for QGreenland v2, so some extra effort has to be taken to display them in the new
 continuous legend. In the "Legend Settings" menu, ensure:
 
