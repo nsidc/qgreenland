@@ -1,6 +1,6 @@
 <p align="center">
-  <img alt="NSIDC logo" src="https://nsidc.org/themes/custom/nsidc/logo.svg" width="150" />
-  <img alt="NSF logo" src="https://nsidc.org/sites/default/files/images/Logo/NSF.svg" width="150" />
+  <img alt="NSIDC logo" src="https://nsidc.org/themes/custom/nsidc/logo.svg" width="150" height="150" />
+  <img alt="NSF logo" src="https://nsidc.org/sites/default/files/images/Logo/NSF.svg" width="150" height="150" />
 </p>
 
 [![NSF-1928393](https://img.shields.io/badge/NSF-1928393-red.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1928393)
