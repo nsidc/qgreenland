@@ -16,7 +16,7 @@ Total Time: 1 hour
 In order to get the most out of this series, we recommend the following:
 * Install QGIS on your computer. Go to [qgis.org](https://www.qgis.org/) and download the free QGIS software. QGIS version 3.16 is the oldest version supported by QGreenland
 * Download the QGreenland Core data package at [https://qgreenland.org/download](https://qgreenland.org/download) 
-* When watching the videos, click on the settings icon to adjust the subtitles (in Englishor other languages) and adjust the playback speed
+* When watching the videos, click on the settings icon to adjust the subtitles (in English or other languages) and adjust the playback speed
 * Take time to engage in the practice tasks and take notes
 
 ### [Session 1: Introduction to QGreenland](https://www.youtube.com/watch?v=gD0vkP5JUmA&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=1)
@@ -61,6 +61,6 @@ This updated "Populated places" layer has a "Population 2016" attribute that sho
 - Create a new Vector layer
 - Manage layer locations and removal of layers
 
-## [Session 7: Preparing Map for Export and Publication](https://www.youtube.com/watch?v=6YG_Jc7HcOo&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=7)
+### [Session 7: Preparing Map for Export and Publication](https://www.youtube.com/watch?v=6YG_Jc7HcOo&list=PLSRiyMridUCwyu-vqpAFtm8bVERgTvs7q&index=7)
 
 - Export a QGreenland Map for publication
