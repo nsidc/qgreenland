@@ -3,7 +3,9 @@
 ## Overview
 In this video series, you will become familiar with QGIS, learn how to download and browse the QGreenland Core data package, and explore the basic geospatial data anlysis tools that make QGreenland a powerful tool for research, education, and local decision making. The video tutorial series contains 7 short video sessions.
 
-```{goals}
+```{admonition} Goals
+:class: tip
+
 * Learn what data is included in the QGreenland Core Package
 * Analyze Greenland data using geoprocessing tools
 * Find analysis tools and data relevant to you or your classes
