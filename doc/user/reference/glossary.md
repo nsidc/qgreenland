@@ -18,8 +18,6 @@ QGreenland Custom is no longer supported.
 QGreenland Custom is a QGIS plugin that enables users to download and use only
 the QGreenland layers they are interested in.
 
-In the future, QGreenland Custom will be capable of downloading "modules".
-
 
 ## QGreenland Modules
 

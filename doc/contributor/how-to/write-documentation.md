@@ -48,10 +48,11 @@ Our PDF doc is intended to be user-focused, but our HTML docs serve users and
 contributors (i.e. PDF docs are a subset of HTML docs). Most of the docs end up in both
 formats, so we want to use the same content to create both.
 
-Sphinx offers the `.. only::` directive for conditional content, but it does not work as
-one might intuitively expect. Specifically, it isn't capable of creating conditional or
-filtered `toctrees`. Because of this insufficiency, we're employing two nonstandard
-methods in `doc/index.rst` to deselect items from PDF docs:
+Sphinx offers the `.. only::` directive for conditional content, but it does not
+work as one might intuitively expect. Specifically, it isn't capable of creating
+conditional or filtered `toctrees`. Because of this insufficiency, we are
+employing two nonstandard methods in `doc/index.rst` to deselect items from PDF
+docs:
 
 * The package
   [sphinx-selective-exclude](https://pypi.org/project/sphinx-selective-exclude/)
@@ -99,7 +100,7 @@ the Docs.
 ## Contributing to documentation
 
 ```{attention}
-You'll need to have TeX Live installed if you want to render PDF documentation. On
+You will need to have TeX Live installed if you want to render PDF documentation. On
 Debian-based systems, you can install it with `sudo apt install texlive-latex-extra`.
 
 We attempted to include this dependency via the `conda` package `texlive-core`, but
@@ -114,7 +115,7 @@ it.
   material](https://diataxis.fr/reference/), or a [Discussion
   topic](https://diataxis.fr/explanation/)? Ensure your document is in the
   correct directory and written for the correct audience.
-* Write your documentation in Markdown, unless you're writing a page that must
+* Write your documentation in Markdown, unless you are writing a page that must
   be majority reStructuredText, such as an `index.rst` for a new group of pages.
 * Ensure your documentation page starts with a top-level header. This is the
   title of the page.
