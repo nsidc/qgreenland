@@ -9,6 +9,7 @@ For more information on layer properties and metadata, see our Tutorial on
 Core](/user/tutorials/interacting-with-geospatial-data.md).
 ```
 
+(using_qgis)=
 ## Via QGIS Layer Properties
 
 If you have the QGreenland Core base package downloaded, you can easily locate
@@ -44,5 +45,5 @@ the data for QGreenland.
 
 ```{note}
 To see the layer's geospatial metadata (e.g., the coordinate reference system
-and spatial extent), we recommend [using QGIS](#via-qgis-layer-properties).
+and spatial extent), we recommend [using QGIS](using_qgis).
 ```
