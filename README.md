@@ -5,7 +5,10 @@
 
 # QGreenland
 [![NSF-1928393](https://img.shields.io/badge/NSF-1928393-red.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1928393)
-[![DOI](https://zenodo.org/badge/241453043.svg)](https://zenodo.org/badge/latestdoi/241453043)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8173510.svg)](https://doi.org/10.5281/zenodo.8173510)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8247896.svg)](https://doi.org/10.5281/zenodo.8247896)
+
+
 
 This repository is responsible for the code and configuration for creating the
 QGreenland Core zip package. To download the package and learn more about
