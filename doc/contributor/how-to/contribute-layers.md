@@ -86,3 +86,56 @@ A correct QGreenland data pipeline will output data that:
   * In GeoPackage (`.gpkg`) format.
   * Uses the `label` attribute name for pre-calculated labels when using
     generic styles with labels, for example `labeled_point.qml`
+
+
+## Layer quality checklist
+
+### All layers
+
+- Abstract populated
+- Citation populated
+- Layer descriptions populated
+- Layer description excludes data provider
+- Layers'/groups' title follows date standard: If a layer is date-specific, the date
+  should be the last part of the title except the resolution, if present. Not in
+  parentheses or otherwise distinguished from the rest of the title. Format is "Month
+  DD YYYY" (all fields optional), e.g.:
+    - `Common Murre Colonies 2010`
+    - `Sea Ice Age September 17-24 2010`
+- Layers'/groups' title follows capitalization standard: Capitalize first letter of the
+  Title. Other than this, only capitalize proper nouns and acronyms. E.g.:
+    - `Thickbilled Murre 1km breeding zone`
+- Layers'/groups' title excludes data provider: Layer should not include provider e.g.
+  "NSIDC". Put this in the dataset citation instead! _EXCEPTION:_ In some cases, we have
+  the same type of data from various providers, e.g.:
+    - `Discipline/Measurement/Provider A/Layer`
+    - `Discipline/Measurement/Provider B/Layer`
+- No fields are populated with "TBD" or "TODO"
+- All layers have style
+- Any known issues with data quality are listed in "Description": This should not
+  include spatial mismatch issues, this is covered by our [Disclaimer](/disclaimer.md).
+- Datastore's data is the latest: Some layers get updated perioidically e.g.,
+  earthquakes.
+- Layers not in unneccessary group
+- Stakeholders approve citation
+- Stakeholders approve description
+
+
+### Raster layers
+
+- When reprojecting (e.g. via `gdalwarp` or adding overviews (e.g. via `gdaladdo`),
+  ensure the interpolation algorithm follows standard:
+    - Bilinear for continuous values (i.e. real), e.g. temperatures, height. By default,
+      everything is bilinear.
+    - Nearest neighbor for discrete (i.e. integer) values, e.g. population.
+- Grid resolution in layer title or group (incl. units), e.g. `My layer (1km)`
+- When a layer is reprojected (e.g., via `gdalwarp`), ensure that the
+  target resolution is explicitly specified. Sometimes when the output resolution is not
+  defined, GDAL will choose a resolution that is not appropriate for the data, and this
+  can lead to artifacts.
+
+
+### Vector layers
+
+- Polygon labels inside polygons
+- All attributes have reasonable types (e.g,. a `population` attribute should be an integer type, not string)

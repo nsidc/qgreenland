@@ -48,6 +48,8 @@ Brewer](http://colorbrewer2.org). These colors can be imported into QGIS via
 cpt-city
 [here](http://soliton.vm.bytemark.co.uk/pub/cpt-city/cb/seq/index.html).
 
+Polygons should be displayed with labels inside the polygon.
+
 
 #### Protected Areas
 
@@ -56,7 +58,7 @@ Use any color from Color Brewer's `YlOrRd09` color palette.
 
 ##### Polygon
 
-Example: "Arctic Protected Areas (CAFF 2017)" for an example.
+Example: "Arctic Protected Areas (CAFF 2017)"
 
 Protected area polygons will use a "Line pattern fill" with rotation of 45° to
 produce a "hashed" pattern. Lines will be solid, thickness will be 0.3mm,
