@@ -37,17 +37,6 @@ Learn more about [What is
 QGreenland?](https://qgreenland.readthedocs.io/en/latest/what_is_qgr.html)
 
 
-# Level of Support
-
-This repository is fully supported by NSIDC. If you discover any problems or
-bugs, please submit an [Issue](https://github.com/nsidc/qgreenland/issues). If
-you would like to contribute to this repository, please see the section on
-[Contributing](#Contributing).
-
-See the [LICENSE](LICENSE) for details on permissions and warranties. Please
-contact nsidc@nsidc.org for more information.
-
-
 # Usage
 
 ## For contributors
