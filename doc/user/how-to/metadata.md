@@ -21,9 +21,12 @@ that are in your QGIS project.
 
 Right click on the layer and select the **Properties** option. This will open the Layer Properties window.
 Next, find the metadata tab on the left side window panel. This will show any available information
-that is associated with the data layer, including but not limited to title and abstract.
+that is associated with the data layer, including the title and abstract.
 
 ![metadata.png](/_images/metadata.png)
+
+Information about the layer's coordinate reference system and spatial extent can
+be found in the **Information** tab.
 
 ## Via Text Files in Layer Directories
 
@@ -38,3 +41,8 @@ Open the **provenance.txt** file to see all of the processing steps applied to
 the data for QGreenland.
 
 ![layer_dir.png](/_images/layer_dir.png)
+
+```{note}
+To see the layer's geospatial metadata (e.g., the coordinate reference system
+and spatial extent), we recommend [using QGIS](#via-qgis-layer-properties).
+```
