@@ -12,7 +12,7 @@ following process:
 
 ![Save style](/_images/save_style.png)
 
-* At this point, if you're uncomfortable with Git and GitHub, you can email us
+* At this point, if you are uncomfortable with Git and GitHub, you can email us
   your style file at qgreenland.info@gmail.com. Otherwise, continue on...
 * Save the style to `qgreenland/assets/styles/<name>.qml` directory of this
   repository or your fork. Keep in mind that styles can be shared between
@@ -53,7 +53,7 @@ continuous legend. In the "Legend Settings" menu, ensure:
 e.g. `Font "Helvetica" font not available on system`.
 
 See [this GitHub issue](https://github.com/nsidc/qgreenland/issues/515) for more. For
-example it's possible your style `qml` file contains `fontFamily="Sans Serif"` and
-that's being automatically converted by PyQGIS to a value like `Helvetica` (a
+example it is possible your style `qml` file contains `fontFamily="Sans Serif"` and
+that is being automatically converted by PyQGIS to a value like `Helvetica` (a
 proprietary font) when writing the final project file. Try `fontFamily="Open Sans"`
 instead!

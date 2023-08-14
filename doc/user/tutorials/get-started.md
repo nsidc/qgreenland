@@ -6,9 +6,18 @@ some data included in QGreenland.
 
 ## System Requirements
 
-Before downloading the QGreenland Core data package, be sure that QGIS is installed on your
-computer: [https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS is available on Windows, macOS, Linux and Android. Note that QGIS version 3.16 is the oldest version
-supported by QGreenland.
+Before downloading the QGreenland Core data package, be sure that QGIS is
+installed on your computer:
+[https://www.qgis.org/en/site/forusers/download.html](https://www.qgis.org/en/site/forusers/download.html). QGIS
+is available on Windows, macOS, Linux and Android.
+
+As of this writing, the oldest version of QGIS we support for the QGreenland release
+series are:
+
+* QGreenland `1.x`: QGIS `3.16.x LTR`
+* QGreenland `2.x`: QGIS `3.16.x LTR`
+* QGreenland `3.x`: QGIS `3.28.x LTR`
+
 
 ## 1) Download and Install QGIS
 
@@ -21,9 +30,17 @@ the long term release (3.16 or later) version.
 Download the QGreenland Core data package (v3.0.0) at
 [https://qgreenland.org/download](https://qgreenland.org/download).
 
-Save the zip package to a location of your choice and unzip it. Open the
-`qgreenland.qgs` file in the data package folder by double-clicking it. QGIS
-will open automatically and display the QGreenland Core data environment.
+Save the zip package to a location of your choice and unzip it. 
+
+```{warning}
+Ensure QGreenland is _actually_ unzipped; some operating systems will only
+"explore" a zip file when you double-click it without actually extracting it to disk.
+In Windows, please right-click and select `Extract all...`.
+```
+
+Open the `qgreenland.qgs` file in the data package folder by double-clicking
+it. QGIS will open automatically and display the QGreenland Core data
+environment.
 
 
 ```{note}
@@ -93,11 +110,11 @@ functions in QGIS. You can fully customize the look and layout of your QGIS inte
 
 ```{note}
 The [QGIS User
-Manual](https://docs.qgis.org/3.16/en/docs/user_manual/index.html) provides a
+Manual](https://docs.qgis.org/3.28/en/docs/user_manual/index.html) provides a
 detailed and comprehensive overview of QGIS' core features. Users who are new to
 Geographic Information Systems may also benefit from reviewing QGIS's [Gentle
 Introduction to
-GIS](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html)
+GIS](https://docs.qgis.org/3.28/en/docs/gentle_gis_introduction/index.html)
 ```
 
 
@@ -157,7 +174,7 @@ indicating what the tool is used for. Try hovering over some of the other icons
 in the **Map Navigation Toolbar** to read their tooltips. Try out some of these
 other tools to explore the map and QGreenland's various data layers. See the
 [QGIS documentation on zooming and
-panning](https://docs.qgis.org/3.16/en/docs/user_manual/introduction/general_tools.html#zooming-and-panning)
+panning](https://docs.qgis.org/3.28/en/docs/user_manual/introduction/general_tools.html#zooming-and-panning)
 for more detailed information on how to effectively navigate the **Map View**.
 
 

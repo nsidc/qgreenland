@@ -21,6 +21,7 @@ QGreenland Documentation
     what_is_qgr.md
     citing.md
     acknowledgements.md
+    disclaimer.md
 
 
 .. toctree::

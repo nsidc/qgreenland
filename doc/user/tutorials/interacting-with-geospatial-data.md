@@ -196,7 +196,7 @@ view by clicking on the gear icon in the **Attributes Toolbar** or by going to
 **View -> Panels -> Processing Toolbox Panel** in the **Menu Bar**.
 
 For more in-depth information about the Processing Toolbox see the 
-[QGIS User Manual](https://docs.qgis.org/3.16/en/docs/user_manual/processing/toolbox.html)
+[QGIS User Manual](https://docs.qgis.org/3.28/en/docs/user_manual/processing/toolbox.html)
 
 ## Spatial Querying
 
