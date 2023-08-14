@@ -64,7 +64,6 @@ dependencies:
 
   # other utilities
   - conda-lock
-  - bump2version
   - ipython
   - ipdb
 
@@ -75,3 +74,5 @@ dependencies:
     - sphinx-rtd-theme ~=1.0.0
     - autodoc-pydantic ~=1.5.1
     - sphinx-selective-exclude ~=1.0.3
+    # TODO: get this dependency from conda-forge (see https://github.com/callowayproject/bump-my-version/issues/46)
+    - bump-my-version ~=0.9.2
