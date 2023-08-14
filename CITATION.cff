@@ -40,3 +40,9 @@ authors:
 - family-names: "Thurber"
   given-names: "Alyse"
   orcid: "https://orcid.org/0009-0003-2026-0002"
+
+references:
+- type: "grant"
+  intitution:
+    name: "National Science Foundation"
+  number: "1928393"
