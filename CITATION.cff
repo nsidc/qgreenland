@@ -3,7 +3,7 @@ message: |
   Please cite this software using these metadata. "*" indicates co-equal authorship.
 
 title: "QGreenland"
-doi: "10.5281/zenodo.4558266"
+doi: "10.5281/zenodo.4533271"
 abstract: "This software generates the QGreenland data package for QGIS."
 contact:
   - name: "The QGreenland Team"
