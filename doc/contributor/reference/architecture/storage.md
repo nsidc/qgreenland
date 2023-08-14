@@ -55,13 +55,13 @@ data/private-archive
 ```
 
 While this project prefers to only include publicly-archived and
-machine-accessible data, we do have some privately-archived data that we've
+machine-accessible data, we do have some privately-archived data that we have
 sourced by e-mailing scientists or manually interacting with machine-unfriendly
-systems. These datasets have an `access_instructions` attribute in
-configuration that describes how the data was acquired.
+systems. These datasets have an `access_instructions` attribute in configuration
+that describes how the data was acquired.
 
 May be read-only.
 
 NOTE: The CLI's `run` command features an argument `--exclude-manual-assets`
-flag which will exclude any layers that depend on privately-archived data. It's
+flag which will exclude any layers that depend on privately-archived data. It is
 recommended to use this flag as a QGreenland contributor testing their changes.

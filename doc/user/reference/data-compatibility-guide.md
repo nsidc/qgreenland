@@ -18,7 +18,7 @@ to the public QGreenland data package, please note the following:
      and appropriately geolocated.
 
    * If your data are not already in the QGreenland project coordinate reference
-     system (EPSG:3413), that’s OK. The QGreenland project includes all the
+     system (EPSG:3413), that is OK. The QGreenland project includes all the
      tooling necessary to reproject your data, as long as the data meet the
      metadata requirements. A contributor to the QGreenland open source project
      can take it from here to ensure consistent and compatible results (see
@@ -59,13 +59,7 @@ information.
 
 ##  Adding datasets to your QGreenland project for personal use only
 
-   * Refer to the QGreenland User Guide Section 6: Adding New Datasets to
-     QGreenland for instructions on how to add new data layers to your
-     QGreenland project (go to
-     [https://qgreenland.org/learn-and-teach](https://qgreenland.org/learn-and-teach)
-     to download the User Guide directly or locate it in the QGreenland download
-     package).
-
-   * Note that the QGreenland data package is in the EPSG:3413 coordinate
-     reference system and all pre-loaded layers are either GeoTIFF (raster) or
-     GeoPackage (vector) files.
+Refer to our documentation page on [Adding New Datasets to
+QGreenland](/user/how-to/adding-data.md) for instructions on how to add new data
+layers to your QGreenland project. Note that this section is also incldued in
+the `UserGuide.pdf` included in the QGreenland Core package.

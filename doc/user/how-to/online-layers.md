@@ -18,8 +18,8 @@ a similar way.
 For more information about adding online layers, see the following resources
 from QGIS:
 
-* [Online resources tutorial](https://docs.qgis.org/3.16/en/docs/training_manual/online_resources/index.html)
-* [OGC web services user manual](https://docs.qgis.org/3.16/en/docs/user_manual/working_with_ogc/ogc_client_support.html)
+* [Online resources tutorial](https://docs.qgis.org/3.28/en/docs/training_manual/online_resources/index.html)
+* [OGC web services user manual](https://docs.qgis.org/3.28/en/docs/user_manual/working_with_ogc/ogc_client_support.html)
 
 
 ## Add a WMS Layer
@@ -78,8 +78,6 @@ layer name in the **Layers Panel**.
 
 ![timeseries_layer_clock_icon](/_images/timeseries_layer_clock_icon.png)
 
-**Temporal Layers** can be interacted with using the Temporal Controller. See the
-[qgistutorials.com](https://www.qgistutorials.com/en/docs/3/animating_time_series.html)
-tutorial on animating timeseries data for more information on how to use the
-Temporal Controller.
+**Temporal Layers** can be interacted with using the **Temporal Controller** panel. See the
+[QGIS documentation](https://docs.qgis.org/3.28/en/docs/user_manual/map_views/map_view.html#maptimecontrol) for more information about time-based control of the map canvas.
 ```
