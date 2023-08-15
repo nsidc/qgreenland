@@ -4,6 +4,7 @@
   places" layer. Scale point markers for this layer by population.
 * Add new "Internet-required data/Geological Map (1:500 000)" layer from GEUS.
 * Add new "Geology/Mineral occurrences" layer from GEUS.
+* Remove OBE references to "gdal_remote" layers. Remove "Online" from `QgsLayerType`.
 
 
 # v3.0.0alpha4 (2023-07-21)
