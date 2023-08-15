@@ -185,3 +185,63 @@ image_mosaic = Dataset(
         },
     },
 )
+
+geus_geological_map = Dataset(
+    id="geus_geological_map",
+    assets=[
+        OnlineAsset(
+            id="only",
+            provider="wms",
+            url="contextualWMSLegend=0&crs=EPSG:32624&dpiMode=7&featureCount=10&format=image/png&layers=Greenland_Geological_map_500k&styles=default&tileMatrixSet=default028mm&url=https://data.geus.dk/arcgis/rest/services/Greenland/Geological_map_500k/MapServer/WMTS/1.0.0/WMTSCapabilities.xml",
+        ),
+    ],
+    metadata=DatasetMetadata(
+        title="Geological Map of Greenland 1:500 000",
+        abstract=(
+            """The new official geological map of Greenland in scale 1:500 000
+            is based on 14 digitized map sheets covering all of Greenland with
+            ammendments in specific areas. The original digital map was released
+            on the Greenland Portal in 2012 (Pedersen et al. 2013). The constant
+            increase in knowledge calls for pertinent revisions of the map in
+            order to keep it up to date. Over the past decade a growing number
+            of new scientific publications have changed the understanding of the
+            geology in some areas of Greenland. With the release of the present
+            map version, the following geographical areas have undergone
+            revisions:
+
+            1. The Palaeogene North Atlantic Igneous Province of West Greenland
+               (Pedersen et al. 2017; 2018; Larsen J. G. & Larsen L. M. 2022).
+            2. Mesozoic rocks in eastern Peary Land in North Greenland (Bjerager
+               et al. 2019).
+            3. The Kilen area in North Greenland, based on the latest 1:100 000
+               geological map and recommended visualisation of the 1:500 000
+               geology as outlined by Svennevig (2018a,b).
+            4. Mesozoic rocks of North East Greenland, from Jameson Land to
+               Store Koldewey (Clemmensen et al. 2020; Bjerager et al. 2020; Surlyk
+               et al. 2021; Andrews et al. 2021).
+            5. Neoproterozoic rocks of the Eleonore Bay Supergroup on Kuhn Ø
+               (Tirsgaard & Sønderholm 1997).
+            6. South East Greenland between 62° and 67° N, where new updated
+               geology was presented under the SEGMENT project (Kolb et al. 2016).
+
+            The new map has undergone extensive quality control including a
+            complete harmonisation of all lineaments and structure points, which
+            was not previously implemented. The dynamic geological legend shows
+            the content of the actual map view. The geology has associated
+            click-info with a descriptive text, and, for most polygons, there is
+            a link to the geological unit database with further descriptions."""
+        ),
+        citation={
+            "text": (
+                """Kokfelt, Thomas Find; Willerslev, Eva; Bjerager, Morten;
+                Heijboer, Tjerk; Keulen, Nynke; Larsen, Lotte Melchior;
+                Pedersen, Christian Brogaard; Pedersen, Mikael; Svennevig,
+                Kristian; Sønderholm, Martin; Walentin, Katja Tandrup; Weng,
+                Willy Lehmann, 2023, "Seamless digital 1:500 000 scale
+                geological map of Greenland, version 2.0",
+                GEUS GeoNetwork catalogue."""
+            ),
+            "url": "https://data.geus.dk/geonetwork/srv/eng/catalog.search#/metadata/0343a36d-34d4-4305-89dc-4aea8461095d?lang=en",
+        },
+    ),
+)
