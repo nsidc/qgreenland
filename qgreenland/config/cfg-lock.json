@@ -621,6 +621,24 @@
         "title": "Geothermal heat flux distribution for the Greenland ice sheet, derived by combining a global representation and information from deep ice cores"
       }
     },
+    "geus_geological_map": {
+      "assets": {
+        "only": {
+          "id": "only",
+          "provider": "wms",
+          "url": "contextualWMSLegend=0&crs=EPSG:32624&dpiMode=7&featureCount=10&format=image/png&layers=Greenland_Geological_map_500k&styles=default&tileMatrixSet=default028mm&url=https://data.geus.dk/arcgis/rest/services/Greenland/Geological_map_500k/MapServer/WMTS/1.0.0/WMTSCapabilities.xml"
+        }
+      },
+      "id": "geus_geological_map",
+      "metadata": {
+        "abstract": "The new official geological map of Greenland in scale 1:500 000\nis based on 14 digitized map sheets covering all of Greenland with\nammendments in specific areas. The original digital map was released\non the Greenland Portal in 2012 (Pedersen et al. 2013). The constant\nincrease in knowledge calls for pertinent revisions of the map in\norder to keep it up to date. Over the past decade a growing number\nof new scientific publications have changed the understanding of the\ngeology in some areas of Greenland. With the release of the present\nmap version, the following geographical areas have undergone\nrevisions:\n\n1. The Palaeogene North Atlantic Igneous Province of West Greenland\n   (Pedersen et al. 2017; 2018; Larsen J. G. & Larsen L. M. 2022).\n2. Mesozoic rocks in eastern Peary Land in North Greenland (Bjerager\n   et al. 2019).\n3. The Kilen area in North Greenland, based on the latest 1:100 000\n   geological map and recommended visualisation of the 1:500 000\n   geology as outlined by Svennevig (2018a,b).\n4. Mesozoic rocks of North East Greenland, from Jameson Land to\n   Store Koldewey (Clemmensen et al. 2020; Bjerager et al. 2020; Surlyk\n   et al. 2021; Andrews et al. 2021).\n5. Neoproterozoic rocks of the Eleonore Bay Supergroup on Kuhn \u00d8\n   (Tirsgaard & S\u00f8nderholm 1997).\n6. South East Greenland between 62\u00b0 and 67\u00b0 N, where new updated\n   geology was presented under the SEGMENT project (Kolb et al. 2016).\n\nThe new map has undergone extensive quality control including a\ncomplete harmonisation of all lineaments and structure points, which\nwas not previously implemented. The dynamic geological legend shows\nthe content of the actual map view. The geology has associated\nclick-info with a descriptive text, and, for most polygons, there is\na link to the geological unit database with further descriptions.",
+        "citation": {
+          "text": "Kokfelt, Thomas Find; Willerslev, Eva; Bjerager, Morten;\nHeijboer, Tjerk; Keulen, Nynke; Larsen, Lotte Melchior;\nPedersen, Christian Brogaard; Pedersen, Mikael; Svennevig,\nKristian; S\u00f8nderholm, Martin; Walentin, Katja Tandrup; Weng,\nWilly Lehmann, 2023, \"Seamless digital 1:500 000 scale\ngeological map of Greenland, version 2.0\",\nGEUS GeoNetwork catalogue.",
+          "url": "https://data.geus.dk/geonetwork/srv/eng/catalog.search#/metadata/0343a36d-34d4-4305-89dc-4aea8461095d?lang=en"
+        },
+        "title": "Geological Map of Greenland 1:500 000"
+      }
+    },
     "gibs": {
       "assets": {
         "only": {
@@ -26092,6 +26110,29 @@
           },
           {
             "layer_cfg": {
+              "description": "Map showing geological features of Greenland.\n\nPlease download the legend for information on interpretation\nof this layer:\nhttps://maps.greenmin.gl/geusmapmore/greenlandportal/G500_2023_LEGEND.pdf .",
+              "id": "geus_geological_map",
+              "in_package": true,
+              "input": {
+                "asset": {
+                  "id": "only"
+                },
+                "dataset": {
+                  "id": "geus_geological_map"
+                }
+              },
+              "show": false,
+              "steps": null,
+              "style": null,
+              "tags": [
+                "online"
+              ],
+              "title": "Geological Map (1:500 000)"
+            },
+            "name": "geus_geological_map"
+          },
+          {
+            "layer_cfg": {
               "description": "Blue Marble (August 2004, Shaded Relief and Bathymetry).\n\nThe MODIS Blue Marble, Next Generation layer with Shaded Relief and\nBathymetry is a cloud free, true color composite of MODIS imagery from\nAugust 2004 including shaded relief and bathymetry in the water bodies.\n\nThe MODIS Blue Marble, Next Generation is a static product created with data\nfrom 2004 from the MODIS instrument on board the Terra satellite. The image\nresolution is 500 m. It can be viewed in Worldview/Global Imagery Browse\nServices (GIBS). Images for January \u2013 December 2004 can be downloaded from\nNASA\u2019s Visible Earth.\n\nReferences: NASA Earth Observatory - Blue Marble\n[https://earthobservatory.nasa.gov/features/BlueMarble]; NASA Earth\nObservations - Blue Marble\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB]; NASA\nEarth Observations - Blue Marble: Next Generation+Topography and\nBathymetry\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB].",
               "id": "blue_marble_shaded_relief_bathymetry",
               "in_package": true,
@@ -26122,6 +26163,7 @@
             ":image_mosaic_2015",
             ":sdfi_satellite_orthophotos",
             ":sdfi_topo_map",
+            ":geus_geological_map",
             ":blue_marble_shaded_relief_bathymetry"
           ],
           "show": false

@@ -6,6 +6,7 @@ settings = LayerGroupSettings(
         LayerIdentifier("image_mosaic_2015"),
         LayerIdentifier("sdfi_satellite_orthophotos"),
         LayerIdentifier("sdfi_topo_map"),
+        LayerIdentifier("geus_geological_map"),
         LayerIdentifier("blue_marble_shaded_relief_bathymetry"),
     ],
 )
