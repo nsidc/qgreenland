@@ -9,6 +9,7 @@ settings = LayerGroupSettings(
         LayerIdentifier("earthquakes"),
         LayerIdentifier("tectonic_plate_boundaries"),
         LayerIdentifier("tectonic_plate_polygons"),
+        LayerIdentifier("mineral_occurrences"),
         LayerIdentifier("soil_types"),
         LayerGroupIdentifier("Geological map"),
     ],

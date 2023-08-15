@@ -3,6 +3,7 @@
 * Merge "Places/Towns" and "Places/Settlements" layers into one "Populated
   places" layer. Scale point markers for this layer by population.
 * Add new "Internet-required data/Geological Map (1:500 000)" layer from GEUS.
+* Add new "Geology/Mineral occurrences" layer from GEUS.
 
 
 # v3.0.0alpha4 (2023-07-21)
