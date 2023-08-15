@@ -9,5 +9,5 @@ def test_layer_compile_dir(raster_layer_node):
     assert expected == actual
 
 
-def test_vector_or_raster_gdal_remote(online_layer_node):
+def test_vector_or_raster(online_layer_node):
     assert layer_util.vector_or_raster(online_layer_node) == "Raster"

@@ -8,7 +8,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
-from typing import Union
+from typing import Literal, Union
 
 from humanize import naturalsize
 
@@ -82,7 +82,9 @@ def export_config_csv(
         if not layer_cfg.in_package:
             continue
 
-        layer_type: QgsLayerType
+        # NOTE: we want to make it clear to users that some layers are "online"
+        # and we use the "Vector or Raster" column to do that.
+        layer_type: Union[QgsLayerType, Literal["Online"]]
         if isinstance(layer_cfg.input.asset, OnlineAsset):
             layer_type = "Online"
             # Online layers have no size on disk.

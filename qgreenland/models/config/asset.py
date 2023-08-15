@@ -44,9 +44,7 @@ class HttpAsset(DatasetAsset):
         return f"# Data fetched via HTTP from {[str(u) for u in self.urls]}"
 
 
-# TODO: OnlineRaster/OnlineVector asset types? The thing that makes this a
-# "gdal_remote" layer is the `/vsicurl/` prefix. Otherwise, this is created as a
-# regular layer with a URL as its path.
+# TODO: OnlineRaster/OnlineVector asset types?
 class OnlineAsset(DatasetAsset):
     """A QGIS online layer that is not fetched, but is accessed by QGIS."""
 
