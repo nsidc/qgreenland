@@ -8,7 +8,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
-from typing import Literal, Union
+from typing import Union
 
 from humanize import naturalsize
 
@@ -82,18 +82,20 @@ def export_config_csv(
         if not layer_cfg.in_package:
             continue
 
-        # NOTE: we want to make it clear to users that some layers are "online"
-        # and we use the "Vector or Raster" column to do that.
-        layer_type: Union[VectorOrRaster, Literal["Online"]]
+        vector_or_raster_data: VectorOrRaster
+        layer_data_on_disk: bool
+
         if isinstance(layer_cfg.input.asset, OnlineAsset):
-            layer_type = "Online"
+            vector_or_raster_data = "Online"
             # Online layers have no size on disk.
             layer_size_bytes = 0
+            layer_data_on_disk = False
         else:
             layer_fp = get_layer_compile_filepath(layer_node)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
-            layer_type = vector_or_raster(layer_node)
+            vector_or_raster_data = vector_or_raster(layer_node)
+            layer_data_on_disk = True
 
         dataset_cfg = layer_cfg.input.dataset
 
@@ -103,13 +105,14 @@ def export_config_csv(
                 "Subgroup": "/".join(layer_node.group_name_path[1:]),
                 "Layer Title": layer_cfg.title,
                 "Layer Description": layer_cfg.description,
-                "Vector or Raster": layer_type,
+                "Vector or Raster": vector_or_raster_data,
                 "Data Source Title": dataset_cfg.metadata.title,
                 "Data Source Abstract": dataset_cfg.metadata.abstract,
                 "Data Source Citation": dataset_cfg.metadata.citation.text,
                 "Data Source Citation URL": dataset_cfg.metadata.citation.url,
                 "Layer Size": naturalsize(layer_size_bytes),
                 "Layer Size Bytes": layer_size_bytes,
+                "Layer Data On Disk": layer_data_on_disk,
             }
         )
 
