@@ -45,7 +45,9 @@ sdfi_topo_map = Dataset(
     metadata=DatasetMetadata(
         title="Open Country Greenland",
         abstract=(
-            """The web service consists of vector data covering the entire
+            """Data and information provided by the Danish Board for Data Supply and Infrastructure (SDFI). 
+            
+            The web service consists of vector data covering the entire
             ice-free area. Vector data is supplemented with place names, curves,
             elevations and hillshade, as well as other relevant data, obtained
             from external data owners.
@@ -54,29 +56,32 @@ sdfi_topo_map = Dataset(
             country, thus helping, for example, hunters, anglers and tourists
             who need to hike and find their way around the landscape.
 
-            Emergency services, police and defence, which have to carry out
+            Emergency services, police and defense, which have to carry out
             emergency operations and rescue operations in the open country, are
             also expected to be able to find good use of the service.
 
             Errors have been found in the height model for some steep mountain
-            peaks in Greenland (more than 100 m). We are investigating the
+            peaks in Greenland (more than 100 m). SDFI are investigating the
             extent and possibilities of correcting the errors. If you have
             questions or notice an error, please send an email to
             support@sdfi.dk.
 
+            Web service wms/gl_aabent_land has been prepared on the basis
+            of data from the Agency for Data Supply and Infrastructure and
+            the following other institutions: Asiaq, the Geodata Agency,
+            Landsplan, Nukissiorfiit, Oqaasileriffik and Tusass.
+
             NOTE: https://dataforsyningen.dk includes other datasets of
-            Greenland that may be of interest to users of QGreenland. In order
-            to access these datasets, account registration is
+            Greenland that may be of interest to users of QGreenland. To access these datasets, account registration is
             required. Additionally, the website is in Danish and does not
             include an English translation. Google Translate can be used to
-            provide such a translation."""
+            provide such a translation.
+            
+            Greenlandic and Danish versions of the map legend can be downloaded from the Citation URL"""
         ),
         citation={
             "text": (
-                """Web service wms/gl_aabent_land has been prepared on the basis
-                  of data from the Agency for Data Supply and Infrastructure and
-                  the following other institutions: Asiaq, the Geodata Agency,
-                  Landsplan, Nukissiorfiit, Oqaasileriffik and Tusass"""
+                """Open Country Greenland (web service wms/gl_aabent_land), Data Supply and Infrastructure Agency, Denmark, https://dataforsyningen.dk/data/4771."""
             ),
             "url": "https://dataforsyningen.dk/data/4771",
         },
@@ -95,25 +100,29 @@ sdfi_satellite_orthophotos = Dataset(
     metadata=DatasetMetadata(
         title="Satellite Photo Greenland",
         abstract=(
-            """The web service consists of orthophotos from several satellite
-                and aerial sources; recorded in different time periods and degrees
-                of resolution; from 10m pixels to 0.2m pixels. The photos are
+            """Data and information provided by the Danish Board for Data Supply and Infrastructure (SDFI).
+            
+            The web service consists of orthophotos from several satellite
+                and aerial sources, recorded in different time periods and degrees
+                of resolution, from 10m pixels to 0.2m pixels. The photos are
                 supplemented in the web service by e.g. elevations (elevations and
                 curves), place names and grid.
 
+                Web service wms/gl_satellitfoto has been prepared on the
+                basis of data from the Data Supply and Infrastructure Agency and the following
+                other institutions: Asiaq, the Geodata Agency, Landsplan, Nukissiorfiit,
+                Oqaasileriffik and Tusass
+
                 NOTE: https://dataforsyningen.dk includes other datasets of
-                Greenland that may be of interest to users of QGreenland. In order
-                to access these datasets, account registration is
+                Greenland that may be of interest to users of QGreenland.
+                To access these datasets, account registration is
                 required. Additionally, the website is in Danish and does not
                 include an English translation. Google Translate can be used to
                 provide such a translation."""
         ),
         citation={
             "text": (
-                """Web service wms/gl_satellitfoto has been prepared on the
-                basis of data from the Data Supply and Infrastructure Agency and the following
-                other institutions: Asiaq, the Geodata Agency, Landsplan, Nukissiorfiit,
-                Oqaasileriffik and Tusass"""
+                """Satellite Photo Greenland (web service wms/gl_satellitfoto), Data Supply and Infrastructure Agency, Denmark, https://dataforsyningen.dk/data/4783."""
             ),
             "url": "https://dataforsyningen.dk/data/4783",
         },
@@ -198,10 +207,12 @@ geus_geological_map = Dataset(
     metadata=DatasetMetadata(
         title="Geological Map of Greenland 1:500 000",
         abstract=(
-            """The new official geological map of Greenland in scale 1:500 000
+            """This map is provided as a web service from the Geological Survey of Denmark and Greenland (GEUS)
+            
+            The new official geological map of Greenland in scale 1:500 000
             is based on 14 digitized map sheets covering all of Greenland with
             ammendments in specific areas. The original digital map was released
-            on the Greenland Portal in 2012 (Pedersen et al. 2013). The constant
+            on the GEUS Greenland Portal in 2012 (Pedersen et al. 2013). The constant
             increase in knowledge calls for pertinent revisions of the map in
             order to keep it up to date. Over the past decade a growing number
             of new scientific publications have changed the understanding of the
@@ -226,10 +237,7 @@ geus_geological_map = Dataset(
 
             The new map has undergone extensive quality control including a
             complete harmonisation of all lineaments and structure points, which
-            was not previously implemented. The dynamic geological legend shows
-            the content of the actual map view. The geology has associated
-            click-info with a descriptive text, and, for most polygons, there is
-            a link to the geological unit database with further descriptions."""
+            was not previously implemented. The map legend can be downloaded from the Citation URL."""
         ),
         citation={
             "text": (
