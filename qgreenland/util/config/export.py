@@ -12,7 +12,7 @@ from typing import Literal, Union
 
 from humanize import naturalsize
 
-from qgreenland._typing import QgsLayerType
+from qgreenland._typing import VectorOrRaster
 from qgreenland.models.config import Config
 from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.util.fs import directory_contents, directory_size_bytes
@@ -84,7 +84,7 @@ def export_config_csv(
 
         # NOTE: we want to make it clear to users that some layers are "online"
         # and we use the "Vector or Raster" column to do that.
-        layer_type: Union[QgsLayerType, Literal["Online"]]
+        layer_type: Union[VectorOrRaster, Literal["Online"]]
         if isinstance(layer_cfg.input.asset, OnlineAsset):
             layer_type = "Online"
             # Online layers have no size on disk.
