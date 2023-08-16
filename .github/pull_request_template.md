@@ -13,6 +13,6 @@ checkbox.
 - [ ] Config lockfile updated (`inv config.export > qgreenland/config/cfg-lock.json`)
 - [ ] Environment lockfile updated if needed (`conda-lock`)
 - [ ] Version bumped if needed (`bumpversion (major|minor|patch|prerelease|build)`)
-- [ ] CHANGELOG.md updated
+- [ ] CHANGELOG.md updated (for user-facing changes)
 - [ ] Documentation updated if needed
 - [ ] New unit tests if needed
