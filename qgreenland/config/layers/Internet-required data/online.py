@@ -63,7 +63,7 @@ sdfi_topo_map_layer = Layer(
             months in the period from 2017 to 2021. Data is produced and quality
             assured according to ISO standards.
 
-            Vector data from East Greenland (blocks 10 and 12-15 in the figure ) are not
+            Vector data from East Greenland are not
             finally approved, and you will therefore be able to see, for example, sharp
             demarcations between different terrain forms. The data will be updated
             continuously, first half of 2023.
@@ -87,14 +87,14 @@ sdfi_satellite_orthophotos_layer = Layer(
     id="sdfi_satellite_orthophotos",
     title="Satellite orthophoto mosaic (10-0.2m)",
     description=(
-        """Orthophoto mosaic from Sentinel2 (10m), Spot (1.6m), and Asiaq
+        """Orthophoto mosaic from Sentinel-2 (10m), Spot (1.6m), and Asiaq
         (0.2m). Displayed data depends on availability and zoom level.
 
-        Sentinel2 (10m): The Sentinel 2 satellites record images for approx. 10
+        Sentinel-2 (10m): The Sentinel-2 satellite records images for approx. 10
         m resolution. The images are ortho-created. For the orthorectification
         of the images, either the height model GLOBE (1km) or SRTM (30 m) is
         used. The image material consists of images taken in August 2019 and
-        2020.  The geometric accuracy is within 1-2 pixels (10-20 m). In some
+        2020. The geometric accuracy is within 1-2 pixels (10-20 m). In some
         places, offsets of up to 10 pixels (100 m) can occur.
 
         Spot (1.6m): Orthophotos calculated from SPOT6/7 satellite images. The
@@ -102,12 +102,12 @@ sdfi_satellite_orthophotos_layer = Layer(
         are orthorectified so that they are accurate and resampled to 1.6 m. The
         height model WorldDEM4ortho (Airbus' own DEM) is used for the
         orthorectification of the images. The image material consists of
-        approx. 75% of the coverage of images taken in the summer of 2020. About
+        approx. 75% of the coverage from images taken in the summer of 2020. About
         25% of the coverage dates to 2016, while some recordings are from 2013
         and 2014.  The geometric accuracy is expected to be better than 10
         pixels, which corresponds to 16 m.
 
-        Asiaq (0.2m): orthophoto from residences calculated from aerial #
+        Asiaq (0.2m): Orthophoto from residences calculated from aerial
         photography.  The images are recorded images in approx. 20cm
         resolution. Some areas in 10cm.  For additional facts about origin and
         data quality, refer to Asiaq [https://www.asiaq-greenlandsurvey.gl/],
