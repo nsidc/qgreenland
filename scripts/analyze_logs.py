@@ -1,4 +1,16 @@
 #!/usr/bin/env python
+"""Script to generate QGreenland core download metrics.
+
+This script is conventionally run on NSIDC's virtual machine infrastructure. For
+developers at NSIDC wishing to utilize this script:
+
+* Log into a dev VM and activate the `qgreenland` conda environment
+* Run this script against the production (or other environment) logs:
+
+```
+$ ./scripts/analyze_logs.py /share/logs/qgreenland-all/{environment}/zip_access.log
+```
+"""
 
 import os
 import re
