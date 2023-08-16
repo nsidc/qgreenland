@@ -45,8 +45,8 @@ sdfi_topo_map = Dataset(
     metadata=DatasetMetadata(
         title="Open Country Greenland",
         abstract=(
-            """Data and information provided by the Danish Board for Data Supply and Infrastructure (SDFI). 
-            
+            """Data and information provided by the Danish Board for Data Supply and Infrastructure (SDFI).
+
             The web service consists of vector data covering the entire
             ice-free area. Vector data is supplemented with place names, curves,
             elevations and hillshade, as well as other relevant data, obtained
@@ -76,8 +76,9 @@ sdfi_topo_map = Dataset(
             required. Additionally, the website is in Danish and does not
             include an English translation. Google Translate can be used to
             provide such a translation.
-            
-            Greenlandic and Danish versions of the map legend can be downloaded from the Citation URL"""
+
+            Greenlandic and Danish versions of the map legend can be downloaded from the
+            Citation URL."""
         ),
         citation={
             "text": (
@@ -101,7 +102,7 @@ sdfi_satellite_orthophotos = Dataset(
         title="Satellite Photo Greenland",
         abstract=(
             """Data and information provided by the Danish Board for Data Supply and Infrastructure (SDFI).
-            
+
             The web service consists of orthophotos from several satellite
                 and aerial sources, recorded in different time periods and degrees
                 of resolution, from 10m pixels to 0.2m pixels. The photos are
@@ -208,7 +209,7 @@ geus_geological_map = Dataset(
         title="Geological Map of Greenland 1:500 000",
         abstract=(
             """This map is provided as a web service from the Geological Survey of Denmark and Greenland (GEUS)
-            
+
             The new official geological map of Greenland in scale 1:500 000
             is based on 14 digitized map sheets covering all of Greenland with
             ammendments in specific areas. The original digital map was released
