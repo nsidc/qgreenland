@@ -79,12 +79,30 @@ def make_qgis_project_file(path: Path) -> None:
     package_layer_tree = prune_layers_not_in_package(config.layer_tree)
     _add_layers_and_groups(project, package_layer_tree)
 
+    _add_project_metadata(project)
+
     # TODO: is it normal to write multiple times?
     project.write()
 
     # Release all file locks! If we don't do this, we won't be able to clean up
     # layer source files after zipping the project.
     project.clear()
+
+
+def _add_project_metadata(project: qgc.QgsProject) -> None:
+    """Add project-level metadata (title, authors, abstract).
+
+    This information is viewable in the **Project > Properties** in QGIS.
+    """
+    project_metadata = project.metadata()
+    project_metadata.setAuthor("QGreenland team")
+    project_metadata.setTitle("QGreenland")
+    project_metadata.setAbstract(
+        """QGreenland is a free and open-source Greenland-focused GIS package
+for QGIS. To learn more about QGreenland, visit our website:
+https://qgreenland.org"""
+    )
+    project.setMetadata(project_metadata)
 
 
 def _apply_group_settings(
