@@ -101,7 +101,10 @@ def _add_project_metadata(project: qgc.QgsProject) -> None:
     project_metadata.setAbstract(
         """QGreenland is a free and open-source Greenland-focused GIS package
 for QGIS. To learn more about QGreenland, visit our website:
-https://qgreenland.org"""
+https://qgreenland.org.
+
+For information on how to cite QGreenland, please see:
+https://qgreenland.readthedocs.io/en/latest/citing.html"""
     )
     project.setMetadata(project_metadata)
 
