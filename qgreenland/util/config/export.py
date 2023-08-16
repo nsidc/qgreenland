@@ -85,8 +85,9 @@ def export_config_csv(
         vector_or_raster_data: VectorOrRaster
         layer_data_on_disk: bool
 
+        vector_or_raster_data = vector_or_raster(layer_node)
+
         if isinstance(layer_cfg.input.asset, OnlineAsset):
-            vector_or_raster_data = "Online"
             # Online layers have no size on disk.
             layer_size_bytes = 0
             layer_data_on_disk = False
@@ -94,7 +95,6 @@ def export_config_csv(
             layer_fp = get_layer_compile_filepath(layer_node)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
-            vector_or_raster_data = vector_or_raster(layer_node)
             layer_data_on_disk = True
 
         dataset_cfg = layer_cfg.input.dataset
