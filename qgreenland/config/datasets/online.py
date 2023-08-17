@@ -1,4 +1,4 @@
-from qgreenland.models.config.asset import OnlineAsset
+from qgreenland.models.config.asset import HttpAsset, OnlineAsset
 from qgreenland.models.config.dataset import Dataset, DatasetMetadata
 
 gibs = Dataset(
@@ -200,9 +200,16 @@ geus_geological_map = Dataset(
     id="geus_geological_map",
     assets=[
         OnlineAsset(
-            id="only",
+            id="online",
             provider="wms",
             url="contextualWMSLegend=0&crs=EPSG:32624&dpiMode=7&featureCount=10&format=image/png&layers=Greenland_Geological_map_500k&styles=default&tileMatrixSet=default028mm&url=https://data.geus.dk/arcgis/rest/services/Greenland/Geological_map_500k/MapServer/WMTS/1.0.0/WMTSCapabilities.xml",
+        ),
+        # TODO: this asset actually has a slightly different citation... "GEUS
+        # Dataverse, V1" instad of "GEUS GeoNetwork catalogue". Maybe we could
+        # just use one though?
+        HttpAsset(
+            id="offline",
+            urls=["https://dataverse.geus.dk/api/access/datafile/48304?gbrecs=true"],
         ),
     ],
     metadata=DatasetMetadata(
