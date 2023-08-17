@@ -25957,7 +25957,7 @@
                 "name": "bedmachine_surface"
               }
             ],
-            "name": "BedMachine",
+            "name": "BedMachine v5",
             "settings": {
               "expand": false,
               "order": null,
@@ -26068,7 +26068,7 @@
         "settings": {
           "expand": false,
           "order": [
-            "BedMachine",
+            "BedMachine v5",
             ":arctic_dem"
           ],
           "show": false
