@@ -41,10 +41,14 @@ dependencies:
   #############################
 
   # documentation dependencies
-  - sphinx ~=4.3.1
+  # TODO: Upgrade sphinx ones sphinx-rtd-theme supports 7
+  # - sphinx ~=7.2.2
+  - sphinx ~=6.2.1
   - latexmk ~=4.55
-  - myst-parser ~=0.15.2
+  - myst-parser ~=2.0.0
   - sphinx-click ~=3.0.1
+  - sphinx-rtd-theme ~=1.2.2
+  - autodoc-pydantic ~=1.9.0
   # TODO: What does this do? Do we need it?
   # - sphinx-autodoc-typehints ~=1.12.0
   # SEE PIP DEPENDENCIES FOR MORE
@@ -63,6 +67,7 @@ dependencies:
   - mypy ~=1.2.0
 
   # other utilities
+  - bump-my-version ~=0.9.2
   - conda-lock
   - ipython
   - ipdb
@@ -71,8 +76,4 @@ dependencies:
 
   # Pip dependencies could be imported or non-imported :(
   - pip:
-    - sphinx-rtd-theme ~=1.0.0
-    - autodoc-pydantic ~=1.5.1
     - sphinx-selective-exclude ~=1.0.3
-    # TODO: get this dependency from conda-forge (see https://github.com/callowayproject/bump-my-version/issues/46)
-    - bump-my-version ~=0.9.2

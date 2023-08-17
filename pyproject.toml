@@ -113,30 +113,30 @@ first_value = "1"
 
 [[tool.bumpversion.files]]
 filename = "qgreenland/__init__.py"
-search = '__version__ = "v{current_version}"'
-replace = '__version__ = "v{new_version}"'
-
-[[tool.bumpversion.files]]
-filename = "CITATION.cff"
-search = 'version: "{current_version}"'
-replace = 'version: "{new_version}"'
-
-[[tool.bumpversion.files]]
-filename = "CITATION.cff"
-search = 'date-released: "\d{{4}}-\d{{2}}-\d{{2}}"'
-replace = 'date-released: "{now:%Y-%m-%d}"'
-
-[[tool.bumpversion.files]]
-filename = "CHANGELOG.md"
-search = "NEXT_VERSION"
-replace = "v{new_version} ({now:%Y-%m-%d})"
+search   = '__version__ = "v{current_version}"'
+replace  = '__version__ = "v{new_version}"'
 
 [[tool.bumpversion.files]]
 filename = "doc/conf.py"
-search = 'release = "v{current_version}"'
-replace = 'release = "v{new_version}"'
+search   = 'release = "v{current_version}"'
+replace  = 'release = "v{new_version}"'
 
 [[tool.bumpversion.files]]
 filename = "VERSION.env"
-search = 'export QGREENLAND_VERSION="v{current_version}"'
-replace = 'export QGREENLAND_VERSION="v{new_version}"'
+search   = 'export QGREENLAND_VERSION="v{current_version}"'
+replace  = 'export QGREENLAND_VERSION="v{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.md"
+search   = "NEXT_VERSION"
+replace  = "v{new_version} ({now:%Y-%m-%d})"
+
+[[tool.bumpversion.files]]
+filename = "CITATION.cff"
+search   = 'version: "{current_version}"'
+replace  = 'version: "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "CITATION.cff"
+search   = 'date-released: "\d{{4}}-\d{{2}}-\d{{2}}"'
+replace  = 'date-released: "{now:%Y-%m-%d}"'
