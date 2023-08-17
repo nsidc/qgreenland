@@ -38,23 +38,13 @@ Please choose the appropriate citation depending on which you use.
 An asterisk (`*`) indicates co-equal lead authorship (listed alphabetically).
 
 
-### Version 1.0
+### Latest version: {{ release }}
 
-> Moon, T., Fisher, M., Harden, L., and T. Stafford (2021). QGreenland (v1.0.0)
+> Moon, T. A., M. Fisher, T. Stafford, and A. Thurber (2023). QGreenland ({{ release }})
 > [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
 
-> *Fisher, M., *Stafford, T., Moon, T., and L. Harden (2021). QGreenland (v1.0.0)
+> *Fisher, M., *Stafford, T., T. Moon, and A. Thurber (2023). QGreenland ({{ release }})
 > [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland)
-
-
-### Version 2.0
-
-> Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2022). QGreenland
-> (v2.0.0) [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
-
-> *Fisher, M., *Stafford, T., Moon, T., HArden, L., and H. Simonoko (2022). QGreenland
-> (v2.0.0) [software], [National Snow and Ice Data
-> Center](https://github.com/nsidc/qgreenland)
 
 
 ### Version 3.0
@@ -63,6 +53,25 @@ An asterisk (`*`) indicates co-equal lead authorship (listed alphabetically).
 > [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
 
 > *Fisher, M., *Stafford, T., T. Moon, and A. Thurber (2023). QGreenland (v3.0.0)
+> [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland)
+
+
+### Version 2.0
+
+> Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2022). QGreenland
+> (v2.0.0) [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+
+> *Fisher, M., *Stafford, T., Moon, T., Harden, L., and H. Simonoko (2022). QGreenland
+> (v2.0.0) [software], [National Snow and Ice Data
+> Center](https://github.com/nsidc/qgreenland)
+
+
+### Version 1.0
+
+> Moon, T., Fisher, M., Harden, L., and T. Stafford (2021). QGreenland (v1.0.0)
+> [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+
+> *Fisher, M., *Stafford, T., Moon, T., and L. Harden (2021). QGreenland (v1.0.0)
 > [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland)
 
 

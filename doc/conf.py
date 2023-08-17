@@ -64,6 +64,12 @@ exclude_patterns = ["_notes", "_build", "Thumbs.db", ".DS_Store", "_plugin"]
 # -- MyST options -------------------------------------------------
 
 myst_heading_anchors = 3
+myst_enable_extensions = [
+    "substitution",
+]
+myst_substitutions = {
+    "release": release,
+}
 
 
 # -- Options for HTML output -------------------------------------------------
