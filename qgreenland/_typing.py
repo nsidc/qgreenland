@@ -5,7 +5,7 @@ NOTE: This module is named strangely to avoid conflicts with the stdlib's
 """
 from typing import Literal, Union
 
-QgsLayerType = Literal["Vector", "Raster", "Online"]
+VectorOrRaster = Literal["Vector", "Raster"]
 QgsLayerProviderType = Literal["gdal", "ogr", "wms", "wfs", "wcs"]
 
 ResamplingMethod = Literal["bilinear", "nearest"]

@@ -117,7 +117,8 @@ def test_export_config_csv(full_cfg):
         {
             **common,
             "Layer Title": "Example online",
-            "Vector or Raster": "Online",
+            "Vector or Raster": "Raster",
+            "Internet Required?": "False",
         },
         {
             **common,
@@ -125,6 +126,7 @@ def test_export_config_csv(full_cfg):
             "Vector or Raster": "Raster",
             "Layer Size": "619 Bytes",
             "Layer Size Bytes": "619",
+            "Internet Required?": "True",
         },
     ]
 

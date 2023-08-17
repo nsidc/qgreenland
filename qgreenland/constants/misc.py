@@ -1,6 +1,6 @@
-from qgreenland._typing import QgsLayerProviderType, QgsLayerType
+from qgreenland._typing import QgsLayerProviderType, VectorOrRaster
 
-PROVIDER_LAYERTYPE_MAPPING: dict[QgsLayerProviderType, QgsLayerType] = {
+PROVIDER_VECTOR_OR_RASTER_MAPPING: dict[QgsLayerProviderType, VectorOrRaster] = {
     "gdal": "Raster",
     "wms": "Raster",
     "wfs": "Vector",

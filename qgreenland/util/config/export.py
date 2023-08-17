@@ -12,7 +12,7 @@ from typing import Union
 
 from humanize import naturalsize
 
-from qgreenland._typing import QgsLayerType
+from qgreenland._typing import VectorOrRaster
 from qgreenland.models.config import Config
 from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.util.fs import directory_contents, directory_size_bytes
@@ -82,16 +82,20 @@ def export_config_csv(
         if not layer_cfg.in_package:
             continue
 
-        layer_type: QgsLayerType
+        vector_or_raster_data: VectorOrRaster
+        internet_required: bool
+
+        vector_or_raster_data = vector_or_raster(layer_node)
+
         if isinstance(layer_cfg.input.asset, OnlineAsset):
-            layer_type = "Online"
             # Online layers have no size on disk.
             layer_size_bytes = 0
+            internet_required = False
         else:
             layer_fp = get_layer_compile_filepath(layer_node)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
-            layer_type = vector_or_raster(layer_node)
+            internet_required = True
 
         dataset_cfg = layer_cfg.input.dataset
 
@@ -101,13 +105,14 @@ def export_config_csv(
                 "Subgroup": "/".join(layer_node.group_name_path[1:]),
                 "Layer Title": layer_cfg.title,
                 "Layer Description": layer_cfg.description,
-                "Vector or Raster": layer_type,
+                "Vector or Raster": vector_or_raster_data,
                 "Data Source Title": dataset_cfg.metadata.title,
                 "Data Source Abstract": dataset_cfg.metadata.abstract,
                 "Data Source Citation": dataset_cfg.metadata.citation.text,
                 "Data Source Citation URL": dataset_cfg.metadata.citation.url,
                 "Layer Size": naturalsize(layer_size_bytes),
                 "Layer Size Bytes": layer_size_bytes,
+                "Internet Required?": internet_required,
             }
         )
 
