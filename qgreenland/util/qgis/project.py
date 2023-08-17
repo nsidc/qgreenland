@@ -275,6 +275,29 @@ def _add_decorations(project: qgc.QgsProject) -> None:
     project.writeEntry("CopyrightLabel", "/MarginH", 0)
     project.writeEntry("CopyrightLabel", "/MarginV", 0)
 
+    # Add buffer around copyright text
+    # TODO: can we figure out a way to export `text_format` to xml so that it
+    # can be written to the project file without hard-coding everything? The
+    # `text_format` (`QgsTextFormat`) object has a `writeXml` method but it is
+    # unclear how to apply it to the project file:
+    # ```
+    # text_format = qgc.QgsTextFormat()
+    # buffer_settings = text_format.buffer()
+    # buffer_settings.setEnabled(True)
+    # text_format.setBuffer(buffer_settings)
+    # text_format.write_xml(...)
+    # ```
+    project.writeEntry(
+        "CopyrightLabel",
+        "/Font",
+        (
+            '<text-style><text-buffer bufferColor="250,250,250,255"'
+            ' bufferJoinStyle="128" bufferSize="1" bufferDraw="1"'
+            ' bufferSizeUnits="MM" bufferOpacity="1" bufferBlendMode="0"'
+            ' bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferNoFill="1"/></text-style>'
+        ),
+    )
+
     # Add Image (QGreenland logo):
     project.writeEntry("Image", "/Enabled", True)
     project.writeEntry("Image", "/Placement", 0)
