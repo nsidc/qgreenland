@@ -83,19 +83,19 @@ def export_config_csv(
             continue
 
         vector_or_raster_data: VectorOrRaster
-        layer_data_on_disk: bool
+        internet_required: bool
 
         vector_or_raster_data = vector_or_raster(layer_node)
 
         if isinstance(layer_cfg.input.asset, OnlineAsset):
             # Online layers have no size on disk.
             layer_size_bytes = 0
-            layer_data_on_disk = False
+            internet_required = False
         else:
             layer_fp = get_layer_compile_filepath(layer_node)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
-            layer_data_on_disk = True
+            internet_required = True
 
         dataset_cfg = layer_cfg.input.dataset
 
@@ -112,7 +112,7 @@ def export_config_csv(
                 "Data Source Citation URL": dataset_cfg.metadata.citation.url,
                 "Layer Size": naturalsize(layer_size_bytes),
                 "Layer Size Bytes": layer_size_bytes,
-                "Layer Data On Disk": layer_data_on_disk,
+                "Internet Required?": internet_required,
             }
         )
 
