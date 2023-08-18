@@ -3,6 +3,8 @@ from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
+from qgreenland.config.helpers.steps.warp import warp
+from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
@@ -19,6 +21,15 @@ grimp_vv_veloity_layers = [
             asset=dataset.assets[layer_id],
         ),
         steps=[
+            *warp(
+                input_file="{input_dir}/*vv*.tif",
+                output_file="{output_dir}/downsampled.tif",
+                cut_file=project.boundaries["data"].filepath,
+                warp_args=[
+                    "-tr",
+                    "1500 1500",
+                ],
+            ),
             CommandStep(
                 args=[
                     "gdal_calc.py",
@@ -29,7 +40,7 @@ grimp_vv_veloity_layers = [
                     "--type",
                     "Int32",
                     "-A",
-                    "{input_dir}/*_vv_*.tif",
+                    "{input_dir}/downsampled.tif",
                     "--outfile",
                     "{output_dir}/scaled.tif",
                 ],
