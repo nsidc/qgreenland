@@ -54,9 +54,7 @@ asiaq_nunagis = Dataset(
             """
         ),
         "citation": {
-            "text": (
-                """ASIAQ Greenland Survey (2023). Date accessed: {{date_accessed}}."""
-            ),
+            "text": ("""ASIAQ Greenland Survey (2023) {{date_accessed}}"""),
             "url": "https://www.asiaq-greenlandsurvey.gl/",
         },
     },

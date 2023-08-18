@@ -25,8 +25,8 @@ ice_cores = Dataset(
         "citation": {
             "text": (
                 """World Data Center (2020). Ice core locations. Download:
-                http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed:
-                {{date_accessed}}."""
+                http://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz.
+                {{date_accessed}}"""
             ),
             "url": "http://www.ncdc.noaa.gov/paleo/icecore.html",
         },

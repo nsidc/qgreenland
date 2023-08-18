@@ -18,7 +18,7 @@ background = Dataset(
         "title": "Natural Earth II with Shaded Relief and Water (1:10m)",
         "abstract": "Natural Earth II (Public Domain).",
         "citation": {
-            "text": "Made with Natural Earth",
+            "text": "Made with Natural Earth {{date_accessed}}",
             "url": (
                 "https://github.com/nvkelso/natural-earth-vector"
                 "/blob/master/LICENSE.md"

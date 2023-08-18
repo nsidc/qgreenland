@@ -23,8 +23,8 @@ nunagis_pop2019_municipalities = Dataset(
                 """NunaGIS (2020). Municipalities by population numbers in 2019,
                 Greenland. Web:
                   https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e84
-                78c9514208548ca5f61.
-                Date accessed: {{date_accessed}}."""
+                78c9514208548ca5f61
+                {{date_accessed}}."""
             ),
             "url": "https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61",
         },
@@ -50,7 +50,7 @@ ne_states_provinces = Dataset(
             ISO, HASC)."""
         ),
         "citation": {
-            "text": ("""Made with Natural Earth"""),
+            "text": ("""Made with Natural Earth {{date_accessed}}"""),
             "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md",
         },
     },
@@ -84,7 +84,7 @@ ne_countries = Dataset(
             Intelligence Agency, and elsewhere."""
         ),
         "citation": {
-            "text": ("""Made with Natural Earth"""),
+            "text": ("""Made with Natural Earth {{date_accessed}}"""),
             "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md",
         },
     },

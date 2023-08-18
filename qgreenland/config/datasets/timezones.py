@@ -29,7 +29,7 @@ ne_timezones = Dataset(
             styling."""
         ),
         "citation": {
-            "text": ("""Made with Natural Earth"""),
+            "text": ("""Made with Natural Earth {{date_accessed}}"""),
             "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md",
         },
     },

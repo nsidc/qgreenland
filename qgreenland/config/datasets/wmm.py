@@ -85,8 +85,7 @@ uncommon but are usually of small spatial extent.
             "text": """
 NCEI Geomagnetic Modeling Team and British Geological Survey. 2019.
 World Magnetic Model 2020. NOAA National Centers for Environmental
-Information. doi: 10.25921/11v3-da71, 2020, Date accessed:
-{{date_accessed}}.
+Information. doi: 10.25921/11v3-da71, 2020 {{date_accessed}}.
 """,
             "url": "https://doi.org/10.25921/11v3-da71",
         },

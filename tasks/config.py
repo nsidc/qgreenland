@@ -37,7 +37,7 @@ def validate(ctx, verbose=False):
     print("🎉🦆 Configuration validation passed.")
 
 
-@task
+@task(aliases=["lock"])
 def export(ctx):
     """Export the config as a JSON string."""
     init_config()

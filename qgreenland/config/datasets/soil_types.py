@@ -39,7 +39,7 @@ soil_types = Dataset(
                 Arnoldussen, O. Arnalds, and M. Yli-Halla. 2002. Northern
                 Circumpolar Soils Map, Version 1.  Greenland. Ottawa, Canada.
                 Research Branch, Agriculture and Agri-Food Canada. doi:
-                https://doi.org/. {{date_accessed}}."""
+                https://doi.org/10.7265/eb1s-4551. {{date_accessed}}"""
             ),
             "url": "https://nsidc.org/data/GGD602/versions/1",
         },

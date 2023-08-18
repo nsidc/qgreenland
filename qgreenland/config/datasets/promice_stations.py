@@ -72,7 +72,7 @@ Shields, C.L., Solgaard, A.M., van As, D., Vandecrux, B., Wright, P.J., 2022,
 "PROMICE and GC-Net automated weather station data in Greenland",
 https://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse.
 
-Date accessed: {{date_accessed}}."""
+{{date_accessed}}"""
             ),
             "url": "https://dataverse.geus.dk/dataset.xhtml?persistentId=doi:10.22008/FK2/IW73UU",
         },

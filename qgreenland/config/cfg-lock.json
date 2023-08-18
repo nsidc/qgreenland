@@ -110,7 +110,7 @@
       "metadata": {
         "abstract": "ASIAQ Greenland Survey undertakes surveys and research projects,\nbased on non-living physical data from the environment in\nGreenland. Our data are derived from; mapping of cities and\nnon-urban areas, measuring of water resources, climate monitoring,\nsoil testing, surveying and stakeouts at construction projects. All\nthese, provides a unique knowledge of the arctic climate, soil\nconditions, water resources and topography of Greenland, which makes\npossible for the Greenlandic society, partners, and costumers to\nplan and exploit the physical environment and resources.\n\nAsiaq is 100% owned by the Greenlandic Government and had surveyed\nall around in Greenland for more than 60 years.\n\nData were retreived from the NunaGIS data server, which provides\ndata for the the Asiaq Map Portal\n(https://kort.nunagis.gl/refserver/rest/services/Kortportal/). To\nlearn more about NunaGIS, see: https://nunagis-asiaq.hub.arcgis.com/.",
         "citation": {
-          "text": "ASIAQ Greenland Survey (2023). Date accessed: {{date_accessed}}.",
+          "text": "ASIAQ Greenland Survey (2023) {{date_accessed}}",
           "url": "https://www.asiaq-greenlandsurvey.gl/"
         },
         "title": "Asiaq Map Portal"
@@ -149,7 +149,7 @@
       "metadata": {
         "abstract": "Natural Earth II (Public Domain).",
         "citation": {
-          "text": "Made with Natural Earth",
+          "text": "Made with Natural Earth {{date_accessed}}",
           "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
         },
         "title": "Natural Earth II with Shaded Relief and Water (1:10m)"
@@ -494,7 +494,7 @@
       "metadata": {
         "abstract": "In 2007, Denmark launched the Programme for Monitoring of the\nGreenland Ice Sheet (PROMICE) to assess changes in the mass balance\nof the ice sheet. The two major contributors to the ice sheet mass\nloss are surface melt and a larger production of icebergs through\nfaster ice flow. PROMICE is focused on both processes. Ice movement\nand discharge is tracked by satellites and GPSs. The surface mass\nbalance is monitored by a network of weather stations in the melt\nzone of the ice sheet, providing ground truth data to calibrate mass\nbudget models.\n\nThe Greenland Climate Network (GC-Net) was established in 1995 by\nProf. Konrad Steffen at CIRES, to obtain knowledge of the mass gain\nand climatology of the ice sheet. The programme was funded by the\nUSA until 2020, at which point Denmark assumed responsibility for\nthe operation and maintenance of the weather station network. The\nsnowfall and climatology are monitored by a network of weather\nstations in the accumulation zone of the ice sheet, supplemented by\nsatellite-derived data products.\n\nTogether, the two monitoring programmes deliver data about the mass\nbalance of the Greenland ice sheet in near real-time.\n\nData from the Programme for Monitoring of the Greenland Ice Sheet\n(PROMICE) are provided by the Geological Survey of Denmark and\nGreenland (GEUS) at http://www.promice.dk. They include sites\nfinancially supported by the Glaciobasis programme as part of\nGreenland Ecosystem Monitoring (https://g-e-m.dk/), maintained by\nGEUS (ZAK, LYN) and by Asiaq Greenland Survey (NUK_K). The WEG\nstations are paid for and maintained by the University of Graz.\n\nSee https://github.com/GEUS-Glaciology-and-Climate/pypromice for how\nwe make the data product.\n\nRelated publication:\n\nFausto, R. S., van As, D., Mankoff, K. D., Vandecrux, B., Citterio,\nM., Ahlstr\u00f8m, A. P., Andersen, S. B., Colgan, W., Karlsson, N. B.,\nKjeldsen, K. K., Korsgaard, N. J., Larsen, S. H., Nielsen, S.,\nPedersen, A. \u00d8., Shields, C. L., Solgaard, A. M., and Box, J. E.:\nProgramme for Monitoring of the Greenland Ice Sheet (PROMICE)\nautomatic weather station data, Earth Syst. Sci. Data, 13,\n3819\u20133845, https://doi.org/10.5194/essd-13-3819-2021, 2021.\n\nAdditional data:\n\nTo download data related to PROMICE and GC-Net, including historical\nweather station data, see\nhttps://dataverse.geus.dk/dataverse/PROMICE.",
         "citation": {
-          "text": "How, P., Abermann, J., Ahlstr\u00f8m, A.P., Andersen, S.B., Box,\nJ.E., Citterio, M., Colgan, W.T., Fausto, R., Karlsson, N.B., Jakobsen, J.,\nLangley, K., Larsen, S.H., Mankoff, K.D., Pedersen, A.\u00d8., Rutishauser, A.,\nShields, C.L., Solgaard, A.M., van As, D., Vandecrux, B., Wright, P.J., 2022,\n\"PROMICE and GC-Net automated weather station data in Greenland\",\nhttps://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse.\n\nDate accessed: {{date_accessed}}.",
+          "text": "How, P., Abermann, J., Ahlstr\u00f8m, A.P., Andersen, S.B., Box,\nJ.E., Citterio, M., Colgan, W.T., Fausto, R., Karlsson, N.B., Jakobsen, J.,\nLangley, K., Larsen, S.H., Mankoff, K.D., Pedersen, A.\u00d8., Rutishauser, A.,\nShields, C.L., Solgaard, A.M., van As, D., Vandecrux, B., Wright, P.J., 2022,\n\"PROMICE and GC-Net automated weather station data in Greenland\",\nhttps://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse.\n\n{{date_accessed}}",
           "url": "https://dataverse.geus.dk/dataset.xhtml?persistentId=doi:10.22008/FK2/IW73UU"
         },
         "title": "PROMICE and GC-Net automated weather station data in Greenland"
@@ -655,7 +655,7 @@
       "metadata": {
         "abstract": "Dataset containing a summary of geological information for known\nmineral occurrences on Greenland. The information includes the\nlocation, size, mineral commodities, mineralisation type,\nexploration history and a geological description of the deposit. The\ndata has been collected and compiled from fieldwork investigations\nconducted by geological surveys, academic researchers and mineral\nexploration companies.",
         "citation": {
-          "text": "Thorning, L., Christensen, L. A., Dawes, P. R., Garde, A. A.,\nHeijboer, T. C., Kalvig, P., Larsen, L. M., Larsen, U., Nielsen, T. F.,\nRehnstr\u00f6m, E. F., Thomassen, B., Thrane, K., Schj\u00f8th, F. & Secher, K. \"Greenland\nmineral occurrences map (GMOM)\", GEUS GeoNetwork catalogue. Accessed on\n{{date_accessed}}.",
+          "text": "Thorning, L., Christensen, L. A., Dawes, P. R., Garde, A. A.,\nHeijboer, T. C., Kalvig, P., Larsen, L. M., Larsen, U., Nielsen, T. F.,\nRehnstr\u00f6m, E. F., Thomassen, B., Thrane, K., Schj\u00f8th, F. & Secher, K. \"Greenland\nmineral occurrences map (GMOM)\", GEUS GeoNetwork catalogue.\n{{date_accessed}}",
           "url": "https://data.geus.dk/geonetwork/srv/eng/catalog.search#/metadata/8884ead8-45fc-4d1a-ae67-325182cde646"
         },
         "title": "Greenland mineral occurrences map (GMOM) "
@@ -850,7 +850,7 @@
       "metadata": {
         "abstract": "Greenland ice core locations. Ice cores can provide records of\npast temperature, precipitation, atmospheric trace gases, and other\naspects of climate and environment. Additional information is\navailable in the 'description' attribute, including an ice core\ndataset URL. Data were accessed using the Google Earth Map Search\nDataset. For details please see:\nhttp://www.ncdc.noaa.gov/paleo/icecore.html.",
         "citation": {
-          "text": "World Data Center (2020). Ice core locations. Download:\nhttp://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz. Date accessed:\n{{date_accessed}}.",
+          "text": "World Data Center (2020). Ice core locations. Download:\nhttp://gis.ncdc.noaa.gov/kml/paleo_icecore.kmz.\n{{date_accessed}}",
           "url": "http://www.ncdc.noaa.gov/paleo/icecore.html"
         },
         "title": "Ice Cores"
@@ -913,7 +913,7 @@
       "metadata": {
         "abstract": "Natural Earth Land (Public Domain).",
         "citation": {
-          "text": "Made with Natural Earth",
+          "text": "Made with Natural Earth {{date_accessed}}",
           "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
         },
         "title": "Natural Earth Land (10m)"
@@ -1134,7 +1134,7 @@
       "metadata": {
         "abstract": "Countries distinguish between metropolitan (homeland) and\nindependent and semi-independent portions of sovereign states. If\nyou want to see the dependent overseas regions broken out (like in\nISO codes, see France for example), use map units instead.\n\nEach country is coded with a world region that roughly follows the\nUnited Nations setup.\n\nCountries are coded with standard ISO and FIPS codes. French INSEE\ncodes are also included.\n\nIncludes some thematic data from the United Nations, U.S. Central\nIntelligence Agency, and elsewhere.",
         "citation": {
-          "text": "Made with Natural Earth",
+          "text": "Made with Natural Earth {{date_accessed}}",
           "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
         },
         "title": "Admin 0 \u2013 Countries"
@@ -1154,7 +1154,7 @@
       "metadata": {
         "abstract": "Internal, first-order administrative boundaries and polygons for\nall but a few tiny countries. Includes name attributes (including\ndiacritical marks), name variants, and some statistical codes (FIPS,\nISO, HASC).",
         "citation": {
-          "text": "Made with Natural Earth",
+          "text": "Made with Natural Earth {{date_accessed}}",
           "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
         },
         "title": "Admin 1 \u2013 States, Provinces"
@@ -1174,7 +1174,7 @@
       "metadata": {
         "abstract": "Time zones primarily derive from the Central Intelligence Agency\nmap of Time Zones, downloaded from the World Factbook website May\n2012. Boundaries were adjusted to fit the Natural Earth line work at\na scale of 1:10 million and to follow twelve nautical mile\nterritorial sea boundary lines when running along coasts. Additional\nresearch was performed based on recent news to update several areas\nincluding the international dateline and time zone adjustments for\nSamoa and Tokelau and the discarding of daylight savings time in\nRussia.\n\nData attributes include time offset from Coordinated Universal Time\n(UTC, aka \u201czulu\u201d time) and map color codes for a 6-up and 8-up\nstyling.",
         "citation": {
-          "text": "Made with Natural Earth",
+          "text": "Made with Natural Earth {{date_accessed}}",
           "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
         },
         "title": "Timezones"
@@ -1217,7 +1217,7 @@
       "metadata": {
         "abstract": "Greenland municipality boundaries. Data includes information on\n2019 municipality population and the municipality population as a\npercent of total Greenland population.",
         "citation": {
-          "text": "NunaGIS (2020). Municipalities by population numbers in 2019,\nGreenland. Web:\n  https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e84\n78c9514208548ca5f61.\nDate accessed: {{date_accessed}}.",
+          "text": "NunaGIS (2020). Municipalities by population numbers in 2019,\nGreenland. Web:\n  https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e84\n78c9514208548ca5f61\n{{date_accessed}}.",
           "url": "https://kort.nunagis.gl/portal/home/item.html?id=b70a43b814e8478c9514208548ca5f61"
         },
         "title": "Municipalities with Population"
@@ -1240,7 +1240,7 @@
       "metadata": {
         "abstract": "The NunaGIS data server provides a range of datasets on animal\nareas of importance and protected areas. These data are used to\npopulate the following QGreenland data layers: Walrus Protected\nAreas, Goose Protected Areas, Caribou Calving Areas, Beluga Areas,\nBird Protected Areas, Thickbilled Murre Breeding Colony 5km Zones,\nSeabird Breeding Colonies, Eider Protected Areas, Murre Group 1 km\nZones, Musk Oxen Calving Areas, Narwhal Areas, and Polar Bear\nBreeding Areas.",
         "citation": {
-          "text": "NunaGIS (2020). Date accessed: {{date_accessed}}.",
+          "text": "NunaGIS (2020) {{date_accessed}}",
           "url": "https://kort.nunagis.gl/server/rest/services/Hosted"
         },
         "title": "NunaGIS data server protected area data"
@@ -1260,7 +1260,7 @@
       "metadata": {
         "abstract": "Natural Earth Ocean (Public Domain).",
         "citation": {
-          "text": "Made with Natural Earth",
+          "text": "Made with Natural Earth {{date_accessed}}",
           "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md"
         },
         "title": "Natural Earth Ocean (10m)"
@@ -1834,7 +1834,7 @@
       "metadata": {
         "abstract": "The full data set consists of a circumpolar map of dominant soil\ncharacteristics, with a scale of 1:10,000,000, covering the United\nStates, Canada, Greenland, Iceland, northern Europe, Russia,\nMongolia, and Kazakhstan. The map was created using the Northern and\nMid Latitude Soil Database. The map is in ESRI Shapefile format,\nconsisting of 11 regional areas. Polygons have attributes that give\nthe percentage polygon area that is a given soil type. The map shows\nthe dominant soil of the spatial polygon unless the polygon is over\n90 percent rock or ice.  It also shows the proportion of polygon\nencompassed by the dominant soil or nonsoil. Soils include turbels,\northels, histels, histosols, mollisols, vertisols, aridisols,\nandisols, entisols, spodosols, inceptisols (and hapludolls),\nalfisols (cryalf and udalf), natric great groups, aqu-suborders,\nglaciers, and rocklands. QGreenland dispalys data for Greenland.\nUsers can look to the source information for additional data.",
         "citation": {
-          "text": "Tarnocai, C., J. Kimble, D. Swanson, S. Goryachkin, Y. M.\nNaumov, V. Stolbovoi, B. Jakobsen, G. Broll, L. Montanarella, A.\nArnoldussen, O. Arnalds, and M. Yli-Halla. 2002. Northern\nCircumpolar Soils Map, Version 1.  Greenland. Ottawa, Canada.\nResearch Branch, Agriculture and Agri-Food Canada. doi:\nhttps://doi.org/. {{date_accessed}}.",
+          "text": "Tarnocai, C., J. Kimble, D. Swanson, S. Goryachkin, Y. M.\nNaumov, V. Stolbovoi, B. Jakobsen, G. Broll, L. Montanarella, A.\nArnoldussen, O. Arnalds, and M. Yli-Halla. 2002. Northern\nCircumpolar Soils Map, Version 1.  Greenland. Ottawa, Canada.\nResearch Branch, Agriculture and Agri-Food Canada. doi:\nhttps://doi.org/10.7265/eb1s-4551. {{date_accessed}}",
           "url": "https://nsidc.org/data/GGD602/versions/1"
         },
         "title": "Northern Circumpolar Soils Map, Version 1"
@@ -2115,7 +2115,7 @@
       "metadata": {
         "abstract": "The World Magnetic Model (WMM) is a joint product of the United States\u2019\nNational Geospatial-Intelligence Agency (NGA) and the United Kingdom\u2019s\nDefence Geographic Centre (DGC). The WMM was developed jointly by the\nNational Centers for Environmental Information (NCEI, Boulder CO, USA)\n(formerly National Geophysical Data Center (NGDC)) and the British\nGeological Survey (BGS, Edinburgh, Scotland).\n\nThe World Magnetic Model is the standard model used by the U.S. Department\nof Defense, the U.K. Ministry of Defence, the North Atlantic Treaty\nOrganization (NATO) and the International Hydrographic Organization (IHO),\nfor navigation, attitude and heading referencing systems using the\ngeomagnetic field. It is also used widely in civilian navigation and\nheading systems. The model, associated software, and documentation are\ndistributed by NCEI on behalf of NGA. The model is produced at 5-year\nintervals, with the current model expiring on December 31, 2024.\n\nChanges of the fluid flow in the Earth's outer core lead to unpredictable\nchanges in the Earth's magnetic field. Fortunately, the system has large\ninertia, so that these changes take place over time scales of many\nyears. By surveying the field for a few years, one can precisely map the\npresent field and its rate of change and then linearly extrapolate it out\ninto the future. Provided that suitable satellite magnetic observations\nare available, the prediction of the WMM is highly accurate on its release\ndate and then subsequently deteriorates towards the end of the 5 year\nepoch, when it has to be updated with revised values of the model\ncoefficients.\n\nIt is important to recognize that the WMM and the charts produced from\nthis model characterize only the long-wavelength portion of the Earth's\ninternal magnetic field, which is primarily generated in the Earth's fluid\nouter core. The portions of the geomagnetic field generated by the Earth's\ncrust and upper mantle, and by the ionosphere and magnetosphere, are\nlargely unrepresented in the WMM. Consequently, a magnetic sensor such as\na compass or magnetometer may observe spatial and temporal magnetic\nanomalies when referenced to the WMM. In particular, certain local,\nregional, and temporal magnetic declination anomalies can exceed 10\ndegrees. Anomalies of this magnitude are not common but they do\nexist. Declination anomalies of the order of 3 or 4 degrees are not\nuncommon but are usually of small spatial extent.",
         "citation": {
-          "text": "NCEI Geomagnetic Modeling Team and British Geological Survey. 2019.\nWorld Magnetic Model 2020. NOAA National Centers for Environmental\nInformation. doi: 10.25921/11v3-da71, 2020, Date accessed:\n{{date_accessed}}.",
+          "text": "NCEI Geomagnetic Modeling Team and British Geological Survey. 2019.\nWorld Magnetic Model 2020. NOAA National Centers for Environmental\nInformation. doi: 10.25921/11v3-da71, 2020 {{date_accessed}}.",
           "url": "https://doi.org/10.25921/11v3-da71"
         },
         "title": "The World Magnetic Model"
