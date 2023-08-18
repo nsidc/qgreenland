@@ -8,8 +8,9 @@ from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
-grimp_vv_veloity_layers = [
-    Layer(
+
+def make_vv_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
+    return Layer(
         id=layer_id,
         # TODO: better title.
         title=layer_id,
@@ -18,11 +19,11 @@ grimp_vv_veloity_layers = [
         style=None,
         input=LayerInput(
             dataset=dataset,
-            asset=dataset.assets[layer_id],
+            asset=asset,
         ),
         steps=[
             *warp(
-                input_file="{input_dir}/*vv*.tif",
+                input_file="{input_dir}/" + f"*{variable}*.tif",
                 output_file="{output_dir}/downsampled.tif",
                 cut_file=project.boundaries["data"].filepath,
                 warp_args=[
@@ -60,5 +61,14 @@ grimp_vv_veloity_layers = [
             ),
         ],
     )
-    for layer_id in [f"vv_{year}" for year in range(2015, 2021 + 1)]
+
+
+grimp_vv_veloity_layers = [
+    make_vv_layer(
+        variable="vv",
+        layer_id=f"grimp_annual_vv_{year}",
+        dataset=dataset,
+        asset=dataset.assets[str(year)],
+    )
+    for year in range(2015, 2021 + 1)
 ]
