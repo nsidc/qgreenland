@@ -23,7 +23,7 @@ nunagis_protected_areas = Dataset(
             Breeding Areas."""
         ),
         "citation": {
-            "text": ("""NunaGIS (2020). Date accessed: {{date_accessed}}."""),
+            "text": ("""NunaGIS (2020) {{date_accessed}}"""),
             "url": "https://kort.nunagis.gl/server/rest/services/Hosted",
         },
     },

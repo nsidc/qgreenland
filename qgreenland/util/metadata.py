@@ -102,4 +102,5 @@ def _populate_date_accessed(text: str, *, layer_cfg: Layer) -> str:
     mtime = fetch_dir.stat().st_mtime
     date_accessed = dt.datetime.utcfromtimestamp(mtime)
 
-    return text.replace("{{date_accessed}}", date_accessed.date().isoformat())
+    date_accessed_str = f"[Accessed on: {date_accessed.date().isoformat()}]"
+    return text.replace("{{date_accessed}}", date_accessed_str)

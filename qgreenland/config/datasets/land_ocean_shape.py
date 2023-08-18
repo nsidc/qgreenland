@@ -15,7 +15,7 @@ land_shape = Dataset(
         "title": "Natural Earth Land (10m)",
         "abstract": ("""Natural Earth Land (Public Domain)."""),
         "citation": {
-            "text": ("""Made with Natural Earth"""),
+            "text": ("""Made with Natural Earth {{date_accessed}}"""),
             "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md",
         },
     },
@@ -35,7 +35,7 @@ ocean_shape = Dataset(
         "title": "Natural Earth Ocean (10m)",
         "abstract": ("""Natural Earth Ocean (Public Domain)."""),
         "citation": {
-            "text": ("""Made with Natural Earth"""),
+            "text": ("""Made with Natural Earth {{date_accessed}}"""),
             "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md",
         },
     },
