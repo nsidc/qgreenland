@@ -70,3 +70,50 @@ Center. https://doi.org/10.5067/RS8GFZ848ZU9. Date Accessed {{date_accessed}}.
         },
     },
 )
+
+
+grimp_quarterly_ice_velocity = Dataset(
+    id="grimp_quarterly_ice_velocity",
+    assets=[
+        # 01Dec21_28Feb22
+        CmrAsset(
+            id="20211202_20220228",
+            granule_ur="SC:NSIDC-0727.005:262534050",
+            # TODO: update collection concept id.
+            collection_concept_id="C2627036252-NSIDC_ECS",
+        ),
+        # 01Mar22_31May22
+        CmrAsset(
+            id="20220301_20220531",
+            granule_ur="SC:NSIDC-0727.005:262534004",
+            collection_concept_id="C2627036252-NSIDC_ECS",
+        ),
+        # 01Jun22_31Aug22
+        CmrAsset(
+            id="20220601_20220831",
+            granule_ur="SC:NSIDC-0727.005:262534071",
+            collection_concept_id="C2627036252-NSIDC_ECS",
+        ),
+    ],
+    metadata={
+        "title": "MEaSUREs Greenland Quarterly Ice Sheet Velocity Mosaics from SAR and Landsat, Version 5",
+        "abstract": """
+This data set, part of the NASA Making Earth System Data Records for Use in
+Research Environments (MEaSUREs) Program, contains quarterly (three-month
+interval) ice velocity mosaics for the Greenland Ice Sheet. This data set is
+derived from Synthetic Aperture Radar (SAR) data, obtained by
+TerraSAR-X/TanDEM-X and Sentinel-1A and -1B, and from optical imagery acquired
+by Landsat 8 and Landsat 9. See Greenland Ice Mapping Project (GrIMP) website
+for related data: http://nsidc.org/data/measures/gimp.
+""",
+        "citation": {
+            "text": """
+Joughin, I. (2023). MEaSUREs Greenland Quarterly Ice Sheet Velocity Mosaics from
+SAR and Landsat, Version 5 [Data Set]. Boulder, Colorado USA. NASA National Snow
+and Ice Data Center Distributed Active Archive
+Center. https://doi.org/10.5067/V5KW64S63OSN. Date Accessed {{date_accessed}}.
+""",
+            "url": "https://doi.org/10.5067/V5KW64S63OSN",
+        },
+    },
+)

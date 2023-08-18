@@ -1,4 +1,7 @@
-from qgreenland.config.datasets.grimp import grimp_annual_ice_velocity as dataset
+from qgreenland.config.datasets.grimp import grimp_annual_ice_velocity as annual_dataset
+from qgreenland.config.datasets.grimp import (
+    grimp_quarterly_ice_velocity as quarterly_dataset,
+)
 from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
@@ -63,12 +66,22 @@ def make_vv_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
     )
 
 
-grimp_vv_veloity_layers = [
+grimp_vv_annual_velocity_layers = [
     make_vv_layer(
         variable="vv",
         layer_id=f"grimp_annual_vv_{year}",
-        dataset=dataset,
-        asset=dataset.assets[str(year)],
+        dataset=annual_dataset,
+        asset=annual_dataset.assets[str(year)],
     )
     for year in range(2015, 2021 + 1)
+]
+
+grimp_vv_quarterly_velocity_layers = [
+    make_vv_layer(
+        variable="vv",
+        layer_id=f"grimp_quarterly_vv_{asset_id}",
+        dataset=quarterly_dataset,
+        asset=quarterly_dataset.assets[asset_id],
+    )
+    for asset_id in quarterly_dataset.assets.keys()
 ]
