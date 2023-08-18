@@ -1760,18 +1760,6 @@ package:
     sha256: 711602276ae39276cb0faaca6fd0ac851fff0ca17151917569174841ef830bbd
   category: main
   optional: false
-- name: bump2version
-  version: 1.0.1
-  manager: conda
-  platform: linux-64
-  dependencies:
-    python: ''
-  url: https://conda.anaconda.org/conda-forge/noarch/bump2version-1.0.1-pyh9f0ad1d_0.tar.bz2
-  hash:
-    md5: 1b3fd56f54baa99e3c9967caf279f66f
-    sha256: c3cf2e47b0aee001025ad29061222b552a60362ec9febd355c5eb4d3a06beef8
-  category: main
-  optional: false
 - name: cachy
   version: 0.3.0
   manager: conda
@@ -2641,15 +2629,15 @@ package:
   category: main
   optional: false
 - name: setuptools
-  version: 68.0.0
+  version: 68.1.2
   manager: conda
   platform: linux-64
   dependencies:
     python: '>=3.7'
-  url: https://conda.anaconda.org/conda-forge/noarch/setuptools-68.0.0-pyhd8ed1ab_0.conda
+  url: https://conda.anaconda.org/conda-forge/noarch/setuptools-68.1.2-pyhd8ed1ab_0.conda
   hash:
-    md5: 5a7739d0f57ee64133c9d32e6507c46d
-    sha256: 083a0913f5b56644051f31ac40b4eeea762a88c00aa12437817191b85a753cec
+    md5: 4fe12573bf499ff85a0a364e00cc5c53
+    sha256: dc5a777597e05ceddefc87d2f96389b7ae0afb097e558307af83a453db3e3887
   category: main
   optional: false
 - name: six
@@ -2763,17 +2751,17 @@ package:
   category: main
   optional: false
 - name: tornado
-  version: 6.3.2
+  version: 6.3.3
   manager: conda
   platform: linux-64
   dependencies:
     libgcc-ng: '>=12'
     python: '>=3.10,<3.11.0a0'
     python_abi: 3.10.*
-  url: https://conda.anaconda.org/conda-forge/linux-64/tornado-6.3.2-py310h2372a71_0.conda
+  url: https://conda.anaconda.org/conda-forge/linux-64/tornado-6.3.3-py310h2372a71_0.conda
   hash:
-    md5: 1c510e74c87dc9b8fe1f7f9e8dbcef96
-    sha256: 56bcfc59da0f6fc78afe79447b8b1327e9149a52c9dc6ee805ac73bf18ac22b6
+    md5: dfb49d3ac440e1a236080f9c300e642f
+    sha256: 38d517c89f79f3ff0d8f3f1ce46218e0f8e3a3fea743e7f3661eb913919aa94e
   category: main
   optional: false
 - name: traitlets
@@ -4995,16 +4983,6 @@ package:
     sha256: 4117022ed18bce8852389885decbf26519d016a8926a0dc21923f77789d64455
   category: main
   optional: false
-- name: mdurl
-  version: 0.1.2
-  manager: pip
-  platform: linux-64
-  dependencies: {}
-  url: https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl
-  hash:
-    sha256: 84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8
-  category: main
-  optional: false
 - name: sphinx-selective-exclude
   version: 1.0.3
   manager: pip
@@ -5013,79 +4991,5 @@ package:
   url: https://files.pythonhosted.org/packages/c2/07/4d6cb9dbe1b06be5caa21eed9813ac1e5ca5b29f3728be1d5e52f1cd7267/sphinx_selective_exclude-1.0.3.tar.gz
   hash:
     sha256: 76fc8fd7c24311e0ca2199a9e4db2156585acd7652a5cead98b07ef4f70f9b78
-  category: main
-  optional: false
-- name: autodoc-pydantic
-  version: 1.5.1
-  manager: pip
-  platform: linux-64
-  dependencies:
-    sphinx: '>=3.4'
-    pydantic: '>=1.5'
-  url: https://files.pythonhosted.org/packages/bd/4c/5e3bedc712d5eabc7dc085caf009793c18902906ee3afd991ece56f5a2fb/autodoc_pydantic-1.5.1-py3-none-any.whl
-  hash:
-    sha256: d42e9e9432acbda2db82a37669995c7d068f66d06d1d8aefdc8ee8c5ef3f4f59
-  category: main
-  optional: false
-- name: markdown-it-py
-  version: 3.0.0
-  manager: pip
-  platform: linux-64
-  dependencies:
-    mdurl: '>=0.1,<1.0'
-  url: https://files.pythonhosted.org/packages/42/d7/1ec15b46af6af88f19b8e5ffea08fa375d433c998b8a7639e76935c14f1f/markdown_it_py-3.0.0-py3-none-any.whl
-  hash:
-    sha256: 355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1
-  category: main
-  optional: false
-- name: sphinx-rtd-theme
-  version: 1.0.0
-  manager: pip
-  platform: linux-64
-  dependencies:
-    sphinx: '>=1.6'
-    docutils: <0.18
-  url: https://files.pythonhosted.org/packages/e0/d2/3818e4730e314719e27f639c44164419e40eed826d63753dc480262036e8/sphinx_rtd_theme-1.0.0-py2.py3-none-any.whl
-  hash:
-    sha256: 4d35a56f4508cfee4c4fb604373ede6feae2a306731d533f409ef5c3496fdbd8
-  category: main
-  optional: false
-- name: rich
-  version: 13.5.2
-  manager: pip
-  platform: linux-64
-  dependencies:
-    pygments: '>=2.13.0,<3.0.0'
-    markdown-it-py: '>=2.2.0'
-  url: https://files.pythonhosted.org/packages/8d/5f/21a93b2ec205f4b79853ff6e838e3c99064d5dbe85ec6b05967506f14af0/rich-13.5.2-py3-none-any.whl
-  hash:
-    sha256: 146a90b3b6b47cac4a73c12866a499e9817426423f57c5a66949c086191a8808
-  category: main
-  optional: false
-- name: rich-click
-  version: 1.6.1
-  manager: pip
-  platform: linux-64
-  dependencies:
-    click: '>=7'
-    rich: '>=10.7.0'
-  url: https://files.pythonhosted.org/packages/f4/f2/3fbb0e6eee13a484dc8aaca450e9322d267fc3839b6769841492f1594037/rich_click-1.6.1-py3-none-any.whl
-  hash:
-    sha256: 0fcf4d1a09029d79322dd814ab0b2e66ac183633037561881d45abae8a161d95
-  category: main
-  optional: false
-- name: bump-my-version
-  version: 0.9.2
-  manager: pip
-  platform: linux-64
-  dependencies:
-    click: '*'
-    pydantic: <2.0.0
-    rich-click: '*'
-    rich: '*'
-    tomlkit: '*'
-  url: https://files.pythonhosted.org/packages/e5/04/e415ea7199be27375e4613a5d5c1aafc3f99633d0dd4d1ecb514a5de1fb0/bump_my_version-0.9.2-py3-none-any.whl
-  hash:
-    sha256: ff0b78339c10a91e460419802f30a0c5b0aa1489bca016c0b46ef6e4d5a7e170
   category: main
   optional: false
