@@ -1,9 +1,6 @@
 from itertools import product
 
 from qgreenland.config.datasets.grimp import grimp_annual_ice_velocity as annual_dataset
-from qgreenland.config.datasets.grimp import (
-    grimp_quarterly_ice_velocity as quarterly_dataset,
-)
 from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
@@ -69,14 +66,4 @@ annual_grimp_layers = [
         asset=annual_dataset.assets[str(year)],
     )
     for year, variable in product(range(_start_year, _end_year + 1), _variables)
-]
-
-quarterly_grimp_layers = [
-    make_layer(
-        variable=variable,
-        layer_id=f"grimp_quarterly_{asset_id}_{variable}",
-        dataset=quarterly_dataset,
-        asset=quarterly_dataset.assets[asset_id],
-    )
-    for asset_id, variable in product(quarterly_dataset.assets.keys(), _variables)
 ]
