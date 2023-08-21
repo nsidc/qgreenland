@@ -6,6 +6,7 @@ version: 2
 build:
   os: "ubuntu-20.04"
   tools:
+    # https://docs.readthedocs.io/en/stable/config-file/v2.html#build-tools-python
     python: "mambaforge-22.9"
 
 sphinx:
@@ -17,5 +18,8 @@ sphinx:
 formats:
   - "pdf"
 
+# The build will run in an isolated `conda` environment; the version of Python
+# is determined by the environment specification file.
+#     https://docs.readthedocs.io/en/stable/guides/conda.html
 conda:
   environment: "doc/environment.yml"
