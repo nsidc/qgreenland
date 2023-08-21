@@ -79,7 +79,6 @@ grimp_quarterly_ice_velocity = Dataset(
         CmrAsset(
             id="20211202_20220228",
             granule_ur="SC:NSIDC-0727.005:262534050",
-            # TODO: update collection concept id.
             collection_concept_id="C2627036252-NSIDC_ECS",
         ),
         # 01Mar22_31May22
