@@ -87,7 +87,7 @@ _layer_params = {
         "description": "Ice sheet velocity y component (vy) in meters per year for 2021."
         + _description_common,
         "style": "grimp_velocity_component",
-        "title": "Annual ice sheet velocity y component (200m)",
+        "title": "Annual ice sheet velocity y component 2021 (200m)",
     },
 }
 
