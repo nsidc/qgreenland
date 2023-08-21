@@ -6,8 +6,6 @@ from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
-from qgreenland.config.helpers.steps.warp import warp
-from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
@@ -25,15 +23,6 @@ def make_vv_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
             asset=asset,
         ),
         steps=[
-            *warp(
-                input_file="{input_dir}/" + f"*{variable}*.tif",
-                output_file="{output_dir}/downsampled.tif",
-                cut_file=project.boundaries["data"].filepath,
-                warp_args=[
-                    "-tr",
-                    "1500 1500",
-                ],
-            ),
             CommandStep(
                 args=[
                     "gdal_calc.py",
@@ -44,7 +33,7 @@ def make_vv_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
                     "--type",
                     "Int32",
                     "-A",
-                    "{input_dir}/downsampled.tif",
+                    "{input_dir}/" + f"*{variable}*.tif",
                     "--outfile",
                     "{output_dir}/scaled.tif",
                 ],
