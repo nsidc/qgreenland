@@ -1,3 +1,5 @@
+from itertools import product
+
 from qgreenland.config.datasets.grimp import grimp_annual_ice_velocity as annual_dataset
 from qgreenland.config.datasets.grimp import (
     grimp_quarterly_ice_velocity as quarterly_dataset,
@@ -10,7 +12,7 @@ from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
 
-def make_vv_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
+def make_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
     return Layer(
         id=layer_id,
         # TODO: better title.
@@ -55,22 +57,26 @@ def make_vv_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
     )
 
 
-grimp_vv_annual_velocity_layers = [
-    make_vv_layer(
-        variable="vv",
-        layer_id=f"grimp_annual_vv_{year}",
+_start_year = 2021
+_end_year = 2021
+_variables = ("vv", "vx", "vy")
+
+annual_grimp_layers = [
+    make_layer(
+        variable=variable,
+        layer_id=f"grimp_annual_{variable}_{year}",
         dataset=annual_dataset,
         asset=annual_dataset.assets[str(year)],
     )
-    for year in range(2015, 2021 + 1)
+    for year, variable in product(range(_start_year, _end_year + 1), _variables)
 ]
 
-grimp_vv_quarterly_velocity_layers = [
-    make_vv_layer(
-        variable="vv",
-        layer_id=f"grimp_quarterly_vv_{asset_id}",
+quarterly_grimp_layers = [
+    make_layer(
+        variable=variable,
+        layer_id=f"grimp_quarterly_{asset_id}_{variable}",
         dataset=quarterly_dataset,
         asset=quarterly_dataset.assets[asset_id],
     )
-    for asset_id in quarterly_dataset.assets.keys()
+    for asset_id, variable in product(quarterly_dataset.assets.keys(), _variables)
 ]
