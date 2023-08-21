@@ -1,5 +1,3 @@
-from itertools import product
-
 from qgreenland.config.datasets.grimp import grimp_annual_ice_velocity as annual_dataset
 from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
@@ -9,17 +7,17 @@ from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
 
-def make_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
+def make_layer(
+    *, variable: str, layer_id: str, style: str, title: str, description: str
+) -> Layer:
     return Layer(
         id=layer_id,
-        # TODO: better title.
-        title=layer_id,
-        description="TODO.",
-        # TODO:
-        style=None,
+        title=title,
+        description=description,
+        style=style,
         input=LayerInput(
-            dataset=dataset,
-            asset=asset,
+            dataset=annual_dataset,
+            asset=annual_dataset.assets["only"],
         ),
         steps=[
             CommandStep(
@@ -54,16 +52,52 @@ def make_layer(*, variable: str, layer_id: str, dataset, asset) -> Layer:
     )
 
 
-_start_year = 2021
-_end_year = 2021
-_variables = ("vv", "vx", "vy")
+_description_common = """
+Annual mosaics are produced from data with resolutions varying from a few
+hundred meters to 1.5km. The 2021 annual mosaic includes data collected between
+2020-12-01 and 2021-11-30.
+
+Note that these data have been rounded to the nearest centimeter for QGreenland
+to save disk space. Please see the original data source for the un-modified and
+additional data:
+
+* x and y component velocity error estimates (ex, ey).
+* A temporal offset parameter (dT) that reports the difference in days between
+  the date of each velocity estimate and the midpoint date of the corresponding
+  measurement period.
+* Shapefile that indicates the source of the image pairs (SAR or Landsat 8) used
+  to produce the mosaic.
+"""
+
+
+_layer_params = {
+    "vv": {
+        "description": "Ice sheet velocity magnitude (vv) in meters per year for 2021."
+        + _description_common,
+        "style": "grimp_velocity_magnitude",
+        "title": "Annual ice sheet velocity magnitude 2021 (200m)",
+    },
+    "vx": {
+        "description": "Ice sheet velocity x component (vy) in meters per year for 2021."
+        + _description_common,
+        "style": "grimp_velocity_component",
+        "title": "Annual ice sheet velocity x component 2021 (200m)",
+    },
+    "vy": {
+        "description": "Ice sheet velocity y component (vy) in meters per year for 2021."
+        + _description_common,
+        "style": "grimp_velocity_component",
+        "title": "Annual ice sheet velocity y component (200m)",
+    },
+}
 
 annual_grimp_layers = [
     make_layer(
         variable=variable,
-        layer_id=f"grimp_annual_{variable}_{year}",
-        dataset=annual_dataset,
-        asset=annual_dataset.assets[str(year)],
+        layer_id=f"grimp_annual_{variable}_2021",
+        style=layer_params["style"],
+        description=layer_params["description"],
+        title=layer_params["title"],
     )
-    for year, variable in product(range(_start_year, _end_year + 1), _variables)
+    for variable, layer_params in _layer_params.items()
 ]

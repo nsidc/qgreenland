@@ -4,45 +4,9 @@ from qgreenland.models.config.dataset import Dataset
 grimp_annual_ice_velocity = Dataset(
     id="grimp_annual_ice_velocity",
     assets=[
-        # GL_vel_mosaic_Annual_01Dec14_30Nov15_vv_v04.0.tif
+        # GL_vel_mosaic_Annual_01Dec20_30Nov21_{variable}_v04.0.tif
         CmrAsset(
-            id="2015",
-            granule_ur="SC:NSIDC-0725.004:243899975",
-            collection_concept_id="C2386646586-NSIDC_ECS",
-        ),
-        # GL_vel_mosaic_Annual_01Dec15_30Nov16_vv_v04.0.tif
-        CmrAsset(
-            id="2016",
-            granule_ur="SC:NSIDC-0725.004:243900066",
-            collection_concept_id="C2386646586-NSIDC_ECS",
-        ),
-        # GL_vel_mosaic_Annual_01Dec16_30Nov17_vv_v04.0.tif
-        CmrAsset(
-            id="2017",
-            granule_ur="SC:NSIDC-0725.004:243900062",
-            collection_concept_id="C2386646586-NSIDC_ECS",
-        ),
-        # GL_vel_mosaic_Annual_01Dec17_30Nov18_vv_v04.0.tif
-        CmrAsset(
-            id="2018",
-            granule_ur="SC:NSIDC-0725.004:243900065",
-            collection_concept_id="C2386646586-NSIDC_ECS",
-        ),
-        # GL_vel_mosaic_Annual_01Dec18_30Nov19_vv_v04.0.tif
-        CmrAsset(
-            id="2019",
-            granule_ur="SC:NSIDC-0725.004:243900061",
-            collection_concept_id="C2386646586-NSIDC_ECS",
-        ),
-        # GL_vel_mosaic_Annual_01Dec19_30Nov20_vx_v04.0.tif
-        CmrAsset(
-            id="2020",
-            granule_ur="SC:NSIDC-0725.004:243900063",
-            collection_concept_id="C2386646586-NSIDC_ECS",
-        ),
-        # GL_vel_mosaic_Annual_01Dec20_30Nov21_vv_v04.0.tif
-        CmrAsset(
-            id="2021",
+            id="only",
             granule_ur="SC:NSIDC-0725.004:243900064",
             collection_concept_id="C2386646586-NSIDC_ECS",
         ),
