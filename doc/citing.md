@@ -18,11 +18,13 @@ is furnished to do so, subject to the following conditions: The above copyright 
 permission notice shall be included in all copies or substantial portions of the Software.
 
 Users should note that published works produced using QGreenland are required to cite
-each dataset used in the work. QGreenland provides all dataset citation information in each
-layer’s metadata in QGIS (see the Layer Properties section in the Interacting with Geospatial 
-Data tutorial for instructions on how to access a layer’s metadata) and in the layer catalog
-provided with the QGreenland download package, **layer_list.csv**. You are also required to 
+each dataset used in the work. QGreenland provides all dataset citation information in
+each layer’s metadata in QGIS (see the [Layer Properties section in the Interacting with
+Geospatial Data tutorial](#interacting-with-geospatial-data-layer-properties) for
+instructions on how to access a layer’s metadata) and in the layer catalog provided with
+the QGreenland download package, **layer_list.csv**. You are also required to
 acknowledge or cite QGreenland and the National Snow and Ice Data Center in your work.
+
 
 ## Citation
 

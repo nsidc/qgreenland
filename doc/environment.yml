@@ -1,0 +1,25 @@
+# For use by ReadTheDocs build system
+name: qgreenland-docs
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  # TODO: Upgrade sphinx ones sphinx-rtd-theme supports 7
+  # - sphinx ~=7.2.2
+  - sphinx ~=6.2.1
+  - latexmk ~=4.55
+  - myst-parser ~=2.0.0
+  - sphinx-click ~=3.0.1
+  - sphinx-rtd-theme ~=1.2.2
+  - autodoc-pydantic ~=1.9.0
+  - pydantic <2.0.0a0
+
+  # What is this? Do we need it?
+  # sphinx-autodoc-typehints==1.12.0
+
+  # QGreenland's dependencies for autodoc. Should we mock these instead?
+  - anytree ~=2.8.0
+  - funcy ~=1.16
+
+  - pip:
+    - sphinx-selective-exclude ~=1.0.3

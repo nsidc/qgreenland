@@ -44,6 +44,8 @@ as geospatial metadata and overviews/tile pyramids.
 Fig. 5: Example of a **Raster** data layer in QGreenland, ice sheet velocity, where
 each grid cell in the raster is 500 m x 500 m and is color-coded by a velocity
 
+
+(interacting-with-geospatial-data-layer-properties)=
 ## Layer Properties
 
 Right clicking on a data layer in the **Layers Panel** and selecting ‘Properties’, or simply double

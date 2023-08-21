@@ -79,8 +79,8 @@ Sphinx or MkDocs under the hood, and we chose Sphinx. It runs automatically in
 response to changes in GitHub. It is configured by `.readthedocs.yml` at the
 root of this repository.
 
-When Read the Docs builds our documentation, it uses the Python environment
-defined by `doc/requirements.txt`.
+When Read the Docs builds our documentation, it uses the environment defined by
+`doc/environment.yml`.
 
 
 ### reStructuredText
