@@ -120,27 +120,6 @@ grimp_vector_layer = Layer(
         asset=annual_dataset.assets["only"],
     ),
     steps=[
-        # Make the vv NoData value consistent wtih the vx and vy variables
-        # (-2e+09). Copy over the vx and vy data files.
-        CommandStep(
-            args=[
-                "gdalwarp",
-                "-srcnodata",
-                "-1",
-                "-dstnodata",
-                "-2e+09",
-                "{input_dir}/*vv*.tif",
-                "{output_dir}/vv.tif",
-                "&&",
-                "cp",
-                "{input_dir}/*vx*.tif",
-                "{output_dir}/vx.tif",
-                "&&",
-                "cp",
-                "{input_dir}/*vy*.tif",
-                "{output_dir}/vy.tif",
-            ],
-        ),
         # Now merge the variables into a 3-band .tif file.
         CommandStep(
             args=[
@@ -150,9 +129,8 @@ grimp_vector_layer = Layer(
                 "-separate",
                 "-o",
                 "{output_dir}/merged.tif",
-                "{input_dir}/vv.tif",
-                "{input_dir}/vx.tif",
-                "{input_dir}/vy.tif",
+                "{input_dir}/*vx*.tif",
+                "{input_dir}/*vy*.tif",
             ],
         ),
         # Downsample to 1.5km
@@ -175,7 +153,7 @@ grimp_vector_layer = Layer(
                 "{input_dir}/downsampled.tif",
                 "{output_dir}/as_xyz.xyz",
                 "&&",
-                'echo "x,y,vv,vx,vy" > {output_dir}/data_with_header.csv',
+                'echo "x,y,vx,vy" > {output_dir}/data_with_header.csv',
                 "&&",
                 "cat {output_dir}/as_xyz.xyz >> {output_dir}/data_with_header.csv",
             ],
