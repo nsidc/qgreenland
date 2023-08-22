@@ -65,7 +65,7 @@ review the results.
 The results file will contain information from the run, including which file was
 analyzed, the calculated volume, pixel count, and total area. If one has
 succuessfully run the analysis, the results should show that the Greenland ice
-sheet has a volume of 2,942,360,633,311,806 m<sup>3</sup>, or about 2.9 million
+sheet has a volume of 2,965,561,810,382,715 m<sup>3</sup>, or about 3 million
 km<sup>3</sup>.
 
 ## Summary
