@@ -21,6 +21,8 @@ def make_layer(
             asset=annual_dataset.assets["only"],
         ),
         steps=[
+            # Round data to the nearest cm and convert to integer to save disk
+            # space.
             CommandStep(
                 args=[
                     "gdal_calc.py",
@@ -36,6 +38,9 @@ def make_layer(
                     "{output_dir}/scaled.tif",
                 ],
             ),
+            # The `scale` metadata lets tools like QGIS know that the integers
+            # should be interpreted as floating point data (e.g,. a value of
+            # `12345` is displayed as 123.45)
             *gdal_edit(
                 input_file="{input_dir}/scaled.tif",
                 output_file="{output_dir}/edited.tif",
