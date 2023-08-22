@@ -3,6 +3,7 @@ from qgreenland.config.helpers.steps.compress_and_add_overviews import (
     compress_and_add_overviews,
 )
 from qgreenland.config.helpers.steps.gdal_edit import gdal_edit
+from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
@@ -101,3 +102,93 @@ annual_grimp_layers = [
     )
     for variable, layer_params in _layer_params.items()
 ]
+
+grimp_vector_layer = Layer(
+    id="grimp_vector",
+    title="TODO: grimp vector",
+    description="TODO.",
+    style="grimp_vector",
+    input=LayerInput(
+        dataset=annual_dataset,
+        asset=annual_dataset.assets["only"],
+    ),
+    steps=[
+        # Make the vv NoData value consistent wtih the vx and vy variables
+        # (-2e+09). Copy over the vx and vy data files.
+        CommandStep(
+            args=[
+                "gdalwarp",
+                "-srcnodata",
+                "-1",
+                "-dstnodata",
+                "-2e+09",
+                "{input_dir}/*vv*.tif",
+                "{output_dir}/vv.tif",
+                "&&",
+                "cp",
+                "{input_dir}/*vx*.tif",
+                "{output_dir}/vx.tif",
+                "&&",
+                "cp",
+                "{input_dir}/*vy*.tif",
+                "{output_dir}/vy.tif",
+            ],
+        ),
+        # Now merge the variables into a 3-band .tif file.
+        CommandStep(
+            args=[
+                "gdal_merge.py",
+                "-a_nodata",
+                "-2e+09",
+                "-separate",
+                "-o",
+                "{output_dir}/merged.tif",
+                "{input_dir}/vv.tif",
+                "{input_dir}/vx.tif",
+                "{input_dir}/vy.tif",
+            ],
+        ),
+        # Downsample to 1.5km
+        CommandStep(
+            args=[
+                "gdalwarp",
+                "-tr",
+                "1500 1500",
+                "{input_dir}/merged.tif",
+                "{output_dir}/downsampled.tif",
+            ],
+        ),
+        # Next, convert the .tif into a csv file.
+        CommandStep(
+            args=[
+                "gdal2xyz.py",
+                "-skipnodata",
+                "-csv",
+                "-allbands",
+                "{input_dir}/downsampled.tif",
+                "{output_dir}/as_xyz.xyz",
+                "&&",
+                'echo "x,y,vv,vx,vy" > {output_dir}/data_with_header.csv',
+                "&&",
+                "cat {output_dir}/as_xyz.xyz >> {output_dir}/data_with_header.csv",
+            ],
+        ),
+        # Finally, convert to gpkg.
+        *ogr2ogr(
+            input_file="CSV:{input_dir}/data_with_header.csv",
+            output_file="{output_dir}/vectors.gpkg",
+            ogr2ogr_args=(
+                "-oo",
+                "X_POSSIBLE_NAMES=x",
+                "-oo",
+                "Y_POSSIBLE_NAMES=y",
+                "-s_srs",
+                "EPSG:3413",
+                "-oo",
+                "KEEP_GEOM_COLUMNS=NO",
+                "-oo",
+                "AUTODETECT_TYPE=YES",
+            ),
+        ),
+    ],
+)
