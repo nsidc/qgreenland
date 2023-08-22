@@ -25,5 +25,11 @@ for data customization that QGreenland and other communities can leverage to
 create consistent geospatial data packages. Learn more
 [here](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2324765). 
 
-Subscribe to the [QGreenland newsletter](http://eepurl.com/gQ7VCr) to receive
-updates!
+You can keep up-to-date by:
+
+* Subscribing to the [QGreenland newsletter](http://eepurl.com/gQ7VCr)
+* Following our activity in [GitHub](https://github.com/nsidc/qgreenland), where we do
+  our work in the open. Our [GitHub
+  Discussions](https://github.com/nsidc/qgreenland/discussions) space may be of
+  particular interest to follow or participate in discussions about our future
+  direction.
