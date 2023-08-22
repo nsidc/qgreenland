@@ -8,14 +8,15 @@ def depth_str(depth: int) -> str:
         return f"{depth}m"
 
 
-def id_str(*, depth: int, season: str) -> str:
-    return f"woa_{depth}m_temperature_{season}"
+def id_str(*, depth: int, season: str, variable: str) -> str:
+    return f"woa_{depth}m_{variable}_{season}"
 
 
 SEASONS_FNS: dict[str, str] = {
     "winter": "woa23_decav91C0_t13_04.nc",
     "summer": "woa23_decav91C0_t15_04.nc",
 }
+# Looks like these are the same for salinity.
 DEPTHS_BANDS: dict[int, int] = {
     0: 1,
     50: 11,
@@ -24,10 +25,11 @@ DEPTHS_BANDS: dict[int, int] = {
 }
 
 # Sort by season first, then by depth
-COMBINATIONS = list(product(SEASONS_FNS.keys(), DEPTHS_BANDS.keys()))
-COMBINATIONS.sort(key=lambda x: x[0], reverse=True)
-COMBINATIONS.sort(key=lambda x: x[1])
+TEMPERATURE_COMBINATIONS = list(product(SEASONS_FNS.keys(), DEPTHS_BANDS.keys()))
+TEMPERATURE_COMBINATIONS.sort(key=lambda x: x[0], reverse=True)
+TEMPERATURE_COMBINATIONS.sort(key=lambda x: x[1])
 
 WOA_LAYER_ORDER = [
-    id_str(depth=depth, season=season) for (season, depth) in COMBINATIONS
+    id_str(depth=depth, season=season, variable="temperature")
+    for (season, depth) in TEMPERATURE_COMBINATIONS
 ]

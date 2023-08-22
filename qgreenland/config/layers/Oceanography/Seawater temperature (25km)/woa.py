@@ -2,9 +2,9 @@ from qgreenland.config.datasets.woa_temperature import (
     woa_temperature as dataset,
 )
 from qgreenland.config.helpers.layers.woa import (
-    COMBINATIONS,
     DEPTHS_BANDS,
     SEASONS_FNS,
+    TEMPERATURE_COMBINATIONS,
     depth_str,
     id_str,
 )
@@ -16,9 +16,9 @@ from qgreenland.config.project import project
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
-layers = [
+temperature_layers = [
     Layer(
-        id=id_str(depth=depth, season=season),
+        id=id_str(depth=depth, season=season, variable="temperature"),
         title=f"{depth_str(depth)}, {season.title()}",
         description=(
             f"""Average Seawater temperature at {depth_str(depth).lower()} depth
@@ -81,5 +81,5 @@ layers = [
             ),
         ],
     )
-    for season, depth in COMBINATIONS
+    for season, depth in TEMPERATURE_COMBINATIONS
 ]
