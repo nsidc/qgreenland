@@ -36,9 +36,9 @@ Toolbar** ![attributes-toolbar](/_images/attributes-toolbar.jpg).
 
 ## Use the Raster Surface Volume tool
 
-In the **Processing Toolbox**, go to **"Raster analysis -> Raster surface
-volume"**. This is an algorithm that calculates the volume under a raster grid’s
-surface. Double-click **"Raster surface volume"** to open the tool's window, and
+In the **Processing Toolbox**, go to **Raster analysis -> Raster surface
+volume**. This is an algorithm that calculates the volume under a raster grid’s
+surface. Double-click **Raster surface volume** to open the tool's window, and
 enter the following parameters:
 
 * **Input layer** = Ice thickness (150 m)
@@ -52,10 +52,10 @@ enter the following parameters:
 
 ![raster_surface_volume](/_images/raster_surface_volume.jpg)
 
-Click "Run" and wait for the analysis to finish. The window will switch to the
+Click **Run** and wait for the analysis to finish. The window will switch to the
 **Log** tab, which shows log messages and results for the run. A **Results
 Viewer** panel should open in a panel underneath the **Processing
-Toolbox**. Close the Raster surface volume tool's window and click on the
+Toolbox**. Close the **Raster surface volume** tool's window and click on the
 "Surface volume report" entry in the **Results Viewer**. This will show a link to
 a results HTML page that can be opened in your broswer. Open this file and
 review the results.
@@ -71,7 +71,7 @@ km<sup>3</sup>.
 ## Summary
 
 In completing this tutorial, the user has become familar with the **Processing
-Toolbox** and has successfully utilized the Raster Surface Volume tool with ice
+Toolbox** and has successfully utilized the **Raster Surface Volume** tool with ice
 sheet thickness data included in the QGreenland core package to calculate the
 volume of the Greenland ice sheet. Having accomplished this, the user is now
 ready to explore other geospatial processing tools included in the **Processing
