@@ -12149,6 +12149,112 @@
                   },
                   {
                     "layer_cfg": {
+                      "description": "Vector representation of ice sheet velocity in meters per year for 2021.",
+                      "id": "grimp_vector",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "grimp_annual_ice_velocity"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-srcnodata",
+                            "-1",
+                            "-dstnodata",
+                            "-2e+09",
+                            "{input_dir}/*vv*.tif",
+                            "{output_dir}/vv.tif",
+                            "&&",
+                            "cp",
+                            "{input_dir}/*vx*.tif",
+                            "{output_dir}/vx.tif",
+                            "&&",
+                            "cp",
+                            "{input_dir}/*vy*.tif",
+                            "{output_dir}/vy.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_merge.py",
+                            "-a_nodata",
+                            "-2e+09",
+                            "-separate",
+                            "-o",
+                            "{output_dir}/merged.tif",
+                            "{input_dir}/vv.tif",
+                            "{input_dir}/vx.tif",
+                            "{input_dir}/vy.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdalwarp",
+                            "-tr",
+                            "1500 1500",
+                            "{input_dir}/merged.tif",
+                            "{output_dir}/downsampled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal2xyz.py",
+                            "-skipnodata",
+                            "-csv",
+                            "-allbands",
+                            "{input_dir}/downsampled.tif",
+                            "{output_dir}/as_xyz.xyz",
+                            "&&",
+                            "echo \"x,y,vv,vx,vy\" > {output_dir}/data_with_header.csv",
+                            "&&",
+                            "cat {output_dir}/as_xyz.xyz >> {output_dir}/data_with_header.csv"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "ogr2ogr",
+                            "-lco",
+                            "ENCODING=UTF-8",
+                            "-t_srs",
+                            "EPSG:3413",
+                            "-clipdst",
+                            "{assets_dir}/latitude_shape_40_degrees.geojson",
+                            "-makevalid",
+                            "-oo",
+                            "X_POSSIBLE_NAMES=x",
+                            "-oo",
+                            "Y_POSSIBLE_NAMES=y",
+                            "-s_srs",
+                            "EPSG:3413",
+                            "-oo",
+                            "KEEP_GEOM_COLUMNS=NO",
+                            "-oo",
+                            "AUTODETECT_TYPE=YES",
+                            "{output_dir}/vectors.gpkg",
+                            "CSV:{input_dir}/data_with_header.csv"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "grimp_vectors",
+                      "tags": [],
+                      "title": "Annual ice sheet velocity vectors 2021"
+                    },
+                    "name": "grimp_vector"
+                  },
+                  {
+                    "layer_cfg": {
                       "description": "Ice sheet velocity x component (vy) in meters per year for 2021.\nAnnual mosaics are produced from data with resolutions varying from a few\nhundred meters to 1.5km. The 2021 annual mosaic includes data collected between\n2020-12-01 and 2021-11-30.\n\nNote that these data have been rounded to the nearest centimeter for QGreenland\nto save disk space. Please see the original data source for the un-modified and\nadditional data:\n\n* x and y component velocity error estimates (ex, ey).\n* A temporal offset parameter (dT) that reports the difference in days between\n  the date of each velocity estimate and the midpoint date of the corresponding\n  measurement period.\n* Shapefile that indicates the source of the image pairs (SAR or Landsat 8) used\n  to produce the mosaic.",
                       "id": "grimp_annual_vx_2021",
                       "in_package": true,
@@ -12307,7 +12413,7 @@
                       ],
                       "style": "grimp_velocity_component",
                       "tags": [],
-                      "title": "Annual ice sheet velocity y component (200m)"
+                      "title": "Annual ice sheet velocity y component 2021 (200m)"
                     },
                     "name": "grimp_annual_vy_2021"
                   }
