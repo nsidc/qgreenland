@@ -53,7 +53,7 @@ enter the following parameters:
 ![raster_surface_volume](/_images/raster_surface_volume.jpg)
 
 Click "Run" and wait for the analysis to finish. The window will switch to the
-"Log" tab, which shows log messages and results for the run. A **Results
+**Log** tab, which shows log messages and results for the run. A **Results
 Viewer** panel should open in a panel underneath the **Processing
 Toolbox**. Close the Raster surface volume tool's window and click on the
 "Surface volume report" entry in the **Results Viewer**. This will show a link to
@@ -62,7 +62,7 @@ review the results.
 
 ![results_viewer](/_images/results_viewer.jpg)
 
-The **results file** will contain information from the run, including which file was
+The results file will contain information from the run, including which file was
 analyzed, the calculated volume, pixel count, and total area. If one has
 succuessfully run the analysis, the results should show that the Greenland ice
 sheet has a volume of 2,942,360,633,311,806 m<sup>3</sup>, or about 2.9 million
