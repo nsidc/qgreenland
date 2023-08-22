@@ -12082,35 +12082,14 @@
                       "steps": [
                         {
                           "args": [
-                            "gdalwarp",
-                            "-srcnodata",
-                            "-1",
-                            "-dstnodata",
-                            "-2e+09",
-                            "{input_dir}/*vv*.tif",
-                            "{output_dir}/vv.tif",
-                            "&&",
-                            "cp",
-                            "{input_dir}/*vx*.tif",
-                            "{output_dir}/vx.tif",
-                            "&&",
-                            "cp",
-                            "{input_dir}/*vy*.tif",
-                            "{output_dir}/vy.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
                             "gdal_merge.py",
                             "-a_nodata",
                             "-2e+09",
                             "-separate",
                             "-o",
                             "{output_dir}/merged.tif",
-                            "{input_dir}/vv.tif",
-                            "{input_dir}/vx.tif",
-                            "{input_dir}/vy.tif"
+                            "{input_dir}/*vx*.tif",
+                            "{input_dir}/*vy*.tif"
                           ],
                           "type": "command"
                         },
@@ -12133,7 +12112,7 @@
                             "{input_dir}/downsampled.tif",
                             "{output_dir}/as_xyz.xyz",
                             "&&",
-                            "echo \"x,y,vv,vx,vy\" > {output_dir}/data_with_header.csv",
+                            "echo \"x,y,vx,vy\" > {output_dir}/data_with_header.csv",
                             "&&",
                             "cat {output_dir}/as_xyz.xyz >> {output_dir}/data_with_header.csv"
                           ],
