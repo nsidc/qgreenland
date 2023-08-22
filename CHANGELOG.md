@@ -6,6 +6,11 @@
 * Add new "Geology/Mineral occurrences" layer from GEUS.
 * Update `layer_list.csv` to include new column indicating if each layer is
   stored on disk. Internet-required layers take the value `False`.
+* Add new "Glaciology/Ice sheet velocity" layers:
+  * "GrIMP/Annual ice sheet velocity vectors 2021"
+  * "GrIMP/Annual ice sheet velocity magnitude 2021 (200m)"
+  * "GrIMP/Annual ice sheet velocity x component 2021 (200m)"
+  * "GrIMP/Annual ice sheet velocity y component 2021 (200m)"
 
 
 # v3.0.0alpha4 (2023-07-21)
