@@ -105,8 +105,10 @@ annual_grimp_layers = [
 
 grimp_vector_layer = Layer(
     id="grimp_vector",
-    title="TODO: grimp vector",
-    description="TODO.",
+    title="Annual ice sheet velocity vectors 2021",
+    description=(
+        """Vector representation of ice sheet velocity in meters per year for 2021."""
+    ),
     style="grimp_vector",
     input=LayerInput(
         dataset=annual_dataset,
