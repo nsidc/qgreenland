@@ -12067,90 +12067,8 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Ice sheet velocity magnitude (vv) in meters per year for 2021.\nAnnual mosaics are produced from data with resolutions varying from a few\nhundred meters to 1.5km. The 2021 annual mosaic includes data collected between\n2020-12-01 and 2021-11-30.\n\nNote that these data have been rounded to the nearest centimeter for QGreenland\nto save disk space. Please see the original data source for the un-modified and\nadditional data:\n\n* x and y component velocity error estimates (ex, ey).\n* A temporal offset parameter (dT) that reports the difference in days between\n  the date of each velocity estimate and the midpoint date of the corresponding\n  measurement period.\n* Shapefile that indicates the source of the image pairs (SAR or Landsat 8) used\n  to produce the mosaic.",
-                      "id": "grimp_annual_vv_2021",
-                      "in_package": true,
-                      "input": {
-                        "asset": {
-                          "id": "only"
-                        },
-                        "dataset": {
-                          "id": "grimp_annual_ice_velocity"
-                        }
-                      },
-                      "show": false,
-                      "steps": [
-                        {
-                          "args": [
-                            "gdal_calc.py",
-                            "--calc",
-                            "\"round(A * 100.0)\"",
-                            "--NoDataValue",
-                            "-9999",
-                            "--type",
-                            "Int32",
-                            "-A",
-                            "{input_dir}/*vv*.tif",
-                            "--outfile",
-                            "{output_dir}/scaled.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/scaled.tif",
-                            "{output_dir}/edited.tif",
-                            "&&",
-                            "gdal_edit.py",
-                            "-scale",
-                            "0.01",
-                            "{output_dir}/edited.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "gdal_translate",
-                            "-co",
-                            "TILED=YES",
-                            "-co",
-                            "COMPRESS=DEFLATE",
-                            "-co",
-                            "PREDICTOR=2",
-                            "{input_dir}/edited.tif",
-                            "{output_dir}/compressed.tif"
-                          ],
-                          "type": "command"
-                        },
-                        {
-                          "args": [
-                            "cp",
-                            "{input_dir}/compressed.tif",
-                            "{output_dir}/compressed_with_overviews.tif",
-                            "&&",
-                            "gdaladdo",
-                            "-r",
-                            "average",
-                            "{output_dir}/compressed_with_overviews.tif",
-                            "2",
-                            "4",
-                            "8",
-                            "16"
-                          ],
-                          "type": "command"
-                        }
-                      ],
-                      "style": "grimp_velocity_magnitude",
-                      "tags": [],
-                      "title": "Annual ice sheet velocity magnitude 2021 (200m)"
-                    },
-                    "name": "grimp_annual_vv_2021"
-                  },
-                  {
-                    "layer_cfg": {
                       "description": "Vector representation of ice sheet velocity in meters per year for 2021.",
-                      "id": "grimp_vector",
+                      "id": "grimp_annual_vectors_2021",
                       "in_package": true,
                       "input": {
                         "asset": {
@@ -12251,7 +12169,89 @@
                       "tags": [],
                       "title": "Annual ice sheet velocity vectors 2021"
                     },
-                    "name": "grimp_vector"
+                    "name": "grimp_annual_vectors_2021"
+                  },
+                  {
+                    "layer_cfg": {
+                      "description": "Ice sheet velocity magnitude (vv) in meters per year for 2021.\nAnnual mosaics are produced from data with resolutions varying from a few\nhundred meters to 1.5km. The 2021 annual mosaic includes data collected between\n2020-12-01 and 2021-11-30.\n\nNote that these data have been rounded to the nearest centimeter for QGreenland\nto save disk space. Please see the original data source for the un-modified and\nadditional data:\n\n* x and y component velocity error estimates (ex, ey).\n* A temporal offset parameter (dT) that reports the difference in days between\n  the date of each velocity estimate and the midpoint date of the corresponding\n  measurement period.\n* Shapefile that indicates the source of the image pairs (SAR or Landsat 8) used\n  to produce the mosaic.",
+                      "id": "grimp_annual_vv_2021",
+                      "in_package": true,
+                      "input": {
+                        "asset": {
+                          "id": "only"
+                        },
+                        "dataset": {
+                          "id": "grimp_annual_ice_velocity"
+                        }
+                      },
+                      "show": false,
+                      "steps": [
+                        {
+                          "args": [
+                            "gdal_calc.py",
+                            "--calc",
+                            "\"round(A * 100.0)\"",
+                            "--NoDataValue",
+                            "-9999",
+                            "--type",
+                            "Int32",
+                            "-A",
+                            "{input_dir}/*vv*.tif",
+                            "--outfile",
+                            "{output_dir}/scaled.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/scaled.tif",
+                            "{output_dir}/edited.tif",
+                            "&&",
+                            "gdal_edit.py",
+                            "-scale",
+                            "0.01",
+                            "{output_dir}/edited.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "gdal_translate",
+                            "-co",
+                            "TILED=YES",
+                            "-co",
+                            "COMPRESS=DEFLATE",
+                            "-co",
+                            "PREDICTOR=2",
+                            "{input_dir}/edited.tif",
+                            "{output_dir}/compressed.tif"
+                          ],
+                          "type": "command"
+                        },
+                        {
+                          "args": [
+                            "cp",
+                            "{input_dir}/compressed.tif",
+                            "{output_dir}/compressed_with_overviews.tif",
+                            "&&",
+                            "gdaladdo",
+                            "-r",
+                            "average",
+                            "{output_dir}/compressed_with_overviews.tif",
+                            "2",
+                            "4",
+                            "8",
+                            "16"
+                          ],
+                          "type": "command"
+                        }
+                      ],
+                      "style": "grimp_velocity_magnitude",
+                      "tags": [],
+                      "title": "Annual ice sheet velocity magnitude 2021 (200m)"
+                    },
+                    "name": "grimp_annual_vv_2021"
                   },
                   {
                     "layer_cfg": {
@@ -12421,7 +12421,12 @@
                 "name": "GrIMP",
                 "settings": {
                   "expand": false,
-                  "order": null,
+                  "order": [
+                    ":grimp_annual_vectors_2021",
+                    ":grimp_annual_vv_2021",
+                    ":grimp_annual_vx_2021",
+                    ":grimp_annual_vy_2021"
+                  ],
                   "show": false
                 }
               },
