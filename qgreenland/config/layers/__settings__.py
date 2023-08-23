@@ -17,7 +17,7 @@ settings = RootGroupSettings(
         LayerGroupIdentifier("Oceanography"),
         LayerGroupIdentifier("Future projections"),
         LayerGroupIdentifier("Terrain models"),
-        LayerGroupIdentifier("Internet-required data"),
+        LayerGroupIdentifier("Satellite imagery (Internet required)"),
         LayerGroupIdentifier("Basemaps"),
     ],
 )
