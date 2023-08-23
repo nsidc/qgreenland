@@ -58,7 +58,7 @@
 - Fix descriptions of "Hydrology" outlets and basins layers.
 - Rename "Places/Place names database" -> "Places/Points of interest". Towns and
   settlements are now excluded from this layer (in favor of the more-up-to-date
-  "Towns" and "Settlements" layers.
+  "Populated places" layer.
 - Update the BedMachine dataset ("Terrain models/BedMachine") to v5, which was
   released in September 2022.
 - Update the geothermal heat flow dataset ("Geophysics/Heat flow (Colgan et
