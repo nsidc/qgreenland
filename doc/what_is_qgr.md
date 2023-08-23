@@ -8,7 +8,7 @@ delivered as a Zip package containing a core set of data curated to serve a
 broad user base. This package is referred to as **QGreenland Core**.
 
 See our tutorial on how to get started with QGreenland Core
-[here](/user/tutorials/get-started.md)!
+[here](/user/tutorials/01-get-started.md)!
 
 ```{attention}
 The QGIS Plugin **[QGreenland Custom](https://plugins.qgis.org/plugins/qgreenland/)

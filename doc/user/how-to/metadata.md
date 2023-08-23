@@ -6,7 +6,7 @@ metadata for QGreenland layers can be accessed in two ways.
 ```{note}
 For more information on layer properties and metadata, see our Tutorial on
 [Interacting with Geospatial Data in QGreenland
-Core](/user/tutorials/interacting-with-geospatial-data.md).
+Core](/user/tutorials/03-interacting-with-geospatial-data.md).
 ```
 
 (using_qgis)=
