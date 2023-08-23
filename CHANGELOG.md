@@ -1,4 +1,4 @@
-# NEXT_VERSION
+# v3.0.0 (2023-08-23)
 
 - Resolve `Font "Helvetica" font not available on system` warnings
 - Update `layer_list.csv` to include new column indicating if each layer is

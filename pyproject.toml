@@ -82,7 +82,7 @@ inline-quotes = "double"
 
 
 [tool.bumpversion]
-current_version = "3.0.0alpha4"
+current_version = "3.0.0rc1"
 commit = false
 tag = false
 parse = """
