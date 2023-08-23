@@ -27,11 +27,8 @@
 
 ### New
 
-- Add new "Places" layers: "Towns" and "Settlements". These layers replace the
-  previously removed "Towns and settlements" layer.
-- Merge "Places/Towns" and "Places/Settlements" layers into one "Populated
-  places" layer. Scale point markers for this layer by population.
-    - TODO: Combine the above two
+- Add new "Places/Populated places" layer, replacing the "Places/Towns and
+  settlements" layer.
 - Add new "Internet-required data/Geological Map (1:500 000)" layer from GEUS.
 - Add new "Geology/Mineral occurrences" layer from GEUS.
 - Add new "Glaciology/Ice sheet velocity" layers:
