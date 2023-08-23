@@ -8,14 +8,19 @@ There are two main basic kinds of GIS data layers: vector and raster.
 
 Vector data are composed of points, lines, and polygons and represent discrete features.
 Examples of vector data are cities (points), roads and highways (lines), and geographic
-boundaries like country borders (polygons) (Fig. 4). All of the vector layers in QGreenland are
+boundaries like country borders (polygons) ({numref}`vector_data`). All of the vector layers in QGreenland are
 GeoPackage (.gpkg) files. A GeoPackage is just a platform-independent file type for storing
 geospatial data.
 
-![vector_data](/_images/vector_data.png)
-
-Fig. 4: Examples of vector data layers in QGreenland Core: points (towns and settlements), lines
+```{figure} /_images/vector_data.png
+---
+alt: Vector data
+name: vector_data
+---
+Examples of vector data layers in QGreenland Core: points (towns and settlements), lines
 (median January sea ice extent), and polygons (country boundaries).
+```
+
 
 #### Vector Data Attributes
 
@@ -34,27 +39,32 @@ highlight those specific points, lines, or polygons in the **Map View**. Right-c
 
 Raster data are composed of grid cells or pixels, where each grid cell has its own value.
 Rasters represent continuous data, such as land elevation, surface temperature, land cover,
-etc. (Fig. 5). The resolution, which is the length of the grid cell sides of each raster dataset in
+etc. ({numref}`raster_data`). The resolution, which is the length of the grid cell sides of each raster dataset in
 QGreenland, is indicated in the name of the dataset, e.g.: “Ice Sheet Velocity (500 m)”. Raster
 layers in QGreenland are all GeoTIFF files, which are images with geographic features, such
 as geospatial metadata and overviews/tile pyramids.
 
-![raster_data](/_images/raster_data.png)
-
-Fig. 5: Example of a Raster data layer in QGreenland, ice sheet velocity, where
+```{figure} /_images/raster_data.png
+---
+alt: Raster data
+name: raster_data
+---
+Example of a Raster data layer in QGreenland, ice sheet velocity, where
 each grid cell in the raster is 500 m x 500 m and is color-coded by a velocity
-
+```
 
 (interacting-with-geospatial-data-layer-properties)=
 ## Layer Properties
 
-Right clicking on a data layer in the **Layers Panel** and selecting **Properties**, or simply double
-clicking on a layer in the **Layers panel** will bring up the **Layer Properties** dialog window,
-which contains a variety of information about a layer (Fig. 6). The information is organized
-into sections (or tabs) that can be accessed by clicking on an individual tab (e.g., **Symbology**)
-in the left sidebar of the window. The tabs listed in a vector **Layer Properties** dialog window
-differ slightly from those listed for a raster layer. The tabs most relevant to a novice QGIS user
-and that exist for both vector and raster layers are:
+Right clicking on a data layer in the **Layers Panel** and selecting
+**Properties**, or simply double clicking on a layer in the **Layers panel**
+will bring up the **Layer Properties** dialog window, which contains a variety
+of information about a layer ({numref}`layer_properties`). The information is
+organized into sections (or tabs) that can be accessed by clicking on an
+individual tab (e.g., **Symbology**) in the left sidebar of the window. The tabs
+listed in a vector **Layer Properties** dialog window differ slightly from those
+listed for a raster layer. The tabs most relevant to a novice QGIS user and that
+exist for both vector and raster layers are:
 
 * **Information**: This section summarizes information about a layer, including its name, coordinate
 reference system, spatial extent (geographic boundaries), description (abstract), and more.
@@ -77,9 +87,13 @@ makes no guarantees about the accuracy and validity of data contained in
 QGreenland. See our [Disclaimer](/disclaimer.md) for more information.
 ```
 
-![layer_properties](/_images/layer_properties.png)
-
-Fig. 6: The **Layer Properties** dialog window for the QGreenland ‘Earthquakes’ data layer
+```{figure} /_images/layer_properties.png
+---
+alt: Layer Properties
+name: layer_properties
+---
+The **Layer Properties** dialog window for the QGreenland ‘Earthquakes’ data layer.
+```
 
 ## Coordinate Reference System (CRS)
 
@@ -133,13 +147,17 @@ To use the **Identify Features** button:
 2. Click on the **Identify Features** button in the **Attributes Toolbar**.
 3. Click on the individual point, line, polygon, or raster cell of interest in the map
    view. The record for the object selected will show up in a new **Identify Results Panel** 
-   to the right of the map display (Fig. 7).
+   to the right of the map display ({numref}`identify_results_panel`).
 4. You can choose what information the **Identify** tool is showing you and how it is
    displayed by toggling the **Mode** and **View** options at the bottom of the **Identify Results Panel**.
 
-![identify_results_panel](/_images/identify_results_panel.png)
-
-Fig. 7: The **Identify Results Panel** that shows results from the **Identify Features** tool.
+```{figure} /_images/identify_results_panel.png
+---
+alt: Identify results panel
+name: identify_results_panel
+---
+The **Identify Results Panel** that shows results from the **Identify Features** tool.
+```
 
 ## Measuring Distances, Areas, and Angles
 
@@ -256,12 +274,18 @@ What is the average size of Greenland’s populated areas?
 
 The **Basic statistics for fields** window should automatically switch to a view
 of the Log where you will see the results for the population basic statistics
-(Fig. 8). The value ‘MEAN’ will tell you the average size of Greenland’s
+({numref}`vector_layer_stats`). The value ‘MEAN’ will tell you the average size of Greenland’s
 populated places (702 people). The value ‘SUM’ will tell you the total number
 of people in Greenland’s metropolitan areas (55,494 people).
 
-![vector_layer_stats](/_images/vector_layer_stats.png)
-Fig. 8: Results of Example 2: Vector Layer Statistics
+
+```{figure} /_images/vector_layer_stats.png
+---
+alt: Vector layer stats
+name: vector_layer_stats
+---
+Results of Example 2: Vector Layer Statistics
+```
 
 ### Example 3: Simple Raster Analysis
 
@@ -296,19 +320,31 @@ There is a different
    b) Either type in the minus (-) symbol or click on it under **Operators**. It should show
        up after the layer you just chose.
    c) In the **Layers** box, scroll to and double click on the March2011@1 layer. It should
-      show up after the minus sign, again in quotations (Fig. 10).
+      show up after the minus sign, again in quotations ({numref}`raster_calc`).
    d) For **Reference layer**, it’s recommended you choose either of the two layers used
       in the expression. Click on the three dots [...] which will open up another window
       and allow you to choose the reference layer by checking the box next to the layer
       name.
 3. Click **Run** and close the window.
 
-![results_viewer](/_images/results_viewer.png)
-Fig. 9: To view the results of the raster surface volume analysis, click on the link
-next to ‘File path’ in the **Results Viewer Panel** below the **Processing Toolbox**.
 
-![raster_calc](/_images/raster_calc.png)
-Fig. 10: The **Raster Calculator** expression for Example 4.
+```{figure} /_images/results_viewer.png
+---
+alt: Results Viewer
+name: results_viewer
+---
+To view the results of the raster surface volume analysis, click on the link
+next to ‘File path’ in the **Results Viewer Panel** below the **Processing Toolbox**.
+```
+
+
+```{figure} /_images/raster_calc.png
+---
+alt: Raster Caclulator
+name: raster_calc
+---
+The **Raster Calculator** expression for Example 4.
+```
 
 The output layer will appear in the **Layers Panel** (likely named **Output**). You can right click on
 it and rename it if you like. The values next to the colored boxes below the output file (likely

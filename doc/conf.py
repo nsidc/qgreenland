@@ -187,3 +187,10 @@ autodoc_pydantic_model_show_json_error_strategy = "coerce"
 extlinks = {
     "github": ("https://github.com/nsidc/qgreenland/tree/main/%s", "GitHub: %s"),
 }
+
+# -- Options for figures ------------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-numfig:
+#   > If true, figures, tables and code-blocks are automatically numbered if
+#   > they have a caption.  The numref role is enabled. Obeyed so far only by
+#   > HTML and LaTeX builders.
+numfig = True
