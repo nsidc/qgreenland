@@ -13,11 +13,12 @@ from qgreenland.models.config.layer import Layer, LayerInput
 # with a list comprehension as well, as long as you assign it to a variable.
 geothermal_heat_flow = Layer(
     id="geothermal_heat_flow_map",
-    title="Flow from multiple observations (55km)",
+    title="Gridded heat flow (55km)",
     style="geothermal_heat_flow_map",
     description=(
         """Geothermal heat flow map from machine-learning algorithm (55 km
-        native resolution)."""
+        native resolution). Gridded from measurements in "Flow measurement locations"
+        layer."""
     ),
     tags=[],
     input=LayerInput(
@@ -42,8 +43,8 @@ geothermal_heat_flow_measurements = Layer(
     id="geothermal_heat_flow_measurements",
     title="Flow measurement locations",
     description=(
-        """Heat flow measurement database used in the creation of the 'Flow from
-        multiple observations (55km)' layer."""
+        """Heat flow measurement database used in the creation of the "Gridded heat flow
+        (55km)" layer."""
     ),
     tags=[],
     input=LayerInput(

@@ -94,6 +94,8 @@
 - Improve symbology for "Regional climate models/RACMO model output/Annual mean
   wind vectors 1958-2019 (5km)" by removing color mapping to magnitude
   values. This was causing conflicts with other layers' color maps.
+- Renamed "Geophysics/Heat flux/Heat flow (Colgan et al.)/Flow from multiple
+  observations (55km)" to "Gridded heat flow (55km)"
 
 
 ### Removed
