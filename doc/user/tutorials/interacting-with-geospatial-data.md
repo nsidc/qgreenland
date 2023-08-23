@@ -1,5 +1,10 @@
 # Interacting with Geospatial Data in QGreenland Core
 
+```{note}
+QGreenland users will learn through experience that there is very often more than
+one way to complete a desired task in the QGIS platform
+```
+
 ## Spatial Data Overview
 
 There are two main basic kinds of GIS data layers: vector and raster.
