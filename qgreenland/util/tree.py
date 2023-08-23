@@ -220,7 +220,8 @@ def _manual_ordering_strategy(
             matches = funcy.lfilter(matcher, layers_and_groups)
             if len(matches) != 1:
                 raise RuntimeError(
-                    f"Expected to find {thing_desc}. Found: {matches}",
+                    f"Expected to find {thing_desc}. Found: {matches} in"
+                    f" {[e.id for e in layers_and_groups]}",
                 )
 
             thing = matches[0]
