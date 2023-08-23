@@ -143,7 +143,8 @@ grimp_vector_layer = Layer(
                 "{output_dir}/downsampled.tif",
             ],
         ),
-        # Next, convert the .tif into a csv file.
+        # Next, convert the .tif into a csv file. This converts the raster into
+        # a format readable by `ogr2ogr`, used in the next step.
         CommandStep(
             args=[
                 "gdal2xyz.py",
