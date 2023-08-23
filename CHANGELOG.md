@@ -3,8 +3,6 @@
 - Resolve `Font "Helvetica" font not available on system` warnings
 - Update `layer_list.csv` to include new column indicating if each layer is
   stored on disk. Internet-required layers take the value `False`.
-- Establish a more explicit/readable pattern for defining the order of QGreenland's
-  layers and groups in the Layers Panel
 - Configure gradient style legends, add new style validations for gradient legends
 - Fix palletted styles
 - Publish versioned Docker images to DockerHub and GHCR for improved reproducibility
