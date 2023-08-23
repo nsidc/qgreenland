@@ -49,6 +49,8 @@
 - Add new "Biology/Vegetation/Vegetation classification map (1km)" layer from
   the Raster Circumpolar Arctic Vegetation Map produced by Raynolds et al.,
   2019.
+- Add new "Oceanography/Seawater salinity (25km)" layers from the World Ocean
+  Atlas 2023.
 
 
 ### Updated
