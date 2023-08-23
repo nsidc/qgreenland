@@ -4,6 +4,7 @@
 
 There are two main basic kinds of GIS data layers: vector and raster.
 
+
 ### Vector Data
 
 Vector data are composed of points, lines, and polygons and represent discrete features.
@@ -34,6 +35,7 @@ up an **Attribute Table**, where the columns are the various fields, or attribut
 are individual features. Clicking on and highlighting records in the **Attribute Table** will also
 highlight those specific points, lines, or polygons in the **Map View**. Right-click any cell to
 **Zoom to feature**, **Pan to feature**, or **Flash feature**.
+
 
 ### Raster Data
 
@@ -109,15 +111,15 @@ and can introduce artifacts. Therefore, it is recommended that to reproject
 data, the user do so from the source data and not the data contained in the
 QGreenland package.
 
+(scale-dependent-rendering)=
 ## Scale-Dependent Rendering
 
 Scale-dependent rendering refers to the scale at which a particular data layer will be visible in
 the QGIS map display. This can make it easier to zoom in and out for certain data layers. The
-user can turn on scale-dependent rendering for any layer by going to the layer **‘Properties’ ->
-‘Rendering’**, checking the box for Scale Dependent Visibility, and then setting the minimum
+user can turn on scale-dependent rendering for any layer by going to the layer **Properties ->
+Rendering**, checking the box for Scale Dependent Visibility, and then setting the minimum
 and maximum scale dependent visibility. For scale reference, refer to the scale indicated at
 the bottom of the QGIS interface in the **Status Bar**.
-
 
 ## QGreenland Data Layers
 
@@ -159,6 +161,7 @@ name: identify_results_panel
 The **Identify Results Panel** that shows results from the **Identify Features** tool.
 ```
 
+
 ## Measuring Distances, Areas, and Angles
 
 Another useful basic tool in the **Attributes Toolbar** is the **Measuring
@@ -186,6 +189,7 @@ To use the **Measuring Tool**:
    three points to draw the angle. The second point you click on will serve as the
    angle’s vertex.
 
+
 ## Adding Text Annotations to the Map View
 
 You can add a text annotation anywhere in the **Map View** using the text
@@ -201,6 +205,7 @@ To use the **Text Annotation Tool**:
 4. When you are done, click **Apply** and then **Ok** to close the window.
 5. To delete an annotation, double click on it to open the dialog window, then
    click **Delete**.
+
 
 ## Editing Layer Symbology
 
@@ -218,6 +223,7 @@ To modify a layer’s symbology:
       a raster layer can be changed in the **Transparency** tab of the **Layer Properties**
       dialog window.
 
+
 ## Processing Toolbox
 
 The **Processing Toolbox** is what makes the QGIS platform a powerful spatial data analysis tool.
@@ -233,6 +239,7 @@ For more in-depth information about the Processing Toolbox see the
 [QGIS User Manual](https://docs.qgis.org/3.28/en/docs/user_manual/processing/toolbox.html)
 
 Examples of using the **Processing Toolbox** with QGreenland data are given below.
+
 
 ### Example 1: Selecting from Vector Layers for Specific Features
 
@@ -259,6 +266,7 @@ If you want to create an entirely new layer based on this feature selection (Pop
 you can do so by either 1) right-clicking on the layer you have just selected from and
 choosing **Export -> Save selected features as...**, or by 2) selecting **Extract by attribute**
 under **Vector selection** in the **Processing Toolbox**.
+
 
 ### Example 2: Vector Layer Statistics
 
@@ -287,11 +295,15 @@ name: vector_layer_stats
 Results of Example 2: Vector Layer Statistics
 ```
 
+
 ### Example 3: Simple Raster Analysis
+
+What is a good estimate of the Greenland ice sheet’s volume?
 
 See the [Calculate the volume of the Greenland ice
 sheet](#calculate-colume-greenland-ice-sheet-tutorial) tutorial for an example
 of how to utilize the **Raster Surface Volume** tool.
+
 
 ### Example 4: Using the Raster Calculator
 

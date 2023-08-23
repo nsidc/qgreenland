@@ -104,25 +104,20 @@ wish to turn on so that they are displayed. You can also go to
 
 Double-check that there is not another layer overlaying and thus obscuring the
 layer you want to see in the **Map View**. Remember that layer are displayed in the
-**Map View** in the same order that they are listed in the **Layers Panel - layers**
+**Map View** in the same order that they are listed in the **Layers Panel** - layers
 listed at the top of the **Layers Panel** show up on top on the **Map View**. You can
 either turn off any layer that might be obscuring the layer you wish to see by
 unchecking it in the **Layers Panel**, or re-arrange the order of layers by
 clicking and dragging them up or down in the **Layers Panel**.
 
 Some QGreenland data layers are only visible at a specific map scale (see
-_QGreenland User Guide section 4.3.1: Scale-dependent rendering_ for more
-information). Try zooming in.
+_QGreenland User Guide section 4.3.1: [Scale-dependent
+rendering](#scale-dependent-rendering)_ for more information). Try zooming in.
 
 
 ### When I open QGreenland, I get the warning `Font "Helvetica" not available on system`
 
-This warning indicates that a layer's style requires a font you do not have. This should
-not affect your use of QGreenland, as another font will be automatically substituted.
-
-This warning is resolved in QGreenland v3. If you still experience this warning in
-QGreenland v3, you need to update QGIS to the minimum supported version 3.28, which is
-capable of downloading the needed fonts.
+Please upgrade to QGreenland v3 and a supported version of QGIS (>=3.28).
 
 For more context, see the [GitHub
 issue](https://github.com/nsidc/qgreenland/issues/515).
@@ -158,6 +153,8 @@ has determined can be ignored:
 
 ## I am having other problems. How do I contact the QGreenland team?
 
-If you have feedback on or questions about the QGreenland data package, or want
-to contribute datasets to future QGreenland releases, please contact us at
+If you have feedback or questions about the QGreenland data package, or want to
+contribute datasets to future QGreenland releases, please participate in our [GitHub
+Discussions](https://github.com/nsidc/qgreenland/discussions/) space. If you're
+uncomfortable with or otherwise can not participate there, please contact us directly at
 <qgreenland.info@gmail.com>. 
