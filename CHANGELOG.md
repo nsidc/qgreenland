@@ -1,32 +1,136 @@
 # NEXT_VERSION
 
-* Merge "Places/Towns" and "Places/Settlements" layers into one "Populated
-  places" layer. Scale point markers for this layer by population.
-* Add new "Internet-required data/Geological Map (1:500 000)" layer from GEUS.
-* Add new "Geology/Mineral occurrences" layer from GEUS.
-* Update `layer_list.csv` to include new column indicating if each layer is
+- Resolve `Font "Helvetica" font not available on system` warnings
+- Update `layer_list.csv` to include new column indicating if each layer is
   stored on disk. Internet-required layers take the value `False`.
-* Add new "Glaciology/Ice sheet velocity" layers:
+- Establish a more explicit/readable pattern for defining the order of QGreenland's
+  layers and groups in the Layers Panel
+- Configure gradient style legends, add new style validations for gradient legends
+- Fix palletted styles
+- Publish versioned Docker images to DockerHub and GHCR for improved reproducibility
+
+
+## :warning: Breaking changes
+
+- Minimum supported version of QGIS is now `v3.28`.
+- QGreenland Custom is no longer supported.
+
+
+## Documentation
+
+- Restructured documentation for improved readability
+- Added documentation of QGreenland future plans under next NSF grant
+- Improved recommended citations for QGreenland
+
+
+## Layers
+
+### New
+
+- Add new "Places" layers: "Towns" and "Settlements". These layers replace the
+  previously removed "Towns and settlements" layer.
+- Merge "Places/Towns" and "Places/Settlements" layers into one "Populated
+  places" layer. Scale point markers for this layer by population.
+    * TODO: Combine the above two
+- Add new "Internet-required data/Geological Map (1:500 000)" layer from GEUS.
+- Add new "Geology/Mineral occurrences" layer from GEUS.
+- Add new "Glaciology/Ice sheet velocity" layers:
   * "GrIMP/Annual ice sheet velocity vectors 2021"
   * "GrIMP/Annual ice sheet velocity magnitude 2021 (200m)"
   * "GrIMP/Annual ice sheet velocity x component 2021 (200m)"
   * "GrIMP/Annual ice sheet velocity y component 2021 (200m)"
+- Add "Geology/Tectonic plates" polygon layer. This layer accompanies the
+  existing "Geology/Tectonic plate boundaries" polyline layer from the same
+  dataset.
+- Add new WMS layers from the Danish Agency for Data Supply and Infrastructure
+  (SDFI):
+  - "Internet-required data/Topographic map of Greenland"
+  - "Internet-required data/Satellite orthophoto mosaic (10-0.2m)"
+- Add new "Internet-required data/Blue Marble shaded relief and Bathymetry
+  (500m)" WMS layer from NASA Global Imagery Browse Services (GIBS)
+- Add new "Places/" layers from Asiaq/NunaGIS:
+  - Buildings
+  - Roads
+- Add new "Biology/Vegetation/Vegetation classification map (1km)" layer from
+  the Raster Circumpolar Arctic Vegetation Map produced by Raynolds et al.,
+  2019.
+
+
+### Updated
+
+- Remove "Biology/Fish/Arctic Char" layer.
+- Fix descriptions of "Hydrology" outlets and basins layers.
+- Rename "Places/Place names database" -> "Places/Points of interest". Towns and
+  settlements are now excluded from this layer (in favor of the more-up-to-date
+  "Towns" and "Settlements" layers.
+- Update the BedMachine dataset ("Terrain models/BedMachine") to v5, which was
+  released in September 2022.
+- Update the geothermal heat flow dataset ("Geophysics/Heat flow (Colgan et
+  al.)" layers) to v2.
+- Update "Sea ice/Weekly age (12.5km)" layers (2010-2020 -> 2011-2021)
+- Update "Sea ice/Monthly mean concentration (25km)" layers (2010-2021 -> 2011-2022)
+- Update the "Oceanography/Seawater temperature 2018 (25km)" layers:
+    - Use the World Ocean Atlas 2023 Temperature data. These new layers are
+      climatological averages between 1991-2020. Previous input data (WOA 2018)
+      was an average for the years 1955-2017.
+    - Update layer group name to remove "2018" ("Oceanography/Seawater Temperature
+      2018 (25km)" -> "Oceanography/Seawater Temperature (25km))"
+    - Improve layer descriptions
+    - Expand layer extent to QGreenland 'background' boundary.
+- Update the "Glaciology/Surface elevation change" layers to the latest version
+  (v3) of the Climate Change Initiative (CCI) Surface Elevation Change dataset
+  from the European Space Agency (ESA). This extends the timeseries to include a
+  surface elevation change layer for 2016-2020.
+- Rename "Geophysics/World Magnetic Model/Dip poles" layer group ->
+  "Geophysics/World Magnetic Model/Geomagnetic north pole"
+- Rename "Sea ice/Median extent" layer group -> "Sea ice/Median extent
+  (1981-2010)"
+- Update "Oceanography/Bathymetry/Depth (400m)" layer to use the General
+  Bathymetric Chart of the Oceans (GEBCO) Grid 2023, replacing the Bathymetric
+  Chart of the Arctic Ocean (IBCAO) dataset. The GEBCO grid includes the IBCAO
+  grid. This update includes the most recent data and expands the spatial extent
+  of this layer to the QGreenland background boundary to make it consistent with
+  other ocenaography layers.
+- Replace "Human Activity/Research sites/" layers related to PROMICE and GC-Net
+  ("PROMICE automated weather stations", "Former PROMICE automated weather
+  stations", "GC-Net automated weather stations") with one layer ("PROMICE and
+  GC-Net automated weather stations") from a more up-to-date dataset provided by
+  GEUS.
+- Fix title of BedMachine "ice thickness error" layer (remove `/`)
+
+
+### Removed
+
+- Remove Humanitarian Open Street Map (HOTOSM) layers ("Places/Community map
+  (crowd-sourced)"). These layers had innaccuracies and missing locations that
+  we received feedback on. These layers were not considered usable.
+- Remove outdated "Terrain Models/Topographic map (1 to 500,000)" layer from the
+  Danish Agency for Data Supply and Infrastructure (SDFI). Replaced by above
+  mentioned "Internet-required data/Topographic map of Greenland" WMS layer.
+- Remove "Oceanography/Bathymetry/Depth contours" layer. This layer was pulled
+  from the "Geological map of the Arctic / Carte gologique de l'Arctique"
+  (Harrison et al., 2011) dataset and was provided with the geological data for
+  additional context. It was derived from the (IBCAO) grid. Comparing this with
+  the current IBCAO and GEBCO grids, these contours seem outdated. They also
+  only cover a portion of QGreenland's background extent. Users can produce
+  their own custom contour layer from the included "Oceanography/Bathymetry/Depth
+  (400m)" layer using the Processing Toolbox (GDAL -> Raster extraction -> Contour).
 
 
 # v3.0.0alpha4 (2023-07-21)
 
-* QGreenland Custom is no longer supported.
-* Remove "Biology/Fish/Arctic Char" layer.
-* Add "Geology/Tectonic plates" polygon layer. This layer accompanies the
+- QGreenland Custom is no longer supported.
+- Remove "Biology/Fish/Arctic Char" layer.
+- Add "Geology/Tectonic plates" polygon layer. This layer accompanies the
   existing "Geology/Tectonic plate boundaries" polyline layer from the same
   dataset.
-* Fix descriptions of "Hydrology" outlets and basins layers.
-* Add new "Places" layers: "Towns" and "Settlements". These layers replace the
+- Fix descriptions of "Hydrology" outlets and basins layers.
+- Add new "Places" layers: "Towns" and "Settlements". These layers replace the
   previously removed "Towns and settlements" layer.
-* Rename "Places/Place names database" -> "Places/Points of interest". Towns and
+- Rename "Places/Place names database" -> "Places/Points of interest". Towns and
   settlements are now excluded from this layer (in favor of the more-up-to-date
   "Towns" and "Settlements" layers.
-* Establish a more explicit/readable pattern for defining the order of QGreenland's
+- Establish a more explicit/readable pattern for defining the order of QGreenland's
   layers and groups in the Layers Panel
 
 
