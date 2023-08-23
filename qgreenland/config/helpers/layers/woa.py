@@ -20,14 +20,8 @@ def id_str(*, depth: int, season: str, variable: str) -> str:
     return f"woa_{depth}m_{variable}_{season}"
 
 
-TEMPERATURE_SEASONS_FNS: dict[str, str] = {
-    "winter": "woa23_decav91C0_t13_04.nc",
-    "summer": "woa23_decav91C0_t15_04.nc",
-}
-SALINITY_SEASONS_FNS: dict[str, str] = {
-    "winter": "woa23_decav91C0_s13_04.nc",
-    "summer": "woa23_decav91C0_s15_04.nc",
-}
+SEASONS = ("winter", "summer")
+
 # Looks like these are the same for salinity.
 DEPTHS_BANDS: dict[int, int] = {
     0: 1,
@@ -37,13 +31,11 @@ DEPTHS_BANDS: dict[int, int] = {
 }
 
 # Sort by season first, then by depth
-TEMPERATURE_COMBINATIONS = list(
-    product(TEMPERATURE_SEASONS_FNS.keys(), DEPTHS_BANDS.keys())
-)
+TEMPERATURE_COMBINATIONS = list(product(SEASONS, DEPTHS_BANDS.keys()))
 TEMPERATURE_COMBINATIONS.sort(key=lambda x: x[0], reverse=True)
 TEMPERATURE_COMBINATIONS.sort(key=lambda x: x[1])
 
-SALINITY_COMBINATIONS = list(product(SALINITY_SEASONS_FNS.keys(), DEPTHS_BANDS.keys()))
+SALINITY_COMBINATIONS = list(product(SEASONS, DEPTHS_BANDS.keys()))
 SALINITY_COMBINATIONS.sort(key=lambda x: x[0], reverse=True)
 SALINITY_COMBINATIONS.sort(key=lambda x: x[1])
 
@@ -58,12 +50,11 @@ WOA_SALINITY_LAYER_ORDER = [
 
 
 def get_fn(*, season, variable):
-    if variable == "temperature":
-        return TEMPERATURE_SEASONS_FNS[season]
-    elif variable == "salinity":
-        return SALINITY_SEASONS_FNS[season]
-    else:
-        raise RuntimeError(f"{variable} not recognized as a valid WOA variable.")
+    season_num = {
+        "winter": 13,
+        "summer": 15,
+    }
+    return f"woa23_decav91C0_{variable[0]}{season_num[season]}_04.nc"
 
 
 def make_layer(*, dataset, depth, season, variable, units) -> Layer:
