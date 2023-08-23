@@ -2029,6 +2029,33 @@
         "title": "World Digital Magnetic Anomaly Map"
       }
     },
+    "woa_salinity": {
+      "assets": {
+        "seasonal_summer": {
+          "id": "seasonal_summer",
+          "urls": [
+            "https://www.ncei.noaa.gov/thredds-ocean/fileServer/woa23/DATA/salinity/netcdf/decav91C0/0.25/woa23_decav91C0_s15_04.nc"
+          ],
+          "verify_tls": true
+        },
+        "seasonal_winter": {
+          "id": "seasonal_winter",
+          "urls": [
+            "https://www.ncei.noaa.gov/thredds-ocean/fileServer/woa23/DATA/salinity/netcdf/decav91C0/0.25/woa23_decav91C0_s13_04.nc"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "woa_salinity",
+      "metadata": {
+        "abstract": "The World Ocean Atlas (WOA) is a collection of objectively\nanalyzed, quality controlled temperature, salinity, oxygen,\nphosphate, silicate, and nitrate means based on profile data from\nthe World Ocean Database (WOD). It can be used to create boundary\nand/or initial conditions for a variety of ocean models, verify\nnumerical simulations of the ocean, and corroborate satellite\ndata.",
+        "citation": {
+          "text": "Reagan, J. R., D. Dukhovskoy, D. Seidov, T. P. Boyer,\nR. A. Locarnini, O. K. Baranova, A. V. Mishonov, H. E. Garcia,\nC. Bouchard, S. Cross, C. R. Paver, and Z. Wang (2023). World\nOcean Atlas 2023, Volume 2: Salinity. A. Mishonov Technical\nEd. NOAA Atlas NESDIS (in preparation).",
+          "url": "https://www.ncei.noaa.gov/products/world-ocean-atlas"
+        },
+        "title": "World Ocean Atlas 2023, Volume 2: Salinity"
+      }
+    },
     "woa_temperature": {
       "assets": {
         "seasonal_summer": {
@@ -24864,7 +24891,7 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Average Seawater temperature at surface depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "description": "Average seawater temperature at surface depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
                   "id": "woa_0m_temperature_winter",
                   "in_package": true,
                   "input": {
@@ -24960,7 +24987,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Average Seawater temperature at surface depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "description": "Average seawater temperature at surface depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
                   "id": "woa_0m_temperature_summer",
                   "in_package": true,
                   "input": {
@@ -25056,7 +25083,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Average Seawater temperature at 50m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "description": "Average seawater temperature at 50m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
                   "id": "woa_50m_temperature_winter",
                   "in_package": true,
                   "input": {
@@ -25152,7 +25179,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Average Seawater temperature at 50m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "description": "Average seawater temperature at 50m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
                   "id": "woa_50m_temperature_summer",
                   "in_package": true,
                   "input": {
@@ -25248,7 +25275,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Average Seawater temperature at 200m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "description": "Average seawater temperature at 200m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
                   "id": "woa_200m_temperature_winter",
                   "in_package": true,
                   "input": {
@@ -25344,7 +25371,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Average Seawater temperature at 200m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "description": "Average seawater temperature at 200m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
                   "id": "woa_200m_temperature_summer",
                   "in_package": true,
                   "input": {
@@ -25440,7 +25467,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Average Seawater temperature at 500m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "description": "Average seawater temperature at 500m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
                   "id": "woa_500m_temperature_winter",
                   "in_package": true,
                   "input": {
@@ -25536,7 +25563,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Average Seawater temperature at 500m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "description": "Average seawater temperature at 500m depth\nin \u00b0C for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
                   "id": "woa_500m_temperature_summer",
                   "in_package": true,
                   "input": {
@@ -25651,6 +25678,793 @@
             "children": [
               {
                 "layer_cfg": {
+                  "description": "Average seawater salinity at surface depth\nin practical salinity scale (PSS) for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_0m_salinity_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa_salinity"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "1",
+                        "NETCDF:{input_dir}/woa23_decav91C0_s13_04.nc:s_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-5774572.727594967",
+                        "-5774572.727594967",
+                        "5774572.727594967",
+                        "5774572.727594967",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_salinity",
+                  "tags": [],
+                  "title": "Surface, Winter"
+                },
+                "name": "woa_0m_salinity_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Average seawater salinity at surface depth\nin practical salinity scale (PSS) for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_0m_salinity_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa_salinity"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "1",
+                        "NETCDF:{input_dir}/woa23_decav91C0_s15_04.nc:s_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-5774572.727594967",
+                        "-5774572.727594967",
+                        "5774572.727594967",
+                        "5774572.727594967",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_salinity",
+                  "tags": [],
+                  "title": "Surface, Summer"
+                },
+                "name": "woa_0m_salinity_summer"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Average seawater salinity at 50m depth\nin practical salinity scale (PSS) for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_50m_salinity_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa_salinity"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "11",
+                        "NETCDF:{input_dir}/woa23_decav91C0_s13_04.nc:s_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-5774572.727594967",
+                        "-5774572.727594967",
+                        "5774572.727594967",
+                        "5774572.727594967",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_salinity",
+                  "tags": [],
+                  "title": "50m, Winter"
+                },
+                "name": "woa_50m_salinity_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Average seawater salinity at 50m depth\nin practical salinity scale (PSS) for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_50m_salinity_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa_salinity"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "11",
+                        "NETCDF:{input_dir}/woa23_decav91C0_s15_04.nc:s_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-5774572.727594967",
+                        "-5774572.727594967",
+                        "5774572.727594967",
+                        "5774572.727594967",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_salinity",
+                  "tags": [],
+                  "title": "50m, Summer"
+                },
+                "name": "woa_50m_salinity_summer"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Average seawater salinity at 200m depth\nin practical salinity scale (PSS) for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_200m_salinity_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa_salinity"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "25",
+                        "NETCDF:{input_dir}/woa23_decav91C0_s13_04.nc:s_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-5774572.727594967",
+                        "-5774572.727594967",
+                        "5774572.727594967",
+                        "5774572.727594967",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_salinity",
+                  "tags": [],
+                  "title": "200m, Winter"
+                },
+                "name": "woa_200m_salinity_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Average seawater salinity at 200m depth\nin practical salinity scale (PSS) for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_200m_salinity_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa_salinity"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "25",
+                        "NETCDF:{input_dir}/woa23_decav91C0_s15_04.nc:s_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-5774572.727594967",
+                        "-5774572.727594967",
+                        "5774572.727594967",
+                        "5774572.727594967",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_salinity",
+                  "tags": [],
+                  "title": "200m, Summer"
+                },
+                "name": "woa_200m_salinity_summer"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Average seawater salinity at 500m depth\nin practical salinity scale (PSS) for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_500m_salinity_winter",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_winter"
+                    },
+                    "dataset": {
+                      "id": "woa_salinity"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "37",
+                        "NETCDF:{input_dir}/woa23_decav91C0_s13_04.nc:s_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-5774572.727594967",
+                        "-5774572.727594967",
+                        "5774572.727594967",
+                        "5774572.727594967",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_salinity",
+                  "tags": [],
+                  "title": "500m, Winter"
+                },
+                "name": "woa_500m_salinity_winter"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Average seawater salinity at 500m depth\nin practical salinity scale (PSS) for the 1991 - 2020 climate normal period.\n\nClimate normals, defined as 30-year averages of data by the World\nMeteorological Organization (WMO), provide long-term means for\ninitializing models, environmental studies, checking in situ\nobservations, etc.\n\nComparing new observations to the most recent climate normal allows\none to assess whether or not current observations are within the\nstatistical norm in the context of the most recent 30-year\nclimatological background. Additional applications, such as\ninitializing boundary conditions for climate models or assessing\nremotely sensed observations, also require a more recent\nclimatology.",
+                  "id": "woa_500m_salinity_summer",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "seasonal_summer"
+                    },
+                    "dataset": {
+                      "id": "woa_salinity"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-b",
+                        "37",
+                        "NETCDF:{input_dir}/woa23_decav91C0_s15_04.nc:s_an",
+                        "{output_dir}/extracted.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-r",
+                        "bilinear",
+                        "-tr",
+                        "25000",
+                        "25000",
+                        "-te",
+                        "-5774572.727594967",
+                        "-5774572.727594967",
+                        "5774572.727594967",
+                        "5774572.727594967",
+                        "{input_dir}/extracted.tif",
+                        "{output_dir}/warped.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-cutline",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-crop_to_cutline",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/warped.tif",
+                        "{output_dir}/warped_and_cut.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "gdal_translate",
+                        "-co",
+                        "TILED=YES",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "-co",
+                        "PREDICTOR=3",
+                        "{input_dir}/warped_and_cut.tif",
+                        "{output_dir}/compressed.tif"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "cp",
+                        "{input_dir}/compressed.tif",
+                        "{output_dir}/final.tif",
+                        "&&",
+                        "gdaladdo",
+                        "-r",
+                        "average",
+                        "{output_dir}/final.tif",
+                        "2",
+                        "4",
+                        "8",
+                        "16"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seawater_salinity",
+                  "tags": [],
+                  "title": "500m, Summer"
+                },
+                "name": "woa_500m_salinity_summer"
+              }
+            ],
+            "name": "Seawater salinity (25km)",
+            "settings": {
+              "expand": false,
+              "order": [
+                ":woa_0m_salinity_winter",
+                ":woa_0m_salinity_summer",
+                ":woa_50m_salinity_winter",
+                ":woa_50m_salinity_summer",
+                ":woa_200m_salinity_winter",
+                ":woa_200m_salinity_summer",
+                ":woa_500m_salinity_winter",
+                ":woa_500m_salinity_summer"
+              ],
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
                   "description": "Bathymetric elevation in meters.\n\nElevations can be assumed to be relative to mean sea level. However, in\nsome shallow water areas, the grids include data from sources having a\nvertical datum other than mean sea level. We are working to understand\nhow best to fully assimilate these data.",
                   "id": "gebco_bathymetric_raster",
                   "in_package": true,
@@ -25757,6 +26571,7 @@
           "order": [
             "Undersea feature names",
             "Seawater temperature (25km)",
+            "Seawater salinity (25km)",
             "Bathymetry"
           ],
           "show": false
