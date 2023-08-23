@@ -3,8 +3,6 @@
 - Resolve `Font "Helvetica" font not available on system` warnings
 - Update `layer_list.csv` to include new column indicating if each layer is
   stored on disk. Internet-required layers take the value `False`.
-- Establish a more explicit/readable pattern for defining the order of QGreenland's
-  layers and groups in the Layers Panel
 - Configure gradient style legends, add new style validations for gradient legends
 - Fix palletted styles
 - Publish versioned Docker images to DockerHub and GHCR for improved reproducibility
@@ -58,9 +56,10 @@
 - Fix descriptions of "Hydrology" outlets and basins layers.
 - Rename "Places/Place names database" -> "Places/Points of interest". Towns and
   settlements are now excluded from this layer (in favor of the more-up-to-date
-  "Towns" and "Settlements" layers.
-- Update the BedMachine dataset ("Terrain models/BedMachine") to v5, which was
+  "Populated places" layer.
+- Update the BedMachine dataset ("Terrain models/BedMachine v5") to v5, which was
   released in September 2022.
+- Fix title of BedMachine "ice thickness error" layer (remove `/`)
 - Update the geothermal heat flow dataset ("Geophysics/Heat flow (Colgan et
   al.)" layers) to v2.
 - Update "Sea ice/Weekly age (12.5km)" layers (2010-2020 -> 2011-2021)
@@ -92,7 +91,6 @@
   stations", "GC-Net automated weather stations") with one layer ("PROMICE and
   GC-Net automated weather stations") from a more up-to-date dataset provided by
   GEUS.
-- Fix title of BedMachine "ice thickness error" layer (remove `/`)
 - Improve symbology for "Regional climate models/RACMO model output/Annual mean
   wind vectors 1958-2019 (5km)" by removing color mapping to magnitude
   values. This was causing conflicts with other layers' color maps.
