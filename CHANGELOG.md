@@ -59,7 +59,7 @@
 - Rename "Places/Place names database" -> "Places/Points of interest". Towns and
   settlements are now excluded from this layer (in favor of the more-up-to-date
   "Populated places" layer.
-- Update the BedMachine dataset ("Terrain models/BedMachine") to v5, which was
+- Update the BedMachine dataset ("Terrain models/BedMachine v5") to v5, which was
   released in September 2022.
 - Update the geothermal heat flow dataset ("Geophysics/Heat flow (Colgan et
   al.)" layers) to v2.
