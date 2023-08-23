@@ -326,7 +326,7 @@ There is a different
 1. In the **Processing Toolbox**, go to **Raster analysis -> Raster calculator**.
 2. In the window that appears, you are going to build a mathematical expression
    using the layers and operators in the **Expression Box**:
-   a) In the **Layers** box, scroll down and double click on the March2021@1 layer (this
+   a) In the **Layers** box, scroll down and double click on the `March2021@1` layer (this
        is the layer for the NSIDC’s sea ice concentration data from March 2021). You
        should see it show up in the **Expression Box** in quotations (“ “).
    b) Either type in the minus (-) symbol or click on it under **Operators**. It should show
