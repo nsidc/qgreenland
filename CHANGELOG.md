@@ -31,26 +31,26 @@
   previously removed "Towns and settlements" layer.
 - Merge "Places/Towns" and "Places/Settlements" layers into one "Populated
   places" layer. Scale point markers for this layer by population.
-    * TODO: Combine the above two
+    - TODO: Combine the above two
 - Add new "Internet-required data/Geological Map (1:500 000)" layer from GEUS.
 - Add new "Geology/Mineral occurrences" layer from GEUS.
 - Add new "Glaciology/Ice sheet velocity" layers:
-  * "GrIMP/Annual ice sheet velocity vectors 2021"
-  * "GrIMP/Annual ice sheet velocity magnitude 2021 (200m)"
-  * "GrIMP/Annual ice sheet velocity x component 2021 (200m)"
-  * "GrIMP/Annual ice sheet velocity y component 2021 (200m)"
+    - "GrIMP/Annual ice sheet velocity vectors 2021"
+    - "GrIMP/Annual ice sheet velocity magnitude 2021 (200m)"
+    - "GrIMP/Annual ice sheet velocity x component 2021 (200m)"
+    - "GrIMP/Annual ice sheet velocity y component 2021 (200m)"
 - Add "Geology/Tectonic plates" polygon layer. This layer accompanies the
   existing "Geology/Tectonic plate boundaries" polyline layer from the same
   dataset.
 - Add new WMS layers from the Danish Agency for Data Supply and Infrastructure
   (SDFI):
-  - "Internet-required data/Topographic map of Greenland"
-  - "Internet-required data/Satellite orthophoto mosaic (10-0.2m)"
+    - "Internet-required data/Topographic map of Greenland"
+    - "Internet-required data/Satellite orthophoto mosaic (10-0.2m)"
 - Add new "Internet-required data/Blue Marble shaded relief and Bathymetry
   (500m)" WMS layer from NASA Global Imagery Browse Services (GIBS)
 - Add new "Places/" layers from Asiaq/NunaGIS:
-  - Buildings
-  - Roads
+    - Buildings
+    - Roads
 - Add new "Biology/Vegetation/Vegetation classification map (1km)" layer from
   the Raster Circumpolar Arctic Vegetation Map produced by Raynolds et al.,
   2019.
@@ -58,7 +58,6 @@
 
 ### Updated
 
-- Remove "Biology/Fish/Arctic Char" layer.
 - Fix descriptions of "Hydrology" outlets and basins layers.
 - Rename "Places/Place names database" -> "Places/Points of interest". Towns and
   settlements are now excluded from this layer (in favor of the more-up-to-date
@@ -97,10 +96,14 @@
   GC-Net automated weather stations") from a more up-to-date dataset provided by
   GEUS.
 - Fix title of BedMachine "ice thickness error" layer (remove `/`)
+- Improve symbology for "Regional climate models/RACMO model output/Annual mean
+  wind vectors 1958-2019 (5km)" by removing color mapping to magnitude
+  values. This was causing conflicts with other layers' color maps.
 
 
 ### Removed
 
+- Remove "Biology/Fish/Arctic Char" layer.
 - Remove Humanitarian Open Street Map (HOTOSM) layers ("Places/Community map
   (crowd-sourced)"). These layers had innaccuracies and missing locations that
   we received feedback on. These layers were not considered usable.
