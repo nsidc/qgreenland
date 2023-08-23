@@ -1,7 +1,12 @@
-from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdentifier
+from qgreenland.models.config.layer_group import (
+    LayerGroupIdentifier,
+    LayerGroupSettings,
+    LayerIdentifier,
+)
 
 settings = LayerGroupSettings(
     order=[
+        LayerGroupIdentifier("Internet required"),
         LayerIdentifier("land"),
         LayerIdentifier("ocean"),
         LayerIdentifier("background"),
