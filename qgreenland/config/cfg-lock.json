@@ -12994,6 +12994,39 @@
       {
         "children": [
           {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Map showing geological features of Greenland.\n\nPlease download the legend for information on interpretation\nof this layer:\nhttps://maps.greenmin.gl/geusmapmore/greenlandportal/G500_2023_LEGEND.pdf .",
+                  "id": "geus_geological_map",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "geus_geological_map"
+                    }
+                  },
+                  "show": false,
+                  "steps": null,
+                  "style": null,
+                  "tags": [
+                    "online"
+                  ],
+                  "title": "Geological Map (1:500 000)"
+                },
+                "name": "geus_geological_map"
+              }
+            ],
+            "name": "Internet required",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
             "layer_cfg": {
               "description": "Location and magnitude of earthquakes.",
               "id": "earthquakes",
@@ -13388,6 +13421,7 @@
         "settings": {
           "expand": false,
           "order": [
+            "Internet required",
             ":earthquakes",
             ":tectonic_plate_boundaries",
             ":tectonic_plate_polygons",
@@ -26532,70 +26566,55 @@
               "title": "Topographic map of Greenland"
             },
             "name": "sdfi_topo_map"
-          },
-          {
-            "layer_cfg": {
-              "description": "Map showing geological features of Greenland.\n\nPlease download the legend for information on interpretation\nof this layer:\nhttps://maps.greenmin.gl/geusmapmore/greenlandportal/G500_2023_LEGEND.pdf .",
-              "id": "geus_geological_map",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "geus_geological_map"
-                }
-              },
-              "show": false,
-              "steps": null,
-              "style": null,
-              "tags": [
-                "online"
-              ],
-              "title": "Geological Map (1:500 000)"
-            },
-            "name": "geus_geological_map"
-          },
-          {
-            "layer_cfg": {
-              "description": "Blue Marble (August 2004, Shaded Relief and Bathymetry).\n\nThe MODIS Blue Marble, Next Generation layer with Shaded Relief and\nBathymetry is a cloud free, true color composite of MODIS imagery from\nAugust 2004 including shaded relief and bathymetry in the water bodies.\n\nThe MODIS Blue Marble, Next Generation is a static product created with data\nfrom 2004 from the MODIS instrument on board the Terra satellite. The image\nresolution is 500 m. It can be viewed in Worldview/Global Imagery Browse\nServices (GIBS). Images for January \u2013 December 2004 can be downloaded from\nNASA\u2019s Visible Earth.\n\nReferences: NASA Earth Observatory - Blue Marble\n[https://earthobservatory.nasa.gov/features/BlueMarble]; NASA Earth\nObservations - Blue Marble\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB]; NASA\nEarth Observations - Blue Marble: Next Generation+Topography and\nBathymetry\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB].",
-              "id": "blue_marble_shaded_relief_bathymetry",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "only"
-                },
-                "dataset": {
-                  "id": "gibs"
-                }
-              },
-              "show": false,
-              "steps": null,
-              "style": null,
-              "tags": [
-                "online"
-              ],
-              "title": "Blue Marble shaded relief and Bathymetry (500m)"
-            },
-            "name": "blue_marble_shaded_relief_bathymetry"
           }
         ],
-        "name": "Internet-required data",
+        "name": "Satellite imagery (Internet required)",
         "settings": {
           "expand": false,
           "order": [
             ":image_mosaic_2019",
             ":image_mosaic_2015",
             ":sdfi_satellite_orthophotos",
-            ":sdfi_topo_map",
-            ":geus_geological_map",
-            ":blue_marble_shaded_relief_bathymetry"
+            ":sdfi_topo_map"
           ],
           "show": false
         }
       },
       {
         "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Blue Marble (August 2004, Shaded Relief and Bathymetry).\n\nThe MODIS Blue Marble, Next Generation layer with Shaded Relief and\nBathymetry is a cloud free, true color composite of MODIS imagery from\nAugust 2004 including shaded relief and bathymetry in the water bodies.\n\nThe MODIS Blue Marble, Next Generation is a static product created with data\nfrom 2004 from the MODIS instrument on board the Terra satellite. The image\nresolution is 500 m. It can be viewed in Worldview/Global Imagery Browse\nServices (GIBS). Images for January \u2013 December 2004 can be downloaded from\nNASA\u2019s Visible Earth.\n\nReferences: NASA Earth Observatory - Blue Marble\n[https://earthobservatory.nasa.gov/features/BlueMarble]; NASA Earth\nObservations - Blue Marble\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB]; NASA\nEarth Observations - Blue Marble: Next Generation+Topography and\nBathymetry\n[https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB].",
+                  "id": "blue_marble_shaded_relief_bathymetry",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "only"
+                    },
+                    "dataset": {
+                      "id": "gibs"
+                    }
+                  },
+                  "show": false,
+                  "steps": null,
+                  "style": null,
+                  "tags": [
+                    "online"
+                  ],
+                  "title": "Blue Marble shaded relief and Bathymetry (500m)"
+                },
+                "name": "blue_marble_shaded_relief_bathymetry"
+              }
+            ],
+            "name": "Internet required",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
           {
             "layer_cfg": {
               "description": "Polygons representing the land.",
@@ -26866,6 +26885,7 @@
         "settings": {
           "expand": true,
           "order": [
+            "Internet required",
             ":land",
             ":ocean",
             ":background"
@@ -26892,7 +26912,7 @@
         "Oceanography",
         "Future projections",
         "Terrain models",
-        "Internet-required data",
+        "Satellite imagery (Internet required)",
         "Basemaps"
       ]
     }
