@@ -1,5 +1,21 @@
 # Dataset Compatibility Guide
 
+```{attention}
+QGreenland v3 marks the final release under the original QGreenland NSF award. Future
+releases of QGreenland will be funded by a new NSF award, and we will be transitioning
+to new methods of transforming and accessing source data when building the QGreenland
+QGIS project.
+
+The current guidelines on this page are therefore obsolete. We will update them when we
+have more concrete advice. For now, we advise anyone who wants to add data to QGreenland
+to strive to make their data [FAIR](https://www.go-fair.org/fair-principles/) and to
+publish it to [DataONE](https://www.dataone.org/)!
+
+Read our page on [what's next for
+QGreenland](/user/discussion/what-is-next-qgreenland.md) to learn more about our future
+and how to keep up-to-date!
+```
+
 While QGreenland provides a curated base package of data on a variety of topics,
 the options for adding additional data are nearly unlimited. We offer different
 guidelines for data compatibility depending on what your goals are:

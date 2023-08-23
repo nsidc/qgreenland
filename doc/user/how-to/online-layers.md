@@ -24,8 +24,8 @@ from QGIS:
 
 ## Add a WMS Layer
 
-First, open the “Data Source Manager” from the top **Menu Bar** **(Layer >Data Source
-Manager)** and select the “WMS/WMTS” option.
+First, open the “Data Source Manager” from the top **Menu Bar** (**Layer -> Data Source
+Manager**) and select the “WMS/WMTS” option.
 
 ![wms_data_management_screen](/_images/wms_data_management_screen.jpg)
 
@@ -79,5 +79,6 @@ layer name in the **Layers Panel**.
 ![timeseries_layer_clock_icon](/_images/timeseries_layer_clock_icon.png)
 
 **Temporal Layers** can be interacted with using the **Temporal Controller** panel. See the
-[QGIS documentation](https://docs.qgis.org/3.28/en/docs/user_manual/map_views/map_view.html#maptimecontrol) for more information about time-based control of the map canvas.
+[QGIS documentation](https://docs.qgis.org/3.28/en/docs/user_manual/map_views/map_view.html#maptimecontrol)
+for more information about time-based control of the map canvas.
 ```
