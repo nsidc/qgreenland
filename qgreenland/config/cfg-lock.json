@@ -12110,7 +12110,7 @@
                             "-csv",
                             "-allbands",
                             "{input_dir}/downsampled.tif",
-                            "{output_dir}/data_with_header.csv",
+                            "{output_dir}/as_xyz.xyz",
                             "&&",
                             "echo \"x,y,vx,vy\" > {output_dir}/data_with_header.csv",
                             "&&",
