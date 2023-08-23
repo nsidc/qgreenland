@@ -152,11 +152,9 @@ grimp_vector_layer = Layer(
                 "-csv",
                 "-allbands",
                 "{input_dir}/downsampled.tif",
-                "{output_dir}/as_xyz.xyz",
+                "{output_dir}/data_with_header.csv",
                 "&&",
-                'echo "x,y,vx,vy" > {output_dir}/data_with_header.csv',
-                "&&",
-                "cat {output_dir}/as_xyz.xyz >> {output_dir}/data_with_header.csv",
+                "sed -i '1s/^/x,y,vx,vy\n/' {output_dir}/data_with_header.csv",
             ],
         ),
         # Finally, convert to gpkg.

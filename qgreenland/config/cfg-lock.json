@@ -828,7 +828,7 @@
       "metadata": {
         "abstract": "This data set, part of the NASA Making Earth System Data Records for Use in\nResearch Environments (MEaSUREs) program, contains annual ice velocity mosaics\nfor the Greenland Ice Sheet derived from Synthetic Aperture Radar (SAR) data\nobtained by the German Space Agency's TerraSAR-X/TanDEM-X (TSX/TDX) and the\nEuropean Space Agency's Copernicus Sentinel-1A and -1B satellites, and from the\nUS Geological Survey's Landsat 8 optical imagery for years 2015 to 2021. See\nGreenland Ice Mapping Project (GrIMP) website for related data:\nhttp://nsidc.org/data/measures/gimp.",
         "citation": {
-          "text": "Joughin, I. (2022). MEaSUREs Greenland Annual Ice Sheet Velocity Mosaics from\nSAR and Landsat, Version 4 [Data Set]. Boulder, Colorado USA. NASA National Snow\nand Ice Data Center Distributed Active Archive\nCenter. https://doi.org/10.5067/RS8GFZ848ZU9. Date Accessed {{date_accessed}}.",
+          "text": "Joughin, I. (2022). MEaSUREs Greenland Annual Ice Sheet Velocity Mosaics from\nSAR and Landsat, Version 4 [Data Set]. Boulder, Colorado USA. NASA National Snow\nand Ice Data Center Distributed Active Archive\nCenter. https://doi.org/10.5067/RS8GFZ848ZU9. {{date_accessed}}",
           "url": "https://doi.org/10.5067/RS8GFZ848ZU9"
         },
         "title": "MEaSUREs Greenland Annual Ice Sheet Velocity Mosaics from SAR and Landsat, Version 4"
@@ -12110,11 +12110,9 @@
                             "-csv",
                             "-allbands",
                             "{input_dir}/downsampled.tif",
-                            "{output_dir}/as_xyz.xyz",
+                            "{output_dir}/data_with_header.csv",
                             "&&",
-                            "echo \"x,y,vx,vy\" > {output_dir}/data_with_header.csv",
-                            "&&",
-                            "cat {output_dir}/as_xyz.xyz >> {output_dir}/data_with_header.csv"
+                            "sed -i '1s/^/x,y,vx,vy\n/' {output_dir}/data_with_header.csv"
                           ],
                           "type": "command"
                         },
@@ -12146,7 +12144,7 @@
                       ],
                       "style": "grimp_vectors",
                       "tags": [],
-                      "title": "Annual ice sheet velocity vectors 2021"
+                      "title": "Annual ice sheet velocity vectors 2021 (1.5km)"
                     },
                     "name": "grimp_annual_vectors_2021"
                   },
