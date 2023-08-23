@@ -153,6 +153,8 @@ has determined can be ignored:
 
 ## I am having other problems. How do I contact the QGreenland team?
 
-If you have feedback on or questions about the QGreenland data package, or want
-to contribute datasets to future QGreenland releases, please contact us at
+If you have feedback or questions about the QGreenland data package, or want to
+contribute datasets to future QGreenland releases, please participate in our [GitHub
+Discussions](https://github.com/nsidc/qgreenland/discussions/) space. If you're
+uncomfortable with or otherwise can not participate there, please contact us directly at
 <qgreenland.info@gmail.com>. 
