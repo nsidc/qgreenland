@@ -593,7 +593,7 @@
       },
       "id": "geothermal_heat_flow",
       "metadata": {
-        "abstract": "Database of all geothermal heat flow measurements within 500 km\nof Greenland's coastline with self-consistent machine-learning\ngeothermal heat flow map over all onshore and offshore areas.\n\nRelated publication:\n\nColgan, W., A. Wansing, K. Mankoff, M. L\u00f6sing, J. Hopper, K. Louden,\nJ. Ebbing, F. Christiansen, T. Ingeman-Nielsen, L. Claesson\nLiljedahl, J. MacGregor, \u00c1. Hjartarson, S. Bernstein, N. Karlsson,\nS. Fuchs, J. Hartikainen, J. Liakka, R. Fausto, D. Dahl-Jensen,\nA. Bj\u00f8rk, J.-O. Naslund, F. M\u00f8rk, Y. Martos, N. Balling, T. Funck,\nK. Kjeldsen, D. Petersen, U. Gregersen, G. Dam, T. Nielsen, S. Khan\nand A. L\u00f8kkegaard. Greenland Geothermal Heat Flow Database and Map\n(Version 1). 2022. Earth Systems Science Data. 14: 2209\u20132238. doi:\n10.5194/essd-14-2209-2022.",
+        "abstract": "Database of all geothermal heat flow measurements within 500 km of\nGreenland's coastline with self-consistent machine-learning geothermal heat\nflow map over all onshore and offshore areas.\n\nRelated publication:\n\nColgan, W., A. Wansing, K. Mankoff, M. L\u00f6sing, J. Hopper, K. Louden, J.\nEbbing, F. Christiansen, T. Ingeman-Nielsen, L. Claesson Liljedahl, J.\nMacGregor, \u00c1. Hjartarson, S. Bernstein, N. Karlsson, S. Fuchs, J.\nHartikainen, J. Liakka, R. Fausto, D. Dahl-Jensen, A. Bj\u00f8rk, J.-O. Naslund,\nF. M\u00f8rk, Y. Martos, N. Balling, T. Funck, K. Kjeldsen, D. Petersen, U.\nGregersen, G. Dam, T. Nielsen, S. Khan and A. L\u00f8kkegaard. Greenland\nGeothermal Heat Flow Database and Map (Version 1). 2022. Earth Systems\nScience Data. 14: 2209\u20132238. doi: 10.5194/essd-14-2209-2022.\n\nWe compile and analyze all available geothermal heat flow measurements\ncollected in and around Greenland into a new database of 419 sites and\ngenerate an accompanying spatial map. This database includes 290 sites\npreviously reported by the International Heat Flow Commission (IHFC), for\nwhich we now standardize measurement and metadata quality. This database\nalso includes 129 new sites, which have not been previously reported by the\nIHFC. These new sites consist of 88 offshore measurements and 41 onshore\nmeasurements, of which 24 are subglacial. We employ machine learning to\nsynthesize these in situ measurements into a gridded geothermal heat flow\nmodel that is consistent across both continental and marine areas in and\naround Greenland. This model has a native horizontal resolution of 55\u2009km. In\ncomparison to five existing Greenland geothermal heat flow models, our model\nhas the lowest mean geothermal heat flow for Greenland onshore areas. Our\nmodeled heat flow in central North Greenland is highly sensitive to whether\nthe NGRIP (North GReenland Ice core Project) elevated heat flow anomaly is\nincluded in the training dataset. Our model's most distinctive spatial\nfeature is pronounced low geothermal heat flow (<\u200940\u2009mW\u2009m\u22122) across the\nNorth Atlantic Craton of southern Greenland. Crucially, our model does not\nshow an area of elevated heat flow that might be interpreted as remnant from\nthe Icelandic plume track. Finally, we discuss the substantial influence of\npaleoclimatic and other corrections on geothermal heat flow measurements in\nGreenland. The in situ measurement database and gridded heat flow model, as\nwell as other supporting materials, are freely available from the GEUS\nDataverse (https://doi.org/10.22008/FK2/F9P03L; Colgan and Wansing, 2021).",
         "citation": {
           "text": "Colgan, William; Wansing, Agnes, 2021, \"Greenland Geothermal\nHeat Flow Database and Map\",\nhttps://doi.org/10.22008/FK2/F9P03L, GEUS Dataverse, V2",
           "url": "https://doi.org/10.22008/FK2/F9P03L"
@@ -13522,7 +13522,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Heat flow measurement database used in the creation of the 'Flow from\nmultiple observations (55km)' layer.",
+                      "description": "Heat flow measurement database used in the creation of the \"Gridded heat flow\n(55km)\" layer.",
                       "id": "geothermal_heat_flow_measurements",
                       "in_package": true,
                       "input": {
@@ -13569,7 +13569,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Geothermal heat flow map from machine-learning algorithm (55 km\nnative resolution).",
+                      "description": "Geothermal heat flow map from machine-learning algorithm (55 km\nnative resolution). Gridded from measurements in \"Flow measurement locations\"\nlayer.",
                       "id": "geothermal_heat_flow_map",
                       "in_package": true,
                       "input": {
@@ -13641,7 +13641,7 @@
                       ],
                       "style": "geothermal_heat_flow_map",
                       "tags": [],
-                      "title": "Flow from multiple observations (55km)"
+                      "title": "Gridded heat flow (55km)"
                     },
                     "name": "geothermal_heat_flow_map"
                   }
