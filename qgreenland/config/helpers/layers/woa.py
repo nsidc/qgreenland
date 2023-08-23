@@ -20,9 +20,13 @@ def id_str(*, depth: int, season: str, variable: str) -> str:
     return f"woa_{depth}m_{variable}_{season}"
 
 
-SEASONS_FNS: dict[str, str] = {
+TEMPERATURE_SEASONS_FNS: dict[str, str] = {
     "winter": "woa23_decav91C0_t13_04.nc",
     "summer": "woa23_decav91C0_t15_04.nc",
+}
+SALINITY_SEASONS_FNS: dict[str, str] = {
+    "winter": "woa23_decav91C0_s13_04.nc",
+    "summer": "woa23_decav91C0_s15_04.nc",
 }
 # Looks like these are the same for salinity.
 DEPTHS_BANDS: dict[int, int] = {
@@ -33,14 +37,33 @@ DEPTHS_BANDS: dict[int, int] = {
 }
 
 # Sort by season first, then by depth
-TEMPERATURE_COMBINATIONS = list(product(SEASONS_FNS.keys(), DEPTHS_BANDS.keys()))
+TEMPERATURE_COMBINATIONS = list(
+    product(TEMPERATURE_SEASONS_FNS.keys(), DEPTHS_BANDS.keys())
+)
 TEMPERATURE_COMBINATIONS.sort(key=lambda x: x[0], reverse=True)
 TEMPERATURE_COMBINATIONS.sort(key=lambda x: x[1])
 
-WOA_LAYER_ORDER = [
+SALINITY_COMBINATIONS = list(product(SALINITY_SEASONS_FNS.keys(), DEPTHS_BANDS.keys()))
+SALINITY_COMBINATIONS.sort(key=lambda x: x[0], reverse=True)
+SALINITY_COMBINATIONS.sort(key=lambda x: x[1])
+
+WOA_TEMPERATURE_LAYER_ORDER = [
     id_str(depth=depth, season=season, variable="temperature")
     for (season, depth) in TEMPERATURE_COMBINATIONS
 ]
+WOA_SALINITY_LAYER_ORDER = [
+    id_str(depth=depth, season=season, variable="salinity")
+    for (season, depth) in SALINITY_COMBINATIONS
+]
+
+
+def get_fn(*, season, variable):
+    if variable == "temperature":
+        return TEMPERATURE_SEASONS_FNS[season]
+    elif variable == "salinity":
+        return SALINITY_SEASONS_FNS[season]
+    else:
+        raise RuntimeError(f"{variable} not recognized as a valid WOA variable.")
 
 
 def make_layer(*, dataset, depth, season, variable, units) -> Layer:
@@ -76,7 +99,9 @@ def make_layer(*, dataset, depth, season, variable, units) -> Layer:
                     "gdal_translate",
                     "-b",
                     DEPTHS_BANDS[depth],
-                    "NETCDF:{input_dir}/" + f"{SEASONS_FNS[season]}:{variable[0]}_an",
+                    "NETCDF:{input_dir}/"
+                    + get_fn(season=season, variable=variable)
+                    + f":{variable[0]}_an",
                     "{output_dir}/extracted.tif",
                 ],
             ),

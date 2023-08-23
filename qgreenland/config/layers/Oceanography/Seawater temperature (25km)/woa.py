@@ -1,7 +1,10 @@
 from qgreenland.config.datasets.woa import (
     woa_temperature,
 )
-from qgreenland.config.helpers.layers.woa import TEMPERATURE_COMBINATIONS, make_layer
+from qgreenland.config.helpers.layers.woa import (
+    TEMPERATURE_COMBINATIONS,
+    make_layer,
+)
 
 temperature_layers = [
     make_layer(

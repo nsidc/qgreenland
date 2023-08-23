@@ -11,6 +11,7 @@ and/or initial conditions for a variety of ocean models, verify
 numerical simulations of the ocean, and corroborate satellite
 data."""
 
+# Climatological mean temperature for the global ocean from in situ profile data
 woa_temperature = Dataset(
     id="woa_temperature",
     assets=[
@@ -47,6 +48,7 @@ woa_temperature = Dataset(
 SALINITY_BASE_URL = "https://www.ncei.noaa.gov/thredds-ocean/fileServer/woa23/DATA/salinity/netcdf/decav91C0"
 
 
+# Climatological mean salinity for the global ocean from in situ profile data
 woa_salinity = Dataset(
     id="woa_salinity",
     assets=[
