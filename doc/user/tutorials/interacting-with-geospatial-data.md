@@ -301,7 +301,7 @@ Results of Example 2: Vector Layer Statistics
 What is a good estimate of the Greenland ice sheet’s volume?
 
 See the [Calculate the volume of the Greenland ice
-sheet](#calculate-colume-greenland-ice-sheet-tutorial) tutorial for an example
+sheet](#calculate-volume-greenland-ice-sheet-tutorial) tutorial for an example
 of how to utilize the **Raster Surface Volume** tool.
 
 
