@@ -26,7 +26,6 @@ targeted use. Modules include:
 
 - QGreenland Core: Covers a wide variety of disciplines and scientific needs.
   Curated to be useful for the largest number of users.
-- More coming soon...
 
 
 ## Defined Terms
