@@ -28,7 +28,7 @@ http://nsidc.org/data/measures/gimp.
 Joughin, I. (2022). MEaSUREs Greenland Annual Ice Sheet Velocity Mosaics from
 SAR and Landsat, Version 4 [Data Set]. Boulder, Colorado USA. NASA National Snow
 and Ice Data Center Distributed Active Archive
-Center. https://doi.org/10.5067/RS8GFZ848ZU9. Date Accessed {{date_accessed}}.
+Center. https://doi.org/10.5067/RS8GFZ848ZU9. {{date_accessed}}
 """,
             "url": "https://doi.org/10.5067/RS8GFZ848ZU9",
         },
