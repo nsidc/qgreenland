@@ -4,6 +4,7 @@
 
 There are two main basic kinds of GIS data layers: vector and raster.
 
+
 ### Vector Data
 
 **Vector** data are composed of points, lines, and polygons and represent discrete features.
@@ -17,6 +18,7 @@ geospatial data.
 Fig. 4: Examples of **Vector** data layers in QGreenland Core: Points (towns and settlements), lines
 (median January sea ice extent), and polygons (country boundaries).
 
+
 ### Vector Data Attributes
 
 All QGIS vector data layers have associated attributes, or characteristics of the discrete
@@ -29,6 +31,7 @@ up an **Attribute Table**, where the columns are the various fields, or attribut
 are individual features. Clicking on and highlighting records in the **Attribute Table** will also
 highlight those specific points, lines, or polygons in the **Map View**. Right-click any cell to
 ‘Zoom to feature’, ‘Pan to feature’, or ‘Flash feature’.
+
 
 ### Raster Data
 
@@ -79,24 +82,30 @@ QGreenland.
 
 Fig. 6: The **Layer Properties** dialog window for the QGreenland ‘Earthquakes’ data layer
 
+
 ## Data Projections
 
 Data projections, or Coordinate Reference Systems (CRS), define the coordinate system for
 a QGIS project and data layers. The CRS for the current **Map View** is indicated on the right
 side of the QGIS status bar. For QGreenland, the current CRS should be identified as ‘EPSG:
 3413,’ which is the identifier for the NSIDC Sea Ice Polar Stereographic North on a WGS 84
-Ellipsoid CRS. Changing the CRS of the **Map View** will not change the underlying data, though QGIS will do on-the-fly reprojection of layers not in the selected CRS. It is possible to reproject a layer into a new CRS;
-however, this transforms the data and can introduce artifacts. Therefore, it is recommended
-that to reproject data, the user do so from the source data and not the data contained in the
-QGreenland package.
+Ellipsoid CRS. Changing the CRS of the **Map View** will not change the underlying data,
+though QGIS will do on-the-fly reprojection of layers not in the selected CRS. It is
+possible to reproject a layer into a new CRS; however, this transforms the data and can
+introduce artifacts. Therefore, it is recommended that to reproject data, the user do so
+from the source data and not the data contained in the QGreenland package.
 
+
+(scale-dependent-rendering)=
 ### Scale-Dependent Rendering
+
 Scale-dependent rendering refers to the scale at which a particular data layer will be visible in
 the QGIS map display. This can make it easier to zoom in and out for certain data layers. The
-user can turn on scale-dependent rendering for any layer by going to the layer **‘Properties’ ->
-‘Rendering’**, checking the box for Scale Dependent Visibility, and then setting the minimum
+user can turn on scale-dependent rendering for any layer by going to the layer **Properties ->
+Rendering**, checking the box for Scale Dependent Visibility, and then setting the minimum
 and maximum scale dependent visibility. For scale reference, refer to the scale indicated at
 the bottom of the QGIS interface in the **Status Bar**.
+
 
 ### QGreenland Data Layers
 A complete list of all QGreenland data layers and their metadata, including information about
@@ -128,6 +137,7 @@ To use the **Identify Features** button:
 
 Fig. 7: The **Identify Results Panel** that shows results from the **Identify Features** tool.
 
+
 ## Measuring Distances, Areas, and Angles
 
 Another useful basic tool in the **Attributes Toolbar** is the **Measuring Tool**. The **Measuring Tool**
@@ -154,6 +164,7 @@ To use the **Measuring Tool**:
    three points to draw the angle. The second point you click on will serve as the
    angle’s vertex.
 
+
 ## Adding Text Annotations to the Map View
 
 You can add a text annotation anywhere in the **Map View** using the text annotation tool
@@ -169,6 +180,7 @@ To use the **Text Annotation Tool**:
 4. When you’re done, click **Apply** and then **Ok** to close the window.
 5. To delete an annotation, double click on it to open the dialog window, then
    click **Delete**.
+
 
 ## Editing Layer Symbology
 
@@ -186,6 +198,7 @@ To modify a layer’s symbology:
       a raster layer can be changed in the **Transparency** tab of the **Layer Properties**
       dialog window.
 
+
 ## Processing Toolbox
 
 The **Processing Toolbox** is what makes the QGIS platform a powerful spatial data analysis tool.
@@ -200,6 +213,7 @@ view by clicking on the gear icon in the **Attributes Toolbar** or by going to
 For more in-depth information about the Processing Toolbox see the 
 [QGIS User Manual](https://docs.qgis.org/3.28/en/docs/user_manual/processing/toolbox.html)
 
+
 ## Spatial Querying
 
 Spatial querying allows the user to select specific layer features based on desired parameters,
@@ -210,7 +224,9 @@ learn through experience that there is very often more than one way to complete 
 task in the QGIS platform. We will describe several query and analysis methodologies that
 use the QGIS **Processing Toolbox**.
 
+
 ### Example 1: Selecting from Vector Layers for Specific Features
+
 Which populated regions in Greenland have more than 5000 people?
 
 1. Open the **Processing Toolbox** and go to **Vector selection -> Select by attribute**.
@@ -235,7 +251,9 @@ you can do so by either 1) right-clicking on the layer you have just selected fr
 choosing **Export -> Save selected features as...**, or by 2) selecting **Extract by attribute**
 under **Vector selection** in the **Processing Toolbox**.
 
+
 ### Example 2: Vector Layer Statistics
+
 What is the total number of people in Greenland’s populated areas?
 What is the average size of Greenland’s populated areas?
 
@@ -255,7 +273,9 @@ of people in Greenland’s metropolitan areas (55,494 people).
 ![vector_layer_stats](/_images/vector_layer_stats.png)
 Fig. 8: Results of Example 2: Vector Layer Statistics
 
+
 ### Example 3: Simple Raster Analysis
+
 What is a good estimate of the Greenland ice sheet’s volume?
 
 1. In the **Processing Toolbox**, go to **Raster analysis -> Raster surface volume**. This
@@ -278,7 +298,9 @@ The results file should contain three numbers: volume, pixel count, and area. Th
 the volume of the Greenland ice sheet in units of m3. The results should show that the Green-
 land ice sheet has a volume of 2,942,360,633,311,806 m3, or about 2.9 million km3.
 
+
 ### Example 4: Using the Raster Calculator
+
 How does the maximum sea ice concentration (%) around Greenland and
 the surrounding land masses in 2020 compare to the maximum sea ice
 concentration a decade earlier (2010)?

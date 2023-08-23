@@ -104,15 +104,15 @@ wish to turn on so that they are displayed. You can also go to
 
 Double-check that there is not another layer overlaying and thus obscuring the
 layer you want to see in the **Map View**. Remember that layer are displayed in the
-**Map View** in the same order that they are listed in the **Layers Panel - layers**
+**Map View** in the same order that they are listed in the **Layers Panel** - layers
 listed at the top of the **Layers Panel** show up on top on the **Map View**. You can
 either turn off any layer that might be obscuring the layer you wish to see by
 unchecking it in the **Layers Panel**, or re-arrange the order of layers by
 clicking and dragging them up or down in the **Layers Panel**.
 
 Some QGreenland data layers are only visible at a specific map scale (see
-_QGreenland User Guide section 4.3.1: Scale-dependent rendering_ for more
-information). Try zooming in.
+_QGreenland User Guide section 4.3.1: [Scale-dependent
+rendering](#scale-dependent-rendering)_ for more information). Try zooming in.
 
 
 ### When I open QGreenland, I get the warning `Font "Helvetica" not available on system`
