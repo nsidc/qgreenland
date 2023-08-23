@@ -214,15 +214,7 @@ view by clicking on the gear icon in the **Attributes Toolbar** or by going to
 For more in-depth information about the Processing Toolbox see the 
 [QGIS User Manual](https://docs.qgis.org/3.28/en/docs/user_manual/processing/toolbox.html)
 
-## Spatial Querying
-
-Spatial querying allows the user to select specific layer features based on desired parameters,
-or compare features from one layer with features from another layer based on their
-spatial relationships or common parameters. Below we describe a specific set of steps for
-completing various example query and analysis tasks; however, the QGreenland user will
-learn through experience that there is very often more than one way to complete a desired
-task in the QGIS platform. We will describe several query and analysis methodologies that
-use the QGIS **Processing Toolbox**.
+Examples of using the **Processing Toolbox** with QGreenland data are given below.
 
 ### Example 1: Selecting from Vector Layers for Specific Features
 
