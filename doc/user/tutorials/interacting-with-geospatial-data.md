@@ -331,7 +331,7 @@ There is a different
        should see it show up in the **Expression Box** in quotations (“ “).
    b) Either type in the minus (-) symbol or click on it under **Operators**. It should show
        up after the layer you just chose.
-   c) In the **Layers** box, scroll to and double click on the March2011@1 layer. It should
+   c) In the **Layers** box, scroll to and double click on the `March2011@1` layer. It should
       show up after the minus sign, again in quotations ({numref}`raster_calc`).
    d) For **Reference layer**, it’s recommended you choose either of the two layers used
       in the expression. Click on the three dots [...] which will open up another window
