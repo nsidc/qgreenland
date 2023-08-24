@@ -12094,7 +12094,7 @@
                 "children": [
                   {
                     "layer_cfg": {
-                      "description": "Vector representation of ice sheet velocity in meters per year for 2021.",
+                      "description": "Vector representation of ice sheet velocity in meters per year for 2021. Calculated by QGreenland Team.",
                       "id": "grimp_annual_vectors_2021",
                       "in_package": true,
                       "input": {
@@ -12261,7 +12261,7 @@
                   },
                   {
                     "layer_cfg": {
-                      "description": "Ice sheet velocity x component (vy) in meters per year for 2021.\nAnnual mosaics are produced from data with resolutions varying from a few\nhundred meters to 1.5km. The 2021 annual mosaic includes data collected between\n2020-12-01 and 2021-11-30.\n\nNote that these data have been rounded to the nearest centimeter for QGreenland\nto save disk space. Please see the original data source for the un-modified and\nadditional data:\n\n* x and y component velocity error estimates (ex, ey).\n* A temporal offset parameter (dT) that reports the difference in days between\n  the date of each velocity estimate and the midpoint date of the corresponding\n  measurement period.\n* Shapefile that indicates the source of the image pairs (SAR or Landsat 8) used\n  to produce the mosaic.",
+                      "description": "Ice sheet velocity x component (vx) in meters per year for 2021.\nAnnual mosaics are produced from data with resolutions varying from a few\nhundred meters to 1.5km. The 2021 annual mosaic includes data collected between\n2020-12-01 and 2021-11-30.\n\nNote that these data have been rounded to the nearest centimeter for QGreenland\nto save disk space. Please see the original data source for the un-modified and\nadditional data:\n\n* x and y component velocity error estimates (ex, ey).\n* A temporal offset parameter (dT) that reports the difference in days between\n  the date of each velocity estimate and the midpoint date of the corresponding\n  measurement period.\n* Shapefile that indicates the source of the image pairs (SAR or Landsat 8) used\n  to produce the mosaic.",
                       "id": "grimp_annual_vx_2021",
                       "in_package": true,
                       "input": {
