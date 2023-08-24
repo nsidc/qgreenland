@@ -28,8 +28,8 @@ high quality. Thank you!
 
 QGreenland would not have been possible without the following open-source
 projects. This is not an exhaustive list -- if your project is listed in one of
-the environments described in {github}`environments/README.md` file,
-thank you!
+the environments described in the {github}`environments/README.md` file, thank
+you!
 
 * [QGIS](https://www.qgis.org/)
 * [cmocean](https://github.com/matplotlib/cmocean)
