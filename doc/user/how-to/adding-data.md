@@ -2,7 +2,7 @@
 
 Once the QGreenland Core package is downloaded and extracted onto a user’s computer, it
 is fully customizable by the user. One can add new data, delete layers within
-QGreenland, or make changes.  Saving the project will update the `qgreenland.qgs`
+QGreenland, or make changes.  Saving the project will update the `qgreenland.qgz`
 project file. If you do not want to overwrite the original project version, simply save
 your updated project using a new filename via **Save As...** You can create as many
 different projects as you like, adding or removing data from the downloaded QGreenland

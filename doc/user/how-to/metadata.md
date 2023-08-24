@@ -13,7 +13,7 @@ Core](/user/tutorials/03-interacting-with-geospatial-data.md).
 ## Via QGIS Layer Properties
 
 If you have the QGreenland Core base package downloaded, you can easily locate and view
-layer metadata within QGIS. First, open the `qgreenland.qgs` QGIS project file that was
+layer metadata within QGIS. First, open the `qgreenland.qgz` QGIS project file that was
 included in the QGreenland Core download package. Next, locate your layer of interest in
 the **Layer Panel**.  The **Layer Panel** is a panel on the left side of the **Map
 View** containing a list of layers that are in your QGIS project.

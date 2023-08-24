@@ -1,11 +1,12 @@
-# v3.0.0 (2023-08-23)
+# v3.0.0 (2023-08-24)
 
-- Resolve `Font "Helvetica" font not available on system` warnings
+- Switch to `.qgz` compressed project file.
+- Resolve `Font "Helvetica" font not available on system` warnings.
 - Update `layer_list.csv` to include new column indicating if each layer is
   stored on disk. Internet-required layers take the value `False`.
-- Configure gradient style legends, add new style validations for gradient legends
-- Fix palletted styles
-- Publish versioned Docker images to DockerHub and GHCR for improved reproducibility
+- Configure gradient style legends, add new style validations for gradient legends.
+- Fix palletted styles.
+- Publish versioned Docker images to DockerHub and GHCR for improved reproducibility.
 
 
 ## :warning: Breaking changes
@@ -16,9 +17,9 @@
 
 ## Documentation
 
-- Restructured documentation for improved readability
-- Added documentation of QGreenland future plans under next NSF grant
-- Improved recommended citations for QGreenland
+- Restructured documentation for improved readability.
+- Added documentation of QGreenland future plans under next NSF grant.
+- Improved recommended citations for QGreenland.
 
 
 ## Layers
