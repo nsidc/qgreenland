@@ -19263,308 +19263,327 @@
             "name": "marginal_lakes"
           },
           {
-            "layer_cfg": {
-              "description": "Calculated locations for subglacial hydrologic basin ice-margin-terminating outlets.",
-              "id": "ice_outlets",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "ice_outlets"
-                },
-                "dataset": {
-                  "id": "streams_outlets_basins"
-                }
-              },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "{output_dir}/ice_outlets.gpkg",
-                    "{input_dir}/outlets.gpkg"
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Calculated locations for subglacial hydrologic basin ice-margin-terminating outlets.",
+                  "id": "ice_outlets",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "ice_outlets"
+                    },
+                    "dataset": {
+                      "id": "streams_outlets_basins"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/ice_outlets.gpkg",
+                        "{input_dir}/outlets.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
-              ],
-              "style": "ice_outlets",
-              "tags": [],
-              "title": "Ice outlets"
-            },
-            "name": "ice_outlets"
-          },
-          {
-            "layer_cfg": {
-              "description": "Calculated locations for terrestrial hydrologic basin coast-terminating outlets.",
-              "id": "land_outlets",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "land_outlets"
+                  "style": "ice_outlets",
+                  "tags": [],
+                  "title": "Ice outlets"
                 },
-                "dataset": {
-                  "id": "streams_outlets_basins"
-                }
+                "name": "ice_outlets"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "{output_dir}/land_outlets.gpkg",
-                    "{input_dir}/outlets.gpkg"
+              {
+                "layer_cfg": {
+                  "description": "Calculated locations for terrestrial hydrologic basin coast-terminating outlets.",
+                  "id": "land_outlets",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "land_outlets"
+                    },
+                    "dataset": {
+                      "id": "streams_outlets_basins"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/land_outlets.gpkg",
+                        "{input_dir}/outlets.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
-              ],
-              "style": "land_outlets",
-              "tags": [],
-              "title": "Land outlets"
-            },
-            "name": "land_outlets"
-          },
-          {
-            "layer_cfg": {
-              "description": "Calculated subglacial hydrologic stream paths.",
-              "id": "ice_streams",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "ice_streams"
+                  "style": "land_outlets",
+                  "tags": [],
+                  "title": "Land outlets"
                 },
-                "dataset": {
-                  "id": "streams_outlets_basins"
-                }
+                "name": "land_outlets"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "-dialect",
-                    "sqlite",
-                    "-sql",
-                    "\"SELECT * from streams\n        WHERE GeometryType(geom) = 'LINESTRING' AND ST_NPoints(geom) > 1\"",
-                    "{output_dir}/ice_streams.gpkg",
-                    "{input_dir}/streams.gpkg"
+              {
+                "layer_cfg": {
+                  "description": "Calculated subglacial hydrologic stream paths.",
+                  "id": "ice_streams",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "ice_streams"
+                    },
+                    "dataset": {
+                      "id": "streams_outlets_basins"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT * from streams\n        WHERE GeometryType(geom) = 'LINESTRING' AND ST_NPoints(geom) > 1\"",
+                        "{output_dir}/ice_streams.gpkg",
+                        "{input_dir}/streams.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
-              ],
-              "style": "ice_streams",
-              "tags": [],
-              "title": "Ice streams"
-            },
-            "name": "ice_streams"
-          },
-          {
-            "layer_cfg": {
-              "description": "Calculated ice sheet hydrologic basins using regional climate model spatial coverage.",
-              "id": "ice_basins",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "ice_basins"
+                  "style": "ice_streams",
+                  "tags": [],
+                  "title": "Ice streams"
                 },
-                "dataset": {
-                  "id": "streams_outlets_basins"
-                }
+                "name": "ice_streams"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "{output_dir}/ice_basins.gpkg",
-                    "{input_dir}/basins.gpkg"
+              {
+                "layer_cfg": {
+                  "description": "Calculated ice sheet hydrologic basins using regional climate model spatial coverage.",
+                  "id": "ice_basins",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "ice_basins"
+                    },
+                    "dataset": {
+                      "id": "streams_outlets_basins"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/ice_basins.gpkg",
+                        "{input_dir}/basins.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
-              ],
-              "style": "ice_basins",
-              "tags": [],
-              "title": "Ice basins"
-            },
-            "name": "ice_basins"
-          },
-          {
-            "layer_cfg": {
-              "description": "Calculated ice sheet hydrologic basins including areas classified as land/ocean by regional climate models (filled).",
-              "id": "ice_basins_filled",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "ice_basins_filled"
+                  "style": "ice_basins",
+                  "tags": [],
+                  "title": "Ice basins"
                 },
-                "dataset": {
-                  "id": "streams_outlets_basins"
-                }
+                "name": "ice_basins"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "{output_dir}/ice_basins_filled.gpkg",
-                    "{input_dir}/basins_filled.gpkg"
+              {
+                "layer_cfg": {
+                  "description": "Calculated ice sheet hydrologic basins including areas classified as land/ocean by regional climate models (filled).",
+                  "id": "ice_basins_filled",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "ice_basins_filled"
+                    },
+                    "dataset": {
+                      "id": "streams_outlets_basins"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/ice_basins_filled.gpkg",
+                        "{input_dir}/basins_filled.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
-              ],
-              "style": "ice_basins",
-              "tags": [],
-              "title": "Ice basins filled"
-            },
-            "name": "ice_basins_filled"
-          },
-          {
-            "layer_cfg": {
-              "description": "Calculated terrestrial hydrologic stream paths.",
-              "id": "land_streams",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "land_streams"
+                  "style": "ice_basins",
+                  "tags": [],
+                  "title": "Ice basins filled"
                 },
-                "dataset": {
-                  "id": "streams_outlets_basins"
-                }
+                "name": "ice_basins_filled"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "-dialect",
-                    "sqlite",
-                    "-sql",
-                    "\"SELECT * from streams\n        WHERE GeometryType(geom) = 'LINESTRING' AND ST_NPoints(geom) > 1\"",
-                    "{output_dir}/land_streams.gpkg",
-                    "{input_dir}/streams.gpkg"
+              {
+                "layer_cfg": {
+                  "description": "Calculated terrestrial hydrologic stream paths.",
+                  "id": "land_streams",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "land_streams"
+                    },
+                    "dataset": {
+                      "id": "streams_outlets_basins"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"SELECT * from streams\n        WHERE GeometryType(geom) = 'LINESTRING' AND ST_NPoints(geom) > 1\"",
+                        "{output_dir}/land_streams.gpkg",
+                        "{input_dir}/streams.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
-              ],
-              "style": "land_streams",
-              "tags": [],
-              "title": "Land streams"
-            },
-            "name": "land_streams"
-          },
-          {
-            "layer_cfg": {
-              "description": "Calculated terrestrial hydrologic basins using regional climate model spatial coverage.",
-              "id": "land_basins",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "land_basins"
+                  "style": "land_streams",
+                  "tags": [],
+                  "title": "Land streams"
                 },
-                "dataset": {
-                  "id": "streams_outlets_basins"
-                }
+                "name": "land_streams"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "{output_dir}/land_basins.gpkg",
-                    "{input_dir}/basins.gpkg"
+              {
+                "layer_cfg": {
+                  "description": "Calculated terrestrial hydrologic basins using regional climate model spatial coverage.",
+                  "id": "land_basins",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "land_basins"
+                    },
+                    "dataset": {
+                      "id": "streams_outlets_basins"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/land_basins.gpkg",
+                        "{input_dir}/basins.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
-              ],
-              "style": "land_basins",
-              "tags": [],
-              "title": "Land basins"
-            },
-            "name": "land_basins"
-          },
-          {
-            "layer_cfg": {
-              "description": "Calculated terrestrial hydrologic basins including areas classified as ice/ocean by regional climate models (filled).",
-              "id": "land_basins_filled",
-              "in_package": true,
-              "input": {
-                "asset": {
-                  "id": "land_basins_filled"
+                  "style": "land_basins",
+                  "tags": [],
+                  "title": "Land basins"
                 },
-                "dataset": {
-                  "id": "streams_outlets_basins"
-                }
+                "name": "land_basins"
               },
-              "show": false,
-              "steps": [
-                {
-                  "args": [
-                    "ogr2ogr",
-                    "-lco",
-                    "ENCODING=UTF-8",
-                    "-t_srs",
-                    "EPSG:3413",
-                    "-clipdst",
-                    "{assets_dir}/latitude_shape_40_degrees.geojson",
-                    "-makevalid",
-                    "{output_dir}/land_basins_filled.gpkg",
-                    "{input_dir}/basins_filled.gpkg"
+              {
+                "layer_cfg": {
+                  "description": "Calculated terrestrial hydrologic basins including areas classified as ice/ocean by regional climate models (filled).",
+                  "id": "land_basins_filled",
+                  "in_package": true,
+                  "input": {
+                    "asset": {
+                      "id": "land_basins_filled"
+                    },
+                    "dataset": {
+                      "id": "streams_outlets_basins"
+                    }
+                  },
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/land_basins_filled.gpkg",
+                        "{input_dir}/basins_filled.gpkg"
+                      ],
+                      "type": "command"
+                    }
                   ],
-                  "type": "command"
-                }
+                  "style": "land_basins",
+                  "tags": [],
+                  "title": "Land basins filled"
+                },
+                "name": "land_basins_filled"
+              }
+            ],
+            "name": "Streams, outlets, and basins",
+            "settings": {
+              "expand": false,
+              "order": [
+                ":ice_outlets",
+                ":land_outlets",
+                ":ice_streams",
+                ":ice_basins",
+                ":ice_basins_filled",
+                ":land_streams",
+                ":land_basins",
+                ":land_basins_filled"
               ],
-              "style": "land_basins",
-              "tags": [],
-              "title": "Land basins filled"
-            },
-            "name": "land_basins_filled"
+              "show": false
+            }
           }
         ],
         "name": "Hydrology",
@@ -19572,14 +19591,7 @@
           "expand": false,
           "order": [
             ":marginal_lakes",
-            ":ice_outlets",
-            ":land_outlets",
-            ":ice_streams",
-            ":ice_basins",
-            ":ice_basins_filled",
-            ":land_streams",
-            ":land_basins",
-            ":land_basins_filled"
+            "Streams, outlets, and basins"
           ],
           "show": false
         }
