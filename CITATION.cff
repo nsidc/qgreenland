@@ -22,8 +22,8 @@ keywords:
 url: "https://github.com/nsidc/qgreenland"
 repository-code: "https://github.com/nsidc/qgreenland"
 
-version: "3.0.0rc1"
-date-released: "2023-08-23"
+version: "3.0.0"
+date-released: "2023-08-24"
 
 authors:
 - family-names: "*Fisher"
