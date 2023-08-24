@@ -56,6 +56,8 @@
 ### Updated
 
 - Fix descriptions of "Hydrology" outlets and basins layers.
+- Move "Hydrology" streams, outlets, and basisns layers from Mankoff
+  et al. into "Streams, outlets, and basins" subgroup.
 - Rename "Places/Place names database" -> "Places/Points of interest". Towns and
   settlements are now excluded from this layer (in favor of the more-up-to-date
   "Populated places" layer.
