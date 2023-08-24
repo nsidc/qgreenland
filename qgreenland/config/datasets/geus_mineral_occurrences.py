@@ -29,8 +29,8 @@ geus_mineral_occurrences = Dataset(
             "text": (
                 """Thorning, L., Christensen, L. A., Dawes, P. R., Garde, A. A.,
                 Heijboer, T. C., Kalvig, P., Larsen, L. M., Larsen, U., Nielsen, T. F.,
-                Rehnström, E. F., Thomassen, B., Thrane, K., Schjøth, F. & Secher, K. "Greenland
-                mineral occurrences map (GMOM)", GEUS GeoNetwork catalogue.
+                Rehnström, E. F., Thomassen, B., Thrane, K., Schjøth, F. & Secher, K., 2011, "Updating of Greenland
+                Mineral Occurrences Map (GMOM) on the Web", GEUS GeoNetwork catalogue, Revision date: 2022-04-19.
                 {{date_accessed}}"""
             ),
             "url": "https://data.geus.dk/geonetwork/srv/eng/catalog.search#/metadata/8884ead8-45fc-4d1a-ae67-325182cde646",
