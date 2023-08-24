@@ -655,7 +655,7 @@
       "metadata": {
         "abstract": "Dataset containing a summary of geological information for known\nmineral occurrences on Greenland. The information includes the\nlocation, size, mineral commodities, mineralisation type,\nexploration history and a geological description of the deposit. The\ndata has been collected and compiled from fieldwork investigations\nconducted by geological surveys, academic researchers and mineral\nexploration companies.",
         "citation": {
-          "text": "Thorning, L., Christensen, L. A., Dawes, P. R., Garde, A. A.,\nHeijboer, T. C., Kalvig, P., Larsen, L. M., Larsen, U., Nielsen, T. F.,\nRehnstr\u00f6m, E. F., Thomassen, B., Thrane, K., Schj\u00f8th, F. & Secher, K. \"Greenland\nmineral occurrences map (GMOM)\", GEUS GeoNetwork catalogue.\n{{date_accessed}}",
+          "text": "Thorning, L., Christensen, L. A., Dawes, P. R., Garde, A. A.,\nHeijboer, T. C., Kalvig, P., Larsen, L. M., Larsen, U., Nielsen, T. F.,\nRehnstr\u00f6m, E. F., Thomassen, B., Thrane, K., Schj\u00f8th, F. & Secher, K., 2011, \"Updating of Greenland\nMineral Occurrences Map (GMOM) on the Web\", GEUS GeoNetwork catalogue, Revision date: 2022-04-19.\n{{date_accessed}}",
           "url": "https://data.geus.dk/geonetwork/srv/eng/catalog.search#/metadata/8884ead8-45fc-4d1a-ae67-325182cde646"
         },
         "title": "Greenland mineral occurrences map (GMOM) "
