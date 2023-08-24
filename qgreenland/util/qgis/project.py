@@ -272,7 +272,7 @@ def _add_decorations(project: qgc.QgsProject) -> None:
     )
     project.writeEntry("CopyrightLabel", "/Label", copyright_label)
     project.writeEntry("CopyrightLabel", "/Placement", 0)
-    project.writeEntry("CopyrightLabel", "/MarginH", 0)
+    project.writeEntry("CopyrightLabel", "/MarginH", 1)
     project.writeEntry("CopyrightLabel", "/MarginV", 0)
 
     # Add buffer around copyright text
@@ -291,7 +291,8 @@ def _add_decorations(project: qgc.QgsProject) -> None:
         "CopyrightLabel",
         "/Font",
         (
-            '<text-style><text-buffer bufferColor="250,250,250,255"'
+            '<text-style fontFamily="Open Sans" namedStyle="Regular" fontSize="12">'
+            '<text-buffer bufferColor="250,250,250,255"'
             ' bufferJoinStyle="128" bufferSize="1" bufferDraw="1"'
             ' bufferSizeUnits="MM" bufferOpacity="1" bufferBlendMode="0"'
             ' bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferNoFill="1"/></text-style>'
@@ -301,8 +302,8 @@ def _add_decorations(project: qgc.QgsProject) -> None:
     # Add Image (QGreenland logo):
     project.writeEntry("Image", "/Enabled", True)
     project.writeEntry("Image", "/Placement", 0)
-    project.writeEntry("Image", "/MarginH", 4)
-    project.writeEntry("Image", "/MarginV", 8)
+    project.writeEntry("Image", "/MarginH", 1)
+    project.writeEntry("Image", "/MarginV", 12)
     project.writeEntry("Image", "/Size", 24)
     project.writeEntry("Image", "/ImagePath", "qgreenland.png")
 
