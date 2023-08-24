@@ -48,7 +48,7 @@ GIS data package for Antarctica.
 You will find the following files in the QGreenland Core data package:
 * Folders containing data layers organized by topic. Each data layer is represented as a
   GeoTIFF or GeoPackage.
-* **qgreenland.qgs** - The main QGreenland project file for QGIS
+* **qgreenland.qgz** - The main QGreenland project file for QGIS
 * **qgreenland.png** - The official QGreenland logo
 * **layer_list.csv** - A complete list of all the data layers in the QGreenland Core download
   package, including information about each (data source, file size, etc.). This file can be

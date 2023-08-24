@@ -38,10 +38,9 @@ Ensure QGreenland is _actually_ unzipped; some operating systems will only
 In Windows, please right-click and select `Extract all...`.
 ```
 
-Open the `qgreenland.qgs` file in the data package folder by double-clicking
+Open the `qgreenland.qgz` file in the data package folder by double-clicking
 it. QGIS will open automatically and display the QGreenland Core data
 environment.
-
 
 ```{note}
 Depending on your version of QGreenland Core, the package may be a `.qgs` or a
@@ -49,11 +48,10 @@ Depending on your version of QGreenland Core, the package may be a `.qgs` or a
 version of QGIS.
 ```
 
-
 ```{note}
-If QGIS is already open, one can open the `qgreenland.qgs` project file
+If QGIS is already open, one can open the `qgreenland.qgz` project file
 within QGIS by navigating to the **Project -> Open...** option in the menu bar and
-selecting the `qgreenland.qgs` file from its saved location.
+selecting the `qgreenland.qgz` file from its saved location.
 ```
 
 
