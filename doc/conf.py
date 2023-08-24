@@ -23,7 +23,7 @@ sys.path.append(os.path.abspath("./sphinx-ext/"))
 
 project = "QGreenland"
 copyright = f"NSIDC {datetime.date.today().year}"
-author = "Twila Moon, Matt Fisher, Hope Simonoko, Trey Stafford"
+author = "National Snow and Ice Data Center"
 
 # The full version, including alpha/beta/rc tags
 release = "v3.0.0rc1"
