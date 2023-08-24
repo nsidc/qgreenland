@@ -84,7 +84,7 @@ _layer_params = {
         "title": "Annual ice sheet velocity magnitude 2021 (200m)",
     },
     "vx": {
-        "description": "Ice sheet velocity x component (vy) in meters per year for 2021."
+        "description": "Ice sheet velocity x component (vx) in meters per year for 2021."
         + _description_common,
         "style": "grimp_velocity_component",
         "title": "Annual ice sheet velocity x component 2021 (200m)",
@@ -112,7 +112,7 @@ grimp_vector_layer = Layer(
     id="grimp_annual_vectors_2021",
     title="Annual ice sheet velocity vectors 2021 (1.5km)",
     description=(
-        """Vector representation of ice sheet velocity in meters per year for 2021."""
+        """Vector representation of ice sheet velocity in meters per year for 2021. Calculated by QGreenland Team."""
     ),
     style="grimp_vectors",
     input=LayerInput(
