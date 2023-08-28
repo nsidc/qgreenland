@@ -489,8 +489,9 @@ def _delete_node(
 
 def prune_layers_not_in_package(
     tree: LayerGroupNode,
+    package_name: str,
 ) -> LayerGroupNode:
-    """Remove any leaf nodes that are `not in_package`.
+    """Remove any leaf nodes that are not to be packaged for `package_name`.
 
     If there are any empty groups after this, remove them too.
     """
@@ -499,7 +500,10 @@ def prune_layers_not_in_package(
     # We can iterate using tree.leaves here because we know all LayerNodes are
     # leaves. Removing these leaves shouldn't create new LayerNode leaves.
     for node in lt.leaves:
-        if type(node) is LayerNode and not node.layer_cfg.in_package:
+        if (
+            type(node) is LayerNode
+            and package_name not in node.layer_cfg.packaging_tags
+        ):
             _delete_node(node, msg="Removing layer not in package")
 
     lt = prune_empty_groups(lt)

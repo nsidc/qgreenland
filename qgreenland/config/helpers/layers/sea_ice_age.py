@@ -38,7 +38,7 @@ def sea_ice_age_layer(year: int, age_type: AgeType) -> Layer:
             of {age_type} extent chosen based on NSDIC's Sea Ice Index 5-day
             average."""
         ),
-        tags=[],
+        packaging_tags=["core"],
         style="sea_ice_age",
         input=LayerInput(
             dataset=dataset,

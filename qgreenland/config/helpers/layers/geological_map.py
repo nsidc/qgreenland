@@ -39,7 +39,7 @@ def make_layer(*, layer_id: str, layer_params: dict) -> Layer:
         id=layer_id,
         title=layer_params["title"],
         description=layer_params["description"],
-        tags=[],
+        packaging_tags=["core"],
         style=layer_params["style"],
         input=LayerInput(
             dataset=dataset,

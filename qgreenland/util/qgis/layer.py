@@ -76,9 +76,14 @@ def add_layer_metadata(map_layer: qgc.QgsMapLayer, layer_cfg: Layer) -> None:
         map_layer.loadNamedMetadata(temp_file.name)
 
 
-def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
+def make_map_layer(
+    layer_node: LayerNode,
+    *,
+    package_name: str,
+) -> qgc.QgsMapLayer:
     layer_path = _layer_path(
         layer_node=layer_node,
+        package_name=package_name,
     )
     layer_type = vector_or_raster(layer_node)
     if layer_type == "Vector":
@@ -102,6 +107,7 @@ def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
     map_layer = _create_layer_with_side_effects(
         creator,
         layer_node=layer_node,
+        package_name=package_name,
     )
 
     if not map_layer.isValid():
@@ -119,6 +125,8 @@ def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
 
 def _layer_path(
     layer_node: LayerNode,
+    *,
+    package_name: str,
 ) -> Union[Path, str]:
     layer_cfg = layer_node.layer_cfg
     if type(layer_cfg.input.asset) is OnlineAsset:
@@ -128,16 +136,17 @@ def _layer_path(
         # automatically generates the correct relative paths. Using a relative
         # path causes statistics (nodata value, min/max) to not be generated,
         # resulting in rendering a gray rectangle.
-        return get_layer_compile_filepath(layer_node)
+        return get_layer_compile_filepath(layer_node, package_name=package_name)
 
 
 def _offline_raster_side_effects(
     creator: Callable[..., qgc.QgsRasterLayer],
     *,
     layer_node: LayerNode,
+    package_name: str,
 ) -> qgc.QgsRasterLayer:
     """Generate raster statistics on disk and in the layer object."""
-    layer_path = _layer_path(layer_node)
+    layer_path = _layer_path(layer_node, package_name=package_name)
 
     # Create .aux.xml metadatafile with raster band statistics; useful
     # for styling and accurate min/max/stdev/mean in QGIS layer info
@@ -159,6 +168,7 @@ def _create_layer_with_side_effects(
     creator: Callable[..., qgc.QgsMapLayer],
     *,
     layer_node: LayerNode,
+    package_name: str,
 ) -> qgc.QgsMapLayer:
     """Apply special steps before/after creating a layer."""
     layer_cfg = layer_node.layer_cfg
@@ -169,7 +179,11 @@ def _create_layer_with_side_effects(
     )
 
     if offline_raster:
-        return _offline_raster_side_effects(creator, layer_node=layer_node)
+        return _offline_raster_side_effects(
+            creator,
+            layer_node=layer_node,
+            package_name=package_name,
+        )
     else:
         return creator()
 
