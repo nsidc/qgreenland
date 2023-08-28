@@ -20,7 +20,10 @@ how to contribute to QGreenland, see our
 [Documentation](https://qgreenland.readthedocs.io)
 
 > :tada: QGreenland v3 has been released! Please visit our
-> [website](https://qgreenland.org/download) to download it now!
+> [website](https://qgreenland.org/download) to download it now! Note
+> that an official annoucement and more exciting news is planned for early
+> September. Subscribe to the [QGreenland newsletter](http://eepurl.com/gQ7VCr)
+> to learn more!
 
 
 ## A Free GIS package for Greenland
