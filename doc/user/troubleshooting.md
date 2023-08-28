@@ -1,8 +1,17 @@
 # Troubleshooting
 
+
 ```{contents} Contents
 :local:
 
+```
+
+```{admonition} Get more help
+:class: info
+
+This page is a compilation of some common pitfalls and issues users have encountered. If
+your problem isn't documented here, please join us on [GitHub
+Discussions](https://github.com/nsidc/qgreenland/discussions/) to get more help!
 ```
 
 

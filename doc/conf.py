@@ -47,6 +47,7 @@ extensions = [
     "sphinx_selective_exclude.eager_only",
     "sphinx_selective_exclude.search_auto_exclude",
     "sphinx_selective_exclude.modindex_exclude",
+    "sphinxext.rediraffe",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -69,6 +70,13 @@ myst_enable_extensions = [
 ]
 myst_substitutions = {
     "release": release,
+}
+
+
+# -- Redirection options ------------------------------------------
+
+rediraffe_redirects = {
+    "user/how-to/troubleshooting.md": "user/troubleshooting.md",
 }
 
 

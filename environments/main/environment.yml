@@ -48,6 +48,7 @@ dependencies:
   - myst-parser ~=2.0.0
   - sphinx-click ~=3.0.1
   - sphinx-rtd-theme ~=1.2.2
+  - sphinxext-rediraffe ~=0.2.7
   - autodoc-pydantic ~=1.9.0
   # TODO: What does this do? Do we need it?
   # - sphinx-autodoc-typehints ~=1.12.0

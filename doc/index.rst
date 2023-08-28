@@ -29,6 +29,7 @@ QGreenland Documentation
     :caption: User Documentation
     :hidden:
 
+    user/troubleshooting
     user/tutorials/index
     user/how-to/index
     user/reference/index
