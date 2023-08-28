@@ -19,10 +19,11 @@ For more detailed information about using the QGreenland Core zip package and on
 how to contribute to QGreenland, see our
 [Documentation](https://qgreenland.readthedocs.io)
 
-> :tada: QGreenland v3 development is well underway. We're looking for testers to
-> provide feedback by **August 6, 2023**. Please see our
-> [alpha release announcement](https://github.com/nsidc/qgreenland/discussions/694)
-> for more details, including highlights of this release.
+> :tada: QGreenland v3 has been released! Please visit our
+> [website](https://qgreenland.org/download) to download it now! Note
+> that an official annoucement and more exciting news is planned for early
+> September. Subscribe to the [QGreenland newsletter](http://eepurl.com/gQ7VCr)
+> to learn more!
 
 
 ## A Free GIS package for Greenland
