@@ -8,7 +8,7 @@ from qgreenland.util.config.export import export_config_csv
 
 
 @patch(
-    "qgreenland.util.layer.COMPILE_PACKAGE_DIR",
+    "qgreenland.util.misc.COMPILE_PACKAGE_DIR",
     new=MOCK_COMPILE_PACKAGE_DIR,
 )
 def test_export_config_csv(full_cfg):

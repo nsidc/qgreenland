@@ -22,7 +22,7 @@ class TestQgisApp:
         assert result.name() == online_layer_node.layer_cfg.title
 
     @patch(
-        "qgreenland.util.layer.COMPILE_PACKAGE_DIR",
+        "qgreenland.util.misc.COMPILE_PACKAGE_DIR",
         new=MOCK_COMPILE_PACKAGE_DIR,
     )
     def test_make_map_layer_raster(self, raster_layer_node):
@@ -50,7 +50,7 @@ class TestQgisApp:
         assert result.name() == raster_layer_node.layer_cfg.title
 
     @patch(
-        "qgreenland.util.layer.COMPILE_PACKAGE_DIR",
+        "qgreenland.util.misc.COMPILE_PACKAGE_DIR",
         new=MOCK_COMPILE_PACKAGE_DIR,
     )
     def test_add_layer_metadata(self, raster_layer_node):
@@ -79,7 +79,7 @@ class TestQgisApp:
         assert expected_extent == meta_extent.bounds.toRectangle()
 
     @patch(
-        "qgreenland.util.layer.COMPILE_PACKAGE_DIR",
+        "qgreenland.util.misc.COMPILE_PACKAGE_DIR",
         new=MOCK_COMPILE_PACKAGE_DIR,
     )
     def test__add_layers_and_groups(self, raster_layer_node):
