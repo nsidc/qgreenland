@@ -9,11 +9,13 @@ import qgreenland.util.qgis.layer as qgl
 import qgreenland.util.qgis.project as prj
 from qgreenland.test.constants import MOCK_COMPILE_PACKAGE_DIR
 
+mock_package_name = "bar"
+
 
 @pytest.mark.usefixtures("setup_teardown_qgis_app")
 class TestQgisApp:
     def test_make_map_layer_online(self, online_layer_node):
-        result = qgl.make_map_layer(online_layer_node)
+        result = qgl.make_map_layer(online_layer_node, package_name=mock_package_name)
 
         assert "https://demo.mapserver.org" in result.source()
         assert result.dataProvider().name() == "wms"
@@ -24,7 +26,7 @@ class TestQgisApp:
         new=MOCK_COMPILE_PACKAGE_DIR,
     )
     def test_make_map_layer_raster(self, raster_layer_node):
-        result = qgl.make_map_layer(raster_layer_node)
+        result = qgl.make_map_layer(raster_layer_node, package_name=mock_package_name)
 
         # The result is a a raster layer
         assert isinstance(result, qgc.QgsRasterLayer)
@@ -52,7 +54,10 @@ class TestQgisApp:
         new=MOCK_COMPILE_PACKAGE_DIR,
     )
     def test_add_layer_metadata(self, raster_layer_node):
-        mock_raster_layer = qgl.make_map_layer(raster_layer_node)
+        mock_raster_layer = qgl.make_map_layer(
+            raster_layer_node,
+            package_name=mock_package_name,
+        )
 
         qgl.add_layer_metadata(mock_raster_layer, raster_layer_node.layer_cfg)
 
@@ -80,7 +85,11 @@ class TestQgisApp:
     def test__add_layers_and_groups(self, raster_layer_node):
         # Test that _add_layers_and_groups works without error
         project = qgc.QgsProject.instance()
-        prj._add_layers_and_groups(project, raster_layer_node.root)
+        prj._add_layers_and_groups(
+            project,
+            raster_layer_node.root,
+            package_name=mock_package_name,
+        )
         added_layers = list(project.mapLayers().values())
         assert len(added_layers) == 1
         assert added_layers[0].name() == "Example raster"
@@ -91,5 +100,9 @@ class TestQgisApp:
         # Test that an exception is raised when parent groups of a layer are not
         # created first
         with pytest.raises(exc.QgrQgsLayerTreeGroupError):
-            prj._add_layers_and_groups(project, raster_layer_node)
+            prj._add_layers_and_groups(
+                project,
+                raster_layer_node,
+                package_name=mock_package_name,
+            )
         project.clear()
