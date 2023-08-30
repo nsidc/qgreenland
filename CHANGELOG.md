@@ -1,3 +1,7 @@
+# NEXT_VERSION
+
+- Add new "Terrain models/Internet required/Arctic DEM" layer.
+
 # v3.0.0 (2023-08-24)
 
 - Switch to `.qgz` compressed project file.
