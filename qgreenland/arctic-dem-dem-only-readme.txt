@@ -21,12 +21,12 @@ the layer after initially loading it into QGIS may be slow. We recommend that
 users build raster overviews for this data, which will increase the rendering
 speed when zooming in/out with the 32m Arctic DEM enabled.
 
-To build overviews in QGIS, navigate in the Menu Bar to `Raster -> Miscellaneous
--> Build Overviews (Pyramids)` . Select the 32m Arctic DEM as the input layer,
-and then click `Run` (leave the rest of the parameters as their defaults). This
-process will take several minutes and produce a new `.ovr` file in the data
-directory. The new `.ovr` file is expected to be ~5.5GB in size, and there is no
-need to interact with this new file.
+To build overviews in QGIS, navigate in the **Menu Bar** to **Raster ->
+Miscellaneous -> Build Overviews (Pyramids)** . Select the 32m Arctic DEM as the
+input layer, and then click **Run** (leave the rest of the parameters as their
+defaults). This process will take several minutes and produce a new `.ovr` file
+in the data directory. The new `.ovr` file is expected to be ~5.5GB in size, and
+there is no need to interact with this new file.
 
 
 -------------------

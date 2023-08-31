@@ -45,7 +45,7 @@ speed when zooming in/out.
 
 To build overviews for a layer in QGIS, navigate in the **Menu Bar** to **Raster
 -> Miscellaneous -> Build Overviews (Pyramids)** . Select the layer as the input
-layer, and then click `Run` (leave the rest of the parameters as their
+layer, and then click **Run** (leave the rest of the parameters as their
 defaults). This process will take several minutes and produce a new `.ovr` file
 in the data directory. The new `.ovr` file is expected to be several GB in size,
 and there is no need to interact with this new file.
