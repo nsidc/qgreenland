@@ -6,9 +6,9 @@
     \part{Add-on data}
 
 
-=========
+===========
 Add-on data
-=========
+===========
 
 .. toctree::
     :maxdepth: 1
