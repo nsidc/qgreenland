@@ -9,7 +9,9 @@ QGIS project.
 The current guidelines on this page are therefore obsolete. We will update them when we
 have more concrete advice. For now, we advise anyone who wants to add data to QGreenland
 to strive to make their data [FAIR](https://www.go-fair.org/fair-principles/) and to
-publish it to [DataONE](https://www.dataone.org/)!
+publish it to [DataONE](https://www.dataone.org/)! DataONE is a federated system
+composed of many member repositories. Please publish to the "Arctic Data Center" member
+repository at <https://arcticdata.io/>.
 
 Read our page on [what's next for
 QGreenland](/user/discussion/what-is-next-qgreenland.md) to learn more about our future
