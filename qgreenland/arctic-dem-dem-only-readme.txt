@@ -46,7 +46,8 @@ For information on changing the symbology of raster layers in QGIS, see:
 Citing this data:
 -------------------
 
-The ArcticDEM dataset should be cited as follows
+The ArcticDEM dataset should be cited as follows:
+
 Porter, C., Howat, I., Noh, M.J., Husby, E., Khuvis, S., Danish, E., Tomko, K.,
 Gardiner, J., Negrete, A., Yadav, B., Klassen, J., Kelleher, C., Cloutier, M.,
 Bakker, J., Enos, J., Arnold, G., Bauer, G., and Morin, P., 2023, "ArcticDEM

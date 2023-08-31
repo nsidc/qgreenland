@@ -1,5 +1,5 @@
 32-meter resolution ArcticDEM (digital elevation model): The Polar Geospatial
-Center has provided a custom Greenland 32-m resolution ArcticDEM for added
+Center has provided a custom Greenland 32m resolution ArcticDEM for added
 detail. Two download packages are provided for the v4.1 ArcitcDEM:
 
 * arcticdem_v4.1_32m_greenland_dem_only.zip: A ~4.1GB package containing only
