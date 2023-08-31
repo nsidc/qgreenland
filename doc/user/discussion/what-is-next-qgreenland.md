@@ -21,6 +21,10 @@ for data customization that QGreenland and other communities can leverage to
 create consistent geospatial data packages. Learn more
 [here](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2324765). 
 
+If you are interested in contributing data to QGreenland, we have added notes to our
+[dataset compatibility guide](/contributor/reference/data-compatibility-guide.md)
+about how to prepare for QGreenland-Net.
+
 You can keep up-to-date by:
 
 * Subscribing to the [QGreenland newsletter](http://eepurl.com/gQ7VCr)
