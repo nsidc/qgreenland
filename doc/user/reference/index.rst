@@ -15,3 +15,11 @@ Reference
     :glob:
 
     ./*
+
+
+.. toctree::
+    :name: Add-ons
+    :caption: Add-ons
+    :hidden:
+
+    addons/index
