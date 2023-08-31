@@ -1,4 +1,4 @@
-.. _user-reference:
+.. _addon-reference:
 
 
 ===========
