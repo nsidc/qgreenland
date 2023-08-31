@@ -1,11 +1,6 @@
 .. _user-reference:
 
 
-.. raw:: latex
-
-    \part{Add-on data}
-
-
 ===========
 Add-on data
 ===========
