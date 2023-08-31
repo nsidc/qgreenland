@@ -1,9 +1,11 @@
 # How to release a new version of QGreenland Core code
 
-Use `bumpversion` to bump the specified part of the version:
+Use `bumpversion` (see
+[bump-my-version](https://github.com/callowayproject/bump-my-version)) to bump
+the specified part of the version:
 
 ```
-$ bumpversion --part={major|minor|patch}
+$ bumpversion bump {major|minor|patch|prerelease|build|}
 ```
 
 Versions should be in one of the following forms:
@@ -14,8 +16,8 @@ Versions should be in one of the following forms:
 * `vX.Y.Z`: A final release, e.g. `v1.2.3`.
 
 ```{caution}
-When using `bumpversion build`, ensure you have already used `bumpversion
-prerelease`. Running `bumpversion build` from a final release version number
+When using `bumpversion bump build`, ensure you have already used `bumpversion
+bump prerelease`. Running `bumpversion bump build` from a final release version number
 can result in an incorrect patch number, e.g. `v1.2.304`.
 ```
 
