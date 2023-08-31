@@ -1,4 +1,4 @@
-# NEXT_VERSION
+# v3.1.0 (2023-08-31)
 
 - Add new "Terrain models/Internet required/Arctic DEM" layer.
 

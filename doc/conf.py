@@ -26,7 +26,7 @@ copyright = f"NSIDC {datetime.date.today().year}"
 author = "National Snow and Ice Data Center"
 
 # The full version, including alpha/beta/rc tags
-release = "v3.0.0"
+release = "v3.1.0"
 
 
 # -- General configuration ---------------------------------------------------
