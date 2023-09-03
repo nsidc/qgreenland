@@ -27,8 +27,7 @@ mock_online_layer_cfg = {
     "id": "example_online",
     "title": "Example online",
     "description": "Example layer description.",
-    "tags": ["foo", "bar", "baz"],
-    "in_package": True,
+    "packaging_tags": ["foo", "bar"],
     "input": {
         "dataset": {
             "id": "baz",
@@ -48,8 +47,7 @@ mock_raster_layer_cfg = {
     "id": "example_raster",
     "title": "Example raster",
     "description": "Example layer description.",
-    "tags": ["foo", "bar", "baz"],
-    "in_package": True,
+    "packaging_tags": ["bar", "baz"],
     "input": {
         "dataset": {
             "id": "example_dataset",

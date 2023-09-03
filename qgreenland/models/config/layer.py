@@ -36,11 +36,17 @@ class Layer(QgrBaseModel):
     description: str = Field(..., min_length=1)
     """Descriptive text shown as hover-text in the QGIS Layer Panel."""
 
-    tags: list[str] = []
-    """Additional categories that describe this data."""
-
+    # Temporary keeping these around for testing before config is fully migrated
     in_package: bool = True
-    """Is this layer in the final QGreenland zip file?"""
+    tags: list[str] = []
+
+    packaging_tags: list[str] = ["core"]
+    """Which packages does this layer belong in? Layer will be omitted if empty.
+
+    Temporarily defaults to ["core"] to help us test more quickly.
+
+    TODO: Validate len > 0.
+    """
 
     show: bool = False
     """Is this layer initially "checked" or visible in QGIS?"""

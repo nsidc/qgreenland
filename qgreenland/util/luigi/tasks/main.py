@@ -111,9 +111,14 @@ class ChainableTask(QgrLayerTask):
 
 
 class LinkLayer(QgrLayerTask):
+    package_name = luigi.Parameter()
+
     def output(self):
         return luigi.LocalTarget(
-            get_layer_compile_dir(self.node),
+            get_layer_compile_dir(
+                self.node,
+                package_name=self.package_name,
+            ),
         )
 
     def run(self):
@@ -157,8 +162,8 @@ class FinalizeTask(QgrLayerTask):
         with temporary_path_dir(self.output()) as temp_path:
             shutil.copy2(input_fp, temp_path / final_fn)
 
-            # Create layer provenance and metadata files. These are not
-            # "AncillaryFile" jobs because we need one file per layer.
+            # Create layer provenance and metadata files. These are not "AncillaryFile"
+            # jobs because we need one file per layer instead of one file per package.
             write_provenance_file(
                 layer_cfg=self.layer_cfg,
                 filepath=temp_path / "provenance.txt",

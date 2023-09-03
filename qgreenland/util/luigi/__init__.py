@@ -69,6 +69,7 @@ def fetch_tasks_from_dataset(
 @cache
 def generate_layer_pipelines(
     *,
+    package_name: str,
     fetch_only: bool = False,
 ) -> list[luigi.Task]:
     """Generate a list of pre-configured tasks based on layer configuration.
@@ -85,6 +86,10 @@ def generate_layer_pipelines(
         # Check if it's an online layer; those have no fetching or processing
         # pipeline.
         if isinstance(layer_cfg.input.asset, OnlineAsset):
+            continue
+
+        # Check if the layer is meant to be in `package_name`.
+        if package_name not in layer_cfg.packaging_tags:
             continue
 
         # Create tasks, making each task dependent on the previous task.

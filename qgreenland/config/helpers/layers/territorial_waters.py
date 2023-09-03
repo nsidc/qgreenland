@@ -73,7 +73,7 @@ def make_layers() -> list[Layer]:
             id=key,
             title=params["title"],
             description=params["description"],
-            tags=[],
+            packaging_tags=["core"],
             input=LayerInput(
                 dataset=dataset,
                 asset=dataset.assets["only"],

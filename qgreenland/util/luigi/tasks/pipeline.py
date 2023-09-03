@@ -6,16 +6,15 @@ import luigi
 
 from qgreenland.constants.paths import (
     ANCILLARY_DIR,
-    COMPILE_PACKAGE_DIR,
     PROJECT_DIR,
-    RELEASE_LAYERS_DIR,
     VERSIONED_PACKAGE_DIR,
     WIP_PACKAGE_DIR,
 )
 from qgreenland.constants.project import ENVIRONMENT, PROJECT
+from qgreenland.models.config import Config
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config.config import get_config
-from qgreenland.util.config.export import export_config_csv, export_config_manifest
+from qgreenland.util.config.export import export_config_csv
 from qgreenland.util.luigi import generate_layer_pipelines
 from qgreenland.util.luigi.tasks.ancillary import (
     AncillaryFile,
@@ -23,27 +22,28 @@ from qgreenland.util.luigi.tasks.ancillary import (
     AncillarySphinxPdfFile,
 )
 from qgreenland.util.luigi.tasks.main import LinkLayer
+from qgreenland.util.misc import compile_package_dir
 from qgreenland.util.qgis.project import QgsApplicationContext, make_qgis_project_file
 from qgreenland.util.version import get_build_version
 
 logger = logging.getLogger("luigi-interface")
 
 
+# TODO: Can a wrapper task have Parameters?
 class LayersInPackage(luigi.WrapperTask):
-    """Hard link layers in to the packaging location.
+    """Hard link layers in to the packaging location."""
 
-    Only layers with the `in_package` attribute set to `True` will be hard linked.
-    """
+    package_name = luigi.Parameter()
 
     def requires(self):
-        tasks = generate_layer_pipelines()
+        tasks = generate_layer_pipelines(package_name=self.package_name)
 
         for task in tasks:
-            if task.layer_cfg.in_package:
-                yield LinkLayer(
-                    requires_task=task,
-                    layer_id=task.layer_cfg.id,
-                )
+            yield LinkLayer(
+                requires_task=task,
+                layer_id=task.layer_cfg.id,
+                package_name=self.package_name,
+            )
 
 
 class PackageLayerList(AncillaryFile):
@@ -56,76 +56,53 @@ class PackageLayerList(AncillaryFile):
     dest_relative_filepath = "layer_list.csv"
 
     def requires(self):
-        yield LayersInPackage()
+        yield LayersInPackage(package_name=self.package_name)
 
     def run(self):
         config = get_config()
         with self.output().temporary_path() as temp_path:
-            export_config_csv(config, output_path=temp_path)
-
-
-class LayerPipelines(luigi.WrapperTask):
-    """Build all the layers."""
-
-    fetch_only = luigi.BoolParameter(default=False)
-
-    def requires(self):
-        """All layers that will be added to the project."""
-        tasks = generate_layer_pipelines(
-            fetch_only=self.fetch_only,
-        )
-
-        yield from tasks
-
-
-class LayerManifest(luigi.Task):
-    """A JSON manifest of layers available for access.
-
-    Intended to be processed by machine, e.g. QGIS plugin.
-    """
-
-    def output(self):
-        return luigi.LocalTarget(
-            RELEASE_LAYERS_DIR / "manifest.json",
-        )
-
-    def requires(self):
-        yield LayerPipelines()
-
-    def run(self):
-        config = get_config()
-        with self.output().temporary_path() as temp_path:
-            export_config_manifest(config, output_path=temp_path)
+            export_config_csv(
+                config,
+                output_path=temp_path,
+                package_name=self.package_name,
+            )
 
 
 class CreateQgisProjectFile(luigi.Task):
     """Create .qgz/.qgs project file."""
 
+    package_name = luigi.Parameter()
+
     def requires(self):
-        yield LayersInPackage()
+        yield LayersInPackage(package_name=self.package_name)
         yield AncillaryFile(
+            package_name=self.package_name,
             src_filepath=ANCILLARY_DIR / "images" / "qgreenland.png",
             dest_relative_filepath="qgreenland.png",
         )
         # TODO: Nothing below this line is really _required_ for the project
         # file. Only required for the Zip file. Extract.
         yield AncillaryMarkdownFileToHtml(
+            package_name=self.package_name,
             src_filepath=PROJECT_DIR / "README.md",
             dest_relative_filepath="README.html",
         )
         yield AncillaryFile(
+            package_name=self.package_name,
             src_filepath=PROJECT_DIR / "doc" / "_pdf" / "QuickStartGuide.pdf",
             dest_relative_filepath="QuickStartGuide.pdf",
         )
         yield AncillaryMarkdownFileToHtml(
+            package_name=self.package_name,
             src_filepath=PROJECT_DIR / "CHANGELOG.md",
             dest_relative_filepath="CHANGELOG.html",
         )
         yield AncillarySphinxPdfFile(
+            package_name=self.package_name,
             src_filepath=PROJECT_DIR / "doc" / "Makefile",
             dest_relative_filepath="UserGuide.pdf",
         )
-        yield PackageLayerList()
+        yield PackageLayerList(package_name=self.package_name)
 
     def output(self):
         versioned_package_name = f"{PROJECT}_{get_build_version()}"
@@ -137,13 +114,16 @@ class CreateQgisProjectFile(luigi.Task):
         # writing shapefiles, except this time we want to put them inside a
         # pre-existing directory.
         with QgsApplicationContext():
-            make_qgis_project_file(COMPILE_PACKAGE_DIR / "qgreenland.qgz")
+            make_qgis_project_file(
+                compile_package_dir(self.package_name) / "qgreenland.qgz",
+                package_name=self.package_name,
+            )
 
         # Create symbolic link to zip with the final versioned filename
         # We don't _need_ a symbolic link here, but this also serves to trigger
         # the next job.
         Path(self.output().path).symlink_to(
-            COMPILE_PACKAGE_DIR,
+            compile_package_dir(self.package_name),
             target_is_directory=True,
         )
 
@@ -151,8 +131,10 @@ class CreateQgisProjectFile(luigi.Task):
 class ZipQGreenland(luigi.Task):
     """Zip entire QGreenland package for distribution."""
 
+    package_name = luigi.Parameter()
+
     def requires(self):
-        return CreateQgisProjectFile()
+        return CreateQgisProjectFile(package_name=self.package_name)
 
     def output(self):
         VERSIONED_PACKAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -196,19 +178,23 @@ class ZipQGreenland(luigi.Task):
         )
 
 
-class HostedLayers(luigi.WrapperTask):
+def _unique_packages_in_config(config: Config) -> set[str]:
+    packages = set()
+    for layer in config.layers.values():
+        packages.update(layer.packaging_tags)
+
+    return packages
+
+
+class QGreenlandPackagesNoZip(luigi.WrapperTask):
     def requires(self):
-        yield LayerPipelines()
-        yield LayerManifest()
+        config = get_config()
+        for package_name in _unique_packages_in_config(config):
+            yield CreateQgisProjectFile(package_name=package_name)
 
 
-class QGreenlandAll(luigi.WrapperTask):
+class QGreenlandPackages(luigi.WrapperTask):
     def requires(self):
-        yield ZipQGreenland()
-        yield HostedLayers()
-
-
-class QGreenlandNoZip(luigi.WrapperTask):
-    def requires(self):
-        yield CreateQgisProjectFile()
-        yield HostedLayers()
+        config = get_config()
+        for package_name in _unique_packages_in_config(config):
+            yield ZipQGreenland(package_name=package_name)

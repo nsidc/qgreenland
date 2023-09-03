@@ -14,7 +14,7 @@ def make_land_ocean_layer(layer_id: str) -> Layer:
         id=layer_id,
         title=layer_id.capitalize(),
         description=(f"""Polygons representing the {layer_id}."""),
-        tags=[],
+        packaging_tags=["foo"] if layer_id == "land" else ["core", "foo"],
         style=layer_id,
         input=LayerInput(
             dataset=layer_params[layer_id],

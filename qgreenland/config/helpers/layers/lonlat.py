@@ -45,7 +45,7 @@ def _make_lonlat_layer(
         id=asset.id,
         title=f"{title_prefix} lines ({deg} degree)",
         description=(f"Lines of {title_prefix.lower()} in {deg}-degree resolution."),
-        tags=["reference"],
+        packaging_tags=["core"],
         style="lonlat",
         input=LayerInput(
             dataset=dataset,
