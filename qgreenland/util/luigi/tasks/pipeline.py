@@ -8,14 +8,13 @@ from qgreenland.constants.paths import (
     ANCILLARY_DIR,
     COMPILE_PACKAGE_DIR,
     PROJECT_DIR,
-    RELEASE_LAYERS_DIR,
     VERSIONED_PACKAGE_DIR,
     WIP_PACKAGE_DIR,
 )
 from qgreenland.constants.project import ENVIRONMENT, PROJECT
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config.config import get_config
-from qgreenland.util.config.export import export_config_csv, export_config_manifest
+from qgreenland.util.config.export import export_config_csv
 from qgreenland.util.luigi import generate_layer_pipelines
 from qgreenland.util.luigi.tasks.ancillary import (
     AncillaryFile,
@@ -76,26 +75,6 @@ class LayerPipelines(luigi.WrapperTask):
         )
 
         yield from tasks
-
-
-class LayerManifest(luigi.Task):
-    """A JSON manifest of layers available for access.
-
-    Intended to be processed by machine, e.g. QGIS plugin.
-    """
-
-    def output(self):
-        return luigi.LocalTarget(
-            RELEASE_LAYERS_DIR / "manifest.json",
-        )
-
-    def requires(self):
-        yield LayerPipelines()
-
-    def run(self):
-        config = get_config()
-        with self.output().temporary_path() as temp_path:
-            export_config_manifest(config, output_path=temp_path)
 
 
 class CreateQgisProjectFile(luigi.Task):
@@ -197,9 +176,14 @@ class ZipQGreenland(luigi.Task):
 
 
 class HostedLayers(luigi.WrapperTask):
+    """Generate all layers we need to host.
+
+    This is a vestige of the QGreenland Custom QGIS plugin; we no longer need to "host"
+    layers, except for backwards-compatibility.
+    """
+
     def requires(self):
         yield LayerPipelines()
-        yield LayerManifest()
 
 
 class QGreenlandAll(luigi.WrapperTask):
