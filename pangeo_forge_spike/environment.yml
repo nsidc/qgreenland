@@ -1,0 +1,11 @@
+name: qgr-forge-spike
+platforms:
+  - linux-64
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python ~=3.11.0
+  - pangeo-forge-recipes ~=0.10.7
+  - pangeo-forge-runner ~=0.9.4
+  - apache-beam ~=2.54.0
