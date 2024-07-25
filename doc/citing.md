@@ -70,7 +70,7 @@ An asterisk (`*`) indicates co-equal lead authorship (listed alphabetically).
 
 > *Fisher, M., *Stafford, T., Moon, T., Harden, L., and H. Simonoko (2022). QGreenland
 > (v2) [software], [National Snow and Ice Data
-> Center](https://github.com/nsidc/qgreenland)
+> Center](https://github.com/nsidc/qgreenland).
 > doi: [10.5281/zenodo.6369184](https://doi.org/10.5281/zenodo.6369184)
 
 
