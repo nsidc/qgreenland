@@ -44,39 +44,47 @@ An asterisk (`*`) indicates co-equal lead authorship (listed alphabetically).
 
 > Moon, T. A., M. Fisher, T. Stafford, and A. Thurber (2023). QGreenland ({{ release }})
 > [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+> doi: [10.5281/zenodo.12823307](https://doi.org/10.5281/zenodo.12823307)
 
 > *Fisher, M., *Stafford, T., T. Moon, and A. Thurber (2023). QGreenland ({{ release }})
-> [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland)
+> [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland).
+> doi: [10.5281/zenodo.8326507](https://doi.org/10.5281/zenodo.8326507)
 
 
 ### Version 3
 
 > Moon, T. A., M. Fisher, T. Stafford, and A. Thurber (2023). QGreenland (v3)
 > [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+> doi: [10.5281/zenodo.12823307](https://doi.org/10.5281/zenodo.12823307)
 
 > *Fisher, M., *Stafford, T., T. Moon, and A. Thurber (2023). QGreenland (v3)
-> [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland)
+> [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland).
+> doi: [10.5281/zenodo.8326507](https://doi.org/10.5281/zenodo.8326507)
 
 
 ### Version 2
 
 > Moon, T., Fisher, M., Harden, L., Simonoko, H., and T. Stafford (2022). QGreenland
 > (v2) [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+> doi: [10.5281/zenodo.8247915](https://doi.org/10.5281/zenodo.8247915)
 
 > *Fisher, M., *Stafford, T., Moon, T., Harden, L., and H. Simonoko (2022). QGreenland
 > (v2) [software], [National Snow and Ice Data
 > Center](https://github.com/nsidc/qgreenland)
+> doi: [10.5281/zenodo.6369184](https://doi.org/10.5281/zenodo.6369184)
 
 
 ### Version 1
 
 > Moon, T., Fisher, M., Harden, L., and T. Stafford (2021). QGreenland (v1)
 > [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
+> doi: [10.5281/zenodo.8247896](https://doi.org/10.5281/zenodo.8247896)
 
 > *Fisher, M., *Stafford, T., Moon, T., and L. Harden (2021). QGreenland (v1)
-> [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland)
+> [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland).
+> doi: [10.5281/zenodo.4557875](https://doi.org/10.5281/zenodo.4557875)
 
 
 ## Acknowledgement
 
-> We acknowledge the National Snow and Ice Data Center QGreenland package. 
+> We acknowledge the National Snow and Ice Data Center QGreenland package.
