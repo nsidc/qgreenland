@@ -19,7 +19,7 @@ def _make_racmo_wind_vectors() -> Layer:
             """Averaged annual mean wind direction in meters per second from
             RACMO2.3p2 for the period 1958-2019."""
         ),
-        tags=[],
+        packaging_tags=["core"],
         style="racmo_wind_vectors",
         input=LayerInput(
             dataset=dataset,
@@ -46,7 +46,7 @@ def _make_racmo_wind_speed() -> Layer:
             """Averaged annual mean wind speed in meters per second from RACMO2.3p2
             for the period 1958-2019."""
         ),
-        tags=[],
+        packaging_tags=["core"],
         style="racmo_wind_speed",
         input=LayerInput(
             dataset=dataset,
@@ -154,7 +154,7 @@ def _make_masked_racmo_layer(
         id=layer_id,
         title=title,
         description=description,
-        tags=[],
+        packaging_tags=["core"],
         style=style,
         input=LayerInput(
             dataset=dataset,
@@ -267,7 +267,7 @@ def make_racmo_supplemental_layers() -> list[Layer]:
                 id=layer_id,
                 title=params["title"],
                 description=params["description"],
-                tags=[],
+                packaging_tags=["core"],
                 style=params["style"],
                 input=LayerInput(
                     dataset=dataset,

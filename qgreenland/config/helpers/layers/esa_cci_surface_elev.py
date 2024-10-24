@@ -43,7 +43,7 @@ def surface_elevation_layer(
         id=f"surface_elevation_change_{variable.lower()}_{start_year}_{end_year}",
         title=f"Surface elevation change {start_year}-{end_year}",
         description=description,
-        tags=[],
+        packaging_tags=["core"],
         style=style,
         input=LayerInput(
             dataset=dataset,

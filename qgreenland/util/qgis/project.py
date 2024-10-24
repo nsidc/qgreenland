@@ -38,7 +38,7 @@ class QgsApplicationContext:
         self.qgs.exitQgis()
 
 
-def make_qgis_project_file(path: Path) -> None:
+def make_qgis_project_file(path: Path, *, package_name: str) -> None:
     """Create a QGIS project file with the correct stuff in it.
 
     path: the desired path to .qgs/.qgz project file, e.g.:
@@ -77,8 +77,15 @@ def make_qgis_project_file(path: Path) -> None:
 
     _add_decorations(project)
 
-    package_layer_tree = prune_layers_not_in_package(config.layer_tree)
-    _add_layers_and_groups(project, package_layer_tree)
+    package_layer_tree = prune_layers_not_in_package(
+        config.layer_tree,
+        package_name=package_name,
+    )
+    _add_layers_and_groups(
+        project,
+        package_layer_tree,
+        package_name=package_name,
+    )
 
     _add_project_metadata(project)
 
@@ -117,7 +124,12 @@ def _apply_group_settings(
     group.setExpanded(settings.expand)
 
 
-def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) -> None:
+def _add_layers_and_groups(
+    project: qgc.QgsProject,
+    layer_tree: LayerGroupNode,
+    *,
+    package_name: str,
+) -> None:
     """Iterate through the layer tree and create the relevant Qgs objects."""
     # `anytree.PreOrderIter` is necessary here so that the
     # `_create_and_add_layer` function receives the correct group.
@@ -141,6 +153,7 @@ def _add_layers_and_groups(project: qgc.QgsProject, layer_tree: LayerGroupNode) 
                 node=node,
                 project=project,
                 group=parent_group,
+                package_name=package_name,
             )
         else:
             raise TypeError(f"Unexpected `node` type: {type(node)}")
@@ -196,12 +209,13 @@ def _create_and_add_layer(
     node: LayerNode,
     project: qgc.QgsProject,
     group: qgc.QgsLayerTreeGroup,
+    package_name: str,
 ) -> None:
     layer_id = node.name
     logger.debug(f"Adding {layer_id}...")
     layer_cfg = node.layer_cfg
 
-    map_layer = make_map_layer(node)
+    map_layer = make_map_layer(node, package_name=package_name)
 
     # Assign to a different name because this changes the type. We need to add
     # `map_layer` to the project as the last step.

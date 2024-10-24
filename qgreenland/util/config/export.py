@@ -22,61 +22,27 @@ from qgreenland.util.layer import (
     get_layer_release_filepath,
     vector_or_raster,
 )
-from qgreenland.util.metadata import build_layer_metadata
-from qgreenland.util.tree import LayerNode
-from qgreenland.util.version import get_build_version
-
-DEFAULT_LAYER_MANIFEST_PATH = Path("./layers.csv")
-
-
-def export_config_manifest(
-    cfg: Config,
-    output_path: Path = DEFAULT_LAYER_MANIFEST_PATH,
-) -> None:
-    """Write a machine-readable manifest to disk describing available layers.
-
-    This includes layers for which `in_package is False`.
-
-    This must be run after the layers are in their release location, because we
-    need to calculate their size on disk.
-    """
-    manifest_spec_version = "v0.1.0"
-    manifest = {
-        "version": manifest_spec_version,
-        "qgr_version": get_build_version(),
-        "layers": [
-            {
-                # ID first for readability
-                "id": layer_node.layer_cfg.id,
-                **layer_node.layer_cfg.dict(include={"title", "description", "tags"}),
-                "hierarchy": layer_node.group_name_path,
-                "layer_details": build_layer_metadata(layer_node.layer_cfg),
-                "assets": _layer_manifest_final_assets(layer_node),
-            }
-            for layer_node in cfg.layer_tree.leaves
-            # For now, do not include online layers in the layer manifest. The
-            # `QGreenland Custom` QGIS Plugin does not currently support online
-            # layers. Once online layers are supported in the plugin, this `if`
-            # statement can be removed.
-            if not isinstance(layer_node.layer_cfg.input.asset, OnlineAsset)
-        ],
-    }
-
-    with open(output_path, "w") as ofile:
-        json.dump(manifest, ofile)
+from qgreenland.util.tree import LayerNode, prune_layers_not_in_package
 
 
 def export_config_csv(
     cfg: Config,
-    output_path: Path = DEFAULT_LAYER_MANIFEST_PATH,
+    *,
+    output_path: Path,
+    package_name: str,
 ) -> None:
     """Write a report to disk summarizing layers in the zip package.
 
     This must be run after the layers are in their location, because we need to
     calculate their size on disk.
     """
+    layer_tree = prune_layers_not_in_package(
+        cfg.layer_tree,
+        package_name=package_name,
+    )
+
     report = []
-    for layer_node in cfg.layer_tree.leaves:
+    for layer_node in layer_tree.leaves:
         layer_cfg = layer_node.layer_cfg
 
         if not layer_cfg.in_package:
@@ -92,7 +58,10 @@ def export_config_csv(
             layer_size_bytes = 0
             internet_required = False
         else:
-            layer_fp = get_layer_compile_filepath(layer_node)
+            layer_fp = get_layer_compile_filepath(
+                layer_node,
+                package_name=package_name,
+            )
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
             internet_required = True

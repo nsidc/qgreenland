@@ -78,7 +78,7 @@ def make_layer(*, dataset, depth, season, variable, units) -> Layer:
             remotely sensed observations, also require a more recent
             climatology."""
         ),
-        tags=[],
+        packaging_tags=["core"],
         style=f"seawater_{variable}",
         input=LayerInput(
             dataset=dataset,
