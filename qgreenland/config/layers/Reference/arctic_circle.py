@@ -11,7 +11,7 @@ arctic_circle = Layer(
         not set on the summer solstice, and does not rise on the winter
         solstice."""
     ),
-    tags=[],
+    packaging_tags=["core"],
     style="arctic_circle",
     input=LayerInput(
         dataset=dataset,

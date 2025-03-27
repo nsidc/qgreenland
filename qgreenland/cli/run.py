@@ -73,9 +73,8 @@ def run(
     #     https://github.com/click-contrib/sphinx-click/issues/86#issuecomment-991196764
     from qgreenland.util.config.config import get_config, init_config
     from qgreenland.util.luigi.tasks.pipeline import (
-        LayerPipelines,
-        QGreenlandAll,
-        QGreenlandNoZip,
+        QGreenlandPackages,
+        QGreenlandPackagesNoZip,
     )
 
     if force_package_zip and force_no_package_zip:
@@ -92,11 +91,15 @@ def run(
 
     if fetch_only:
         # Don't do anything except fetch the input asset for each layer.
-        tasks = [LayerPipelines(fetch_only=fetch_only)]
+        # TODO: How to keep "fetch all" functionality? Bring back LayerPipelines solely
+        # for this? Or make the user pass a specific package, or specific a magic word
+        # like "__all__"? ¯\_(ツ)_/¯
+        # tasks = [LayerPipelines(fetch_only=fetch_only)]
+        ...
     elif skip_zip:
-        tasks = [QGreenlandNoZip()]
+        tasks = [QGreenlandPackagesNoZip()]
     else:
-        tasks = [QGreenlandAll()]
+        tasks = [QGreenlandPackages()]
 
     print(f"Running tasks: {str(tasks)}")
     print()

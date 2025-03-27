@@ -24,8 +24,7 @@ We additionally define a “Caution Zone” (2000 nT <= H < 6000 nT) around the
 BoZ, where caution must be exercised while using a compass. Compass accuracy
 may be degraded in this region.
 """,
-        tags=["wmm"],
-        in_package=True,
+        packaging_tags=["core"],
         show=False,
         style="blackout_zones",
         input=LayerInput(
@@ -256,7 +255,7 @@ def make_wmm_variable_layer(
         description=variable_config["description"],
         # We keep the main field declination layers (`d`) in the core
         # package. All other variables will only be available from the plugin.
-        in_package=True if variable == "d" else False,
+        packaging_tags=["core"] if variable == "d" else [],
         style="wmm_contours",
         input=LayerInput(
             dataset=wmm.wmm,

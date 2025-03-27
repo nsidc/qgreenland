@@ -6,8 +6,8 @@ from pathlib import Path
 import luigi
 import markdown
 
-from qgreenland.constants.paths import COMPILE_PACKAGE_DIR
 from qgreenland.util.command import run_cmd
+from qgreenland.util.misc import compile_package_dir
 
 logger = logging.getLogger("luigi-interface")
 
@@ -15,14 +15,15 @@ logger = logging.getLogger("luigi-interface")
 class AncillaryFile(luigi.Task):
     """Copy an ancillary file in to the final QGreenland package."""
 
+    package_name = luigi.Parameter()
     # Absolute path
     src_filepath = luigi.Parameter()
-    # Relative to the root of QGreenland
+    # Relative to the root of the package
     dest_relative_filepath = luigi.Parameter()
 
     def output(self):
         return luigi.LocalTarget(
-            COMPILE_PACKAGE_DIR / self.dest_relative_filepath,
+            compile_package_dir(self.package_name) / self.dest_relative_filepath,
         )
 
     def run(self):

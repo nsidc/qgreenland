@@ -23,7 +23,7 @@ def _make_layer(
         id=layer_id,
         title=title,
         description=description,
-        tags=[],
+        packaging_tags=["core"],
         style=style,
         input=LayerInput(
             dataset=dataset,
