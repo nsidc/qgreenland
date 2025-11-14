@@ -16,7 +16,10 @@ from qgreenland.constants.project import ENVIRONMENT, PROJECT
 from qgreenland.util.cleanup import cleanup_intermediate_dirs
 from qgreenland.util.config.config import get_config
 from qgreenland.util.config.export import export_config_csv, export_config_manifest
-from qgreenland.util.luigi import generate_layer_pipelines
+from qgreenland.util.luigi import (
+    generate_fetch_only_pipelines,
+    generate_layer_pipelines,
+)
 from qgreenland.util.luigi.tasks.ancillary import (
     AncillaryFile,
     AncillaryMarkdownFileToHtml,
@@ -52,8 +55,8 @@ class PackageLayerList(AncillaryFile):
     Intended to be viewed by humans.
     """
 
-    src_filepath = None
-    dest_relative_filepath = "layer_list.csv"
+    src_filepath = luigi.Parameter(default=None)
+    dest_relative_filepath = luigi.Parameter(default="layer_list.csv")
 
     def requires(self):
         yield LayersInPackage()
@@ -71,9 +74,7 @@ class LayerPipelines(luigi.WrapperTask):
 
     def requires(self):
         """All layers that will be added to the project."""
-        tasks = generate_layer_pipelines(
-            fetch_only=self.fetch_only,
-        )
+        tasks = generate_fetch_only_pipelines()
 
         yield from tasks
 
