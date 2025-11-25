@@ -9,7 +9,7 @@ arctic_sea_routes = Layer(
     id="arctic_sea_routes",
     title="Arctic sea routes",
     description=(
-        """Lines depict the Northern Sea Route, Northwest Passate, and
+        """Lines depict the Northern Sea Route, Northwest Passage, and
         hypothetical Transpolar Route."""
     ),
     tags=[],
