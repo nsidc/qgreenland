@@ -1,8 +1,6 @@
 from collections.abc import Generator
 from functools import cache
 
-import luigi
-
 from qgreenland.models.config.asset import (
     AnyAsset,
     CmrAsset,
@@ -67,17 +65,14 @@ def fetch_tasks_from_dataset(
 
 
 @cache
-def generate_layer_pipelines(
-    *,
-    fetch_only: bool = False,
-) -> list[luigi.Task]:
-    """Generate a list of pre-configured tasks based on layer configuration.
+def generate_fetch_only_pipelines() -> list[FetchTask]:
+    """Generate a list of fetch-only tasks based on layer configuration.
 
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
     config = get_config()
-    tasks: list[luigi.Task] = []
+    tasks: list[FetchTask] = []
 
     layers = config.layers.values()
 
@@ -89,9 +84,32 @@ def generate_layer_pipelines(
 
         # Create tasks, making each task dependent on the previous task.
         task = fetch_task_from_layer(layer_cfg)
-        if fetch_only:
-            tasks.append(task)
+        tasks.append(task)
+
+    return tasks
+
+
+@cache
+def generate_layer_pipelines() -> list[FinalizeTask]:
+    """Generate a list of pre-configured tasks based on layer configuration.
+
+    Instead of calling tasks now, we return a list of callables with the
+    arguments already populated.
+    """
+    config = get_config()
+    tasks: list[FinalizeTask] = []
+
+    layers = config.layers.values()
+
+    for layer_cfg in layers:
+        # Check if it's an online layer; those have no fetching or processing
+        # pipeline.
+        if isinstance(layer_cfg.input.asset, OnlineAsset):
             continue
+
+        # Create tasks, making each task dependent on the previous task.
+        task: FetchTask | ChainableTask
+        task = fetch_task_from_layer(layer_cfg)
 
         # If the layer has no steps, it's just fetched and finalized.
         if layer_cfg.steps:
@@ -104,11 +122,11 @@ def generate_layer_pipelines(
 
         # We only need the last task in the layer pipeline to run all
         # "required" tasks in a layer pipeline.
-        task = FinalizeTask(
+        final_task = FinalizeTask(
             requires_task=task,
             layer_id=layer_cfg.id,
         )
 
-        tasks.append(task)
+        tasks.append(final_task)
 
     return tasks

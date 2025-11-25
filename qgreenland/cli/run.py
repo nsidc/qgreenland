@@ -90,6 +90,7 @@ def run(
     filtered = include or exclude
     skip_zip = force_no_package_zip or (filtered and not force_package_zip)
 
+    tasks: list[luigi.WrapperTask]
     if fetch_only:
         # Don't do anything except fetch the input asset for each layer.
         tasks = [LayerPipelines(fetch_only=fetch_only)]

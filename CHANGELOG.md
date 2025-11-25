@@ -1,3 +1,8 @@
+# v3.1.0 (TBD)
+
+- Minimum supported version of QGIS is now `v3.40`.
+
+
 # v3.0.0 (2023-08-24)
 
 - Switch to `.qgz` compressed project file.

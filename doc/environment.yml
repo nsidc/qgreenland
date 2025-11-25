@@ -13,7 +13,10 @@ dependencies:
   - sphinx-rtd-theme ~=1.2.2
   - sphinxext-rediraffe ~=0.2.7
   - autodoc-pydantic ~=1.9.0
-  - pydantic <2.0.0a0
+  - pydantic ~=1.10
+  # required to ensure that pydantic-core less than v2.0 is used. Required for
+  # autodoc-pydantic to work correctly.
+  - pydantic-core <2.0.0a
 
   # What is this? Do we need it?
   # sphinx-autodoc-typehints==1.12.0

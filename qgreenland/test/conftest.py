@@ -104,7 +104,7 @@ def layer_cfgs():
     return [
         Layer(
             **{
-                **mock_raster_layer_cfg,  # type: ignore[arg-type]
+                **mock_raster_layer_cfg,
                 "id": s,
                 "title": "Foo",
                 "description": "Bar.",

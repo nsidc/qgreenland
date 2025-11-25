@@ -22,13 +22,6 @@ jobs:
       - name: "Check out repository"
         uses: "actions/checkout@v3"
 
-      - name: "Apt install libgl1-mesa-glx"
-        run: |
-          # Install libgl1-mesa-glx. Import errors occur otherwise.
-          # See: https://app.circleci.com/jobs/github/nsidc/qgreenland/72/parallel-runs/0/steps/0-102
-          sudo apt-get update
-          sudo apt-get install -y libgl1-mesa-glx
-
       - name: "Install Conda environment"
         uses: "mamba-org/setup-micromamba@v1"
         with:
