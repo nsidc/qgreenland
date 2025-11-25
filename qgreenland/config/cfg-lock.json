@@ -3823,7 +3823,7 @@
           },
           {
             "layer_cfg": {
-              "description": "Lines depict the Northern Sea Route, Northwest Passate, and\nhypothetical Transpolar Route.",
+              "description": "Lines depict the Northern Sea Route, Northwest Passage, and\nhypothetical Transpolar Route.",
               "id": "arctic_sea_routes",
               "in_package": true,
               "input": {
