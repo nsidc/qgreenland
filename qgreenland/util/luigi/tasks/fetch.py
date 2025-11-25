@@ -20,8 +20,8 @@ from qgreenland.util.request import fetch_and_write_file
 
 # TODO: call this 'FetchDataset'? 'FetchAsset'?
 class FetchTask(luigi.Task):
-    dataset_id = luigi.Parameter()
-    asset_id = luigi.Parameter()
+    dataset_id: str = luigi.Parameter()
+    asset_id: str = luigi.Parameter()
 
     @property
     def output_name(self):

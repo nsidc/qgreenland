@@ -13,7 +13,7 @@ def temporary_path_dir(target: luigi.Target) -> Generator[Path, None, None]:
     target: a Luigi.FileSystemTarget
             https://luigi.readthedocs.io/en/stable/api/luigi.target.html#luigi.target.FileSystemTarget.temporary_path
     """
-    with target.temporary_path() as p:
+    with target.temporary_path() as p:  # type: ignore[attr-defined]
         path = Path(p)
         try:
             path.mkdir(parents=True, exist_ok=True)
