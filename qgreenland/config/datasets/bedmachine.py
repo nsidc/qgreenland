@@ -11,7 +11,7 @@ bedmachine = Dataset(
         ),
     ],
     metadata={
-        "title": "IceBridge BedMachine Greenland, Version 5",
+        "title": "IceBridge BedMachine Greenland, Version 6",
         "abstract": """
 This data set contains a bed topography/bathymetry map of Greenland based on
 mass conservation, multi-beam data, and other techniques. It also includes
