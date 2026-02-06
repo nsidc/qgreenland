@@ -28,12 +28,12 @@ Distributed Active Archive Center. https://doi.org/10.5067/6B6B225B8V2D.
 """,
         "citation": {
             "text": """
-Morlighem, M. et al. (2022). IceBridge BedMachine Greenland, Version 6 [Data
-Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed
-Active Archive Center. https://doi.org/10.5067/GMEVBWFLWA7X. Date Accessed
-06-08-2023.
+Morlighem, M. et al. (2025). IceBridge BedMachine Greenland. (IDBMG4, Version 6). 
+[Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center 
+Distributed Active Archive Center. https://doi.org/10.5067/6B6B225B8V2D. 
+[describe subset used if applicable]. Date Accessed 02-06-2026.
 """,
-            "url": "https://doi.org/10.5067/GMEVBWFLWA7X",
+            "url": "https://doi.org/10.5067/6B6B225B8V2D",
         },
     },
 )
