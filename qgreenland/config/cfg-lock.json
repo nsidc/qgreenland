@@ -203,9 +203,9 @@
       },
       "id": "bedmachine",
       "metadata": {
-        "abstract": "This data set contains a bed topography/bathymetry map of Greenland based on\nmass conservation, multi-beam data, and other techniques. It also includes\nsurface elevation and ice thickness data, as well as an ice/ocean/land mask.\n\nAs a condition of using these data, you must cite the use of this data set.\nSuch a practice gives credit to data set producers and advances principles of\ntransparency and reproducibility.\n\nMorlighem, M. et al. (2025). IceBridge BedMachine Greenland. (IDBMG4, Version 6).\n[Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center\nDistributed Active Archive Center. https://doi.org/10.5067/6B6B225B8V2D.\n[describe subset used if applicable]. Date Accessed 02-06-2026.",
+        "abstract": "This data set contains a bed topography/bathymetry map of Greenland based on\nmass conservation, multi-beam data, and other techniques. It also includes\nsurface elevation and ice thickness data, as well as an ice/ocean/land mask.\n\nAs a condition of using these data, you must cite the use of this data set.\nSuch a practice gives credit to data set producers and advances principles of\ntransparency and reproducibility.",
         "citation": {
-          "text": "Morlighem, M. et al. (2025). IceBridge BedMachine Greenland. (IDBMG4, Version 6).\n[Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center\nDistributed Active Archive Center. https://doi.org/10.5067/6B6B225B8V2D.\n[describe subset used if applicable]. Date Accessed 02-06-2026.",
+          "text": "Morlighem, M. et al. (2025). IceBridge BedMachine Greenland. (IDBMG4, Version 6).\n[Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center\nDistributed Active Archive Center. https://doi.org/10.5067/6B6B225B8V2D.\n[describe subset used if applicable]. {{date_accessed}}.",
           "url": "https://doi.org/10.5067/6B6B225B8V2D"
         },
         "title": "IceBridge BedMachine Greenland, Version 6"
