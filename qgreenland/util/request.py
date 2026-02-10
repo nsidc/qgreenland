@@ -79,7 +79,6 @@ def fetch_and_write_file(  # noqa:C901
 
 
 def _ftp_fetch_and_write(url: str, output_dir: Path) -> None:
-    # TODO support earthdata login
     fn = _filename_from_url(url)
     fp = output_dir / fn
 
