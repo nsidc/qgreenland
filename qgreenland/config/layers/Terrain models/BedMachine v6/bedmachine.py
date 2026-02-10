@@ -5,7 +5,7 @@ from qgreenland.config.helpers.steps.compress_and_add_overviews import (
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import Layer, LayerInput
 
-bedmachine_fn = "BedMachineGreenland-v5.nc"
+bedmachine_fn = "BedMachineGreenland-v6.nc"
 
 
 bed_datasets = {
