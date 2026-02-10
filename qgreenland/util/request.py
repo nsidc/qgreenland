@@ -42,6 +42,7 @@ def fetch_and_write_file(  # noqa:C901
             url,
             timeout=REQUEST_TIMEOUT,
             stream=True,
+            verify=verify,
             headers={"User-Agent": "QGreenland"},
         ) as resp:
             # Try to extract the filename from the `content-disposition` header
