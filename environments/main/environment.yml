@@ -17,6 +17,10 @@ dependencies:
   - gdal ~=3.10
   - humanize ~=2.6
   - luigi ~=3.0
+  # setuptools <80 is required for luigi, which needs to be able to `import
+  # pkg_resources`. This goes away with setuptools 80+
+  # TODO: remove if luigi ever updates
+  - setuptools <80.0.0
   - pydantic ~=1.10
   - qgis ~=3.40.0
   - requests ~=2.25
@@ -30,6 +34,7 @@ dependencies:
   - funcy ~=1.16
   - markdown ~=3.3
   - types-markdown ~=3.3
+  - earthaccess ~=0.16.0
 
 
   #############################
