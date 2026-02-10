@@ -6,39 +6,29 @@ bedmachine = Dataset(
     assets=[
         CmrAsset(
             id="only",
-            granule_ur="SC:IDBMG4.005:244470242",
-            collection_concept_id="C2420522159-NSIDC_ECS",
+            granule_ur="BedMachineGreenland-v6.nc",
+            collection_concept_id="C3903728370-NSIDC_CPRD",
         ),
     ],
     metadata={
-        "title": "IceBridge BedMachine Greenland, Version 5",
+        "title": "IceBridge BedMachine Greenland, Version 6",
         "abstract": """
 This data set contains a bed topography/bathymetry map of Greenland based on
 mass conservation, multi-beam data, and other techniques. It also includes
 surface elevation and ice thickness data, as well as an ice/ocean/land mask.
 
-As a condition of using these data, we request that you acknowledge the
-author(s) of this data set by referencing the following peer-reviewed
-publication.
-
-Morlighem, M., C. Williams, E. Rignot, L. An, J. E. Arndt, J. Bamber,
-G. Catania, N. Chauché, J. A. Dowdeswell, B. Dorschel, I. Fenty, K. Hogan,
-I. Howat, A. Hubbard, M. Jakobsson, T. M. Jordan, K. K. Kjeldsen, R. Millan,
-L. Mayer, J. Mouginot, B. Noël, C. O'Cofaigh, S. J. Palmer, S. Rysgaard,
-H. Seroussi, M. J. Siegert, P. Slabon, F. Straneo, M. R. van den Broeke,
-W. Weinrebe, M. Wood, and K. Zinglersen. 2017. BedMachine v3: Complete bed
-topography and ocean bathymetry mapping of Greenland from multi-beam echo
-sounding combined with mass conservation, Geophysical Research
-Letters. 44. . https://doi.org/10.1002/2017GL074954 .
+As a condition of using these data, you must cite the use of this data set.
+Such a practice gives credit to data set producers and advances principles of
+transparency and reproducibility.
 """,
         "citation": {
             "text": """
-Morlighem, M. et al. (2022). IceBridge BedMachine Greenland, Version 5 [Data
-Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed
-Active Archive Center. https://doi.org/10.5067/GMEVBWFLWA7X. Date Accessed
-06-08-2023.
+Morlighem, M. et al. (2025). IceBridge BedMachine Greenland. (IDBMG4, Version 6).
+[Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center
+Distributed Active Archive Center. https://doi.org/10.5067/6B6B225B8V2D.
+[describe subset used if applicable]. {{date_accessed}}.
 """,
-            "url": "https://doi.org/10.5067/GMEVBWFLWA7X",
+            "url": "https://doi.org/10.5067/6B6B225B8V2D",
         },
     },
 )

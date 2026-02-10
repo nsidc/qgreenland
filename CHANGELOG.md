@@ -1,7 +1,9 @@
-# v3.1.0 (TBD)
+# v4.0.0 (TBD)
 
 - Minimum supported version of QGIS is now `v3.40`.
 - Fixup spelling error in arctic sea routes layer description
+- Update "Terrian models/" BedMachine layers to version 6. ("Terrain
+  models/BedMachine v5" -> "Terrain models/BedMachine v6").
 
 
 # v3.0.0 (2023-08-24)
