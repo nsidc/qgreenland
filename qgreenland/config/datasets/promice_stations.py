@@ -7,7 +7,7 @@ gc_net_promice_stations = Dataset(
         HttpAsset(
             id="only",
             urls=[
-                "https://dataverse.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/IW73UU/AQMRYQ",
+                "https://dataverse.geus.dk/api/access/datafile/101152?gbrecs=true",
             ],
         ),
     ],
@@ -70,7 +70,7 @@ J.E., Citterio, M., Colgan, W.T., Fausto, R., Karlsson, N.B., Jakobsen, J.,
 Langley, K., Larsen, S.H., Mankoff, K.D., Pedersen, A.Ø., Rutishauser, A.,
 Shields, C.L., Solgaard, A.M., van As, D., Vandecrux, B., Wright, P.J., 2022,
 "PROMICE and GC-Net automated weather station data in Greenland",
-https://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse.
+https://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse, V34.
 
 {{date_accessed}}"""
             ),

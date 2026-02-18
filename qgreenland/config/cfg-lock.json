@@ -485,7 +485,7 @@
         "only": {
           "id": "only",
           "urls": [
-            "https://dataverse.geus.dk/api/access/datafile/:persistentId?persistentId=doi:10.22008/FK2/IW73UU/AQMRYQ"
+            "https://dataverse.geus.dk/api/access/datafile/101152?gbrecs=true"
           ],
           "verify_tls": true
         }
@@ -494,7 +494,7 @@
       "metadata": {
         "abstract": "In 2007, Denmark launched the Programme for Monitoring of the\nGreenland Ice Sheet (PROMICE) to assess changes in the mass balance\nof the ice sheet. The two major contributors to the ice sheet mass\nloss are surface melt and a larger production of icebergs through\nfaster ice flow. PROMICE is focused on both processes. Ice movement\nand discharge is tracked by satellites and GPSs. The surface mass\nbalance is monitored by a network of weather stations in the melt\nzone of the ice sheet, providing ground truth data to calibrate mass\nbudget models.\n\nThe Greenland Climate Network (GC-Net) was established in 1995 by\nProf. Konrad Steffen at CIRES, to obtain knowledge of the mass gain\nand climatology of the ice sheet. The programme was funded by the\nUSA until 2020, at which point Denmark assumed responsibility for\nthe operation and maintenance of the weather station network. The\nsnowfall and climatology are monitored by a network of weather\nstations in the accumulation zone of the ice sheet, supplemented by\nsatellite-derived data products.\n\nTogether, the two monitoring programmes deliver data about the mass\nbalance of the Greenland ice sheet in near real-time.\n\nData from the Programme for Monitoring of the Greenland Ice Sheet\n(PROMICE) are provided by the Geological Survey of Denmark and\nGreenland (GEUS) at http://www.promice.dk. They include sites\nfinancially supported by the Glaciobasis programme as part of\nGreenland Ecosystem Monitoring (https://g-e-m.dk/), maintained by\nGEUS (ZAK, LYN) and by Asiaq Greenland Survey (NUK_K). The WEG\nstations are paid for and maintained by the University of Graz.\n\nSee https://github.com/GEUS-Glaciology-and-Climate/pypromice for how\nwe make the data product.\n\nRelated publication:\n\nFausto, R. S., van As, D., Mankoff, K. D., Vandecrux, B., Citterio,\nM., Ahlstr\u00f8m, A. P., Andersen, S. B., Colgan, W., Karlsson, N. B.,\nKjeldsen, K. K., Korsgaard, N. J., Larsen, S. H., Nielsen, S.,\nPedersen, A. \u00d8., Shields, C. L., Solgaard, A. M., and Box, J. E.:\nProgramme for Monitoring of the Greenland Ice Sheet (PROMICE)\nautomatic weather station data, Earth Syst. Sci. Data, 13,\n3819\u20133845, https://doi.org/10.5194/essd-13-3819-2021, 2021.\n\nAdditional data:\n\nTo download data related to PROMICE and GC-Net, including historical\nweather station data, see\nhttps://dataverse.geus.dk/dataverse/PROMICE.",
         "citation": {
-          "text": "How, P., Abermann, J., Ahlstr\u00f8m, A.P., Andersen, S.B., Box,\nJ.E., Citterio, M., Colgan, W.T., Fausto, R., Karlsson, N.B., Jakobsen, J.,\nLangley, K., Larsen, S.H., Mankoff, K.D., Pedersen, A.\u00d8., Rutishauser, A.,\nShields, C.L., Solgaard, A.M., van As, D., Vandecrux, B., Wright, P.J., 2022,\n\"PROMICE and GC-Net automated weather station data in Greenland\",\nhttps://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse.\n\n{{date_accessed}}",
+          "text": "How, P., Abermann, J., Ahlstr\u00f8m, A.P., Andersen, S.B., Box,\nJ.E., Citterio, M., Colgan, W.T., Fausto, R., Karlsson, N.B., Jakobsen, J.,\nLangley, K., Larsen, S.H., Mankoff, K.D., Pedersen, A.\u00d8., Rutishauser, A.,\nShields, C.L., Solgaard, A.M., van As, D., Vandecrux, B., Wright, P.J., 2022,\n\"PROMICE and GC-Net automated weather station data in Greenland\",\nhttps://doi.org/10.22008/FK2/IW73UU, GEUS Dataverse, V34.\n\n{{date_accessed}}",
           "url": "https://dataverse.geus.dk/dataset.xhtml?persistentId=doi:10.22008/FK2/IW73UU"
         },
         "title": "PROMICE and GC-Net automated weather station data in Greenland"
@@ -3729,7 +3729,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Automated weather station locations for the PROMICE,\nGC-Net, Glaciobasis (GEM), and other programs.\n\nStation locations, installation (if necessary, decommission) date,\nlocation type (tundra, ice sheet, local glacier), station type (one or\ntwo levels of measurements) are available as attributes.",
+                  "description": "Automated weather station sites for the PROMICE,\nGC-Net, Glaciobasis (GEM), and other programs.\n\nStation locations, installation (if necessary, decommission) date,\nlocation type (tundra, ice sheet, local glacier) are available as\nattributes.",
                   "id": "promice_gc_net_stations",
                   "in_package": true,
                   "input": {
@@ -3755,11 +3755,11 @@
                         "-s_srs",
                         "EPSG:4326",
                         "-oo",
-                        "X_POSSIBLE_NAMES=lon_installation",
+                        "X_POSSIBLE_NAMES=longitude_installation",
                         "-oo",
-                        "Y_POSSIBLE_NAMES=lat_installation",
+                        "Y_POSSIBLE_NAMES=latitude_installation",
                         "-sql",
-                        "\"SELECT *, stid as label from \\\"AWS_metadata\\\"\"",
+                        "\"SELECT *, site_id as label from \\\"AWS_sites_metadata\\\"\"",
                         "{output_dir}/final.gpkg",
                         "{input_dir}/*.csv"
                       ],
