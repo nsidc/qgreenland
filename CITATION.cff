@@ -62,6 +62,15 @@ references:
       given-names: "Matt"
       orcid: "https://orcid.org/0000-0003-0077-4738"
 - type: "grant"
+  title: "QGreenland-Net: Open, connected data infrastructure for Greenland-focused geoscience, and beyond"
+  institution:
+    name: "National Science Foundation"
+  number: "2324766"
+  authors:
+    - family-names: "Jones"
+      given-names: "Matt"
+      orcid: "https://orcid.org/0000-0003-0077-4738"
+- type: "grant"
   title: "QGreenland: Enabling Science through GIS"
   institution:
     name: "National Science Foundation"
