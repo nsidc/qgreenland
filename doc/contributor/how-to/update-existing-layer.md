@@ -9,9 +9,10 @@ subdirectory of `qgreenland/config/layers/`. For the Seismograph stations layer,
 this would be `qgreenland/config/layers/Human activity/Research sites`.
 
 ```{note}
-Layer configuration is setup to mirror the layout of the table of contents in
+Layer configuration is setup to mirror the layout of the Layers Panel in
 QGIS. To change the order of layers or layer groups, see the `__settings__.py`
-in the subdirectory in which you want to make a change.
+in the subdirectory in which you want to make a change. For more information,
+see {ref}`configuration-layers-and-layer-groups-config`
 ```
 
 From the layer configuration, it should be easy to identify the dataset
@@ -37,6 +38,8 @@ citation, and abstract for necessary updates.
 
 If the location(s) of the source data has changed (e.g., the URL is different),
 update the `assets` list.
+
+To learn more about dataset configuration, see {ref}`configuration-datasets-config`.
 
 ## Try fetching the updated data
 
@@ -78,11 +81,13 @@ layer configuration.
 
 Check the title and description of the layer and update as needed.
 
-Consider any relevant changes to the style (see TODO: link to style guide) for more info.
+Consider any relevant changes to the style (see [How to contribute
+styles](./contribute-styles.md)) for more info.
 
 Finally, check the `steps` configuration and determine if any tweaks need to be
 made given the updated data. For example, if the updated dataset uses a new
-filename or file format, these steps may need to change.
+filename or file format, these steps may need to change. To learn more about
+layer steps, see {ref}`configuration-layer-steps`
 
 
 ## Run QGreenland with the changes
@@ -92,6 +97,7 @@ QGreenland processing pipline with the `run` subcommand.
 
 
 ### Pre-run cleanup
+
 Before a new `run`, cleanup intermediate/work-in-progress (WIP) data. Without
 this step, the code might report that the processing is already complete and
 nothing needs to be done.
@@ -138,7 +144,8 @@ inv config.export > qgreenland/config/cfg-lock.json
 ## Update the CHANGELOG
 
 Update the `CHANGELOG.md`, indicating what layers were updated. If needed, bump
-the version for a new release.
+the version for a new release. See [How to release a new version of QGreenland
+Core code](./release-new-version.md) for details!
 
 ## Open a Pull Request
 

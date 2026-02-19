@@ -28,6 +28,7 @@ qgreenland/models/config
 any `boundaries` that will be used to clip data for this project.
 
 
+(configuration-datasets-config)=
 ## Datasets config
 
 Dataset configurations define a unique `id`, `metadata`, and a list of
@@ -63,6 +64,7 @@ Link to API docs?
 You can find the full set of available asset types
 {github}`here</qgreenland/models/config/asset.py>`.
 
+(configuration-layers-and-layer-groups-config)=
 ## Layers and layer groups config
 
 Layers in `qgreenland/config/layers` are organized into a directory structure
@@ -80,6 +82,7 @@ Layers Panel and the `description` determines the hovertext for that same layer
 in the QGIS Layers Panel.
 
 
+(configuration-layer-steps)=
 ### Layer steps
 
 Layers are created in a series of `steps`. The final result of the `steps` must
