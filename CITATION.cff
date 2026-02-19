@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: |
-  Please cite this software using these metadata. "*" indicates co-equal authorship.
+  Please cite this software using these metadata.
 
 title: "QGreenland"
 doi: "10.5281/zenodo.4533271"
@@ -26,20 +26,16 @@ version: "4.0.0alpha1"
 date-released: "2026-02-10"
 
 authors:
-  - family-names: "*Fisher"
-    given-names: "Matt"
-    orcid: "https://orcid.org/0000-0003-3260-5445"
-    website: "https://github.com/mfisher87"
-  - family-names: "*Stafford"
+  - family-names: "Stafford"
     given-names: "Trey"
     orcid: "https://orcid.org/0000-0002-5510-0055"
     website: "https://github.com/trey-stafford"
-  - family-names: "Marowitz"
-    given-names: "Robyn"
-    orcid: "https://orcid.org/0000-0003-3160-132X"
   - family-names: "Moon"
     given-names: "Twila"
     orcid: "https://orcid.org/0000-0003-0968-7008"
+  - family-names: "Marowitz"
+    given-names: "Robyn"
+    orcid: "https://orcid.org/0000-0003-3160-132X"
   - family-names: "Held"
     given-names: "Rikki"
   - family-names: "Dryák-Vallies"
@@ -47,6 +43,10 @@ authors:
     orcid: "https://orcid.org/0000-0003-4292-0895"
   - family-names: "McGhee"
     given-names: "Sarah"
+  - family-names: "Fisher"
+    given-names: "Matt"
+    orcid: "https://orcid.org/0000-0003-3260-5445"
+    website: "https://github.com/mfisher87"
 
 references:
 - type: "grant"
