@@ -42,14 +42,28 @@ An asterisk (`*`) indicates co-equal lead authorship (listed alphabetically).
 
 ### Latest version: {{ release }}
 
-> Moon, T. A., M. Fisher, T. Stafford, and A. Thurber (2023). QGreenland ({{ release }})
-> [dataset], [National Snow and Ice Data Center](https://qgreenland.org/).
-> doi: [10.5281/zenodo.12823307](https://doi.org/10.5281/zenodo.12823307)
+> Moon T., Stafford T., Marowitz R., Held R., Dryák-Vallies M., McGhee S.,
+> Fisher M. (2026). QGreenland ({{ release }}) [dataset], [National Snow and Ice
+> Data Center](https://qgreenland.org/).  doi:
+> [10.5281/zenodo.8247895](https://doi.org/10.5281/zenodo.8247895)
 
-> *Fisher, M., *Stafford, T., T. Moon, and A. Thurber (2023). QGreenland ({{ release }})
-> [software], [National Snow and Ice Data Center](https://github.com/nsidc/qgreenland).
-> doi: [10.5281/zenodo.8326507](https://doi.org/10.5281/zenodo.8326507)
+> Stafford T., Moon T., Marowitz R., Held R., Dryák-Vallies M., McGhee S.,
+> Fisher M. (2026). QGreenland ({{ release }}) [software], [National Snow and
+> Ice Data Center](https://github.com/nsidc/qgreenland).  doi:
+> [10.5281/zenodo.4533271](https://doi.org/10.5281/zenodo.4533271)
 
+
+### Version 4
+
+> Moon T., Stafford T., Marowitz R., Held R., Dryák-Vallies M., McGhee S.,
+> Fisher M. (2026). QGreenland (v4) [dataset], [National Snow and Ice Data
+> Center](https://qgreenland.org/).  doi:
+> [10.5281/zenodo.8247895](https://doi.org/10.5281/zenodo.8247895)
+
+> Stafford T., Moon T., Marowitz R., Held R., Dryák-Vallies M., McGhee S.,
+> Fisher M. (2026). QGreenland (v4) [software], [National Snow and Ice Data
+> Center](https://github.com/nsidc/qgreenland).  doi:
+> [10.5281/zenodo.4533271](https://doi.org/10.5281/zenodo.4533271)
 
 ### Version 3
 
