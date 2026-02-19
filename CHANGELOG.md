@@ -8,6 +8,7 @@
   - "Human activity/Research sites/" layers:
     - "PROMICE and GC-Net automated weather stations"
     - "Seismograph stations"
+  - "Geology/Earthquakes M above 2.5 1900-2025"
 
 
 # v3.0.0 (2023-08-24)
