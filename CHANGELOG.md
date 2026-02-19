@@ -5,8 +5,9 @@
 - Update layers:
   - "Terrian models/" BedMachine layers to version 6. ("Terrain
     models/BedMachine v5" -> "Terrain models/BedMachine v6").
-  - "Human activity/Research sites/PROMICE and GC-Net automated weather
-    stations".
+  - "Human activity/Research sites/" layers:
+    - "PROMICE and GC-Net automated weather stations"
+    - "Seismograph stations"
 
 
 # v3.0.0 (2023-08-24)

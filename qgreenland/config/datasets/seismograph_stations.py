@@ -22,7 +22,7 @@ seismograph_stations = Dataset(
         ),
         "citation": {
             "text": (
-                """International Seismological Centre (2020), International
+                """International Seismological Centre (2026), International
                 Seismograph Station Registry (IR),
                 https://doi.org/10.31905/EL3FQQ40"""
             ),
