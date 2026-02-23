@@ -4,7 +4,7 @@ from qgreenland.models.config.asset import CommandAsset
 from qgreenland.models.config.dataset import Dataset
 
 query_start_date = dt.date(1900, 1, 1)
-query_end_date = dt.date(2023, 1, 1)
+query_end_date = dt.date(2026, 1, 1)
 
 
 _longitude_step = 2
@@ -12,7 +12,6 @@ _longitude_step = 2
 # error) if too much time is spent holding open connection(s) with the site.
 # Faster downloads seem to work more reliably than slower ones. Do we need to do
 # anything more, e.g. add sleeps to each `wget`, to give the server a break?
-# TODO: What error was Trey getting?
 wget_cmds = [
     (
         'wget \\"https://earthquake.usgs.gov/fdsnws/event/1/query.geojson'
@@ -53,17 +52,17 @@ earthquakes = Dataset(
         ),
     ],
     metadata={
-        "title": "USGS Earthquakes 1990-2020",
+        "title": "USGS Earthquakes 1990-2025",
         "abstract": (
             """United States Geological Survey earthquake data for earthquakes
-            occuring during 1990-2020. Data is sourced from the ANSS
+            occuring during 1990-2025. Data is sourced from the ANSS
             Comprehensive Earthquake Catalog (ComCat). ComCat data are produced
             by contributing seismic networks."""
         ),
         "citation": {
             "text": (
-                """U.S. Geological Survey (2020). ANSS Comprehensive Earthquake
-                Catalog. Initial access: 2020-08-20."""
+                """U.S. Geological Survey (2026). ANSS Comprehensive Earthquake
+                Catalog. {{date_accessed}}."""
             ),
             "url": "https://earthquake.usgs.gov/earthquakes/search/",
         },
