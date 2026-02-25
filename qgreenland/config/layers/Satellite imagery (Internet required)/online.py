@@ -11,10 +11,12 @@ image_mosaic_layers = [
         description=f"Sentinel-2 multispectral satellite imagery from {year}.",
         tags=["online"],
         style="transparent_rgb",
-        input=LayerInput(
-            dataset=image_mosaic,
-            asset=image_mosaic.assets[year],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=image_mosaic,
+                asset=image_mosaic.assets[year],
+            )
+        ],
     )
     for year, resolution in (("2015", "15"), ("2019", "10"))
 ]
@@ -51,8 +53,10 @@ sdfi_satellite_orthophotos_layer = Layer(
         """
     ),
     tags=["online"],
-    input=LayerInput(
-        dataset=sdfi_satellite_orthophotos,
-        asset=sdfi_satellite_orthophotos.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=sdfi_satellite_orthophotos,
+            asset=sdfi_satellite_orthophotos.assets["only"],
+        )
+    ],
 )

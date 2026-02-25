@@ -43,10 +43,12 @@ layers = [
         description=params["description"],
         tags=[],
         style=params["style"],
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["10km"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["10km"],
+            )
+        ],
         steps=[
             *warp_and_cut(
                 input_file=(

@@ -14,10 +14,12 @@ arctic_sea_routes = Layer(
     ),
     tags=[],
     style="arctic_sea_routes",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         # TODO: *compressed_vector(...)?
         CommandStep(

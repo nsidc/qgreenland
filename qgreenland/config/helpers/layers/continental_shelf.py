@@ -78,10 +78,12 @@ def make_layers() -> list[Layer]:
             title=params["title"],
             description=params["description"],
             tags=[],
-            input=LayerInput(
-                dataset=dataset,
-                asset=dataset.assets[key],
-            ),
+            inputs=[
+                LayerInput(
+                    dataset=dataset,
+                    asset=dataset.assets[key],
+                )
+            ],
             steps=[
                 decompress_step(
                     input_file="{input_dir}/*.zip",

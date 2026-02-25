@@ -15,10 +15,12 @@ layer = Layer(
         attributes.""",
     tags=[],
     style="labeled_point",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/*.csv",

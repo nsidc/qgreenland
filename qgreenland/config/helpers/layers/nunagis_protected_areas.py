@@ -154,10 +154,12 @@ def _make_layer(
         description=description,
         tags=[],
         style=style,
-        input=LayerInput(
-            dataset=nunagis_protected_areas,
-            asset=nunagis_protected_areas.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=nunagis_protected_areas,
+                asset=nunagis_protected_areas.assets["only"],
+            )
+        ],
         steps=[
             *ogr2ogr(
                 input_file="{input_dir}/fetched.geojson",

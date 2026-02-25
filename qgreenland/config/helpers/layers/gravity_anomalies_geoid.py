@@ -25,10 +25,12 @@ def _make_layer(
         description=description,
         tags=[],
         style=style,
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             decompress_step(
                 input_file="{input_dir}/archive.zip",

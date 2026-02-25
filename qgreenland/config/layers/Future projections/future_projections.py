@@ -29,10 +29,12 @@ layers = [
         ),
         tags=[],
         style="future_ice_sheet_coverage",
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[f"rcp_{rcp}"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[f"rcp_{rcp}"],
+            )
+        ],
         steps=[
             *warp(
                 input_file=(

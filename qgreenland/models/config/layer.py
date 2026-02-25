@@ -1,9 +1,11 @@
+from functools import cached_property
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union, cast
 
-from pydantic import Field
+from pydantic import Field, validator
 
 from qgreenland.models.base_model import QgrBaseModel
+from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.models.config.dataset import AnyAsset, Dataset
 from qgreenland.models.config.step import AnyStep
 from qgreenland.util.layer_style import get_style_filepath
@@ -16,7 +18,7 @@ from qgreenland.util.model_validators.layer_style import (
 
 
 class LayerInput(QgrBaseModel):
-    """The input(s) to a layer's processing pipeline."""
+    """A dataset's input to a layer's processing pipeline."""
 
     # TODO: just maintain ids here?
     dataset: Dataset
@@ -51,9 +53,34 @@ class Layer(QgrBaseModel):
     Omit the file extension.
     """
 
-    input: LayerInput
+    inputs: list[LayerInput]
 
     steps: Optional[list[AnyStep]]
+
+    @validator("inputs")
+    @classmethod
+    def ensure_inputs_online_asset(cls, value):
+        """Ensure that, if an OnlineAsset input exists, that it is the only one."""
+        if any(type(input) is OnlineAsset for input in value) and len(value) > 1:
+            raise ValueError(
+                "When an OnlineAsset is specified for a layer input"
+                " it must be the only asset."
+                " OnlineAsset is only used for online-only layers."
+            )
+
+        return value
+
+    @cached_property
+    def is_online_only(self):
+        return len(self.inputs) == 1 and type(self.inputs[0].asset) is OnlineAsset
+
+    @cached_property
+    def online_only_asset(self) -> OnlineAsset | None:
+        if self.is_online_only:
+            asset = self.inputs[0].asset
+            asset = cast(OnlineAsset, asset)
+            return asset
+        return None
 
     _validate_description = reusable_validator("description", validate_paragraph_text)
     _validate_style_file_exists = reusable_validator(
@@ -85,11 +112,12 @@ class Layer(QgrBaseModel):
         """
         return self.dict(
             include={
-                **{k: ... for k in self.dict().keys() if k != "input"},
-                "input": {
-                    "dataset": {"id"},
-                    "asset": {"id"},
-                },
+                **{k: ... for k in self.dict().keys() if k != "inputs"},
+                # TODO: inputs should probably be a list...?
+                # "inputs": {
+                #     "dataset": {"id"},
+                #     "asset": {"id"},
+                # },
             },
             exclude={
                 "steps": {"__all__": {"id"}},

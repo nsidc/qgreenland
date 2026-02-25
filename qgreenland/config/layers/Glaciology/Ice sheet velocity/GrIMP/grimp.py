@@ -16,10 +16,12 @@ def make_layer(
         title=title,
         description=description,
         style=style,
-        input=LayerInput(
-            dataset=annual_dataset,
-            asset=annual_dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=annual_dataset,
+                asset=annual_dataset.assets["only"],
+            )
+        ],
         steps=[
             # Round data to the nearest cm and convert to integer to save disk
             # space.
@@ -115,10 +117,12 @@ grimp_vector_layer = Layer(
         """Vector representation of ice sheet velocity in meters per year for 2021. Calculated by QGreenland Team."""
     ),
     style="grimp_vectors",
-    input=LayerInput(
-        dataset=annual_dataset,
-        asset=annual_dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=annual_dataset,
+            asset=annual_dataset.assets["only"],
+        )
+    ],
     steps=[
         # Now merge the variables into a 3-band .tif file.
         CommandStep(

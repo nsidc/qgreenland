@@ -13,10 +13,12 @@ arctic_circle = Layer(
     ),
     tags=[],
     style="arctic_circle",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/arctic_circle.geojson",

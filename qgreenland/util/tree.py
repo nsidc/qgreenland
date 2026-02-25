@@ -91,13 +91,13 @@ def layer_tree(
     *,
     include_patterns: tuple[str, ...] = (),
     exclude_patterns: tuple[str, ...] = (),
-    exclude_manual_assets: bool = False,
+    exclude_manual_asset_datasets: bool = False,
 ) -> anytree.Node:
     tree = _tree_from_dir(
         layer_cfg_dir,
         include_patterns=include_patterns,
         exclude_patterns=exclude_patterns,
-        exclude_manual_assets=exclude_manual_assets,
+        exclude_manual_asset_datasets=exclude_manual_asset_datasets,
     )
 
     # Clean up any empty layer groups. This shouldn't happen normally, but if
@@ -361,7 +361,7 @@ def _matches_filters(
     *,
     include_patterns: tuple[str, ...],
     exclude_patterns: tuple[str, ...],
-    exclude_manual_assets: bool = False,
+    exclude_manual_asset_datasets: bool = False,
 ) -> bool:
     """Determine if candidate matches given filters.
 
@@ -389,7 +389,11 @@ def _matches_filters(
     inclusions or exclusions. I.e.: for set of inclusions I and exclusions E,
     this is a question of `I - E` vs. `!E + I`.
     """
-    if exclude_manual_assets and type(candidate.input.asset) is ManualAsset:
+    if (
+        exclude_manual_asset_datasets
+        and len(candidate.inputs) == 1
+        and type(candidate.inputs[0].asset) is ManualAsset
+    ):
         # TODO: `included = True` instead? This would be more consistent with
         # the "included or not excluded" behavior the patterns follow.
         return False
@@ -421,7 +425,7 @@ def _tree_from_dir(
     parent: Optional[anytree.Node] = None,
     include_patterns: tuple[str, ...] = (),
     exclude_patterns: tuple[str, ...] = (),
-    exclude_manual_assets: bool = False,
+    exclude_manual_asset_datasets: bool = False,
 ) -> anytree.Node:
     """Create a Node tree for given `the_dir`, attached to `parent`."""
     ordered_layers_and_groups, settings = _ordered_layers_and_groups(
@@ -445,14 +449,14 @@ def _tree_from_dir(
                 parent=root_node,
                 include_patterns=include_patterns,
                 exclude_patterns=exclude_patterns,
-                exclude_manual_assets=exclude_manual_assets,
+                exclude_manual_asset_datasets=exclude_manual_asset_datasets,
             )
         elif isinstance(thing, Layer):
             if _matches_filters(
                 thing,
                 include_patterns=include_patterns,
                 exclude_patterns=exclude_patterns,
-                exclude_manual_assets=exclude_manual_assets,
+                exclude_manual_asset_datasets=exclude_manual_asset_datasets,
             ):
                 # NOTE: Since this modifies the entire tree (`root_node`),
                 # nothing needs to be assigned here.
@@ -461,7 +465,7 @@ def _tree_from_dir(
                 logger.debug(
                     f"Layer {thing.id} does not match patterns:"
                     f" {include_patterns=}; {exclude_patterns=};"
-                    f" {exclude_manual_assets=}",
+                    f" {exclude_manual_asset_datasets=}",
                 )
 
         else:

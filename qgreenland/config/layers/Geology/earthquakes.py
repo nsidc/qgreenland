@@ -10,10 +10,12 @@ earthquakes = Layer(
     description=("""Location and magnitude of earthquakes."""),
     tags=[],
     style="earthquakes",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         CommandStep(
             args=[

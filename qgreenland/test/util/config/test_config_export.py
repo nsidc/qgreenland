@@ -20,7 +20,7 @@ def test_export_config_manifest(full_cfg):
         # here too.
         "layer_details": """Example layer description.
 
-=== Original Data Source ===
+=== Original Data Source(s) ===
 Example Dataset
 
 Example abstract.
@@ -95,10 +95,10 @@ https://nsidc.org""",
 )
 def test_export_config_csv(full_cfg):
     common = {
-        "Data Source Abstract": "Example abstract.",
-        "Data Source Citation": "NSIDC 2020",
-        "Data Source Citation URL": "https://nsidc.org",
-        "Data Source Title": "Example Dataset",
+        "Data Source Abstract(s)": "Example abstract.;",
+        "Data Source Citation(s)": "NSIDC 2020;",
+        "Data Source Citation URL(s)": "https://nsidc.org;",
+        "Data Source Title(s)": "Example Dataset;",
         "Group": "Group",
         "Layer Description": "Example layer description.",
         "Layer Size": "0 Bytes",

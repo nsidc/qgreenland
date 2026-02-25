@@ -15,10 +15,12 @@ arctic_dem = Layer(
     in_package=False,
     tags=[],
     style="arctic_dem",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["100m"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["100m"],
+        )
+    ],
     steps=[
         *warp(
             input_file="{input_dir}/arcticdem_mosaic_100m_v3.0.tif",

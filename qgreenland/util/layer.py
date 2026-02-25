@@ -4,7 +4,6 @@ import qgreenland.exceptions as exc
 from qgreenland._typing import VectorOrRaster
 from qgreenland.constants.misc import PROVIDER_VECTOR_OR_RASTER_MAPPING
 from qgreenland.constants.paths import COMPILE_PACKAGE_DIR, RELEASE_LAYERS_DIR
-from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.models.config.layer import Layer
 from qgreenland.util.fs import get_layer_fp
 from qgreenland.util.tree import LayerNode
@@ -12,8 +11,8 @@ from qgreenland.util.tree import LayerNode
 
 def vector_or_raster(layer_node: LayerNode) -> VectorOrRaster:
     layer_cfg = layer_node.layer_cfg
-    if type(layer_cfg.input.asset) is OnlineAsset:
-        return PROVIDER_VECTOR_OR_RASTER_MAPPING[layer_cfg.input.asset.provider]
+    if online_asset := layer_cfg.online_only_asset:
+        return PROVIDER_VECTOR_OR_RASTER_MAPPING[online_asset.provider]
     else:
         layer_path = get_layer_compile_filepath(layer_node)
         return _vector_or_raster_from_fp(layer_path)

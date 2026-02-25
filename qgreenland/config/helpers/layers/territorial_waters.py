@@ -74,10 +74,12 @@ def make_layers() -> list[Layer]:
             title=params["title"],
             description=params["description"],
             tags=[],
-            input=LayerInput(
-                dataset=dataset,
-                asset=dataset.assets["only"],
-            ),
+            inputs=[
+                LayerInput(
+                    dataset=dataset,
+                    asset=dataset.assets["only"],
+                )
+            ],
             steps=[
                 *ogr2ogr(
                     input_file="{input_dir}/" + params["input_filename"],

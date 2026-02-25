@@ -11,10 +11,12 @@ seismograph_stations = Layer(
     description=("""Location and details of Greenland seismograph stations."""),
     tags=[],
     style="seismograph_stations",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/stations.kmz",

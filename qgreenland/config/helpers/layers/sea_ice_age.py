@@ -40,10 +40,12 @@ def sea_ice_age_layer(year: int, age_type: AgeType) -> Layer:
         ),
         tags=[],
         style="sea_ice_age",
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[str(year)],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[str(year)],
+            )
+        ],
         steps=[
             CommandStep(
                 args=[

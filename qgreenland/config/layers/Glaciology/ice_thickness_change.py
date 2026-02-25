@@ -20,10 +20,12 @@ ice_thickness_change = Layer(
     ),
     tags=[],
     style="ice_thickness_change",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         decompress_step(
             input_file="{input_dir}/ICESat1_ICESat2_mass_change.zip",

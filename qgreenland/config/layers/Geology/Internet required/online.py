@@ -13,8 +13,10 @@ geus_geological_map_layer = Layer(
         """
     ),
     tags=["online"],
-    input=LayerInput(
-        dataset=geus_geological_map,
-        asset=geus_geological_map.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=geus_geological_map,
+            asset=geus_geological_map.assets["only"],
+        )
+    ],
 )

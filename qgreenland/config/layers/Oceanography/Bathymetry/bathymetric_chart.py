@@ -22,10 +22,12 @@ gebco_bathymetric_raster = Layer(
     ),
     tags=[],
     style="gebco_bathymetry",
-    input=LayerInput(
-        dataset=gebco_bathymetric_chart,
-        asset=gebco_bathymetric_chart.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=gebco_bathymetric_chart,
+            asset=gebco_bathymetric_chart.assets["only"],
+        )
+    ],
     steps=[
         decompress_step(input_file="{input_dir}/gebco_2023.zip"),
         *warp_and_cut(

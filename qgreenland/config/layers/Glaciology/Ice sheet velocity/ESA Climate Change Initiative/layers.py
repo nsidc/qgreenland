@@ -38,10 +38,12 @@ layers = [
         description=params["description"],
         tags=[],
         style=params["style"],
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             decompress_step(
                 input_file="{input_dir}/greenland_iv_250m_s1_20191214_20200131_v1_3.zip",

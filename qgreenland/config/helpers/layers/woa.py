@@ -80,10 +80,12 @@ def make_layer(*, dataset, depth, season, variable, units) -> Layer:
         ),
         tags=[],
         style=f"seawater_{variable}",
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[f"seasonal_{season}"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[f"seasonal_{season}"],
+            )
+        ],
         steps=[
             CommandStep(
                 args=[

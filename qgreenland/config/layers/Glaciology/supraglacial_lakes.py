@@ -13,10 +13,12 @@ supraglacial_lakes = Layer(
     ),
     tags=["water"],
     style="supraglacial_lakes",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         # TODO: *compressed_vector(...)??
         CommandStep(

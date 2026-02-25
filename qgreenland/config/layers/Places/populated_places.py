@@ -27,10 +27,12 @@ QGreenland Team - Noted Data Issues:
   settlements (2017) due a massive landslide and subsequent tsunami."""
     ),
     tags=["places"],
-    input=LayerInput(
-        dataset=asiaq_nunagis,
-        asset=asiaq_nunagis.assets["populated_places"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=asiaq_nunagis,
+            asset=asiaq_nunagis.assets["populated_places"],
+        )
+    ],
     steps=[
         CommandStep(
             args=[

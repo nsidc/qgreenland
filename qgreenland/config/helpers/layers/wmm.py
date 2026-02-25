@@ -28,10 +28,12 @@ may be degraded in this region.
         in_package=True,
         show=False,
         style="blackout_zones",
-        input=LayerInput(
-            dataset=wmm.wmm,
-            asset=wmm.wmm.assets["blackout_zones"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=wmm.wmm,
+                asset=wmm.wmm.assets["blackout_zones"],
+            )
+        ],
         steps=[
             CommandStep(
                 args=[
@@ -258,10 +260,12 @@ def make_wmm_variable_layer(
         # package. All other variables will only be available from the plugin.
         in_package=True if variable == "d" else False,
         style="wmm_contours",
-        input=LayerInput(
-            dataset=wmm.wmm,
-            asset=wmm.wmm.assets[str(year)],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=wmm.wmm,
+                asset=wmm.wmm.assets[str(year)],
+            )
+        ],
         steps=unzip_and_reproject_wmm_vector(
             zip_filename=f"WMM_{year}_all_shape_geographic.zip",
             unzip_contents_mask=f"*{variable.upper()}_{year}*",

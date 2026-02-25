@@ -4,7 +4,7 @@ import qgreenland.util.metadata as qgm
 
 
 def test__build_dataset_description(raster_layer_cfg):
-    actual = qgm._build_dataset_description(raster_layer_cfg)
+    actual = qgm._build_dataset_description(raster_layer_cfg.inputs[0].dataset)
     expected = """Example Dataset
 
 Example abstract."""
@@ -28,7 +28,7 @@ def test_build_abstract(raster_layer_cfg):
     actual = qgm.build_layer_metadata(mock_cfg)
     expected = """Example layer description.
 
-=== Original Data Source ===
+=== Original Data Source(s) ===
 Example Dataset
 
 Example abstract.

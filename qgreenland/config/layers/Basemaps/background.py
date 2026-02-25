@@ -24,10 +24,12 @@ background = Layer(
     description="Stylized shaded-relief map for providing a general sense of geography.",
     tags=["background", "shaded-relief"],
     show=True,
-    input=LayerInput(
-        dataset=background_dataset,
-        asset=background_dataset.assets["high_res"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=background_dataset,
+            asset=background_dataset.assets["high_res"],
+        )
+    ],
     steps=[
         decompress_step(
             input_file="{input_dir}/*.zip",

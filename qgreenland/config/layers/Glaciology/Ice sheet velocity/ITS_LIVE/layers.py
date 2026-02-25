@@ -30,10 +30,12 @@ masked_velocity_mosaic_layers = [
         in_package=False,
         tags=[],
         style=params["style"],
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             CommandStep(
                 args=[
@@ -68,10 +70,12 @@ velocity_mosaic_ice_mask = Layer(
     description=("""Ice mask used for ITS_LIVE velocity mosiac."""),
     in_package=False,
     tags=[],
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *warp_and_cut(
             input_file="NETCDF:{input_dir}/GRE_G0120_0000.nc:ice",

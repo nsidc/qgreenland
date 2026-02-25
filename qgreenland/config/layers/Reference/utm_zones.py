@@ -10,10 +10,12 @@ utm_zones = Layer(
     ),
     tags=[],
     style="utm_zones",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             ogr2ogr_args=(

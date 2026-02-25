@@ -1,4 +1,5 @@
 import shutil
+from pathlib import Path
 
 import earthaccess
 import luigi
@@ -141,3 +142,57 @@ class FetchDataWithCommand(FetchTask):
                     output_dir=temp_path,
                 ),
             )
+
+
+class MergeFetchedDataTask(luigi.Task):
+    """Merge, if necessary, fetched data from multiple inputs into a single directory.
+
+    `requires_fetch_tasks` takes a list of fetch tasks.
+
+    If provided with a list of len 1, this task is a no-op.
+
+    If the list has multiple fetch tasks, it merges them into a single output
+    directory via symlinks for use in layer steps (each layer step is expected
+    to get a single input_dir).
+
+    NOTE/TODO: This task does not handle conflicts between multiple input
+    sources. It is expected that each fetched input source will have a distinct
+    file(s) associated with it.
+
+    Useful when wanting to combine multiple datasets into one layer!
+    """
+
+    requires_fetch_tasks = luigi.Parameter()
+
+    def requires(self):
+        """Dynamically specify tasks this task depends on."""
+        return self.requires_fetch_tasks
+
+    def output(self):
+        # If there's just one task here, we keep the output as-is. No need to
+        # merge anything.
+        if len(self.requires_fetch_tasks) == 1:
+            return self.requires_fetch_tasks[0].output()
+
+        # Join the dirnames together
+        output_name = "-".join(
+            datasource_dirname(dataset_id=task.dataset_id, asset_id=task.asset_id)
+            for task in self.requires_fetch_tasks
+        )
+        return luigi.LocalTarget(
+            FETCH_DATASETS_DIR / output_name,
+            format=luigi.format.Nop,
+        )
+
+    def run(self):
+        """Symlink source datasets into a common directory for use in layer steps."""
+        with temporary_path_dir(self.output()) as temp_path:
+            for required_fetch_task in self.requires_fetch_tasks:
+                output_path = required_fetch_task.output().path
+                for item in Path(output_path).iterdir():
+                    if not item.is_file():
+                        continue
+
+                    new_output = Path(temp_path) / item.relative_to(output_path)
+                    new_output.parent.mkdir(parents=True, exist_ok=True)
+                    new_output.symlink_to(item)

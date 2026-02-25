@@ -43,10 +43,12 @@ def _make_layers() -> Generator[Layer, None, None]:
             ),
             tags=[],
             style="gmb_dtu_space",
-            input=LayerInput(
-                dataset=dataset,
-                asset=dataset.assets["only"],
-            ),
+            inputs=[
+                LayerInput(
+                    dataset=dataset,
+                    asset=dataset.assets["only"],
+                )
+            ],
             steps=[
                 *ogr2ogr(
                     input_file=(

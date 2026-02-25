@@ -12,10 +12,12 @@ nunagis_municipalities_population = Layer(
     ),
     tags=[],
     style="nunagis_municipalities_population",
-    input=LayerInput(
-        dataset=dataset.nunagis_pop2019_municipalities,
-        asset=dataset.nunagis_pop2019_municipalities.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset.nunagis_pop2019_municipalities,
+            asset=dataset.nunagis_pop2019_municipalities.assets["only"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/fetched.geojson",
@@ -33,10 +35,12 @@ ne_states_provinces = Layer(
     ),
     tags=[],
     style="administrative_divisions",
-    input=LayerInput(
-        dataset=dataset.ne_states_provinces,
-        asset=dataset.ne_states_provinces.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset.ne_states_provinces,
+            asset=dataset.ne_states_provinces.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/ne_10m_admin_1_states_provinces.zip",
@@ -51,10 +55,12 @@ ne_countries = Layer(
     description=("""Polygons representing countries."""),
     tags=[],
     style="countries",
-    input=LayerInput(
-        dataset=dataset.ne_countries,
-        asset=dataset.ne_countries.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset.ne_countries,
+            asset=dataset.ne_countries.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/ne_10m_admin_0_countries.zip",

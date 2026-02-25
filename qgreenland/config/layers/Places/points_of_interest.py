@@ -9,10 +9,12 @@ points_of_interest = Layer(
     description="Points representing named points of interest in Greenland.",
     tags=["places"],
     style="labeled_point",
-    input=LayerInput(
-        dataset=asiaq_private_placenames,
-        asset=asiaq_private_placenames.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=asiaq_private_placenames,
+            asset=asiaq_private_placenames.assets["only"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/translations_joined.gpkg",

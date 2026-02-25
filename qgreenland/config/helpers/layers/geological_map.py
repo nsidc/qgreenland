@@ -41,10 +41,12 @@ def make_layer(*, layer_id: str, layer_params: dict) -> Layer:
         description=layer_params["description"],
         tags=[],
         style=layer_params["style"],
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             *compressed_vector(
                 input_file="{input_dir}/as_2159.zip",

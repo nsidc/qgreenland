@@ -9,10 +9,12 @@ roads = Layer(
     style="roads_line",
     description="""Lines representing roads in Greenland.""",
     tags=["places"],
-    input=LayerInput(
-        dataset=asiaq_nunagis,
-        asset=asiaq_nunagis.assets["roads"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=asiaq_nunagis,
+            asset=asiaq_nunagis.assets["roads"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/fetched.geojson",

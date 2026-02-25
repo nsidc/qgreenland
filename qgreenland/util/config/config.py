@@ -19,7 +19,7 @@ def init_config(
     *,
     include_patterns: tuple[str, ...] = (),
     exclude_patterns: tuple[str, ...] = (),
-    exclude_manual_assets: bool = False,
+    exclude_manual_asset_datasets: bool = False,
 ) -> None:
     global _CONFIG
 
@@ -31,7 +31,7 @@ def init_config(
         CONFIG_DIR.resolve(),
         include_patterns=include_patterns,
         exclude_patterns=exclude_patterns,
-        exclude_manual_assets=exclude_manual_assets,
+        exclude_manual_asset_datasets=exclude_manual_asset_datasets,
     )
 
     if not _CONFIG.layers:

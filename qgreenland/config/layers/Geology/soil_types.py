@@ -13,10 +13,12 @@ soil_types = Layer(
     ),
     tags=[],
     style="soil_types",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         decompress_step(
             decompress_type="gzip",

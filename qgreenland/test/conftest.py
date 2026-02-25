@@ -1,7 +1,8 @@
 import pytest
 
 from qgreenland.models.config.asset import HttpAsset, OnlineAsset
-from qgreenland.models.config.layer import Layer
+from qgreenland.models.config.dataset import Dataset
+from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.layer_group import LayerGroupSettings, RootGroupSettings
 from qgreenland.test.constants import TEST_CONFIG_DIR
 from qgreenland.util.config.compile import compile_cfg
@@ -23,22 +24,23 @@ _mock_online_asset_cfg = {
     "provider": "wms",
     "url": "crs=EPSG:4326&format=image/png&layers=continents&styles&url=https://demo.mapserver.org/cgi-bin/wms",  # noqa
 }
-mock_online_layer_cfg = {
-    "id": "example_online",
-    "title": "Example online",
-    "description": "Example layer description.",
-    "tags": ["foo", "bar", "baz"],
-    "in_package": True,
-    "input": {
-        "dataset": {
-            "id": "baz",
-            "assets": [OnlineAsset(**_mock_online_asset_cfg)],
-            "metadata": _mock_metadata,
-        },
-        "asset": OnlineAsset(**_mock_online_asset_cfg),
-    },
-}
-MockOnlineLayerConfig = Layer(**mock_online_layer_cfg)
+MockOnlineLayerConfig = Layer(
+    id="example_online",
+    title="Example online",
+    description="Example layer description.",
+    tags=["foo", "bar", "baz"],
+    in_package=True,
+    inputs=[
+        LayerInput(
+            dataset=Dataset(
+                id="baz",
+                assets=[OnlineAsset(**_mock_online_asset_cfg)],
+                metadata=_mock_metadata,
+            ),
+            asset=OnlineAsset(**_mock_online_asset_cfg),
+        ),
+    ],
+)
 
 _mock_http_asset_cfg = {
     "id": _mock_asset_id,
@@ -50,14 +52,16 @@ mock_raster_layer_cfg = {
     "description": "Example layer description.",
     "tags": ["foo", "bar", "baz"],
     "in_package": True,
-    "input": {
-        "dataset": {
-            "id": "example_dataset",
-            "assets": [HttpAsset(**_mock_http_asset_cfg)],
-            "metadata": _mock_metadata,
-        },
-        "asset": HttpAsset(**_mock_http_asset_cfg),
-    },
+    "inputs": [
+        {
+            "dataset": {
+                "id": "example_dataset",
+                "assets": [HttpAsset(**_mock_http_asset_cfg)],
+                "metadata": _mock_metadata,
+            },
+            "asset": HttpAsset(**_mock_http_asset_cfg),
+        }
+    ],
     "steps": [
         {
             "type": "command",

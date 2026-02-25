@@ -35,11 +35,13 @@ layer = Layer(
     in_package=True,
     # TODO: Uncomment and fill in `your_style` if needed:
     # style='your_style',
-    input=LayerInput(
-        dataset=dataset,
-        # TODO: Fill in `your_asset_id`:
-        asset=dataset.assets["your_asset_id"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            # TODO: Fill in `your_asset_id`:
+            asset=dataset.assets["your_asset_id"],
+        )
+    ],
     steps=[
         # TODO: Your steps here. How should the layer be processed into the
         # correct projection, clipped to the correct boundary, etc.? You can

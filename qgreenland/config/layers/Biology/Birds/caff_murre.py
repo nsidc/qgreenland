@@ -21,10 +21,12 @@ layers = [
         ),
         tags=[],
         style=f"{key}_colonies",
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             *compressed_vector(
                 input_file="{input_dir}/Murres_distribution.zip",

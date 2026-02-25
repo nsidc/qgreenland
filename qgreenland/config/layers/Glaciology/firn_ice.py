@@ -13,10 +13,12 @@ firn_ice_layer_thicknesses = Layer(
     ),
     tags=[],
     style="firn_ice_points",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/Ice_Layer_Output_Thicknesses.gpkg",
