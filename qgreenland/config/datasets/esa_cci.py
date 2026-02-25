@@ -185,7 +185,7 @@ esa_cci_gravimetric_mass_balance_dtu = Dataset(
         ),
     ],
     metadata={
-        "title": "GMB products for the Greenland Ice Sheet from GRACE satellite gravimetry (CSR RL06) by DTU Space.",
+        "title": "Greenland mass balance (GMB) product for the Greenland Ice Sheet from GRACE(-FO) satellite gravimetry (CSR RL06.2) by DTU Space, computed with the mass point inversion method.",
         "abstract": (
             """From citation publication: During the last decade, the GRACE
             mission has provided valuable data for determining the mass changes
@@ -223,7 +223,7 @@ esa_cci_gravimetric_mass_balance_dtu = Dataset(
                 Antarctica, The Cryosphere, 7, 1411-1432,
                 doi:10.5194/tc-7-1411-2013, 2013."""
             ),
-            "url": "http://products.esa-icesheets-cci.org/products/details/greenland_gravimetric_mass_balance_rl06_dtuspace_v2_0-170820.zip/",
+            "url": "http://products.esa-icesheets-cci.org/",
         },
     },
 )
