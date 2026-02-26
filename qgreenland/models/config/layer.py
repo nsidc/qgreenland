@@ -113,11 +113,12 @@ class Layer(QgrBaseModel):
         return self.dict(
             include={
                 **{k: ... for k in self.dict().keys() if k != "inputs"},
-                # TODO: inputs should probably be a list...?
-                # "inputs": {
-                #     "dataset": {"id"},
-                #     "asset": {"id"},
-                # },
+                "inputs": {
+                    "__all__": {
+                        "dataset": {"id"},
+                        "asset": {"id"},
+                    },
+                },
             },
             exclude={
                 "steps": {"__all__": {"id"}},
