@@ -28,6 +28,7 @@ def build_layer_metadata(layer_cfg: Layer) -> str:
 
         # Add the dataset's citation
         abstract += _build_dataset_citation(layer_input)
+        abstract += "\n-------------------------------\n"
 
     return abstract
 
