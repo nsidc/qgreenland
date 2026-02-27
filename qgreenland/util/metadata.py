@@ -56,14 +56,12 @@ def _build_dataset_description(dataset: Dataset) -> str:
 
     Description includes dataset title and abstract.
     """
-    dataset_description = ""
-
     dataset_metadata = dataset.metadata
-    dataset_description += dataset_metadata.title
+    dataset_description = f"Title:\n{dataset_metadata.title}"
 
     if abstract := dataset_metadata.abstract:
         dataset_description += "\n\n"
-        dataset_description += abstract
+        dataset_description += f"Abstract:\n{abstract}"
 
     return dataset_description
 
