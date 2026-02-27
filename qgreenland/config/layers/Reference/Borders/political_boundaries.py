@@ -7,10 +7,10 @@ from qgreenland.models.config.step import CommandStep
 
 nunagis_municipalities_population = Layer(
     id="nunagis_municipalities_population",
-    title="Greenland municipalities and population 2019",
+    title="Greenland municipalities and population",
     description=(
         """Polygons representing municipalities of Greenland and associated
-        population numbers for 2019."""
+        population numbers for 2019 and 2025."""
     ),
     tags=[],
     style="nunagis_municipalities_population",
