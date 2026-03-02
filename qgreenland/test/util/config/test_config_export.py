@@ -21,15 +21,18 @@ def test_export_config_manifest(full_cfg):
         "layer_details": """Example layer description.
 
 === Original Data Source(s) ===
+Title:
 Example Dataset
 
+Abstract:
 Example abstract.
 
 Citation:
 NSIDC 2020
 
 Citation URL:
-https://nsidc.org""",
+https://nsidc.org
+-------------------------------\n""",
         "tags": ["foo", "bar", "baz"],
         "hierarchy": ["Group", "Subgroup"],
     }
