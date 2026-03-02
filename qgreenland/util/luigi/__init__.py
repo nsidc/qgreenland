@@ -112,7 +112,7 @@ def generate_layer_pipelines() -> list[FinalizeTask]:
             continue
 
         # Create tasks, making each task dependent on the previous task.
-        task: list[MergeFetchedDataTask] | ChainableTask
+        task: MergeFetchedDataTask | ChainableTask
         task = MergeFetchedDataTask(
             requires_fetch_tasks=fetch_tasks_from_layer(layer_cfg)
         )
