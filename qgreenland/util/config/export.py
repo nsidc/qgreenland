@@ -89,12 +89,12 @@ def export_config_csv(
         if layer_cfg.is_online_only:
             # Online layers have no size on disk.
             layer_size_bytes = 0
-            internet_required = False
+            internet_required = True
         else:
             layer_fp = get_layer_compile_filepath(layer_node)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
-            internet_required = True
+            internet_required = False
 
         # TODO: re-consider how these records are exported when a layer is
         # derived from multiple inputs.
