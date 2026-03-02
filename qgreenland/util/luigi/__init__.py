@@ -106,8 +106,6 @@ def generate_layer_pipelines() -> list[FinalizeTask]:
     layers = config.layers.values()
 
     for layer_cfg in layers:
-        step_number = -1
-
         if layer_cfg.is_online_only:
             continue
 
@@ -119,8 +117,7 @@ def generate_layer_pipelines() -> list[FinalizeTask]:
 
         # If the layer has no steps, it's just fetched and finalized.
         if layer_cfg.steps:
-            for _step in layer_cfg.steps:
-                step_number += 1
+            for step_number in range(len(layer_cfg.steps)):
                 task = ChainableTask(
                     requires_task=task,
                     layer_id=layer_cfg.id,
