@@ -29,7 +29,7 @@ statbank = Dataset(
         ),
         "citation": {
             # TODO: have team review citation
-            "text": ("""Statistics Greenland."""),
+            "text": ("""Statistics Greenland. {{date_accessed}}"""),
             "url": "https://stat.gl/default.asp?lang=en",
         },
     },

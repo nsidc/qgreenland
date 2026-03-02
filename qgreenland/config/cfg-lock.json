@@ -1872,7 +1872,7 @@
       "metadata": {
         "abstract": "You'll find all tables published by Statistics Greenland in our\nStatBank. The tables are updated in parallel with publications on\nour website. We aim to publish all tables in Greenlandic, Danish and\nEnglish.\n\nOur StatBank is controlled by the program PX-Web, which for 25 years\nhas been developed by the Swedish National Statistics Office (\nwww.SCB.se ) in collaboration with many national statistical\noffices. This means that the methods, you as a user of our StatBank\nacquires, can be used to find statistics about many other countries,\nincluding Sweden, Finland, Norway, Iceland, the Faroe Islands,\nAaland, Denmark,.",
         "citation": {
-          "text": "Statistics Greenland.",
+          "text": "Statistics Greenland. {{date_accessed}}",
           "url": "https://stat.gl/default.asp?lang=en"
         },
         "title": "Statistics Greenland"
