@@ -7,7 +7,7 @@ caff_murre_colonies = Dataset(
         HttpAsset(
             id="only",
             urls=[
-                "https://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/8942d6b5-6060-412b-b696-0aa583965317",
+                "https://geo.abds.is/geonetwork/srv/api/records/8942d6b5-6060-412b-b696-0aa583965317/attachments/MurreColonies.zip",
             ],
         ),
     ],
