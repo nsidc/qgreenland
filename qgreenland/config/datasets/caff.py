@@ -7,7 +7,7 @@ caff_murre_colonies = Dataset(
         HttpAsset(
             id="only",
             urls=[
-                "https://abds.is/index.php/publications/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north/download",
+                "https://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/8942d6b5-6060-412b-b696-0aa583965317",
             ],
         ),
     ],
@@ -32,7 +32,7 @@ caff_murre_colonies = Dataset(
                 change. CAFF International Secretariat, Akureyri, Iceland.May
                 2010."""
             ),
-            "url": "https://abds.is/index.php/publications/species/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north",
+            "url": "https://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/8942d6b5-6060-412b-b696-0aa583965317",
         },
     },
 )
