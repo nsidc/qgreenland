@@ -11,8 +11,7 @@ murre_layer = Layer(
         2010."""
     ),
     tags=[],
-    # TODO: come back to this.
-    # style=f"murre_colonies",
+    style=f"caff_murre_colonies",
     input=LayerInput(
         dataset=dataset,
         asset=dataset.assets["only"],
