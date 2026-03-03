@@ -3,8 +3,7 @@ from qgreenland.models.config.layer_group import LayerGroupSettings, LayerIdenti
 
 settings = LayerGroupSettings(
     order=[
-        LayerIdentifier("caff_common_murre_colonies"),
-        LayerIdentifier("caff_thickbilled_murre_colonies"),
+        LayerIdentifier("caff_murre_colonies"),
         *[LayerIdentifier(layer_id) for layer_id in BIRDS_LAYERS],
     ],
 )
