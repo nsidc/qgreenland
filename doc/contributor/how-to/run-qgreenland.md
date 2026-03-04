@@ -80,10 +80,10 @@ locations.
 
 ## How to start the service stack
 
-Start the stack with docker-compose:
+Start the stack with docker compose:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 

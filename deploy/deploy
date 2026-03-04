@@ -6,6 +6,6 @@ set -euo pipefail
 source VERSION.env
 
 # Restart the luigi container, leaving the webserver up
-docker-compose rm -sf luigi
+docker compose rm -sf luigi
 docker system prune -af
-docker-compose up -d
+docker compose up -d
