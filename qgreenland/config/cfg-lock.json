@@ -3453,6 +3453,10 @@
                     {
                       "args": [
                         "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
                         "{output_dir}/joined.gpkg",
                         "{input_dir}/merged.gpkg",
                         "-dialect",
@@ -3461,21 +3465,6 @@
                         "\"SELECT\n                    municipalities.geom,\n                    municipalities.pop_municipality_2019_municip as municipality,\n                    municipalities.pop_municipality_2019_populatio as \\\"Population 2019\\\",\n                    pop2025.\\\"Population January 1st\\\" as \\\"Population 2025\\\"\n                    FROM municipalities\n                    JOIN pop2025 ON pop2025.municipality\n                    LIKE '%' || municipalities.pop_municipality_2019_municip || '%'\"",
                         "-nln",
                         "municipalities_and_pop"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/nunagis_municipalities_population.gpkg",
-                        "{input_dir}/joined.gpkg"
                       ],
                       "type": "command"
                     }

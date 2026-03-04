@@ -1,7 +1,7 @@
 import qgreenland.config.datasets.political_boundaries as political_boundaries
 import qgreenland.config.datasets.statbank as statbank
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
-from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
+from qgreenland.config.helpers.steps.ogr2ogr import STANDARD_OGR2OGR_ARGS
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import CommandStep
 
@@ -48,6 +48,7 @@ nunagis_municipalities_population = Layer(
             id="join_data",
             args=[
                 "ogr2ogr",
+                *STANDARD_OGR2OGR_ARGS,
                 "{output_dir}/joined.gpkg",
                 "{input_dir}/merged.gpkg",
                 "-dialect",
@@ -64,13 +65,6 @@ nunagis_municipalities_population = Layer(
                 "-nln",
                 "municipalities_and_pop",
             ],
-        ),
-        # Standard options
-        # TODO: necessary? Could merge standard options with ogr2ogr command
-        # above...
-        *ogr2ogr(
-            input_file="{input_dir}/joined.gpkg",
-            output_file="{output_dir}/nunagis_municipalities_population.gpkg",
         ),
     ],
 )
