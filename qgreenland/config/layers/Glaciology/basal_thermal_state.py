@@ -14,10 +14,12 @@ basal_thermal_state = Layer(
     description=("""Likely basal frozen/thawed state of the Greenland Ice Sheet."""),
     tags=[],
     style="basal_thermal_state",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         CommandStep(
             args=[

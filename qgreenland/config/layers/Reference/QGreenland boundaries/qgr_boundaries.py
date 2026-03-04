@@ -11,10 +11,12 @@ qgr_boundary_data = Layer(
     ),
     tags=[],
     style="transparent_shape",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["data"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["data"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/greenland_rectangle.geojson",
@@ -33,10 +35,12 @@ qgr_boundary_background = Layer(
     tags=[],
     show=True,
     style="transparent_shape",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["background"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["background"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/latitude_shape_40_degrees.geojson",

@@ -13,10 +13,12 @@ bas_greenland_coastlines = Layer(
     tags=[],
     show=True,
     style="greenland_coastline",
-    input=LayerInput(
-        dataset=bas_coastlines,
-        asset=bas_coastlines.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=bas_coastlines,
+            asset=bas_coastlines.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/Greenland_coast.zip",
@@ -34,10 +36,12 @@ global_coastlines = Layer(
     ),
     tags=[],
     style="transparent_shape",
-    input=LayerInput(
-        dataset=gshhg_coastlines,
-        asset=gshhg_coastlines.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=gshhg_coastlines,
+            asset=gshhg_coastlines.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/gshhg-shp-2.3.7.zip",

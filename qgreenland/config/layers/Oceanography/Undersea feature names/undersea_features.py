@@ -35,10 +35,12 @@ layers = [
         description=params["description"],
         tags=[],
         style=params["style"],
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             *compressed_vector(
                 input_file="{input_dir}/features.zip",

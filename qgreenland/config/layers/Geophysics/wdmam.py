@@ -22,10 +22,12 @@ layer = Layer(
     tags=[],
     in_package=False,
     style="wdmam",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         CommandStep(
             id="convert_to_csv",

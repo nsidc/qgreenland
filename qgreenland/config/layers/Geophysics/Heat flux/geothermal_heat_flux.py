@@ -19,10 +19,12 @@ geothermal_heat_flux = Layer(
     ),
     tags=[],
     style="geothermal_heat_flux",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *warp(
             input_file="NETCDF:{input_dir}/"

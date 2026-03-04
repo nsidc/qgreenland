@@ -19,10 +19,12 @@ layers = [
         description=CONCENTRATION_DESCRIPTION,
         tags=[],
         style=CONCENTRATION_STYLE,
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[f"minimum_concentration_{year}"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[f"minimum_concentration_{year}"],
+            )
+        ],
         steps=[
             CommandStep(
                 args=[

@@ -22,7 +22,9 @@ def write_provenance_file(*, layer_cfg: Layer, filepath: Path) -> None:
 
 
 def layer_provenance_text(layer_cfg: Layer) -> str:
-    provenance_text = _asset_provenance_text(layer_cfg.input.asset)
+    provenance_text = ""
+    for layer_input in layer_cfg.inputs:
+        provenance_text += _asset_provenance_text(layer_input.asset)
     steps_provenance = _steps_provenance_text(layer_cfg.steps)
     if steps_provenance:
         provenance_text += "\n\n# Data processed using the following steps:\n\n"

@@ -18,10 +18,12 @@ layers = [
         ),
         tags=[],
         style="albedo",
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[f"{year}_07"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[f"{year}_07"],
+            )
+        ],
         steps=[
             *compress_and_add_overviews(
                 input_file="{input_dir}/*.tif",

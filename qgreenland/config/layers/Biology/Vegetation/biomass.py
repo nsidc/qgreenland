@@ -18,10 +18,12 @@ vegetation_biomass_2010 = Layer(
     ),
     tags=[],
     style="vegetation_biomass",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *warp(
             input_file="{input_dir}/aga_circumpolar_avhrr_biomass_2010.tif",

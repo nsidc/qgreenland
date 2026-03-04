@@ -19,6 +19,7 @@ from qgreenland.util.luigi.tasks.fetch import (
     FetchDataWithCommand,
     FetchLocalDataFiles,
     FetchTask,
+    MergeFetchedDataTask,
 )
 from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
 
@@ -48,12 +49,26 @@ def _fetch_task(
 
 def fetch_task_from_layer(
     layer_cfg: Layer,
-) -> FetchTask:
+) -> MergeFetchedDataTask | FetchTask:
+    """Return a task that will fetch the layer's inputs."""
     # TODO: Unit test!
-    dataset_cfg = layer_cfg.input.dataset
-    asset_cfg = layer_cfg.input.asset
+    tasks = []
+    for dataset_input in layer_cfg.inputs:
+        # Check if it's an online layer; those have no fetching or processing
+        # pipeline.
+        if isinstance(dataset_input.asset, OnlineAsset):
+            continue
 
-    return _fetch_task(dataset_cfg, asset_cfg)
+        dataset_cfg = dataset_input.dataset
+        asset_cfg = dataset_input.asset
+        tasks.append(_fetch_task(dataset_cfg, asset_cfg))
+
+    if len(tasks) == 1:
+        return tasks[0]
+
+    merge_task = MergeFetchedDataTask(requires_fetch_tasks=tasks)
+
+    return merge_task
 
 
 def fetch_tasks_from_dataset(
@@ -65,26 +80,21 @@ def fetch_tasks_from_dataset(
 
 
 @cache
-def generate_fetch_only_pipelines() -> list[FetchTask]:
+def generate_fetch_only_pipelines() -> list[FetchTask | MergeFetchedDataTask]:
     """Generate a list of fetch-only tasks based on layer configuration.
 
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
     config = get_config()
-    tasks: list[FetchTask] = []
+    tasks: list[FetchTask | MergeFetchedDataTask] = []
 
     layers = config.layers.values()
 
     for layer_cfg in layers:
-        # Check if it's an online layer; those have no fetching or processing
-        # pipeline.
-        if isinstance(layer_cfg.input.asset, OnlineAsset):
-            continue
-
         # Create tasks, making each task dependent on the previous task.
-        task = fetch_task_from_layer(layer_cfg)
-        tasks.append(task)
+        fetch_task = fetch_task_from_layer(layer_cfg)
+        tasks.append(fetch_task)
 
     return tasks
 
@@ -102,18 +112,16 @@ def generate_layer_pipelines() -> list[FinalizeTask]:
     layers = config.layers.values()
 
     for layer_cfg in layers:
-        # Check if it's an online layer; those have no fetching or processing
-        # pipeline.
-        if isinstance(layer_cfg.input.asset, OnlineAsset):
+        if layer_cfg.is_online_only:
             continue
 
         # Create tasks, making each task dependent on the previous task.
-        task: FetchTask | ChainableTask
+        task: FetchTask | MergeFetchedDataTask | ChainableTask
         task = fetch_task_from_layer(layer_cfg)
 
         # If the layer has no steps, it's just fetched and finalized.
         if layer_cfg.steps:
-            for step_number, _ in enumerate(layer_cfg.steps):
+            for step_number in range(len(layer_cfg.steps)):
                 task = ChainableTask(
                     requires_task=task,
                     layer_id=layer_cfg.id,

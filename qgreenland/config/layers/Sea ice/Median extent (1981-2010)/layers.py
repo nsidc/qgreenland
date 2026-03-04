@@ -23,10 +23,12 @@ layers = [
             extent from the period 1981 through 2010."""
         ),
         tags=[],
-        input=LayerInput(
-            dataset=dataset,
-            asset=_asset(dataset, month),
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=_asset(dataset, month),
+            )
+        ],
         steps=[
             *compressed_vector(
                 input_file="{input_dir}/"

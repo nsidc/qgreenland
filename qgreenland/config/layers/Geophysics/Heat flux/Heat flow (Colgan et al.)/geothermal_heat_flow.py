@@ -21,10 +21,12 @@ geothermal_heat_flow = Layer(
         layer."""
     ),
     tags=[],
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["55km_map"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["55km_map"],
+        )
+    ],
     steps=[
         *warp_and_cut(
             input_file="{input_dir}/geothermal_heat_flow_map_55km.nc",
@@ -47,10 +49,12 @@ geothermal_heat_flow_measurements = Layer(
         (55km)" layer."""
     ),
     tags=[],
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["heat_flow_measurements"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["heat_flow_measurements"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/Greenland_heat_flow_measurements.zip",

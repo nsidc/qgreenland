@@ -11,10 +11,12 @@ marginal_lakes = Layer(
     ),
     tags=[],
     style=None,
-    input=LayerInput(
-        dataset=esa_cci_marginal_lakes,
-        asset=esa_cci_marginal_lakes.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=esa_cci_marginal_lakes,
+            asset=esa_cci_marginal_lakes.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/20170101-ESACCI-L3S_GLACIERS-IML-MERGED-fv1.zip",

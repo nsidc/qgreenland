@@ -55,10 +55,12 @@ circumpolar_arctic_vegetation_map_layer = Layer(
     ),
     tags=[],
     style="arctic_vegetation",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         decompress_step(
             input_file="{input_dir}/Raster\\ CAVM\\ GIS\\ data.zip",

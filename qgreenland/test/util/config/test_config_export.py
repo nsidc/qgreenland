@@ -20,16 +20,19 @@ def test_export_config_manifest(full_cfg):
         # here too.
         "layer_details": """Example layer description.
 
-=== Original Data Source ===
+=== Original Data Source(s) ===
+Title:
 Example Dataset
 
+Abstract:
 Example abstract.
 
 Citation:
 NSIDC 2020
 
 Citation URL:
-https://nsidc.org""",
+https://nsidc.org
+-------------------------------\n""",
         "tags": ["foo", "bar", "baz"],
         "hierarchy": ["Group", "Subgroup"],
     }
@@ -95,10 +98,10 @@ https://nsidc.org""",
 )
 def test_export_config_csv(full_cfg):
     common = {
-        "Data Source Abstract": "Example abstract.",
-        "Data Source Citation": "NSIDC 2020",
-        "Data Source Citation URL": "https://nsidc.org",
-        "Data Source Title": "Example Dataset",
+        "Data Source Abstract(s)": "Example abstract.;",
+        "Data Source Citation(s)": "NSIDC 2020;",
+        "Data Source Citation URL(s)": "https://nsidc.org;",
+        "Data Source Title(s)": "Example Dataset;",
         "Group": "Group",
         "Layer Description": "Example layer description.",
         "Layer Size": "0 Bytes",
@@ -118,7 +121,7 @@ def test_export_config_csv(full_cfg):
             **common,
             "Layer Title": "Example online",
             "Vector or Raster": "Raster",
-            "Internet Required?": "False",
+            "Internet Required?": "True",
         },
         {
             **common,
@@ -126,7 +129,7 @@ def test_export_config_csv(full_cfg):
             "Vector or Raster": "Raster",
             "Layer Size": "619 Bytes",
             "Layer Size Bytes": "619",
-            "Internet Required?": "True",
+            "Internet Required?": "False",
         },
     ]
 

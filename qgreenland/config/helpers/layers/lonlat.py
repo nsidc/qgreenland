@@ -47,10 +47,12 @@ def _make_lonlat_layer(
         description=(f"Lines of {title_prefix.lower()} in {deg}-degree resolution."),
         tags=["reference"],
         style="lonlat",
-        input=LayerInput(
-            dataset=dataset,
-            asset=asset,
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=asset,
+            )
+        ],
         steps=[
             CommandStep(
                 args=[

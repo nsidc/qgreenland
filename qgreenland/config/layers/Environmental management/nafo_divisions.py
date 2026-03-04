@@ -8,10 +8,12 @@ nafo_divisions = Layer(
     description=("""The Northwest Atlantic Fisheries Organization zones."""),
     tags=[],
     style="nafo_divisions",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/Divisions.zip",

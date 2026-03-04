@@ -43,10 +43,12 @@ layers = [
         description=params["description"],
         tags=["terrain_model"],
         style=f"bedmachine_{key}",
-        input=LayerInput(
-            dataset=bedmachine.bedmachine,
-            asset=bedmachine.bedmachine.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=bedmachine.bedmachine,
+                asset=bedmachine.bedmachine.assets["only"],
+            )
+        ],
         steps=[
             *warp_and_cut(
                 input_file="NETCDF:{input_dir}/" + f"{bedmachine_fn}:{key}",

@@ -45,10 +45,12 @@ def surface_elevation_layer(
         description=description,
         tags=[],
         style=style,
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             decompress_step(
                 input_file="{input_dir}/cci_sec_2021.zip",

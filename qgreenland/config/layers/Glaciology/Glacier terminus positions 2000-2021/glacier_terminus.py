@@ -9,10 +9,12 @@ layers = [
         title=f"Glacier termini {START} to {END}",
         description=f"Glacier terminus during the {START}-{END} winter season.",
         tags=[],
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[f"{START}_{END}"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[f"{START}_{END}"],
+            )
+        ],
         steps=[
             *ogr2ogr(
                 input_file="{input_dir}/termini_*.shp",
