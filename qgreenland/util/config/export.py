@@ -14,7 +14,6 @@ from humanize import naturalsize
 
 from qgreenland._typing import VectorOrRaster
 from qgreenland.models.config import Config
-from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.util.fs import directory_contents, directory_size_bytes
 from qgreenland.util.json import MagicJSONEncoder
 from qgreenland.util.layer import (
@@ -58,7 +57,7 @@ def export_config_manifest(
             # `QGreenland Custom` QGIS Plugin does not currently support online
             # layers. Once online layers are supported in the plugin, this `if`
             # statement can be removed.
-            if not isinstance(layer_node.layer_cfg.input.asset, OnlineAsset)
+            if not layer_node.layer_cfg.is_online_only
         ],
     }
 
@@ -87,17 +86,29 @@ def export_config_csv(
 
         vector_or_raster_data = vector_or_raster(layer_node)
 
-        if isinstance(layer_cfg.input.asset, OnlineAsset):
+        if layer_cfg.is_online_only:
             # Online layers have no size on disk.
             layer_size_bytes = 0
-            internet_required = False
+            internet_required = True
         else:
             layer_fp = get_layer_compile_filepath(layer_node)
             layer_dir = layer_fp.parent
             layer_size_bytes = directory_size_bytes(layer_dir)
-            internet_required = True
+            internet_required = False
 
-        dataset_cfg = layer_cfg.input.dataset
+        # TODO: re-consider how these records are exported when a layer is
+        # derived from multiple inputs.
+        data_source_titles = ""
+        data_source_abstracts = ""
+        data_source_citations = ""
+        data_source_citation_urls = ""
+        for layer_input in layer_cfg.inputs:
+            dataset_cfg = layer_input.dataset
+
+            data_source_titles += dataset_cfg.metadata.title + ";"
+            data_source_abstracts += dataset_cfg.metadata.abstract + ";"
+            data_source_citations += dataset_cfg.metadata.citation.text + ";"
+            data_source_citation_urls += dataset_cfg.metadata.citation.url + ";"
 
         report.append(
             {
@@ -106,10 +117,10 @@ def export_config_csv(
                 "Layer Title": layer_cfg.title,
                 "Layer Description": layer_cfg.description,
                 "Vector or Raster": vector_or_raster_data,
-                "Data Source Title": dataset_cfg.metadata.title,
-                "Data Source Abstract": dataset_cfg.metadata.abstract,
-                "Data Source Citation": dataset_cfg.metadata.citation.text,
-                "Data Source Citation URL": dataset_cfg.metadata.citation.url,
+                "Data Source Title(s)": data_source_titles,
+                "Data Source Abstract(s)": data_source_abstracts,
+                "Data Source Citation(s)": data_source_citations,
+                "Data Source Citation URL(s)": data_source_citation_urls,
                 "Layer Size": naturalsize(layer_size_bytes),
                 "Layer Size Bytes": layer_size_bytes,
                 "Internet Required?": internet_required,
@@ -148,11 +159,11 @@ def _layer_manifest_final_assets(
     TODO: Better label?
     """
     layer_cfg = layer_node.layer_cfg
-    if isinstance(layer_cfg.input.asset, OnlineAsset):
+    if online_asset := layer_cfg.online_only_asset:
         return [
             {
                 "type": "online",
-                **layer_cfg.input.asset.dict(
+                **online_asset.dict(
                     include={"provider", "url"},
                 ),
             }

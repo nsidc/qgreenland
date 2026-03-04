@@ -16,10 +16,12 @@ def make_land_ocean_layer(layer_id: str) -> Layer:
         description=(f"""Polygons representing the {layer_id}."""),
         tags=[],
         style=layer_id,
-        input=LayerInput(
-            dataset=layer_params[layer_id],
-            asset=layer_params[layer_id].assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=layer_params[layer_id],
+                asset=layer_params[layer_id].assets["only"],
+            )
+        ],
         steps=[
             *compressed_vector(
                 input_file="{input_dir}/" + f"ne_10m_{layer_id}.zip",

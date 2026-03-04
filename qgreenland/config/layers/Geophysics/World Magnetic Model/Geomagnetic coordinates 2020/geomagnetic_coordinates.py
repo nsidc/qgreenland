@@ -41,10 +41,12 @@ for the simple geomagnetic coordinate system of geomagnetic latitude and
 longitude.
 """,
         style="lonlat",
-        input=LayerInput(
-            dataset=wmm.wmm,
-            asset=wmm.wmm.assets["geomagnetic_coordinates"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=wmm.wmm,
+                asset=wmm.wmm.assets["geomagnetic_coordinates"],
+            )
+        ],
         steps=unzip_and_reproject_wmm_vector(
             zip_filename="WMM2020_geomagnetic_coordinate_shapefiles.zip",
             unzip_contents_mask=f'"*geographic_projection/*{partial_filename}*"',

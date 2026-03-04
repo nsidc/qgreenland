@@ -2,7 +2,8 @@ import datetime as dt
 from pathlib import Path
 
 from qgreenland.constants.paths import FETCH_DATASETS_DIR
-from qgreenland.models.config.layer import Layer
+from qgreenland.models.config.dataset import Dataset
+from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.util.layer import datasource_dirname
 
 
@@ -17,15 +18,17 @@ def build_layer_metadata(layer_cfg: Layer) -> str:
     # If the layer has a description, separate it from the abstract of the
     # original data source.
     if abstract:
-        abstract += "\n\n=== Original Data Source ===\n"
+        abstract += "\n\n=== Original Data Source(s) ===\n"
 
-    abstract += _build_dataset_description(layer_cfg)
+    for layer_input in layer_cfg.inputs:
+        abstract += _build_dataset_description(layer_input.dataset)
 
-    if abstract:
-        abstract += "\n\n"
+        if abstract:
+            abstract += "\n\n"
 
-    # Add the dataset's citation
-    abstract += _build_dataset_citation(layer_cfg)
+        # Add the dataset's citation
+        abstract += _build_dataset_citation(layer_input)
+        abstract += "\n-------------------------------\n"
 
     return abstract
 
@@ -48,35 +51,31 @@ def build_layer_description(layer_cfg: Layer) -> str:
     return layer_description
 
 
-# TODO: this could take a dataset cfg instead of a layer_cfg and be
-# cached. Sometimes multiple layers are derived from the same dataset.
-def _build_dataset_description(layer_cfg: Layer) -> str:
+def _build_dataset_description(dataset: Dataset) -> str:
     """Return a string representing the layer's dataset description.
 
     Description includes dataset title and abstract.
     """
-    dataset_description = ""
-
-    dataset_metadata = layer_cfg.input.dataset.metadata
-    dataset_description += dataset_metadata.title
+    dataset_metadata = dataset.metadata
+    dataset_description = f"Title:\n{dataset_metadata.title}"
 
     if abstract := dataset_metadata.abstract:
         dataset_description += "\n\n"
-        dataset_description += abstract
+        dataset_description += f"Abstract:\n{abstract}"
 
     return dataset_description
 
 
 # TODO: this could take a dataset cfg instead of a layer_cfg and be
 # cached. Sometimes multiple layers are derived from the same dataset.
-def _build_dataset_citation(layer_cfg: Layer) -> str:
+def _build_dataset_citation(layer_input: LayerInput) -> str:
     """Return a string representing the layer's dataset citation."""
     citation = ""
 
-    dataset_metadata = layer_cfg.input.dataset.metadata
+    dataset_metadata = layer_input.dataset.metadata
     if citation_cfg := dataset_metadata.citation:
         if citation_text := citation_cfg.text:
-            ct = _populate_date_accessed(citation_text, layer_cfg=layer_cfg)
+            ct = _populate_date_accessed(citation_text, layer_input=layer_input)
             citation += "Citation:\n"
             citation += ct + "\n\n"
 
@@ -87,13 +86,13 @@ def _build_dataset_citation(layer_cfg: Layer) -> str:
     return citation
 
 
-def _populate_date_accessed(text: str, *, layer_cfg: Layer) -> str:
+def _populate_date_accessed(text: str, *, layer_input: LayerInput) -> str:
     if "{{date_accessed}}" not in text:
         return text
 
     ds_dir = datasource_dirname(
-        dataset_id=layer_cfg.input.dataset.id,
-        asset_id=layer_cfg.input.asset.id,
+        dataset_id=layer_input.dataset.id,
+        asset_id=layer_input.asset.id,
     )
     fetch_dir = Path(FETCH_DATASETS_DIR) / ds_dir
 

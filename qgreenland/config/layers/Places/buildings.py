@@ -11,10 +11,12 @@ buildings = Layer(
 
     The attribute containing building use is called ‘Info’ and is provided in Danish.""",
     tags=["places"],
-    input=LayerInput(
-        dataset=asiaq_nunagis,
-        asset=asiaq_nunagis.assets["buildings"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=asiaq_nunagis,
+            asset=asiaq_nunagis.assets["buildings"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/fetched.geojson",

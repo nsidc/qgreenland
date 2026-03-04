@@ -5,7 +5,7 @@ from qgreenland.config.helpers.steps.compress_and_add_overviews import (
 from qgreenland.config.helpers.steps.warp_and_cut import warp_and_cut
 from qgreenland.models.config.layer import Layer, LayerInput
 
-bedmachine_fn = "BedMachineGreenland-v5.nc"
+bedmachine_fn = "BedMachineGreenland-v6.nc"
 
 
 bed_datasets = {
@@ -43,10 +43,12 @@ layers = [
         description=params["description"],
         tags=["terrain_model"],
         style=f"bedmachine_{key}",
-        input=LayerInput(
-            dataset=bedmachine.bedmachine,
-            asset=bedmachine.bedmachine.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=bedmachine.bedmachine,
+                asset=bedmachine.bedmachine.assets["only"],
+            )
+        ],
         steps=[
             *warp_and_cut(
                 input_file="NETCDF:{input_dir}/" + f"{bedmachine_fn}:{key}",

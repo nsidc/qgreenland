@@ -21,10 +21,12 @@ def _make_racmo_wind_vectors() -> Layer:
         ),
         tags=[],
         style="racmo_wind_vectors",
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             *compressed_vector(
                 input_file="{input_dir}/RACMO_QGreenland_Jan2021.zip",
@@ -48,10 +50,12 @@ def _make_racmo_wind_speed() -> Layer:
         ),
         tags=[],
         style="racmo_wind_speed",
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             decompress_step(
                 input_file="{input_dir}/RACMO_QGreenland_Jan2021.zip",
@@ -156,10 +160,12 @@ def _make_masked_racmo_layer(
         description=description,
         tags=[],
         style=style,
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             decompress_step(
                 input_file="{input_dir}/RACMO_QGreenland_Jan2021.zip",
@@ -269,10 +275,12 @@ def make_racmo_supplemental_layers() -> list[Layer]:
                 description=params["description"],
                 tags=[],
                 style=params["style"],
-                input=LayerInput(
-                    dataset=dataset,
-                    asset=dataset.assets["only"],
-                ),
+                inputs=[
+                    LayerInput(
+                        dataset=dataset,
+                        asset=dataset.assets["only"],
+                    )
+                ],
                 steps=[
                     decompress_step(
                         input_file="{input_dir}/RACMO_QGreenland_Jan2021.zip",

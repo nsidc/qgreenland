@@ -4,9 +4,10 @@ import urllib.request
 from contextlib import closing
 from pathlib import Path
 
+import requests
+
 import qgreenland.exceptions as exc
 from qgreenland.constants.project import REQUEST_TIMEOUT
-from qgreenland.util.edl import create_earthdata_authenticated_session
 
 CHUNK_SIZE = 8 * 1024
 
@@ -35,12 +36,13 @@ def fetch_and_write_file(  # noqa:C901
     else:
         # TODO: Share the session across requests somehow?
         if not session:
-            session = create_earthdata_authenticated_session(hosts=[url], verify=verify)
+            session = requests.Session()
 
         with session.get(
             url,
             timeout=REQUEST_TIMEOUT,
             stream=True,
+            verify=verify,
             headers={"User-Agent": "QGreenland"},
         ) as resp:
             # Try to extract the filename from the `content-disposition` header
@@ -78,7 +80,6 @@ def fetch_and_write_file(  # noqa:C901
 
 
 def _ftp_fetch_and_write(url: str, output_dir: Path) -> None:
-    # TODO support earthdata login
     fn = _filename_from_url(url)
     fp = output_dir / fn
 

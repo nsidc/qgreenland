@@ -74,10 +74,12 @@ layers = [
         description=params["description"],
         tags=[],
         style=layer_id.replace("_filled", ""),
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[layer_id],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[layer_id],
+            )
+        ],
         steps=[
             *ogr2ogr(
                 input_file="{input_dir}/" + params["input_filename"],

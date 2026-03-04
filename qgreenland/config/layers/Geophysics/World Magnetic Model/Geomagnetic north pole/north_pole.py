@@ -59,10 +59,12 @@ now) antipodal.
         description=description.format(common_description=common_description),
         tags=["wmm"],
         style="geomagnetic_north_pole",
-        input=LayerInput(
-            dataset=wmm.wmm,
-            asset=wmm.wmm.assets[asset_id],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=wmm.wmm,
+                asset=wmm.wmm.assets[asset_id],
+            )
+        ],
         steps=[
             # Add a header to the downloaded txt file so that it can be processed as
             # 'csv' by `ogr2ogr`

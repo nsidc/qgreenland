@@ -26,10 +26,12 @@ sdfi_topo_map_layer = Layer(
             cities and residences."""
     ),
     tags=["online"],
-    input=LayerInput(
-        dataset=sdfi_topo_map,
-        asset=sdfi_topo_map.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=sdfi_topo_map,
+            asset=sdfi_topo_map.assets["only"],
+        )
+    ],
 )
 
 blue_marble_layer = Layer(
@@ -57,8 +59,10 @@ blue_marble_layer = Layer(
         [https://neo.gsfc.nasa.gov/view.php?datasetId=BlueMarbleNG-TB]."""
     ),
     tags=["online"],
-    input=LayerInput(
-        dataset=gibs,
-        asset=gibs.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=gibs,
+            asset=gibs.assets["only"],
+        )
+    ],
 )

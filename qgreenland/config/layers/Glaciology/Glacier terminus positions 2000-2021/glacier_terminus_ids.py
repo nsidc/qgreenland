@@ -8,10 +8,12 @@ glacier_terminus_glacier_ids = Layer(
     description="Glacier location for termini with matching ID.",
     tags=[],
     style="glacier_ids",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["glacier_ids"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["glacier_ids"],
+        )
+    ],
     steps=[
         *ogr2ogr(
             input_file="{input_dir}/GlacierIDs_v02.0.shp",

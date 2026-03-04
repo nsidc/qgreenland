@@ -26,10 +26,12 @@ layers = [
         description=params["description"],
         tags=[],
         style="mcas_mlsa_licenses",
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[params["asset_id"]],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[params["asset_id"]],
+            )
+        ],
         steps=[
             *compressed_vector(
                 input_file="{input_dir}/*.zip",

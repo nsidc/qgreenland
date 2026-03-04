@@ -39,7 +39,7 @@ import luigi
     multiple=True,
 )
 @click.option(
-    "--exclude-manual-assets",
+    "--exclude-manual-asset-datasets",
     is_flag=True,
     help='Exclude all "manual access" assets.',
     required=False,
@@ -61,7 +61,7 @@ import luigi
 def run(
     include: tuple[str, ...],
     exclude: tuple[str, ...],
-    exclude_manual_assets: bool,
+    exclude_manual_asset_datasets: bool,
     force_package_zip,
     force_no_package_zip,
     dry_run: bool,
@@ -84,12 +84,13 @@ def run(
     init_config(
         include_patterns=include,
         exclude_patterns=exclude,
-        exclude_manual_assets=exclude_manual_assets,
+        exclude_manual_asset_datasets=exclude_manual_asset_datasets,
     )
     config = get_config()
     filtered = include or exclude
     skip_zip = force_no_package_zip or (filtered and not force_package_zip)
 
+    tasks: list[luigi.WrapperTask]
     if fetch_only:
         # Don't do anything except fetch the input asset for each layer.
         tasks = [LayerPipelines(fetch_only=fetch_only)]
@@ -101,7 +102,7 @@ def run(
     print(f"Running tasks: {str(tasks)}")
     print()
 
-    if include or exclude or exclude_manual_assets or dry_run:
+    if include or exclude or exclude_manual_asset_datasets or dry_run:
         action = "Fetching data" if fetch_only else "Running pipelines"
         print(f"{action} for the following layers:")
         for layer in config.layers.keys():

@@ -26,10 +26,12 @@ def _layer(year) -> Layer:
         description=CONCENTRATION_DESCRIPTION,
         tags=[],
         style=CONCENTRATION_STYLE,
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets[f"maximum_concentration_{year}"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets[f"maximum_concentration_{year}"],
+            )
+        ],
         # TODO: Extract to helper
         steps=[
             CommandStep(

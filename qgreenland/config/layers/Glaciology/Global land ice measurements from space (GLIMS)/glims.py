@@ -26,10 +26,12 @@ layers = [
         title=f'Peripherical glacier/feature {params["hint"]}',
         description=params["description"],
         tags=[],
-        input=LayerInput(
-            dataset=dataset,
-            asset=dataset.assets["only"],
-        ),
+        inputs=[
+            LayerInput(
+                dataset=dataset,
+                asset=dataset.assets["only"],
+            )
+        ],
         steps=[
             *compressed_vector(
                 input_file="{input_dir}/*.zip",

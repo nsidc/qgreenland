@@ -9,7 +9,6 @@ import qgis.core as qgc
 from osgeo import gdal
 
 import qgreenland.exceptions as exc
-from qgreenland.models.config.asset import OnlineAsset
 from qgreenland.models.config.layer import Layer
 from qgreenland.util.layer import get_layer_compile_filepath, vector_or_raster
 from qgreenland.util.metadata import build_layer_description, build_layer_metadata
@@ -90,8 +89,8 @@ def make_map_layer(layer_node: LayerNode) -> qgc.QgsMapLayer:
 
     # For online layers, the provider is specified in the config.
     layer_cfg = layer_node.layer_cfg
-    if type(layer_cfg.input.asset) is OnlineAsset:
-        provider = layer_cfg.input.asset.provider
+    if asset := layer_cfg.online_only_asset:
+        provider = asset.provider
 
     creator = functools.partial(
         qgs_layer_creator,
@@ -121,8 +120,8 @@ def _layer_path(
     layer_node: LayerNode,
 ) -> Union[Path, str]:
     layer_cfg = layer_node.layer_cfg
-    if type(layer_cfg.input.asset) is OnlineAsset:
-        return f"{layer_cfg.input.asset.url}"
+    if online_asset := layer_cfg.online_only_asset:
+        return f"{online_asset.url}"
     else:
         # Give the absolute path to the layer. We think project.addMapLayer()
         # automatically generates the correct relative paths. Using a relative
@@ -164,9 +163,7 @@ def _create_layer_with_side_effects(
     layer_cfg = layer_node.layer_cfg
     layer_type = vector_or_raster(layer_node)
 
-    offline_raster = (
-        layer_type == "Raster" and type(layer_cfg.input.asset) is not OnlineAsset
-    )
+    offline_raster = layer_type == "Raster" and not layer_cfg.is_online_only
 
     if offline_raster:
         return _offline_raster_side_effects(creator, layer_node=layer_node)

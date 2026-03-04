@@ -10,10 +10,12 @@ timezones = Layer(
     description=("""Polygons representing time zones."""),
     tags=[],
     style="transparent_labeled_shape",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         # TODO: these steps the same as `compressed_vector` except with
         # `OGR_ENABLE_PARTIAL_REPROJECTION` envvar set for the `ogr2ogr`

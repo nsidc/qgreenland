@@ -28,6 +28,7 @@ qgreenland/models/config
 any `boundaries` that will be used to clip data for this project.
 
 
+(configuration-datasets-config)=
 ## Datasets config
 
 Dataset configurations define a unique `id`, `metadata`, and a list of
@@ -39,7 +40,7 @@ Dataset configurations define a unique `id`, `metadata`, and a list of
 ### Assets
 
 An asset represents a file or files in a dataset that will be used to create a
-single layer. A layer currently cannot use more than one asset as its input.
+single layer.
 
 There are various types of assets. Some useful ones are:
 
@@ -56,13 +57,10 @@ There are various types of assets. Some useful ones are:
   scientist over e-mail and is not hosted anywhere. We prefer to avoid or
   eventually fully eliminate the use of data in this category.
 
-```{admonition} TODO
-
-Link to API docs?
-```
 You can find the full set of available asset types
 {github}`here</qgreenland/models/config/asset.py>`.
 
+(configuration-layers-and-layer-groups-config)=
 ## Layers and layer groups config
 
 Layers in `qgreenland/config/layers` are organized into a directory structure
@@ -80,6 +78,43 @@ Layers Panel and the `description` determines the hovertext for that same layer
 in the QGIS Layers Panel.
 
 
+### Layer inputs
+
+A layer can be created from multiple `inputs`, which is given by a list of
+`LayerInputs`, each of which references a specific dataset and an asset within
+that dataset. For example, the `nunagis_municipalities_population` layer has two
+inputs which are combined together to create the output layer in QGIS:
+
+
+```
+inputs=[
+    # This input provides a multipolygon of municipalities and population numbers for 2019
+    LayerInput(
+        dataset=political_boundaries.nunagis_pop2019_municipalities,
+        asset=political_boundaries.nunagis_pop2019_municipalities.assets["only"],
+    ),
+    # This input provides updated population statistics for 2025 (Jan 1, 2026).
+    LayerInput(
+        dataset=statbank.statbank,
+        asset=statbank.statbank.assets["municipalities_2025_population"],
+    ),
+],
+```
+
+When multiple inputs are used, the data from each are combined into a single
+`{input_dir}` via symlinks for the layer's first step. The layer's first step
+must act on all inputs - layer inputs are not propagated to subsequent steps!
+See {ref}`configuration-layer-steps` for more.
+
+
+```{admonition} WARNING
+Layer inputs are expected to have unique filenames. The symlinking process does
+not handle conflicts!
+
+```
+
+
+(configuration-layer-steps)=
 ### Layer steps
 
 Layers are created in a series of `steps`. The final result of the `steps` must
@@ -88,7 +123,7 @@ vector layers.
 
 Each step is a {github}`command </qgreenland/models/config/step.py>` (e.g. `gdalwarp` or
 `ogr2ogr`) run against the output of the previous step.  The first step acts on
-the chosen `input.asset`.
+the chosen `inputs`.
 
 Within a step configuration, "runtime variables" are used to populate values
 that are not known at configuration-time, for example the WIP directories that
@@ -97,7 +132,7 @@ designated by braces `{` `}` surrounding the variable name. Only the following
 runtime variables are legal:
 
 * `{input_dir}`: The output directory of the previous step or, for the first
-  step, the layer's fetched `input.asset` location.
+  step, the layer's fetched `inputs` location.
 * `{output_dir}`: The output directory of this step.
 * `{assets_dir}`: In this repository, `qgreenland/assets`.
 

@@ -6,14 +6,16 @@ from qgreenland.models.config.step import CommandStep
 
 earthquakes = Layer(
     id="earthquakes",
-    title="Earthquakes M above 2.5 1900-2022",
+    title="Earthquakes M above 2.5 1900-2025",
     description=("""Location and magnitude of earthquakes."""),
     tags=[],
     style="earthquakes",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         CommandStep(
             args=[

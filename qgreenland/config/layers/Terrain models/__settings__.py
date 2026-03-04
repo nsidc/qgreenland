@@ -6,7 +6,7 @@ from qgreenland.models.config.layer_group import (
 
 settings = LayerGroupSettings(
     order=[
-        LayerGroupIdentifier("BedMachine v5"),
+        LayerGroupIdentifier("BedMachine v6"),
         LayerIdentifier("arctic_dem"),
     ],
 )

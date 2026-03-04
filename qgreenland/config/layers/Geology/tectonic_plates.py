@@ -12,10 +12,12 @@ tectonic_plate_boundaries = Layer(
     description=("""Linestrings representing borders between tectonic plates."""),
     tags=[],
     style="tectonic_plate_boundaries",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/" + f"{FN}.zip",
@@ -36,10 +38,12 @@ tectonic_plate_polygons = Layer(
     description=("""Polygons representing tectonic plates."""),
     tags=[],
     style="tectonic_plate_polygons",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         *compressed_vector(
             input_file="{input_dir}/" + f"{FN}.zip",

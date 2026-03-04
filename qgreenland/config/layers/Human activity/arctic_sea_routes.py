@@ -9,15 +9,17 @@ arctic_sea_routes = Layer(
     id="arctic_sea_routes",
     title="Arctic sea routes",
     description=(
-        """Lines depict the Northern Sea Route, Northwest Passate, and
+        """Lines depict the Northern Sea Route, Northwest Passage, and
         hypothetical Transpolar Route."""
     ),
     tags=[],
     style="arctic_sea_routes",
-    input=LayerInput(
-        dataset=dataset,
-        asset=dataset.assets["only"],
-    ),
+    inputs=[
+        LayerInput(
+            dataset=dataset,
+            asset=dataset.assets["only"],
+        )
+    ],
     steps=[
         # TODO: *compressed_vector(...)?
         CommandStep(
