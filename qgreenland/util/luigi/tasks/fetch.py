@@ -157,7 +157,7 @@ class MergeFetchedDataTask(luigi.Task):
 
     NOTE/TODO: This task does not handle conflicts between multiple input
     sources. It is expected that each fetched input source will have a distinct
-    file(s) associated with it.
+    filenames.
 
     Useful when wanting to combine multiple datasets into one layer!
     """
