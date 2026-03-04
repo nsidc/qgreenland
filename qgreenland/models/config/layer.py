@@ -18,7 +18,7 @@ from qgreenland.util.model_validators.layer_style import (
 
 
 class LayerInput(QgrBaseModel):
-    """A dataset's input to a layer's processing pipeline."""
+    """A dataset input to a layer's processing pipeline."""
 
     # TODO: just maintain ids here?
     dataset: Dataset
