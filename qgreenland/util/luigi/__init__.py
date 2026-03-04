@@ -49,8 +49,8 @@ def _fetch_task(
 
 def fetch_task_from_layer(
     layer_cfg: Layer,
-) -> MergeFetchedDataTask:
-    """Given a layer configuration, return a single `MergeFetchedDataTask`."""
+) -> MergeFetchedDataTask | FetchTask:
+    """Return a task that will fetch the layer's inputs."""
     # TODO: Unit test!
     tasks = []
     for dataset_input in layer_cfg.inputs:
@@ -62,6 +62,9 @@ def fetch_task_from_layer(
         dataset_cfg = dataset_input.dataset
         asset_cfg = dataset_input.asset
         tasks.append(_fetch_task(dataset_cfg, asset_cfg))
+
+    if len(tasks) == 1:
+        return tasks[0]
 
     merge_task = MergeFetchedDataTask(requires_fetch_tasks=tasks)
 
@@ -77,14 +80,14 @@ def fetch_tasks_from_dataset(
 
 
 @cache
-def generate_fetch_only_pipelines() -> list[MergeFetchedDataTask]:
+def generate_fetch_only_pipelines() -> list[FetchTask | MergeFetchedDataTask]:
     """Generate a list of fetch-only tasks based on layer configuration.
 
     Instead of calling tasks now, we return a list of callables with the
     arguments already populated.
     """
     config = get_config()
-    tasks: list[MergeFetchedDataTask] = []
+    tasks: list[FetchTask | MergeFetchedDataTask] = []
 
     layers = config.layers.values()
 
@@ -113,7 +116,7 @@ def generate_layer_pipelines() -> list[FinalizeTask]:
             continue
 
         # Create tasks, making each task dependent on the previous task.
-        task: MergeFetchedDataTask | ChainableTask
+        task: FetchTask | MergeFetchedDataTask | ChainableTask
         task = fetch_task_from_layer(layer_cfg)
 
         # If the layer has no steps, it's just fetched and finalized.

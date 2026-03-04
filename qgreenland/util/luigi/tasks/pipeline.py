@@ -25,7 +25,7 @@ from qgreenland.util.luigi.tasks.ancillary import (
     AncillaryMarkdownFileToHtml,
     AncillarySphinxPdfFile,
 )
-from qgreenland.util.luigi.tasks.fetch import MergeFetchedDataTask
+from qgreenland.util.luigi.tasks.fetch import FetchTask, MergeFetchedDataTask
 from qgreenland.util.luigi.tasks.main import FinalizeTask, LinkLayer
 from qgreenland.util.qgis.project import QgsApplicationContext, make_qgis_project_file
 from qgreenland.util.version import get_build_version
@@ -75,7 +75,7 @@ class LayerPipelines(luigi.WrapperTask):
 
     def requires(self):
         """All layers that will be added to the project."""
-        tasks: list[FinalizeTask] | list[MergeFetchedDataTask]
+        tasks: list[FinalizeTask] | list[MergeFetchedDataTask | FetchTask]
         if self.fetch_only:
             tasks = generate_fetch_only_pipelines()
         else:
