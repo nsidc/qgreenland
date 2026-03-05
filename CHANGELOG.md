@@ -2,6 +2,8 @@
 
 - Minimum supported version of QGIS is now `v3.44`.
 - Update layers:
+  - "Reference/Borders/Greenland municipalities and population". Updated to
+    include population statistics from 1977-2025.
   - "Glaciology/Gravimetric mass balance/Mass balance trend" layers have updated
     dataset metadata (title and citation URL).
   - "Biology/Birds/Murre colonies": data and metadata updated to Arctic
@@ -34,6 +36,7 @@
     - "Atlantic salmon in Kapisillit" from NatureMap
   - "Biology/Vegetation":
     - "Important areas red listed plant taxa" from NatureMap
+
 
 # v4.0.0alpha1 (2026-03-04)
 
