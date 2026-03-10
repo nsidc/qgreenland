@@ -46,15 +46,14 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_8290516231831615511.gpkg",
             ],
         ),
-
     ],
     metadata={
         "title": "Areas important to wildlife",
         "abstract": (
-            """Layers from the database Important Areas to Wildlife maintained by 
-            Greenland Institute of Natural Resources and DCE Aarhus University 
-            for the Environmental Agency for Mineral Resources Activities of the 
-            Government of Greenland to the support of case handling and information 
+            """Layers from the database Important Areas to Wildlife maintained by
+            Greenland Institute of Natural Resources and DCE Aarhus University
+            for the Environmental Agency for Mineral Resources Activities of the
+            Government of Greenland to the support of case handling and information
             considering the Mineral Resources Act."""
         ),
         "citation": {
@@ -63,7 +62,3 @@ naturemap_important_wildlife_areas = Dataset(
         },
     },
 )
-
-
-
-
