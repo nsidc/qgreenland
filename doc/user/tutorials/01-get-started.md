@@ -17,7 +17,7 @@ series are:
 * QGreenland `1.x`: QGIS `3.16.x LTR`
 * QGreenland `2.x`: QGIS `3.16.x LTR`
 * QGreenland `3.0`: QGIS `3.28.x LTR`
-* QGreenland `3.5`: QGIS `3.44.x LTR`
+* QGreenland `4.0`: QGIS `3.44.x LTR`
 
 
 ## 1) Download and Install QGIS
