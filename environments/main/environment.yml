@@ -22,7 +22,7 @@ dependencies:
   # TODO: remove if luigi ever updates
   - setuptools <80.0.0
   - pydantic ~=1.10
-  - qgis ~=3.40.0
+  - qgis ~=3.44.0
   - requests ~=2.25
   - types-requests ~=2.25
   - netCDF4 ~=1.7.2
