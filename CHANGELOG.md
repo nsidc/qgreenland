@@ -3,6 +3,8 @@
 - Update layers:
   - "Glaciology/Gravimetric mass balance/Mass balance trend" layers have updated
     dataset metadata (title and citation URL).
+  - "Biology/Birds/Murre colonies": data and metadata updated to Arctic
+    Biodiversity Assessment 2013 publication from CAFF .
 
 # v4.0.0alpha1 (2026-03-04)
 
