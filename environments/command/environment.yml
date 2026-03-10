@@ -5,7 +5,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - gdal ~=3.10
+  - gdal ~=3.12.0
   - libgdal-netcdf ~=3.12
   - netCDF4 ~=1.7.2
   - unzip ~=6.0
