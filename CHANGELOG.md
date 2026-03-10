@@ -1,5 +1,6 @@
 # v4.0.0alpha2 (TBD)
 
+- Minimum supported version of QGIS is now `v3.44`.
 - Update layers:
   - "Glaciology/Gravimetric mass balance/Mass balance trend" layers have updated
     dataset metadata (title and citation URL).

@@ -148,7 +148,7 @@ def _offline_raster_side_effects(
     # Set the min/max render accuracy to 'Exact'. Usually qgis estimates
     # statistics for e.g., generating the default colormap.
     mmo = map_layer.renderer().minMaxOrigin()
-    mmo.setStatAccuracy(0)  # 0 == 'Exact'
+    mmo.setStatAccuracy(qgc.QgsRasterMinMaxOrigin.StatAccuracy.Exact)
     map_layer.renderer().setMinMaxOrigin(mmo)
 
     return map_layer

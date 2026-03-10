@@ -14,7 +14,7 @@ The QGreenland project uses the EPSG:3413 coordinate reference system (CRS) and 
 pre-loaded layers are either GeoTIFF (raster) or GeoPackage (vector)
 files. Datasets in different CRSs or data formats can
 still be added to QGreenland, but may undergo ["on the fly
-reprojection"](https://docs.qgis.org/3.40/en/docs/training_manual/vector_analysis/reproject_transform.html#basic-fa-on-the-fly-reprojection).
+reprojection"](https://docs.qgis.org/3.44/en/docs/training_manual/vector_analysis/reproject_transform.html#basic-fa-on-the-fly-reprojection).
 ```
 
 
@@ -104,7 +104,7 @@ and select one of the following options:
 In the new window that opens after selecting one of these options, fill out the
 given options (each will be slightly different). For detailed instructions on
 how to add vector layers, see the [QGIS
-documentation](https://docs.qgis.org/3.40/en/docs/user_manual/managing_data_source/create_layers.html#creating-new-vector-layers).
+documentation](https://docs.qgis.org/3.44/en/docs/user_manual/managing_data_source/create_layers.html#creating-new-vector-layers).
 
 
 ### Creating a GeoPackage layer
@@ -151,5 +151,5 @@ QGIS can also interface with a GPS device to download data directly and provide
 live tracking.
 
 Please see the QGIS documentation on [Working with GPS
-Data](https://docs.qgis.org/3.40/en/docs/user_manual/working_with_gps/index.html)
+Data](https://docs.qgis.org/3.44/en/docs/user_manual/working_with_gps/index.html)
 for more information.
