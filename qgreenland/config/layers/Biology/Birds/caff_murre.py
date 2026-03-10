@@ -2,16 +2,12 @@ from qgreenland.config.datasets.caff import caff_murre_colonies as dataset
 from qgreenland.config.helpers.steps.compressed_vector import compressed_vector
 from qgreenland.models.config.layer import Layer, LayerInput
 
-
 murre_layer = Layer(
     id="caff_murre_colonies",
-    title='Murre colonies 2010',
-    description=(
-        f"""Point locations of Murre colonies as surveyed in
-        2010."""
-    ),
+    title="Murre colonies",
+    description=("""Point locations of thick-billed and common Murre colonies."""),
     tags=[],
-    style=f"caff_murre_colonies",
+    style="caff_murre_colonies",
     inputs=[
         LayerInput(
             dataset=dataset,
@@ -22,9 +18,7 @@ murre_layer = Layer(
         *compressed_vector(
             input_file="{input_dir}/MurreColonies.zip",
             output_file="{output_dir}/final.gpkg",
-            vector_filename=(
-                'MurreColonies.shp'
-            ),
+            vector_filename=("MurreColonies.shp"),
         ),
     ],
 )

@@ -12,25 +12,19 @@ caff_murre_colonies = Dataset(
         ),
     ],
     metadata={
-        "title": "The distribution of thick-billed and common murre colonies in the North.",
+        "title": "Murres as indicators of a changing Arctic.",
         "abstract": (
-            """Murres are among the most abundant seabirds in the Northern
-            Hemisphere with a population in excess of ten million adults. No
-            obvious global trend has been identified but the majority of
-            regional populations have shown declines over the past three
-            decades. While they are currently abundant, climate change is
-            projected to pose problems to murres in the future, especially for
-            the more northern species, the thick-billed murre, which is strongly
-            associated with sea ice. Other threats include fisheries
-            interactions, over-exploitation, contaminants, and oil spills, the
-            latter becoming more important if climate change expands shipping
-            and hydrocarbon development in the Arctic."""
+            """The two species of murres, thick-billed Uria lomvia and common
+            U. aalge, both have circumpolar distributions, breeding in Arctic,
+            sub-Arctic and temperate seas from alifornia and N Spain to N
+            Greenland, high Arctic Canada, Svalbard, Franz Josef Land and Novaya
+            Zemlya."""
         ),
         "citation": {
             "text": (
-                """Arctic Biodiversity Trends 2010 – Selected indicators of
-                change. CAFF International Secretariat, Akureyri, Iceland. May
-                2010."""
+                """Conservation of Arctic Flora and Fauna, CAFF 2013 - Akureyri
+                . Arctic Biodiversity Assessment. Status and Trends in Arctic
+                biodiversity. - Birds(Chapter 4) page 163."""
             ),
             "url": "https://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/8942d6b5-6060-412b-b696-0aa583965317",
         },
