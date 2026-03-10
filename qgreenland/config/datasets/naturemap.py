@@ -50,14 +50,32 @@ naturemap_important_wildlife_areas = Dataset(
     metadata={
         "title": "Areas important to wildlife",
         "abstract": (
-            """Layers from the database Important Areas to Wildlife maintained by
+            """NatureMap is a web map hub site of The Environmental Agency for
+            Mineral Resource Activities (EAMRA), Government of Greenland. The
+            site contains geospatial data and background reports on environment
+            and nature relevant for environmentally sound planning and
+            regulation of mineral resource and hydrocarbon exploration and
+            exploitation activities in Greenland. The purpose of the site is to
+            make data and information available to both authorities, mineral
+            resource companies, and the public.
+
+            Layers from the database Important Areas to Wildlife maintained by
             Greenland Institute of Natural Resources and DCE Aarhus University
             for the Environmental Agency for Mineral Resources Activities of the
             Government of Greenland to the support of case handling and information
-            considering the Mineral Resources Act."""
+            considering the Mineral Resources Act.
+
+            NatureMap is managed by The Greenland Institute of Natural Resources
+            (GINR) with support from DCE – Danish Centre for Environment and
+            Energy, Aarhus University. On behalf of EAMRA, DCE and GINR run a
+            datacenter with environmental data and samples relevant for planning
+            and regulating mineral resources and hydrocarbon activities in
+            Greenland, and NatureMap forms part of that collaboration."""
         ),
         "citation": {
-            "text": ("""Nature Map"""),
+            "text": (
+                """NatureMap, 2025. Areas important to wildlife. {{date_accessed}}"""
+            ),
             "url": "https://naturemap-nature.hub.arcgis.com/maps/nature::areas-important-to-wildlife-data/about",
         },
     },
