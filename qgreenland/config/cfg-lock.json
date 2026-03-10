@@ -216,19 +216,19 @@
         "only": {
           "id": "only",
           "urls": [
-            "https://abds.is/index.php/publications/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north/download"
+            "https://geo.abds.is/geonetwork/srv/api/records/8942d6b5-6060-412b-b696-0aa583965317/attachments/MurreColonies.zip"
           ],
           "verify_tls": true
         }
       },
       "id": "caff_murre_colonies",
       "metadata": {
-        "abstract": "Murres are among the most abundant seabirds in the Northern\nHemisphere with a population in excess of ten million adults. No\nobvious global trend has been identified but the majority of\nregional populations have shown declines over the past three\ndecades. While they are currently abundant, climate change is\nprojected to pose problems to murres in the future, especially for\nthe more northern species, the thick-billed murre, which is strongly\nassociated with sea ice. Other threats include fisheries\ninteractions, over-exploitation, contaminants, and oil spills, the\nlatter becoming more important if climate change expands shipping\nand hydrocarbon development in the Arctic.",
+        "abstract": "The two species of murres, thick-billed Uria lomvia and common\nU. aalge, both have circumpolar distributions, breeding in Arctic,\nsub-Arctic and temperate seas from alifornia and N Spain to N\nGreenland, high Arctic Canada, Svalbard, Franz Josef Land and Novaya\nZemlya.",
         "citation": {
-          "text": "Arctic Biodiversity Trends 2010 \u2013 Selected indicators of\nchange. CAFF International Secretariat, Akureyri, Iceland.May\n2010.",
-          "url": "https://abds.is/index.php/publications/species/the-distribution-of-thick-billed-and-common-murre-colonies-in-the-north"
+          "text": "Conservation of Arctic Flora and Fauna, CAFF 2013 - Akureyri\n. Arctic Biodiversity Assessment. Status and Trends in Arctic\nbiodiversity. - Birds(Chapter 4) page 163.",
+          "url": "https://geo.abds.is/geonetwork/srv/eng/catalog.search#/metadata/8942d6b5-6060-412b-b696-0aa583965317"
         },
-        "title": "The distribution of thick-billed and common murre colonies in the North."
+        "title": "Murres as indicators of a changing Arctic."
       }
     },
     "circumpolar_arctic_vegetation_map": {
@@ -4005,8 +4005,8 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Point locations of Common Murre colonies as surveyed in\n2010.",
-                  "id": "caff_common_murre_colonies",
+                  "description": "Point locations of thick-billed and common Murre colonies.",
+                  "id": "caff_murre_colonies",
                   "in_package": true,
                   "inputs": [
                     {
@@ -4023,7 +4023,7 @@
                     {
                       "args": [
                         "unzip",
-                        "{input_dir}/Murres_distribution.zip",
+                        "{input_dir}/MurreColonies.zip",
                         "-d",
                         "{output_dir}",
                         ""
@@ -4041,65 +4041,16 @@
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
                         "{output_dir}/final.gpkg",
-                        "{input_dir}/Distribution_Common_Murre_Colonies.shp"
+                        "{input_dir}/MurreColonies.shp"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "common_murre_colonies",
+                  "style": "caff_murre_colonies",
                   "tags": [],
-                  "title": "Common Murre colonies 2010"
+                  "title": "Murre colonies"
                 },
-                "name": "caff_common_murre_colonies"
-              },
-              {
-                "layer_cfg": {
-                  "description": "Point locations of Thickbilled Murre colonies as surveyed in\n2010.",
-                  "id": "caff_thickbilled_murre_colonies",
-                  "in_package": true,
-                  "inputs": [
-                    {
-                      "asset": {
-                        "id": "only"
-                      },
-                      "dataset": {
-                        "id": "caff_murre_colonies"
-                      }
-                    }
-                  ],
-                  "show": false,
-                  "steps": [
-                    {
-                      "args": [
-                        "unzip",
-                        "{input_dir}/Murres_distribution.zip",
-                        "-d",
-                        "{output_dir}",
-                        ""
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "-clipdst",
-                        "{assets_dir}/latitude_shape_40_degrees.geojson",
-                        "-makevalid",
-                        "{output_dir}/final.gpkg",
-                        "{input_dir}/Distribution_Thickbilled_Murre_Colonies.shp"
-                      ],
-                      "type": "command"
-                    }
-                  ],
-                  "style": "thickbilled_murre_colonies",
-                  "tags": [],
-                  "title": "Thickbilled Murre colonies 2010"
-                },
-                "name": "caff_thickbilled_murre_colonies"
+                "name": "caff_murre_colonies"
               },
               {
                 "layer_cfg": {
@@ -4364,8 +4315,7 @@
             "settings": {
               "expand": false,
               "order": [
-                ":caff_common_murre_colonies",
-                ":caff_thickbilled_murre_colonies",
+                ":caff_murre_colonies",
                 ":nunagis_thickbilled_murre_colonies",
                 ":nunagis_murre_group_1km_zones",
                 ":nunagis_seabirds_colonies",
