@@ -17,7 +17,7 @@ naturemap_important_wildlife_areas = Dataset(
             ],
         ),
         HttpAsset(
-            id="seabird_colony_non-disturbance_zone_200m",
+            id="seabird_colony_non_disturbance_zone_200m",
             urls=[
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-8920941852164200711.gpkg",
             ],
