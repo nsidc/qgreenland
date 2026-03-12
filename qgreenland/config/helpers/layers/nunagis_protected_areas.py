@@ -71,16 +71,6 @@ _nunagis_protected_areas_params = {
         "where_sql": "type = 'Closed Area'",
         "group": "Protected zones",
     },
-    "nunagis_homothermic_spring_100m_zones": {
-        "title": "Homothermic spring 100m zones",
-        "description": (
-            """Polygons representing 100m zones protected for homothermic
-            springs."""
-        ),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'Homothermic spring 100 m zone'",
-        "group": "Protected zones",
-    },
     "nunagis_national_park": {
         "title": "National park",
         "description": (

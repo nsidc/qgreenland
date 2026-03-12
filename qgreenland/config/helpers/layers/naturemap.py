@@ -42,7 +42,21 @@ PROTECTED_ZONES_LAYERS_CFG = {
         "description": ("""Polygons representing salt or saline lake 100m zones."""),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
-    }
+    },
+    "homothermic_spring_100m_zones": {
+        "title": "Homothermic spring 100m zones",
+        "description": (
+            """Polygons representing 100m zones protected for homothermic
+            springs.
+
+            Not allowed to place buildings, do drainage, make changes in the
+            terrain, or conduct any other activities that might negatively
+            affect the springs.
+            """
+        ),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 

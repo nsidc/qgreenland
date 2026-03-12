@@ -9,8 +9,9 @@
   - Replaced the "Biology/Birds/Goose protected areas" layer from NunaGIS with
     two updated layers from NatureMap: "Barnacle goose colonies" (Point) and
     "Goose moulting and breeding areas" (Polygon).
-  - Updated the "Environmental management/Protected zones/Salt or saline lake
-    100m zones" layer with new NatureMap data source.
+  - Updated the "Environmental management/Protected zones/" nunagis layers with NatureMap data source:
+      - "Salt or saline lake 100m zones"
+      - "Homothermic spring 100m zones"
 - Added layers:
   - "Biology/Birds/Seabird colony regulated areas" from NatureMap
 

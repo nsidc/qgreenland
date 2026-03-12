@@ -54,6 +54,12 @@ naturemap_important_wildlife_areas = Dataset(
             ],
         ),
         HttpAsset(
+            id="homothermic_spring_100m_zones",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_4005931335889675192.gpkg",
+            ],
+        ),
+        HttpAsset(
             id="national_park",
             urls=[
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-5248120251132702708.gpkg",
