@@ -57,6 +57,14 @@ PROTECTED_ZONES_LAYERS_CFG = {
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
+    "national_park": {
+        "title": "National park",
+        "description": (
+            """Polygon representing the area protected for the national park."""
+        ),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 

@@ -12,6 +12,7 @@
   - Updated the "Environmental management/Protected zones/" nunagis layers with NatureMap data source:
       - "Salt or saline lake 100m zones"
       - "Homothermic spring 100m zones"
+      - "National park"
 - Added layers:
   - "Biology/Birds/Seabird colony regulated areas" from NatureMap
 
