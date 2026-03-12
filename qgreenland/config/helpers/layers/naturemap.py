@@ -83,6 +83,16 @@ PROTECTED_ZONES_LAYERS_CFG = {
 }
 
 
+MAMMALS_LAYERS_CFG = {
+    "polar_bear_denning_area": {
+        "title": "Polar bear denning areas",
+        "description": ("""Polygons representing polar bear denning areas."""),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
+}
+
+
 def _make_layer(layer_id, layer_cfg: dict[str, Any]):
     return Layer(
         id=layer_id,
@@ -181,6 +191,15 @@ def make_protected_zones_layers():
     layers = [
         _make_layer(layer_id, layer_cfg)
         for layer_id, layer_cfg in PROTECTED_ZONES_LAYERS_CFG.items()
+    ]
+
+    return layers
+
+
+def make_mammals_layers():
+    layers = [
+        _make_layer(layer_id, layer_cfg)
+        for layer_id, layer_cfg in MAMMALS_LAYERS_CFG.items()
     ]
 
     return layers

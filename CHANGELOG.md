@@ -17,6 +17,7 @@
       - "Nature protection areas"
 - Added layers:
   - "Biology/Birds/Seabird colony regulated areas" from NatureMap
+  - "Biology/Mammals/Polar bear denning areas" from NatureMap
 
 # v4.0.0alpha1 (2026-03-04)
 

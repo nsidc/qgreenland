@@ -77,6 +77,13 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_8290516231831615511.gpkg",
             ],
         ),
+        # Associated report: https://natur.gl/wp-content/uploads/2024/04/2.03.07-Areas-for-polar-bear-denning.pdf
+        HttpAsset(
+            id="polar_bear_denning_area",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-5174710109642523905.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",
