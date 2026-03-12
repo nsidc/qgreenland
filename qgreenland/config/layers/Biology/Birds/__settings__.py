@@ -9,5 +9,6 @@ settings = LayerGroupSettings(
         LayerIdentifier("caff_murre_colonies"),
         *[LayerIdentifier(layer_id) for layer_id in BIRDS_LAYERS],
         *[LayerIdentifier(layer_id) for layer_id in naturemap_layers_cfg.keys()],
+        LayerIdentifier("seabird_regulated_areas_layer"),
     ],
 )

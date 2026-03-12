@@ -9,6 +9,8 @@
   - Replaced the "Biology/Birds/Goose protected areas" layer with two updated
     layers: "Barnacle goose colonies" (Point) and "Goose moulting and
     breeding areas" (Polygon).
+- Added layers:
+  - "Biology/Birds/Seabird colony regulated areas"
 
 # v4.0.0alpha1 (2026-03-04)
 
