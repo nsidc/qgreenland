@@ -71,16 +71,6 @@ _nunagis_protected_areas_params = {
         "where_sql": "type = 'Closed Area'",
         "group": "Protected zones",
     },
-    "nunagis_biological_important_areas": {
-        "title": "Biological important areas in the national park",
-        "description": (
-            """Polygons representing areas protected for biologically important
-            areas in the national park."""
-        ),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'Biological Important Areas in the National Park'",
-        "group": "Protected zones",
-    },
     "nunagis_nature_protection_areas": {
         "title": "Nature protection areas",
         "description": ("""Polygons representing areas protected for nature."""),

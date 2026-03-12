@@ -65,6 +65,15 @@ PROTECTED_ZONES_LAYERS_CFG = {
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
+    "biological_important_areas_in_the_national_park": {
+        "title": "Biological important areas in the national park",
+        "description": (
+            """Polygons representing areas protected for biologically important
+            areas in the national park."""
+        ),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 

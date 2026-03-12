@@ -13,6 +13,7 @@
       - "Salt or saline lake 100m zones"
       - "Homothermic spring 100m zones"
       - "National park"
+      - "Biological important areas in the national park"
 - Added layers:
   - "Biology/Birds/Seabird colony regulated areas" from NatureMap
 
