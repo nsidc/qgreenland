@@ -84,6 +84,12 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-5174710109642523905.gpkg",
             ],
         ),
+        HttpAsset(
+            id="musk_oxen_calving_area",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-6398409920753049880.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",

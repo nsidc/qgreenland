@@ -90,6 +90,16 @@ MAMMALS_LAYERS_CFG = {
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
+    "musk_oxen_calving_area": {
+        "title": "Musk oxen calving areas",
+        "description": (
+            """Polygons representing musk oxen calving areas.
+
+                           Aviation below 500m is not allowed in the identified zones."""
+        ),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 
