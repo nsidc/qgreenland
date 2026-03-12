@@ -103,6 +103,12 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-1970115857873430778.gpkg",
             ],
         ),
+        HttpAsset(
+            id="caribou_calving_area",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-8121485017751708035.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",

@@ -112,6 +112,12 @@ MAMMALS_LAYERS_CFG = {
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
+    "caribou_calving_area": {
+        "title": "Caribou calving areas",
+        "description": ("""Polygons representing caribou calving areas."""),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 

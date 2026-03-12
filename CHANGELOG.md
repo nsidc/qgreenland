@@ -21,6 +21,7 @@
   - "Biology/Mammals/Musk oxen calving areas" from NatureMap
   - "Biology/Mammals/Narwhal summer areas" from NatureMap
   - "Biology/Mammals/Narwhal winter and spring areas" from NatureMap
+  - "Biology/Mammals/Caribou calving areas" from NatureMap
 
 # v4.0.0alpha1 (2026-03-04)
 
