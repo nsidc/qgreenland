@@ -24,7 +24,7 @@ layers = [
             *ogr2ogr(
                 input_file="{input_dir}/*.gpkg",
                 output_file="{output_dir}/final.gpkg",
-                ogr2ogr_args=layer_cfg["ogr2ogr_args"],
+                ogr2ogr_args=layer_cfg["ogr2ogr_args"],  # type: ignore[arg-type]
             ),
         ],
     )
