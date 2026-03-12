@@ -95,8 +95,20 @@ MAMMALS_LAYERS_CFG = {
         "description": (
             """Polygons representing musk oxen calving areas.
 
-                           Aviation below 500m is not allowed in the identified zones."""
+            Aviation below 500m is not allowed in the identified zones."""
         ),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
+    "narwhal_summer_area": {
+        "title": "Narwhal summer areas",
+        "description": ("""Polygons representing narwhal summer areas."""),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
+    "narwhal_winter_and_spring_area": {
+        "title": "Narwhal winter and spring areas",
+        "description": ("""Polygons representing narwhal winter and spring areas."""),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },

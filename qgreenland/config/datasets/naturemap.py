@@ -90,6 +90,19 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-6398409920753049880.gpkg",
             ],
         ),
+        # Associated report: https://natur.gl/wp-content/uploads/2024/04/2.03.08-Areas-with-narwhals-summer.pdf
+        HttpAsset(
+            id="narwhal_summer_area",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-534191409566791403.gpkg",
+            ],
+        ),
+        HttpAsset(
+            id="narwhal_winter_and_spring_area",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-1970115857873430778.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",
