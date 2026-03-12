@@ -16,6 +16,7 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-7430306519656547148.gpkg",
             ],
         ),
+        # Associated report for seabird colony layers: https://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_78UK.pdf
         HttpAsset(
             id="seabird_colony_non_disturbance_zone_200m",
             urls=[

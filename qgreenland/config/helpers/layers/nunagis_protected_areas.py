@@ -71,16 +71,6 @@ _nunagis_protected_areas_params = {
         "where_sql": "type = 'Closed Area'",
         "group": "Protected zones",
     },
-    "nunagis_salt_or_saline_lake_100m_zones": {
-        "title": "Salt or saline lake 100m zones",
-        "description": (
-            """Polygons representing 100m zones protected for salt or saline
-            lakes."""
-        ),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'Salt or saline lake 100m zone'",
-        "group": "Protected zones",
-    },
     "nunagis_homothermic_spring_100m_zones": {
         "title": "Homothermic spring 100m zones",
         "description": (
