@@ -23,6 +23,30 @@ naturemap_important_wildlife_areas = Dataset(
             ],
         ),
         HttpAsset(
+            id="seabird_colony_non_disturbance_zone_1000m",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-3249479950042144519.gpkg",
+            ],
+        ),
+        HttpAsset(
+            id="seabird_colony_no_drone_zone_100m",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_4938399169145340864.gpkg",
+            ],
+        ),
+        HttpAsset(
+            id="seabird_colony_no_fly_zone_500m",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-2585139062866919292.gpkg",
+            ],
+        ),
+        HttpAsset(
+            id="seabird_colony_no_fly_zone_3000m",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-739616273938683767.gpkg",
+            ],
+        ),
+        HttpAsset(
             id="salt_or_saline_lake_100m_zone",
             urls=[
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_6736240752857920611.gpkg",
