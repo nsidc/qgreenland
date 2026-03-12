@@ -74,6 +74,12 @@ PROTECTED_ZONES_LAYERS_CFG = {
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
+    "nature_protection_area": {
+        "title": "Nature protection areas",
+        "description": ("""Polygons representing areas protected for nature."""),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 

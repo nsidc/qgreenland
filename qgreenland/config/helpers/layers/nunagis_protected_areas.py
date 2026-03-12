@@ -71,13 +71,6 @@ _nunagis_protected_areas_params = {
         "where_sql": "type = 'Closed Area'",
         "group": "Protected zones",
     },
-    "nunagis_nature_protection_areas": {
-        "title": "Nature protection areas",
-        "description": ("""Polygons representing areas protected for nature."""),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'Nature Protection Area'",
-        "group": "Protected zones",
-    },
 }
 
 BIRDS_LAYERS = [

@@ -14,6 +14,7 @@
       - "Homothermic spring 100m zones"
       - "National park"
       - "Biological important areas in the national park"
+      - "Nature protection areas"
 - Added layers:
   - "Biology/Birds/Seabird colony regulated areas" from NatureMap
 
