@@ -47,15 +47,6 @@ _nunagis_protected_areas_params = {
         "where_sql": "type LIKE 'Eider%'",
         "group": "Birds",
     },
-    "nunagis_goose_protected_areas": {
-        "title": "Goose protected areas",
-        "description": "Polygons representing areas protected for geese.",
-        "style": "nunagis_goose_protected_areas",
-        "where_sql": (
-            "type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
-        ),
-        "group": "Birds",
-    },
     "nunagis_unesco_treaty_zones": {
         "title": "UNESCO treaty zones",
         "description": (

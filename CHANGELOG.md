@@ -6,6 +6,9 @@
     dataset metadata (title and citation URL).
   - "Biology/Birds/Murre colonies": data and metadata updated to Arctic
     Biodiversity Assessment 2013 publication from CAFF .
+  - Replaced the "Biology/Birds/Goose protected areas" layer with two updated
+    layers: "Barnacle goose colonies" (Point) and "Goose moulting and
+    breeding areas" (Polygon).
 
 # v4.0.0alpha1 (2026-03-04)
 

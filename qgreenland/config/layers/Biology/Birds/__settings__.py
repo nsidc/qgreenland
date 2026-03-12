@@ -5,5 +5,7 @@ settings = LayerGroupSettings(
     order=[
         LayerIdentifier("caff_murre_colonies"),
         *[LayerIdentifier(layer_id) for layer_id in BIRDS_LAYERS],
+        LayerIdentifier("barnacle_goose_colony"),
+        LayerIdentifier("goose_moulting_and_breeding_areas"),
     ],
 )
