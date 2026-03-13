@@ -1203,6 +1203,13 @@
           ],
           "verify_tls": true
         },
+        "important_areas_red_listed_plant_taxa": {
+          "id": "important_areas_red_listed_plant_taxa",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_4240106558805423459.gpkg"
+          ],
+          "verify_tls": true
+        },
         "musk_oxen_calving_area": {
           "id": "musk_oxen_calving_area",
           "urls": [
@@ -5125,6 +5132,45 @@
           },
           {
             "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing red-listed plant taxa of Greenland.\n\nRed listed species are those assessed to be Regionally Extinct [RE,\nRegionalt udd\u00f8d], Critically Endangered [CR, Kritisk truet], Endangered\n[EN, Truet), Vulnerable [VU, S\u00e5rbar], Near Threatened [NT, N\u00e6sten truet)\nand Data Deficient [DD, Utilstr\u00e6kkelige data].\n\nThe layer depicts dissolved buffer zones of 4 km around occurrences of red\nlisted plant taxa.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/Important-areas-for-red-listed-plant-taxa.pdf.",
+                  "id": "important_areas_red_listed_plant_taxa",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "important_areas_red_listed_plant_taxa"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Important areas red listed plant taxa"
+                },
+                "name": "important_areas_red_listed_plant_taxa"
+              },
               {
                 "layer_cfg": {
                   "description": "Estimated above ground plant biomass for the tundra biome in\nkilograms per square meter. Based on trans-Arctic field data and AVHRR\nNDVI. Data provided by ORNL DAAC.",

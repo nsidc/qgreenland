@@ -156,6 +156,13 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_9118946289606184944.gpkg",
             ],
         ),
+        # Associated report: https://natur.gl/wp-content/uploads/2024/04/Important-areas-for-red-listed-plant-taxa.pdf
+        HttpAsset(
+            id="important_areas_red_listed_plant_taxa",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_4240106558805423459.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",

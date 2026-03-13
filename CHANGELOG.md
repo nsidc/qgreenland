@@ -32,6 +32,8 @@
     - "Bowhead whale important areas" from NatureMap
   - "Biology/Fish":
     - "Atlantic salmon in Kapisillit" from NatureMap
+  - "Biology/Vegetation":
+    - "Important areas red listed plant taxa" from NatureMap
 
 # v4.0.0alpha1 (2026-03-04)
 
