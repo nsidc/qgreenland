@@ -3,7 +3,9 @@
 - Minimum supported version of QGIS is now `v3.44`.
 - Update layers:
   - "Reference/Borders/Greenland municipalities and population". Updated to
-    include population statistics from 1977-2025.
+    include population statistics from 1977-2025. This layer is now enabled for
+    use with the temporal controller, which should be enabled for proper
+    visualization!
   - "Glaciology/Gravimetric mass balance/Mass balance trend" layers have updated
     dataset metadata (title and citation URL).
   - "Biology/Birds/Murre colonies": data and metadata updated to Arctic

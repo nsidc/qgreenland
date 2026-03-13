@@ -10,10 +10,10 @@ nunagis_municipalities_population = Layer(
     title="Greenland municipalities and population",
     description=(
         """Polygons representing municipalities of Greenland and associated
-        population numbers from 1977-2025."""
+        population numbers from 1976-2024."""
     ),
     tags=[],
-    style="nunagis_municipalities_population",
+    style="municipalities_pop_timeseries",
     inputs=[
         # This input provides a multipolygon of municipalities and population numbers for 2019
         LayerInput(
@@ -55,11 +55,15 @@ nunagis_municipalities_population = Layer(
                 "-dialect",
                 "sqlite",
                 "-sql",
+                # The population statistics are valid for Jan 1st of the
+                # indicated year. For use with the temporal controller, we set
+                # start/end dates to reflect the prior year.
                 """\"SELECT
                     municipalities.geom,
                     municipalities.pop_municipality_2019_municip as municipality,
-                    pop.\\"Population January 1st\\",
-                    DATE(pop.time || '-01-01') as valid_date_str
+                    pop.\\"Population January 1st\\" as population,
+                    DATE(CAST(CAST(pop.time AS int) - 1 AS STR) || '-01-01') as valid_start_date_str,
+                    DATE(CAST(CAST(pop.time AS int) - 1 AS STR) || '-12-31') as valid_end_date_str
                     FROM municipalities
                     RIGHT JOIN pop ON pop.municipality
                     = municipalities.pop_municipality_2019_municip\"""",
@@ -85,8 +89,8 @@ nunagis_municipalities_population = Layer(
                 # commands will update the data in-place
                 "cp {input_dir}/joined.gpkg {output_dir}/final.gpkg",
                 "&&",
-                # update the municipalities_and_pop table to include a column
-                # with `DATE` type.
+                # update the municipalities_and_pop table to include a start
+                # date column with `DATE` type.
                 "ogr2ogr",
                 "-update",
                 "{output_dir}/final.gpkg",
@@ -95,7 +99,19 @@ nunagis_municipalities_population = Layer(
                 "sqlite",
                 "-sql",
                 """\"ALTER TABLE municipalities_and_pop
-                    ADD COLUMN valid_date DATE\"""",
+                    ADD COLUMN start_date DATE\"""",
+                "&&",
+                # update the municipalities_and_pop table to include a end date
+                # column with `DATE` type.
+                "ogr2ogr",
+                "-update",
+                "{output_dir}/final.gpkg",
+                "{output_dir}/final.gpkg",
+                "-dialect",
+                "sqlite",
+                "-sql",
+                """\"ALTER TABLE municipalities_and_pop
+                    ADD COLUMN end_date DATE\"""",
                 "&&",
                 # Set the column w/ values from the str field.
                 "ogr2ogr",
@@ -106,9 +122,9 @@ nunagis_municipalities_population = Layer(
                 "sqlite",
                 "-sql",
                 """\"UPDATE municipalities_and_pop
-                    SET valid_date = valid_date_str\"""",
+                    SET start_date = valid_start_date_str, end_date = valid_end_date_str\"""",
                 "&&",
-                # drop the str field, which is now unnecessary
+                # drop the str date fields, which is now unnecessary
                 "ogr2ogr",
                 "-update",
                 "{output_dir}/final.gpkg",
@@ -117,7 +133,18 @@ nunagis_municipalities_population = Layer(
                 "sqlite",
                 "-sql",
                 """\"ALTER TABLE municipalities_and_pop
-                     DROP COLUMN valid_date_str\"""",
+                     DROP COLUMN valid_start_date_str\"""",
+                "&&",
+                # drop the str date fields, which is now unnecessary
+                "ogr2ogr",
+                "-update",
+                "{output_dir}/final.gpkg",
+                "{output_dir}/final.gpkg",
+                "-dialect",
+                "sqlite",
+                "-sql",
+                """\"ALTER TABLE municipalities_and_pop
+                     DROP COLUMN valid_end_Date_str\"""",
             ],
         ),
     ],
