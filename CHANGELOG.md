@@ -1,3 +1,10 @@
+# v4.0.0alpha3 (TODO)
+
+- Added layers:
+  - "Glaciology/PROMICE 2022 ice mask/"
+    - "Ice mask polygon"
+    - "Ice mask raster (150m)"
+
 # v4.0.0alpha2 (2025-03-13)
 
 - Minimum supported version of QGIS is now `v3.44`.

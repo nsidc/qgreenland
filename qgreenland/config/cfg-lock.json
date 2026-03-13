@@ -1506,6 +1506,33 @@
         "title": "Ground Temperature Map, 2000-2016, Northern Hemisphere Permafrost"
       }
     },
+    "promice_2022_ice_mask": {
+      "assets": {
+        "06_promice_2022_icemask_nunatak_polygon": {
+          "id": "06_promice_2022_icemask_nunatak_polygon",
+          "urls": [
+            "https://dataverse.geus.dk/api/access/datafile/96892?gbrecs=true"
+          ],
+          "verify_tls": true
+        },
+        "13_promice_2022_icemask_raster_150m_v3": {
+          "id": "13_promice_2022_icemask_raster_150m_v3",
+          "urls": [
+            "https://dataverse.geus.dk/api/access/datafile/97124?gbrecs=true"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "promice_2022_ice_mask",
+      "metadata": {
+        "abstract": "The PROMICE-2022 Ice Mask is a high-resolution outline of the\ncontiguous ice masses of the Greenland Ice Sheet. The dataset is\nderived from a true-colour, multi-band mosaic of Sentinel-2\nsatellite images at 10 m resolution, compiled using the SentinelHub\nCloud Processing API. The mosaic was generated using the most recent\nvalid pixels from August 2022, ensuring high temporal and geometric\naccuracy.\n\nManual editing and mapping was conducted at a scale of around\n1:25,000, after which quality assessment was performed independently\nof the mapping operator, before finally being merged into one\ncoherent dataset. The manual mapping process is further supported by\ndata from the Danish Agency for Climate Data (KDS), including\nmosaics of Sentinel-2 and SPOT 6/7 imagery, as well as recent vector\ndata from topographical mapping.\n\nAssociated paper:\n\nLuetzenburg G. et al. (2026) PROMICE-2022 Ice Mask: A\nHigh-Resolution Outline of the Greenland Ice Sheet from August\n2022. Earth Syst. Sci. Data, 18,\n411\u2013427. https://doi.org/10.5194/essd-18-411-2026.",
+        "citation": {
+          "text": "Luetzenburg, Gregor; Korsgaard, Niels J.; Deichmann, Anna K.;\nSocher, Tobias; Gleie, Karin; Scharffenberger, Thomas; Fahrner,\nDominik; Nielsen, Eva B.; How, Penelope; Bj\u00f8rk, Anders A.;\nKjeldsen, Kristian K.; Ahlstr\u00f8m, Andreas P.; Fausto, Robert S.,\n2025, \"PROMICE-2022 Ice Mask\",\nhttps://doi.org/10.22008/FK2/O8CLRE, GEUS Dataverse, V3",
+          "url": "https://doi.org/10.22008/FK2/O8CLRE"
+        },
+        "title": "PROMICE-2022 Ice Mask"
+      }
+    },
     "promice_runoff": {
       "assets": {
         "land_mar_2010": {
@@ -14235,6 +14262,73 @@
               "title": "Likely basal thermal state June 23 1993 - April 26 2013 (5km)"
             },
             "name": "basal_thermal_state"
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Outline of the Greenland Ice Sheet from August 2022 with the nunataks\nin its interior cut out, provided as a polygon vector feature.",
+                  "id": "06_promice_2022_icemask_nunatak_polygon",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "06_promice_2022_icemask_nunatak_polygon"
+                      },
+                      "dataset": {
+                        "id": "promice_2022_ice_mask"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [],
+                  "style": "ice_mask_polygon",
+                  "tags": [],
+                  "title": "Ice mask polygon"
+                },
+                "name": "06_promice_2022_icemask_nunatak_polygon"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Raster ice mask (150m resolution) aligned with BedMachine (Morlighem 2017).",
+                  "id": "13_promice_2022_icemask_raster_150m_v3",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "13_promice_2022_icemask_raster_150m_v3"
+                      },
+                      "dataset": {
+                        "id": "promice_2022_ice_mask"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "gdalwarp",
+                        "-co",
+                        "COMPRESS=DEFLATE",
+                        "{input_dir}/*.gpkg",
+                        "{output_dir}/converted_and_compressed.tif"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": null,
+                  "tags": [],
+                  "title": "Ice mask raster (150m)"
+                },
+                "name": "13_promice_2022_icemask_raster_150m_v3"
+              }
+            ],
+            "name": "PROMICE 2022 ice mask",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
           }
         ],
         "name": "Glaciology",
@@ -14251,7 +14345,8 @@
             "Surface elevation change",
             "Gravimetric mass balance",
             "Ice sheet velocity",
-            ":basal_thermal_state"
+            ":basal_thermal_state",
+            "PROMICE 2022 ice mask"
           ],
           "show": false
         }
