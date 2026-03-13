@@ -1,3 +1,4 @@
+import hashlib
 import shutil
 from pathlib import Path
 
@@ -175,10 +176,11 @@ class MergeFetchedDataTask(luigi.Task):
             return self.requires_fetch_tasks[0].output()
 
         # Join the dirnames together
-        output_name = "-".join(
+        joined_output_name = "-".join(
             datasource_dirname(dataset_id=task.dataset_id, asset_id=task.asset_id)
             for task in self.requires_fetch_tasks
         )
+        output_name = hashlib.md5(joined_output_name.encode("utf-8")).hexdigest()
         return luigi.LocalTarget(
             FETCH_DATASETS_DIR / output_name,
             format=luigi.format.Nop,

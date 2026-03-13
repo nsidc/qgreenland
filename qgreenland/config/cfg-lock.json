@@ -1138,6 +1138,194 @@
         "title": "NAFO Divisions"
       }
     },
+    "naturemap_areas_important_to_wildlife": {
+      "assets": {
+        "atlantic_salmon_in_kapisillit": {
+          "id": "atlantic_salmon_in_kapisillit",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_9118946289606184944.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "barnacle_goose_colony": {
+          "id": "barnacle_goose_colony",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_4850145148347302144.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "beluga_important_area": {
+          "id": "beluga_important_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-4323040572871285640.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "biological_important_areas_in_the_national_park": {
+          "id": "biological_important_areas_in_the_national_park",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-8747728574225365759.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "bowhead_whale_area": {
+          "id": "bowhead_whale_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-3683640373236405489.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "caribou_calving_area": {
+          "id": "caribou_calving_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-8121485017751708035.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "goose_moulting_and_breeding_areas": {
+          "id": "goose_moulting_and_breeding_areas",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-7430306519656547148.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "harbour_seal_area": {
+          "id": "harbour_seal_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_6371668024360461933.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "homothermic_spring_100m_zones": {
+          "id": "homothermic_spring_100m_zones",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_4005931335889675192.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "important_areas_red_listed_plant_taxa": {
+          "id": "important_areas_red_listed_plant_taxa",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_4240106558805423459.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "musk_oxen_calving_area": {
+          "id": "musk_oxen_calving_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-6398409920753049880.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "narwhal_summer_area": {
+          "id": "narwhal_summer_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-534191409566791403.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "narwhal_winter_and_spring_area": {
+          "id": "narwhal_winter_and_spring_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-1970115857873430778.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "national_park": {
+          "id": "national_park",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-5248120251132702708.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "nature_protection_area": {
+          "id": "nature_protection_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_8290516231831615511.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "polar_bear_denning_area": {
+          "id": "polar_bear_denning_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-5174710109642523905.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "salt_or_saline_lake_100m_zone": {
+          "id": "salt_or_saline_lake_100m_zone",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_6736240752857920611.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "seabird_colony_no_drone_zone_100m": {
+          "id": "seabird_colony_no_drone_zone_100m",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_4938399169145340864.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "seabird_colony_no_fly_zone_3000m": {
+          "id": "seabird_colony_no_fly_zone_3000m",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-739616273938683767.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "seabird_colony_no_fly_zone_500m": {
+          "id": "seabird_colony_no_fly_zone_500m",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-2585139062866919292.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "seabird_colony_non_disturbance_zone_1000m": {
+          "id": "seabird_colony_non_disturbance_zone_1000m",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-3249479950042144519.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "seabird_colony_non_disturbance_zone_200m": {
+          "id": "seabird_colony_non_disturbance_zone_200m",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-8920941852164200711.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "walrus_haulout_area_regulation": {
+          "id": "walrus_haulout_area_regulation",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-8134401101937269846.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "walrus_haulout_site": {
+          "id": "walrus_haulout_site",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-5317123784889170097.gpkg"
+          ],
+          "verify_tls": true
+        },
+        "walrus_wintering_or_spring_area": {
+          "id": "walrus_wintering_or_spring_area",
+          "urls": [
+            "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_5273041756476913146.gpkg"
+          ],
+          "verify_tls": true
+        }
+      },
+      "id": "naturemap_areas_important_to_wildlife",
+      "metadata": {
+        "abstract": "NatureMap is a web map hub site of The Environmental Agency for\nMineral Resource Activities (EAMRA), Government of Greenland. The\nsite contains geospatial data and background reports on environment\nand nature relevant for environmentally sound planning and\nregulation of mineral resource and hydrocarbon exploration and\nexploitation activities in Greenland. The purpose of the site is to\nmake data and information available to both authorities, mineral\nresource companies, and the public.\n\nLayers from the database Important Areas to Wildlife maintained by\nGreenland Institute of Natural Resources and DCE Aarhus University\nfor the Environmental Agency for Mineral Resources Activities of the\nGovernment of Greenland to the support of case handling and information\nconsidering the Mineral Resources Act.\n\nNatureMap is managed by The Greenland Institute of Natural Resources\n(GINR) with support from DCE \u2013 Danish Centre for Environment and\nEnergy, Aarhus University. On behalf of EAMRA, DCE and GINR run a\ndatacenter with environmental data and samples relevant for planning\nand regulating mineral resources and hydrocarbon activities in\nGreenland, and NatureMap forms part of that collaboration.",
+        "citation": {
+          "text": "NatureMap, 2025. Areas important to wildlife. {{date_accessed}}",
+          "url": "https://naturemap-nature.hub.arcgis.com/maps/nature::areas-important-to-wildlife-data/about"
+        },
+        "title": "Areas important to wildlife"
+      }
+    },
     "ne_countries": {
       "assets": {
         "only": {
@@ -4269,16 +4457,16 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing areas protected for geese.",
-                  "id": "nunagis_goose_protected_areas",
+                  "description": "Shows the position of breeding colonies for barnacle goose from\n   2000. Note that unrecorded important goose areas might exist,\n   particularly in remote areas.\n\nFor more information, see:\nhttps://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_85UK.pdf.",
+                  "id": "barnacle_goose_colony",
                   "in_package": true,
                   "inputs": [
                     {
                       "asset": {
-                        "id": "only"
+                        "id": "barnacle_goose_colony"
                       },
                       "dataset": {
-                        "id": "nunagis_protected_areas"
+                        "id": "naturemap_areas_important_to_wildlife"
                       }
                     }
                   ],
@@ -4294,21 +4482,147 @@
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
-                        "-dialect",
-                        "sqlite",
                         "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')\" ",
-                        "{output_dir}/nunagis_goose_protected_areas.gpkg",
-                        "{input_dir}/fetched.geojson"
+                        "\"SELECT ST_CENTROID(SHAPE) as geom, * FROM Barnacle_goose_colony\"",
+                        "-nlt",
+                        "POINT",
+                        "-nln",
+                        "barnacle_goose_colony",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "nunagis_goose_protected_areas",
+                  "style": "barnacle_goose_colonies",
                   "tags": [],
-                  "title": "Goose protected areas"
+                  "title": "Barnacle goose colonies"
                 },
-                "name": "nunagis_goose_protected_areas"
+                "name": "barnacle_goose_colony"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing goose moulting and breeding areas.\n\nFor more information, see:\nhttps://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_85UK.pdf.",
+                  "id": "goose_moulting_and_breeding_areas",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "goose_moulting_and_breeding_areas"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Goose moulting and breeding areas"
+                },
+                "name": "goose_moulting_and_breeding_areas"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons represented regulated areas for seabird colonies.\n\nSee the Attribute Table for information on specific aviation and\nsailing regulations for each area.\n\nFor more information, see:\nhttps://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_78UK.pdf.",
+                  "id": "seabird_regulated_areas_layer",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "seabird_colony_non_disturbance_zone_200m"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    },
+                    {
+                      "asset": {
+                        "id": "seabird_colony_non_disturbance_zone_1000m"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    },
+                    {
+                      "asset": {
+                        "id": "seabird_colony_no_drone_zone_100m"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    },
+                    {
+                      "asset": {
+                        "id": "seabird_colony_no_fly_zone_500m"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    },
+                    {
+                      "asset": {
+                        "id": "seabird_colony_no_fly_zone_3000m"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogrmerge",
+                        "-o",
+                        "{output_dir}/merged.gpkg",
+                        "{input_dir}/*.gpkg",
+                        "-single"
+                      ],
+                      "type": "command"
+                    },
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "-sql",
+                        "\"SELECT *,\n                        COALESCE(\n                            'Aviation: ' || regulationAviation,\n                            'Sailing: ' || regulationSailing,\n                            'UAV: ' || regulationUAV,\n                            'Other: ' || regulationOther\n                        )\n                        AS regulation\n                        FROM merged\"",
+                        "-nln",
+                        "seabird_regulated_areas",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/merged.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "seabird_colony_regulated_areas",
+                  "tags": [],
+                  "title": "Seabird colony regulated areas"
+                },
+                "name": "seabird_regulated_areas_layer"
               }
             ],
             "name": "Birds",
@@ -4321,13 +4635,542 @@
                 ":nunagis_seabirds_colonies",
                 ":nunagis_bird_protected_areas",
                 ":nunagis_eider_protected_areas",
-                ":nunagis_goose_protected_areas"
+                ":barnacle_goose_colony",
+                ":goose_moulting_and_breeding_areas",
+                ":seabird_regulated_areas_layer"
               ],
               "show": false
             }
           },
           {
             "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing Atlantic salmon areas in Kapisillit.\n\nThe only known spawning stock of Atlantic salmon in Greenland is found\nin the Kapisillit River in the head of Nuup Kangerlua fjord, West\nGreenland. The stock is genetically isolated and unique in Greenland.",
+                  "id": "atlantic_salmon_in_kapisillit",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "atlantic_salmon_in_kapisillit"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Atlantic salmon in Kapisillit"
+                },
+                "name": "atlantic_salmon_in_kapisillit"
+              }
+            ],
+            "name": "Fish",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing important areas for Beluga whales.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.13-Important-areas-for-Beluga-whale.pdf.",
+                  "id": "beluga_important_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "beluga_important_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Beluga whale important areas"
+                },
+                "name": "beluga_important_area"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing Bowhead whale areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.14-Important-areas-for-Bowhead-whale.pdf.",
+                  "id": "bowhead_whale_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "bowhead_whale_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Bowhead whale important areas"
+                },
+                "name": "bowhead_whale_area"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing caribou calving areas.",
+                  "id": "caribou_calving_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "caribou_calving_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Caribou calving areas"
+                },
+                "name": "caribou_calving_area"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing harbour seal areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.11-Areas-with-Harbour-seals.pdf.",
+                  "id": "harbour_seal_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "harbour_seal_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Harbour seal areas"
+                },
+                "name": "harbour_seal_area"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing musk oxen calving areas.\n\nAviation below 500m is not allowed in the identified zones.",
+                  "id": "musk_oxen_calving_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "musk_oxen_calving_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Musk oxen calving areas"
+                },
+                "name": "musk_oxen_calving_area"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing narwhal summer areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.08-Areas-with-narwhals-summer.pdf.",
+                  "id": "narwhal_summer_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "narwhal_summer_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Narwhal summer areas"
+                },
+                "name": "narwhal_summer_area"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing narwhal winter and spring areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.15-Important-areas-for-Narwhal-winter-and-spring.pdf.",
+                  "id": "narwhal_winter_and_spring_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "narwhal_winter_and_spring_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Narwhal winter and spring areas"
+                },
+                "name": "narwhal_winter_and_spring_area"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing polar bear denning areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.07-Areas-for-polar-bear-denning.pdf.",
+                  "id": "polar_bear_denning_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "polar_bear_denning_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Polar bear denning areas"
+                },
+                "name": "polar_bear_denning_area"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) haulout area regulations.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf.",
+                  "id": "walrus_haulout_area_regulation",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "walrus_haulout_area_regulation"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Walrus haulout area regulations"
+                },
+                "name": "walrus_haulout_area_regulation"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) haulout sites.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf.",
+                  "id": "walrus_haulout_site",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "walrus_haulout_site"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Walrus haulout sites"
+                },
+                "name": "walrus_haulout_site"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) wintering or spring areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.10-Areas-with-wintering-and-spring-areas-for-walrus.pdf.",
+                  "id": "walrus_wintering_or_spring_area",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "walrus_wintering_or_spring_area"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Walrus wintering and spring areas"
+                },
+                "name": "walrus_wintering_or_spring_area"
+              }
+            ],
+            "name": "Mammals",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing red-listed plant taxa of Greenland.\n\nRed listed species are those assessed to be Regionally Extinct [RE,\nRegionalt udd\u00f8d], Critically Endangered [CR, Kritisk truet], Endangered\n[EN, Truet), Vulnerable [VU, S\u00e5rbar], Near Threatened [NT, N\u00e6sten truet)\nand Data Deficient [DD, Utilstr\u00e6kkelige data].\n\nThe layer depicts dissolved buffer zones of 4 km around occurrences of red\nlisted plant taxa.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/Important-areas-for-red-listed-plant-taxa.pdf.",
+                  "id": "important_areas_red_listed_plant_taxa",
+                  "in_package": true,
+                  "inputs": [
+                    {
+                      "asset": {
+                        "id": "important_areas_red_listed_plant_taxa"
+                      },
+                      "dataset": {
+                        "id": "naturemap_areas_important_to_wildlife"
+                      }
+                    }
+                  ],
+                  "show": false,
+                  "steps": [
+                    {
+                      "args": [
+                        "ogr2ogr",
+                        "-lco",
+                        "ENCODING=UTF-8",
+                        "-t_srs",
+                        "EPSG:3413",
+                        "-clipdst",
+                        "{assets_dir}/latitude_shape_40_degrees.geojson",
+                        "-makevalid",
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
+                      ],
+                      "type": "command"
+                    }
+                  ],
+                  "style": "protected_area_polygon",
+                  "tags": [],
+                  "title": "Important areas red listed plant taxa"
+                },
+                "name": "important_areas_red_listed_plant_taxa"
+              },
               {
                 "layer_cfg": {
                   "description": "Estimated above ground plant biomass for the tundra biome in\nkilograms per square meter. Based on trans-Arctic field data and AVHRR\nNDVI. Data provided by ORNL DAAC.",
@@ -4799,16 +5642,16 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing 100m zones protected for salt or saline\nlakes.",
-                  "id": "nunagis_salt_or_saline_lake_100m_zones",
+                  "description": "Polygons representing salt or saline lake 100m zones.",
+                  "id": "salt_or_saline_lake_100m_zone",
                   "in_package": true,
                   "inputs": [
                     {
                       "asset": {
-                        "id": "only"
+                        "id": "salt_or_saline_lake_100m_zone"
                       },
                       "dataset": {
-                        "id": "nunagis_protected_areas"
+                        "id": "naturemap_areas_important_to_wildlife"
                       }
                     }
                   ],
@@ -4824,12 +5667,8 @@
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Salt or saline lake 100m zone'\" ",
-                        "{output_dir}/nunagis_salt_or_saline_lake_100m_zones.gpkg",
-                        "{input_dir}/fetched.geojson"
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
                       ],
                       "type": "command"
                     }
@@ -4838,20 +5677,20 @@
                   "tags": [],
                   "title": "Salt or saline lake 100m zones"
                 },
-                "name": "nunagis_salt_or_saline_lake_100m_zones"
+                "name": "salt_or_saline_lake_100m_zone"
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing 100m zones protected for homothermic\nsprings.",
-                  "id": "nunagis_homothermic_spring_100m_zones",
+                  "description": "Polygons representing 100m zones protected for homothermic\nsprings.\n\nNot allowed to place buildings, do drainage, make changes in the\nterrain, or conduct any other activities that might negatively\naffect the springs.",
+                  "id": "homothermic_spring_100m_zones",
                   "in_package": true,
                   "inputs": [
                     {
                       "asset": {
-                        "id": "only"
+                        "id": "homothermic_spring_100m_zones"
                       },
                       "dataset": {
-                        "id": "nunagis_protected_areas"
+                        "id": "naturemap_areas_important_to_wildlife"
                       }
                     }
                   ],
@@ -4867,12 +5706,8 @@
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Homothermic spring 100 m zone'\" ",
-                        "{output_dir}/nunagis_homothermic_spring_100m_zones.gpkg",
-                        "{input_dir}/fetched.geojson"
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
                       ],
                       "type": "command"
                     }
@@ -4881,20 +5716,20 @@
                   "tags": [],
                   "title": "Homothermic spring 100m zones"
                 },
-                "name": "nunagis_homothermic_spring_100m_zones"
+                "name": "homothermic_spring_100m_zones"
               },
               {
                 "layer_cfg": {
                   "description": "Polygon representing the area protected for the national park.",
-                  "id": "nunagis_national_park",
+                  "id": "national_park",
                   "in_package": true,
                   "inputs": [
                     {
                       "asset": {
-                        "id": "only"
+                        "id": "national_park"
                       },
                       "dataset": {
-                        "id": "nunagis_protected_areas"
+                        "id": "naturemap_areas_important_to_wildlife"
                       }
                     }
                   ],
@@ -4910,12 +5745,8 @@
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'National Park'\" ",
-                        "{output_dir}/nunagis_national_park.gpkg",
-                        "{input_dir}/fetched.geojson"
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
                       ],
                       "type": "command"
                     }
@@ -4924,20 +5755,20 @@
                   "tags": [],
                   "title": "National park"
                 },
-                "name": "nunagis_national_park"
+                "name": "national_park"
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing areas protected for biologically important\nareas in the national park.",
-                  "id": "nunagis_biological_important_areas",
+                  "description": "Polygons representing areas protected for biologically important\nareas in the national park.\n\nFor more information, see: https://www.dmu.dk/Pub/FR729.pdf.",
+                  "id": "biological_important_areas_in_the_national_park",
                   "in_package": true,
                   "inputs": [
                     {
                       "asset": {
-                        "id": "only"
+                        "id": "biological_important_areas_in_the_national_park"
                       },
                       "dataset": {
-                        "id": "nunagis_protected_areas"
+                        "id": "naturemap_areas_important_to_wildlife"
                       }
                     }
                   ],
@@ -4953,12 +5784,8 @@
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Biological Important Areas in the National Park'\" ",
-                        "{output_dir}/nunagis_biological_important_areas.gpkg",
-                        "{input_dir}/fetched.geojson"
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
                       ],
                       "type": "command"
                     }
@@ -4967,20 +5794,20 @@
                   "tags": [],
                   "title": "Biological important areas in the national park"
                 },
-                "name": "nunagis_biological_important_areas"
+                "name": "biological_important_areas_in_the_national_park"
               },
               {
                 "layer_cfg": {
                   "description": "Polygons representing areas protected for nature.",
-                  "id": "nunagis_nature_protection_areas",
+                  "id": "nature_protection_area",
                   "in_package": true,
                   "inputs": [
                     {
                       "asset": {
-                        "id": "only"
+                        "id": "nature_protection_area"
                       },
                       "dataset": {
-                        "id": "nunagis_protected_areas"
+                        "id": "naturemap_areas_important_to_wildlife"
                       }
                     }
                   ],
@@ -4996,12 +5823,8 @@
                         "-clipdst",
                         "{assets_dir}/latitude_shape_40_degrees.geojson",
                         "-makevalid",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "\"SELECT\n                        DATETIME(\n                          CAST(created_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as created_date,\n                        DATETIME(\n                          CAST(last_edited_date AS INTEGER) / 1000, 'unixepoch'\n                        ) as last_edited_date,\n                        *\n                    FROM ESRIJSON\n                    WHERE type = 'Nature Protection Area'\" ",
-                        "{output_dir}/nunagis_nature_protection_areas.gpkg",
-                        "{input_dir}/fetched.geojson"
+                        "{output_dir}/final.gpkg",
+                        "{input_dir}/*.gpkg"
                       ],
                       "type": "command"
                     }
@@ -5010,7 +5833,7 @@
                   "tags": [],
                   "title": "Nature protection areas"
                 },
-                "name": "nunagis_nature_protection_areas"
+                "name": "nature_protection_area"
               }
             ],
             "name": "Protected zones",
@@ -5020,11 +5843,11 @@
                 ":nunagis_unesco_treaty_zones",
                 ":nunagis_no_go_areas",
                 ":nunagis_closed_areas",
-                ":nunagis_salt_or_saline_lake_100m_zones",
-                ":nunagis_homothermic_spring_100m_zones",
-                ":nunagis_national_park",
-                ":nunagis_biological_important_areas",
-                ":nunagis_nature_protection_areas"
+                ":salt_or_saline_lake_100m_zone",
+                ":homothermic_spring_100m_zones",
+                ":national_park",
+                ":biological_important_areas_in_the_national_park",
+                ":nature_protection_area"
               ],
               "show": false
             }

@@ -6,6 +6,34 @@
     dataset metadata (title and citation URL).
   - "Biology/Birds/Murre colonies": data and metadata updated to Arctic
     Biodiversity Assessment 2013 publication from CAFF .
+  - Replaced the "Biology/Birds/Goose protected areas" layer from NunaGIS with
+    two updated layers from NatureMap: "Barnacle goose colonies" (Point) and
+    "Goose moulting and breeding areas" (Polygon).
+  - Updated the "Environmental management/Protected zones/" nunagis layers with NatureMap data source:
+      - "Salt or saline lake 100m zones"
+      - "Homothermic spring 100m zones"
+      - "National park"
+      - "Biological important areas in the national park"
+      - "Nature protection areas"
+- Added layers:
+  - "Biology/Birds":
+    - "Seabird colony regulated areas" from NatureMap
+  - "Biology/Mammals":
+    - "Polar bear denning areas" from NatureMap
+    - "Musk oxen calving areas" from NatureMap
+    - "Narwhal summer areas" from NatureMap
+    - "Narwhal winter and spring areas" from NatureMap
+    - "Caribou calving areas" from NatureMap
+    - "Walrus haulout sites" from NatureMap
+    - "Walrus haulout area regulations" from NatureMap
+    - "Walrus wintering and spring areas" from NatureMap
+    - "Harbour seal areas" from NatureMap
+    - "Beluga important areas" from NatureMap
+    - "Bowhead whale important areas" from NatureMap
+  - "Biology/Fish":
+    - "Atlantic salmon in Kapisillit" from NatureMap
+  - "Biology/Vegetation":
+    - "Important areas red listed plant taxa" from NatureMap
 
 # v4.0.0alpha1 (2026-03-04)
 

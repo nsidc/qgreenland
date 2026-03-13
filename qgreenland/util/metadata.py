@@ -15,20 +15,32 @@ def build_layer_metadata(layer_cfg: Layer) -> str:
     # Include the layer description first.
     abstract = build_layer_description(layer_cfg)
 
+    original_data_sources = []
+    dataset_ids = []
+    for layer_input in layer_cfg.inputs:
+        # Create only one original data source per unique input dataset.
+        dataset_id = layer_input.dataset.id
+        if dataset_id in dataset_ids:
+            continue
+        dataset_ids.append(dataset_id)
+
+        original_data_source = ""
+        original_data_source += _build_dataset_description(layer_input.dataset)
+
+        if original_data_source:
+            original_data_source += "\n\n"
+
+        # Add the dataset's citation
+        original_data_source += _build_dataset_citation(layer_input)
+        original_data_source += "\n-------------------------------\n"
+        original_data_sources.append(original_data_source)
+
     # If the layer has a description, separate it from the abstract of the
     # original data source.
     if abstract:
         abstract += "\n\n=== Original Data Source(s) ===\n"
 
-    for layer_input in layer_cfg.inputs:
-        abstract += _build_dataset_description(layer_input.dataset)
-
-        if abstract:
-            abstract += "\n\n"
-
-        # Add the dataset's citation
-        abstract += _build_dataset_citation(layer_input)
-        abstract += "\n-------------------------------\n"
+    abstract += "".join(original_data_sources)
 
     return abstract
 

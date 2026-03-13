@@ -47,15 +47,6 @@ _nunagis_protected_areas_params = {
         "where_sql": "type LIKE 'Eider%'",
         "group": "Birds",
     },
-    "nunagis_goose_protected_areas": {
-        "title": "Goose protected areas",
-        "description": "Polygons representing areas protected for geese.",
-        "style": "nunagis_goose_protected_areas",
-        "where_sql": (
-            "type IN ('Barnacle goose colony', 'Goose moulting and breeding areas')"
-        ),
-        "group": "Birds",
-    },
     "nunagis_unesco_treaty_zones": {
         "title": "UNESCO treaty zones",
         "description": (
@@ -78,52 +69,6 @@ _nunagis_protected_areas_params = {
         "description": ("""Polygons representing areas that are closed."""),
         "style": "protected_area_polygon",
         "where_sql": "type = 'Closed Area'",
-        "group": "Protected zones",
-    },
-    "nunagis_salt_or_saline_lake_100m_zones": {
-        "title": "Salt or saline lake 100m zones",
-        "description": (
-            """Polygons representing 100m zones protected for salt or saline
-            lakes."""
-        ),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'Salt or saline lake 100m zone'",
-        "group": "Protected zones",
-    },
-    "nunagis_homothermic_spring_100m_zones": {
-        "title": "Homothermic spring 100m zones",
-        "description": (
-            """Polygons representing 100m zones protected for homothermic
-            springs."""
-        ),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'Homothermic spring 100 m zone'",
-        "group": "Protected zones",
-    },
-    "nunagis_national_park": {
-        "title": "National park",
-        "description": (
-            """Polygon representing the area protected for the national park."""
-        ),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'National Park'",
-        "group": "Protected zones",
-    },
-    "nunagis_biological_important_areas": {
-        "title": "Biological important areas in the national park",
-        "description": (
-            """Polygons representing areas protected for biologically important
-            areas in the national park."""
-        ),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'Biological Important Areas in the National Park'",
-        "group": "Protected zones",
-    },
-    "nunagis_nature_protection_areas": {
-        "title": "Nature protection areas",
-        "description": ("""Polygons representing areas protected for nature."""),
-        "style": "protected_area_polygon",
-        "where_sql": "type = 'Nature Protection Area'",
         "group": "Protected zones",
     },
 }
