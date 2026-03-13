@@ -149,6 +149,13 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-3683640373236405489.gpkg",
             ],
         ),
+        # Associated report: https://natur.gl/wp-content/uploads/2024/04/2.03.12-Areas-with-salmon.pdf
+        HttpAsset(
+            id="atlantic_salmon_in_kapisillit",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_9118946289606184944.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",
