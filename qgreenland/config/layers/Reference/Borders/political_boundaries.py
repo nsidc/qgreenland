@@ -10,7 +10,13 @@ nunagis_municipalities_population = Layer(
     title="Greenland municipalities and population",
     description=(
         """Polygons representing municipalities of Greenland and associated
-        population numbers from 1976-2024."""
+        population numbers from 1976-2024.
+
+        Note: to use this layer, enable the temporal controller and set a
+        specific year to see that year's population statistics. Without the
+        temporal controller enabled, the earliest population statistics will be
+        shown (for 1976).
+        """
     ),
     tags=[],
     style="municipalities_pop_timeseries",
