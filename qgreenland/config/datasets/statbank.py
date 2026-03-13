@@ -5,9 +5,9 @@ statbank = Dataset(
     id="statbank",
     assets=[
         HttpAsset(
-            id="municipalities_2025_population",
-            # This URL returns a csv file `BEXSTB.csv` that has data for Jan 1, 2026
-            urls=["https://bank.stat.gl:443/sq/46cd875a-2a57-430b-ade9-e0baf23ecfe0"],
+            id="municipalities_population",
+            # This URL returns a csv file `BEXSTB.csv` that has data for Jan 1, 1977-present
+            urls=["https://bank.stat.gl:443/sq/e38caec2-e806-4a9d-9a01-59f021282b56"],
         ),
     ],
     metadata={
