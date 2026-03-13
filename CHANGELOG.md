@@ -1,4 +1,4 @@
-# v4.0.0alpha2 (TBD)
+# v4.0.0alpha2 (2025-03-13)
 
 - Minimum supported version of QGIS is now `v3.44`.
 - Update layers:
@@ -9,7 +9,7 @@
   - "Glaciology/Gravimetric mass balance/Mass balance trend" layers have updated
     dataset metadata (title and citation URL).
   - "Biology/Birds/Murre colonies": data and metadata updated to Arctic
-    Biodiversity Assessment 2013 publication from CAFF .
+    Biodiversity Assessment 2013 publication from CAFF.
   - Replaced the "Biology/Birds/Goose protected areas" layer from NunaGIS with
     two updated layers from NatureMap: "Barnacle goose colonies" (Point) and
     "Goose moulting and breeding areas" (Polygon).
