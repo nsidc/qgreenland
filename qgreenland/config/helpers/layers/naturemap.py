@@ -154,8 +154,14 @@ MAMMALS_LAYERS_CFG = {
         "style": "protected_area_polygon",
     },
     "beluga_important_area": {
-        "title": "Beluga important areas",
+        "title": "Beluga whale important areas",
         "description": ("""Polygons representing important areas for Beluga whales."""),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
+    "bowhead_whale_area": {
+        "title": "Bowhead whale important areas",
+        "description": ("""Polygons representing Bowhead whale areas."""),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },

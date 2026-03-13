@@ -27,6 +27,7 @@
   - "Biology/Mammals/Walrus wintering and spring areas" from NatureMap
   - "Biology/Mammals/Harbour seal areas" from NatureMap
   - "Biology/Mammals/Beluga important areas" from NatureMap
+  - "Biology/Mammals/Bowhead whale important areas" from NatureMap
 
 # v4.0.0alpha1 (2026-03-04)
 
