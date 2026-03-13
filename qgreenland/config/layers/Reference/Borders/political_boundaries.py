@@ -62,7 +62,7 @@ nunagis_municipalities_population = Layer(
                     DATE(pop.time || '-01-01') as valid_date_str
                     FROM municipalities
                     RIGHT JOIN pop ON pop.municipality
-                    LIKE '%' || municipalities.pop_municipality_2019_municip || '%'\"""",
+                    = municipalities.pop_municipality_2019_municip\"""",
                 "-nln",
                 "municipalities_and_pop",
             ],
