@@ -118,6 +118,35 @@ MAMMALS_LAYERS_CFG = {
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
+    # NOTE/TODO: this and the next layer are similar. haulout sites are smaller
+    # than the reulation areas. Do we want both?
+    # Associated report: https://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf
+    "walrus_haulout_site": {
+        "title": "Walrus haulout sites",
+        "description": (
+            """Polygons representing Atlantic walrus (Odobenus rosmarus) haulout sites."""
+        ),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
+    # Associated report: https://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf
+    "walrus_haulout_area_regulation": {
+        "title": "Walrus haulout area regulations",
+        "description": (
+            """Polygons representing Atlantic walrus (Odobenus rosmarus) haulout area regulations."""
+        ),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
+    # Associated report: https://natur.gl/wp-content/uploads/2024/04/2.03.10-Areas-with-wintering-and-spring-areas-for-walrus.pdf
+    "walrus_wintering_or_spring_area": {
+        "title": "Walrus wintering and spring areas",
+        "description": (
+            """Polygons representing Atlantic walrus (Odobenus rosmarus) wintering or spring areas."""
+        ),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 

@@ -22,6 +22,9 @@
   - "Biology/Mammals/Narwhal summer areas" from NatureMap
   - "Biology/Mammals/Narwhal winter and spring areas" from NatureMap
   - "Biology/Mammals/Caribou calving areas" from NatureMap
+  - "Biology/Mammals/Walrus haulout sites" from NatureMap
+  - "Biology/Mammals/Walrus haulout area regulations" from NatureMap
+  - "Biology/Mammals/Walrus wintering and spring areas" from NatureMap
 
 # v4.0.0alpha1 (2026-03-04)
 

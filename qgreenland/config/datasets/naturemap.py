@@ -109,6 +109,25 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-8121485017751708035.gpkg",
             ],
         ),
+        # Related report: https://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf
+        HttpAsset(
+            id="walrus_haulout_site",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-5317123784889170097.gpkg",
+            ],
+        ),
+        HttpAsset(
+            id="walrus_haulout_area_regulation",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-8134401101937269846.gpkg",
+            ],
+        ),
+        HttpAsset(
+            id="walrus_wintering_or_spring_area",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_5273041756476913146.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",
