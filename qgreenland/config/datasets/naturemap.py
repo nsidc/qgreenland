@@ -128,6 +128,13 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_5273041756476913146.gpkg",
             ],
         ),
+        # Associated report: https://natur.gl/wp-content/uploads/2024/04/2.03.11-Areas-with-Harbour-seals.pdf
+        HttpAsset(
+            id="harbour_seal_area",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_6371668024360461933.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",

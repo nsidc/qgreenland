@@ -25,6 +25,7 @@
   - "Biology/Mammals/Walrus haulout sites" from NatureMap
   - "Biology/Mammals/Walrus haulout area regulations" from NatureMap
   - "Biology/Mammals/Walrus wintering and spring areas" from NatureMap
+  - "Biology/Mammals/Harbour seal areas" from NatureMap
 
 # v4.0.0alpha1 (2026-03-04)
 

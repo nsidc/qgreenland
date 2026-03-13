@@ -147,6 +147,12 @@ MAMMALS_LAYERS_CFG = {
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
+    "harbour_seal_area": {
+        "title": "Harbour seal areas",
+        "description": ("""Polygons representing harbour seal areas."""),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 
