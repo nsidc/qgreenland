@@ -135,6 +135,13 @@ naturemap_important_wildlife_areas = Dataset(
                 "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_6371668024360461933.gpkg",
             ],
         ),
+        # Associated report: https://natur.gl/wp-content/uploads/2024/04/2.03.13-Important-areas-for-Beluga-whale.pdf
+        HttpAsset(
+            id="beluga_important_area",
+            urls=[
+                "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Areas_Important_to_Wildlife_data/FeatureServer/replicafilescache/Areas_Important_to_Wildlife_data_-4323040572871285640.gpkg",
+            ],
+        ),
     ],
     metadata={
         "title": "Areas important to wildlife",

@@ -153,6 +153,12 @@ MAMMALS_LAYERS_CFG = {
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
+    "beluga_important_area": {
+        "title": "Beluga important areas",
+        "description": ("""Polygons representing important areas for Beluga whales."""),
+        "ogr2ogr_args": (),
+        "style": "protected_area_polygon",
+    },
 }
 
 
