@@ -13,7 +13,10 @@ BIRDS_LAYERS_CFG = {
         "description": (
             """Shows the position of breeding colonies for barnacle goose from
                2000. Note that unrecorded important goose areas might exist,
-               particularly in remote areas."""
+               particularly in remote areas.
+
+            For more information, see:
+            https://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_85UK.pdf."""
         ),
         # Convert from polygon to point. The layer natively uses polygons to
         # represent points, but these are not easily scalable for visualization
@@ -30,7 +33,12 @@ BIRDS_LAYERS_CFG = {
     },
     "goose_moulting_and_breeding_areas": {
         "title": "Goose moulting and breeding areas",
-        "description": ("""Polygons representing goose moulting and breeding areas."""),
+        "description": (
+            """Polygons representing goose moulting and breeding areas.
+
+            For more information, see:
+            https://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_85UK.pdf."""
+        ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
@@ -69,7 +77,9 @@ PROTECTED_ZONES_LAYERS_CFG = {
         "title": "Biological important areas in the national park",
         "description": (
             """Polygons representing areas protected for biologically important
-            areas in the national park."""
+            areas in the national park.
+
+            For more information, see: https://www.dmu.dk/Pub/FR729.pdf."""
         ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
@@ -86,7 +96,12 @@ PROTECTED_ZONES_LAYERS_CFG = {
 MAMMALS_LAYERS_CFG = {
     "polar_bear_denning_area": {
         "title": "Polar bear denning areas",
-        "description": ("""Polygons representing polar bear denning areas."""),
+        "description": (
+            """Polygons representing polar bear denning areas.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.07-Areas-for-polar-bear-denning.pdf."""
+        ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
@@ -102,13 +117,23 @@ MAMMALS_LAYERS_CFG = {
     },
     "narwhal_summer_area": {
         "title": "Narwhal summer areas",
-        "description": ("""Polygons representing narwhal summer areas."""),
+        "description": (
+            """Polygons representing narwhal summer areas.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.08-Areas-with-narwhals-summer.pdf."""
+        ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
     "narwhal_winter_and_spring_area": {
         "title": "Narwhal winter and spring areas",
-        "description": ("""Polygons representing narwhal winter and spring areas."""),
+        "description": (
+            """Polygons representing narwhal winter and spring areas.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.15-Important-areas-for-Narwhal-winter-and-spring.pdf."""
+        ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
@@ -124,7 +149,10 @@ MAMMALS_LAYERS_CFG = {
     "walrus_haulout_site": {
         "title": "Walrus haulout sites",
         "description": (
-            """Polygons representing Atlantic walrus (Odobenus rosmarus) haulout sites."""
+            """Polygons representing Atlantic walrus (Odobenus rosmarus) haulout sites.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf."""
         ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
@@ -133,7 +161,10 @@ MAMMALS_LAYERS_CFG = {
     "walrus_haulout_area_regulation": {
         "title": "Walrus haulout area regulations",
         "description": (
-            """Polygons representing Atlantic walrus (Odobenus rosmarus) haulout area regulations."""
+            """Polygons representing Atlantic walrus (Odobenus rosmarus) haulout area regulations.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf."""
         ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
@@ -142,26 +173,44 @@ MAMMALS_LAYERS_CFG = {
     "walrus_wintering_or_spring_area": {
         "title": "Walrus wintering and spring areas",
         "description": (
-            """Polygons representing Atlantic walrus (Odobenus rosmarus) wintering or spring areas."""
+            """Polygons representing Atlantic walrus (Odobenus rosmarus) wintering or spring areas.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.10-Areas-with-wintering-and-spring-areas-for-walrus.pdf."""
         ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
     "harbour_seal_area": {
         "title": "Harbour seal areas",
-        "description": ("""Polygons representing harbour seal areas."""),
+        "description": (
+            """Polygons representing harbour seal areas.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.11-Areas-with-Harbour-seals.pdf."""
+        ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
     "beluga_important_area": {
         "title": "Beluga whale important areas",
-        "description": ("""Polygons representing important areas for Beluga whales."""),
+        "description": (
+            """Polygons representing important areas for Beluga whales.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.13-Important-areas-for-Beluga-whale.pdf."""
+        ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
     "bowhead_whale_area": {
         "title": "Bowhead whale important areas",
-        "description": ("""Polygons representing Bowhead whale areas."""),
+        "description": (
+            """Polygons representing Bowhead whale areas.
+
+            For more information, see:
+            https://natur.gl/wp-content/uploads/2024/04/2.03.14-Important-areas-for-Bowhead-whale.pdf."""
+        ),
         "ogr2ogr_args": (),
         "style": "protected_area_polygon",
     },
@@ -205,7 +254,10 @@ def make_birds_layers():
             """Polygons represented regulated areas for seabird colonies.
 
             See the Attribute Table for information on specific aviation and
-            sailing regulations for each area."""
+            sailing regulations for each area.
+
+            For more information, see:
+            https://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_78UK.pdf."""
         ),
         tags=[],
         in_package=True,

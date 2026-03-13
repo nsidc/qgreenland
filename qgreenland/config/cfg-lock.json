@@ -4457,7 +4457,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Shows the position of breeding colonies for barnacle goose from\n2000. Note that unrecorded important goose areas might exist,\nparticularly in remote areas.",
+                  "description": "Shows the position of breeding colonies for barnacle goose from\n   2000. Note that unrecorded important goose areas might exist,\n   particularly in remote areas.\n\nFor more information, see:\nhttps://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_85UK.pdf.",
                   "id": "barnacle_goose_colony",
                   "in_package": true,
                   "inputs": [
@@ -4502,7 +4502,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing goose moulting and breeding areas.",
+                  "description": "Polygons representing goose moulting and breeding areas.\n\nFor more information, see:\nhttps://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_85UK.pdf.",
                   "id": "goose_moulting_and_breeding_areas",
                   "in_package": true,
                   "inputs": [
@@ -4541,7 +4541,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons represented regulated areas for seabird colonies.\n\nSee the Attribute Table for information on specific aviation and\nsailing regulations for each area.",
+                  "description": "Polygons represented regulated areas for seabird colonies.\n\nSee the Attribute Table for information on specific aviation and\nsailing regulations for each area.\n\nFor more information, see:\nhttps://dce.au.dk/fileadmin/dce.au.dk/Udgivelser/Notater_2022/N2022_78UK.pdf.",
                   "id": "seabird_regulated_areas_layer",
                   "in_package": true,
                   "inputs": [
@@ -4695,7 +4695,7 @@
             "children": [
               {
                 "layer_cfg": {
-                  "description": "Polygons representing important areas for Beluga whales.",
+                  "description": "Polygons representing important areas for Beluga whales.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.13-Important-areas-for-Beluga-whale.pdf.",
                   "id": "beluga_important_area",
                   "in_package": true,
                   "inputs": [
@@ -4734,7 +4734,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing Bowhead whale areas.",
+                  "description": "Polygons representing Bowhead whale areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.14-Important-areas-for-Bowhead-whale.pdf.",
                   "id": "bowhead_whale_area",
                   "in_package": true,
                   "inputs": [
@@ -4812,7 +4812,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing harbour seal areas.",
+                  "description": "Polygons representing harbour seal areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.11-Areas-with-Harbour-seals.pdf.",
                   "id": "harbour_seal_area",
                   "in_package": true,
                   "inputs": [
@@ -4890,7 +4890,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing narwhal summer areas.",
+                  "description": "Polygons representing narwhal summer areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.08-Areas-with-narwhals-summer.pdf.",
                   "id": "narwhal_summer_area",
                   "in_package": true,
                   "inputs": [
@@ -4929,7 +4929,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing narwhal winter and spring areas.",
+                  "description": "Polygons representing narwhal winter and spring areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.15-Important-areas-for-Narwhal-winter-and-spring.pdf.",
                   "id": "narwhal_winter_and_spring_area",
                   "in_package": true,
                   "inputs": [
@@ -4968,7 +4968,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing polar bear denning areas.",
+                  "description": "Polygons representing polar bear denning areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.07-Areas-for-polar-bear-denning.pdf.",
                   "id": "polar_bear_denning_area",
                   "in_package": true,
                   "inputs": [
@@ -5007,7 +5007,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) haulout area regulations.",
+                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) haulout area regulations.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf.",
                   "id": "walrus_haulout_area_regulation",
                   "in_package": true,
                   "inputs": [
@@ -5046,7 +5046,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) haulout sites.",
+                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) haulout sites.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.09-Areas-with-walrus-haul-out-sites.pdf.",
                   "id": "walrus_haulout_site",
                   "in_package": true,
                   "inputs": [
@@ -5085,7 +5085,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) wintering or spring areas.",
+                  "description": "Polygons representing Atlantic walrus (Odobenus rosmarus) wintering or spring areas.\n\nFor more information, see:\nhttps://natur.gl/wp-content/uploads/2024/04/2.03.10-Areas-with-wintering-and-spring-areas-for-walrus.pdf.",
                   "id": "walrus_wintering_or_spring_area",
                   "in_package": true,
                   "inputs": [
@@ -5759,7 +5759,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing areas protected for biologically important\nareas in the national park.",
+                  "description": "Polygons representing areas protected for biologically important\nareas in the national park.\n\nFor more information, see: https://www.dmu.dk/Pub/FR729.pdf.",
                   "id": "biological_important_areas_in_the_national_park",
                   "in_package": true,
                   "inputs": [
