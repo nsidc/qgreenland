@@ -3598,7 +3598,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing municipalities of Greenland and associated\npopulation numbers from 1977-2025.",
+                  "description": "Polygons representing municipalities of Greenland and associated\npopulation numbers from 1976-2024.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year to see that year's population statistics. Without the\ntemporal controller enabled, the earliest population statistics will be\nshown (for 1976).",
                   "id": "nunagis_municipalities_population",
                   "in_package": true,
                   "inputs": [
@@ -3650,7 +3650,7 @@
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"SELECT\n                    municipalities.geom,\n                    municipalities.pop_municipality_2019_municip as municipality,\n                    pop.\\\"Population January 1st\\\",\n                    DATE(pop.time || '-01-01') as valid_date_str\n                    FROM municipalities\n                    RIGHT JOIN pop ON pop.municipality\n                    LIKE '%' || municipalities.pop_municipality_2019_municip || '%'\"",
+                        "\"SELECT\n                    municipalities.geom,\n                    municipalities.pop_municipality_2019_municip as municipality,\n                    pop.\\\"Population January 1st\\\" as population,\n                    DATE(CAST(CAST(pop.time AS int) - 1 AS STR) || '-01-01') as valid_start_date_str,\n                    DATE(CAST(CAST(pop.time AS int) - 1 AS STR) || '-12-31') as valid_end_date_str\n                    FROM municipalities\n                    RIGHT JOIN pop ON pop.municipality\n                    = municipalities.pop_municipality_2019_municip\"",
                         "-nln",
                         "municipalities_and_pop"
                       ],
@@ -3667,7 +3667,7 @@
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"ALTER TABLE municipalities_and_pop\n                    ADD COLUMN valid_date DATE\"",
+                        "\"ALTER TABLE municipalities_and_pop\n                    ADD COLUMN start_date DATE\"",
                         "&&",
                         "ogr2ogr",
                         "-update",
@@ -3676,7 +3676,7 @@
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"UPDATE municipalities_and_pop\n                    SET valid_date = valid_date_str\"",
+                        "\"ALTER TABLE municipalities_and_pop\n                    ADD COLUMN end_date DATE\"",
                         "&&",
                         "ogr2ogr",
                         "-update",
@@ -3685,12 +3685,30 @@
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"ALTER TABLE municipalities_and_pop\n                     DROP COLUMN valid_date_str\""
+                        "\"UPDATE municipalities_and_pop\n                    SET start_date = valid_start_date_str, end_date = valid_end_date_str\"",
+                        "&&",
+                        "ogr2ogr",
+                        "-update",
+                        "{output_dir}/final.gpkg",
+                        "{output_dir}/final.gpkg",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"ALTER TABLE municipalities_and_pop\n                     DROP COLUMN valid_start_date_str\"",
+                        "&&",
+                        "ogr2ogr",
+                        "-update",
+                        "{output_dir}/final.gpkg",
+                        "{output_dir}/final.gpkg",
+                        "-dialect",
+                        "sqlite",
+                        "-sql",
+                        "\"ALTER TABLE municipalities_and_pop\n                     DROP COLUMN valid_end_Date_str\""
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "nunagis_municipalities_population",
+                  "style": "municipalities_pop_timeseries",
                   "tags": [],
                   "title": "Greenland municipalities and population"
                 },
