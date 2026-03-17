@@ -17,5 +17,6 @@ settings = LayerGroupSettings(
         LayerGroupIdentifier("Gravimetric mass balance"),
         LayerGroupIdentifier("Ice sheet velocity"),
         LayerIdentifier("basal_thermal_state"),
+        LayerGroupIdentifier("PROMICE 2022 ice mask"),
     ],
 )
