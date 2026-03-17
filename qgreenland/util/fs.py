@@ -7,12 +7,12 @@ def get_layer_fp(layer_dir: Path) -> Path:
     """Look for one and only one standard file type 'gpkg' or 'tif'."""
     # TODO: Extract standard file types into some structure
     rasters = list(layer_dir.glob("*.tif"))
-    vectors = list(layer_dir.glob("*.gpkg"))
+    vectors = list(layer_dir.glob("*.gpkg")) + list(layer_dir.glob("*.vrt"))
     files = rasters + vectors
 
     if len(files) != 1:
         raise exc.QgrRuntimeError(
-            "Expected exactly 1 .tif or .gpkg in layer output directory"
+            "Expected exactly 1 .tif, .gpkg, or .vrt in layer output directory"
             f" {layer_dir}. Found: {files}.",
         )
 

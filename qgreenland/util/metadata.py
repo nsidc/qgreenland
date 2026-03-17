@@ -4,7 +4,11 @@ from pathlib import Path
 from qgreenland.constants.paths import FETCH_DATASETS_DIR
 from qgreenland.models.config.dataset import Dataset
 from qgreenland.models.config.layer import Layer, LayerInput
-from qgreenland.util.layer import datasource_dirname
+from qgreenland.util.layer import (
+    datasource_dirname,
+    get_layer_cfg_for_id,
+    get_layer_path_by_id,
+)
 
 
 def build_layer_metadata(layer_cfg: Layer) -> str:
@@ -15,9 +19,19 @@ def build_layer_metadata(layer_cfg: Layer) -> str:
     # Include the layer description first.
     abstract = build_layer_description(layer_cfg)
 
+    if referenced_layer_id := layer_cfg.vrt_layer_ref_id:
+        layer_inputs = get_layer_cfg_for_id(referenced_layer_id).inputs
+        abstract += "\n\n=== Note! ===\n"
+        reference_layer_path = get_layer_path_by_id(referenced_layer_id)
+        abstract += f'Data for this layer are derived from "{reference_layer_path}"\n'
+        abstract += "See that layer's metadata for more information."
+    else:
+        layer_inputs = layer_cfg.inputs
+
     original_data_sources = []
     dataset_ids = []
-    for layer_input in layer_cfg.inputs:
+    for layer_input in layer_inputs:
+        assert isinstance(layer_input, LayerInput)
         # Create only one original data source per unique input dataset.
         dataset_id = layer_input.dataset.id
         if dataset_id in dataset_ids:

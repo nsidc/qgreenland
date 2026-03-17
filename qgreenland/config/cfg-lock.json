@@ -3625,8 +3625,8 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Polygons representing municipalities of Greenland and associated\npopulation numbers from 1976-2024.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year to see that year's population statistics. Without the\ntemporal controller enabled, the earliest population statistics will be\nshown (for 1976).",
-                  "id": "nunagis_municipalities_population",
+                  "description": "Polygons representing municipalities of Greenland.\n\nThe geopackage associated with this layer also contains ancillary tables\nwith population statistics from Statistics Greenland. See the \"Human\nactivity/Population/Greenland municipalities and population\" temporal\ncontroller layer for a view of that timeseries information.",
+                  "id": "nunagis_municipalities",
                   "in_package": true,
                   "inputs": [
                     {
@@ -3667,25 +3667,7 @@
                     },
                     {
                       "args": [
-                        "ogr2ogr",
-                        "-lco",
-                        "ENCODING=UTF-8",
-                        "-t_srs",
-                        "EPSG:3413",
-                        "{output_dir}/joined.gpkg",
-                        "{input_dir}/merged.gpkg",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "\"SELECT\n                    municipalities.geom,\n                    municipalities.pop_municipality_2019_municip as municipality,\n                    pop.\\\"Population January 1st\\\" as population,\n                    DATE(CAST(CAST(pop.time AS int) - 1 AS STR) || '-01-01') as valid_start_date_str,\n                    DATE(CAST(CAST(pop.time AS int) - 1 AS STR) || '-12-31') as valid_end_date_str\n                    FROM municipalities\n                    RIGHT JOIN pop ON pop.municipality\n                    = municipalities.pop_municipality_2019_municip\"",
-                        "-nln",
-                        "municipalities_and_pop"
-                      ],
-                      "type": "command"
-                    },
-                    {
-                      "args": [
-                        "cp {input_dir}/joined.gpkg {output_dir}/final.gpkg",
+                        "cp {input_dir}/merged.gpkg {output_dir}/final.gpkg",
                         "&&",
                         "ogr2ogr",
                         "-update",
@@ -3694,7 +3676,7 @@
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"ALTER TABLE municipalities_and_pop\n                    ADD COLUMN start_date DATE\"",
+                        "\"ALTER TABLE pop\n                    ADD COLUMN start_date DATE\"",
                         "&&",
                         "ogr2ogr",
                         "-update",
@@ -3703,7 +3685,7 @@
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"ALTER TABLE municipalities_and_pop\n                    ADD COLUMN end_date DATE\"",
+                        "\"ALTER TABLE pop\n                    ADD COLUMN end_date DATE\"",
                         "&&",
                         "ogr2ogr",
                         "-update",
@@ -3712,7 +3694,7 @@
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"UPDATE municipalities_and_pop\n                    SET start_date = valid_start_date_str, end_date = valid_end_date_str\"",
+                        "\"UPDATE pop\n                    SET start_date = DATE(CAST(CAST(pop.time AS int) - 1 AS STR) || '-01-01'),\n                    end_date = DATE(CAST(CAST(pop.time AS int) - 1 AS STR) || '-12-31')\"",
                         "&&",
                         "ogr2ogr",
                         "-update",
@@ -3721,25 +3703,16 @@
                         "-dialect",
                         "sqlite",
                         "-sql",
-                        "\"ALTER TABLE municipalities_and_pop\n                     DROP COLUMN valid_start_date_str\"",
-                        "&&",
-                        "ogr2ogr",
-                        "-update",
-                        "{output_dir}/final.gpkg",
-                        "{output_dir}/final.gpkg",
-                        "-dialect",
-                        "sqlite",
-                        "-sql",
-                        "\"ALTER TABLE municipalities_and_pop\n                     DROP COLUMN valid_end_Date_str\""
+                        "\"ALTER TABLE pop\n                     DROP COLUMN time\""
                       ],
                       "type": "command"
                     }
                   ],
-                  "style": "municipalities_pop_timeseries",
+                  "style": null,
                   "tags": [],
-                  "title": "Greenland municipalities and population"
+                  "title": "Greenland municipalities"
                 },
-                "name": "nunagis_municipalities_population"
+                "name": "nunagis_municipalities"
               },
               {
                 "layer_cfg": {
@@ -3846,7 +3819,7 @@
               "order": [
                 ":bas_greenland_coastlines",
                 ":coastlines",
-                ":nunagis_municipalities_population",
+                ":nunagis_municipalities",
                 ":ne_states_provinces",
                 ":ne_countries"
               ],
@@ -4068,6 +4041,32 @@
       },
       {
         "children": [
+          {
+            "children": [
+              {
+                "layer_cfg": {
+                  "description": "Polygons representing municipalities of Greenland and associated\npopulation numbers from 1976-2024.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year to see that year's population statistics. Without the\ntemporal controller enabled, the earliest population statistics will be\nshown (for 1976).",
+                  "id": "municipalities_and_population",
+                  "in_package": true,
+                  "inputs": [
+                    {}
+                  ],
+                  "show": false,
+                  "steps": [],
+                  "style": "municipalities_pop_timeseries",
+                  "tags": [],
+                  "title": "Greenland municipalities and population (temporal)"
+                },
+                "name": "municipalities_and_population"
+              }
+            ],
+            "name": "Population",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
           {
             "children": [
               {

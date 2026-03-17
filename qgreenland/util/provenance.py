@@ -2,18 +2,17 @@ from pathlib import Path
 from typing import Optional
 
 from qgreenland.models.config.asset import DatasetAsset
-from qgreenland.models.config.layer import Layer
+from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import AnyStep
+from qgreenland.util.layer import (
+    get_layer_path_by_id,
+    get_vrt_referenced_layer_relpath,
+)
 
 
 def write_provenance_file(*, layer_cfg: Layer, filepath: Path) -> None:
     """Write layer provenance to a text file."""
-    # TODO: default message for layers with no processing steps? Just include a
-    # string that indicates where the data were fetched from?
-    txt_to_write = ""
-
-    if layer_cfg.steps:
-        txt_to_write = layer_provenance_text(layer_cfg)
+    txt_to_write = layer_provenance_text(layer_cfg)
 
     with open(filepath, "w") as provenance_file:
         provenance_file.write(
@@ -22,13 +21,24 @@ def write_provenance_file(*, layer_cfg: Layer, filepath: Path) -> None:
 
 
 def layer_provenance_text(layer_cfg: Layer) -> str:
+    # TODO: default message for layers with no processing steps? Just include a
+    # string that indicates where the data were fetched from?
     provenance_text = ""
-    for layer_input in layer_cfg.inputs:
-        provenance_text += _asset_provenance_text(layer_input.asset)
-    steps_provenance = _steps_provenance_text(layer_cfg.steps)
-    if steps_provenance:
-        provenance_text += "\n\n# Data processed using the following steps:\n\n"
-        provenance_text += steps_provenance
+    if referenced_layer_id := layer_cfg.vrt_layer_ref_id:
+        reference_layer_relfp = get_vrt_referenced_layer_relpath(layer_cfg)
+        reference_layer_path = get_layer_path_by_id(referenced_layer_id)
+        provenance_text = (
+            f"# Data for this layer are read from {reference_layer_relfp}.\n"
+            f'# See the "{reference_layer_path}" layer metadata for more information.'
+        )
+    elif layer_cfg.steps:
+        for layer_input in layer_cfg.inputs:
+            assert isinstance(layer_input, LayerInput)
+            provenance_text += _asset_provenance_text(layer_input.asset)
+            steps_provenance = _steps_provenance_text(layer_cfg.steps)
+            if steps_provenance:
+                provenance_text += "\n\n# Data processed using the following steps:\n\n"
+                provenance_text += steps_provenance
 
     return provenance_text
 

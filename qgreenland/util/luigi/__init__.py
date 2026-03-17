@@ -1,6 +1,7 @@
 from collections.abc import Generator
 from functools import cache
 
+from qgreenland.exceptions import QgrInvalidConfigError
 from qgreenland.models.config.asset import (
     AnyAsset,
     CmrAsset,
@@ -11,7 +12,7 @@ from qgreenland.models.config.asset import (
     RepositoryAsset,
 )
 from qgreenland.models.config.dataset import Dataset
-from qgreenland.models.config.layer import Layer
+from qgreenland.models.config.layer import Layer, VectorLayerReferenceInput
 from qgreenland.util.config.config import get_config
 from qgreenland.util.luigi.tasks.fetch import (
     FetchCmrGranule,
@@ -21,7 +22,11 @@ from qgreenland.util.luigi.tasks.fetch import (
     FetchTask,
     MergeFetchedDataTask,
 )
-from qgreenland.util.luigi.tasks.main import ChainableTask, FinalizeTask
+from qgreenland.util.luigi.tasks.main import (
+    ChainableTask,
+    FinalizeTask,
+    GenerateVrtFileTask,
+)
 
 # TODO: Make "fetch" tasks into Python "steps"?
 ASSET_TYPE_TASKS: dict[type[AnyAsset], type[FetchTask]] = {
@@ -56,7 +61,9 @@ def fetch_task_from_layer(
     for dataset_input in layer_cfg.inputs:
         # Check if it's an online layer; those have no fetching or processing
         # pipeline.
-        if isinstance(dataset_input.asset, OnlineAsset):
+        if isinstance(dataset_input, VectorLayerReferenceInput) or isinstance(
+            dataset_input.asset, OnlineAsset
+        ):
             continue
 
         dataset_cfg = dataset_input.dataset
@@ -111,12 +118,15 @@ def generate_layer_pipelines() -> list[FinalizeTask]:
 
     layers = config.layers.values()
 
+    # Generate final tasks for layers that need processing (not online or vrt
+    # layers)
+    final_tasks_by_layer_id: dict[str, FinalizeTask] = {}
     for layer_cfg in layers:
-        if layer_cfg.is_online_only:
+        if layer_cfg.is_online_only or layer_cfg.is_vrt_layer:
             continue
 
         # Create tasks, making each task dependent on the previous task.
-        task: FetchTask | MergeFetchedDataTask | ChainableTask
+        task: FetchTask | MergeFetchedDataTask | ChainableTask | GenerateVrtFileTask
         task = fetch_task_from_layer(layer_cfg)
 
         # If the layer has no steps, it's just fetched and finalized.
@@ -134,7 +144,31 @@ def generate_layer_pipelines() -> list[FinalizeTask]:
             requires_task=task,
             layer_id=layer_cfg.id,
         )
+        final_tasks_by_layer_id[layer_cfg.id] = final_task
+        tasks.append(final_task)
 
+    # Generate final tasks for VRT layers, which rely on processed layers above.
+    for layer_cfg in layers:
+        referenced_layer_id = layer_cfg.vrt_layer_ref_id
+        if referenced_layer_id is None:
+            continue
+
+        referenced_layer_final_task = final_tasks_by_layer_id.get(referenced_layer_id)
+        if not referenced_layer_final_task:
+            raise QgrInvalidConfigError(
+                f"VRT Layer {layer_cfg.id} references a layer"
+                f" that is not present: {referenced_layer_id}."
+            )
+
+        task = GenerateVrtFileTask(
+            requires_task=referenced_layer_final_task,
+            layer_id=layer_cfg.id,
+        )
+
+        final_task = FinalizeTask(
+            requires_task=task,
+            layer_id=layer_cfg.id,
+        )
         tasks.append(final_task)
 
     return tasks

@@ -1,11 +1,11 @@
 from functools import cached_property
 from pathlib import Path
-from typing import Any, Optional, Union, cast
+from typing import Any, Optional, TypeGuard, Union, cast
 
 from pydantic import Field, validator
 
 from qgreenland.models.base_model import QgrBaseModel
-from qgreenland.models.config.asset import OnlineAsset
+from qgreenland.models.config.asset import ManualAsset, OnlineAsset
 from qgreenland.models.config.dataset import AnyAsset, Dataset
 from qgreenland.models.config.step import AnyStep
 from qgreenland.util.layer_style import get_style_filepath
@@ -26,6 +26,20 @@ class LayerInput(QgrBaseModel):
 
     asset: AnyAsset
     """The actual input asset (file or files)."""
+
+
+class VectorLayerReferenceInput(QgrBaseModel):
+    """Layer input that references another vector layer's finalized output via a VRT.
+
+    Note that the author of layers using `VectorLayerReferenceInput`must
+    validate the end result manually.
+    """
+
+    layer_id: str
+    """The referenced layer's ID."""
+
+    sql: str
+    """SQL statement that selects data from the referenced layer."""
 
 
 class Layer(QgrBaseModel):
@@ -53,35 +67,89 @@ class Layer(QgrBaseModel):
     Omit the file extension.
     """
 
-    inputs: list[LayerInput]
+    inputs: list[LayerInput | VectorLayerReferenceInput]
 
     steps: Optional[list[AnyStep]]
 
     @validator("inputs")
     @classmethod
-    def ensure_inputs_online_asset(cls, value):
-        """Ensure that, if an OnlineAsset input exists, that it is the only one."""
+    def ensure_inputs(cls, value):
+        """Ensure that inputs with unique expectations match those expectations.
+
+        * If an input exists with an OnlineAsset asset, it must be the only one.
+        * If a VectorLayerReferenceInput input exists, it must be the only one.
+        """
         inputs = value
 
+        # Currently, both cases expect only 1 input. If the number of inputs for
+        # a layer is 1, then this check passes.
         if len(inputs) <= 1:
             return inputs
 
-        if any(type(lyr_input.asset) is OnlineAsset for lyr_input in value):
+        # Online layers are identfied by the presence of a single LayerInput
+        # with it's `asset` of type OnlineAsset.
+        if any(
+            type(lyr_input.asset) is OnlineAsset
+            for lyr_input in inputs
+            if type(lyr_input) is LayerInput
+        ):
             raise ValueError(
                 "When an OnlineAsset is used for a layer input"
                 " it must be the only asset."
                 " OnlineAsset is only used for online-only layers."
             )
+        elif any(type(lyr_input) is VectorLayerReferenceInput for lyr_input in inputs):
+            raise ValueError(
+                "When a VectorLayerReferenceInput is used for a layer input"
+                " it must be the only input."
+            )
 
         return inputs
 
+    @staticmethod
+    def _is_online_only(
+        inputs: list[LayerInput | VectorLayerReferenceInput],
+    ) -> TypeGuard[list[LayerInput]]:
+        """Typegaurd OnlineOnly layers having only LayerInput."""
+        return (
+            len(inputs) == 1
+            and isinstance(inputs[0], LayerInput)
+            and type(inputs[0].asset) is OnlineAsset
+        )
+
     @cached_property
     def is_online_only(self):
-        return len(self.inputs) == 1 and type(self.inputs[0].asset) is OnlineAsset
+        return self._is_online_only(self.inputs)
+
+    @staticmethod
+    def _is_vrt_layer(
+        inputs: list[LayerInput | VectorLayerReferenceInput],
+    ) -> TypeGuard[list[VectorLayerReferenceInput]]:
+        """Typegaurd VRT layers having only VectorLayerReferenceInput."""
+        return len(inputs) == 1 and isinstance(inputs[0], VectorLayerReferenceInput)
+
+    @cached_property
+    def is_vrt_layer(self):
+        return self._is_vrt_layer(self.inputs)
+
+    @cached_property
+    def vrt_layer_ref_id(self) -> str | None:
+        """If this is a VRT layer, return the referenced data's ID."""
+        if not self._is_vrt_layer(self.inputs):
+            return None
+
+        return self.inputs[0].layer_id
+
+    @cached_property
+    def includes_manual_asset(self):
+        return (
+            isinstance(self.inputs[0], LayerInput)
+            and type(self.inputs[0].asset) is ManualAsset
+        )
 
     @cached_property
     def online_only_asset(self) -> OnlineAsset | None:
-        if self.is_online_only:
+        if self._is_online_only(self.inputs):
             asset = self.inputs[0].asset
             asset = cast(OnlineAsset, asset)
             return asset
