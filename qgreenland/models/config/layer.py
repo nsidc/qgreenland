@@ -61,14 +61,19 @@ class Layer(QgrBaseModel):
     @classmethod
     def ensure_inputs_online_asset(cls, value):
         """Ensure that, if an OnlineAsset input exists, that it is the only one."""
-        if any(type(input) is OnlineAsset for input in value) and len(value) > 1:
+        inputs = value
+
+        if len(inputs) <= 1:
+            return inputs
+
+        if any(type(lyr_input.asset) is OnlineAsset for lyr_input in value):
             raise ValueError(
-                "When an OnlineAsset is specified for a layer input"
+                "When an OnlineAsset is used for a layer input"
                 " it must be the only asset."
                 " OnlineAsset is only used for online-only layers."
             )
 
-        return value
+        return inputs
 
     @cached_property
     def is_online_only(self):
