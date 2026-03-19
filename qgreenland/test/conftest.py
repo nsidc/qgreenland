@@ -1,5 +1,3 @@
-import importlib
-
 import pytest
 
 from qgreenland.models.config.asset import HttpAsset, OnlineAsset
@@ -141,25 +139,15 @@ def raster_layer_cfg():
 #     return compiled_config
 
 
-@pytest.fixture(autouse=True)
-def full_cfg(monkeypatch):
-    """Return an example config.
-
-    This is automatically run for all tests to ensure that the default test
-    config dir is setup (and thus `get_config`).
-    """
-    importlib.reload(config)
-    monkeypatch.setattr(config, "CONFIG_DIR", TEST_CONFIG_DIR)
-    config.init_config()
+@pytest.fixture()
+def full_cfg():
+    """Initialize and return test config."""
+    config.init_config(config_dir=TEST_CONFIG_DIR)
     compiled_config = config.get_config()
 
-    def mock_get_config():
-        return compiled_config
-
-    monkeypatch.setattr(config, "get_config", mock_get_config)
     yield compiled_config
 
-    importlib.reload(config)
+    config.init_config()
 
 
 @pytest.fixture(scope="session")

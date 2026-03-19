@@ -20,15 +20,15 @@ def init_config(
     include_patterns: tuple[str, ...] = (),
     exclude_patterns: tuple[str, ...] = (),
     exclude_manual_asset_datasets: bool = False,
+    config_dir: Path = CONFIG_DIR,
 ) -> None:
     global _CONFIG
 
     if _CONFIG is not None:
-        logging.warning("Config already initialized.")
-        return
+        logging.warning("Config already initialized. Re-compiling.")
 
     _CONFIG = compile_cfg(
-        CONFIG_DIR.resolve(),
+        config_dir.resolve(),
         include_patterns=include_patterns,
         exclude_patterns=exclude_patterns,
         exclude_manual_asset_datasets=exclude_manual_asset_datasets,
