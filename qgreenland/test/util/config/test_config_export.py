@@ -9,10 +9,6 @@ from qgreenland.util.config import export
 from qgreenland.util.config.export import export_config_csv, export_config_manifest
 
 
-@patch(
-    "qgreenland.util.layer.RELEASE_LAYERS_DIR",
-    new=MOCK_RELEASE_LAYERS_DIR,
-)
 def test__layer_manifest_final_assets(full_cfg):
     expected = [
         {

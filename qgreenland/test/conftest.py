@@ -4,7 +4,11 @@ from qgreenland.models.config.asset import HttpAsset, OnlineAsset
 from qgreenland.models.config.dataset import Dataset
 from qgreenland.models.config.layer import Layer, LayerInput, VectorLayerReferenceInput
 from qgreenland.models.config.layer_group import LayerGroupSettings, RootGroupSettings
-from qgreenland.test.constants import TEST_CONFIG_DIR
+from qgreenland.test.constants import (
+    MOCK_COMPILE_PACKAGE_DIR,
+    MOCK_RELEASE_LAYERS_DIR,
+    TEST_CONFIG_DIR,
+)
 from qgreenland.util.config import config
 from qgreenland.util.qgis.project import QgsApplicationContext
 from qgreenland.util.tree import LayerGroupNode, LayerNode
@@ -125,10 +129,17 @@ def raster_layer_cfg():
 
 
 @pytest.fixture()
-def full_cfg():
+def full_cfg(monkeypatch):
     """Initialize and return test config."""
     config.init_config(config_dir=TEST_CONFIG_DIR)
     compiled_config = config.get_config()
+
+    monkeypatch.setattr(
+        "qgreenland.util.layer.RELEASE_LAYERS_DIR", MOCK_RELEASE_LAYERS_DIR
+    )
+    monkeypatch.setattr(
+        "qgreenland.util.layer.COMPILE_PACKAGE_DIR", MOCK_COMPILE_PACKAGE_DIR
+    )
 
     yield compiled_config
 
