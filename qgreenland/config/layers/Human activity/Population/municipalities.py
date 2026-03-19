@@ -1,11 +1,5 @@
 from qgreenland.models.config.layer import Layer, VectorLayerReferenceInput
 
-# TODO: Uncomment below if needed:
-# from qgreenland.models.config.step import CommandStep
-
-
-# The name of the `layer` variable doesn't matter here. You may create layers
-# with a list comprehension as well, as long as you assign it to a variable.
 layer = Layer(
     id="municipalities_and_population",
     title="Greenland municipalities and population (temporal)",
