@@ -124,21 +124,6 @@ def raster_layer_cfg():
     return MockRasterLayerConfig
 
 
-# @pytest.fixture(autouse=True)
-# def full_cfg(monkeypatch):
-#     """Return an example config."""
-#     monkeypatch.setattr(config, "CONFIG_DIR", TEST_CONFIG_DIR)
-#     compiled_config = compile_cfg(TEST_CONFIG_DIR)
-#
-#     def mock_get_config():
-#         return compiled_config
-#
-#     monkeypatch.setattr(config, "get_config", mock_get_config)
-#
-#
-#     return compiled_config
-
-
 @pytest.fixture()
 def full_cfg():
     """Initialize and return test config."""
