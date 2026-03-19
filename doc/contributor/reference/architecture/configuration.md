@@ -113,6 +113,70 @@ not handle conflicts!
 
 ```
 
+#### Online-only layers
+
+Some layers are pointers to web map services. These layers are distinguished
+from others by having a single `LayerInput` specifying an `OnlineAsset`. When an
+`OnlineAsset` is used in a layer's inputs, it must be the only input. No data
+processing steps are applied to these layers since they just display data from
+an online source.
+
+#### Virtual vector layers
+
+A virtual vector layer is a layer that references another vector layer in the
+project. These layers are identified by the presence of a single
+`VectorLayerReferenceInput` (instead of a `LayerInput`). The
+`VectorLayerReferenceInput` is handy when one wants to create a layer simply
+displays the data from another layer in a unique way, without duplicating the
+data.
+
+The primary use-case for virtual vector layers are timeseries layers that have a
+temporal controller configuration. The QGIS temporal controller assumes there is
+one geometry per timestamp. For some layers, this is problematic because the
+geometry is static (e.g., Greenland's municipalities polygons), but the
+population label we apply to it changes over time. The
+`VectorLayerReferenceInput` allows one to reference another layer and use SQL to
+define a view of the data that prevents duplicating data on disk.
+
+Example configuration:
+
+```
+VectorLayerReferenceInput(
+    layer_id="nunagis_municipalities",
+    sql=(
+        """SELECT
+            municipalities.geom,
+            municipalities.municipality,
+            pop.start_date,
+            pop.end_date,
+            pop.\"Population January 1st\" as population
+            FROM municipalities
+            RIGHT JOIN pop ON pop.municipality
+            = municipalities.municipality"""
+    ),
+)
+```
+
+In this example, the layer with ID `nunagis_municipalities` is being
+referenced. its data file contains two tables, "municipalities" and "pop". The
+municipalities table contains the geometries for Greenland's municipalities and
+it is joined to the "pop" table containing 50 years of population numbers for
+each municipality.
+
+Virutal vector layers are represented on disk as `.vrt` files in the final output:
+
+```
+<OGRVRTDataSource>
+    <OGRVRTLayer name="municipalities_and_population">
+        <SrcDataSource relativeToVRT="1">../../../Reference/Borders/Greenland municipalities/nunagis_municipalities.gpkg</SrcDataSource>
+        <SrcSQL>SELECT municipalities.geom, municipalities.municipality, pop.start_date, pop.end_date, pop."Population January 1st" as population FROM municipalities RIGHT JOIN pop ON pop.municipality = municipalities.municipality</SrcSQL>
+    </OGRVRTLayer>
+</OGRVRTDataSource>
+```
+
+Note that virtual vector layers have no processing applied from them and inherit
+metadata from the referenced data layer.
+
 
 (configuration-layer-steps)=
 ### Layer steps
