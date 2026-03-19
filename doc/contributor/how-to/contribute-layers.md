@@ -12,6 +12,9 @@ real ones. NOTE: When generating templates, but _not_ when fetching, you can
 use `./scripts/experimental/local_cli.sh config-template <dataset|layer>` in
 place of the `cli.sh` commands.
 
+For detailed documentation about how to configure QGreenland, see
+[Configuration](../reference/architecture/configuration.md).
+
 ## Add a dataset
 
 If the layer does not use an existing dataset, start with a new dataset.
