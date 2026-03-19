@@ -18,7 +18,7 @@ def test_get_layer_config_one():
     config = get_config()
     # If the layer does not exist, an exception will be raised and pytest will
     # appropriately fail.
-    assert config.layers["background"]
+    assert config.layers["example_raster"]
 
 
 # TODO: Remove all tests that act on a real config. The vision for the future is
@@ -34,7 +34,7 @@ def test_immutable_model():
     with pytest.raises(TypeError):
         # TODO: Remove type-ignore below.
         #    https://github.com/pytest-dev/pytest/issues/8984
-        config.layers["background"].description = "override"  # type:ignore
+        config.layers["example_raster"].description = "override"  # type:ignore
 
 
 def test_layer_indexes():

@@ -6,7 +6,7 @@ from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import AnyStep
 from qgreenland.util.layer import (
     get_layer_path_by_id,
-    get_vrt_referenced_layer_relpath,
+    get_vrt_ref_data_relpath,
 )
 
 
@@ -25,7 +25,7 @@ def layer_provenance_text(layer_cfg: Layer) -> str:
     # string that indicates where the data were fetched from?
     provenance_text = ""
     if referenced_layer_id := layer_cfg.vrt_layer_ref_id:
-        reference_layer_relfp = get_vrt_referenced_layer_relpath(layer_cfg)
+        reference_layer_relfp = get_vrt_ref_data_relpath(layer_cfg)
         reference_layer_path = get_layer_path_by_id(referenced_layer_id)
         provenance_text = (
             f"# Data for this layer are read from {reference_layer_relfp}.\n"

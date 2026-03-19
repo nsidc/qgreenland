@@ -1,11 +1,13 @@
+import importlib
+
 import pytest
 
 from qgreenland.models.config.asset import HttpAsset, OnlineAsset
 from qgreenland.models.config.dataset import Dataset
-from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.layer import Layer, LayerInput, VectorLayerReferenceInput
 from qgreenland.models.config.layer_group import LayerGroupSettings, RootGroupSettings
 from qgreenland.test.constants import TEST_CONFIG_DIR
-from qgreenland.util.config.compile import compile_cfg
+from qgreenland.util.config import config
 from qgreenland.util.qgis.project import QgsApplicationContext
 from qgreenland.util.tree import LayerGroupNode, LayerNode
 
@@ -124,10 +126,40 @@ def raster_layer_cfg():
     return MockRasterLayerConfig
 
 
-@pytest.fixture
-def full_cfg():
-    """Return an example config."""
-    return compile_cfg(TEST_CONFIG_DIR)
+# @pytest.fixture(autouse=True)
+# def full_cfg(monkeypatch):
+#     """Return an example config."""
+#     monkeypatch.setattr(config, "CONFIG_DIR", TEST_CONFIG_DIR)
+#     compiled_config = compile_cfg(TEST_CONFIG_DIR)
+#
+#     def mock_get_config():
+#         return compiled_config
+#
+#     monkeypatch.setattr(config, "get_config", mock_get_config)
+#
+#
+#     return compiled_config
+
+
+@pytest.fixture(autouse=True)
+def full_cfg(monkeypatch):
+    """Return an example config.
+
+    This is automatically run for all tests to ensure that the default test
+    config dir is setup (and thus `get_config`).
+    """
+    importlib.reload(config)
+    monkeypatch.setattr(config, "CONFIG_DIR", TEST_CONFIG_DIR)
+    config.init_config()
+    compiled_config = config.get_config()
+
+    def mock_get_config():
+        return compiled_config
+
+    monkeypatch.setattr(config, "get_config", mock_get_config)
+    yield compiled_config
+
+    importlib.reload(config)
 
 
 @pytest.fixture(scope="session")
@@ -150,3 +182,52 @@ def online_layer_node(online_layer_cfg):
 @pytest.fixture
 def raster_layer_node(raster_layer_cfg):
     return _layer_node(raster_layer_cfg)
+
+
+ref_layer_id = "example_vector"
+mock_dataset = Dataset(
+    id=f"{ref_layer_id}_dataset",
+    assets=[
+        HttpAsset(
+            id="dataset_http",
+            urls=["https://example.com/get/1"],
+        ),
+    ],
+    metadata=_mock_metadata,
+)
+
+MockVectorLayerConfig = Layer(
+    id=ref_layer_id,
+    title="Vector layer used by a VRT",
+    description="Example layer description.",
+    tags=["foo", "bar", "baz"],
+    inputs=[
+        LayerInput(
+            dataset=mock_dataset,
+            asset=mock_dataset.assets["dataset_http"],
+        ),
+    ],
+)
+
+MockVectorVrtLayerConfig = Layer(
+    id="example_vector_vrt",
+    title="Vector VRT layer referencing vector_example",
+    description="Example layer description.",
+    tags=["foo", "bar", "baz"],
+    inputs=[
+        VectorLayerReferenceInput(
+            layer_id=ref_layer_id,
+            sql="SELECT * FROM foo as subset limit 1",
+        ),
+    ],
+)
+
+
+@pytest.fixture
+def vector_vrt_layer_cfg():
+    return MockVectorVrtLayerConfig
+
+
+@pytest.fixture
+def vector_layer_cfg():
+    return MockVectorLayerConfig

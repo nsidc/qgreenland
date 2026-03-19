@@ -1,0 +1,6 @@
+<OGRVRTDataSource>
+    <OGRVRTLayer name="municipalities_and_population">
+        <SrcDataSource relativeToVRT="1">../../Vector layer used by a VRT/example_vector.gpkg</SrcDataSource>
+        <SrcSQL>SELECT * FROM foo as subset limit 1</SrcSQL>
+    </OGRVRTLayer>
+</OGRVRTDataSource>

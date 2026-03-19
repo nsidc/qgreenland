@@ -90,11 +90,13 @@ def get_vrt_rel_ref_data_dir(*, reference_node: LayerNode, vrt_node: LayerNode) 
     return rel_reference_data_dir
 
 
-# TODO: rename to something like `get_vrt_referenced_layer_data_relpath`?
-def get_vrt_referenced_layer_relpath(layer_cfg: Layer) -> Path | None:
+def get_vrt_ref_data_relpath(layer_cfg: Layer) -> Path | None:
     """Given a VRT layer config, return the relative path to the referenced data.
 
     Returns None if the layer is not a vrt layer.
+
+    This function only works if data has been processed and staged in the layer
+    release dir.
     """
     referenced_layer_id = layer_cfg.vrt_layer_ref_id
     if referenced_layer_id is None:
