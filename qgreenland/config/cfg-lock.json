@@ -3653,6 +3653,8 @@
                         "ogr2ogr",
                         "{output_dir}/merged.gpkg",
                         "{input_dir}/fetched.geojson",
+                        "-sql",
+                        "\"SELECT\n                    pop_municipality_2019_municip as municipality\n                    FROM ESRIJSON\"",
                         "-nln",
                         "municipalities",
                         "&&",
@@ -3708,7 +3710,7 @@
                       "type": "command"
                     }
                   ],
-                  "style": null,
+                  "style": "nunagis_municipalities",
                   "tags": [],
                   "title": "Greenland municipalities"
                 },

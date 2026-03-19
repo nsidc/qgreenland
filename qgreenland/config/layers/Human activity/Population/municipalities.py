@@ -22,13 +22,13 @@ layer = Layer(
             sql=(
                 """SELECT
                     municipalities.geom,
-                    municipalities.pop_municipality_2019_municip as municipality,
+                    municipalities.municipality,
                     pop.start_date,
                     pop.end_date,
                     pop.\"Population January 1st\" as population
                     FROM municipalities
                     RIGHT JOIN pop ON pop.municipality
-                    = municipalities.pop_municipality_2019_municip"""
+                    = municipalities.municipality"""
             ),
         )
     ],

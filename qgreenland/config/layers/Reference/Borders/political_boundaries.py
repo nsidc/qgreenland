@@ -17,8 +17,7 @@ nunagis_municipalities_population = Layer(
         """
     ),
     tags=[],
-    # TODO:
-    # style="municipalities_pop_timeseries",
+    style="nunagis_municipalities",
     inputs=[
         # This input provides a multipolygon of municipalities and population numbers for 2019
         LayerInput(
@@ -39,6 +38,12 @@ nunagis_municipalities_population = Layer(
                 "ogr2ogr",
                 "{output_dir}/merged.gpkg",
                 "{input_dir}/fetched.geojson",
+                "-sql",
+                # Just select the geometry and municipality name. The 2019 pop
+                # stats are out of date and the other fields are not useful.
+                """\"SELECT
+                    pop_municipality_2019_municip as municipality
+                    FROM ESRIJSON\"""",
                 "-nln",
                 "municipalities",
                 "&&",
