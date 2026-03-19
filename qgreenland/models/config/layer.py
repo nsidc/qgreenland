@@ -31,7 +31,7 @@ class LayerInput(QgrBaseModel):
 class VectorLayerReferenceInput(QgrBaseModel):
     """Layer input that references another vector layer's finalized output via a VRT.
 
-    Note that the author of layers using `VectorLayerReferenceInput`must
+    Note that the author of layers using `VectorLayerReferenceInput` must
     validate the end result manually.
     """
 
