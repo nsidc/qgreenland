@@ -59,8 +59,8 @@ def fetch_task_from_layer(
     # TODO: Unit test!
     tasks = []
     for dataset_input in layer_cfg.inputs:
-        # Check if it's an online layer; those have no fetching or processing
-        # pipeline.
+        # Check if it's an online or vrt layer; those have no fetching or
+        # processing pipeline.
         if isinstance(dataset_input, VectorLayerReferenceInput) or isinstance(
             dataset_input.asset, OnlineAsset
         ):
