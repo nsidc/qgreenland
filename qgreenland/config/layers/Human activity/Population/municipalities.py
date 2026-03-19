@@ -21,7 +21,6 @@ layer = Layer(
             layer_id="nunagis_municipalities",
             sql=(
                 """SELECT
-
                     municipalities.geom,
                     municipalities.pop_municipality_2019_municip as municipality,
                     pop.start_date,
