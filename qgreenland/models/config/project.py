@@ -1,7 +1,6 @@
 from pathlib import Path
 from typing import Any
 
-import fiona
 from pydantic import root_validator, validator
 
 import qgreenland.exceptions as exc
@@ -51,6 +50,10 @@ class BoundariesInfo(QgrBaseModel):
             raise RuntimeError("Filepath must be populated.")
 
         fp = Path(values["filepath"].format(assets_dir=ASSETS_DIR))
+
+        # Import fiona here instead of at the top of the file because this
+        # conflicts with gdal imports.
+        import fiona
 
         with fiona.open(fp) as ifile:
             features = list(ifile)
