@@ -149,17 +149,20 @@ def test_multiple_input_vrt_fails():
         )
 
 
-def test_is_vrt_layer():
+def test_vrt_layer():
+    ref_layer_id = "dataset_http"
     layer = Layer(
         id="foo",
         title="Bar",
         description="A very detailed description.",
         inputs=[
             VectorLayerReferenceInput(
-                layer_id="dataset_http",
+                layer_id=ref_layer_id,
                 sql="SELECT * FROM dataset_http",
             ),
         ],
     )
 
     assert layer.is_vrt_layer
+
+    assert layer.vrt_layer_ref_id is not None and layer.vrt_layer_ref_id == ref_layer_id
