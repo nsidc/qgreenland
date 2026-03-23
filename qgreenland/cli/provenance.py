@@ -2,8 +2,6 @@ import sys
 
 import click
 
-from qgreenland.util.provenance import layer_provenance_text
-
 
 @click.command()
 @click.argument("layer_id")
@@ -12,6 +10,7 @@ def provenance(layer_id):
     # Hack to work around issue with sphinx-click:
     #     https://github.com/click-contrib/sphinx-click/issues/86#issuecomment-991196764
     from qgreenland.util.config.config import get_config, init_config
+    from qgreenland.util.provenance import layer_provenance_text
 
     init_config()
     config = get_config()
