@@ -163,6 +163,8 @@ autodoc_default_options = {
 
 autodoc_mock_imports = [
     "fiona",
+    "fiona.crs",
+    "fiona.open",
 ]
 
 # Show the typehints in the description of each object instead of the signature.
