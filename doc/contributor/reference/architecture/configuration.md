@@ -81,9 +81,10 @@ in the QGIS Layers Panel.
 ### Layer inputs
 
 A layer can be created from multiple `inputs`, which is given by a list of
-`LayerInputs`, each of which references a specific dataset and an asset within
-that dataset. For example, the `nunagis_municipalities` layer has two
-inputs which are combined together to create the output layer in QGIS:
+{class}`~qgreenland.models.config.layer.LayerInput`s, each of which references a
+specific dataset and an asset within that dataset. For example, the
+`nunagis_municipalities` layer has two inputs which are combined together to
+create the output layer in QGIS:
 
 
 ```
@@ -116,19 +117,22 @@ not handle conflicts!
 #### Online-only layers
 
 Some layers are pointers to web map services. These layers are distinguished
-from others by having a single `LayerInput` specifying an `OnlineAsset`. When an
-`OnlineAsset` is used in a layer's inputs, it must be the only input. No data
-processing steps are applied to these layers since they just display data from
-an online source.
+from others by having a single
+{class}`~qgreenland.models.config.layer.LayerInput` specifying an
+{class}`~qgreenland.models.config.asset.OnlineAsset`. When an
+{class}`~qgreenland.models.config.asset.OnlineAsset` is used in a layer's
+inputs, it must be the only input. No data processing steps are applied to these
+layers since they just display data from an online source.
 
 #### Virtual vector layers
 
 A virtual vector layer is a layer that references another vector layer in the
 project. These layers are identified by the presence of a single
-`VectorLayerReferenceInput` (instead of a `LayerInput`). The
-`VectorLayerReferenceInput` is handy when one wants to create a layer simply
-displays the data from another layer in a unique way, without duplicating the
-data.
+{class}`~qgreenland.models.config.layer.VectorLayerReferenceInput` (instead of a
+{class}`~qgreenland.models.config.layer.LayerInput`). The
+{class}`~qgreenland.models.config.layer.VectorLayerReferenceInput` is handy when
+one wants to create a layer that displays the data from another layer in a
+unique way, without duplicating the data.
 
 The primary use-case for virtual vector layers are timeseries layers that have a
 temporal controller configuration. The QGIS temporal controller assumes there is
@@ -175,7 +179,10 @@ Virutal vector layers are represented on disk as `.vrt` files in the final outpu
 ```
 
 Note that virtual vector layers have no processing applied from them and inherit
-metadata from the referenced data layer.
+metadata from the referenced data layer. 
+
+Note also that only one vector layer may be referenced - it is not currently
+possible to reference data from multiple layers to create a composite view.
 
 
 (configuration-layer-steps)=
