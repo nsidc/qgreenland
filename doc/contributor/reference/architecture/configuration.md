@@ -82,7 +82,7 @@ in the QGIS Layers Panel.
 
 A layer can be created from multiple `inputs`, which is given by a list of
 `LayerInputs`, each of which references a specific dataset and an asset within
-that dataset. For example, the `nunagis_municipalities_population` layer has two
+that dataset. For example, the `nunagis_municipalities` layer has two
 inputs which are combined together to create the output layer in QGIS:
 
 
