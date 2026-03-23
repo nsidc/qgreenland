@@ -1,6 +1,7 @@
+import inspect
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import Literal, Optional, Union
+from typing import Literal, Optional, Protocol, Union, runtime_checkable
 
 from pydantic import root_validator
 
@@ -61,4 +62,23 @@ class CommandStep(QgrBaseModel, LayerStep):
         return " ".join([str(arg) for arg in self.args])
 
 
-AnyStep = Union[CommandStep]
+# https://docs.python.org/3/library/typing.html#annotating-callable-objects
+@runtime_checkable
+class PythonFuncStep(Protocol):
+    def __call__(self, *, input_dir: str, output_dir: str) -> None:
+        ...
+
+
+class PythonStep(QgrBaseModel, LayerStep):
+    id = "todo"
+
+    type: Literal["python"] = "python"
+
+    function: PythonFuncStep
+
+    @cached_property
+    def provenance(self) -> str:
+        return inspect.getsource(self.function)
+
+
+AnyStep = Union[CommandStep, PythonStep]

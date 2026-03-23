@@ -17,7 +17,7 @@ def interpolate_args(
     return [arg.eval(**kwargs) for arg in args]
 
 
-def run_qgr_command(args: list[str]) -> None:
+def run_qgr_command(args: list[str], allow_breakpoint: bool = False) -> None:
     """Run a command in the `qgreenland-cmd` environment."""
     conda_env_name = "qgreenland-cmd"
     # With conda or mamba, `. activate myenv` works as expected, but with micromamba, we
@@ -37,11 +37,13 @@ def run_qgr_command(args: list[str]) -> None:
     else:
         cmd = [".", "activate", conda_env_name, "&&", *args]
 
-    run_cmd(cmd)
+    run_cmd(cmd, allow_breakpoint=allow_breakpoint)
     return
 
 
-def run_cmd(args: list[str]) -> subprocess.CompletedProcess:
+def run_cmd(
+    args: list[str], allow_breakpoint: bool = False
+) -> subprocess.CompletedProcess:
     """Run a command and log it."""
     # Hack. The activation of a conda environment does not work without `shell=True`.
     cmd_str = " ".join(str(arg) for arg in args)
@@ -52,10 +54,15 @@ def run_cmd(args: list[str]) -> subprocess.CompletedProcess:
         cmd_str,
         shell=True,
         executable="/bin/bash",
-        capture_output=True,
+        capture_output=not allow_breakpoint,
     )
 
     if result.returncode != 0:
+        if allow_breakpoint:
+            raise exc.QgrSubprocessError(
+                "Subprocess failed. No output captured because `allow_breakpoint` is True.",
+            )
+
         stdout = str(result.stdout, encoding="utf8")
         stderr = str(result.stderr, encoding="utf8")
         output = f"===STDOUT===\n{stdout}\n\n===STDERRR===\n{stderr}"

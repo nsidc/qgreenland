@@ -4,10 +4,17 @@ from qgreenland.models.config.dataset import Dataset
 statbank = Dataset(
     id="statbank",
     assets=[
+        # This asset from the "Population in Municipalities January 1st 1977-2026" table.
         HttpAsset(
             id="municipalities_population",
             # This URL returns a csv file `BEXSTB.csv` that has data for Jan 1, 1977-present
             urls=["https://bank.stat.gl:443/sq/e38caec2-e806-4a9d-9a01-59f021282b56"],
+        ),
+        # This asset from the "Population in Localities January 1st by locality and time" table.
+        HttpAsset(
+            id="localities_population",
+            # This URL returns a csv file `BEXSTD.csv` that has data for Jan 1, 1977-present
+            urls=["https://bank.stat.gl:443/sq/fbea8c31-dac7-420f-aa7d-dd93ea59f91e"],
         ),
     ],
     metadata={
