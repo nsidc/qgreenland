@@ -1,7 +1,7 @@
 import qgreenland.config.datasets.political_boundaries as political_boundaries
 from qgreenland.config.datasets.asiaq_nunagis import asiaq_nunagis
 from qgreenland.config.datasets.statbank import statbank
-from qgreenland.config.helpers.layers.populated_places import init_process
+from qgreenland.config.helpers.layers.populated_places import process_populated_places
 from qgreenland.models.config.layer import Layer, LayerInput
 from qgreenland.models.config.step import PythonStep
 
@@ -48,7 +48,7 @@ QGreenland Team - Noted Data Issues:
     ],
     steps=[
         PythonStep(
-            function=init_process,
+            function=process_populated_places,
         ),
     ],
 )

@@ -60,7 +60,8 @@ def run_cmd(
     if result.returncode != 0:
         if allow_breakpoint:
             raise exc.QgrSubprocessError(
-                "Subprocess failed. No output captured because `allow_breakpoint` is True.",
+                "Subprocess failed."
+                " No output captured because `allow_breakpoint` is True.",
             )
 
         stdout = str(result.stdout, encoding="utf8")

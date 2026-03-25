@@ -44,7 +44,7 @@ def python_runner(
         [
             "python",
             "-c",
-            f"\"{import_str}; {name}(input_dir='{input_dir}', output_dir='{output_dir}')\"",
+            f"\"{import_str}; {name}(input_dir='{input_dir}', output_dir='{output_dir}')\"",  # noqa
         ],
         allow_breakpoint=allow_breakpoint,
     )
