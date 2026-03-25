@@ -65,12 +65,15 @@ class CommandStep(QgrBaseModel, LayerStep):
 # https://docs.python.org/3/library/typing.html#annotating-callable-objects
 @runtime_checkable
 class PythonFuncStep(Protocol):
+    __qualname__: str
+    __module__: str
+
     def __call__(self, *, input_dir: str, output_dir: str) -> None:
         ...
 
 
 class PythonStep(QgrBaseModel, LayerStep):
-    id = "todo"
+    id: str = "todo"
 
     type: Literal["python"] = "python"
 
