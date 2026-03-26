@@ -1,4 +1,3 @@
-import inspect
 from abc import ABC, abstractmethod
 from functools import cached_property
 from typing import Literal, Optional, Protocol, Union, runtime_checkable
@@ -7,6 +6,7 @@ from pydantic import root_validator
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalStr
+from qgreenland.util.version import get_build_version
 
 
 class LayerStep(ABC):
@@ -81,7 +81,14 @@ class PythonStep(QgrBaseModel, LayerStep):
 
     @cached_property
     def provenance(self) -> str:
-        return inspect.getsource(self.function)
+        module = self.function.__module__
+        name = self.function.__qualname__
+
+        git_version = get_build_version()
+
+        provenance_str = f"Python Step: {module}:{name} @ {git_version}"
+
+        return provenance_str
 
 
 AnyStep = Union[CommandStep, PythonStep]
