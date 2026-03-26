@@ -1,4 +1,4 @@
-# v4.0.0alpha3 (TODO)
+# v4.0.0alpha3 (2025-03-26)
 
 - Added layers:
   - "Glaciology/PROMICE 2022 ice mask/"
