@@ -109,6 +109,7 @@ class PythonStep(QgrBaseModel, LayerStep):
     @validator("function")
     @classmethod
     def validate_function_sig(cls, v):
+        """Validate that the provided `function` matches the expected signature."""
         # This check isn't enough to validate the function signature itself, but
         # it does verify that the value is a function with the exected
         # attributes.
