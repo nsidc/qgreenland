@@ -4,7 +4,9 @@
   - "Glaciology/PROMICE 2022 ice mask/"
     - "Ice mask polygon"
     - "Ice mask raster (150m)"
-  - "Human activity/Population/Greenland municipalities and population (temporal)"
+  - "Human activity/Population/"
+    - "Greenland municipalities and population (temporal)"
+    - "Populated places (temporal)"
 
 # v4.0.0alpha2 (2025-03-13)
 
