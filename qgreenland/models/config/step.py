@@ -23,6 +23,15 @@ class LayerStep(ABC):
         pass
 
 
+def _prepare_text_for_id(text: str) -> str:
+    symbols = [" ", "-", "=", "\\", ".", ":"]
+    for symbol in symbols:
+        if symbol in text:
+            text = text.replace(symbol, "_")
+
+    return text
+
+
 class CommandStep(QgrBaseModel, LayerStep):
     """A step run as a shell command."""
 
@@ -49,10 +58,7 @@ class CommandStep(QgrBaseModel, LayerStep):
 
         text = values["args"][0].lower()
 
-        symbols = [" ", "-", "=", "\\", "."]
-        for symbol in symbols:
-            if symbol in text:
-                text = text.replace(symbol, "_")
+        text = _prepare_text_for_id(text)
 
         values["id"] = text
         return values
@@ -73,11 +79,31 @@ class PythonFuncStep(Protocol):
 
 
 class PythonStep(QgrBaseModel, LayerStep):
-    id: str = "todo"
+    id: Optional[str]
 
     type: Literal["python"] = "python"
 
     function: PythonFuncStep
+
+    @staticmethod
+    def module_path(function: PythonFuncStep) -> str:
+        module = function.__module__
+        name = function.__name__
+
+        return f"{module}:{name}"
+
+    @root_validator
+    @classmethod
+    def set_default_id(cls, values):
+        if "id" in values and values["id"] is not None:
+            return values
+
+        module_path = cls.module_path(values["function"])
+        id_str = _prepare_text_for_id(module_path)
+
+        values["id"] = id_str
+
+        return values
 
     @cached_property
     def provenance(self) -> str:
