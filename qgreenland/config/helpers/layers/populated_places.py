@@ -56,7 +56,6 @@ def process_populated_places(*, input_dir: str, output_dir: str):
     places["id"] = range(len(places))
 
     pop_locality_map = {}
-    # pop_locality_re = re.compile(r"(?P<locality>\w+) \((?P<type>\w+)( in (?P<municipality>\w+))?\)")
     pop_locality_re = re.compile(
         r"(?P<locality>[\w ]+?)\s*(?:\((?P<category>\w+)(?:\s+in\s+(?P<municipality>\w+))?\))?\s*$"
     )
@@ -114,6 +113,9 @@ def process_populated_places(*, input_dir: str, output_dir: str):
 
     # rename col
     pop = pop.rename(columns={"Population in Localities January 1st": "population"})
+
+    # Cast population as int
+    pop["population"] = pop["population"].astype(int)
 
     # create start/end date columns for use with QGIS temporal controller.
     pop["start_date"] = pop["time"].apply(
