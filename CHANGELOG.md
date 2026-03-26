@@ -1,5 +1,10 @@
 # v4.0.0alpha3 (2025-03-26)
 
+- Update layers:
+  - "Reference/Borders/Greenland municipalities": updated to no longer be a
+    temporal layer. This is now just a reference layer for municipalities
+    (temporal control layer with population data moved to new layer - see
+    below!)
 - Added layers:
   - "Glaciology/PROMICE 2022 ice mask/"
     - "Ice mask polygon"
