@@ -88,7 +88,7 @@ class PythonStep(QgrBaseModel, LayerStep):
     @staticmethod
     def module_path(function: PythonFuncStep) -> str:
         module = function.__module__
-        name = function.__name__
+        name = function.__qualname__
 
         return f"{module}:{name}"
 
