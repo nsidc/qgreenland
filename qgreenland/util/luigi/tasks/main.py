@@ -10,17 +10,19 @@ from pathlib import Path
 import luigi
 
 from qgreenland.constants.paths import WIP_LAYERS_DIR
+from qgreenland.models.config.layer import VectorLayerReferenceInput
 from qgreenland.runners import step_runner
-from qgreenland.util.config.config import get_config
 from qgreenland.util.layer import (
+    get_layer_cfg_for_id,
     get_layer_compile_dir,
     get_layer_fp,
+    get_layer_node_for_id,
     get_layer_release_dir,
+    get_vrt_rel_ref_data_dir,
 )
 from qgreenland.util.luigi.target import temporary_path_dir
 from qgreenland.util.metadata import write_metadata_file
 from qgreenland.util.provenance import write_provenance_file
-from qgreenland.util.tree import leaf_lookup
 
 
 class QgrLayerTask(luigi.Task):
@@ -37,14 +39,48 @@ class QgrLayerTask(luigi.Task):
     @property
     def layer_cfg(self):
         """Find the config associated with this layer."""
-        config = get_config()
-        return config.layers[self.layer_id]
+        return get_layer_cfg_for_id(self.layer_id)
 
     @property
     def node(self):
         """Find the corresponding LayerNode in the config tree."""
-        config = get_config()
-        return leaf_lookup(config.layer_tree, target_node_name=self.layer_id)
+        return get_layer_node_for_id(self.layer_id)
+
+
+class GenerateVrtFileTask(QgrLayerTask):
+    """Generate a VRT file for the given layer."""
+
+    def output(self):
+        return luigi.LocalTarget(
+            WIP_LAYERS_DIR / self.layer_id / "vrt",
+        )
+
+    def run(self):
+        rel_reference_data_dir = get_vrt_rel_ref_data_dir(
+            reference_node=self.requires_task.node,
+            vrt_node=self.node,
+        )
+
+        reference_data_fn = get_layer_fp(Path(self.requires_task.output().path)).name
+
+        rel_reference_data_fp = rel_reference_data_dir / reference_data_fn
+
+        vrt_reference_cfg = self.layer_cfg.inputs[0]
+        assert isinstance(vrt_reference_cfg, VectorLayerReferenceInput)
+        sql = vrt_reference_cfg.sql
+
+        with temporary_path_dir(self.output()) as temp_path:
+            vrt_fn = f"{self.layer_id}.vrt"
+            vrt_fp = temp_path / vrt_fn
+            vrt_fp.write_text(
+                f"""\
+<OGRVRTDataSource>
+    <OGRVRTLayer name="{self.layer_id}">
+        <SrcDataSource relativeToVRT="1">{rel_reference_data_fp}</SrcDataSource>
+        <SrcSQL>{" ".join(sql.split())}</SrcSQL>
+    </OGRVRTLayer>
+</OGRVRTDataSource>"""
+            )
 
 
 # TODO: Rename... QgrTask? ChainableLayerTask? ChainableLayerStep?

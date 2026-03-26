@@ -1,12 +1,9 @@
 import pytest
 
-from qgreenland.util.config.config import get_config, init_config
-
-# TODO: Fixture?
-init_config()
+from qgreenland.util.config.config import get_config
 
 
-def test_get_layer_config_all():
+def test_get_layer_config_test_cfg(full_cfg):
     config = get_config()
     layer_config = config.layers
 
@@ -14,11 +11,19 @@ def test_get_layer_config_all():
     assert len(layer_config.keys()) >= 2
 
 
-def test_get_layer_config_one():
+def test_get_layer_config_prod_cfg():
+    config = get_config()
+    layer_config = config.layers
+
+    # There are at least 2 layers.
+    assert len(layer_config.keys()) >= 2
+
+
+def test_get_layer_config_one(full_cfg):
     config = get_config()
     # If the layer does not exist, an exception will be raised and pytest will
     # appropriately fail.
-    assert config.layers["background"]
+    assert config.layers["example_raster"]
 
 
 # TODO: Remove all tests that act on a real config. The vision for the future is
@@ -26,7 +31,7 @@ def test_get_layer_config_one():
 # be done on a mock config. All tests above this line can be deleted.
 
 
-def test_immutable_model():
+def test_immutable_model(full_cfg):
     config = get_config()
     # Immutable models raise a TypeError on item assignment with a message like:
     # `TypeError: "Layer" is immutable and does not support item
@@ -34,16 +39,16 @@ def test_immutable_model():
     with pytest.raises(TypeError):
         # TODO: Remove type-ignore below.
         #    https://github.com/pytest-dev/pytest/issues/8984
-        config.layers["background"].description = "override"  # type:ignore
+        config.layers["example_raster"].description = "override"  # type:ignore
 
 
-def test_layer_indexes():
+def test_layer_indexes(full_cfg):
     config = get_config()
     for key, layer in config.layers.items():
         assert key == layer.id
 
 
-def test_dataset_and_asset_indexes():
+def test_dataset_and_asset_indexes(full_cfg):
     config = get_config()
     for dataset_key, dataset in config.datasets.items():
         assert dataset_key == dataset.id

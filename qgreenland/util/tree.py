@@ -13,7 +13,6 @@ from anytree.exporter import DictExporter
 
 import qgreenland.exceptions as exc
 from qgreenland.constants.paths import LAYERS_CFG_DIR
-from qgreenland.models.config.asset import ManualAsset
 from qgreenland.models.config.layer import Layer
 from qgreenland.models.config.layer_group import (
     AnyGroupSettings,
@@ -389,11 +388,7 @@ def _matches_filters(
     inclusions or exclusions. I.e.: for set of inclusions I and exclusions E,
     this is a question of `I - E` vs. `!E + I`.
     """
-    if (
-        exclude_manual_asset_datasets
-        and len(candidate.inputs) == 1
-        and type(candidate.inputs[0].asset) is ManualAsset
-    ):
+    if exclude_manual_asset_datasets and candidate.includes_manual_asset:
         # TODO: `included = True` instead? This would be more consistent with
         # the "included or not excluded" behavior the patterns follow.
         return False

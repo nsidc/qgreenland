@@ -17,6 +17,7 @@ from qgreenland.models.config import Config
 from qgreenland.util.fs import directory_contents, directory_size_bytes
 from qgreenland.util.json import MagicJSONEncoder
 from qgreenland.util.layer import (
+    get_layer_cfg_for_id,
     get_layer_compile_filepath,
     get_layer_release_filepath,
     vector_or_raster,
@@ -96,13 +97,20 @@ def export_config_csv(
             layer_size_bytes = directory_size_bytes(layer_dir)
             internet_required = False
 
+        if layer_cfg.is_vrt_layer:
+            # virtual layers have just a single input to the data they reference
+            # and the referenced data should be cited.
+            cited_inputs = get_layer_cfg_for_id(layer_cfg.inputs[0].layer_id).inputs
+        else:
+            cited_inputs = layer_cfg.inputs
+
         # TODO: re-consider how these records are exported when a layer is
         # derived from multiple inputs.
         data_source_titles = ""
         data_source_abstracts = ""
         data_source_citations = ""
         data_source_citation_urls = ""
-        for layer_input in layer_cfg.inputs:
+        for layer_input in cited_inputs:
             dataset_cfg = layer_input.dataset
 
             data_source_titles += dataset_cfg.metadata.title + ";"

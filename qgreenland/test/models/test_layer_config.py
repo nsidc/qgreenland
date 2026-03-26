@@ -6,7 +6,7 @@ from qgreenland.models.config.dataset import (
     DatasetCitation,
     DatasetMetadata,
 )
-from qgreenland.models.config.layer import Layer, LayerInput
+from qgreenland.models.config.layer import Layer, LayerInput, VectorLayerReferenceInput
 
 MOCK_ONLINE_DATASET = Dataset(
     id="dataset1",
@@ -89,6 +89,22 @@ def test_online_asset_multiple_raises_error():
         )
 
 
+def test_is_online_only():
+    layer = Layer(
+        id="foo",
+        title="Bar",
+        description="A very detailed description.",
+        inputs=[
+            LayerInput(
+                dataset=MOCK_ONLINE_DATASET,
+                asset=MOCK_ONLINE_DATASET.assets["dataset1_online"],
+            ),
+        ],
+    )
+
+    assert layer.is_online_only
+
+
 def test_input_multiple():
     """Test creating a Layer with multiple inputs.
 
@@ -110,3 +126,43 @@ def test_input_multiple():
             ),
         ],
     )
+
+
+def test_multiple_input_vrt_fails():
+    with pytest.raises(
+        ValueError, match=r"When a VectorLayerReferenceInput is used for a layer input"
+    ):
+        Layer(
+            id="foo",
+            title="Bar",
+            description="A very detailed description.",
+            inputs=[
+                VectorLayerReferenceInput(
+                    layer_id="dataset_http",
+                    sql="SELECT * FROM dataset_http",
+                ),
+                LayerInput(
+                    dataset=MOCK_HTTP_DATASET2,
+                    asset=MOCK_HTTP_DATASET2.assets["dataset2_http"],
+                ),
+            ],
+        )
+
+
+def test_vrt_layer():
+    ref_layer_id = "dataset_http"
+    layer = Layer(
+        id="foo",
+        title="Bar",
+        description="A very detailed description.",
+        inputs=[
+            VectorLayerReferenceInput(
+                layer_id=ref_layer_id,
+                sql="SELECT * FROM dataset_http",
+            ),
+        ],
+    )
+
+    assert layer.is_vrt_layer
+
+    assert layer.vrt_layer_ref_id is not None and layer.vrt_layer_ref_id == ref_layer_id
