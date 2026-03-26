@@ -180,6 +180,9 @@ class MergeFetchedDataTask(luigi.Task):
             datasource_dirname(dataset_id=task.dataset_id, asset_id=task.asset_id)
             for task in self.requires_fetch_tasks
         )
+        # TODO: update output name ot include at least some of the source
+        # datasets? Or think about some other mechanism to cleanup this when
+        # source data are removed?
         output_name = hashlib.md5(joined_output_name.encode("utf-8")).hexdigest()
         return luigi.LocalTarget(
             FETCH_DATASETS_DIR / output_name,

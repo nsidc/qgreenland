@@ -2,14 +2,15 @@
 
 from typing import Any
 
-from qgreenland.models.config.step import AnyStep, CommandStep
+from qgreenland.models.config.step import AnyStep, CommandStep, PythonStep
 from qgreenland.runners.command import command_runner
+from qgreenland.runners.python import python_runner
 
 # Each runner corresponds to a type of "step" available in the layer
 # configuration file.
 RUNNERS: dict[type[AnyStep], Any] = {
     CommandStep: command_runner,
-    # 'python': 'TODO',
+    PythonStep: python_runner,
 }
 
 

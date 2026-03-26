@@ -11,3 +11,5 @@ dependencies:
   - unzip ~=6.0
   - p7zip ~=16.02
   - wget ~=1.21
+  - pandas ~=3.0
+  - geopandas ~=1.1

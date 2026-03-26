@@ -22,8 +22,8 @@ keywords:
 url: "https://github.com/nsidc/qgreenland"
 repository-code: "https://github.com/nsidc/qgreenland"
 
-version: "4.0.0alpha2"
-date-released: "2026-03-10"
+version: "4.0.0alpha3"
+date-released: "2026-03-26"
 
 authors:
   - family-names: "Stafford"

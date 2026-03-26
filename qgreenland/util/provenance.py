@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Optional
 
 from qgreenland.models.config.asset import DatasetAsset
 from qgreenland.models.config.layer import Layer, LayerInput
@@ -35,18 +34,16 @@ def layer_provenance_text(layer_cfg: Layer) -> str:
         for layer_input in layer_cfg.inputs:
             assert isinstance(layer_input, LayerInput)
             provenance_text += _asset_provenance_text(layer_input.asset)
-            steps_provenance = _steps_provenance_text(layer_cfg.steps)
-            if steps_provenance:
-                provenance_text += "\n\n# Data processed using the following steps:\n\n"
-                provenance_text += steps_provenance
+            provenance_text += "\n\n"
+
+        if layer_cfg.steps:
+            provenance_text += "# Data processed using the following steps:\n\n"
+            provenance_text += _steps_provenance_text(layer_cfg.steps)
 
     return provenance_text
 
 
-def _steps_provenance_text(steps: Optional[list[AnyStep]]) -> Optional[str]:
-    if not steps:
-        return None
-
+def _steps_provenance_text(steps: list[AnyStep]) -> str:
     steps_as_text = [step.provenance for step in steps]
 
     return "\n\n".join(steps_as_text)

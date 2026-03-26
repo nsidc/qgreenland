@@ -179,7 +179,7 @@ Virutal vector layers are represented on disk as `.vrt` files in the final outpu
 ```
 
 Note that virtual vector layers have no processing applied from them and inherit
-metadata from the referenced data layer. 
+metadata from the referenced data layer.
 
 Note also that only one vector layer may be referenced - it is not currently
 possible to reference data from multiple layers to create a composite view.
@@ -192,9 +192,11 @@ Layers are created in a series of `steps`. The final result of the `steps` must
 be a GeoTIFF (`.tif` file) for raster layers, and a GeoPackage (`.gpkg`) for
 vector layers.
 
-Each step is a {github}`command </qgreenland/models/config/step.py>` (e.g. `gdalwarp` or
-`ogr2ogr`) run against the output of the previous step.  The first step acts on
-the chosen `inputs`.
+#### CommandStep
+
+Each {class}`~qgreenland.models.config.step.CommandStep` step is a command
+(e.g. `gdalwarp` or `ogr2ogr`) run against the output of the previous step.  The
+first step acts on the chosen `inputs`.
 
 Within a step configuration, "runtime variables" are used to populate values
 that are not known at configuration-time, for example the WIP directories that
@@ -207,6 +209,34 @@ runtime variables are legal:
 * `{output_dir}`: The output directory of this step.
 * `{assets_dir}`: In this repository, `qgreenland/assets`.
 
+#### PythonStep
+
+Each {class}`~qgreenland.models.config.step.PythonStep` step takes a Python
+function and runs it, providing `input_dir` and `output_dir` as kwargs to the
+function. It is expected that the function will act on data in `input_dir` and
+place output(s) in `output_dir`.
+
+An example is given below:
+
+```
+def process_data(*, input_dir: str, output_dir: str) -> None:
+    df = pandas.read_csv(Path(input_dir) / "expected_input.csv")
+    df.to_crs("EPSG:3413")
+    df.to_file(Path(output_dir) / "reprojected.gpkg")
+
+PythonStep(function=process_data)
+```
+
+Provenance for python steps is recorded by giving the module path to the
+function along with the git ref. For example:
+
+```
+Python Step: qgreenland.config.helpers.layers.populated_places:process_populated_places @ v4.0.0alpha3
+
+```
+
+Python steps are reccomended for tasks that require logic not easily expressed
+by a single ogr2ogr/gdal command.
 
 ### Layer group settings
 

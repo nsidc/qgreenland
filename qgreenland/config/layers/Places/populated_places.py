@@ -1,8 +1,9 @@
+import qgreenland.config.datasets.political_boundaries as political_boundaries
 from qgreenland.config.datasets.asiaq_nunagis import asiaq_nunagis
-from qgreenland.config.helpers.steps.ogr2ogr import ogr2ogr
-from qgreenland.config.project import project
+from qgreenland.config.datasets.statbank import statbank
+from qgreenland.config.helpers.layers.populated_places import process_populated_places
 from qgreenland.models.config.layer import Layer, LayerInput
-from qgreenland.models.config.step import CommandStep
+from qgreenland.models.config.step import PythonStep
 
 populated_places = Layer(
     id="populated_places",
@@ -28,33 +29,26 @@ QGreenland Team - Noted Data Issues:
     ),
     tags=["places"],
     inputs=[
+        # This layer provides points represented populated places (geojson).
         LayerInput(
             dataset=asiaq_nunagis,
             asset=asiaq_nunagis.assets["populated_places"],
-        )
+        ),
+        # This input provides population values for 1977-2026 (csv)
+        LayerInput(
+            dataset=statbank,
+            asset=statbank.assets["localities_population"],
+        ),
+        # This input provides a multipolygon of municipalities and gives us the
+        # municipality name for each populated place. (gpkg)
+        LayerInput(
+            dataset=political_boundaries.nunagis_pop2019_municipalities,
+            asset=political_boundaries.nunagis_pop2019_municipalities.assets["only"],
+        ),
     ],
     steps=[
-        CommandStep(
-            args=[
-                "ogrmerge.py",
-                "-single",
-                "-o",
-                "{output_dir}/populated_places.gpkg",
-                "{input_dir}/*geojson",
-            ],
-        ),
-        *ogr2ogr(
-            input_file="{input_dir}/populated_places.gpkg",
-            output_file="{output_dir}/final.gpkg",
-            boundary_filepath=project.boundaries["data"].filepath,
-            ogr2ogr_args=(
-                "-nln",
-                "populated_places",
-                "-dialect",
-                "sqlite",
-                "-sql",
-                "\"SELECT geom, Ny_grønlandsk as 'New Greenlandic', Ny_grønlandsk as 'label', Gammel_grønlandsk as 'Old Greenlandic', Dansk as Danish, Alternativt_stednavn  as 'Alternative placename', Indbyggertal_2016 as 'Population 2016' FROM merged\"",
-            ),
+        PythonStep(
+            function=process_populated_places,
         ),
     ],
 )

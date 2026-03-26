@@ -1,11 +1,13 @@
+import inspect
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import Literal, Optional, Union
+from typing import Literal, Optional, Protocol, Union, runtime_checkable
 
-from pydantic import root_validator
+from pydantic import root_validator, validator
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalStr
+from qgreenland.util.version import get_build_version
 
 
 class LayerStep(ABC):
@@ -20,6 +22,15 @@ class LayerStep(ABC):
     def provenance(self) -> str:
         """Represent what was done in this step."""
         pass
+
+
+def _prepare_text_for_id(text: str) -> str:
+    symbols = [" ", "-", "=", "\\", ".", ":", "<", ">"]
+    for symbol in symbols:
+        if symbol in text:
+            text = text.replace(symbol, "_")
+
+    return text
 
 
 class CommandStep(QgrBaseModel, LayerStep):
@@ -48,10 +59,7 @@ class CommandStep(QgrBaseModel, LayerStep):
 
         text = values["args"][0].lower()
 
-        symbols = [" ", "-", "=", "\\", "."]
-        for symbol in symbols:
-            if symbol in text:
-                text = text.replace(symbol, "_")
+        text = _prepare_text_for_id(text)
 
         values["id"] = text
         return values
@@ -61,4 +69,82 @@ class CommandStep(QgrBaseModel, LayerStep):
         return " ".join([str(arg) for arg in self.args])
 
 
-AnyStep = Union[CommandStep]
+# https://docs.python.org/3/library/typing.html#annotating-callable-objects
+@runtime_checkable
+class PythonFuncStep(Protocol):
+    __qualname__: str
+    __module__: str
+
+    def __call__(self, *, input_dir: str, output_dir: str) -> None:
+        ...
+
+
+class PythonStep(QgrBaseModel, LayerStep):
+    id: Optional[str]
+
+    type: Literal["python"] = "python"
+
+    function: PythonFuncStep
+
+    @staticmethod
+    def module_path(function: PythonFuncStep) -> str:
+        module = function.__module__
+        name = function.__qualname__
+
+        return f"{module}:{name}"
+
+    @root_validator(pre=True)
+    @classmethod
+    def set_default_id(cls, values):
+        if "id" in values and values["id"] is not None:
+            return values
+
+        module_path = cls.module_path(values["function"])
+        id_str = _prepare_text_for_id(module_path)
+
+        values["id"] = id_str
+
+        return values
+
+    @validator("function")
+    @classmethod
+    def validate_function_sig(cls, v):
+        """Validate that the provided `function` matches the expected signature."""
+        # This check isn't enough to validate the function signature itself, but
+        # it does verify that the value is a function with the exected
+        # attributes.
+        if not isinstance(v, PythonFuncStep):
+            raise ValueError(
+                "Expected `function` to be" " an instance of `PythonFuncStep`"
+            )
+
+        protocol_sig = inspect.signature(PythonFuncStep.__call__)
+        provided_sig = inspect.signature(v)
+
+        protocol_sig_params = {
+            k: v for k, v in protocol_sig.parameters.items() if k != "self"
+        }
+        provided_sig_params = dict(provided_sig.parameters.items())
+
+        if protocol_sig_params != provided_sig_params:
+            raise ValueError(
+                "Expected the provided PythonStep function"
+                f" {cls.module_path(v)}"
+                " to match the signature of `PythonFuncStep`."
+            )
+
+        return v
+
+    @cached_property
+    def provenance(self) -> str:
+        module = self.function.__module__
+        name = self.function.__qualname__
+
+        git_version = get_build_version()
+
+        provenance_str = f"Python Step: {module}:{name} @ {git_version}"
+
+        return provenance_str
+
+
+AnyStep = Union[CommandStep, PythonStep]
