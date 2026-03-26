@@ -1,8 +1,9 @@
+import inspect
 from abc import ABC, abstractmethod
 from functools import cached_property
 from typing import Literal, Optional, Protocol, Union, runtime_checkable
 
-from pydantic import root_validator
+from pydantic import root_validator, validator
 
 from qgreenland.models.base_model import QgrBaseModel
 from qgreenland.util.runtime_vars import EvalStr
@@ -24,7 +25,7 @@ class LayerStep(ABC):
 
 
 def _prepare_text_for_id(text: str) -> str:
-    symbols = [" ", "-", "=", "\\", ".", ":"]
+    symbols = [" ", "-", "=", "\\", ".", ":", "<", ">"]
     for symbol in symbols:
         if symbol in text:
             text = text.replace(symbol, "_")
@@ -92,7 +93,7 @@ class PythonStep(QgrBaseModel, LayerStep):
 
         return f"{module}:{name}"
 
-    @root_validator
+    @root_validator(pre=True)
     @classmethod
     def set_default_id(cls, values):
         if "id" in values and values["id"] is not None:
@@ -104,6 +105,34 @@ class PythonStep(QgrBaseModel, LayerStep):
         values["id"] = id_str
 
         return values
+
+    @validator("function")
+    @classmethod
+    def validate_function_sig(cls, v):
+        # This check isn't enough to validate the function signature itself, but
+        # it does verify that the value is a function with the exected
+        # attributes.
+        if not isinstance(v, PythonFuncStep):
+            raise ValueError(
+                "Expected `function` to be" " an instance of `PythonFuncStep`"
+            )
+
+        protocol_sig = inspect.signature(PythonFuncStep.__call__)
+        provided_sig = inspect.signature(v)
+
+        protocol_sig_params = {
+            k: v for k, v in protocol_sig.parameters.items() if k != "self"
+        }
+        provided_sig_params = dict(provided_sig.parameters.items())
+
+        if protocol_sig_params != provided_sig_params:
+            raise ValueError(
+                "Expected the provided PythonStep function"
+                f" {cls.module_path(v)}"
+                " to match the signature of `PythonFuncStep`."
+            )
+
+        return v
 
     @cached_property
     def provenance(self) -> str:
