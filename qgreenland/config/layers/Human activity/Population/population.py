@@ -43,6 +43,9 @@ populated_places_layer = Layer(
         """Points representing populated places and associated
         population numbers from 1976-2024.
 
+        Note that population values do not include numbers for
+        undisclosed individuals within each district.
+
         Note: to use this layer, enable the temporal controller and set a
         specific year to see that year's population statistics. Without the
         temporal controller enabled, the earliest population statistics will be
