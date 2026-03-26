@@ -16,5 +16,5 @@ class MagicJSONEncoder(json.JSONEncoder):
         if hasattr(o, "__json__") and callable(o.__json__):
             return o.__json__()
         if callable(o):
-            return f"{o.__module__}.{o.__qualname__}"
+            return f"{o.__module__}:{o.__qualname__}"
         return super().default(o)
