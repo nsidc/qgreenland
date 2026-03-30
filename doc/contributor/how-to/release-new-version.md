@@ -91,15 +91,14 @@ consider running one or both of the following Jenkins Jobs:
 
 ## 6. Create a GitHub release
 
-Once a new version of the package has been successfully built and pushed to
-mirrors, create a [new
+Once a new version of the package has been successfully built, create a [new
 release](https://github.com/nsidc/qgreenland/releases/new) in GitHub and add the
 CHANGELOG for the new version in the release notes. If this is a pre-release
 (e.g., `v4.0.0alpha3`), be sure to mark it as such!
 
 Creating a new release will trigger archival of our code in Zenodo and issuance
 of a new DOI. Do _not_ create a "Release" in GitHub until a new version of the
-package has been successfully built and pushed to mirrors.
+package has been successfully built.
 
 > [!WARNING] pushing to our mirrors is not yet documented! This is a TODO!
 
@@ -116,3 +115,16 @@ and navigate to the [QGreenland data package
 entry](https://zenodo.org/records/12823307). You should find a button "New
 version" here that will initiate the process for uploading the package and
 creating a new record.
+
+## 8. Alert mirrors to new package availability
+
+The QGreenland package is mirrored at the [Polar Geospatial
+Center](https://www.pgc.umn.edu/) here:
+<https://data.pgc.umn.edu/gis/packages/qgreenland/packages/>.
+
+Once a new version of QGreenland is ready to be mirrored, reach out to the PGC
+and request that they pull the latest data from our primary server here:
+<https://nsidc.org/qgreenland/packages/>.
+
+> [!NOTE] the PGC does not typically mirror pre-releases. Only alert the PGC
+> once a version is ready for the general public (e.g., v4.0.0).
