@@ -54,8 +54,33 @@ Jenkins](https://ci.qgreenland.apps.int.nsidc.org/). Use the
 job to trigger a build with the git tag pushed above and wait for completion
 (usually takes a little over an hour).
 
+## 5. Update symlinks
 
-## 5. Create a GitHub release
+The QGreenland package server provides two symlinks that can optionally be
+updated as part of the release process. Once a new package has been build,
+consider running one or both of the following Jenkins Jobs:
+
+* [qgreenland_C4_Production_Update_Latest_Symlink/](https://ci.qgreenland.apps.int.nsidc.org/job/qgreenland_C4_Production_Update_Latest_Symlink/):
+  Updates the ["latest"](https://nsidc.org/qgreenland/packages/latest/) symlink
+  to the provided ref (e.g,. `dev/v4.0.0alpha3` or `v4.0.0`). Suitable for both
+  pre-releases and official releases.
+
+> [!NOTE] the ref for pre-release versions should start with `dev/`, followed by
+> the version tag of the package you want to be marked as `latest`. This is
+> because pre-releases exist under the
+> [/dev](https://nsidc.org/qgreenland/packages/dev/) directory. In other words,
+> if your pre-release tag is `v4.0.0alpha3`, the ref for this job should be
+> `dev/v4.0.0alpha3`. For official releases, just the tag can be specified
+> (e.g., `v4.0.0`)
+
+* [qgreenland_C4_Production_Update_Stable_Symlink](https://ci.qgreenland.apps.int.nsidc.org/job/qgreenland_C4_Production_Update_Stable_Symlink/):
+  Updates the ["stable"](https://nsidc.org/qgreenland/packages/stable/) symlink
+  to the provided ref (e.g,. `v4.0.0`). Should only be used for official builds of
+  QGreenland that have been tested and approved for release to the general
+  public.
+
+
+## 6. Create a GitHub release
 
 Once a new version of the package has been successfully built and pushed to
 mirrors, create a [new
