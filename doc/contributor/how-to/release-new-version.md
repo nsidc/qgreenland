@@ -1,5 +1,10 @@
 # How to release a new version of QGreenland Core code
 
+
+> [!NOTE] the official QGreenland package is built and distributed at NSIDC and
+> currently can only be built by someone with access to the NSIDC VPN. Most of
+> the steps shown here require collaboration with someone at NSIDC.
+
 ## 1. Update the CHANGELOG
 
 Ensure that the `CHANGELOG.md` is updated with information about changes since
@@ -45,8 +50,6 @@ git push origin v4.0.0
 
 ## 4. Build QGreenland
 
-> [!NOTE] the official QGreenland package is built and distributed at NSIDC and
-> currently can only be built by someone with access to the NSIDC VPN.
 
 > [!WARNING] if datasets that were included in a previous release have been
 > updated and need to be re-fetched, ssh to the production VM and cleanup the
@@ -98,5 +101,18 @@ Creating a new release will trigger archival of our code in Zenodo and issuance
 of a new DOI. Do _not_ create a "Release" in GitHub until a new version of the
 package has been successfully built and pushed to mirrors.
 
-> [!WARNING] Creating a release in GitHub currently _does not_ archive our code
-> on Zenodo or push anything to our mirrors. This is a TODO!
+> [!WARNING] pushing to our mirrors is not yet documented! This is a TODO!
+
+
+## 7. Upload new version of package to Zenodo
+
+Step 6 should have archived the code for QGreenland to Zenodo. For new official
+(non-prerelease) versions of QGreenland, the finalized package should be
+uploaded to Zenodo as a new version.
+
+Login to Zenodo using the [QGreenland credentials in
+Vault](https://vault.apps.int.nsidc.org:8200/ui/vault/secrets/nsidc/show/apps/qgreenland/zenodo)
+and navigate to the [QGreenland data package
+entry](https://zenodo.org/records/12823307). You should find a button "New
+version" here that will initiate the process for uploading the package and
+creating a new record.
