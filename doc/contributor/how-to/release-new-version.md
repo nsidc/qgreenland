@@ -1,9 +1,11 @@
 # How to release a new version of QGreenland Core code
 
 
-> [!NOTE] the official QGreenland package is built and distributed at NSIDC and
-> currently can only be built by someone with access to the NSIDC VPN. Most of
-> the steps shown here require collaboration with someone at NSIDC.
+```{caution}
+The official QGreenland package is built and distributed at NSIDC and
+currently can only be built by someone with access to the NSIDC VPN. Most of
+the steps shown here require collaboration with someone at NSIDC.
+```
 
 ## 1. Update the CHANGELOG
 
@@ -51,11 +53,13 @@ git push origin v4.0.0
 ## 4. Build QGreenland
 
 
-> [!WARNING] if datasets that were included in a previous release have been
-> updated and need to be re-fetched, ssh to the production VM and cleanup the
-> fetch cache for those datasets with the `clean` command to cleanup the
-> relevant datasets. E.g.,
-> `./scripts/cli.sh cleanup -f "caff_murre_colonies*"`
+```{caution}
+If datasets that were included in a previous release have been
+updated and need to be re-fetched, ssh to the production VM and cleanup the
+fetch cache for those datasets with the `clean` command to cleanup the
+relevant datasets. E.g.,
+`./scripts/cli.sh cleanup -f "caff_murre_colonies*"`
+```
 
 Connect to the NSIDC VPN and navigate to the [QGreenland
 Jenkins](https://ci.qgreenland.apps.int.nsidc.org/). Use the
@@ -100,8 +104,6 @@ Creating a new release will trigger archival of our code in Zenodo and issuance
 of a new DOI. Do _not_ create a "Release" in GitHub until a new version of the
 package has been successfully built.
 
-> [!WARNING] pushing to our mirrors is not yet documented! This is a TODO!
-
 
 ## 7. Upload new version of package to Zenodo
 
@@ -126,5 +128,7 @@ Once a new version of QGreenland is ready to be mirrored, reach out to the PGC
 and request that they pull the latest data from our primary server here:
 <https://nsidc.org/qgreenland/packages/>.
 
-> [!NOTE] the PGC does not typically mirror pre-releases. Only alert the PGC
-> once a version is ready for the general public (e.g., v4.0.0).
+```{note}
+The PGC does not typically mirror pre-releases. Only alert the PGC
+once a version is ready for the general public (e.g., v4.0.0).
+```
