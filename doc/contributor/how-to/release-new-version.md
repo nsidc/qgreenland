@@ -1,4 +1,4 @@
-# How to release a new version of QGreenland Core code
+# How to release a new version of QGreenland
 
 
 ```{caution}
