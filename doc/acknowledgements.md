@@ -12,9 +12,12 @@ package creation. Thank you!
 
 ## Funding
 
-The U.S. National Science Foundation [grant
+The U.S. National Science Foundation (NSF) [grant
 \#1928393](https://nsf.gov/awardsearch/showAward?AWD_ID=1928393) funded the
-development of QGreenland versions `1.x`, `2.x`, and `3.x`. Thank you!
+development of QGreenland versions `1.x`, `2.x`, and `3.x`. NSF [grant
+\#2324765](https://nsf.gov/awardsearch/showAward?AWD_ID=2324765) and [grant
+\#2324766](https://nsf.gov/awardsearch/showAward?AWD_ID=2324766) supports the
+development of `v4.x`. Thank you!
 
 
 ## Editorial board
@@ -41,17 +44,21 @@ you!
 
 ## Project Collaborators
 
-QGreenland is developed by researchers, software developers, and education specialists
-at the National Snow and Ice Data Center and Cooperative Institute for Research in
-Environmental Sciences at the University of Colorado Boulder. The QGreenland project is
-funded by the U.S. National Science Foundation EarthCube program under grant #1928393.
-The QGreenland project is advised by an Editorial Board consisting of international content
-experts in remote sensing and GIS, cryospheric and geologic sciences, ecology, climate
-modeling, and more. Other project collaborators include: The Geological Survey of Denmark
-and Greenland (De Nationale Geologiske Undersøgelser for Danmark og Grønland),
-Technical University of Denmark (Dansmarks Tekniske Universitet), Danish Meteorological
-Institute (Dansmarks Meteorologiske Institut), Asiaq - Greenland Survey, Norwegian Polar
-Institute (Norsk Polarinstitutt), Arctic Data Committee, International Arctic Science Committee,
-WWF-Danmark, U.S. Polar Geospatial Center, Greenland Ice Sheet Ocean Science Network,
-N.S.F. Polar Computing RCN, and Isaafik. More information about the QGreenland team and
-collaborators is available at the website [http://qgreenland.org](http://qgreenland.org). 
+QGreenland is developed by researchers, software developers, and education
+specialists at the National Snow and Ice Data Center and Cooperative Institute
+for Research in Environmental Sciences at the University of Colorado
+Boulder. The QGreenland project is funded by the U.S. National Science
+Foundation (NSF) EarthCube program under grant #1928393 and NSF GEO OSE Track 2
+grant #2324765.  The QGreenland project is advised by an Editorial Board
+consisting of international content experts in remote sensing and GIS,
+cryospheric and geologic sciences, ecology, climate modeling, and more. Other
+project collaborators include: The Geological Survey of Denmark and Greenland
+(De Nationale Geologiske Undersøgelser for Danmark og Grønland), Technical
+University of Denmark (Dansmarks Tekniske Universitet), Danish Meteorological
+Institute (Dansmarks Meteorologiske Institut), Asiaq - Greenland Survey,
+Norwegian Polar Institute (Norsk Polarinstitutt), Arctic Data Committee,
+International Arctic Science Committee, WWF-Danmark, U.S. Polar Geospatial
+Center, Greenland Ice Sheet Ocean Science Network, NSF. Polar Computing RCN, NSF
+Arctic Data Center, and Isaafik. More information about the QGreenland team and
+collaborators is available at the website
+[http://qgreenland.org](http://qgreenland.org).

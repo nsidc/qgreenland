@@ -59,9 +59,6 @@ references:
     - family-names: "Moon"
       given-names: "Twila"
       orcid: "https://orcid.org/0000-0003-0968-7008"
-    - family-names: "Jones"
-      given-names: "Matt"
-      orcid: "https://orcid.org/0000-0003-0077-4738"
 - type: "grant"
   title: "QGreenland-Net: Open, connected data infrastructure for Greenland-focused geoscience, and beyond"
   institution:
