@@ -134,28 +134,19 @@ def prepare_pop_table(*, input_dir: str, places):
     return pop
 
 
-def prepare_international_passengers(*, input_dir: str, places):
-    """Prepare data for the 'international_passengers' table."""
+def _start_and_end_date_cols_for_monthly_data(df):
     import calendar
     import datetime as dt
-    from pathlib import Path
-
-    import geopandas as gpd
-
-    int_passengers = gpd.read_file(Path(input_dir) / "TUXUPAX.csv")
-
-    # filter out "total" numbers
-    int_passengers = int_passengers[int_passengers["month"] != "Total"]
 
     # Create start and end date fields. "time" is the year as a str. "month" is
     # the given name (e.g., "January").
-    int_passengers["start_date"] = int_passengers.apply(
+    df["start_date"] = df.apply(
         lambda row: dt.date(
             int(row["time"]), list(calendar.month_name).index(row["month"]), 1
         ),
         axis=1,
     )
-    int_passengers["end_date"] = int_passengers.apply(
+    df["end_date"] = df.apply(
         lambda row: dt.date(
             int(row["time"]),
             # Convert month name to integer month number
@@ -170,7 +161,24 @@ def prepare_international_passengers(*, input_dir: str, places):
     )
 
     # Drop now-unnecessary time & month cols.
-    int_passengers = int_passengers.drop(columns=["time", "month"])
+    df = df.drop(columns=["time", "month"])
+
+    return df
+
+
+def prepare_international_passengers(*, input_dir: str, places):
+    """Prepare data for the 'international_passengers' table."""
+    from pathlib import Path
+
+    import geopandas as gpd
+
+    int_passengers = gpd.read_file(Path(input_dir) / "TUXUPAX.csv")
+
+    # filter out "total" numbers
+    int_passengers = int_passengers[int_passengers["month"] != "Total"]
+
+    # Add start/end date cols
+    int_passengers = _start_and_end_date_cols_for_monthly_data(int_passengers)
 
     # Rename passengers col
     int_passengers = int_passengers.rename(
@@ -194,6 +202,45 @@ def prepare_international_passengers(*, input_dir: str, places):
     return int_passengers
 
 
+def prepare_cruise_passengers(*, input_dir: str, places):
+    from pathlib import Path
+
+    import geopandas as gpd
+
+    cruise_passengers = gpd.read_file(Path(input_dir) / "TUXKRH.csv")
+    # filter out "total" numbers
+    cruise_passengers = cruise_passengers[cruise_passengers["month"] != "Total"]
+
+    # Add start/end date cols
+    cruise_passengers = _start_and_end_date_cols_for_monthly_data(cruise_passengers)
+
+    # Rename passengers col
+    cruise_passengers = cruise_passengers.rename(
+        columns={"Number of cruise passengers for each harbour": "passengers"},
+    )
+
+    # Drop null passenger records and convert to int
+    cruise_passengers = cruise_passengers[cruise_passengers["passengers"] != "-"]
+    cruise_passengers["passengers"] = cruise_passengers["passengers"].astype(int)
+
+    # Create mapping between places and cruise passengers
+    int_airports = set(cruise_passengers["port"])
+    locality_map = {}
+    for int_airport in int_airports:
+        matches = places[(places["label"].str.lower() == int_airport.lower())]
+        if len(matches) > 1:
+            # Duplicates for Aappilattoq, Qeqertarsuaq, Tasiusaq can be filtered
+            # out by removing those with a population of 0 - these were
+            # abandoned.
+            matches = matches[matches["Indbyggertal_2016"] > 0]
+            assert len(matches) == 1
+        locality_map[int_airport] = int(matches.id.values[0])
+
+    cruise_passengers["place_id"] = cruise_passengers["port"].map(locality_map)
+
+    return cruise_passengers
+
+
 def process_populated_places(*, input_dir: str, output_dir: str):
     """Combine populated places data with statistics from statbank.
 
@@ -202,6 +249,7 @@ def process_populated_places(*, input_dir: str, output_dir: str):
 
     * `pop`: population statistics
     * `international_passengers`: number of international passengers
+    * `cruise_passengers`: Number of cruise passengers for each harbour
     """
     import sqlite3
     from pathlib import Path
@@ -213,6 +261,13 @@ def process_populated_places(*, input_dir: str, output_dir: str):
     int_passengers = prepare_international_passengers(
         input_dir=input_dir, places=places
     )
+
+    cruise_passengers = prepare_cruise_passengers(input_dir=input_dir, places=places)
+
+    # postprocess places to remove some columns we no longer need
+    # ("Indbyggertal_2016" - the population in 2016 - is used by
+    # `prepare_cruise_passengers`).
+    places = places.drop(columns=["Grundkort", "Indbyggertal_2016"])
 
     # Write places as a gpkg
     output_dir_path = Path(output_dir)
@@ -228,5 +283,10 @@ def process_populated_places(*, input_dir: str, output_dir: str):
 
         int_passengers.to_sql(
             "international_passengers",
+            conn,
+        )
+
+        cruise_passengers.to_sql(
+            "cruise_passengers",
             conn,
         )
