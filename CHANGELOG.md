@@ -1,3 +1,8 @@
+# v4.0.0alpha4 (TBD)
+
+- Added layers:
+  - "Human activity/Airport international passengers (temporal)"
+
 # v4.0.0alpha3 (2025-03-26)
 
 - Update layers:
