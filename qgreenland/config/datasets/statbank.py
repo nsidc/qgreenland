@@ -16,6 +16,12 @@ statbank = Dataset(
             # This URL returns a csv file `BEXSTD.csv` that has data for Jan 1, 1977-present
             urls=["https://bank.stat.gl:443/sq/fbea8c31-dac7-420f-aa7d-dd93ea59f91e"],
         ),
+        # This asset from the "Population in Localities January 1st by locality and time" table.
+        HttpAsset(
+            id="international_passengers",
+            # This URL returns a csv file `TUXPAX.csv` that has data for Jan 2008-present
+            urls=["https://bank.stat.gl:443/sq/f93c6266-8b3e-4bc1-8bc7-71028d558456"],
+        ),
     ],
     metadata={
         "title": "Statistics Greenland",
