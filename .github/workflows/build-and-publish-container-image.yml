@@ -1,0 +1,17 @@
+name: "Build and publish container image, then (if tag) trigger QGreenland Core build"
+# When a push to the default branch occurs, build and release a "latest" image
+# When a tag `vX.Y.Z` push occurs, build and release an image with that tag
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+
+jobs:
+
+  build-and-release-image:
+    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@main"
+    secrets: "inherit"
