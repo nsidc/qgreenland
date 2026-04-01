@@ -4088,6 +4088,80 @@
             "children": [
               {
                 "layer_cfg": {
+                  "description": "Points representing districts in Greenland and associated\nyearly numbers of dinghies used in fishing from 2019-2024.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year to see that year's statistics. Without the temporal\ncontroller enabled, the earliest statistics will be shown.",
+                  "id": "fishing_vessels_dinghies",
+                  "in_package": true,
+                  "inputs": [
+                    {}
+                  ],
+                  "show": false,
+                  "steps": [],
+                  "style": "fishing_vessels_timeseries",
+                  "tags": [],
+                  "title": "Number of dinghies used for fishing (temporal)"
+                },
+                "name": "fishing_vessels_dinghies"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing districts in Greenland and associated\nyearly numbers of dog sledge used in fishing from 2019-2024.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year to see that year's statistics. Without the temporal\ncontroller enabled, the earliest statistics will be shown.",
+                  "id": "fishing_vessels_dog_sledge",
+                  "in_package": true,
+                  "inputs": [
+                    {}
+                  ],
+                  "show": false,
+                  "steps": [],
+                  "style": "fishing_vessels_timeseries",
+                  "tags": [],
+                  "title": "Number of dog sledge used for fishing (temporal)"
+                },
+                "name": "fishing_vessels_dog_sledge"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing districts in Greenland and associated\nyearly numbers of fishing vessels used in fishing from 2019-2024.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year to see that year's statistics. Without the temporal\ncontroller enabled, the earliest statistics will be shown.",
+                  "id": "fishing_vessels_fishing_vessels",
+                  "in_package": true,
+                  "inputs": [
+                    {}
+                  ],
+                  "show": false,
+                  "steps": [],
+                  "style": "fishing_vessels_timeseries",
+                  "tags": [],
+                  "title": "Number of fishing vessels used for fishing (temporal)"
+                },
+                "name": "fishing_vessels_fishing_vessels"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing districts in Greenland and associated\nyearly numbers of snow mobile used in fishing from 2019-2024.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year to see that year's statistics. Without the temporal\ncontroller enabled, the earliest statistics will be shown.",
+                  "id": "fishing_vessels_snow_mobile",
+                  "in_package": true,
+                  "inputs": [
+                    {}
+                  ],
+                  "show": false,
+                  "steps": [],
+                  "style": "fishing_vessels_timeseries",
+                  "tags": [],
+                  "title": "Number of snow mobile used for fishing (temporal)"
+                },
+                "name": "fishing_vessels_snow_mobile"
+              }
+            ],
+            "name": "Fishing",
+            "settings": {
+              "expand": false,
+              "order": null,
+              "show": false
+            }
+          },
+          {
+            "children": [
+              {
+                "layer_cfg": {
                   "description": "Polygons representing municipalities of Greenland and associated\npopulation numbers from 1976-2024.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year to see that year's population statistics. Without the\ntemporal controller enabled, the earliest population statistics will be\nshown (for 1976).",
                   "id": "municipalities_and_population",
                   "in_package": true,
