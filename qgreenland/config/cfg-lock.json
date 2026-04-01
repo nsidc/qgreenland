@@ -2075,6 +2075,13 @@
     },
     "statbank": {
       "assets": {
+        "cruise_passengers": {
+          "id": "cruise_passengers",
+          "urls": [
+            "https://bank.stat.gl:443/sq/d3c43015-ce8f-4934-ae3f-0a3b9761f8b7"
+          ],
+          "verify_tls": true
+        },
         "international_passengers": {
           "id": "international_passengers",
           "urls": [
@@ -3892,6 +3899,14 @@
                 },
                 {
                   "asset": {
+                    "id": "cruise_passengers"
+                  },
+                  "dataset": {
+                    "id": "statbank"
+                  }
+                },
+                {
+                  "asset": {
                     "id": "only"
                   },
                   "dataset": {
@@ -4300,6 +4315,22 @@
               "title": "Arctic sea routes"
             },
             "name": "arctic_sea_routes"
+          },
+          {
+            "layer_cfg": {
+              "description": "Points representing harbors in Greenland and associated\nmonthly curise passenger numbers from 2015-2025\n\nNote that points are representative of the location of the\ncity/settlement in which the harbor resides. Points do not directly\nidentify the location of the harbor itself.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year/month to see that year/month's cruise passenger\nstatistics. Without the temporal controller enabled, the earliest\ncruise passenger statistics will be shown (for 2015).",
+              "id": "cruise_passengers",
+              "in_package": true,
+              "inputs": [
+                {}
+              ],
+              "show": false,
+              "steps": [],
+              "style": "cruise_passengers_timeseries",
+              "tags": [],
+              "title": "Cruise passengers by harbor (temporal)"
+            },
+            "name": "cruise_passengers"
           }
         ],
         "name": "Human activity",

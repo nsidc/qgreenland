@@ -22,6 +22,12 @@ statbank = Dataset(
             # This URL returns a csv file `TUXPAX.csv` that has data for Jan 2008-present
             urls=["https://bank.stat.gl:443/sq/f93c6266-8b3e-4bc1-8bc7-71028d558456"],
         ),
+        # This asset from the "Number of cruise passengers for each harbour by month, port and time" table.
+        HttpAsset(
+            id="cruise_passengers",
+            # This URL returns a csv file `TUXKRH.csv` that has data for 2015-present
+            urls=["https://bank.stat.gl:443/sq/d3c43015-ce8f-4934-ae3f-0a3b9761f8b7"],
+        ),
     ],
     metadata={
         "title": "Statistics Greenland",
