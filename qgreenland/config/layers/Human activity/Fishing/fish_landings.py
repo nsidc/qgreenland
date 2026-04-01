@@ -4,8 +4,8 @@ layer = Layer(
     id="total_fish_shellfish_landings",
     title="Total fish and shellfish landings in tonnes (temporal)",
     description=(
-        """Points representing districts in Greenland and associated
-        numbers of fish and shellfish landings by month between 2012-2026.
+        """Points representing districts in Greenland and associated numbers of
+        fish and shellfish landings by month between Jan. 2012- Feb. 2026.
 
         Note: to use this layer, enable the temporal controller and set a
         specific year/month to see that year/month's statistics. Without the

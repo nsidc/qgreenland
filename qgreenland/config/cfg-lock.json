@@ -4167,7 +4167,7 @@
               },
               {
                 "layer_cfg": {
-                  "description": "Points representing districts in Greenland and associated\nnumbers of fish and shellfish landings by month between 2012-2026.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year/month to see that year/month's statistics. Without the\ntemporal controller enabled, the earliest statistics will be shown.",
+                  "description": "Points representing districts in Greenland and associated numbers of\nfish and shellfish landings by month between Jan. 2012- Feb. 2026.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year/month to see that year/month's statistics. Without the\ntemporal controller enabled, the earliest statistics will be shown.",
                   "id": "total_fish_shellfish_landings",
                   "in_package": true,
                   "inputs": [

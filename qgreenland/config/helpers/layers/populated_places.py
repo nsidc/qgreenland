@@ -304,6 +304,7 @@ def prepare_fishing_vessels(*, input_dir: str, places):
 
 
 def prepare_total_fish_shellfish_landings(*, input_dir: str, places):
+    import datetime as dt
     from pathlib import Path
 
     import geopandas as gpd
@@ -312,6 +313,10 @@ def prepare_total_fish_shellfish_landings(*, input_dir: str, places):
 
     # Add start/end date cols
     fs_landings = _start_and_end_date_cols_for_monthly_data(fs_landings)
+
+    # Filter out records that are in the future. This data uses 0 to indicate
+    # null values instead of "-" found in other tables.
+    fs_landings = fs_landings[fs_landings["start_date"] < dt.date(2026, 3, 1)]
 
     # Rename count col
     fs_landings = fs_landings.rename(
