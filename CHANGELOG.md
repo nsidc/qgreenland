@@ -1,4 +1,4 @@
-# v4.0.0alpha4 (TBD)
+# v4.0.0alpha4 (2026-04-01)
 
 - Added layers:
   - "Human activity/"
