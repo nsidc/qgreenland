@@ -2082,6 +2082,13 @@
           ],
           "verify_tls": true
         },
+        "fishing_vessels": {
+          "id": "fishing_vessels",
+          "urls": [
+            "https://bank.stat.gl:443/sq/0cfea73a-81bd-4d47-b98b-36148097173c"
+          ],
+          "verify_tls": true
+        },
         "international_passengers": {
           "id": "international_passengers",
           "urls": [
@@ -3900,6 +3907,14 @@
                 {
                   "asset": {
                     "id": "cruise_passengers"
+                  },
+                  "dataset": {
+                    "id": "statbank"
+                  }
+                },
+                {
+                  "asset": {
+                    "id": "fishing_vessels"
                   },
                   "dataset": {
                     "id": "statbank"

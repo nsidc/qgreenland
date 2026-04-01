@@ -28,6 +28,12 @@ statbank = Dataset(
             # This URL returns a csv file `TUXKRH.csv` that has data for 2015-present
             urls=["https://bank.stat.gl:443/sq/d3c43015-ce8f-4934-ae3f-0a3b9761f8b7"],
         ),
+        # This asset from the "Number of vessels by Vessel, District and Time" table.
+        HttpAsset(
+            id="fishing_vessels",
+            # This URL returns a csv file `FIXFLEET.csv` that has data for 2020-2025
+            urls=["https://bank.stat.gl:443/sq/0cfea73a-81bd-4d47-b98b-36148097173c"],
+        ),
     ],
     metadata={
         "title": "Statistics Greenland",
