@@ -303,6 +303,53 @@ def prepare_fishing_vessels(*, input_dir: str, places):
     return fishing_vessels
 
 
+def prepare_total_fish_shellfish_landings(*, input_dir: str, places):
+    import datetime as dt
+    from pathlib import Path
+
+    import geopandas as gpd
+
+    fs_landings = gpd.read_file(Path(input_dir) / "FIX012.csv")
+
+    # Add start/end date cols
+    fs_landings = _start_and_end_date_cols_for_monthly_data(fs_landings)
+
+    # Filter out records that are in the future. This data uses 0 to indicate
+    # null values instead of "-" found in other tables.
+    fs_landings = fs_landings[fs_landings["start_date"] < dt.date(2026, 3, 1)]
+
+    # Rename count col
+    fs_landings = fs_landings.rename(
+        columns={
+            "Total landings of fish and shellfish": "landings_fish_and_shellfish_tonnes",
+        }
+    )
+    # Ensure count is cast as int
+    fs_landings["landings_fish_and_shellfish_tonnes"] = fs_landings[
+        "landings_fish_and_shellfish_tonnes"
+    ].astype(int)
+
+    # Drop unnecessary enhed (units) col
+    fs_landings = fs_landings.drop(columns=["enhed"])
+
+    # Setup place mapping
+    districts = set(fs_landings["district"])
+    district_place_mapping = {}
+    for district in districts:
+        matches = places[
+            (places["label"].str.lower() == district.lower())
+            # Filter for towns, which are the seat of each district and should match
+            # the District name given in the fishing vessels data.
+            & (places["category"] == "town")
+        ]
+        assert len(matches) == 1
+        district_place_mapping[district] = int(matches.id.values[0])
+
+    fs_landings["place_id"] = fs_landings["district"].map(district_place_mapping)
+
+    return fs_landings
+
+
 def process_populated_places(*, input_dir: str, output_dir: str):
     """Combine populated places data with statistics from statbank.
 
@@ -327,6 +374,10 @@ def process_populated_places(*, input_dir: str, output_dir: str):
     cruise_passengers = prepare_cruise_passengers(input_dir=input_dir, places=places)
 
     fishing_vessels = prepare_fishing_vessels(input_dir=input_dir, places=places)
+
+    fs_landings = prepare_total_fish_shellfish_landings(
+        input_dir=input_dir, places=places
+    )
 
     # postprocess places to remove some columns we no longer need
     # ("Indbyggertal_2016" - the population in 2016 - is used by
@@ -357,5 +408,10 @@ def process_populated_places(*, input_dir: str, output_dir: str):
 
         fishing_vessels.to_sql(
             "fishing_vessels",
+            conn,
+        )
+
+        fs_landings.to_sql(
+            "total_fish_shellfish_landings",
             conn,
         )

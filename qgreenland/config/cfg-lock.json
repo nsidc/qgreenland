@@ -2109,6 +2109,13 @@
             "https://bank.stat.gl:443/sq/e38caec2-e806-4a9d-9a01-59f021282b56"
           ],
           "verify_tls": true
+        },
+        "total_landings_fish_shellfish": {
+          "id": "total_landings_fish_shellfish",
+          "urls": [
+            "https://bank.stat.gl:443/sq/c4ce17d8-2dec-4889-887b-9e34f42e28ed"
+          ],
+          "verify_tls": true
         }
       },
       "id": "statbank",
@@ -3922,6 +3929,14 @@
                 },
                 {
                   "asset": {
+                    "id": "total_landings_fish_shellfish"
+                  },
+                  "dataset": {
+                    "id": "statbank"
+                  }
+                },
+                {
+                  "asset": {
                     "id": "only"
                   },
                   "dataset": {
@@ -4149,6 +4164,22 @@
                   "title": "Number of snow mobile used for fishing (temporal)"
                 },
                 "name": "fishing_vessels_snow_mobile"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing districts in Greenland and associated numbers of\nfish and shellfish landings by month between Jan. 2012- Feb. 2026.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year/month to see that year/month's statistics. Without the\ntemporal controller enabled, the earliest statistics will be shown.",
+                  "id": "total_fish_shellfish_landings",
+                  "in_package": true,
+                  "inputs": [
+                    {}
+                  ],
+                  "show": false,
+                  "steps": [],
+                  "style": "total_fish_shellfish_landings_timeseries",
+                  "tags": [],
+                  "title": "Total fish and shellfish landings in tonnes (temporal)"
+                },
+                "name": "total_fish_shellfish_landings"
               }
             ],
             "name": "Fishing",

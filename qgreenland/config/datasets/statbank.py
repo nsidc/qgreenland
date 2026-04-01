@@ -34,6 +34,13 @@ statbank = Dataset(
             # This URL returns a csv file `FIXFLEET.csv` that has data for 2020-2025
             urls=["https://bank.stat.gl:443/sq/0cfea73a-81bd-4d47-b98b-36148097173c"],
         ),
+        # This asset from the "Total landings of fish and shellfish by district
+        # and vessel segment" table.
+        HttpAsset(
+            id="total_landings_fish_shellfish",
+            # This URL returns a csv file `FIX012.csv` that has monthly data for 2012-2026
+            urls=["https://bank.stat.gl:443/sq/c4ce17d8-2dec-4889-887b-9e34f42e28ed"],
+        ),
     ],
     metadata={
         "title": "Statistics Greenland",
