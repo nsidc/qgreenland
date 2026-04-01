@@ -4164,6 +4164,22 @@
                   "title": "Number of snow mobile used for fishing (temporal)"
                 },
                 "name": "fishing_vessels_snow_mobile"
+              },
+              {
+                "layer_cfg": {
+                  "description": "Points representing districts in Greenland and associated\nnumbers of fish and shellfish landings by month between 2012-2026.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year/month to see that year/month's statistics. Without the\ntemporal controller enabled, the earliest statistics will be shown.",
+                  "id": "total_fish_shellfish_landings",
+                  "in_package": true,
+                  "inputs": [
+                    {}
+                  ],
+                  "show": false,
+                  "steps": [],
+                  "style": "total_fish_shellfish_landings_timeseries",
+                  "tags": [],
+                  "title": "Total fish and shellfish landings in tonnes (temporal)"
+                },
+                "name": "total_fish_shellfish_landings"
               }
             ],
             "name": "Fishing",
