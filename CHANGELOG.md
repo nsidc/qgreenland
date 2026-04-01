@@ -4,6 +4,11 @@
   - "Human activity/"
     - "Airport international passengers (temporal)"
     - "Cruise passengers by harbor (temporal)"
+    - "Fishing/"
+      - "Number of dinghies used for fishing (temporal)"
+      - "Number of dog sledge used for fishing (temporal)"
+      - "Number of fishing vessels used for fishing (temporal)"
+      - "Number of snow mobile used for fishing (temporal)"
 
 # v4.0.0alpha3 (2025-03-26)
 

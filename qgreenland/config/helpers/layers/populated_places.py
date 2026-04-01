@@ -241,6 +241,68 @@ def prepare_cruise_passengers(*, input_dir: str, places):
     return cruise_passengers
 
 
+def prepare_fishing_vessels(*, input_dir: str, places):
+    import datetime as dt
+    from pathlib import Path
+
+    import geopandas as gpd
+
+    fishing_vessels = gpd.read_file(Path(input_dir) / "FIXFLEET.csv")
+
+    # Filter out null records ("-")
+    fishing_vessels = fishing_vessels[fishing_vessels["Number of vessels"] != "-"]
+
+    # rename columns
+    fishing_vessels = fishing_vessels.rename(
+        columns={
+            "Number of vessels": "number_of_vessels",
+            "Vessel": "vessel_type",
+        }
+    )
+
+    # Cast `number_of_vessels` to int
+    fishing_vessels["number_of_vessels"] = fishing_vessels["number_of_vessels"].astype(
+        int
+    )
+
+    # Create start/end date fields
+    fishing_vessels["start_date"] = fishing_vessels["Time"].apply(
+        lambda year_str: dt.date(int(year_str) - 1, 1, 1)
+    )
+    fishing_vessels["end_date"] = fishing_vessels["Time"].apply(
+        lambda year_str: dt.date(int(year_str) - 1, 12, 31)
+    )
+    fishing_vessels = fishing_vessels.drop(columns=["Time"])
+
+    # Map fishing vessel districts to towns in places database.
+    districts = set(fishing_vessels["District"])
+    district_place_mapping = {}
+    for district in districts:
+        # Slight spelling difference (one vs two `a`) in this district name vs
+        # in places db.
+        if district == "Kangatsiaq":
+            district_matcher = "Kangaatsiaq"
+        elif district == "Ittoqqormiit":
+            district_matcher = "Ittoqqortoormiit"
+        else:
+            district_matcher = district
+
+        matches = places[
+            (places["label"].str.lower() == district_matcher.lower())
+            # Filter for towns, which are the seat of each district and should match
+            # the District name given in the fishing vessels data.
+            & (places["category"] == "town")
+        ]
+
+        district_place_mapping[district] = int(matches["id"].values[0])
+
+    fishing_vessels["place_id"] = fishing_vessels["District"].map(
+        district_place_mapping
+    )
+
+    return fishing_vessels
+
+
 def process_populated_places(*, input_dir: str, output_dir: str):
     """Combine populated places data with statistics from statbank.
 
@@ -263,6 +325,8 @@ def process_populated_places(*, input_dir: str, output_dir: str):
     )
 
     cruise_passengers = prepare_cruise_passengers(input_dir=input_dir, places=places)
+
+    fishing_vessels = prepare_fishing_vessels(input_dir=input_dir, places=places)
 
     # postprocess places to remove some columns we no longer need
     # ("Indbyggertal_2016" - the population in 2016 - is used by
@@ -288,5 +352,10 @@ def process_populated_places(*, input_dir: str, output_dir: str):
 
         cruise_passengers.to_sql(
             "cruise_passengers",
+            conn,
+        )
+
+        fishing_vessels.to_sql(
+            "fishing_vessels",
             conn,
         )
