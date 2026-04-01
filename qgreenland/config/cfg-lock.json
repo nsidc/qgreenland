@@ -2109,6 +2109,13 @@
             "https://bank.stat.gl:443/sq/e38caec2-e806-4a9d-9a01-59f021282b56"
           ],
           "verify_tls": true
+        },
+        "total_landings_fish_shellfish": {
+          "id": "total_landings_fish_shellfish",
+          "urls": [
+            "https://bank.stat.gl:443/sq/c4ce17d8-2dec-4889-887b-9e34f42e28ed"
+          ],
+          "verify_tls": true
         }
       },
       "id": "statbank",
@@ -3915,6 +3922,14 @@
                 {
                   "asset": {
                     "id": "fishing_vessels"
+                  },
+                  "dataset": {
+                    "id": "statbank"
+                  }
+                },
+                {
+                  "asset": {
+                    "id": "total_landings_fish_shellfish"
                   },
                   "dataset": {
                     "id": "statbank"

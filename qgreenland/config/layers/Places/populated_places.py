@@ -54,6 +54,11 @@ QGreenland Team - Noted Data Issues:
             dataset=statbank,
             asset=statbank.assets["fishing_vessels"],
         ),
+        # This input provides numbers fish/shellfish caught
+        LayerInput(
+            dataset=statbank,
+            asset=statbank.assets["total_landings_fish_shellfish"],
+        ),
         # This input provides a multipolygon of municipalities and gives us the
         # municipality name for each populated place. (gpkg)
         LayerInput(
