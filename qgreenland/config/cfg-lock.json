@@ -2075,6 +2075,13 @@
     },
     "statbank": {
       "assets": {
+        "international_passengers": {
+          "id": "international_passengers",
+          "urls": [
+            "https://bank.stat.gl:443/sq/f93c6266-8b3e-4bc1-8bc7-71028d558456"
+          ],
+          "verify_tls": true
+        },
         "localities_population": {
           "id": "localities_population",
           "urls": [
@@ -3877,6 +3884,14 @@
                 },
                 {
                   "asset": {
+                    "id": "international_passengers"
+                  },
+                  "dataset": {
+                    "id": "statbank"
+                  }
+                },
+                {
+                  "asset": {
                     "id": "only"
                   },
                   "dataset": {
@@ -4221,6 +4236,22 @@
               ],
               "show": false
             }
+          },
+          {
+            "layer_cfg": {
+              "description": "Points representing airports in Greenland and associated\nmonthly international passenger numbers from 2008-2026.\n\nNote that points are representative of the location of the\ncity/settlement in which the airport resides. Points do not directly\nidentify the location of the airport itself.\n\nNote: to use this layer, enable the temporal controller and set a\nspecific year/month to see that year/month's international passenger\nstatistics. Without the temporal controller enabled, the earliest\ninternational passenger statistics will be shown (for 2008).",
+              "id": "airport_international_passengers",
+              "in_package": true,
+              "inputs": [
+                {}
+              ],
+              "show": false,
+              "steps": [],
+              "style": "international_passengers_timeseries",
+              "tags": [],
+              "title": "Airport international passengers (temporal)"
+            },
+            "name": "airport_international_passengers"
           },
           {
             "layer_cfg": {

@@ -1,3 +1,5 @@
+import inspect
+
 from qgreenland.models.config.step import PythonStep
 from qgreenland.util.command import run_qgr_command
 
@@ -15,7 +17,7 @@ def python_runner(
 
     import_str = f"from {module} import {name}"
 
-    allow_breakpoint = "breakpoint()" in step.provenance
+    allow_breakpoint = "breakpoint()" in inspect.getsource(step.function)
 
     run_qgr_command(
         [

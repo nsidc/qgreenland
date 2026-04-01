@@ -39,6 +39,11 @@ QGreenland Team - Noted Data Issues:
             dataset=statbank,
             asset=statbank.assets["localities_population"],
         ),
+        # This input provides numbers of international passengers (csv)
+        LayerInput(
+            dataset=statbank,
+            asset=statbank.assets["international_passengers"],
+        ),
         # This input provides a multipolygon of municipalities and gives us the
         # municipality name for each populated place. (gpkg)
         LayerInput(
