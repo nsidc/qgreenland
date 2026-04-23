@@ -22,8 +22,8 @@ body:
           for your understanding!
 
 
-        Finally, please review our [dataset compatibility
-        guide](https://qgreenland.readthedocs.io/en/latest/reference/data-compatibility-guide.html)
+        Finally, please review our
+        [dataset compatibility guide](https://qgreenland.readthedocs.io/en/latest/contributor/reference/data-compatibility-guide.html)
         for ideas for improving your dataset's compatibility with our project.
 
   - type: "input"
